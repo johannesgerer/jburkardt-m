@@ -1,0 +1,290 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_WAVE - Finite Difference Method, 1D Wave Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_WAVE <br> 
+      Finite Difference Method<br> 
+      1D Wave Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_WAVE</b> 
+      is a MATLAB program which
+      applies the finite difference method to solve
+      a version of the wave equation in one spatial dimension.
+    </p>
+
+    <p>
+      This program solves the 1D wave equation of the form:
+      <pre>
+        Utt = c^2 Uxx
+      </pre>
+      over the spatial interval [X1,X2] and time interval [T1,T2],
+      with initial conditions:
+      <pre>
+        U(T1,X)  = U_T1(X),
+        Ut(T1,X) = UT_T1(X),
+      </pre>
+      and boundary conditions of Dirichlet type:
+      <pre>
+        U(T,X1) = U_X1(T),<br>
+        U(T,X2) = U_X2(T).
+      </pre>
+      The value <b>C</b> represents the propagation speed of waves.
+    </p>
+
+    <p>
+      The program uses the finite difference method, and marches
+      forward in time, solving for all the values of U at the next
+      time step by using the values known at the previous two time steps.
+    </p>
+
+    <p>
+      Central differences may be used to approximate both the time
+      and space derivatives in the original differential equation.
+    </p>
+
+    <p>
+      Thus, assuming we have available the approximated values of U
+      at the current and previous times, we may write a discretized
+      version of the wave equation as follows:
+      <pre>
+        Uxx(T,X) = ( U(T,   X+dX) - 2 U(T,X) + U(T,   X-dX) ) / dX^2
+        Utt(T,X) = ( U(T+dt,X   ) - 2 U(T,X) + U(T-dt,X   ) ) / dT^2
+      </pre>
+      If we multiply the first term by C^2 and solve for the single
+      unknown value U(T+dt,X), we have:
+      <pre>
+        U(T+dT,X) =        (     C^2 * dT^2 / dX^2 ) * U(T,   X+dX)
+                    +  2 * ( 1 - C^2 * dT^2 / dX^2 ) * U(T,   X   )
+                    +      (     C^2 * dT^2 / dX^2 ) * U(T,   X-dX)
+                    -                                  U(T-dT,X   )
+      </pre>
+      (Equation to advance from time T to time T+dT, except for FIRST step!)
+    </p>
+
+    <p>
+      However, on the very first step, we only have the values of U
+      for the initial time, but not for the previous time step.
+      In that case, we use the initial condition information for dUdT
+      which can be approximated by a central difference that involves
+      U(T+dT,X) and U(T-dT,X):
+      <pre>
+        dU/dT(T,X) = ( U(T+dT,X) - U(T-dT,X) ) / ( 2 * dT )
+      </pre>
+      and so we can estimate U(T-dT,X) as
+      <pre>
+        U(T-dT,X) = U(T+dT,X) - 2 * dT * dU/dT(T,X)
+      </pre>
+      If we replace the "missing" value of U(T-dT,X) by the known values
+      on the right hand side, we now have U(T+dT,X) on both sides of the
+      equation, so we have to rearrange to get the formula we use
+      for just the first time step:
+      <pre>
+        U(T+dT,X) =   1/2 * (     C^2 * dT^2 / dX^2 ) * U(T,   X+dX)
+                    +       ( 1 - C^2 * dT^2 / dX^2 ) * U(T,   X   )
+                    + 1/2 * (     C^2 * dT^2 / dX^2 ) * U(T,   X-dX)
+                    +  dT *                         dU/dT(T,   X   )
+      </pre>
+      (Equation to advance from time T to time T+dT for FIRST step.)
+    </p>
+
+    <p>
+      It should be clear now that the quantity ALPHA = C * DT / DX will affect
+      the stability of the calculation.  If it is greater than 1, then
+      the middle coefficient 1-C^2 DT^2 / DX^2 is negative, and the
+      sum of the magnitudes of the three coefficients becomes unbounded.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_WAVE</b> is available in
+      <a href = "../../c_src/fd1d_wave/fd1d_wave.html">a C version</a> and
+      <a href = "../../cpp_src/fd1d_wave/fd1d_wave.html">a C++ version</a> and
+      <a href = "../../f77_src/fd1d_wave/fd1d_wave.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_wave/fd1d_wave.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_wave/fd1d_wave.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous time-dependent Burgers equation 
+      in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
+      FD1D_BVP</a>,
+      a MATLAB program which
+      applies the finite difference method
+      to a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_wave_alpha.m">fd1d_wave_alpha.m</a>,
+          computes the value of <b>alpha</b> needed for the computation.
+        </li>
+        <li>
+          <a href = "fd1d_wave_start.m">fd1d_wave_start.m</a>,
+          takes the first time step.
+        </li>
+        <li>
+          <a href = "fd1d_wave_step.m">fd1d_wave_step.m</a>,
+          takes all subsequent time steps.
+        </li>
+        <li>
+          <a href = "piecewise_linear.m">piecewise_linear.m</a>,
+          evaluates a piecewise linear spline.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT to a file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_wave_test.m">fd1d_wave_test.m</a>, 
+          a program which runs several test cases.
+        </li>
+        <li>
+          <a href = "fd1d_wave_test01.m">fd1d_wave_test01.m</a>, 
+          uses a sort of shark fin as the initial condition.
+        </li>
+        <li>
+          <a href = "fd1d_wave_test02.m">fd1d_wave_test02.m</a>, 
+          uses a sine curve as the initial condition.
+        </li>
+        <li>
+          <a href = "fd1d_test01_step06.png">fd1d_test01_step06.png</a>, 
+          a plot of step 6 for test #1.
+        </li>
+        <li>
+          <a href = "test01_plot.txt">test01_plot.txt</a>,
+          the data.
+        </li>
+        <li>
+          <a href = "fd1d_test02_step13.png">fd1d_test02_step13.png</a>, 
+          a plot of step 13 for test #2.
+        </li>
+        <li>
+          <a href = "test02_plot.txt">test02_plot.txt</a>,
+          the data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

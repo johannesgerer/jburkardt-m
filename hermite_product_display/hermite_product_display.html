@@ -1,0 +1,252 @@
+<html>
+
+  <head>
+    <title>
+      HERMITE_PRODUCT_DISPLAY - Display 2D Cartesian Products of Hermite Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      HERMITE_PRODUCT_DISPLAY <br> Display 2D Cartesian Products of Hermite Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HERMITE_PRODUCT_DISPLAY</b>
+      is a MATLAB program which
+      displays an image of a function created by the Cartesian product of two Hermite polynomials,
+      such as f(x,y) = h(3,x) * h(1,y).
+    </p>
+
+    <p>
+      There are five types of Hermite polynomial available.  Perhaps the best behaved
+      are "Hen(n,x)" and "Hf(n,x)", which don't blow up within the plotting interval as fast as 
+      the other functions do.
+    </p>
+
+    <p>
+      The physicist's Hermite polynomial H(n,x) can be defined by:
+      <pre>
+        H(n,x) = (-1)^n exp(x^2/2) * d^n/dx^n ( exp(-x^2/2) )
+      </pre>
+    </p>
+
+    <p>
+      The normalized physicist's Hermite polynomial Hn(n,x) is scaled so that
+      <pre>
+        Integral ( -oo < X < +oo ) exp ( - X^2 ) * Hn(M,X) Hn(N,X) dX = delta ( N, M )
+      </pre>
+    </p>
+
+    <p>
+      The probabilist's Hermite polynomial He(n,x) is related to H(n,x) by:
+      <pre>
+        He(n,x) = H(n,x/sqrt(2)) / sqrt ( 2^n )
+      </pre>
+    </p>
+
+    <p>
+      The normalized probabilist's Hermite polynomial Hen(n,x) is scaled so that
+      <pre>
+        Integral ( -oo < X < +oo ) exp ( - 0.5*X^2 ) * Hen(M,X) Hen(N,X) dX = delta ( N, M )
+      </pre>
+    </p>
+
+    <p>
+      The Hermite function Hf(n,x) is related to H(n,x) by:
+      <pre>
+        Hf(n,x) = H(n,x) * exp(-x^2/2) / sqrt ( 2^n * n! * sqrt ( pi ) )
+      </pre>
+      and is scaled so that:
+      <pre>
+        Integral ( -oo < X < +oo ) Hf(M,X) Hf(N,X) dX = delta ( N, M )
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>hermite_product_display</b> ( <i>'name'</i>, <i>i</i>, <i>j</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'name'</i> is 'h', 'hn', 'he', 'hen', or 'hf';
+        </li>
+        <li>
+          <i>i</i> is the index of the polynomial in the X direction;
+        </li>
+        <li>
+          <i>j</i> is the index of the polynomial in the Y direction.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_basis_q4_display/fem_basis_q4_display.html">
+      FEM_BASIS_Q4_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a linear quadrilateral ("Q4") mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a 3-node triangle "T3" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t4_display/fem_basis_t4_display.html">
+      FEM_BASIS_T4_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a 4-node triangle "T4" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t6_display/fem_basis_t6_display.html">
+      FEM_BASIS_T6_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a 6-node triangle "T6" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">
+      HERMITE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the physicist's Hermite polynomial, the probabilist's Hermite polynomial,
+      the Hermite function, and related functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygonal_surface_display/polygonal_surface_display.html">
+      POLYGONAL_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      displays a surface in 3D described as a set of polygons;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hermite_product_display.m">hermite_product_display.m</a>,
+          displays a 2D Hermite product such as H(i,x)*H(j,y).
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      Here we plot all the possible products of orders 0 through 5, using the
+      "hen" polynomial:
+      <ul>
+        <li>
+          <a href = "hen_00.png">hen_00.png</a>, Hen(0,x)*Hen(0,y);
+        </li>
+        <li>
+          <a href = "hen_01.png">hen_01.png</a>, Hen(0,x)*Hen(1,y);
+        </li>
+        <li>
+          <a href = "hen_02.png">hen_02.png</a>, Hen(0,x)*Hen(2,y);
+        </li>
+        <li>
+          <a href = "hen_03.png">hen_03.png</a>, Hen(0,x)*Hen(3,y);
+        </li>
+        <li>
+          <a href = "hen_04.png">hen_04.png</a>, Hen(0,x)*Hen(4,y);
+        </li>
+        <li>
+          <a href = "hen_05.png">hen_05.png</a>, Hen(0,x)*Hen(5,y);
+        </li>
+        <li>
+          <a href = "hen_11.png">hen_11.png</a>, Hen(1,x)*Hen(1,y);
+        </li>
+        <li>
+          <a href = "hen_12.png">hen_12.png</a>, Hen(1,x)*Hen(2,y);
+        </li>
+        <li>
+          <a href = "hen_13.png">hen_13.png</a>, Hen(1,x)*Hen(3,y);
+        </li>
+        <li>
+          <a href = "hen_14.png">hen_14.png</a>, Hen(1,x)*Hen(4,y);
+        </li>
+        <li>
+          <a href = "hen_15.png">hen_15.png</a>, Hen(1,x)*Hen(5,y);
+        </li>
+        <li>
+          <a href = "hen_22.png">hen_22.png</a>, Hen(2,x)*Hen(2,y);
+        </li>
+        <li>
+          <a href = "hen_23.png">hen_23.png</a>, Hen(2,x)*Hen(3,y);
+        </li>
+        <li>
+          <a href = "hen_24.png">hen_24.png</a>, Hen(2,x)*Hen(4,y);
+        </li>
+        <li>
+          <a href = "hen_25.png">hen_25.png</a>, Hen(2,x)*Hen(5,y);
+        </li>
+        <li>
+          <a href = "hen_33.png">hen_33.png</a>, Hen(3,x)*Hen(3,y);
+        </li>
+        <li>
+          <a href = "hen_34.png">hen_34.png</a>, Hen(3,x)*Hen(4,y);
+        </li>
+        <li>
+          <a href = "hen_35.png">hen_35.png</a>, Hen(3,x)*Hen(5,y);
+        </li>
+        <li>
+          <a href = "hen_44.png">hen_44.png</a>, Hen(4,x)*Hen(4,y);
+        </li>
+        <li>
+          <a href = "hen_45.png">hen_45.png</a>, Hen(4,x)*Hen(5,y);
+        </li>
+        <li>
+          <a href = "hen_55.png">hen_55.png</a>, Hen(5,x)*Hen(5,y);
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 19 February 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

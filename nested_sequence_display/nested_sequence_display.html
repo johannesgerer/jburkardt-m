@@ -1,0 +1,302 @@
+<html>
+
+  <head>
+    <title>
+      NESTED_SEQUENCE_DISPLAY - Display a Nested Set of Sequences
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NESTED_SEQUENCE_DISPLAY <br> Display a Nested Set of Sequences
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NESTED_SEQUENCE_DISPLAY</b> 
+      is a MATLAB program which
+      displays a set of sequences, as lines of X values, "stacked up"
+      in the Y direction.  For cases where sequences share
+      a value, a red vertical line is drawn to highlight this.
+    </p>
+
+    <p>
+      The purpose of the plot is to emphasize the structure of a 
+      nested sequence, although it is not actually necessary for the 
+      sequences to be related in any way.
+    </p>
+
+    <p>
+      The kind of plot we are thinking of though, might look something 
+      like this:
+      <pre>
+    Sequence 4: 1    3 4  5  6     8
+                |    |    |        |
+    Sequence 3: 1 2  |    5     7  |
+                |    |          |  |
+    Sequence 2: 1    3          7  |
+                |               |  |
+    Sequence 1: 1               7  8
+      </pre>
+    </p>
+
+    <p>
+      For example, the program could be used to show the nesting of
+      the family of Clenshaw Curtis points, when choosing orders
+      1, 3, 5, 9, 17, 33, 65, ...
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>nested_sequence_display</b> ()
+      </blockquote>
+      invokes the program.  It then
+      engages in a dialog with the user, who is asked to enter, one
+      by one, the names of files containing the sequences.  When there
+      are no more files to enter, the user should enter 'RETURN'.
+      At that point, the plot will be drawn.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/gridlines/gridlines.html">
+      GRIDLINES</a>,
+      a MATLAB library which 
+      gives the user more control over drawing gridlines on a graph
+      than the builtin "grid on" command.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sequence_streak_display/sequence_streak_display.html">
+      SEQUENCE_STREAK_DISPLAY</a>,
+      a MATLAB program which 
+      reads a file containing a sequence,
+      and draws a "streak" plot in which, as each value joins the
+      sequence, it starts a streak on the plot.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      a format which
+      is used for the files containing the sequences.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tensor_grid_display/tensor_grid_display.html">
+      TENSOR_GRID_DISPLAY</a>,
+      a MATLAB program which
+      can display the grid points of a tensor product rule used for
+      interpolation or quadrature, in 1D, 2D or 3D.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nested_sequence_display.m">nested_sequence_display.m</a>, 
+          reads a list of files containing sequences and draws a plot
+          that highlights any nesting between the sequences;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CC</b> is a set of files containing Clenshaw Curtis rules,
+      with an "exponential" growth rule.
+      <ul>
+        <li>
+          <a href = "cc_level0.txt">cc_level0.txt</a>, 
+          the abscissas for the rule of level 0.
+        </li>
+        <li>
+          <a href = "cc_level1.txt">cc_level1.txt</a>, 
+          the abscissas for the rule of level 1.
+        </li>
+        <li>
+          <a href = "cc_level2.txt">cc_level2.txt</a>, 
+          the abscissas for the rule of level 2.
+        </li>
+        <li>
+          <a href = "cc_level3.txt">cc_level3.txt</a>, 
+          the abscissas for the rule of level 3.
+        </li>
+        <li>
+          <a href = "cc_level4.txt">cc_level4.txt</a>, 
+          the abscissas for the rule of level 4.
+        </li>
+        <li>
+          <a href = "cc_level5.txt">cc_level5.txt</a>, 
+          the abscissas for the rule of level 5.
+        </li>
+        <li>
+          <a href = "cc_level6.txt">cc_level6.txt</a>, 
+          the abscissas for the rule of level 6.
+        </li>
+        <li>
+          <a href = "cc_sequence.png">cc_sequence.png</a>, 
+          a PNG image of the sequences.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GL</b> is a set of files containing Gauss Legendre abscissas, with
+      an "exponential" growth rule.
+      <ul>
+        <li>
+          <a href = "gl_01.txt">gl_01.txt</a>, 
+          the abscissas for the rule of order 1.
+        </li>
+        <li>
+          <a href = "gl_03.txt">gl_03.txt</a>, 
+          the abscissas for the rule of order 3.
+        </li>
+        <li>
+          <a href = "gl_07.txt">gl_07.txt</a>, 
+          the abscissas for the rule of order 7.
+        </li>
+        <li>
+          <a href = "gl_15.txt">gl_15.txt</a>, 
+          the abscissas for the rule of order 15.
+        </li>
+        <li>
+          <a href = "gl_31.txt">gl_31.txt</a>, 
+          the abscissas for the rule of order 31.
+        </li>
+        <li>
+          <a href = "gl_65.txt">gl_65.txt</a>, 
+          the abscissas for the rule of order 65.
+        </li>
+        <li>
+          <a href = "gl_sequence.png">gl_sequence.png</a>, 
+          a PNG image of the sequences.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>NCO</b> is a set of files containing Newton Cotes Open abscissas,
+      with a "linear" growth rule.
+      <ul>
+        <li>
+          <a href = "nco_01.txt">nco_01.txt</a>, 
+          the abscissas for the rule of order 1.
+        </li>
+        <li>
+          <a href = "nco_03.txt">nco_03.txt</a>, 
+          the abscissas for the rule of order 3.
+        </li>
+        <li>
+          <a href = "nco_05.txt">nco_05.txt</a>, 
+          the abscissas for the rule of order 5.
+        </li>
+        <li>
+          <a href = "nco_07.txt">nco_07.txt</a>, 
+          the abscissas for the rule of order 7.
+        </li>
+        <li>
+          <a href = "nco_09.txt">nco_09.txt</a>, 
+          the abscissas for the rule of order 9.
+        </li>
+        <li>
+          <a href = "nco_11.txt">nco_11.txt</a>, 
+          the abscissas for the rule of order 11.
+        </li>
+        <li>
+          <a href = "nco_13.txt">nco_13.txt</a>, 
+          the abscissas for the rule of order 13.
+        </li>
+        <li>
+          <a href = "nco_15.txt">nco_15.txt</a>, 
+          the abscissas for the rule of order 15.
+        </li>
+        <li>
+          <a href = "nco_sequence.png">nco_sequence.png</a>, 
+          a PNG image of the sequences.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SCC</b> is a set of files containing Clenshaw Curtis rules,
+      with an "slow exponential" growth rule.
+      <ul>
+        <li>
+          <a href = "scc_level0.txt">scc_level0.txt</a>, 
+          the abscissas for the rule of level 0.
+        </li>
+        <li>
+          <a href = "scc_level1.txt">scc_level1.txt</a>, 
+          the abscissas for the rule of level 1.
+        </li>
+        <li>
+          <a href = "scc_level2.txt">scc_level2.txt</a>, 
+          the abscissas for the rule of level 2.
+        </li>
+        <li>
+          <a href = "scc_level3.txt">scc_level3.txt</a>, 
+          the abscissas for the rule of level 3.
+        </li>
+        <li>
+          <a href = "scc_level4.txt">scc_level4.txt</a>, 
+          the abscissas for the rule of level 4.
+        </li>
+        <li>
+          <a href = "scc_level5.txt">scc_level5.txt</a>, 
+          the abscissas for the rule of level 5.
+        </li>
+        <li>
+          <a href = "scc_level6.txt">scc_level6.txt</a>, 
+          the abscissas for the rule of level 6.
+        </li>
+        <li>
+          <a href = "scc_sequence.png">scc_sequence.png</a>, 
+          a PNG image of the sequences.
+        </li>
+      </ul>
+    </p>
+
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 May 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

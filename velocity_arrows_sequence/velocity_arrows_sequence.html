@@ -1,0 +1,246 @@
+<html>
+
+  <head>
+    <title>
+      VELOCITY_ARROWS_SEQUENCE - Velocity Field Arrow Sequence
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      VELOCITY_ARROWS_SEQUENCE <br> Velocity Field Arrow Sequence
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>VELOCITY_ARROWS_SEQUENCE</b> 
+      is a MATLAB program which 
+      makes velocity field arrow plots using a single XY coordinate file, and 
+      a sequence of UV velocity datasets, stored as 
+      <a href = "../../data/table/table.html">TABLE files</a>
+      (except that no "#" comment lines are allowed).
+    </p>
+
+    <p>
+      The program is mainly a preprocessor for MATLAB's <b>quiver</b>
+      routine.  It reads the (X,Y) coordinates of a set of points from an
+      "XY" file, and the corresponding horizontal and vertical velocities
+      from a "UV" file.  It computes the maximum velocity magnitude over
+      all datasets, so that there is a single velocity scale.
+    </p>
+
+    <p>
+      It then makes a few settings, calls <b>quiver</b>
+      to plot the arrows, and also traces out the convex hull of the points,
+      which is presumably the boundary of the region.  The resulting
+      image is displayed, and saved to a PNG file.
+    </p>
+
+    <p>
+      In addition, the program assumes that the user actually has a
+      sequence of UV datasets, with "consecutive" names, each of which
+      is to be plotted.  The program automatically reads each such
+      dataset and creates the sequence of 
+      <a href = "../../data/png/png.html">PNG</a> files.  It is easy to
+      take such a sequence and make an animation.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/direction_arrows_sequence/direction_arrows_sequence.html">
+      DIRECTION_ARROWS_SEQUENCE</a>,
+      a MATLAB program which
+      makes velocity direction plots.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_magnitude_grid/vector_magnitude_grid.html">
+      VECTOR_MAGNITUDE_GRID</a>, 
+      a MATLAB program which 
+      reads node and velocity data from a file, and using an interpolating
+      function, is able to display a contour plot of the vector magnitude field.
+    </p>
+
+    <p>
+      <a href = "../../f_src/vector_plot/vector_plot.html">
+      VECTOR_PLOT</a>, 
+      a FORTRAN90 program which 
+      can read an XY file
+      and a UV file and plot the velocity and velocity direction fields.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_stream_grid/vector_stream_grid.html">
+      VECTOR_STREAM_GRID</a>,
+      a MATLAB program which
+      reads
+      node and vector data from a file, computes an interpolatory function,
+      evaluates on a uniform grid of points specified by the user,
+      and displays a streamline plot of the vector field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows/velocity_arrows.html">
+      VELOCITY_ARROWS</a>, 
+      a MATLAB program which
+      plots a velocity vector field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_grid/velocity_arrows_grid.html">
+      VELOCITY_ARROWS_GRID</a>, 
+      a MATLAB program which 
+      reads files of
+      node and velocity data, and, using interpolation, creates a 
+      vector plot with arrows
+      place on a uniform grid of the user's specification.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_sequence2/velocity_arrows_sequence2.html">
+      VELOCITY_ARROWS_SEQUENCE2</a>,
+      a MATLAB program which
+      handles the case where each data file
+      contains both XY and UV values.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "velocity_arrows_sequence.m">
+          velocity_arrows_sequence.m</a>, 
+          the source code;
+        </li>
+        <li>
+          <a href = "file_exist.m">
+          file_exist.m</a>, 
+          is true if a file exists;
+        </li>
+        <li>
+          <a href = "file_name_ext_swap.m">
+          file_name_ext_swap.m</a>, 
+          changes the extension on a file name;
+        </li>
+        <li>
+          <a href = "file_name_inc.m">
+          file_name_inc.m</a>, 
+          increments a file name;
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The INOUT dataset models flow in a 2D box with an inlet on
+      one side and an outlet on the other.  The following files are available:
+      <ul>
+        <li>
+          <a href = "inout_xy.txt">inout_xy.txt</a>, 
+          the coordinates of nodes.
+        </li>
+        <li>
+          <a href = "inout_uv001.txt">inout_uv001.txt</a>, 
+          the first set of velocity data.
+        </li>
+        <li>
+          <a href = "inout_uv002.txt">inout_uv002.txt</a>, 
+          more velocity data.
+        </li>
+        <li>
+          <a href = "inout_uv003.txt">inout_uv003.txt</a>
+        </li>
+        <li>
+          <a href = "inout_uv004.txt">inout_uv004.txt</a>
+        </li>
+        <li>
+          <a href = "inout_uv005.txt">inout_uv005.txt</a>
+        </li>
+        <li>
+          <a href = "inout_uv006.txt">inout_uv006.txt</a>
+        </li>
+        <li>
+          <a href = "inout_uv007.txt">inout_uv007.txt</a>
+        </li>
+        <li>
+          <a href = "inout_uv008.txt">inout_uv008.txt</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The command 
+      <blockquote><b>
+        velocity_arrows_sequence ( 'inout_xy.txt', 'inout_uv001.txt', 3.0 )
+      </b></blockquote>
+      created the following files:
+      <ul>
+        <li>
+          <a href = "inout_uv001.png">inout_uv001.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv002.png">inout_uv002.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv003.png">inout_uv003.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv004.png">inout_uv004.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv005.png">inout_uv005.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv006.png">inout_uv006.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv007.png">inout_uv007.png</a>
+        </li>
+        <li>
+          <a href = "inout_uv008.png">inout_uv008.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 June 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,303 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_DISTCOMP - Distributed Computing with MATLAB
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_DISTCOMP <br>
+      Distributed Computing with MATLAB
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_DISTCOMP</b>
+      is a directory of information which
+      discusses the use of distributed computing with MATLAB.
+    </p>
+
+    <p>
+      The idea of distributed computing is to take a single computing job
+      and divide it into several tasks, each of which can be carried out
+      independently.  These tasks may then be submitted together to some
+      kind of scheduler or batch system, which can decide how and when (and
+      perhaps where) to execute them.
+    </p>
+
+    <p>
+      Distributed computing can occur <b>locally</b>, that is, on your
+      desktop machine, particularly if it has multiple processors.  You can
+      also do distributed computing <b>remotely</b>, for instance, on
+      Virginia Tech's Ithaca cluster.
+    </p>
+
+    <p>
+      In the remote distributed computing case, you must first do a certain
+      amount of preparation.  These steps are outlined in the document
+      <a href = "../../pdf/matlab_remote_submission.pdf">
+      "Notes on Enabling Remote Submission of MATLAB Jobs"</a>.
+    </p>
+
+    <p>
+      Enabling remote submission of jobs to the Ithaca cluster involves:
+      <ol>
+        <li>
+          Setting up passwordless remote access to Ithaca from your machine.
+          This is described in the document.
+        </li>
+        <li>
+          Copying some necessary files into the <b>toolbox/local</b> subdirectory
+          of your copy of MATLAB.  These files are available in the
+          <a href = "../../m_src/matlab_remote/matlab_remote.html">matlab_remote</a>
+          directory.
+        </li>
+        <li>
+          Copying a parallel configuration file  to
+          your machine, installing it into MATLAB, and modifying it appropriately
+          for your environment.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Once you think you've got your remote submission set up properly,
+      you can test it by copying the GZIP'ed tar file from this directory,
+      unzipping it, starting MATLAB, and issuing the command <b>test_all</b>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/birthday_remote/birthday_remote.html">
+      BIRTHDAY_REMOTE</a>,
+      a MATLAB program which
+      runs a Monte Carlo simulation of the birthday paradox, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/color_remote/color_remote.html">
+      COLOR_REMOTE</a>,
+      a MATLAB program which
+      carries out the color segmentation of an image in parallel,
+      via SPMD commands; this includes instructions on how to run the job,
+      via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>, 
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>, 
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping 
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/knapsack_tasks/knapsack_tasks.html">
+      KNAPSACK_TASKS</a>,
+      a MATLAB program which
+      solves a knapsack problem by subdividing it into tasks, each of
+      which is carried out as a separate program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+      LYRICS_REMOTE</a>,
+      a MATLAB program which
+      runs in parallel, using three workers which cooperate "systolically", that is,
+      as through they were on an assembly line.  The output from worker 1 is passed to
+      worker 2 for further processing, and so on.  This includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_remote/matlab_remote.html">
+      MATLAB_REMOTE</a>,
+      MATLAB programs which
+      illustrate the use of remote job execution, in which a desktop copy of
+      MATLAB sends programs and data to a remote machine for execution.
+      Included is information needed to properly configure the local machine.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation; it runs in parallel
+      using MATLAB's "parfor" facility, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>, 
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which 
+      estimates an integral using quadrature; 
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which 
+      estimates an integral using quadrature; 
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which 
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+        <li>
+          Virginia Tech Advanced Research Computing,<br>
+          Notes on Enabling Remote Submission of MATLAB Jobs,<br>
+          <a href = "https://portal.arc.vt.edu/matlab/RemoteMatlabSubmission.pdf">
+                     https://portal.arc.vt.edu/matlab/RemoteMatlabSubmission.pdf</a>
+          or
+          <a href = "../../pdf/matlab_remote_submission.pdf">
+                               matlab_remote_submission.pdf</a>.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <image src = "matlab_distcomp.png" height = "400">
+    </p>
+
+    <p>
+      This top level directory includes some files of interest:
+      <ul>
+        <li>
+          <a href = "readme.txt">readme.txt</a>,
+          a text file containing some notes on the various jobs.
+        </li>
+        <li>
+          <a href = "test_all.m">test_all.m</a>,
+          a MATLAB script which runs the five distributed computing jobs.
+        </li>
+        <li>
+          <a href = "test_all_output.txt">test_all_output.txt</a>
+          the output to the screen created by running test_all.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Below this top level directory are five subdirectories that contain
+      information associated with the five separate jobs.  Information about
+      the files in these directories is not included here.  However, for each
+      of these directories, there is a discussion of the files and their purpose
+      at another location.
+      <ul>
+        <li>
+          <b>birthday</b>, which is discussed in
+          <a href = "../../m_src/birthday_remote/birthday_remote.html">
+          BIRTHDAY_REMOTE</a>;
+        </li>
+        <li>
+          <b>color_segmentation</b> which is discussed in
+          <a href = "../../m_src/color_remote/color_remote.html">
+          COLOR_REMOTE</a>;
+        </li>
+        <li>
+          <b>john_md</b> which is discussed in
+          <a href = "../../m_src/md_remote/md_remote.html">
+          MD_REMOTE</a>.
+        </li>
+        <li>
+          <b>knap</b> which is discussed in
+          <a href = "../../m_src/knapsack_remote/knapsack_remote.html">
+          KNAPSACK_REMOTE</a>;
+        </li>
+        <li>
+          <b>lyrics</b> which is discussed in
+          <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+          LYRICS_REMOTE</a>;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

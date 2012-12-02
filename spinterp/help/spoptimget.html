@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spoptimget :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spoptimget</h1>
+		  Get sparse grid optimization <code>OPTIONS</code> parameters.
+		<h2>Syntax</h2>
+			<code>VAL = spoptimget(OPTIONS, 'NAME')</code><br>
+			<code>VAL = spoptimget(OPTIONS, 'NAME', DEFAULT)</code><br>
+		<h2>Description</b></h2>
+		  <code>VAL = spoptimget(OPTIONS, 'NAME')</code> Extracts the value of the property <code>NAME</code> from the sparse grid optimization options structure <code>OPTIONS</code>, returning an empty matrix if the property value is not specified in <code>OPTIONS</code>. It is sufficient to type only the leading characters that uniquely identify the property. Case is ignored for property names. <code>[]</code> is a valid <code>OPTIONS</code> argument.
+	  <p>
+      <code>VAL = spoptimget(OPTIONS, 'NAME', DEFAULT)</code> Extracts the named property as above, but returns <code>VAL = DEFAULT</code> if the named property is not specified in <code>OPTIONS</code>.
+		<h2>Examples</h2>
+      <p>Assume that an options structure has been created using the <tt>spoptimset</tt> command:
+      </p><pre class="codeinput">options = spoptimset(<span class="string">'TolFun'</span>, 1e-4, <span class="string">'MaxIter'</span>, 200)
+</pre><pre class="codeoutput">options = 
+           Minimize: []
+           Maximize: []
+             TolFun: 1.0000e-04
+               TolX: []
+            MaxIter: 200
+         StartPoint: []
+        TestCorners: []
+         PrevResult: []
+             Method: []
+          NumStarts: []
+    OptimsetOptions: []
+            Display: []
+</pre><p>Using <tt>spoptimget</tt>, we can extract the contents of the structure:
+      </p><pre class="codeinput">tolFun = spoptimget(options, <span class="string">'TolFun'</span>)
+</pre><pre class="codeoutput">tolFun =
+   1.0000e-04
+</pre><p>By using the third argument, we can set a default in case the according property of the structure is empty:</p><pre class="codeinput">startPoint = spoptimget(options, <span class="string">'StartPoint'</span>)
+startPoint = spoptimget(options, <span class="string">'StartPoint'</span>, <span class="string">'best'</span>)
+</pre><pre class="codeoutput">startPoint =
+     []
+startPoint =
+best
+</pre><p>Note that the default argument has no effect if the accessed property contains a value.</p><pre class="codeinput">maxIter = spoptimget(options, <span class="string">'MaxIter'</span>, 500)
+</pre><pre class="codeoutput">maxIter =
+   200
+</pre>
+		<h2>See Also</h2>
+		  <a href="spoptimset.html"><code>spoptimset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

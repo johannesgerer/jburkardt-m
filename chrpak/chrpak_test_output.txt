@@ -1,0 +1,402 @@
+>> chrpak_test
+23-Apr-2011 19:51:27
+
+CHRPAK_TEST:
+  MATLAB version
+  Test the CHRPAK library.
+
+TEST001
+  A_TO_I4: Alphabetic character => I
+  I4_TO_A: I => Alphabetic character
+
+  1:26 = A:Z
+  27:52 = a:z
+
+   I  ==>  A  ==>  I
+
+         0  " "         0
+         3  "C"         3
+         6  "F"         6
+         9  "I"         9
+        12  "L"        12
+        15  "O"        15
+        18  "R"        18
+        21  "U"        21
+        24  "X"        24
+        27  "a"        27
+        30  "d"        30
+        33  "g"        33
+        36  "j"        36
+        39  "m"        39
+        42  "p"        42
+        45  "s"        45
+        48  "v"        48
+        51  "y"        51
+        54  " "         0
+
+TEST005
+  BASE_TO_I4 converts an integer in some other
+    base into base 10.
+  I4_TO_BASE converts an integer base 10 to 
+    its representation in another base;
+
+  BASE, I, I4_TO_BASE(I), BASE_TO_I4(I4_TO_BASE(I))
+
+        -1         5  101010101         5
+         1         5     11111         5
+         2        21     10101        21
+         3      -243   -100000      -243
+         4        16       100        16
+         8        15        17        15
+
+TEST006
+  BINARY_TO_I4 converts a binary to an integer.
+  I4_TO_BINARY converts an integer to binary,
+
+  I4 ==> BINARY ==> I4
+
+        21     10101        21
+       -32   -100000       -32
+         2        10         2
+       128  10000000       128
+
+TEST011
+  CH_CAP uppercases a character.
+
+  C  CH_CAP(C)
+
+  F      F
+  f      F
+  1      1
+  b      B
+  &      &
+
+TEST016
+  CH_LOW lowercases a character.
+
+  C  CH_LOW(C)
+
+  F      f
+  f      f
+  1      1
+  b      b
+  &      &
+
+TEST021
+  CH_TO_DIGIT: character -> decimal digit
+  DIGIT_TO_C: decimal digit -> character.
+
+        -2  "*"        -1
+        -1  "*"        -1
+         0  "0"         0
+         1  "1"         1
+         2  "2"         2
+         3  "3"         3
+         4  "4"         4
+         5  "5"         5
+         6  "6"         6
+         7  "7"         7
+         8  "8"         8
+         9  "9"         9
+        10  "*"        -1
+        11  "*"        -1
+
+TEST022
+  I4_TO_HEX_DIGIT: I4 -> hexadecimal digit
+  HEX_DIGIT_TO_I4: hexadecimal digit -> I4.
+
+        -2  "?"        -1
+        -1  "?"        -1
+         0  "0"         0
+         1  "1"         1
+         2  "2"         2
+         3  "3"         3
+         4  "4"         4
+         5  "5"         5
+         6  "6"         6
+         7  "7"         7
+         8  "8"         8
+         9  "9"         9
+        10  "A"        10
+        11  "B"        11
+
+TEST026
+  CH_TO_ROT13 "encodes" characters using ROT13
+  (and digits using ROT5).
+  A second application of the function returns the
+  original character.
+
+            CH  : ABCDEFGHIJKLMNOPQRSTUVWXYZ
+      ROT13(CH) : NOPQRSTUVWXYZABCDEFGHIJKLM
+ROT13(ROT13(CH)): ABCDEFGHIJKLMNOPQRSTUVWXYZ
+
+            CH  : CH_TO_ROT13 "encodes" characters using ROT13
+      ROT13(CH) : PU_GB_EBG68 "rapbqrf" punenpgref hfvat EBG68
+ROT13(ROT13(CH)): CH_TO_ROT13 "encodes" characters using ROT13
+
+TEST029
+  CH_UNIFORM returns a random character in a range.
+
+  All characters will be between "D" and "W"
+
+   I  A  Count
+
+   1  A      0
+   2  B      0
+   3  C      0
+   4  D   5069
+   5  E   4973
+   6  F   4897
+   7  G   4959
+   8  H   5024
+   9  I   5161
+  10  J   4981
+  11  K   5019
+  12  L   4974
+  13  M   5002
+  14  N   5034
+  15  O   5174
+  16  P   4955
+  17  Q   5045
+  18  R   4926
+  19  S   4938
+  20  T   5020
+  21  U   4990
+  22  V   5056
+  23  W   4803
+  24  X      0
+  25  Y      0
+  26  Z      0
+
+TEST046
+  HEX_TO_I4, hexadecimal->integer.
+  I4_TO_HEX, integer->hexadecimal
+
+  I  I4_TO_HEX(I)  HEX_TO_I4(I4_TO_HEX(I))
+
+        21        15        21
+       -32       -20       -32
+      1776       6F0      1776
+
+TEST051
+  I4_LENGTH computes an integer's "length".
+
+        I4    Length
+
+         0         0
+         1         0
+        -1         0
+       140         0
+     -1952         0
+    123456         0
+
+TEST054
+  I4_TO_BINHEX: I => BINHEX character
+
+  The BINHEX alphabet
+
+    "!"#$%&'()*+,-012345689@ABCDEFGHIJKLMNPQRSTVWXYZ[`abcdefhijklmnpq"
+
+TEST056
+  I4_TO_NUNARY converts an integer to negative unary.
+
+        I4    NUNARY
+
+        -5  1010101010
+         0  0
+         7  1010101010101
+
+TEST057
+  OCT_TO_I4, octal->integer.
+  I4_TO_OCT, integer->octal
+
+        I4       OCT        I4
+
+        21        25        21
+       -32       -40       -32
+      1776      3360      1776
+
+TEST065
+  I4_TO_UNARY converts an integer to unary.
+
+        I4     UNARY
+
+        -5  -11111
+         0  0
+         7  1111111
+
+TEST066
+  I4_TO_UUDECODE: I => UUDECODE character
+
+  The UUDECODE alphabet
+
+    "`!"#$%&'()*+,-./0123456789:;<=>?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_"
+
+TEST067
+  I4_TO_XXDECODE: I => XXDECODE character
+
+  The XXDECODE alphabet
+
+    "+-0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"
+
+TEST083
+  S_TO_R4, string -> real number;
+  R4_TO_S_LEFT, real number -> string.
+
+  S --> S_TO_R4 --> R4_TO_S_LEFT
+
+   52.134ABCDE     52.134000     52.134000
+   8.0/2.0          8.000000      8.000000
+  12E1, 34, 56    120.000000    120.000000
+
+TEST090
+  S_BEGIN checks the beginning of a string for a
+  substring, ignoring case and spaces.
+
+     S1          S2     S_BEGIN(S1,S2)
+
+  Bob          BOB          1
+   B  o b       bo b        1
+  Bob          BOBBY        1
+  Bobo         Bobb         0
+               Bob          0
+  cubic meter  cubic meter  1
+
+TEST091
+  S_BEHEAD_SUBSTRING removes an initial substring from a
+  string, if it occurs.
+
+  ------String--------  -----SUB------------  ---Beheaded----
+
+          HELLO World!                 HELLO               World! 
+  12345678901234567890                 12345       678901234567890
+          0.314159E+01                   314          0.314159E+01
+  !@#$%a^&A(){}[]\\|<>?  !@#$%a^&A(){}[]\\|<>?                      
+
+TEST1015
+  S_EQI compares two strings for equality,
+  ignoring case and trailing blanks.
+
+   A      B    S_EQI(A,B)
+               0 = FALSE, 1 = TRUE
+
+  "NixoN"  "niXon"  1
+  "animal"  "CRACKER"  0
+  "Yes"  "y"  0
+  "ALPHA"  "zeta"  0
+  "NIX on"  "Nixon"  0
+  "blank"  "blank     "  1
+
+TEST102
+  S_ESCAPE_TEX "protects" characters in a string
+  that might otherwise be interpreted as TeX
+  escape characters.
+
+  Original string:
+
+  "The file A_B.TXT is {I think__so} of size 2^8 or C\B.".
+
+  De-escaped string:
+
+  "ThefileA\_B.TXTis\{Ithink\_\_so\}ofsize2\^8orC\\B.".
+
+TEST105
+  S_INC_C can "increment" the characters in a string.
+
+  Starting string: "Tax"
+
+  Incremented forms:
+
+  "Tay"
+  "Taz"
+  "Tba"
+  "Tbb"
+  "Tbc"
+
+  Starting string: "aB34c* 8zY"
+
+  Incremented forms:
+
+  "aB34c* 8zZ"
+  "aB34d* 8aA"
+  "aB34d* 8aB"
+  "aB34d* 8aC"
+  "aB34d* 8aD"
+
+TEST115
+  S_REPLACE_CH replaces one character by another;
+
+    C1  C2  Original String  Modified String
+
+     n   t   No pennies now.  No petties tow.
+
+TEST1155
+  S_REPLACE_CH_BY_S replaces one character by a string;
+
+    C  S_REP  Original String  Modified String
+
+     n   1\1   No pennies now.  No pe1\11\1ies 1\1ow.
+
+TEST1225
+  S_S_SUBANAGRAM is TRUE if S2 is a "subanagram"
+  of S1.
+
+  "Get a priest!"  "stripe"  1
+  "Get a priest!"  "pastor"  0
+  "Get a priest!"  "a sip "  1
+  "Get a priest!"  "tag!  "  0
+
+TEST1255
+  S_SORT_A ascending sorts a string.
+
+  -------String-------  -------Sorted-------
+
+  "HELLO World   !! !  "  "       !!!EHLLOWdlor"
+  "12345678901234567890"  "00112233445566778899"
+  "Abc Def Ghi Jkl Mno "  "     ADGJMbcefhiklno"
+  "AbleBakerCharlieDelt"  "ABCDaabeeeehiklllrrt"
+  "What? You have seen?"  "   ??WYaaeeehhnostuv"
+
+TEST129
+  S_TO_FORMAT, string -> FORTRAN format RcW.M;
+
+--------String------     R  c     W      M
+
+  a80                        1  a      80       0
+  f8.4                       1  f       8       4
+  3g14.6                     3  g      14       6
+  i12                        1  i      12       0
+  12l1                      12  l       1       0
+  (10o11)                   10  o      11       0
+   ( 5 z 11.7  )             5  z      11       7
+
+TEST137
+  S_WORD_COUNT counts the words in a string
+
+  STRING                      Words
+
+  "?                               "   1
+  "A man, a plan, a canal - Panama!"   8
+  " justone!word,-@#$              "   1
+  "How about a day in the park?    "   7
+
+TEST138
+  S_WORD_EXTRACT_FIRST extracts the first word from a string.
+
+  Our input string is:
+  "Just an incontrovertible sample of text!"
+
+  "Just"
+  "an"
+  "incontrovertible"
+  "sample"
+  "of"
+  "text!"
+
+  Reached the last word.
+
+CHRPAK_TEST:
+  Normal end of execution.
+
+23-Apr-2011 19:51:30
+>> 

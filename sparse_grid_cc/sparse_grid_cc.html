@@ -1,0 +1,576 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_GRID_CC - Sparse Grids Based on the Clenshaw Curtis Rule
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_GRID_CC <br> Sparse Grids Based on the Clenshaw Curtis Rule
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_GRID_CC</b>
+      is a MATLAB library which
+      can be used to compute the points and weights of a Smolyak sparse
+      grid, based on a 1-dimensional Clenshaw-Curtis quadrature rule,
+      to be used for efficient and accurate quadrature in multiple dimensions.
+    </p>
+
+    <p>
+      One way of looking at the construction of sparse grids is to assume
+      that we start out by constructing a (very dense) product grid.
+      We will assume for now that the <b>order</b>, that is, the number of
+      points used in each component grid, is the same for all dimensions.
+      Moreover, we will assume that the order is a power of 2 plus one,
+      so that we have a natural relationship between the order and
+      the logarithm base 2 of the order minus 1:
+    </p>
+
+    <p>
+      <pre><b>
+        order = 2<sup>level</sup> + 1
+      </b></pre>
+      except that for the special case of <b>level=0</b> we assign
+      <b>order=1</b>.  (If we used our formula, then this case would
+      give us <b>order=2</b> instead.
+    </p>
+
+    <p>
+      Thus, if we allow <b>level</b> to grow, the <b>order</b> roughly
+      doubles, as follows:
+      <table border = "1">
+        <tr><th>Level</th><th>Order</th></tr>
+        <tr><td>    0</td><td>    1</th></tr>
+        <tr><td>    1</td><td>    3</th></tr>
+        <tr><td>    2</td><td>    5</th></tr>
+        <tr><td>    3</td><td>    9</th></tr>
+        <tr><td>    4</td><td>   17</th></tr>
+        <tr><td>    5</td><td>   33</th></tr>
+        <tr><td>    6</td><td>   65</th></tr>
+        <tr><td>    7</td><td>  129</th></tr>
+        <tr><td>    8</td><td>  257</th></tr>
+        <tr><td>    9</td><td>  513</th></tr>
+        <tr><td>   10</td><td> 1025</th></tr>
+      </table>
+    </p>
+
+    <p>
+      To keep things simple, let us begin by supposing we are selecting
+      points for a grid to be used in an interpolation or quadrature rule.
+      If you successively compute the locations of the points of each
+      level, you will probably see that the points of a level
+      are all included in the grid associated with the next level.
+      (This is not guaranteed for all rules; it's simply a property
+      of the way most such grids are defined!).
+    </p>
+
+    <p>
+      This <b>nesting</b> property is very useful.  For one thing,
+      it means that when if we've computed a grid of one level, and now
+      proceed to the next, then all the information associated with
+      the current level (point location, the value of functions at those
+      points) is still useful for the next level, and will save us
+      some computation time as well.  This also means that, when we
+      have reached a particular level, all the previous levels are
+      still available to us, with no extra storage.  These considerations
+      make it possible, for instance, to do efficient and convenient
+      error estimation.
+    </p>
+
+    <p>
+      When we move to a problem whose geometry is two-dimensional or
+      more, we can still take the same approach.  However, when working
+      in multidimensional geometry, it is usually not a good idea to
+      form a grid using the product of 1D grids, especially when we
+      are determining the order using the idea of levels.  Especially
+      in this case, if we go to the next level in each dimension, the
+      total number of points would increase by a factor of roughly
+      2 to the spatial dimension.  Just a few such steps in, say,
+      6 dimensions, and we would be far beyond our computational capacity.
+    </p>
+
+    <p>
+      Instead, in multidimensions, the idea is to construct a <i>sparse
+      grid</i>, which can be thought of in one of two ways:
+      <ul>
+        <li>
+          the sparse gird is a logical sum of low order product grids;
+          each product grid has a total level (sum of the levels of the
+          1d rules) that is less than or equal to <b>level_max</b>;
+        </li>
+        <li>
+          the sparse grid is a very sparse selection of points from the
+          very high order product grid formed by using rules of level
+          <b>level_max</b> in each dimension.
+        </li>
+      </ul>
+    </p>
+
+    <p><i>
+      (There is still a lot of explaining to do to get from the one-dimensional
+      levels to the N-dimensional levels and the selection of the low-level
+      product grids that sum up to the sparse grid...)
+    </i></p>
+
+    <p>
+      Once the grid indices of the sparse grid points have been selected,
+      there are a variety of schemes for distributing the points.  We
+      consider closed quadrature rules, in which the endpoints of the
+      interval are included.  The uniform scheme, known as the
+      Newton Cotes Closed rule, is easy to understand.
+      However, it has been observed that greater accuracy and stability
+      can be achieved by arranging the points in a nonuniform way that tends
+      to move points towards the boundary and away from the center.
+      A common scheme for doing this starts with the uniform points on
+      [0,1] and applies the cosine function to arrive at nonuniformly
+      spaced points in [-1,1].  This scheme is known as the
+      Clenshaw Curtis rule.
+    <p>
+
+    <p>
+      <ul>
+        <li>
+          Newton Cotes Closed: <br>
+          Points = [ 0, 1, 2, ..., N-1 ] / (N-1);<br>
+          Uniformly spaced points on [0,1], including endpoints.<br>
+          Point spacing is 1/(N-1).
+        </li>
+        <li>
+          Clenshaw Curtis:<br>
+          Theta = pi * [ 0, 1, 2, ..., N-1 ] / (N-1);<br>
+          Points = cos ( Theta );<br>
+          Nonuniformly spaced points on [-1,1], including endpoints.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The library of routines presented here will only construct grids
+      based on the Clenshaw Curtis rule.
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_CC</b> is available in
+      <a href = "../../cpp_src/sparse_grid_cc/sparse_grid_cc.html">a C++ version</a> and
+      <a href = "../../f_src/sparse_grid_cc/sparse_grid_cc.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cc_display/cc_display.html">
+      CC_DISPLAY</a>,
+      a MATLAB library which
+      can compute and display Clenshaw Curtis grids in two dimensions,
+      as well as sparse grids formed from sums of Clenshaw Curtis grids.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>,
+      a dataset directory of files which
+      define quadrature rules;
+      a number of examples of sparse grid quadrature rules are included.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for
+      various intervals and weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>,
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules,
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a dataset directory of files which
+      contains the abscissas of sparse
+      grids based on a Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc_dataset/sparse_grid_cc_dataset.html">
+      SPARSE_GRID_CC_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on Clenshaw-Curtis rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_composite/sparse_grid_composite.html">
+      SPARSE_GRID_COMPOSITE</a>,
+      a MATLAB library which
+      creates sparse grids based on 1D composite rules (currently only of order 1).
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_f2/sparse_grid_f2.html">
+      SPARSE_GRID_F2</a>,
+      a dataset directory which
+      contains the abscissas of sparse
+      grids based on a Fejer Type 2 rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>,
+      a MATLAB library which
+      computes sparse
+      grids based on a Gauss-Legendre rule.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_gp/sparse_grid_gp.html">
+      SPARSE_GRID_GP</a>,
+      a dataset directory which
+      contains the abscissas of sparse
+      grids based on a Gauss Patterson rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      constructs a sparse grid using different rules in each spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_ncc/sparse_grid_ncc.html">
+      SPARSE_GRID_NCC</a>,
+      a dataset directory which
+      conains the abscissas of sparse
+      grids based on a Newton Cotes closed rule.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_nco/sparse_grid_nco.html">
+      SPARSE_GRID_NCO</a>,
+      a dataset directory which
+      contains the abscissas of sparse
+      grids based on a Newton Cotes open rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB program which
+      uses sparse grids to carry out multilinear hierarchical interpolation.
+      It is commonly known as SPINTERP, and is by Andreas Klimke.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+        <li>
+          Dennis Stanton, Dennis White,<br>
+          Constructive Combinatorics,<br>
+          Springer, 1986,<br>
+          ISBN: 0387963472,<br>
+          LC: QA164.S79.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "abscissa_level_closed_nd.m">
+          abscissa_level_closed_nd.m</a>
+          first level at which an abscissa is generated.
+        </li>
+        <li>
+          <a href = "cc_abscissa.m">
+          cc_abscissa.m</a>
+          returns the I-th abscissa of the Clenshaw Curtis rule.
+        </li>
+        <li>
+          <a href = "cc_weights.m">
+          cc_weights.m</a>
+          computes Clenshaw Curtis weights.
+        </li>
+        <li>
+          <a href = "comp_next.m">
+          comp_next.m</a>
+          computes the compositions of the integer N into K parts.
+        </li>
+        <li>
+          <a href = "i4_choose.m">
+          i4_choose.m</a>
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>
+          returns the nonnegative remainder of integer division.
+        </li>
+        <li>
+          <a href = "index_to_level_closed.m">
+          index_to_level_closed.m</a>
+          determines the level of a point given its index.
+        </li>
+        <li>
+          <a href = "level_to_order_closed.m">
+          level_to_order_closed.m</a>
+          converts a level to an order for closed rules.
+         </li>
+        <li>
+          <a href = "monomial_int01.m">
+          monomial_int01.m</a>
+          returns the integral of a monomial over the [0,1] hypercube.
+         </li>
+        <li>
+          <a href = "monomial_quadrature.m">
+          monomial_quadrature.m</a>
+          applies a quadrature rule to a monomial.
+        </li>
+        <li>
+          <a href = "monomial_value.m">
+          monomial_value.m</a>
+          evaluates a monomial.
+         </li>
+        <li>
+          <a href = "multigrid_index0.m">
+          multigrid_index0.m</a>
+          returns an indexed multidimensional grid.
+         </li>
+        <li>
+          <a href = "multigrid_scale_closed.m">
+          multigrid_scale_closed.m</a>
+          renumbers a grid as a subgrid on a higher level.
+        </li>
+        <li>
+          <a href = "product_weights_cc.m">
+          product_weights_cc.m</a>
+          computes weights for a Clenshaw Curtis product rule.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8vec_direct_product2.m">
+          r8vec_direct_product2.m</a>
+          direct product of double precision real vectors.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc.m">
+          sparse_grid_cc.m</a>
+          computes a sparse grid of Clenshaw Curtis points.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_index.m">
+          sparse_grid_cc_index.m</a>
+          indexes the points forming a sparse grid.
+        </li>
+        <li>
+          <a href = "sparse_grid_cfn_size.m">
+          sparse_grid_cfn_size.m</a>
+          sizes a sparse grid of Closed Fully Nested rules.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_size_old.m">
+          sparse_grid_cc_size_old.m</a>
+          sizes a sparse grid of Clenshaw Curtis points, (OBSOLETE VERSION).
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_weights.m">
+          sparse_grid_cc_weights.m</a>
+          gathers the weights.
+        </li>
+        <li>
+          <a href = "sparse_grid_ccs_size.m">
+          sparse_grid_ccs_size.m</a>
+          sizes a sparse grid of Clenshaw Curtis Slow-Growth points.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "vec_colex_next2.m">
+          vec_colex_next2.m</a>
+          generates vectors in colex order.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_grid_cc_test.m">sparse_grid_cc_test.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test01.m">sparse_grid_cc_test01.m</a>,
+          tests SPARSE_GRID_CFN_SIZE.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test015.m">sparse_grid_cc_test015.m</a>,
+          tests SPARSE_GRID_CCS_SIZE.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test02.m">sparse_grid_cc_test02.m</a>,
+          tests SPARSE_GRID_CC_INDEX.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test03.m">sparse_grid_cc_test03.m</a>,
+          tests SPARSE_GRID_CC.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test04.m">sparse_grid_cc_test04.m</a>,
+          tests computes the weights and sums them.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test05.m">sparse_grid_cc_test05.m</a>,
+          tests tests a CC sparse grid rule for exactness on monomials.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test06.m">sparse_grid_cc_test06.m</a>,
+          writes a CC sparse grid rule to three files.
+        </li>
+        <li>
+          <a href = "cc_d2_level3_r.txt">cc_d2_level3_r.txt</a>,
+          the "R" data for a sparse CC quadrature rule.
+        </li>
+        <li>
+          <a href = "cc_d2_level3_w.txt">cc_d2_level3_w.txt</a>,
+          the "W" data for a sparse CC quadrature rule.
+        </li>
+        <li>
+          <a href = "cc_d2_level3_x.txt">cc_d2_level3_x.txt</a>,
+          the "X" data for a sparse CC quadrature rule.
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_test_output.txt">
+          sparse_grid_cc_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 December 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

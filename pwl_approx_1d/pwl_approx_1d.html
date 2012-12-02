@@ -1,0 +1,535 @@
+<html>
+
+  <head>
+    <title>
+      PWL_APPROX_1D - Approximation in 1D using Piecewise Linear Functions
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      PWL_APPROX_1D <br> Approximation in 1D using Piecewise Linear Functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PWL_APROX_1D</b>
+      is a MATLAB library which
+      defines and evaluates a piecewise linear function, using NC "control points",
+      which approximates a set of ND data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <b>PWL_APPROX_1D</b> needs access to the R8LIB library.
+      The test code also needs access to the TEST_INTERP_1D library. 
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PWL_APPROX_1D</b> is available in
+      <a href = "../../c_src/pwl_approx_1d/pwl_approx_1d.html">a C version</a> and
+      <a href = "../../cpp_src/pwl_approx_1d/pwl_approx_1d.html">a C++ version</a> and
+      <a href = "../../f77_src/pwl_approx_1d/pwl_approx_1d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/pwl_approx_1d/pwl_approx_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/pwl_approx_1d/pwl_approx_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_approx_1d/lagrange_approx_1d.html">
+      LAGRANGE_APPROX_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) of degree m
+      which approximates a set of nd data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_1d/pwl_interp_1d.html">
+      PWL_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise linear function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      constructs and evaluates spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_approx/test_approx.html">
+      TEST_APPROX</a>,
+      a MATLAB library which
+      defines test problems for approximation,
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp/test_interp.html">
+      TEST_INTERP</a>,
+      a MATLAB library which
+      defines a number of test problems for interpolation, 
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to data of a 1D argument
+      by setting up and solving an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pwl_approx_1d.m">pwl_approx_1d.m</a>,
+          determines the control points and values to be used by a piecewise linear
+          approximant to given data.
+        </li>
+        <li>
+          <a href = "pwl_approx_1d_matrix.m">pwl_approx_1d_matrix.m</a>,
+          evaluates a matrix used to determine the control points.
+        </li>
+        <li>
+          <a href = "pwl_interp_1d.m">pwl_interp_1d.m</a>,
+          evaluates a piecewise linear interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The test code requires the <b>test_interp_1d</b> library.
+      <ul>
+        <li>
+          <a href = "pwl_approx_1d_test.m">pwl_approx_1d_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "pwl_approx_1d_test_output.txt">pwl_approx_1d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "pwl_approx_1d_test01.m">pwl_approx_1d_test01.m</a>,
+          plots a piecewise linear interpolant to
+          the original data, and the piecewise linear approximant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>pwl_approx_1d_test01()</b> uses nc evenly spaced control points to approximate
+      a set of nd data values.
+      <ul>
+        <li>
+          <a href = "p01_pwl_02_16.png.png">p01_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_04_16.png.png">p01_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_08_16.png.png">p01_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_16_16.png.png">p01_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_02_64.png.png">p01_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_04_64.png.png">p01_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_08_64.png.png">p01_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p01_pwl_16_64.png.png">p01_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p01;
+        </li>
+        <li>
+          <a href = "p02_pwl_02_16.png.png">p02_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_04_16.png.png">p02_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_08_16.png.png">p02_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_16_16.png.png">p02_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_02_64.png.png">p02_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_04_64.png.png">p02_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_08_64.png.png">p02_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p02_pwl_16_64.png.png">p02_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p02;
+        </li>
+        <li>
+          <a href = "p03_pwl_02_16.png.png">p03_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_04_16.png.png">p03_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_08_16.png.png">p03_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_16_16.png.png">p03_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_02_64.png.png">p03_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_04_64.png.png">p03_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_08_64.png.png">p03_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p03_pwl_16_64.png.png">p03_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p03;
+        </li>
+        <li>
+          <a href = "p04_pwl_02_16.png.png">p04_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_04_16.png.png">p04_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_08_16.png.png">p04_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_16_16.png.png">p04_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_02_64.png.png">p04_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_04_64.png.png">p04_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_08_64.png.png">p04_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p04_pwl_16_64.png.png">p04_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p04;
+        </li>
+        <li>
+          <a href = "p05_pwl_02_16.png.png">p05_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_04_16.png.png">p05_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_08_16.png.png">p05_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_16_16.png.png">p05_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_02_64.png.png">p05_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_04_64.png.png">p05_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_08_64.png.png">p05_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p05_pwl_16_64.png.png">p05_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p05;
+        </li>
+        <li>
+          <a href = "p06_pwl_02_16.png.png">p06_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_04_16.png.png">p06_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_08_16.png.png">p06_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_16_16.png.png">p06_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_02_64.png.png">p06_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_04_64.png.png">p06_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_08_64.png.png">p06_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p06_pwl_16_64.png.png">p06_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p06;
+        </li>
+        <li>
+          <a href = "p07_pwl_02_16.png.png">p07_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_04_16.png.png">p07_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_08_16.png.png">p07_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_16_16.png.png">p07_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_02_64.png.png">p07_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_04_64.png.png">p07_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_08_64.png.png">p07_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p07_pwl_16_64.png.png">p07_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p07;
+        </li>
+        <li>
+          <a href = "p08_pwl_02_16.png.png">p08_pwl_02_16.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          16 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_04_16.png.png">p08_pwl_04_16.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          16 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_08_16.png.png">p08_pwl_08_16.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          16 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_16_16.png.png">p08_pwl_16_16.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          16 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_02_64.png.png">p08_pwl_02_64.png</a>,
+          a plot of the piecewise linear approximant with 2 control points approximating
+          64 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_04_64.png.png">p08_pwl_04_64.png</a>,
+          a plot of the piecewise linear approximant with 4 control points approximating
+          64 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_08_64.png.png">p08_pwl_08_64.png</a>,
+          a plot of the piecewise linear approximant with 8 control points approximating
+          64 data values for problem p08;
+        </li>
+        <li>
+          <a href = "p08_pwl_16_64.png.png">p08_pwl_16_64.png</a>,
+          a plot of the piecewise linear approximant with 16 control points approximating
+          64 data values for problem p08;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 18 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

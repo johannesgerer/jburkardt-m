@@ -1,0 +1,281 @@
+<html>
+
+  <head>
+    <title>
+      TESTPACK - Testing Multidimensional Integration Routines
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TESTPACK <br> Testing Multidimensional Integration Routines
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TESTPACK</b> 
+      is a MATLAB program which 
+      demonstrates the testing of a routine for multidimensional
+      integration.
+    </p>
+
+    <p>
+      In this case, the code being tested is a subroutine known as
+      ADAPT, written by Genz.  The code is tested on six test integrand
+      functions, also defined by Genz.  The test is done with a variety
+      of spatial dimensions, parameter values, and difficulty factors.
+    </p>
+
+    <p>
+      With <b>M</b> denoting the spatial dimension, <b>R</b> a parameter,
+      <b>C</b> a scaling vector, and <b>X0</b> a displacement vector,
+      the test functions can be summarized as:
+      <ol>
+        <li>
+          f(x) = cos ( 2 * pi * r + sum ( c(1:m) * x(1:m) ) ), <br>
+          Genz "Oscillatory";
+        </li>
+        <li>
+          f(x) = 1 / product ( c(1:m)^2 + (x(1:m) - x0(1:m))^2),<br>
+          Genz "Product Peak";
+        </li>
+        <li>
+          f(x) = 1 / ( 1 + sum ( c(1:m) * x(1:m) ) )^(m+r),<br>
+          Genz "Corner Peak";
+        </li>
+        <li>
+          f(x) = exp(-sum(c(1:m)^2 * ( x(1:m) - x0(1:m))^2 ) ),<br>
+          Genz "Gaussian";
+        </li>
+        <li>
+          f(x) = exp ( - sum ( c(1:m) * abs ( x(1:m) - x0(1:m) ) ) ),<br>
+          Genz "Continuous";
+        </li>
+        <li>
+          f(x) = exp(sum(c(1:m)*x(1:m)) for x(1:m) <= x0(1:m), 0 otherwise,<br>
+          Genz "Discontinuous";
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TESTPACK</b> is available in
+      <a href = "../../cpp_src/testpack/testpack.html">a C++ version</a> and
+      <a href = "../../f77_src/testpack/testpack.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/testpack/testpack.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/testpack/testpack.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/integral_test/integral_test.html">
+      INTEGRAL_TEST</a>,
+      a FORTRAN90 program which 
+      tests the suitability of
+      a set of N points for use in an equal-weight quadrature rule over
+      the M-dimensional unit hypercube.
+    </p>
+
+    <p>
+      <a href = "../../f_src/intlib/intlib.html">
+      INTLIB</a>,
+      a FORTRAN90 library which 
+      estimates the integral of a function over a one-dimensional interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>,
+      a MATLAB library which
+      estimates
+      the integral of a function over a one-dimensional interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>, 
+      a MATLAB program which
+      can create a multidimensional quadrature rule as a product of
+      one dimensional rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines a variety of
+      (mostly 1-dimensional) quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which 
+      uses the Genz test functions
+      to demonstrate quadrature in multiple dimensions using a sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      uses the Genz test functions
+      to demonstrate multilinear interpolation on a sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>
+      a MATLAB library which 
+      defines a variety of
+      quadrature rules over various "interesting" geometric shapes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_nint/test_nint.html">
+      TEST_NINT</a>
+      a MATLAB library which
+      can be used to test N-dimensional
+      quadrature routines.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan Genz,<br>
+          Testing Multidimensional Integration Routines,<br>
+          in Tools, Methods, and Languages for Scientific and
+          Engineering Computation,<br>
+          edited by B Ford, JC Rault, F Thomasset,<br>
+          North-Holland, 1984, pages 81-94,<br>
+          ISBN: 0444875700,<br>
+          LC: Q183.9.I53.
+        </li>
+        <li>
+          Alan Genz,<br>
+          A Package for Testing Multiple Integration Subroutines,<br>
+          in Numerical Integration: 
+          Recent Developments, Software and Applications,<br>
+          edited by Patrick Keast, Graeme Fairweather,<br>
+          Reidel, 1987, pages 337-340,<br>
+          ISBN: 9027725144,<br>
+          LC: QA299.3.N38
+        </li>
+        <li>
+          John Hart, Ward Cheney, Charles Lawson, Hans Maehly, 
+          Charles Mesztenyi, John Rice, Henry Thatcher, 
+          Christoph Witzgall,<br>
+          Computer Approximations,<br>
+          Wiley, 1968,<br>
+          LC: QA297.C64.
+        </li>
+        <li>
+          Linus Schrage,<br>
+          A More Portable Fortran Random Number Generator,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 2, June 1979, pages 132-138.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "testpack.m">testpack.m</a>
+          is the main program for testing TESTPACK.
+        </li>
+        <li>
+          <a href = "adapt.m">adapt.m</a>
+          carries out adaptive multidimensional quadrature.
+        </li>
+        <li>
+          <a href = "genz_function.m">genz_function.m</a>
+          evaluates one of the test integrand functions.
+        </li>
+        <li>
+          <a href = "genz_integral.m">genz_integral.m</a>
+          computes the exact integrals of the test functions.
+        </li>
+        <li>
+          <a href = "genz_name.m">genz_name.m</a>
+          returns the "name" of one of the test functions.
+        </li>
+        <li>
+          <a href = "genz_phi.m">genz_phi.m</a>
+          estimates the normal cumulative density function.
+        </li>
+        <li>
+          <a href = "genz_random.m">genz_random.m</a>
+          is a portable random number generator
+        </li>
+        <li>
+          <a href = "multst.m">multst.m</a>
+          tests a multidimensional integration routine.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>
+          returns the R8 roundoff unit.
+        </li>
+        <li>
+          <a href = "r8vec_median.m">r8vec_median.m</a>
+          computes the median of an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tuple_next.m">tuple_next.m</a>
+          computes the next element of a tuple space.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "testpack_output.txt">testpack_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 May 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

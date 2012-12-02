@@ -1,0 +1,176 @@
+<html>
+
+  <head>
+    <title>
+      WTIME - Compute Elapsed Wallclock Time
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      WTIME <br> Compute Elapsed Wallclock Time
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>WTIME</b> 
+      is a MATLAB library which
+      returns a reading of the wall clock time.
+    </p>
+
+    <p>
+      For parallel programming, the important thing to measure is the elapsed
+      wallclock time.  This can be found by subtracting an initial reading of
+      the wallclock time from a final one.
+    </p>
+
+    <p>
+      The OpenMP system provides a function used as follows:
+      <pre>
+        seconds = omp_get_wtime ( )
+        operations to time;
+        seconds = omp_get_wtime ( ) - seconds;
+      </pre>
+      while the MPI system provides a similar function used as:
+      <pre>
+        seconds = MPI_Wtime ( );
+        operations;
+        seconds = MPI_Wtime ( ) - seconds;
+      </pre>
+      and in MATLAB, wallclock time can be taken with "tic" and "toc":
+      <pre>
+        tic;
+        operation;
+        seconds = toc;
+      </pre>
+    </p>
+
+    <p>
+      WTIME provides a way to get a similar reading:
+      <pre>
+        seconds = wtime ( );
+        operations;
+        seconds = wtime ( ) - seconds;
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>WTIME</b> is available in
+      <a href = "../../c_src/wtime/wtime.html">a C version</a> and
+      <a href = "../../cpp_src/wtime/wtime.html">a C++ version</a> and
+      <a href = "../../f77_src/wtime/wtime.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/wtime/wtime.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/wtime/wtime.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/tic_toc/tic_toc.html">
+      TIC_TOC</a>,
+      MATLAB programs which
+      demonstrate some features of MATLAB's tic and toc functions for wallclock timing.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      a MATLAB program which
+      shows how to compute the elapsed CPU time inside a program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timestamp/timestamp.html">
+      TIMESTAMP</a>,
+      a MATLAB library which
+      displays the current wall clock time.  
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "wtime.m">wtime.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "wtime_test.m">wtime_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "wtime_test01.m">wtime_test01.m</a>,
+          times the MATLAB RAND function.
+        </li>
+        <li>
+          <a href = "wtime_test02.m">wtime_test02.m</a>,
+          times the vectorized EXP function.
+        </li>
+        <li>
+          <a href = "wtime_test03.m">wtime_test03.m</a>,
+          times the unvectorized EXP function.
+        </li>
+        <li>
+          <a href = "wtime_test04.m">wtime_test04.m</a>,
+          times the 2D nearest neighbor problem.
+        </li>
+        <li>
+          <a href = "wtime_test05.m">wtime_test05.m</a>,
+          times the matrix multiplication problem.
+        </li>
+        <li>
+          <a href = "wtime_test_output.txt">wtime_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 August 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

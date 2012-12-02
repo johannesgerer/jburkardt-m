@@ -1,0 +1,202 @@
+<html>
+
+  <head>
+    <title>
+      ODE_PREDATOR_PREY - ODE Solution of a Predator Prey System
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ODE_PREDATOR_PREY <br> ODE Solution of a Predator Prey System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ODE_PREDATOR_PREY</b>
+      is a MATLAB program which 
+      applies the ODE23 function to estimate solutions of a
+      pair of ordinary differential equations that model the behavior of
+      a pair of predator and prey populations.
+    </p>
+
+    <p>
+      The physical system under consideration is a pair of animal populations.
+    </p>
+
+    <p>
+      The PREY reproduce rapidly; for each animal alive at the beginning of the
+      year, two more will be born by the end of the year.  The prey do not have
+      a natural death rate; instead, they only die by being eaten by the predator.
+      Every prey animal has 1 chance in 1000 of being eaten in a given year by
+      a given predator.
+    </p>
+
+    <p>
+      The PREDATORS only die of starvation, but this happens very quickly.
+      If unfed, a predator will tend to starve in about 1/10 of a year.
+      On the other hand, the predator reproduction rate is dependent on
+      eating prey, and the chances of this depend on the number of available prey.
+    </p>
+
+    <p>
+      The resulting differential equations can be written:
+      <pre>
+        PRED(0) = 5000         
+        PREY(0) =  100
+  
+        d PREY / dT =    2 * PREY(T) - 0.001 * PREY(T) * PRED(T)
+        d PRED / dT = - 10 * PRED(T) + 0.002 * PREY(T) * PRED(T)
+      </pre>
+      Here, the initial values (5000,100) are a somewhat arbitrary starting point.
+    </p>
+
+    <p>
+      The pair of ordinary differential equations that result have an interesting
+      behavior.  For certain choices of the interaction coefficients (such as
+      those given here), the populations of predator and prey will tend to 
+      a periodic oscillation.  The two populations will be out of phase; the number
+      of prey will rise, then after a delay, the predators will rise as the prey
+      begins to fall, causing the predator population to crash again.
+    </p>
+
+    <p>
+      In this program, the pair of ODE's is solved by calling MATLAB's ODE23 function.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>ode_predator_prey</b> ( <i>[ pred, prey ]</i>, <i>[ t0, t_max ]</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>[ pred, prey ]</i> is a vector containing the initial numbers of
+          predators and prey at the initial time;
+        </li>
+        <li>
+          <i>[ t0, t_max ]</i> is a vector containing the initial and final time;
+        </li>
+      </ul>
+      The program uses ODE23 to estimate the solution from T0 to T_MAX, and
+      displays a plot of the pair of solution curves.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dfield8/dfield8.html">
+      DFIELD8</a>,
+      a MATLAB program which
+      interactively displays the direction field of a differential equation,
+      by John Polking.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd_predator_prey/fd_predator_prey.html">
+      FD_PREDATOR_PREY</a>, 
+      a MATLAB program which
+      solves a pair of predator prey ODE's using a finite difference approximation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_predator_prey/fd2d_predator_prey.html">
+      FD2D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for a predator-prey system
+      with spatial variation in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pplane8/pplane8.html">
+      PPLANE8</a>,
+      a MATLAB program which
+      interactively displays the phase plane of a differential equation,
+      by John Polking.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ode_predator_prey.m">ode_predator_prey.m</a>, the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ode_predator_prey_5000_100.png">ode_predator_prey_5000_100.png</a>, 
+          a plot of the solution over [0,5] starting with initial
+          condition [5000,100].
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 13 November 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

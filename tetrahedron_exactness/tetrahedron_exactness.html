@@ -1,0 +1,391 @@
+<html>
+
+  <head>
+    <title>
+      TETRAHEDRON_EXACTNESS - Exactness of Quadrature on Tetrahedrons
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TETRAHEDRON_EXACTNESS <br> 
+      Exactness of Quadrature on Tetrahedrons
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TETRAHEDRON_EXACTNESS</b> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a
+      quadrature rule for a tetrahedron.
+    </p>
+
+    <p>
+      The polynomial exactness of a quadrature rule is defined as the
+      highest total degree <b>D</b> such that the quadrature rule is
+      guaranteed to integrate exactly all polynomials of total degree
+      <b>DEGREE_MAX</b> or less, ignoring roundoff.
+      The total degree of a polynomial is the maximum of the degrees 
+      of all its monomial terms.  For a tetrahedron, the degree of a monomial
+      term is the sum of the exponents of <b>x</b>, <b>y</b> and <b>z</b>. 
+      Thus, for instance, the <b>DEGREE</b> of 
+      <blockquote><b>
+        x<sup>2</sup>yz<sup>5</sup>
+      </b></blockquote>
+      is 2+1+5=8.
+    </p>
+
+    <p>
+      To be thorough, the program starts at <b>DEGREE</b> = 0, and then 
+      proceeds to <b>DEGREE</b> = 1, 2, and so on up to a maximum degree 
+      <b>DEGREE_MAX</b> specified by the user.  At each value of <b>DEGREE</b>,
+      the program generates every possible monomial term, applies the 
+      quadrature rule to it, and determines the quadrature error.  The program 
+      uses a scaling factor on each monomial so that the exact integral 
+      should always be 1; therefore, each reported error can be compared
+      on a fixed scale.
+    </p>
+
+    <p>
+      The program is very flexible and interactive.  The quadrature rule 
+      is defined by three files, to be read at input, and the 
+      maximum degree is specified by the user as well.
+    </p>
+
+    <p>
+      Note that the three files that define the quadrature rule
+      are assumed to have related names, of the form
+      <ul>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>
+        </li>
+      </ul>
+      When running the program, the user only enters the common <i>prefix</i> 
+      part of the file names, which is enough information for the program
+      to find all three files.
+    </p>
+
+    <p>
+      For information on the form of these files, see the 
+      <b>QUADRATURE_RULES_TET</b> directory listed below.
+    </p>
+
+    <p>
+      The exactness results are written to an output file with the 
+      corresponding name:
+      <ul>
+        <li>
+          <i>prefix</i>_<b>exact.txt</b>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tetrahedron_exactness</b> ( <i>'prefix'</i>, <i>degree_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common prefix for the files containing the abscissa, weight
+          and region information of the quadrature rule;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum total monomial degree to check.  This should be
+          a relatively small nonnegative number, particularly if the
+          spatial dimension is high.  A value of 5 or 10 might be
+          reasonable, but a value of 50 or 100 is probably never a
+          good input!
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TETRAHEDRON_EXACTNESS</b> is available in
+      <a href = "../../cpp_src/tetrahedron_exactness/tetrahedron_exactness.html">a C++ version</a> and
+      <a href = "../../f_src/tetrahedron_exactness/tetrahedron_exactness.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tetrahedron_exactness/tetrahedron_exactness.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/gm_rule/gm_rule.html">
+      GM_RULE</a>,
+      a MATLAB library which
+      defines a Grundmann-Moeller
+      rule for quadrature over a triangle, tetrahedron, or general
+      M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../f_src/integral_test/integral_test.html">
+      INTEGRAL_TEST</a>,
+      a FORTRAN90 program which 
+      uses test integrals to measure the effectiveness of
+      certain sets of quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/keast/keast.html">
+      KEAST</a>,
+      a MATLAB library which 
+      sets up a Keast quadrature rule for a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ncc_tetrahedron/ncc_tetrahedron.html">
+      NCC_TETRAHEDRON</a>, 
+      a MATLAB library which 
+      sets up a Newton Cotes Closed quadrature rule for a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nco_tetrahedron/nco_tetrahedron.html">
+      NCO_TETRAHEDRON</a>, 
+      a MATLAB library which 
+      sets up a Newton Cotes Open quadrature rule for a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the exactness of integration rules over the interval,
+      rectangle, or multidimensional rectangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>, 
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>, 
+      a MATLAB library which
+      numerically estimates integrals in multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_exactness/pyramid_exactness.html">
+      PYRAMID_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the pyramid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_tet/quadrature_rules_tet.html">
+      QUADRATURE_RULES_TET</a>, 
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>, 
+      a MATLAB library which
+      defines quadrature rules on a
+      variety of intervals with different weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">
+      SPHERE_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of a quadrature rule for the unit sphere; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>, 
+      a MATLAB library which
+      defines quadrature rules for a variety of unusual areas, surfaces 
+      and volumes in 2D, 3D and multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_monte_carlo/tetrahedron_monte_carlo.html">
+      TETRAHEDRON_MONTE_CARLO</a>, 
+      a MATLAB program which 
+      uses the Monte Carlo method to estimate integrals over a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_exactness/triangle_exactness.html">
+      TRIANGLE_EXACTNESS</a>,
+      a MATLAB program which 
+      investigates the polynomial exactness of a quadrature rule for the triangle.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tetrahedron_exactness.m">tetrahedron_exactness.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The "W", "X" and "R" files associated with the point sets tested
+      here may be found in the <b>QUADRATURE_RULES_TET</b> directory.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "keast0_exact.txt">keast0_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast1_exact.txt">keast1_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast2_exact.txt">keast2_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast3_exact.txt">keast3_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast4_exact.txt">keast4_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast5_exact.txt">keast5_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast6_exact.txt">keast6_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast7_exact.txt">keast7_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast8_exact.txt">keast8_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "keast9_exact.txt">keast9_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc0_exact.txt">ncc0_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc1_exact.txt">ncc1_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc2_exact.txt">ncc2_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc3_exact.txt">ncc3_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc4_exact.txt">ncc4_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc5_exact.txt">ncc5_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "ncc6_exact.txt">ncc6_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco0_exact.txt">nco0_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco1_exact.txt">nco1_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco2_exact.txt">nco2_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco3_exact.txt">nco3_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco4_exact.txt">nco4_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco5_exact.txt">nco5_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "nco6_exact.txt">nco6_exact.txt</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 July 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

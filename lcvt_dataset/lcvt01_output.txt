@@ -1,0 +1,403 @@
+>> lcvt_dataset
+22-Sep-2006 09:40:37
+
+LCVT_DATASET (MATLAB version)
+  Generate a Latinized CVT dataset.
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input 
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * DIM_NUM, the spatial dimension,
+  * N, the number of points to generate,
+  * SEED_INIT, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+    ** 'USER', refers to the USER routine;
+  * CVT_IT_NUM, the number of CVT iterations.
+  * SAMPLE, how to conduct the sampling.
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+    ** 'USER', refers to the USER routine;
+  * SAMPLE_NUM, the number of sample points;
+  * BATCH, the number of sample points to create at a time;
+  * LAT_IT_NUM, the number of Latinizing iterations.
+  * OUTPUT, a file into which the data is stored.
+
+  To indicate that no further computations are 
+  desired, it is enough to input a nonsensical value, 
+  such as -1.
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  DIM_NUM is the spatial dimension.
+  (Try '2' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter DIM_NUM:  2
+  User input DIM_NUM =            2
+
+  N is the number of points to generate.
+  (Try '25' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter N:  85
+  User input N =           85
+
+  SEED_INIT is a seed for the random number generation.
+  (Try '123456789' if you have no preference.)
+  (Any value less than 0 terminates execution.)
+  Enter SEED_INIT:  123456789
+  User input SEED_INIT = 123456789
+
+  INIT is the method of initializing the data:
+
+  file       read data from a file;
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+  'USER'     refers to the USER routine;
+ 
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter INIT:  'UNIFORM'
+  User input INIT = "UNIFORM".
+
+  CVT_IT_NUM is the number of CVT iterations.
+
+  A CVT iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (Try '50' if you have no preference.)
+  (A negative value terminates execution).
+
+  Enter CVT_IT_NUM:  40
+  User input CVT_IT_NUM =           40
+
+  SAMPLE is the method of sampling the region:
+
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+  'USER'     refers to the USER routine;
+
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+
+  Enter SAMPLE:  'UNIFORM'
+  User input SAMPLE = "UNIFORM".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (Try '10000' if you have no preference.)
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:  10000
+  User input SAMPLE_NUM =        10000
+
+  BATCH is the number of sample points to create
+  at one time
+
+  BATCH should be between 1 and SAMPLE_NUM.
+
+  It is FASTER to set BATCH to SAMPLE_NUM;
+  setting BATCH to 1 requires the least memory.
+
+  (Try '1000' if you have no preference.)
+  (A zero or negative value terminates execution.)
+
+  Enter BATCH:  1000
+  User input BATCH = 1000
+
+  LAT_IT_NUM is the number of Latinizing iterations.
+
+  Each step of the latinizing iteration begins
+  by carrying out CVT_IT_NUM steps of CVT iteration,
+  after which the data is "latinized".
+
+  Often, one latinizing step is enough.
+
+  In some cases, it may be worth while to carry
+  out several latinizing steps; that is, the
+  Latinized data is smoothed by another series
+  of CVT steps, then latinized, and so on.
+
+  (Try '1' if you have no preference.)
+  (A negative value terminates execution).
+
+  Enter LAT_IT_NUM:  5
+  User input LAT_IT_NUM =            5
+
+  OUTPUT is a file into which the data is stored;
+
+  (Try 'lcvt.txt' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter OUTPUT:  'lcvt01.txt'
+  User input OUTPUT = "lcvt01.txt".
+
+  Latin IT      CVT Energy    Latin Energy
+
+
+    CVT IT         Change
+
+         1        0.352602
+         2        0.153204
+         3        0.092507
+         4        0.074858
+         5        0.066260
+         6        0.060004
+         7        0.053687
+         8        0.051440
+         9        0.051036
+        10        0.045991
+        11        0.045788
+        12        0.046220
+        13        0.047365
+        14        0.047050
+        15        0.051784
+        16        0.044203
+        17        0.043110
+        18        0.046690
+        19        0.047669
+        20        0.047870
+        21        0.049746
+        22        0.042756
+        23        0.044046
+        24        0.049672
+        25        0.042907
+        26        0.045015
+        27        0.042546
+        28        0.045202
+        29        0.045925
+        30        0.045059
+        31        0.049621
+        32        0.047596
+        33        0.042328
+        34        0.044313
+        35        0.046209
+        36        0.046319
+        37        0.043723
+        38        0.045179
+        39        0.045611
+        40        0.045553
+
+         1        0.002004        0.002151
+
+    CVT IT         Change
+
+         1        0.108750
+         2        0.054879
+         3        0.050279
+         4        0.046306
+         5        0.045663
+         6        0.043096
+         7        0.044177
+         8        0.045455
+         9        0.042302
+        10        0.044043
+        11        0.047517
+        12        0.043369
+        13        0.045525
+        14        0.043913
+        15        0.040045
+        16        0.045670
+        17        0.045656
+        18        0.044662
+        19        0.039462
+        20        0.042126
+        21        0.045714
+        22        0.043035
+        23        0.045267
+        24        0.044027
+        25        0.047049
+        26        0.048257
+        27        0.045244
+        28        0.042987
+        29        0.041869
+        30        0.044937
+        31        0.045485
+        32        0.046704
+        33        0.045031
+        34        0.042159
+        35        0.043959
+        36        0.042838
+        37        0.039639
+        38        0.045476
+        39        0.045017
+        40        0.042850
+
+         2        0.001941        0.002056
+
+    CVT IT         Change
+
+         1        0.099026
+         2        0.051462
+         3        0.049549
+         4        0.046765
+         5        0.045632
+         6        0.046166
+         7        0.046838
+         8        0.041272
+         9        0.044778
+        10        0.041612
+        11        0.045826
+        12        0.042294
+        13        0.042443
+        14        0.045455
+        15        0.036938
+        16        0.047838
+        17        0.043820
+        18        0.045313
+        19        0.042893
+        20        0.042156
+        21        0.042716
+        22        0.043349
+        23        0.043174
+        24        0.044392
+        25        0.044416
+        26        0.042477
+        27        0.044134
+        28        0.043427
+        29        0.045247
+        30        0.045225
+        31        0.041927
+        32        0.046616
+        33        0.040792
+        34        0.042124
+        35        0.044703
+        36        0.044498
+        37        0.045838
+        38        0.044312
+        39        0.044747
+        40        0.042777
+
+         3        0.001941        0.002152
+
+    CVT IT         Change
+
+         1        0.110643
+         2        0.058076
+         3        0.051835
+         4        0.043677
+         5        0.040070
+         6        0.042634
+         7        0.042682
+         8        0.043610
+         9        0.045118
+        10        0.043659
+        11        0.043777
+        12        0.042887
+        13        0.044343
+        14        0.041894
+        15        0.040274
+        16        0.042698
+        17        0.044355
+        18        0.043851
+        19        0.050951
+        20        0.043169
+        21        0.042427
+        22        0.045521
+        23        0.045768
+        24        0.049006
+        25        0.045024
+        26        0.045624
+        27        0.040577
+        28        0.046332
+        29        0.047246
+        30        0.041573
+        31        0.041748
+        32        0.043882
+        33        0.039751
+        34        0.041578
+        35        0.040992
+        36        0.047928
+        37        0.040823
+        38        0.041727
+        39        0.044778
+        40        0.044021
+
+         4        0.001929        0.002151
+
+    CVT IT         Change
+
+         1        0.108216
+         2        0.052505
+         3        0.050775
+         4        0.046792
+         5        0.044351
+         6        0.044052
+         7        0.044854
+         8        0.046134
+         9        0.048551
+        10        0.048696
+        11        0.048473
+        12        0.041080
+        13        0.044137
+        14        0.046101
+        15        0.044510
+        16        0.044413
+        17        0.039112
+        18        0.045320
+        19        0.043508
+        20        0.043488
+        21        0.041485
+        22        0.040268
+        23        0.048896
+        24        0.045095
+        25        0.042231
+        26        0.043769
+        27        0.042746
+        28        0.048463
+        29        0.045968
+        30        0.041183
+        31        0.043739
+        32        0.040842
+        33        0.042348
+        34        0.044038
+        35        0.042204
+        36        0.042929
+        37        0.044088
+        38        0.045201
+        39        0.047335
+        40        0.042710
+
+         5        0.001943        0.002111
+
+  The data was written to the file "lcvt01.txt".
+
+LCVT_DATASET:
+  Normal end of execution.
+
+22-Sep-2006 09:45:22
+>> 

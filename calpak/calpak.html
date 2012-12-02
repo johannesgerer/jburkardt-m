@@ -1,0 +1,1740 @@
+<html>
+
+  <head>
+    <title>
+      CALPAK - Calendar Calculations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CALPAK <br> Calendar Calculations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CALPAK</b>
+      is a MATLAB library which
+      computes various simple calendrical quantities.
+    </p>
+
+    <p>
+      These include converting
+      from day-number/year to day/month/year format, calculating the time
+      difference between two dates, finding the day of the week of a given date,
+      and other feats.
+    </p>
+
+    <p>
+      Some common methods of marking the date include:
+      <ul>
+        <li>
+          <b>JED</b>, the Julian Ephemeris Date, a count of days since
+          a long time ago;
+        </li>
+        <li>
+          <b>YMD</b>, for "year, month, day";
+        </li>
+        <li>
+          <b>YJ</b>, for "year, day number".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      While there have been many calendars over the years, it
+      is instructive to contemplate just the crazy story of our
+      current "common" calendar.  To this day, people disagree about
+      whether there was a year 0, although the Julian calendar
+      was a Roman invention, and Dionysius Exiguus, who gets the
+      blame for shifting the Julian calendar's starting date to
+      the birth year of Christ four hundred years afterwards, didn't
+      have an accurate idea of when that was.
+    </p>
+
+    <p>
+      There was a
+      controversial shift from the Julian to the Gregorian calendar,
+      which took place <i>piecemeal</i> throughout the Catholic
+      world, with several countries actually switching back and
+      forth more than once, and with England holding out on the
+      old system until after George Washington was born (which
+      means he was born on February 11 AND February 22).
+    </p>
+
+    <p>
+      People didn't agree on when the year started, so that January and
+      February, in particular, were a little murky about which
+      year they belonged to, and the year sometimes started
+      around March 22, near the vernal equinox.
+    </p>
+
+    <p>
+      There are a number of side issues, including
+      <ul>
+        <li>
+          determining the day of the week of a given date;
+        </li>
+        <li>
+          determining the number of days between two dates;
+        </li>
+        <li>
+          the computation of the date of certain holidays;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CALPAK</b> is available in
+      <a href = "../../cpp_src/calpak/calpak.html">a C++ version</a> and
+      <a href = "../../f_src/calpak/calpak.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/calpak/calpak.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/calendar_nyt/calendar_nyt.html">
+      CALENDAR_NYT</a>,
+      a MATLAB library which
+      shows the correspondence between dates and the New York Times volume and
+      issue number;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/calendar_rd/calendar_rd.html">
+      CALENDAR_RD</a>,
+      a C++ program which
+      computes the representation of a given date in a
+      number of calendrical systems,
+      by Edward Reingold and Nachum Dershowitz
+    </p>
+
+    <p>
+      <a href = "../../datasets/dates/dates.html">
+      DATES</a>,
+      a dataset directory which
+      contains lists of dates in various calendar systems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/doomsday/doomsday.html">
+      DOOMSDAY</a>,
+      a MATLAB library which
+      is given the year, month and day of a date, and uses
+      John Conway's doomsday algorithm to determine the corresponding day of the week.
+    </p>
+
+    <p>
+      <a href = "../../m_src/weekday/weekday.html">
+      WEEKDAY</a>,
+      a MATLAB library which
+      determines the day of the week for a given day.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Anonymous,<br>
+          A Correction; Welcome to 51,254,<br>
+          The New York Times,<br>
+          01 January 2000, Volume 149, Issue 51254.
+        </li>
+        <li>
+          James Barron,<br>
+          What's in a Number? 143 Years of News,<br>
+          The New York Times,<br>
+          14 March 1995, Volume 144, Issue 50000.
+        </li>
+        <li>
+          Bonnie Blackburn, Leofranc Holford-Stevens,<br>
+          The Oxford Companion to the Year,<br>
+          Oxford, 1999,<br>
+          ISBN: 0192142313,<br>
+          LC: CE73.B553.
+        </li>
+        <li>
+          Lewis Carroll (Charles Dodgson),<br>
+          To Find the Day of the Week for Any Given Date,<br>
+          Nature, 31 March 1887.
+        </li>
+        <li>
+          John Conway,<br>
+          Tomorrow is the Day After Doomsday,<br>
+          Eureka,<br>
+          Volume 36, October 1973, pages 28-31.
+        </li>
+        <li>
+          Peter Duffett-Smith,<br>
+          Practical Astronomy With Your Calculator,<br>
+          Third Edition,<br>
+          Cambridge University Press, 1996,<br>
+          ISBN: 0-521-35699-7,<br>
+          LC: QB62.5.D83.
+        </li>
+        <li>
+          Donald Knuth,<br>
+          The Art of Computer Programming,<br>
+          Volume 1, Fundamental Algorithms,<br>
+          Third Edition,<br>
+          Addison-Wesley, 1997,<br>
+          ISBN: 0201896834,<br>
+          LC: QA76.6.K64.
+        </li>
+        <li>
+          Donald Knuth,<br>
+          The Calculation of Easter,<br>
+          Communications of the ACM,<br>
+          Volume 5, Number 4, April 1962, pages 209-210.
+        </li>
+        <li>
+          Gary Meisters,<br>
+          Lewis Carroll's Day-of-the-Week Algorithm,<br>
+          Math Horizons,<br>
+          November 2002, pages 24-25.
+        </li>
+        <li>
+          Lance Latham,<br>
+          Standard C Date/Time Library,<br>
+          Programming the World's Calendars and Clocks,<br>
+          Miller Freeman, 1998,<br>
+          ISBN: 0-87930-496-0.
+        </li>
+        <li>
+          The New York Times,<br>
+          Page One, 1896-1996, A Special Commemorative Edition Celebrating the
+          100th Anniversary of the Purchase of the New York Times by Adolph S Ochs,<br>
+          Galahad Books, 1996,<br>
+          ISBN: 0-88365-961-1,<br>
+          LC: D411.P25.
+        </li>
+        <li>
+          The New York Times,<br>
+          The Complete First Pages, 1851-2008,<br>
+          Black Dog & Leventhal Publishers, 2008,<br>
+          ISBN13: 978-1-57912-749-7,<br>
+          LC: D351.N53.
+        </li>
+        <li>
+          Thomas OBeirne,<br>
+          Puzzles and Paradoxes,<br>
+          Oxford University Press, 1965,<br>
+          LC: QA95.O2.
+        </li>
+        <li>
+          Frank Parise, editor,<br>
+          The Book of Calendars,<br>
+          Gorgias, 2002,<br>
+          ISBN: 1931956766,<br>
+          LC: CE11.K4.
+        </li>
+        <li>
+          William Press, Brian Flannery, Saul Teukolsky, William Vetterling,<br>
+          Numerical Recipes in FORTRAN: The Art of Scientific Computing,<br>
+          Second Edition,<br>
+          Cambridge University Press, 1992,<br>
+          ISBN: 0-521-43064-X,<br>
+          LC: QA297.N866.
+        </li>
+        <li>
+          Edward Reingold, Nachum Dershowitz,<br>
+          Calendrical Calculations: The Millennium Edition,<br>
+          Cambridge University Press, 2001,<br>
+          ISBN: 0-521-77752-6,<br>
+          LC: CE12.R45.
+        </li>
+        <li>
+          Edward Reingold, Nachum Dershowitz,<br>
+          Calendrical Calculations I,<br>
+          Software - Practice and Experience,<br>
+          Volume 20, Number 9, September 1990, pages 899-928.<br>
+        </li>
+        <li>
+          Edward Reingold, Nachum Dershowitz, Stewart Clamen,<br>
+          Calendrical Calculations, II: Three Historical Calendars,<br>
+          Software - Practice and Experience,<br>
+          Volume 23, Number 4, pages 383-404, April 1993.
+        </li>
+        <li>
+          Edward Richards,<br>
+          Mapping Time, The Calendar and Its History,<br>
+          Oxford, 1999,<br>
+          ISBN: 0-19-850413-6,<br>
+          LC: CE11.R5.
+        </li>
+        <li>
+          Ian Stewart,<br>
+          Easter is a Quasicrystal,<br>
+          Scientific American,<br>
+          Volume 284, Number 3, March 2001, pages 80-83.
+        </li>
+        <li>
+          Daniel Zwillinger, editor,<br>
+          CRC Standard Mathematical Tables and Formulae,<br>
+          30th Edition,<br>
+          CRC Press, 1996,<br>
+          ISBN: 0-8493-2479-3,<br>
+          LC: QA47.M315.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>,
+          capitalizes a single character.
+        </li>
+        <li>
+          <a href = "cws_to_jed_gps.m">cws_to_jed_gps.m</a>,
+          converts a GPS CWS date to a JED.
+        </li>
+        <li>
+          <a href = "cws_to_s_gps.m">cws_to_s_gps.m</a>,
+          writes a GPS CWS date into a string.
+        </li>
+        <li>
+          <a href = "datenum_to_jed.m">datenum_to_jed.m</a>,
+          converts a MATLAB date number to a JED.
+        </li>
+        <li>
+          <a href = "day_borrow_alexandrian.m">day_borrow_alexandrian.m</a>,
+          borrows days from months in an Alexandrian date.
+        </li>
+        <li>
+          <a href = "day_borrow_common.m">day_borrow_common.m</a>,
+          borrows days from months in a Common date.
+        </li>
+        <li>
+          <a href = "day_borrow_eg_civil.m">day_borrow_eg_civil.m</a>,
+          borrows days from months in an Egyptian Civil date.
+        </li>
+        <li>
+          <a href = "day_borrow_english.m">day_borrow_english.m</a>,
+          borrows days from months in an English date.
+        </li>
+        <li>
+          <a href = "day_borrow_gregorian.m">day_borrow_gregorian.m</a>,
+          borrows days from months in a Gregorian date.
+        </li>
+        <li>
+          <a href = "day_borrow_hebrew.m">day_borrow_hebrew.m</a>,
+          borrows days from months in a Hebrew date.
+        </li>
+        <li>
+          <a href = "day_borrow_islamic.m">day_borrow_islamic.m</a>,
+          borrows days from months in an Islamic date.
+        </li>
+        <li>
+          <a href = "day_borrow_julian.m">day_borrow_julian.m</a>,
+          borrows days from months in a Julian date.
+        </li>
+        <li>
+          <a href = "day_borrow_republican.m">day_borrow_republican.m</a>,
+          borrows days from months in a Republican date.
+        </li>
+        <li>
+          <a href = "day_borrow_roman.m">day_borrow_roman.m</a>,
+          borrows days from months in a Roman date.
+        </li>
+        <li>
+          <a href = "day_carry_alexandrian.m">day_carry_alexandrian.m</a>,
+          carries days to months in an Alexandrian date.
+        </li>
+        <li>
+          <a href = "day_carry_common.m">day_carry_common.m</a>,
+          carries days to months in a Common date.
+        </li>
+        <li>
+          <a href = "day_carry_eg_civil.m">day_carry_eg_civil.m</a>,
+          carries days to months in an Egyptian Civil date.
+        </li>
+        <li>
+          <a href = "day_carry_gregorian.m">day_carry_gregorian.m</a>,
+          carries days to months in a Gregorian date.
+        </li>
+        <li>
+          <a href = "day_carry_hebrew.m">day_carry_hebrew.m</a>,
+          carries days to months in a Hebrew date.
+        </li>
+        <li>
+          <a href = "day_carry_islamic.m">day_carry_islamic.m</a>,
+          carries days to months in an Islamic date.
+        </li>
+        <li>
+          <a href = "day_carry_julian.m">day_carry_julian.m</a>,
+          carries days to months in a Julian date.
+        </li>
+        <li>
+          <a href = "day_carry_republican.m">day_carry_republican.m</a>,
+          carries days to months in a Republican date.
+        </li>
+        <li>
+          <a href = "day_carry_roman.m">day_carry_roman.m</a>,
+          carries days to months in a Roman date.
+        </li>
+        <li>
+          <a href = "day_list_common.m">day_list_common.m</a>,
+          prints a list of days between two dates.
+        </li>
+        <li>
+          <a href = "days_before_month_common.m">days_before_month_common.m</a>,
+          returns the number of days before a Common month.
+        </li>
+        <li>
+          <a href = "days_before_month_gregorian.m">days_before_month_gregorian.m</a>,
+          returns the number of days before a Gregorian month.
+        </li>
+        <li>
+          <a href = "days_before_month_julian.m">days_before_month_julian.m</a>,
+          returns the number of days before a Julian month.
+        </li>
+        <li>
+          <a href = "deflate_common.m">deflate_common.m</a>,
+          "deflates" dates in the Common Calendar transition month.
+        </li>
+        <li>
+          <a href = "deflate_english.m">deflate_english.m</a>,
+          "deflates" dates in the English Calendar transition month.
+        </li>
+        <li>
+          <a href = "easter_ds.m">easter_ds.m</a>,
+          computes the month and day of Easter for a Gregorian year.
+        </li>
+        <li>
+          <a href = "easter_egr.m">easter_egr.m</a>,
+          computes the month and day of Easter for a Common year.
+        </li>
+        <li>
+          <a href = "easter_egr2.m">easter_egr2.m</a>,
+          computes the month and day of Easter for a Common year.
+        </li>
+        <li>
+          <a href = "easter_julian.m">easter_julian.m</a>,
+          computes the month and day of Easter for a Julian year.
+        </li>
+        <li>
+          <a href = "easter_julian2.m">easter_julian2.m</a>,
+          computes the month and day of Easter for a Julian year.
+        </li>
+        <li>
+          <a href = "easter_knuth.m">easter_knuth.m</a>,
+          computes the month and day of Easter for a Gregorian year.
+        </li>
+        <li>
+          <a href = "easter_stewart.m">easter_stewart.m</a>,
+          computes the month and day of Easter for a Gregorian year.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_akbar.m">epoch_to_jed_akbar.m</a>,
+          returns the epoch of the Akbar calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_alexandrian.m">epoch_to_jed_alexandrian.m</a>,
+          returns the epoch of the Alexandrian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_armenian.m">epoch_to_jed_armenian.m</a>,
+          returns the epoch of the Armenian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_bahai.m">epoch_to_jed_bahai.m</a>,
+          returns the epoch of the Bahai calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_bessel.m">epoch_to_jed_bessel.m</a>,
+          returns the epoch of the Bessel calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_chinese.m">epoch_to_jed_chinese.m</a>,
+          returns the epoch of the Chinese calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_common.m">epoch_to_jed_common.m</a>,
+          returns the epoch of the Common calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_coptic.m">epoch_to_jed_coptic.m</a>,
+          returns the epoch of the Coptic calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_deccan.m">epoch_to_jed_deccan.m</a>,
+          returns the epoch of the Deccan calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_eg_civil.m">epoch_to_jed_eg_civil.m</a>,
+          returns the epoch of the Egyptian Civil calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_eg_lunar.m">epoch_to_jed_eg_lunar.m</a>,
+          returns the epoch of the Egyptian Lunar calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_english.m">epoch_to_jed_english.m</a>,
+          returns the epoch of the English calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_ethiopian.m">epoch_to_jed_ethiopian.m</a>,
+          returns the epoch of the Ethiopian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_gps.m">epoch_to_jed_gps.m</a>,
+          returns the epoch of the GPS calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_greek.m">epoch_to_jed_greek.m</a>,
+          returns the epoch of the Greek calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_gregorian.m">epoch_to_jed_gregorian.m</a>,
+          returns the epoch of the Gregorian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_hebrew.m">epoch_to_jed_hebrew.m</a>,
+          returns the epoch of the Hebrew calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_hindu_lunar.m">epoch_to_jed_hindu_lunar.m</a>,
+          returns the epoch of the Hindu Lunar calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_hindu_solar.m">epoch_to_jed_hindu_solar.m</a>,
+          returns the epoch of the Hindu Solar calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_islamic_a.m">epoch_to_jed_islamic_a.m</a>,
+          returns the epoch of the Islamic A calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_islamic_b.m">epoch_to_jed_islamic_b.m</a>,
+          returns the epoch of the Islamic B calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_jed.m">epoch_to_jed_jed.m</a>,
+          returns the epoch of the JED calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_jelali.m">epoch_to_jed_jelali.m</a>,
+          returns the epoch of the Jelali calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_julian.m">epoch_to_jed_julian.m</a>,
+          returns the epoch of the Julian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_khwarizmian.m">epoch_to_jed_khwarizmian.m</a>,
+          returns the epoch of the Khwarizmian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_macedonian.m">epoch_to_jed_macedonian.m</a>,
+          returns the epoch of the Macedonian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_matlab.m">epoch_to_jed_matlab.m</a>,
+          epoch of the "MATLAB calendar" as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_mayan_long.m">epoch_to_jed_mayan_long.m</a>,
+          returns the epoch of the Mayan Long calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_mjd.m">epoch_to_jed_mjd.m</a>,
+          returns the epoch of the Modified Julian Day calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_nyt.m">epoch_to_jed_nyt.m</a>,
+          returns the epoch of the New York Times calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_persian.m">epoch_to_jed_persian.m</a>,
+          returns the epoch of the Persian calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_persian_solar.m">epoch_to_jed_persian_solar.m</a>,
+          returns the epoch of the Persian Solar calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_rd.m">epoch_to_jed_rd.m</a>,
+          returns the epoch of the RD calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_republican.m">epoch_to_jed_republican.m</a>,
+          returns the epoch of the French Republican calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_roman.m">epoch_to_jed_roman.m</a>,
+          returns the epoch of the  calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_saka.m">epoch_to_jed_saka.m</a>,
+          returns the epoch of the  calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_soor_san.m">epoch_to_jed_soor_san.m</a>,
+          returns the epoch of the  calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_syrian.m">epoch_to_jed_syrian.m</a>,
+          returns the epoch of the  calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_unix.m">epoch_to_jed_unix.m</a>,
+          returns the epoch of the Unix calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_y2k.m">epoch_to_jed_y2k.m</a>,
+          returns the epoch of the Y2K calendar as a JED.
+        </li>
+        <li>
+          <a href = "epoch_to_jed_zoroastrian.m">epoch_to_jed_zoroastrian.m</a>,
+          returns the epoch of the Zoroastrian calendar as a JED.
+        </li>
+        <li>
+          <a href = "frac_borrow_common.m">frac_borrow_common.m</a>,
+          borrows fractions from days in a Common YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_english.m">frac_borrow_english.m</a>,
+          borrows fractions from days in an English YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_gregorian.m">frac_borrow_gregorian.m</a>,
+          borrows fractions from days in a Gregorian YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_hebrew.m">frac_borrow_hebrew.m</a>,
+          borrows fractions from days in a Hebrew YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_islamic.m">frac_borrow_islamic.m</a>,
+          borrows fractions from days in an Islamic YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_julian.m">frac_borrow_julian.m</a>,
+          borrows fractions from days in a Julian YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_republican.m">frac_borrow_republican.m</a>,
+          borrows fractions from days in a Republican YMDF date.
+        </li>
+        <li>
+          <a href = "frac_borrow_roman.m">frac_borrow_roman.m</a>,
+          borrows fractions from days in a Roman YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_common.m">frac_carry_common.m</a>,
+          carries fractions to days in a Common YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_english.m">frac_carry_english.m</a>,
+          carries fractions to days in an English YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_gregorian.m">frac_carry_gregorian.m</a>,
+          carries fractions to days in a Gregorian YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_hebrew.m">frac_carry_hebrew.m</a>,
+          carries fractions to days in a Hebrew YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_islamic.m">frac_carry_islamic.m</a>,
+          carries fractions to days in a Hebrew YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_republican.m">frac_carry_republican.m</a>,
+          carries fractions to days in a Republican YMDF date.
+        </li>
+        <li>
+          <a href = "frac_carry_roman.m">frac_carry_roman.m</a>,
+          carries fractions to days in a Roman YMDF date.
+        </li>
+        <li>
+          <a href = "frac_to_hms.m">frac_to_hms.m</a>,
+          converts a fractional day into hours, minutes, seconds.
+        </li>
+        <li>
+          <a href = "frac_to_s.m">frac_to_s.m</a>,
+          writes a positive fraction into a left justified character string.
+        </li>
+        <li>
+          <a href = "hms_to_s.m">hms_to_s.m</a>,
+          writes an HMS date into a string.
+        </li>
+        <li>
+          <a href = "hour_borrow_common.m">hour_borrow_common.m</a>,
+          borrows a day of hours.
+        </li>
+        <li>
+          <a href = "hour_carry_common.m">hour_carry_common.m</a>,
+          carries a day of hours.
+        </li>
+        <li>
+          <a href = "i4_modp.m">i4_modp.m</a>,
+          returns the positive remainder when I is divided by J.
+        </li>
+        <li>
+          <a href = "i4_to_a.m">i4_to_a.m</a>,
+          returns the I-th alphabetic character.
+        </li>
+        <li>
+          <a href = "i4_to_roman.m">i4_to_roman.m</a>,
+          converts an integer to a string of Roman numerals.
+        </li>
+        <li>
+          <a href = "i4_wrap.m">i4_wrap.m</a>,
+          forces an integer to lie between given limits by wrapping.
+        </li>
+        <li>
+          <a href = "inflate_common.m">inflate_common.m</a>,
+          "inflates" dates in the Common Calendar transition month.
+        </li>
+        <li>
+          <a href = "inflate_english.m">inflate_english.m</a>,
+          "inflates" dates in the English Calendar transition month.
+        </li>
+        <li>
+          <a href = "j_borrow_common.m">j_borrow_common.m</a>,
+          borrows year-days from years in a Common date.
+        </li>
+        <li>
+          <a href = "j_borrow_english.m">j_borrow_english.m</a>,
+          borrows year-days from years in an English date.
+        </li>
+        <li>
+          <a href = "j_borrow_gregorian.m">j_borrow_gregorian.m</a>,
+          borrows year-days from years in a Gregorian date.
+        </li>
+        <li>
+          <a href = "j_borrow_hebrew.m">j_borrow_hebrew.m</a>,
+          borrows year-days from years in a Hebrew date.
+        </li>
+        <li>
+          <a href = "j_borrow_islamic.m">j_borrow_islamic.m</a>,
+          borrows year-days from years in an Islamic date.
+        </li>
+        <li>
+          <a href = "j_borrow_julian.m">j_borrow_julian.m</a>,
+          borrows year-days from years in a Julian date.
+        </li>
+        <li>
+          <a href = "j_borrow_republican.m">j_borrow_republican.m</a>,
+          borrows year-days from years in a Republican date.
+        </li>
+        <li>
+          <a href = "j_borrow_roman.m">j_borrow_roman.m</a>,
+          borrows year-days from years in a Roman date.
+        </li>
+        <li>
+          <a href = "j_carry_common.m">j_carry_common.m</a>,
+          carries year-days to years in a Common date.
+        </li>
+        <li>
+          <a href = "j_carry_english.m">j_carry_english.m</a>,
+          carries year-days to years in a English date.
+        </li>
+        <li>
+          <a href = "j_carry_gregorian.m">j_carry_gregorian.m</a>,
+          carries year-days to years in a Gregorian date.
+        </li>
+        <li>
+          <a href = "j_carry_hebrew.m">j_carry_hebrew.m</a>,
+          carries year-days to years in a Hebrew date.
+        </li>
+        <li>
+          <a href = "j_carry_islamic.m">j_carry_islamic.m</a>,
+          carries year-days to years in an Islamic date.
+        </li>
+        <li>
+          <a href = "j_carry_julian.m">j_carry_julian.m</a>,
+          carries year-days to years in a Julian date.
+        </li>
+        <li>
+          <a href = "j_carry_republican.m">j_carry_republican.m</a>,
+          carries year-days to years in a Republican date.
+        </li>
+        <li>
+          <a href = "j_carry_roman.m">j_carry_roman.m</a>,
+          carries year-days to years in a Roman date.
+        </li>
+        <li>
+          <a href = "jed_check.m">jed_check.m</a>,
+          checks a Julian Ephemeris Date.
+        </li>
+        <li>
+          <a href = "jed_test.m">jed_test.m</a>,
+          returns some "interesting" JED's.
+        </li>
+        <li>
+          <a href = "jed_to_cws_gps.m">jed_to_cws_gps.m</a>,
+          converts a JED to a GPS CWS date.
+        </li>
+        <li>
+          <a href = "jed_to_datenum.m">jed_to_datenum.m</a>,
+          converts a JED to a MATLAB datenumber.
+        </li>
+        <li>
+          <a href = "jed_to_mayan_long.m">jed_to_mayan_long.m</a>,
+          converts a JED to a Mayan long count date.
+        </li>
+        <li>
+          <a href = "jed_to_mayan_round.m">jed_to_mayan_round.m</a>,
+          converts a JED to a Mayan round count date.
+        </li>
+        <li>
+          <a href = "jed_to_mjd.m">jed_to_mjd.m</a>,
+          converts a JED to a modified JED.
+        </li>
+        <li>
+          <a href = "jed_to_nearest_noon.m">jed_to_nearest_noon.m</a>,
+          converts a JED to the JED of the nearest noon.
+        </li>
+        <li>
+          <a href = "jed_to_next_noon.m">jed_to_next_noon.m</a>,
+          converts a JED to the JED of the next noon.
+        </li>
+        <li>
+          <a href = "jed_to_nyt.m">jed_to_nyt.m</a>,
+          converts a JED to a New York Times date.
+        </li>
+        <li>
+          <a href = "jed_to_rd.m">jed_to_rd.m</a>,
+          converts a JED to an RD.
+        </li>
+        <li>
+          <a href = "jed_to_ss_unix.m">jed_to_ss_unix.m</a>,
+          converts a JED to a UNIX SS date.
+        </li>
+        <li>
+          <a href = "jed_to_weekday.m">jed_to_weekday.m</a>,
+          computes the day of the week from a JED.
+        </li>
+        <li>
+          <a href = "jed_to_year_hebrew.m">jed_to_year_hebrew.m</a>,
+          the year in the Hebrew calendar when a JED occurred.
+        </li>
+        <li>
+          <a href = "jed_to_yearcount_bessel.m">jed_to_yearcount_bessel.m</a>,
+          converts a JED to a Bessel year count.
+        </li>
+        <li>
+          <a href = "jed_to_yearcount_julian.m">jed_to_yearcount_julian.m</a>,
+          converts a JED to a Julian year count.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_common.m">jed_to_yjf_common.m</a>,
+          converts a JED to a Common YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_english.m">jed_to_yjf_english.m</a>,
+          converts a JED to an English YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_gregorian.m">jed_to_yjf_gregorian.m</a>,
+          converts a JED to a Gregorian YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_hebrew.m">jed_to_yjf_hebrew.m</a>,
+          converts a JED to a Hebrew YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_islamic_a.m">jed_to_yjf_islamic_a.m</a>,
+          converts a JED to an Islamic A YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_islamic_b.m">jed_to_yjf_islamic_b.m</a>,
+          converts a JED to an Islamic B YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_julian.m">jed_to_yjf_julian.m</a>,
+          converts a JED to a Julian YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_republican.m">jed_to_yjf_republican.m</a>,
+          converts a JED to a Republican YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_yjf_roman.m">jed_to_yjf_roman.m</a>,
+          converts a JED to a Roman YJF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_alexandrian.m">jed_to_ymdf_alexandrian.m</a>,
+          converts a JED to an Alexandrian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_armenian.m">jed_to_ymdf_armenian.m</a>,
+          converts a JED to an Armenian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_bahai.m">jed_to_ymdf_bahai.m</a>,
+          converts a JED to a Bahai YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_common.m">jed_to_ymdf_common.m</a>,
+          converts a JED to a Common YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_coptic.m">jed_to_ymdf_coptic.m</a>,
+          converts a JED to a Coptic YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_eg_civil.m">jed_to_ymdf_eg_civil.m</a>,
+          converts a JED to an Egyptian Civil YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_eg_lunar.m">jed_to_ymdf_eg_lunar.m</a>,
+          converts a JED to an Egyptian Lunar YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_english.m">jed_to_ymdf_english.m</a>,
+          converts a JED to an English YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_ethiopian.m">jed_to_ymdf_ethiopian.m</a>,
+          converts a JED to an Ethiopian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_gregorian.m">jed_to_ymdf_gregorian.m</a>,
+          converts a JED to a Gregorian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_gregorian2.m">jed_to_ymdf_gregorian2.m</a>,
+          converts a JED to a Gregorian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_hebrew.m">jed_to_ymdf_hebrew.m</a>,
+          converts a JED to a Hebrew YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_hindu_solar.m">jed_to_ymdf_hindu_solar.m</a>,
+          converts a JED to a Hindu Solar YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_islamic_a.m">jed_to_ymdf_islamic_a.m</a>,
+          converts a JED to an Islamic A YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_islamic_b.m">jed_to_ymdf_islamic_b.m</a>,
+          converts a JED to an Islamic B YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_jelali.m">jed_to_ymdf_jelali.m</a>,
+          converts a JED to a Jelali YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_julian.m">jed_to_ymdf_julian.m</a>,
+          converts a JED to a Julian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_julian2.m">jed_to_ymdf_julian2.m</a>,
+          converts a JED to a Julian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_julian3.m">jed_to_ymdf_julian3.m</a>,
+          converts a JED to a Julian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_khwarizmian.m">jed_to_ymdf_khwarizmian.m</a>,
+          converts a JED to a Khwarizmian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_macedonian.m">jed_to_ymdf_macedonian.m</a>,
+          converts a JED to a Macedonian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_persian.m">jed_to_ymdf_persian.m</a>,
+          converts a JED to a Persian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_republican.m">jed_to_ymdf_republican.m</a>,
+          converts a JED to a Republican YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_roman.m">jed_to_ymdf_roman.m</a>,
+          converts a JED to a Roman YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_saka.m">jed_to_ymdf_saka.m</a>,
+          converts a JED to a Saka YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_soor_san.m">jed_to_ymdf_soor_san.m</a>,
+          converts a JED to a Soor San YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_syrian.m">jed_to_ymdf_syrian.m</a>,
+          converts a JED to a Syrian YMDF date.
+        </li>
+        <li>
+          <a href = "jed_to_ymdf_zoroastrian.m">jed_to_ymdf_zoroastrian.m</a>,
+          converts a JED to a Zoroastrian YMDF date.
+        </li>
+        <li>
+          <a href = "mayan_long_to_jed.m">mayan_long_to_jed.m</a>,
+          converts a Mayan Long Count to a JED.
+        </li>
+        <li>
+          <a href = "mayan_round_to_jed.m">mayan_round_to_jed.m</a>,
+          converts a Mayan Round date to a JED.
+        </li>
+        <li>
+          <a href = "minute_borrow_common.m">minute_borrow_common.m</a>,
+          borrows an hour of minutes on the Common calendar.
+        </li>
+        <li>
+          <a href = "minute_carry_common.m">minute_carry_common.m</a>,
+          carries an hour of minutes on the Common calendar.
+        </li>
+        <li>
+          <a href = "mjd_to_jed.m">mjd_to_jed.m</a>,
+          converts a modified JED to a JED.
+        </li>
+        <li>
+          <a href = "month_borrow_alexandrian.m">month_borrow_alexandrian.m</a>,
+          borrows a year of months on the Alexandrian calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_bahai.m">month_borrow_bahai.m</a>,
+          borrows a year of months on the Bahai calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_common.m">month_borrow_common.m</a>,
+          borrows a year of months on the Common calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_eg_civil.m">month_borrow_eg_civil.m</a>,
+          borrows a year of months on the Egyptian Civil calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_english.m">month_borrow_english.m</a>,
+          borrows a year of months on the English calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_gregorian.m">month_borrow_gregorian.m</a>,
+          borrows a year of months on the Gregorian calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_hebrew.m">month_borrow_hebrew.m</a>,
+          borrows a year of months on the Hebrew calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_islamic.m">month_borrow_islamic.m</a>,
+          borrows a year of months on the Islamic calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_julian.m">month_borrow_julian.m</a>,
+          borrows a year of months on the Julian calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_republican.m">month_borrow_republican.m</a>,
+          borrows a year of months on the Republican calendar.
+        </li>
+        <li>
+          <a href = "month_borrow_roman.m">month_borrow_roman.m</a>,
+          borrows a year of months on the Roman calendar.
+        </li>
+        <li>
+          <a href = "month_carry_common.m">month_carry_common.m</a>,
+          carries a year of months on the Common calendar.
+        </li>
+        <li>
+          <a href = "month_carry_gregorian.m">month_carry_gregorian.m</a>,
+          carries a year of months on the Gregorian calendar.
+        </li>
+        <li>
+          <a href = "month_carry_alexandrian.m">month_carry_alexandrian.m</a>,
+          carries a year of months on the Alexandrian calendar.
+        </li>
+        <li>
+          <a href = "month_carry_bahai.m">month_carry_bahai.m</a>,
+          carries a year of months on the Bahai calendar.
+        </li>
+        <li>
+          <a href = "month_carry_common.m">month_carry_common.m</a>,
+          carries a year of months on the Common calendar.
+        </li>
+        <li>
+          <a href = "month_carry_eg_civil.m">month_carry_eg_civil.m</a>,
+          carries a year of months on the Egyptian Civil calendar.
+        </li>
+        <li>
+          <a href = "month_carry_english.m">month_carry_english.m</a>,
+          carries a year of months on the English calendar.
+        </li>
+        <li>
+          <a href = "month_carry_gregorian.m">month_carry_gregorian.m</a>,
+          carries a year of months on the Gregorian calendar.
+        </li>
+        <li>
+          <a href = "month_carry_hebrew.m">month_carry_hebrew.m</a>,
+          carries a year of months on the Hebrew calendar.
+        </li>
+        <li>
+          <a href = "month_carry_islamic.m">month_carry_islamic.m</a>,
+          carries a year of months on the Islamic calendar.
+        </li>
+        <li>
+          <a href = "month_carry_julian.m">month_carry_julian.m</a>,
+          carries a year of months on the Julian calendar.
+        </li>
+        <li>
+          <a href = "month_carry_republican.m">month_carry_republican.m</a>,
+          carries a year of months on the Republican calendar.
+        </li>
+        <li>
+          <a href = "month_carry_roman.m">month_carry_roman.m</a>,
+          carries a year of months on the Roman calendar.
+        </li>
+        <li>
+          <a href = "month_length_alexandrian.m">month_length_alexandrian.m</a>,
+          returns the number of days in an Alexandrian month.
+        </li>
+        <li>
+          <a href = "month_length_bahai.m">month_length_bahai.m</a>,
+          returns the number of days in a Bahai month.
+        </li>
+        <li>
+          <a href = "month_length_common.m">month_length_common.m</a>,
+          returns the number of days in a Common month.
+        </li>
+        <li>
+          <a href = "month_length_coptic.m">month_length_coptic.m</a>,
+          returns the number of days in a Coptic month.
+        </li>
+        <li>
+          <a href = "month_length_eg_civil.m">month_length_eg_civil.m</a>,
+          returns the number of days in an Egyptian Civil month.
+        </li>
+        <li>
+          <a href = "month_length_eg_lunar.m">month_length_eg_lunar.m</a>,
+          returns the number of days in an Egyptian Lunar month.
+        </li>
+        <li>
+          <a href = "month_length_english.m">month_length_english.m</a>,
+          returns the number of days in an English month.
+        </li>
+        <li>
+          <a href = "month_length_ethiopian.m">month_length_ethiopian.m</a>,
+          returns the number of days in an Ethiopian month.
+        </li>
+        <li>
+          <a href = "month_length_greek.m">month_length_greek.m</a>,
+          returns the number of days in a Gregorian month.
+        </li>
+        <li>
+          <a href = "month_length_gregorian.m">month_length_gregorian.m</a>,
+          returns the number of days in a Gregorian month.
+        </li>
+        <li>
+          <a href = "month_length_hebrew.m">month_length_hebrew.m</a>,
+          returns the number of days in a Hebrew month.
+        </li>
+        <li>
+          <a href = "month_length_hindu_solar.m">month_length_hindu_solar.m</a>,
+          returns the number of days in a Hindu Solar month.
+        </li>
+        <li>
+          <a href = "month_length_iranian.m">month_length_iranian.m</a>,
+          returns the number of days in an Iranian month.
+        </li>
+        <li>
+          <a href = "month_length_islamic.m">month_length_islamic.m</a>,
+          returns the number of days in an Islamic month.
+        </li>
+        <li>
+          <a href = "month_length_julian.m">month_length_julian.m</a>,
+          returns the number of days in a Julian month.
+        </li>
+        <li>
+          <a href = "month_length_lunar.m">month_length_lunar.m</a>,
+          returns the number of days in a Lunar month.
+        </li>
+        <li>
+          <a href = "month_length_persian.m">month_length_persian.m</a>,
+          returns the number of days in a Persian month.
+        </li>
+        <li>
+          <a href = "month_length_republican.m">month_length_republican.m</a>,
+          returns the number of days in a Republican month.
+        </li>
+        <li>
+          <a href = "month_length_roman.m">month_length_roman.m</a>,
+          returns the number of days in a Roman month.
+        </li>
+        <li>
+          <a href = "month_length_synodic.m">month_length_synodic.m</a>,
+          returns the number of days in a Synodic month.
+        </li>
+        <li>
+          <a href = "month_to_month_name_common.m">month_to_month_name_common.m</a>,
+          returns the name of a Common month.
+        </li>
+        <li>
+          <a href = "month_to_month_name_common3.m">month_to_month_name_common3.m</a>,
+          returns an abbreviation of a Common month name.
+        </li>
+        <li>
+          <a href = "new_year_to_jed_hebrew.m">new_year_to_jed_hebrew.m</a>,
+          returns the JED of the beginning of a Hebrew year.
+        </li>
+        <li>
+          <a href = "now_to_jed.m">now_to_jed.m</a>,
+          expresses the current date as JED.
+        </li>
+        <li>
+          <a href = "r8_uniform.m">r8_uniform.m</a>,
+          returns a scaled pseudorandom R8.
+        </li>
+        <li>
+          <a href = "rd_to_jed.m">rd_to_jed.m</a>,
+          converts RD to JED.
+        </li>
+        <li>
+          <a href = "thanksgiving_canada.m">thanksgiving_canada.m</a>,
+          computes Canadian Thanksgiving for a Common year.
+        </li>
+        <li>
+          <a href = "thanksgiving_us.m">thanksgiving_us.m</a>,
+          computes the date of Thanksgiving (US) for a Common year.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "weekday_check_common.m">weekday_check_common.m</a>,
+          makes sure the Common weekday number is between 1 and 7.
+        </li>
+        <li>
+          <a href = "weekday_to_name_bahai.m">weekday_to_name_bahai.m</a>,
+          returns the name of a Bahai weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_common.m">weekday_to_name_common.m</a>,
+          returns the name of a Common weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_common2.m">weekday_to_name_common2.m</a>,
+          returns the abbreviated name of a Common weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_common3.m">weekday_to_name_common3.m</a>,
+          returns the abbreviated name of a Common weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_french.m">weekday_to_name_french.m</a>,
+          returns the name of a French weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_german.m">weekday_to_name_german.m</a>,
+          returns the name of a German weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_hebrew.m">weekday_to_name_hebrew.m</a>,
+          returns the name of a Hebrew weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_islamic.m">weekday_to_name_islamic.m</a>,
+          returns the name of an Islamic weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_italian.m">weekday_to_name_italian.m</a>,
+          returns the name of an Italian weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_republican.m">weekday_to_name_republican.m</a>,
+          returns the name of a Republican weekday.
+        </li>
+        <li>
+          <a href = "weekday_to_name_roman.m">weekday_to_name_roman.m</a>,
+          returns the name of a Roman weekday.
+        </li>
+        <li>
+          <a href = "y_astronomical_to_common.m">y_astronomical_to_common.m</a>,
+          converts an Astronomical year to a Common year.
+        </li>
+        <li>
+          <a href = "y_check_alexandrian.m">y_check_alexandrian.m</a>,
+          checks an Alexandrian Y date.
+        </li>
+        <li>
+          <a href = "y_check_bahai.m">y_check_bahai.m</a>,
+          checks a Bahai Y date.
+        </li>
+        <li>
+          <a href = "y_check_common.m">y_check_common.m</a>,
+          checks a Common Y date.
+        </li>
+        <li>
+          <a href = "y_check_eg_civil.m">y_check_eg_civil.m</a>,
+          checks an Egyptian Civil Y date.
+        </li>
+        <li>
+          <a href = "y_check_english.m">y_check_english.m</a>,
+          checks an English Y date.
+        </li>
+        <li>
+          <a href = "y_check_greek.m">y_check_greek.m</a>,
+          checks a Gregorian Y date.
+        </li>
+        <li>
+          <a href = "y_check_gregorian.m">y_check_gregorian.m</a>,
+          checks a Gregorian Y date.
+        </li>
+        <li>
+          <a href = "y_check_hebrew.m">y_check_hebrew.m</a>,
+          checks a Hebrew Y date.
+        </li>
+        <li>
+          <a href = "y_check_islamic.m">y_check_islamic.m</a>,
+          checks an Islamic Y date.
+        </li>
+        <li>
+          <a href = "y_check_julian.m">y_check_julian.m</a>,
+          checks a Julian Y date.
+        </li>
+        <li>
+          <a href = "y_check_republican.m">y_check_republican.m</a>,
+          checks a Republican Y date.
+        </li>
+        <li>
+          <a href = "y_common_to_astronomical.m">y_common_to_astronomical.m</a>,
+          converts a Common year to an Astronomical year.
+        </li>
+        <li>
+          <a href = "y_julian_to_roman.m">y_julian_to_roman.m</a>,
+          converts a Julian year to a Roman year.
+        </li>
+        <li>
+          <a href = "y_roman_to_julian.m">y_roman_to_julian.m</a>,
+          converts a Roman year to a Julian year.
+        </li>
+        <li>
+          <a href = "y_to_s.m">y_to_s.m</a>,
+          converts a year to a string.
+        </li>
+        <li>
+          <a href = "y_to_s_alexandrian.m">y_to_s_alexandrian.m</a>,
+          converts an Alexandrian year to a string.
+        </li>
+        <li>
+          <a href = "y_to_s_bahai.m">y_to_s_bahai.m</a>,
+          converts a Bahai year to a string.
+        </li>
+        <li>
+          <a href = "y_to_s_common.m">y_to_s_common.m</a>,
+          converts a Common year to a string.
+        </li>
+        <li>
+          <a href = "y_to_s_hebrew.m">y_to_s_hebrew.m</a>,
+          converts a Hebrew year to a string.
+        </li>
+        <li>
+          <a href = "year_is_embolismic_eg_civil.m">year_is_embolismic_eg_civil.m</a>,
+          TRUE if the Egyptian Civil year was embolismic.
+        </li>
+        <li>
+          <a href = "year_is_embolismic_greek.m">year_is_embolismic_greek.m</a>,
+          TRUE if the Greek year was embolismic.
+        </li>
+        <li>
+          <a href = "year_is_embolismic_hebrew.m">year_is_embolismic_hebrew.m</a>,
+          TRUE if the Hebrew year was embolismic.
+        </li>
+        <li>
+          <a href = "year_is_leap_alexandrian.m">year_is_leap_alexandrian.m</a>,
+          TRUE if the Alexandrian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_bahai.m">year_is_leap_bahai.m</a>,
+          TRUE if the Bahai year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_common.m">year_is_leap_common.m</a>,
+          TRUE if the Common year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_coptic.m">year_is_leap_coptic.m</a>,
+          TRUE if the Coptic year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_eg_lunar.m">year_is_leap_eg_lunar.m</a>,
+          TRUE if the Egyptian Lunar year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_english.m">year_is_leap_english.m</a>,
+          TRUE if the English year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_ethiopian.m">year_is_leap_ethiopian.m</a>,
+          TRUE if the Ethiopian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_greek.m">year_is_leap_greek.m</a>,
+          TRUE if the Greek year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_gregorian.m">year_is_leap_gregorian.m</a>,
+          TRUE if the Gregorian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_iranian.m">year_is_leap_iranian.m</a>,
+          TRUE if the Iranian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_islamic.m">year_is_leap_islamic.m</a>,
+          TRUE if the Islamic year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_julian.m">year_is_leap_julian.m</a>,
+          TRUE if the Julian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_persian.m">year_is_leap_persian.m</a>,
+          TRUE if the Persian year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_republican.m">year_is_leap_republican.m</a>,
+          TRUE if the Republican year was a leap year.
+        </li>
+        <li>
+          <a href = "year_is_leap_roman.m">year_is_leap_roman.m</a>,
+          TRUE if the Roman year was a leap year.
+        </li>
+        <li>
+          <a href = "year_length_alexandrian.m">year_length_alexandrian.m</a>,
+          returns the number of days in an Alexandrian year.
+        </li>
+        <li>
+          <a href = "year_length_bahai.m">year_length_bahai.m</a>,
+          returns the number of days in a Bahai year.
+        </li>
+        <li>
+          <a href = "year_length_common.m">year_length_common.m</a>,
+          returns the number of days in a Common year.
+        </li>
+        <li>
+          <a href = "year_length_coptic.m">year_length_coptic.m</a>,
+          returns the number of days in a Coptic year.
+        </li>
+        <li>
+          <a href = "year_length_eg_civil.m">year_length_eg_civil.m</a>,
+          returns the number of days in an Egyptian Civil year.
+        </li>
+        <li>
+          <a href = "year_length_eg_lunar.m">year_length_eg_lunar.m</a>,
+          returns the number of days in an Egyptian Lunar year.
+        </li>
+        <li>
+          <a href = "year_length_english.m">year_length_english.m</a>,
+          returns the number of days in an English year.
+        </li>
+        <li>
+          <a href = "year_length_ethiopian.m">year_length_ethiopian.m</a>,
+          returns the number of days in an Ethiopian year.
+        </li>
+        <li>
+          <a href = "year_length_greek.m">year_length_greek.m</a>,
+          returns the number of days in a Greek year.
+        </li>
+        <li>
+          <a href = "year_length_gregorian.m">year_length_gregorian.m</a>,
+          returns the number of days in a Gregorian year.
+        </li>
+        <li>
+          <a href = "year_length_hebrew.m">year_length_hebrew.m</a>,
+          returns the number of days in a Hebrew year.
+        </li>
+        <li>
+          <a href = "year_length_hindu_solar.m">year_length_hindu_solar.m</a>,
+          returns the number of days in a Hindu Solar year.
+        </li>
+        <li>
+          <a href = "year_length_islamic.m">year_length_islamic.m</a>,
+          returns the number of days in an Islamic year.
+        </li>
+        <li>
+          <a href = "year_length_lunar.m">year_length_lunar.m</a>,
+          returns the number of days in a Lunar year.
+        </li>
+        <li>
+          <a href = "year_length_months_alexandrian.m">year_length_months_alexandrian.m</a>,
+          returns the number of months in an Alexandrian year.
+        </li>
+        <li>
+          <a href = "year_length_months_bahai.m">year_length_months_bahai.m</a>,
+          returns the number of months in a Bahai year.
+        </li>
+        <li>
+          <a href = "year_length_months_common.m">year_length_months_common.m</a>,
+          returns the number of months in a Common year.
+        </li>
+        <li>
+          <a href = "year_length_months_coptic.m">year_length_months_coptic.m</a>,
+          returns the number of months in a Coptic year.
+        </li>
+        <li>
+          <a href = "year_length_months_eg_civil.m">year_length_months_eg_civil.m</a>,
+          returns the number of months in an Egyptian Civil year.
+        </li>
+        <li>
+          <a href = "year_length_months_eg_lunar.m">year_length_months_eg_lunar.m</a>,
+          returns the number of months in an Egyptian Lunar year.
+        </li>
+        <li>
+          <a href = "year_length_months_english.m">year_length_months_english.m</a>,
+          returns the number of months in an English year.
+        </li>
+        <li>
+          <a href = "year_length_months_ethiopian.m">year_length_months_ethiopian.m</a>,
+          returns the number of months in an Ethiopian year.
+        </li>
+        <li>
+          <a href = "year_length_months_greek.m">year_length_months_greek.m</a>,
+          returns the number of months in a Greek year.
+        </li>
+        <li>
+          <a href = "year_length_months_gregorian.m">year_length_months_gregorian.m</a>,
+          returns the number of months in a Gregorian year.
+        </li>
+        <li>
+          <a href = "year_length_months_hebrew.m">year_length_months_hebrew.m</a>,
+          returns the number of months in a Hebrew year.
+        </li>
+        <li>
+          <a href = "year_length_months_hindu_lunar.m">year_length_months_hindu_lunar.m</a>,
+          returns the number of months in a Hindu Lunar year.
+        </li>
+        <li>
+          <a href = "year_length_months_hindu_solar.m">year_length_months_hindu_solar.m</a>,
+          returns the number of months in a Hindu Solar year.
+        </li>
+        <li>
+          <a href = "year_length_months_islamic.m">year_length_months_islamic.m</a>,
+          returns the number of months in an Islamic year.
+        </li>
+        <li>
+          <a href = "year_length_months_julian.m">year_length_months_julian.m</a>,
+          returns the number of months in a Julian year.
+        </li>
+        <li>
+          <a href = "year_length_months_persian.m">year_length_months_persian.m</a>,
+          returns the number of months in a Persian year.
+        </li>
+        <li>
+          <a href = "year_length_months_republican.m">year_length_months_republican.m</a>,
+          returns the number of months in a Republican year.
+        </li>
+        <li>
+          <a href = "year_length_months_roman.m">year_length_months_roman.m</a>,
+          returns the number of months in a Roman year.
+        </li>
+        <li>
+          <a href = "year_to_epact_julian.m">year_to_epact_julian.m</a>,
+          returns the epact of a Julian year.
+        </li>
+        <li>
+          <a href = "year_to_golden_number.m">year_to_golden_number.m</a>,
+          returns the golden number of a Common year.
+        </li>
+        <li>
+          <a href = "ym_check_alexandrian.m">ym_check_alexandrian.m</a>,
+          checks an Alexandrian YM date.
+        </li>
+        <li>
+          <a href = "ym_check_common.m">ym_check_common.m</a>,
+          checks a Common YM date.
+        </li>
+        <li>
+          <a href = "ym_check_gregorian.m">ym_check_gregorian.m</a>,
+          checks a Gregorian YM date.
+        </li>
+        <li>
+          <a href = "ym_check_julian.m">ym_check_julian.m</a>,
+          checks a Julian YM date.
+        </li>
+        <li>
+          <a href = "ym_to_decimal.m">ym_to_decimal.m</a>,
+          converts a Y/M date to a decimal YM date.
+        </li>
+        <li>
+          <a href = "ymd_check_alexandrian.m">ymd_check_alexandrian.m</a>,
+          checks an Alexandrian YMD date.
+        </li>
+        <li>
+          <a href = "ymd_check_common.m">ymd_check_common.m</a>,
+          checks a Common YMD date.
+        </li>
+        <li>
+          <a href = "ymd_check_gregorian.m">ymd_check_gregorian.m</a>,
+          checks a Gregorian YMD date.
+        </li>
+        <li>
+          <a href = "ymd_check_julian.m">ymd_check_julian.m</a>,
+          checks a Julian YMD date.
+        </li>
+        <li>
+          <a href = "ymd_compare.m">ymd_compare.m</a>,
+          compares two YMD dates.
+        </li>
+        <li>
+          <a href = "ymd_dif_common.m">ymd_dif_common.m</a>,
+          gets the day difference between two Common YMD dates.
+        </li>
+        <li>
+          <a href = "ymd_to_decimal.m">ymd_to_decimal.m</a>,
+          converts a YMD date to a Decimal Y.F date.
+        </li>
+        <li>
+          <a href = "ymd_to_jed_common.m">ymd_to_jed_common.m</a>,
+          converts a Common YMD date to a JED.
+        </li>
+        <li>
+          <a href = "ymd_to_s_common.m">ymd_to_s_common.m</a>,
+          writes a Common YMD date into a string.
+        </li>
+        <li>
+          <a href = "ymd_to_s_gregorian.m">ymd_to_s_gregorian.m</a>,
+          writes a Gregorian YMD date into a string.
+        </li>
+        <li>
+          <a href = "ymd_to_s_julian.m">ymd_to_s_julian.m</a>,
+          writes a Julian YMD date into a string.
+        </li>
+        <li>
+          <a href = "ymd_to_weekday_common.m">ymd_to_weekday_common.m</a>,
+          returns the weekday of a common YMD date.
+        </li>
+        <li>
+          <a href = "ymdf_compare.m">ymdf_compare.m</a>,
+          compares two YMDF dates.
+        </li>
+        <li>
+          <a href = "ymdf_next.m">ymdf_next.m</a>,
+          returns the Common YMDF date of the next day.
+        </li>
+        <li>
+          <a href = "ymdf_to_jed_common.m">ymdf_to_jed_common.m</a>,
+          converts a Common YMDF date to a JED.
+        </li>
+        <li>
+          <a href = "ymdf_to_jed_gregorian.m">ymdf_to_jed_gregorian.m</a>,
+          converts a Gregorian YMDF date to a JED.
+        </li>
+        <li>
+          <a href = "ymdf_to_jed_julian.m">ymdf_to_jed_julian.m</a>,
+          converts a Julian YMDF date to a JED.
+        </li>
+        <li>
+          <a href = "ymdf_to_s_julian.m">ymdf_to_s_julian.m</a>,
+          writes a Julian YMDF date into a string.
+        </li>
+        <li>
+          <a href = "ymdf_to_week_common.m">ymdf_to_week_common.m</a>,
+          returns the weekday of a Common YMDF date.
+        </li>
+        <li>
+          <a href = "ymdf_to_weekday_common.m">ymdf_to_weekday_common.m</a>,
+          returns the week number of a Common YMDF date.
+        </li>
+        <li>
+          <a href = "ymdhms_to_decimal.m">ymdhms_to_decimal.m</a>,
+          converts a Y/M/D/H/M/S date to a Decimal Y.F date.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "calpak_test.m">calpak_test.m</a>, calls all the tests.
+        </li>
+        <li>
+          <a href = "calpak_test_output.txt">calpak_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "calpak_test0005.m">calpak_test0005.m</a>,
+          tests CWS_TO_JED_GPS and JED_TO_CWS_GPS.
+        </li>
+        <li>
+          <a href = "calpak_test0007.m">calpak_test0007.m</a>,
+          tests DAY_LIST_COMMON.
+        </li>
+        <li>
+          <a href = "calpak_test001.m">calpak_test001.m</a>,
+          tests EASTER_DS, EASTER_EGR, EASTER_EGR2, EASTER_KNUTH, EASTER_STEWART.
+        </li>
+        <li>
+          <a href = "calpak_test002.m">calpak_test002.m</a>,
+          tests EASTER_JULIAN, EASTER_JULIAN2.
+        </li>
+        <li>
+          <a href = "calpak_test003.m">calpak_test003.m</a>,
+           tests JED_TO_MAYAN_LONG and MAYAN_LONG_TO_JED.
+        </li>
+        <li>
+          <a href = "calpak_test004.m">calpak_test004.m</a>,
+           tests JED_TO_MAYAN_ROUND and MAYAN_ROUND_TO_JED.
+        </li>
+        <li>
+          <a href = "calpak_test005.m">calpak_test005.m</a>,
+           tests JED_TO_WEEKDAY.
+        </li>
+        <li>
+          <a href = "calpak_test006.m">calpak_test006.m</a>,
+           tests JED_TO_YEAR_HEBREW.
+        </li>
+        <li>
+          <a href = "calpak_test_output.txt">calpak_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 October 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

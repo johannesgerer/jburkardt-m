@@ -1,0 +1,203 @@
+<html>
+
+  <head>
+    <title>
+      MATRIX_EXPONENTIAL - Algorithms for the Matrix Exponential
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATRIX_EXPONENTIAL <br> Algorithms for the Matrix Exponential
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATRIX_EXPONENTIAL</b>
+      is a MATLAB library which
+      exhibits and compares some algorithms for approximating the matrix
+      exponential function.
+    </p>
+
+    <p>
+      Formally, for a square matrix A and scalar t, the matrix exponential
+      exp(A*t) can be defined as the sum:
+      <blockquote>
+        exp(A*t) = sum ( 0 <= i < oo ) A^i t^i / i!
+      </blockquote>
+    </p>
+
+    <p>
+      The simplest form of the matrix exponential problem asks for the
+      value when t = 1.  Even for this simple case, and for a matrix
+      of small order, it can be quite difficult to compute the matrix
+      exponential accurately.
+    </p>
+
+    <p>
+      <b>MATRIX_EXPONENTIAL</b> needs the R8LIB library.
+      The test code for <b>MATRIX_EXPONENTIAL</b> requires the TEST_MATRIX_EXPONENTIAL
+      library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MATRIX_EXPONENTIAL</b> is available in
+      <a href = "../../c_src/matrix_exponential/matrix_exponential.html">a C version</a> and
+      <a href = "../../cpp_src/matrix_exponential/matrix_exponential.html">a C++ version</a> and
+      <a href = "../../f77_src/matrix_exponential/matrix_exponential.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/matrix_exponential/matrix_exponential.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/matrix_exponential/matrix_exponential.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f77_src/expokit/expokit.html">
+      EXPOKIT</a>,
+      a FORTRAN77 library which
+      solves various forms of the matrix exponential problem,
+      by Roger Sidje.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_matrix_exponential/test_matrix_exponential.html">
+      TEST_MATRIX_EXPONENTIAL</a>,
+      a MATLAB library which
+      defines a set of test cases for computing the matrix exponential.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan Laub,<br>
+          Review of "Linear System Theory" by Joao Hespanha,<br>
+          SIAM Review,<br>
+          Volume 52, Number 4, December 2010, page 779-781.
+        </li>
+        <li>
+          Cleve Moler, Charles VanLoan,<br>
+          Nineteen Dubious Ways to Compute the Exponential of a Matrix,
+          SIAM Review,<br>
+          Volume 20, Number 4, October 1978, pages 801-836.
+        </li>
+        <li>
+          Cleve Moler, Charles VanLoan,<br>
+          Nineteen Dubious Ways to Compute the Exponential of a Matrix,
+          Twenty-Five Years Later,<br>
+          SIAM Review,<br>
+          Volume 45, Number 1, March 2003, pages 3-49.
+        </li>
+        <li>
+          Roger Sidje,<br>
+          EXPOKIT: Software Package for Computing Matrix Exponentials,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 24, Number 1, 1998, pages 130-156.
+        </li>
+        <li>
+          Robert Ward,<br>
+          Numerical computation of the matrix exponential with accuracy estimate,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 14, Number 4, September 1977, pages 600-610.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "expm1_user.m">expm1_user.m</a>,
+          is essentially MATLAB's built-in matrix exponential algorithm.
+          It was originally named "expm1" but this conflicts with
+          a keyword reserved by MATLAB.
+        </li>
+        <li>
+          <a href = "expm2.m">expm2.m</a>,
+          estimates the matrix exponential using a Taylor series.
+        </li>
+        <li>
+          <a href = "expm3.m">expm3.m</a>,
+          estimates the matrix exponential using information from an
+          eigenvalue decomposition.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "matrix_exponential_test.m">matrix_exponential_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "matrix_exponential_test01.m">matrix_exponential_test01.m</a>, 
+          compares several algorithms on the test matrices.
+        </li>
+        <li>
+          <a href = "matrix_exponential_test_output.txt">
+          matrix_exponential_test_output.txt</a>, 
+          output from the tests;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 18 March 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

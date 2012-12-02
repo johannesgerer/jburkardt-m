@@ -1,0 +1,284 @@
+<html>
+
+  <head>
+    <title>
+      STOCHASTIC_DIFFUSION - Stochastic Diffusivity
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      STOCHASTIC_DIFFUSION <br> Stochastic Diffusivity
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STOCHASTIC_DIFFUSION</b> 
+      is a MATLAB library which 
+      implement several versions of a stochastic diffusivity coefficient.
+    </p>
+
+    <p>
+      The 1D diffusion equation has the form
+      <pre>
+        - d/dx ( A(X) d/dx U(X) ) = F(X).
+      </pre>
+      where A(X) is a function called the <i>diffusivity</i> and F(X) is
+      called the <i>source term</i> or <i>forcing term</i>.
+    </p>
+
+    <p>
+      In the 1D stochastic version of the problem, the diffusivity function
+      includes the influence of stochastic parameters:
+      <pre>
+        - d/dx ( A(X;OMEGA) d/dx U(X;OMEGA) ) = F(X).
+      </pre>
+    </p>
+
+    <p>
+      The 2D diffusion equation has the form
+      <pre>
+        - Del ( A(X,Y) Del U(X,Y) ) = F(X,Y).
+      </pre>
+    </p>
+
+    <p>
+      In the 2D stochastic version of the problem, the diffusivity function
+      includes the influence of stochastic parameters:
+      <pre>
+        - Del ( A(X,Y;OMEGA) Del U(X,Y;OMEGA) ) = F(X,Y).
+      </pre>
+    </p>
+
+    <p>
+      The present codes are currently just sketches or untested functions.
+      More work and documentation is needed.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/black_scholes/black_scholes.html">
+      BLACK_SCHOLES</a>, 
+      a MATLAB library which
+      implements some simple approaches to 
+      the Black-Scholes option valuation theory;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cnoise/cnoise.html">
+      CNOISE</a>,
+      a MATLAB library which
+      generates samples of noise obeying a 1/f^alpha power law,
+      by Miroslav Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_legendre/pce_legendre.html">
+      PCE_LEGENDRE</a>, 
+      a MATLAB program which
+      assembles the system matrix associated with a polynomal chaos expansion
+      of a 2D stochastic PDE, using Legendre polynomials;
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_ode_hermite/pce_ode_hermite.html">
+      PCE_ODE_HERMITE</a>,
+      a MATLAB program which
+      sets up a simple scalar ODE for exponential decay with an uncertain
+      decay rate, using a polynomial chaos expansion in terms of Hermite polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sde/sde.html">
+      SDE</a>, 
+      a MATLAB library which
+      illustrates the properties of stochastic differential equations, and
+      common algorithms for their analysis, 
+      by Desmond Higham;
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_gradient_nd_noise/stochastic_gradient_nd_noise.html">
+      STOCHASTIC_GRADIENT_ND_NOISE</a>,
+      a MATLAB program which
+      solves an optimal control problem involving a functional over a system
+      with stochastic noise.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Ivo Babuska, Fabio Nobile, Raul Tempone,<br>
+          A Stochastic Collocation Method for Elliptic Partial Differential Equations 
+          with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 45, Number 3, 2007, pages 1005-1034.
+        </li>
+        <li>
+          Howard Elman, Darran Furnaval,<br>
+          Solving the stochastic steady-state diffusion problem using multigrid,<br>
+          IMA Journal on Numerical Analysis,<br>
+          Volume 27, Number 4, 2007, pages 675-688.
+        </li>
+        <li>
+          Roger Ghanem, Pol Spanos,<br>
+          Stochastic Finite Elements: A Spectral Approach,<br>
+          Revised Edition,<br>
+          Dover, 2003,<br>
+          ISBN: 0486428184,<br>
+          LC: TA347.F5.G56.
+        </li>
+        <li>
+          Xiang Ma, Nicholas Zabaras,<br>
+          An adaptive hierarchical sparse grid collocation algorithm for the solution
+          of stochastic differential equations,<br>
+          Journal of Computational Physics,<br>
+          Volume 228, pages 3084-3113, 2009.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Dongbin Xiu, George Karniadakis,<br>
+          Modeling uncertainty in steady state diffusion problems via
+          generalized polynomial chaos,<br>
+          Computer Methods in Applied Mechanics and Engineering,<br>
+          Volume 191, 2002, pages 4927-4948.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "diffusivity_1d_xk.m">diffusivity_1d_xk.m</a>,
+          a 1D stochastic diffusivity function from Xiu and Karniadakis.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      The BNT example is used in a rectangle [-1.5,0]x[-0.4,0.8], with
+      zero source term, and somewhat complicated boundary conditions:
+      <ul>
+
+        <li>
+          du/dn = 0 for ( -1.5 <= x <= -1.0 ) and y = 0.8.
+        </li>
+        <li>
+          u = 0 for -1.0 <= x <= -0.5 and y = 0.8.
+        </li>
+        <li>
+          du/dn = 0 for ( -0.5 <= x <= 0.0 ) and y = 0.8.
+        </li>
+        <li>
+          du/dn = 0 for x = -1.5 or for x = 0.
+        </li>
+        <li>
+          - a * du/dn = 1 for -1.5 <= x <= 0, y = -0.4.
+        </li>
+      </ul>
+      The source files include:
+      <ul>
+        <li>
+          <a href = "diffusivity_2d_bnt.m">diffusivity_2d_bnt.m</a>,
+          a 2D stochastic diffusivity function from Babuska, Nobile, and Tempone.
+        </li>
+        <li>
+          <a href = "bnt_contour.m">bnt_contour.m</a>,
+          a function which plots two realizations of the diffusivity, one using
+          a uniform PDF, the second using a Gaussian (normal) PDF.
+        </li>
+        <li>
+          <a href = "bnt_contour_uniform.png">bnt_contour_uniform.png</a>,
+          the contour plot for a diffusivity using a uniform PDF.
+        </li>
+        <li>
+          <a href = "bnt_contour_gaussian.png">bnt_contour_gaussian.png</a>,
+          the contour plot for a diffusivity using a Gaussian PDF.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "diffusivity_2d_elman.m">diffusivity_2d_elman.m</a>,
+          a 2D stochastic diffusivity function from Elman.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      The NTW example is formally 2D but the diffusivity depends only on X.
+      The full problem is the diffusion equation in a square [0,1]x[0,1] 
+      with zero boundary conditions and a deterministic right hand side
+      f(x,y)=cos(x)*sin(y).
+      <ul>
+        <li>
+          <a href = "diffusivity_2d_ntw.m">diffusivity_2d_ntw.m</a>,
+          a 2D stochastic diffusivity function from Nobile, Tempone, and Webster.
+        </li>
+        <li>
+          <a href = "ntw_contour.m">ntw_contour.m</a>,
+          a function which plots a realization of the diffusivity.
+        </li>
+        <li>
+          <a href = "ntw_contour.png">ntw_contour.png</a>,
+          the contour plot for a diffusivity.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 06 January 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+ 

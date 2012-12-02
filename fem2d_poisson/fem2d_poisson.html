@@ -1,0 +1,260 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_POISSON - Finite Element Solution on Arbitrary 2D Region
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_POISSON <br> Finite Element Solution on an Arbitrary 2D Region
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_POISSON</b>
+      is a MATLAB program which
+      applies the finite element method to solve
+      a form of Poisson's equation over an arbitrary triangulated region.
+    </p>
+
+    <p>
+      The linear system is stored using the LINPACK general band format,
+      and solved using routines derived from LINPACK.  (For this reason,
+      you should probably use the program FEM2D_POISSON_SPARSE instead!)
+    </p>
+
+    <p>
+      The geometry is entirely external to the program.  The user
+      specifies one file of nodal coordinates, and one file that
+      describes the triangles in terms of six node coordinates.
+    </p>
+
+    <p>
+      The program makes a default assumption that all boundary conditions
+      correspond to Dirichlet boundary conditions.  The user
+      can adjust these boundary conditions (and even specify Dirichlet
+      constraints on any variable at any node) by setting the appropriate
+      data in certain user routines.
+    </p>
+
+    <p>
+      <i>At the moment, Neumann conditions, if specified, must have a
+      zero right hand side.  The machinery to integrate a nonzero
+      Neumann condition has not been set up yet.</i>
+    </p>
+
+    <h2 align = "center">
+      Computational Region
+    </h2>
+
+    <p>
+      The computational region is unknown by the program.  The user
+      specifies it by preparing a file containing the coordinates of
+      the nodes, and a file containing the indices of nodes that make
+      up triangles that form a triangulation of the region.  For the
+      following ridiculously small example:
+      <pre>
+        4----5
+        |\   |\
+        | \  | \
+        |  \ |  \
+        |   \|   \
+        1----2----3
+      </pre>
+      the node file would be:
+      <pre>
+         0.0 0.0
+         1.0 0.0
+         2.0 0.0
+         0.0 1.0
+         1.0 1.0
+      </pre>
+      and the triangle file would be
+      <pre>
+        1 2 4
+        5 4 2
+        2 3 5
+      </pre>
+    </p>
+
+    <p>
+      The program is set up to handle the linear Poisson
+      equation with a right hand side function, and nonhomogeneous
+      Dirichlet boundary conditions.   The state variable
+      U(X,Y) is then constrained by:
+      <pre>
+        - Del H(x,y) Del U(x,y) + K(x,y) * U(x,y) = F(x,y)  inside the region;
+                                           U(x,y) = G(x,y)  on the boundary.
+      </pre>
+    </p>
+
+    <p>
+      To specify the right hand side function F(x,y), the coefficient functions
+      H(x,y) and K(x,y) and the boundary condition function G(x,y),
+      the user has to supply routines:
+      <ul>
+        <li>
+          <b>function value = rhs ( x, y )</b> evaluates F(x,y);
+        </li>
+        <li>
+          <b>function value = h_coef ( x, y )</b> evaluates H(x,y);
+        </li>
+        <li>
+          <b>function value = k_coef ( x, y )</b> evaluates K(x,y);
+        </li>
+        <li>
+          <b>function value = dirichlet_condition ( x, y )</b> evaluates G(X,Y),
+          and is only called at nodes on the boundary.
+        </li>
+      </ul>
+    </p>
+
+
+    <p>
+      The program writes out a file containing an Encapsulated
+      PostScript image of the nodes and elements, with numbers.
+      If there are a lot of nodes, the plot may be too cluttered
+      to read.  For lower values, however, it is
+      a valuable map of what is going on in the geometry.
+    </p>
+
+    <p>
+      The program is also able to write out a file containing the
+      solution value at every node.  This file may be used to create
+      contour plots of the solution.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem2d_poisson</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where 'prefix' is the common input filename prefix:
+      <ul>
+        <li>
+          <i>'prefix_nodes.txt'</i> is the name of the node file;
+        </li>
+        <li>
+          <i>'prefix_elements.txt'</i> is the name of the element file;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      FEM2D_POISSON is available in
+      <a href = "../../cpp_src/fem2d_poisson/fem2d_poisson.html">a C++ version</a> and
+      <a href = "../../f_src/fem2d_poisson/fem2d_poisson.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_poisson/fem2d_poisson.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_ell/fem2d_poisson_ell.html">
+      FEM2D_POISSON_ELL</a>,
+      a MATLAB library which
+      defines the geometry of an L-shaped region, as well as boundary
+      conditions for a given Poisson problem, and is called by FEM2D_POISSON
+      as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_lake/fem2d_poisson_lake.html">
+      FEM2D_POISSON_LAKE</a>,
+      a MATLAB library which
+      defines the geometry of a lake-shaped region, as well as boundary
+      conditions for a given Poisson problem, and is called by FEM2D_POISSON
+      as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse/fem2d_poisson_sparse.html">
+      FEM2D_POISSON_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) Poisson equation on an arbitrary
+      2D triangulated region using MATLAB's sparse solver.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_poisson.m">fem2d_poisson.m</a>
+          is the main routine.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

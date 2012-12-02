@@ -1,0 +1,102 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Linear basis functions (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="firstexample.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="polynomial.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Piecewise linear basis functions</h1>
+    Piecewise linear basis functions provide a good compromise between accuracy and computational cost due to their bounded support. The Sparse Grid Interpolation package includes three different grid types that work with piecewise multilinear basis functions:
+		<ul>
+		  <li>The Clenshaw-Curtis grid type "<code><b>ClenshawCurtis</b></code>" (CC)
+		  <li>the "classical" maximum-norm-based grid type "<code><b>Maximum</b></code>" (M), as described e.g. by Bungartz/Griebel in <a href="bibliography.html">[1]</a>,
+      <li>The maximum-norm-based grid without points on the boundary "<code><b>NoBoundary</b></code>" (NB), with basis functions that extrapolate towards the boundary (it is not assumed that the objective function must be zero at the boundary).
+		</ul>
+		<p>For a detailed description of the piecewise multilinear basis functions implemented here, please see <a href="bibliography.html">[2]</a> or <a href="bibliography.html">[3, ch. 3]</a>, and the references stated therein.</p>
+		<h2>Accuracy of piecewise multilinear interpolation</h2>
+		<p>We now take a brief look at the approximation quality. An a priori error estimate can be obtained for a <code>d</code>-variate function f if continuous mixed derivatives</p>
+		<img src="images/ex_linear_eq01.gif">	
+    <p>with</p>
+    <img src="images/ex_linear_eq02.gif">
+    <p>exist. According to <a href="bibliography.html">[4]</a> or <a href="bibliography.html">[5]</a>, the order of the interpolation error in the maximum norm is then given by</p>
+    <img src="images/ex_linear_eq03.gif">
+    <p>where A<sub>q,d</sub>(f) denotes the sparse grid interpolant of f, and N denotes the number of grid points of the sparse grids of type CC or M (the NB grid type has not yet been analyzed, but shows the same order of convergence in numerical tests). Note that the number of grid points N of A<sub>q,d</sub>(f) can be computed by <code><a href="spdim.html">spdim</a>(q-d,d)</code>. Piecewise multilinear approximation on a full grid with N<sup>*</sup> grid points is much less efficient, i.e. <i>O</i>(N<sup>*</sup><sup>-2/d</sup>).
+		<h2>Number of grid points</h2>
+		The following table shows the number of grid points of the non-adaptive sparse grid interpolant depending on the interpolation depth <code>n</code>.
+		<div align="center">
+		<p>
+		<table border="1" cellspacing="0" cellpadding="4">
+		  <tr>
+		    <th class="properties">n</th>
+        <th class="properties" colspan="3"><b>d=2</b></th>
+        <th class="properties" colspan="3"><b>d=4</b></th>
+        <th class="properties" colspan="3"><b>d=8</b></th>
+		  </tr>
+			<tr class="properties">
+        <td>&nbsp;</td><td>M</td><td>NB</td><td>CC</td><td>M</td><td>NB</td><td>CC</td><td>M</td><td>NB</td><td>CC</td>
+			</tr>
+			<tr class="properties">	
+				<td>0</td><td>9</td><td>1</td><td>1</td><td>81</td><td>1</td><td>1</td><td>6561</td><td>1</td><td>1</td>
+			</tr>
+			<tr class="properties">	
+				<td>1</td><td>21</td><td>5</td><td>5</td><td>297</td><td>9</td><td>9</td><td>41553</td><td>17</td><td>17</td>
+			</tr>
+			<tr class="properties">	
+				<td>2</td><td>49</td><td>17</td><td>13</td><td>945</td><td>49</td><td>41</td><td>1.9e5</td><td>161</td><td>145</td>
+			</tr>
+			<tr class="properties">	
+				<td>3</td><td>113</td><td>49</td><td>29</td><td>2769</td><td>209</td><td>137</td><td>7.7e5</td><td>1121</td><td>849</td>
+			</tr>
+			<tr class="properties">	
+				<td>4</td><td>257</td><td>129</td><td>65</td><td>7681</td><td>769</td><td>401</td><td>2.8e6</td><td>6401</td><td>3937</td>
+			</tr>
+			<tr class="properties">	
+				<td>5</td><td>577</td><td>321</td><td>145</td><td>20481</td><td>2561</td><td>1105</td><td>9.3e6</td><td>31745</td><td>15713</td>
+			</tr>
+			<tr class="properties">	
+				<td>6</td><td>1281</td><td>769</td><td>321</td><td>52993</td><td>7937</td><td>2929</td><td>3.0e7</td><td>141569</td><td>56737</td>
+			</tr>
+			<tr class="properties">	
+				<td>7</td><td>2817</td><td>1793</td><td>705</td><td>1.3e5</td><td>23297</td><td>7537</td><td>9.1e7</td><td>5.8e5</td><td>1.9e5</td>				
+			</tr>
+    </table>
+    </p>
+    </div>
+    <p>The following graph illustrates the sparse grids of level 0 and level 2 of the three respective grids in two dimensions.</p><img src="images/ex_linear_01.png">
+		<h2>Which piecewise linear interpolation scheme works best?</h2>
+		Although the performance of the three grid types is rather similar for lower-dimensional problems, there are two important points to be mentioned:
+		<ul>
+		  <li>The <code>ClenshawCurtis</code> grid and the <code>NoBoundary</code> grid have just a single node at the lowest interpolation level <code>n = 0</code> (this means that an interpolant of level 0 of these grid types is just a constant function). The <code>Maximum</code> grid has <code>3^d</code> nodes at the lowest level. Therefore, the <code>Maximum</code> is not well-suited for higher-dimensional problems. For instance, for <code>d = 10</code>, already 59049 support nodes would be required to obtain an initial interpolant.
+		  <li>Since the CC-grid is the most versatile grid working well in both lower and higher dimensions, at this point, the dimension-adaptive algorithms are implemented for this grid type only.
+		</ul>
+    Therefore, for most practical applications, we recommend using the Clenshaw-Curtis grid. Occasionally, the other grid types may perform better by a small factor, as numerical experiments show (try running the demo <code>spcompare</code> from the command line or from the <a href="matlab:demo('toolbox','Sparse Grid Interpolation')">Sparse Grid Interpolation demo page</a>).
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="firstexample.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">A first example</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Polynomial basis functions</td>
+        <td width="20" align="right"><a href="polynomial.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

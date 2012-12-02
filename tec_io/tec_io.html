@@ -1,0 +1,366 @@
+<html>
+
+  <head>
+    <title>
+      TEC_IO - Read and Write TEC Files
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEC_IO <br> Read and Write TEC Files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEC_IO</b>
+      is a MATLAB library which
+      can read or write
+      a TEC graphics file containing a finite element model.
+    </p>
+
+    <p>
+      There are several kinds of TEC files; the routines given here can only
+      handle the case where a single <b>ZONE</b> record is used to define finite
+      element data, using a <b>DATAPACKING</b> value of "POINT" (not "BLOCK"),
+      and a ZONETYPE of
+      <ul>
+        <li>
+          FETRIANGLE
+        </li>
+        <li>
+          FEQUADRILATERAL
+        </li>
+        <li>
+          FETETRAHEDRON
+        </li>
+        <li>
+          FEBRICK
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The data to be written or read is assumed to have a logical
+      organization into three groups:
+      <ul>
+        <li>
+          Node coordinate data;
+        </li>
+        <li>
+          Element definitions, that is, the sequence of node indices
+          that define each element;
+        </li>
+        <li>
+          Node data, such as finite element coefficients for pressure,
+          velocity, and so on.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <a href = "http://www.tecplot.com/">
+      The TECPLOT home page</a> contains a description of the
+      <b>TECPLOT</b> program.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEC_IO</b> is available in
+      <a href = "../../f_src/tec_io/tec_io.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tec_io/tec_io.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_50/fem_50.html">
+      FEM_50</a>,
+      a MATLAB program 
+      which implements a finite element solver in just 50 lines of code.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_50_heat/fem_50_heat.html">
+      FEM_50_HEAT</a>,
+      a MATLAB program which
+      is a modified version of FEM_50 suitable
+      for solving the heat equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_io/fem_io.html">
+      FEM_IO</a>,
+      a MATLAB library which
+      reads or writes an FEM model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_tec/fem_to_tec.html">
+      FEM_TO_TEC</a>,
+      a MATLAB program which
+      reads the three files
+      defining an FEM model and writes an equivalent TEC file.
+    </p>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which
+      contains examples of 2D FEM files,
+      text files that describe a 2D finite element geometry
+      and associated nodal values;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_pack/fem2d_pack.html">
+      FEM2D_PACK</a>,
+      a MATLAB library which
+      is useful for finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson/fem2d_poisson.html">
+      FEM2D_POISSON</a>,
+      a MATLAB program which
+      solves Poisson's equation
+      on a square, using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hot_pipe/hot_pipe.html">
+      HOT_PIPE</a>,
+      a MATLAB library which
+      can be run with FEM_50_HEAT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hot_point/hot_point.html">
+      HOT_POINT</a>,
+      a MATLAB library which
+      can be run with <b>FEM_50_HEAT</b>.
+    </p>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which 
+      contains a description and examples
+      of the <b>TEC</b> graphics files used by <b>TECPLOT</b>
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_to_fem/tec_to_fem.html">
+      TEC_TO_FEM</a>,
+      a MATLAB program which
+      reads a TEC file
+      and writes a set of three files defining the
+      equivalent FEM model.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">
+          ch_cap.m</a>
+          capitalizes a character.
+        </li>
+        <li>
+          <a href = "ch_eqi.m">
+          ch_eqi.m</a>
+          is TRUE if two characters are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "ch_is_alpha.m">
+          ch_is_alpha.m</a>
+          is TRUE if a character is alphabetic.
+        </li>
+        <li>
+          <a href = "file_name_inc.m">
+          file_name_inc.m</a>
+          "increments" a file name.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">
+          i4mat_transpose_print_some.m</a>
+          prints an I4MAT, transposed.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>
+          prints some of an I4MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">
+          r8_epsilon.m</a>
+          returns the R8 machine precision.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">
+          r8mat_transpose_print.m</a>
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "s_adjustl.m">
+          s_adjustl.m</a>
+          shifts a string to the left, removing initial blanks.
+        </li>
+        <li>
+          <a href = "s_alpha_last.m">
+          s_alpha_last.m</a>
+          finds the last alphabetic character in a string.
+        </li>
+        <li>
+          <a href = "s_begin.m">
+          s_begin.m</a>
+          is TRUE if two strings match up to the end of the shorter one,
+          ignoring spaces and capitalization.
+        </li>
+        <li>
+          <a href = "s_behead_substring.m">
+          s_behead_substring.m</a>
+          beheads a substring from the beginning of a string, if it
+          occurs there.
+        </li>
+        <li>
+          <a href = "s_eqi.m">
+          s_eqi.m</a>
+          returns "TRUE" if two strings are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "s_inc.m">
+          s_inc.m</a>
+          "increments" a string.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">
+          s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_replace_ch.m">
+          s_replace_ch.m</a>
+          replaces all occurrences of one character by another character.
+        </li>
+        <li>
+          <a href = "s_to_i4.m">
+          s_to_i4.m</a>
+          converts a string to an I4.
+        </li>
+        <li>
+          <a href = "s_word_count.m">
+          s_word_count.m</a>
+          counts the number of words in a string.
+        </li>
+        <li>
+          <a href = "s_word_extract.m">
+          s_word_extract.m</a>
+          extracts the first word from a string.
+        </li>
+        <li>
+          <a href = "tec_read.m">
+          tec_read.m</a>
+          reads the information from a TEC file.
+        </li>
+        <li>
+          <a href = "tec_variable_line_parse.m">
+          tec_variable_line_parse.m</a>
+          parses the "variables" line of a TEC file.
+        </li>
+        <li>
+          <a href = "tec_write.m">
+          tec_write.m</a>
+          writes information to a TEC file.
+        </li>
+        <li>
+          <a href = "tec_zone_line_parse.m">
+          tec_zone_line_parse.m</a>
+          parses the "zone" line of a TEC file.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tec_io_test.m">
+          tec_io_test.m</a>
+          runs the tests.
+        </li>
+        <li>
+          <a href = "tec_io_test01.m">
+          tec_io_test01.m</a>
+          tests TEC_READ by reading "ell.dat";
+        </li>
+        <li>
+          <a href = "tec_io_test02.m">
+          tec_io_test02.m</a>
+          tests TEC_WRITE by writing "tiny.dat";
+        </li>
+        <li>
+          <a href = "tec_io_test_output.txt">
+          tec_io_test_output.txt</a>
+          printed output from the tests.
+        </li>
+        <li>
+          <a href = "ell.dat">ell.dat</a>,
+          a TECPLOT ASCII file read by the test program;
+        </li>
+        <li>
+          <a href = "tiny.dat">tiny.dat</a>,
+          a TECPLOT ASCII file created by the test program;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 April 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

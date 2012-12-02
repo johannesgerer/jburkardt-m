@@ -1,0 +1,424 @@
+<html>
+
+  <head>
+    <title>
+      MESH2D - Automatic 2D Mesh Generation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MESH2D <br> Automatic 2D Mesh Generation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MESH2D</b>
+      is a MATLAB program which generates
+      and unstructured meshes in 2D, 
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      The code is relatively simple, flexible and powerful.  The user is able to define
+      a variety of geometric shapes, and desired mesh densities.
+    </p>
+
+    <p>
+      <b>MESH2D</b> is most useful because it allows a user to specify 
+      a shape or region, which the program will then fill with a triangular mesh.
+      The density of the triangular mesh can be uniform, or the user can request
+      that smaller triangles be used near certain features of the region.  The
+      program relies heavily on the features of the Delaunay triangulation,
+      which chooses, among all possible triangulations of a set of points, that
+      triangulation which best avoids small angles.
+    </p>
+
+    <p>
+      Interested users should probably refer to the copy of <b>MESH2D</b>
+      that is made available through the MATLAB Central File Exchange.
+      This copy is essentially my personal working copy, to which I may
+      have added comments, small coding changes, and extra tests and examples.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+          [ <i>p, t</i> ] = <b>mesh2d</b> ( <i>vertices, edge, hdata, options</i> );
+      </blockquote>
+      where:
+      <ul>
+        <li>
+          <i>vertices</i>, required input, a V by 2 list of (X,Y) coordinates of
+          vertices of the boundary.  If <i>vertices</i> is the only input argument,
+          then it must be the case that the vertices are listed consecutively.
+          Otherwise, assuming <i>edge</i> is supplied, the vertices can be given
+          in any order.
+        </li>
+        <li>
+          <i>edge</i>, optional input, a V by 2 list of pairs of indices in the
+          <i>vertices</i> array that constitute the edges of the polygonal boundary.
+          If <i>vertices</i> is actually already in order, then <i>edge</i>, if specified,
+          would contain the values [1,2; 2,3; 3,4; ... ; V,1].
+        </li>
+        <li>
+          <i>hdata</i>, optional input, a structure containing element size information
+          (see below).
+        </li>
+        <li>
+          <i>options</i>, optional input that allows the user to modify the default
+          behavior of the solver (see below).
+        </li>
+        <li>
+          <i>p</i>, (output), an N by 2 list of node coordinates.  The number of
+          nodes generated, N, is determined in part by the size of the edges
+          along the boundary, and by other user input such as the maximum element
+          size, and the user size function, if supplied.
+        </li>
+        <li>
+          <i>t</i>, (output), an M by 3 list of node indices, forming counterclockwise
+          triangles.  The number of triangles created depends on the number of nodes
+          created.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>hdata</b>, the element size information.  This structure, if supplied,
+      can include the following information:
+      <ul>
+        <li>
+          <i>hdata</i>.<b>hmax</b>, the maximum allowable global element size.
+        </li>
+        <li>
+          <i>hdata</i>.<b>edgeh</b>, an array of element sizes on specified geometry
+          edges, where <i>e1</i> is an index into the <i>edge</i> array.  The
+          <b>edgeh</b> component would have the form [e1,h1; e2,h2; ...], where
+          the user has specified a certain number of sizes.
+        </li>
+        <li>
+          <i>hdata</i>.<b>fun</b>, the name of a function preceded by an AT sign,
+          which is the user-defined size function.  <b>fun</b> must have the form
+          <blockquote>
+            h = fun ( x, y, args{} )
+          </blockquote>
+          where <i>x</i> and <i>y</i> are vectors of point coordinates, and <i>args</i>
+          is an optional addition set of input set in <i>hdata</i>.<b>args</b>.
+          The function returns the user-desired elementsize at the given points.
+        </li>
+        <li>
+          <i>hdata</i>.<b>args</b> = {arg1, arg2, ...} contains additional arguments,
+          if any, for <i>hdata</i>.<b>fun</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>options</b> allows the user to modify the default behavior of the solver.
+      This structure, if supplied, can include the following information:
+      <ul>
+        <li>
+          <i>options</i>.<b>mlim</b> is the convergence tolerance. The maximum relative
+          change in edge length per iteration must be less than this value, which
+          defaults to 0.02.
+        </li>
+        <li>
+          <i>options</i>.<b>maxit</b>, the maximum allowable number of iterations,
+          which defaults to 20.
+        </li>
+        <li>
+          <i>options</i>.<b>dhmax</b>, the maximum allowable (relative) gradient in the size 
+          function, which defaults to 0.3.
+        </li>
+        <li>
+          <i>options</i>.<b>output</b>, a "logical" variable which displays the mesh 
+          and the mesh statistics upon completion, and defaults to "TRUE", that is, 1.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <pre>
+Copyright (c) 2009, Darren Engwirda
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are 
+met:
+
+    * Redistributions of source code must retain the above copyright 
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright 
+      notice, this list of conditions and the following disclaimer in 
+      the documentation and/or other materials provided with the distribution
+      
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
+    </pre>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which
+      carries out triangular or tetrahedral mesh generation,
+      by Per-Olof Persson and Gilbert Strang.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d_write/mesh2d_write.html">
+      MESH2D_WRITE</a>,
+      a MATLAB program which
+      demonstrates how node and element data from MESH2D can be written to files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>,
+      a MATLAB library which
+      defines some test regions for triangulation.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 ("linear") or order 6 ("quadratic") triangulations.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Darren Engwirda
+    </p>
+
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "checkgeometry.m">checkgeometry.m</a>
+          checks a geometry input for MESH2D.
+        </li>
+        <li>
+          <a href = "circumcircle.m">circumcircle.m</a>
+          computes the center and radius of the circumcircle of a triangle.
+        </li>
+        <li>
+          <a href = "connectivity.m">connectivity.m</a>
+          assembles connectivity data for a triangular mesh, including
+          the unique mesh edges, the triangle neighbors, and the boundary edges.
+        </li>
+        <li>
+          <a href = "dist2poly.m">dist2poly.m</a>
+          finds the distance between a point and a polygon.
+        </li>
+        <li>
+          <a href = "findedge.m">findedge.m</a>
+          locates the edges that contain a sequence of points.
+        </li>
+        <li>
+          <a href = "fixmesh.m">fixmesh.m</a>
+          checks a triangular mesh for consistency.
+        </li>
+        <li>
+          <a href = "inpoly.m">inpoly.m</a>
+          determines whether a point is inside a polygon.
+        </li>
+        <li>
+          <a href = "mesh2d.m">mesh2d.m</a>
+          generates a triangular mesh for a polygon, which
+          can include cavities.
+        </li>
+        <li>
+          <a href = "meshfaces.m">meshfaces.m</a>
+          generates a triangular mesh for a polygonal region which
+          can include cavities.
+        </li>
+        <li>
+          <a href = "meshpoly.m">meshpoly.m</a>
+          used by MESH2D or MESHFACES to mesh a region.
+        </li>
+        <li>
+          <a href = "mydelaunayn.m">mydelaunayn.m</a>
+          computes the Delaunay triangulation of a set of points.
+        </li>
+        <li>
+          <a href = "mytsearch.m">mytsearch.m</a>
+          finds a triangle which encloses a set of points in the plane.
+        </li>
+        <li>
+          <a href = "quadtree.m">quadtree.m</a>
+          decomposes a polygonal region using a quadtree.
+        </li>
+        <li>
+          <a href = "quality.m">quality.m</a>
+          determines the "quality" of a triangle.
+        </li>
+        <li>
+          <a href = "refine.m">refine.m</a>
+          refines a triangular mesh.
+        </li>
+        <li>
+          <a href = "smoothmesh.m">smoothmesh.m</a>
+          uses Laplacian smoothing on a triangular mesh.
+        </li>
+        <li>
+          <a href = "tinterp.m">tinterp.m</a>
+          carries out linear interpolation at points within a triangle, given
+          function values at the vertices.
+        </li>
+        <li>
+          <a href = "triarea.m">triarea.m</a>
+          computes the area of one or more triangles, assuming their
+          vertices are given in counterclockwise order.
+        </li>
+        <li>
+          <a href = "tsearch_mex.c">tsearch_mex.c</a>
+          a C file, which must be compiled within MATLAB (once) using the command
+          "mex tsearch_mex", which carries out a search of the triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "facedemo.m">facedemo.m</a>
+          demonstrates two example polygonal geometries for input to MESHFACES.
+        </li>
+        <li>
+          <a href = "mesh_collection.m">mesh_collection.m</a>
+          contains a collection of meshing examples.
+        </li>
+        <li>
+          <a href = "meshdemo.m">meshdemo.m</a>
+          demonstrates the use of MESH2D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ELL_DEMO</b> demonstrates features of MESH2D for the L-shaped region.
+      <ul>
+        <li>
+          <a href = "ell_demo.m">ell_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "ell_mesh1.png">ell_mesh1.png</a>
+          the mesh created with the simplest input.
+        </li>
+        <li>
+          <a href = "ell_mesh2.png">ell_mesh2.png</a>
+          the mesh created when we specify two small segments on the boundary.
+        </li>
+        <li>
+          <a href = "ell_mesh3.png">ell_mesh3.png</a>
+          the mesh created when we specify a maximum element size.
+        </li>
+        <li>
+          <a href = "ell_mesh4.png">ell_mesh4.png</a>
+          the mesh created when we specify a size function that requests
+          small elements near the reentrant corner.
+        </li>
+        <li>
+          <a href = "ell_mesh5.png">ell_mesh5.png</a>
+          the mesh created we call refine() on the first mesh;
+        </li>
+        <li>
+          <a href = "ell_mesh6.png">ell_mesh6.png</a>
+          the mesh created when we call smoothmesh() on the second mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ICAM_DEMO</b> demonstrates features of MESH2D for the first floor
+      of the Wright House.
+      <ul>
+        <li>
+          <a href = "icam_demo.m">icam_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "icam_nodes.png">icam_nodes.png</a>
+          the nodes created by MESH2D.
+        </li>
+        <li>
+          <a href = "icam_elements.png">icam_elements.png</a>
+          the elements created by MESH2D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>OBSTACLE_DEMO</b> demonstrates features of MESH2D for a channel with
+      a square obstacle.
+      <ul>
+        <li>
+          <a href = "obstacle_demo.m">obstacle_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "obstacle_mesh.png">obstacle_mesh.png</a>
+          a mesh created for the region.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

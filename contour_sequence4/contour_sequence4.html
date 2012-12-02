@@ -1,0 +1,272 @@
+<html>
+
+  <head>
+    <title>
+      CONTOUR_SEQUENCE4 - Data Files -> Contour Plots -> PNG Images -> Animation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CONTOUR_SEQUENCE4 <br> 
+      Data Files -> Contour Plots<br>
+      Contour Plots -> PNG Images<br>
+      PNG Images -> Animation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CONTOUR_SEQUENCE4</b> 
+      is a MATLAB program which 
+      reads one XY 
+      coordinate file, and a sequence
+      of U(X,Y) datasets, creates contour plots, and saves them as PNG files
+      which can be combined into an animation (by Quicktime Pro, for instance).
+    </p>
+
+    <p>
+      The solution files containing the U(X,Y) data should have   
+      'consecutive' names, such as "fred01.txt", "fred02.txt", "fred03.txt"
+      and so on.  The user only has to tell the program to process the 
+      first file, and it will automatically continue to process files 
+      until it reaches the end of the sequence of names.
+    </p>
+
+    <h2>
+      The input files:
+    </h2>
+
+    <p>
+      The X and Y input data files store the values of X and Y for points
+      on a regularly spaced grid.  The grid does not have
+      to be evenly spaced, but for this program to work, it must be the case
+      that the (X,Y) points form an M by N grid, and that the value of X or 
+      of Y is constant along a grid line!
+    </p>
+
+    <p>
+      (In other words, a square grid is fine, but a rectangular grid is OK too.
+      A rectangular grid with constant spacing is fine; a rectangular grid
+      with variable spacing is also OK.  But a slanted, "wiggly" or curved grid 
+      is no good.)
+    </p>
+
+    <p>
+      Each U input data file is assumed to store the value of the
+      associated scalar U.
+    </p>
+
+    <p>
+      Also, the grid of points in the data file must be listed in a 
+      reasonable order, either by rows or by columns.
+    </p>
+
+    <h2>
+      Internal processing:
+    </h2>
+
+    <p>
+      The program has to figure out the grid parameters M and N, and convert
+      the vectors of data X, Y, U into doubly indexed arrays that can be handled
+      by the MATLAB contour routine.  Once the contour plot is displayed, an
+      image of it is saved as a PNG file.
+    </p>
+
+    <p>
+      Once the first file is processed, the routine checks to see if there
+      is a second "consecutive" file, and it so, it is also processed, and 
+      so on, until presumably all files in the sequence have been handled.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <dl>
+        <dt>
+          <b>contour_sequence4</b> <i>xy_file</i> <i>u_file</i><br>
+        </dt>
+        <dd>
+          where <i>xy_file</i> contains the node coordinates,
+          and <i>u_file</i> is the first file in a numerically related sequence.
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dist_plot/dist_plot.html">
+      DIST_PLOT</a>,
+      a MATLAB program which 
+      makes contour plots of the distance function,
+      as defined and used in Persson and Strang's 
+      <a href = "../../m_src/distmesh/distmesh.html">
+      distmesh</a> code;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>, 
+      a MATLAB program which
+      solves the 2D time dependent
+      heat equation.  The output from this program includes an XY file
+      and a series of U files containing the solution (temperature) at
+      each node.  This data is suitable for processing by 
+      <b>CONTOUR_SEQUENCE4</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>, 
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,  
+      a MATLAB program which
+      makes contour plot of scattered data, 
+      or of data defined on an order 3 triangulation.  
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order6_contour/triangulation_order6_contour.html">
+      TRIANGULATION_ORDER6_CONTOUR</a>, 
+      a MATLAB program which
+      makes contour plots of data defined on an order 6 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_magnitude_grid/vector_magnitude_grid.html">
+      VECTOR_MAGNITUDE_GRID</a>, 
+      a MATLAB program which 
+      reads vector data at "scattered"
+      points, computes an interpolatory function, evaluates it on
+      a uniform grid of user-specified density, and produces a
+      contour plot of the vector magnitude.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "contour_sequence4.m">contour_sequence4.m</a>, 
+          the program;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "xy.txt">xy.txt</a>, the XY coordinate file;
+        </li>
+        <li>
+          <a href = "u00001.txt">u00001.txt</a>, U data file 1;
+        </li>
+        <li>
+          <a href = "u00002.txt">u00002.txt</a>, U data file 2;
+        </li>
+        <li>
+          <a href = "u00003.txt">u00003.txt</a>, U data file 3;
+        </li>
+        <li>
+          <a href = "u00004.txt">u00004.txt</a>, U data file 4;
+        </li>
+        <li>
+          <a href = "u00005.txt">u00005.txt</a>, U data file 5;
+        </li>
+        <li>
+          <a href = "u00006.txt">u00006.txt</a>, U data file 6;
+        </li>
+        <li>
+          <a href = "u00007.txt">u00007.txt</a>, U data file 7;
+        </li>
+        <li>
+          <a href = "u00008.txt">u00008.txt</a>, U data file 8;
+        </li>
+        <li>
+          <a href = "u00009.txt">u00009.txt</a>, U data file 9;
+        </li>
+        <li>
+          <a href = "u00010.txt">u00010.txt</a>, U data file 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      PNG image files you can copy include:
+      <ul>
+        <li>
+          <a href = "u00001.png">u00001.png</a>, image file 1;
+        </li>
+        <li>
+          <a href = "u00002.png">u00002.png</a>, image file 2;
+        </li>
+        <li>
+          <a href = "u00003.png">u00003.png</a>, image file 3;
+        </li>
+        <li>
+          <a href = "u00004.png">u00004.png</a>, image file 4;
+        </li>
+        <li>
+          <a href = "u00005.png">u00005.png</a>, image file 5;
+        </li>
+        <li>
+          <a href = "u00006.png">u00006.png</a>, image file 6;
+        </li>
+        <li>
+          <a href = "u00007.png">u00007.png</a>, image file 7;
+        </li>
+        <li>
+          <a href = "u00008.png">u00008.png</a>, image file 8;
+        </li>
+        <li>
+          <a href = "u00009.png">u00009.png</a>, image file 9;
+        </li>
+        <li>
+          <a href = "u00010.png">u00010.png</a>, image file 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

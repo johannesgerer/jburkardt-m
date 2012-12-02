@@ -1,0 +1,344 @@
+<html>
+
+  <head>
+    <title>
+      BALL_AND_STICK_DISPLAY - MATLAB 3D Plot Using Balls and Sticks
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      BALL_AND_STICK_DISPLAY <br> MATLAB 3D Plot Using Balls and Sticks
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BALL_AND_STICK_DISPLAY</b> 
+      is a MATLAB program which
+      illustrates the use of MATLAB's 3D plotting capability to make
+      a "ball and stick" plot.
+    </p>
+
+    <p>
+      MATLAB has many procedures for displaying numeric data in 3D using contours,
+      vector plots, surfaces and so on.  However, sometimes an illustrator needs
+      to construct a simple 3D image of points and lines.  Since the thing has
+      to show up as an illustration or a slide, the points are exaggerated to
+      balls, and the lines to sticks.
+    </p>
+
+    <p>
+      MATLAB's <b>plot3</b> command can create both kinds of objects, but
+      it helps to know how to specify the desired object properties for
+      color and size.  The MATLAB help system is not very helpful when trying
+      to find out what properties you can specify and what values they can have.
+    </p>
+
+    <p>
+      So this program may be a helpful example of how a 3D object can be
+      created with knobby balls and colored sticks.
+    </p>
+
+    <p>
+      The particular object created here is intended to illustrate the
+      Lax-Wendroff scheme for approximating the solution of a hyperbolic
+      partial differential equation.  The blue spheres represent points at
+      which data is known.  The green spheres represent points at which
+      fluxes are estimated by computing differences between neighboring values.
+      The red sphere is the locationi of the updated solution value.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bezier_surface_display/bezier_surface_display.html">
+      BEZIER_SURFACE_DISPLAY</a>, 
+      a MATLAB program which
+      displays a Bezier surface;
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/obj_display/obj_display.html">
+      OBJ_DISPLAY</a>,
+      a MATLAB program which 
+      reads an OBJ 3D graphics file and displays it on the screen.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ply_display/ply_display.html">
+      PLY_DISPLAY</a>,
+      a MATLAB program which
+      displays an image of a 3D graphics file in PLY format;
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygonal_surface_display/polygonal_surface_display.html">
+      POLYGONAL_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      displays a surface in 3D described as a set of polygons;
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_surface_display/quad_surface_display.html">
+      QUAD_SURFACE_DISPLAY</a>, 
+      a MATLAB program which 
+      plots piecewise bilinear data associated with a QUAD_SURFACE, that is,
+      a 3D surface defined by a quadrilateral mesh;
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_display/stla_display.html">
+      STLA_DISPLAY</a>,
+      a MATLAB program which 
+      reads an ASCII STL file and displays it on the screen.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which 
+      reads in the node and tetra files defining a tet mesh and displays a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      displays the 3D graphics information
+      in a TRI_SURFACE file;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyz_display/xyz_display.html">
+      XYZ_DISPLAY</a>, 
+      a MATLAB program which
+      reads XYZ information defining points in 3D, 
+      and displays an image in the MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyzf_display/xyzf_display.html">
+      XYZF_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZF information defining points and faces in 3D, 
+      and displays an image using OpenGL.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyzl_display/xyzl_display.html">
+      XYZL_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZL information defining points and lines in 3D, 
+      and displays an image in a MATLAB graphics window.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>BALL_AND_STICK_DISPLAY</b> displays a ball and stick plot.
+      <ul>
+        <li>
+          <a href = "ball_and_stick_display.m">ball_and_stick_display.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "ball_and_stick_display.png">ball_and_stick_display.png</a>,
+          a PNG snapshot of the 3D plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>FIRST_ORDER_DISPLAY</b> displays a sequence of 8 images
+      illustrating a first order method for dealing with hyperbolic
+      equations.  Hitting RETURN proceeds
+      to the next image.
+      <ul>
+        <li>
+          <a href = "first_order_display.m">first_order_display.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "first_order_0.png">first_order_0.png</a>,
+          a blank plotting field.
+        </li>
+        <li>
+          <a href = "first_order_1.png">first_order_1.png</a>,
+          a node where we have the solution.
+        </li>
+        <li>
+          <a href = "first_order_2.png">first_order_2.png</a>,
+          the region associated with the node.
+        </li>
+        <li>
+          <a href = "first_order_3.png">first_order_3.png</a>,
+          the neighboring nodes.
+        </li>
+        <li>
+          <a href = "first_order_4.png">first_order_4.png</a>,
+          fluxes are differences across the neighbors.
+        </li>
+        <li>
+          <a href = "first_order_5.png">first_order_5.png</a>,
+          a full time step is now taken.
+        </li>
+        <li>
+          <a href = "first_order_6.png">first_order_6.png</a>,
+          we have an estimate for the solution in this region.
+        </li>
+        <li>
+          <a href = "first_order_7.png">first_order_7.png</a>,
+          all the nodes can be advanced in this way.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LAX_WENDROFF_1D_DISPLAY</b> displays a sequence of images
+      illustrating the Lax-Wendroff method in 1D.  Hitting RETURN proceeds
+      to the next image.
+      <ul>
+        <li>
+          <a href = "lax_wendroff_1d_display.m">lax_wendroff_1d_display.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "lw1d00.png">lw1d00.png</a>,
+          a blank plotting field.
+        </li>
+        <li>
+          <a href = "lw1d01.png">lw1d01.png</a>,
+          a node where we have the solution.
+        </li>
+        <li>
+          <a href = "lw1d02.png">lw1d02.png</a>,
+          the region associated with the node.
+        </li>
+        <li>
+          <a href = "lw1d03.png">lw1d03.png</a>,
+          the neighboring nodes.
+        </li>
+        <li>
+          <a href = "lw1d04.png">lw1d04.png</a>,
+          values at midsides by averaging.
+        </li>
+        <li>
+          <a href = "lw1d05.png">lw1d05.png</a>,
+          values at midside nodes, half time step.
+        </li>
+        <li>
+          <a href = "lw1d06.png">lw1d06.png</a>,
+          estimate fluxes.
+        </li>
+        <li>
+          <a href = "lw1d07.png">lw1d07.png</a>,
+          estimate derivative at node, half time step.
+        </li>
+        <li>
+          <a href = "lw1d08.png">lw1d08.png</a>,
+          take full step to new time.
+        </li>
+        <li>
+          <a href = "lw1d09.png">lw1d09.png</a>,
+          update all data.
+        </li>
+        <li>
+          <a href = "lw1d10.png">lw1d10.png</a>,
+          ready for next time step.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LAX_WENDROFF_2D_DISPLAY</b> displays a sequence of images
+      illustrating the Lax-Wendroff method in 2D.  Hitting RETURN proceeds
+      to the next image.
+      <ul>
+        <li>
+          <a href = "lax_wendroff_2d_display.m">lax_wendroff_2d_display.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "lw2d0.png">lw2d0.png</a>,
+          a blank plotting field.
+        </li>
+        <li>
+          <a href = "lw2d1.png">lw2d1.png</a>,
+          a node where we have the solution.
+        </li>
+        <li>
+          <a href = "lw2d2.png">lw2d2.png</a>,
+          the region associated with the node.
+        </li>
+        <li>
+          <a href = "lw2d3.png">lw2d3.png</a>,
+          the neighboring nodes.
+        </li>
+        <li>
+          <a href = "lw2d4.png">lw2d4.png</a>,
+          values at midsides by averaging.
+        </li>
+        <li>
+          <a href = "lw2d5.png">lw2d5.png</a>,
+          values at midside nodes, half time step.
+        </li>
+        <li>
+          <a href = "lw2d6.png">lw2d6.png</a>,
+          estimate fluxes.
+        </li>
+        <li>
+          <a href = "lw2d7.png">lw2d7.png</a>,
+          estimate derivative at node, half time step.
+        </li>
+        <li>
+          <a href = "lw2d8.png">lw2d8.png</a>,
+          take full step to new time.
+        </li>
+        <li>
+          <a href = "lw2d9.png">lw2d9.png</a>,
+          update all data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 01 July 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+ 

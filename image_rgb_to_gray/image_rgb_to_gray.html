@@ -1,0 +1,227 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_RGB_TO_GRAY - Grayscale Version of RGB Image
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_RGB_TO_GRAY <br> Grayscale Version of RGB Image
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_RGB_TO_GRAY</b>
+      is a MATLAB function which
+      creates a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      An RGB image is an (M,N,3) array.
+    </p>
+
+    <p>
+      A grayscale image is an (M,N) array.
+    </p>
+
+    <p>
+      A grayscale version of an RGB image can be made by averaging
+      the RGB components of each pixel.
+    </p>
+
+    <p>
+      A more sophisticated approach uses the luminance function:
+      <pre>
+        GRAY = 0.2126 * R + 0.7152 * G + 0.0722 * B
+      </pre>
+      which attempts to better model the contributions to brightness
+      of the different colors.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        function <i>gray</i> = <b>rgb_to_gray</b> ( <i>rgb</i>, <i>equal</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>rgb</i> is an <i>m</i> by <i>n</i> by <i>3</i> <b>uint8</b>
+          (short integers, 0 to 255) array containing the RGB image data;
+          MATLAB's <b>imread()</b> command can be used to create such a
+          dataset from a graphics image file.
+        </li>
+        <li>
+          <i>equal</i> is 1 if the R, G and B values are to be weighted
+          equally.  Otherwise, a luminance function is used which accounts
+          for the different contributions of each channel to brightness.
+        </li>
+        <li>
+          <i>gray</i> is an <i>m</i> by <i>n</i> <b>uint8</b>
+          array containing the gray scale version of the image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      a MATLAB program which
+      applies image processing techniques to remove noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB program which
+      demonstrates a simple technique for edge detection in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_noise/image_noise.html">
+      IMAGE_NOISE</a>,
+      MATLAB programs which
+      add noise to an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      a MATLAB library which
+      creates a black and white version of a grayscale image
+      by specifying a single threshold value; pixels below this
+      value become black, and above this value they are white.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Jonas Gomes, Luiz Velho,<br>
+          Image Processing for Computer Graphics,<br>
+          Springer, 1997,<br>
+          ISBN: 0387948546,<br>
+          LC: T385.G65.
+        </li>
+        <li>
+          William Pratt,<br>
+          Digital Image Processing,<br>
+          Second Edition,<br>
+          Wiley, 1991,<br>
+          ISBN13: 978-0471857662,<br>
+          LC: TA1632.P7.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "rgb_to_gray.m">rgb_to_gray.m</a>,
+          creates a grayscale version of an RGB image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CONJUNCTION</b> is an astronomical image.
+      <ul>
+        <li>
+          <a href = "conjunction.png">conjunction.png</a>,
+          the RGB image.
+        </li>
+        <li>
+          <a href = "conjunction_gray.png">conjunction_gray.png</a>,
+          a grayscale version of the image, using nonequal RGB weighting.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>STAR_FIELD</b> is an astronomical image.
+      <ul>
+        <li>
+          <a href = "star_field.png">star_field.png</a>,
+          the RGB image.
+        </li>
+        <li>
+          <a href = "star_field_gray.png">star_field_gray.png</a>,
+          a grayscale version of the image, using nonequal RGB weighting.
+        </li>
+        <li>
+          <a href = "star_field_gray_equal.png">star_field_gray_equal.png</a>,
+          a grayscale version of the image, using equal RGB weighting.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 February 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

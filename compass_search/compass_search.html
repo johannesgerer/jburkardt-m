@@ -1,0 +1,464 @@
+<html>
+
+  <head>
+    <title>
+      COMPASS_SEARCH - The Compass Search Optimization Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      COMPASS_SEARCH <br> The Compass Search Optimization Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>COMPASS_SEARCH</b> 
+      is a MATLAB library which 
+      seeks the minimizer of a scalar function of several variables
+      using compass search, a direct search algorithm that does not use derivatives.
+    </p>
+
+    <p>
+      The algorithm, which goes back to Fermi and Metropolis, is easy to describe.  
+      The algorithm begins with a starting point X, and a step size DELTA.
+    </p>
+
+    <p>
+      For each dimension I, the algorithm considers perturbing X(I) by adding
+      or subtracting DELTA.
+    </p>
+
+    <p>
+      If a perturbation is found which decreases the function, this becomes the
+      new X.  Otherwise DELTA is halved.
+    </p>
+
+    <p>
+      The iteration halts when DELTA reaches a minimal value.
+    </p> 
+
+    <p>
+      The algorithm is not guaranteed to find a global minimum.  It can, for 
+      instance, easily be attracted to a local minimum.  Moreover, the algorithm
+      can diverge if, for instance, the function decreases as the argument goes
+      to infinity.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        [ <i>x</i>, <i>fx</i>, <i>k</i> ] = <b>compass_search</b> ( <i>@f</i>, <i>m</i>, <i>x</i>, 
+          <i>delta_tol</i>, <i>delta</i>, <i>k_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>@f</i> is the "function handle"; that is, either a quoted expression for the function,
+          or the name of an M-file that defines the function, preceded by an "@" sign;
+          The function should have the form <b>function value = f(m,x)</b>.
+        </li>
+        <li>
+          <i>m</i> is the number of variables.
+        </li>
+        <li>
+          <i>x</i> is an M-vector containing a starting point for the iteration.
+        </li>
+        <li>
+          <i>delta_tol</i> is the minimum allowed size of DELTA, and must be positive.
+        </li>
+        <li>
+          <i>delta</i> is the starting stepsize.
+        </li>
+        <li>
+          <i>k_max</i> is the maximum number of steps allowed.  This is the only
+          way to avoid an infinite loop if the function decreases as it goes to infinity.
+        </li>
+        <li>
+          <i>x</i> is the program's estimate for the minimizer of the
+          function;
+        </li>
+        <li>
+          <i>fx</i> is the function value at x.
+        </li>
+        <li>
+          <i>k</i> is the number of steps taken.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>COMPASS_SEARCH</b> is available in
+      <a href = "../../c_src/compass_search/compass_search.html">a C version</a> and
+      <a href = "../../cpp_src/compass_search/compass_search.html">a C++ version</a> and
+      <a href = "../../f77_src/compass_search/compass_search.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/compass_search/compass_search.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/compass_search/compass_search.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust-region methods.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../f_src/praxis/praxis.html">
+      PRAXIS</a>,
+      a FORTRAN90 library which 
+      implements the principal axis method of Richard Brent for minimization of
+      a function without the use of derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt/test_opt.html">
+      TEST_OPT</a>,
+      a MATLAB library which 
+      defines test problems
+      requiring the minimization of a scalar function of several variables.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms178/toms178.html">
+      TOMS178</a>,
+      a MATLAB library which
+      optimizes a scalar functional of multiple variables using the Hooke-Jeeves method.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      John Burkardt
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Evelyn Beale,<br>
+          On an Iterative Method for Finding a Local Minimum of a Function
+          of More than One Variable,<br>
+          Technical Report 25, <br>
+          Statistical Techniques Research Group,<br>
+          Princeton University, 1958.
+        </li>
+        <li>
+          Richard Brent,<br>
+          Algorithms for Minimization without Derivatives,<br>
+          Dover, 2002,<br>
+          ISBN: 0-486-41998-3,<br>
+          LC: QA402.5.B74.
+        </li>
+        <li>
+          Charles Broyden,<br>
+          A class of methods for solving nonlinear simultaneous equations,<br>
+          Mathematics of Computation,<br>
+          Volume 19, 1965, pages 577-593.
+        </li>
+        <li>
+          David Himmelblau,<br>
+          Applied Nonlinear Programming,<br>
+          McGraw Hill, 1972,<br>
+          ISBN13: 978-0070289215,<br>
+          LC: T57.8.H55.
+        </li>
+        <li>
+          Tamara Kolda, Robert Michael Lewis, Virginia Torczon,<br>
+          Optimization by Direct Search: New Perspectives on Some Classical and Modern Methods,<br>
+          SIAM Review,<br>
+          Volume 45, Number 3, 2003, pages 385-482.
+        </li>
+        <li>
+          Ken McKinnon,<br>
+          Convergence of the Nelder-Mead simplex method to a nonstationary point,<br>
+          SIAM Journal on Optimization,<br>
+          Volume 9, Number 1, 1998, pages 148-158.
+        </li>
+        <li>
+          Zbigniew Michalewicz,<br>
+          Genetic Algorithms + Data Structures = Evolution Programs,<br>
+          Third Edition,<br>
+          Springer, 1996,<br>
+          ISBN: 3-540-60676-9,<br>
+          LC: QA76.618.M53.
+        </li>
+        <li>
+          Jorge More, Burton Garbow, Kenneth Hillstrom,<br>
+          Testing unconstrained optimization software,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 7, Number 1, March 1981, pages 17-41. 
+        </li>
+        <li>
+          Michael Powell,<br>
+          An Iterative Method for Finding Stationary Values of a Function
+          of Several Variables,<br>
+          Computer Journal,<br>
+          Volume 5, 1962, pages 147-151.
+        </li> 
+        <li>
+          Howard Rosenbrock,<br>
+          An Automatic Method for Finding the Greatest or Least Value of a Function,<br>
+          Computer Journal,<br>
+          Volume 3, 1960, pages 175-184.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "compass_search.m">compass_search.m</a>,
+          the coordinate search optimization algorithm.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>COMPASS_SEARCH_TEST</b> calls all the tests.
+      <ul>
+        <li>
+          <a href = "compass_search_test.m">compass_search_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "compass_search_test_output.txt">compass_search_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BEALE</b> is the Beale function, for which M=2.
+      <ul>
+        <li>
+          <a href = "beale.m">beale.m</a>,
+          defines Beale's function.
+        </li>
+        <li>
+          <a href = "beale_test.m">beale_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH1</b> is the Bohachevsky function #1, for which M=2.
+      <ul>
+        <li>
+          <a href = "bohach1.m">bohach1.m</a>,
+          defines the Bohachevsky function #1.
+        </li>
+        <li>
+          <a href = "bohach1_test.m">bohach1_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH2</b> is the Bohachevsky function #2, for which M=2.
+      <ul>
+        <li>
+          <a href = "bohach2.m">bohach2.m</a>,
+          defines the Bohachevsky function #2.
+        </li>
+        <li>
+          <a href = "bohach2_test.m">bohach2_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BROYDEN</b> is the two dimensional modified Broyden function, for which M=2.
+      <ul>
+        <li>
+          <a href = "broyden.m">broyden.m</a>,
+          defines Beale's function.
+        </li>
+        <li>
+          <a href = "broyden_test.m">broyden_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>EXTENDED_ROSENBROCK</b> is the "extended" Rosenbrock function.  This version
+      of the Rosenbrock function allows the spatial dimension M to be arbitrary, except
+      that it must be even. 
+      <ul>
+        <li>
+          <a href = "extended_rosenbrock.m">extended_rosenbrock.m</a>,
+          defines the extended Rosenbrock function.
+        </li>
+        <li>
+          <a href = "extended_rosenbrock_test.m">extended_rosenbrock_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GOLDSTEIN_PRICE</b> is the Goldstein-Price polynomial, for which M=2.
+      <ul>
+        <li>
+          <a href = "goldstein_price.m">goldstein_price.m</a>,
+          defines the Goldstein-Price polynomial.
+        </li>
+        <li>
+          <a href = "goldstein_price_test.m">goldstein_price_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HIMMELBLAU</b> is the Himmelblau function, for which M = 2, 
+      and which has four global minima.
+      <ul>
+        <li>
+          <a href = "himmelblau.m">himmelblau.m</a>,
+          defines the Himmelblau function.
+        </li>
+        <li>
+          <a href = "himmelblau_test.m">himmelblau_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LOCAL</b> is a badly scaled function with a local minimum, for which M=2.
+      <ul>
+        <li>
+          <a href = "local.m">local.m</a>,
+          defines the "local" function.
+        </li>
+        <li>
+          <a href = "local_test.m">local_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MCKINNON</b> is the McKinnon function, for which M=2.
+      This function can cause problems for the Nelder-Mead optimization algorithm.
+      <ul>
+        <li>
+          <a href = "mckinnon.m">mckinnon.m</a>,
+          defines the McKinnon function.
+        </li>
+        <li>
+          <a href = "mckinnon_test.m">mckinnon_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>POWELL</b> is the Powell singular quartic function, for which M = 4.
+      <ul>
+        <li>
+          <a href = "powell.m">powell.m</a>,
+          defines the Powell function.
+        </li>
+        <li>
+          <a href = "powell_test.m">powell_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ROSENBROCK</b> is the Rosenbrock "banana" function, for which M = 2.
+      <ul>
+        <li>
+          <a href = "rosenbrock.m">rosenbrock.m</a>,
+          defines the Rosenbrock function.
+        </li>
+        <li>
+          <a href = "rosenbrock_test.m">rosenbrock_test.m</a>,
+          tests COMPASS_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

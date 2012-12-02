@@ -1,0 +1,1013 @@
+<html>
+
+  <head>
+    <title>
+      TEST_ZERO - Zero Finder Tests
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_ZERO <br> Zero Finder Tests
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_ZERO</b> 
+      is a MATLAB library which
+      defines a number of nonlinear functions.
+    </p>
+
+    <p>
+      The nonlinear functions are intended for use in demonstrating or
+      testing zero finder algorithms, that is, programs that seek a 
+      root of a scalar equation F(X)=0.  
+    </p>
+
+    <p>
+      The MATLAB function TEST_ZERO evaluates one of several scalar 
+      nonlinear test functions, and has the form:
+      <pre>
+        function [ fx, fp ] = test_zero ( x )
+      </pre>
+      To make use of this function while running MATLAB, you must issue 
+      the command
+      <pre>
+        global IPROB
+      </pre>
+      and then set IPROB to a value between 1 and 18 to select a 
+      particular problem.
+    </p>
+
+    <p>
+      The functions, which are accessible by number, are
+      <ol>
+        <li>
+          f(x) = sin ( x ) - x / 2.
+        </li>
+        <li>
+          f(x) = 2 * x - exp ( - x ).
+        </li>
+        <li>
+          f(x) = x * exp ( - x ).
+        </li>
+        <li>
+          f(x) = exp ( x ) - 1 / ( 10 * x )^2.
+        </li>
+        <li>
+          f(x) = ( x + 3 ) * ( x - 1 )^2.
+        </li>
+        <li>
+          f(x) = exp ( x ) - 2 - 1 / ( 10 * x )^2 + 2 / ( 100 * x )^3.
+        </li>
+        <li>
+          f(x) = x^3.
+        </li>
+        <li>
+          f(x) = cos ( x ) - x.
+        </li>
+        <li>
+          the Newton Baffler.
+        </li>
+        <li>
+          the Repeller.
+        </li>
+        <li>
+          the Pinhead.
+        </li>
+        <li>
+          Flat Stanley.
+        </li>
+        <li>
+          Lazy Boy.
+        </li>
+        <li>
+          the Camel.
+        </li>
+        <li>
+          a pathological function for Newton's method.
+        </li>
+        <li>
+          Kepler's Equation.
+        </li>
+        <li>
+          f(x) = x^3 - 2*x - 5, Wallis's function.
+        </li>
+        <li>
+          f(x) = (x-1)^7, written term by term.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_ZERO</b> is available in
+      <a href = "../../c_src/test_zero/test_zero.html">a C version</a> and
+      <a href = "../../cpp_src/test_zero/test_zero.html">a C++ version</a> and
+      <a href = "../../f77_src/test_zero/test_zero.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_zero/test_zero.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_zero/test_zero.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bisection_integer/bisection_integer.html">
+      BISECTION_INTEGER</a>,
+      a MATLAB library which
+      seeks an integer solution to the equation F(X)=0,
+      using bisection within a user-supplied change of sign interval [A,B].
+    </p>
+
+    <p>
+      <a href = "../../m_src/brent/brent.html">
+      BRENT</a>,
+      a MATLAB library which
+      contains Richard Brent's routines for finding the zero, local minimizer,
+      or global minimizer of a scalar function of a scalar argument, without
+      the use of derivative information.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Donovan, Arnold Miller, Timothy Moreland,<br>
+          Pathological Functions for Newton's Method,<br>
+          American Mathematical Monthly, January 1993, pages 53-58.
+        </li>
+        <li>
+          Peter Colwell,<br>
+          Solving Kepler's Equation Over Three Centuries,<br>
+          Willmann-Bell, 1993
+        </li>
+        <li>
+          Arnold Krommer, Christoph Ueberhuber,<br>
+          Numerical Integration on Advanced Systems,<br>
+          Springer, 1994.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisection.m">bisection.m</a>, 
+          carries out the bisection method on any problem.
+        </li>
+        <li>
+          <a href = "brent.m">brent.m</a>, 
+          carries out Brent's method on any problem.
+        </li>
+        <li>
+          <a href = "muller.m">muller.m</a>, 
+          carries out Muller's method on any problem.
+        </li>
+        <li>
+          <a href = "newton.m">newton.m</a>, 
+          carries out Newton's method on any problem.
+        </li>
+        <li>
+          <a href = "p00_fx.m">p00_fx.m</a>, 
+          evaluates a function for any problem.
+        </li>
+        <li>
+          <a href = "p00_fx1.m">p00_fx1.m</a>, 
+          first derivative of a function for any problem.
+        </li>
+        <li>
+          <a href = "p00_fx2.m">p00_fx2.m</a>, 
+          second derivative of a function for any problem.
+        </li>
+        <li>
+          <a href = "p00_prob_num.m">p00_prob_num.m</a>, 
+          returns the number of problems.
+        </li>
+        <li>
+          <a href = "p00_range.m">p00_range.m</a>, 
+          returns an interval bounding the root for any problem.
+        </li>
+        <li>
+          <a href = "p00_root.m">p00_root.m</a>, 
+          returns a known root for any problem.
+        </li>
+        <li>
+          <a href = "p00_root_num.m">p00_root_num.m</a>, 
+          returns the number of known roots for any problem.
+        </li>
+        <li>
+          <a href = "p00_start.m">p00_start.m</a>, 
+          returns a starting point for any problem.
+        </li>
+        <li>
+          <a href = "p00_start_num.m">p00_start_num.m</a>, 
+          returns the number of starting points for any problem.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>, 
+          returns the title for any problem.
+        </li>
+        <li>
+          <a href = "p01_fx.m">p01_fx.m</a>, 
+          evaluates the function for problem 1.
+        </li>
+        <li>
+          <a href = "p01_fx.png">p01_fx.png</a>, 
+          an image of P01_FX(X) over [-4,+4].
+        </li>
+        <li>
+          <a href = "p01_fx1.m">p01_fx1.m</a>, 
+          first derivative of the function for problem 1.
+        </li>
+        <li>
+          <a href = "p01_fx2.m">p01_fx2.m</a>, 
+          second derivative of the function for problem 1.
+        </li>
+        <li>
+          <a href = "p01_range.m">p01_range.m</a>, 
+          returns an interval bounding the root for problem 1.
+        </li>
+        <li>
+          <a href = "p01_root.m">p01_root.m</a>, 
+          returns a known root for problem 1.
+        </li>
+        <li>
+          <a href = "p01_root_num.m">p01_root_num.m</a>, 
+          returns the number of known roots for problem 1.
+        </li>
+        <li>
+          <a href = "p01_start.m">p01_start.m</a>, 
+          returns a starting point for problem 1.
+        </li>
+        <li>
+          <a href = "p01_start_num.m">p01_start_num.m</a>, 
+          returns the number of starting points for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          returns the title for problem 1.
+        </li>
+        <li>
+          <a href = "p02_fx.m">p02_fx.m</a>, 
+          evaluates the function for problem 2.
+        </li>
+        <li>
+          <a href = "p02_fx.png">p02_fx.png</a>, 
+          an image of P02_FX(X) over [-0.5, +3.0].
+        </li>
+        <li>
+          <a href = "p02_fx1.m">p02_fx1.m</a>, 
+          first derivative of the function for problem 2.
+        </li>
+        <li>
+          <a href = "p02_fx2.m">p02_fx2.m</a>, 
+          second derivative of the function for problem 2.
+        </li>
+        <li>
+          <a href = "p02_range.m">p02_range.m</a>, 
+          returns an interval bounding the root for problem 2.
+        </li>
+        <li>
+          <a href = "p02_root.m">p02_root.m</a>, 
+          returns a known root for problem 2.
+        </li>
+        <li>
+          <a href = "p02_root_num.m">p02_root_num.m</a>, 
+          returns the number of known roots for problem 2.
+        </li>
+        <li>
+          <a href = "p02_start.m">p02_start.m</a>, 
+          returns a starting point for problem 2.
+        </li>
+        <li>
+          <a href = "p02_start_num.m">p02_start_num.m</a>, 
+          returns the number of starting points for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          returns the title for problem 2.
+        </li>
+        <li>
+          <a href = "p03_fx.m">p03_fx.m</a>, 
+          evaluates the function for problem 3.
+        </li>
+        <li>
+          <a href = "p03_fx.png">p03_fx.png</a>, 
+          an image of P03_FX(X) over [-0.1,+4].
+        </li>
+        <li>
+          <a href = "p03_fx1.m">p03_fx1.m</a>, 
+          first derivative of the function for problem 3.
+        </li>
+        <li>
+          <a href = "p03_fx2.m">p03_fx2.m</a>, 
+          second derivative of the function for problem 3.
+        </li>
+        <li>
+          <a href = "p03_range.m">p03_range.m</a>, 
+          returns an interval bounding the root for problem 3.
+        </li>
+        <li>
+          <a href = "p03_root.m">p03_root.m</a>, 
+          returns a known root for problem 3.
+        </li>
+        <li>
+          <a href = "p03_root_num.m">p03_root_num.m</a>, 
+          returns the number of known roots for problem 3.
+        </li>
+        <li>
+          <a href = "p03_start.m">p03_start.m</a>, 
+          returns a starting point for problem 3.
+        </li>
+        <li>
+          <a href = "p03_start_num.m">p03_start_num.m</a>, 
+          returns the number of starting points for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          returns the title for problem 3.
+        </li>
+        <li>
+          <a href = "p04_fx.m">p04_fx.m</a>, 
+          evaluates the function for problem 4.
+        </li>
+        <li>
+          <a href = "p04_fx.png">p04_fx.png</a>, 
+          an image of P04_FX(X) over [-4,+2].
+        </li>
+        <li>
+          <a href = "p04_fx1.m">p04_fx1.m</a>, 
+          first derivative of the function for problem 4.
+        </li>
+        <li>
+          <a href = "p04_fx2.m">p04_fx2.m</a>, 
+          second derivative of the function for problem 4.
+        </li>
+        <li>
+          <a href = "p04_range.m">p04_range.m</a>, 
+          returns an interval bounding the root for problem 4.
+        </li>
+        <li>
+          <a href = "p04_root.m">p04_root.m</a>, 
+          returns a known root for problem 4.
+        </li>
+        <li>
+          <a href = "p04_root_num.m">p04_root_num.m</a>, 
+          returns the number of known roots for problem 4.
+        </li>
+        <li>
+          <a href = "p04_start.m">p04_start.m</a>, 
+          returns a starting point for problem 4.
+        </li>
+        <li>
+          <a href = "p04_start_num.m">p04_start_num.m</a>, 
+          returns the number of starting points for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          returns the title for problem 4.
+        </li>
+        <li>
+          <a href = "p05_fx.m">p05_fx.m</a>, 
+          evaluates the function for problem 5.
+        </li>
+        <li>
+          <a href = "p05_fx.png">p05_fx.png</a>, 
+          an image of P05_FX(X) over [-4,+2].
+        </li>
+        <li>
+          <a href = "p05_fx1.m">p05_fx1.m</a>, 
+          first derivative of the function for problem 5.
+        </li>
+        <li>
+          <a href = "p05_fx2.m">p05_fx2.m</a>, 
+          second derivative of the function for problem 5.
+        </li>
+        <li>
+          <a href = "p05_range.m">p05_range.m</a>, 
+          returns an interval bounding the root for problem 5.
+        </li>
+        <li>
+          <a href = "p05_root.m">p05_root.m</a>, 
+          returns a known root for problem 5.
+        </li>
+        <li>
+          <a href = "p05_root_num.m">p05_root_num.m</a>, 
+          returns the number of known roots for problem 5.
+        </li>
+        <li>
+          <a href = "p05_start.m">p05_start.m</a>, 
+          returns a starting point for problem 5.
+        </li>
+        <li>
+          <a href = "p05_start_num.m">p05_start_num.m</a>, 
+          returns the number of starting points for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          returns the title for problem 5.
+        </li>
+        <li>
+          <a href = "p06_fx.m">p06_fx.m</a>, 
+          evaluates the function for problem 6.
+        </li>
+        <li>
+          <a href = "p06_fx.png">p06_fx.png</a>, 
+          an image of P06_FX(X) over [-4,+2].
+        </li>
+        <li>
+          <a href = "p06_fx1.m">p06_fx1.m</a>, 
+          first derivative of the function for problem 6.
+        </li>
+        <li>
+          <a href = "p06_fx2.m">p06_fx2.m</a>, 
+          second derivative of the function for problem 6.
+        </li>
+        <li>
+          <a href = "p06_range.m">p06_range.m</a>, 
+          returns an interval bounding the root for problem 6.
+        </li>
+        <li>
+          <a href = "p06_root.m">p06_root.m</a>, 
+          returns a known root for problem 6.
+        </li>
+        <li>
+          <a href = "p06_root_num.m">p06_root_num.m</a>, 
+          returns the number of known roots for problem 6.
+        </li>
+        <li>
+          <a href = "p06_start.m">p06_start.m</a>, 
+          returns a starting point for problem 6.
+        </li>
+        <li>
+          <a href = "p06_start_num.m">p06_start_num.m</a>, 
+          returns the number of starting points for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          returns the title for problem 6.
+        </li>
+        <li>
+          <a href = "p07_fx.m">p07_fx.m</a>, 
+          evaluates the function for problem 7.
+        </li>
+        <li>
+          <a href = "p07_fx.png">p07_fx.png</a>, 
+          an image of P07_FX(X) over [-1,+1].
+        </li>
+        <li>
+          <a href = "p07_fx1.m">p07_fx1.m</a>, 
+          first derivative of the function for problem 7.
+        </li>
+        <li>
+          <a href = "p07_fx2.m">p07_fx2.m</a>, 
+          second derivative of the function for problem 7.
+        </li>
+        <li>
+          <a href = "p07_range.m">p07_range.m</a>, 
+          returns an interval bounding the root for problem 7.
+        </li>
+        <li>
+          <a href = "p07_root.m">p07_root.m</a>, 
+          returns a known root for problem 7.
+        </li>
+        <li>
+          <a href = "p07_root_num.m">p07_root_num.m</a>, 
+          returns the number of known roots for problem 7.
+        </li>
+        <li>
+          <a href = "p07_start.m">p07_start.m</a>, 
+          returns a starting point for problem 7.
+        </li>
+        <li>
+          <a href = "p07_start_num.m">p07_start_num.m</a>, 
+          returns the number of starting points for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          returns the title for problem 7.
+        </li>
+        <li>
+          <a href = "p08_fx.m">p08_fx.m</a>, 
+          evaluates the function for problem 8.
+        </li>
+        <li>
+          <a href = "p08_fx.png">p08_fx.png</a>, 
+          an image of P08_FX(X) over [-4,+4].
+        </li>
+        <li>
+          <a href = "p08_fx1.m">p08_fx1.m</a>, 
+          first derivative of the function for problem 8.
+        </li>
+        <li>
+          <a href = "p08_fx2.m">p08_fx2.m</a>, 
+          second derivative of the function for problem 8.
+        </li>
+        <li>
+          <a href = "p08_range.m">p08_range.m</a>, 
+          returns an interval bounding the root for problem 8.
+        </li>
+        <li>
+          <a href = "p08_root.m">p08_root.m</a>, 
+          returns a known root for problem 8.
+        </li>
+        <li>
+          <a href = "p08_root_num.m">p08_root_num.m</a>, 
+          returns the number of known roots for problem 8.
+        </li>
+        <li>
+          <a href = "p08_start.m">p08_start.m</a>, 
+          returns a starting point for problem 8.
+        </li>
+        <li>
+          <a href = "p08_start_num.m">p08_start_num.m</a>, 
+          returns the number of starting points for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          returns the title for problem 8.
+        </li>
+        <li>
+          <a href = "p09_fx.m">p09_fx.m</a>, 
+          evaluates the function for problem 9.
+        </li>
+        <li>
+          <a href = "p09_fx.png">p09_fx.png</a>, 
+          an image of P09_FX(X) over [5,7].
+        </li>
+        <li>
+          <a href = "p09_fx1.m">p09_fx1.m</a>, 
+          first derivative of the function for problem 9.
+        </li>
+        <li>
+          <a href = "p09_fx2.m">p09_fx2.m</a>, 
+          second derivative of the function for problem 9.
+        </li>
+        <li>
+          <a href = "p09_range.m">p09_range.m</a>, 
+          returns an interval bounding the root for problem 9.
+        </li>
+        <li>
+          <a href = "p09_root.m">p09_root.m</a>, 
+          returns a known root for problem 9.
+        </li>
+        <li>
+          <a href = "p09_root_num.m">p09_root_num.m</a>, 
+          returns the number of known roots for problem 9.
+        </li>
+        <li>
+          <a href = "p09_start.m">p09_start.m</a>, 
+          returns a starting point for problem 9.
+        </li>
+        <li>
+          <a href = "p09_start_num.m">p09_start_num.m</a>, 
+          returns the number of starting points for problem 9.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>, 
+          returns the title for problem 9.
+        </li>
+        <li>
+          <a href = "p10_fx.m">p10_fx.m</a>, 
+          evaluates the function for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fx.png">p10_fx.png</a>, 
+          an image of P10_FX(X) over [-2,+2].
+        </li>
+        <li>
+          <a href = "p10_fx1.m">p10_fx1.m</a>, 
+          first derivative of the function for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fx2.m">p10_fx2.m</a>, 
+          second derivative of the function for problem 10.
+        </li>
+        <li>
+          <a href = "p10_range.m">p10_range.m</a>, 
+          returns an interval bounding the root for problem 10.
+        </li>
+        <li>
+          <a href = "p10_root.m">p10_root.m</a>, 
+          returns a known root for problem 10.
+        </li>
+        <li>
+          <a href = "p10_root_num.m">p10_root_num.m</a>, 
+          returns the number of known roots for problem 10.
+        </li>
+        <li>
+          <a href = "p10_start.m">p10_start.m</a>, 
+          returns a starting point for problem 10.
+        </li>
+        <li>
+          <a href = "p10_start_num.m">p10_start_num.m</a>, 
+          returns the number of starting points for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>, 
+          returns the title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_fx.m">p11_fx.m</a>, 
+          evaluates the function for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fx.png">p11_fx.png</a>, 
+          an image of P11_FX(X) over [+1,+10].
+        </li>
+        <li>
+          <a href = "p11_fx1.m">p11_fx1.m</a>, 
+          first derivative of the function for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fx2.m">p11_fx2.m</a>, 
+          second derivative of the function for problem 11.
+        </li>
+        <li>
+          <a href = "p11_range.m">p11_range.m</a>, 
+          returns an interval bounding the root for problem 11.
+        </li>
+        <li>
+          <a href = "p11_root.m">p11_root.m</a>, 
+          returns a known root for problem 11.
+        </li>
+        <li>
+          <a href = "p11_root_num.m">p11_root_num.m</a>, 
+          returns the number of known roots for problem 11.
+        </li>
+        <li>
+          <a href = "p11_start.m">p11_start.m</a>, 
+          returns a starting point for problem 10.
+        </li>
+        <li>
+          <a href = "p11_start_num.m">p11_start_num.m</a>, 
+          returns the number of starting points for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>, 
+          returns the title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_fx.m">p12_fx.m</a>, 
+          evaluates the function for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fx.png">p12_fx.png</a>, 
+          an image of P12_FX(X) over [-0.5,+0.5].
+        </li>
+        <li>
+          <a href = "p12_fx1.m">p12_fx1.m</a>, 
+          first derivative of the function for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fx2.m">p12_fx2.m</a>, 
+          second derivative of the function for problem 12.
+        </li>
+        <li>
+          <a href = "p12_range.m">p12_range.m</a>, 
+          returns an interval bounding the root for problem 12.
+        </li>
+        <li>
+          <a href = "p12_root.m">p12_root.m</a>, 
+          returns a known root for problem 12.
+        </li>
+        <li>
+          <a href = "p12_root_num.m">p12_root_num.m</a>, 
+          returns the number of known roots for problem 12.
+        </li>
+        <li>
+          <a href = "p12_start.m">p12_start.m</a>, 
+          returns a starting point for problem 10.
+        </li>
+        <li>
+          <a href = "p12_start_num.m">p12_start_num.m</a>, 
+          returns the number of starting points for problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>, 
+          returns the title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_fx.m">p13_fx.m</a>, 
+          evaluates the function for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fx.png">p13_fx.png</a>, 
+          an image of P13_FX(X) over [0,100].
+        </li>
+        <li>
+          <a href = "p13_fx1.m">p13_fx1.m</a>, 
+          first derivative of the function for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fx2.m">p13_fx2.m</a>, 
+          second derivative of the function for problem 13.
+        </li>
+        <li>
+          <a href = "p13_range.m">p13_range.m</a>, 
+          returns an interval bounding the root for problem 13.
+        </li>
+        <li>
+          <a href = "p13_root.m">p13_root.m</a>, 
+          returns a known root for problem 13.
+        </li>
+        <li>
+          <a href = "p13_root_num.m">p13_root_num.m</a>, 
+          returns the number of known roots for problem 13.
+        </li>
+        <li>
+          <a href = "p13_start.m">p13_start.m</a>, 
+          returns a starting point for problem 10.
+        </li>
+        <li>
+          <a href = "p13_start_num.m">p13_start_num.m</a>, 
+          returns the number of starting points for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>, 
+          returns the title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_fx.m">p14_fx.m</a>, 
+          evaluates the function for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fx.png">p14_fx.png</a>, 
+          an image of P14_FX(X) over [-0.5,+2.0].
+        </li>
+        <li>
+          <a href = "p14_fx1.m">p14_fx1.m</a>, 
+          first derivative of the function for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fx2.m">p14_fx2.m</a>, 
+          second derivative of the function for problem 14.
+        </li>
+        <li>
+          <a href = "p14_range.m">p14_range.m</a>, 
+          returns an interval bounding the root for problem 14.
+        </li>
+        <li>
+          <a href = "p14_root.m">p14_root.m</a>, 
+          returns a known root for problem 14.
+        </li>
+        <li>
+          <a href = "p14_root_num.m">p14_root_num.m</a>, 
+          returns the number of known roots for problem 14.
+        </li>
+        <li>
+          <a href = "p14_start.m">p14_start.m</a>, 
+          returns a starting point for problem 14.
+        </li>
+        <li>
+          <a href = "p14_start_num.m">p14_start_num.m</a>, 
+          returns the number of starting points for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>, 
+          returns the title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_fx.m">p15_fx.m</a>, 
+          evaluates the function for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fx.png">p15_fx.png</a>, 
+          an image of P15_FX(X) over [-4,+4].
+        </li>
+        <li>
+          <a href = "p15_fx1.m">p15_fx1.m</a>, 
+          first derivative of the function for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fx2.m">p15_fx2.m</a>, 
+          second derivative of the function for problem 15.
+        </li>
+        <li>
+          <a href = "p15_range.m">p15_range.m</a>, 
+          returns an interval bounding the root for problem 15.
+        </li>
+        <li>
+          <a href = "p15_root.m">p15_root.m</a>, 
+          returns a known root for problem 15.
+        </li>
+        <li>
+          <a href = "p15_root_num.m">p15_root_num.m</a>, 
+          returns the number of known roots for problem 15.
+        </li>
+        <li>
+          <a href = "p15_start.m">p15_start.m</a>, 
+          returns a starting point for problem 15.
+        </li>
+        <li>
+          <a href = "p15_start_num.m">p15_start_num.m</a>, 
+          returns the number of starting points for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>, 
+          returns the title for problem 15.
+        </li>
+        <li>
+          <a href = "p16_fx.m">p16_fx.m</a>, 
+          evaluates the function for problem 16.
+        </li>
+        <li>
+          <a href = "p16_fx.png">p16_fx.png</a>, 
+          an image of P16_FX(X) over [0,50].
+        </li>
+        <li>
+          <a href = "p16_fx1.m">p16_fx1.m</a>, 
+          first derivative of the function for problem 16.
+        </li>
+        <li>
+          <a href = "p16_fx2.m">p16_fx2.m</a>, 
+          second derivative of the function for problem 16.
+        </li>
+        <li>
+          <a href = "p16_range.m">p16_range.m</a>, 
+          returns an interval bounding the root for problem 16.
+        </li>
+        <li>
+          <a href = "p16_root.m">p16_root.m</a>, 
+          returns a known root for problem 16.
+        </li>
+        <li>
+          <a href = "p16_root_num.m">p16_root_num.m</a>, 
+          returns the number of known roots for problem 160.
+        </li>
+        <li>
+          <a href = "p16_start.m">p16_start.m</a>, 
+          returns a starting point for problem 16.
+        </li>
+        <li>
+          <a href = "p16_start_num.m">p16_start_num.m</a>, 
+          returns the number of starting points for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>, 
+          returns the title for problem 16.
+        </li>
+        <li>
+          <a href = "p17_fx.m">p17_fx.m</a>, 
+          evaluates the function for problem 17.
+        </li>
+        <li>
+          <a href = "p17_fx.png">p17_fx.png</a>, 
+          an image of P17_FX(X) over [-2,+4].
+        </li>
+        <li>
+          <a href = "p17_fx1.m">p17_fx1.m</a>, 
+          first derivative of the function for problem 17.
+        </li>
+        <li>
+          <a href = "p17_fx2.m">p17_fx2.m</a>, 
+          second derivative of the function for problem 17.
+        </li>
+        <li>
+          <a href = "p17_range.m">p17_range.m</a>, 
+          returns an interval bounding the root for problem 17.
+        </li>
+        <li>
+          <a href = "p17_root.m">p17_root.m</a>, 
+          returns a known root for problem 17.
+        </li>
+        <li>
+          <a href = "p17_root_num.m">p17_root_num.m</a>, 
+          returns the number of known roots for problem 17.
+        </li>
+        <li>
+          <a href = "p17_start.m">p17_start.m</a>, 
+          returns a starting point for problem 17.
+        </li>
+        <li>
+          <a href = "p17_start_num.m">p17_start_num.m</a>, 
+          returns the number of starting points for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>, 
+          returns the title for problem 17.
+        </li>
+        <li>
+          <a href = "p18_fx.m">p18_fx.m</a>, 
+          evaluates the function for problem 18.
+        </li>
+        <li>
+          <a href = "p18_fx.png">p18_fx.png</a>, 
+          an image of P18_FX(X) over [-2,+4].
+        </li>
+        <li>
+          <a href = "p18_fx1.m">p18_fx1.m</a>, 
+          first derivative of the function for problem 18.
+        </li>
+        <li>
+          <a href = "p18_fx2.m">p18_fx2.m</a>, 
+          second derivative of the function for problem 18.
+        </li>
+        <li>
+          <a href = "p18_range.m">p18_range.m</a>, 
+          returns an interval bounding the root for problem 18.
+        </li>
+        <li>
+          <a href = "p18_root.m">p18_root.m</a>, 
+          returns a known root for problem 18.
+        </li>
+        <li>
+          <a href = "p18_root_num.m">p18_root_num.m</a>, 
+          returns the number of known roots for problem 18.
+        </li>
+        <li>
+          <a href = "p18_start.m">p18_start.m</a>, 
+          returns a starting point for problem 18.
+        </li>
+        <li>
+          <a href = "p18_start_num.m">p18_start_num.m</a>, 
+          returns the number of starting points for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>, 
+          returns the title for problem 18.
+        </li>
+        <li>
+          <a href = "r8_cube_root.m">r8_cube_root.m</a>, 
+          computes the cube root of an R8.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8poly2_rroot.m">r8poly2_rroot.m</a>, 
+          returns the real parts of the roots of a quadratic polynomial.
+        </li>
+        <li>
+          <a href = "regula_falsi.m">regula_falsi.m</a>, 
+          carries out the regula falsi method on any problem.
+        </li>
+        <li>
+          <a href = "secant.m">secant.m</a>, 
+          carries out the secant method on any problem.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_zero_test.m">test_zero_test.m</a>, 
+          tests the library.
+        </li>
+        <li>
+          <a href = "test_zero_test_output.txt">test_zero_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

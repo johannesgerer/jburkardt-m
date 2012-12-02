@@ -1,0 +1,372 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGLE_EXACTNESS - Exactness of Quadrature on Triangles
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGLE_EXACTNESS <br> Exactness of Quadrature on Triangles
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGLE_EXACTNESS</b> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a
+      quadrature rule for a triangle.
+    </p>
+
+    <p>
+      The polynomial exactness of a quadrature rule is defined as the
+      highest total degree <b>D</b> such that the quadrature rule is
+      guaranteed to integrate exactly all polynomials of total degree
+      <b>DEGREE_MAX</b> or less, ignoring roundoff.
+      The total degree of a polynomial is the maximum of the degrees 
+      of all its monomial terms.  For a triangle, the degree of a monomial
+      term is the sum of the exponents of <b>x</b> and <b>y</b>. 
+      Thus, for instance, the <b>DEGREE</b> of 
+      <blockquote><b>
+        x<sup>2</sup>y<sup>5</sup>
+      </b></blockquote>
+      is 2+5=7.
+    </p>
+
+    <p>
+      To be thorough, the program starts at <b>DEGREE</b> = 0, and then 
+      proceeds to <b>DEGREE</b> = 1, 2, and so on up to a maximum degree 
+      <b>DEGREE_MAX</b> specified by the user.  At each value of <b>DEGREE</b>,
+      the program generates every possible monomial term, applies the 
+      quadrature rule to it, and determines the quadrature error.  The program 
+      uses a scaling factor on each monomial so that the exact integral 
+      should always be 1; therefore, each reported error can be compared
+      on a fixed scale.
+    </p>
+
+    <p>
+      The program is very flexible and interactive.  The quadrature rule 
+      is defined by three files, to be read at input, and the 
+      maximum degree is specified by the user as well.
+    </p>
+
+    <p>
+      Note that the three files that define the quadrature rule
+      are assumed to have related names, of the form
+      <ul>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>
+        </li>
+      </ul>
+      When running the program, the user only enters the common <i>prefix</i> 
+      part of the file names, which is enough information for the program
+      to find all three files.
+    </p>
+
+    <p>
+      For information on the form of these files, see the 
+      <b>QUADRATURE_RULES_TRI</b> directory listed below.
+    </p>
+
+    <p>
+      The exactness results are written to an output file with the 
+      corresponding name:
+      <ul>
+        <li>
+          <i>prefix</i>_<b>exact.txt</b>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangle_exactness</b> ( '<i>prefix</i>', <i>degree_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>prefix</i> is the common prefix for the files containing the abscissa, weight
+          and region information of the quadrature rule;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum total monomial degree to check.  This should be
+          a relatively small nonnegative number, particularly if the
+          spatial dimension is high.  A value of 5 or 10 might be
+          reasonable, but a value of 50 or 100 is probably never a
+          good input!
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGLE_EXACTNESS</b> is available in
+      <a href = "../../cpp_src/triangle_exactness/triangle_exactness.html">a C++ version</a> and
+      <a href = "../../f_src/triangle_exactness/triangle_exactness.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangle_exactness/triangle_exactness.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dunavant/dunavant.html">
+      DUNAVANT</a>,
+      a MATLAB library which 
+      sets up a Dunavant quadrature rule for a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fekete/fekete.html">
+      FEKETE</a>, 
+      a MATLAB library which 
+      sets up a Fekete quadrature rule for a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gm_rule/gm_rule.html">
+      GM_RULE</a>,
+      a MATLAB library which
+      defines a Grundmann-Moeller
+      rule for quadrature over a triangle, tetrahedron, or general
+      M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyness_rule/lyness_rule.html">
+      LYNESS_RULE</a>, 
+      a MATLAB library which
+      returns Lyness-Jespersen quadrature rules for the triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the exactness of integration rules over the interval,
+      rectangle, or multidimensional rectangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>, 
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_exactness/pyramid_exactness.html">
+      PYRAMID_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the pyramid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_tri/quadrature_rules_tri.html">
+      QUADRATURE_RULES_TRI</a>, 
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over the triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">
+      SPHERE_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of a quadrature rule for the unit sphere; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      contains quadrature
+      rules for a variety of unusual areas, surfaces and volumes in 2D,
+      3D and N-dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_tri_int/test_tri_int.html">
+      TEST_TRI_INT</a>, 
+      a MATLAB library which
+      defines integrand functions for testing
+      quadrature routines for the triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_exactness/tetrahedron_exactness.html">
+      TETRAHEDRON_EXACTNESS</a>, 
+      a MATLAB program which 
+      investigates the polynomial exactness of a quadrature rule for the tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_monte_carlo/triangle_monte_carlo.html">
+      TRIANGLE_MONTE_CARLO</a>, 
+      a MATLAB program which 
+      uses the Monte Carlo method to estimate integrals over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wandzura/wandzura.html">
+      WANDZURA</a>, 
+      a MATLAB library which 
+      sets up a Wandzura quadrature rule for a triangle.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangle_exactness.m">triangle_exactness.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The "W", "X" and "R" files associated with the point sets tested
+      here may be found in the <b>QUADRATURE_RULES_TRI</b> directory.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "centroid_exact.txt">centroid_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "gauss4x4_exact.txt">gauss4x4_exact.txt</a>
+          (the results here have significant error.  The abscissas and
+          weights were not available to the full precision.)
+        </li>
+        <li>
+          <a href = "gauss8x8_exact.txt">gauss8x8_exact.txt</a>
+          (the results here have significant error.  The abscissas and
+          weights were not available to the full precision.)
+        </li>
+        <li>
+          <a href = "seven_point_exact.txt">seven_point_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang1_exact.txt">strang1_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang2_exact.txt">strang2_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang3_exact.txt">strang3_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang4_exact.txt">strang4_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang5_exact.txt">strang5_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang6_exact.txt">strang6_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang7_exact.txt">strang7_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang8_exact.txt">strang8_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang9_exact.txt">strang9_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "strang10_exact.txt">strang10_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "toms584_19_exact.txt">toms584_19_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "toms612_19_exact.txt">toms612_19_exact.txt</a>
+        </li>
+        <li>
+          <a href = "toms612_28_exact.txt">toms612_28_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "toms706_37_exact.txt">toms706_37_exact.txt</a>.
+        </li>
+        <li>
+          <a href = "vertex_exact.txt">vertex_exact.txt</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 September 2010
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

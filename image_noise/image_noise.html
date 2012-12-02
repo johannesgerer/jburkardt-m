@@ -1,0 +1,272 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_NOISE - Add Noise to an Image
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_NOISE <br> Add Noise to an Image
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_NOISE</b>
+      is a directory of MATLAB programs which
+      add noise to an image.
+    </p>
+
+    <p>
+      In MATLAB, a black and white or gray scale image can be represented
+      using a 2D array of nonnegative integers over some range 0 to GMAX.
+      The value 0 indicates black, and GMAX white.  Intermediate values
+      represent shades of gray in a natural way.  Note, however, that
+      the eye has a nonlinear response to intensity, so that the value
+      GMAX/2 will not be perceived as halfway between 0 and GMAX.  That
+      is a separate issue.
+    </p>
+
+    <p>
+      A color image can be represented using a set of 3 2D arrays,
+      which can be thought of as R, G, and B, and which represent the
+      intensity of the red, green and blue signals that combine to
+      form the color image.  A common maximum value is assumed, RGBMAX.
+    </p>
+
+    <p>
+      An image can be read into MATLAB using the <b>imread</b> function
+      in the Image Processing Toolbox, and displayed with the <b>imshow</b>
+      function.
+    </p>
+
+    <p>
+      A simple model for noise involves replacing a subset of the image
+      pixels by the extreme low or high values.  In a grayscale image,
+      the damaged pixels show up as black or white spots, giving this kind
+      of noise the name "salt and pepper".  An RGB image may be damaged
+      by resetting all 3 color values at a given pixel, resulting in
+      white or black pixels; however, a more realistic noise damage would
+      simply choose R, G or B values randomly, so that noisy pixels would
+      show up as those with full or zero value in one color channel, looking
+      as though colored confetti had been tossed onto the image.
+    </p>
+
+    <p>
+      More sophisticated models of noise damage involve setting a pixel
+      color value to a uniform or normal random value, or to displacing
+      the pixel color value by a uniform or normal random value.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/image_components/image_components.html">
+      IMAGE_COMPONENTS</a>,
+      a MATLAB library which
+      seeks the connected "nonzero" or "nonblack" components of an image or integer vector,
+      array or 3D block.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      MATLAB programs which
+      apply image processing techniques to remove noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_diffuse/image_diffuse.html">
+      IMAGE_DIFFUSE</a>,
+      a MATLAB library which
+      uses diffusion to smooth out an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_rgb_to_gray/image_rgb_to_gray.html">
+      IMAGE_RGB_TO_GRAY</a>,
+      MATLAB programs which
+      makes a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      MATLAB programs which
+      make a black and white version of a grayscale image by setting all pixels
+      below or above a threshold value to black or white.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Jonas Gomes, Luiz Velho,<br>
+          Image Processing for Computer Graphics,<br>
+          Springer, 1997,<br>
+          ISBN: 0387948546,<br>
+          LC: T385.G65.
+        </li>
+        <li>
+          William Pratt,<br>
+          Digital Image Processing,<br>
+          Second Edition,<br>
+          Wiley, 1991,<br>
+          ISBN13: 978-0471857662,<br>
+          LC: TA1632.P7.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gray_salt_and_pepper.m">gray_salt_and_pepper.m</a>,
+          adds salt and pepper noise to a grayscale image.
+        </li>
+        <li>
+          <a href = "rgb_salt_and_pepper.m">rgb_salt_and_pepper.m</a>,
+          adds salt and pepper noise to a grayscale image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>MILKING</b> is an RGB image of a cow being milked.
+      <ul>
+        <li>
+          <a href = "milking.png">milking.png</a>,
+          the original image.
+        </li>
+        <li>
+          <a href = "milking_05.png">milking_05.png</a>,
+          the image with 5% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "milking_10.png">milking_10.png</a>,
+          the image with 10% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "milking_20.png">milking_20.png</a>,
+          the image with 20% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "milking_40.png">milking_40.png</a>,
+          the image with 40% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "milking_60.png">milking_60.png</a>,
+          the image with 60% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "milking_80.png">milking_80.png</a>,
+          the image with 80% salt and pepper noise.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PIONEERS</b> is a grayscale image of two boys.
+      <ul>
+        <li>
+          <a href = "pioneers.png">pioneers.png</a>,
+          the original image.
+        </li>
+        <li>
+          <a href = "pioneers_05.png">pioneers_05.png</a>,
+          the image with 5% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "pioneers_10.png">pioneers_10.png</a>,
+          the image with 10% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "pioneers_20.png">pioneers_20.png</a>,
+          the image with 20% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "pioneers_40.png">pioneers_40.png</a>,
+          the image with 40% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "pioneers_60.png">pioneers_60.png</a>,
+          the image with 60% salt and pepper noise.
+        </li>
+        <li>
+          <a href = "pioneers_80.png">pioneers_80.png</a>,
+          the image with 80% salt and pepper noise.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 February 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

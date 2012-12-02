@@ -1,0 +1,412 @@
+<html>
+
+  <head>
+    <title>
+      SVD_BASIS - Extract singular vectors from data 
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SVD_BASIS<br> Extract singular vectors from data 
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SVD_BASIS</b> 
+      is a MATLAB program which 
+      applies the singular value decomposition to
+      a set of data vectors, to extract the leading "modes" of the data.
+    </p>
+
+    <p>
+      This procedure, originally devised by Karl Pearson, has arisen
+      repeatedly in a variety of fields, and hence is known under
+      various names, including:
+      <ul>
+        <li>
+          the Hotelling transform;
+        </li>
+        <li>
+          the discrete Karhunen-Loeve transform (KLT)
+        </li>
+        <li>
+          Principal Component Analysis (PCA)
+        </li>
+        <li>
+          Principal Orthogonal Direction (POD)
+        </li>
+        <li>
+          Proper Orthogonal Decomposition (POD)
+        </li>
+        <li>
+          Singular Value Decomposition (SVD)
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      This program is intended as an intermediate application, in
+      the following situation:
+      <ol>
+        <li>
+          a "high fidelity" or "high resolution" PDE solver is used
+          to determine many (say <b>N</b> = 500) solutions of a discretized
+          PDE at various times, or parameter values.  Each solution 
+          may be regarded as an <b>M</b> vector.  Typically, each solution
+          involves an <b>M</b> by <b>M</b> linear system, greatly reduced in 
+          complexity because of bandedness or sparsity.
+        </li>
+        <li>
+          This program is applied to extract <b>L</b> dominant modes from
+          the <b>N</b> solutions.  This is done using the singular value
+          decomposition of the <b>M</b> by <b>N</b> matrix, each of whose columns
+          is one of the original solution vectors.
+        </li>
+        <li>
+          a "reduced order model" program may then attempt to solve
+          a discretized version of the PDE, using the <b>L</b> dominant
+          modes as basis vectors.  Typically, this means that a dense
+          <b>L</b> by<b>L</b> linear system will be involved.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Thus, the program might read in 500 files, and write out
+      5 or 10 files of the corresponding size and "shape", representing
+      the dominant solution modes.
+    </p>
+
+    <p>
+      The optional normalization step involves computing the average
+      of all the solution vectors and subtracting that average from
+      each solution.  In this case, the average vector is treated as
+      a special "mode 0", and also written out to a file.
+    </p>
+
+    <p>
+      To compute the singular value decomposition, we first construct
+      the <b>M</b> by <b>N</b> matrix <b>A</b> using individual solution vectors
+      as columns:
+      <blockquote><b>
+        A = [ X1 | X2 | ... | XN ]
+      </b></blockquote>
+    </p>
+
+    <p>
+      The singular value decomposition has the form:
+      <blockquote><b>
+        A = U * S * V'
+      </b></blockquote>
+      and is determined using the DGESVD routine from the linear algebra 
+      package <a href = "../../f_src/lapack/lapack.html">LAPACK</a>.
+      The leading <b>L</b> columns of the orthogonal <b>M</b> by <b>M</b> 
+      matrix <b>U</b>, associated with the largest singular values <b>S</b>, 
+      are chosen to form the basis.  
+    </p>
+
+    <p>
+      In most PDE's, the solution vector has some structure; perhaps
+      there are 100 nodes, and at each node the solution has perhaps
+      4 components (horizontal and vertical velocity, pressure, and
+      temperature, say).  While the solution is therefore a vector
+      of length 400, it's more natural to think of it as a sort of
+      table of 100 items, each with 4 components.  You can use that
+      idea to organize your solution data files; in other words, your
+      data files can each have 100 lines, containing 4 values on each line. 
+      As long as every line has the same number of values, and every
+      data file has the same form, the program can figure out what's
+      going on.
+    </p>
+
+    <p>
+      The program assumes that each solution vector is stored in a separate
+      data file and that the files are numbered consecutively, such as
+      <i>data01.txt</i>, <i>data02,txt</i>, ...  In a data file, comments
+      (beginning  with '#") and blank lines are allowed.  Except for 
+      comment lines, each line of the file is assumed to represent all 
+      the component values of the solution at a particular node.
+    </p>
+
+    <p>
+      Here, for instance, is a tiny data file for a problem with just
+      3 nodes, and 4 solution components at each node:
+      <pre>
+      #  This is solution file number 1
+      #
+        1   2   3   4
+        5   6   7   8
+        9  10  11  12
+      </pre>
+    </p>
+
+    <p>
+      The program is interactive, but requires only a very small
+      amount of input:
+      <ul>
+        <li>
+          <b>L</b>, the number of basis vectors to be extracted from the data;
+        </li>
+        <li>
+          the name of the first input data file in the first set.
+        </li>
+        <li>
+          the name of the first input data file in the second set, if any.
+          (you are allowed to define a master data set composed of several
+          groups of files, each consisting of a sequence of consecutive
+          file names)
+        </li>
+        <li>
+          a BLANK line, when there are no more sets of data to be added.
+        </li>
+        <li>
+          "Y" if the vectors should be averaged, the average subtracted
+          from all vectors, and the average written out as an extra
+          "mode 0" vector;
+        </li>
+        <li>
+          "Y" if the output files may include some initial comment lines,
+          which will be indicated by initial "#" characters.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program computes <b>L</b> basis vectors,
+      and writes each one to a separate file, starting with <i>svd_001.txt</i>,
+      <i>svd_002.txt</i> and so on.  The basis vectors are written with the 
+      same component and node structure that was encountered on the 
+      solution files.  Each vector will have unit Euclidean norm.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SVD_BASIS</b> is available in
+      <a href = "../../cpp_src/svd_basis/svd_basis.html">a C++ version</a> and
+      <a href = "../../f_src/svd_basis/svd_basis.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/svd_basis/svd_basis.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/brain_sensor_pod/brain_sensor_pod.html">
+      BRAIN_SENSOR_POD</a>,
+      a MATLAB program which
+      applies the method of Proper Orthogonal Decomposition
+      to seek underlying patterns in sets of 40 sensor readings of
+      brain activity.
+    </p>
+
+    <p>
+      <a href = "../../datasets/burgers/burgers.html">
+      BURGERS</a>, 
+      a dataset which 
+      contains 40 successive
+      solutions to the Burgers equation.  This data can be analyzed
+      using <b>SVD_BASIS</b>.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../f_src/pod_basis_flow/pod_basis_flow.html">
+      POD_BASIS_FLOW</a>,
+      a FORTRAN90 program which
+      is a version of the same algorithm used by
+      SVD_BASIS, but specialized to handle solution data from a 
+      particular set of fluid flow problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/svd_basis_weight/svd_basis_weight.html">
+      SVD_BASIS_WEIGHT</a>,
+      a FORTRAN90 program which 
+      is similar to <b>SVD_BASIS</b>, but which allows the user to
+      assign weights to each data vector.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_demo/svd_demo.html">
+      SVD_DEMO</a>,
+      a MATLAB program which
+      demonstrates the singular value decomposition for a simple example.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_fingerprint/svd_fingerprint.html">
+      SVD_FINGERPRINT</a>,
+      a MATLAB program which
+      reads a file containing a fingerprint image and 
+      uses the Singular Value Decomposition (SVD) to
+      compute and display a series of low rank  approximations to the image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_truncated/svd_truncated.html">
+      SVD_TRUNCATED</a>,
+      a MATLAB program which
+      demonstrates the computation of the reduced or truncated 
+      Singular Value Decomposition (SVD) that is useful for cases when
+      one dimension of the matrix is much smaller than the other.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Anderson, Zhaojun Bai, Christian Bischof, Susan Blackford, 
+          James Demmel, Jack Dongarra, Jeremy Du Croz, Anne Greenbaum, 
+          Sven Hammarling, Alan McKenney, Danny Sorensen,<br>
+          LAPACK User's Guide,<br>
+          Third Edition,<br>
+          SIAM, 1999,<br>
+          ISBN: 0898714478,<br>
+          LC: QA76.73.F25L36
+        </li>
+        <li>
+          Gal Berkooz, Philip Holmes, John Lumley,<br>
+          The proper orthogonal decomposition in the analysis 
+          of turbulent flows,<br>
+          Annual Review of Fluid Mechanics,<br>
+          Volume 25, 1993, pages 539-575.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Hyung-Chun Lee,<br>
+          Centroidal Voronoi Tessellation-Based Reduced-Order
+          Modelling of Complex Systems,<br>
+          SIAM Journal on Scientific Computing,<br>
+          Volume 28, Number 2, 2006, pages 459-484.
+        </li>
+        <li>
+          Lawrence Sirovich,<br>
+          Turbulence and the dynamics of coherent structures, Parts I-III,<br>
+          Quarterly of Applied Mathematics,<br>
+          Volume XLV, Number 3, 1987, pages 561-590.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "svd_basis.m">svd_basis.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The user's input, and the program's output are here:
+      <ul>
+        <li>
+          <a href = "input.txt">input.txt</a>, 
+          five lines of input that define a run.
+        </li>
+        <li>
+          <a href = "output.txt">output.txt</a>, 
+          the printed output.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The input data consists of 5 files:
+      <ul>
+        <li>
+          <a href = "data01.txt">data01.txt</a>, 
+          input data file #1.
+        </li>
+        <li>
+          <a href = "data02.txt">data02.txt</a>, 
+          input data file #2.
+        </li>
+        <li>
+          <a href = "data03.txt">data03.txt</a>, 
+          input data file #3.
+        </li>
+        <li>
+          <a href = "data04.txt">data04.txt</a>, 
+          input data file #4.
+        </li>
+        <li>
+          <a href = "data05.txt">data05.txt</a>, 
+          input data file #5.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The output data consists of 4 files, the first containing the
+      average, and the next three containing the SVD basis vectors:
+      <ul>
+        <li>
+          <a href = "svd_000.txt">svd_000.txt</a>, 
+          output SVD file #0 (contains the average, which was
+          requested by the user in the input file.).
+        </li>
+        <li>
+          <a href = "svd_001.txt">svd_001.txt</a>, 
+          output SVD file #1.
+        </li>
+        <li>
+          <a href = "svd_002.txt">svd_002.txt</a>, 
+          output SVD file #2.
+        </li>
+        <li>
+          <a href = "svd_003.txt">svd_003.txt</a>, 
+          output SVD file #3.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

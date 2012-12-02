@@ -1,0 +1,696 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_CORNER - Handle triangulation corners.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_CORNER <br> Handle triangulation corners.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_CORNER</b> 
+      is a MATLAB program which 
+      tries to correct situations in which a triangulation includes
+      corner triangles, that is, triangles which have two sides on boundary.
+    </p>
+
+    <p>
+      Especially in finite element settings, such a triangle is considered
+      undesirable.  Especially in the case when a linear (order 3) finite
+      element is involved, the function approximation in the interior of
+      the triangle will be entirely determined by boundary data.  If, for
+      instance, the solution is constrained to be zero on the boundary,
+      then the finite element function will be zero throughout the interior
+      of the corner triangle.
+    </p>
+
+    <p>
+      Presumably, the triangle has a neighbor triangle on the one non-boundary
+      side.  It is generally possible and reasonable to replace these two triangles
+      but another two which fill the same quadrilateral, but which are separated
+      by the other diagonal of the quadrilateral.
+    </p>
+
+    <p>
+      The initial situation at the corner is suggest by the following diagram:
+      <pre>
+          |/  |/
+          A---C--
+          |\  |\
+          | \ |
+          |  \|
+          B---D--
+      </pre>
+    <p>
+
+    <p>
+      By rearranging the corner triangle and its neighbor, we have the more 
+      satisfactory triangulation:
+      <pre>
+          |/  |/
+          A---C--
+          |  /|\
+          | / |
+          |/  |
+          B---D--
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_corner</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common filename prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt contains the node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt contains the element definitions.
+        </li>
+        <li>
+          <i>'prefix'</i>_corner_nodes.txt will contain the revised node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_corner_elements.txt  will contain the revised element definitions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_CORNER</b> is available in
+      <a href = "../../cpp_src/triangulation_corner/triangulation_corner.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_corner/triangulation_corner.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_triangulation/cvt_triangulation.html">
+      CVT_TRIANGULATION</a>,
+      a FORTRAN90 program which
+      constructs a CVT triangulation for certain regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which 
+      carries out Persson and Strang's method of mesh generation;
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_triangulate/hex_grid_triangulate.html">
+      HEX_GRID_TRIANGULATE</a>, 
+      a FORTRAN90 program which 
+      computes points on a hexagonal grid inside a number of test regions.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>, 
+      a FORTRAN90 program which
+      reads a file of point coordinates in the TABLE format and writes out
+      the Delaunay triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>, 
+      a MATLAB library which 
+      defines a number of test regions to be triangulated.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 ("linear") or order 6 ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>,
+      a MATLAB program which
+      reads information about a 3-node (linear) triangulation and creates data
+      defining a corresponding 6-node (quadratic) triangulation;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>,
+      a MATLAB program which
+      reads a triangulation and calls
+      a user-supplied routine to consider each triangle for deletion;
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a data directory of examples of TRIANGULATION_ORDER3 files,
+      description of a linear triangulation 
+      of a set of 2D points, using a pair of files to list the node
+      coordinates and the 3 nodes that make up each triangle; 
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a data directory of examples of TRIANGULATION_ORDER6 files,
+      a description of a quadratic triangulation
+      of a set of 2D points, using a pair of files to list the node
+      coordinates and the 6 nodes that make up each triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>,
+      a MATLAB program which 
+      ensures that the triangles in
+      an order 3 or order 6 triangulation have positive orientation;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which 
+      makes a PostScript image of a triangulation of points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>,  
+      a MATLAB program which
+      can refine a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_corner.m">triangulation_corner.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>P03</b> is the square with a hole.  The initial mesh has 1 corner triangle.
+      <ul>
+        <li>
+          <a href = "p03_nodes.txt">p03_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p03_elements.txt">p03_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p03.png">p03.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p02_corner_elements.txt">p02_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p02_corner.png">p02_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P05</b> is the horn.  The initial mesh has 4 corner triangles.
+      <ul>
+        <li>
+          <a href = "p05_nodes.txt">p05_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p05_elements.txt">p05_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p05.png">p05.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p05_corner_elements.txt">p05_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p05_corner.png">p05_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P08</b> is the holey pie slice.  The initial mesh has 2 corner triangles.
+      <ul>
+        <li>
+          <a href = "p08_nodes.txt">p08_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p08_elements.txt">p08_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p08.png">p08.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p08_corner_elements.txt">p08_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p08_corner.png">p08_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P09</b> is Jeff Borggaard's square with two hexagonal holes.  
+       The initial mesh has 3 corner triangles.
+      <ul>
+        <li>
+          <a href = "p09_nodes.txt">p09_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p09_elements.txt">p09_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p09.png">p09.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p09_corner_elements.txt">p09_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p09_corner.png">p09_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P10</b> is the unit square.  The initial mesh has 4 corner triangles.
+      <ul>
+        <li>
+          <a href = "p10_nodes.txt">p10_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p10_elements.txt">p10_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p10.png">p10.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p10_corner_elements.txt">p10_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p10_corner.png">p10_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P11</b> is the L-shaped region.  The initial mesh has 4 corner triangles.
+      <ul>
+        <li>
+          <a href = "p11_nodes.txt">p11_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p11_elements.txt">p11_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p11.png">p11.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p11_corner_elements.txt">p11_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p11_corner.png">p11_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Q11</b> is the L-shaped region, but with quadratric (6 node) triangles.  
+      The initial mesh has 4 corner triangles.  Because we are using quadratic
+      triangles, when we merge two triangles and swap the diagonal, the midside
+      node on the common diagonal will no longer lie on a line, midway between the
+      two vertices.  <b>TRIANGULATION_CORNER</b> assumes this is undesirable,
+      and recomputes the coordinates of such midside nodes, and outputs 
+      a modified node coordinate file as well as the new triangle file.
+      <ul>
+        <li>
+          <a href = "q11_nodes.txt">q11_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "q11_elements.txt">q11_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "q11.png">q11.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "q11_corner_nodes.txt">q11_nodes.corner.txt</a> 
+          the node coordinate file after corner triangles have been repaired,
+          which, for quadratric triangles, requires adjusting some midside nodes.
+        </li>
+        <li>
+          <a href = "q11_corner_elements.txt">q11_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "q11_corner.png">q11_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P12</b> is the John Shadid's H-shaped region.  The initial mesh has 7 corner triangles.
+      <ul>
+        <li>
+          <a href = "p12_nodes.txt">p12_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p12_elements.txt">p12_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p12.png">p12.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p12_corner_elements.txt">p12_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p12_corner.png">p12_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P13</b> is the Sandia fork.  The initial mesh has 6 corner triangles.
+      <ul>
+        <li>
+          <a href = "p13_nodes.txt">p13_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p13_elements.txt">p13_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p13.png">p13.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p13_corner_elements.txt">p13_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p13_corner.png">p13_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P14</b> is Marcus Garvie's Lake Alpha, with Beta Island.  
+      The initial mesh has 5 corner triangles.  (Must be small!)
+      <ul>
+        <li>
+          <a href = "p14_nodes.txt">p14_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p14_elements.txt">p14_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p14.png">p14.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p14_corner_elements.txt">p14_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p14_corner.png">p14_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P15</b> is Sangbum Kim's forward step region.  The initial mesh has 6 corner triangles.
+      <ul>
+        <li>
+          <a href = "p15_nodes.txt">p15_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p15_elements.txt">p15_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p15.png">p15.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p15_corner_elements.txt">p15_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p15_corner.png">p15_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P16</b> is Kevin Pond's elbow, a quarter of a circular annulus.  
+      The initial mesh has 1 corner triangle.
+      <ul>
+        <li>
+          <a href = "p16_nodes.txt">p16_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p16_elements.txt">p16_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p16.png">p16.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p16_corner_elements.txt">p16_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p16_corner.png">p16_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P17</b> is the rectangular channel with a Reuleaux triangle obstacle. 
+      The initial mesh has 4 corner triangles.
+      <ul>
+        <li>
+          <a href = "p17_nodes.txt">p17_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p17_elements.txt">p17_elements.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p17.png">p17.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial mesh.
+        </li>
+        <li>
+          <a href = "p17_corner_elements.txt">p17_corner_elements.txt</a> 
+          the triangle file after corner triangles have been repaired.
+        </li>
+        <li>
+          <a href = "p17_corner.png">p17_corner.png</a> 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the repaired mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

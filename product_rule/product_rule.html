@@ -1,0 +1,374 @@
+<html>
+
+  <head>
+    <title>
+      PRODUCT_RULE - Multidimensional Quadrature Rule Creation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PRODUCT_RULE <br> Multidimensional Quadrature Rule Creation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PRODUCT_RULE</b>
+      is a MATLAB program which
+      creates a multidimensional quadrature rule by using
+      a product of <i>distinct</i> one-dimensional quadrature rules.
+    </p>
+
+    <p>
+      The program reads a single input file, which contains a list
+      that defines the 1D rules to be used as factors.
+    </p>
+
+    <p>
+      Each 1D rule is stored in three files, an "X", "W", and "R" file,
+      which are assumed to share a common filename prefix, so that
+      the files defined by a given <i>prefix</i> have the form:
+      <ul>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      For instance, let us suppose we want to compute a 2D product rule
+      formed from a 3 point Clenshaw Curtis rule and a 2 point
+      Gauss-Legendre rule.  If the prefixes for these files were
+      "cc_d1_o003" and "gl_d1_o002" respectively, then the input
+      file to the program would read as follows:
+      <pre>
+        cc_d1_o003
+        gl_d1_o002
+      </pre>
+      When the program read the first 1D rule, it would be searching for
+      three files:
+      <ul>
+        <li>
+          <b>cc_d1_o003_x.txt</b>
+        </li>
+        <li>
+          <b>cc_d1_o003_w.txt</b>
+        </li>
+        <li>
+          <b>cc_d1_o003_r.txt</b>
+        </li>
+      </ul>
+      and similarly for the second file.
+    </p>
+
+    <p>
+      Once the program has computed the multidimensional product rule,
+      it again writes out three files describing the product rule,
+      with a common filename prefix specified by the user, which
+      might be, for instance, <i>product</i>, in which case the files
+      would be:
+      <ul>
+        <li>
+          <b>product_x.txt</b>
+        </li>
+        <li>
+          <b>product_w.txt</b>
+        </li>
+        <li>
+          <b>product_r.txt</b>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      For information on the form of these files, see the
+      <b>QUADRATURE_RULES</b> directory listed below.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>product_rule</b> ( <i>list_file</i>, <i>product_prefix</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>list_file</i> is the name of the file containing the list of filename
+          prefixes that can be used to locate the X, W and R files
+          of each 1D quadrature rule.
+        </li>
+        <li>
+          <i>product_prefix</i> is the prefix to be used when writing out the X, W and R
+          files of the computed multidimensional product rule.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PRODUCT_RULE</b> is available in
+      <a href = "../../cpp_src/product_rule/product_rule.html">a C++ version</a> and
+      <a href = "../../f_src/product_rule/product_rule.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/product_rule/product_rule.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/integral_test/integral_test.html">
+      INTEGRAL_TEST</a>,
+      a FORTRAN90 program which
+      uses some of these test integrals to evaluate sets of quadrature points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>,
+      a MATLAB program which
+      can test a quadrature rule for polynomial exactness.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>,
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>,
+      a MATLAB library which
+      numerically estimates integrals in multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/power_rule/power_rule.html">
+      POWER_RULE</a>,
+      a MATLAB program which
+      constructs a power rule, that is, a product quadrature rule 
+      from <i>identical</i> 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>,
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over various 1D intervals or multidimensional hypercubes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_test/quadrature_test.html">
+      QUADRATURE_TEST</a>,
+      a MATLAB program which
+      reads the definition of a
+      multidimensional quadrature rule from three files, applies
+      the rule to a number of test integrals, and prints the
+      results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules on a
+      variety of intervals with different weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      contains quadrature
+      rules for a variety of unusual areas, surfaces and volumes in 2D,
+      3D and N-dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_nint/test_nint.html">
+      TEST_NINT</a>,
+      a MATLAB library which
+      defines integrand functions for testing
+      multidimensional quadrature routines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/testpack/testpack.html">
+      TESTPACK</a>,
+      a MATLAB library which
+      defines a set of integrands used to test multidimensional quadrature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "product_rule.m">product_rule.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      As an example, we make a 2D product rule.
+    </p>
+
+    <p>
+      The first factor is a 1D Clenshaw Curtis rule of order 3:
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o003_x.txt">
+          cc_d1_o003_x.txt</a>,
+          the abscissas of a 1D Clenshaw Curtis rule of order 3.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o003_w.txt">
+          cc_d1_o003_w.txt</a>,
+          the weights of a 1D Clenshaw Curtis rule of order 3.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o003_r.txt">
+          cc_d1_o003_r.txt</a>,
+          defines the range of the region.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The second factor is a 1D Gauss Legendre rule of order 2:
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o002_x.txt">
+          gl_d1_o002_x.txt</a>,
+          the abscissas of a 1D Clenshaw Curtis rule of order 2.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o002_w.txt">
+          gl_d1_o002_w.txt</a>,
+          the weights of a 1D Clenshaw Curtis rule of order 2.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o002_r.txt">
+          gl_d1_o002_r.txt</a>,
+          defines the range of the region.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      We give the command
+      <blockquote>
+        <b>product_rule</b> factors.txt
+      </blockquote>
+      <ul>
+        <li>
+          <a href = "factors.txt">
+          factors.txt</a>,
+          a file containing the list of factors.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The resulting product rule files:
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ccgl_d2_o006_x.txt">
+          ccgl_d2_o006_x.txt</a>,
+          the abscissas of a 2D Clenshaw Curtis product rule of order 6.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ccgl_d2_o006_w.txt">
+          ccgl_d2_o006_w.txt</a>,
+          the weights of a 2D Clenshaw Curtis product rule of order 6.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ccgl_d2_o006_r.txt">
+          ccgl_d2_o006_r.txt</a>,
+          defines the range of the product region.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

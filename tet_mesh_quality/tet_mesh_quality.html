@@ -1,0 +1,322 @@
+<html>
+
+  <head>
+    <title>
+      TET_MESH_QUALITY - Tet mesh Quality Measures
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TET_MESH_QUALITY <br>
+      Interactive Program for <br>
+      Tet Mesh Quality
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TET_MESH_QUALITY</b>
+      is a MATLAB program which
+      computes and prints a variety of quality measures for a given tet mesh of a set of
+      points in 3D.
+    </p>
+
+    <p>
+      The tet mesh is defined by a <i>node file</i> containing
+      the coordinates of nodes, and a <i>tetra file</i> containing
+      quadruples of node indices.  For more information on this format,
+      see
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      order 4 Tet Mesh format</a>.
+    </p>
+
+    <p>
+      The quality measures computed include:
+      <ul>
+        <li>
+          <b>Measure 1</b>, the minimum, over all tetrahedrons, of 3 times
+          the radius of the insphere divided by the radius of the circumsphere.
+        </li>
+        <li>
+          <b>Measure 2</b>, the minimum, over all tetrahedrons, of 2 times
+          sqrt ( 6 ) times the radius of the insphere divided by the
+          length of the longest side of the tetrahedron.
+        </li>
+        <li>
+          <b>Measure 3</b>, the minimum, over all tetrahedrons, of
+          12 * ( 3 * volume )**(2/3) / (sum of squares of edge lengths);
+        </li>
+        <li>
+          <b>Measure 4</b>, the minimum solid angle in any tetrahedron;
+        </li>
+        <li>
+          <b>Measure 5</b>, a uniformity measure, the ratio of the
+          maximum to minimum tetrahedron volume;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Each quality measure is defined as the minimum of its value
+      over each tetrahedron.  The maximum and best possible value is 1, and
+      the minimum and worst value is 0.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tet_mesh_quality</b> <i>'prefix'</i>
+      </blockquote>
+      where <i>'prefix'</i> is the common file prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i><b>_nodes.txt</b>,    the node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_elements.txt</b>,    the element definitions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TET_MESH_QUALITY</b> is available in
+      <a href = "../../cpp_src/tet_mesh_quality/tet_mesh_quality.html">a C++ version</a> and
+      <a href = "../../f_src/tet_mesh_quality/tet_mesh_quality.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tet_mesh_quality/tet_mesh_quality.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_tet_mesh/cvt_tet_mesh.html">
+      CVT_TET_MESH</a>,
+      a FORTRAN90 library which
+      uses CVT methods to compute a tet mesh in a region.
+    </p>
+
+    <p>
+      <a href = "../../f_src/geompack3/geompack3.html">
+      GEOMPACK3</a>,
+      a FORTRAN90 library which
+      includes a routine <b>DTRIS3</b> to compute the tet mesh of a set
+      of points in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_quality/table_quality.html">
+      TABLE_QUALITY</a>,
+      a MATLAB program which
+      computes quality measures for
+      an arbitrary (untriangulated) pointset in any dimension.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_tet_mesh/table_tet_mesh.html">
+      TABLE_TET_MESH</a>,
+      a FORTRAN90 program which
+      computes the
+      tet mesh of a set of points in 3D.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_tet_mesh/test_tet_mesh.html">
+      TEST_TET_MESH</a>,
+      a FORTRAN90 library which
+      defines a few test regions for the
+      generation of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      carries out computations involving
+      a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_boundary/tet_mesh_boundary.html">
+      TET_MESH_BOUNDARY</a>,
+      a MATLAB program which
+      returns the nodes and faces of the boundary of a tetrahedral mesh,
+      which themselves form a 3D triangular mesh or "TRI_SURFACE".
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads a tet mesh and displays the
+      nodes and edges using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_l2q/tet_mesh_l2q.html">
+      TET_MESH_L2Q</a>,
+      a MATLAB program which
+      converts a linear to quadratic tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_neighbors/tet_mesh_neighbors.html">
+      TET_MESH_NEIGHBORS</a>,
+      a MATLAB program which
+      computes the tetrahedral adjacency information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_q2l/tet_mesh_q2l.html">
+      TET_MESH_Q2L</a>,
+      a MATLAB program which
+      converts a quadratic to linear tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_rcm/tet_mesh_rcm.html">
+      TET_MESH_RCM</a>,
+      a MATLAB program which
+      takes a tet mesh and
+      relabels the nodes to reduce the bandwidth of the
+      corresponding adjacency matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_refine/tet_mesh_refine.html">
+      TET_MESH_REFINE</a>,
+      a MATLAB program which
+      can refine a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_volumes/tet_mesh_volumes.html">
+      TET_MESH_VOLUMES</a>,
+      a MATLAB program which
+      computes the volume of each tetrahedron in a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>,
+      a MATLAB program which
+      computes triangle-based quality
+      measures for a triangulation of a set of points in 2D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          ISBN: 0-521-79309-2,<br>
+          LC: QA377.E36.
+        </li>
+        <li>
+          David Field,<br>
+          Qualitative Measures for Initial Meshes,<br>
+          International Journal of Numerical Methods in Engineering,<br>
+          Volume 47, 2000, pages 887-906.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, 1991, pages 325-331.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tet_mesh_quality.m">tet_mesh_quality.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Tests and Examples
+    </h3>
+
+    <p>
+      <b>CUBE</b> is a simple example of 8 nodes in a cube.
+      <ul>
+        <li>
+          <a href = "cube_nodes.txt">cube_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "cube_elements.txt">cube_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "cube_quality.txt">cube_quality.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

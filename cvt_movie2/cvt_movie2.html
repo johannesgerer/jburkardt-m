@@ -1,0 +1,511 @@
+<html>
+
+  <head>
+    <title>
+      CVT_MOVIE2 - Animated CVT Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_MOVIE2 <br> Animated CVT Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_MOVIE2</b> 
+      is a MATLAB program which 
+      animates
+      the generation of a Centroidal Voronoi Tessellation (CVT) dataset.
+    </p>
+
+    <p>
+      The program proceeds to create a series of PNG files, each
+      containing one frame of the animation.  It is possible to
+      create an animation by using software such as Apple QuickTime.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>cvt_movie2</b> ( <i>n</i>, <i>sample_num</i>, <i>frame_num</i>, <i>rebirths</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> is the number of points to generate;
+          the default is <b>N</b> = 100.
+        </li>
+        <li>
+          <i>sample_num</i> is the number of sampling points:
+          the default is <b>SAMPLE_NUM</b> = 100,000.
+        </li>
+        <li>
+          <i>frame_num</i> is the number of frames to create.
+          the default is <b>FRAME_NUM</b> = 30.
+        </li>
+        <li>
+          <i>rebirths</i> set NONZERO if the program is to randomly
+          "kill" one generator on each step and create a new one.
+          the default is <b>REBIRTHS</b> = 1.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Animation:
+    </h3>
+
+    <p>
+      You can <a href = "show_cvt_movie2_mp4.html">
+      see an MP4 animation</a> (no "rebirths").
+    </p>
+
+    <p>
+      You can <a href = "show_cvt_movie2_mov.html">
+      see an MOV animation</a> (with "rebirths").
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt_movie/cvt_movie.html">
+      CVT_MOVIE</a>, 
+      a MATLAB program which
+      creates an animation of the evolution of a CVT;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_movie3/cvt_movie3.html">
+      CVT_MOVIE3</a>, 
+      a MATLAB program which
+      creates a CVT movie in a region of unusual shape;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_movie4/cvt_movie4.html">
+      CVT_MOVIE4</a>, 
+      a MATLAB program which
+      creates a CVT movie in a square, with a density function
+      that drives points to the corners;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_movie5/cvt_movie5.html">
+      CVT_MOVIE5</a>, 
+      a MATLAB program which 
+      repeats <b>cvt_movie3</b>, but with hexagonal
+      grid initialization, fixed points, and boundary projection;
+    </p>
+
+    <p>
+      <a href = "../../f_src/cvt_movie5_data/cvt_movie5_data.html">
+      CVT_MOVIE5_DATA</a>,
+      a FORTRAN90 program which 
+      creates and saves data of a
+      CVT iteration, for use in a movie;
+    </p>
+
+    <p>
+      <a href = "../../m_src/file_name_sequence/file_name_sequence.html">
+      FILE_NAME_SEQUENCE</a>,
+      a MATLAB program which
+      demonstrates four ways to generate a sequence of filenames.
+    </p>
+
+    <p>
+      <a href = "../../data/mpg/mpg.html">
+      MP4</a>,
+      a data format which
+      was used for the animation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/peak_movie/peak_movie.html">
+      PEAK_MOVIE</a>,
+      a MATLAB program which
+      creates the pieces of an animation, one frame at a time.
+      Each frame is independently created and saved as a JPEG file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          Qiang Du, Vance Faber and Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review, Volume 41, 1999, pages 637-676.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cvt_movie2.m">cvt_movie2.m</a> 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      Here are the sequence of 100 PNG files created by a run of the program.
+      Here we forced all the points to start initially in a small area
+      near (0.25,0.50).  Notice how the pattern first expands slowly, then
+      adjusts to the constant random "rebirth" of one point every step.
+      <ul>
+        <li>
+          <a href = "cvt_movie2_0001.png">cvt_movie2_0001.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0002.png">cvt_movie2_0002.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0003.png">cvt_movie2_0003.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0004.png">cvt_movie2_0004.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0005.png">cvt_movie2_0005.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0006.png">cvt_movie2_0006.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0007.png">cvt_movie2_0007.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0008.png">cvt_movie2_0008.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0009.png">cvt_movie2_0009.png</a> .
+        </li>
+
+        <li>
+          <a href = "cvt_movie2_0010.png">cvt_movie2_0010.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0011.png">cvt_movie2_0011.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0012.png">cvt_movie2_0012.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0013.png">cvt_movie2_0013.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0014.png">cvt_movie2_0014.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0015.png">cvt_movie2_0015.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0016.png">cvt_movie2_0016.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0017.png">cvt_movie2_0017.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0018.png">cvt_movie2_0018.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0019.png">cvt_movie2_0019.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0020.png">cvt_movie2_0020.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0021.png">cvt_movie2_0021.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0022.png">cvt_movie2_0022.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0023.png">cvt_movie2_0023.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0024.png">cvt_movie2_0024.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0025.png">cvt_movie2_0025.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0026.png">cvt_movie2_0026.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0027.png">cvt_movie2_0027.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0028.png">cvt_movie2_0028.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0029.png">cvt_movie2_0029.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0030.png">cvt_movie2_0030.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0031.png">cvt_movie2_0031.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0032.png">cvt_movie2_0032.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0033.png">cvt_movie2_0033.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0034.png">cvt_movie2_0034.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0035.png">cvt_movie2_0035.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0036.png">cvt_movie2_0036.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0037.png">cvt_movie2_0037.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0038.png">cvt_movie2_0038.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0039.png">cvt_movie2_0039.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0040.png">cvt_movie2_0040.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0041.png">cvt_movie2_0041.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0042.png">cvt_movie2_0042.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0043.png">cvt_movie2_0043.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0044.png">cvt_movie2_0044.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0045.png">cvt_movie2_0045.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0046.png">cvt_movie2_0046.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0047.png">cvt_movie2_0047.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0048.png">cvt_movie2_0048.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0049.png">cvt_movie2_0049.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0050.png">cvt_movie2_0050.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0051.png">cvt_movie2_0051.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0052.png">cvt_movie2_0052.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0053.png">cvt_movie2_0053.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0054.png">cvt_movie2_0054.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0055.png">cvt_movie2_0055.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0056.png">cvt_movie2_0056.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0057.png">cvt_movie2_0057.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0058.png">cvt_movie2_0058.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0059.png">cvt_movie2_0059.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0060.png">cvt_movie2_0060.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0061.png">cvt_movie2_0061.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0062.png">cvt_movie2_0062.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0063.png">cvt_movie2_0063.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0064.png">cvt_movie2_0064.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0065.png">cvt_movie2_0065.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0066.png">cvt_movie2_0066.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0067.png">cvt_movie2_0067.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0068.png">cvt_movie2_0068.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0069.png">cvt_movie2_0069.png</a> .
+        </li>
+       <li>
+          <a href = "cvt_movie2_0070.png">cvt_movie2_0070.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0071.png">cvt_movie2_0071.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0072.png">cvt_movie2_0072.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0073.png">cvt_movie2_0073.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0074.png">cvt_movie2_0074.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0075.png">cvt_movie2_0075.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0076.png">cvt_movie2_0076.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0077.png">cvt_movie2_0077.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0078.png">cvt_movie2_0078.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0079.png">cvt_movie2_0079.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0080.png">cvt_movie2_0080.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0081.png">cvt_movie2_0081.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0082.png">cvt_movie2_0082.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0083.png">cvt_movie2_0083.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0084.png">cvt_movie2_0084.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0085.png">cvt_movie2_0085.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0086.png">cvt_movie2_0086.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0087.png">cvt_movie2_0087.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0088.png">cvt_movie2_0088.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0089.png">cvt_movie2_0089.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0090.png">cvt_movie2_0090.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0091.png">cvt_movie2_0091.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0092.png">cvt_movie2_0092.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0093.png">cvt_movie2_0093.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0094.png">cvt_movie2_0094.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0095.png">cvt_movie2_0095.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0096.png">cvt_movie2_0096.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0097.png">cvt_movie2_0097.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0098.png">cvt_movie2_0098.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0099.png">cvt_movie2_0099.png</a> .
+        </li>
+        <li>
+          <a href = "cvt_movie2_0100.png">cvt_movie2_0100.png</a> .
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 October 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,274 @@
+<html>
+
+  <head>
+    <title>
+      HIGH_CARD_PARFOR - Estimate High Card Statistics in Parallel
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HIGH_CARD_PARFOR <br>
+      Estimate High Card Statistics in Parallel
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HIGH_CARD_PARFOR</b>
+      is a MATLAB directory which
+      uses the parfor statement to compute in parallel the statistics for
+      a card game in which you are required to guess the location of the
+      highest card.
+    </p>
+
+    <p>
+      The rules for this game are as follows.  You are given a deck of DECK_SIZE cards.
+    </p>
+
+    <p>
+      Your goal is to select the high card.  For convenience, we can assume 
+      the cards are a permutation of the integers from 1 to DECK_SIZE, but in
+      fact the user mustn't see such values or else it's obvious which is the
+      largest card.  (For a truly difficult problem, we'd have to work harder
+      to disguise the range of values and the likely distribution!)
+    </p>
+
+    <p>
+      Your choice is made under the following rules:  You may turn over
+      one card at a time.  When a card is turned over, you may declare that to be
+      your choice, or else turn over another card.  If you have not chosen a card
+      by the end, then your choice is the final card.
+    </p>
+
+    <p>
+      If you have no idea what to do, and simply decide in advance to pick
+      a card "at random", that is, for example, you decide to pick the 15th card
+      before having seen any cards, then your probability of winning is 1/DECK_SIZE.
+    </p>
+
+    <p>
+      The question is, can you do better than that?
+    </p>
+
+    <p>
+      A good strategy is as follows: always look at the first SKIP_NUM cards without
+      choosing them.  Then choose the very next card you encounter that is larger
+      than the cards you skipped.
+    </p>
+
+    <p>
+      Now the question is, is there an optimal value of SKIP_NUM for a given DECK_SIZE?
+      One way to find an approximate answer is to choose DECK_SIZE, and then, for
+      each value of SKIP_NUM, play 1000 games, and keep track of how often you are right.
+    </p>
+
+    <p>
+      This program demonstrates how such a computation can be done in parallel
+      using the PARFOR command.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate_parfor/heated_plate_parfor.html">
+      HEATED_PLATE_PARFOR</a>,
+      a MATLAB program which
+      solves the steady (time independent) heat equation in a 2D
+      rectangular region, using MATLAB's parfor facility to run in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hello_parfor/hello_parfor.html">
+      HELLO_PARFOR</a>,
+      a MATLAB program which
+      prints out "Hello, world!" multiple times, using MATLAB's parfor command
+      for parallel execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_parfor/matrix_assemble_parfor.html">
+      MATRIX_ASSEMBLE_PARFOR</a>,
+      a MATLAB program which
+      demonstrates the parfor parallel programming 
+      feature by assembling the Hilbert matrix in a parallel loop.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_parfor/sparse_parfor.html">
+      SPARSE_PARFOR</a>,
+      a MATLAB library which
+      demonstrates how a sparse matrix can be constructed by
+      evaluating individual blocks in parallel with the <b>parfor</b>
+      command, and then assembled (on a single processor) using the 
+      <b>sparse()</b> command.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "high_card_fun.m">high_card_fun.m</a>,
+          the function which performs the computations.
+        </li>
+        <li>
+          <a href = "high_card_display.m">high_card_display.m</a>,
+          displays the statistics once they are computed.
+        </li>
+        <li>
+          <a href = "high_card.png">high_card.png</a>,
+          is a plot of the statistics for a game with 100 cards, estimated
+          from 1,000 trials for each value of SKIP_NUM.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>HIGH_CARD_POOL</b> executes the function locally and interactively.
+      <ul>
+        <li>
+          <a href = "high_card_pool.m">high_card_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function
+          locally and interactively.
+        </li>
+        <li>
+          <a href = "high_card_pool_output.txt">high_card_pool_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>HIGH_CARD_BATCH</b> executes the function locally and noninteractively.
+      <ul>
+        <li>
+          <a href = "high_card_script.m">high_card_script.m</a>
+          a script which calls the function, necessary for the BATCH command.
+        </li>
+        <li>
+          <a href = "high_card_batch_local.m">high_card_batch_local.m</a>
+          a script which uses the BATCH command to run the function indirectly
+          and locally.
+        </li>
+        <li>
+          <a href = "high_card_batch_local_output.txt">high_card_batch_local_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>HIGH_CARD_FSU</b> executes the function on the FSU HPC cluster, noninteractively.
+      <ul>
+        <li>
+          <a href = "high_card_fsu.m">high_card_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 May 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

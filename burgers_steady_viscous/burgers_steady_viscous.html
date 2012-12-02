@@ -1,0 +1,303 @@
+<html>
+
+  <head>
+    <title>
+      BURGERS_STEADY_VISCOUS - Steady Viscous Burgers Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BURGERS_STEADY_VISCOUS <br> 
+      Steady Viscous Burgers Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BURGERS_STEADY_VISCOUS</b> is a MATLAB library which
+      solves the steady (time-independent) viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation, and then applying Newton's method to solve the
+      resulting nonlinear system.
+    </p>
+
+    <p>
+      The function u(x) is to be solved for in the equation:
+      <blockquote>
+        u * du/dx = nu * d^2u/dx^2
+      </blockquote>
+      for 0 &lt; nu, a &lt;= x &lt;= b.
+    </p>
+
+    <p>
+      Problem data includes the endpoints a and b, the Dirichlet boundary values
+      u(a) = alpha, u(b) = beta, and the value of the viscosity nu.  
+    </p>
+
+    <p>
+      We can discretize the problem by specifying a sequence of n (perhaps equally
+      spaced) points x, and applying standard finite difference approximations
+      to the derivatives in the continuous equation.  A piecewise linear discretization 
+      of the solution can then be computed by bsv().
+    </p>
+
+    <p>
+      When alpha and beta have opposite sign, the solution must cross the
+      x-axis (at least once).  The location x0 of this crossing is of interest,
+      and can be computed by bsv_crossing().
+    </p>
+
+    <p>
+      The crossing location may be quite susceptible to the values of alpha and beta.
+    </p>
+
+    <p>
+      The conservative form of the equation is
+      <blockquote>
+        1/2 * d(u^2)/dx = nu * d^2u/dx^2
+      </blockquote>
+      and this is the version we discretize.  The residual associated with node i
+      is then
+      <blockquote>
+        f(i) = 1/2 * ( u(i+1)^2 - u(i-1)^2 / ( 2 * dx )
+        - nu * ( u(i-1) - 2 * u(i) + u(i+1) ) / dx^2
+      </blockquote>
+      and we can apply Newton's method to seek a solution u for which f is zero.
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/burgers/burgers.html">
+      BURGERS</a>,
+      a dataset directory which
+      contains some solutions to the viscous Burgers equation.
+    </p>
+
+    <p>
+      <a href = "../../math_src/burgers_characteristics/burgers_characteristics.html">
+      BURGERS_CHARACTERISTICS</a>, 
+      a MATHEMATICA program which
+      solves the time dependent inviscid Burgers equation using the method of characteristics,
+      by Mikel Landajuela.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_solution/burgers_solution.html">
+      BURGERS_SOLUTION</a>,
+      a MATLAB library which
+      evaluates an exact solution of the time-dependent 1D viscous Burgers equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_time_viscous/burgers_time_viscous.html">
+      BURGERS_TIME_VISCOUS</a>,
+      a MATLAB library which
+      solves the time-dependent viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous Burgers equation
+      in one spatial dimension and time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_burgers/pce_burgers.html">
+      PCE_BURGERS</a>,
+      a MATLAB program which
+      defines and solves a version of the time-dependent viscous Burgers equation,
+      with uncertain viscosity, using a polynomial chaos expansion in terms
+      of Hermite polynomials,
+      by Gianluca Iaccarino.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Daniel Zwillinger,<br>
+          Handbook of Differential Equations,<br>
+          Academic Press, 1997,<br>
+          ISBN: 0127843965,<br>
+          LC: QA371.Z88.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bsv.m">bsv.m</a>,
+          applies Newton's method to a discretized steady viscous Burgers equation.
+        </li>
+        <li>
+          <a href = "bsv_crossing.m">bsv_crossing.m</a>,
+          determines a point X0 where a discretized solution satisfies U(X0) = 0.
+        </li>
+        <li>
+          <a href = "bsv_upwind.m">bsv_upwind.m</a>,
+          applies Newton's method to a discretized steady viscous Burgers equation,
+          using upwinding on the flux term.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>,
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bsv_test.m">bsv_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "bsv_test01.m">bsv_test01.m</a>, 
+          runs a simple test with 
+          A = -1, ALPHA = +1, B = +1, BETA = -1, NU = 0.1.
+        </li>
+        <li>
+          <a href = "bsv_test02.m">bsv_test02.m</a>, 
+          runs a simple test with 
+          A = -1, ALPHA = +1, B = +1, BETA = -1,
+          and a range of NU values.
+        </li>
+        <li>
+          <a href = "bsv_test03.m">bsv_test03.m</a>, 
+          runs a simple test with 
+          A = -1, B = +1, BETA = -1, NU = 0.1.
+          and a range of ALPHA values.
+        </li>
+        <li>
+          <a href = "bsv_test04.m">bsv_test04.m</a>, 
+          runs a simple test with 
+          ALPHA = +1, B = +1, BETA = -1, NU = 0.1.
+          and a range of A values.
+        </li>
+        <li>
+          <a href = "bsv_test05.m">bsv_test05.m</a>, 
+          examines the location of the zero-crossing of the solution
+          as ALPHA is varied.
+        </li>
+        <li>
+          <a href = "bsv_test06.m">bsv_test06.m</a>, 
+          estimates the expected value of the zero crossing
+          assuming ALPHA is a Gaussian variable with mean 1 and standard deviation 0.05. 
+        </li>
+        <li>
+          <a href = "bsv_test07.m">bsv_test07.m</a>, 
+          estimates the variance of the zero crossing
+          assuming ALPHA is a Gaussian variable with mean 1 and standard deviation 0.05. 
+        </li>
+        <li>
+          <a href = "bsv_test08.m">bsv_test08.m</a>, 
+          compares BSV and BSV_UPWIND for NU = 0.1 and NU = 0.01.
+        </li>
+        <li>
+          <a href = "bsv_test01.png">bsv_test01.png</a>, 
+          a plot of the solution as displayed by bsv_test01.
+        </li>
+        <li>
+          <a href = "bsv_test02.png">bsv_test02.png</a>, 
+          a plot of the solutions as displayed by bsv_test02.
+        </li>
+        <li>
+          <a href = "bsv_test03.png">bsv_test03.png</a>, 
+          a plot of the solutions as displayed by bsv_test03.
+        </li>
+        <li>
+          <a href = "bsv_test04.png">bsv_test04.png</a>, 
+          a plot of the solutions as displayed by bsv_test04.
+        </li>
+        <li>
+          <a href = "bsv_test05.png">bsv_test05.png</a>, 
+          a plot of the relation between ALPHA and the zero crossing.
+        </li>
+        <li>
+          <a href = "bsv_test08.png">bsv_test08.png</a>, 
+          a plot comparing two runs of BSV and BSV_UPWIND.
+        </li>
+        <li>
+          <a href = "bsv_output.txt">bsv_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tanh_plot.m">tanh_plot.m</a>, 
+          plots a sequence of functions u = tanh(2^j*x/2),
+          scaled to be +1 at x=-1, suggesting the behavior of
+          solutions of Burgers equation.
+        </li>
+        <li>
+          <a href = "tanh_plot.png">tanh_plot.png</a>, 
+          the plot created by tanh_plot.m.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

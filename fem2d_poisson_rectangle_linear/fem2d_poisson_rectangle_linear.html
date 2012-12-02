@@ -1,0 +1,173 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_POISSON_RECTANGLE_LINEAR - Finite Element Solution of the 2D Poisson Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_POISSON_RECTANGLE_LINEAR <br> Finite Element Solution of the 2D Poisson Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_POISSON_RECTANGLE_LINEAR</b>
+      is a MATLAB program which
+      solves the 2D Poisson equation using the finite element method
+      with piecewise linear triangular elements.
+    </p>
+
+    <p>
+      The computational region is a rectangle, with Dirichlet
+      boundary conditions applied along the boundary.  The state variable
+      U(X,Y) is then constrained by:
+      <pre>
+        - ( Uxx + Uyy ) = F(x,y)  in the region
+                 U(x,y) = G(x,y)  on the region boundary
+      </pre>
+    </p>
+
+    <p>
+      The computational region is first covered with an NX by NY
+      rectangular array of points, creating (NX-1)*(NY-1) subrectangles.
+      Each subrectangle is divided into two triangles, creating a total
+      of 2*(NX-1)*(NY-1) geometric "elements".
+    </p>
+
+    <p>
+      We now assume that the unknown function U(x,y) can be represented
+      as a linear combination of the basis functions associated with each
+      node.  For each node I, we determine a basis function PHI(I)(x,y), and
+      evaluate the following finite element integral:
+      <pre>
+        Integral ( Ux(x,y) * PHIx(I)(x,y) + Uy(x,y) * PHIy(I)(x,y) ) =
+        Integral ( F(x,y) * PHI(I)(x,y)
+      </pre>
+      The set of all such equations yields a linear system for the
+      coefficients of the representation of U.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_POISSON_RECTANGLE_LINEAR</b> is available in
+      <a href = "../../c_src/fem2d_poisson/fem2d_poisson.html">a C version</a> and
+      <a href = "../../cpp_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">a C++ version</a> and
+      <a href = "../../f77_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">
+      FEM2D_POISSON_RECTANGLE</a>,
+      a MATLAB program which
+      solves the 2D Poisson equation on a rectangle,
+      using the finite element method,
+      and piecewise quadratic triangular elements.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_poisson_rectangle_linear.m">fem2d_poisson_rectangle_linear.m</a>, the source code;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "rectangle_nodes.txt">rectangle_nodes.txt</a>,
+          the node file;
+        </li>
+        <li>
+          <a href = "rectangle_elements.txt">rectangle_elements.txt</a>,
+          the element file;
+        </li>
+        <li>
+          <a href = "rectangle_solution.txt">rectangle_solution.txt</a>,
+          the value of the solution at each node;
+        </li>
+        <li>
+          <a href = "rectangle_output.txt">rectangle_output.txt</a>,
+          the output file;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 November 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

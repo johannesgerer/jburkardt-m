@@ -1,0 +1,85 @@
+>> filename_sequence
+17-Mar-2010 09:10:18
+
+FILENAME_SEQUENCE:
+  Demonstrate ways of generating a sequence of filenames.
+
+TEST01:
+  FILENAME(I) = PREFIX + NUM2STR(I) + SUFFIX
+  PREFIX = "frad"
+  SUFFIX = ".txt"
+  0 <= I <= 12
+  Numbers do NOT include leading zeros.
+
+     0:  "frad0.txt"
+     1:  "frad1.txt"
+     2:  "frad2.txt"
+     3:  "frad3.txt"
+     4:  "frad4.txt"
+     5:  "frad5.txt"
+     6:  "frad6.txt"
+     7:  "frad7.txt"
+     8:  "frad8.txt"
+     9:  "frad9.txt"
+    10:  "frad10.txt"
+    11:  "frad11.txt"
+    12:  "frad12.txt"
+
+TEST02:
+  FILENAME(I) = SPRINTF ( PREFIX, I, SUFFIX )
+  PREFIX = "fred"
+  SUFFIX = ".txt"
+  0 <= I <= 12
+  Numbers do NOT include leading zeros.
+
+     0:  "fred0.txt"
+     1:  "fred1.txt"
+     2:  "fred2.txt"
+     3:  "fred3.txt"
+     4:  "fred4.txt"
+     5:  "fred5.txt"
+     6:  "fred6.txt"
+     7:  "fred7.txt"
+     8:  "fred8.txt"
+     9:  "fred9.txt"
+    10:  "fred10.txt"
+    11:  "fred11.txt"
+    12:  "fred12.txt"
+
+TEST03:
+  FILENAME(I) = SPRINTF ( PREFIX, I, SUFFIX )
+  PREFIX = "frid"
+  SUFFIX = ".txt"
+  99 <= I <= 105
+  Numbers DO include leading zeros.
+
+    99:  "frid0099.txt"
+   100:  "frid0100.txt"
+   101:  "frid0101.txt"
+   102:  "frid0102.txt"
+   103:  "frid0103.txt"
+   104:  "frid0104.txt"
+   105:  "frid0105.txt"
+
+TEST04:
+  FILENAME(I+1) = FILE_NAME_INC ( FILENAME(I) )
+  First FILENAME = "frodo_01345_lives.txt"
+  Number of filenames = 10
+  Numbers may include leading zeros.
+
+     1:  "frodo_01345_lives.txt"
+     2:  "frodo_01346_lives.txt"
+     3:  "frodo_01347_lives.txt"
+     4:  "frodo_01348_lives.txt"
+     5:  "frodo_01349_lives.txt"
+     6:  "frodo_01350_lives.txt"
+     7:  "frodo_01351_lives.txt"
+     8:  "frodo_01352_lives.txt"
+     9:  "frodo_01353_lives.txt"
+    10:  "frodo_01354_lives.txt"
+
+FILENAME_SEQUENCE:
+  Normal end of execution.
+
+17-Mar-2010 09:10:18
+>> 

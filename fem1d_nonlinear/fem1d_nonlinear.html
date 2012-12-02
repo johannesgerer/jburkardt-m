@@ -1,0 +1,245 @@
+<html>
+
+  <head>
+    <title>
+      FEM1D_NONLINEAR - Finite Element Method for 1D Nonlinear Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM1D_NONLINEAR <br> Finite Element Method for 1D Nonlinear Problem.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM1D_NONLINEAR</b>
+      is a MATLAB program which
+      applies the finite element method to a simple nonlinear
+      boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      The nonlinear boundary problem involves an unknown function <b>u</b> on
+      an interval <b>[a,b]</b>.  Typically, a single boundary condition, either
+      <b>u(a)</b> or <b>u'(a)</b>, is given at the left endpoint, and
+      <b>u(b)</b> or <b>u'(b)</b> at the right endpoint.  The associated differential
+      equation, which must hold in the interior of <b>[a,b]</b>, happens to have
+      the form:
+      <pre>
+        -d/dx ( p(x) du/dx ) + q(x) * u + u * du/dx = f(x)
+      </pre>
+      where <b>p(x)</b>, <b>q(x)</b> and <b>f(x)</b> are given functions.
+    </p>
+
+    <p>
+      The nonlinearity arises because of the term <b>u*du/dx</b>; if this term
+      were not present, standard finite element techniques would allow the system
+      to be set up and solved almost as easily as a linear system of algebraic
+      equations is solved.
+    </p>
+
+    <p>
+      Newton's method, which works well for scalar nonlinear equations, can also
+      be applied to this problem, as long as we are willing to extend our notions
+      of a function and derivative.  We need to imagine our differential equation
+      as a function <b>F(u)</b>:
+      <pre>
+        F(u) = -d/dx ( p(x) du/dx ) + q(x) * u + u * du/dx - f(x)
+      </pre>
+      (with the boundary conditions wrapped in here somewhere as well!)
+      If we differentiate this function, we get a Jacobian operator, which is
+      evaluated at <b>u</b>, and applied to any small increment <b>v</b>.  This equation
+      implicitly describes the tangent plane of solutions near to a given
+      solution <b>u</b>.
+      <pre>
+        J(u,v) = -d/dx ( p(x) dv/dx ) + q(x) * v + u * dv/dx + v * du/dx
+      </pre>
+      Now if we apply the finite element formulation to represent <b>u</b> and
+      <b>v</b> in terms of sums of basis functions, we can set up a linear
+      system, to be evaluated at <b>u</b> and solved for the Newton increment
+      <b>delta_u</b>:
+      <pre>
+        J(u,delta_u) = - F(u)
+      </pre>
+      By using the Newton increment to update <b>u</b> and repeating the process
+      as needed, we can expect to get a good finite element solution of our original
+      nonlinear boundary value problem.
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+   <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM1D_NONLINEAR</b> is available in
+      <a href = "../../cpp_src/fem1d_nonlinear/fem1d_nonlinear.html">a C++ version</a> and
+      <a href = "../../f77_src/fem1d_nonlinear/fem1d_nonlinear.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem1d_nonlinear/fem1d_nonlinear.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_neumann/fem_neumann.html">
+      FEM_NEUMANN</a>,
+      a MATLAB program which
+      sets up a time-dependent reaction-diffusion equation in 1D,
+      with Neumann boundary conditions, 
+      discretized using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../data/fem1d/fem1d.html">
+      FEM1D</a>,
+      a data directory which
+      contains examples of 1D FEM files,
+      three text files that describe a 1D finite element model;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element
+      method to a linear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_adaptive/fem1d_adaptive.html">
+      FEM1D_ADAPTIVE</a>,
+      a MATLAB program which
+      applies the finite
+      element method to a linear two point boundary value problem
+      in a 1D region, using adaptive refinement to improve the solution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_display/fem1d_display.html">
+      FEM1D_DISPLAY</a>,
+      a MATLAB program which
+      reads three files defining a 1D arbitrary degree finite element function,
+      and displays a plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_function_10_display/fem1d_function_10_display.html">
+      FEM1D_FUNCTION_10_DISPLAY</a>,
+      a MATLAB program which
+      reads a prefix defining three finite element data files,
+      reads the data, samples the finite element function, and displays
+      a plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_pmethod/fem1d_pmethod.html">
+      FEM1D_PMETHOD</a>,
+      a MATLAB program which
+      applies the p-method
+      version of the finite element method to a linear
+      two point boundary value problem in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_sample/fem1d_sample.html">
+      FEM1D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of one variable,
+      defined by FEM files,
+      returning interpolated values at the sample points.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_nonlinear.m">fem1d_nonlinear.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "problem1_output.txt">problem1_output.txt</a>,
+          the output from solving problem 1.
+        </li>
+        <li>
+          <a href = "problem2_output.txt">problem2_output.txt</a>,
+          the output from solving problem 2.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

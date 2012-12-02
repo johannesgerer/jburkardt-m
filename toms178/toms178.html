@@ -1,0 +1,273 @@
+<html>
+
+  <head>
+    <title>
+      TOMS178 - Minimization by Hooke-Jeeves Direct Search
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055" >
+
+    <h1 align = "center">
+      TOMS178 <br> Minimization by Hooke-Jeeves Direct Search
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TOMS178</b> 
+      is a MATLAB library which 
+      uses the Hooke-Jeeves direct search algorithm to seek the minimizing 
+      point of a function F(X) of several variables,
+      by Arthur Kaupe.
+    </p>
+
+    <p>
+      The Hooke_Jeeves algorithm does not required the function F(X) to
+      be differentiable.  It does not even require the function to be 
+      continuous, although it should probably only be "weakly discontinuous",
+      like a step function, with finitely many well-separated jumps.  In any
+      case, the algorithm only examines function values, never derivatives,
+      remembers the location of the best value encountered, and seeks to
+      improve this value by a clever pattern search.
+    </p>
+
+    <p>
+      The user supplies a quantity <b>rho</b>, between 0 and 1, which controls 
+      how cautious or daring the search is, as well as a routine to evaluate the
+      function, and a few input parameters.
+    </p>
+
+    <p>
+      A C version of the algorithm, as written by Mark Johnson,
+      is available at
+      <a href = "http://www.netlib.org/opt/hooke.c">
+                 http://www.netlib.org/opt/hooke.c</a>
+    </p>
+
+    <p>
+      Note that <b>fminsearch</b>
+      is a MATLAB built in command
+      which minimizes a scalar function of several variables using the
+      Nelder-Mead algorithm.
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TOMS178</b> is available in
+      <a href = "../../c_src/toms178/toms178.html">a C version</a> and
+      <a href = "../../cpp_src/toms178/toms178.html">a C++ version</a> and
+      <a href = "../../f77_src/toms178/toms178.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/toms178/toms178.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/toms178/toms178.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/compass_search/compass_search.html">
+      COMPASS_SEARCH</a>,
+      a MATLAB library which 
+      seeks the minimizer of a scalar function of several variables
+      using compass search, a direct search algorithm that does not use derivatives.
+    </p>
+
+    <p>
+      <a href = "../../f_src/dqed/dqed.html">
+      DQED</a>,
+      a FORTRAN90 library which
+      solves constrained least squares problems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust region methods.
+    </p>
+
+    <p>
+      <a href = "../../f_src/minpack/minpack.html">
+      MINPACK</a>,
+      a FORTRAN90 library which
+      solves systems of nonlinear equations, or the least squares minimization of the 
+      residual of a set of linear or nonlinear equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of multiple variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../f_src/nl2sol/nl2sol.html">
+      NL2SOL</a>,
+      a FORTRAN90 library which 
+      implements an adaptive nonlinear least-squares algorithm.
+    </p>
+
+    <p>
+      <a href = "../../f_src/praxis/praxis.html">
+      PRAXIS</a>,
+      a FORTRAN90 library which 
+      minimizes a scalar function of several variables, without derivative information.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_nls/test_nls.html">
+      TEST_NLS</a>,
+      a FORTRAN90 library which 
+      defines test problems
+      requiring the least squares minimization of a set of nonlinear functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt/test_opt.html">
+      TEST_OPT</a>,
+      a MATLAB library which 
+      defines test problems
+      requiring the minimization of a scalar function of several variables.
+    </p>
+
+    <p>
+      <a href = "../../f_src/toms611/toms611.html">
+      TOMS611</a>,
+      a FORTRAN90 library which
+      optimizes a scalar functional of multiple variables.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/uncmin/uncmin.html">
+      UNCMIN</a>,
+      a FORTRAN77 library which
+      can be used to seek the minimizer of a scalar functional
+      of multiple variables.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original Algol version by Arthur Kaupe;
+      MATLAB version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          M Bell, Malcolm Pike,<br>
+          Remark on Algorithm 178: Direct Search,<br>
+          Communications of the ACM,<br>
+          Volume 9, Number 9, September 1966, page 684.
+        </li>
+        <li>
+          Robert Hooke, Terry Jeeves,<br>
+          Direct Search Solution of Numerical and Statistical Problems,<br>
+          Journal of the ACM,<br>
+          Volume 8, Number 2, April 1961, pages 212-229.
+        </li>
+        <li>
+          Arthur Kaupe,<br>
+          Algorithm 178:
+          Direct Search,<br>
+          Communications of the ACM,<br>
+          Volume 6, Number 6, June 1963, page 313.
+        </li>
+        <li>
+          FK Tomlin, LB Smith,<br>
+          Remark on Algorithm 178: Direct Search,<br>
+          Communications of the ACM,<br>
+          Volume 12, Number 11, November 1969, page 637-638.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "best_nearby.m">best_nearby.m</a>, 
+          searches nearby points for a lower function value.
+        </li>
+        <li>
+          <a href = "hooke.m">hooke.m</a>,
+          seeks the minimum of a scalar function of several variables using
+          the Hooke-Jeeves algorithm.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          returns the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "toms178_test.m">toms178_test.m</a>, the sample calling program;
+        </li>
+        <li>
+          <a href = "toms178_test01.m">toms178_test01.m</a>, 
+          tests HOOKE on the Rosenbrock function.
+        </li>
+        <li>
+          <a href = "toms178_test02.m">toms178_test02.m</a>,
+          tests HOOKE on the Woods function.
+        </li>
+        <li>
+          <a href = "rosenbrock.m">rosenbrock.m</a>, 
+          evaluates the Rosenbrock function.
+        </li>
+        <li>
+          <a href = "woods.m">woods.m</a>, 
+          evaluates the Woods function.
+        </li>
+        <li>
+          <a href = "toms178_test_output.txt">toms178_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 February 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

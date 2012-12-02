@@ -1,0 +1,213 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_STOKES_SPARSE_SPIRAL - A Sample 2D Flow Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_STOKES_SPARSE_SPIRAL <br> A Sample 2D Flow Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_STOKES_SPARSE_SPIRAL</b> is a square region that is 1 unit wide and 1 unit
+      high.  Zero Dirichlet conditions have been applied on all sides.
+      Normally, this would result in zero flow.  However, the right hand
+      sides of the two momentum equations have been devised to induce
+      a sort of spiral flow (actually, the flow is more like a series
+      of concentric loops).
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      To run the problem directly, you only need the user-supplied routines
+      and the node data in <b>nodes6.txt</b>, and the 
+      element data in <b>triangles6.txt</b>.
+    </p>
+
+    <p>
+      You can run the program with the MATLAB command
+      <pre>
+        fem2d_stokes_sparse ( 'nodes6.txt', 'triangles6.txt' )
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_stokes_sparse/fem2d_stokes_sparse.html">
+      FEM2D_STOKES_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) incompressible Stokes equations
+      on an arbitrary triangulated region,
+      using the finite element method and MATLAB's <b>sparse</b> facility.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      The user-supplied files needed to run the problem include:
+      <ul>
+        <li>
+          <a href = "boundary_type.m">boundary_type.m</a>, 
+          adjusts the program's default assignment of boundary condition types.
+        </li>
+        <li>
+          <a href = "constants.m">constants.m</a>, 
+          sets flow constants, in this case just the kinematic viscosity NU.
+        </li>
+        <li>
+          <a href = "dirichlet_condition.m">dirichlet_condition.m</a>, 
+          evaluates the right hand sides of the Dirichlet boundary conditions.
+        </li>
+        <li>
+          <a href = "neumann_condition.m">neumann_condition.m</a>, 
+          evaluates the right hand sides of the Neumann boundary conditions.
+        </li>
+        <li>
+          <a href = "rhs.m">rhs.m</a>, 
+          evaluates the right hand sides (source terms) of the equations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The printed output from a run is:
+      <ul>
+        <li>
+          <a href = "spiral_output.txt">spiral_output.txt</a>, 
+          output from a run of the program;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The geometry is defined by sets of nodes and triangles.
+      The velocities use the full set of nodes, 
+      and quadratic (6 node) triangles.
+      <ul>
+        <li>
+          <a href = "nodes6.txt">nodes6.txt</a>, 
+          a text file containing the velocity nodes;
+        </li>
+        <li>
+          <a href = "nodes6.png">nodes6.png</a>,
+          a <a href = "../../../data/png/png.html">PNG</a> image of 
+          the velocity nodes;
+        </li>
+        <li>
+          <a href = "triangles6.txt">triangles6.txt</a>, 
+          the quadratic triangulation;
+        </li>
+        <li>
+          <a href = "triangles6.png">triangles6.png</a>,
+          a <a href = "../../../data/png/png.html">PNG</a> image of 
+          the order 6 triangulation;
+        </li> 
+      </ul>
+    </p>
+
+    <p>
+      The pressures are associated with a subset of the nodes
+      called "pressure nodes", and linear (3 node) triangles.  
+      Note that, in the order 3 triangulation, the nodes are renumbered,
+      and do NOT inherit the labels used in the order 6 triangulation.
+      <ul>
+        <li>
+          <a href = "nodes3.txt">nodes3.txt</a>, 
+          a text file containing the pressure nodes;
+        </li>
+        <li>
+          <a href = "nodes3.png">nodes3.png</a>, 
+          a <a href = "../../../data/png/png.html">PNG</a> image of
+          the pressure nodes;
+        </li>
+        <li>
+          <a href = "triangles3.txt">triangles3.txt</a>, 
+          the linear triangulation;
+        </li>
+        <li>
+          <a href = "triangles3.png">triangles3.png</a>, 
+          a <a href = "../../../data/png/png.html">PNG</a> image of
+          the linear triangulation;
+        </li> 
+      </ul>
+    </p>
+
+    <p>
+      The pressures are a scalar quantity associated with the pressure
+      nodes, the velocities are a vector quantity associated with the
+      vector nodes.
+      <ul>
+        <li>
+          <a href = "pressure3.txt">pressure3.txt</a>, 
+          a text file containing the pressure P at each linear node;
+        </li>
+        <li>
+          <a href = "pressure3.png">pressure3.png</a>, 
+          a <a href = "../../../data/png/png.html">PNG</a> image of
+          a contour plot of the pressure, produced by
+          <a href =
+          "../../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+          TRIANGULATION_ORDER3_CONTOUR</a>.
+        </li>
+        <li>
+          <a href = "velocity6.txt">velocity6.txt</a>, 
+          a text file containing the velocity (U,V) at each velocity node;
+        </li>
+        <li>
+          <a href = "velocity6_dir.png">velocity6_dir.png</a>, 
+          a <a href = "../../../data/png/png.html">PNG</a> image of
+          the velocity direction field, created by
+          <a href = "../../../f_src/vector_plot/vector_plot.html">
+          VECTOR_PLOT.</a>
+        </li>
+        <li>
+          <a href = "velocity6_vec.png">velocity6_vec.png</a>, 
+          a <a href = "../../../data/png/png.html">PNG</a> image of
+          the velocity field, created by
+          <a href = "../../../f_src/vector_plot/vector_plot.html">
+          VECTOR_PLOT.</a>
+        </li>
+        <li>
+          <a href = "velocity6_arrows.png">velocity6_arrows.png</a>, 
+          a PNG image of the velocity field, created by
+          <a href = "../../../m_src/velocity_arrows/velocity_arrows.html">
+          VELOCITY_ARROWS.</a>
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

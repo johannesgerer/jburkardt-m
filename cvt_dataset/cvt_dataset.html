@@ -1,0 +1,714 @@
+<html>
+
+  <head>
+    <title>
+      CVT_DATASET - An Interactive Centroidal Voronoi Tessellation Program
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_DATASET <br> Generate CVT Datasets
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_DATASET</b> 
+      is a MATLAB program which 
+      creates a CVT dataset and writes it to a file.
+    </p>
+
+    <p>
+      The program is interactive, and allows the user to choose the parameters
+      that define the dataset.
+    </p>
+
+    <p>
+      Normally, data is computed in the unit hypercube, with uniform
+      density.  However, if you wish to work in a more interesting
+      geometry, or to control the density function, it is necessary
+      to modify the <b>USER</b> routine in the <b>CVT</b> library,
+      and then direct <b>CVT_DATASET</b> to use that routine for
+      initialization and sampling.
+    </p>
+
+    <p>
+      The data that the user may set includes:
+      <ul>
+        <li>
+          <b>DIM_NUM</b>, the spatial dimension,
+        </li>
+        <li>
+          <b>N</b>, the number of points to generate,
+        </li>
+        <li>
+          <b>SEED</b>, a seed to use for random number generation;
+        </li>
+        <li>
+          <b>INIT</b>, initialize the points:
+          <ul>
+            <li>
+              <i>file</i>, by reading data from file;
+            </li>
+            <li>
+              <i>'GRID'</i>, picking points from a grid;
+            </li>
+            <li>
+              <i>'HALTON'</i>, from a Halton sequence;
+            </li>
+            <li>
+              <i>'RANDOM'</i>, using FORTRAN RANDOM function;
+            </li>
+            <li>
+              <i>'UNIFORM'</i>, using a simple uniform RNG;
+            </li>
+            <li>
+              <i>'USER'</i>, by calling the "user" routine;
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>IT_MAX</b>, the maximum number of iterations;
+        </li>
+        <li>
+          <b>IT_FIXED</b>, the number of iterations for which each
+          set of sample points should be used (between 1 and <b>IT_MAX</b>);
+        </li>
+        <li>
+          <b>SAMPLE</b>, how to conduct the sampling:
+          <ul>
+            <li>
+              <i>'GRID'</i>, picking points from a grid;
+            </li>
+            <li>
+              <i>'HALTON'</i>, from a Halton sequence;
+            </li>
+            <li>
+              <i>'RANDOM'</i>, using FORTRAN RANDOM function;
+            </li>
+            <li>
+              <i>'UNIFORM'</i>, using a simple uniform RNG;
+            </li>
+            <li>
+              <i>'USER'</i>, by calling the "user" routine;
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>SAMPLE_NUM</b>, the number of sampling points;
+        </li>
+        <li>
+          <b>BATCH</b>, the number of sampling points to create
+          at one time (between 1 and <b>SAMPLE_NUM</b>);
+        </li>
+        <li>
+          <b>OUTPUT</b>, a file in which to store the data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A "CVT" is a Centroidal Voronoi Tessellation.  Essentially, a
+      CVT is a set of sample points in a (finite) region with the
+      property that each point is the centroid of its Voronoi subregion.
+      A "random" set of sample points will not have this property.
+      However, it is possible to begin with a random set of sample
+      points, and drive it towards a CVT set, by applying an iterative
+      refinement process.
+    </p>
+
+    <p>
+      The generation of a CVT dataset is of necessity more complicated than
+      for a quasirandom sequence.  An iteration is involved, so there
+      must be an initial assignment for the generators, and then a
+      number of iterations.  Moreover, in each iteration, estimates must
+      be made of the volume and location of the Voronoi subregions.  This is
+      typically done by Monte Carlo sampling.  The accuracy of the resulting
+      CVT depends in part on the number of sampling points and the number
+      of iterations taken.  
+    </p>
+
+    <p>
+      A reasonable set of input data might be:
+      <pre>
+        2             <i>spatial dimension is 2</i>
+        10            <i>compute 10 points</i>
+        123456789     <i>seed for random numbers</i>
+        'uniform'     <i>initialize by UNIFORM</i>
+        40            <i>40 iterations</i>
+        0.0           <i>zero tolerance; won't stop early</i>
+        'uniform'     <i>sample using UNIFORM</i>
+        10000         <i>use 10,000 sample points on each iteration</i>
+        1000          <i>create 1,000 sample points at a time</i>
+        -1            <i>stop; don't want to define another set.</i>
+      </pre>
+    </p>
+
+    <p>
+      Once these parameters are set, the program generates the data
+      and writes it to a file.  The user may then specify another set of
+      input data, or terminate the program.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages
+    </h3>
+
+    <p>
+      <b>CVT_DATASET</b> is available in
+      <a href = "../../cpp_src/cvt_dataset/cvt_dataset.html">a C++ version</a> and
+      <a href = "../../f_src/cvt_dataset/cvt_dataset.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/cvt_dataset/cvt_dataset.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ccvt_box/ccvt_box.html">
+      CCVT_BOX</a>,
+      a MATLAB program which
+      constructs a modified CVT in which some points are forced to
+      lie on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ccvt_reflect/ccvt_reflect.html">
+      CCVT_REFLECT</a>,
+      a MATLAB program which
+      tries to construct a modified CVT in which some points are forced to
+      lie on the boundary, using a reflection idea.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      can compute a CVT.
+    </p>
+
+    <p>
+      <a href = "../../datasets/cvt/cvt.html">
+      CVT</a>,
+      a dataset directory which
+      contains a variety of examples of CVT datasets.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_lloyd/cvt_1d_lloyd.html">
+      CVT_1D_LLOYD</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_nonuniform/cvt_1d_nonuniform.html">
+      CVT_1D_NONUNIFORM</a>,
+      a MATLAB program which
+      constructs a CVT in one dimension, under a nonuniform density function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_sampling/cvt_1d_sampling.html">
+      CVT_1D_SAMPLING</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density, 
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_2d_sampling/cvt_2d_sampling.html">
+      CVT_2D_SAMPLING</a>,
+      a MATLAB program which
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the unit square [0,1]x[0,1], under a uniform density,
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_demo/cvt_demo.html">
+      CVT_DEMO</a>,
+      a MATLAB program which
+      is an interactive graphic demonstration of a CVT calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure_dataset/faure_dataset.html">
+      FAURE_DATASET</a>, 
+      a MATLAB program which
+      creates a Faure quasirandom dataset; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_dataset/grid_dataset.html">
+      GRID_DATASET</a>,
+      a MATLAB program which
+      creates a grid sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center_dataset/latin_center_dataset.html">
+      LATIN_CENTER_DATASET</a>, 
+      a MATLAB program which 
+      creates a Latin Center Hypercube dataset; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge_dataset/latin_edge_dataset.html">
+      LATIN_EDGE_DATASET</a>, 
+      a MATLAB program which 
+      creates a Latin Edge Hypercube dataset; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random_dataset/latin_random_dataset.html">
+      LATIN_RANDOM_DATASET</a>, 
+      a MATLAB program which 
+      creates a Latin Random Hypercube dataset; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2_dataset/niederreiter2_dataset.html">
+      NIEDERREITER2_DATASET</a>, 
+      a MATLAB program which
+      creates a Niederreiter quasirandom dataset with base 2; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal_dataset/normal_dataset.html">
+      NORMAL_DATASET</a>,
+      a MATLAB program which 
+      generates a dataset of multivariate normal pseudorandom values and writes them to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol_dataset/sobol_dataset.html">
+      SOBOL_DATASET</a>, 
+      a MATLAB program which 
+      computes a Sobol quasirandom sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform_dataset/uniform_dataset.html">
+      UNIFORM_DATASET</a>,
+      a MATLAB program which 
+      generates a dataset of uniform pseudorandom values and writes them to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput_dataset/van_der_corput_dataset.html">
+      VAN_DER_CORPUT_DATASET</a>,
+      a MATLAB program which 
+      creates a van der Corput quasirandom sequence and writes it to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Janet Peterson, Rebecca Brannon,<br>
+          User Manual and Supporting Information for Library of Codes
+          for Centroidal Voronoi Placement and Associated Zeroth,
+          First, and Second Moment Determination,<br>
+          Sandia National Laboratories Technical Report SAND2002-0099,<br>
+          February 2002.
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, 1999, pages 637-676.
+        </li>
+        <li>
+          Lili Ju, Qiang Du, Max Gunzburger,<br>
+          Probabilistic methods for centroidal Voronoi tessellations
+          and their parallel implementations,<br>
+          Parallel Computing,<br>
+          Volume 28, 2002, pages 1477-1500.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cvt_dataset.m">cvt_dataset.m</a>, 
+          the main program;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>Test 1</b> computes 85 CVT points in 2 dimensions, using uniform
+      initialization, a seed of 123456789, 40 iterations, a zero tolerance,
+      uniform sampling, 10,000 sample points in batches of 1000:
+      <ul>
+        <li>
+          <a href = "input01.txt">input01.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output01.txt">output01.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt01.txt">cvt01.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt01.png">cvt01.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 2</b> repeats test 1, but with 80 iterations:
+      <ul>
+        <li>
+          <a href = "input02.txt">input02.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output02.txt">output02.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt02.txt">cvt02.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt02.png">cvt02.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 3</b> repeats test 1, but with 1,000,000 sample points:
+      <ul>
+        <li>
+          <a href = "input03.txt">input03.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output03.txt">output03.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt03.txt">cvt03.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt03.png">cvt03.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 4</b> repeats test 1, but with Halton sampling:
+      <ul>
+        <li>
+          <a href = "input04.txt">input04.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output04.txt">output04.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt04.txt">cvt04.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt04.png">cvt04.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 5</b> repeats test 1, but with Grid sampling:
+      <ul>
+        <li>
+          <a href = "input05.txt">input05.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output05.txt">output05.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt05.txt">cvt05.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt05.png">cvt05.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 6</b> repeats test 1, but with Random sampling:
+      <ul>
+        <li>
+          <a href = "input06.txt">input06.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output06.txt">output06.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt06.txt">cvt06.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt06.png">cvt06.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 7</b> repeats test 1, but with a seed of 987654321:
+      <ul>
+        <li>
+          <a href = "input07.txt">input07.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output07.txt">output07.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt07.txt">cvt07.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt07.png">cvt07.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 8</b> repeats test 1, but with a batch size of 5:
+      <ul>
+        <li>
+          <a href = "input08.txt">input08.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output08.txt">output08.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt08.txt">cvt08.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt08.png">cvt08.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 9</b> computes 100 CVT points in 3 dimensions, using uniform
+      initialization, a seed of 123456789, 40 iterations, a tolerance 
+      of 0.000001, uniform sampling, 10,000 sample points in batches of 1000:
+      <ul>
+        <li>
+          <a href = "input09.txt">input09.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output09.txt">output09.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt09.txt">cvt09.txt</a>, 
+          the dataset created by the commands;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 10</b> investigates the unstable CVT formed by a Cartesian
+      grid of 100 points in 2D.  Starting from this unstable solution,
+      the iteration proceeds towards a more "hexagonal" pattern :
+      <ul>
+        <li>
+          <a href = "input10.txt">input10.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output10.txt">output10.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt10.txt">cvt10.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt10.png">cvt10.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 11</b> shows how the user may specify the initial point locations
+      in a file.  15 points are specified in 2D:
+      <ul>
+        <li>
+          <a href = "input11.txt">input11.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output11.txt">output11.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "initial11.txt">initial11.txt</a>, 
+          the initial dataset, created by the user;
+        </li>
+        <li>
+          <a href = "initial11.png">initial11.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the initial dataset;
+        </li>
+        <li>
+          <a href = "cvt11.txt">cvt11.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt11.png">cvt11.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 12</b>:
+      <ul>
+        <li>
+          <a href = "input12.txt">input12.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output12.txt">output12.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt12.txt">cvt12.txt</a>, 
+          the dataset created by the commands;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 13</b>:
+      <ul>
+        <li>
+          <a href = "input13.txt">input13.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output13.txt">output13.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt13.txt">cvt13.txt</a>, 
+          the dataset created by the commands;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Test 14</b> shows how the user may refer to the USER routine
+      for a different geometry.  The default USER routine is set up
+      to sample the unit circle in 2D.  100 points are requested:
+      <ul>
+        <li>
+          <a href = "input14.txt">input14.txt</a>, 
+          the input defining the dataset;
+        </li>
+        <li>
+          <a href = "output14.txt">output14.txt</a>, 
+          the printed response to the commands;
+        </li>
+        <li>
+          <a href = "cvt14.txt">cvt14.txt</a>, 
+          the dataset created by the commands;
+        </li>
+        <li>
+          <a href = "cvt14.png">cvt14.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the dataset;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

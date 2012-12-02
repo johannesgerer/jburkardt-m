@@ -1,0 +1,129 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Release notes (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="spinterptool.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Release notes</h1>
+		<h2>V5.1.1</h2>
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>Fixed bug in grid point cropping in <code>spfindopt</code> used to find best optimization start point (added tolerance, fixed indices range).
+			 <li>Fixed non-critical "Out of range value or NaN computed in integer arithmetic" warning occurring occasionally in the dimension-adaptive algorithm (seen in Matlab v7.4.0.287, R2007a).
+		</ul>	
+		<h2>V5.1.0</h2>
+		<h3>New features</h3>
+		<ul>
+		  <li>Added new degree balancing strategy for improved handling of greedy, dimension-adaptive vs. conservative grid refinement. See Advanced Topics, <a href="dimadaptdegree.html">Degree of Dimensional Adaptivity</a> for more information.
+
+		</ul>	
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>Fixed bug in dimension-adaptive spvals algorithm: in rare cases, an incorrect warning message was issued (reported 'no more active indices available' instead of 'maximum number of points reached prior to convergence').
+			 <li>Added warning message when maximum supported depth for Chebyshev grid (level 10) is exceeded.</li>
+		</ul>	
+		<h2>V5.0.0</h2>
+		<h3>New features</h3>
+		<ul>
+		  <li>Added full numerical integration capability for both regular and dimension-adaptive sparse grid interpolants. See Advanced Topics, <a href="integration.html">Integration</a> for more information.
+			<li>Added Gauss-Patterson grid type.
+			<li><code>MaxDepth</code> now also applies to the dimension-adaptive algorithm. If <code>MaxDepth</code> is reached with respect to a coordinate direction, this direction is no longer refined further.
+		</ul>	
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>Fixed bug in dimension-adaptive algorithm: level vector was not reset.
+		</ul>	
+		<h2>V4.0.0</h2>
+		<h3>New features</h3>
+		<ul>
+		  <li>Added efficient optimization algorithms specifically implemented to optimize sparse grid interpolants. See Advanced Topics, <a href="optimization.html">Optimization</a> for more information.
+		</ul>	
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>Modified augmented gradient computation for piecewise linear sparse grids to ensure that the gradient vector is <code>0</code> at an extremum.
+			 <li>Improved allocation of grids points in the dimension-adaptive algorithm when handling very large dimensions <code>d > 100</code>. The maximum problem dimension that can be handled is now <code>d = 65534</code>.
+			 <li>Fixed display of menus on Web page that occurred with Internet Explorer&nbsp;7.
+		</ul>	
+		<h2>V3.5.1</h2>
+		<h3>New features</h3>
+		<ul>
+		  <li>Added support of calling <code>spinterp</code> with the points to evaluate as a single matrix (special thanks to Daniel Harenberg for the suggestion and the provided code).
+		</ul>
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>Fixed bug in gradient computation that caused a wrong scaling of derivatives when range intervals were not equal to one (problem found and solved by Katrin Grau).
+		</ul>	
+		<h2>V3.5.0</h2>
+		<h3>New features</h3>
+		<ul>
+		  <li>Added capability of computing accurate gradient vectors. This can be done when evaluating the interpolant, at a small additional cost. This major enhancement is available for the Clenshaw-Curtis and the Chebyshev sparse grid, for both the regular and the dimension-adaptive algorithms. See Advanced Topics, <a href="derivatives.html">Derivatives</a> for more information.
+		</ul>
+		<h3>Bug fixes</h3>
+		<ul>
+		   <li>It is now possible to evaluate the Chebyshev sparse grid interpolant <b>outside</b> of the box range defined during the call to <code>spvals</code>. This previously caused an error in the <code>barypdstep</code> algorithm. However, doing this is usually not recommended, since, in most cases, the quality of the approximation decreases rapidly outside of the specified box. 
+			 <li>Fixed figure showing piecewise multilinear sparse grid types in the printed documentation (Chebyshev grid figure was shown twice instead).
+			 <li>Fixed dimension-adaptive example in documentation (value for <code>DimadaptDegree</code> argument in call to <code>spset</code> was missing).
+		</ul>	
+		<h2>V3.2.0</h2>
+		<h3>New features</h3>
+		<ul>
+			<li>Construction of hierarchical polynomial sparse grid interpolants using the fast discrete cosine transform. This new algorithm greatly improves the efficiency of the Chebyshev-type sparse grid in lower dimensions and the dimension-adaptive Chebyshev-type sparse grid when just few dimensions are important. See demo <code>timespvalsdct.m</code>.
+			<li>Purging algorithm. Optionally cleans up sparse grid interpolants from less important sub-grids to increase evaluation speed. See <a href="sppurge.html"><code>sppurge</code></a>.
+			<li>Added additional documentation on optimizing the performance of the Sparse Grid Interpolation Toolbox.
+		</ul>
+		<h3>Bug fixes</h3>
+		<ul>
+			<li>Changed warning message that was displayed if the maximum number of points was reached prior to reaching the requested error tolerance when performing a dimension-adaptive interpolant construction with <code>spvals</code>. It now displays the current error estimate and the target error tolerances.
+			<li>The private function <code>spcmpvalsccsp.m</code> was missing the pre-allocation of <code>backvec</code>, causing performance losses.
+		</ul>
+		<h2>V3.0.1 beta</h2>
+    <h3>New features</h3>
+    Compared to the previous major release V2.1.1, the following features have been added:
+    <ul>
+      <li>Polynomial basis functions at the Chebyshev-Gauss-Lobatto sparse grid. Efficient implementation using Barycentric interpolation.
+      <li>Dimension-adaptive algorithm for the treatment of higher-dimensional problems (based on piecewise linear basis functions at the Clenshaw-Curtis grid and based on polynomial basis functions at the Chebyshev-Gauss-Lobatto grid).
+      <li>New data structure to store the interpolant's hierarchical surpluses that is especially efficient in case of higher-dimensional problems.
+      <li>Much improved documentation and extensive demo suite. The documentation now includes Matlab help browser support, HTML documentation of all functions, additional examples, and a help index.
+<!--      <li>Application examples are now also included, such as the optimization of the sparse grid interpolant.-->
+    </ul>
+    <h3>Upgrade issues/backward compatibility</h3>
+    Please note the following minor changes affecting the user interface compared to the previous release V2.1.1:
+    <ul>
+      <li>The toolbox now <b>requires at least Matlab Version 7.0 (R14)</b>, since the toolbox makes heavy use of the integer data formats and integer arithmetic available since this Matlab release.
+      <li>To avoid naming ambiguity/conflicts, the initialization command was renamed from <code>init</code> to <code>spinit</code>.
+      <li>The structure generated by <code>spvals</code> (usually denoted by <code>z</code>) now stores the hierarchical surpluses <code>z.vals</code> in the new, improved sparse data storage format. Therefore, manual accessing of the hierarchical surpluses of the sub-grids has to be done differently. However, the previous behavior of <code>spvals</code> (i.e. in case of d = 2, n = 2, the hierarchical surpluses of the indices sub-grids with multi-index (0,2), (1,1), (0,2) were stored as the (n+1)th element of the cell array <code>z.vals</code>) can be achieved by generating a sparse grid <code>OPTIONS</code> structure with the switch <code>SparseIndices</code> set to 'off' using the <code>spset</code> command.
+    </ul>
+    <h3>Bug fixes</h3>
+    <ul>
+      <li>Version V3.0 beta used a default degree of dimensional adaptivity of 0.5 instead of the value 0.9 mentioned in the documentation. The private subroutine barypdstep.m used a non-initialized double array that caused a severe performance loss. (Fixed)
+      <li>Version V2.1.1 of the toolbox produced a non-critical "structure assignment warning" in Matlab Version 7 R14 SP2 during the call to <code>spvals</code>. (Fixed)
+    </ul>
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="spinterptool.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>
+

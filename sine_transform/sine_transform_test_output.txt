@@ -1,0 +1,123 @@
+>> sine_transform_test
+19-Feb-2012 13:35:13
+
+SINE_TRANSFORM_TEST
+  MATLAB version.
+  Test the SINE_TRANSFORM library.
+
+SINE_TRANSFORM_TEST01:
+  SINE_TRANSFORM_DATA does a sine transform of data
+  defined by a vector.
+
+  Demonstrate that the transform is its own inverse.
+  Let R be a random N vector.
+  Let S be the transform of D.
+  Let T be the transform of E.
+  Then R and T will be equal.
+
+     I      R(I)        S(I)        T(I)
+
+     1    0.218418    1.156669    0.218418
+     2    0.956318    0.701776    0.956318
+     3    0.829509    0.628231    0.829509
+     4    0.561695   -0.162421    0.561695
+     5    0.415307    0.081792    0.415307
+     6    0.066119   -0.381461    0.066119
+     7    0.257578    0.130254    0.257578
+     8    0.109957   -0.452064    0.109957
+     9    0.043829   -0.001092    0.043829
+    10    0.633966    0.001023    0.633966
+
+SINE_TRANSFORM_TEST02:
+  SINE_TRANSFORM_FUNCTION does a sine transform of data
+  defined by a function F(X) evaluated at equally spaced
+  points in an interval [A,B].
+
+  Demonstrate that the transform is its own inverse.
+  Let X(0:N+1) be N+2 equally spaced points in [A,B].
+  Let S be the transform of F(X(1:N)).
+  Let F1 be the linear interpolant of (A,F(A)), (B,F(B)).
+  Let F2 be the transform of S.
+  Then F(X(1:N)) = F1(X(1:N)) + F2(1:N).
+
+     I      X(I)      F(X(I))       S           F1          F2          F1+F2
+
+     0    1.000000    0.950400    0.000000    0.950400    0.000000    0.950400
+     1    1.200000    1.425600   -1.155704    0.855360    0.570240    1.425600
+     2    1.400000    1.747200    4.251083    0.760320    0.986880    1.747200
+     3    1.600000    1.764000   -1.588474    0.665280    1.098720    1.764000
+     4    1.800000    1.370880    0.687471    0.570240    0.800640    1.370880
+     5    2.000000    0.547200   -0.359345    0.475200    0.072000    0.547200
+     6    2.200000   -0.604800    0.199698    0.380160   -0.984960   -0.604800
+     7    2.400000   -1.821600   -0.117457    0.285120   -2.106720   -1.821600
+     8    2.600000   -2.640000    0.065438    0.190080   -2.830080   -2.640000
+     9    2.800000   -2.358720   -0.029885    0.095040   -2.453760   -2.358720
+    10    3.000000    0.000000    0.000000    0.000000    0.000000    0.000000
+
+SINE_TRANSFORM_TEST03:
+  SINE_TRANSFORM_FUNCTION does a sine transform of data
+  defined by a function F(X) evaluated at N equally spaced
+  points in an interval [A,B].
+  SINE_TRANSFORM_INTERPOLANT evaluates the interpolant.
+
+  The interpolant will be 0 at the 0th and (N+1)-th points.
+  It equals the function at points 1 through N.
+  In between, it can approximate smooth functions,
+  and the approximation improves with N.
+
+     I      X(I)      F(X(I))        S(I)
+
+     1    1.300000    1.615680  -134.082993
+     2    1.600000    1.764000   50.925281
+     3    1.900000    1.009800  -17.432578
+     4    2.200000   -0.604800    7.524957
+     5    2.500000   -2.318400   -3.869077
+     6    2.800000   -2.358720    2.158577
+     7    3.100000    2.349000   -1.258899
+     8    3.400000   16.473600    0.704712
+     9    3.700000   46.569600   -0.319850
+
+     I      X            F(X)        FHAT(X)
+
+     1    1.000000    0.950400    0.950400
+     2    1.150000    1.314830    1.281618
+     3    1.300000    1.615680    1.615680
+     4    1.450000    1.785164    1.820661
+     5    1.600000    1.764000    1.764000
+     6    1.750000    1.510523    1.471165
+     7    1.900000    1.009800    1.009800
+     8    2.050000    0.282738    0.328656
+     9    2.200000   -0.604800   -0.604800
+    10    2.350000   -1.532883   -1.589835
+    11    2.500000   -2.318400   -2.318400
+    12    2.650000   -2.705948   -2.629789
+    13    2.800000   -2.358720   -2.358720
+    14    2.950000   -0.849389   -0.961698
+    15    3.100000    2.349000    2.349000
+    16    3.250000    7.872145    8.062100
+    17    3.400000   16.473600   16.473600
+    18    3.550000   29.033885   28.636424
+    19    3.700000   46.569600   46.569600
+    20    3.850000   70.242539   71.465247
+    21    4.000000  101.368800  101.368800
+
+  Function and interpolant plot saved as sine_transform_test03.png
+
+SINE_TRANSFORM_TEST04:
+  SINE_TRANSFORM_FUNCTION does a sine transform of data
+  defined by a function F(X) evaluated at N equally spaced
+  points in an interval [A,B].
+  SINE_TRANSFORM_INTERPOLANT evaluates the interpolant.
+
+  The interpolant will be 0 at the 0th and (N+1)-th points.
+  It equals the function at points 1 through N.
+  In between, it can approximate smooth functions,
+  and the approximation improves with N.
+
+  Function and interpolant plot saved as sine_transform_test04.png
+
+SINE_TRANSFORM_TEST
+  Normal end of execution.
+
+19-Feb-2012 13:35:15
+>> 

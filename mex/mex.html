@@ -1,0 +1,161 @@
+<html>
+
+  <head>
+    <title>
+      MEX - The MATLAB Compiler
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      MEX <br> The MATLAB Compiler
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MEX</b>
+      is the MATLAB compiler, which
+      enables a user to design a MATLAB program which can call
+      a function written in C, C++, FORTRAN77 or FORTRAN90,
+      and to transmit information to and from such functions.
+    </p>
+
+    <p>
+      This facility means a user can design a program that
+      combines features of multiple languages, or takes advantage
+      of the fact that a useful function is already available in
+      source code form.  Also, a user can take advantage of
+      the interactive and graphic features of MATLAB in combination
+      with calculations carried out in a traditional language.
+    </p>
+
+    <p>
+      A particular reason to use MEX occurs when a highly efficient
+      kernel or library has been written in a compilable language, but
+      the user also needs the interactivity, graphics, or other features
+      of MATLAB.  
+    </p>
+
+    <p>
+      The C/C++/F77/F90 function can accept input, return values,
+      and print data.  However, the function needs to communicate with
+      MATLAB according to rules defined by the MEX compiler.  This means
+      that things such as the data types of variables and the specific 
+      form of commands to print data must be handled according to these
+      rules.
+    </p>
+
+    <p>
+      Once the user function has been created, it can be compiled by the
+      command "mex filename".  This will create compiled code that can be
+      called directly by MATLAB.  For instance, the HELLO example includes
+      a short C function called "hello.c".  Issuing the command "mex hello.c"
+      invokes a C compiler that includes the necessary MATLAB libraries,
+      and creates a compiled file called "hello.mexmaci64" (the extension
+      indicates that I have compiled with MEX on a MACintosh computer using
+      64 bit integer addressing).  MATLAB can invoke this compiled function
+      by the command "hello".
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_c/matlab_calls_c.html">
+      MATLAB_CALLS_C</a>,
+      MATLAB programs which
+      illustrate how C functions can be written, compiled, and
+      called from MATLAB using the MEX facility;
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_f77/matlab_calls_f77.html">
+      MATLAB_CALLS_F77</a>,
+      MATLAB programs which
+      illustrate how FORTRAN77 functions can be written, compiled, and
+      called from MATLAB using MATLAB's <b>mex</b> facility;
+    </p>
+
+    <p>
+      <a href = "../../c_src/nsasm/nsasm.html">
+      NSASM</a>,
+      a C library which
+      computes the jacobian matrix associated
+      with a finite element approximation of the incompressible
+      steady (time independent) Navier-Stokes equations in 2D, and to store these as
+      a sparse matrix, by Per-Olof Persson.  It is designed to be compiled
+      with MATLAB's mex compiler and called from a MATLAB
+      main program.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          The MathWorks,<br>
+          MATLAB Compiler User's Guide<br>
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>HELLO</b> is the standard "Hello, world!" example.  It uses a
+      function written in C.
+      <ul>
+        <li>
+          <a href = "hello.c">hello.c</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "hello_test.m">hello_test.m</a>,
+          a MATLAB script that combines the compilation of "hello.c"
+          with an invocation of the "hello" command.
+        </li>
+        <li>
+          <a href = "hello_test_output.txt">hello_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 07 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

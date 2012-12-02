@@ -1,0 +1,380 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_T3_TO_T4 - Convert T3 Mesh to T4 Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_T3_TO_T4 <br> Convert T3 Mesh to T4 Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_T3_TO_T4</b> 
+      is a MATLAB program which 
+      reads information 
+      describing a triangulation of a set of points using 3-node
+      "T3" triangles, and creates a 4-node "T4"
+      triangulation.
+    </p>
+
+    <p>
+      The same number of triangles are used, but each triangle
+      is given one extra node at the centroid.  The coordinates of 
+      these nodes are determined by averaging the coordinates of
+      the vertices of the triangles.
+    </p>
+
+    <p> 
+      The input and output files use the simple 
+      <a href = "../../data/table/table.html">TABLE format</a>;
+      comment lines begin with a "#" character.  Otherwise, each line
+      of the file contains one set of information, either the coordinates
+      of a node (for a node file), or the indices of nodes that make up
+      a triangle, (for a triangle file).
+    </p>
+
+    <p> 
+      The input file <i>prefix</i>_nodes.txt contains the node information
+      for the 3-node triangulation.  Each data line contains the X and 
+      Y coordinates of a single node.
+    </p>
+
+    <p> 
+      The input file <i>prefix</i>_elements.txt contains the triangle information
+      for the 3-node triangulation.  Each line contains the indices of three 
+      nodes that form a triangle, in counterclockwise order.
+    </p>
+
+    <p> 
+      The output file <i>prefix</i>_t4_nodes.txt contains the node information
+      for the 4-node triangulation.  It begins with the node information
+      from <i>prefix</i>_nodes.txt, followed by the coordinates of the new nodes.
+    </p>
+
+    <p> 
+      The output file <i>prefix</i>_t4_triangles.txt contains the triangle 
+      information for the 4-node triangulation.  There are exactly
+      as many triangles as before, but now each triangle uses four nodes.
+      Each line of the file contains the indices of 4 nodes that form the
+      triangle.  The first three indices are the vertices, in counterclockwise 
+      order.  The fourth index is the centroid node..
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_t3_to_t4</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common filename prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt contains the node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt contains the element definitions.
+        </li>
+        <li>
+          <i>'prefix'</i>_t4_nodes.txt is the T4 node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_t4_elements.txt contains the T4 element definitions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_T3_TO_T4</b> is available in
+      <a href = "../../cpp_src/triangulation_t3_to_t4/triangulation_t3_to_t4.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_t3_to_t4/triangulation_t3_to_t4.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_t3_to_t4/triangulation_t3_to_t4.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>, 
+      a MATLAB program which  
+      displays a basis function associated with a 4-node triangle "T3" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t4_display/fem_basis_t4_display.html">
+      FEM_BASIS_T4_DISPLAY</a>, 
+      a MATLAB program which  
+      displays a basis function associated with a 4-node triangle "T4" mesh.
+    </p>
+
+   <p>
+      <a href = "../../f_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>, 
+      a FORTRAN90 program which
+      triangulates nodes whose coordinates are stored in a file.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>,
+      a MATLAB program which
+      reads data defining a 3-node triangulation and refines it to a 6-node
+      triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which 
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order4/triangulation_order4.html">
+      TRIANGULATION_ORDER4</a>, 
+      a directory which
+      contains a description and
+      examples of order 4 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>,
+      a MATLAB program which
+      reads data defining a triangulation and computes a number
+      of quality measures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines an ordering
+      of the nodes that will reduce the bandwidth of the adjacency
+      matrix, and writes the new triangulation information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>,
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars, 
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_t3_to_t4.m">triangulation_t3_to_t4.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>EXAMPLE</b> is a simple set of example data:
+      <ul>
+        <li>
+          <a href = "example_nodes.txt">example_nodes.txt</a>,
+          the nodes for the 3-node triangulation.
+        </li>
+        <li>
+          <a href = "example_nodes.png">example_nodes.png</a>,
+          a PNG image of the nodes.
+        </li>
+        <li>
+          <a href = "example_elements.txt">example_elements.txt</a>,
+          the triangles for the 3-node triangulation.
+        </li>
+        <li>
+          <a href = "example.png">example.png</a>,
+          a PNG image of the elements.
+        </li>
+        <li>
+          <a href = "example_t4_nodes.txt">example_t4_nodes.txt</a>,
+          the nodes for the 4-node triangulation.
+        </li>
+        <li>
+          <a href = "example_t4_nodes.png">example_t4_noes.png</a>,
+          a PNG image of the nodes.
+        </li>
+        <li>
+          <a href = "example_t4_elements.txt">example_t4_elements.txt</a>,
+          the triangles for the 4-node triangulation.
+        </li>
+        <li>
+          <a href = "example_t4.png">examples_t4.png</a>,
+          a PNG image of the elements.
+        </li>
+        <li>
+          <a href = "example_output.txt">example_output.txt</a>
+          the output file.
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

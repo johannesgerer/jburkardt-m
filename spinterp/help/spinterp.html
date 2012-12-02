@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spinterp :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spinterp</h1>
+		  Evaluation of the sparse grid interpolant.
+		<h2>Syntax</h2>
+			<code>IP = spinterp(Z,Y1,...,YD)</code><br>
+			<code>[IP,IPGRAD] = spinterp(Z,Y1,...,YD)</code><br>
+		<h2>Description</b></h2>
+		  <code>IP = spinterp(Z,Y1,...,YD)</code> Computes the interpolated values <code>IP</code> at the point(s) <code>(Y1, ..., YD)</code> over the sparse grid. The input parameters <code>Yi</code> may be double arrays of equal size for vectorized processing. The sparse grid data must be given as a structure <code>Z</code> containing the hierarchical surpluses (computed with <a href="spvals.html"><code>spvals</code></a>).
+		<p>
+		  <code>[IP,IPGRAD] = spinterp(Z,Y1,...,YD)</code> Computes interpolated values <code>IP</code> and derivatives <code>IPGRAD</code> at the specified points. The derivatives are returned as <code>D x 1</code> gradient vectors inside of a cell array that has equal size as the double array <code>IP</code>. See Section <a href="derivatives.html">"Derivatives"</a> for additional information.
+		<p>
+      Two additional options are available with <code>spinterp</code> that are set by adding a field to the structure <code>Z</code>:
+		  <ul>
+		    <li><code>selectOutput [ integer {1} ]</code> Set the output variable number if an interpolant with multiple output variables was constructed with <a href="spvals.html"><code>spvals</code></a>.
+        <li><code>continuousDerivatives [ 'on' | {'off'} ]</code> Enable augmented continuous derivatives for the Clenshaw-Curtis grid.   
+		  </ul>
+					<h2><a name="ex1">Examples</a></h2>
+Assume a sparse grid interpolant of the Matlab <tt>peaks</tt> function has been computed for the domain <tt>[0,2]^2</tt> using the following command:
+         </p><pre class="codeinput">z = spvals(@(x,y) peaks(x,y), 2, [0,2; 0,2]);
+</pre><p>Then, we can evaluate z at a single point, e.g. the point (<tt>0.5, 0.5</tt>), simply like this:
+         </p><pre class="codeinput">ip = spinterp(z, 0.5, 0.5);
+</pre>
+<pre class="codeoutput">ip =
+    0.3754
+</pre><p>If multiple evaluations of the interpolant are required, it is best to use a vectorized call to spinterp for fast processing.
+            For example, to evaluate the interpolant at the full grid <tt>[0,2]x[0,2]</tt> at <tt>50x50</tt> points (equidistant spacing), we can proceed as follows:
+         </p><pre class="codeinput">x = linspace(0,2,50); y = linspace(0,2,50);
+[xmat,ymat] = meshgrid(x,y);
+tic; ip = spinterp(z, xmat, ymat); toc
+</pre><pre class="codeoutput">Elapsed time is 0.202514 seconds.
+</pre><p>Note that the output size of <tt>ip</tt> matches the size of the input matrices:
+         </p><pre class="codeinput">size(xmat)
+size(ip)
+</pre><pre class="codeoutput">ans =
+    50    50
+ans =
+    50    50
+</pre><p>We could visualize the result using the <code>surf</code> command:</p><pre class="codeinput">surf(xmat, ymat, ip);
+axis <span class="string">tight</span>;
+</pre><img vspace="5" hspace="5" src="images/ex_spinterp_01.png">
+		<h2>See Also</h2>
+		  <a href="spvals.html"><code>spvals</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

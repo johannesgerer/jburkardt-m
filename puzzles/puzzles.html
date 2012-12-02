@@ -1,0 +1,278 @@
+<html>
+
+  <head>
+    <title>
+      PUZZLES - MATLAB Programs Useful for Puzzles
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PUZZLES <br> MATLAB Programs Useful for Puzzles
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PUZZLES</b>
+      is a directory of MATLAB programs which
+      were used to solve puzzles.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PUZZLES</b> is available in
+      <a href = "../../f_src/puzzles/puzzles.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/puzzles/puzzles.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../cpp_src/anagram/anagram.html">
+      ANAGRAM</a>,
+      a C++ program which
+      determines anagrams of a string,
+      by James Cherry;
+    </p>
+
+    <p>
+      <a href = "../../c_src/life_opengl/life_opengl.html">
+      LIFE_OPENGL</a>,
+      a C program which
+      uses OpenGL to display the evolution of John Conway's "Game of Life",
+      by Simon Green.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/lights_out_opengl/lights_out_opengl.html">
+      LIGHTS_OUT_OPENGL</a>,
+      a C++ program which
+      sets up a "Lights Out" game and allows the user to solve it,
+      using the OpenGL graphics window.
+    </p>
+
+    <p>
+      <a href = "../../f_src/subanagram/subanagram.html">
+      SUBANAGRAM</a>,
+      a FORTRAN90 program which
+      finds words which are anagrams formed from some of the letters
+      of a given master word.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sudoku/sudoku.html">
+      SUDOKU</a>,
+      a MATLAB library
+      which manipulates and solves Sudoku problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/wordsnake/wordsnake.html">
+      WORDSNAKE</a>,
+      a FORTRAN90 program which
+      rearranges a list of words so that
+      they have maximum overlap;
+    </p>
+
+    <hr>
+
+    <h3 align = "center">
+      CARD GAME PUZZLE
+    </h3>
+
+    <p>
+      You are given a deck of CARD_NUM cards.  (We'll assume CARD_NUM is 100.)
+      </p>
+
+    <p>
+      Your goal is to select the high card.  We can assume the cards are a permutation
+      of the integers from 1 to CARD_NUM.
+    </p>
+
+    <p>
+      However, your choice is made under the following rules:  You may turn over
+      one card at a time.  When a card is turned over, you may declare that to be
+      your choice, or else turn over another card.  If you have not chosen a card
+      by the end, then your choice is the final card.
+    </p>
+
+    <p>
+      If you have no idea what to do, and simply decide in advance to pick
+      a card "at random", that is, for example, you decide to pick the 15th card
+      before having seen any cards, then your probability of winning is 1/CARD_NUM.
+    </p>
+
+    <p>
+      The question is, can you do better than that?
+    </p>
+
+    <p>
+      Your strategy is as follows: always look at the first SKIP_NUM cards without
+      choosing them.  Then choose the very next card you encounter that is larger
+      than the cards you skipped.
+    </p>
+
+    <p>
+      Using this program, you can easily see that skipping 5 cards is much better
+      than picking one at random, skipping 10 is even better, and so on.  Of course,
+      you can't skip too many cards, and in fact, the results seem to be best for
+      somewhere around 30 to 35 cards skipped.  For problems like this, the
+      optimal value is somewhere around 1 / e, where E is the base of the natural
+      logarithm system.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "card_game.m">card_game.m</a>, the source code;
+        </li>
+        <li>
+          <a href = "card_game.png">card_game.png</a>,
+          a plot of the probability estimates, using 1,000 trials for each
+          value of SKIP_NUM.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <h3 align = "center">
+      DIGIT PUZZLE
+    </h3>
+
+    <p>
+      The seven digit puzzle
+      <a href = "../../fun/puzzles/digit_puzzle.html">
+      The Digit Puzzle</a>.  It wasn't hard to find the seven unique digits of an integer
+      such that the integer was divisible by each digit.  But it was actually hard
+      to figure out the order of the digits in the integer!  Some thought was able
+      to whittle down the last few digits to a small collection, and we knew the
+      integer had to be a multiple of the least common multiple of the digits,
+      but no way was obvious to actually determine the integer.  At that point,
+      Jeff Borggaard wrote the following MATLAB program to search for the answer.
+      <ul>
+        <li>
+          <a href = "digit_puzzle.m">digit_puzzle.m</a>, the source code;
+        </li>
+        <li>
+          <a href = "digit_puzzle_output.txt">digit_puzzle_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <h3 align = "center">
+      PERMUTATION PUZZLE
+    </h3>
+
+    <p>
+      Let <b>P1</b> and <b>P2</b> be arbitrary permutations of the integers
+      from 1 to 10.
+    </p>
+
+    <p>
+      Pair corresponding entries of the permutations to create
+      the set of 10 points (P1(1),P2(1)) through (P1(10),P2(10)).  Now
+      subtract 5, that is, <b>N/2</b>, from the X and Y coordinates of each point
+      so that their average value is zero.  Then apply a rotation of 45 degrees to each vector.
+    </p>
+
+    <p>
+      Now instead of
+      looking at 10 vectors (X(I),Y(I)), each of length 2, consider the
+      data as two vectors <b>X</b> and <b>Y</b>, each of length 10.
+      If the instructions have been followed correctly, then <b>X</b>
+      are <b>Y</b> are perpendicular to each other in 10-dimensional space.
+    </p>
+
+    <p>
+       MATLAB code to verify a random example of this property is:
+       <pre>
+         n = 10;
+         p1 = randperm ( n );
+         p2 = randperm ( n );
+         xy = [ p1; p2 ];
+         xy = xy - ( n / 2 );
+         angle = pi / 4;
+         A = [ cos ( angle ), - sin ( angle ); ...
+               sin ( angle ),   cos ( angle ) ];
+         xy = A * xy;
+         dot = xy(1,1:n) * xy(2,1:n)';
+         fprintf ( 1, '  The dot product is %f\n', dot );
+       </pre>
+    </p>
+
+    <p>
+      Claim: This property is true for <i>any</i> pair of permutations <b>P1</b> and <b>P2</b>.
+    </p>
+
+    <p>
+      Claim: This property is true even if <b>P1</b> and <b>P2</b> are equal.
+    </p>
+
+    <p>
+      Claim: This property is true for <i>any</i> positive integer <b>N</b>.
+    </p>
+
+    <p>
+      Claim: This property is <b>not</b> true for arbitrary values of the rotation angle.
+      For instance, using an angle of pi/3 will not work.
+    </p>
+
+    <p>
+      Claim: Let Q be an arbitary vector of length <b>N</b>.  Instead of
+      <b>P1</b> and <b>P2</b>, consider the vectors <b>Q1=Q(P1)</b> and
+      <b>Q2=Q(P2)</b>.  The property is still true!
+    </p>
+
+    <p>
+      <i>
+        Puzzle: Can you verify that each of the claims is true?  Can you explain why?
+      </i>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "permutation_puzzle.m">permutation_puzzle.m</a>, the source code;
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 September 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spfminsearch :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spfminsearch</h1>
+		  Optimizes the sparse grid interpolant using MATLAB's <code>fminsearch</code> method.
+		<h2>Syntax</h2>
+			<code>X = spfminsearch(Z)</code><br>
+			<code>X = spfminsearch(Z,XBOX)</code><br>
+			<code>X = spfminsearch(Z,XBOX,OPTIONS)</code><br>
+			<code>[X,FVAL] = spfminsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG] = spfminsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG,OUTPUT] = spfminsearch(...)</code><br>
+		<h2>Description</h2>
+      <code>X = spfminsearch(Z)</code> Starts the search at the best available sparse grid point and attempts to find a local minimizer of the sparse grid interpolant <code>Z</code>. The entire range of the sparse grid interpolant is searched.
+    <p>
+      <code>X = spfminsearch(Z,XBOX)</code> Uses the search box <code>XBOX = [a1, b1; a2, b2; ...]</code>. The size of search box <code>XBOX</code> must be smaller than or equal to the range of the interpolant.
+		<p>
+      <code>X = spfminsearch(Z,XBOX,OPTIONS)</code> Minimizes with the default optimization parameters replaced by values in the structure <code>OPTIONS</code>, created with the <code>spoptimset</code> function. See <a href="spoptimset.html"><code>spoptimset</code></a> for details.
+		<p>
+      <code>[X,FVAL] = spfminsearch(...)</code> Returns the value of the sparse grid interpolant at <code>X</code>. 
+		<p>  
+      <code>[X,FVAL,EXITFLAG] = spfminsearch(...)</code> Returns an <code>EXITFLAG</code> that describes the exit condition of <code>spfminsearch</code>. Possible values of <code>EXITFLAG</code> and the corresponding exit conditions are
+			<ul>
+			  <li> <code>1</code>&nbsp;&nbsp;&nbsp;<code>spfminsearch</code> converged to a solution <code>X</code>.
+				<li> <code>0</code>&nbsp;&nbsp;&nbsp;Maximum number of function evaluations or iterations reached.
+			</ul> 
+		<p>  
+      <code>[X,FVAL,EXITFLAG,OUTPUT] = spfminsearch(...)</code> Returns a structure <code>OUTPUT</code> with the number of function evaluations in <code>OUTPUT.nFEvals</code> and the computing time in <code>.time</code>. The <code>OUTPUT</code> result from the <code>fminsearch</code> call are returned as <code>OUTPUT.fminsearchOutput</code>. 
+		<a name="1"><h2>Examples</h2></a>
+      <p><tt>spfminsearch</tt> internally calls MATLAB's <tt>fminsearch</tt> function to perform the search. The sparse grid interpolant is modified by a penalty function such that the search is restricted
+         to the provided search box.
+      </p>
+      <p><tt>spfminsearch</tt> is a derivative-free method that is suitable for all sparse grid types. However, it is usually outperformed by <tt><a href="spcompsearch.html">spcompsearch</a></tt> for the grid types <tt>Maximum</tt>, <tt>NoBoundary</tt>, or <tt>Clenshaw-Curtis</tt>, and by <tt><a href="spcgsearch.html">spcgsearch</a></tt> for the grid type <tt>Chebyshev</tt>.
+      </p>
+      <p>As with the example presented for <tt><a href="spcgsearch.html">spcgsearch</a></tt>, we consider the six-hump camel-back function (see that example for further details).
+      </p><pre class="codeinput">f = @(x,y) (4-2.1.*x.^2+x.^4./3).*x.^2+x.*y+(-4+4.*y.^2).*y.^2;
+</pre><p>Interpolant creation and setting optional parameters:</p><pre class="codeinput">options = spset(<span class="string">'keepFunctionValues'</span>,<span class="string">'on'</span>, <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+  <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'DimAdaptDegree'</span>, 1, <span class="string">'MinPoints'</span>, 10);
+range = [-3 3; -2 2];
+z = spvals(f, 2, range, options);
+optoptions = spoptimset(<span class="string">'Display'</span>, <span class="string">'iter'</span>);
+</pre><p>Performing the optimization:</p><pre class="codeinput">[xopt, fval] = spfminsearch(z, [], optoptions)
+</pre><pre class="codeoutput"> 
+ Iteration   Func-count     min f(x)         Procedure
+     0            1        -0.970563         
+     1            3        -0.970563         initial simplex
+     2            5        -0.997137         expand
+     3            7         -0.99731         reflect
+     4            9         -0.99731         contract inside
+     5           11        -0.999861         contract inside
+     6           13         -1.00004         reflect
+     7           15         -1.00004         contract inside
+     8           17         -1.00004         contract inside
+     9           19         -1.00004         contract inside
+    10           21          -1.0002         expand
+    11           23         -1.00055         expand
+    12           25         -1.00087         expand
+    13           27         -1.00192         expand
+    14           29         -1.00227         expand
+    15           31         -1.00483         expand
+    16           32         -1.00483         reflect
+    17           34         -1.00771         expand
+    18           36         -1.01172         expand
+    19           38         -1.01615         expand
+    20           40         -1.02567         expand
+    21           41         -1.02567         reflect
+    22           43         -1.03063         reflect
+    23           44         -1.03063         reflect
+    24           46         -1.03083         reflect
+    25           48         -1.03119         contract inside
+    26           50         -1.03155         contract inside
+    27           52         -1.03155         contract inside
+    28           54         -1.03155         contract inside
+    29           56         -1.03162         contract inside
+    30           58         -1.03162         contract inside
+    31           60         -1.03162         contract inside
+    32           62         -1.03162         reflect
+    33           64         -1.03163         contract inside
+    34           66         -1.03163         contract inside
+    35           68         -1.03163         contract inside
+    36           70         -1.03163         contract inside
+    37           72         -1.03163         contract inside
+    38           74         -1.03163         contract inside
+    39           76         -1.03163         contract inside
+    40           78         -1.03163         contract inside
+    41           80         -1.03163         contract inside
+    42           82         -1.03163         reflect
+    43           84         -1.03163         contract inside
+ 
+Optimization terminated:
+ the current x satisfies the termination criteria using OPTIONS.TolX of 1.000000e-04 
+ and F(X) satisfies the convergence criteria using OPTIONS.TolFun of 1.000000e-04 
+
+xopt =
+   -0.0899
+    0.7127
+fval =
+   -1.0316
+</pre>
+		<h2>See Also</h2>
+		  <a href="spoptimset.html"><code>spoptimset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

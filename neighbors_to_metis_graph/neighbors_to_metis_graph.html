@@ -1,0 +1,229 @@
+<html>
+
+  <head>
+    <title>
+      NEIGHBORS_TO_METIS_GRAPH - Reformat Tet Mesh Neighbor File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NEIGHBORS_TO_METIS_GRAPH <br> Reformat Tet Mesh Neighbor File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NEIGHBORS_TO_METIS_GRAPH</b> 
+      is a MATLAB program which 
+      reads a file describing
+      the graph-theoretic adjacency structure of the 
+      elements in a mesh of triangles or tetrahedrons and writes out a similar file 
+      that is suitable for input to the mesh partitioning
+      program <a href = "../../c_src/metis/metis.html">METIS</a>.
+    </p>
+
+    <p>
+      Since we know we are dealing with a triangle or tet mesh, each "node" of
+      the adjacency graph has 3 or 4 potential edges.  If a potential
+      edge is not used (in other words, if a face is a boundary face),
+      then by convention we write out a "-1" for the neighbor value.
+      Otherwise, the adjacency information lists the index of the
+      element that is a neighbor on that face of the
+      element
+    </p>
+
+    <p>
+      Converting to a METIS GRAPH format is trivial.  We include
+      an initial line that lists the number of "nodes" (elements)
+      and "edges" (interfaces between pairs of elements), followed by,
+      for each node (element), a list of the adjacent nodes (a list
+      of the adjacent elements, omitting the "-1" values).  A cross-eyed
+      schoolboy sitting on a tack would be able to carry out this task!
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>neighbors_to_metis_graph</b> ( <i>'neighbor_file'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'neighbor_file'</i> contains the list of neighbor elements to each element;
+        </li>
+      </ul>
+      reads the data in <i>'neighbor_file'</i>, rearranges it to
+      suit <b>METIS</b>, and writes out the modified data to
+      <i>'metis_graph_file'</i>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NEIGHBORS_TO_METIS_GRAPH</b> is available in
+      <a href = "../../cpp_src/neighbors_to_metis_graph/neighbors_to_metis_graph.html">a C++ version</a> and
+      <a href = "../../f_src/neighbors_to_metis_graph/neighbors_to_metis_graph.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/neighbors_to_metis_graph/neighbors_to_metis_graph.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/graphchk/graphchk.html">
+      GRAPHCHK</a>, 
+      a C program which
+      uses the METIS library to check
+      that a METIS graph file has the proper format;
+    </p>
+
+    <p>
+      <a href = "../../c_src/kmetis/kmetis.html">
+      KMETIS</a>, 
+      a C program which
+      uses the <a href = "metis/metis.html">METIS</a> library to partition
+      the nodes of a graph in a balanced way, useful for parallel
+      processing;
+    </p>
+
+    <p>
+      <a href = "../../c_src/metis/metis.html">
+      METIS</a>, 
+      a C library which
+      partitions the nodes of a graph or the elements of a mesh, for division among
+      a number of parallel processes, or to reorder the variables in a sparse
+      matrix to minimize fillin;
+    </p>
+
+    <p>
+      <a href = "../../data/metis_graph/metis_graph.html">
+      METIS_GRAPH</a>, 
+      a data directory which
+      contains examples of METIS GRAPH files,
+      the format for graphs to be read by METIS,
+      which can partition a graph;
+    </p>
+
+    <p>
+      <a href = "../../c_src/oemetis/oemetis.html">
+      OEMETIS</a>, 
+      a C program which
+      uses the <a href = "metis/metis.html">METIS</a> library to reorder
+      the variables in a sparse matrix.
+    </p>
+
+    <p>
+      <a href = "../../c_src/onmetis/onmetis.html">
+      ONMETIS</a>, 
+      a C program which
+      uses the METIS library to reorder
+      the variables in a sparse matrix.
+    </p>
+
+    <p>
+      <a href = "../../c_src/pmetis/pmetis.html">
+      PMETIS</a>, 
+      a C program which
+      uses the METIS library to partition
+      the nodes of a graph in a balanced way, useful for parallel processing;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a MATLAB program which 
+      reads information about a tet mesh and writes out a list of the
+      tetrahedrons that are adjacent to a given tetrahedron;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+
+          George Karypis, Vipin Kumar,<br>
+          METIS, a Software Package for Partitioning Unstructured Graphs
+          and Computing Fill-Reduced Orderings of Sparse Matrices;
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "neighbors_to_metis_graph.m">neighbors_to_metis_graph.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cube_tetra.neighbors">cube_tetra.neighbors</a>,
+          a sample tet mesh neighbor file that can be used as input
+          to the program.
+        </li>
+        <li>
+          <a href = "cube_tetra.metis_graph">cube_tetra.metis_graph</a>,
+          the modified tet mesh neighbor file created by the program,
+          suitable for input to <b>METIS</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 October 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

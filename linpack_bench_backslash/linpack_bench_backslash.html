@@ -1,0 +1,246 @@
+<html>
+
+  <head>
+    <title>
+      LINPACK_BENCH_BACKSLASH - The LINPACK Benchmark Using MATLAB's BACKSLASH
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPACK_BENCH_BACKSLASH <br> The LINPACK Benchmark <br> Using MATLAB's BACKSLASH
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPACK_BENCH_BACKSLASH</b> 
+      is a MATLAB program which 
+      carries out the LINPACK Benchmark, using MATLAB's "backslash" operator
+      for greater efficiency.
+    </p>
+
+    <p>
+      The LINPACK benchmark is a test problem used to rate the performance 
+      of a computer on a simple linear algebra problem.
+    </p>
+
+    <p>
+      The test problem requires the user to set up a random dense matrix
+      <b>A</b> of size <b>N</b> = 1000, and a right hand side vector <b>B</b>
+      which is the product of <b>A</b> and a vector <b>X</b> of all 1's.  
+      The first task is to compute an LU factorization of <b>A</b>.  The 
+      second task is to use the LU factorization to solve the linear system 
+      <blockquote>
+        <b>A</b> * <b>X</b> = <b>B</b>.
+      </blockquote>
+    </p>
+
+    <p>
+      The number of floating point operations required for these two
+      tasks is roughly
+      <blockquote>
+        ops = 2 * N*N*N / 3 + 2 * N * N,
+      </blockquote>
+      therefore, the "MegaFLOPS" rating, or millions of floating point
+      operations per second, can be found as
+      <blockquote>
+        mflops = ops / ( cpu * 1000000 ).
+      </blockquote>
+    </p>
+
+    <p>
+      The following table compares the "backslash" version ("LINPACK_BENCH_BACKSLASH") against the MATLAB 
+      version ("LINPACK_BENCH") which is a straight translation of the original FORTRAN code.
+      <table border="1">
+        <tr>
+          <th>Language</th><th>Precision</th><th>Type</th><th>Machine</th><th>Comment</t><th>MegaFLOPS</th>
+        </tr>
+        <tr>
+          <td>MATLAB</td><td>Double</td><td>Real</td><td>DHCP95 (Apple G5)</td><td>LINPACK_BENCH_BACKSLASH</td><td>1857</td>
+        </tr>
+        <tr>
+          <td>MATLAB</td><td>Double</td><td>Real</td><td>DHCP95 (Apple G95)</td><td>LINPACK_BENCH</td><td>20</td>
+        </tr>
+      </table>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>linpack_bench_backslash</b>
+      </blockquote>
+      or
+      <blockquote>
+        <b>linpack_bench_backslash</b> <i>n</i>
+      </blockquote>
+      to specify the matrix size (default n = 1000 ), or
+      <blockquote>
+        <b>linpack_bench_backslash</b> <i>n</i> <i>lda</i>
+      </blockquote>
+      to specify the matrix size and the leading dimension (default lda = n+1);
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      supplies the solvers used by <b>LINPACK_BENCH</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_bench/linpack_bench.html">
+      LINPACK_BENCH</a>,
+      a MATLAB program which
+      measures the time taken by <b>LINPACK</b> to solve a particular linear system.
+    </p>
+
+    <p>
+      <a href = "../../f_src/matmul/matmul.html">
+      MATMUL</a>,
+      a FORTRAN90 program which 
+      is an interactive matrix multiplication benchmark program.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/mdbnch/mdbnch.html">
+      MDBNCH</a>,
+      a FORTRAN77 program which 
+      is a benchmark code for a molecular dynamics calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/memory_test/memory_test.html">
+      MEMORY_TEST</a>,
+      a MATLAB program which
+      declares and uses a sequence of larger
+      and larger vectors, to see how big a vector can be used on a given
+      machine and compiler.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sum_million/sum_million.m">
+      SUM_MILLION</a>,
+      a MATLAB program which 
+      sums the integers from 1 to 1,000,000, as a demonstration of how
+      to rate a computer's speed;
+    </p>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      a MATLAB library which
+      demonstrates how to measure CPU time or elapsed time.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://www.netlib.org/benchmark/1000s">
+                     http://www.netlib.org/benchmark/1000s</a>
+          the LINPACK benchmark website (single precision).
+        </li>
+        <li>
+          <a href = "http://www.netlib.org/benchmark/1000d">
+                     http://www.netlib.org/benchmark/1000d</a>
+          the LINPACK benchmark website (double precision).
+        </li>
+        <li>
+          Jack Dongarra,<br>
+          Performance of Various Computers Using Standard Linear Equations Software,
+          Technical Report CS-89-85,<br>
+          Electrical Engineering and Computer Science Department,<br>
+          University of Tennessee, 2008.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          George Fishman,<br>
+          Multiplicative congruential random number generators with modulus
+          2**b: an exhaustive analysis for b = 32 and a partial analysis for b = 48,<br>
+          Mathematics of Computation,<br>
+          Volume 189, 1990, pages 331-344.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539: 
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>LINPACK_BENCH_BACKSLASH</b> is a version of the program which
+      skips all the LINPACK routines, and calls MATLAB's native "backslash"
+      operator instead.
+      <ul>
+        <li>
+          <a href = "linpack_bench_backslash.m">linpack_bench_backslash.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_bench_backslash_dhcp95_output.txt">
+          linpack_bench_backslash_dhcp95_output.txt</a>, 
+          the output from DHCP95, an Apple G5, of about 1,857 MegaFLOPS.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 May 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

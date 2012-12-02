@@ -1,0 +1,444 @@
+<html>
+
+  <head>
+    <title>
+      SANDIA_CUBATURE - Numerical Integration in M Dimensions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SANDIA_CUBATURE <br> Numerical Integration<br> in M Dimensions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SANDIA_CUBATURE</b> 
+      is a MATLAB library which
+      implements quadrature rules for certain multidimensional regions and weight functions.
+    </p>
+
+    <p>
+      We consider the following integration regions:
+      <ul>
+        <li>
+          <b>CN_GEG</b>, the N dimensional hypercube [-1,+1]^N, with the Gegenbauer
+          weight function:<br>
+          w(alpha;x) = product ( 1 <= i <= n ) ( 1 - x(i)^2 )^alpha;
+        </li>
+        <li>
+          <b>CN_JAC</b>, the N dimensional hypercube [-1,+1]^N, with the Beta or
+          Jacobi weight function:<br>
+          w(alpha,beta;x) = product ( 1 <= i <= n ) ( 1 - x(i) )^alpha * ( 1 + x(i) )^beta;
+        </li>
+        <li>
+          <b>CN_LEG</b>, the N dimensional hypercube [-1,+1]^N, with the Legendre
+          weight function:<br>
+          w(x) = 1;
+        </li>
+        <li>
+          <b>EN_HER</b>, the N-dimensional product space (-oo,+oo)^N, 
+          with the Hermite weight function:<br>
+          w(x) = product ( 1 <= i <= n ) exp ( - x(i)^2 );
+        </li>
+        <li>
+          <b>EPN_GLG</b>, the positive product space [0,+oo)^N, with the generalized
+          Laguerre weight function:<br>
+          w(alpha;x) = product ( 1 <= i <= n ) x(i)^alpha exp ( - x(i) );
+        </li>
+        <li>
+          <b>EPN_LAG</b>, the positive product space [0,+oo)^N, with the exponential or 
+          Laguerre weight function:<br>
+          w(x) = product ( 1 <= i <= n ) exp ( - x(i) );
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The available rules for region <b>EN_HER</b> all have odd precision, ranging
+      from 1 to 11.  Some of these rules are valid for any spatial dimension <b>N</b>.
+      However, many of these rules are restricted to a limited range, such as
+      <b>2 &lt;= N &lt; 6</b>.  Some of the rules have two forms; in that case,
+      the particular form is selectable by setting an input argument <b>OPTION</b>
+      to 1 or 2.  Finally, note that in multidimensional integration, the dependence
+      of the order <b>O</b> (number of abscissas) on the spatial dimension <b>N</b>
+      is critical.  Rules for which the order is a multiple of <b>2^N</b> are not
+      practical for large values of <b>N</b>.  The source code for each rule lists its
+      formula for the order as a function of <b>N</b>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SANDIA_CUBATURE</b> is available in
+      <a href = "../../cpp_src/sandia_cubature/sandia_cubature.html">a C++ version</a> and
+      <a href = "../../f_src/sandia_cubature/sandia_cubature.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sandia_cubature/sandia_cubature.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>, 
+      a MATLAB library which
+      produces 1D quadrature rules of 
+      Chebyshev, Clenshaw Curtis, Fejer 2, Gegenbauer, generalized Hermite, 
+      generalized Laguerre, Hermite, Jacobi, Laguerre, Legendre and Patterson types.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      defines quadrature rules for a variety of multidimensional reqions.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Arthur Stroud,<br>
+          Approximate Calculation of Multiple Integrals,<br>
+          Prentice Hall, 1971,<br>
+          ISBN: 0130438936,<br>
+          LC: QA311.S85.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Dongbin Xiu,<br>
+          Numerical integration formulas of degree two,<br>
+          Applied Numerical Mathematics,<br>
+          Volume 58, 2008, pages 1515-1520.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "c1_geg_monomial_integral.m">c1_geg_monomial_integral.m</a>
+          integral of a monomial with Gegenbauer weight over C1.
+        </li>
+        <li>
+          <a href = "c1_jac_monomial_integral.m">c1_jac_monomial_integral.m</a>
+          integral of a monomial with Jacobi weight over C1.
+        </li>
+        <li>
+          <a href = "c1_leg_monomial_integral.m">c1_leg_monomial_integral.m</a>
+          integral of a monomial with Legendre weight over C1.
+        </li>
+        <li>
+          <a href = "cn_geg_00_1.m">cn_geg_00_1.m</a>
+          implements the midpoint rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_01_1.m">cn_geg_01_1.m</a> 
+          implements a precision 1 rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_02_xiu.m">cn_geg_02_xiu.m</a>
+          implements the Xiu rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_03_xiu.m">cn_geg_03_xiu.m</a>
+          implements the Xiu rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_monomial_integral.m">cn_geg_monoial_integral.m</a>
+          integral of a monomial with Gegenbauer weight over CN.
+        </li>
+        <li>
+          <a href = "cn_jac_00_1.m">cn_jac_00_1.m</a>
+          implements the midpoint rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_01_1.m">cn_jac_01_1.m</a> 
+          implements a precision 1 rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_02_xiu.m">cn_jac_02_xiu.m</a>
+          implements the Xiu rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_monomial_integral.m">cn_jac_monoial_integral.m</a>
+          integral of a monomial with Jacobi weight over CN.
+        </li>
+        <li>
+          <a href = "cn_leg_01_1.m">cn_leg_01_1.m</a> 
+          implements the midpoint rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_02_xiu.m">cn_leg_02_xiu.m</a>
+          implements the Xiu rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_03_1.m">cn_leg_03_1.m</a>
+          implements the Stroud CN:3-1 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_03_xiu.m">cn_leg_03_xiu.m</a>
+          implements the Xiu rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_05_1.m">cn_leg_05_1.m</a>
+          implements the Stroud CN:5-1 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_05_2.m">cn_leg_05_2.m</a>
+          implements the Stroud CN:5-2 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_monomial_integral.m">cn_leg_monoial_integral.m</a>
+          integral of a monomial with Legendre weight over CN.
+        </li>
+        <li>
+          <a href = "en_her_01_1.m">en_her_01_1.m</a>
+          a precision 1 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_02_xiu.m">en_her_02_xiu.m</a>
+          a precision 2 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_03_1.m">en_her_03_1.m</a>
+          a precision 3 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_03_2.m">en_her_03_2.m</a>
+          a precision 3 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_03_xiu.m">en_her_03_xiu.m</a>
+          a precision 3 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_1.m">en_her_05_1.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_2.m">en_her_05_2.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_3.m">en_her_05_3.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_4.m">en_her_05_4.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_5.m">en_her_05_5.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_05_6.m">en_her_05_6.m</a>
+          a precision 5 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_07_1.m">en_her_07_1.m</a>
+          a precision 7 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_07_2.m">en_her_07_2.m</a>
+          a precision 7 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_07_3.m">en_her_07_3.m</a>
+          a precision 7 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_09_1.m">en_her_09_1.m</a>
+          a precision 9 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_11_1.m">en_her_11_1.m</a>
+          a precision 11 rule for EN_HER.
+        </li>
+        <li>
+          <a href = "en_her_monomial_integral.m">en_her_monomial_integral.m</a>
+          evaluates the exact integral of a monomial in Stroud's EN_HER region.
+        </li>
+        <li>
+          <a href = "ep1_glg_monomial_integral.m">ep1_glg_monomial_integral.m</a>
+          integral of monomial with generalized Laguerre weight on EP1.
+        </li>
+        <li>
+          <a href = "ep1_lag_monomial_integral.m">ep1_lag_monomial_integral.m</a>
+          integral of monomial with Laguerre weight on EP1.
+        </li>
+        <li>
+          <a href = "epn_glg_00_1.m">epn_glg_001.m</a>
+          implements the midpoint rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_01_1.m">epn_glg_01_1.m</a>
+          implements a precision 1 rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_02_xiu.m">epn_glg_02_xiu.m</a>
+          implements the Xiu rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_monomial_integral.m">epn_glg_monomial_integral.m</a>
+          integral of monomial with generalized Laguerre weight on EPN.
+        </li>
+        <li>
+          <a href = "epn_lag_00_1.m">epn_lag_001.m</a>
+          implements the midpoint rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_01_1.m">epn_lag_01_1.m</a>
+          implements a precision 1 rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_02_xiu.m">epn_lag_02_xiu.m</a>
+          implements the Xiu rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_monomial_integral.m">epn_lag_monomial_integral.m</a>
+          integral of monomial with Laguerre weight on EPN.
+        </li>
+        <li>
+          <a href = "gw_02_xiu.m">gw_02_xiu.m</a>
+          implements the Golub-Welsch version of the Xiu rule.
+        </li>
+        <li>
+          <a href = "monomial_value.m">
+          monomial_value.m</a>, 
+          evaluates a monomial given the exponents.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>
+          evaluates the factorial function.
+        </li>
+        <li>
+          <a href = "r8_hyper_2f1.m">r8_hyper_2f1.m</a>
+          evaluates the hypergeometric function 2F1(A,B,C,X).
+        </li>
+        <li>
+          <a href = "r8_mop.m">
+          r8_mop.m</a>
+          returns the I-th power of -1 as an R8 value.
+        </li>
+        <li>
+          <a href = "r8_psi.m">r8_psi.m</a>
+          evaluates the function Psi(X).
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sandia_cubature_test.m">sandia_cubature_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "sandia_cubature_test_output.txt">sandia_cubature_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "cn_geg_tests.m">cn_geg_tests.m</a>, 
+          tests the CN_GEG rules for various monomials.
+        </li>
+        <li>
+          <a href = "cn_geg_test.m">cn_geg_test.m</a>, 
+          tests the CN_GEG rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "cn_jac_tests.m">cn_jac_tests.m</a>, 
+          tests the CN_JAC rules for various monomials.
+        </li>
+        <li>
+          <a href = "cn_jac_test.m">cn_jac_test.m</a>, 
+          tests the CN_JAC rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "cn_leg_tests.m">cn_leg_tests.m</a>, 
+          tests the CN_LEG rules for various monomials.
+        </li>
+        <li>
+          <a href = "cn_leg_test.m">cn_leg_test.m</a>, 
+          tests the CN_LEG rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "en_her_tests.m">en_her_tests.m</a>, 
+          tests the EN_HER rules for various monomials.
+        </li>
+        <li>
+          <a href = "en_her_test.m">en_her_test.m</a>, 
+          tests the EN_HER rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "epn_glg_tests.m">epn_glg_tests.m</a>, 
+          tests the EPN_GLG rules for various monomials.
+        </li>
+        <li>
+          <a href = "epn_glg_test.m">epn_glg_test.m</a>, 
+          tests the EPN_GLG rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "epn_lag_tests.m">epn_lag_tests.m</a>, 
+          tests the EPN_LAG rules for various monomials.
+        </li>
+        <li>
+          <a href = "epn_lag_test.m">epn_lag_test.m</a>, 
+          tests the EPN_LAG rules for a particular monomial.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

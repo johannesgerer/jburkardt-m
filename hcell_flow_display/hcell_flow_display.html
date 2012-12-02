@@ -1,0 +1,311 @@
+<html>
+
+  <head>
+    <title>
+      HCELL_FLOW_DISPLAY - Plots of HCELL Flow Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HCELL_FLOW_DISPLAY <br> Plots of HCELL Flow Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HCELL_FLOW_DISPLAY</b> 
+      is a MATLAB library which 
+      reads and plots datafiles created by the HCELL fluid flow program.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <dl>
+        <dt>
+          <b>hcell_boundary_display</b>
+        </dt>
+        <dd>
+          plots the outline of the region.
+        </dd>
+        <dt>
+          <b>hcell_contour_display (</b> <i>'node_xy_file_name'</i>,
+            <i>'p_file_name'</i> )</b>
+        </dt>
+        <dd>
+          displays a contour plot of the pressure, or other scalars.
+        </dd>
+        <dt>
+          <b>hcell_element_display (</b> <i>'node_xy_file_name'</i>, 
+          <i>'node_element_file_name'</i> )</b>
+        </dt>
+        <dd>
+          plots the elements.
+        </dd>
+        <dt>
+          <b>hcell_node_display (</b> <i>'node_xy_file_name'</i> )</b>
+        </dt>
+        <dd>
+          plots the region, and nodes, for either the
+          <b>nodes3.txt</b> or <b>nodes6.txt</b> files created by HCELL.
+        </dd>
+        <dt>
+          <b>hcell_vector_display (</b> <i>'node_xy_file_name'</i>,
+            <i>'uv_file_name'</i> )</b>
+        </dt>
+        <dd>
+          vector plot of the velocity or velocity direction field.
+        </dd>
+        <dt>
+          <b>hcell_stream_display (</b> <i>'node_xy_file_name'</i>,
+            <i>'uv_file_name'</i> )</b>
+        </dt>
+        <dd>
+          streamline plot of the velocity field.
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cavity_flow_display/cavity_flow_display.html">
+      CAVITY_FLOW_DISPLAY</a>, 
+      a MATLAB program which 
+      can plot the data
+      produced by the <b>CAVITY</b> fluid flow program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/direction_arrows/direction_arrows.html">
+      DIRECTION_ARROWS</a>, 
+      a MATLAB program which 
+      plots the velocity direction field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/direction_arrows_sequence/direction_arrows_sequence.html">
+      DIRECTION_ARROWS_SEQUENCE</a>, 
+      a MATLAB program which 
+      plots the velocity direction fields of many data files
+      with names that are numbered in sequence.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/hcell/hcell.html">
+      HCELL</a>,
+      a FORTRAN77 program which 
+      computes solutions 
+      (velocity and pressure) of the time-dependent Navier Stokes 
+      equations in a 2D region shaped like an <b>H</b>.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/hcell_steady/hcell_steady.html">
+      HCELL_STEADY</a>,
+      a FORTRAN77 program which
+      solves the time-independent
+      or "steady" Navier Stokes equations in an H-cell region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/inout_flow_display/inout_flow_display.html">
+      INOUT_FLOW_DISPLAY</a>,
+      a MATLAB program which 
+      can plot the data
+      produced by the <b>INOUT</b> fluid flow program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tcell_flow_display/tcell_flow_display.html">
+      TCELL_FLOW_DISPLAY</a>,
+      a MATLAB program which 
+      can plot the data
+      produced by the <b>TCELL</b> fluid flow program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows/velocity_arrows.html">
+      VELOCITY_ARROWS</a>, 
+      a MATLAB program which
+      plots a velocity vector field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_grid/velocity_arrows_grid.html">
+      VELOCITY_ARROWS_GRID</a>,
+      a MATLAB program which 
+      reads
+      node and velocity data from a file, and using interpolation is
+      able to display a velocity vector field along any uniform grid
+      of points specified by the user.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_sequence/velocity_arrows_sequence.html">
+      VELOCITY_ARROWS_SEQUENCE</a>,
+      a MATLAB program which
+      can process a set of many data files
+      with names that are numbered in sequence.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>, 
+          counts the number of columns in the first line of a file;
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>, 
+          counts the number of row records in a file;
+        </li>
+        <li>
+          <a href = "hcell_boundary_add.m">hcell_boundary_add.m</a>, 
+          adds the boundary of the region to an existing plot;
+        </li>
+        <li>
+          <a href = "hcell_boundary_display.m">hcell_boundary_display.m</a>, 
+          displays the boundary of the region;
+        </li>
+        <li>
+          <a href = "hcell_box_add.m">hcell_box_add.m</a>, 
+          adds to the current plot a (usually invisible) box that reserves 
+          space for titles;
+        </li>
+        <li>
+          <a href = "hcell_contour_display.m">hcell_contour_display.m</a>, 
+          displays a contour plot of a scalar quantity such as pressure;
+        </li>
+        <li>
+          <a href = "hcell_element_display.m">hcell_element_display.m</a>, 
+          creates a plot of the region and elements;
+        </li>
+        <li>
+          <a href = "hcell_node_display.m">hcell_node_display.m</a>, 
+          creates a plot of the region and nodes;
+        </li>
+        <li>
+          <a href = "hcell_stream_display.m">hcell_stream_display.m</a>, 
+          creates a streamline plot of a vector quantity such as 
+          velocity;
+        </li>
+        <li>
+          <a href = "hcell_vector_display.m">hcell_vector_display.m</a>, 
+          creates a plot of a vector quantity such as velocity or
+          normalized velocity;
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">48mat_data_read.m</a>, 
+          reads the data from an R8MAT file;
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a>, 
+          reads the header from an R8MAT file;
+        </li>
+        <li>
+          <a href = "r8vec_sorted_nearest.m">r8vec_sorted_nearest.m</a>, 
+          returns the nearest element in asorted R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_sorted_unique.m">r8vec_sorted_unique.m</a>, 
+          finds the unique elements in a sorted R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_sorted_unique_count.m">r8vec_sorted_unique_count.m</a>, 
+          counts the unique elements in a sorted R8VEC;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a character string to the last nonblank;
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>, 
+          counts the number of words in a string;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangles6.txt">triangles6.txt</a>, 
+          the six nodes that define each (quadratic) element.
+        </li>
+        <li>
+          <a href = "pressure3.txt">pressure3.txt</a>, 
+          the value of the pressure at the linear triangle nodes
+          (this is dummy data right now).
+        </li>
+        <li>
+          <a href = "velocity6.txt">velocity6.txt</a>, 
+          the value of the horizontal and vertical velocity at the quadratic
+          triangle nodes (this is dummy data right now).
+        </li>
+        <li>
+          <a href = "nodes3.txt">nodes3.txt</a>, 
+          the coordinates of the 3 nodes that define the linear triangular
+          elements associated with pressure;
+        </li>
+        <li>
+          <a href = "nodes6.txt">nodes6.txt</a>, 
+          the coordinates of the 6 nodes that define the quadratic triangular 
+          elements associated with velocity;
+        </li>
+        <li>
+          <a href = "hcell_boundary_display.png">hcell_boundary_display.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the region.
+        </li>
+        <li>
+          <a href = "hcell_contour_display.png">hcell_contour_display.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the pressure contour region.
+          (This plot uses DUMMY data.)
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

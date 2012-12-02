@@ -1,0 +1,94 @@
+>> test_int_margin_test
+16-Jan-2012 15:31:32
+
+TEST_INT_MARGIN_TEST
+  MATLAB version
+  Test the TEST_INT_MARGIN library.
+
+TEST_INT_MARGIN_TEST01:
+  Plot the functions.
+  MARGIN value = 1.000000
+
+  Created plotfile "p01_plot.png".
+  Created plotfile "p02_plot.png".
+  Created plotfile "p03_plot.png".
+  Created plotfile "p04_plot.png".
+  Created plotfile "p05_plot.png".
+
+TEST_INT_MARGIN_TEST02:
+  Use simple sampling to estimate the integral of f(x)
+  over the region where margin <= f(x).
+
+  (Input quantity SAMPLE_NUM not supplied, using default.)
+
+  (Input quantity MARGIN not supplied, using default.)
+
+  Number of sample points = 1000
+  MARGIN value = 1.000000
+
+  Problem           Q   Q(MARGIN)  Prob(MARGIN)
+
+        1         1.1         1.1           1
+        2      0.6605       0.214       0.107
+        3    0.183861    0.143596       0.086
+        4    0.603513    0.599932       0.415
+        5     1.18745    0.921682       0.632
+
+TEST_INT_MARGIN_TEST03:
+  F represents a function F(X),
+  W represents a weight whose integral over [A,B] should be 1.
+  M represents the characteristic function for (X | MARGIN <= F(X)).
+
+  Consider the following four weight functions:
+  W0(x) = 1;
+  W1(x) = gaussian ( mean = 1/6, sigma = 0.20
+  W2(x) = gaussian ( mean = 3/6, sigma = 0.20
+  W3(x) = gaussian ( mean = 5/6, sigma = 0.20
+
+  Use sampling to estimate the following integrals:
+  Q(W), Q(F), Q(WM), Q(FWM).
+
+  (Input quantity SAMPLE_NUM not supplied, using default.)
+
+  (Input quantity MARGIN not supplied, using default.)
+
+  SAMPLE_NUM = 1000
+  MARGIN = 1.000000
+
+  P# W#          Q(W)         Q(WF)         Q(WM)        Q(WFM)
+
+  P1
+     W0             1           1.1             1           1.1
+     W1      0.990059       1.08907      0.990059       1.08907
+     W2      0.992417       1.09166      0.992417       1.09166
+     W3        1.0343       1.13773        1.0343       1.13773
+
+  P2
+     W0             1         0.653         0.102         0.204
+     W1       1.02893      0.516149    0.00112432    0.00224863
+     W2      0.948243       0.71614      0.161345      0.322691
+     W3       1.00787      0.723329      0.146261      0.292523
+
+  P3
+     W0             1      0.175689         0.086      0.136428
+     W1      0.965607      0.468532      0.230023      0.365208
+     W2        1.0293       0.10714     0.0519958     0.0822604
+     W3       1.00229   0.000170207    6.8735e-05   0.000106032
+
+  P4
+     W0             1      0.623737         0.428      0.610715
+     W1      0.929034      0.650244      0.442731          0.54
+     W2      0.989277     -0.111902      0.138756      0.201305
+     W3       1.07101       1.34267      0.754905       1.18612
+
+  P5
+     W0             1       1.19124         0.636       0.93033
+     W1       1.04146       0.86283       0.29575       0.34475
+     W2      0.977396       1.17442      0.679121      0.917215
+     W3      0.994656       1.55963       0.96615       1.53435
+
+TEST_INT_MARGIN_TEST
+  Normal end of execution.
+
+16-Jan-2012 15:31:33
+>> 

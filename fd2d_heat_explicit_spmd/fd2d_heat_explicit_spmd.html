@@ -1,0 +1,231 @@
+<html>
+
+  <head>
+    <title>
+      FD2D_HEAT_EXPLICIT_SPMD - Finite Difference 2D Heat Equation Using SPMD
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD2D_HEAT_EXPLICIT_SPMD <br>
+      Finite Difference 2D Heat Equation Using SPMD (Single Program/Multiple Data)
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD2D_HEAT_EXPLICIT_SPMD</b>
+      is a MATLAB program which
+      uses the <b>SPMD</b> (single program, multiple data) command to estimate
+      the time evolution of heat over a 2D region.
+    </p>
+
+    <p>
+      The <b>SPMD</b> command allows a programmer to set up parallel computations
+      that require more user control than the simple <b>parfor</b> command.
+      In particular, users familiar with MPI will see many features that are
+      similar to that parallel programming model, including the ability to
+      send and receive messages.  (Messages will NOT be exhibited in this
+      simple example, however!)
+    </p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        function y = heat2d_fun ( x )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          x, is a black and white image, which will be regarded as the initial condition.
+        </li>
+        <li>
+          y, is a black and white image, which has endured 100 steps of blurring
+          by application of the heat equation.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Since the point here is to watch the evolution of the blurred pictures,
+      this program has only been set up to run locally and interactively,
+      using the <b>matlabpool</b> command;
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>.
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "heat2d_fun.m">heat2d_fun.m</a>,
+          a MATLAB function which applies 100 steps of the heat equation to a
+          black and white image.
+        </li>
+        <li>
+          <a href = "heat2d_pool.m">heat2d_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "surfsup.tif">surfsup.tif</a>,
+          the image.
+        </li>
+        <li>
+          <a href = "step000.png">step000.png</a>,
+          the image after 0 steps.
+        </li>
+        <li>
+          <a href = "step010.png">step010.png</a>,
+          the image after 10 steps.
+        </li>
+        <li>
+          <a href = "step020.png">step020.png</a>,
+          the image after 20 steps.
+        </li>
+        <li>
+          <a href = "step040.png">step040.png</a>,
+          the image after 40 steps.
+        </li>
+        <li>
+          <a href = "step080.png">step080.png</a>,
+          the image after 80 steps.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 April 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

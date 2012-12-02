@@ -1,0 +1,199 @@
+<html>
+
+  <head>
+    <title>
+      CG_DISTRIBUTED - Distributed Version of the NAS Conjugate Gradient Benchmark
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CG_DISTRIBUTED <br> Distributed Version of the NAS Conjugate Gradient Benchmark
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CG_DISTRIBUTED</b>
+      is a MATLAB program which
+      implements a version of the NAS Conjugate Gradient Benchmark, using
+      distributed memory.
+    </p>
+
+    <p>
+      This is not the true benchmark, since the distributed sparse array that is created
+      is made of random elements, rather than using the values and locations
+      specified by the NAS CG benchmark.  Thus, the example is primarily a demonstration
+      that a MATLAB linear algebra program that uses arrays distributed across
+      multiple processors can look almost identical to a single processor version.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+      LYRICS_REMOTE</a>,
+      a MATLAB program which
+      runs in parallel, using three workers which cooperate "systolically", that is,
+      as through they were on an assembly line.  The output from worker 1 is passed to
+      worker 2 for further processing, and so on.  This includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_distcomp/matlab_distcomp.html">
+      MATLAB_DISTCOMP</a>,
+      a MATLAB program which
+      remotely runs a set of 5 jobs on the Ithaca cluster.
+      These jobs are equivalent to the BIRTHDAY_REMOTE, COLOR_REMOTE,
+      KNAPSACK_REMOTE, LYRICS_REMOTE and MD_REMOTE jobs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_remote/matlab_remote.html">
+      MATLAB_REMOTE</a>,
+      MATLAB programs which
+      illustrate the use of remote job execution, in which a desktop copy of
+      MATLAB sends programs and data to a remote machine for execution.
+      Included is information needed to properly configure the local machine.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The web site for the NAS Parallel Benchmarks is
+      <a href = "http://www.nas.nasa.gov/Resources/Software/npb.html">
+                 http://www.nas.nasa.gov/Resources/Software/npb.html</a>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          David Bailey, Eric Barszcz, John Barton, D Browning, Robert Carter, Leonardo Dagum,
+          Rod Fatoohi, Samuel Fineberg, Paul Frederickson, Thomas Lasinski, Robert Schreiber,
+          Horst Simon, V Venkatakrishnan, Sisira Weeratunga,<br>
+          The NAS Parallel Benchmarks,<br>
+          RNR Technical Report RNR-94-007, March 1994.
+        </li>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cg_it.m">cg_it.m</a>,
+          a MATLAB function which carries out the conjugate gradient iteration.
+        </li>
+        <li>
+          <a href = "cg_fun.m">cg_fun.m</a>,
+          a MATLAB function which uses CG_IT in an eigenvalue iteration.
+        </li>
+        <li>
+          <a href = "cg_pool.m">cg_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "cg_script.m">cg_script.m</a>,
+          a MATLAB script file which simply invokes the function.
+        </li>
+        <li>
+          <a href = "cg_batch_local.m">cg_batch_local.m</a>,
+          a batch command to run the job indirectly on the local system,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "cg_batch_ithaca.m">cg_batch_ithaca.m</a>,
+          a batch command to run the job indirectly on the Ithaca cluster,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "cg_fsu.m">cg_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 April 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

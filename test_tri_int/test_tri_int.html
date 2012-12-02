@@ -1,0 +1,697 @@
+<html>
+
+  <head>
+    <title>
+      TEST_TRI_INT - Triangle Integration Test Functions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_TRI_INT <br> Triangle Integration Test Functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_TRI_INT</b> 
+      is a MATLAB library which 
+      defines test functions to be integrated over
+      a triangle.
+    </p>
+
+    <p>
+      It is possible to invoke a particular function by number, or to 
+      try out all available functions, 
+      as demonstrated in the sample calling program.
+    </p>
+
+    <p>
+      For convenience, all the integrand functions have been
+      scaled by a constant, so that the integral of the function
+      over the specific domain is exactly 1.
+    </p>
+
+    <p>
+      The test functions include <b>F(X,Y)=</b>
+      <ol>
+        <li>
+          <b>1</b> on the unit triangle.
+        </li>
+        <li>
+          <b>x</b> on the unit triangle.
+        </li>
+        <li>
+          <b>y</b> on the unit triangle.
+        </li>
+        <li>
+          <b>x<sup>2</sup></b> on the unit triangle.
+        </li>
+        <li>
+          <b>x*y</b> on the unit triangle.
+        </li>
+        <li>
+          <b>y<sup>2</sup></b> on the unit triangle.
+        </li>
+        <li>
+          <b>x<sup>3</sup></b> on the unit triangle.
+        </li>
+        <li>
+          <b>x<sup>4</sup></b> on the unit triangle.
+        </li>
+        <li>
+          <b>x<sup>5</sup></b> on the unit triangle.
+        </li>
+        <li>
+          <b>x^(-0.2)</b> remapped to (1,0), (5,0), (5,1).
+        </li>
+        <li>
+          <b>(x+y)^(-0.2)</b> on the unit triangle.
+        </li>
+        <li>
+          <b>(1-x-y)^(-0.2)</b> remapped to (-1,-3), (3,-2), (-1,2).
+        </li>
+        <li>
+          <b>(x*y)^(-0.2)</b> remapped to (0,0), (-7,0), (0,-3).
+        </li>
+        <li>
+          <b>1/sqrt(x) + 1/sqrt(y) + 1/sqrt(x+y)</b> on the unit triangle.
+        </li>
+        <li>
+          <b>1/sqrt(1-x-y)</b> on the unit triangle.
+        </li>
+        <li>
+          <b>log(x*y)</b> on the unit triangle.
+        </li>
+        <li>
+          <b>1/sqrt(|x-1/4|) + 1/sqrt(|y-1/2|)</b> on the unit triangle.
+        </li>
+        <li>
+          <b>log ( x + y )</b> on the unit triangle.
+        </li>
+        <li>
+          <b>sin ( x ) cos ( 5 y )</b> on the unit triangle.
+        </li>
+        <li>
+          <b>sin ( 11 x ) cos ( y )</b> on the unit triangle.
+        </li>
+        <li>
+          <b>1 / r</b> on the unit triangle,<br>
+          <b>r = sqrt ( x^2+y^2)</b>.
+        </li>
+        <li>
+          <b>log ( r ) / r</b> on the unit triangle,<br>
+          <b>r = sqrt ( x^2+y^2)</b>.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      The library includes a routines to define the integrand function,
+      the triangle over which the integral is to be carried out,
+      and a title for the problem.
+      Thus, for each integrand function, four routines are supplied.  For
+      instance, for function #4, we have the routines:
+      <ul>
+        <li>
+          <b>P04_FUN</b> evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <b>P04_TITLE</b> returns the title for problem 4.
+        </li>
+        <li>
+          <b>P04_VERTICES</b> returns the integration triangle for problem 4
+        </li>
+      </ul>
+      So once you have the calling sequences for these routines, you
+      can easily evaluate the function, or integrate it between the
+      appropriate limits, or compare your estimate of the integral
+      to the exact value.
+    </p>
+
+    <p>
+      Moreover, since the same interface is used for each function,
+      if you wish to work with problem 16 instead, you simply change
+      the "04" to "07" in your routine calls.
+    </p>
+
+    <p>
+      If you wish to call <i>all</i> of the functions, then you
+      simply use the generic interface, which again has four
+      routines, but which requires you to specify the problem
+      number as an extra input argument:
+      <ul>
+        <li>
+          <b>P00_FUN</b> evaluates the integrand for problem PROB.
+        </li>
+        <li>
+          <b>P00_SINGULARITY</b> warns if the integran for problem PROB
+          has vertex, edge or interior singularities that might cause
+          problems for some integration schemes.
+        </li>
+        <li>
+          <b>P00_TITLE</b> returns the title for problem PROB.
+        </li>
+        <li>
+          <b>P00_VERTICES</b> returns the integration triangle for problem PROB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Finally, some demonstration routines are built in for
+      simple quadrature methods.  These routines include
+      <ul>
+        <li>
+          <b>P00_WANDZURA05_SUB</b> applies an order-5 accurate Wandzura
+          rule, plus subdivision of the triangle.
+        </li>
+        <li>
+          <b>P00_MONTE_CARLO</b> uses Monte Carlo sampling.
+        </li>
+        <li>
+          <b>P00_VERTEX_SUB</b> averages values at vertices, and uses
+          subdivision.
+        </li>
+      </ul>
+      and can be used with any of the sample integrands.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_TRI_INT</b> is available in
+      <a href = "../../cpp_src/test_tri_int/test_tri_int.html">a C++ version</a> and
+      <a href = "../../f_src/test_tri_int/test_tri_int.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_tri_int/test_tri_int.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dunavant/dunavant.html">
+      DUNAVANT</a>,
+      a MATLAB library which
+      defines Dunavant rules for quadrature
+      on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fekete/fekete.html">
+      FEKETE</a>, 
+      a MATLAB library which
+      defines a Fekete rule for quadrature or interpolation over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gm_rule/gm_rule.html">
+      GM_RULE</a>,
+      a MATLAB library which
+      defines a Grundmann-Moeller
+      rule for quadrature over a triangle, tetrahedron, or general
+      M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyness_rule/lyness_rule.html">
+      LYNESS_RULE</a>, 
+      a MATLAB library which
+      returns Lyness-Jespersen quadrature rules for the triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ncc_triangle/ncc_triangle.html">
+      NCC_TRIANGLE</a>, 
+      a MATLAB library which
+      defines Newton-Cotes closed quadrature
+      rules on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nco_triangle/nco_triangle.html">
+      NCO_TRIANGLE</a>, 
+      a MATLAB library which
+      defines Newton-Cotes open quadrature
+      rules on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>, 
+      a MATLAB library which 
+      includes some quadrature rules for triangles.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms612/toms612.html">
+      TOMS612</a>, 
+      a FORTRAN77 library which
+      can estimate the integral of a function over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_monte_carlo/triangle_monte_carlo.html">
+      TRIANGLE_MONTE_CARLO</a>, 
+      a MATLAB program which 
+      uses the Monte Carlo method to estimate integrals over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      can be used for triangulations, and
+      includes some quadrature rules on triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wandzura/wandzura.html">
+      WANDZURA</a>, 
+      a MATLAB library which
+      defines Wandzura rules for quadrature on a triangle.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Elise deDoncker, Ian Robinson,<br>
+          An Algorithm for Automatic Integration Over a Triangle
+          Using Nonlinear Extrapolation,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 10, Number 1, March 1984, pages 1-16.
+        </li>
+        <li>
+          Elise deDoncker, Ian Robinson,<br>
+          Algorithm 612:
+          Integration over a Triangle Using Nonlinear Extrapolation,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 10, Number 1, March 1984, pages 17-22.
+        </li>
+        <li>
+          Stephen Wandzura, Hong Xiao,<br>
+          Symmetric Quadrature Rules on a Triangle,<br>
+          Computers and Mathematics with Applications,<br>
+          Volume 45, pages 1829-1840, 2003.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_huge.m">i4_huge.m</a>
+          returns a "huge" I4.
+        </li>
+        <li>
+          <a href = "get_prob_num.m">get_prob_num.m</a>
+          returns the number of test integration problems.
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>
+          evaluates the integrand for any problem.
+        </li>
+        <li>
+          <a href = "p00_monte_carlo.m">p00_monte_carlo.m</a>
+          applies the Monte Carlo rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_singularity.m">p00_singularity.m</a>
+          warns of common singularities for any problem.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>
+          returns the title for any problem.
+        </li>
+        <li>
+          <a href = "p00_vertex_sub.m">p00_vertex_sub.m</a>
+          approximates an integral in a triangle by subdivision.
+        </li>
+        <li>
+          <a href = "p00_vertices.m">p00_vertices.m</a>
+          returns the vertices for any problem.
+        </li>
+        <li>
+          <a href = "p00_wandzura05_sub.m">p00_wandzura05_sub.m</a>
+          uses subdivision and a Wandzura rule.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>
+          evaluates the integrand for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>
+          returns the title of problem 1.
+        </li>
+        <li>
+          <a href = "p01_vertices.m">p01_vertices.m</a>
+          returns the vertices for problem 1.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>
+          evaluates the integrand for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>
+          returns the title of problem 2.
+        </li>
+        <li>
+          <a href = "p02_vertices.m">p02_vertices.m</a>
+          returns the vertices for problem 2.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>
+          evaluates the integrand for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>
+          returns the title of problem 3.
+        </li>
+        <li>
+          <a href = "p03_vertices.m">p03_vertices.m</a>
+          returns the vertices for problem 3.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>
+          evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>
+          returns the title of problem 4.
+        </li>
+        <li>
+          <a href = "p04_vertices.m">p04_vertices.m</a>
+          returns the vertices for problem 4.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>
+          evaluates the integrand for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>
+          returns the title of problem 5.
+        </li>
+        <li>
+          <a href = "p05_vertices.m">p05_vertices.m</a>
+          returns the vertices for problem 5.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>
+          evaluates the integrand for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>
+          returns the title of problem 6.
+        </li>
+        <li>
+          <a href = "p06_vertices.m">p06_vertices.m</a>
+          returns the vertices for problem 6.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>
+          evaluates the integrand for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>
+          returns the title of problem 7.
+        </li>
+        <li>
+          <a href = "p07_vertices.m">p07_vertices.m</a>
+          returns the vertices for problem 7.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>
+          evaluates the integrand for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>
+          returns the title of problem 8.
+        </li>
+        <li>
+          <a href = "p08_vertices.m">p08_vertices.m</a>
+          returns the vertices for problem 8.
+        </li>
+        <li>
+          <a href = "p09_fun.m">p09_fun.m</a>
+          evaluates the integrand for problem 9.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>
+          returns the title of problem 9.
+        </li>
+        <li>
+          <a href = "p09_vertices.m">p09_vertices.m</a>
+          returns the vertices for problem 9.
+        </li>
+        <li>
+          <a href = "p10_fun.m">p10_fun.m</a>
+          evaluates the integrand for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>
+          returns the title of problem 10.
+        </li>
+        <li>
+          <a href = "p10_vertices.m">p10_vertices.m</a>
+          returns the vertices for problem 10.
+        </li>
+        <li>
+          <a href = "p11_fun.m">p11_fun.m</a>
+          evaluates the integrand for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>
+          returns the title of problem 11.
+        </li>
+        <li>
+          <a href = "p11_vertices.m">p11_vertices.m</a>
+          returns the vertices for problem 11.
+        </li>
+        <li>
+          <a href = "p12_fun.m">p12_fun.m</a>
+          evaluates the integrand for problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>
+          returns the title of problem 12.
+        </li>
+        <li>
+          <a href = "p12_vertices.m">p12_vertices.m</a>
+          returns the vertices for problem 12.
+        </li>
+        <li>
+          <a href = "p13_fun.m">p13_fun.m</a>
+          evaluates the integrand for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>
+          returns the title of problem 13.
+        </li>
+        <li>
+          <a href = "p13_vertices.m">p13_vertices.m</a>
+          returns the vertices for problem 13.
+        </li>
+        <li>
+          <a href = "p14_fun.m">p14_fun.m</a>
+          evaluates the integrand for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>
+          returns the title of problem 14.
+        </li>
+        <li>
+          <a href = "p14_vertices.m">p14_vertices.m</a>
+          returns the vertices for problem 14.    
+        </li>
+        <li>
+          <a href = "p15_fun.m">p15_fun.m</a>
+          evaluates the integrand for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>
+          returns the title of problem 15.
+        </li>
+        <li>
+          <a href = "p15_vertices.m">p15_vertices.m</a>
+          returns the vertices for problem 15.
+        </li>
+        <li>
+          <a href = "p16_fun.m">p16_fun.m</a>
+          evaluates the integrand for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>
+          returns the title of problem 16.
+        </li>
+        <li>
+          <a href = "p16_vertices.m">p16_vertices.m</a>
+          returns the vertices for problem 16.
+        </li>
+        <li>
+          <a href = "p17_fun.m">p17_fun.m</a>
+          evaluates the integrand for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>
+          returns the title of problem 17.
+        </li>
+        <li>
+          <a href = "p17_vertices.m">p17_vertices.m</a>
+          returns the vertices for problem 17.
+        </li>
+        <li>
+          <a href = "p18_fun.m">p18_fun.m</a>
+          evaluates the integrand for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>
+          returns the title of problem 18.
+        </li>
+        <li>
+          <a href = "p18_vertices.m">p18_vertices.m</a>
+          returns the vertices for problem 18.
+        </li>
+        <li>
+          <a href = "p19_fun.m">p19_fun.m</a>
+          evaluates the integrand for problem 19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>
+          returns the title of problem 19.
+        </li>
+        <li>
+          <a href = "p19_vertices.m">p19_vertices.m</a>
+          returns the vertices for problem 19.
+        </li>
+        <li>
+          <a href = "p20_fun.m">p20_fun.m</a>
+          evaluates the integrand for problem 20.
+        </li>
+        <li>
+          <a href = "p20_title.m">p20_title.m</a>
+          returns the title of problem 20.
+        </li>
+        <li>
+          <a href = "p20_vertices.m">p20_vertices.m</a>
+          returns the vertices for problem 20.
+        </li>
+        <li>
+          <a href = "p21_fun.m">p21_fun.m</a>
+          evaluates the integrand for problem 21.
+        </li>
+        <li>
+          <a href = "p21_title.m">p21_title.m</a>
+          returns the title of problem 21.
+        </li>
+        <li>
+          <a href = "p21_vertices.m">p21_vertices.m</a>
+          returns the vertices for problem 21.
+        </li>
+        <li>
+          <a href = "p22_fun.m">p22_fun.m</a>
+          evaluates the integrand for problem 22.
+        </li>
+        <li>
+          <a href = "p22_title.m">p22_title.m</a>
+          returns the title of problem 22.
+        </li>
+        <li>
+          <a href = "p22_vertices.m">p22_vertices.m</a>
+          returns the vertices for problem 22.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "subtriangle_next.m">subtriangle_next.m</a>
+          computes the next subtriangle of a triangle.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = triangle_area.m">triangle_area.m</a>
+          computes the area of a triangle in 2D.
+        </li>
+        <li>
+          <a href = "triangle_sample.m">triangle_sample.m</a>
+          returns random points in a triangle.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_tri_int_test.m">test_tri_int_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "test_tri_int_test01.m">test_tri_int_test01.m</a>,
+          tests GET_PROB_NUM and P00_TITLE.
+        </li>
+        <li>
+          <a href = "test_tri_int_test02.m">test_tri_int_test02.m</a>,
+          tests P00_MONTE_CARLO.
+        </li>
+        <li>
+          <a href = "test_tri_int_test03.m">test_tri_int_test03.m</a>,
+          tests P00_VERTEX_SUB.
+        </li>
+        <li>
+          <a href = "test_tri_int_test04.m">test_tri_int_test04.m</a>,
+          tests P00_WANDZURA05_SUB.
+        </li>
+        <li>
+          <a href = "test_tri_int_test_output.txt">test_tri_int_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 April 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

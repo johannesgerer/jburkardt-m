@@ -1,0 +1,293 @@
+<html>
+
+  <head>
+    <title>
+      COLOR_REMOTE - Remote Execution of a Parallel MATLAB Program
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      COLOR_REMOTE <br>
+      Remote Execution of a Parallel MATLAB Program
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>COLOR_REMOTE</b>
+      is a directory of MATLAB programs which
+      illustrate how to submit a parallel MATLAB program to run on a remote
+      machine.
+    </p>
+
+    <p>
+      Before remote submission of jobs is possible, you must have an account on
+      the remote machine, and go through some steps to ensure that that machine
+      and your desktop machine can communicate properly.  If you have not
+      carried out these steps, refer to the document
+      <i>"Notes on Enabling Remote Submission of MATLAB Jobs"</i> listed
+      in the references below.
+    </p>
+
+    <p>
+      The nonparallel program <i>colorsegmentation.m</i> reads an array of 4 colors
+      and a PNG file containing an image, and sequentially calls the
+      <i>colorFilter.m</i> function
+      to filter each of the given colors.
+    </p>
+
+    <p>
+      The parallel program <i>colorSegmentationSol.m</i> uses an SPMD construct
+      (Single Program Multiple Data) with four 'labs', one assigned to each color.
+      Thus, we must first open a matlabpool with four labs.  The current version
+      of the procedure uses the <i>imwrite</I> function inside the SPMD construct.
+    </p>
+
+    <p>
+      This means that, when run with a 'local' configuration, the resulting
+      filtered images are written on the client machine, but when run with the
+      'ithaca' configuration, the resulting files are created and left on the
+      ITHACA cluster.  The user can retrieve the results by using, for instance,
+      the SFTP program (Secure File Transfer Protocol).
+    </p>
+
+    <p>
+      As an alternative, the program <i>colorSegmentationSol2.m</I> also uses an
+      SPMD construct, but we assign the output of the function to a "composite
+      variable".  This means that if the program is run remotely, the 4 images
+      are returned to the client machine, and can be accessed by examining the
+      four components of the composite variable.
+    </p>
+
+    <p>
+      Be sure to close the matlabpool before exiting your MATLAB session.  You can
+      test to see if you have an open matlabpool by typing:
+      <blockquote>
+        <i>value</i> = matlabpool ( 'size' )
+      </blockquote>
+      If <i>value</i> is returned as a positive number, you have an open matlabpool.
+    </p>
+
+    <p>
+      You might find it convenient to create a file to take care of this automically,
+      called <i>finish.m</i>
+      <pre>
+%FINISH finish file
+%
+% FINISH  finish file
+%   Change the name of this file to FINISH.M. The file
+%   is executed when MATLAB finishing
+
+%   Copyright 1984-2000 The MathWorks, Inc.
+%   $Revision: 1.4 $  $Date: 2000/06/01 16:19:26 $
+
+ sz = matlabpool('size');
+ if sz > 0
+   disp(['a Matlabpool of size ' int2str(sz) ' is open.'])
+   val = input('Do you want to close the matlabpool (y/n) ?','s');
+   if val == 'n' || val == 'N'
+       return
+   else
+      matlabpool close
+   end
+ end
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      To run the nonparallel version of the program:
+      <blockquote>
+        colorSegmentation
+      </blockquote>
+    </p>
+
+    <p>
+      To run the first parallel version of the program:
+      <blockquote>
+        colorSegmentationSol ( <i>'configuration'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'configuration'</i> is either 'local', for local execution,
+          or 'ithaca', to run remotely on ITHACA.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      To run the second parallel version of the program:
+      <blockquote>
+        <i>image</i> = colorSegmentationSol2 ( <i>'configuration'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'configuration'</i> is either 'local', for local execution,
+          or 'ithaca', to run remotely on ITHACA.
+        </li>
+        <li>
+          <i>image</i> is a composite variable whose four components are
+          the four color-filtered images.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/birthday_remote/birthday_remote.html">
+      BIRTHDAY_REMOTE</a>,
+      a MATLAB program which
+      runs a Monte Carlo simulation of the birthday paradox, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+      LYRICS_REMOTE</a>,
+      a MATLAB program which
+      runs in parallel, using three workers which cooperate "systolically", that is,
+      as through they were on an assembly line.  The output from worker 1 is passed to
+      worker 2 for further processing, and so on.  This includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_distcomp/matlab_distcomp.html">
+      MATLAB_DISTCOMP</a>,
+      a MATLAB program which
+      remotely runs a set of 5 jobs on the Ithaca cluster.
+      These jobs are equivalent to the BIRTHDAY_REMOTE, COLOR_REMOTE,
+      KNAPSACK_REMOTE, LYRICS_REMOTE and MD_REMOTE jobs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      examples which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_remote/matlab_remote.html">
+      MATLAB_REMOTE</a>,
+      examples which
+      illustrate the use of remote job execution, in which a desktop copy of
+      MATLAB sends programs and data to a remote machine for execution.
+      Included is information needed to properly configure the local machine.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "color_2009b.mat">color_2009b.mat</a>
+          a MATLAB configuration file that can be used exclusively for this
+          program.
+        </li>
+        <li>
+          <a href = "colorFilter.m">colorFilter.m</a>
+          is a program which filters a given color from an image.
+        </li>
+        <li>
+          <a href = "colorSegmentation.m">colorSegmentation.m</a>
+          is a program which, sequentially, segments an image by filtering
+          four colors.
+        </li>
+        <li>
+          <a href = "colorSegmentationSol.m">colorSegmentationSol.m</a>
+          is a program which, in parallel, segments an image by filtering
+          four colors.  If the program is being run remotely, then the
+          filtered images are left on the remote machine.
+        </li>
+        <li>
+          <a href = "colorSegmentationSol2.m">colorSegmentationSol2.m</a>
+          is a program which, in parallel, segments an image by filtering
+          four colors.  If the program is being run remotely, then the
+          filtered images are returned to the client machine as the
+          four components of a composite variable.
+        </li>
+        <li>
+          <a href = "fabric.png">fabric.png</a>
+          a PNG file which contains the image to be segmented.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

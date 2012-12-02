@@ -1,0 +1,347 @@
+>> van_der_corput_test
+03-Feb-2011 10:20:29
+
+VAN_DER_CORPUT_TEST
+  Test the VAN_DER_CORPUT library.
+
+VAN_DER_CORPUT_TEST01
+  VAN_DER_CORPUT returns the next element
+  of a van der Corput sequence in the current base.
+
+  I   R
+
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+10 0.312500
+
+VAN_DER_CORPUT_TEST02
+  VAN_DER_CORPUT_SEQUENCE returns N elements
+  of a van der Corput sequence in the current base.
+
+  I   R
+
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+
+VAN_DER_CORPUT_TEST03
+  VAN_DER_CORPUT_SEED_SET sets the seed;
+  VAN_DER_CORPUT_SEED_GET gets the seed;
+
+  In this test, we demonstrate how computing elements
+  affects the seed, and how resetting the seed determines
+  the next element computed.
+
+  We start at element 0 and compute 10 elements.
+
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+
+  The current seed is 10
+
+  We jump back to element 6 and compute 10 elements.
+
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+10 0.312500
+11 0.812500
+12 0.187500
+13 0.687500
+14 0.437500
+15 0.937500
+
+  The current seed is 16
+
+  We restart at element 0 and compute 6 elements.
+
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+
+  The current seed is 6
+
+  We jump to element 100 and compute 5 elements.
+
+100 0.148438
+101 0.648438
+102 0.398438
+103 0.898438
+104 0.085938
+
+  The current seed is 105
+
+VAN_DER_CORPUT_TEST04
+  VAN_DER_CORPUT_BASE_SET sets the base;
+  VAN_DER_CORPUT_BASE_GET gets the base;
+
+  In this test, we show how setting the base changes
+  the results of the sequence.
+
+
+  Current SEED = 0
+  Current BASE = 2
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+
+  Repeat the calculation with a new base.
+
+  Current SEED = 0
+  Current BASE = 3
+0 0.000000
+1 0.333333
+2 0.666667
+3 0.111111
+4 0.444444
+5 0.777778
+6 0.222222
+7 0.555556
+8 0.888889
+9 0.037037
+
+  Repeat the calculation with a new base.
+
+  Current SEED = 0
+  Current BASE = 4
+0 0.000000
+1 0.250000
+2 0.500000
+3 0.750000
+4 0.062500
+5 0.312500
+6 0.562500
+7 0.812500
+8 0.125000
+9 0.375000
+
+VAN_DER_CORPUT_TEST045
+  VAN_DER_CORPUT_SEED_SET sets the seed;
+  VAN_DER_CORPUT_SEED_GET gets the seed;
+
+  In this test, we demonstrate computing elements
+  affects the seed, and how resetting the seed determines
+  the next element computed.
+
+  We start at element 0 and compute 10 elements.
+
+
+  The current seed is 0
+  The current base is 5
+0 0.000000
+1 0.200000
+2 0.400000
+3 0.600000
+4 0.800000
+5 0.040000
+6 0.240000
+7 0.440000
+8 0.640000
+9 0.840000
+
+  The current seed is 0
+  The current base is 100
+0 0.000000
+1 0.010000
+2 0.020000
+3 0.030000
+4 0.040000
+5 0.050000
+6 0.060000
+7 0.070000
+8 0.080000
+9 0.090000
+
+  The current seed is 3
+  The current base is 5
+3 0.600000
+4 0.800000
+5 0.040000
+6 0.240000
+7 0.440000
+8 0.640000
+9 0.840000
+10 0.080000
+11 0.280000
+12 0.480000
+
+VAN_DER_CORPUT_TEST05
+  I4_TO_VAN_DER_CORPUT returns the I-th element
+  of a van der Corput sequence to a given base.
+
+  Base    Seed   R
+
+
+2
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+10 0.312500
+
+3
+0 0.000000
+1 0.333333
+2 0.666667
+3 0.111111
+4 0.444444
+5 0.777778
+6 0.222222
+7 0.555556
+8 0.888889
+9 0.037037
+10 0.370370
+
+4
+0 0.000000
+1 0.250000
+2 0.500000
+3 0.750000
+4 0.062500
+5 0.312500
+6 0.562500
+7 0.812500
+8 0.125000
+9 0.375000
+10 0.625000
+
+5
+0 0.000000
+1 0.200000
+2 0.400000
+3 0.600000
+4 0.800000
+5 0.040000
+6 0.240000
+7 0.440000
+8 0.640000
+9 0.840000
+10 0.080000
+
+VAN_DER_CORPUT_TEST06
+  I_TO_VAN_DER_CORPUT_SEQUENCE returns N elements
+  of a van der Corput sequence to a given base.
+
+  Base    Seed   R
+
+
+2
+0 0.000000
+1 0.500000
+2 0.250000
+3 0.750000
+4 0.125000
+5 0.625000
+6 0.375000
+7 0.875000
+8 0.062500
+9 0.562500
+
+3
+0 0.000000
+1 0.333333
+2 0.666667
+3 0.111111
+4 0.444444
+5 0.777778
+6 0.222222
+7 0.555556
+8 0.888889
+9 0.037037
+
+4
+0 0.000000
+1 0.250000
+2 0.500000
+3 0.750000
+4 0.062500
+5 0.312500
+6 0.562500
+7 0.812500
+8 0.125000
+9 0.375000
+
+5
+0 0.000000
+1 0.200000
+2 0.400000
+3 0.600000
+4 0.800000
+5 0.040000
+6 0.240000
+7 0.440000
+8 0.640000
+9 0.840000
+
+VAN_DER_CORPUT_TEST07
+  VDC_NUMERATOR_SEQUENCE returns N elements
+  of a van der Corput numerator sequence in base 2.
+
+   N:  Sequence
+
+   1:     1
+   2:     2   1
+   3:     2   1   3
+   4:     4   2   6   1
+   5:     4   2   6   1   5
+   6:     4   2   6   1   5   3
+   7:     4   2   6   1   5   3   7
+   8:     8   4  12   2  10   6  14   1
+   9:     8   4  12   2  10   6  14   1   9
+  10:     8   4  12   2  10   6  14   1   9   5
+  11:     8   4  12   2  10   6  14   1   9   5  13
+  12:     8   4  12   2  10   6  14   1   9   5  13   3
+  13:     8   4  12   2  10   6  14   1   9   5  13   3  11
+  14:     8   4  12   2  10   6  14   1   9   5  13   3  11   7
+  15:     8   4  12   2  10   6  14   1   9   5  13   3  11   7  15
+  16:    16   8  24   4  20  12  28   2  18  10  26   6  22  14  30   1
+  17:    16   8  24   4  20  12  28   2  18  10  26   6  22  14  30   1  17
+  18:    16   8  24   4  20  12  28   2  18  10  26   6  22  14  30   1  17   9
+  19:    16   8  24   4  20  12  28   2  18  10  26   6  22  14  30   1  17   9  25
+  20:    16   8  24   4  20  12  28   2  18  10  26   6  22  14  30   1  17   9  25   5
+
+VAN_DER_CORPUT_TEST
+  Normal end of execution.
+
+03-Feb-2011 10:20:29
+>>

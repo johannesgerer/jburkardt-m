@@ -1,0 +1,886 @@
+>> cd ../linpack_z
+>> linpack_z_test
+04-Jan-2011 09:16:46
+
+LINPACK_Z_TEST
+  MATLAB version
+  Test the LINPACK_Z library.
+
+TEST01
+  For a complex Hermitian positive definite matrix,
+  ZCHDC computes the Cholesky decomposition.
+
+  The number of equations is N = 3
+
+  The matrix A:
+
+  (  2.528100    0.000000)  (  2.134100   -0.214700)  (  2.418700    0.293200)
+  (  2.134100    0.214700)  (  3.037100    0.000000)  (  2.090500    1.150500)
+  (  2.418700   -0.293200)  (  2.090500   -1.150500)  (  2.763800    0.000000)
+
+  Decompose the matrix.
+
+  The Cholesky factor U:
+
+  (  1.590000    0.000000)  (  1.342201   -0.135031)  (  1.521195    0.184403)
+  (  0.000000    0.000000)  (  1.103341    0.000000)  (  0.066752    0.632248)
+  (  0.000000    0.000000)  (  0.000000    0.000000)  (  0.107555    0.000000)
+
+  The product U^H * U:
+
+  (  2.528100    0.000000)  (  2.134100   -0.214700)  (  2.418700    0.293200)
+  (  2.134100    0.214700)  (  3.037100    0.000000)  (  2.090500    1.150500)
+  (  2.418700   -0.293200)  (  2.090500   -1.150500)  (  2.763800    0.000000)
+
+TEST02
+  For a double precision complex (C)
+  Hermitian positive definite matrix,
+  ZCHEX can shift columns in a Cholesky factorization.
+
+  The number of equations is N = 3
+
+  The matrix A:
+
+  (2.528100  0.000000)  (2.134100  -0.214700)  (2.418700  0.293200)
+  (2.134100  0.214700)  (3.037100  0.000000)  (2.090500  1.150500)
+  (2.418700  -0.293200)  (2.090500  -1.150500)  (2.763800  0.000000)
+
+  The vector Z:
+
+  (1.000000  0.000000)
+  (2.000000  0.000000)
+  (3.000000  0.000000)
+
+  Decompose the matrix.
+
+  The Cholesky factor U:
+
+  (1.590000  0.000000)  (1.342201  -0.135031)  (1.521195  0.184403)
+  (0.000000  0.000000)  (1.103341  0.000000)  (0.066752  0.632248)
+  (0.000000  0.000000)  (0.000000  0.000000)  (0.107555  0.000000)
+
+  Right circular shift columns K = 1 through L = 3
+
+  Left circular shift columns K = 2 through L = 3
+
+  The shifted Cholesky factor U:
+
+  (1.650386  0.200063)  (1.331611  -0.535689)  (1.465536  0.000000)
+  (0.000000  0.000000)  (0.849985  -0.504457)  (-0.135667  -0.590520)
+  (0.000000  0.000000)  (0.000000  0.000000)  (-0.105082  -0.046296)
+
+  The shifted vector Z:
+
+  (1.285652  -0.722065)
+  (1.472225  -0.393939)
+  (3.081927  0.069380)
+
+  The shifted product U' * U:
+
+  (2.763800  0.000000)  (2.090500  -1.150500)  (2.418700  -0.293200)
+  (2.090500  1.150500)  (3.037100  0.000000)  (2.134100  0.214700)
+  (2.418700  0.293200)  (2.134100  -0.214700)  (2.528100  0.000000)
+
+TEST03
+  For a double precision complex (C)
+  Hermitian matrix
+  ZCHUD updates a Cholesky decomposition.
+  ZTRSL solves a triangular linear system.
+
+  In this example, we use ZCHUD to solve a
+  least squares problem R * b = z.
+
+  The number of equations is P = 20
+
+  RHS #1
+
+         1  (2.379383  20.767623)
+         2  (2.734442  2.995893)
+         3  (6.417954  -59.068878)
+         4  (-27.576569  28.604115)
+         5  (10.116850  15.477522)
+  ......  ..............
+        16  (-20.981344  8.300412)
+        17  (23.802587  32.073475)
+        18  (-15.947093  -7.483698)
+        19  (6.255000  18.327665)
+        20  (4.857476  -5.740623)
+
+  Solution vector #1
+  (Should be (1,1) (2,0), (3,1) (4,0) ...)
+
+         1  (1.000000  1.000000)
+         2  (2.000000  0.000000)
+         3  (3.000000  1.000000)
+         4  (4.000000  0.000000)
+         5  (5.000000  1.000000)
+  ......  ..............
+        16  (16.000000  0.000000)
+        17  (17.000000  1.000000)
+        18  (18.000000  -0.000000)
+        19  (19.000000  1.000000)
+        20  (20.000000  -0.000000)
+
+TEST04
+  For a complex general band storage matrix:
+  ZGBCO factors the matrix and estimates the
+  reciprocal condition number.
+
+  The matrix order is N = 3
+  The lower band is ML =  1
+  The upper band is MU =  1
+
+  The matrix A:
+
+  (0.449860  -0.126667)  (0.589627  0.260090)  (0.000000  0.000000)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.236066  0.077459)
+  (0.000000  0.000000)  (-0.139466  -0.156136)  (0.018599  -0.633214)
+
+  Estimated reciprocal condition RCOND = 0.321778
+
+TEST05
+  For a complex general band storage matrix:
+  ZGBFA factors the matrix;
+  ZGBSL solves a factored linear system.
+
+  The matrix order is N = 3
+  The lower band is ML =  1
+  The upper band is MU =  1
+
+  The matrix:
+
+  (0.449860  -0.126667)  (0.589627  0.260090)  (0.000000  0.000000)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.236066  0.077459)
+  (0.000000  0.000000)  (-0.139466  -0.156136)  (0.018599  -0.633214)
+
+  The right hand side B is
+
+  (-0.126158  0.196128)
+  (-1.289884  -0.181063)
+  (0.219757  -0.212515)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (0.892850  0.010314)  (0.892850  0.010314)
+  (-0.560465  0.763795)  (-0.560465  0.763795)
+  (0.306357  0.026275)  (0.306357  0.026275)
+
+TEST06
+  For a complex general band storage matrix:
+  ZGBFA factors the matrix.
+  ZGBDI computes the determinant.
+
+  The matrix order is N = 3
+  The lower band is ML =  1
+  The upper band is MU =  1
+
+  The matrix:
+
+  (0.449860  -0.126667)  (0.589627  0.260090)  (0.000000  0.000000)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.236066  0.077459)
+  (0.000000  0.000000)  (-0.139466  -0.156136)  (0.018599  -0.633214)
+
+  Determinant = (3.162239  -3.918540) * 10^-1.000000
+
+TEST07
+  For a complex general storage matrix:
+  ZGECO factors the matrix and estimates the
+  reciprocal condition number.
+
+  The matrix order is N = 3
+
+  The matrix:
+
+  (0.449860  -0.126667)  (0.391140  0.323400)  (0.018599  -0.633214)
+  (-0.843197  -0.344280)  (-0.139466  -0.156136)  (0.892850  0.010314)
+  (0.589627  0.260090)  (-0.236066  0.077459)  (-0.560465  0.763795)
+
+  Estimated reciprocal condition RCOND = 0.012294
+
+TEST08
+  For a complex general storage matrix:
+  ZGEFA factors the matrix.
+  ZGESL solves a linear system.
+
+  The matrix order is N = 3
+
+  The matrix:
+
+  (0.449860  -0.126667)  (0.391140  0.323400)  (0.018599  -0.633214)
+  (-0.843197  -0.344280)  (-0.139466  -0.156136)  (0.892850  0.010314)
+  (0.589627  0.260090)  (-0.236066  0.077459)  (-0.560465  0.763795)
+
+  The right hand side:
+
+  (0.606261  -0.391702)
+  (-0.128146  -0.078652)
+  (-0.093079  0.576490)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (    0.306357      0.026275)  (    0.306357      0.026275)
+  (    0.500804     -0.779931)  (    0.500804     -0.779931)
+  (    0.350471      0.016555)  (    0.350471      0.016555)
+
+TEST09
+  For a complex general storage matrix:
+  ZGEFA factors the matrix.
+  ZGEDI computes the determinant or inverse.
+
+  The matrix order is N = 3
+
+  The matrix:
+
+  (0.449860  -0.126667)  (0.391140  0.323400)  (0.018599  -0.633214)
+  (-0.843197  -0.344280)  (-0.139466  -0.156136)  (0.892850  0.010314)
+  (0.589627  0.260090)  (-0.236066  0.077459)  (-0.560465  0.763795)
+
+  Determinant = (-3.630740  -5.582360) * 10^-2.000000
+
+  The product inv(A) * A is
+
+  (1.000000  -0.000000)  (0.000000  -0.000000)  (-0.000000  0.000000)
+  (-0.000000  -0.000000)  (1.000000  -0.000000)  (0.000000  0.000000)
+  (-0.000000  0.000000)  (-0.000000  0.000000)  (1.000000  0.000000)
+
+TEST10
+  For a complex tridiagonal matrix:
+  ZGTSL solves a linear system.
+
+  Matrix order N = 10
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (1.000000  10.000000)  (1.000000  10.000000)
+  (2.000000  20.000000)  (2.000000  20.000000)
+  (3.000000  30.000000)  (3.000000  30.000000)
+  (4.000000  40.000000)  (4.000000  40.000000)
+  (5.000000  50.000000)  (5.000000  50.000000)
+  (6.000000  60.000000)  (6.000000  60.000000)
+  (7.000000  70.000000)  (7.000000  70.000000)
+  (8.000000  80.000000)  (8.000000  80.000000)
+  (9.000000  90.000000)  (9.000000  90.000000)
+  (10.000000  100.000000)  (10.000000  100.000000)
+
+TEST11
+  For a double precision complex (C)
+  Hermitian matrix (HI):
+  ZHICO factors the matrix and estimates
+  the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (-0.645830  0.380263)
+  (0.468469  0.858402)  (0.066119  0.000000)  (0.391140  0.323400)
+  (-0.645830  -0.380263)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  Estimated reciprocal condition RCOND = 0.235919
+
+TEST12
+  For a double precision complex (C)
+  Hermitian matrix (HI):
+  ZHIFA factors the matrix.
+  ZHISL solves a linear system.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (-0.645830  0.380263)
+  (0.468469  0.858402)  (0.066119  0.000000)  (0.391140  0.323400)
+  (-0.645830  -0.380263)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  The right hand side B:
+
+  (0.391451  1.349857)
+  (0.418849  0.556889)
+  (-0.437792  -0.182306)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (    0.737082      0.301125)  (    0.737082      0.301125)
+  (   -0.545643      0.389631)  (   -0.545643      0.389631)
+  (    0.254327     -0.830657)  (    0.254327     -0.830657)
+
+TEST13
+  For a double precision complex (C)
+  Hermitian matrix (HI):
+  ZHIFA factors the matrix.
+  ZHIDI computes the determinant, inverse,
+  or inertia.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (-0.645830  0.380263)
+  (0.468469  0.858402)  (0.066119  0.000000)  (0.391140  0.323400)
+  (-0.645830  -0.380263)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  Determinant = -8.700617 * 10^-1.000000
+  The inertia:
+
+         2
+         1
+         0
+
+  The product inv(A) * A:
+
+  (1.000000  -0.000000)  (0.000000  0.000000)  (-0.000000  0.000000)
+  (-0.000000  0.000000)  (1.000000  0.000000)  (-0.000000  -0.000000)
+  (-0.000000  -0.000000)  (-0.000000  0.000000)  (1.000000  0.000000)
+
+TEST14
+  For a double precision complex (C)
+  Hermitian matrix using packed storage (HP),
+  ZHPCO factors the matrix and estimates
+  the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (0.589627  0.260090)
+  (0.468469  0.858402)  (0.561695  0.000000)  (0.391140  0.323400)
+  (0.589627  -0.260090)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  Estimated reciprocal condition RCOND = 0.034006
+
+TEST15
+  For a double precision complex (C)
+  Hermitian matrix using packed storage (HP),
+  ZHPFA factors the matrix.
+  ZHPSL solves a linear system.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (0.589627  0.260090)
+  (0.468469  0.858402)  (0.561695  0.000000)  (0.391140  0.323400)
+  (0.589627  -0.260090)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  The right hand side B:
+
+  (0.605839  0.293053)
+  (0.148441  0.749981)
+  (0.436654  0.278298)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (    0.737082      0.301125)  (    0.737082      0.301125)
+  (   -0.545643      0.389631)  (   -0.545643      0.389631)
+  (    0.254327     -0.830657)  (    0.254327     -0.830657)
+
+TEST16
+  For a double precision complex (C)
+  Hermitian matrix using packed storage (HP),
+  ZHPFA factors the matrix.
+  ZHPDI computes the determinant, inverse,
+  or inertia.
+
+  The matrix order is N = 3
+
+  The matrix A:
+
+  (0.218418  0.000000)  (0.468469  -0.858402)  (0.589627  0.260090)
+  (0.468469  0.858402)  (0.561695  0.000000)  (0.391140  0.323400)
+  (0.589627  -0.260090)  (0.391140  -0.323400)  (0.043829  0.000000)
+
+  Determinant = 1.215350 * 10^-1.000000
+  The inertia:
+
+         1
+         2
+         0
+
+  The product inv(A) * A:
+
+  (1.000000  0.000000)  (-0.000000  0.000000)  (0.000000  -0.000000)
+  (-0.000000  -0.000000)  (1.000000  0.000000)  (-0.000000  -0.000000)
+  (0.000000  0.000000)  (-0.000000  0.000000)  (1.000000  -0.000000)
+
+TEST17
+  For a double precision complex (C)
+  positive definite hermitian band matrix (PB),
+  ZPBCO estimates the reciprocal condition number.
+  The matrix size is N = 3
+
+  Estimate the condition.
+
+  Reciprocal condition  = 0.153588
+
+TEST18
+  For a double precision complex (C)
+  positive definite hermitian band matrix (PB),
+  ZPBDI computes the determinant as
+    det = MANTISSA * 10**EXPONENT
+
+  Determinant = 6.095706 * 10^(1.000000)
+
+TEST19
+  For a double precision complex (C)
+  positive definite hermitian band matrix (PB),
+  ZPBFA computes the LU factors.
+  ZPBSL solves a factored linear system.
+  The matrix size is N = 3
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The solution:
+  (Should be roughly (1,2,3)):
+
+         1  (    1.000000      0.000000)
+         2  (    2.000000     -0.000000)
+         3  (    3.000000      0.000000)
+
+TEST20
+  For a double precision complex (C)
+  Hermitian positive definite matrix (PO),
+  ZPOCO estimates the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  Estimate the condition.
+
+  Reciprocal condition  = 0.000602
+
+TEST21
+  For a double precision complex (C)
+  Hermitian positive definite matrix (PO),
+  ZPOFA computes the LU factors,
+  ZPODI computes the inverse or determinant.
+
+  The matrix order is N = 3
+
+  Factor the matrix.
+
+  Get the determinant and inverse.
+
+  Determinant  = 3.560195 * 10^(-2.000000)
+
+  The product inverse(A) * A:
+
+  (1.000000  -0.000000)  (0.000000  -0.000000)  (0.000000  0.000000)
+  (1.000000  -0.000000)  (0.000000  -0.000000)  (0.000000  0.000000)
+  (1.000000  -0.000000)  (0.000000  -0.000000)  (0.000000  0.000000)
+
+TEST22
+  For a double precision complex (C)
+  Hermitian positive definite matrix (PO),
+  ZPOFA computes the LU factors.
+  ZPOSL solves a factored linear system.
+
+  The matrix order is N = 3
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The solution:
+  (Should be (1+2i),(3+4i),(5+6i):
+
+         1  (1.000000  2.000000)
+         2  (3.000000  4.000000)
+         3  (5.000000  6.000000)
+
+TEST23
+  For a double precision complex (C)
+  Hermitian positive definite packed matrix (PP),
+  ZPPCO estimates the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  Estimate the condition number.
+
+  Reciprocal condition number = 0.000602
+
+TEST24
+  For a double precision complex (C)
+  Hermitian positive definite packed matrix (PP),
+  ZPPFA factors the matrix.
+  ZPPDI computes the inverse or determinant.
+
+  The matrix order is N = 3
+
+  Factor the matrix.
+
+  Get the determinant and inverse.
+
+  Determinant  = 3.560195 * 10^(-2.000000)
+  Matrix Inverse(A):
+
+  (75.841258  0.000000)  (-14.173568  -44.278249)  (-74.082615  31.345869)
+  (-14.173568  44.278249)  (29.523297  0.000000)  (-5.229922  -49.535662)
+  (-74.082615  -31.345869)  (-5.229922  49.535662)  (86.445092  0.000000)
+
+  Matrix Inverse(A) * A:
+
+  (1.000000  -0.000000)  (0.000000  -0.000000)  (0.000000  0.000000)
+  (-0.000000  0.000000)  (1.000000  0.000000)  (0.000000  0.000000)
+  (-0.000000  0.000000)  (0.000000  -0.000000)  (1.000000  0.000000)
+
+TEST25
+  For a double precision complex (C)
+  Hermitian positive definite packed matrix (PP),
+  ZPPFA factors the matrix.
+  ZPPSL solves a factored linear system.
+
+  The matrix order is N = 3
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The solution:
+  (Should be (1+2i),(3+4i),(5+6i):
+
+         1  (1.000000  2.000000)
+         2  (3.000000  4.000000)
+         3  (5.000000  6.000000)
+
+TEST26
+  For a double precision complex (C)
+  Hermitian positive definite tridiagonal matrix (PT),
+  ZPTSL factors and solves a linear system.
+
+  The matrix order is N = 3
+
+  Factor the matrix and solve the system.
+
+  The solution:
+  (Should be roughly (1,2,3)):
+
+         1  (1.000000  0.000000)
+         2  (2.000000  -0.000000)
+         3  (3.000000  0.000000)
+
+TEST27
+  For a double precision complex (C)
+  general matrix,
+  ZQRDC computes the QR decomposition of a
+  matrix, but does not return Q and R explicitly.
+
+  The matrix row order is N    = 3
+  The matrix column order is P = 3
+
+  Show how Q and R can be recovered using ZQRSL.
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (0.391140  0.323400)  (0.018599  -0.633214)
+  (-0.843197  -0.344280)  (-0.139466  -0.156136)  (0.892850  0.010314)
+  (0.589627  0.260090)  (-0.236066  0.077459)  (-0.560465  0.763795)
+
+  Decompose the matrix.
+
+  The packed matrix A which describes Q and R:
+
+  (-1.164366  0.327852)  (-0.235472  -0.264983)  (0.499111  -0.666416)
+  (-0.593833  -0.462886)  (0.105287  -0.475800)  (-1.170334  0.142940)
+  (0.410919  0.339078)  (-0.378092  0.667708)  (-0.098039  0.056129)
+
+  The QRAUX vector, containing some additional
+  information defining Q:
+
+  (1.386356  0.000000)
+  (1.641259  0.000000)
+  (0.000000  0.000000)
+
+  The R factor:
+
+  (-1.164366  0.327852)  (-0.235472  -0.264983)  (0.499111  -0.666416)
+  (0.000000  0.000000)  (0.105287  -0.475800)  (-1.170334  0.142940)
+  (0.000000  0.000000)  (0.000000  0.000000)  (-0.098039  0.056129)
+
+  The Q factor:
+
+  (-0.386356  0.000000)  (-0.309760  0.699406)  (0.270091  0.438930)
+  (0.593833  0.462886)  (-0.275053  -0.196159)  (0.408954  0.389517)
+  (-0.410919  -0.339078)  (0.115216  -0.536164)  (0.613960  0.196159)
+
+  The product Q * R:
+
+  (0.449860  -0.126667)  (0.391140  0.323400)  (0.018599  -0.633214)
+  (-0.843197  -0.344280)  (-0.139466  -0.156136)  (0.892850  0.010314)
+  (0.589627  0.260090)  (-0.236066  0.077459)  (-0.560465  0.763795)
+
+TEST28
+  For a double precision complex (C)
+  symmetric matrix (SI):
+  ZSICO factors the matrix and estimates
+  the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.589627  0.260090)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.139466  -0.156136)
+  (0.589627  0.260090)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  Estimated reciprocal condition RCOND = 0.047532
+
+TEST29
+  For a double precision complex (C)
+  symmetric matrix (SI):
+  ZSIFA factors the matrix.
+  ZSISL solves a linear system.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.589627  0.260090)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.139466  -0.156136)
+  (0.589627  0.260090)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  The right hand side B is
+
+  (-1.350259  -0.298717)
+  (0.309629  0.801288)
+  (0.125892  -0.733086)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (0.018599  -0.633214)  (0.018599  -0.633214)
+  (0.892850  0.010314)  (0.892850  0.010314)
+  (-0.560465  0.763795)  (-0.560465  0.763795)
+
+TEST30
+  For a double precision complex (C)
+  symmetric matrix (SI):
+  ZSIFA factors the matrix.
+  ZSIDI computes the determinant or inverse.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.589627  0.260090)
+  (-0.843197  -0.344280)  (0.391140  0.323400)  (-0.139466  -0.156136)
+  (0.589627  0.260090)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  Determinant = (0.943843  0.996661) * 10^(-1.000000)
+
+  The product inv(A) * A is
+
+  (1.000000  0.000000)  (-0.000000  -0.000000)  (0.000000  0.000000)
+  (0.000000  0.000000)  (1.000000  0.000000)  (0.000000  -0.000000)
+  (0.000000  0.000000)  (-0.000000  0.000000)  (1.000000  0.000000)
+
+TEST31
+  For a double precision complex (C)
+  symmetric matrix in packed storage (SP),
+  ZSPCO factors the matrix and estimates
+  the reciprocal condition number.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.391140  0.323400)
+  (-0.843197  -0.344280)  (0.589627  0.260090)  (-0.139466  -0.156136)
+  (0.391140  0.323400)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  Estimated reciprocal condition RCOND = 0.057619
+
+TEST32
+  For a double precision complex (C)
+  symmetric matrix in packed storage (SP),
+  ZSPFA factors the matrix.
+  ZSPSL solves a linear system.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.391140  0.323400)
+  (-0.843197  -0.344280)  (0.589627  0.260090)  (-0.139466  -0.156136)
+  (0.391140  0.323400)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  The right hand side B is
+
+  (-1.287369  -0.485804)
+  (0.487501  0.746809)
+  (0.162289  -0.606224)
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (0.018599  -0.633214)  (0.018599  -0.633214)
+  (0.892850  0.010314)  (0.892850  0.010314)
+  (-0.560465  0.763795)  (-0.560465  0.763795)
+
+TEST33
+  For a double precision complex (C)
+  symmetric matrix in packed storage (SP)
+  ZSPFA factors the matrix.
+  ZSPDI computes the determinant or inverse.
+
+  The matrix order is N = 3
+
+  The matrix A is
+
+  (0.449860  -0.126667)  (-0.843197  -0.344280)  (0.391140  0.323400)
+  (-0.843197  -0.344280)  (0.589627  0.260090)  (-0.139466  -0.156136)
+  (0.391140  0.323400)  (-0.139466  -0.156136)  (-0.236066  0.077459)
+
+  Determinant = (0.788527  1.041451)*10^(-1.000000)
+
+  The product inv(A) * A is
+
+  (1.000000  -0.000000)  (0.000000  0.000000)  (0.000000  0.000000)
+  (-0.000000  -0.000000)  (1.000000  0.000000)  (0.000000  0.000000)
+  (0.000000  -0.000000)  (-0.000000  0.000000)  (1.000000  -0.000000)
+
+TEST34
+  For a double precision complex (C)
+  general storage matrix,
+  ZSVDC computes the singular value decomposition:
+    A = U * S * V^H
+
+  Matrix rows M =    4
+  Matrix columns N = 3
+
+  The matrix A:
+
+  (0.449860  -0.126667)  (-0.139466  -0.156136)  (-0.560465  0.763795)
+  (-0.843197  -0.344280)  (-0.236066  0.077459)  (0.306357  0.026275)
+  (0.589627  0.260090)  (0.018599  -0.633214)  (0.500804  -0.779931)
+  (0.391140  0.323400)  (0.892850  0.010314)  (0.350471  0.016555)
+
+  Decompose the matrix.
+
+  Singular values:
+
+     1  (1.729968  0.000000)
+     2  (1.300870  0.000000)
+     3  (0.560498  0.000000)
+
+  Left Singular Vector Matrix U:
+
+  (0.000610  -0.345582)  (-0.646616  -0.103578)  (-0.138959  0.473898)  (0.370919  0.265070)
+  (-0.351825  -0.092035)  (0.472598  0.309029)  (-0.397698  -0.047803)  (0.389194  0.486806)
+  (0.612414  0.327092)  (0.187892  0.240285)  (0.343893  0.349912)  (0.078628  0.421944)
+  (0.100854  0.506073)  (-0.398919  0.011625)  (-0.050548  -0.593639)  (0.461647  0.079795)
+
+  Right Singular Vector Matrix V:
+
+  (0.590574  0.000000)  (-0.585488  0.000000)  (0.555362  0.000000)
+  (0.016957  0.544490)  (-0.373585  -0.044688)  (-0.411883  -0.626125)
+  (-0.161380  0.573081)  (0.156257  0.700874)  (0.336346  0.129477)
+
+  The product U * S * V^H (should equal A):
+
+  (0.449860  -0.126667)  (-0.139466  -0.156136)  (-0.560465  0.763795)
+  (-0.843197  -0.344280)  (-0.236066  0.077459)  (0.306357  0.026275)
+  (0.589627  0.260090)  (0.018599  -0.633214)  (0.500804  -0.779931)
+  (0.391140  0.323400)  (0.892850  0.010314)  (0.350471  0.016555)
+
+TEST345
+  For a double precision complex (C)
+  general storage matrix,
+  ZSVDC computes the singular value decomposition:
+    A = U * S * V^H
+
+  Matrix rows M =    4
+  Matrix columns N = 4
+
+  The matrix A:
+
+  (1.000000  0.000000)  (1.000000  0.000000)  (1.000000  0.000000)  (1.000000  0.000000)
+  (-0.000000  1.000000)  (-1.000000  0.000000)  (1.000000  0.000000)  (0.000000  -1.000000)
+  (-1.000000  0.000000)  (-1.000000  0.000000)  (1.000000  0.000000)  (-1.000000  0.000000)
+  (0.000000  -1.000000)  (1.000000  0.000000)  (1.000000  0.000000)  (-0.000000  1.000000)
+
+  Decompose the matrix.
+
+  Singular values:
+
+     0  (2.828427  0.000000)
+     0  (2.000000  0.000000)
+     0  (2.000000  0.000000)
+     0  (0.000000  0.000000)
+
+  Left Singular Vector Matrix U:
+
+  (0.353553  -0.353553)  (0.421831  0.268438)  (-0.353553  -0.353553)  (-0.329795  -0.375813)
+  (-0.353553  0.353553)  (0.421831  0.268438)  (-0.353553  -0.353553)  (0.329795  0.375813)
+  (-0.353553  0.353553)  (0.421831  0.268438)  (0.353553  0.353553)  (-0.329795  -0.375813)
+  (0.353553  -0.353553)  (0.421831  0.268438)  (0.353553  0.353553)  (0.329795  0.375813)
+
+  Right Singular Vector Matrix V:
+
+  (0.500000  0.000000)  (0.000000  0.000000)  (-0.707107  0.000000)  (-0.500000  0.000000)
+  (0.500000  -0.500000)  (0.000000  0.000000)  (0.000000  0.000000)  (0.500000  -0.500000)
+  (0.000000  0.000000)  (0.843661  0.536875)  (0.000000  0.000000)  (0.000000  0.000000)
+  (-0.000000  -0.500000)  (0.000000  -0.000000)  (-0.000000  -0.707107)  (0.000000  0.500000)
+
+  The product U * S * V^H (should equal A):
+
+  (1.000000  0.000000)  (1.000000  0.000000)  (1.000000  -0.000000)  (1.000000  0.000000)
+  (-0.000000  1.000000)  (-1.000000  0.000000)  (1.000000  0.000000)  (-0.000000  -1.000000)
+  (-1.000000  -0.000000)  (-1.000000  0.000000)  (1.000000  0.000000)  (-1.000000  0.000000)
+  (0.000000  -1.000000)  (1.000000  0.000000)  (1.000000  0.000000)  (-0.000000  1.000000)
+
+TEST35
+  For a double precision complex (C)
+  triangular matrix (TR),
+  ZTRCO estimates the condition.
+
+  The matrix order is N = 3
+
+  Estimated reciprocal condition RCOND = 0.072614
+
+TEST36
+  For a double precision complex (C)
+  triangular matrix (TR),
+  ZTRDI computes the determinant or inverse.
+
+  The matrix order is N = 3
+
+  Determinant = (-7.367153  1.310818) * 10^(-2.000000)
+
+  The product inv(A) * A is
+
+  (1.000000  0.000000)  (0.000000  0.000000)  (0.000000  0.000000)
+  (0.000000  0.000000)  (1.000000  0.000000)  (0.000000  0.000000)
+  (-0.000000  0.000000)  (0.000000  -0.000000)  (1.000000  0.000000)
+
+TEST37
+  For a double precision complex (C)
+  triangular matrix (TR),
+  ZTRSL solves a linear system.
+
+  The matrix order is N = 10
+
+  Computed                     Exact
+  Solution                     Solution
+
+  (1.000000  10.000000)  (1.000000  10.000000)
+  (2.000000  20.000000)  (2.000000  20.000000)
+  (3.000000  30.000000)  (3.000000  30.000000)
+  (4.000000  40.000000)  (4.000000  40.000000)
+  (5.000000  50.000000)  (5.000000  50.000000)
+  (6.000000  60.000000)  (6.000000  60.000000)
+  (7.000000  70.000000)  (7.000000  70.000000)
+  (8.000000  80.000000)  (8.000000  80.000000)
+  (9.000000  90.000000)  (9.000000  90.000000)
+  (10.000000  100.000000)  (10.000000  100.000000)
+
+LINPACK_Z_TEST
+  Normal end of execution.
+
+04-Jan-2011 09:16:47
+>>

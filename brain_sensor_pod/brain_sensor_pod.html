@@ -1,0 +1,266 @@
+<html>
+
+  <head>
+    <title>
+      BRAIN_SENSOR_POD - Analysis of Brain Sensor Data
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      BRAIN_SENSOR_POD <br> Analysis of Brain Sensor Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BRAIN_SENSOR_POD</b> 
+      is a MATLAB program which
+      attempts to find patterns in a set of brain sensor data. 
+    </p>
+
+    <p>
+      We have a 40 x 1500 x 36 array of data, representing readings from
+      40 sensors, for 1500 time steps, for 36 individuals.
+    </p>
+
+    <p>
+      The sensors are placed at known locations on the head.  We 
+      simplify this information by idealizing the sensors as points
+      on a sphere of unit radius.
+    </p>
+
+    <p>
+      We now consider each set of 40 sensor readings to be an item
+      of data, and we apply POD to this data, seeking the first few
+      dominant or representative modes.  We choose these modes to
+      have unit norm, to be orthogonal, and to be ordered (either
+      in ascending or descending order).  The "most important" modes
+      are those which have the largest projection onto the given data.
+    </p>
+
+    <p>
+      The sensors are geometrically related.  If we make a simplified
+      flattened map of the sensor locations, that preserves neighbors
+      and roughly preserves areas and lengths, it is possible to
+      define a finite element mass matrix for the 2D data, and use
+      this to try to include some spatial weighting in the POD
+      calculation.
+    </p>
+
+    <p>
+      This program carries out both the unweighted and weighted versions
+      of the POD algorithm on the brain sensor data.  It displays
+      the 3 most prominent modes in the data.
+    </p>
+
+    <p>
+      This data analysis procedure, originally devised by Karl Pearson, has arisen
+      repeatedly in a variety of fields, and hence is known under
+      various names, including:
+      <ul>
+        <li>
+          the Hotelling transform;
+        </li>
+        <li>
+          the discrete Karhunen-Loeve transform (KLT)
+        </li>
+        <li>
+          Principal Component Analysis (PCA)
+        </li>
+        <li>
+          Principal Orthogonal Direction (POD)
+        </li>
+        <li>
+          Proper Orthogonal Decomposition (POD)
+        </li>
+        <li>
+          Singular Value Decomposition (SVD)
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_basis/cvt_basis.html">
+      CVT_BASIS</a>, 
+      a FORTRAN90 program which
+      uses discrete CVT (Centroidal Voronoi Tessellation) techniques to produce a
+      small set of basis vectors that are good cluster centers for a
+      large set of data vectors;
+    </p>
+
+    <p>
+      <a href = "../../f_src/cvt_basis_flow/cvt_basis_flow.html">
+      CVT_BASIS_FLOW</a>,
+      a FORTRAN90 program which
+      extracts dominant solution modes from a set of flow solutions
+      using CVT methods.
+    </p>
+
+    <p>
+      <a href = "../../f_src/pod_basis_flow/pod_basis_flow.html">
+      POD_BASIS_FLOW</a>,
+      a FORTRAN90 program which
+      extracts dominant solution modes from a set of flow solutions 
+      using POD (Proper Orthogonal Decomposition).
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>,
+      a C++ program which 
+      applies the singular value decomposition to a collection of data vectors, 
+      extracting dominant modes;
+    </p>
+
+    <p>
+      <a href = "../../f_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>, 
+      a FORTRAN90 program which 
+      applies the singular value decomposition to a collection of data vectors, 
+      extracting dominant modes;
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>, 
+      a MATLAB program which 
+      applies the singular value decomposition to a collection of data vectors, 
+      extracting dominant modes;
+    </p>
+
+    <p>
+      <a href = "../../f_src/svd_basis_weight/svd_basis_weight.html">
+      SVD_BASIS_WEIGHT</a>, 
+      a FORTRAN90 program which 
+      is similar to SVD_BASIS, but which allows the user to
+      assign weights to each data vector.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod/twod.html">
+      TWOD</a>, 
+      a MATLAB library which 
+      contains functions useful for 2D finite element calculations.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Gal Berkooz, Philip Holmes, John Lumley,<br>
+          The proper orthogonal decomposition in the analysis 
+          of turbulent flows,<br>
+          Annual Review of Fluid Mechanics,<br>
+          Volume 25, 1993, pages 539-575.
+        </li>
+        <li>
+          Lawrence Sirovitch,<br>
+          Turbulence and the dynamics of coherent structures, Parts I-III,<br>
+          Quarterly of Applied Mathematics,<br>
+          Volume XLV, Number 3, 1987, pages 561-590.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "brain_sensor_pod.m">brain_sensor_pod.m</a>,
+          the main program, which reads the data, triangulates and flattens
+          the sensor locations, and computes the weighted and unweighted
+          POD vectors.
+        </li>
+        <li>
+          <a href = "build_mass_2d.m">build_mass_2d.m</a>,
+          finite element functions which construct the mass matrix
+          for the weighted version of POD.
+        </li>
+        <li>
+          <a href = "sensor_data.m">sensor_data.m</a>,
+          a function which extracts the sensor data, computes a 2D
+          flattened version, and a triangulation of the 2D coordinates.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "brain_data.mat">brain_data.mat</a>, 
+          a MAT file containing the data.
+        </li>
+        <li>
+          <a href = "sensors_2d.png">sensors_2d.png</a>, 
+          the 2D map of the sensor locations.
+        </li>
+        <li>
+          <a href = "unweighted_mode1_2d.png">unweighted_mode1_2d.png</a>, 
+          the mode 1 vector for unweighted POD, as a 2D image.
+        </li>
+        <li>
+          <a href = "unweighted_mode1_3d.png">unweighted_mode1_3d.png</a>, 
+          the mode 1 vector for unweighted POD, as a 3D image.
+        </li>
+        <li>
+          <a href = "unweighted_mode2_2d.png">unweighted_mode2_2d.png</a>, 
+          the mode 2 vector for unweighted POD, as a 2D image.
+        </li>
+        <li>
+          <a href = "unweighted_mode2_3d.png">unweighted_mode2_3d.png</a>, 
+          the mode 2 vector for unweighted POD, as a 3D image.
+        </li>
+        <li>
+          <a href = "unweighted_mode3_2d.png">unweighted_mode3_2d.png</a>, 
+          the mode 3 vector for unweighted POD, as a 2D image.
+        </li>
+        <li>
+          <a href = "unweighted_mode3_3d.png">unweighted_mode3_3d.png</a>, 
+          the mode 3 vector for unweighted POD, as a 3D image.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 08 May 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+ 

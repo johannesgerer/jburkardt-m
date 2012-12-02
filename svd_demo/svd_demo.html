@@ -1,0 +1,284 @@
+<html>
+
+  <head>
+    <title>
+      SVD_DEMO - Demonstration of the Singular Value Decomposition
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SVD_DEMO <br> Demonstration of the Singular Value Decomposition
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SVD_DEMO</b> 
+      is a MATLAB program which 
+      demonstrates the computation of the singular value decomposition
+      and a few of its properties.
+    </p>
+
+    <p>
+      The singular value decomposition has uses in solving
+      overdetermined or underdetermined linear systems,
+      linear least squares problems, data compression,
+      the pseudoinverse matrix,
+      reduced order modeling, and
+      the accurate computation of matrix rank and null space.
+    </p>
+
+    <p>
+      The singular value decomposition of an M by N rectangular matrix A has
+      the form
+      <pre>
+        A(mxn) = U(mxm) * S(mxn) * V'(nxn)
+      </pre>
+      where
+      <ul>
+        <li>
+          U is an orthogonal matrix, whose columns are the left singular vectors;
+        </li>
+        <li>
+          S is a diagonal matrix, whose min(m,n) diagonal entries are the singular values;
+        </li>
+        <li>
+          V is an orthogonal matrix, whose columns are the right singular vectors;
+        </li>
+      </ul>
+      Note that the transpose of V is used in the decomposition, and that the diagonal matrix
+      S is typically stored as a vector.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>svd_demo</b> ( <i>m</i>, <i>n</i>, <i>[seed]</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>m</i> is the number of rows in the matrix,
+        </li>
+        <li>
+          <i>n</i> is the number of columns in the matrix,
+        </li>
+        <li>
+          <i>seed</i> is optional;  if supplied,
+          it is used as the seed for the random number generator.
+          Otherwise, a value is generated internally by the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SVD_DEMO</b> is available in
+      <a href = "../../c_src/svd_demo/svd_demo.html">a C version</a> and
+      <a href = "../../cpp_src/svd_demo/svd_demo.html">a C++ version</a> and
+      <a href = "../../f77_src/svd_demo/svd_demo.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/svd_demo/svd_demo.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/svd_demo/svd_demo.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/fingerprints/fingerprints.html">
+      FINGERPRINTS</a>,
+      a dataset directory which
+      contains a few images of fingerprints.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack/linpack.html">
+      LINPACK</a>,
+      a MATLAB library which
+      includes routines to carry out the singular value decomposition.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>,
+      a MATLAB program which
+      computes a reduced basis for a collection of data vectors using the SVD.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_fingerprint/svd_fingerprint.html">
+      SVD_FINGERPRINT</a>,
+      a MATLAB program which
+      reads a file containing a fingerprint image and 
+      uses the Singular Value Decomposition (SVD) to
+      compute and display a series of low rank  approximations to the image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_snowfall/svd_snowfall.html">
+      SVD_SNOWFALL</a>,
+      a MATLAB program which
+      reads a file containing historical snowfall data and 
+      analyzes the data with the Singular Value Decomposition (SVD).
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_truncated/svd_truncated.html">
+      SVD_TRUNCATED</a>,
+      a MATLAB program which
+      demonstrates the computation of the reduced or truncated 
+      Singular Value Decomposition (SVD) that is useful for cases when
+      one dimension of the matrix is much smaller than the other.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms358/toms358.html">
+      TOMS358</a>,
+      a FORTRAN77 library which 
+      computes the singular value decomposition for a complex matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Anderson, Zhaojun Bai, Christian Bischof, Susan Blackford, 
+          James Demmel, Jack Dongarra, Jeremy Du Croz, Anne Greenbaum, 
+          Sven Hammarling, Alan McKenney, Danny Sorensen,<br>
+          LAPACK User's Guide,<br>
+          Third Edition,<br>
+          SIAM, 1999,<br>
+          ISBN: 0898714478,<br>
+          LC: QA76.73.F25L36
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Gene Golub, Charles VanLoan,<br>
+          Matrix Computations,
+          Third Edition,<br>
+          Johns Hopkins, 1996,<br>
+          ISBN: 0-8018-4513-X,<br>
+          LC: QA188.G65.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Lloyd Trefethen, David Bau,<br>
+          Numerical Linear Algebra,<br>
+          SIAM, 1997,<br>
+          ISBN: 0-89871-361-7,<br>
+          LC: QA184.T74.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>CIRCLE_FORWARD</b> is a simple program that examines what happens
+      when a 2x2 matrix A multiplies vectors on the unit circle.
+      <ul>
+        <li>
+          <a href = "circle_forward.m">circle_forward.m</a>
+          a program which plots the image of the unit circle under the mapping
+          y = A*x.
+        </li>
+        <li>
+          <a href = "circle_forward.png">circle_forward.png</a>
+          an image of the unit circle under the mapping
+          y = A*x, for the 2x2 matrix A = [ 1, 2; 3, 4].
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SVD_DEMO</b> is a program which demonstrates some features of the
+      singular value decomposition:
+      <ul>
+        <li>
+          <a href = "svd_demo.m">svd_demo.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "svd_demo_5_3_output.txt">svd_demo_5_3_output.txt</a>,
+          the output from the command "svd_demo 5 3 123456789".
+        </li>
+        <li>
+          <a href = "svd_demo_5_5_output.txt">svd_demo_5_5_output.txt</a>,
+          the output from the command "svd_demo 5 5 123456789".
+        </li>
+        <li>
+          <a href = "svd_demo_5_8_output.txt">svd_demo_5_8_output.txt</a>,
+          the output from the command "svd_demo 5 8 123456789".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

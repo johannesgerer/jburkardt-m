@@ -1,0 +1,333 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_HEAT_RECTANGLE - Finite Element Solution of the 2D Heat Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_HEAT_RECTANGLE <br>
+      Finite Element Solution in 2D <br>
+      Time Dependent Heat Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_HEAT_RECTANGLE</b>
+      is a MATLAB program which
+      solves the time-dependent
+      2D heat equation using the finite element method in space, and
+      a method of lines in time with the backward Euler approximation for the
+      time derivative.
+    </p>
+
+    <p>
+      The computational region is a rectangle, with homogenous Dirichlet
+      boundary conditions applied along the boundary.  The state variable
+      U(X,Y,T) is then constrained by:
+      <pre>
+        Ut - ( Uxx + Uyy ) = F(x,y,t)  in the box;
+                  U(x,y,t) = G(x,y,t) for (x,y) on the boundary;
+                  U(x,y,t) = H(x,y,t) for t = t_init.
+      </pre>
+    </p>
+
+    <p>
+      The computational region is first covered with an NX by NY
+      rectangular array of points, creating (NX-1)*(NY-1) subrectangles.
+      Each subrectangle is divided into two triangles, creating a total
+      of 2*(NX-1)*(NY-1) geometric "elements".  Because quadratic basis
+      functions are to be used, each triangle will be associated not only
+      with the three corner nodes that defined it, but with three extra
+      midside nodes.  If we include these additional nodes, there are
+      now a total of (2*NX-1)*(2*NY-1) nodes in the region.
+    </p>
+
+    <p>
+      We now assume that, at any fixed time <t>b</b>, the unknown function
+      U(x,y,t) can be represented as a linear combination of the basis
+      functions associated with each node.  The value of U at the boundary
+      nodes is obvious, so we concentrate on the NUNK interior nodes where
+      U(x,y,t) is unknown.  For each node I, we determine a basis function
+      PHI(I)(x,y), and evaluate the following finite element integral:
+      <pre>
+        Integral ( Ux(x,y,t) * dPHIdx(I)(x,y) + dUdy(x,y,t) * dPHIdy(I)(x,y) ) =
+        Integral ( F(x,y,t) * PHI(I)(x,y)
+      </pre>
+    </p>
+
+    <p>
+      The time derivative is handled by the backward Euler approximation.
+    </p>
+
+    <p>
+      The program allows the user to supply two routines:
+      <ul>
+        <li>
+          <b>FUNCTION VALUE = RHS ( X, Y, T )</b> returns the right hand side
+          F(x,y,t) of the heat equation.
+        </li>
+        <li>
+          <b>FUNCTION U_EXACT = EXACT_U ( X, Y, T )</b> returns
+          the exact solution of the equation (assuming this is
+          known.)  This routine is necessary so that error analysis
+          can be performed, reporting the L2 and H1 seminorm errors
+          between the true and computed solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      There are a few variables that are easy to manipulate.  In particular,
+      the user can change the variables NX and NY in the main program,
+      to change the number of nodes and elements.  The variables (XL,YB)
+      and (XR,YT) define the location of the lower left and upper right
+      corners of the rectangular region, and these can also be changed
+      in a single place in the main program.
+    </p>
+
+    <p>
+      The program writes out a file containing an Encapsulated
+      PostScript image of the nodes and elements, with numbers.
+      Unfortunately, for values of NX and NY over 10, the plot is
+      too cluttered to read.  For lower values, however, it is
+      a valuable map of what is going on in the geometry.
+    </p>
+
+    <p>
+      The program is also able to write out a file containing the
+      solution value at every node.  This file may be used to create
+      contour plots of the solution.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_HEAT_RECTANGLE</b> is available in
+      <a href = "../../cpp_src/fem2d_heat_rectangle/fem2d_heat_rectangle.html">a C++ version</a> and
+      <a href = "../../f_src/fem2d_heat_rectangle/fem2d_heat_rectangle.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_heat_rectangle/fem2d_heat_rectangle.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat_rectangle_steady_spmd/fem2d_heat_rectangle_steady_spmd.html">
+      FEM2D_HEAT_RECTANGLE_STEADY_SPMD</a>,
+      a MATLAB program which
+      uses the MATLAB Parallel Computing Toolbox in SPMD mode to set up
+      and solve a distributed linear system for the steady 2D heat equation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313..
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_heat_rectangle.m">fem2d_heat_rectangle.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_heat_rectangle_output.txt">fem2d_heat_rectangle_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "fem2d_heat_rectangle_nodes.png">fem2d_heat_rectangle_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the nodes, for NX = NY = 7  (the picture is
+          hard to read for larger values of NX and NY);
+        </li>
+        <li>
+          <a href = "nodes.txt">nodes.txt</a>,
+          a text file containing a list, for each node, of its X and Y
+          coordinates;
+        </li>
+        <li>
+          <a href = "elements.png">elements.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the elements, for NX = NY = 7  (the picture is
+          hard to read for larger values of NX and NY);
+        </li>
+        <li>
+          <a href = "elements.txt">elements.txt</a>,
+          a text file containing a list, for each element, of the six
+          nodes that compose it;
+        </li>
+        <li>
+          <a href = "time.txt">time.txt</a>,
+          a text file containing the solution times;
+        </li>
+        <li>
+          <a href = "u0000.txt">u0000.txt</a>,
+          the solution U at time step 0;
+        </li>
+        <li>
+          <a href = "u0001.txt">u0001.txt</a>,
+          the solution U at time step 1;
+        </li>
+        <li>
+          <a href = "u0002.txt">u0002.txt</a>,
+          the solution U at time step 2;
+        </li>
+        <li>
+          <a href = "u0003.txt">u0003.txt</a>,
+          the solution U at time step 3;
+        </li>
+        <li>
+          <a href = "u0004.txt">u0004.txt</a>,
+          the solution U at time step 4;
+        </li>
+        <li>
+          <a href = "u0005.txt">u0005.txt</a>,
+          the solution U at time step 5;
+        </li>
+        <li>
+          <a href = "u0006.txt">u0006.txt</a>,
+          the solution U at time step 6;
+        </li>
+        <li>
+          <a href = "u0007.txt">u0007.txt</a>,
+          the solution U at time step 7;
+        </li>
+        <li>
+          <a href = "u0008.txt">u0008.txt</a>,
+          the solution U at time step 8;
+        </li>
+        <li>
+          <a href = "u0009.txt">u0009.txt</a>,
+          the solution U at time step 9;
+        </li>
+        <li>
+          <a href = "u0010.txt">u0010.txt</a>,
+          the solution U at time step 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The MATLAB program <b>CONTOUR_SEQUENCE4</b> can make contour
+      plots from the sequence of solutions:
+      <ul>
+        <li>
+          <a href = "u0000.png">u0000.png</a>,
+          the solution U at time step 0;
+        </li>
+        <li>
+          <a href = "u0001.png">u0001.png</a>,
+          the solution U at time step 1;
+        </li>
+        <li>
+          <a href = "u0002.png">u0002.png</a>,
+          the solution U at time step 2;
+        </li>
+        <li>
+          <a href = "u0003.png">u0003.png</a>,
+          the solution U at time step 3;
+        </li>
+        <li>
+          <a href = "u0004.png">u0004.png</a>,
+          the solution U at time step 4;
+        </li>
+        <li>
+          <a href = "u0005.png">u0005.png</a>,
+          the solution U at time step 5;
+        </li>
+        <li>
+          <a href = "u0006.png">u0006.png</a>,
+          the solution U at time step 6;
+        </li>
+        <li>
+          <a href = "u0007.png">u0007.png</a>,
+          the solution U at time step 7;
+        </li>
+        <li>
+          <a href = "u0008.png">u0008.png</a>,
+          the solution U at time step 8;
+        </li>
+        <li>
+          <a href = "u0009.png">u0009.png</a>,
+          the solution U at time step 9;
+        </li>
+        <li>
+          <a href = "u0010.png">u0010.png</a>,
+          the solution U at time step 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 16 May 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

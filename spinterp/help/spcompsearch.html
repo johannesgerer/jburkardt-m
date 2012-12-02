@@ -1,0 +1,110 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spcompsearch :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spcompsearch</h1>
+		  Optimizes the sparse grid interpolant using the compass (coordinate) search method. Best-suited for piecewise multilinear sparse grids.
+		<h2>Syntax</h2>
+			<code>X = spcompsearch(Z)</code><br>
+			<code>X = spcompsearch(Z,XBOX)</code><br>
+			<code>X = spcompsearch(Z,XBOX,OPTIONS)</code><br>
+			<code>[X,FVAL] = spcompsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG] = spcompsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG,OUTPUT] = spcompsearch(...)</code><br>
+		<h2>Description</h2>
+      <code>X = spcompsearch(Z)</code> Starts the search at the best available sparse grid point and attempts to find a local minimizer of the sparse grid interpolant <code>Z</code>. The entire range of the sparse grid interpolant is searched.
+    <p>
+      <code>X = spcompsearch(Z,XBOX)</code> Uses the search box <code>XBOX = [a1, b1; a2, b2; ...]</code>. The size of search box <code>XBOX</code> must be smaller than or equal to the range of the interpolant.
+		<p>
+      <code>X = spcompsearch(Z,XBOX,OPTIONS)</code> Minimizes with the default optimization parameters replaced by values in the structure <code>OPTIONS</code>, created with the <code>spoptimset</code> function. See <a href="spoptimset.html"><code>spoptimset</code></a> for details.
+		<p>
+      <code>[X,FVAL] = spcompsearch(...)</code> Returns the value of the sparse grid interpolant at <code>X</code>. 
+		<p>  
+      <code>[X,FVAL,EXITFLAG] = spcompsearch(...)</code> Returns an <code>EXITFLAG</code> that describes the exit condition of <code>spcompsearch</code>. Possible values of <code>EXITFLAG</code> and the corresponding exit conditions are
+			<ul>
+			  <li> <code>1</code>&nbsp;&nbsp;&nbsp;<code>spcompsearch</code> converged to a solution <code>X</code>.
+				<li> <code>0</code>&nbsp;&nbsp;&nbsp;Maximum number of function evaluations or iterations reached.
+			</ul> 
+		<p>  
+      <code>[X,FVAL,EXITFLAG,OUTPUT] = spcompsearch(...)</code> Returns a structure <code>OUTPUT</code> with the number of function evaluations in <code>OUTPUT.nFEvals</code> and the computing time in <code>.time</code>.
+		<a name="1"><h2>Examples</h2></a>
+      <p>A compass search algorithm is a direct search method that does not need derivatives, so it is well-suited to optimize a piecewise
+         multilinear sparse grid interpolant computed for the grid types <tt>Maximum</tt>, <tt>NoBoundary</tt>, or <tt>Clenshaw-Curtis</tt>.
+      </p>
+      <p>As with the example presented for <tt><a href="spcgsearch.html">spcgsearch</a></tt>, we consider the six-hump camel-back function.
+      </p><pre class="codeinput">f = @(x,y) (4-2.1.*x.^2+x.^4./3).*x.^2+x.*y+(-4+4.*y.^2).*y.^2;
+</pre><p>We create the sparse grid interpolant using <tt><a href="spvals.html">spvals</a></tt> as follows. Note that it is useful to keep the function values as they can be used by the optimization algorithm to select
+         good starting values for the optimization without having to evaluate the interpolant.
+      </p><pre class="codeinput">options = spset(<span class="string">'keepFunctionValues'</span>,<span class="string">'on'</span>, <span class="string">'GridType'</span>, <span class="string">'Clenshaw-Curtis'</span>, <span class="keyword">...</span>
+  <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'DimAdaptDegree'</span>, 1, <span class="string">'MinPoints'</span>, 10);
+</pre><p>The next steps are setting the interpolation range (the optimization range will be the same by default), constructing the
+         interpolant, providing additional (optional) optimization parameters, and finally, the call to the <tt>spcompsearch</tt> algorithm.
+      </p><pre class="codeinput">range = [-3 3; -2 2];
+z = spvals(f, 2, range, options)
+optoptions = spoptimset(<span class="string">'Display'</span>, <span class="string">'iter'</span>);
+[xopt, fval] = spcompsearch(z, [], optoptions)
+</pre><pre class="codeoutput">z = 
+               vals: {[205x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: [2x2 double]
+        estRelError: 0.0037
+        estAbsError: 0.6031
+         fevalRange: [-0.9970 162.9000]
+         minGridVal: [0.5000 0.3281]
+         maxGridVal: [0 0]
+            nPoints: 205
+          fevalTime: 0.1031
+    surplusCompTime: 0.0077
+            indices: [1x1 struct]
+           maxLevel: [7 6]
+      activeIndices: [4x1 uint32]
+     activeIndices2: [17x1 uint32]
+                  E: [Inf 108.9000 48 52.2844 45.8547 6 24 12.7500 22.3788 4.3594 7.6817 0 0 1.2568 2.2379 0.3364 0.6031]
+                  G: [17x1 double]
+                 G2: [17x1 double]
+       maxSetPoints: 7
+           dimAdapt: 1
+              fvals: {[205x1 double]}
+ Iteration   Func-count Grad-count     f(x)            Procedure
+     0            0         0        -0.997009         start point
+     1            4         0        -0.997009         contract step
+     2            8         0        -0.997009         contract step
+     3           12         0        -0.997009         contract step
+     4           16         0         -1.02647         coordinate step
+     5           20         0         -1.02647         contract step
+     6           24         0         -1.02647         contract step
+xopt =
+    0.0938
+   -0.6875
+fval =
+   -1.0265
+</pre>
+		<h2>See Also</h2>
+		  <a href="spoptimset.html"><code>spoptimset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

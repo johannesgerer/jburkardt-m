@@ -1,0 +1,566 @@
+<html>
+
+  <head>
+    <title>
+      LINPACK_S - Linear Algebra Library - Single Precision Real
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPACK_S <br> Linear Algebra Library <br> Single Precision Real
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPACK_S</b>
+      is a MATLAB library which
+      solves systems of linear equations for a variety
+      of matrix types and storage modes,
+      by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+    </p>
+
+    <p>
+      MATLAB already provides a wide set of linear equation solvers.
+      This (partial) set of <b>LINPACK</b> routines is provided just for
+      testing and comparison.
+    </p>
+
+    <p>
+      <b>LINPACK</b> has officially been superseded by the LAPACK library.  The LAPACK
+      library uses more modern algorithms and code structure.  However,
+      the LAPACK library can be extraordinarily complex; what is done
+      in a single <b>LINPACK</b> routine may correspond to 10 or 20 utility
+      routines in LAPACK.  This is fine if you treat LAPACK as a black
+      box.  But if you wish to learn how the algorithm works, or
+      to adapt it, or to convert the code to another language, this
+      is a real drawback.  This is one reason I still keep a copy
+      of <b>LINPACK</b> around.
+    </p>
+
+    <p>
+      Versions of <b>LINPACK</b> in various arithmetic precisions are available
+      through <a href = "http://www.netlib.org/">the NETLIB web site</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Language:
+    </h3>
+
+    <p>
+      <b>LINPACK_S</b> is available in
+      <a href = "../../c_src/linpack_s/linpack_s.html">a C version</a> and
+      <a href = "../../cpp_src/linpack_s/linpack_s.html">a C++ version</a> and
+      <a href = "../../f77_src/linpack_s/linpack_s.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/linpack_s/linpack_s.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/linpack_s/linpack_s.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/blas1_s/blas1_s.html">
+      BLAS1_S</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using single precision real arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_c/linpack_c.html">
+      LINPACK_C</a>,
+      a MATLAB library which
+      solves linear systems using single precision complex arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      solves linear systems using double precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_z/linpack_z.html">
+      LINPACK_Z</a>,
+      a MATLAB library which
+      solves linear systems using double precision complex arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out simple manipulations of matrices in a variety of formats.
+    </p>
+
+    <p>
+      <a href = "../../m_src/templates/templates.html">
+      TEMPLATES</a>,
+      a MATLAB library which
+      carries out simple versions of various iterative solvers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_matrix/test_matrix.html">
+      TEST_MATRIX</a>,
+      a MATLAB library which
+      contains a collection of test matrices
+      by Nick Higham.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original FORTRAN77 version by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+      MATLAB version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539,
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "schdc.m">schdc.m</a>,
+          computes the Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "schdd.m">schdd.m</a>,
+          downdates an augmented Cholesky decomposition;
+        </li>
+        <li>
+          <a href = "schex.m">schex.m</a>,
+          updates a Cholesky decomposition;
+        </li>
+        <li>
+          <a href = "schud.m">schud.m</a>,
+          updates a Cholesky decomposition;
+        </li>
+        <li>
+          <a href = "sgbco.m">sgbco.m</a>,
+          factors a double precision band matrix and
+          estimates its condition number;
+        </li>
+        <li>
+          <a href = "sgbdi.m">sgbdi.m</a>,
+          computes the determinant of a band matrix factored by SGBFA;
+        </li>
+        <li>
+          <a href = "sgbfa.m">sgbfa.m</a>,
+          factors a band matrix;
+        </li>
+        <li>
+          <a href = "sgbsl.m">sgbsl.m</a>,
+          solves a linear system factored by SGBFA;
+        </li>
+        <li>
+          <a href = "sgeco.m">sgeco.m</a>,
+          factors a matrix and estimates its condition number;
+        </li>
+        <li>
+          <a href = "sgedi.m">sgedi.m</a>,
+          computes the determinant and inverse of a general matrix;
+        </li>
+        <li>
+          <a href = "sgefa.m">sgefa.m</a>,
+          factors a matrix;
+        </li>
+        <li>
+          <a href = "sgesl.m">sgesl.m</a>,
+          solves a general linear system A * X = B;
+        </li>
+        <li>
+          <a href = "sgtsl.m">sgtsl.m</a>,
+          solves a general tridiagonal linear system A * X = B;
+        </li>
+        <li>
+          <a href = "spbco.m">spbco.m</a>,
+          factors a positive definite symmetric band matrix
+          and estimates its condition number;
+        </li>
+        <li>
+          <a href = "spbdi.m">spbdi.m</a>,
+          computes the determinant of a positive definite symmetric band matrix
+          factored by SPBFA;
+        </li>
+        <li>
+          <a href = "spbfa.m">spbfa.m</a>,
+          factors a positive definite symmetric band matrix;
+        </li>
+        <li>
+          <a href = "spbsl.m">spbsl.m</a>,
+          solves a linear system factored by SPBFA;
+        </li>
+        <li>
+          <a href = "spoco.m">spoco.m</a>,
+          factors a positive definite symmetric matrix
+          and estimates its condition number;
+        </li>
+        <li>
+          <a href = "spodi.m">spodi.m</a>,
+          computes the determinant and inverse of a positive
+          definite symmetric matrix;
+        </li>
+        <li>
+          <a href = "spofa.m">spofa.m</a>,
+          factors a positive definite symmetric matrix;
+        </li>
+        <li>
+          <a href = "sposl.m">sposl.m</a>,
+          solves a linear system factored by SPOFA;
+        </li>
+        <li>
+          <a href = "sppco.m">sppco.m</a>,
+          factors a positive definite symmetric packed matrix
+          and estimates its condition number;
+        </li>
+        <li>
+          <a href = "sppdi.m">sppdi.m</a>,
+          computes the determinant and inverse of a positive
+          definite symmetric packed matrix;
+        </li>
+        <li>
+          <a href = "sppfa.m">sppfa.m</a>,
+          factors a positive definite symmetric packed matrix;
+        </li>
+        <li>
+          <a href = "sppsl.m">sppsl.m</a>,
+          solves a linear system factored by SPPFA;
+        </li>
+        <li>
+          <a href = "sptsl.m">sptsl.m</a>,
+          solves a general positive definite symmetric
+          tridiagonal linear system A * X = B;
+        </li>
+        <li>
+          <a href = "sqrdc.m">sqrdc.m</a>,
+          computes the QR factorization of a rectangular matrix;
+        </li>
+        <li>
+          <a href = "sqrsl.m">sqrsl.m</a>,
+          computes transformations, projections, and least squares solutions;
+        </li>
+        <li>
+          <a href = "ssico.m">ssico.m</a>,
+          factors a symmetric matrix and
+          estimates its condition number;
+        </li>
+        <li>
+          <a href = "ssidi.m">ssidi.m</a>,
+          computes the determinant, inertia and inverse of a symmetric matrix;
+        </li>
+        <li>
+          <a href = "ssifa.m">ssifa.m</a>,
+          factors a symmetric matrix;
+        </li>
+        <li>
+          <a href = "ssisl.m">ssisl.m</a>,
+          solves a linear system factored by SSIFA;
+        </li>
+        <li>
+          <a href = "sspco.m">sspco.m</a>,
+          factors a symmetric packed matrix and
+          estimates its condition number;
+        </li>
+        <li>
+          <a href = "sspdi.m">sspdi.m</a>,
+          computes the determinant, inertia and inverse of a symmetric
+          packed matrix;
+        </li>
+        <li>
+          <a href = "sspfa.m">sspfa.m</a>,
+          factors a symmetric packed matrix;
+        </li>
+        <li>
+          <a href = "sspsl.m">sspsl.m</a>,
+          solves a linear system factored by SSPFA;
+        </li>
+        <li>
+          <a href = "strco.m">strco.m</a>,
+          estimates the condition number of an upper or lower triangular
+          matrix;
+        </li>
+        <li>
+          <a href = "strdi.m">strdi.m</a>,
+          computes the determinant and inverse of a triangular matrix;
+        </li>
+        <li>
+          <a href = "strsl.m">strsl.m</a>,
+          solves an upper or lower triangular linear system;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Utilities and BLAS1 routines:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sasum.m">sasum.m</a>,
+          sums the absolute values of the entries of a vector;
+        </li>
+        <li>
+          <a href = "saxpy.m">saxpy.m</a>,
+          adds a multiple of one vector to another;
+        </li>
+        <li>
+          <a href = "sdot.m">sdot.m</a>,
+          computes the dot product of two vectors;
+        </li>
+        <li>
+          <a href = "snrm2.m">snrm2.m</a>,
+          computes the Euclidean norm of a vector;
+        </li>
+        <li>
+          <a href = "srot.m">srot.m</a>,
+          applies a plane rotation;
+        </li>
+        <li>
+          <a href = "srotg.m">srotg.m</a>,
+          constructs a Givens plane rotation;
+        </li>
+        <li>
+          <a href = "sscal.m">sscal.m</a>,
+          scales a vector by a constant;
+        </li>
+        <li>
+          <a href = "sswap.m">sswap.m</a>,
+          swaps two vectors;
+        </li>
+        <li>
+          <a href = "isamax.m">isamax.m</a>,
+          locates the index of the vector entry of largest magnitude;
+        </li>
+        <li>
+          <a href = "r4_sign.m">r4_sign.m</a>,
+          returns the sign of a value;
+        </li>
+        <li>
+          <a href = "r4_swap.m">r4_swap.m</a>,
+          swaps two values;
+        </li>
+        <li>
+          <a href = "r4mat_uniform_01.m">r4mat_uniform_01.m</a>,
+          fills a matrix with uniform random values;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_s_test.m">
+          linpack_s_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "linpack_s_test_output.txt">linpack_s_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "linpack_s_test01.m">
+          linpack_s_test01.m</a>, tests SCHDC;
+        </li>
+        <li>
+          <a href = "linpack_s_test02.m">
+          linpack_s_test02.m</a>, tests SCHEX;
+        </li>
+        <li>
+          <a href = "linpack_s_test03.m">
+          linpack_s_test03.m</a>, tests SCHUD;
+        </li>
+        <li>
+          <a href = "linpack_s_test04.m">
+          linpack_s_test04.m</a>, tests SGBCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test05.m">
+          linpack_s_test05.m</a>, tests SGBFA and SGBSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test06.m">
+          linpack_s_test06.m</a>, tests SGBFA and SGBDI;
+        </li>
+        <li>
+          <a href = "linpack_s_test07.m">
+          linpack_s_test07.m</a>, tests SGBFA and SGBSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test08.m">
+          linpack_s_test08.m</a>, tests SGECO and SGESL;
+        </li>
+        <li>
+          <a href = "linpack_s_test09.m">
+          linpack_s_test09.m</a>, tests SGEFA and SGEDI;
+        </li>
+        <li>
+          <a href = "linpack_s_test10.m">
+          linpack_s_test10.m</a>, tests SGEFA and SGESL;
+        </li>
+        <li>
+          <a href = "linpack_s_test11.m">
+          linpack_s_test11.m</a>, tests SGEFA and SGESL;
+        </li>
+        <li>
+          <a href = "linpack_s_test12.m">
+          linpack_s_test12.m</a>, tests SGTSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test13.m">
+          linpack_s_test13.m</a>, tests SPBCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test14.m">
+          linpack_s_test14.m</a>, tests SPBDI;
+        </li>
+        <li>
+          <a href = "linpack_s_test15.m">
+          linpack_s_test15.m</a>, tests SPBFA and SPBSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test16.m">
+          linpack_s_test16.m</a>, tests SPOCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test17.m">
+          linpack_s_test17.m</a>, tests SPOFA and SPODI;
+        </li>
+        <li>
+          <a href = "linpack_s_test18.m">
+          linpack_s_test18.m</a>, tests SPOFA and SPOSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test19.m">
+          linpack_s_test19.m</a>, tests SPPCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test20.m">
+          linpack_s_test20.m</a>, tests SPPFA and SPPDI;
+        </li>
+        <li>
+          <a href = "linpack_s_test21.m">
+          linpack_s_test21.m</a>, tests SPPFA and SPPSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test22.m">
+          linpack_s_test22.m</a>, tests SPTSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test23.m">
+          linpack_s_test23.m</a>, tests SQRDC and SQRSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test24.m">
+          linpack_s_test24.m</a>, tests SSICO;
+        </li>
+        <li>
+          <a href = "linpack_s_test25.m">
+          linpack_s_test25.m</a>, tests SSIFA and SSISL;
+        </li>
+        <li>
+          <a href = "linpack_s_test26.m">
+          linpack_s_test26.m</a>, tests SSPCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test27.m">
+          linpack_s_test27.m</a>, tests SSPFA and SSPSL;
+        </li>
+        <li>
+          <a href = "linpack_s_test28.m">
+          linpack_s_test28.m</a>, tests SSVDC;
+        </li>
+        <li>
+          <a href = "linpack_s_test29.m">
+          linpack_s_test29.m</a>, tests STRCO;
+        </li>
+        <li>
+          <a href = "linpack_s_test30.m">
+          linpack_s_test30.m</a>, tests STRDI;
+        </li>
+        <li>
+          <a href = "linpack_s_test31.m">
+          linpack_s_test31.m</a>, tests STRSL;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

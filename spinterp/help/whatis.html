@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>What is the Sparse Grid Interpolation Toolbox? (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="getting_started.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="initialization.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>What is the Sparse Grid Interpolation Toolbox?</h1>
+		<h2>Introduction</h2>
+		The interpolation problem considered with sparse grid interpolation is an optimal recovery problem (i.e. the selection of points such that a smooth multivariate function can be approximated with a suitable interpolation formula). Depending on the characteristics of the function to interpolate (degree of smoothness, periodicity), various interpolation techniques based on sparse grids exist. All of them employ Smolyak's construction, which forms the basis of all sparse grid methods. With Smolyak's famous method, well-known univariate interpolation formulas are extended to the multivariate case by using tensor products in a special way. As a result, one obtains a powerful interpolation method that requires significantly fewer support nodes than conventional interpolation on a full grid. The points comprising the multidimensional sparse grid are selected in a predefined fashion. The difference in the number of required points can be several orders of magnitude with increasing problem dimension. The most important property of the method constitutes the fact that the asymptotic error decay of full grid interpolation with increasing grid resolution is preserved up to a logarithmic factor. An additional benefit of the method is its hierarchical structure, which can be used to obtain an estimate of the current approximation error. Thus, one can easily develop an interpolation algorithm that aborts automatically when a desired accuracy is reached.
+		<h2>Major Features</h2>
+		This Matlab toolbox includes hierarchical sparse grid interpolation algorithms based on both piecewise multilinear and polynomial basis functions. Special emphasis is placed on an efficient implementation that performs well even for very large dimensions <code>d > 10</code>. 
+		<p>
+		There are many ways to customize the behavior of the interpolation routines. Furthermore, additional tasks involving the interpolants can be performed, such as computing derivatives or performing an optimization or integration. The following list gives an overview of the options that are available:
+		<ul>
+			<li> Enable vectorized processing. Speed up the construction of the interpolant for functions that allow for vectorized evaluation.
+			<li> Create multiple interpolants at once for functions with multiple output arguments.
+			<li> Choose from three different grid types for piecewise linear interpolation. Depending on your objective function, a certain grid type may perform better than the others.
+			<li> If very high accuracies are required, you may use the Chebyshev-Gauss-Lobatto sparse grid, which employs polynomial basis functions.
+			<li> Compute gradients along with the interpolated values at just a small additional cost.
+			<li> Integrate the interpolant.
+			<li> Perform a search for minima and maxima using several efficient algorithms.
+			<li> Use the dimension-adaptive algorithm to automatically detect separability, and to take the importance of the dimensions into account when constructing the interpolant. This is especially useful in case of very high-dimensional problems when a regular sparse grid refinement leads to too many support nodes.
+			<li> Specify the minimum or maximum sparse grid depth to compute, or specify the minimum and maximum number of function evaluations to use (for the dimension-adaptive sparse grid).
+			<li> Last but not least, the Sparse Grid Interpolation toolbox is designed to easily integrate with your models in Matlab
+			as well as external models.
+		</ul>
+		<p>
+		For additional information on the theoretical and algorithmic aspects of sparse grid interpolation, please refer to the references provided at the end of this chapter.
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="getting_started.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Sparse Grid Interpolation basics</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Initialization of the toolbox</td>
+        <td width="20" align="right"><a href="initialization.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

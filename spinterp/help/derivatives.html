@@ -1,0 +1,205 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Derivatives (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="multiple_outputs.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="integration.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Derivatives</h1>
+	  <p>One of the primary purposes of sparse grid interpolation is the construction of surrogate functions for local or global optimization. While some optimization methods work well using function values only, many efficient algorithms exist that require computation of the gradient. With the Sparse Grid Interpolation Toolbox, it is possible to obtain gradients of the interpolants directly - up to floating point accuracy - as opposed to approximating them numerically, such as by finite differences. This is demonstrated in the following.</p>
+      <h2>Contents</h2>
+      <div>
+         <ul>
+            <li><a href="#1">How to obtain the derivatives?</a></li>
+            <li><a href="#4">Derivatives of piecewise multilinear interpolants</a></li>
+            <li><a href="#13">Augmented derivatives to achieve continuity</a></li>
+            <li><a href="#21">Derivatives of polynomial interpolants</a></li>
+            <li><a href="#24">Approximation quality</a></li>
+            <li><a href="#28">Computational cost</a></li>
+         </ul>
+      </div>
+      <h2><a name="1">How to obtain the derivatives?</a></h2>
+      <p>Computing derivatives is extremely simple. One just calls the method <tt><a href="spinterp.html">spinterp</a></tt>, but instead of a single left-hand argument, one uses the syntax <tt>[ip,ipgrad] = spinterp(z,x1,...,xn)</tt>. This returns not only the function value at the point(s) <tt>(x1,...,xn)</tt>, but also the complete gradient vector(s). Please see the help page of <tt><a href="spinterp.html">spinterp</a></tt> for further details (or the examples provided below).
+      </p>
+      <p>It is important to note that the entire procedure of computing the hierarchical surpluses of the sparse grid interpolant with
+         <tt><a href="spvals.html">spvals</a></tt> remains the same, regardless of whether derivatives are desired or not. Also, purging of the interpolant (see <tt><a href="sppurge.html">sppurge</a></tt>) can be performed in the usual manner if desired. This makes using derivative information very flexible, and it can be decided
+         ad-hoc, well after interpolant construction (for example, when different optimization algorithms are applied), whether to
+         use derivatives or not.
+      </p>
+      <p>Furthermore, the derivatives computed by <tt>spinterp</tt> are <b>not</b> additional approximations of the derivatives of the original function, but rather, the <b>exact</b> derivatives of the interpolant (up to floating point accuracy). The advantage of this approach is that <b>no additional memory is required</b> to store derivative information. The derivatives are computed on-the-fly by efficient algorithms.
+      </p>
+      <h2><a name="4">Derivatives of piecewise multilinear interpolants</a></h2>
+      <p>We start with derivatives of piecewise multilinear Clenshaw-Curtis Sparse Grid Interpolants. Deriving a piecewise linear function
+         leads to piecewise constant derivatives with respect to the variable that the function is differentiated for. Since the interpolant
+         is non-differentiable at the kinks, the left-sided (or right-sided)  derivative is computed at these points only. The following
+         example in two dimensions illustrates the nature of the derivatives.
+      </p>
+      <p>First, we define the example objective function. We also define its derivatives (this is only for comparison to give an idea
+         of the quality of the computed derivatives).
+      </p><pre class="codeinput"><span class="comment">% Define function and its derivatives</span>
+f = inline(<span class="string">'1./(cos(2*x).^2 + sin(y).^2 + 1) + 0.2*y'</span>);
+fdx = inline(<span class="string">'4*cos(2*x).*sin(2*x) ./ (cos(2*x).^2 + sin(y).^2 + 1).^2'</span>);
+fdy = inline(<span class="string">'-2*cos(y).*sin(y) ./ (cos(2*x).^2 + sin(y).^2 + 1).^2 + 0.2'</span>);
+</pre><p>Next, we compute the interpolant. In this case, using the regular Clenshaw-Curtis sparse grid. We limit the sparse grid depth
+         to 4 here (i.e., <tt>A_{q,d}(f) = A_{4+2,2}(f)</tt> is computed).
+      </p><pre class="codeinput">d = 2;
+maxDepth = 4;
+options = spset(<span class="string">'Vectorized'</span>,<span class="string">'on'</span>,<span class="string">'SparseIndices'</span>,<span class="string">'off'</span>, <span class="keyword">...</span>
+  <span class="string">'MaxDepth'</span>, maxDepth);
+z = spvals(f,d,[],options);
+</pre><pre class="codeoutput">Warning: MaxDepth = 4 reached before accuracies RelTol = 0.01 or AbsTol = 1e-06 were achieved.
+The current estimated relative accuracy is 0.02877.
+</pre><p>Our aim here is to plot the derivatives. Therefore, we define a suitable grid, and set up an array for the vectorized evaluation
+         of the interpolant and its derivatives. We set up the grid such that the jumps of the derivative will be clearly visible.
+      </p><pre class="codeinput">np = 2^double(z.maxLevel)+1;
+x = linspace(0,1,np);
+xstep = zeros(1,(np-1)*2);
+xstep(1:2:end-1) = x(1:end-1);
+xstep(2:2:end) = x(2:end) - eps;
+[x,y] = ndgrid(xstep);
+</pre><p>Next, we evaluate the interpolant at the grid points. As result, <tt>ipgrad</tt> will contain an array of the shape of the input arrays <tt>x</tt> and <tt>y</tt>, with the difference that it is a cell array instead of a double array, where each cell contains the entire gradient at the
+         point of the corresponding array entry of x and y.
+      </p><pre class="codeinput">[ip,ipgrad] = spinterp(z,x,y);
+</pre><p>For plotting, it is convenient to convert the data returned as a cell array back to a double array. This is achieved by the
+         following statements. We extract the derivatives with respect to <tt>y</tt> here.
+      </p><pre class="codeinput"><span class="comment">% Convert returned cell array to matrix</span>
+ipgradmat = cell2mat(ipgrad);
+<span class="comment">% Get the derivatives with respect to y</span>
+ipdy = ipgradmat(2:d:end,:);
+</pre><p>Similarly, we can get all derivatives with respect to <tt>x</tt> with the command
+      </p><pre class="codeinput">ipdx = ipgradmat(1:d:end,:);
+</pre><p>This approach of transforming the cell array to a double array can be easily extended to other dimensions.</p>
+      <p>Finally, we plot the obtained derivatives next to the exact derivatives.</p><pre class="codeinput">subplot(1,2,1,<span class="string">'align'</span>);
+surf(x,y,fdy(x,y));
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Exact: {\partial}f / {\partial}y'</span>);
+subplot(1,2,2,<span class="string">'align'</span>);
+surf(x,y,ipdy);
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Approx.: {\partial}A^{CC}_{6,2}(f) / {\partial}y (piecewise const. w.r.t. y)'</span>);
+</pre><img src="images/ex_spderiv_01.png"> 
+      <h2><a name="13">Augmented derivatives to achieve continuity</a></h2>
+      <p>Obtaining the derivatives of the interpolant is usually not the primary goal, but rather, serves a secondary purpose. For
+         instance, in an optimization procedure, one is not interested in the derivatives per se. Instead, the gradient vector enters
+         an iterative procedure to achieve the primary goal, which is to numerically compute a local optimizer. Unfortunately, the
+         discontinuous derivatives of a piecewise multilinear interpolant have a serious drawback: the first order optimality condition
+         <tt>grad(f)=0</tt> cannot be fulfilled. Instead, the sign of the gradient components will oscillate about the optimizer of the continuous
+         interpolant, resulting in slow convergence.
+      </p>
+      <p>To overcome this limitation, the Sparse Grid Interpolation Toolbox offers a powerful alternative to computing the exact derivatives
+         of a piecewise multilinear interpolant. By setting a simple flag, augmented derivatives can be computed that artificially
+         enforce continuity. This is achieved by linear interpolation with respect to the derived variable.
+      </p>
+      <p>Let us consider an example (we use the same test function and interpolant from above).</p>
+      <p>First, we re-define the evaluation grid (there are no more jumps to emphasize).</p><pre class="codeinput">np = 2^double(z.maxLevel+1)+1;
+x = linspace(0,1,np);
+[x,y] = ndgrid(x);
+</pre><p>Prior to evaluating the interpolant, we set the flag <tt>continuousDerivatives = 'on'</tt>.
+      </p><pre class="codeinput">z.continuousDerivatives = <span class="string">'on'</span>;
+</pre><p>Computing interpolated values and gradients of the sparse grid interpolant is done as before with the command</p><pre class="codeinput">[ip,ipgrad] = spinterp(z,x,y);
+</pre><p>Finally, we generate the plot. Compare the plot to the previous one. Note that the derivatives are now continuous.</p><pre class="codeinput"><span class="comment">% Convert returned cell array to matrix</span>
+ipgradmat = cell2mat(ipgrad);
+
+<span class="comment">% Get the derivatives with respect to y</span>
+ipdy = ipgradmat(2:d:end,:);
+
+<span class="comment">% Plot exact derivatives and derivatives of interpolant</span>
+subplot(1,2,1,<span class="string">'align'</span>);
+surf(x,y,fdy(x,y));
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Exact: {\partial}f / {\partial}y'</span>);
+subplot(1,2,2,<span class="string">'align'</span>);
+surf(x,y,ipdy);
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Approx.: {\partial}A^{CC}_{6,2}(f) / {\partial}y'</span>);
+</pre><img src="images/ex_spderiv_02.png"> <p>To conclude this section: If piecewise multilinear sparse grid interpolants (the Clenshaw-Curtis grid) are used, augmented
+         derivatives can help improving efficiency when solving optimization problems with methods that require computation of the
+         gradient.
+      </p>
+      <h2><a name="21">Derivatives of polynomial interpolants</a></h2>
+      <p>The Chebyshev-Gauss-Lobatto (CGL) sparse grid uses globally defined polynomial basis functions. These basis functions are
+         infinitely smooth, and thus, the derivatives are infinitely smooth, too. The Sparse Grid Interpolation Toolbox offers efficient
+         algorithms involving barycentric interpolation and the discrete cosine transform to compute gradients, with excellent numerical
+         stability.
+      </p>
+      <p>Consider the following example. Using the test function from above, we compute a CGL-type sparse grid interpolant (again with
+         <tt>maxDepth = 4</tt>).
+      </p><pre class="codeinput">maxDepth = 4;
+options = spset(<span class="string">'Vectorized'</span>,<span class="string">'on'</span>,<span class="string">'SparseIndices'</span>,<span class="string">'off'</span>, <span class="keyword">...</span>
+  <span class="string">'MaxDepth'</span>, maxDepth, <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>);
+z = spvals(f,d,[],options);
+</pre><pre class="codeoutput">Warning: MaxDepth = 4 reached before accuracies RelTol = 0.01 or AbsTol = 1e-06 were achieved.
+The current estimated relative accuracy is 0.020306.
+</pre><p>The remaining code evaluates the interpolant and its derivatives at the full grid and creates the plot, just as above.</p><pre class="codeinput">[ip,ipgrad] = spinterp(z,x,y);
+ipgradmat = cell2mat(ipgrad);
+ipdy = ipgradmat(2:d:end,:);
+subplot(1,2,1,<span class="string">'align'</span>);
+surf(x,y,fdy(x,y));
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Exact: {\partial}f / {\partial}y'</span>);
+subplot(1,2,2,<span class="string">'align'</span>);
+surf(x,y,ipdy);
+view(250,50); xlabel(<span class="string">'x'</span>); ylabel(<span class="string">'y'</span>); light;
+title(<span class="string">'Approx.: {\partial}A^{CC}_{6,2}(f) / {\partial}y'</span>);
+</pre><img src="images/ex_spderiv_03.png"> 
+      <h2><a name="24">Approximation quality</a></h2>
+         <p>Although we see the main application of computing derivatives of sparse grid interpolants in obtaining gradients during an
+            optimization algorithm, it is interesting to investigate the approximation quality with respect to the derivatives of the
+            original function.
+         </p>
+         <p>This is illustrated by the example <tt>spcomparederiv.m</tt> that plots an approximation of the error in the maximum norm by computing the maximum absolute error of the derivatives for
+            the six test functions of Genz (see <tt>testderivatives.m</tt>) at 100 randomly sampled points. The plot presented below is for dimension <tt>d = 3</tt>.
+         </p><pre class="codeinput"><span class="comment">% Reset random number generator (to generate reproducible results)</span>
+rand(<span class="string">'state'</span>,0);
+<span class="comment">% Run the demo.</span>
+spcomparederiv;
+</pre><img src="images/ex_spderiv_04.png"> <p>The legend indicates the three types of derivatives: discontinuous (H<sup>CC</sup> grid), augmented continuous (H<sup>CC</sup> grid), and smooth (H<sup>CGL</sup> grid).
+         </p>
+         <p><b>Remark:</b> For the original functions labeled 'continuous' and 'discontinuous', single-sided derivatives are computed at the points
+            where the function is not continuously differentiable. Note that the approximations of the derivatives of both of these two functions do not converge, for the following reasons:
+						<ul><li>Since the <b>discontinuous</b> function itself cannot be approximated by a continuous sparse grid interpolant in the first place, the approximations of the derivatives will not converge, either.
+						<li> What is less obvious is that the derivatives of the <b>continuous</b> function <b>cannot</b> be successfully approximated for the whole considered box, either. Although the plot labelled 'continuous' appears to suggest slow convergence, <b>convergence in the maximum norm is not achieved</b> in regions close to the kink(s). However, this/these region(s) becomes smaller with increasing number of support nodes. The decreasing size of the non-converging region(s) close to the kink(s) explain(s) the decay of the absolute error in the plot: It becomes less likely that any of the 100 randomly sampled points are placed here.
+						</ul>
+         </p>
+         <h2><a name="28">Computational cost</a></h2>
+					 <h3>Cost for the piecewise multilinear Clenshaw-Curtis sparse grid</h3> 
+					 <p>
+					   The gradient vector of the piecewise multilinear Clenshaw-Curtis sparse grid interpolant can be obtained at a very small additional cost. The following two plots illustrate that this additional cost for computing either the exact derivatives or the augmented continuous derivatives amounts to just a small factor that is almost independent of the problem dimension. 
+				 	 </p><img src="images/timespderiv.png"> <img src="images/timespderiv_cont.png">
+					 <h3>Cost for the polynomial Chebyshev-Gauss-Lobatto sparse grid</h3> 
+					 <p>
+					   Due to the more sophisticated algorithms required in the polynomial case, the additional cost of computing the gradients is considerably higher compared to a mere interpolation of function values. However, as the dimension increases, the additional cost decreases, as fewer subgrids will require a derivative computation (many subgrids are lower-dimensional than the final interpolant, and thus, must not be differentiated with respect to the dimensions that are omitted).</p>
+					   <p> Thus, the performance is very competitive especially in higher dimensions. For instance, consider applying numerical differentiation instead (which you can easily do alternatively). This would require <code>d + 1</code> interpolant evaluations to compute the gradient if single-sided differences are used, or even <code>2d + 1</code>	if the more accurate centered difference formula is used.</p><img src="images/timespderiv_cheb.png"> <img src="images/timespderiv_cheb_abs.png">
+					   <p><b>Remark:</b> We produced the previous graphs with the example function <code>timespderiv.m</code>, which is included in the toolbox (see <a href="demos.html">demos</a>). The test was performed using Matlab R14 SP3 running on a Linux 2.6.15 machine equipped with one AMD Athlon 1.5 GHz CPU and 512 MB of memory.</p>
+						 
+
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="multiple_outputs.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Multiple outputs</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Integration</td>
+        <td width="20" align="right"><a href="integration.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

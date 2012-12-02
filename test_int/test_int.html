@@ -1,0 +1,1525 @@
+<html>
+
+  <head>
+    <title>
+      TEST_INT - Quadrature Tests
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_INT <br> Quadrature Tests
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_INT</b>
+      is a MATLAB library which
+      evaluates test integrands.
+    </p>
+
+    <p>
+      The test integrands would normally be used to testing one 
+      dimensional quadrature software.  It is possible to invoke a 
+      particular function by number, or to try out all available functions, 
+      as demonstrated in the sample calling program.
+    </p>
+
+    <p>
+      The library includes not just the integrand, but also the interval 
+      of integration, and the exact value of the integral.  
+      Thus, for each integrand function, three subroutines are supplied.  For
+      instance, for function #9, we have the routines:
+      <ul>
+        <li>
+          <b>P09_FUN</b> evaluates the integrand for problem 9.
+        </li>
+        <li>
+          <b>P09_LIM</b> returns the integration limits for problem 9.
+        </li>
+        <li>
+          <b>P09_EXACT</b> returns the exact integral for problem 9.
+        </li>
+      </ul>
+      So once you have the calling sequences for these routines, you
+      can easily evaluate the function, or integrate it between the
+      appropriate limits, or compare your estimate of the integral
+      to the exact value.
+    </p>
+
+    <p>
+      Moreover, since the same interface is used for each function,
+      if you wish to work with problem 16 instead, you simply change
+      the "09" to "16" in your routine calls.
+    </p>
+
+    <p>
+      If you wish to call <i>all</i> of the functions, then you
+      simply use the generic interface, which again has three
+      subroutines, but which requires you to specify the problem
+      number as an extra input argument:
+      <ul>
+        <li>
+          <b>P00_FUN</b> evaluates the integrand for any problem.
+        </li>
+        <li>
+          <b>P00_LIM</b> returns the integration limits for any problem.
+        </li>
+        <li>
+          <b>P00_EXACT</b> returns the exact integral for any problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Finally, some demonstration routines are built in for
+      simple quadrature methods.  These routines include
+      <ul>
+        <li>
+          <b>P00_GAUSS_LEGENDRE</b>
+        </li>
+        <li>
+          <b>P00_EVEN</b>
+        </li>
+        <li>
+          <b>P00_HALTON</b>
+        </li>
+        <li>
+          <b>P00_MIDPOINT</b>
+        </li>
+        <li>
+          <b>P00_MONTECARLO</b>
+        </li>
+        <li>
+          <b>P00_SIMPSON</b>
+        </li>
+        <li>
+          <b>P00_TRAPEZOID</b>
+        </li>
+      </ul>
+      and can be used with any of the sample integrands.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_INT</b> is available in
+      <a href = "../../c_src/test_int/test_int.html">a C version</a> and
+      <a href = "../../cpp_src/test_int/test_int.html">a C++ version</a> and
+      <a href = "../../f77_src/test_int/test_int.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_int/test_int.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_int/test_int.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/test_int_2d/test_int_2d.html">
+      TEST_INT_2D</a>,
+      a MATLAB library which
+      defines test integrands for 2D quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_hermite/test_int_hermite.html">
+      TEST_INT_HERMITE</a>, 
+      a MATLAB library which
+      defines some test integration problems over infinite intervals.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_laguerre/test_int_laguerre.html">
+      TEST_INT_LAGUERRE</a>,
+      a MATLAB library which 
+      defines test integrands for integration over [ALPHA,+Infinity).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Roger Broucke,<br>
+          Algorithm 446:
+          Ten Subroutines for the Manipulation of Chebyshev Series,<br>
+          Communications of the ACM,<br>
+          Volume 16, 1973, pages 254-256.
+        </li>
+        <li>
+          Charles Clenshaw, Alan Curtis,<br>
+          A Method for Numerical Integration on an Automatic Computer,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 197-205.
+        </li>
+        <li>
+          Richard Crandall,<br>
+          Projects in Scientific Computing,<br>
+          Springer, 2005,<br>
+          ISBN: 0387950095,<br>
+          LC: Q183.9.C733.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Hermann Engels,<br>
+          Numerical Quadrature and Cubature,<br>
+          Academic Press, 1980,<br>
+          ISBN: 012238850X,<br>
+          LC: QA299.3E5.
+        </li>
+        <li>
+          Leslie Fox, Ian Parker,<br>
+          Chebyshev Polynomials in Numerical Analysis,<br>
+          Oxford Press, 1968,<br>
+          LC: QA297.F65.
+        </li>
+        <li>
+          John Halton,<br>
+          On the efficiency of certain quasi-random sequences of points
+          in evaluating multi-dimensional integrals,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 84-90.
+        </li>
+        <li>
+          John Hart, Ward Cheney, Charles Lawson, Hans Maehly, 
+          Charles Mesztenyi, John Rice, Henry Thacher, 
+          Christoph Witzgall,<br>
+          Computer Approximations,<br>
+          Wiley, 1968,<br>
+          LC: QA297.C64.
+        </li>
+        <li>
+          David Kahaner,<br>
+          Comparison of Numerical Quadrature Formulas,<br>
+          in Mathematical Software,<br>
+          edited by John Rice,<br>
+          Academic Press, 1971,<br>
+          ISBN: 012587250X,<br>
+          LC: QA1.M766.
+        </li>
+        <li>
+          Prem Kythe, Pratap Puri,<br>
+          Computational Methods for Linear Integral Equations,<br>
+          Birkhaeuser, 2002,<br>
+          ISBN: 0817641920,<br>
+          LC: QA431.K97.
+        </li>
+        <li>
+          Robert Piessens, Elise deDoncker-Kapenga, 
+          Christian Ueberhuber, David Kahaner,<br>
+          QUADPACK: A Subroutine Package for Automatic Integration,<br>
+          Springer, 1983,<br>
+          ISBN: 3540125531,<br>
+          LC: QA299.3.Q36.
+        </li>
+        <li>
+          Herbert Salzer, Norman Levine,<br>
+          Table of a Weierstrass Continuous Nondifferentiable Function,<br>
+          Mathematics of Computation,<br>
+          Volume 15, Number 74, April 1961, pages 120-130.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "csevl.m">csevl.m</a>, 
+          evaluates a Chebyshev series.
+        </li>
+        <li>
+          <a href = "euler_constant.m">euler_constant.m</a>, 
+          returns the value of the Euler-Mascheroni constant.
+        </li>
+        <li>
+          <a href = "get_prob_num.m">get_prob_num.m</a>
+          returns the number of test integration problems.
+        </li>
+        <li>
+          <a href = "i4_log_2.m">i4_log_2.m</a>, 
+          returns the integer part of the logarithm base 2 of an integer;
+        </li>
+        <li>
+          <a href = "i4_to_halton_number_sequence.m">i4_to_halton_number_sequence.m</a>, 
+          computes the next N elements of a scalar Halton sequence.
+        </li>
+        <li>
+          <a href = "i4vec_indicator.m">i4vec_indicator.m</a>, 
+          sets an I4VEC to the indicator vector.
+        </li>
+        <li>
+          <a href = "inits.m">inits.m</a>, 
+          determines the number of terms needed in a Chebyshev series.
+        </li>
+        <li>
+          <a href = "p00_even.m">p00_even.m</a>
+          uses evenly spaced points to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_exact.m">p00_exact.m</a>
+          returns the exact integral for any problem.
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>
+          evaluates the integrand for any problem.
+        </li>
+        <li>
+          <a href = "p00_gauss_legendre.m">p00_gauss_legendre.m</a>
+          applies a composite Gauss-Legendre rule.
+        </li>
+        <li>
+          <a href = "p00_halton.m">p00_halton.m</a>
+          applies a Halton sequence rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_lim.m">p00_lim.m</a>
+          returns the integration limits for any problem.
+        </li>
+        <li>
+          <a href = "p00_midpoint.m">p00_midpoint.m</a>
+          applies the composite midpoint rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_montecarlo.m">p00_montecarlo.m</a>
+          applies the Monte Carlo rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_simpson.m">p00_simpson.m</a>
+          applies the composite Simpson rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p00_trapezoid.m">p00_trapezoid.m</a>
+          applies the composite trapezoid rule to integrate a function.
+        </li>
+        <li>
+          <a href = "p01_exact.m">p01_exact.m</a>
+          returns the exact integral for problem 1.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>
+          evaluates the integrand for problem 1.
+        </li>
+        <li>
+          <a href = "p01_lim.m">p01_lim.m</a>
+          returns the integration limits for problem 1.
+        </li>
+        <li>
+          <a href = "p02_exact.m">p02_exact.m</a>
+          returns the exact integral for problem 2.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>
+          evaluates the integrand for problem 2.
+        </li>
+        <li>
+          <a href = "p02_lim.m">p02_lim.m</a>
+          returns the integration limits for problem 2.
+        </li>
+        <li>
+          <a href = "p03_exact.m">p03_exact.m</a>
+          returns the exact integral for problem 4.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>
+          evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <a href = "p03_lim.m">p03_lim.m</a>
+          returns the integration limits for problem 4.
+        </li>
+        <li>
+          <a href = "p04_exact.m">p04_exact.m</a>
+          returns the exact integral for problem 4.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>
+          evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <a href = "p04_lim.m">p04_lim.m</a>
+          returns the integration limits for problem 4.
+        </li>
+        <li>
+          <a href = "p05_exact.m">p05_exact.m</a>
+          returns the exact integral for problem 5.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>
+          evaluates the integrand for problem 5.
+        </li>
+        <li>
+          <a href = "p05_lim.m">p05_lim.m</a>
+          returns the integration limits for problem 5.
+        </li>
+        <li>
+          <a href = "p06_exact.m">p06_exact.m</a>
+          returns the exact integral for problem 6.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>
+          evaluates the integrand for problem 6.
+        </li>
+        <li>
+          <a href = "p06_lim.m">p06_lim.m</a>
+          returns the integration limits for problem 6.
+        </li>
+        <li>
+          <a href = "p07_exact.m">p07_exact.m</a>
+          returns the exact integral for problem 7.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>
+          evaluates the integrand for problem 7.
+        </li>
+        <li>
+          <a href = "p07_lim.m">p07_lim.m</a>
+          returns the integration limits for problem 7.
+        </li>
+        <li>
+          <a href = "p08_exact.m">p08_exact.m</a>
+          returns the exact integral for problem 8.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>
+          evaluates the integrand for problem 8.
+        </li>
+        <li>
+          <a href = "p08_lim.m">p08_lim.m</a>
+          returns the integration limits for problem 8.
+        </li>
+        <li>
+          <a href = "p09_exact.m">p09_exact.m</a>
+          returns the exact integral for problem 9.
+        </li>
+        <li>
+          <a href = "p09_fun.m">p09_fun.m</a>
+          evaluates the integrand for problem 9.
+        </li>
+        <li>
+          <a href = "p09_lim.m">p09_lim.m</a>
+          returns the integration limits for problem 9.
+        </li>
+        <li>
+          <a href = "p10_exact.m">p10_exact.m</a>
+          returns the exact integral for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fun.m">p10_fun.m</a>
+          evaluates the integrand for problem 10.
+        </li>
+        <li>
+          <a href = "p10_lim.m">p10_lim.m</a>
+          returns the integration limits for problem 10.
+        </li>
+        <li>
+          <a href = "p11_exact.m">p11_exact.m</a>
+          returns the exact integral for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fun.m">p11_fun.m</a>
+          evaluates the integrand for problem 11.
+        </li>
+        <li>
+          <a href = "p11_lim.m">p11_lim.m</a>
+          returns the integration limits for problem 11.
+        </li>
+        <li>
+          <a href = "p12_exact.m">p12_exact.m</a>
+          returns the exact integral for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fun.m">p12_fun.m</a>
+          evaluates the integrand for problem 12.
+        </li>
+        <li>
+          <a href = "p12_lim.m">p12_lim.m</a>
+          returns the integration limits for problem 12.
+        </li>
+        <li>
+          <a href = "p13_exact.m">p13_exact.m</a>
+          returns the exact integral for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fun.m">p13_fun.m</a>
+          evaluates the integrand for problem 13.
+        </li>
+        <li>
+          <a href = "p13_lim.m">p13_lim.m</a>
+          returns the integration limits for problem 13.
+        </li>
+        <li>
+          <a href = "p14_exact.m">p14_exact.m</a>
+          returns the exact integral for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fun.m">p14_fun.m</a>
+          evaluates the integrand for problem 14.
+        </li>
+        <li>
+          <a href = "p14_lim.m">p14_lim.m</a>
+          returns the integration limits for problem 14.
+        </li>
+        <li>
+          <a href = "p15_exact.m">p15_exact.m</a>
+          returns the exact integral for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fun.m">p15_fun.m</a>
+          evaluates the integrand for problem 15.
+        </li>
+        <li>
+          <a href = "p15_lim.m">p15_lim.m</a>
+          returns the integration limits for problem 15.
+        </li>
+        <li>
+          <a href = "p16_exact.m">p16_exact.m</a>
+          returns the exact integral for problem 16.
+        </li>
+        <li>
+          <a href = "p16_fun.m">p16_fun.m</a>
+          evaluates the integrand for problem 16.
+        </li>
+        <li>
+          <a href = "p16_lim.m">p16_lim.m</a>
+          returns the integration limits for problem 16.
+        </li>
+        <li>
+          <a href = "p17_exact.m">p17_exact.m</a>
+          returns the exact integral for problem 17.
+        </li>
+        <li>
+          <a href = "p17_fun.m">p17_fun.m</a>
+          evaluates the integrand for problem 17.
+        </li>
+        <li>
+          <a href = "p17_lim.m">p17_lim.m</a>
+          returns the integration limits for problem 17.
+        </li>
+        <li>
+          <a href = "p18_exact.m">p18_exact.m</a>
+          returns the exact integral for problem 18.
+        </li>
+        <li>
+          <a href = "p18_fun.m">p18_fun.m</a>
+          evaluates the integrand for problem 18.
+        </li>
+        <li>
+          <a href = "p18_lim.m">p18_lim.m</a>
+          returns the integration limits for problem 18.
+        </li>
+        <li>
+          <a href = "p19_exact.m">p19_exact.m</a>
+          returns the exact integral for problem 19.
+        </li>
+        <li>
+          <a href = "p19_fun.m">p19_fun.m</a>
+          evaluates the integrand for problem 19.
+        </li>
+        <li>
+          <a href = "p19_lim.m">p19_lim.m</a>
+          returns the integration limits for problem 19.
+        </li>
+        <li>
+          <a href = "p20_exact.m">p20_exact.m</a>
+          returns the exact integral for problem 20.
+        </li>
+        <li>
+          <a href = "p20_fun.m">p20_fun.m</a>
+          evaluates the integrand for problem 20.
+        </li>
+        <li>
+          <a href = "p20_lim.m">p20_lim.m</a>
+          returns the integration limits for problem 20.
+        </li>
+        <li>
+          <a href = "p21_exact.m">p21_exact.m</a>
+          returns the exact integral for problem 21.
+        </li>
+        <li>
+          <a href = "p21_fun.m">p21_fun.m</a>
+          evaluates the integrand for problem 21.
+        </li>
+        <li>
+          <a href = "p21_lim.m">p21_lim.m</a>
+          returns the integration limits for problem 21.
+        </li>
+        <li>
+          <a href = "p22_exact.m">p22_exact.m</a>
+          returns the exact integral for problem 22.
+        </li>
+        <li>
+          <a href = "p22_fun.m">p22_fun.m</a>
+          evaluates the integrand for problem 22.
+        </li>
+        <li>
+          <a href = "p22_lim.m">p22_lim.m</a>
+          returns the integration limits for problem 22.
+        </li>
+        <li>
+          <a href = "p23_exact.m">p23_exact.m</a>
+          returns the exact integral for problem 23.
+        </li>
+        <li>
+          <a href = "p23_fun.m">p23_fun.m</a>
+          evaluates the integrand for problem 23.
+        </li>
+        <li>
+          <a href = "p23_lim.m">p23_lim.m</a>
+          returns the integration limits for problem 23.
+        </li>
+        <li>
+          <a href = "p24_exact.m">p24_exact.m</a>
+          returns the exact integral for problem 24.
+        </li>
+        <li>
+          <a href = "p24_fun.m">p24_fun.m</a>
+          evaluates the integrand for problem 24.
+        </li>
+        <li>
+          <a href = "p24_lim.m">p24_lim.m</a>
+          returns the integration limits for problem 24.
+        </li>
+        <li>
+          <a href = "p25_exact.m">p25_exact.m</a>
+          returns the exact integral for problem 25.
+        </li>
+        <li>
+          <a href = "p25_fun.m">p25_fun.m</a>
+          evaluates the integrand for problem 25.
+        </li>
+        <li>
+          <a href = "p25_lim.m">p25_lim.m</a>
+          returns the integration limits for problem 25.
+        </li>
+        <li>
+          <a href = "p26_exact.m">p26_exact.m</a>
+          returns the exact integral for problem 26.
+        </li>
+        <li>
+          <a href = "p26_fun.m">p26_fun.m</a>
+          evaluates the integrand for problem 26.
+        </li>
+        <li>
+          <a href = "p26_lim.m">p26_lim.m</a>
+          returns the integration limits for problem 26.
+        </li>
+        <li>
+          <a href = "p27_exact.m">p27_exact.m</a>
+          returns the exact integral for problem 27.
+        </li>
+        <li>
+          <a href = "p27_fun.m">p27_fun.m</a>
+          evaluates the integrand for problem 27.
+        </li>
+        <li>
+          <a href = "p27_lim.m">p27_lim.m</a>
+          returns the integration limits for problem 27.
+        </li>
+        <li>
+          <a href = "p28_exact.m">p28_exact.m</a>
+          returns the exact integral for problem 28.
+        </li>
+        <li>
+          <a href = "p28_fun.m">p28_fun.m</a>
+          evaluates the integrand for problem 28.
+        </li>
+        <li>
+          <a href = "p28_lim.m">p28_lim.m</a>
+          returns the integration limits for problem 28.
+        </li>
+        <li>
+          <a href = "p29_exact.m">p29_exact.m</a>
+          returns the exact integral for problem 29.
+        </li>
+        <li>
+          <a href = "p29_fun.m">p29_fun.m</a>
+          evaluates the integrand for problem 29.
+        </li>
+        <li>
+          <a href = "p29_lim.m">p29_lim.m</a>
+          returns the integration limits for problem 29.
+        </li>
+        <li>
+          <a href = "p30_exact.m">p30_exact.m</a>
+          returns the exact integral for problem 30.
+        </li>
+        <li>
+          <a href = "p30_fun.m">p30_fun.m</a>
+          evaluates the integrand for problem 30.
+        </li>
+        <li>
+          <a href = "p30_lim.m">p30_lim.m</a>
+          returns the integration limits for problem 30.
+        </li>
+        <li>
+          <a href = "p31_exact.m">p31_exact.m</a>
+          returns the exact integral for problem 31.
+        </li>
+        <li>
+          <a href = "p31_fun.m">p31_fun.m</a>
+          evaluates the integrand for problem 31.
+        </li>
+        <li>
+          <a href = "p31_lim.m">p31_lim.m</a>
+          returns the integration limits for problem 31.
+        </li>
+        <li>
+          <a href = "p32_exact.m">p32_exact.m</a>
+          returns the exact integral for problem 32.
+        </li>
+        <li>
+          <a href = "p32_fun.m">p32_fun.m</a>
+          evaluates the integrand for problem 32.
+        </li>
+        <li>
+          <a href = "p32_lim.m">p32_lim.m</a>
+          returns the integration limits for problem 32.
+        </li>
+        <li>
+          <a href = "p33_exact.m">p33_exact.m</a>
+          returns the exact integral for problem 33.
+        </li>
+        <li>
+          <a href = "p33_fun.m">p33_fun.m</a>
+          evaluates the integrand for problem 33.
+        </li>
+        <li>
+          <a href = "p33_lim.m">p33_lim.m</a>
+          returns the integration limits for problem 33.
+        </li>
+        <li>
+          <a href = "p34_exact.m">p34_exact.m</a>
+          returns the exact integral for problem 34.
+        </li>
+        <li>
+          <a href = "p34_fun.m">p34_fun.m</a>
+          evaluates the integrand for problem 34.
+        </li>
+        <li>
+          <a href = "p34_lim.m">p34_lim.m</a>
+          returns the integration limits for problem 34.
+        </li>
+        <li>
+          <a href = "p35_exact.m">p35_exact.m</a>
+          returns the exact integral for problem 35.
+        </li>
+        <li>
+          <a href = "p35_fun.m">p35_fun.m</a>
+          evaluates the integrand for problem 35.
+        </li>
+        <li>
+          <a href = "p35_lim.m">p35_lim.m</a>
+          returns the integration limits for problem 35.
+        </li>
+        <li>
+          <a href = "p36_exact.m">p36_exact.m</a>
+          returns the exact integral for problem 36.
+        </li>
+        <li>
+          <a href = "p36_fun.m">p36_fun.m</a>
+          evaluates the integrand for problem 36.
+        </li>
+        <li>
+          <a href = "p36_lim.m">p36_lim.m</a>
+          returns the integration limits for problem 36.
+        </li>
+        <li>
+          <a href = "p37_exact.m">p37_exact.m</a>
+          returns the exact integral for problem 37.
+        </li>
+        <li>
+          <a href = "p37_fun.m">p37_fun.m</a>
+          evaluates the integrand for problem 37.
+        </li>
+        <li>
+          <a href = "p37_lim.m">p37_lim.m</a>
+          returns the integration limits for problem 37.
+        </li>
+        <li>
+          <a href = "p38_exact.m">p38_exact.m</a>
+          returns the exact integral for problem 38.
+        </li>
+        <li>
+          <a href = "p38_fun.m">p38_fun.m</a>
+          evaluates the integrand for problem 38.
+        </li>
+        <li>
+          <a href = "p38_lim.m">p38_lim.m</a>
+          returns the integration limits for problem 38.
+        </li>
+        <li>
+          <a href = "p39_exact.m">p39_exact.m</a>
+          returns the exact integral for problem 39.
+        </li>
+        <li>
+          <a href = "p39_fun.m">p39_fun.m</a>
+          evaluates the integrand for problem 39.
+        </li>
+        <li>
+          <a href = "p39_lim.m">p39_lim.m</a>
+          returns the integration limits for problem 39.
+        </li>
+        <li>
+          <a href = "p40_exact.m">p40_exact.m</a>
+          returns the exact integral for problem 40.
+        </li>
+        <li>
+          <a href = "p40_fun.m">p40_fun.m</a>
+          evaluates the integrand for problem 40.
+        </li>
+        <li>
+          <a href = "p40_lim.m">p40_lim.m</a>
+          returns the integration limits for problem 40.
+        </li>
+        <li>
+          <a href = "p41_exact.m">p41_exact.m</a>
+          returns the exact integral for problem 41.
+        </li>
+        <li>
+          <a href = "p41_fun.m">p41_fun.m</a>
+          evaluates the integrand for problem 41.
+        </li>
+        <li>
+          <a href = "p41_lim.m">p41_lim.m</a>
+          returns the integration limits for problem 41.
+        </li>
+        <li>
+          <a href = "p42_exact.m">p42_exact.m</a>
+          returns the exact integral for problem 42.
+        </li>
+        <li>
+          <a href = "p42_fun.m">p42_fun.m</a>
+          evaluates the integrand for problem 42.
+        </li>
+        <li>
+          <a href = "p42_lim.m">p42_lim.m</a>
+          returns the integration limits for problem 42.
+        </li>
+        <li>
+          <a href = "p43_exact.m">p43_exact.m</a>
+          returns the exact integral for problem 43.
+        </li>
+        <li>
+          <a href = "p43_fun.m">p43_fun.m</a>
+          evaluates the integrand for problem 43.
+        </li>
+        <li>
+          <a href = "p43_lim.m">p43_lim.m</a>
+          returns the integration limits for problem 43.
+        </li>
+        <li>
+          <a href = "p44_exact.m">p44_exact.m</a>
+          returns the exact integral for problem 44.
+        </li>
+        <li>
+          <a href = "p44_fun.m">p44_fun.m</a>
+          evaluates the integrand for problem 44.
+        </li>
+        <li>
+          <a href = "p44_lim.m">p44_lim.m</a>
+          returns the integration limits for problem 44.
+        </li>
+        <li>
+          <a href = "p45_exact.m">p45_exact.m</a>
+          returns the exact integral for problem 45.
+        </li>
+        <li>
+          <a href = "p45_fun.m">p45_fun.m</a>
+          evaluates the integrand for problem 45.
+        </li>
+        <li>
+          <a href = "p45_lim.m">p45_lim.m</a>
+          returns the integration limits for problem 45.
+        </li>
+        <li>
+          <a href = "p46_exact.m">p46_exact.m</a>
+          returns the exact integral for problem 46.
+        </li>
+        <li>
+          <a href = "p46_fun.m">p46_fun.m</a>
+          evaluates the integrand for problem 46.
+        </li>
+        <li>
+          <a href = "p46_lim.m">p46_lim.m</a>
+          returns the integration limits for problem 46.
+        </li>
+        <li>
+          <a href = "p47_exact.m">p47_exact.m</a>
+          returns the exact integral for problem 47.
+        </li>
+        <li>
+          <a href = "p47_fun.m">p47_fun.m</a>
+          evaluates the integrand for problem 47.
+        </li>
+        <li>
+          <a href = "p47_lim.m">p47_lim.m</a>
+          returns the integration limits for problem 47.
+        </li>
+        <li>
+          <a href = "p48_exact.m">p48_exact.m</a>
+          returns the exact integral for problem 48.
+        </li>
+        <li>
+          <a href = "p48_fun.m">p48_fun.m</a>
+          evaluates the integrand for problem 48.
+        </li>
+        <li>
+          <a href = "p48_lim.m">p48_lim.m</a>
+          returns the integration limits for problem 48.
+        </li>
+        <li>
+          <a href = "p49_exact.m">p49_exact.m</a>
+          returns the exact integral for problem 49.
+        </li>
+        <li>
+          <a href = "p49_param.m">p49_param.m</a>
+          stores parameters for problem 49.
+        </li>
+        <li>
+          <a href = "p49_param_get.m">p49_param_get.m</a>
+          gets parameters for problem 49.
+        </li>
+        <li>
+          <a href = "p49_param_set.m">p49_param_set.m</a>
+          sets parameters for problem 49.
+        </li>
+        <li>
+          <a href = "p49_fun.m">p49_fun.m</a>
+          evaluates the integrand for problem 49.
+        </li>
+        <li>
+          <a href = "p49_lim.m">p49_lim.m</a>
+          returns the integration limits for problem 49.
+        </li>
+        <li>
+          <a href = "p50_exact.m">p50_exact.m</a>
+          returns the exact integral for problem 50.
+        </li>
+        <li>
+          <a href = "p50_fun.m">p50_fun.m</a>
+          evaluates the integrand for problem 50.
+        </li>
+        <li>
+          <a href = "p50_lim.m">p50_lim.m</a>
+          returns the integration limits for problem 50.
+        </li>
+        <li>
+          <a href = "p50_param.m">p50_param.m</a>
+          stores parameters for problem 50.
+        </li>
+        <li>
+          <a href = "p50_param_get.m">p50_param_get.m</a>
+          gets parameters for problem 50.
+        </li>
+        <li>
+          <a href = "p50_param_set.m">p50_param_set.m</a>
+          sets parameters for problem 50.
+        </li>
+        <li>
+          <a href = "p51_exact.m">p51_exact.m</a>
+          returns the exact integral for problem 51.
+        </li>
+        <li>
+          <a href = "p51_fun.m">p51_fun.m</a>
+          evaluates the integrand for problem 51.
+        </li>
+        <li>
+          <a href = "p51_lim.m">p51_lim.m</a>
+          returns the integration limits for problem 51.
+        </li>
+        <li>
+          <a href = "p51_param.m">p51_param.m</a>
+          stores parameters for problem 51.
+        </li>
+        <li>
+          <a href = "p51_param_get.m">p51_param_get.m</a>
+          gets parameters for problem 51.
+        </li>
+        <li>
+          <a href = "p51_param_set.m">p51_param_set.m</a>
+          sets parameters for problem 51.
+        </li>
+        <li>
+          <a href = "p52_exact.m">p52_exact.m</a>
+          returns the exact integral for problem 52.
+        </li>
+        <li>
+          <a href = "p52_fun.m">p52_fun.m</a>
+          evaluates the integrand for problem 52.
+        </li>
+        <li>
+          <a href = "p52_lim.m">p52_lim.m</a>
+          returns the integration limits for problem 52.
+        </li>
+        <li>
+          <a href = "p52_param.m">p52_param.m</a>
+          stores parameters for problem 52.
+        </li>
+        <li>
+          <a href = "p52_param_get.m">p52_param_get.m</a>
+          gets parameters for problem 52.
+        </li>
+        <li>
+          <a href = "p52_param_set.m">p52_param_set.m</a>
+          sets parameters for problem 52.
+        </li>
+        <li>
+          <a href = "p53_exact.m">p53_exact.m</a>
+          returns the exact integral for problem 53.
+        </li>
+        <li>
+          <a href = "p53_fun.m">p53_fun.m</a>
+          evaluates the integrand for problem 53.
+        </li>
+        <li>
+          <a href = "p53_lim.m">p53_lim.m</a>
+          returns the integration limits for problem 53.
+        </li>
+        <li>
+          <a href = "p53_param.m">p53_param.m</a>
+          stores parameters for problem 53.
+        </li>
+        <li>
+          <a href = "p53_param_get.m">p53_param_get.m</a>
+          gets parameters for problem 53.
+        </li>
+        <li>
+          <a href = "p53_param_set.m">p53_param_set.m</a>
+          sets parameters for problem 53.
+        </li>
+        <li>
+          <a href = "p54_exact.m">p54_exact.m</a>
+          returns the exact integral for problem 54.
+        </li>
+        <li>
+          <a href = "p54_fun.m">p54_fun.m</a>
+          evaluates the integrand for problem 54.
+        </li>
+        <li>
+          <a href = "p54_lim.m">p54_lim.m</a>
+          returns the integration limits for problem 54.
+        </li>
+        <li>
+          <a href = "p54_param.m">p54_param.m</a>
+          stores parameters for problem 54.
+        </li>
+        <li>
+          <a href = "p54_param_get.m">p54_param_get.m</a>
+          gets parameters for problem 54.
+        </li>
+        <li>
+          <a href = "p54_param_set.m">p54_param_set.m</a>
+          sets parameters for problem 54.
+        </li>
+        <li>
+          <a href = "p55_exact.m">p55_exact.m</a>
+          returns the exact integral for problem 55.
+        </li>
+        <li>
+          <a href = "p55_fun.m">p55_fun.m</a>
+          evaluates the integrand for problem 55.
+        </li>
+        <li>
+          <a href = "p55_lim.m">p55_lim.m</a>
+          returns the integration limits for problem 55.
+        </li>
+        <li>
+          <a href = "p55_param.m">p55_param.m</a>
+          stores parameters for problem 55.
+        </li>
+        <li>
+          <a href = "p55_param_get.m">p55_param_get.m</a>
+          gets parameters for problem 55.
+        </li>
+        <li>
+          <a href = "p55_param_set.m">p55_param_set.m</a>
+          sets parameters for problem 55.
+        </li>
+        <li>
+          <a href = "p56_exact.m">p56_exact.m</a>
+          returns the exact integral for problem 56.
+        </li>
+        <li>
+          <a href = "p56_fun.m">p56_fun.m</a>
+          evaluates the integrand for problem 56.
+        </li>
+        <li>
+          <a href = "p56_lim.m">p56_lim.m</a>
+          returns the integration limits for problem 56.
+        </li>
+        <li>
+          <a href = "p56_param.m">p56_param.m</a>
+          stores parameters for problem 56.
+        </li>
+        <li>
+          <a href = "p56_param_get.m">p56_param_get.m</a>
+          gets parameters for problem 56.
+        </li>
+        <li>
+          <a href = "p56_param_set.m">p56_param_set.m</a>
+          sets parameters for problem 56.
+        </li>
+        <li>
+          <a href = "p57_exact.m">p57_exact.m</a>
+          returns the exact integral for problem 57.
+        </li>
+        <li>
+          <a href = "p57_fun.m">p57_fun.m</a>
+          evaluates the integrand for problem 57.
+        </li>
+        <li>
+          <a href = "p57_lim.m">p57_lim.m</a>
+          returns the integration limits for problem 57.
+        </li>
+        <li>
+          <a href = "p57_param.m">p57_param.m</a>
+          stores parameters for problem 57.
+        </li>
+        <li>
+          <a href = "p57_param_get.m">p57_param_get.m</a>
+          gets parameters for problem 57.
+        </li>
+        <li>
+          <a href = "p57_param_set.m">p57_param_set.m</a>
+          sets parameters for problem 57.
+        </li>
+        <li>
+          <a href = "p58_exact.m">p58_exact.m</a>
+          returns the exact integral for problem 58.
+        </li>
+        <li>
+          <a href = "p58_fun.m">p58_fun.m</a>
+          evaluates the integrand for problem 58.
+        </li>
+        <li>
+          <a href = "p58_lim.m">p58_lim.m</a>
+          returns the integration limits for problem 58.
+        </li>
+        <li>
+          <a href = "p58_param.m">p58_param.m</a>
+          stores parameters for problem 58.
+        </li>
+        <li>
+          <a href = "p58_param_get.m">p58_param_get.m</a>
+          gets parameters for problem 58.
+        </li>
+        <li>
+          <a href = "p58_param_set.m">p58_param_set.m</a>
+          sets parameters for problem 58.
+        </li>
+        <li>
+          <a href = "p59_exact.m">p59_exact.m</a>
+          returns the exact integral for problem 59.
+        </li>
+        <li>
+          <a href = "p59_fun.m">p59_fun.m</a>
+          evaluates the integrand for problem 59.
+        </li>
+        <li>
+          <a href = "p59_lim.m">p59_lim.m</a>
+          returns the integration limits for problem 59.
+        </li>
+        <li>
+          <a href = "p59_param.m">p59_param.m</a>
+          stores parameters for problem 59.
+        </li>
+        <li>
+          <a href = "p59_param_get.m">p59_param_get.m</a>
+          gets parameters for problem 59.
+        </li>
+        <li>
+          <a href = "p59_param_set.m">p59_param_set.m</a>
+          sets parameters for problem 59.
+        </li>
+        <li>
+          <a href = "p60_exact.m">p60_exact.m</a>
+          returns the exact integral for problem 60.
+        </li>
+        <li>
+          <a href = "p60_fun.m">p60_fun.m</a>
+          evaluates the integrand for problem 60.
+        </li>
+        <li>
+          <a href = "p60_lim.m">p60_lim.m</a>
+          returns the integration limits for problem 60.
+        </li>
+        <li>
+          <a href = "p60_param.m">p60_param.m</a>
+          stores parameters for problem 60.
+        </li>
+        <li>
+          <a href = "p60_param_get.m">p60_param_get.m</a>
+          gets parameters for problem 60.
+        </li>
+        <li>
+          <a href = "p60_param_set.m">p60_param_set.m</a>
+          sets parameters for problem 60.
+        </li>
+        <li>
+          <a href = "p61_exact.m">p61_exact.m</a>
+          returns the exact integral for problem 61.
+        </li>
+        <li>
+          <a href = "p61_fun.m">p61_fun.m</a>
+          evaluates the integrand for problem 61.
+        </li>
+        <li>
+          <a href = "p61_lim.m">p61_lim.m</a>
+          returns the integration limits for problem 61.
+        </li>
+        <li>
+          <a href = "p61_param.m">p61_param.m</a>
+          stores parameters for problem 61.
+        </li>
+        <li>
+          <a href = "p61_param_get.m">p61_param_get.m</a>
+          gets parameters for problem 61.
+        </li>
+        <li>
+          <a href = "p61_param_set.m">p61_param_set.m</a>
+          sets parameters for problem 61.
+        </li>
+        <li>
+          <a href = "p62_exact.m">p62_exact.m</a>
+          returns the exact integral for problem 62.
+        </li>
+        <li>
+          <a href = "p62_fun.m">p62_fun.m</a>
+          evaluates the integrand for problem 62.
+        </li>
+        <li>
+          <a href = "p62_lim.m">p62_lim.m</a>
+          returns the integration limits for problem 62.
+        </li>
+        <li>
+          <a href = "p62_param.m">p62_param.m</a>
+          stores parameters for problem 62.
+        </li>
+        <li>
+          <a href = "p62_param_get.m">p62_param_get.m</a>
+          gets parameters for problem 62.
+        </li>
+        <li>
+          <a href = "p62_param_set.m">p62_param_set.m</a>
+          sets parameters for problem 62.
+        </li>
+        <li>
+          <a href = "p63_exact.m">p63_exact.m</a>
+          returns the exact integral for problem 63.
+        </li>
+        <li>
+          <a href = "p63_fun.m">p63_fun.m</a>
+          evaluates the integrand for problem 63.
+        </li>
+        <li>
+          <a href = "p63_lim.m">p63_lim.m</a>
+          returns the integration limits for problem 63.
+        </li>
+        <li>
+          <a href = "p63_param.m">p63_param.m</a>
+          stores parameters for problem 63.
+        </li>
+        <li>
+          <a href = "p63_param_get.m">p63_param_get.m</a>
+          gets parameters for problem 63.
+        </li>
+        <li>
+          <a href = "p63_param_set.m">p63_param_set.m</a>
+          sets parameters for problem 63.
+        </li>
+        <li>
+          <a href = "p64_exact.m">p64_exact.m</a>
+          returns the exact integral for problem 64.
+        </li>
+        <li>
+          <a href = "p64_fun.m">p64_fun.m</a>
+          evaluates the integrand for problem 64.
+        </li>
+        <li>
+          <a href = "p64_lim.m">p64_lim.m</a>
+          returns the integration limits for problem 64.
+        </li>
+        <li>
+          <a href = "p65_exact.m">p65_exact.m</a>
+          returns the exact integral for problem 65.
+        </li>
+        <li>
+          <a href = "p65_fun.m">p65_fun.m</a>
+          evaluates the integrand for problem 65.
+        </li>
+        <li>
+          <a href = "p65_lim.m">p65_lim.m</a>
+          returns the integration limits for problem 65.
+        </li>
+        <li>
+          <a href = "p66_exact.m">p66_exact.m</a>
+          returns the exact integral for problem 66.
+        </li>
+        <li>
+          <a href = "p66_fun.m">p66_fun.m</a>
+          evaluates the integrand for problem 66.
+        </li>
+        <li>
+          <a href = "p66_lim.m">p66_lim.m</a>
+          returns the integration limits for problem 66.
+        </li>
+        <li>
+          <a href = "p67_exact.m">p67_exact.m</a>
+          returns the exact integral for problem 67.
+        </li>
+        <li>
+          <a href = "p67_fun.m">p67_fun.m</a>
+          evaluates the integrand for problem 67.
+        </li>
+        <li>
+          <a href = "p67_lim.m">p67_lim.m</a>
+          returns the integration limits for problem 67.
+        </li>
+        <li>
+          <a href = "p68_exact.m">p68_exact.m</a>
+          returns the exact integral for problem 68.
+        </li>
+        <li>
+          <a href = "p68_fun.m">p68_fun.m</a>
+          evaluates the integrand for problem 68.
+        </li>
+        <li>
+          <a href = "p68_lim.m">p68_lim.m</a>
+          returns the integration limits for problem 68.
+        </li>
+        <li>
+          <a href = "p69_exact.m">p69_exact.m</a>
+          returns the exact integral for problem 69.
+        </li>
+        <li>
+          <a href = "p69_fun.m">p69_fun.m</a>
+          evaluates the integrand for problem 69.
+        </li>
+        <li>
+          <a href = "p69_lim.m">p69_lim.m</a>
+          returns the integration limits for problem 69.
+        </li>
+        <li>
+          <a href = "p70_exact.m">p70_exact.m</a>
+          returns the exact integral for problem 70.
+        </li>
+        <li>
+          <a href = "p70_fun.m">p70_fun.m</a>
+          evaluates the integrand for problem 70.
+        </li>
+        <li>
+          <a href = "p70_lim.m">p70_lim.m</a>
+          returns the integration limits for problem 70.
+        </li>
+        <li>
+          <a href = "p71_exact.m">p71_exact.m</a>
+          returns the exact integral for problem 71.
+        </li>
+        <li>
+          <a href = "p71_fun.m">p71_fun.m</a>
+          evaluates the integrand for problem 71.
+        </li>
+        <li>
+          <a href = "p71_lim.m">p71_lim.m</a>
+          returns the integration limits for problem 71.
+        </li>
+        <li>
+          <a href = "p72_exact.m">p72_exact.m</a>
+          returns the exact integral for problem 72.
+        </li>
+        <li>
+          <a href = "p72_fun.m">p72_fun.m</a>
+          evaluates the integrand for problem 72.
+        </li>
+        <li>
+          <a href = "p72_lim.m">p72_lim.m</a>
+          returns the integration limits for problem 72.
+        </li>
+        <li>
+          <a href = "p73_exact.m">p73_exact.m</a>
+          returns the exact integral for problem 73.
+        </li>
+        <li>
+          <a href = "p73_fun.m">p73_fun.m</a>
+          evaluates the integrand for problem 73.
+        </li>
+        <li>
+          <a href = "p73_lim.m">p73_lim.m</a>
+          returns the integration limits for problem 73.
+        </li>
+        <li>
+          <a href = "p74_exact.m">p74_exact.m</a>
+          returns the exact integral for problem 74.
+        </li>
+        <li>
+          <a href = "p74_fun.m">p74_fun.m</a>
+          evaluates the integrand for problem 74.
+        </li>
+        <li>
+          <a href = "p74_lim.m">p74_lim.m</a>
+          returns the integration limits for problem 74.
+        </li>
+        <li>
+          <a href = "p74_param.m">p74_param.m</a>
+          stores parameters for problem 74.
+        </li>
+        <li>
+          <a href = "p75_exact.m">p75_exact.m</a>
+          returns the exact integral for problem 75.
+        </li>
+        <li>
+          <a href = "p75_fun.m">p75_fun.m</a>
+          evaluates the integrand for problem 75.
+        </li>
+        <li>
+          <a href = "p75_lim.m">p75_lim.m</a>
+          returns the integration limits for problem 75.
+        </li>
+        <li>
+          <a href = "p76_exact.m">p76_exact.m</a>
+          returns the exact integral for problem 76.
+        </li>
+        <li>
+          <a href = "p76_fun.m">p76_fun.m</a>
+          evaluates the integrand for problem 76.
+        </li>
+        <li>
+          <a href = "p76_lim.m">p76_lim.m</a>
+          returns the integration limits for problem 76.
+        </li>
+        <li>
+          <a href = "r8_ci.m">r8_ci.m</a>, 
+          evaluates the Cosine Integral function CI(X).
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>, 
+          returns a "huge" R8;
+        </li>
+        <li>
+          <a href = "r8_si.m">r8_si.m</a>, 
+          evaluates the Sine Integral function SI(X).
+        </li>
+        <li>
+          <a href = "r8_tiny.m">r8_tiny.m</a>, 
+          returns a "tiny" R8;
+        </li>
+        <li>
+          <a href = "r8vec_uniform.m">r8vec_uniform.m</a>, 
+          returns a pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "r89sifg.m">r89sifg.m</a>, 
+          evaluates terms needed to approximate the Sine Integral function SI(X).
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>, 
+          compares two strings for equality, ignoring case and trailing blanks;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_int_test.m">test_int_test.m</a>
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "test_int_test01.m">test_int_test01.m</a>
+          applies a composite midpoint rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test02.m">test_int_test02.m</a>
+          applies a composite Simpson rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test03.m">test_int_test03.m</a>
+          applies a Monte Carlo rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test04.m">test_int_test04.m</a>
+          applies a composite Gauss-Legendre rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test05.m">test_int_test05.m</a>
+          applies a composite trapezoid rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test06.m">test_int_test06.m</a>
+          applies a Halton sequence rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test07.m">test_int_test07.m</a>
+          applies an evenly spaced point rule to finite interval 1D problems.
+        </li>
+        <li>
+          <a href = "test_int_test_output.txt">test_int_test_output.txt</a>, the sample output.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 November 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

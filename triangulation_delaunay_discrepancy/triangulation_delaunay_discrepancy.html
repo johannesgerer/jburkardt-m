@@ -1,0 +1,418 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_DELAUNAY_DISCREPANCY - Local Delaunay Discrepancy of a Triangulation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_DELAUNAY_DISCREPANCY <br> Local Delaunay Discrepancy of a Triangulation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_DELAUNAY_DISCREPANCY</b>
+      is a MATLAB program which
+      computes the local Delaunay discrepancy of a triangulation.
+    </p>
+
+    <p>
+      A (maximal) triangulation is Delaunay if and only if it is locally 
+      Delaunay.
+    </p>
+
+    <p>
+      A triangulation is Delaunay if the minimum angle over all triangles
+      in the triangulation is maximized.  That is, there is no other
+      triangulation of the points which has a larger minimum angle.
+    </p>
+
+    <p>
+      A triangulation is locally Delaunay if, for every pair of triangles
+      that share an edge, the minimum angle in the two triangles is larger
+      than the minimum angle in the two triangles formed by removing the
+      common edge and joining the two opposing vertices.
+    </p>
+
+    <p>
+      This function examines the question of whether a given triangulation
+      is locally Delaunay.  It does this by looking at every pair of
+      neighboring triangles and comparing the minimum angle attained
+      for the current triangle pair and the alternative triangle pair.
+    </p>
+
+    <p>
+      Let A(i,j) be the minimum angle formed by triangles T(i) and T(j),
+      which are two triangles in the triangulation which share a common edge.
+      Let B(I,J) be the minimum angle formed by triangles S(i) and S(j),
+      where S(i) and S(j) are formed by removing the common edge of T(i)
+      and T(j), and joining the opposing vertices.
+    </p>
+
+    <p>
+      Then the triangulation is Delaunay if B(i,j) <= A(i,j) for every
+      pair of neighbors T(i) and T(j).  
+    </p>
+
+    <p>
+      If A(i,j) &lt; B(i,j) for at least one pair of neighbors, the triangulation
+      is not a Delaunay triangulation.
+    </p>
+
+    <p>
+      This program returns VALUE = min ( A(i,j) - B(i,j) ) over all
+      triangle neighbors.  VALUE is scaled to be in degrees, for
+      comprehensibility.  If VALUE is negative, then at least one pair
+      of triangles violates the Delaunay condition, and so the entire
+      triangulation is not a Delaunay triangulation.  If VALUE is nonnegative,
+      then the triangulation is a Delaunay triangulation.
+    </p>
+
+    <p>
+      It is useful to return VALUE, rather than a simple True/False value,
+      because there can be cases where the Delaunay condition is only
+      "slightly" violated.  A simple example is a triangulation formed
+      by starting with a mesh of squares and dividing each square into
+      two triangles by choosing one of the diagonals of the square.  
+      The Delaunay discrepancy for this mesh, if computed exactly, is 0,
+      but roundoff could easily result in discrepancies that were very
+      slightly negative.
+    </p>
+
+    <p>
+      If VALUE is positive, and not very small in magnitude, then every 
+      pair of triangles in the triangulation satisfies the local Delaunay 
+      condition, and so the triangulation is a Delaunay triangulation.
+    </p>
+
+    <p>
+      If VALUE is negative, and not very small in magnitude, then at least 
+      one pair of triangles violates the Delaunay condition, and to a 
+      significant degree.  The triangulation is not a Delaunay triangulation.
+    </p>
+
+    <p>
+      If the magnitude of VALUE is very close to zero, then the triangulation
+      is numerically ambiguous.  At least one pair of triangles violates
+      or almost violates the condition, but no triangle violates the
+      condition to a great extent.  The user must judge whether the
+      violation is significant or not.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_delaunay_discrepancy</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common prefix for the node and element files
+      <ul>
+        <li>
+          <i>'prefix'</i><b>_nodes.txt</b>,    the node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_elements.txt</b>,    the element definitions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_DELAUNAY_DISCREPANCY</b> is available in
+      <a href = "../../cpp_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">a C++ version</a> and 
+      <a href = "../../f_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">a FORTRAN90 version</a> and 
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>, 
+      a MATLAB program which
+      triangulates a set of nodes whose coordinates are
+      stored in a file.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>, 
+      a MATLAB program which
+      reads data defining a 3-node triangulation and generates
+      midside nodes and writes out the corresponding 6-node triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a directory which
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_q2l/triangulation_q2l.html">
+      TRIANGULATION_Q2L</a>, 
+      a MATLAB program which
+      reads data defining a 6-node triangulation, and subdivides
+      each triangle into 4 3-node triangles, writing the resulting
+      triangulation to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and computes a number
+      of quality measures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines an ordering
+      of the nodes that will reduce the bandwidth of the adjacency
+      matrix, and writes the new triangulation information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+   <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, September 1991, pages 345-405.
+        </li>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars, 
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0,<br>
+          LC: QA448.D38.C65.
+        </li>
+        <li>
+          Barry Joe, <br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms, <br>
+          Advances in Engineering Software,<br>
+          Volume 13, Number 5, 1991, pages 325-331.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_delaunay_discrepancy.m">
+          triangulation_delaunay_discrepancy.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>TEN3</b> is a triangulation of 10 nodes.  It is a Delaunay triangulation.
+      <ul>
+        <li>
+          <a href = "ten3_nodes.txt">ten3_nodes.txt</a>,
+          the nodes.
+        </li>
+        <li>
+          <a href = "ten3_elements.txt">ten3_elements.txt</a>,
+          commands to compile and run the sample program.
+        </li>
+        <li>
+          <a href = "ten3.png">ten3.png</a>,
+          an image of the triangulation.
+        </li>
+        <li>
+          <a href = "ten3_output.txt">ten3_output.txt</a>,
+          output from the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TED3</b> is a triangulation of 10 nodes.  It is NOT a Delaunay triangulation.
+      <ul>
+        <li>
+          <a href = "ted3_nodes.txt">ted3_nodes.txt</a>,
+          the nodes.
+        </li>
+        <li>
+          <a href = "ted3_elements.txt">ted3_elements.txt</a>,
+          commands to compile and run the sample program.
+        </li>
+        <li>
+          <a href = "ted3.png">ted3.png</a>,
+          an image of the triangulation.
+        </li>
+        <li>
+          <a href = "ted3_output.txt">ted3_output.txt</a>,
+          output from the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 September 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,1925 @@
+<html>
+
+  <head>
+    <title>
+      TEST_TRIANGULATION - Mesh Generation Test Regions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_TRIANGULATION <br> Mesh Generation Test Regions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_TRIANGULATION</b> 
+      is a MATLAB library which 
+      sets up a number of triangulation test problems.
+    </p>
+
+    <p>
+      As far as possible, a uniform and abstract approach has been used.
+      For each test region, a number of routines are provided, via which
+      it is possible for the user to determine many things about the region.
+      Often, just one or two routines would be needed for a particular
+      purpose.  The names of the routines, and their purposes are:
+      <ul>
+        <li>
+          <b>BOUNDARY_NEAREST:</b> returns the nearest point on the boundary
+          of the region to a given point or set of points;
+        </li>
+        <li>
+          <b>BOUNDARY_PROJECT:</b> replaces an exterior point by the
+          nearest point on the boundary;
+        </li>
+        <li>
+          <b>BOUNDARY_SEGMENT:</b> returns a sequence of roughly equally spaced
+          points that lie on one particular boundary segment;
+        </li>
+        <li>
+          <b>BOUNDARY_SEGMENT_LENGTH:</b> returns the "length" (number of
+          nodes) of a particular boundary segment.  This simply counts
+          the number of points needed to trace or approximate the 
+          boundary segment;
+        </li>
+        <li>
+          <b>BOUNDARY_SEGMENT_NUM:</b> returns the number of boundary segments.
+          Simple regions have one boundary segment.  A region with one hole
+          has two, and so on;
+        </li>
+        <li>
+          <b>BOX:</b> returns a bounding box for the region.  All points in
+          the region are within this box;
+        </li>
+        <li>
+          <b>DENSITY:</b> the value of the mesh density function at any 
+          point in the region.  If this is not constant, then high values
+          correspond to places where many more mesh points should be placed;
+        </li>
+        <li>
+          <b>ELEMENT_SIZE:</b> returns a requested typical element size.  This
+          refers to the average size of the triangles formed by a triangulation
+          of the points;
+        </li>
+        <li>
+          <b>FIXED_NUM:</b> returns the number of points which must be 
+          included as nodes of the mesh (which may be zero);
+        </li>
+        <li>
+          <b>FIXED_POINTS:</b> returns the coordinates of the points which 
+          must be included as nodes of the mesh;
+        </li>
+        <li>
+          <b>HEADER:</b> prints a brief description of the problem;
+        </li>
+        <li>
+          <b>HOLE_NUM:</b> returns the number of "holes" in the region;
+        </li>
+        <li>
+          <b>HOLE_POINT:</b> returns the coordinates of one point in a hole
+          (useful when TRIANGLE is to be invoked);
+        </li>
+        <li>
+          <b>INSIDE:</b> reports which of a given set of points are 
+          inside the regioin.
+        </li>
+        <li>
+          <b>SAMPLE:</b> returns a set of sample points from the region, 
+          chosen with uniform probability;
+        </li>
+        <li>
+          <b>SAMPLE_H1:</b> returns a set of sample points from the region 
+          after it has been enlarged by an amount H1;
+        </li>
+        <li>
+          <b>SDIST:</b> returns the signed distance to the boundary of
+          the region for each of a set of input points.
+          (a positive distance means the point is outside the region, 
+           a negative distance means it is inside);
+          <i>(Not ready for problems 4, 5, 6, 7, 8, 9 )</i>
+        </li>
+        <li>
+          <b>TITLE:</b> a title for the problem;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The test problems include:
+      <ol>
+        <li>
+          The unit circle;
+        </li>
+        <li>
+          The unit circle with a circular hole;
+        </li>
+        <li>
+          A square with a circular hole;
+        </li>
+        <li>
+          A hexagon with a hexagonal hole;
+        </li>
+        <li>
+          The horn;
+        </li>
+        <li>
+          The superellipse with a superelliptical hole;
+        </li>
+        <li>
+          The bicycle seat;
+        </li>
+        <li>
+          The slice of pie with a circular hole and triangular notch;
+        </li>
+        <li>
+          Jeff Borggaard's square with two hexagonal holes;
+        </li>
+        <li>
+          The unit square;
+        </li>
+        <li>
+          The L-shaped region;
+        </li>
+        <li>
+          John Shadid's H-shaped region;
+        </li>
+        <li>
+          The Sandia fork;
+        </li>
+        <li>
+          Marcus Garvie's Lake Alpha, with Beta Island;
+        </li>
+        <li>
+          Sangbum Kim's forward step;
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_TRIANGULATION</b> is available in
+      <a href = "../../f_src/test_triangulation/test_triangulation.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_triangulation/cvt_triangulation.html">
+      CVT_TRIANGULATION</a>,
+      a FORTRAN90 program which
+      uses this library 
+      of test regions and attempts to create a CVT-based triangularization.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB program which 
+      can work from a simple description
+      of the boundary of a region to produce a triangulation of that region.
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_triangulate/hex_grid_triangulate.html">
+      HEX_GRID_TRIANGULATE</a>, 
+      a FORTRAN90 program which 
+      uses this library of test regions and computes points on a hexagonal grid 
+      inside each region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads files defining a triangulation and displays an image
+      using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>,
+      a data directory which
+      describes the format for
+      triangulations of order 3.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>,
+      a data directory which
+      describes the format for
+      triangulations of order 6.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Per-Olof Persson and Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "angle_contains_point_2d.m">
+          angle_contains_point_2d.m</a>, 
+          determines whether an angle contains a point.
+        </li>
+        <li>
+          <a href = "angle_half_2d.m">
+          angle_half_2d.m</a>, 
+          divides an angle in half.
+        </li>
+        <li>
+          <a href = "angle_rad_2d.m">
+          angle_rad_2d.m</a>, 
+          determines the angle swept out between two rays.
+        </li>
+        <li>
+          <a href = "atan4.m">atan4.m</a>, 
+          computes the inverse tangent of the ratio Y / X.
+        </li>
+        <li>
+          <a href = "box_contains_point_2d.m">
+          box_contains_point_2d.m</a>, 
+          determines if a box contains a point in 2D.
+        </li>
+        <li>
+          <a href = "circle_arc_point_near_2d.m">
+          circle_arc_point_near_2d.m</a>, 
+          nearest point on a circular arc in 2D.
+        </li>
+        <li>
+          <a href = "circle_imp_contains_point_2d.m">
+          circle_imp_contains_point_2d.m</a>, 
+          determines if a circle contains a point in 2D.
+        </li>
+        <li>
+          <a href = "circle_imp_point_near_2d.m">
+          circle_imp_point_near_2d.m</a>, 
+          nearest point on a circle in 2D.
+        </li>
+        <li>
+          <a href = "circle_sector_contains_point_2d.m">
+          circle_sector_contains_point_2d.m</a>, 
+          determines if a circle sector contains a point in 2D.
+        </li>
+        <li>
+          <a href = "cos_deg.m">cos_deg.m</a>, 
+          returns the cosine of an angle given in degrees.
+        </li>
+        <li>
+          <a href = "file_name_inc.m">
+          file_name_inc.m</a>, 
+          generates the next filename in a series.
+        </li>
+        <li>
+          <a href = "fmin_rc.m">
+          fmin_rc.m</a>, 
+          seeks the minimum of a scalar function of a scalar argument.
+        </li>
+        <li>
+          <a href = "hex_grid_angle.m">
+          hex_grid_angle.m</a>, 
+          sets the points in an angled hex grid in a box.
+        </li>
+        <li>
+          <a href = "hex_grid_angle_size.m">
+          hex_grid_angle_size.m</a>, 
+          counts the points in an angled hex grid in a box.
+        </li>
+        <li>
+          <a href = "hexagon_contains_point_2d.m">
+          hexagon_contains_point_2d.m</a>, 
+          is TRUE if a point is contained in a hexagon.
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>, 
+          returns the remainder of integer division, but always positive.
+        </li>
+        <li>
+          <a href = "i4_wrap.m">
+          i4_wrap.m</a>, 
+          forces an integer to lie between two values.
+        </li>
+        <li>
+          <a href = "p00_boundary_eps.m">
+          p00_boundary_eps.m</a>, 
+          draws the boundary of the region for any problem.
+        </li>
+        <li>
+          <a href = "p00_boundary_nearest.m">
+          p00_boundary_nearest.m</a>, 
+          returns the nearest boundary point for any problem.
+        </li>
+        <li>
+          <a href = "p00_boundary_segment.m">
+          p00_boundary_segment.m</a>, 
+          returns points on a boundary segment for any problem.
+        </li>
+        <li>
+          <a href = "p00_boundary_segment_length.m">
+          p00_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for any problem.
+        </li>
+        <li>
+          <a href = "p00_boundary_segment_num.m">
+          p00_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for any problem.
+        </li>
+        <li>
+          <a href = "p00_box.m">p00_box.m</a>, 
+          returns a bounding box for any problem.
+        </li>
+        <li>
+          <a href = "p00_density.m">
+          p00_density.m</a>, 
+          returns the mesh density for any problem.
+        </li>
+        <li>
+          <a href = "p00_element_size.m">
+          p00_element_size.m</a>, 
+          returns a suggested element size for any problem.
+        </li>
+        <li>
+          <a href = "p00_fixed_num.m">
+          p00_fixed_num.m</a>, 
+          returns the number of fixed points for any problem.
+        </li>
+        <li>
+          <a href = "p00_fixed_points.m">
+          p00_fixed_points.m</a>, 
+          returns the fixed points for any problem.
+        </li>
+        <li>
+          <a href = "p00_header.m">
+          p00_header.m</a>, 
+          prints the header for any problem.
+        </li>
+        <li>
+          <a href = "p00_hex_grid.m">
+          p00_hex_grid.m</a>, 
+          returns hex grid points in a region.
+        </li>
+        <li>
+          <a href = "p00_hex_grid_count.m">
+          p00_hex_grid_count.m</a>, 
+          counts the number of hex grid points in a region.
+        </li>
+        <li>
+          <a href = "p00_hole_num.m">
+          p00_hole_num.m</a>, 
+          returns the number of holes in the region for any problem.
+        </li>
+        <li>
+          <a href = "p00_hole_point.m">
+          p00_hole_point.m</a>, 
+          returns a point in a hole in the region for any problem.
+        </li>
+        <li>
+          <a href = "p00_inside.m">
+          p00_inside.m</a>, 
+          is TRUE for each point that is inside the region, for any problem.
+        </li>
+        <li>
+          <a href = "p00_points_eps.m">
+          p00_points_eps.m</a>, 
+          draws a plot of the region and some sample points
+          for any problem.
+        </li>
+        <li>
+          <a href = "p00_poly_write.m">
+          p00_poly_write.m</a>, 
+          assembles geometric information and writes it as a POLY file
+          for any problem.
+        </li>
+        <li>
+          <a href = "p00_sample.m">
+          p00_sample.m</a>, 
+          returns sample points from the region for any problem.
+        </li>
+        <li>
+          <a href = "p00_test_num.m">
+          p00_test_num.m</a>, 
+          returns the number of problems.
+        </li>
+        <li>
+          <a href = "p00_title.m">
+          p00_title.m</a>, 
+          returns the title for any problem.
+        </li>
+        <li>
+          <a href = "p01_boundary_nearest.m">
+          p01_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 01.
+        </li>
+        <li>
+          <a href = "p01_boundary_project.m">
+          p01_boundary_project.m</a>, 
+          projects exterior points onto the boundary for problem 01.
+        </li>
+        <li>
+          <a href = "p01_boundary_segment.m">
+          p01_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 01.
+        </li>
+        <li>
+          <a href = "p01_boundary_segment_length.m">
+          p01_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 01.
+        </li>
+        <li>
+          <a href = "p01_boundary_segment_num.m">
+          p01_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 01.
+        </li>
+        <li>
+          <a href = "p01_box.m">p01_box.m</a>, 
+          returns a bounding box for problem 01.
+        </li>
+        <li>
+          <a href = "p01_density.m">p01_density.m</a>, 
+          returns the mesh density for problem 01.
+        </li>
+        <li>
+          <a href = "p01_element_size.m">
+          p01_element_size.m</a>, 
+          returns a suggested element size for problem 01.
+        </li>
+        <li>
+          <a href = "p01_fixed_num.m">
+          p01_fixed_num.m</a>, 
+          returns the number of fixed points for problem 01.
+        </li>
+        <li>
+          <a href = "p01_fixed_points.m">
+          p01_fixed_points.m</a>, 
+          returns the fixed points for problem 01.
+        </li>
+        <li>
+          <a href = "p01_header.m">p01_header.m</a>, 
+          prints the header for problem 01.
+        </li>
+        <li>
+          <a href = "p01_hole_num.m">
+          p01_hole_num.m</a>, 
+          returns the number of holes in the region for problem 01.
+        </li>
+        <li>
+          <a href = "p01_hole_point.m">
+          p01_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 01.
+        </li>
+        <li>
+          <a href = "p01_inside.m">p01_inside.m</a>, 
+          is TRUE for each point inside the region in problem 01.
+        </li>
+        <li>
+          <a href = "p01_sample.m">
+          p01_sample.m</a>, 
+          returns sample points from the region for problem 01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          returns a title for problem 01.
+        </li>
+        <li>
+          <a href = "p02_boundary_nearest.m">
+          p02_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 02.
+        </li>
+        <li>
+          <a href = "p02_boundary_segment.m">
+          p02_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 02.
+        </li>
+        <li>
+          <a href = "p02_boundary_segment_length.m">
+          p02_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 02.
+        </li>
+        <li>
+          <a href = "p02_boundary_segment_num.m">
+          p02_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 02.
+        </li>
+        <li>
+          <a href = "p02_box.m">p02_box.m</a>, 
+          returns a bounding box for problem 02.
+        </li>
+        <li>
+          <a href = "p02_density.m">p02_density.m</a>, 
+          returns the mesh density for problem 02.
+        </li>
+        <li>
+          <a href = "p02_element_size.m">
+          p02_element_size.m</a>, 
+          returns a suggested element size for problem 02.
+        </li>
+        <li>
+          <a href = "p02_fixed_num.m">
+          p02_fixed_num.m</a>, 
+          returns the number of fixed points for problem 02.
+        </li>
+        <li>
+          <a href = "p02_fixed_points.m">
+          p02_fixed_points.m</a>, 
+          returns the fixed points for problem 02.
+        </li>
+        <li>
+          <a href = "p02_header.m">p02_header.m</a>, 
+          prints the header for problem 02.
+        </li>
+        <li>
+          <a href = "p02_hole_num.m">
+          p02_hole_num.m</a>, 
+          returns the number of holes in the region for problem 02.
+        </li>
+        <li>
+          <a href = "p02_hole_point.m">
+          p02_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 02.
+        </li>
+        <li>
+          <a href = "p02_inside.m">p02_inside.m</a>, 
+          is TRUE for each point inside the region in problem 02.
+        </li>
+        <li>
+          <a href = "p02_sample.m">
+          p02_sample.m</a>, 
+          returns sample points from the region for problem 02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          returns a title for problem 02.
+        </li>
+        <li>
+          <a href = "p03_boundary_nearest.m">
+          p03_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 03.
+        </li>
+        <li>
+          <a href = "p03_boundary_segment.m">
+          p03_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 03.
+        </li>
+        <li>
+          <a href = "p03_boundary_segment_length.m">
+          p03_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 03.
+        </li>
+        <li>
+          <a href = "p03_boundary_segment_num.m">
+          p03_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 03.
+        </li>
+        <li>
+          <a href = "p03_box.m">p03_box.m</a>, 
+          returns a bounding box for problem 03.
+        </li>
+        <li>
+          <a href = "p03_density.m">p03_density.m</a>, 
+          returns the mesh density for problem 03.
+        </li>
+        <li>
+          <a href = "p03_element_size.m">
+          p03_element_size.m</a>, 
+          returns a suggested element size for problem 03.
+        </li>
+        <li>
+          <a href = "p03_fixed_num.m">
+          p03_fixed_num.m</a>, 
+          returns the number of fixed points for problem 03.
+        </li>
+        <li>
+          <a href = "p03_fixed_points.m">
+          p03_fixed_points.m</a>, 
+          returns the fixed points for problem 03.
+        </li>
+        <li>
+          <a href = "p03_header.m">p03_header.m</a>, 
+          prints the header for problem 03.
+        </li>
+        <li>
+          <a href = "p03_hole_num.m">
+          p03_hole_num.m</a>, 
+          returns the number of holes in the region for problem 03.
+        </li>
+        <li>
+          <a href = "p03_hole_point.m">
+          p03_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 03.
+        </li>
+        <li>
+          <a href = "p03_inside.m">p03_inside.m</a>, 
+          is TRUE for each point inside the region in problem 03.
+        </li>
+        <li>
+          <a href = "p03_sample.m">
+          p03_sample.m</a>, 
+          returns sample points from the region for problem 03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          returns a title for problem 03.
+        </li>
+        <li>
+          <a href = "p04_boundary_nearest.m">
+          p04_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 04.
+        </li>
+        <li>
+          <a href = "p04_boundary_segment.m">
+          p04_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 04.
+        </li>
+        <li>
+          <a href = "p04_boundary_segment_length.m">
+          p04_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 04.
+        </li>
+        <li>
+          <a href = "p04_boundary_segment_num.m">
+          p04_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 04.
+        </li>
+        <li>
+          <a href = "p04_box.m">p04_box.m</a>, 
+          returns a bounding box for problem 04.
+        </li>
+        <li>
+          <a href = "p04_density.m">p04_density.m</a>, 
+          returns the mesh density for problem 04.
+        </li>
+        <li>
+          <a href = "p04_element_size.m">
+          p04_element_size.m</a>, 
+          returns a suggested element size for problem 04.
+        </li>
+        <li>
+          <a href = "p04_fixed_num.m">
+          p04_fixed_num.m</a>, 
+          returns the number of fixed points for problem 04.
+        </li>
+        <li>
+          <a href = "p04_fixed_points.m">
+          p04_fixed_points.m</a>, 
+          returns the fixed points for problem 04.
+        </li>
+        <li>
+          <a href = "p04_header.m">p04_header.m</a>, 
+          prints the header for problem 04.
+        </li>
+        <li>
+          <a href = "p04_hole_num.m">
+          p04_hole_num.m</a>, 
+          returns the number of holes in the region for problem 04.
+        </li>
+        <li>
+          <a href = "p04_hole_point.m">
+          p04_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 04.
+        </li>
+        <li>
+          <a href = "p04_inside.m">p04_inside.m</a>, 
+          is TRUE for each point inside the region in problem 04.
+        </li>
+        <li>
+          <a href = "p04_sample.m">
+          p04_sample.m</a>, 
+          returns sample points from the region for problem 04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          returns a title for problem 04.
+        </li>
+        <li>
+          <a href = "p05_boundary_nearest.m">
+          p05_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 05.
+        </li>
+        <li>
+          <a href = "p05_boundary_segment.m">
+          p05_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 05.
+        </li>
+        <li>
+          <a href = "p05_boundary_segment_length.m">
+          p05_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 05.
+        </li>
+        <li>
+          <a href = "p05_boundary_segment_num.m">
+          p05_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 05.
+        </li>
+        <li>
+          <a href = "p05_box.m">p05_box.m</a>, 
+          returns a bounding box for problem 05.
+        </li>
+        <li>
+          <a href = "p05_density.m">p05_density.m</a>, 
+          returns the mesh density for problem 05.
+        </li>
+        <li>
+          <a href = "p05_element_size.m">
+          p05_element_size.m</a>, 
+          returns a suggested element size for problem 05.
+        </li>
+        <li>
+          <a href = "p05_fixed_num.m">
+          p05_fixed_num.m</a>, 
+          returns the number of fixed points for problem 05.
+        </li>
+        <li>
+          <a href = "p05_fixed_points.m">
+          p05_fixed_points.m</a>, 
+          returns the fixed points for problem 05.
+        </li>
+        <li>
+          <a href = "p05_header.m">p05_header.m</a>, 
+          prints the header for problem 05.
+        </li>
+        <li>
+          <a href = "p05_hole_num.m">
+          p05_hole_num.m</a>, 
+          returns the number of holes in the region for problem 05.
+        </li>
+        <li>
+          <a href = "p05_hole_point.m">
+          p05_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 05.
+        </li>
+        <li>
+          <a href = "p05_inside.m">p05_inside.m</a>, 
+          is TRUE for each point inside the region in problem 05.
+        </li>
+        <li>
+          <a href = "p05_sample.m">
+          p05_sample.m</a>, 
+          returns sample points from the region for problem 05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          returns a title for problem 05.
+        </li>
+        <li>
+          <a href = "p06_boundary_nearest.m">
+          p06_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 06.
+        </li>
+        <li>
+          <a href = "p06_boundary_segment_num.m">
+          p06_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 06.
+        </li>
+        <li>
+          <a href = "p06_boundary_segment_length.m">
+          p06_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 06.
+        </li>
+        <li>
+          <a href = "p06_boundary_segment_num.m">
+          p06_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 06.
+        </li>
+        <li>
+          <a href = "p06_box.m">p06_box.m</a>, 
+          returns a bounding box for problem 06.
+        </li>
+        <li>
+          <a href = "p06_density.m">p06_density.m</a>, 
+          returns the mesh density for problem 06.
+        </li>
+        <li>
+          <a href = "p06_element_size.m">
+          p06_element_size.m</a>, 
+          returns a suggested element size for problem 06.
+        </li>
+        <li>
+          <a href = "p06_fixed_num.m">
+          p06_fixed_num.m</a>, 
+          returns the number of fixed points for problem 06.
+        </li>
+        <li>
+          <a href = "p06_fixed_points.m">
+          p06_fixed_points.m</a>, 
+          returns the fixed points for problem 06.
+        </li>
+        <li>
+          <a href = "p06_header.m">p06_header.m</a>, 
+          prints the header for problem 06.
+        </li>
+        <li>
+          <a href = "p06_hole_num.m">
+          p06_hole_num.m</a>, 
+          returns the number of holes in the region for problem 06.
+        </li>
+        <li>
+          <a href = "p06_hole_point.m">
+          p06_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 06.
+        </li>
+        <li>
+          <a href = "p06_inside.m">p06_inside.m</a>, 
+          is TRUE for each point inside the region in problem 06.
+        </li>
+        <li>
+          <a href = "p06_sample.m">
+          p06_sample.m</a>, 
+          returns sample points from the region for problem 06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          returns a title for problem 06.
+        </li>
+        <li>
+          <a href = "p07_boundary_nearest.m">
+          p07_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 07.
+        </li>
+        <li>
+          <a href = "p07_boundary_segment_num.m">
+          p07_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 07.
+        </li>
+        <li>
+          <a href = "p07_boundary_segment_length.m">
+          p07_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 07.
+        </li>
+        <li>
+          <a href = "p07_boundary_segment_num.m">
+          p07_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 07.
+        </li>
+        <li>
+          <a href = "p07_box.m">p07_box.m</a>, 
+          returns a bounding box for problem 07.
+        </li>
+        <li>
+          <a href = "p07_density.m">p07_density.m</a>, 
+          returns the mesh density for problem 07.
+        </li>
+        <li>
+          <a href = "p07_element_size.m">
+          p07_element_size.m</a>, 
+          returns a suggested element size for problem 07.
+        </li>
+        <li>
+          <a href = "p07_fixed_num.m">
+          p07_fixed_num.m</a>, 
+          returns the number of fixed points for problem 07.
+        </li>
+        <li>
+          <a href = "p07_fixed_points.m">
+          p07_fixed_points.m</a>, 
+          returns the fixed points for problem 07.
+        </li>
+        <li>
+          <a href = "p07_header.m">p07_header.m</a>, 
+          prints the header for problem 07.
+        </li>
+        <li>
+          <a href = "p07_hole_num.m">
+          p07_hole_num.m</a>, 
+          returns the number of holes in the region for problem 07.
+        </li>
+        <li>
+          <a href = "p07_hole_point.m">
+          p07_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 07.
+        </li>
+        <li>
+          <a href = "p07_inside.m">p07_inside.m</a>, 
+          is TRUE for each point inside the region in problem 07.
+        </li>
+        <li>
+          <a href = "p07_sample.m">
+          p07_sample.m</a>, 
+          returns sample points from the region for problem 07.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          returns a title for problem 07.
+        </li>
+        <li>
+          <a href = "p08_boundary_nearest.m">
+          p08_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 08.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment.m">
+          p08_boundary_segment.m</a>, 
+          returns points on a boundary segment for problem 08.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment_length.m">
+          p08_boundary_segment_length.m</a>, 
+          returns the number of points on a boundary segment for problem 08.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment_num.m">p08_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 08.
+        </li>
+        <li>
+          <a href = "p08_box.m">p08_box.m</a>, 
+          returns a bounding box for problem 08.
+        </li>
+        <li>
+          <a href = "p08_density.m">p08_density.m</a>, 
+          returns the mesh density for problem 08.
+        </li>
+        <li>
+          <a href = "p08_element_size.m">p08_element_size.m</a>, 
+          returns the element size for problem 08.
+        </li>
+        <li>
+          <a href = "p08_fixed_num.m">p08_fixed_num.m</a>, 
+          returns the number of fixed points for problem 08.
+        </li>
+        <li>
+          <a href = "p08_fixed_points.m">p08_fixed_points.m</a>, 
+          returns the fixed points for problem 08.
+        </li>
+        <li>
+          <a href = "p08_header.m">p08_header.m</a>, 
+          prints the header for problem 08.
+        </li>
+        <li>
+          <a href = "p08_hole_num.m">p08_hole_num.m</a>, 
+          returns the number of holes for problem 08.
+        </li>
+        <li>
+          <a href = "p08_hole_point.m">p08_hole_point.m</a>, 
+          returns a point in a given hole for problem 08.
+        </li>
+        <li>
+          <a href = "p08_inside.m">p08_inside.m</a>, 
+          is TRUE for each point inside the region in problem 08.
+        </li>
+        <li>
+          <a href = "p08_sample.m">p08_sample.m</a>, 
+          samples points from the region in problem 08.
+        </li>
+        <li>
+          <a href = "p08_sdist.m">p08_sdist.m</a>, 
+          returns the signed distance to the region for problem 08.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          returns a title for problem 08.
+        </li>
+        <li>
+          <a href = "p09_boundary_nearest.m">
+          p09_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 09.
+        </li>
+        <li>
+          <a href = "p09_boundary_segment_num.m">
+          p09_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 09.
+        </li>
+        <li>
+          <a href = "p09_boundary_segment_length.m">
+          p09_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 09.
+        </li>
+        <li>
+          <a href = "p09_boundary_segment_num.m">
+          p09_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 09.
+        </li>
+        <li>
+          <a href = "p09_box.m">p09_box.m</a>, 
+          returns a bounding box for problem 09.
+        </li>
+        <li>
+          <a href = "p09_density.m">p09_density.m</a>, 
+          returns the mesh density for problem 09.
+        </li>
+        <li>
+          <a href = "p09_element_size.m">
+          p09_element_size.m</a>, 
+          returns a suggested element size for problem 09.
+        </li>
+        <li>
+          <a href = "p09_fixed_num.m">
+          p09_fixed_num.m</a>, 
+          returns the number of fixed points for problem 09.
+        </li>
+        <li>
+          <a href = "p09_fixed_points.m">
+          p09_fixed_points.m</a>, 
+          returns the fixed points for problem 09.
+        </li>
+        <li>
+          <a href = "p09_header.m">p09_header.m</a>, 
+          prints the header for problem 09.
+        </li>
+        <li>
+          <a href = "p09_hole_num.m">
+          p09_hole_num.m</a>, 
+          returns the number of holes in the region for problem 09.
+        </li>
+        <li>
+          <a href = "p09_hole_point.m">
+          p09_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 09.
+        </li>
+        <li>
+          <a href = "p09_inside.m">p09_inside.m</a>, 
+          is TRUE for each point inside the region in problem 09.
+        </li>
+        <li>
+          <a href = "p09_sample.m">p09_sample.m</a>, 
+          samples points from the region in problem 09.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>, 
+          returns a title for problem 09.
+        </li>
+        <li>
+          <a href = "p10_boundary_nearest.m">
+          p10_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 10.
+        </li>
+        <li>
+          <a href = "p10_boundary_segment_num.m">
+          p10_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 10.
+        </li>
+        <li>
+          <a href = "p10_boundary_segment_length.m">
+          p10_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 10.
+        </li>
+        <li>
+          <a href = "p10_boundary_segment_num.m">
+          p10_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 10.
+        </li>
+        <li>
+          <a href = "p10_box.m">p10_box.m</a>, 
+          returns a bounding box for problem 10.
+        </li>
+        <li>
+          <a href = "p10_density.m">p10_density.m</a>, 
+          returns the mesh density for problem 10.
+        </li>
+        <li>
+          <a href = "p10_element_size.m">
+          p10_element_size.m</a>, 
+          returns a suggested element size for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fixed_num.m">
+          p10_fixed_num.m</a>, 
+          returns the number of fixed points for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fixed_points.m">
+          p10_fixed_points.m</a>, 
+          returns the fixed points for problem 10.
+        </li>
+        <li>
+          <a href = "p10_header.m">p10_header.m</a>, 
+          prints the header for problem 10.
+        </li>
+        <li>
+          <a href = "p10_hole_num.m">
+          p10_hole_num.m</a>, 
+          returns the number of holes in the region for problem 10.
+        </li>
+        <li>
+          <a href = "p10_hole_point.m">
+          p10_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 10.
+        </li>
+        <li>
+          <a href = "p10_inside.m">p10_inside.m</a>, 
+          is TRUE for each point inside the region in problem 10.
+        </li>
+        <li>
+          <a href = "p10_sample.m">p10_sample.m</a>, 
+          samples points from the region in problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>, 
+          returns a title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_boundary_nearest.m">
+          p11_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 11.
+        </li>
+        <li>
+          <a href = "p11_boundary_segment_num.m">
+          p11_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 11.
+        </li>
+        <li>
+          <a href = "p11_boundary_segment_length.m">
+          p11_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 11.
+        </li>
+        <li>
+          <a href = "p11_boundary_segment_num.m">
+          p11_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 11.
+        </li>
+        <li>
+          <a href = "p11_box.m">p11_box.m</a>, 
+          returns a bounding box for problem 11.
+        </li>
+        <li>
+          <a href = "p11_density.m">p11_density.m</a>, 
+          returns the mesh density for problem 11.
+        </li>
+        <li>
+          <a href = "p11_element_size.m">
+          p11_element_size.m</a>, 
+          returns a suggested element size for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fixed_num.m">
+          p11_fixed_num.m</a>, 
+          returns the number of fixed points for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fixed_points.m">
+          p11_fixed_points.m</a>, 
+          returns the fixed points for problem 11.
+        </li>
+        <li>
+          <a href = "p11_header.m">p11_header.m</a>, 
+          prints the header for problem 11.
+        </li>
+        <li>
+          <a href = "p11_hole_num.m">
+          p11_hole_num.m</a>, 
+          returns the number of holes in the region for problem 11.
+        </li>
+        <li>
+          <a href = "p11_hole_point.m">
+          p11_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 11.
+        </li>
+        <li>
+          <a href = "p11_inside.m">p11_inside.m</a>, 
+          is TRUE for each point inside the region in problem 11.
+        </li>
+        <li>
+          <a href = "p11_sample.m">p11_sample.m</a>, 
+          samples points from the region in problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>, 
+          returns a title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_boundary_nearest.m">
+          p12_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 12.
+        </li>
+        <li>
+          <a href = "p12_boundary_segment_num.m">
+          p12_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 12.
+        </li>
+        <li>
+          <a href = "p12_boundary_segment_length.m">
+          p12_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 12.
+        </li>
+        <li>
+          <a href = "p12_boundary_segment_num.m">
+          p12_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 12.
+        </li>
+        <li>
+          <a href = "p12_box.m">p12_box.m</a>, 
+          returns a bounding box for problem 12.
+        </li>
+        <li>
+          <a href = "p12_density.m">p12_density.m</a>, 
+          returns the mesh density for problem 12.
+        </li>
+        <li>
+          <a href = "p12_element_size.m">
+          p12_element_size.m</a>, 
+          returns a suggested element size for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fixed_num.m">
+          p12_fixed_num.m</a>, 
+          returns the number of fixed points for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fixed_points.m">
+          p12_fixed_points.m</a>, 
+          returns the fixed points for problem 12.
+        </li>
+        <li>
+          <a href = "p12_header.m">p12_header.m</a>, 
+          prints the header for problem 12.
+        </li>
+        <li>
+          <a href = "p12_hole_num.m">
+          p12_hole_num.m</a>, 
+          returns the number of holes in the region for problem 12.
+        </li>
+        <li>
+          <a href = "p12_hole_point.m">
+          p12_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 12.
+        </li>
+        <li>
+          <a href = "p12_inside.m">p12_inside.m</a>, 
+          is TRUE for each point inside the region in problem 12.
+        </li>
+        <li>
+          <a href = "p12_sample.m">p12_sample.m</a>, 
+          samples points from the region in problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>, 
+          returns a title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_boundary_nearest.m">
+          p13_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 13.
+        </li>
+        <li>
+          <a href = "p13_boundary_segment_num.m">
+          p13_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 13.
+        </li>
+        <li>
+          <a href = "p13_boundary_segment_length.m">
+          p13_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 13.
+        </li>
+        <li>
+          <a href = "p13_boundary_segment_num.m">
+          p13_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 13.
+        </li>
+        <li>
+          <a href = "p13_box.m">p13_box.m</a>, 
+          returns a bounding box for problem 13.
+        </li>
+        <li>
+          <a href = "p13_density.m">p13_density.m</a>, 
+          returns the mesh density for problem 13.
+        </li>
+        <li>
+          <a href = "p13_element_size.m">
+          p13_element_size.m</a>, 
+          returns a suggested element size for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fixed_num.m">
+          p13_fixed_num.m</a>, 
+          returns the number of fixed points for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fixed_points.m">
+          p13_fixed_points.m</a>, 
+          returns the fixed points for problem 13.
+        </li>
+        <li>
+          <a href = "p13_header.m">p13_header.m</a>, 
+          prints the header for problem 13.
+        </li>
+        <li>
+          <a href = "p13_hole_num.m">
+          p13_hole_num.m</a>, 
+          returns the number of holes in the region for problem 13.
+        </li>
+        <li>
+          <a href = "p13_hole_point.m">
+          p13_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 13.
+        </li>
+        <li>
+          <a href = "p13_inside.m">p13_inside.m</a>, 
+          is TRUE for each point inside the region in problem 13.
+        </li>
+        <li>
+          <a href = "p13_sample.m">p13_sample.m</a>, 
+          samples points from the region in problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>, 
+          returns a title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_boundary_nearest.m">
+          p14_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 14.
+        </li>
+        <li>
+          <a href = "p14_boundary_segment_num.m">
+          p14_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 14.
+        </li>
+        <li>
+          <a href = "p14_boundary_segment_length.m">
+          p14_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 14.
+        </li>
+        <li>
+          <a href = "p14_boundary_segment_num.m">
+          p14_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 14.
+        </li>
+        <li>
+          <a href = "p14_box.m">p14_box.m</a>, 
+          returns a bounding box for problem 14.
+        </li>
+        <li>
+          <a href = "p14_density.m">p14_density.m</a>, 
+          returns the mesh density for problem 14.
+        </li>
+        <li>
+          <a href = "p14_element_size.m">
+          p14_element_size.m</a>, 
+          returns a suggested element size for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fixed_num.m">
+          p14_fixed_num.m</a>, 
+          returns the number of fixed points for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fixed_points.m">
+          p14_fixed_points.m</a>, 
+          returns the fixed points for problem 14.
+        </li>
+        <li>
+          <a href = "p14_header.m">p14_header.m</a>, 
+          prints the header for problem 14.
+        </li>
+        <li>
+          <a href = "p14_hole_num.m">
+          p14_hole_num.m</a>, 
+          returns the number of holes in the region for problem 14.
+        </li>
+        <li>
+          <a href = "p14_hole_point.m">
+          p14_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 14.
+        </li>
+        <li>
+          <a href = "p14_inside.m">p14_inside.m</a>, 
+          is TRUE for each point inside the region in problem 14.
+        </li>
+        <li>
+          <a href = "p14_sample.m">p14_sample.m</a>, 
+          samples points from the region in problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>, 
+          returns a title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_boundary_nearest.m">
+          p15_boundary_nearest.m</a>, 
+          returns the nearest boundary point for problem 15.
+        </li>
+        <li>
+          <a href = "p15_boundary_segment_num.m">
+          p15_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 15.
+        </li>
+        <li>
+          <a href = "p15_boundary_segment_length.m">
+          p15_boundary_segment_length.m</a>, 
+          returns the number of points to use for boundary segments
+          for problem 15.
+        </li>
+        <li>
+          <a href = "p15_boundary_segment_num.m">
+          p15_boundary_segment_num.m</a>, 
+          returns the number of boundary segments for problem 15.
+        </li>
+        <li>
+          <a href = "p15_box.m">p15_box.m</a>, 
+          returns a bounding box for problem 15.
+        </li>
+        <li>
+          <a href = "p15_density.m">p15_density.m</a>, 
+          returns the mesh density for problem 15.
+        </li>
+        <li>
+          <a href = "p15_element_size.m">
+          p15_element_size.m</a>, 
+          returns a suggested element size for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fixed_num.m">
+          p15_fixed_num.m</a>, 
+          returns the number of fixed points for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fixed_points.m">
+          p15_fixed_points.m</a>, 
+          returns the fixed points for problem 15.
+        </li>
+        <li>
+          <a href = "p15_header.m">p15_header.m</a>, 
+          prints the header for problem 15.
+        </li>
+        <li>
+          <a href = "p15_hole_num.m">
+          p15_hole_num.m</a>, 
+          returns the number of holes in the region for problem 15.
+        </li>
+        <li>
+          <a href = "p15_hole_point.m">
+          p15_hole_point.m</a>, 
+          returns a point in a hole in the region for problem 15.
+        </li>
+        <li>
+          <a href = "p15_inside.m">p15_inside.m</a>, 
+          is TRUE for each point inside the region in problem 15.
+        </li>
+        <li>
+          <a href = "p15_sample.m">p15_sample.m</a>, 
+          samples points from the region in problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>, 
+          returns a title for problem 15.
+        </li>
+        <li>
+          <a href = "poly_write.m">poly_write.m</a>, 
+          writes data to a POLY file.
+        </li>
+        <li>
+          <a href = "polygon_contains_point_2d.m">
+          polygon_contains_point_2d.m</a>, 
+          finds if a point is inside a simple polygon in 2D.
+        </li>
+        <li>
+          <a href = "polygon_expand_2d.m">
+          polygon_expand_2d.m</a>, 
+          expands a polygon in 2D.
+        </li>
+        <li>
+          <a href = "polygon_point_near_2d.m">
+          polygon_point_near_2d.m</a>, 
+          finds the nearest point on a polygon in 2D.
+        </li>
+        <li>
+          <a href = "polyloop_arclength_nd.m">
+          polyloop_arclength_nd.m</a>, 
+          determines the arclength of points on a polyloop in ND.
+        </li>
+        <li>
+          <a href = "polyloop_length_nd.m">
+          polyloop_length_nd.m</a>, 
+          determines the length of a polyloop in ND.
+        </li>
+        <li>
+          <a href = "polyloop_points_nd.m">
+          polyloop_points_nd.m</a>, 
+          computes equally spaced points on a polyloop in ND.
+        </li>
+        <li>
+          <a href = "quad_contains_point_2d.m">
+          quad_contains_point_2d.m</a>, 
+          finds if a point is inside a quadrilateral in 2D.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>, 
+          returns the R8 machine precision.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>, 
+          returns a "huge" R8.
+        </li>
+        <li>
+          <a href = "r8_modp.m">r8_modp.m</a>, 
+          returns the nonnegative remainder of R8 division.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>, 
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>, 
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>, 
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>, 
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8poly2_rroot.m">r8poly2_rroot.m</a>, 
+          returns the real part of roots of a quadratic polynomial.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "segment_point_near_2d.m">segment_point_near_2d.m</a>, 
+          finds the point on a line segment nearest a point in 2D.
+        </li>
+        <li>
+          <a href = "sin_deg.m">sin_deg.m</a>, 
+          returns the sine of an angle given in degrees.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangle_contains_point_2d.m">
+          triangle_contains_point_2d.m</a>, 
+          determines whether a triangle contains a point.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_triangulation_test.m">
+          test_triangulation_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "test_triangulation_test_output.txt">
+          test_triangulation_test_output.txt</a>, 
+          the printed output from the tests.
+        </li>
+        <li>
+          <a href = "test_triangulation_test01.m">
+          test_triangulation_test01.m</a>, 
+          tests P00_TEST_NUM, P00_TITLE, P00_HEADER.
+        </li>
+        <li>
+          <a href = "test_triangulation_test02.m">
+          test_triangulation_test02.m</a>, 
+          tests P00_TEST_NUM, P00_SAMPLE.
+        </li>
+        <li>
+          <a href = "test_triangulation_test03.m">
+          test_triangulation_test03.m</a>, 
+          tests P00_BOUNDARY_NEAREST.
+        </li>
+        <li>
+          <a href = "test_triangulation_test04.m">
+          test_triangulation_test04.m</a>, 
+          tests P00_BOUNDARY_EPS.
+        </li>
+        <li>
+          <a href = "test_triangulation_test05.m">
+          test_triangulation_test05.m</a>, 
+          tests P00_POINTS_EPS.
+        </li>
+        <li>
+          <a href = "test_triangulation_test06.m">
+          test_triangulation_test06.m</a>, 
+          tests P00_POLY_WRITE.
+        </li>
+        <li>
+          <a href = "test_triangulation_test07.m">
+          test_triangulation_test07.m</a>, 
+          tests P00_HEX_GRID.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      One of the routines in TEST_TRIANGULATION_PRB calls the appropriate
+      routines to determine the boundary of each region, and creates
+      an Encapsulated PostScript image.
+      <ul>
+        <li>
+          <a href = "p01_boundary.png">p01_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #1.
+        </li>
+        <li>
+          <a href = "p02_boundary.png">p02_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #2.
+        </li>
+        <li>
+          <a href = "p03_boundary.png">p03_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #3.
+        </li>
+        <li>
+          <a href = "p04_boundary.png">p04_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #4.
+        </li>
+        <li>
+          <a href = "p05_boundary.png">p05_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #5.
+        </li>
+        <li>
+          <a href = "p06_boundary.png">p06_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #6.
+        </li>
+        <li>
+          <a href = "p07_boundary.png">p07_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #7.
+        </li>
+        <li>
+          <a href = "p08_boundary.png">p08_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #8.
+        </li>
+        <li>
+          <a href = "p09_boundary.png">p09_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #9.
+        </li>
+        <li>
+          <a href = "p10_boundary.png">p10_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #10.
+        </li>
+        <li>
+          <a href = "p11_boundary.png">p11_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #11.
+        </li>
+        <li>
+          <a href = "p12_boundary.png">p12_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #12.
+        </li>
+        <li>
+          <a href = "p13_boundary.png">p13_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #13.
+        </li>
+        <li>
+          <a href = "p14_boundary.png">p14_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #14.
+        </li>
+        <li>
+          <a href = "p15_boundary.png">p15_boundary.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the boundary of the problem #15.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      One of the routines in TEST_TRIANGULATION_PRB creates an EPS
+      image of sample points in each region.
+      <ul>
+        <li>
+          <a href = "p01_points.png">p01_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #1.
+        </li>
+        <li>
+          <a href = "p02_points.png">p02_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #2.
+        </li>
+        <li>
+          <a href = "p03_points.png">p03_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #3.
+        </li>
+        <li>
+          <a href = "p04_points.png">p04_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #4.
+        </li>
+        <li>
+          <a href = "p05_points.png">p05_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #5.
+        </li>
+        <li>
+          <a href = "p06_points.png">p06_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #6.
+        </li>
+        <li>
+          <a href = "p07_points.png">p07_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #7.
+        </li>
+        <li>
+          <a href = "p08_points.png">p08_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #8.
+        </li>
+        <li>
+          <a href = "p09_points.png">p09_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #9.
+        </li>
+        <li>
+          <a href = "p10_points.png">p10_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #10.
+        </li>
+        <li>
+          <a href = "p11_points.png">p11_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #11.
+        </li>
+        <li>
+          <a href = "p12_points.png">p12_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #12.
+        </li>
+        <li>
+          <a href = "p13_points.png">p13_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #13.
+        </li>
+        <li>
+          <a href = "p14_points.png">p14_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #14.
+        </li>
+        <li>
+          <a href = "p15_points.png">p15_points.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          sample points for problem #15.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      One of the routines in TEST_TRIANGULATION_PRB calls the appropriate
+      routine to create a 
+      <a href = "../../data/poly/poly.html">POLY file</a>, which can be
+      displayed by the 
+      <a href = "../../g_src/showme/showme.html">SHOWME</a> program,
+      or used as the start of a triangulation process involving
+      <a href = "../../cpp_src/triangle/triangle.html">TRIANGLE</a>.
+      <ul>
+        <li>
+          <a href = "../../data/poly/p01.poly">p01.poly</a>, problem #1.
+        </li>
+        <li>
+          <a href = "../../data/poly/p02.poly">p02.poly</a>, problem #2.
+        </li>
+        <li>
+          <a href = "../../data/poly/p03.poly">p03.poly</a>, problem #3.
+        </li>
+        <li>
+          <a href = "../../data/poly/p04.poly">p04.poly</a>, problem #4.
+        </li>
+        <li>
+          <a href = "../../data/poly/p05.poly">p05.poly</a>, problem #5.
+        </li>
+        <li>
+          <a href = "../../data/poly/p06.poly">p06.poly</a>, problem #6.
+        </li>
+        <li>
+          <a href = "../../data/poly/p07.poly">p07.poly</a>, problem #7.
+        </li>
+        <li>
+          <a href = "../../data/poly/p08.poly">p08.poly</a>, problem #8.
+        </li>
+        <li>
+          <a href = "../../data/poly/p09.poly">p09.poly</a>, problem #9.
+        </li>
+        <li>
+          <a href = "../../data/poly/p10.poly">p10.poly</a>, problem #10.
+        </li>
+        <li>
+          <a href = "../../data/poly/p11.poly">p11.poly</a>, problem #11.
+        </li>
+        <li>
+          <a href = "../../data/poly/p12.poly">p12.poly</a>, problem #12.
+        </li>
+        <li>
+          <a href = "../../data/poly/p13.poly">p13.poly</a>, problem #13.
+        </li>
+        <li>
+          <a href = "../../data/poly/p14.poly">p14.poly</a>, problem #14.
+        </li>
+        <li>
+          <a href = "../../data/poly/p15.poly">p15.poly</a>, problem #15.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 September 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

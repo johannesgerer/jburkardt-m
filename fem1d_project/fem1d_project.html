@@ -1,0 +1,283 @@
+<html>
+
+  <head>
+    <title>
+      FEM1D_PROJECT - Project Data onto a 1D Finite Element Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM1D_PROJECT <br>  Project Data onto a 1D Finite Element Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM1D_PROJECT</b>
+      is a MATLAB program which
+      computes the projection of sample data onto a given finite element mesh.
+    </p>
+
+    <p>
+      This procedure can be used to determine the least squares approximant to
+      data (actually, to the piecewise linear interpolant of that data) or to
+      determine the finite element coefficients appropriate when recomputing
+      a finite element solution from a fine mesh to a coarse mesh.
+    </p>
+
+    <p>
+      The sample data is given simply as two files, one containing the points,
+      the other, the corresponding data values.
+    </p>
+
+    <p>
+      The user must also supply two files defining the finite element mesh,
+      containing the points, and the pairs of points that form the elements.
+    </p>
+
+    <p>
+      The program takes the sample data, projects it onto the finite element mesh,
+      and determines a file of finite element coefficients that represent the
+      projection of the data onto the finite element space.
+    </p>
+
+    <p>
+      The current version of the program can only handle finite element
+      meshes which are made of piecewise linear basis functions.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem1d_project</b> ( <i>'sample_prefix'</i>, <i>'fem_prefix'</i> )
+      </blockquote>
+      where <i>'sample_prefix'</i> is the common prefix for the SAMPLE files:
+      <ul>
+        <li>
+          <i>'sample_prefix'</i><b>_nodes.txt</b>,  the node coordinates.
+        </li>
+        <li>
+          <i>'sample_prefix'</i><b>_values.txt</b>, the data values;
+        </li>
+      </ul>
+      and <i>'fem_prefix'</i> is the common prefix for the FEM files:
+      <ul>
+        <li>
+          <i>'fem_prefix'</i><b>_nodes.txt</b>,    the node coordinates.
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_elements.txt</b>, the nodes that make up each element;
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_values.txt</b>,   created by the program, and contains
+          the projections of the data values onto the finite element space, that is,
+          these may be regarded as coefficients of finite element functions
+          representing the projections of the data.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM1D_PROJECT</b> is available in
+      <a href = "../../cpp_src/fem1d_project/fem1d_project.html">a C++ version</a> and
+      <a href = "../../f77_src/fem1d_project/fem1d_project.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem1d_project/fem1d_project.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem1d_project/fem1d_project.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fem1d/fem1d.html">
+      FEM1D</a>,
+      a data directory which
+      contains examples of 1D FEM files,
+      three text files that describe a 1D finite element model;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_adaptive/fem1d_adaptive.html">
+      FEM1D_ADAPTIVE</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point boundary value problem
+      using adaptive refinement to improve the solution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_display/fem1d_display.html">
+      FEM1D_DISPLAY</a>,
+      a MATLAB program which
+      reads three files defining a 1D arbitrary degree finite element function,
+      and displays a plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">
+      FEM1D_NONLINEAR</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D nonlinear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_pmethod/fem1d_pmethod.html">
+      FEM1D_PMETHOD</a>,
+      a MATLAB program which
+      applies the p-method version of the finite element method to a 1D linear
+      two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_sample/fem1d_sample.html">
+      FEM1D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of one variable,
+      defined by FEM files,
+      returning interpolated values at the sample points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_project/fem2d_project.html">
+      FEM2D_PROJECT</a>,
+      a MATLAB program which
+      projects a function F(X,Y), given as data, into a given finite element space
+      of piecewise linear triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_project_function/fem2d_project_function.html">
+      FEM2D_PROJECT_FUNCTION</a>,
+      a MATLAB program which
+      projects a function F(X,Y), given as a formula, into a given finite element space
+      of piecewise linear triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem3d_project/fem3d_project.html">
+      FEM3D_PROJECT</a>,
+      a MATLAB program which
+      projects a function F(X,Y,Z), given as a data, into a given finite element space
+      of piecewise linear tetrahedral elements.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_project.m">fem1d_project.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>POWERS</b> starts with sample data for the vector function f(x)=[ 1, x, x^2], on a grid
+      of 11 equally spaced nodes from 0 to 10, and projects this onto a piecewise linear
+      grid of 6 equally spaced nodes from 0 to 10.
+      <ul>
+        <li>
+          <a href = "sample_powers_nodes.txt">sample_powers_nodes.txt</a>,
+          the sample nodes.
+        </li>
+        <li>
+          <a href = "sample_powers_values.txt">sample_powers_values.txt</a>,
+          the sample nodal values.
+        </li>
+        <li>
+          <a href = "fem_powers_nodes.txt">fem_powers_nodes.txt</a>,
+          the FEM nodes.
+        </li>
+        <li>
+          <a href = "fem_powers_elements.txt">fem_powers_elements.txt</a>,
+          the FEM elements.
+        </li>
+        <li>
+          <a href = "fem_powers_values.txt">fem_powers_values.txt</a>,
+          the projected FEM nodal values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

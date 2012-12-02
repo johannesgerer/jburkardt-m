@@ -1,0 +1,132 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>sppurge :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>sppurge</h1>
+		  Purge sparse grid data.
+		<h2>Syntax</h2>
+			<code>Z = sppurge(Z)</code><br>
+			<code>Z = sppurge(Z,OPTIONS)</code><br>
+		<h2>Description</b></h2>
+		  <code>Z = sppurge(Z)</code>  Marks indices that have corresponding hierarchical surplus values larger than the default drop tolerance <code>[0, 100*eps]</code>. The <code>sppurge</code> function returns the same sparse grid interpolant data <code>Z</code>, but enhanced by a field <code>purgeData</code> that is used by <a href="spinterp.html"><code>spinterp</code></a> to only consider the marked indices in the interpolation process, thus saving computing time.
+		<p>
+			<code>Z = sppurge(Z,OPTIONS)</code> The parameter <code>OPTIONS</code> must be an options structure generated with <a href="spset.html"><code>spset</code></a>. Only the value of the <code>DropTol</code> property is used, which enables the user to set any absolute and relative drop tolerance to be used by the purging algorithm.
+		<h2><a name="ex1">Examples</a></h2>
+      <p>We consider the quadratic test function:</p>
+      <p><img src="images/ex_droptol_eq332850.png"> </p>
+      <p>Implemented in Matlab by the following code:</p><pre class="codeinput">type(<span class="string">'trid.m'</span>)
+</pre><pre class="codeoutput">
+function y = trid(x)
+% TRID   Quadratic function with a tridiagonal Hessian.
+%   Y = TRID(X)   returns the function value Y for a D-
+%   dimenional input vector X.
+%
+% The test function is due to Arnold Neumaier, listed
+% on the global optimization Web page at 
+%   http://www.mat.univie.ac.at/~neum/glopt/
+
+d = length(x);
+y = sum((x-1).^2) - sum(x(2:d).*x(1:d-1));
+</pre><p>During the construction of the interpolant, many subgrids are encountered that do no contribute to the interpolant, i.e.,
+         they have hierarchical surpluses that are all zero (up to floating point accuracy). An adaptive algorithm cannot know these
+         non-contributing subgrids in advance. However, using the DropTol feature, we can tell the interpolation function <tt>spinterp</tt> to neglect the subgrids that do not contribute, and thus, save a significant amount of computing time.
+      </p>
+      <p>We consider the high-dimensional case <tt>d=100</tt>. With the dimension-adaptive algorithm, the problem structure is automatically detected, and the function is successfully
+         recovered using just O(d^2) function evaluations. For the interpolation domain, we use <tt>[-d^2, d^2]</tt> in each dimension.
+      </p><pre class="codeinput">d = 100;
+range = repmat([-d^2 d^2],d,1);
+options = spset(<span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+                <span class="string">'DimadaptDegree'</span>, 1, <span class="keyword">...</span>
+                <span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>, <span class="keyword">...</span>
+                <span class="string">'RelTol'</span>, 1e-3, <span class="keyword">...</span>
+                <span class="string">'MaxPoints'</span>, 40000);
+z = spvals(<span class="string">'trid'</span>,d,range,options);
+</pre><p>We now evaluate the obtained interpolant, first without, and thereafter, with the DropTol feature set to the default value
+         of <code>[0, 100*eps]</code> (absolute drop tolerance is zero, relative drop tolerance is <code>100*eps</code>). We evaluate the interpolant at 100
+         random points, measure the time, the absolute error, and compare the timing results in a plot.
+      </p><pre class="codeinput"><span class="comment">% Compute 100 randomly sampled points</span>
+p = 100;
+rand(<span class="string">'state'</span>, 0);
+x = -d^2 + 2*d^2*rand(p,d);
+
+<span class="comment">% Compute exact function values</span>
+y = zeros(p,1);
+<span class="keyword">for</span> k = 1:p
+  y(k) = trid(x(k,:));
+<span class="keyword">end</span>
+
+xcell = num2cell(x,1);
+tic;
+<span class="comment">% Compute interpolated function values, no dropped indices</span>
+ip1 = spinterp(z, xcell{:});
+t1 = toc
+
+<span class="comment">% Perform purging of interpolant data</span>
+tic;
+z = sppurge(z);
+t2 = toc
+tic;
+<span class="comment">% Compute interpolated function values</span>
+<span class="comment">% Some indices dropped according to drop tolerance</span>
+ip2 = spinterp(z, xcell{:});
+t3 = toc
+
+<span class="comment">% Compute relative errors</span>
+err_ndt = max(abs(y-ip1))/(z.fevalRange(2)-z.fevalRange(1))
+err_wdt = max(abs(y-ip2))/(z.fevalRange(2)-z.fevalRange(1))
+</pre><pre class="codeoutput">
+t1 =
+    2.1393
+
+t2 =
+    0.0128
+
+t3 =
+    0.2933
+
+err_ndt =
+    0.0061
+
+err_wdt =
+    0.0061
+</pre><p>The result is quite impressing: Without loosing accuracy (which is no surprise considering the very low drop tolerance of
+         100*eps compared to the relative error tolerance 1e-3), for the 100 sampled points, a speedup by a factor of about 7 is achieved
+         (including the cost of the <tt>sppurge</tt> function).
+      </p><pre class="codeinput">bar([NaN t1; t2 t3],<span class="string">'stacked'</span>);
+legend(<span class="string">'spurge'</span>, <span class="string">'spinterp'</span>);
+set(gca,<span class="string">'XTickLabel'</span>,{<span class="string">'without'</span>,<span class="string">'with purging'</span>});
+ylabel(<span class="string">'time [s]'</span>);
+</pre><img src="images/ex_droptol_01.png">
+      
+    <h2>See Also</h2>
+		  <a href="spset.html"><code>spset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

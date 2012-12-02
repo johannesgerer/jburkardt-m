@@ -1,0 +1,350 @@
+<html>
+
+  <head>
+    <title>
+      TEST_INT_2D - Quadrature Tests for 2D Finite Intervals
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_INT_2D <br> Quadrature Tests for 2D Finite Intervals
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_INT_2D</b> 
+      is a MATLAB program which 
+      evaluates test integrands.
+    </p>
+
+    <p>
+      The test integrands would normally be used to testing 2D
+      quadrature software.  It is possible to invoke a 
+      particular function by number, or to try out all available functions, 
+      as demonstrated in the sample calling program.
+    </p>
+
+    <p>
+      The current set of problems is:
+      <ol>
+        <li>
+          integral on [0,1]x[0,1] of f(x,y) = 1 / ( 1 - x * y );
+          singular at [1,1].
+        </li>
+        <li>
+          integral on [-1,1]x[-1,1] of f(x,y) = 1 / sqrt ( 1 - x * x * y * y );
+          singular at [1,1], [1,-1], [-1,1], [-1,-1];
+        </li>
+        <li>
+          integral on [-1,1]x[-1,1] of f(x,y) = 1 / sqrt ( 2 - x - y );
+          singular at [1,1];
+        </li>
+        <li>
+          integral on [-1,1]x[-1,1] of f(x,y) = 1 / sqrt ( 3 - x - 2 * y );
+          singular along the line y = ( 3 - x ) / 2.
+        </li>
+        <li>
+          integral on [0,1]x[0,1] of f(x,y) = sqrt ( x * y );
+          singular along the lines y = 0 and x = 0.
+        </li>
+        <li>
+          integral on [-1,1]x[-1,1] of f(x,y) = abs ( x * x + y * y - 1/4 );
+          nondifferentiable along x*x+y*y=1/4.
+        </li>
+        <li>
+          integral on [0,1]x[0,1] of f(x,y) = sqrt ( abs ( x - y ) );
+          nondifferentiable along y = x.
+        </li>
+        <li>
+          integral on [0,5]x[0,5] of f(x,y) = exp ( - ( (x-4)^2 + (y-1)^2 ) ),
+          highly localized near (4,1).
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      The library includes not just the integrand, but also the interval 
+      of integration, and the exact value of the integral.  
+      Thus, for each integrand function, three subroutines are supplied.  For
+      instance, for function #5, we have the routines:
+      <ul>
+        <li>
+          <b>P05_FUN</b> evaluates the integrand for problem 5.
+        </li>
+        <li>
+          <b>P05_LIM</b> returns the integration limits for problem 5.
+        </li>
+        <li>
+          <b>P05_EXACT</b> returns the exact integral for problem 5.
+        </li>
+      </ul>
+      So once you have the calling sequences for these routines, you
+      can easily evaluate the function, or integrate it between the
+      appropriate limits, or compare your estimate of the integral
+      to the exact value.
+    </p>
+
+    <p>
+      Moreover, since the same interface is used for each function,
+      if you wish to work with problem 2 instead, you simply change
+      the "05" to "02" in your routine calls.
+    </p>
+
+    <p>
+      If you wish to call <i>all</i> of the functions, then you
+      simply use the generic interface, which again has three
+      subroutines, but which requires you to specify the problem
+      number as an extra input argument:
+      <ul>
+        <li>
+          <b>P00_FUN</b> evaluates the integrand for any problem.
+        </li>
+        <li>
+          <b>P00_LIM</b> returns the integration limits for any problem.
+        </li>
+        <li>
+          <b>P00_EXACT</b> returns the exact integral for any problem.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_INT_2D</b> is available in
+      <a href = "../../c_src/test_int_2d/test_int_2d.html">a C version</a> and
+      <a href = "../../cpp_src/test_int_2d/test_int_2d.html">a C++ version</a> and
+      <a href = "../../f_src/test_int_2d/test_int_2d.html">a FORTRAN90 version</a> and
+      <a href = "../../f77_src/test_int_2d/test_int_2d.html">a FORTRAN77 version</a> and
+      <a href = "../../m_src/test_int_2d/test_int_2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/test_int_hermite/test_int_hermite.html">
+      TEST_INT_HERMITE</a>,
+      a MATLAB library which
+      defines some test integration problems over infinite intervals.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_laguerre/test_int_laguerre.html">
+      TEST_INT_LAGUERRE</a>,
+      a MATLAB library which 
+      defines test integrands for integration over [ALPHA,+Infinity).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Gwynne Evans,<br>
+          Practical Numerical Integration,<br>
+          Wiley, 1993,<br>
+          ISBN: 047193898X,<br>
+          LC: QA299.3E93.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "legendre_dr_compute.m">legendre_dr_compute.m</a>,
+          Gauss-Legendre quadrature by Davis-Rabinowitz method.
+        </li>
+        <li>
+          <a href = "p00_exact.m">p00_exact.m</a>
+          returns the exact integral for any problem.
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>
+          evaluates the integrand for any problem.
+        </li>
+        <li>
+          <a href = "p00_lim.m">p00_lim.m</a>
+          returns the integration limits for any problem.
+        </li>
+        <li>
+          <a href = "p00_problem_num.m">p00_problem_num.m</a>
+          returns the number of test integration problems.
+        </li>
+        <li>
+          <a href = "p01_exact.m">p01_exact.m</a>
+          returns the exact integral for problem 1.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>
+          evaluates the integrand for problem 1.
+        </li>
+        <li>
+          <a href = "p01_lim.m">p01_lim.m</a>
+          returns the integration limits for problem 1.
+        </li>
+        <li>
+          <a href = "p02_exact.m">p02_exact.m</a>
+          returns the exact integral for problem 2.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>
+          evaluates the integrand for problem 2.
+        </li>
+        <li>
+          <a href = "p02_lim.m">p02_lim.m</a>
+          returns the integration limits for problem 2.
+        </li>
+        <li>
+          <a href = "p03_exact.m">p03_exact.m</a>
+          returns the exact integral for problem 3.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>
+          evaluates the integrand for problem 3.
+        </li>
+        <li>
+          <a href = "p03_lim.m">p03_lim.m</a>
+          returns the integration limits for problem 3.
+        </li>
+        <li>
+          <a href = "p04_exact.m">p04_exact.m</a>
+          returns the exact integral for problem 4.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>
+          evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <a href = "p04_lim.m">p04_lim.m</a>
+          returns the integration limits for problem 4.
+        </li>
+        <li>
+          <a href = "p05_exact.m">p05_exact.m</a>
+          returns the exact integral for problem 5.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>
+          evaluates the integrand for problem 5.
+        </li>
+        <li>
+          <a href = "p05_lim.m">p05_lim.m</a>
+          returns the integration limits for problem 5.
+        </li>
+        <li>
+          <a href = "p06_exact.m">p06_exact.m</a>
+          returns the exact integral for problem 6.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>
+          evaluates the integrand for problem 6.
+        </li>
+        <li>
+          <a href = "p06_lim.m">p06_lim.m</a>
+          returns the integration limits for problem 6.
+        </li>
+        <li>
+          <a href = "p07_exact.m">p07_exact.m</a>
+          returns the exact integral for problem 7.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>
+          evaluates the integrand for problem 7.
+        </li>
+        <li>
+          <a href = "p07_lim.m">p07_lim.m</a>
+          returns the integration limits for problem 7.
+        </li>
+        <li>
+          <a href = "p08_exact.m">p08_exact.m</a>
+          returns the exact integral for problem 8.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>
+          evaluates the integrand for problem 8.
+        </li>
+        <li>
+          <a href = "p08_lim.m">p08_lim.m</a>
+          returns the integration limits for problem 8.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_int_2d_test.m">test_int_2d_test.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "test_int_2d_test01.m">test_int_2d_test01.m</a>,
+          applies Monte Carlo rules to the integrands.
+        </li>
+        <li>
+          <a href = "test_int_2d_test02.m">test_int_2d_test02.m</a>,
+          applies a product of composite midpoint rules.
+        </li>
+        <li>
+          <a href = "test_int_2d_test03.m">test_int_2d_test03.m</a>,
+          applies a product of Gauss-Legendre rules.
+        </li>
+        <li>
+          <a href = "test_int_2d_test_output.txt">test_int_2d_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 September 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

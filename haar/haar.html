@@ -1,0 +1,199 @@
+<html>
+
+  <head>
+    <title>
+      HAAR - The Haar Transform
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      HAAR <br> The Haar Transform
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HAAR</b>
+      is a MATLAB library which
+      computes the Haar transform of data.
+    </p>
+
+    <p>
+      In the simplest case, one is given a vector X whose length N is a power of 2.
+      We now consider consecutive pairs of entries of X, and for I from 0 to (N/2)-1
+      we define:
+      <pre>
+        S[I] = ( X[2*I] + X[2*I+1] ) / sqrt ( 2 )
+        D[I] = ( X[2*I] - X[2*I+1] ) / sqrt ( 2 )
+      </pre>
+      We now replace X by the vector S concatenated with D.  Assuming that (N/2)
+      is greater than 1, we repeat the operation on the (N/2) entries of S, and
+      so on, until we have reached a stage where our resultant S and D each contain
+      one entry. 
+    </p>
+
+    <p>
+      For data in the form of a 2D array, the transform is applied to the columns
+      and then the rows.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HAAR</b> is available in
+      <a href = "../../c_src/haar/haar.html">a C version</a> and
+      <a href = "../../cpp_src/haar/haar.html">a C++ version</a> and
+      <a href = "../../f77_src/haar/haar.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/haar/haar.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/haar/haar.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sftpack/sftpack.html">
+      SFTPACK</a>,
+      a MATLAB library which
+      implements the "slow" Fourier transform, intended as a teaching
+      tool and comparison with the fast Fourier transform.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sine_transform/sine_transform.html">
+      SINE_TRANSFORM</a>,
+      a MATLAB library which
+      demonstrates some simple properties of the discrete sine transform.
+    </p>
+
+    <p>
+      <a href = "../../m_src/walsh/walsh.html">
+      WALSH</a>,
+      a MATLAB library which
+      implements versions of the Walsh and Haar transforms.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wavelet/wavelet.html">
+      WAVELET</a>,
+      a MATLAB library which
+      does some simple wavelet calculations;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Ken Beauchamp,<br>
+          Walsh functions and their applications,<br>
+          Academic Press, 1975,<br>
+          ISBN: 0-12-084050-2,<br>
+          LC: QA404.5.B33.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "haar_1d.m">haar_1d.m</a>,
+          computes the Haar transform of a vector.
+        </li>
+        <li>
+          <a href = "haar_1d_inverse.m">haar_1d_inverse.m</a>,
+          inverts the Haar transform of a vector.
+        </li>
+        <li>
+          <a href = "haar_2d.m">haar_2d.m</a>,
+          computes the Haar transform of a 2D array.
+        </li>
+        <li>
+          <a href = "haar_2d_inverse.m">haar_2d_inverse.m</a>,
+          inverts the Haar transform of a 2D array.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT, with an optional title;
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns a unit pseudorandom R8MAT;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "haar_test.m">haar_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "haar_test_output.txt">haar_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "haar_test01.m">haar_test01.m</a>,
+          tests HAAR_1D and HAAR_1D_INVERSE;
+        </li>
+        <li>
+          <a href = "haar_test02.m">haar_test02.m</a>,
+          tests HAAR_2D and HAAR_2D_INVERSE;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 15 March 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

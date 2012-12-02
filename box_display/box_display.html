@@ -1,0 +1,339 @@
+<html>
+
+  <head>
+    <title>
+      BOX_DISPLAY - Integer Data Box Plots
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BOX_DISPLAY <br> Integer Data Box Plots
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BOX_DISPLAY</b> 
+      is a MATLAB program which 
+      creates a plot over a range of integer boxes, whose default color is
+      gray, but some of which can be painted red (new stuff) and some painted
+      blue (old stuff)
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>box_display</b> ( <i>m</i>, <i>n</i>, <i>@blue</i>, <i>@red</i>, <i>title</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>m</i> and <i>n</i> are the number of rows and columns of boxes
+          (actually, the range will include one extra box in each direction, labeled "0");
+        </li>
+        <li>
+          <i>@blue</i> a function handle, or an anonymous function, returning a logical value.
+          If blue(x,y) is true, the box will be colored blue.
+        </li>
+        <li>
+          <i>@red</i> a function handle, or an anonymous function, returning a logical value.
+          If red(x,y) is true, the box will be colored red, unless it was already blue.
+          Thus, the red boxes indicate "new" information.
+        </li>
+        <li>
+          <i>title</i> is a title for the plot.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/bar_plot/bar_plot.html">
+      BAR_PLOT</a>,
+      a FORTRAN90 program which 
+      reads a set of data from
+      a file and creates a bar plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/box_plot/box_plot.html">
+      BOX_PLOT</a>,
+      a MATLAB program which
+      displays a box plot of data that consists of pairs of integers;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cc_display/cc_display.html">
+      CC_DISPLAY</a>,
+      a MATLAB program which 
+      displays the abscissas
+      used in various kinds of Clenshaw Curtis quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gl_display/gl_display.html">
+      GL_DISPLAY</a>,
+      a MATLAB program which 
+      displays the abscissas
+      used in various kinds of Gauss Legendre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gridlines/gridlines.html">
+      GRIDLINES</a>,
+      a MATLAB library which 
+      gives the user more control over drawing gridlines on a graph
+      than the builtin "grid on" command.
+    </p>
+
+    <p>
+      <a href = "../../f_src/plot_points/plot_points.html">
+      PLOT_POINTS</a>,
+      a FORTRAN90 program which 
+      reads a set of points from
+      a file and plots them into an Encapsulated PostScript file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/xy_display/xy_display.html">
+      XY_DISPLAY</a>, 
+      a MATLAB program which 
+      reads a set of 2D points from
+      a file and plots them in a the MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyf_display/xyf_display.html">
+      XYF_DISPLAY</a>, 
+      a MATLAB program which
+      reads XYF information defining points and faces in 2D, 
+      and displays an image in a MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyl_display/xyl_display.html">
+      XYL_DISPLAY</a>, 
+      a MATLAB program which
+      reads XYL information defining points and lines in 2D, 
+      and displays an image in a MATLAB graphics window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/xyz_display/xyz_display.html">
+      XYZ_DISPLAY</a>,
+      a MATLAB program which 
+      reads a set of 3D points from
+      a file and plots them in a the MATLAB graphics window.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "box_display.m">box_display.m</a> 
+          the source code.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "box_display_test.m">box_display_test.m</a> 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "box_display_test_output.txt">box_display_test_output.txt</a> 
+          the output file.
+        </li>
+        <li>
+          <a href = "box_display_test01.m">box_display_test01.m</a> 
+          makes pictures of total degree polynomial indices at levels 1 to 7.
+        </li>
+        <li>
+          <a href = "box_display_test02.m">box_display_test02.m</a> 
+          makes pictures of maximum degree polynomial indices at levels 1 to 7.
+        </li>
+        <li>
+          <a href = "box_display_test03.m">box_display_test03.m</a> 
+          makes pictures of hyperbolic cross polynomial indices at levels 1 to 7.
+        </li>
+        <li>
+          <a href = "box_display_test04.m">box_display_test04.m</a> 
+          makes pictures of Smolyak Clenshaw Curtis polynomial indices at levels 1 to 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TD</b> represents the total degree polynomials for which D1 + D2 <= L.  
+      Blue indicates "old" data, and red "new".
+      <ul>
+        <li>
+          <a href = "td1.png">td1.png</a>
+        </li>
+        <li>
+          <a href = "td2.png">td2.png</a>
+        </li>
+        <li>
+          <a href = "td3.png">td3.png</a>
+        </li>
+        <li>
+          <a href = "td4.png">td4.png</a>
+        </li>
+        <li>
+          <a href = "td5.png">td5.png</a>
+        </li>
+        <li>
+          <a href = "td6.png">td6.png</a>
+        </li>
+        <li>
+          <a href = "td7.png">td7.png</a>
+        </li>
+        <li>
+          <a href = "td8.png">td8.png</a>
+        </li>
+        <li>
+          <a href = "td9.png">td9.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MD</b> represents the maximum degree polynomials for which max ( D1, D2 ) <= L.  
+      Blue indicates "old" data, and red "new".
+      <ul>
+        <li>
+          <a href = "md1.png">md1.png</a>
+        </li>
+        <li>
+          <a href = "md2.png">md2.png</a>
+        </li>
+        <li>
+          <a href = "md3.png">md3.png</a>
+        </li>
+        <li>
+          <a href = "md4.png">md4.png</a>
+        </li>
+        <li>
+          <a href = "md5.png">md5.png</a>
+        </li>
+        <li>
+          <a href = "md6.png">md6.png</a>
+        </li>
+        <li>
+          <a href = "md7.png">md7.png</a>
+        </li>
+        <li>
+          <a href = "md8.png">md8.png</a>
+        </li>
+        <li>
+          <a href = "md9.png">md9.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HC</b> represents the hyperbolic cross polynomials for which (D1+1)*(D2+1) <= L.  
+      Blue indicates "old" data, and red "new".
+      <ul>
+        <li>
+          <a href = "hc1.png">hc1.png</a>
+        </li>
+        <li>
+          <a href = "hc2.png">hc2.png</a>
+        </li>
+        <li>
+          <a href = "hc3.png">hc3.png</a>
+        </li>
+        <li>
+          <a href = "hc4.png">hc4.png</a>
+        </li>
+        <li>
+          <a href = "hc5.png">hc5.png</a>
+        </li>
+        <li>
+          <a href = "hc6.png">hc6.png</a>
+        </li>
+        <li>
+          <a href = "hc7.png">hc7.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CC</b> represents the Smolyak Clenshaw Curtis polynomials for which 
+      log2(D1-1)+log2(D2-1) <= L.  
+      Blue indicates "old" data, and red "new".
+      <ul>
+        <li>
+          <a href = "cc1.png">cc1.png</a>
+        </li>
+        <li>
+          <a href = "cc2.png">cc2.png</a>
+        </li>
+        <li>
+          <a href = "cc3.png">cc3.png</a>
+        </li>
+        <li>
+          <a href = "cc4.png">cc4.png</a>
+        </li>
+        <li>
+          <a href = "cc5.png">cc5.png</a>
+        </li>
+        <li>
+          <a href = "cc6.png">cc6.png</a>
+        </li>
+        <li>
+          <a href = "cc7.png">cc7.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 March 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

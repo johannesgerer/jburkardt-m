@@ -1,0 +1,217 @@
+<html>
+
+  <head>
+    <title>
+      SEQUENCE_STREAK_DISPLAY - Display a "Streak Plot" of a Sequence
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SEQUENCE_STREAK_DISPLAY <br> Display a "Streak Plot" of a Sequence
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SEQUENCE_STREAK_DISPLAY</b> 
+      is a MATLAB program which 
+      displays a "streak plot" of a numeric sequence.
+    </p>
+
+    <p>
+      The idea is very simple.  We can think of a sequence Y as the
+      pairs of values (I,Y(I)).  We can then plot this sequence in the
+      usual way.  To make a "streak plot", however, we now extend a
+      horizontal ray from each plotted point all the way to the right.
+    </p>
+
+    <p>
+      Such a plot can be useful for examing the van der Corput sequence,
+      for instance, which "fills in" the unit interval in a regular way.
+      Looking at the streak plot, you can see the gaps between values
+      shrinking as you move to the right.
+    </p>
+
+    <p>
+      Another possible use for such plots is for sequences with one,
+      or better yet several, accumulation points.  In that case, you
+      will see the streak lines clustering together as you proceed.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>sequence_streak_display</b> ( <i>'filename'</i>, <i>'direction'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <b>'filename'</b> is a quoted string or string variable containing
+          the name of the file with the data;
+        </li>
+        <li>
+          <b>'direction'</b> is a quoted character or character variable
+          with the value 'R', 'L', 'U' or 'D' depending on whether
+          the sequence is to be shown horizontally ('R' or 'L') or vertically
+          ('U' or 'D'), with the streak starting ('R' or 'U') or ending
+          ('L' or 'D') at the sequence value.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz/collatz.html">
+      COLLATZ</a>, 
+      a MATLAB library which 
+      generates the Collatz sequence, which can be displayed by
+      <b>SEQUENCE_STREAK_DISPLAY</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gridlines/gridlines.html">
+      GRIDLINES</a>,
+      a MATLAB library which 
+      gives the user more control over drawing gridlines on a graph
+      than the builtin "grid on" command.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nested_sequence_display/nested_sequence_display.html">
+      NESTED_SEQUENCE_DISPLAY</a>, 
+      a MATLAB program which
+      reads a set of sequences, plots them
+      as horizontal lines of data, and connects sequence entries that
+      are equal.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      the data format which
+      is used for the file containing the sequence, which is read in
+      by the program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput/van_der_corput.html">
+      VAN_DER_CORPUT</a>,
+      a MATLAB library which
+      generates the van der Corput sequence, which can be displayed by
+      <b>SEQUENCE_STREAK_DISPLAY</b>.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sequence_streak_display.m">sequence_streak_display.m</a>, 
+          reads a file of sequence values and creates a streak plot;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>collatz_27</b> lists the Collatz sequence starting at 27.
+      <ul>
+        <li>
+          <a href = "collatz_27.txt">collatz_27.txt</a>, 
+          the points.
+        </li>
+        <li>
+          <a href = "collatz_27.png">collatz_27.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          the streak plot of the sequence.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>collatz_count</b> lists the number of entries in each Collatz 
+      sequence with starting values from 1 to 100.
+      <ul>
+        <li>
+          <a href = "collatz_count.txt">collatz_count.txt</a>, 
+          the points.
+        </li>
+        <li>
+          <a href = "collatz_count.png">collatz_count.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          the streak plot of the sequence.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>uniform_01_00100</b> contains 100 points of a uniform random
+      sequence in 1D.
+      <ul>
+        <li>
+          <a href = "uniform_01_00100.txt">uniform_01_00100.txt</a>, 
+          the points.
+        </li>
+        <li>
+          <a href = "uniform_01_00100.png">uniform_01_00100.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          the streak plot of the sequence.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>van_der_corput_2_0_100</b> contains 100 points of the van der
+      Corput sequence, using base 2.
+      <ul>
+        <li>
+          <a href = "van_der_corput_2_0_100.txt">van_der_corput_2_0_100.txt</a>, 
+          the points.
+        </li>
+        <li>
+          <a href = "van_der_corput_2_0_100.png">van_der_corput_2_0_100.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          the streak plot of the sequence.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 May 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

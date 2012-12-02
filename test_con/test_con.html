@@ -1,0 +1,1362 @@
+<html>
+
+  <head>
+    <title>
+      TEST_CON - Continuation Tests
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_CON <br> Continuation Tests
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_CON</b>
+      is a MATLAB library which 
+      defines test functions for continuation codes.  
+    </p>
+
+    <p>
+      A simple continuation code is an algorithm
+      for producing a sequence of solutions of the system of equations
+      F(X) = 0, where there are fewer equations F than variables X.
+      Commonly, there is one more variable than equation, resulting in
+      one degree of freedom.  The set of solutions will then generally
+      describe a curve.
+    </p>
+
+    <p>
+      A continuation code might carry out the following steps:
+      <ol>
+        <li>
+          choose a problem by picking an index number.
+        </li>
+        <li>
+          for problems with several options, pick an option index.
+        </li>
+        <li>
+          find out the number of variables.
+        </li>
+        <li>
+          get a starting point <b>X0</b>.
+        </li>
+        <li>
+          get a suggested stepsize H.
+        </li>
+        <li>
+          get the tangent vector T at <b>X0</b>.
+        </li>
+        <li>
+          use the estimate <b>X1=X0+H*T</b> as a starting point for
+          a new point on the curve; use Newton method to refine the estimate.
+        </li>
+        <li>
+          If the Newton iteration failed, reduce H and try again.
+        </li>
+        <li>
+          If the new point was computed "easily", increase H.
+        </li>
+        <li>
+          Go back to step 6 if another point is desired.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      <b>TEST_CON</b> includes routines to 
+      <ul>
+        <li>
+          return the number of problems available (<b>p00_problem_num</b>);
+        </li>
+        <li>
+          return the number of different "options" for each problem (<b>p00_option_num</b>);
+        </li>
+        <li>
+          return the problem size NVAR (<b>p00_nvar</b>);
+        </li>
+        <li>
+          provide a starting point X0 (<b>p00_start</b>);
+        </li>
+        <li>
+          provide a suggested stepsize H (<b>p00_stepsize</b>);
+        </li>
+        <li>
+          determine the tangent vector T(X) (<b>p00_tan</b>);
+        </li>
+        <li>
+          apply Newton's method to an approximate solution (<b>p00_newton</b>);
+        </li>
+        <li>
+          take a single continuation step (compute the "next" point) (<b>p00_step</b>);
+        </li>
+        <li>
+          compute a target point, for which one component has a selected value
+         (<b>p00_target</b>);
+        </li>
+        <li>
+          choose the continuation parameter index (<b>p00_par_index</b>);
+        </li>
+        <li>
+          evaluate the function F(X) (<b>p00_fun</b>);
+        </li>
+        <li>
+          evaluate the jacobian J(X) (<b>p00_problem_jac</b>);
+        </li>
+        <li>
+          return the problem title (<b>p00_title</b>);
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The list of problems includes:
+      <ol>
+        <li>
+          The Freudenstein-Roth function
+        </li>
+        <li>
+          The Boggs function
+        </li>
+        <li>
+          The Powell function
+        </li>
+        <li>
+          The Broyden function
+        </li>
+        <li>
+          The Wacker function
+        </li>
+        <li>
+          The Aircraft stability function
+        </li>
+        <li>
+          The Cell kinetic function
+        </li>
+        <li>
+          The Riks mechanical problem
+        </li>
+        <li>
+          The Oden mechanical problem
+        </li>
+        <li>
+          Torsion of a square rod, finite difference solution
+        </li>
+        <li>
+          Torsion of a square rod, finite element solution
+        </li>
+        <li>
+          The materially nonlinear problem
+        </li>
+        <li>
+          Simpson's mildly nonlinear boundary value problem
+        </li>
+        <li>
+          Keller's boundary value problem
+        </li>
+        <li>
+          The Trigger Circuit
+        </li>
+        <li>
+          The Moore-Spence Chemical Reaction Integral Equation
+        </li>
+        <li>
+          The Bremermann Propane Combustion System
+        </li>
+        <li>
+          The semiconductor problem
+        </li>
+        <li>
+          The Nitric acid absorption flash
+        </li>
+        <li>
+          The Buckling Spring
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_CON</b> is available in
+      <a href = "../../f77_src/test_con/test_con.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_con/test_con.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_con/test_con.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f77_src/pitcon66/pitcon66.html">
+      PITCON66</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this is version 6.6 of ACM TOMS algorithm 596. 
+    </p>
+
+    <p>
+      <a href = "../../f_src/pitcon7/pitcon7.html">
+      PITCON7</a>,
+      a FORTRAN90 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this is version 7.0 of ACM TOMS algorithm 596. 
+    </p>
+
+    <p>
+      <a href = "../../datasets/test_con/test_con.html">
+      TEST_CON</a>, 
+      a dataset directory which 
+      contains sequences of points that lie on multidimensional curves defined by
+      sets of nonlinear equations;
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms502/toms502.html">
+      TOMS502</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this library is commonly called <b>DERPAR</b>;<br>
+      this is ACM TOMS algorithm 502. 
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms596/toms596.html">
+      TOMS596</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this library is commonly called <b>PITCON</b>;<br>
+      this is ACM TOMS algorithm 596. 
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Ivo Babuska, Werner Rheinboldt,<br>
+          Reliable Error Estimations and Mesh Adaptation for the Finite 
+          Element Method,<br>
+          in International Conference on Computational Methods 
+          in Nonlinear Mechanics,<br>
+          edited by John Oden,<br>
+          Elsevier, 1980,<br>
+          ISBN: 0444853820,<br>
+          LC: QA808.I57.
+        </li>
+        <li>
+          Paul Boggs,<br>
+          The Solution of Nonlinear Systems by A-stable 
+          Integration Techniques,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 8, Number 4, December 1971, pages 767-785.
+        </li>
+        <li>
+          Hans Bremermann,<br>
+          Calculation of Equilibrium Points for Models of Ecological and 
+          Chemical Systems,<br>
+          in Proceedings of a Conference on the Applications of Undergraduate
+          Mathematics in the Engineering, Life, Managerial 
+          and Social Sciences,<br>
+          Georgia Institute of Technology, June 1973, pages 198-217.
+        </li>
+        <li>
+          Charles Broyden,<br>
+          A New Method of Solving Nonlinear Simultaneous Equations,<br>
+          The Computer Journal,<br>
+          Volume 12, 1969, pages 94-99.
+        </li>
+        <li>
+          Tama Copeman,<br>
+          Air Products and Chemicals, Inc.<br>
+          Box 538,<br>
+          Allentown, Pennsylvania, 18105.
+        </li>
+        <li>
+          Cor denHeijer, Werner Rheinboldt,<br>
+          On Steplength Algorithms for a Class of Continuation Methods,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 18, Number 5, October 1981, pages 925-947.
+        </li>
+        <li>
+          Ferdinand Freudenstein, Bernhard Roth,<br>
+          Numerical Solutions of Nonlinear Equations,<br>
+          Journal of the ACM,<br>
+          Volume 10, Number 4, October 1963, pages 550-556.
+        </li>
+        <li>
+          Kathie Hiebert,<br>
+          A Comparison of Software Which Solves Systems of Nonlinear
+          Equations,<br>
+          Technical Report SAND-80-0181,<br>
+          Sandia National Laboratory, 1980.
+        </li>
+        <li>
+          Herbert Keller,<br>
+          Numerical Methods for Two-point Boundary Value Problems,<br>
+          Dover, 1992,<br>
+          ISBN: 0486669254,<br>
+          LC: QA372.K42.
+        </li>
+        <li>
+          Raman Mehra, William Kessel, James Carroll,<br>
+          Global stability and contral analysis of aircraft at high angles of attack,<br>
+          Technical Report CR-215-248-1, -2, -3,<br>
+          Office of Naval Research, June 1977.
+        </li>
+        <li>
+          Rami Melhem, Werner Rheinboldt,<br>
+          A Comparison of Methods for Determining Turning Points of Nonlinear Equations,<br>
+          Computing,<br>
+          Volume 29, Number 3, September 1982, pages 201-226.
+        </li>
+        <li>
+          Gerald Moore, Alastair Spence,<br>
+          The Calculation of Turning Points of Nonlinear Equations,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 17, Number 4, August 1980, pages 567-576.
+        </li>
+        <li>
+          John Oden,<br>
+          Finite Elements of Nonlinear Continua,<br>
+          Dover, 2006,<br>
+          ISBN: 0486449734,<br>
+          LC: QA808.2.O33.
+        </li>
+        <li>
+          Gerd Poenisch, Hubert Schwetlick,<br>
+          Computing Turning Points of Curves Implicitly Defined by Nonlinear 
+          Equations Depending on a Parameter,<br>
+          Computing,<br>
+          Volume 26, Number 2, June 1981, pages 107-121.
+        </li>
+        <li>
+          SJ Polak, A Wachten, H Vaes, A deBeer, Cor denHeijer,<br>
+          A Continuation Method for the Calculation of Electrostatic 
+          Potentials in Semiconductors,<br>
+          Technical Report ISA-TIS/CARD,<br>
+          NV Philips Gloeilampen-Fabrieken, 1979.
+        </li>
+        <li>
+          Tim Poston, Ian Stewart,<br>
+          Catastrophe Theory and its Applications,<br>
+          Dover, 1996,<br>
+          ISBN13: 978-0486692715,<br>
+          LC: QA614.58.P66.
+        </li>
+        <li>
+          Michael Powell,<br>
+          A Fortran Subroutine for Solving Systems of Nonlinear 
+          Algebraic Equations,<br>
+          in Numerical Methods for Nonlinear Algebraic Equations,<br>
+          edited by Philip Rabinowitz,<br>
+          Gordon and Breach, 1970,<br>
+          ISBN13: 978-0677142302,<br>
+          LC: QA218.N85.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Computation of Critical Boundaries on Equilibrium Manifolds,<br>
+          SIAM Journal on Numerical analysis,<br>
+          Volume 19, Number 3, June 1982, pages 653-669.
+        </li>
+        <li>
+          Werner Rheinboldt, John Burkardt,<br>
+          A Locally Parameterized Continuation Process,<br> 
+          ACM Transactions on Mathematical Software,<br>
+          Volume 9, Number 2, June 1983, pages 215-235.
+        </li>
+        <li>
+          Werner Rheinboldt, John Burkardt, <br>
+          Algorithm 596: 
+          A Program for a Locally Parameterized 
+          Continuation Process,<br> 
+          ACM Transactions on Mathematical Software,<br>
+          Volume 9, Number 2, June 1983, pages 236-241.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Numerical Analysis of Parameterized Nonlinear Equations,<br>
+          Wiley, 1986,<br>
+          ISBN: 0-471-88814-1,<br>
+          LC: QA372.R54.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Sample Problems for Continuation Processes,<br>
+          Technical Report ICMA-80-?,<br>
+          Institute for Computational Mathematics and Applications,<br>
+          Department of Mathematics,<br>
+          University of Pittsburgh, November 1980.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Solution Fields of Nonlinear Equations and Continuation Methods,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 17, Number 2, April 1980, pages 221-237.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          On the Solution of Some Nonlinear Equations Arising in the 
+          Application of Finite Element Methods,<br>
+          in The Mathematics of Finite Elements and Applications II,<br>
+          edited by John Whiteman,<br>
+          Academic Press, 1976,<br>
+          LC: TA347.F5.M37.
+        </li>
+        <li>
+          E Riks,<br>
+          The Application of Newton's Method to the Problem of Elastic 
+          Stability,<br>
+          Transactions of the ASME, Journal of Applied Mechanics,<br>
+          December 1972, pages 1060-1065.
+        </li>
+        <li>
+          Albert Schy, Margery Hannah,<br>
+          Prediction of Jump Phenomena in Roll-coupled Maneuvers
+          of Airplanes,<br>
+          Journal of Aircraft,<br>
+          Volume 14, Number 4, 1977,  pages 375-382.
+        </li>
+        <li>
+          Bruce Simpson,<br>
+          A Method for the Numerical Determination of Bifurcation
+          States of Nonlinear Systems of Equations,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 12, Number 3, June 1975, pages 439-451.
+        </li>
+        <li>
+          Hans-Joerg Wacker, Erich Zarzer, Werner Zulehner,<br>
+          Optimal Stepsize Control for the Globalized Newton Method,<br>
+          in Continuation Methods,<br>
+          edited by Hans-Joerg Wacker,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0127292500,<br>
+          LC: QA1.S899.
+        </li>
+        <li>
+          John Young, Albert Schy, Katherine Johnson,<br>
+          Prediction of Jump Phenomena in Aircraft Maneuvers, Including 
+          Nonlinear Aerodynamic Effects,<br>
+          Journal of Guidance and Control,<br>
+          Volume 1, Number 1, 1978, pages 26-31.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>
+          returns the capitalized version of a character;
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>, 
+          evaluates the function for any problem.
+        </li>
+        <li>
+          <a href = "p00_jac.m">p00_jac.m</a>, 
+          evaluates the jacobian for any problem.
+        </li>
+        <li>
+          <a href = "p00_jac_check.m">p00_jac_check.m</a>, 
+          compares the jacobian with a finite difference estimate.
+        </li>
+        <li>
+          <a href = "p00_jac_dif.m">p00_jac_dif.m</a>, 
+          estimates the jacobian via finite differences.
+        </li>
+        <li>
+          <a href = "p00_limit.m">p00_limit.m</a>, 
+          seeks a limit point.
+        </li>
+        <li>
+          <a href = "p00_newton.m">p00_newton.m</a>, 
+          applies Newton's method to an approximate root.
+        </li>
+        <li>
+          <a href = "p00_nvar.m">p00_nvar.m</a>, 
+          sets the number of variables for any problem.
+        </li>
+        <li>
+          <a href = "p00_option_num.m">p00_option_num.m</a>, 
+          returns the number of options for a given problem.
+        </li>
+        <li>
+          <a href = "p00_par_index.m">p00_par_index.m</a>, 
+          chooses the index of the continuation parameter.
+        </li>
+        <li>
+          <a href = "p00_problem_num.m">p00_problem_num.m</a>, 
+          returns the number of problems.
+        </li>
+        <li>
+          <a href = "p00_start.m">p00_start.m</a>, 
+          returns a starting point for any problem.
+        </li>
+        <li>
+          <a href = "p00_step.m">p00_step.m</a>, 
+          tries to take one continuation step from the current point.
+        </li>
+        <li>
+          <a href = "p00_stepsize.m">p00_stepsize.m</a>, 
+          returns the stepsize for any problem.
+        </li>
+        <li>
+          <a href = "p00_tan.m">p00_tan.m</a>, 
+          returns the tangent vector for any problem.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>, 
+          sets the title for any problem.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>, 
+          evaluates the function for problem 1.
+        </li>
+        <li>
+          <a href = "p01_gx.m">p01_gx.m</a>, 
+          evaluates the underlying function for problem 1.
+        </li>
+        <li>
+          <a href = "p01_jac.m">p01_jac.m</a>, 
+          evaluates the jacobian for problem 1.
+        </li>
+        <li>
+          <a href = "p01_nvar.m">p01_nvar.m</a>, 
+          sets the number of variables for problem 1.
+        </li>
+        <li>
+          <a href = "p01_option_num.m">p01_option_num.m</a>, 
+          sets the number of options for problem 1.
+        </li>
+        <li>
+          <a href = "p01_stepsize.m">p01_stepsize.m</a>, 
+          returns a stepsize for problem 1.
+        </li>
+        <li>
+          <a href = "p01_start.m">p01_start.m</a>, 
+          returns a starting point for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          sets the title for problem 1.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>, 
+          evaluates the function for problem 2.
+        </li>
+        <li>
+          <a href = "p02_gx.m">p02_gx.m</a>, 
+          evaluates the underlying function for problem 2.
+        </li>
+        <li>
+          <a href = "p02_jac.m">p02_jac.m</a>, 
+          evaluates the jacobian for problem 2.
+        </li>
+        <li>
+          <a href = "p02_nvar.m">p02_nvar.m</a>, 
+          sets the number of variables for problem 2.
+        </li>
+        <li>
+          <a href = "p02_option_num.m">p02_option_num.m</a>, 
+          sets the number of options for problem 2.
+        </li>
+        <li>
+          <a href = "p02_start.m">p02_start.m</a>, 
+          returns a starting point for problem 2.
+        </li>
+        <li>
+          <a href = "p02_stepsize.m">p02_stepsize.m</a>, 
+          returns a stepsize for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          sets the title for problem 2.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>, 
+          evaluates the function for problem 3.
+        </li>
+        <li>
+          <a href = "p03_gx.m">p03_gx.m</a>, 
+          evaluates the underlying function for problem 3.
+        </li>
+        <li>
+          <a href = "p03_jac.m">p03_jac.m</a>, 
+          evaluates the jacobian for problem 3.
+        </li>
+        <li>
+          <a href = "p03_nvar.m">p03_nvar.m</a>, 
+          sets the number of variables for problem 3.
+        </li>
+        <li>
+          <a href = "p03_option_num.m">p03_option_num.m</a>, 
+          sets the number of options for problem 3.
+        </li>
+        <li>
+          <a href = "p03_start.m">p03_start.m</a>, 
+          returns a starting point for problem 3.
+        </li>
+        <li>
+          <a href = "p03_stepsize.m">p03_stepsize.m</a>, 
+          returns a stepsize for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          sets the title for problem 3.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>, 
+          evaluates the function for problem 4.
+        </li>
+        <li>
+          <a href = "p04_gx.m">p04_gx.m</a>, 
+          evaluates the underlying function for problem 4.
+        </li>
+        <li>
+          <a href = "p04_jac.m">p04_jac.m</a>, 
+          evaluates the jacobian for problem 4.
+        </li>
+        <li>
+          <a href = "p04_nvar.m">p04_nvar.m</a>, 
+          sets the number of variables for problem 4.
+        </li>
+        <li>
+          <a href = "p04_option_num.m">p04_option_num.m</a>, 
+          sets the number of options for problem 4.
+        </li>
+        <li>
+          <a href = "p04_start.m">p04_start.m</a>, 
+          returns a starting point for problem 4.
+        </li>
+        <li>
+          <a href = "p04_stepsize.m">p04_stepsize.m</a>, 
+          returns a stepsize for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          sets the title for problem 4.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>, 
+          evaluates the function for problem 5.
+        </li>
+        <li>
+          <a href = "p05_jac.m">p05_jac.m</a>, 
+          evaluates the jacobian for problem 5.
+        </li>
+        <li>
+          <a href = "p05_nvar.m">p05_nvar.m</a>, 
+          sets the number of variables for problem 5.
+        </li>
+        <li>
+          <a href = "p05_option_num.m">p05_option_num.m</a>, 
+          sets the number of options for problem 5.
+        </li>
+        <li>
+          <a href = "p05_start.m">p05_start.m</a>, 
+          returns a starting point for problem 5.
+        </li>
+        <li>
+          <a href = "p05_stepsize.m">p05_stepsize.m</a>, 
+          returns a stepsize for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          sets the title for problem 5.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>, 
+          evaluates the function for problem 6.
+        </li>
+        <li>
+          <a href = "p06_barray.m">p06_barray.m</a>, 
+          sets the B array.
+        </li>
+        <li>
+          <a href = "p06_carray.m">p06_carray.m</a>, 
+          sets the C array.
+        </li>
+        <li>
+          <a href = "p06_jac.m">p06_jac.m</a>, 
+          evaluates the jacobian for problem 6.
+        </li>
+        <li>
+          <a href = "p06_nvar.m">p06_nvar.m</a>, 
+          sets the number of variables for problem 6.
+        </li>
+        <li>
+          <a href = "p06_option_num.m">p06_option_num.m</a>, 
+          sets the number of options for problem 6.
+        </li>
+        <li>
+          <a href = "p06_start.m">p06_start.m</a>, 
+          returns a starting point for problem 6.
+        </li>
+        <li>
+          <a href = "p06_stepsize.m">p06_stepsize.m</a>, 
+          returns a stepsize for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          sets the title for problem 6.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>, 
+          evaluates the function for problem 7.
+        </li>
+        <li>
+          <a href = "p07_jac.m">p07_jac.m</a>, 
+          evaluates the jacobian for problem 7.
+        </li>
+        <li>
+          <a href = "p07_nvar.m">p07_nvar.m</a>, 
+          sets the number of variables for problem 7.
+        </li>
+        <li>
+          <a href = "p07_option_num.m">p07_option_num.m</a>, 
+          sets the number of options for problem 7.
+        </li>
+        <li>
+          <a href = "p07_start.m">p07_start.m</a>, 
+          returns a starting point for problem 7.
+        </li>
+        <li>
+          <a href = "p07_stepsize.m">p07_stepsize.m</a>, 
+          returns a stepsize for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          sets the title for problem 7.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>, 
+          evaluates the function for problem 8.
+        </li>
+        <li>
+          <a href = "p08_gx.m">p08_gx.m</a>, 
+          sets data used for Rik's mechanical problem.
+        </li>
+        <li>
+          <a href = "p08_hx.m">p08_hx.m</a>, 
+          reports the constraint equation data.
+        </li>
+        <li>
+          <a href = "p08_jac.m">p08_jac.m</a>, 
+          evaluates the jacobian for problem 8.
+        </li>
+        <li>
+          <a href = "p08_nvar.m">p08_nvar.m</a>, 
+          sets the number of variables for problem 8.
+        </li>
+        <li>
+          <a href = "p08_option_num.m">p08_option_num.m</a>, 
+          sets the number of options for problem 8.
+        </li>
+        <li>
+          <a href = "p08_start.m">p08_start.m</a>, 
+          returns a starting point for problem 8.
+        </li>
+        <li>
+          <a href = "p08_stepsize.m">p08_stepsize.m</a>, 
+          returns a stepsize for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          sets the title for problem 8.
+        </li>
+        <li>
+          <a href = "p09_fun.m">p09_fun.m</a>, 
+          evaluates the function for problem 9.
+        </li>
+        <li>
+          <a href = "p09_gx.m">p09_gx.m</a>, 
+          is used by problem 9.
+        </li>
+        <li>
+          <a href = "p09_jac.m">p09_jac.m</a>, 
+          evaluates the jacobian for problem 9.
+        </li>
+        <li>
+          <a href = "p09_nvar.m">p09_nvar.m</a>, 
+          sets the number of variables for problem 9.
+        </li>
+        <li>
+          <a href = "p09_option_num.m">p09_option_num.m</a>, 
+          sets the number of options for problem 9.
+        </li>
+        <li>
+          <a href = "p09_start.m">p09_start.m</a>, 
+          returns a starting point for problem 9.
+        </li>
+        <li>
+          <a href = "p09_stepsize.m">p09_stepsize.m</a>, 
+          returns a stepsize for problem 9.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>, 
+          sets the title for problem 9.
+        </li>
+        <li>
+          <a href = "p10_fun.m">p10_fun.m</a>, 
+          evaluates the function for problem 10.
+        </li>
+        <li>
+          <a href = "p10_gx.m">p10_gx.m</a>, 
+          is used by problem 10.
+        </li>
+        <li>
+          <a href = "p10_jac.m">p10_jac.m</a>, 
+          evaluates the jacobian for problem 10.
+        </li>
+        <li>
+          <a href = "p10_nvar.m">p10_nvar.m</a>, 
+          sets the number of variables for problem 10.
+        </li>
+        <li>
+          <a href = "p10_option_num.m">p10_option_num.m</a>, 
+          sets the number of options for problem 10.
+        </li>
+        <li>
+          <a href = "p10_start.m">p10_start.m</a>, 
+          returns a starting point for problem 10.
+        </li>
+        <li>
+          <a href = "p10_stepsize.m">p10_stepsize.m</a>, 
+          returns a stepsize for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>, 
+          sets the title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_fun.m">p11_fun.m</a>, 
+          evaluates the function for problem 11.
+        </li>
+        <li>
+          <a href = "p11_gauss.m">p11_gauss.m</a>, 
+          returns the Gauss quadrature abscissas and weights.
+        </li>
+        <li>
+          <a href = "p11_gul.m">p11_gul.m</a>, 
+          computes G(U,LAMBDA) and dG/dU and dG/dLAMBDA.
+        </li>
+        <li>
+          <a href = "p11_jac.m">p11_jac.m</a>, 
+          evaluates the jacobian for problem 11.
+        </li>
+        <li>
+          <a href = "p11_nvar.m">p11_nvar.m</a>, 
+          sets the number of variables for problem 11.
+        </li>
+        <li>
+          <a href = "p11_option_num.m">p11_option_num.m</a>, 
+          sets the number of options for problem 11.
+        </li>
+        <li>
+          <a href = "p11_phi.m">p11_phi.m</a>, 
+          is used by problem 11.
+        </li>
+        <li>
+          <a href = "p11_shape.m">p11_shape.m</a>, 
+          evaluates the shape functions for problem 11.
+        </li>
+        <li>
+          <a href = "p11_start.m">p11_start.m</a>, 
+          returns a starting point for problem 11.
+        </li>
+        <li>
+          <a href = "p11_stepsize.m">p11_stepsize.m</a>, 
+          returns a stepsize for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>, 
+          sets the title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_fun.m">p12_fun.m</a>, 
+          evaluates the function for problem 12.
+        </li>
+        <li>
+          <a href = "p12_gauss.m">p12_gauss.m</a>, 
+          returns an 8 point Gauss quadrature rule.
+        </li>
+        <li>
+          <a href = "p12_jac.m">p12_jac.m</a>, 
+          evaluates the jacobian for problem 12.
+        </li>
+        <li>
+          <a href = "p12_legendre_val.m">p12_legendre_val.m</a>, 
+          evaluates the Legendre polynomials and derivatives.
+        </li>
+        <li>
+          <a href = "p12_nvar.m">p12_nvar.m</a>, 
+          sets the number of variables for problem 12.
+        </li>
+        <li>
+          <a href = "p12_option_num.m">p12_option_num.m</a>, 
+          sets the number of options for problem 12.
+        </li>
+        <li>
+          <a href = "p12_start.m">p12_start.m</a>, 
+          returns a starting point for problem 12.
+        </li>
+        <li>
+          <a href = "p12_stepsize.m">p12_stepsize.m</a>, 
+          returns a stepsize for problem 12.
+        </li>
+        <li>
+          <a href = "p12_theta.m">p12_theta.m</a>, 
+          is a utility routine used in problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>, 
+          sets the title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_fun.m">p13_fun.m</a>, 
+          evaluates the function for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fx2.m">p13_fx2.m</a>, 
+          computes the function by recasting it on a square grid.
+        </li>
+        <li>
+          <a href = "p13_gp.m">p13_gp.m</a>, 
+          evaluates the derivative of the right hand side function.
+        </li>
+        <li>
+          <a href = "p13_gx.m">p13_gx.m</a>, 
+          evaluates the right hand side function.
+        </li>
+        <li>
+          <a href = "p13_jac.m">p13_jac.m</a>, 
+          evaluates the jacobian for problem 13.
+        </li>
+        <li>
+          <a href = "p13_jac2.m">p13_jac2.m</a>, 
+          computes the jacobian by recasting it on a square grid.
+        </li>
+        <li>
+          <a href = "p13_nvar.m">p13_nvar.m</a>, 
+          sets the number of variables for problem 13.
+        </li>
+        <li>
+          <a href = "p13_option_num.m">p13_option_num.m</a>, 
+          sets the number of options for problem 13.
+        </li>
+        <li>
+          <a href = "p13_start.m">p13_start.m</a>, 
+          returns a starting point for problem 13.
+        </li>
+        <li>
+          <a href = "p13_stepsize.m">p13_stepsize.m</a>, 
+          returns a stepsize for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>, 
+          sets the title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_fun.m">p14_fun.m</a>, 
+          computes the function for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fu.m">p14_fu.m</a>, 
+          computes the auxilliary function F(LAMBDA,U).
+        </li>
+        <li>
+          <a href = "p14_fudl.m">p14_fudl.m</a>, 
+          computes d F(LAMBDA,U) / d LAMBDA.
+        </li>
+        <li>
+          <a href = "p14_fudu.m">p14_fudu.m</a>, 
+          computes d F(LAMBDA,U) / d U
+        </li>
+        <li>
+          <a href = "p14_gu.m">p14_gu.m</a>, 
+          computes the auxilliary function G(U).
+        </li>
+        <li>
+          <a href = "p14_gudu.m">p14_gudu.m</a>, 
+          computes d G(U) / d U.
+        </li>
+        <li>
+          <a href = "p14_jac.m">p14_jac.m</a>, 
+          computes the jacobian of problem 14.
+        </li>
+        <li>
+          <a href = "p14_nvar.m">p14_nvar.m</a>, 
+          sets the number of variables for problem 14.
+        </li>
+        <li>
+          <a href = "p14_option_num.m">p14_option_num.m</a>, 
+          sets the number of options for problem 14.
+        </li>
+        <li>
+          <a href = "p14_start.m">p14_start.m</a>, 
+          returns a starting point for problem 14.
+        </li>
+        <li>
+          <a href = "p14_stepsize.m">p14_stepsize.m</a>, 
+          returns a stepsize for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>, 
+          sets the title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_fun.m">p15_fun.m</a>, 
+          evaluates the function for problem 15.
+        </li>
+        <li>
+          <a href = "p15_gx.m">p15_gx.m</a>, 
+          returns the coefficients of the linear portion of the function.
+        </li>
+        <li>
+          <a href = "p15_jac.m">p15_jac.m</a>, 
+          computes the jacobian for problem 15.
+        </li>
+        <li>
+          <a href = "p15_nvar.m">p15_nvar.m</a>, 
+          sets the number of variables for problem 15.
+        </li>
+        <li>
+          <a href = "p15_option_num.m">p15_option_num.m</a>, 
+          sets the number of options for problem 15.
+        </li>
+        <li>
+          <a href = "p15_start.m">p15_start.m</a>, 
+          returns a starting point for problem 15.
+        </li>
+        <li>
+          <a href = "p15_stepsize.m">p15_stepsize.m</a>, 
+          returns a stepsize for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>, 
+          sets the title for problem 15.
+        </li>
+        <li>
+          <a href = "p16_fun.m">p16_fun.m</a>, 
+          evaluates the function for problem 16.
+        </li>
+        <li>
+          <a href = "p16_jac.m">p16_jac.m</a>, 
+          computes the jacobian for problem 16.
+        </li>
+        <li>
+          <a href = "p16_nvar.m">p16_nvar.m</a>, 
+          sets the number of variables for problem 16.
+        </li>
+        <li>
+          <a href = "p16_option_num.m">p16_option_num.m</a>, 
+          sets the number of options for problem 16.
+        </li>
+        <li>
+          <a href = "p16_start.m">p16_start.m</a>, 
+          returns a starting point for problem 16.
+        </li>
+        <li>
+          <a href = "p16_stepsize.m">p16_stepsize.m</a>, 
+          returns a stepsize for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>, 
+          sets the title for problem 16.
+        </li>
+        <li>
+          <a href = "p17_fun.m">p17_fun.m</a>, 
+          evaluates the function for problem 17.
+        </li>
+        <li>
+          <a href = "p17_jac.m">p17_jac.m</a>, 
+          evaluates the jacobian for problem 17.
+        </li>
+        <li>
+          <a href = "p17_nvar.m">p17_nvar.m</a>, 
+          sets the number of variables for problem 17.
+        </li>
+        <li>
+          <a href = "p17_option_num.m">p17_option_num.m</a>, 
+          sets the number of options for problem 17.
+        </li>
+        <li>
+          <a href = "p17_start.m">p17_start.m</a>, 
+          returns a starting point for problem 17.
+        </li>
+        <li>
+          <a href = "p17_stepsize.m">p17_stepsize.m</a>, 
+          returns a stepsize for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>, 
+          sets the title for problem 17.
+        </li>
+        <li>
+          <a href = "p18_fun.m">p18_fun.m</a>, 
+          evaluates the function for problem 18.
+        </li>
+        <li>
+          <a href = "p18_gx.m">p18_gx.m</a>, 
+          evaluates the auxilliary function G ( T, U, LAMBDA ).
+        </li>
+        <li>
+          <a href = "p18_gpu.m">p18_gpu.m</a>, 
+          evaluates d G ( T, U, LAMBDA ) / dU.
+        </li>
+        <li>
+          <a href = "p18_gpl.m">p18_gpl.m</a>, 
+          evaluates d G ( T, U, LAMBDA ) / d LAMBDA.
+        </li>
+        <li>
+          <a href = "p18_jac.m">p18_jac.m</a>, 
+          evaluates the jacobian for problem 18.
+        </li>
+        <li>
+          <a href = "p18_nvar.m">p18_nvar.m</a>, 
+          sets the number of variables for problem 18.
+        </li>
+        <li>
+          <a href = "p18_option_num.m">p18_option_num.m</a>, 
+          sets the number of options for problem 18.
+        </li>
+        <li>
+          <a href = "p18_start.m">p18_start.m</a>, 
+          returns a starting point for problem 18.
+        </li>
+        <li>
+          <a href = "p18_stepsize.m">p18_stepsize.m</a>, 
+          returns a stepsize for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>, 
+          sets the title for problem 18.
+        </li>
+        <li>
+          <a href = "p19_fun.m">p19_fun.m</a>, 
+          evaluates the function for problem 19.
+        </li>
+        <li>
+          <a href = "p19_con.m">p19_con.m</a>, 
+          returns physical constants.
+        </li>
+        <li>
+          <a href = "p19_conp.m">p19_conp.m</a>,
+          returns physical constant derivatives.
+        </li>
+        <li>
+          <a href = "p19_jac.m">p19_jac.m</a>, 
+          evaluates the jacobian for problem 19.
+        </li>
+        <li>
+          <a href = "p19_nvar.m">p19_nvar.m</a>, 
+          sets the number of variables for problem 19.
+        </li>
+        <li>
+          <a href = "p19_option_num.m">p19_option_num.m</a>, 
+          sets the number of options for problem 19.
+        </li>
+        <li>
+          <a href = "p19_start.m">p19_start.m</a>, 
+          returns a starting point for problem 19.
+        </li>
+        <li>
+          <a href = "p19_stepsize.m">p19_stepsize.m</a>, 
+          returns a stepsize for problem 19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>, 
+          sets the title for problem 19.
+        </li>
+        <li>
+         <a href = "p20_fun.m">p20_fun.m</a>, 
+          evaluates the function for problem 20.
+        </li>
+        <li>
+         <a href = "p20_i4_get.m">p20_i4_get.m</a>, 
+          returns the value of an integer parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_i4_set.m">p20_i4_set.m</a>, 
+          sets the value of an integer parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_i4_store.m">p20_i4_store.m</a>, 
+          sets or gets the value of an integer parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_jac.m">p20_jac.m</a>, 
+          evaluates the jacobian for problem 20.
+        </li>
+        <li>
+         <a href = "p20_nvar.m">p20_nvar.m</a>, 
+          sets the number of variables for problem 20.
+        </li>
+        <li>
+         <a href = "p20_option_num.m">p20_option_num.m</a>, 
+          returns the number of options for problem 20.
+        </li>
+        <li>
+         <a href = "p20_r8_get.m">p20_r8_get.m</a>, 
+          returns the value of a real parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_r8_set.m">p20_r8_set.m</a>, 
+          sets the value of a real parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_r8_store.m">p20_r8_store.m</a>, 
+          sets or gets the value of a real parameter for problem 20.
+        </li>
+        <li>
+         <a href = "p20_setup.m">p20_setup.m</a>, 
+          finds a solution (L,THETA,LAMBDA,MU) given L and THETA.
+        </li>
+        <li>
+         <a href = "p20_start.m">p20_start.m</a>, 
+          returns a starting point for problem 20.
+        </li>
+        <li>
+         <a href = "p20_stepsize.m">p20_stepsize.m</a>, 
+          returns step sizes for problem 20.
+        </li>
+        <li>
+         <a href = "p20_title.m">p20_title.m</a>, 
+          sets the title for problem 20.
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a>, 
+          returns the I-th power of -1 as an R8.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a random R8 between 0 and 1.
+        </li>
+        <li>
+          <a href = "r8vec_amax_index.m">r8vec_amax_index.m</a>, 
+          returns the index of the maximum absolute value in an R8VEC.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>, 
+          is TRUE if two strings are equal, ignoring case and trailing blanks;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "zero_rc.m">zero_rc.m</a>, 
+          seeks the root of a function F(X) using reverse communication.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_con_test.m">test_con_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "p00_jac_test.m">p00_jac_test.m</a>, 
+          compares the jacobian to a finite difference estimate;
+        </li>
+        <li>
+          <a href = "p00_newton_test.m">p00_newton_test.m</a>, 
+          applies the Newton algorithm to a perturbed copy of the starting point.
+        </li>
+        <li>
+          <a href = "p00_nvar_test.m">p00_nvar_test.m</a>, 
+          calls P00_NVAR to get the size of each problem;
+        </li>
+        <li>
+          <a href = "p00_option_num_test.m">p00_option_num_test.m</a>, 
+          calls P00_OPTION_NUM to get the number of options for each problem;
+        </li>
+        <li>
+          <a href = "p00_start_test.m">p00_start_test.m</a>, 
+          calls P00_START to get the starting point for each problem;
+        </li>
+        <li>
+          <a href = "p00_stepsize_test.m">p00_stepsize_test.m</a>, 
+          calls P00_STEPSIZE to get the stepsize of each problem;
+        </li>
+        <li>
+          <a href = "p00_tan_test.m">p00_tan_test.m</a>, 
+          calls P00_TAN to compute the tangent vector at the starting point.
+        </li>
+        <li>
+          <a href = "p00_title_test.m">p00_title_test.m</a>, 
+          calls P00_TITLE to get the title of each problem;
+        </li>
+        <li>
+          <a href = "p01_limit_test.m">p01_limit_test.m</a>, 
+          searches for limit points in problem 1;
+        </li>
+        <li>
+          <a href = "p01_target_test.m">p01_target_test.m</a>, 
+          searches for target points in problem 1;
+        </li>
+        <li>
+          <a href = "p06_limit_test.m">p06_limit_test.m</a>, 
+          searches for limit points in problem 6.
+        </li>
+        <li>
+          <a href = "test_con_test_output.txt">test_con_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 October 2008.
+    </i>
+
+    <!-- John Burkardt -->
+ 
+  </body>
+
+</html>

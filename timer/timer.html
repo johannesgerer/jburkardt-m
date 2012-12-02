@@ -1,0 +1,276 @@
+<html>
+
+  <head>
+    <title>
+      TIMER - Compute Elapsed Time
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TIMER <br> Compute Elapsed Time
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TIMER</b> 
+      is a directory of MATLAB programs which 
+      compute the elapsed CPU time or wallclock time of a part of a calculation.  
+    </p>
+
+    <p>
+      The idea is that you want to
+      determine the amount of CPU time taken by a piece of your code, so
+      you write lines like this:
+      <pre><tt>
+        t_start = timer;
+
+        ...some big calculation...
+
+        t_stop = timer;
+
+        fprintf ( 1, 'Elapsed CPU time = %f\n', t_stop - t_start );
+      </pre></tt>
+    </p>
+
+    <p>
+      MATLAB includes a function <b>CPUTIME</b>, which returns
+      the CPU time in seconds.  This represents the amount of computer time
+      "used" by your program, and could be somewhat less than the elapsed
+      wall clock time.
+    </p>
+
+    <p>
+      MATLAB includes a function <b>CLOCK</b> which returns the YMDHMS 
+      date as a vector of six integers.  Two values of <b>CLOCK</b> can be 
+      subtracted, and the difference, or elapsed "wall clock time",
+      returned in seconds, by the function <b>ETIME</b>.
+    </p>
+
+    <p>
+      MATLAB includes two functions <b>TIC</b> and <b>TOC</b>.  If <b>TIC</b>
+      is called before something is to be timed, and <b>TOC</b> is called
+      afterward, then <b>TOC</b> will either print the elapsed wallclock
+      time if its value is not being copied to a variable, or return the 
+      value of the elapsed wallclock time to a variable.
+    </p>
+
+    <p>
+      To time an entire program, the simplest method to get the elapsed
+      wallclock time is to call <b>tic</b> before you run the program
+      and <b>toc</b> afterwards:
+      <pre>
+        tic
+        my_program
+        toc
+      </pre>
+      If <b>toc</b> is called without an output argument, it prints the elapsed time.
+      or you can save the output from <b>toc</b> and print it yourself.
+      <pre>
+        tic
+        my_program
+        wtime = toc
+        fprintf ( 1, '  MY_PROGRAM took %f seconds to run.\n', wtime );
+      </pre>
+    </p>
+
+    <p>
+      For parallel programming, the important thing to measure is the elapsed
+      wallclock time.  This can be found by subtracting an initial reading of
+      the wallclock time from a final one.
+    </p>
+
+    <p>
+      The OpenMP system provides a function used as follows:
+      <pre>
+        seconds = omp_get_wtime ( )
+        operations to time;
+        seconds = omp_get_wtime ( ) - seconds;
+      </pre>
+      while the MPI system provides a similar function used as:
+      <pre>
+        seconds = MPI_Wtime ( );
+        operations;
+        seconds = MPI_Wtime ( ) - seconds;
+      </pre>
+      and in MATLAB, wallclock time can be taken with "tic" and "toc":
+      <pre>
+        tic;
+        operation;
+        seconds = toc;
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TIMER</b> is available in
+      <a href = "../../c_src/timer/timer.html">a C version</a> and
+      <a href = "../../cpp_src/timer/timer.html">a C++ version</a> and
+      <a href = "../../f77_src/timer/timer.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/timer/timer.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/timer/timer.html">a MATLAB version</a>.  
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/tic_toc/tic_toc.html">
+      TIC_TOC</a>,
+      MATLAB programs which
+      demonstrate some features of MATLAB's tic and toc functions for wallclock timing.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timestamp/timestamp.html">
+      TIMESTAMP</a>,
+      a MATLAB library which 
+      prints out the current YMDHMS date.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wtime/wtime.html">
+      WTIME</a>,
+      a MATLAB library which
+      returns a reading of the wall clock time in seconds.
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CPUTIME_TEST</b> uses the CPUTIME routine:
+      <ul>
+        <li>
+          <a href = "timer_cputime_test.m">timer_cputime_test.m</a>, 
+          the main body of the test;
+        </li>
+        <li>
+          <a href = "timer_cputime_test01.m">timer_cputime_test01.m</a>, 
+          test #1;
+        </li>
+        <li>
+          <a href = "timer_cputime_test02.m">timer_cputime_test02.m</a>, 
+          test #2;
+        </li>
+        <li>
+          <a href = "timer_cputime_test03.m">timer_cputime_test03.m</a>, 
+          test #3;
+        </li>
+        <li>
+          <a href = "timer_cputime_test04.m">timer_cputime_test04.m</a>, 
+          test #4;
+        </li>
+        <li>
+          <a href = "timer_cputime_test_output.txt">timer_cputime_test_output.txt</a>, 
+          output from the test;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ETIME_TEST</b> uses the ETIME routine:
+      <ul>
+        <li>
+          <a href = "timer_etime_test.m">timer_etime_test.m</a>, 
+          the main body of the test;
+        </li>
+        <li>
+          <a href = "timer_etime_test01.m">timer_etime_test01.m</a>, 
+          test #1;
+        </li>
+        <li>
+          <a href = "timer_etime_test02.m">timer_etime_test02.m</a>, 
+          test #2;
+        </li>
+        <li>
+          <a href = "timer_etime_test03.m">timer_etime_test03.m</a>, 
+          test #3;
+        </li>
+        <li>
+          <a href = "timer_etime_test04.m">timer_etime_test04.m</a>, 
+          test #4;
+        </li>
+        <li>
+          <a href = "timer_etime_test_output.txt">timer_etime_test_output.txt</a>, 
+          output from the test;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TICTOC_TEST</b> uses the TIC and TOC routine:
+      <ul>
+        <li>
+          <a href = "timer_tictoc_test.m">timer_tictoc_test.m</a>, 
+          the main body of the test;
+        </li>
+        <li>
+          <a href = "timer_tictoc_test01.m">timer_tictoc_test01.m</a>, 
+          test #1;
+        </li>
+        <li>
+          <a href = "timer_tictoc_test02.m">timer_tictoc_test02.m</a>, 
+          test #2;
+        </li>
+        <li>
+          <a href = "timer_tictoc_test03.m">timer_tictoc_test03.m</a>, 
+          test #3;
+        </li>
+        <li>
+          <a href = "timer_tictoc_test04.m">timer_tictoc_test04.m</a>, 
+          test #4;
+        </li>
+        <li>
+          <a href = "timer_tictoc_test_output.txt">timer_tictoc_test_output.txt</a>, 
+          output from the test;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      There are a few auxilliary routines you may need:
+      <ul>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>, returns a "huge" value;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a time stamp;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 16 June 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

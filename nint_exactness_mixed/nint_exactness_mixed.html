@@ -1,0 +1,639 @@
+<html>
+
+  <head>
+    <title>
+      NINT_EXACTNESS_MIXED - Exactness of Multidimensional Quadrature Using Mixed Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NINT_EXACTNESS_MIXED <br> Exactness of Multidimensional Quadrature Using Mixed Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NINT_EXACTNESS_MIXED</b> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a multidimensional
+      quadrature rule based on a direct product of one-dimensional rules.
+      The one dimensional rules, in turn, may be any mixture of rules
+      for 6 standard quadrature problems.
+    </p>
+
+    <p>
+      The six standard 1d quadrature problems that may be used as factors
+      for the multidimensional problem are:
+      <ul>
+        <li>
+          <b>Legendre integration</b><br>
+          interval: [-1,+1],<br>
+          weight: w(x) = 1,<br>
+          rules: Clenshaw Curtis, Fejer Type 2, Gauss Legendre, Gauss Patterson.
+        </li>
+        <li>
+          <b>Jacobi integration</b>:<br>
+          interval: [-1,+1],<br>
+          weight: w(x) = (1-x)^alpha (1+x)^beta.<br>
+          rules: Gauss Jacobi.
+        </li>
+        <li>
+          <b>Laguerre integration</b> <br>
+          interval: [0,+oo),<br>
+          weight: w(x) = exp(-x).<br>
+          rules: Gauss Laguerre.
+        </li>
+        <li>
+          <b>Generalized Laguerre integration</b><br>
+          interval: [0,+oo),<br>
+          weight: w(x) = x^alpha exp(-x).<br>
+          rules: Gauss Laguerre.
+        </li>
+        <li>
+          <b>Hermite integration</b><br>
+          interval: (-oo,+oo),<br>
+          weight: w(x) = exp(-x*x).<br>
+          rules: Gauss Hermite.
+        </li>
+        <li>
+          <b>Generalized Hermite integration</b> <br>
+          interval: (-oo,+oo),<br>
+          weight: w(x) = |x|^alpha exp(-x*x).<br>
+          rules: generalized Gauss Hermite.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The M-dimensional quadrature region R based on mixed factors is formed by the
+      direct product
+      <blockquote><b>
+        R = R1 x R2 x ... x Rm
+      </b></blockquote>
+      where each factor region Ri is the region associated with one of the six
+      rules.  Thus, R is a sort of generalized hyperrectangle, with the understanding
+      that in some coordinate directions the region may be semi-infinite or 
+      infinite.
+    </p>
+
+    <p>
+      The M-dimensional weight function W based on mixed factors is formed by the
+      dproduct
+      <blockquote><b>
+        w(x1,x2,...xm) = w1(x1) x w2(x2) x ... x wm(xm)
+      </b></blockquote>
+      where each factor weight wi(xi) is the weight function associated with one of the six
+      rules.  Some weight functions include parameters alpha and beta, and these
+      parameters may be specified independently in each dimension.
+    </p>
+
+    <p>
+      For a quadrature region R based on mixed factors, the corresponding
+      monomial integrand has the form
+      <blockquote><b>
+        Mono(X,E) = X1^E1 x X2^E2 x ... x Xm^Em
+      </b></blockquote>
+      where each exponent Ei is a nonnegative integer.
+    </p>
+
+    <p>
+      The total degree of a monomial Mono(X,E) is:
+      <blockquote><b>
+        TotalDegree(Mono(X,E)) = Sum ( 1 <= I <= M ) E(I)
+      </b></blockquote>
+    </p>
+
+    <p>
+      Thus, for instance, the total degree of 
+      <blockquote><b>
+        x1<sup>2</sup> * x2 * x3<sup>5</sup>
+      </b></blockquote>
+      is 2+1+5=8.
+    </p>
+
+    <p>
+      The corresponding monomial integral is:
+      <blockquote><b>
+        Integral ( X in R ) Mono(X,E) W(X) dX
+      </b></blockquote>
+      where each exponent Ei is a nonnegative integer.
+    </p>
+
+    <p>
+      The <b>monomial exactness</b> of a quadrature rule is the maximum number D
+      such that, for every monomial of total degree D or less, the quadrature
+      rule produces the exact value of the monomial integral.
+    </p>
+
+    <p>
+      The <b>polynomial exactness</b> of a quadrature rule is the maximum number D
+      such that, for every polynomial of total degree D or less, the quadrature
+      rule produces the exact value of the polynomial integral.  The total degree
+      of a polynomial is simply the maximum of the total degrees of the monomials
+      that form the polynomial.
+    </p>
+
+    <p>
+      This program is given a quadrature rule based on mixed factors, and seeks
+      to determine the polynomial exactness of the rule.  It does this simply
+      by applying the quadrature rule to all the monomials of a total degree
+      0 up to some limit specified by the user.
+    </p>
+
+    <p>
+      The program is very flexible and interactive.  The quadrature rule 
+      is defined by five files, to be read at input, and the 
+      maximum degree is specified by the user as well.
+    </p>
+
+    <p>
+      The files that define the quadrature rule
+      are assumed to have related names, of the form
+      <ul>
+        <li>
+          <i>prefix</i>_<b>a.txt</b>, the "ALPHA" file;
+        </li>
+        <li>
+          <i>prefix</i>_<b>b.txt</b>, the "BETA" file;
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>, the "REGION" file;
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>, the "WEIGHT" file;
+        </li>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>, the "ABSCISSA" file.
+        </li>
+      </ul>
+      When running the program, the user only enters the common <i>prefix</i> 
+      part of the file names, which is enough information for the program
+      to find all the files.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>nint_exactness_mixed</b> ( <i>'prefix'</i>, <i>degree_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common prefix for the files containing the alpha, beta, region, weight
+          and abscissa information of the quadrature rule;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum total monomial degree to check.  This should be
+          a relatively small nonnegative number, particularly if the
+          spatial dimension is high.  A value of 5 or 10 might be
+          reasonable, but a value of 50 or 100 is probably never a
+          good input!
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NINT_EXACTNESS_MIXED</b> is available in
+      <a href = "../../cpp_src/nint_exactness_mixed/nint_exactness_mixed.html">a C++ version</a> and
+      <a href = "../../f_src/nint_exactness_mixed/nint_exactness_mixed.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/int_exactness/int_exactness.html">
+      INT_EXACTNESS</a>,
+      a MATLAB program which
+      tests the polynomial exactness of one dimensional quadrature rules.
+    </p>
+ 
+    <p>
+      <a href = "../../f_src/integral_test/integral_test.html">
+      INTEGRAL_TEST</a>, 
+      a FORTRAN90 program which 
+      uses test integrals to measure the effectiveness of
+      certain sets of quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of integration rules for the unit hypercube.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>, 
+      a MATLAB library which
+      numerically estimates integrals in multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_exactness/pyramid_exactness.html">
+      PYRAMID_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the pyramid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>, 
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over various 1D intervals or multidimensional hypercubes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>, 
+      a MATLAB library which
+      defines quadrature rules on a
+      variety of intervals with different weight functions.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>, 
+      a dataset directory which 
+      contains multidimensional Smolyak sparse grids 
+      based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>, 
+      a MATLAB library which
+      defines multidimensional quadrature rules using sparse grid techniques,
+      based on a mixed set of 1D quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">
+      SPHERE_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of a quadrature rule for the unit sphere; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_nint/test_nint.html">
+      TEST_NINT</a>, 
+      a MATLAB library which
+      defines integrand functions for testing
+      multidimensional quadrature routines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/testpack/testpack.html">
+      TESTPACK</a>,
+      a MATLAB library which
+      defines a set of integrands used to test multidimensional quadrature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_exactness/tetrahedron_exactness.html">
+      TETRAHEDRON_EXACTNESS</a>, 
+      a MATLAB program which 
+      investigates the polynomial exactness of a quadrature rule for the tetrahedron.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nint_exactness_mixed.m">nint_exactness_mixed.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L2_CCXCC</b> is a level 2 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Clenshaw Curtis, Clenshaw Curtis].
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxcc_a.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxcc_b.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxcc_r.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxcc_w.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxcc_x.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l2_ccxcc_exactness.txt">
+          sparse_grid_mixed_d2_l2_ccxcc_exactness.txt</a>,
+          the output file for DEGREE_MAX = 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L2_CCXGL</b> is a level 2 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Clenshaw Curtis, Gauss Legendre].
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxgl_a.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxgl_b.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxgl_r.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxgl_w.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxgl_x.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l2_ccxgl_exactness.txt">
+          sparse_grid_mixed_d2_l2_ccxgl_exactness.txt</a>,
+          the output file for DEGREE_MAX = 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L2_CCXGLG</b> is a level 2 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Clenshaw Curtis, Generalized Gauss Laguerre].
+      The Generalized Gauss Laguerre rule uses ALPHA = 1.5.
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxglg_a.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxglg_b.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxglg_r.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxglg_w.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxglg_x.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l2_ccxglg_exactness.txt">
+          sparse_grid_mixed_d2_l2_ccxglg_exactness.txt</a>,
+          the output file for DEGREE_MAX = 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L2_CCXLG</b> is a level 2 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Clenshaw Curtis, Gauss Laguerre].
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxlg_a.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxlg_b.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxlg_r.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxlg_w.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_ccxlg_x.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l2_ccxlg_exactness.txt">
+          sparse_grid_mixed_d2_l2_ccxlg_exactness.txt</a>,
+          the output file for DEGREE_MAX = 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L2_F2XGJ</b> is a level 2 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Fejer Type 2, Gauss Jacobi].  The
+      Gauss Jacobi rule uses ALPHA = 0.5, BETA = 1.5.
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_f2xgj_a.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_f2xgj_b.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_f2xgj_r.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_f2xgj_w.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l2_f2xgj_x.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l2_f2xgj_exactness.txt">
+          sparse_grid_mixed_d2_l2_f2xgj_exactness.txt</a>,
+          the output file for DEGREE_MAX = 7.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D2_L3_CCXGP</b> is a level 3 sparse grid quadrature rule for 
+      dimension 2, based on 1D factors of [Clenshaw Curtis, Gauss Patterson].
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l3_ccxgp_a.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l3_ccxgp_b.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l3_ccxgp_r.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l3_ccxgp_w.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d2_l3_ccxgp_x.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d2_l3_ccxgp_exactness.txt">
+          sparse_grid_mixed_d2_l3_ccxgp_exactness.txt</a>,
+          the output file for DEGREE_MAX = 9.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_D3_L2_CCXF2XGH</b> is a level 2 sparse grid quadrature rule for 
+      dimension 3, based on 1D factors of [Clenshaw Curtis, Fejer Type 2, Gauss Hermite].
+      <ul>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d3_l2_ccxf2xgh_a.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_a.txt</a>,
+          the A file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d3_l2_ccxf2xgh_b.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_b.txt</a>,
+          the B file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d3_l2_ccxf2xgh_r.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_r.txt</a>,
+          the R file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d3_l2_ccxf2xgh_w.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_w.txt</a>,
+          the W file.
+        </li>
+        <li>
+          <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed_d3_l2_ccxf2xgh_x.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_x.txt</a>,
+          the X file.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_d3_l2_ccxf2xgh_exactness.txt">
+          sparse_grid_mixed_d3_l2_ccxf2xgh_exactness.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 October 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

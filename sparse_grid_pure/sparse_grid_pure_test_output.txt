@@ -1,0 +1,490 @@
+>> sparse_grid_pure_test
+11-Sep-2012 16:59:28
+
+SPARSE_GRID_PURE_TEST:
+  MATLAB version
+  Test the SPARSE_GRID_PURE library.
+
+TEST01
+  SPARSE_GRID_CC_S_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * CC_SE, Clenshaw Curtis Slow Exponential Growth family.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           5          13          25          41          61
+       3           9          29          69         137         241
+       4           9          49         153         369         761
+       5          17          81         297         849        2033
+       6          17         129         545        1777        4833
+       7          17         161         881        3377       10433
+       8          17         225        1361        5953       20753
+       9          33         257        1953        9857       38593
+      10          33         385        2721       15361       67425
+
+TEST01
+  SPARSE_GRID_CC_S_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * CC_SE, Clenshaw Curtis Slow Exponential Growth family.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          85         113         145         181         221
+       3         389         589         849        1177        1581
+       4        1409        2409        3873        5929        8721
+       5        4289        8233       14689       24721       39665
+       6       11473       24529       48289       88945      155105
+       7       27697       65537      141601      284209      536705
+       8       61345      159953      377729      823057     1677665
+       9      126401      361665      930049     2192865     4810625
+      10      244289      765089     2136577     5436321    12803073
+
+TEST02
+  SPARSE_GRID_CFN_E_SIZE returns the number of
+  distinct points in a CFN_E sparse grid made from 
+  any closed fully nested family of 1D quadrature
+  rules with exponential growth, including:
+  * CC_E, the Clenshaw Curtis Exponential Growth family;
+  * NCC_E, the Newton Cotes Closed Exponential Growth family.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           5          13          25          41          61
+       3           9          29          69         137         241
+       4          17          65         177         401         801
+       5          33         145         441        1105        2433
+       6          65         321        1073        2929        6993
+       7         129         705        2561        7537       19313
+       8         257        1537        6017       18945       51713
+       9         513        3329       13953       46721      135073
+      10        1025        7169       32001      113409      345665
+
+TEST02
+  SPARSE_GRID_CFN_E_SIZE returns the number of
+  distinct points in a CFN_E sparse grid made from 
+  any closed fully nested family of 1D quadrature
+  rules with exponential growth, including:
+  * CC_E, the Clenshaw Curtis Exponential Growth family;
+  * NCC_E, the Newton Cotes Closed Exponential Growth family.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          85         113         145         181         221
+       3         389         589         849        1177        1581
+       4        1457        2465        3937        6001        8801
+       5        4865        9017       15713       26017       41265
+       6       15121       30241       56737      100897      171425
+       7       44689       95441      190881      361249      652065
+       8      127105      287745      609025     1218049     2320385
+       9      350657      836769     1863937     3918273     7836545
+      10      943553     2362881     5515265    12133761    25370753
+
+TEST03
+  SPARSE_GRID_F2_SE_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * F2_S, the Fejer Type 2 Slow Exponential Growth family.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           7          17          31          49          71
+       3           7          33          87         177         311
+       4          15          65         207         513        1071
+       5          15          97         399        1217        3023
+       6          15         161         751        2625        7503
+       7          15         161        1135        4929       16463
+       8          31         257        1759        8705       33183
+       9          31         321        2335       13697       60703
+      10          31         449        3679       21889      105887
+
+TEST03
+  SPARSE_GRID_F2_SE_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * F2_S, the Fejer Type 2 Slow Exponential Growth family.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         497         743        1057        1447        1921
+       4        1985        3375        5377        8143       11841
+       5        6497       12559       22401       37519       59745
+       6       18401       40111       79745      147343      256545
+       7       46049      112815      249217      506767      963105
+       8      104705      286303      699393     1559839     3227905
+       9      217281      663071     1787649     4362783     9809985
+      10      421185     1423327     4217601    11231007    27377857
+
+TEST04
+  SPARSE_GRID_GP_SE_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * GP_SE, Gauss Patterson Slow Exponential Growth family.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           3           9          19          33          51
+       3           7          17          39          81         151
+       4           7          33          87         193         391
+       5           7          33         135         385         903
+       6          15          65         207         641        1743
+       7          15          97         399        1217        3343
+       8          15          97         495        1985        6223
+       9          15         161         751        2881       10063
+      10          15         161        1135        4929       17103
+
+TEST04
+  SPARSE_GRID_GP_SE_SIZE returns the number of
+  distinct points in a sparse grid made from 
+  * GP_SE, Gauss Patterson Slow Exponential Growth family.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          73          99         129         163         201
+       3         257         407         609         871        1201
+       4         737        1303        2177        3463        5281
+       5        1889        3655        6657       11527       19105
+       6        4161        8975       17921       33679       60225
+       7        8481       19855       43137       87823      169185
+       8       16929       42031       97153      211087      434145
+       9       30689       83247      206465      477327     1041185
+      10       53729      154927      411265     1014159     2347809
+
+TEST05
+  SPARSE_GRID_OFN_E_SIZE returns the number of
+  distinct points in a OFN_E sparse grid made from 
+  product grids formed from open fully nested
+  quadrature rules with Exponential Growth, including
+  * F2_E, the Fejer Type 2 Exponential Growth Family:
+  * GP_E, the Gauss Patterson Exponential Growth Family;
+  * NCO_E, the Newton Cotes Open Exponential Growth Family.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           7          17          31          49          71
+       3          15          49         111         209         351
+       4          31         129         351         769        1471
+       5          63         321        1023        2561        5503
+       6         127         769        2815        7937       18943
+       7         255        1793        7423       23297       61183
+       8         511        4097       18943       65537      187903
+       9        1023        9217       47103      178177      553983
+      10        2047       20481      114687      471041     1579007
+
+TEST05
+  SPARSE_GRID_OFN_E_SIZE returns the number of
+  distinct points in a OFN_E sparse grid made from 
+  product grids formed from open fully nested
+  quadrature rules with Exponential Growth, including
+  * F2_E, the Fejer Type 2 Exponential Growth Family:
+  * GP_E, the Gauss Patterson Exponential Growth Family;
+  * NCO_E, the Newton Cotes Open Exponential Growth Family.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         545         799        1121        1519        2001
+       4        2561        4159        6401        9439       13441
+       5       10625       18943       31745       50623       77505
+       6       40193       78079      141569      242815      397825
+       7      141569      297727      580865     1066495     1862145
+       8      471041     1066495     2228225     4361215     8085505
+       9     1496065     3629055     8085505    16807935    32978945
+      10     4571137    11829247    28000257    61616127   127574017
+
+TEST06
+  SPARSE_GRID_ONN_E_SIZE returns the number of
+  distinct points in a ONN_E sparse grid made from 
+  product grids formed from open non-nested
+  quadrature rules with exponential growth, including:
+  * LG_E, the Gauss Laguerre Exponential Growth Family;
+  * GJ_E, the Gauss Jacobi Exponential Growth Family;
+  * GLG_E, the Generalized Gauss Laguerre Exponential Growth Family;
+  * GW_E, any Golub Welsch Exponential Growth Family;
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           7          10          13          16
+       2           7          29          58          95         141
+       3          15          95         255         515         906
+       4          31         273         945        2309        4746
+       5          63         723        3120        9065       21503
+       6         127        1813        9484       32259       87358
+       7         255        4375       27109      106455      325943
+       8         511       10265       73915      330985     1135893
+       9        1023       23579      194190      980797     3743358
+      10        2047       53277      495198     2793943    11775507
+
+TEST06
+  SPARSE_GRID_ONN_E_SIZE returns the number of
+  distinct points in a ONN_E sparse grid made from 
+  product grids formed from open non-nested
+  quadrature rules with exponential growth, including:
+  * LG_E, the Gauss Laguerre Exponential Growth Family;
+  * GJ_E, the Gauss Jacobi Exponential Growth Family;
+  * GLG_E, the Generalized Gauss Laguerre Exponential Growth Family;
+  * GW_E, any Golub Welsch Exponential Growth Family;
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          19          22          25          28          31
+       2         196         260         333         415         506
+       3        1456        2192        3141        4330        5786
+       4        8722       14778       23535       35695       52041
+       5       44758       84708      149031      247456      392007
+       6      204203      428772      828795     1499773     2571712
+       7      849161     1966079     4154403     8158810    15089932
+       8     3275735     8316605    19122245    40599130    80725502
+       9    11876081    32894998    81953165   187432959   399429602
+      10    40869038   122928088   330545025   811645950  1848483779
+
+TEST07
+  SPARSE_GRID_ONN_L_SIZE returns the number of
+  distinct points in an ONN_L sparse grid made from 
+  product grids formed from open non-nested
+  quadrature rules with linear growth, including:
+  * LG_L, the Gauss Laguerre Linear Growth Family;
+  * GJ_L, the Gauss Jacobi Linear Growth Family;
+  * GLG_L, the Generalized Gauss Laguerre Linear Growth Family;
+  * GW_L, any Golub Welsch Linear Growth Family;
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           7          10          13          16
+       2           5          25          52          87         131
+       3           7          63         189         403         736
+       4           9         129         543        1461        3206
+       5          11         231        1320        4433       11583
+       6          13         377        2834       11739       36218
+       7          15         575        5531       27911      100893
+       8          17         833       10013       60809      255663
+       9          19        1159       17062      123253      598538
+      10          21        1561       27664      235135     1310165
+
+TEST07
+  SPARSE_GRID_ONN_L_SIZE returns the number of
+  distinct points in an ONN_L sparse grid made from 
+  product grids formed from open non-nested
+  quadrature rules with linear growth, including:
+  * LG_L, the Gauss Laguerre Linear Growth Family;
+  * GJ_L, the Gauss Jacobi Linear Growth Family;
+  * GLG_L, the Generalized Gauss Laguerre Linear Growth Family;
+  * GW_L, any Golub Welsch Linear Growth Family;
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          19          22          25          28          31
+       2         184         246         317         397         486
+       3        1216        1870        2725        3808        5146
+       4        6190       10900       17903       27847       41461
+       5       25954       52074       96055      165844      271467
+       6       93535      212738      439019      838915     1506232
+       7      298357      765313     1760035     3711040     7290952
+       8      860455     2476883     6323269    14666470    31453182
+       9     2279829     7329934    20693565    52638759   122920642
+      10     5618754    20087574    62483217   173788146   440815035
+
+TEST08
+  SPARSE_GRID_OWN_E_SIZE returns the number of
+  distinct points in an OWN_E sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with exponential growth, including:
+  * GGH_E, the Generalized Gauss-Hermite Exponential Growth Family;
+  * GH_E, the Gauss-Hermite Exponential Growth Family;
+  * LG_E, the Gauss-Legendre Exponential Growth Family;
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           7          21          37          57          81
+       3          15          73         159         289         471
+       4          31         221         597        1265        2341
+       5          63         609        2031        4969       10363
+       6         127        1573        6397       17945       41913
+       7         255        3881       18943       60577      157583
+       8         511        9261       53365      193441      557693
+       9        1023       21553      144351      589625     1875443
+      10        2047       49205      377661     1727625     6037137
+
+TEST08
+  SPARSE_GRID_OWN_E_SIZE returns the number of
+  distinct points in an OWN_E sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with exponential growth, including:
+  * GGH_E, the Generalized Gauss-Hermite Exponential Growth Family;
+  * GH_E, the Gauss-Hermite Exponential Growth Family;
+  * LG_E, the Gauss-Legendre Exponential Growth Family;
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2         109         141         177         217         261
+       3         713        1023        1409        1879        2441
+       4        3953        6245        9377       13525       18881
+       5       19397       33559       54673       84931      126925
+       6       86517      163213      287409      479233      764365
+       7      357153      731951     1388737     2478511     4208385
+       8     1382361     3067669     6253537    11916685    21493065
+       9     5065693    12136743    26516113    53833083   102935845
+      10    17709469    45683389   106723249   230380089   466201781
+
+TEST09
+  SPARSE_GRID_OWN_L_SIZE returns the number of
+  distinct points in an OWN_L sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with linear growth, including:
+  * GGH_L, the Generalized Gauss-Hermite Linear Growth Family;
+  * GH_L, the Gauss-Hermite Linear Growth Family;
+  * LG_L, the Gauss-Legendre Linear Growth Family;
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           5          17          31          49          71
+       3           7          45         105         201         341
+       4           9          97         297         681        1341
+       5          11         181         735        2001        4543
+       6          13         305        1631        5257       13683
+       7          15         477        3305       12609       37433
+       8          17         705        6209       28017       94473
+       9          19         997       10951       58297      222563
+      10          21        1361       18319      114561      493935
+
+TEST09
+  SPARSE_GRID_OWN_L_SIZE returns the number of
+  distinct points in an OWN_L sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with linear growth, including:
+  * GGH_L, the Generalized Gauss-Hermite Linear Growth Family;
+  * GH_L, the Gauss-Hermite Linear Growth Family;
+  * LG_L, the Gauss-Legendre Linear Growth Family;
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         533         785        1105        1501        1981
+       4        2381        3921        6097        9061       12981
+       5        9113       16703       28577       46303       71785
+       6       30869       62735      117713      207355      347005
+       7       94601      212481      436033      833017     1501545
+       8      266489      659585     1476673     3053065     5916505
+       9      698373     1899663     4629457    10338603    21503085
+      10     1718697     5124927    13566753    32667567    72810297
+
+TEST10
+  SPARSE_GRID_OWN_LS_SIZE returns the number of
+  distinct points in an OWN_LS sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with linear (slow) growth, including:
+  * GGH_LS, the Generalized Gauss-Hermite Linear (Slow) Growth Family;
+  * GH_LS, the Gauss-Hermite Linear (Slow) Growth Family;
+  * LG_LS, the Gauss-Legendre Linear (Slow) Growth Family;
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           3           9          19          33          51
+       3           5          17          39          81         151
+       4           5          29          87         193         391
+       5           7          41         153         409         933
+       6           7          65         265         777        1973
+       7           9          81         457        1481        4013
+       8           9         121         649        2521        7693
+       9          11         141        1127        4353       13983
+      10          11         201        1379        6985       24951
+
+TEST10
+  SPARSE_GRID_OWN_LS_SIZE returns the number of
+  distinct points in an OWN_LS sparse grid made from 
+  product grids formed from open weakly nested 
+  quadrature rules with linear (slow) growth, including:
+  * GGH_LS, the Generalized Gauss-Hermite Linear (Slow) Growth Family;
+  * GH_LS, the Gauss-Hermite Linear (Slow) Growth Family;
+  * LG_LS, the Gauss-Legendre Linear (Slow) Growth Family;
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          73          99         129         163         201
+       3         257         407         609         871        1201
+       4         737        1303        2177        3463        5281
+       5        1925        3697        6705       11581       19165
+       6        4509        9465       18577       34525       61285
+       7        9837       22249       46993       93637      177525
+       8       20445       49465      111313      235909      474885
+       9       40025      103967      249377      560415     1192425
+      10       75917      209051      531569     1263567     2835589
+
+SPARSE_GRID_OPEN_TEST:
+  Normal end of execution.
+
+11-Sep-2012 17:03:39
+>> 

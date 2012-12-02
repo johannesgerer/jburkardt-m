@@ -1,0 +1,185 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_PROJECT_FUNCTION - Piecewise Linear Finite Element Approximation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_PROJECT_FUNCTION <br> Piecewise Linear Finite Element Approximation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_PROJECT_FUNCTION</b>
+      is a MATLAB program which
+      projects a function W(X,Y), given as a formula, into a given finite element space
+      of piecewise linear triangular elements.
+    </p>
+
+    <p>
+      The result is that the function W(x,y) is approximated by a finite element
+      function U(x,y) formed using piecewise linear triangular elements.
+    </p>
+
+    <p>
+      The computational region is a rectangle, which is divided up into a mesh
+      of triangles using a grid of NX by NY points.
+      For node K at grid point (I,J)
+      in the interior,
+      the associated basis function Vk(x,y) is used to pose the equation:
+      <pre>
+        Integral U(x,y) Vk(x,y) dx = Integral W(x,y) Vk(x,y) dx
+      </pre>
+      while, for node K at grid point (I,J) on the boundary, the associated degree of freedom
+      is determined by the boundary condition
+      <pre>
+        U(x,y) = W(x,y),
+      </pre>
+    </p>
+
+    <p>
+      The conditions define a linear system for the coefficients Uk in the finite
+      element expansion of U(x,y):
+      <pre>
+        U(x,y) = sum ( 1 <= K <= M*N ) Uk * Vk(x,y)
+      </pre>
+    </p>
+
+    <p>
+      The program computes these coefficients, compares U and W pointwise at
+      the nodes, and computes the L2 norms of U, W and U-W.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_PROJECT_FUNCTION</b> is available in
+      <a href = "../../cpp_src/fem2d_project_function/fem2d_project_function.html">a C++ version</a> and
+      <a href = "../../f_src/fem2d_project_function/fem2d_project_function.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_project_function/fem2d_project_function.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which
+      contains examples of 2D FEM files,
+      text files that describe a 2D finite element geometry
+      and associated nodal values;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_pack/fem2d_pack.html">
+      FEM2D_PACK</a>,
+      a MATLAB library which
+      is useful for 2D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_project/fem2d_project.html">
+      FEM2D_PROJECT</a>,
+      a MATLAB program which
+      projects a function F(X,Y), given as a data, into a given finite element space
+      of piecewise linear triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_sample/fem2d_sample.html">
+      FEM2D_SAMPLE</a>,
+      a MATLAB library which
+      evaluates a finite element function defined on an order 3 or order 6 triangulation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_project_function.m">fem2d_project_function.m</a>, the source code;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_project_function_output.txt">fem2d_project_function_output.txt</a>,
+          the output file;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

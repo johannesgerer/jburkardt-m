@@ -1,0 +1,257 @@
+<html>
+
+  <head>
+    <title>
+      DIJKSTRA_SPMD - Parallel Version of Dijkstra's Minimum Distance Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DIJKSTRA_SPMD <br> Parallel Version of Dijkstra's Minimum Distance Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DIJKSTRA_SPMD</b>
+      is a MATLAB program which
+      runs a simple demonstration of Dijkstra's algorithm for determining
+      the minimum distance from one node in a graph to all other nodes,
+      using the SPMD command to carry out the task in parallel.
+    </p>
+
+    <p>
+      The example graph handled by the program has 6 nodes and 8 links,
+      each with a positive length:
+      <pre>
+    N0--15--N2-100--N3
+      \      |     /
+       \     |    /
+        40  20  10
+          \  |  /
+           \ | /
+            N1
+            / \
+           /   \
+          6    25
+         /       \
+        /         \
+      N5----8-----N4
+      </pre>
+    </p>
+
+    <p>
+      Using "Inf" to indicate that there is no link between two nodes,
+      the distance matrix for this graph is:
+      <pre>
+          0   40   15  Inf  Inf  Inf
+         40    0   20   10   25    6
+         15   20    0  100  Inf  Inf
+        Inf   10  100    0  Inf  Inf
+        Inf   25  Inf  Inf    0    8
+        Inf    6  Inf  Inf    8    0
+      </pre>
+    </p>
+
+    <p>
+      Dijkstra's algorithm efficiently determines the length of the shortest
+      path from node 0 to other nodes as:
+      <pre>
+        From 0 to:  0    1    2    3    4    5
+        Distance:   0   35   15   45   49   41
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra/dijkstra.html">
+      DIJKSTRA</a>,
+      a MATLAB program which
+      runs a simple example of Dijkstra's minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../c_src/dijkstra_openmp/dijkstra_openmp.html">
+      DIJKSTRA_OPENMP</a>,
+      a C program which
+      uses OpenMP to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          Edsger Dijkstra,<br>
+          A note on two problems in connexion with graphs,<br>
+          Numerische Mathematik,<br>
+          Volume 1, 1959, pages 269-271.
+        </li>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dijkstra_fun.m">dijkstra_fun.m</a>,
+          carries out Dijkstra's minimum distance algorithm.
+        </li>
+        <li>
+          <a href = "dijkstra_fsu.m">dijkstra_fsu.m</a>,
+          runs an example of Dijkstra's minimum distance algorithm
+          on the FSU HPC cluster.
+        </li>
+        <li>
+          <a href = "dijkstra_spmd.m">dijkstra_spmd.m</a>,
+          runs an example of Dijkstra's minimum distance algorithm.
+          (Issue a MATLABPOOL command first to set up workers)
+        </li>
+        <li>
+          <a href = "initial_distance.m">initial_distance.m</a>,
+          initializes the distance matrix.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dijkstra_spmd_output.txt">dijkstra_spmd_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 March 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,362 @@
+<html>
+
+  <head>
+    <title>
+      TANH_SINH_RULE - Tanh-Sinh Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TANH_SINH_RULE <br> Tanh-Sinh Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TANH_SINH_RULE</b>
+      is a MATLAB program which
+      generates a specific tanh-sinh quadrature rule,
+      based on user input.
+    </p>
+
+    <p>
+      The rule is output as three files for easy use as input
+      to other programs.
+    </p>
+
+    <p>
+      The tanh-sinh quadrature rule is designed for the interval [-1,+1].
+    </p>
+
+    <p>
+      The tanh-sinh quadrature assumes that the integrand has the form:
+      <pre>
+        Integral ( -1 &lt;= x &lt;= +1 ) f(x) dx
+      </pre>
+    </p>
+
+    <p>
+      The tanh-sinh quadrature rule is used as follows:
+      <pre>
+        Integral ( -1 &lt;= x &lt;= +1 ) f(x) dx
+      </pre>
+      is to be approximated by
+      <pre>
+        Sum ( 1 &lt;= i &lt;= order ) w(i) * f(x(i))
+      </pre>
+    </p>
+
+    <p>
+      A tanh-sinh quadrature rule has two parameters, the order N and the
+      stepsize H.  Various choices are available to relate these quantities
+      when making a family of rules.  One choice, which results in a nested family,
+      is to take the K-th rule to have order N = (2^K)-1 and parameter H = 4.0/2^K.
+    </p>
+
+    <p>
+      Another issue with tanh-sinh quadrature is that the weights don't add up
+      to 2.  Particularly for low order rules, the discrepancy is large.  Since
+      these rules are used as families, and we're looking for asymptotic accuracy,
+      the errors in the early rules might not matter; in that case, there is a
+      simple relationship between the weights used in successive elements of the
+      family.  We will take a different view here, and force the weights to add
+      up to 2 by normalizing them.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tanh_sinh_rule</b> ( <i>order</i>, <i>'prefix'</i> )
+      </blockquote>
+      where
+      <dl>
+        <dt>
+          <i>order</i>
+        </dt>
+        <dd>
+          the number of points in the quadrature rule.  A typical value might
+          be 1, 3, 7, 15, 31, 63, 127 or (2^K)-1.
+        </dd>
+        <dt>
+          <i>'prefix'</i>
+        </dt>
+        <dd>
+          a quoted string, the common prefix for the three output files:
+          <ul>
+            <li>
+              <b>prefix_x.txt</b>, will contain the abscissas;
+            </li>
+            <li>
+              <b>prefix_w.txt</b>, will contain the weights;
+            </li>
+            <li>
+              <b>prefix_r.txt</b>, contains the region definition.
+            </li>
+          </ul>
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TANH_SINH_RULE</b> is available in
+      <a href = "../../cpp_src/tanh_sinh_rule/tanh_sinh_rule.html">a C++ version</a> and
+      <a href = "../../f_src/tanh_sinh_rule/tanh_sinh_rule.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tanh_sinh_rule/tanh_sinh_rule.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ccn_rule/ccn_rule.html">
+      CCN_RULE</a>,
+      a MATLAB program which
+      defines a nested Clenshaw Curtis quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev1_rule/chebyshev1_rule.html">
+      CHEBYSHEV1_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 1 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev2_rule/chebyshev2_rule.html">
+      CHEBYSHEV2_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 2 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/clenshaw_curtis_rule/clenshaw_curtis_rule.html">
+      CLENSHAW_CURTIS_RULE</a>,
+      a MATLAB program which
+      defines a Clenshaw Curtis quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gegenbauer_rule/gegenbauer_rule.html">
+      GEGENBAUER_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Gegenbauer quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_hermite_rule/gen_hermite_rule.html">
+      GEN_HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_laguerre_rule/gen_laguerre_rule.html">
+      GEN_LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_rule/hermite_rule.html">
+      HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_legendre/int_exactness_legendre.html">
+      INT_EXACTNESS_LEGENDRE</a>,
+      a MATLAB program which
+      checks the polynomial exactness of a Gauss-Legendre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/jacobi_rule/jacobi_rule.html">
+      JACOBI_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Jacobi quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/laguerre_rule/laguerre_rule.html">
+      LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_rule/legendre_rule.html">
+      LEGENDRE_RULE</a>,
+      a MATLAB program which
+      computes a Gauss-Legendre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/patterson_rule/patterson_rule.html">
+      PATTERSON_RULE</a>,
+      a MATLAB program which
+      computes a Gauss-Patterson quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/power_rule/power_rule.html">
+      POWER_RULE</a>,
+      a MATLAB program which
+      constructs a power rule, that is, a product quadrature rule 
+      from identical 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>,
+      a MATLAB program which
+      constructs a product rule
+      from distinct 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../f_src/quadpack/quadpack.html">
+      QUADPACK</a>,
+      a FORTRAN90 library which
+      contains routines for
+      numerical estimation of integrals in 1D.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>,
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over various 1D intervals or multidimensional hypercubes.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_legendre/quadrature_rules_legendre.html">
+      QUADRATURE_RULES_LEGENDRE</a>,
+      a dataset directory which
+      contains triples of files defining standard Gauss-Legendre
+      quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tanh_quad/tanh_quad.html">
+      TANH_QUAD</a>,
+      a MATLAB library which
+      sets up the tanh quadrature rule;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tanh_sinh_rule.m">tanh_sinh_rule.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The directory QUADRATURE_RULES_TANH_SINH contains a number of tanh-sinh
+      quadrature rules created by this program.  Here is a pointer to the
+      rule of order 31:
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules_tanh_sinh/ts_o31_x.txt">
+          ts_o31_x.txt</a>,
+          the abscissa file;
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules_tanh_sinh/ts_o31_w.txt">
+          ts_o31_w.txt</a>,
+          the weight file;
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules_tanh_sinh/ts_o31_r.txt">
+          ts_o31_r.txt</a>,
+          the region file;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

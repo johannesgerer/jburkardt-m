@@ -1,0 +1,416 @@
+<html>
+
+  <head>
+    <title>
+      XY_IO - XY File Input/Output routines.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      XY_IO <br> XY File Input/Output routines.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>XY_IO</b> 
+      is MATLAB library which
+      reads and writes files in the XY, XYL and XYF formats.
+    </p>
+
+    <p>
+      XY files are a simple way of storing information about sets of points in 2D.
+    </p>
+
+    <p>
+      An XY file has a simple structure.  There are three kinds of records:
+      <ul>
+        <li>
+          COMMENT LINES begin with the character '#' and are ignored;
+        </li>
+        <li>
+          BLANK LINES are ignored;
+        </li>
+        <li>
+          COORDINATE LINES each contain one pair of X, Y coordinates;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Here is an example of an XY file containing 13 points:
+      <pre>
+#  house.xy
+#
+        0.000000        0.000000
+        6.000000        0.000000
+        6.000000        7.000000
+        3.000000       10.000000
+        0.000000        7.000000
+        4.000000        1.000000
+        5.000000        1.000000
+        5.000000        4.000000
+        4.000000        4.000000
+        5.000000        8.000000
+        5.000000       11.000000
+        4.000000       11.000000
+        4.000000        9.000000
+      </pre>
+    </p>
+
+    <p>
+      Of course, in many cases, we would like to describe LINES between the points.
+      We can add this information by including a second file, called an XYL file,
+      which consists of a string of point indices.  A line is drawn from one point
+      to the next, and so on for each point index in a record.  Thus, an XYL file
+      associated with the above XY file might be:
+      <pre>
+#  house.xyl
+#
+ 1 2 3 4 5 1
+ 6 7 8 9 6
+ 10 11 12 13
+      </pre>
+    </p>
+
+    <p>
+      We might also like to describe FACES defined by the points.
+      We can add this information by including a file, called an XYF file,
+      which consists of a string of point indices.  A face is defined by
+      listing in counterclockwise order the vertices that lie on it.
+      The first vertex is not repeated
+      as the final vertex. Thus, an XYF file
+      associated with the above XY file might be:
+      <pre>
+#  house.xyf
+#
+ 1 2 3 4 5
+ 6 7 8 9
+ 10 11 12 13
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>XY_IO</b> is available in 
+      <a href = "../../cpp_src/xy_io/xy_io.html">a C++ version</a> and 
+      <a href = "../../f_src/xy_io/xy_io.html">a FORTRAN90 version</a> and 
+      <a href = "../../m_src/xy_io/xy_io.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/grf_to_xyl/grf_to_xyl.html">
+      GRF_TO_XYL</a>, 
+      a FORTRAN90 program which
+      converts information describing the adjacency and embedding of an
+      abstract graph from GRF to XYL format.
+    </p>
+
+    <p>
+      <a href = "../../data/xy/xy.html">
+      XY</a>, 
+      a data directory of examples of XY files,
+      a simple 2D graphics point format;
+    </p>
+
+    <p>
+      <a href = "../../m_src/xy_display/xy_display.html">
+      XY_DISPLAY</a>,
+      a MATLAB program which 
+      reads a set of 2D points from
+      a file and plots them in a the MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xy_display_opengl/xy_display_opengl.html">
+      XY_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads an XY file of 2D point coordinates, and displays
+      an image of those points using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/xyf/xyf.html">
+      XYF</a>, 
+      a data directory which
+      contains examples of XYF files,
+      a simple 2D graphics point and face format;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyf_display/xyf_display.html">
+      XYF_DISPLAY</a>,
+      a MATLAB program which
+      reads XYF information defining points and faces in 2D, and displays
+      an image using MATLAB.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyf_display_opengl/xyf_display_opengl.html">
+      XYF_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads XYF information defining points and faces in 2D, and displays
+      an image using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/xyl/xyl.html">
+      XYL</a>, 
+      a data directory which
+      contains examples of XYL files,
+      a simple 2D graphics point and line format;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyl_display/xyl_display.html">
+      XYL_DISPLAY</a>,
+      a MATLAB program which
+      reads XYL information defining points and lines in 2D, and displays
+      an image using MATLAB.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyl_display_opengl/xyl_display_opengl.html">
+      XYL_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads XYL information defining points and lines in 2D, and displays
+      an image using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/xyz_io/xyz_io.html">
+      XYZ_IO</a>,
+      a MATLAB library which
+      reads and writes XYZ files, a simple 3D graphics point format.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>, 
+          returns the number of "words" in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "xy_data_print.m">xy_data_print.m</a>, 
+          prints the data of an XY file.
+        </li>
+        <li>
+          <a href = "xy_data_read.m">xy_data_read.m</a>, 
+          reads the data of an XY file.
+        </li>
+        <li>
+          <a href = "xy_data_write.m">xy_data_write.m</a>, 
+          writes the data of an XY file.
+        </li>
+        <li>
+          <a href = "xy_example.m">xy_example.m</a>, 
+          sets up sample XY data.
+        </li>
+        <li>
+          <a href = "xy_header_print.m">xy_header_print.m</a>, 
+          prints the header of an XY file.
+        </li>
+        <li>
+          <a href = "xy_header_read.m">xy_header_read.m</a>, 
+          reads the header of an XY file.
+        </li>
+        <li>
+          <a href = "xy_header_write.m">xy_header_write.m</a>, 
+          writes the header of an XY file.
+        </li>
+        <li>
+          <a href = "xy_read.m">xy_read.m</a>, 
+          reads an XY file.
+        </li>
+        <li>
+          <a href = "xy_write.m">xy_write.m</a>, 
+          writes an XY file.
+        </li>
+        <li>
+          <a href = "xy_write_test.m">xy_write_test.m</a>, 
+          tests the XY write routines.
+        </li>
+        <li>
+          <a href = "xyf_data_print.m">xyf_data_print.m</a>, 
+          prints the data of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_data_read.m">xyf_data_read.m</a>, 
+          reads the data of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_data_write.m">xyf_data_write.m</a>, 
+          writes the data of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_example.m">xyf_example.m</a>, 
+          sets up sample XYF data.
+        </li>
+        <li>
+          <a href = "xyf_example_size.m">xyf_example_size.m</a>, 
+          sizes the sample XYF data.
+        </li>
+        <li>
+          <a href = "xyf_header_print.m">xyf_header_print.m</a>, 
+          prints the header of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_header_read.m">xyf_header_read.m</a>, 
+          reads the header of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_header_write.m">xyf_header_write.m</a>, 
+          writes the header of an XYF file.
+        </li>
+        <li>
+          <a href = "xyf_write.m">xyf_write.m</a>, 
+          writes an XYF file.
+        </li>
+        <li>
+          <a href = "xyl_data_print.m">xyl_data_print.m</a>, 
+          prints the data of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_data_read.m">xyl_data_read.m</a>, 
+          reads the data of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_data_write.m">xyl_data_write.m</a>, 
+          writes the data of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_example.m">xyl_example.m</a>, 
+          sets up sample XYL data.
+        </li>
+        <li>
+          <a href = "xyl_example_size.m">xyl_example_size.m</a>, 
+          sizes the sample XYL data.
+        </li>
+        <li>
+          <a href = "xyl_header_print.m">xyl_header_print.m</a>, 
+          prints the header of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_header_read.m">xyl_header_read.m</a>, 
+          reads the header of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_header_write.m">xyl_header_write.m</a>, 
+          writes the header of an XYL file.
+        </li>
+        <li>
+          <a href = "xyl_write.m">xyl_write.m</a>, 
+          writes an XYL file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "xy_io_test.m">xy_io_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "xy_io_test_output.txt">xy_io_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+        <li>
+          <a href = "xy_io_test01.m">xy_io_test01.m</a>,
+          demonstrates the use of XY_WRITE routines.
+        </li>
+        <li>
+          <a href = "xy_io_test02.m">xy_io_test02.m</a>,
+          demonstrates the use of XY_READ routines.
+        </li>
+        <li>
+          <a href = "xy_io_test03.m">xy_io_test03.m</a>,
+          demonstrates the use of XYL_WRITE routines.
+        </li>
+        <li>
+          <a href = "xy_io_test04.m">xy_io_test04.m</a>,
+          demonstrates the use of XYL_READ routines.
+        </li>
+        <li>
+          <a href = "xy_io_test05.m">xy_io_test05.m</a>,
+          demonstrates the use of XYF_WRITE routines.
+        </li>
+        <li>
+          <a href = "xy_io_test06.m">xy_io_test06.m</a>,
+          demonstrates the use of XYF_READ routines.
+        </li>
+        <li>
+          <a href = "xy_io_test_01.xy">xy_io_test_01.xy</a>,
+          an XY file created by the example program.
+        </li>
+        <li>
+          <a href = "xy_io_test_02.xy">xy_io_test_02.xy</a>,
+          an XY file created by the example program.
+        </li>
+        <li>
+          <a href = "house.xy">house.xy</a>,
+          an XY file of points created by the example program.
+        </li>
+        <li>
+          <a href = "house.xyl">house.xyl</a>,
+          an XYL file of lines created by the example program.
+        </li>
+        <li>
+          <a href = "annulus.xy">annulus.xy</a>,
+          an XY file of points created by the example program.
+        </li>
+        <li>
+          <a href = "annulus.xyf">annulus.xyf</a>,
+          an XYF file of lines created by the example program.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 January 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,281 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_PREDATOR_PREY - 1D Predator Prey Simulation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_PREDATOR_PREY <br> Predator Prey Simulation <br> in 1D
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_PREDATOR_PREY</b> 
+      is a MATLAB program which 
+      uses finite
+      difference methods for the dynamics of predator-prey interactions
+      in 1 spatial dimension and time,
+      by Marcus Garvey.
+    </p>
+
+    <p>
+      The MATLAB code is mostly self explanatory, with the names of
+      variables and parameters corresponding to the symbols used in 
+      the finite difference methods described in the paper. 
+    </p>
+
+    <p>
+      The code employs the sparse matrix facilities of MATLAB when solving
+      the linear systems, which provides advantages in both matrix storage 
+      and computation time. The code is <it>vectorized</it> to minimize the
+      number of "for-loops" and conditional "if-then-else" statements, 
+      which again helps speed up the computations. 
+    </p>
+
+    <p>
+      The linear systems are solved using MATLAB's built in function
+      <tt>lu.m</tt>.   We remark that a pure C or
+      FORTRAN code is likely to be faster than our codes, but with the
+      disadvantage of much greater complexity and length.
+    </p>
+
+    <p>
+      The user is prompted for all the necessary parameters, time and
+      space-steps, and initial data.  Due to a limitation in MATLAB, vector
+      indices cannot be equal to zero; thus the nodal indices
+      <tt>0,...,J</tt> are shifted up one unit to give <tt>1,...,(J+1)</tt>
+      so <b>x<sub>i</sub>=(i-1)*h + a</b>.  
+    </p>
+
+    <p>
+      The program is structured as follows:
+      <ul>
+        <li>
+          Lines 4-12: User prompted for model parameters.
+        </li>
+        <li>
+          Lines 14-15: User prompted for initial data as a string
+          (allowable formats discussed below).
+        </li>
+        <li>
+          Lines 17-20: Calculation of some constants.
+        </li>
+        <li>
+          Lines 22-25: Initialization of matrices.
+        </li>
+        <li>
+          Lines 27-29: Initial data assigned numerically.
+        </li>
+        <li>
+          Lines 31-38: Assembly of matrices <b>L</b>, <b>B<sub>1</sub></b>, 
+          and <b>B<sub>2</sub></b>.
+        </li>
+        <li>
+          Lines 40-41: LU factorization of <b>B<sub>1</sub></b> and
+          <b>B<sub>2</sub></b>.
+        </li>
+        <li>
+          Lines 43-59: Solving the linear system repeatedly up-to time 
+          level <b>t<sub>N</sub>=T</b> using forward and backward substitution. 
+        </li>
+        <li>
+          Line 61: Numerical solution plotted for <b>u</b> and <b>v</b> at 
+          time <b>T</b>. 
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The initial data functions are entered by the user as a string, which 
+      can take several different formats. Functions are evaluated on an 
+      element by element basis, where <b>x=(x<sub>1</sub>,...,x<sub>J+1</sub>)</b>
+      is a vector of grid points, and so a "." must precede each arithmetic
+      operation between vectors.  The exception to this rule is when applying
+      MATLAB's intrinsic functions where there is no ambiguity.  Some arbitrary
+      examples with an acceptable format include the following:
+      <pre>
+        >> Enter initial prey function u0(x)  <b>0.2*exp(-(x-100).^2)</b>
+        >> Enter initial predator function v0(x)  <b>0.4*x./(1+x)</b>
+      </pre>
+      or,
+      <pre>
+        >> Enter initial prey function u0(x)  <b>0.3+(x-1200).*(x-2800)</b>
+        >> Enter initial predator function v0(x)  <b>0.4</b>
+      </pre>
+      This last example shows that for a constant solution vector we need
+      only enter a single number. It is also possible to enter functions 
+      that are piecewise defined by utilizing MATLAB's logical operators
+      <b>&</b>, ('AND'), <b>|</b>, ('OR'), and <b>~</b> (`NOT'), applied to
+      matrices. For example, on a domain <b>Omega=[0,200]</b>, to choose 
+      an initial prey density that is equal to 0.4 for 
+      90&lt;=x<sub>i</sub>&lt;=110, and equal to 0.1 otherwise, the user inputs:
+      <pre>
+        >> Enter initial prey function u0(x)  0.4*((x>90)&(x<110))+0.1*((x<=90)|(x>=110))
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_PREDATOR_PREY</b> is available in 
+      <a href = "../../f77_src/fd1d_predator_prey/fd1d_predator_prey.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_predator_prey/fd1d_predator_prey.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd_predator_prey/fd_predator_prey.html">
+      FD_PREDATOR_PREY</a>, 
+      a MATLAB program which
+      solves a pair of predator prey ODE's using a finite difference approximation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous time-dependent Burgers equation 
+      in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey_plot/fd1d_predator_prey_plot.html">
+      FD1D_PREDATOR_PREY_PLOT</a>,
+      a MATLAB program which
+      displays the solution components computed by FD1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_wave/fd1d_wave.html">
+      FD1D_WAVE</a>, 
+      a MATLAB program which 
+      applies the finite difference method to solve the time-dependent
+      wave equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_predator_prey/fd2d_predator_prey.html">
+      FD2D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for a predator-prey system
+      with spatial variation in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_predator_prey/ode_predator_prey.html">
+      ODE_PREDATOR_PREY</a>, 
+      a MATLAB program which
+      solves a pair of predator prey differential equations using MATLAB's ODE23 solver.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Marcus Garvie
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marcus Garvie,<br>
+          Finite-Difference Schemes for Reaction-Diffusion Equations
+          Modeling Predator-Prey Interactions in MATLAB,<br>
+          Bulletin of Mathematical Biology,<br>
+          Volume 69, Number 3, 2007, pages 931-956.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_predator_prey.m">fd1d_predator_prey.m</a>,
+          the code for the one dimensional problem.
+        </li>
+        <li>
+          <a href = "fd1d_predator_prey_input.txt">fd1d_predator_prey_input.txt</a>,
+          a text file containing the input that a user might enter
+          to define a simple problem.
+        </li>
+        <li>
+          <a href = "fd1d_predator_prey_output.txt">fd1d_predator_prey_output.txt</a>,
+          printed output from a run of the program with the sample input.
+        </li>
+        <li>
+          <a href = "fd1d_predator_prey.png">fd1d_predator_prey.png</a>,
+          a PNG file containing an image of the 
+          <b>u</b> and <b>v</b> components of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 February 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

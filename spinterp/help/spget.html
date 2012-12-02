@@ -1,0 +1,86 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spget :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spget</h1>
+		  Get sparse grid interpolation <code>OPTIONS</code> parameters.
+		<h2>Syntax</h2>
+			<code>VAL = spget(OPTIONS, 'NAME')</code><br>
+			<code>VAL = spget(OPTIONS, 'NAME', DEFAULT)</code><br>
+		<h2>Description</b></h2>
+		  <code>VAL = spget(OPTIONS, 'NAME')</code> Extracts the value of the property <code>NAME</code> from the sparse grid options structure <code>OPTIONS</code>, returning an empty matrix if the property value is not specified in <code>OPTIONS</code>. It is sufficient to type only the leading characters that uniquely identify the property. Case is ignored for property names. <code>[]</code> is a valid <code>OPTIONS</code> argument.
+	  <p>
+      <code>VAL = spget(OPTIONS, 'NAME', DEFAULT)</code> Extracts the named property as above, but returns <code>VAL = DEFAULT</code> if the named property is not specified in <code>OPTIONS</code>.
+		<h2>Examples</h2>
+		Assume that an options structure has been created using the <tt>spset</tt> command:
+         </p><pre class="codeinput">options = spset(<span class="string">'GridType'</span>, <span class="string">'Maximum'</span>, <span class="string">'MaxDepth'</span>, 4)
+</pre><pre class="codeoutput">
+options = 
+              GridType: 'Maximum'
+                RelTol: []
+                AbsTol: []
+            Vectorized: []
+              MinDepth: []
+              MaxDepth: 4
+     VariablePositions: []
+       NumberOfOutputs: []
+           PrevResults: []
+       FunctionArgType: []
+    KeepFunctionValues: []
+              KeepGrid: []
+     DimensionAdaptive: []
+             MinPoints: []
+             MaxPoints: []
+        DimadaptDegree: []
+         SparseIndices: []
+
+</pre><p>Using <tt>spget</tt>, we can extract the contents of the structure:
+         </p><pre class="codeinput">gridType = spget(options, <span class="string">'GridType'</span>)
+</pre><pre class="codeoutput">
+gridType =
+Maximum
+</pre><p>By using the third argument, we can set a default in case the according property of the structure is empty:</p><pre class="codeinput">minDepth = spget(options, <span class="string">'MinDepth'</span>)
+minDepth = spget(options, <span class="string">'MinDepth'</span>, 2)
+</pre><pre class="codeoutput">
+minDepth =
+     []
+
+minDepth =
+     2
+</pre><p>Note that the default argument has no effect if the accessed property contains a value.</p><pre class="codeinput">gridType = spget(options, <span class="string">'GridType'</span>, <span class="string">'Clenshaw-Curtis'</span>)
+</pre><pre class="codeoutput">
+gridType =
+Maximum
+</pre>
+		<h2>See Also</h2>
+		  <a href="spset.html"><code>spset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

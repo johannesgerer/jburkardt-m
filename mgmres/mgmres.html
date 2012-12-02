@@ -1,0 +1,338 @@
+<html>
+
+  <head>
+    <title>
+      MGMRES - Restarted GMRES solver for sparse linear systems
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MGMRES <br> Restarted GMRES solver for sparse linear systems
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MGMRES</b> 
+      is a MATLAB library which 
+      applies a simple restarted GMRES iteration
+      to a sparse linear system stored in a simple format,
+      by Lili Ju.
+    </p>
+
+    <p>
+      One matrix format used is the <b>DSP</b> or "sparse triplet" format,
+      which simply stores <b>NZ_NUM</b>, the number of
+      nonzeros, and stores the K-th nonzero matrix entry as
+      <ul>
+        <li>
+          <b>A(K)</b>, the value of the entry;
+        </li>
+        <li>
+          <b>IA(K)</b>, the row of the entry;
+        </li>
+        <li>
+          <b>JA(K)</b>, the column of the entry;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Another matrix format used is the <b>CR</b> or 
+      "sparse compressed row" format, which is similar to the sparse
+      triplet format except that it the vector of row indices is
+      compressed to a vector of length N+1 which points to the beginning
+      of the set of entries for each row.
+      <ul>
+        <li>
+          <b>A(1:NZ_NUM)</b>, the value of the entry;
+        </li>
+        <li>
+          <b>IA(1:N+1)</b>, row I values occur in entries IA(I) to IA(I+1)-1;
+        </li>
+        <li>
+          <b>JA(1:NZ_NUM)</b>, the column of the entry;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MGMRES</b> is available in 
+      <a href = "../../c_src/mgmres/mgmres.html">a C version</a> and
+      <a href = "../../cpp_src/mgmres/mgmres.html">a C++ version</a> and
+      <a href = "../../f77_src/mgmres/mgmres.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/mgmres/mgmres.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/mgmres/mgmres.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/csparse/csparse.html">
+      CSPARSE</a>,
+      a C library which
+      implements iterative methods for solving linear systems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/dlap/dlap.html">
+      DLAP</a>,
+      a FORTRAN90 library which
+      implements iterative methods for solving linear systems.
+    </p>
+
+    <p>
+      <a href = "../../data/dsp/dsp.html">
+      DSP</a>,
+      a data directory which 
+      contains a description and examples of the DSP format for storing sparse matrices,
+      which is used by the FORTRAN90 version of MGMRES.
+    </p>
+
+    <p>
+      <a href = "../../datasets/hbsmc/hbsmc.html">
+      HBSMC</a>,
+      a dataset directory which
+      contains a collection of large sparse matrices stored in the
+      Harwell-Boeing format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/kelley/kelley.html">
+      KELLEY</a>,
+      a MATLAB library which
+      implements iterative methods for linear
+      and nonlinear equations, by Tim Kelley;
+    </p>
+
+    <p>
+      <a href = "../../f_src/linpack/linpack.html">
+      LINPACK</a>,
+      a FORTRAN90 library which
+      carries out direct methods for solving linear systems.
+    </p>
+
+    <p>
+      <a href = "../../data/mm/mm.html">
+      MM</a>,
+      a data directory which 
+      contains a description and examples of the Matrix Market format 
+      for storing matrices.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cc/sparse_cc.html">
+      SPARSE_CC</a>,
+      a data directory which
+      contains a description and examples of the CC format,
+      ("compressed column") for storing a sparse matrix,
+      including a way to write the matrix as a set of three files.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cr/sparse_cr.html">
+      SPARSE_CR</a>,
+      a data directory which
+      contains a description and examples of the CR format,
+      ("compressed row") for storing a sparse matrix,
+      including a way to write the matrix as a set of three files.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sparsekit/sparsekit.html">
+      SPARSEKIT</a>,
+      a FORTRAN90 library which
+      implements operations on sparse matrices, including conversion 
+      between various formats.
+    </p>
+
+    <p>
+      <a href = "../../data/st/st.html">
+      ST</a>,
+      a data directory which 
+      contains a description and examples of the ST format for storing sparse matrices,
+      which used by the C and C++ versions of MGMRES.
+    </p>
+
+    <p>
+      <a href = "../../c_src/super_lu/super_lu.html">
+      SUPER_LU</a>,
+      a C program which 
+      applies a fast direct solution method to a sparse linear system.
+    </p>
+
+    <p>
+      <a href = "../../f_src/templates/templates.html">
+      TEMPLATES</a>,
+      a FORTRAN90 library which
+      carries out simple versions of various iterative solvers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which 
+      defines test matrices.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original C version by Lili Ju, Mathematics Department, University of South Carolina;
+      Matlab version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Richard Barrett, Michael Berry, Tony Chan, James Demmel,
+          June Donato, Jack Dongarra, Victor Eijkhout, Roidan Pozo,
+          Charles Romine, Henk van der Vorst,<br>
+          Templates for the Solution of Linear Systems:<br>
+          Building Blocks for Iterative Methods,<br>
+          SIAM, 1994,<br>
+          ISBN: 0898714710,<br>
+          LC: QA297.8.T45.
+        </li>
+        <li>
+          Tim Kelley,<br>
+          Iterative Methods for Linear and Nonlinear Equations,<br>
+          SIAM, 2004,<br>
+          ISBN: 0898713528,<br>
+          LC: QA297.8.K45.
+        </li>
+        <li>
+          Yousef Saad,<br>
+          Iterative Methods for Sparse Linear Systems,<br>
+          Second Edition,<br>
+          SIAM, 20003,<br>
+          ISBN: 0898715342,<br>
+          LC: QA188.S17.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "atx_cr.m">atx_cr.m</a> 
+          computes A'*x for a matrix stored in sparse compressed row form.
+        </li>
+        <li>
+          <a href = "atx_st.m">atx_st.m</a>, 
+          computes A'*x for a matrix stored in sparse triplet form..
+        </li>
+        <li>
+          <a href = "ax_cr.m">ax_cr.m</a> 
+          computes A*x for a matrix stored in sparse compressed row form.
+        </li>
+        <li>
+          <a href = "ax_st.m">ax_st.m</a>, 
+          computes A*x for a matrix stored in sparse triplet form..
+        </li>
+        <li>
+          <a href = "diagonal_pointer_cr.m">diagonal_pointer_cr.m</a>, 
+          finds diagonal entries in a sparse compressed row matrix.
+        </li>
+        <li>
+          <a href = "ilu_cr.m">ilu_cr.m</a>, 
+          computes the incomplete LU preconditioner.
+        </li>
+        <li>
+          <a href = "lus_cr.m">lus_cr.m</a>, 
+          applies the incomplete LU preconditioner.
+        </li>
+        <li>
+          <a href = "mgmres_st.m">mgmres_st.m</a>, carries out the
+          restarted GMRES algorithm for a matrix in sparse triplet form.
+        </li>
+        <li>
+          <a href = "mult_givens.m">mult_givens.m</a>, 
+          applies a Givens rotation.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "rearrange_cr.m">rearrange_cr.m</a>, 
+          sorts a sparse compressed row matrix.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mgmres_test.m">mgmres_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "mgmres_test01.m">mgmres_test01.m</a>,
+          tests MGMRES_ST on the -1,2,-1 matrix.
+        </li>
+        <li>
+          <a href = "mgmres_test02.m">mgmres_test02.m</a>,
+          tests MGMRES_ST on a more interesting matrix.
+        </li>
+        <li>
+          <a href = "mgmres_test_output.txt">mgmres_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 March 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

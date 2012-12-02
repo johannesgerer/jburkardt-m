@@ -1,0 +1,197 @@
+<html>
+
+  <head>
+    <title>
+      SIMPLEX_COORDINATES - Coordinates of Regular Simplex in M Dimensions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SIMPLEX_COORDINATES <br> Coordinates of Regular Simplex in M Dimensions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SIMPLEX_COORDINATES</b>
+      is a MATLAB library which
+      computes the Cartesian coordinates of the vertices of a regular
+      simplex in M dimensions.
+    </p>
+
+    <p>
+      There is a straightforward but tedious method for computing these
+      coordinates, coded in SIMPLEX_COORDINATES1, based on the idea of
+      selecting the first coordinate to be (1,0,0,...0), and noting
+      that the dot product with vectors 2 through N+1 must be -1/N,
+      which means the first row and first column of the coordinate matrix
+      are done.  We can then move to entry (2,2), assume the coordinates
+      below it are 0, and set its value by requiring that the sum of the
+      squares of the (2,1) and (2,2) entries must be 1. Setting the (2,2)
+      entry then allows us to determine the rest of row 2 by the same
+      dot product criterion, and we proceed in this way til we have
+      completed the matrix.
+    </p>
+
+    <p>
+      A simpler algorithm, in SIMPLEX_COORDINATES2, notes that the identity
+      matrix will almost work for the first N vertices.  Choose the last
+      vertex by assuming all its entries are equal to some constant A, and 
+      that its distance from any other vertex must be sqrt ( 2 ).  This 
+      determines that (A-1)^2 + (N-1)*A^2 = 2, from which we get the value of
+      A as (1-sqrt(N+1))/N.  To clean things up, we compute the centroid C
+      of these vertices, and recenter the simplex around the origin.
+      Then we determine the distance S of one vertex to the origin, and
+      rescale so that this becomes 1.  The coding is simpler, and there
+      is much less chance for the accumulation of numerical error.  Plus
+      I thought of this one myself.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SIMPLEX_COORDINATES</b> is available in
+      <a href = "../../c_src/simplex_coordinates/simplex_coordinates.html">a C version</a> and
+      <a href = "../../cpp_src/simplex_coordinates/simplex_coordinates.html">a C++ version</a> and
+      <a href = "../../f77_src/simplex_coordinates/simplex_coordinates.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/simplex_coordinates/simplex_coordinates.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/simplex_coordinates/simplex_coordinates.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa299/asa299.html">
+      ASA299</a>,
+      a MATLAB library which
+      computes the lattice points in an M-dimensional simplex;
+      this is Applied Statistics Algorithm 299;
+    </p>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      performs geometric calculations in 2, 3 and M-dimensional space.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gm_rule/gm_rule.html">
+      GM_RULE</a>,
+      a MATLAB library which
+      defines Grundmann-Moeller rules for quadrature over a triangle, tetrahedron, 
+      or general M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_data/random_data.html">
+      RANDOM_DATA</a>,
+      a MATLAB library which
+      generates sample points for 
+      various probability distributions, spatial dimensions, and geometries,
+      including the M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/simpack/simpack.html">
+      SIMPACK</a>,
+      a FORTRAN77 library which 
+      approximates the integral of a function over an M-dimensional simplex.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>,
+          computes the factorial of N.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>,
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "simplex_coordinates1.m">simplex_coordinates1.m</a>,
+          computes the Cartesian coordinates of simplex vertices.
+        </li>
+        <li>
+          <a href = "simplex_coordinates2.m">simplex_coordinates2.m</a>,
+          computes the Cartesian coordinates of simplex vertices.
+        </li>
+        <li>
+          <a href = "simplex_volume.m">simplex_volume.m</a>,
+          computes the volume of a simplex.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "simplex_coordinates_test.m">simplex_coordinates_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "simplex_coordinates_test01.m">simplex_coordinates_test01.m</a>,
+          calls SIMPLEX_COORDINATES1.
+        </li>
+        <li>
+          <a href = "simplex_coordinates_test02.m">simplex_coordinates_test02.m</a>,
+          calls SIMPLEX_COORDINATES2.
+        </li>
+        <li>
+          <a href = "simplex_coordinates_test_output.txt">simplex_coordinates_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

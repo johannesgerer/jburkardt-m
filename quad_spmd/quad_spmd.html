@@ -1,0 +1,435 @@
+<html>
+
+  <head>
+    <title>
+      QUAD_SPMD - SPMD (Single Program/Multiple Data) Quadrature
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      QUAD_SPMD <br> SPMD (Single Program/Multiple Data) Quadrature
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>QUAD_SPMD</b>
+      is a MATLAB program which
+      uses the <b>SPMD</b> (single program, multiple data) command to estimate
+      an integral using quadrature.
+    </p>
+
+    <p>
+      The <b>SPMD</b> command allows a programmer to set up parallel computations
+      that require more user control than the simple <b>parfor</b> command.
+      In particular, users familiar with MPI will see many features that are
+      similar to that parallel programming model, including the ability to
+      send and receive messages.  (Messages will NOT be exhibited in this
+      simple example, however!)
+    </p>
+
+    <p>
+      The algorithm carried out estimates the integral of a function f(x)
+      from 0 to 1 by the trapezoidal rule:
+      <pre>
+        Integral ( a <= x <= b ) f(x) dx = ( b - a ) / ( 2 * ( n - 1 ) )
+          * ( f(x1) + 2*f(x2) + 2*f(x3) + ... + 2*f(xn-2) + 2*f(xn-1) + f(xn) )
+      </pre>
+      where xi is the i-th point equally spaced between a and b, with the
+      endpoints included.
+    </p>
+
+    <p>
+      It's clear that this calculation can be done in parallel, and in fact,
+      simply by defining appropriate values of ai and bi, we can have
+      parallel process i carry out the trapezoidal rule over [ai,bi] and
+      sum the results to get the answer.
+    </p>
+
+    <p>
+      This example demonstrates how MATLAB's SPMD facility can be used to
+      implement this parallel calculation.  No attempt is made to compare
+      the timings of the parallel code to a sequential calculation.  The point
+      here is simply the mechanics of setting up an SPMD calculation, and
+      showing what you can expect.
+    </p>
+
+    <p>
+      Several points are worth mentioning:
+      <ul>
+        <li>
+          Parallel sections of the code begin with the <b>spmd</b> statement,
+          and end with an <b>end</b> statement.  The computations in these
+          blocks occur on the MATLAB workers.  The client sits idly and "watches".
+        </li>
+        <li>
+          The <b>matlabpool</b> parameter of the <b>batch</b> command defines a number of workers.
+          Each <b>spmd</b> block brings these workers into activity.
+          Each worker has access to the variable <b>numlabs</b>, which
+          contains the number of workers.  Each worker has a unique value
+          of the variable <b>labindex</b>, between 1 and <b>numlabs</b>.
+        </li>
+        <li>
+          Any variable defined by the client is "visible" to the workers and
+          can be used on the right hand side of equations within the <b>spmd</b> blocks.
+        </li>
+        <li>
+          Any variable defined by the workers is a "composite" variable.  If a variable
+          called <b>X</b> is defined by the workers, then each worker has its own
+          value, and the set of values is accessible by the client, using the worker's
+          index.  Thus <b>X{1}</b> is the value of <b>X</b> computed by worker 1.
+        </li>
+        <li>
+          A program can have several <b>spmd</b> blocks.  If the program completes
+          an <b>spmd</b> block, carries out some commands in the client program,
+          and then enters another <b>spmd</b> block, then all the variables defined
+          during the previous <b>spmd</b> block still exist.  The data that was
+          on worker 1 is still there, for instance.  It is simply as though
+          each worker was "paused" while the client did some work.
+        </li>
+        <li>
+          Workers cannot directly see each other's variables.  Communication from
+          one worker to another can be done through the client.  However, a limited
+          number of special operators are available, that can be used within
+          <b>spmd</b> blocks, which combine variables.  In particular, the command
+          <b>gplus</b> sums the values of a variable that exists on all the workers,
+          and returns to each worker the value of that sum.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        function value = quad_fun ( n )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          n, is the number of points to use;
+        </li>
+        <li>
+          value, is the estimated integral.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the Ithaca cluster, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the FSU HPC cluster, using the <b>fsuClusterMatlab</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>
+      is a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>
+      is a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/knapsack_tasks/knapsack_tasks.html">
+      KNAPSACK_TASKS</a>,
+      a MATLAB program which
+      solves a knapsack problem by subdividing it into tasks, each of
+      which is carried out as a separate program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>
+      is a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      examples which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>
+      is a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>
+      is a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>
+      is a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>
+      is a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_serial/quad_serial.html">
+      QUAD_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral using a quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>
+      is a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>
+      is a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "quad_fun.m">quad_fun.m</a>,
+          a MATLAB function which returns an estimate for an integral,
+          using a given number of points.
+        </li>
+        <li>
+          <a href = "quad_pool.m">quad_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "quad_script.m">quad_script.m</a>,
+          a MATLAB script file which simply invokes the function with
+          N = 10000 points.
+        </li>
+        <li>
+          <a href = "quad_batch_local.m">quad_batch_local.m</a>,
+          a batch command to run the job indirectly on the local system,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "quad_batch_ithaca.m">quad_batch_ithaca.m</a>,
+          a batch command to run the job indirectly on the Ithaca cluster,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "quad_fsu.m">quad_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

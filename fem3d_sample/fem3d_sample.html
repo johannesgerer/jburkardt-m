@@ -1,0 +1,239 @@
+<html>
+
+  <head>
+    <title>
+      FEM3D_SAMPLE - Evaluate a Finite Element Function of a 3D Argument
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM3D_SAMPLE <br>  Evaluate a Finite Element Function of a 3D Argument
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM3D_SAMPLE</b> 
+      is a MATLAB program which
+      can evaluate a finite element function of a 3D argument.
+    </p>
+
+    <p>
+      The current version of the program can only handle tetrahedral finite element
+      meshes using linear basis functions.
+    </p>
+
+    <p>
+      The current version of the program uses a NAIVE search algorithm to locate
+      points within the mesh.  It is intended that this search algorithm be replaced
+      by a Delaunay search.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem3d_sample</b> ( <i>'fem_prefix'</i>, <i>'sample_prefix'</i> )
+      </blockquote>
+      where <i>'fem_prefix'</i> is the common prefix for the FEM files:
+      <ul>
+        <li>
+          <i>'fem_prefix'</i><b>_nodes.txt</b>,    the node coordinates.
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_elements.txt</b>, the nodes that make up each element;
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_values.txt</b>,   the values defined at each node.
+        </li>
+      </ul>
+      and <i>'sample_prefix'</i> is the common prefix for the SAMPLE files,
+      for which the node file is input, and the values file is created by the program:
+      <ul>
+        <li>
+          <i>'sample_prefix'</i><b>_nodes.txt</b>,  the node coordinates where samples are desired.
+        </li>
+        <li>
+          <i>'sample_prefix'</i><b>_values.txt</b>, the values computed at each sample node.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM3D_SAMPLE</b> is available in
+      <a href = "../../cpp_src/fem3d_sample/fem3d_sample.html">a C++ version</a> and
+      <a href = "../../f77_src/fem3d_sample/fem3d_sample.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem3d_sample/fem3d_sample.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem3d_sample/fem3d_sample.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_io/fem_io.html">
+      FEM_IO</a>,
+      a MATLAB library which 
+      reads or writes node, element and data files defining a finite element model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_sample/fem1d_sample.html">
+      FEM1D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of one variable,
+      defined by FEM files,
+      returning interpolated values at the sample points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_sample/fem2d_sample.html">
+      FEM2D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of 2 variables
+      defined by <a href = "../../data/fem/fem.html">FEM files</a>,
+      returning interpolated values at the sample points.
+    </p>
+
+    <p>
+      <a href = "../../data/fem3d/fem3d.html">
+      FEM3D</a>, 
+      a data directory which
+      contains examples of 3D FEM files, 
+      three text files that describe a 3D finite element geometry;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem3d_pack/fem3d_pack.html">
+      FEM3D_PACK</a>,
+      a MATLAB library which
+      contains utilities for 3D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem3d_project/fem3d_project.html">
+      FEM3D_PROJECT</a>, 
+      a MATLAB program which
+      projects a function F(X,Y,Z), given as a data, into a given finite element space 
+      of piecewise linear tetrahedral elements.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem3d_sample.m">fem3d_sample.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SQ</b> is FEM data for the function f(x,y,z)=x^2+2*y^2-z^2, on a 5x5x5 grid
+      of nodes in the cube [0,4]x[0,4]x[0,4], organized into linear linear tetrahedrons.  
+      The sample data seeks the values of this function on a 4x4x4 
+      evenly spaced grid.
+      <ul>
+        <li>
+          <a href = "fem_sq_nodes.txt">fem_sq_nodes.txt</a>,
+          defines the FEM nodes.
+        </li>
+        <li>
+          <a href = "fem_sq_elements.txt">fem_sq_elements.txt</a>,
+          defines the FEM elements.
+        </li>
+        <li>
+          <a href = "fem_sq_values.txt">fem_sq_values.txt</a>,
+          defines the FEM nodal values.
+        </li>
+        <li>
+          <a href = "sample_sq_nodes.txt">sample_sq_nodes.txt</a>,
+          defines the sample nodes.
+        </li>
+        <li>
+          <a href = "sample_sq_values.txt">sample_sq_values.txt</a>,
+          defines the sample nodal values.
+        </li>
+        <li>
+          <a href = "sample_sq_values_exact.txt">sample_sq_values_exact.txt</a>,
+          the exact values of the function at the sample nodes.  This should be
+          compared with the values determined from the FEM function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 07 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

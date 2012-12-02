@@ -1,0 +1,282 @@
+<html>
+
+  <head>
+    <title>
+      CELL - Manipulate Data in Cell Arrays
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CELL <br> Manipulate Data in Cell Arrays
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CELL</b>
+      is a MATLAB library which
+      defines a cell array, a generalization of an array which
+      can compactly store and retrieve vector or matrix data of 
+      varying size, such as the rows of a triangular matrix.
+    </p>
+
+    <p>
+      In MATLAB, a cell array is a structure which generalizes a matrix.
+      It can be thought of as an object A, whose entries can be indexed
+      by expressions such as A(I,J).  In a matrix, each entry is a numeric
+      scalar object.  In a cell array, each entry A(I,J) is simply an object
+      of unspecified type, dimension, and range.
+    </p>
+
+    <p>
+      In the simplified version of a cell array presented here, the cell array
+      is a vector (one index) or matrix (two indices), each of whose entries
+      is, in turn, a vector or a matrix of standard numeric type.  We still
+      allow the individual entries to have differing ranges.  Thus, a lower
+      triangular matrix can be thought of as a cell array A that stores the 
+      rows.  Row 3 of the triangular matrix can be thought of as the third
+      entry in A.  To retrieve a particular number in row 3, we have to 
+      determine where the row is stored, and then where the desired item
+      is stored in the row.
+    </p>
+
+    <p>
+      The vectors or matrices which are the entries of a particular cell array
+      will all share a common numeric type, which we will designate as
+      <ul>
+        <li>
+          <b>C4</b>, 4 byte + 4 byte complex;
+        </li>
+        <li>
+          <b>C8</b>, 8 byte + 8 byte double precision complex;
+        </li>
+        <li>
+          <b>I4</b>, 4 byte integer;
+        </li>
+        <li>
+          <b>R4</b>, 4 byte real;
+        </li>
+        <li>
+          <b>R8</b>, 8 byte double precision real;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      We use a simple code to describe the numeric type, indexing scheme, 
+      and entry type of a cell array.  For example, an "R8CVM" would be
+      a cell array of numeric type double precision real (R8), which is
+      a single indexed vector (V) whose entries are matrices (M).
+    </p>
+
+    <p>
+      To see how cell arrays can be useful, we will concentrate on the
+      idea of efficient storage.  Thus, suppose we simply want to store
+      rows 0 through 5 of Pascal's triangle.  Since these quantities are integers,
+      we could use numeric type I4.  Since we want to refer to items by row,
+      we only need a single index to access entries.  Each entry is a row.
+      This means the code for the cell array would be I4CVV.
+    </p>
+
+    <p>
+      We could think of this cell array as having the following structure:
+      <pre>
+        A = { { 1 },
+              { 1, 1 },
+              { 1, 2, 1 },
+              { 1, 3, 3, 1 },
+              { 1, 4, 6, 4, 1 },
+              { 1, 5, 10, 10, 5, 1 } }
+      </pre>
+      We can imagine that the cell array A is simply a vector of length 6,
+      and that the A(3), for example, is the vector {1,2,1}.  On the other
+      hand, in this case it is very tempting to also consider the array
+      notation A(3,2), which now must be carefully interpreted, since the
+      3 is a cell array index (3rd row) which is easy to know is only
+      allowed to extend from 1 to 6, while the 2 is a row index (item
+      2 of the current row) whose validity is hard to know unless we know
+      the legal extent of that row.  
+    </p>
+
+    <p>
+      Especially when we contemplate more
+      complicated structures, it might be better to replace the notation
+      A(3,2) by A(3)(2), meaning third entry of A, second item in that entry.
+      In this way, we can immediately understand that B(3,2)(4) means that
+      B is a matrix of entries, each of which is a vector, while C(3)(2,4)
+      means C is a vector whose entries are matrices.
+    </p>
+
+    <p>
+      To create a cell array, the user must provide information about the
+      dimension (1 for "V" and 2 for "M") of the cell array, and the range
+      of each entry (length of V entries or rows*columns for M entries).
+      This is used to determine the total size needed for the cell array,
+      and the offsets needed to quickly access individual items in the
+      entries.
+    </p>
+
+    <p>
+      Cell arrays of type **CVV are most commonly useful, given how often
+      triangular arrays and matrices occur, as well as lists, each of whose 
+      entries is in turn a list of varying length.  Currently, only cell
+      arrays of type R8CVV are implemented in this library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CELL</b> is available in
+      <a href = "../../c_src/cell/cell.html">a C version</a> and
+      <a href = "../../cpp_src/cell/cell.html">a C++ version</a> and
+      <a href = "../../f77_src/cell/cell.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/cell/cell.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/cell/cell.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/index/index.html">
+      INDEX</a>,
+      a MATLAB library which
+      converts a multidimensional vector index to a one-dimensional vector index;
+      it can handle zero and one based indexing schemes, as well as column major
+      and row major conventions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subpak/subpak.html">
+      SUBPAK</a>,
+      a MATLAB library which
+      contains many utility routines;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>, 
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "r8cvv_iget.m">r8cvv_iget.m</a>, 
+          gets item J from row I in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_iinc.m">r8cvv_iinc.m</a>, 
+          increments item J from row I in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_iset.m">r8cvv_iset.m</a>, 
+          sets item J from row I in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_nget.m">r8cvv_nget.m</a>, 
+          gets N items JN(*) from row IN(*) in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_ninc.m">r8cvv_ninc.m</a>, 
+          increments items JN(*) from row IN(*) in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_nset.m">r8cvv_nset.m</a>, 
+          sets items JN(*) from row IN(*) in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_offset.m">r8cvv_offset.m</a>, 
+          determines the row offsets of an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_print.m">r8cvv_print.m</a>, 
+          prints an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_rget.m">r8cvv_rget.m</a>, 
+          gets row I from an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_rinc.m">r8cvv_rinc.m</a>, 
+          increments row I in an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_rset.m">r8cvv_rset.m</a>, 
+          sets row I from an R8CVV.
+        </li>
+        <li>
+          <a href = "r8cvv_size.m">r8cvv_size.m</a>, 
+          determines the size of an R8CVV.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_transpose_print.m">r8vec_transpse_print.m</a>, 
+          prints an R8VEC "transposed".
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cell_test.m">cell_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "cell_test01.m">cell_test01.m</a>,
+          the first test.
+        </li>
+        <li>
+          <a href = "cell_test_output.txt">cell_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 November 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

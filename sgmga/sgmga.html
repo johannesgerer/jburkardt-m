@@ -1,0 +1,831 @@
+<html>
+
+  <head>
+    <title>
+      SGMGA - Sparse Grid Mixed Growth Anisotropic Rules.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SGMGA <br> Sparse Grid Mixed Growth Anisotropic Rules.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SGMGA</b>
+      is a MATLAB library which
+      implements a family of sparse grid rules.  These rules are "mixed",
+      in that a different 1D quadrature rule can be specified for each dimension.
+      Moreover, each 1D quadrature rule comes in a family of increasing size
+      whose growth rate (typically linear or exponential) is chosen by the user.
+      Finally, the user may also specify different weights for each dimension,
+      resulting in anisotropic rules.
+    </p>
+
+    <p>
+      <b>SGMGA</b> calls many routines from the <b>SANDIA_RULES</b>
+      library.  Copies of <i>both</i> libraries must
+      be available when a program wishes to use the <b>SGMGA</b> library.
+    </p>
+
+    <p>
+      Thanks to Drew Kouri, who pointed out a discrepancy in the computation of
+      the variable <b>level_1d_max</b> which meant that certain sparse grids
+      requested the generation of a 1D rule of a level that was higher than necessary
+      by 1.  In particular, if the Gauss-Patterson rule was involved, sparse grids
+      that actually only needed rules of level 7 would ask also for level 8, resulting
+      in the computation being terminated.  This problem was corrected on 25 April 2011. 
+    </p>
+
+    <p>
+      <table border=1>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Abbreviation</th>
+          <th>Default Growth Rule</th>
+          <th>Interval</th>
+          <th>Weight function</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Clenshaw-Curtis</td>
+          <td>CC</td>
+          <td>Moderate Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Fejer Type 2</td>
+          <td>F2</td>
+          <td>Moderate Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Gauss Patterson</td>
+          <td>GP</td>
+          <td>Moderate Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Gauss-Legendre</td>
+          <td>GL</td>
+          <td>Moderate Linear</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Gauss-Hermite</td>
+          <td>GH</td>
+          <td>Moderate Linear</td>
+          <td>(-oo,+oo)</td>
+          <td>e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Generalized Gauss-Hermite</td>
+          <td>GGH</td>
+          <td>Moderate Linear</td>
+          <td>(-oo,+oo)</td>
+          <td>|x|<sup>alpha</sup> e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Gauss-Laguerre</td>
+          <td>LG</td>
+          <td>Moderate Linear</td>
+          <td>[0,+oo)</td>
+          <td>e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Generalized Gauss-Laguerre</td>
+          <td>GLG</td>
+          <td>Moderate Linear</td>
+          <td>[0,+oo)</td>
+          <td>x<sup>alpha</sup> e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Gauss-Jacobi</td>
+          <td>GJ</td>
+          <td>Moderate Linear</td>
+          <td>[-1,+1]</td>
+          <td>(1-x)<sup>alpha</sup> (1+x)<sup>beta</sup></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Hermite Genz-Keister</td>
+          <td>HGK</td>
+          <td>Moderate Exponential</td>
+          <td>(-oo,+oo)</td>
+          <td>e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>User Supplied Open</td>
+          <td>UO</td>
+          <td>Moderate Linear</td>
+          <td>?</td>
+          <td>?</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>User Supplied Closed</td>
+          <td>UC</td>
+          <td>Moderate Linear</td>
+          <td>?</td>
+          <td>?</td>
+        </tr>
+      </table>
+    </p>
+
+    <p>
+      For a given family, a growth rule can be prescribed, which determines
+      the orders O of the sequence of rules selected from the family.  The
+      selected rules are indexed by L, which starts at 0.  The polynomial precision P
+      of the rule is sometimes used to determine the appropriate order O.
+      <table border=1>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Order Formula</th>
+        </tr>
+        <tr>
+          <td>0</td>
+          <td>Default</td>
+          <td>"DF", moderate exponential or moderate linear</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>"SL", Slow linear</td>
+          <td>O=L+1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>"SO", Slow Linear Odd</td>
+          <td>O=1+2*((L+1)/2)</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>"ML", Moderate Linear</td>
+          <td>O=2L+1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>"SE", Slow Exponential</td>
+          <td>select smallest exponential order O so that 2L+1 <= P</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>"ME", Moderate Exponential</td>
+          <td>select smallest exponential order O so that 4L+1 <= P</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>"FE", Full Exponential</td>
+          <td>O=2^L+1 for Clenshaw Curtis, O=2^(L+1)-1 otherwise.</td>
+        </tr>
+      </table>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SGMGA</b> is available in
+      <a href = "../../c_src/sgmga/sgmga.html">a C version</a> and
+      <a href = "../../cpp_src/sgmga/sgmga.html">a C++ version</a> and
+      <a href = "../../f_src/sgmga/sgmga.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sgmga/sgmga.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>,
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for various intervals and weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>,
+      a MATLAB library which
+      generates Gauss quadrature rules of various orders and types.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_sgmgg/sandia_sgmgg.html">
+      SANDIA_SGMGG</a>,
+      a MATLAB library which
+      explores a generalized construction method for sparse grids.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">
+      SANDIA_SPARSE</a>,
+      a MATLAB library which
+      computes the points and weights of a Smolyak sparse
+      grid, based on a variety of 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sgmga/sgmga.html">
+      SGMGA</a>,
+      a dataset directory which
+      contains SGMGA files (Sparse Grid Mixed Growth Anisotropic), that is,
+      multidimensional Smolyak sparse grids
+      based on a mixture of 1D rules, and with a choice of exponential and linear
+      growth rates for the 1D rules and anisotropic weights for the dimensions.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids,
+      by Knut Petras.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a MATLAB library which
+      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_laguerre/sparse_grid_laguerre.html">
+      SPARSE_GRID_LAGUERRE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Laguerre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB program which
+      uses sparse grids to carry out multilinear hierarchical interpolation.
+      It is commonly known as SPINTERP, and is by Andreas Klimke.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          Charles Clenshaw, Alan Curtis,<br>
+          A Method for Numerical Integration on an Automatic Computer,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 197-205.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Walter Gautschi,<br>
+          Numerical Quadrature in the Presence of a Singularity,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 4, Number 3, September 1967, pages 357-362.
+        </li>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Gene Golub, John Welsch,<br>
+          Calculation of Gaussian Quadrature Rules,<br>
+          Mathematics of Computation,<br>
+          Volume 23, Number 106, April 1969, pages 221-230.
+        </li>
+        <li>
+          Prem Kythe, Michael Schaeferkotter,<br>
+          Handbook of Computational Methods for Integration,<br>
+          Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-428-2,<br>
+          LC: QA299.3.K98.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          An Anisotropic Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2411-2442.
+        </li>
+        <li>
+          Thomas Patterson,<br>
+          The Optimal Addition of Points to Quadrature Formulae,<br>
+          Mathematics of Computation,<br>
+          Volume 22, Number 104, October 1968, pages 847-856.
+        </li>
+        <li>
+          Knut Petras,<br>
+          Smolyak Cubature of Given Polynomial Degree with Few Nodes
+          for Increasing Dimension,<br>
+          Numerische Mathematik,<br>
+          Volume 93, Number 4, February 2003, pages 729-753.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Joerg Waldvogel,<br>
+          Fast Construction of the Fejer and Clenshaw-Curtis
+          Quadrature Rules,<br>
+          BIT Numerical Mathematics,<br>
+          Volume 43, Number 1, 2003, pages 1-18.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sgmga_aniso_balance.m">sgmga_aniso_balance.m</a>
+          "balances" an anisotropic weight vector.
+        </li>
+        <li>
+          <a href = "sgmga_aniso_normalize.m">sgmga_aniso_normalize.m</a>
+          normalizes the SGMGA anisotropic weight vector.
+        </li>
+        <li>
+          <a href = "sgmga_importance_to_aniso.m">sgmga_importance_to_aniso.m</a>
+          converts an importance vector to an anisotropic weight vector.
+        </li>
+        <li>
+          <a href = "sgmga_index.m">sgmga_index.m</a>
+          indexes the unique points in an SGMGA grid.
+        </li>
+        <li>
+          <a href = "sgmga_point.m">sgmga_point.m</a>
+          computes the points of an SGMGA rule.
+        </li>
+        <li>
+          <a href = "sgmga_product_weight.m">sgmga_product_weight.m</a>
+          computes the weights of a mixed product rule.
+        </li>
+        <li>
+          <a href = "sgmga_size.m">sgmga_size.m</a>
+          sizes an SGMGA grid, discounting duplicate points.
+        </li>
+        <li>
+          <a href = "sgmga_size_total.m">sgmga_size_total.m</a>
+          sizes an SGMGA grid, counting duplicate points.
+        </li>
+        <li>
+          <a href = "sgmga_unique_index.m">sgmga_unique_index.m</a>
+          maps nonunique to unique points of an SGMGA grid.
+        </li>
+        <li>
+          <a href = "sgmga_vcn.m">sgmga_vcn.m</a>
+          returns the "next" constrained vector.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_coef.m">sgmga_vcn_coef.m</a>
+          returns the "next" constrained vector's coefficient.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_coef_naive.m">sgmga_vcn_coef_naive.m</a>
+          returns the "next" constrained vector's coefficient,
+          using a "naive" algorithm.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_naive.m">sgmga_vcn_naive.m</a>
+          returns the "next" constrained vector, using a "naive" algorithm.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_ordered.m">sgmga_vcn_ordered.m</a>
+          returns the "next" constrained vector, imposing a weak ordering.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_ordered_naive.m">sgmga_vcn_ordered_naive.m</a>
+          returns the "next" constrained vector, imposing a weak ordering.
+        </li>
+        <li>
+          <a href = "sgmga_weight.m">sgmga_weight.m</a>
+          computes weights for an SGMGA rule.
+        </li>
+        <li>
+          <a href = "sgmga_write.m">sgmga_write.m</a>
+          writes an SGMGA rule to five files.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SGMGA_ANISO_BALANCE_TEST</b> tests <b>SGMGA_ANISO_BALANCE</b>.
+      <ul>
+        <li>
+          <a href = "sgmga_aniso_balance_tests.m">sgmga_aniso_balance_tests.m</a>,
+          calls SGMGA_ANISO_BALANCE_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_aniso_balance_test.m">sgmga_aniso_balance_test.m</a>,
+          tests SGMGA_ANISO_BALANCE.
+        </li>
+        <li>
+          <a href = "sgmga_aniso_balance_test_output.txt">sgmga_aniso_balance_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>SGMGA_ANISO_NORMALIZE_TEST</b> tests b>SGMGA_ANISO_NORMALIZE</b>.
+      <ul>
+        <li>
+          <a href = "sgmga_aniso_normalize_tests.m">sgmga_aniso_normalize_tests.m</a>,
+          calls SGMGA_ANISO_NORMALIZE_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_aniso_normalize_test.m">sgmga_aniso_normalize_test.m</a>,
+          tests SGMGA_ANISO_NORMALIZE.
+        </li>
+        <li>
+          <a href = "sgmga_aniso_normalize_test_output.txt">sgmga_aniso_normalize_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>SGMGA_IMPORTANCE_TO_ANISO_TEST</b> tests <b>SGMGA_IMPORTANCE_TO_ANISO</b>.
+      <ul>
+        <li>
+          <a href = "sgmga_importance_to_aniso_tests.m">sgmga_importance_to_aniso_tests.m</a>,
+          calls SGMGA_IMPORTANCE_TO_ANISO_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_importance_to_aniso_test.m">sgmga_importance_to_aniso_test.m</a>,
+          tests SGMGA_IMPORTANCE_TO_ANISO_NORMALIZE.
+        </li>
+        <li>
+          <a href = "sgmga_importance_to_aniso_test_output.txt">sgmga_importance_to_aniso_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>SGMGA_INDEX_TEST</b> tests <b>SGMGA_INDEX</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_index_tests.m">sgmga_index_tests.m</a>,
+          calls SGMGA_INDEX_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_index_test.m">sgmga_index_test.m</a>,
+          tests SGMGA_INDEX.
+        </li>
+        <li>
+          <a href = "sgmga_index_test_output.txt">sgmga_index_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_POINT_TEST</b> tests <b>SGMGA_POINT</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_point_tests.m">sgmga_point_tests.m</a>,
+          calls SGMGA_POINT_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_point_test.m">sgmga_point_test.m</a>,
+          tests SGMGA_POINT.
+        </li>
+        <li>
+          <a href = "sgmga_point_test_output.txt">sgmga_point_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_PRODUCT_WEIGHT_TEST</b> tests <b>SGMGA_PRODUCT_WEIGHT</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_product_weight_tests.m">sgmga_product_weight_tests.m</a>,
+          calls SGMGA_PRODUCT_WEIGHT_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_product_weight_test.m">sgmga_product_weight_test.m</a>,
+          tests SGMGA_PRODUCT_WEIGHT.
+        </li>
+        <li>
+          <a href = "sgmga_product_weight_test_output.txt">sgmga_product_weight_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_SIZE_TEST</b> tests <b>SGMGA_SIZE</b> and <b>SGMGA_SIZE_TOTAL</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_size_tests.m">sgmga_size_tests.m</a>,
+          calls SGMGA_SIZE_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_size_test.m">sgmga_size_test.m</a>,
+          tests SGMGA_SIZE and SGMGA_SIZE_TOTAL.
+        </li>
+        <li>
+          <a href = "sgmga_size_test_output.txt">sgmga_size_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_SIZE_TABLE</b> tabulates the point counts from <b>SGMGA_SIZE</b>
+      for an isotropic rule over a range of dimensions and levels.
+      <ul>
+        <li>
+          <a href = "sgmga_size_table.m">sgmga_size_table,m</a>,
+          calls SGMGA_SIZE_TABULATE with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_size_tabulate.m">sgmga_size_tabulate.m</a>,
+          makes the table calling SGMGA_SIZE.
+        </li>
+        <li>
+          <a href = "sgmga_size_table_output.txt">sgmga_size_table_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>SGMGA_UNIQUE_INDEX_TEST</b> tests <b>SGMGA_UNIQUE_INDEX</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_unique_index_tests.m">sgmga_unique_index_tests.m</a>,
+          calls SGMGA_UNIQUE_INDEX_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_unique_index_test.m">sgmga_unique_index_test.m</a>,
+          tests SGMGA_UNIQUE_INDEX.
+        </li>
+        <li>
+          <a href = "sgmga_unique_index_test_output.txt">sgmga_unique_index_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_VCN_TEST</b> tests <b>SGMGA_VCN</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_vcn_tests.m">sgmga_vcn_tests.m</a>,
+          calls SGMGA_VCN_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_test.m">sgmga_vcn_test.m</a>,
+          tests SGMGA_VCN.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_test_output.txt">sgmga_vcn_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_VCN_COEF_TEST</b> tests <b>SGMGA_VCN_COEF</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_vcn_coef_tests.m">sgmga_vcn_coef_tests.m</a>,
+          calls SGMGA_VCN_COEF_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_coef_test.m">sgmga_vcn_coef_test.m</a>,
+          tests SGMGA_VCN_COEF.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_coef_test_output.txt">sgmga_vcn_coef_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_VCN_ORDERED_TEST</b> tests <b>SGMGA_VCN_ORDERED</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_vcn_ordered_tests.m">sgmga_vcn_ordered_tests.m</a>,
+          calls SGMGA_VCN_ORDERED_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_ordered_test.m">sgmga_vcn_ordered_test.m</a>,
+          tests SGMGA_VCN_ORDERED.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_ordered_test_output.txt">sgmga_vcn_ordered_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_VCN_TIMING_TEST</b> times <b>SGMGA_VCN</b> and <b>SGMGA_VCN_NAIVE</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_vcn_timing_tests.m">sgmga_vcn_timing_tests.m</a>,
+          calls SGMGA_VCN_TIMING_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_timing_test.m">sgmga_vcn_timing_test.m</a>,
+          times SGMGA_VCN and SGMGA_VCN_NAIVE.
+        </li>
+        <li>
+          <a href = "sgmga_vcn_timing_test_output.txt">sgmga_vcn_timing_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_WEIGHT_TEST</b> tests <b>SGMGA_WEIGHT</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_weight_tests.m">sgmga_weight_tests.m</a>,
+          calls SGMGA_WEIGHT_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_weight_test.m">sgmga_weight_test.m</a>,
+          tests SGMGA_WEIGHT.
+        </li>
+        <li>
+          <a href = "sgmga_weight_test_output.txt">sgmga_weight_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SGMGA_WRITE_TEST</b> tests <b>SGMGA_WRITE</b>:
+      <ul>
+        <li>
+          <a href = "sgmga_write_tests.m">sgmga_write_tests.m</a>,
+          calls SGMGA_WRITE_TEST with various parameters.
+        </li>
+        <li>
+          <a href = "sgmga_write_test.m">sgmga_write_test.m</a>,
+          tests SGMGA_WRITE.
+        </li>
+        <li>
+          <a href = "sgmga_write_test_output.txt">sgmga_write_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 May 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

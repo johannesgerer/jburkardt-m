@@ -1,0 +1,188 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_CONDOR - Running MATLAB Under the CONDOR Batch Queueing System
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_CONDOR <br> Running MATLAB Under the CONDOR Batch Queueing System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_CONDOR</b>
+      is a directory of examples which
+      demonstrate how a MATLAB program can be submitted to the CONDOR batch
+      queueing system.
+    </p>
+
+    <p>
+      CONDOR allows a user to submit jobs for batch execution on an informal
+      cluster composed of various computers that often have idle time.
+      Based on information from the user's submission file, CONDOR chooses
+      one or more appropriate and available computers, transfers files to the
+      target systems, executes the program, and returns data to the user.
+    </p>
+
+    <p>
+      CONDOR has many features, and its proper use varies from site to site.
+      The information in this document focuses on the task of getting a MATLAB
+      job to run under the CONDOR system installed on a collection of computers
+      under the management of the FSU Department of Scientific Computing.
+    </p>
+
+    <p>
+      MATLAB users who invoke CONDOR must note a particular restriction.
+      CONDOR will only run MATLAB on one of the machines in the departmental 
+      classroom.  The department has just 15 MATLAB licenses available for
+      classroom use.  That means that, during typical class times, you should
+      be aware that each MATLAB job you run subtracts from this fixed limit.
+      That means CONDOR jobs requiring many copies of MATLAB should be run
+      at night, on the weekends, or holidays!
+    </p>
+
+    <p>
+      MATLAB is typically used interactively, but it is possible for it to
+      do everything in a batch mode.  For this purpose, the user must prepare
+      a script containing the commands that might ordinarily be given 
+      interactively.  For more information on this requirement, see the
+      information on <b>MATLAB_COMMANDLINE</b> listed below.
+    </p>
+
+    <p>
+      Note that, in a typical use of CONDOR, a user would have files on 
+      the <b>pamd</b> system, then log into the submission system with the command
+      <blockquote>
+        ssh submit.sc.fsu.edu
+      </blockquote>
+      and move to the directory containing the submission file.  To submit the job
+      described by the <i>simple.condor</i> file, for instance, the next command would be:
+      <blockquote>
+        condor_submit simple.condor
+      </blockquote>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../examples/condor/condor.html">
+      CONDOR</a>,
+      examples which
+      demonstrates the use of the CONDOR queueing system to submit jobs
+      that run on a one or more remote machines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_commandline/matlab_commandline.html">
+      MATLAB_COMMANDLINE</a>,
+      programs which
+      illustrate how MATLAB can be run from the UNIX command line, that is,
+      not with the usual MATLAB command window.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "../../pdf/condor.pdf">condor.pdf</a>,<br>
+          Condor Team,<br>
+          University of Wisconsin, Madison,<br>
+          Condor Version 7.4.4 Manual;
+        </li>
+        <li>
+          <a href = "http://www.cs.wisc.edu/condor/">
+                     http://www.cs.wisc.edu/condor/</a>,<br>
+          The Condor home page;
+        </li>
+        <li>
+          <a href =
+          "http://www.sc.fsu.edu/computing/general-access/batch">
+           http://www.sc.fsu.edu/computing/general-access/batch</a>,<br>
+          The FSU Department of Scientific Computing's Condor page;
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SIMPLE</b> is a simple example, in which a MATLAB function is to
+      be called with certain output.
+      <ul>
+        <li>
+          <a href = "simple.condor">simple.condor</a>,
+          the CONDOR submission file.  This is used by issuing the command
+          "condor_submit simple.condor".
+        </li>
+        <li>
+          <a href = "simple_script.m">simple_script.m</a>,
+          the MATLAB script which sets up some data and calls a function.
+        </li>
+        <li>
+          <a href = "simple_function.m">simple_function.m</a>,
+          the MATLAB function, which simply adds the two input arguments.
+        </li>
+        <li>
+          <a href = "simple.mat">simple.mat</a>,
+          the MATLAB MAT file which contains the workspace at the end of
+          the computation.
+        </li>
+        <li>
+          <a href = "simple_output.txt">simple_output.txt</a>,
+          the output printed by MATLAB.
+        </li>
+        <li>
+          <a href = "simple.error">simple.error</a>,
+          CONDOR's error file (empty, because for once we didn't make a mistake).
+        </li>
+        <li>
+          <a href = "simple.log">simple.log</a>,
+          CONDOR's log file (records the job submission, execution, and completion).
+        </li>
+        <li>
+          <a href = "simple.out">simple.out</a>,
+          CONDOR's output file (empty, because we grabbed the output 
+          into simple_output.txt).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 31 March 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

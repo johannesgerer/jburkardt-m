@@ -1,0 +1,325 @@
+<html>
+
+  <head>
+    <title>
+      LORENZ_SIMULATION - Display a solution of the Lorenz Equations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LORENZ_SIMULATION <br> Display a solution of the Lorenz Equations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LORENZ_SIMULATION</b> 
+      is a MATLAB program which
+      computes and displays solutions to the Lorenz equations
+      for various initial conditions.
+    </p>
+
+    <p>
+      The Lorenz equations are an extremely simplified model of the weather,
+      in which three differential equations describe the evolution of three
+      variables.  There are also three parameters whose values play the role
+      of physical constants.  
+    </p>
+
+    <p>
+      It was while studying these equations that Edward Lorenz discovered
+      what he called "deterministic chaos".  That is, at least for certain
+      values of the parameters, solutions were extremely sensitive to the
+      initial conditions.  
+    </p>
+
+    <p>
+      The Lorenz equations are often written as
+      <pre>
+        x' = sigma * ( y - x )
+        y' = x * ( rho - z ) - y
+        z' = x * y - beta * z
+      </pre>
+      where the parameters are positive.  Typical values for the parameters are
+      <pre>
+        sigma = 10
+        beta = 8 / 3 = 2.666...
+        rho = 28
+      </pre>
+      The value of rho has a strong influence on the behavior of solutions.
+      The value rho=28 results in chaotic solutions, whereas rho=99.96 yields
+      a regular pattern.
+    </p>
+
+    <p>
+      The <b>LORENZ_SIMULATION</b> program shows a 3D plot of the behavior of a solution
+      to the Lorenz equations.  The initial condition is varied randomly
+      each time the user runs the program.
+    </p>
+
+    <p>
+      There is actually already a Lorenz demonstration program, called 
+      <b>lorenzdemo</b>, which is part of the MATLAB demo set.
+    </p>
+
+    <p>
+      We modified the original program because we wanted to be able to
+      vary the initial condition for the integration.  This turned out to
+      be far more difficult than we realized, since the <b>lorenzdemo</b>
+      program is full of code that looks important, but actually is not used.  
+    </p>
+
+    <p>
+      The key is that the <b>lorenzdemo</b> displays some buttons, and as soon
+      as you push a button, it calls "lorenz", which is a built in MATLAB
+      function.  This function is probably the same as <b>lorenzdemo</b>.  
+      However, if you change <b>lorenzdemo</b>, you have not changed "lorenz"!
+      In other words, you can make all the changes you want to <b>lorenzdemo</b>,
+      but most of them will have no effect whatsoever, since <b>lorenzdemo</b>
+      actually calls "lorenz".
+    </p>
+
+    <p>
+      It is inadvertently cryptic coding like this that fills the wards 
+      of our hospitals with bitter, disillusioned people who have lost all 
+      faith in their ability to understand programming.
+    </p>
+
+    <p>
+      This version, with the slightly altered name "lorenz_simulation", calls itself.
+      Thus, if you change this code, you will see a change when you run it.
+      For our purposes, we were able to change the initial condition Y0, and
+      have that effect the calculation as we wanted.
+    </p>
+
+    <p>
+      Note, also, that the ordering of the variables is somewhat different
+      than is to be seen in other contexts.  For <b>LORENZ_SIMULATION</b>, the
+      equations are
+      <pre>
+        x' = y * z - beta * x
+        y' = sigma * ( z - y )
+        z' = y * ( rho - x ) - z
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>lorenz_simulation</b>
+      </blockquote>
+      runs the program, picking an initial condition at random.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs
+    </h3>
+
+    <p>
+      <a href = "../../m_src/brownian_motion_simulation/brownian_motion_simulation.html">
+      BROWNIAN_MOTION_SIMULATION</a>,
+      a MATLAB program which
+      simulates Brownian motion in an M-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dice_simulation/dice_simulation.html">
+      DICE_SIMULATION</a>,
+      a MATLAB program which
+      simulates N tosses of M dice, making a histogram of the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/duel_simulation/duel_simulation.html">
+      DUEL_SIMULATION</a>,
+      a MATLAB program which
+      simulates N repetitions of a duel between two players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <p>
+      <a href = "../../c_src/forest_fire_simulation/forest_fire_simulation.html">
+      FOREST_FIRE_SIMULATION</a>,
+      a C program which
+      simulates the occurrence of fires and regrowth in a forest,
+      displaying the results using X Windows,
+      by Michael Creutz.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gamblers_ruin_simulation/gamblers_ruin_simulation.html">
+      GAMBLERS_RUIN_SIMULATION</a>,
+      a MATLAB program which
+      simulates the game of gambler's ruin.
+    </p>
+
+    <p>
+      <a href = "../../m_src/high_card_simulation/high_card_simulation.html">
+      HIGH_CARD_SIMULATION</a>,
+      a MATLAB program which
+      simulates a situation in which you see the cards in a deck one by one,
+      and must select the one you think is the highest and stop. 
+    </p>
+
+    <p>
+      <a href = "../../m_src/ising_2d_simulation/ising_2d_simulation.html">
+      ISING_2D_SIMULATION</a>,
+      a MATLAB program which
+      carries out a Monte Carlo simulation of an Ising model,
+      a 2D array of positive and negative charges,
+      each of which is likely to "flip" to be in agreement with neighbors.
+    </p>
+
+    <p>
+      <a href = "../../math_src/lorenz_equations/lorenz_equations.html">
+      LORENZ_EQUATIONS</a>,
+      a MATHEMATICA file which
+      demonstrates how solutions to the Lorenz equations can be synchronized.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_simulation/poisson_simulation.html">
+      POISSON_SIMULATION</a>,
+      a MATLAB library which
+      simulates a Poisson process in which events randomly occur with an
+      average waiting time of Lambda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_1d_simulation/random_walk_1d_simulation.html">
+      RANDOM_WALK_1D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 1-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_simulation/random_walk_2d_avoid_simulation.html">
+      RANDOM_WALK_2D_AVOID_SIMULATION</a>,
+      a MATLAB program which
+      simulates a self-avoiding random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_simulation/random_walk_2d_simulation.html">
+      RANDOM_WALK_2D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_3d_simulation/random_walk_3d_simulation.html">
+      RANDOM_WALK_3D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 3-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../f_src/reactor_simulation/reactor_simulation.html">
+      REACTOR_SIMULATION</a>, 
+      a FORTRAN90 program which
+      is a simple Monte Carlo simulation of the shielding effect of a slab
+      of a certain thickness in front of a neutron source.  This program was
+      provided as an example with the book "Numerical Methods and Software."
+    </p>
+
+    <p>
+      <a href = "../../m_src/sir_simulation/sir_simulation.html">
+      SIR_SIMULATION</a>, 
+      a MATLAB program which
+      simulates the spread of a disease through a hospital room of M by N beds,
+      using the SIR (Susceptible/Infected/Recovered) model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/three_body_simulation/three_body_simulation.html">
+      THREE_BODY_SIMULATION</a>,
+      a MATLAB program which
+      simulates the behavior of three planets, constrained to lie in a plane,
+      and moving under the influence of gravity,
+      by Walter Gander and Jiri Hrebicek.
+    </p>
+
+    <p>
+      <a href = "../../m_src/traffic_simulation/traffic_simulation.html">
+      TRAFFIC_SIMULATION</a>,
+      a MATLAB program which
+      simulates the cars waiting to get through a traffic light.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truel_simulation/truel_simulation.html">
+      TRUEL_SIMULATION</a>, 
+      a MATLAB program which
+      simulates N repetitions of a duel between three players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kathleen Alligood, Tim Sauer, James Yorke,<br>
+          Chaos: An Introduction to Dynamical Systems,<br>
+          Springer, 1997,<br>
+          ISBN: 0-387-94677-2,<br>
+          LC: QA614.8.A44.
+        </li>
+        <li>
+          James Gleick,<br>
+          Chaos: The Making of a New Science,<br>
+          Viking, 1987,<br>
+          ISBN13: 978-0140092509,<br>
+          LC: Q172.5.C45.G54.
+        </li>
+        <li>
+          Edward Lorenz,<br>
+          Deterministic Nonperiodic Flow,<br>
+          Journal of Atmospheric Science,<br>
+          Volume 20, 1963, pages 130-141.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lorenz_simulation.m">lorenz_simulation.m</a>, 
+          the Lorenz equation simulation program, modified to vary the initial condition.
+        </li>
+        <li>
+          <a href = "lorenzdemo.m">lorenzdemo.m</a>, 
+          the text of the original Lorenz equation demo program, which has an
+          obscure call to "lorenz" instead of "lorenzdemo", and hence essentially
+          ignores itself.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 April 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

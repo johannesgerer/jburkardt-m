@@ -1,0 +1,1360 @@
+<html>
+
+  <head>
+    <title>
+      SANDIA_RULES - Quadrature Rules of Gaussian Type
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SANDIA_RULES <br> Quadrature Rules of Gaussian Type
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SANDIA_RULES</b>
+      is a MATLAB library which
+      generates a variety of quadrature rules of various orders.
+    </p>
+
+    <p>
+      This library is used, in turn, by several other libraries, including
+      <b>SPARSE_GRID_MIXED</b> and <b>SGMGA</b>.  This means that a program
+      that calls any of those libraries must have access to a
+      copy of <b>SANDIA_RULES</b> as well.
+    </p>
+
+    <p>
+      <table border=1>
+        <tr>
+          <th>Name</th>
+          <th>Usual domain</th>
+          <th>Weight function</th>
+        </tr>
+        <tr>
+          <td>Gauss-Legendre</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Clenshaw-Curtis</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Fejer Type 2</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Gauss-Chebyshev 1</td>
+          <td>[-1,+1]</td>
+          <td>1/sqrt(1-x<sup>2</sup>)</td>
+        </tr>
+        <tr>
+          <td>Gauss-Chebyshev 2</td>
+          <td>[-1,+1]</td>
+          <td>sqrt(1-x<sup>2</sup>)</td>
+        </tr>
+        <tr>
+          <td>Gauss-Gegenbauer</td>
+          <td>[-1,+1]</td>
+          <td>(1-x<sup>2</sup>)<sup>alpha</sup></td>
+        </tr>
+        <tr>
+          <td>Gauss-Jacobi</td>
+          <td>[-1,+1]</td>
+          <td>(1-x)<sup>alpha</sup> (1+x)<sup>beta</sup></td>
+        </tr>
+        <tr>
+          <td>Gauss-Laguerre</td>
+          <td>[0,+oo)</td>
+          <td>e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>Generalized Gauss-Laguerre</td>
+          <td>[0,+oo)</td>
+          <td>x<sup>alpha</sup> e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>Gauss-Hermite</td>
+          <td>(-oo,+oo)</td>
+          <td>e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>Generalized Gauss-Hermite</td>
+          <td>(-oo,+oo)</td>
+          <td>|x|<sup>alpha</sup> e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>Hermite Genz-Keister</td>
+          <td>(-oo,+oo)</td>
+          <td>e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>Newton-Cotes-Closed</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Newton-Cotes-Open</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>Newton-Cotes-Open-Half</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </p>
+
+    <p>
+      For example, a Gauss-Gegenbauer quadrature rule is used to approximate:
+      <pre>
+        Integral ( -1 &lt;= x &lt;= +1 ) f(x) (1-x^2)^alpha dx
+      </pre>
+      where <b>alpha</b> is a real parameter chosen by the user.
+    </p>
+
+    <p>
+      The approximation to the integral is formed by computing a weighted sum
+      of function values at specific points:
+      <pre>
+        Sum ( 1 &lt;= i &lt;= n ) w(i) * f(x(i))
+      </pre>
+      The quantities <b>x</b> are the <i>abscissas</i> of the quadrature rule,
+      the values <b>w</b> are the <i>weights</i> of the quadrature rule, and the
+      number of terms <b>n</b> in the sum is the <i>order</i> of the quadrature rule.
+    </p>
+
+    <p>
+      As a matter of convenience, most of the quadrature rules are available
+      through three related functions:
+      <ul>
+        <li>
+          <b>name_COMPUTE</b> returns points X and weights W;
+        </li>
+        <li>
+          <b>name_COMPUTE_POINTS</b> returns points X;
+        </li>
+        <li>
+          <b>name_COMPUTE_WEIGHTS</b> returns weights W;
+        </li>
+      </ul>
+      In some cases, it is possible to compute points or weights separately;
+      in other cases, the point and weight functions actually call the
+      underlying function for the entire rule, and then discard the unrequested
+      information.
+    </p>
+
+    <p>
+      Some of these quadrature rules expect a parameter ALPHA, and perhaps also
+      a parameter BETA, in order to fully define the rule.  Therefore, the
+      argument lists of these functions vary.  They always include the input
+      quantity ORDER, but may have one or two additional inputs.  In order to offer
+      a uniform interface, there is also a family of functions with a standard
+      set of input arguments, ORDER, NP, and P.  Here NP is parameter counter,
+      and P is the parameter value vector P.  Using this interface, it is possible
+      to call all the quadrature functions with the same argument list.
+      The uniform interface functions can be identified by the
+      suffix <b>_NP</b> that appears in their names.  Generally, these functions
+      "unpack" the parameter vector where needed, and then call the corresponding
+      basic function.  Of course, for many rules NP is zero and P may be a null
+      pointer.
+      <ul>
+        <li>
+          <b>name_COMPUTE_NP ( ORDER, NP, P, X, W )</b>
+          unpacks parameters, calls name_COMPUTE, returns points X and weights W;
+        </li>
+        <li>
+          <b>name_COMPUTE_POINTS_NP ( ORDER, NP, P, X )</b>
+          unpacks parameters, calls name_COMPUTE_POINTS, returns points X;
+        </li>
+        <li>
+          <b>name_COMPUTE_WEIGHTS_NP ( ORDER, NP, P, W )</b>
+          unpacks parameters, calls name_COMPUTE_WEIGHTS, returns weights W;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SANDIA_RULES</b> is available in
+      <a href = "../../c_src/sandia_rules/sandia_rules.html">a C version</a> and
+      <a href = "../../cpp_src/sandia_rules/sandia_rules.html">a C++ version</a> and
+      <a href = "../../f_src/sandia_rules/sandia_rules.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev1_rule/chebyshev1_rule.html">
+      CHEBYSHEV1_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 1 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev2_rule/chebyshev2_rule.html">
+      CHEBYSHEV2_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 2 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gegenbauer_rule/gegenbauer_rule.html">
+      GEGENBAUER_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Gegenbauer quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_hermite_rule/gen_hermite_rule.html">
+      GEN_HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_laguerre_rule/gen_laguerre_rule.html">
+      GEN_LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_rule/hermite_rule.html">
+      HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../f_src/intlib/intlib.html">
+      INTLIB</a>,
+      a FORTRAN90 library which
+      contains routines for numerical estimation of integrals in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/jacobi_rule/jacobi_rule.html">
+      JACOBI_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Jacobi quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/laguerre_rule/laguerre_rule.html">
+      LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_rule/legendre_rule.html">
+      LEGENDRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Legendre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>,
+      a MATLAB program which
+      constructs a product rule
+      from 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>,
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules,
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          William Cody,<br>
+          An Overview of Software Development for Special Functions,<br>
+          in Numerical Analysis Dundee, 1975,<br>
+          edited by GA Watson,<br>
+          Lecture Notes in Mathematics 506,<br>
+          Springer, 1976.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Sylvan Elhay, Jaroslav Kautsky,<br>
+          Algorithm 655: IQPACK, FORTRAN Subroutines for the Weights of 
+          Interpolatory Quadrature,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 13, Number 4, December 1987, pages 399-415.
+        </li>
+        <li>
+          Alan Genz, Bradley Keister,<br>
+          Fully symmetric interpolatory rules for multiple integrals
+          over infinite regions with Gaussian weight,<br>
+          Journal of Computational and Applied Mathematics,<br>
+          Volume 71, 1996, pages 299-309.
+        </li>
+        <li>
+          John Hart, Ward Cheney, Charles Lawson, Hans Maehly,
+          Charles Mesztenyi, John Rice, Henry Thatcher,
+          Christoph Witzgall,<br>
+          Computer Approximations,<br>
+          Wiley, 1968,<br>
+          LC: QA297.C64.
+        </li>
+        <li>
+          Knut Petras,<br>
+          Smolyak Cubature of Given Polynomial Degree with Few Nodes
+          for Increasing Dimension,<br>
+          Numerische Mathematik,<br>
+          Volume 93, Number 4, February 2003, pages 729-753.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Shanjie Zhang, Jianming Jin,<br>
+          Computation of Special Functions,<br>
+          Wiley, 1996,<br>
+          ISBN: 0-471-11963-6,<br>
+          LC: QA351.C45
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "binary_vector_next.m">binary_vector_next.m</a>
+          generates the next binary vector.
+        </li>
+        <li>
+          <a href = "ccn_compute.m">ccn_compute.m</a>
+          compute a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "ccn_compute_np.m">ccn_compute_np.m</a>
+          compute a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "ccn_compute_points.m">ccn_compute_points.m</a>
+          compute the points of a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "ccn_compute_points_np.m">ccn_compute_points_np.m</a>
+          compute the points of a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "ccn_compute_weights.m">ccn_compute_weights.m</a>
+          compute the weights of a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "ccn_compute_weights_np.m">ccn_compute_weights_np.m</a>
+          compute the weights of a nested Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "chebyshev1_compute.m">chebyshev1_compute.m</a>
+          computes a Gauss-Chebyshev type 1 quadrature rule.
+        </li>
+        <li>
+          <a href = "chebyshev1_integral.m">chebyshev1_integral.m</a>
+          evaluates a monomial Chebyshev type 1 integral.
+        </li>
+        <li>
+          <a href = "chebyshev2_compute.m">chebyshev2_compute.m</a>
+          computes a Gauss-Chebyshev type 2 quadrature rule.
+        </li>
+        <li>
+          <a href = "chebyshev2_integral.m">chebyshev2_integral.m</a>
+          evaluates a monomial Chebyshev type 2 integral.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute.m">clenshaw_curtis_compute.m</a>
+          computes a Clenshaw Curtis quadrature rule.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute_points.m">
+          clenshaw_curtis_compute_points.m</a>
+          computes Clenshaw Curtis abscissas.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute_points_np.m">
+          clenshaw_curtis_compute_points_np.m</a>
+          computes Clenshaw Curtis abscissas.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute_weights.m">
+          clenshaw_curtis_compute_weights.m</a>
+          computes Clenshaw Curtis weights.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute_weights_np.m">
+          clenshaw_curtis_compute_weights_np.m</a>
+          computes Clenshaw Curtis weights.
+        </li>
+        <li>
+          <a href = "comp_next.m">
+          comp_next.m</a>
+          computes the compositions of the integer N into K parts.
+        </li>
+        <li>
+          <a href = "dif_deriv.m">dif_deriv.m</a>,
+          computes the derivative of a polynomial in divided difference form.
+        </li>
+        <li>
+          <a href = "dif_shift_x.m">dif_shift_x.m</a>,
+          replaces one abscissa of a divided difference table with a new one.
+        </li>
+        <li>
+          <a href = "dif_shift_zero.m">dif_shift_zero.m</a>,
+          shifts a divided difference table so that all abscissas are zero.
+        </li>
+        <li>
+          <a href = "dif_to_r8poly.m">dif_to_r8poly.m</a>,
+          converts a divided difference table to standard polynomial form.
+        </li>
+        <li>
+          <a href = "fejer2_compute.m">fejer2_compute.m</a>
+          computes a Fejer Type 2 quadrature rule.
+        </li>
+        <li>
+          <a href = "fejer2_compute_points.m">
+          fejer2_compute_points.m</a>
+          computes Fejer Type 2 abscissas.
+        </li>
+        <li>
+          <a href = "fejer2_compute_points_np.m">
+          fejer2_compute_points_np.m</a>
+          computes Fejer Type 2 abscissas.
+        </li>
+        <li>
+          <a href = "fejer2_compute_weights.m">
+          fejer2_compute_weights.m</a>
+          computes Fejer Type 2 weights.
+        </li>
+        <li>
+          <a href = "fejer2_compute_weights_np.m">
+          fejer2_compute_weights_np.m</a>
+          computes Fejer Type 2 weights.
+        </li>
+        <li>
+          <a href = "gegenbauer_compute.m">gegenbauer_compute.m</a>
+          computes a Gauss-Gegenbauer quadrature rule.
+        </li>
+        <li>
+          <a href = "gegenbauer_integral.m">gegenbauer_integral.m</a>
+          evaluates the integral of a monomial with Gegenbauer weight.
+        </li>
+        <li>
+          <a href = "gegenbauer_recur.m">gegenbauer_recur.m</a>
+          finds the value and derivative of a Gegenbauer polynomial.
+        </li>
+        <li>
+          <a href = "gegenbauer_root.m">gegenbauer_root.m</a>
+          improves an approximate root of a Gegenbauer polynomial.
+        </li>
+        <li>
+          <a href = "gen_hermite_compute.m">gen_hermite_compute.m</a>
+          computes a generalized Gauss-Hermite rule.
+        </li>
+        <li>
+          <a href = "gen_hermite_compute_points.m">
+          gen_hermite_compute_points.m</a>
+          computes Generalized Hermite abscissas.
+        </li>
+        <li>
+          <a href = "gen_hermite_compute_points_np.m">
+          gen_hermite_compute_points_np.m</a>
+          computes Generalized Hermite abscissas.
+        </li>
+        <li>
+          <a href = "gen_hermite_compute_weights.m">
+          gen_hermite_compute_weights.m</a>
+          computes Generalized Hermite weights.
+        </li>
+        <li>
+          <a href = "gen_hermite_compute_weights_np.m">
+          gen_hermite_compute_weights_np.m</a>
+          computes Generalized Hermite weights.
+        </li>
+        <li>
+          <a href = "gen_hermite_dr_compute.m">gen_hermite_dr_compute.m</a>
+          computes a generalized Gauss-Hermite rule.
+        </li>
+        <li>
+          <a href = "gen_hermite_integral.m">gen_hermite_integral.m</a>
+          evaluates a monomial generalized Hermite integral.
+        </li>
+        <li>
+          <a href = "gen_laguerre_compute.m">gen_laguerre_compute.m</a>
+          computes a generalized Gauss-Laguerre quadrature rule.
+        </li>
+        <li>
+          <a href = "gen_laguerre_compute_points.m">
+          gen_laguerre_compute_points.m</a>
+          computes Generalized Laguerre abscissas
+        </li>
+        <li>
+          <a href = "gen_laguerre_compute_points_np.m">
+          gen_laguerre_compute_points_np.m</a>
+          computes Generalized Laguerre abscissas
+        </li>
+        <li>
+          <a href = "gen_laguerre_compute_weights.m">
+          gen_laguerre_compute_weights.m</a>
+          computes Generalized Laguerre weights.
+        </li>
+        <li>
+          <a href = "gen_laguerre_compute_weights_np.m">
+          gen_laguerre_compute_weights_np.m</a>
+          computes Generalized Laguerre weights.
+        </li>
+        <li>
+          <a href = "gen_laguerre_integral.m">gen_laguerre_integral.m</a>
+          evaluates a monomial genearlized Laguerre integral.
+        </li>
+        <li>
+          <a href = "gen_laguerre_ss_compute.m">gen_laguerre_ss_compute.m</a>
+          computes a generalized Gauss-Laguerre quadrature rule.
+        </li>
+        <li>
+          <a href = "gen_laguerre_ss_recur.m">gen_laguerre_ss_recur.m</a>
+          evaluates a generalized Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "gen_laguerre_ss_root.m">gen_laguerre_ss_root.m</a>
+          seeks roots of a generalized Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "hc_compute_points_from_weights.m">hc_compute_points_from_weights.m</a>
+          Hermite-Cubic weights, user-supplied points.
+        </li>
+        <li>
+          <a href = "hcc_compute.m">hcc_compute.m</a>
+          computes a Hermite-Cubic-Chebyshev-Spacing quadrature rule.
+        </li>
+        <li>
+          <a href = "hcc_compute_np.m">hcc_compute_np.m</a>
+          computes a Hermite-Cubic-Chebyshev-Spacing quadrature rule.
+        </li>
+        <li>
+          <a href = "hcc_compute_points.m">
+          hcc_compute_points.m</a>
+          computes Hermite-Cubic-Chebyshev-Spacing abscissas.
+        </li>
+        <li>
+          <a href = "hcc_compute_points_np.m">
+          hcc_compute_points_np.m</a>
+          computes Hermite-Cubic-Chebyshev-Spacing abscissas.
+        </li>
+        <li>
+          <a href = "hcc_compute_weights.m">
+          hcc_compute_weights.m</a>
+          computes Hermite-Cubic-Chebyshev-Spacing weights.
+        </li>
+        <li>
+          <a href = "hcc_compute_weights_np.m">
+          hcc_compute_weights_np.m</a>
+          computes Hermite-Cubic-Chebyshev-Spacing weights.
+        </li>
+        <li>
+          <a href = "hce_compute.m">hce_compute.m</a>
+          computes a Hermite-Cubic-Equal-Spacing quadrature rule.
+        </li>
+        <li>
+          <a href = "hce_compute_np.m">hce_compute_np.m</a>
+          computes a Hermite-Cubic-Equal-Spacing quadrature rule.
+        </li>
+        <li>
+          <a href = "hce_compute_points.m">
+          hce_compute_points.m</a>
+          computes Hermite-Cubic-Equal-Spacing abscissas.
+        </li>
+        <li>
+          <a href = "hce_compute_points_np.m">
+          hce_compute_points_np.m</a>
+          computes Hermite-Cubic-Equal-Spacing abscissas.
+        </li>
+        <li>
+          <a href = "hce_compute_weights.m">
+          hce_compute_weights.m</a>
+          computes Hermite-Cubic-Equal-Spacing weights.
+        </li>
+        <li>
+          <a href = "hce_compute_weights_np.m">
+          hce_compute_weights_np.m</a>
+          computes Hermite-Cubic-Equal-Spacing weights.
+        </li>
+        <li>
+          <a href = "hermite_compute.m">hermite_compute.m</a>
+          computes a Gauss-Hermite quadrature rule.
+        </li>
+        <li>
+          <a href = "hermite_compute_points.m">
+          hermite_compute_points.m</a>
+          computes Hermite abscissas.
+        </li>
+        <li>
+          <a href = "hermite_compute_points_np.m">
+          hermite_compute_points_np.m</a>
+          computes Hermite abscissas.
+        </li>
+        <li>
+          <a href = "hermite_compute_weights.m">
+          hermite_compute_weights.m</a>
+          computes Hermite weights.
+        </li>
+        <li>
+          <a href = "hermite_compute_weights_np.m">
+          hermite_compute_weights_np.m</a>
+          computes Hermite weights.
+        </li>
+        <li>
+          <a href = "hermite_genz_keister_lookup.m">
+          hermite_genz_keister_lookup.m</a>
+          looks up Genz-Keister Hermite points and weights.
+        </li>
+        <li>
+          <a href = "hermite_genz_keister_lookup_points.m">
+          hermite_genz_keister_lookup_points.m</a>
+          looks up Genz-Keister Hermite abscissas.
+        </li>
+        <li>
+          <a href = "hermite_genz_keister_lookup_points_np.m">
+          hermite_genz_keister_lookup_points_np.m</a>
+          looks up Genz-Keister Hermite abscissas.
+        </li>
+        <li>
+          <a href = "hermite_genz_keister_lookup_weights.m">
+          hermite_genz_keister_lookup_weights.m</a>
+          looks up Genz-Keister Hermite weights.
+        </li>
+        <li>
+          <a href = "hermite_genz_keister_lookup_weights_np.m">
+          hermite_genz_keister_lookup_weights_np.m</a>
+          looks up Genz-Keister Hermite weights.
+        </li>
+        <li>
+          <a href = "hermite_integral.m">hermite_integral.m</a>
+          evaluates a monomial Hermite integral.
+        </li>
+        <li>
+          <a href = "hermite_interpolant.m">hermite_interpolant.m</a>,
+          sets up a divided difference table from Hermite data.
+        </li>
+        <li>
+          <a href = "hermite_interpolant_rule.m">
+          hermite_interpolant_rule.m</b>
+          quadrature rule for a Hermite interpolant.
+        </li>
+        <li>
+          <a href = "hermite_interpolant_value.m">hermite_interpolant_value.m</a>,
+          evaluates a Hermite interpolant polynomial.
+        </li>
+        <li>
+          <a href = "hermite_lookup_points.m">
+          hermite_lookup_points.m</a>
+          looks up Hermite abscissas.
+        </li>
+        <li>
+          <a href = "hermite_lookup_weights.m">
+          hermite_lookup_weights.m</a>
+          looks up Hermite weights.
+        </li>
+        <li>
+          <a href = "hermite_ss_compute.m">hermite_ss_compute.m</a>
+          computes a Gauss-Hermite quadrature rule.
+        </li>
+        <li>
+          <a href = "hermite_ss_recur.m">hermite_ss_recur.m</a>
+          finds the value and derivative of a Hermite polynomial.
+        </li>
+        <li>
+          <a href = "hermite_ss_root.m">hermite_ss_root.m</a>
+          improves an approximate root of a Hermite polynomial.
+        </li>
+        <li>
+          <a href = "i4_choose.m">i4_choose.m</a>,
+          computes the binomial coefficient C(N,K) as an I4.
+        </li>
+        <li>
+          <a href = "i4_log_2.m">i4_log_2.m</a>,
+          returns the integer part of the logarithm base 2 of |I|.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints the transpose of an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of the transpose of an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_write.m">
+          i4mat_write.m</a>,
+          writes an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4vec_min_mv.m">i4vec_min_mv.m</a>,
+          determines U(1:N) /\ V for vectors U and a single vector V.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "imtqlx.m">imtqlx.m</a>
+          diagonalizes a symmetric tridiagonal matrix.
+        </li>
+        <li>
+          <a href = "jacobi_compute.m">jacobi_compute.m</a>
+          computes a Gauss-Jacobi quadrature rule.
+        </li>
+        <li>
+          <a href = "jacobi_compute_points.m">
+          jacobi_compute_points.m</a>
+          computes Jacobi abscissas.
+        </li>
+        <li>
+          <a href = "jacobi_compute_points_np.m">
+          jacobi_compute_points_np.m</a>
+          computes Jacobi abscissas.
+        </li>
+        <li>
+          <a href = "jacobi_compute_weights.m">
+          jacobi_compute_weights.m</a>
+          computes Jacobi weights.
+        </li>
+        <li>
+          <a href = "jacobi_compute_weights_np.m">
+          jacobi_compute_weights_np.m</a>
+          computes Jacobi weights.
+        </li>
+        <li>
+          <a href = "jacobi_integral.m">jacobi_integral.m</a>
+          evaluates the integral of a monomial with Jacobi weight.
+        </li>
+        <li>
+          <a href = "jacobi_ss_compute.m">jacobi_ss_compute.m</a>
+          computes a Gauss-Jacobi quadrature rule.
+        </li>
+        <li>
+          <a href = "jacobi_ss_recur.m">jacobi_ss_recur.m</a>
+          finds the value and derivative of a Jacobi polynomial.
+        </li>
+        <li>
+          <a href = "jacobi_ss_root.m">jacobi_ss_root.m</a>
+          improves an approximate root of a Jacobi polynomial.
+        </li>
+        <li>
+          <a href = "laguerre_compute.m">laguerre_compute.m</a>
+          computes a Gauss-Laguerre quadrature rule.
+        </li>
+        <li>
+          <a href = "laguerre_compute_points.m">
+          laguerre_compute_points.m</a>
+          computes Laguerre abscissas.
+        </li>
+        <li>
+          <a href = "laguerre_compute_points_np.m">
+          laguerre_compute_points_np.m</a>
+          computes Laguerre abscissas.
+        </li>
+        <li>
+          <a href = "laguerre_compute_weights.m">
+          laguerre_compute_weights.m</a>
+          computes Laguerre weights.
+        </li>
+        <li>
+          <a href = "laguerre_compute_weights_np.m">
+          laguerre_compute_weights_np.m</a>
+          computes Laguerre weights.
+        </li>
+        <li>
+          <a href = "laguerre_integral.m">laguerre_integral.m</a>
+          evaluates a monomial Laguerre integral.
+        </li>
+        <li>
+          <a href = "laguerre_lookup_points.m">
+          laguerre_lookup_points.m</a>
+          looks up Laguerre abscissas.
+        </li>
+        <li>
+          <a href = "laguerre_lookup_weights.m">
+          laguerre_lookup_weights.m</a>
+          looks up Laguerre weights.
+        </li>
+        <li>
+          <a href = "laguerre_ss_compute.m">laguerre_ss_compute.m</a>
+          computes a Gauss-Laguerre quadrature rule.
+        </li>
+        <li>
+          <a href = "laguerre_ss_recur.m">laguerre_ss_recur.m</a>
+          finds the value and derivative of a Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "laguerre_ss_root.m">laguerre_ss_root.m</a>
+          improves an approximate root of a Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "legendre_compute.m">legendre_compute.m</a>
+          computes a Gauss-Legendre quadrature rule using the Elhay-Kautsky method.
+        </li>
+        <li>
+          <a href = "legendre_compute_points.m">
+          legendre_compute_points.m</a>
+          computes Legendre abscissas.
+        </li>
+        <li>
+          <a href = "legendre_compute_points_np.m">
+          legendre_compute_points_np.m</a>
+          computes Legendre abscissas.
+        </li>
+        <li>
+          <a href = "legendre_compute_weights.m">
+          legendre_compute_weights.m</a>
+          computes Legendre weights.
+        </li>
+        <li>
+          <a href = "legendre_compute_weights_np.m">
+          legendre_compute_weights_np.m</a>
+          computes Legendre weights.
+        </li>
+        <li>
+          <a href = "legendre_dr_compute.m">legendre_dr_compute.m</a>
+          computes a Gauss-Legendre quadrature rule using the Davis-Rabinowitz method.
+        </li>
+        <li>
+          <a href = "legendre_integral.m">legendre_integral.m</a>
+          evaluates a monomial Legendre integral.
+        </li>
+        <li>
+          <a href = "legendre_zeros.m">legendre_zeros.m</a>,
+          returns the zeros of the Legendre polynomial of degree N.
+        </li>
+        <li>
+          <a href = "level_growth_to_order.m">
+          level_growth_to_order.m</a>
+          converts 1D levels and growth rules to 1D orders.
+        </li>
+        <li>
+          <a href = "level_to_order_default.m">
+          level_to_order_default.m</a>
+          converts 1D levels to 1D orders using default growth rules.
+        </li>
+        <li>
+          <a href = "level_to_order_exponential.m">
+          level_to_order_exponential.m</a>
+          converts 1D levels to 1D orders using exponential growth rules.
+        </li>
+        <li>
+          <a href = "level_to_order_exponential_slow.m">
+          level_to_order_exponential_slow.m</a>
+          converts 1D levels to 1D orders using "slow" exponential growth rules.
+        </li>
+        <li>
+          <a href = "level_to_order_linear.m">
+          level_to_order_linear.m</a>
+          converts 1D levels to 1D orders using linear growth rules.
+        </li>
+        <li>
+          <a href = "nc_compute.m">nc_compute.m</a>,
+          computes a Newton-Cotes quadrature rule.
+        </li>
+        <li>
+          <a href = "ncc_compute_points.m">ncc_compute_points.m</a>,
+          points of a Newton-Cotes Closed quadrature rule.
+        </li>
+        <li>
+          <a href = "ncc_compute_weights.m">ncc_compute_weights.m</a>,
+          weights of a Newton-Cotes Closed quadrature rule.
+        </li>
+        <li>
+          <a href = "nco_compute_points.m">nco_compute_points.m</a>,
+          points of a Newton-Cotes Open quadrature rule.
+        </li>
+        <li>
+          <a href = "nco_compute_weights.m">nco_compute_weights.m</a>,
+          weights of a Newton-Cotes Open quadrature rule.
+        </li>
+        <li>
+          <a href = "ncoh_compute_points.m">ncoh_compute_points.m</a>,
+          computes points for a Newton-Cotes "open half" quadrature rule.
+        </li>
+        <li>
+          <a href = "ncoh_compute_weights.m">ncoh_compute_weights.m</a>,
+          computes weights for a Newton-Cotes "open half" quadrature rule.
+        </li>
+        <li>
+          <a href = "patterson_lookup.m">
+          patterson_lookup.m</a>
+          looks up Patterson points and weights.
+        </li>
+        <li>
+          <a href = "patterson_lookup_points.m">
+          patterson_lookup_points.m</a>
+          looks up Patterson abscissas.
+        </li>
+        <li>
+          <a href = "patterson_lookup_points_np.m">
+          patterson_lookup_points_np.m</a>
+          looks up Patterson abscissas.
+        </li>
+        <li>
+          <a href = "patterson_lookup_weights.m">
+          patterson_lookup_weights.m</a>
+          looks up Patterson weights.
+        </li>
+        <li>
+          <a href = "patterson_lookup_weights_np.m">
+          patterson_lookup_weights_np.m</a>
+          looks up Patterson weights.
+        </li>
+        <li>
+          <a href = "point_radial_tol_unique_count.m">point_radial_tol_unique_count.m</a>,
+          counts tolerably unique points.
+        </li>
+        <li>
+          <a href = "point_radial_tol_unique_index.m">point_radial_tol_unique_index.m</a>,
+          indexes tolerably unique points.
+        </li>
+        <li>
+          <a href = "point_unique_index.m">point_unique_index.m</a>,
+          indexes unique points.
+        </li>
+        <li>
+          <a href = "product_mixed_weight.m">
+          product_mixed_weight.m</a>
+          computes the weights of a mixed product rule.
+        </li>
+        <li>
+          <a href = "r8_ceiling.m">r8_ceiling.m</a>,
+          rounds an R8 "up" (towards +oo) to the next integer.
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>,
+          returns a binomial coefficient as an R8.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>
+          returns the R8 roundoff unit.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>
+          computes the factorial of N, also denoted "N!".
+        </li>
+        <li>
+          <a href = "r8_factorial2.m">r8_factorial2.m</a>
+          computes the double factorial function N!!
+        </li>
+        <li>
+          <a href = "r8_floor.m">r8_floor.m</a>,
+          rounds an R8 "down" (towards -oo) to the next integer.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>,
+          returns a "huge" R8.
+        </li>
+        <li>
+          <a href = "r8_hyper_2f1.m">r8_hyper_2f1.m</a>
+          evaluates the hypergeometric function 2F1(A,B,C,X).
+        </li>
+        <li>
+          <a href = "r8_mop.m">
+          r8_mop.m</a>
+          returns the I-th power of -1 as an R8 value.
+        </li>
+        <li>
+          <a href = "r8_psi.m">r8_psi.m</a>
+          evaluates the function Psi(X).
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8col_compare.m">
+          r8col_compare.m</a>,
+          compares two columns of an R8COL;
+        </li>
+        <li>
+          <a href = "r8col_sort_heap_a.m">
+          r8col_sort_heap_a.m</a>,
+          ascending heapsorts the columns of an R8COL;
+        </li>
+        <li>
+          <a href = "r8col_sort_heap_index_a.m">r8col_sort_heap_index_a.m</a>,
+          computes an index vector to ascending sort an R8COL;
+        </li>
+        <li>
+          <a href = "r8col_sorted_unique_count.m">
+          r8col_sorted_unique_count.m</a>,
+          counts the unique columns of a sorted R8COL;
+        </li>
+        <li>
+          <a href = "r8col_swap.m">
+          r8col_swap.m</a>,
+          swaps two columns of an R8COL;
+        </li>
+        <li>
+          <a href = "r8col_tol_undex.m">
+          r8col_tol_undex.m</a>,
+          indexes tolerably unique entries in an R8COL.
+        </li>
+        <li>
+          <a href = "r8col_tol_unique_count.m">
+          r8col_tol_unique_count.m</a>,
+          counts tolerably unique entries in an R8COL;
+        </li>
+        <li>
+          <a href = "r8col_undex.m">r8col_undex.m</a>,
+          returns unique sorted indexes for an R8COL.
+        </li>
+        <li>
+          <a href = "r8col_unique_index.m">
+          r8col_unique_index.m</a>
+          indexes the unique entries in an R8COL.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_write.m">
+          r8mat_write.m</a>,
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8poly_ant_val.m">
+          r8poly_ant_val.m</a>
+          evaluates the antiderivative of a polynomial in standard form.
+        </li>
+        <li>
+          <a href = "r8vec_chebyshev.m">r8vec_chebyshev.m</a>,
+          creates a vector of Chebyshev spaced values.
+        </li>
+        <li>
+          <a href = "r8vec_compare.m">r8vec_compare.m</a>,
+          compares the order of two R8VEC's;
+        </li>
+        <li>
+          <a href = "r8vec_direct_product2.m">
+          r8vec_direct_product2.m</a>
+          direct product of R8VEC's.
+        </li>
+        <li>
+          <a href = "r8vec_index_sorted_range.m">
+          r8vec_index_sorted_range.m</a>
+          search index sorted vector for elements in a range.
+        </li>
+        <li>
+          <a href = "r8vec_legendre.m">r8vec_legendre.m</a>,
+          creates a vector of Legendre-spaced values.
+        </li>
+        <li>
+          <a href = "r8vec_min_pos.m">r8vec_min_pos.m</a>,
+          returns the minimum positive entry in an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_print.m">
+          r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_sort_heap_index_a.m">r8vec_sort_heap_index_a.m</a>,
+          computes an index vector to ascending sort an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">
+          r8vec_uniform_01.m</a>
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">
+          s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">
+          sort_heap_external.m</a>
+          externally sorts a list of items.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "vec_colex_next3.m">vec_colex_next3.m</a>,
+          generates vectors in colex order.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sandia_rules_test.m">sandia_rules_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "sandia_rules_test01.m">sandia_rules_test01.m</a>,
+          tests CHEBYSHEV1_COMPUTE and CHEBYSHEV1_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test02.m">sandia_rules_test02.m</a>,
+          demonstrates CHEBYSHEV1_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test03.m">sandia_rules_test03.m</a>,
+          tests CHEBYSHEV2_COMPUTE and CHEBYSHEV2_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test04.m">sandia_rules_test04.m</a>,
+          demonstrates CHEBYSHEV2_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test05.m">sandia_rules_test05.m</a>,
+          tests CLENSHAW_CURTIS_COMPUTE and LEGENDRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test06.m">sandia_rules_test06.m</a>,
+          demonstrates CLENSHAW_CURTIS_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test07.m">sandia_rules_test07.m</a>,
+          tests FEJER2_COMPUTE and LEGENDRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test08.m">sandia_rules_test08.m</a>,
+          demonstrates FEJER2_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test09.m">sandia_rules_test09.m</a>,
+          tests GEGENBAUER_COMPUTE and GEGENBAUER_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test10.m">sandia_rules_test10.m</a>,
+          demonstrates GEGENBAUER_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test11.m">sandia_rules_test11.m</a>,
+          tests GEN_HERMITE_COMPUTE and GEN_HERMITE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test12.m">sandia_rules_test12.m</a>,
+          demonstrates GEN_HERMITE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test13.m">sandia_rules_test13.m</a>,
+          tests GEN_LAGUERRE_COMPUTE and GEN_LAGUERRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test14.m">sandia_rules_test14.m</a>,
+          demonstrates GEN_LAGUERRE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test15.m">sandia_rules_test15.m</a>,
+          tests HERMITE_COMPUTE and HERMITE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test16.m">sandia_rules_test16.m</a>,
+          demonstrates HERMITE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test17.m">sandia_rules_test17.m</a>,
+          tests JACOBI_COMPUTE and JACOBI_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test18.m">sandia_rules_test18.m</a>,
+          demonstrates JACOBI_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test19.m">sandia_rules_test19.m</a>,
+          tests LAGUERRE_COMPUTE and LAGUERRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test20.m">sandia_rules_test20.m</a>,
+          demonstrates LAGUERRE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test21.m">sandia_rules_test21.m</a>,
+          tests LEGENDRE_COMPUTE and LEGENDRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test22.m">sandia_rules_test22.m</a>,
+          demonstrates LEGENDRE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test23.m">sandia_rules_test23.m</a>,
+          demonstrates LEVEL_GROWTH_TO_ORDER.
+        </li>
+        <li>
+          <a href = "sandia_rules_test24.m">sandia_rules_test24.m</a>,
+          demonstrates LEVEL_TO_ORDER_DEFAULT.
+        </li>
+        <li>
+          <a href = "sandia_rules_test25.m">sandia_rules_test25.m</a>,
+          demonstrates LEVEL_TO_ORDER_EXPONENTIAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test26.m">sandia_rules_test26.m</a>,
+          demonstrates LEVEL_TO_ORDER_EXPONENTIAL_SLOW
+        </li>
+        <li>
+          <a href = "sandia_rules_test27.m">sandia_rules_test27.m</a>,
+          demonstrates LEVEL_TO_ORDER_LINEAR.
+        </li>
+        <li>
+          <a href = "sandia_rules_test28.m">sandia_rules_test28.m</a>,
+          tests PATTERSON_LOOKUP and LEGENDRE_INTEGRAL.
+        </li>
+        <li>
+          <a href = "sandia_rules_test29.m">sandia_rules_test29.m</a>,
+          tests R8COL_TOL_UNDEX.
+        </li>
+        <li>
+          <a href = "sandia_rules_test30.m">sandia_rules_test30.m</a>,
+          tests R8VEC_SORT_HEAP_INDEX_A.
+        </li>
+        <li>
+          <a href = "sandia_rules_test31.m">sandia_rules_test31.m</a>,
+          tests HCE_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test32.m">sandia_rules_test32.m</a>,
+          tests HCC_COMPUTE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test33.m">sandia_rules_test33.m</a>,
+          tests HC_COMPUTE_WEIGHTS_FROM_POINTS.
+        </li>
+        <li>
+          <a href = "sandia_rules_test34.m">sandia_rules_test34.m</a>,
+          uses HERMITE_INTERPOLANT on the Runge function using equally spaced data.
+        </li>
+        <li>
+          <a href = "sandia_rules_test35.m">sandia_rules_test35.m</a>,
+          uses HERMITE_INTERPOLANT on the Runge function using Chebyshev spaced data.
+        </li>
+        <li>
+          <a href = "sandia_rules_test36.m">sandia_rules_test36.m</a>,
+          tests HERMITE_INTERPOLANT_RULE.
+        </li>
+        <li>
+          <a href = "sandia_rules_test37.m">sandia_rules_test37.m</a>,
+          tests HERMITE_GENZ_KEISTER_LOOKUP_WEIGHTS.
+        </li>
+        <li>
+          <a href = "sandia_rules_test38.m">sandia_rules_test38.m</a>,
+          tabulates the Hermite interpolant and its derivative.
+        </li>
+        <li>
+          <a href = "cubic_value.m">cubic_value.m</a>,
+          returns the value and derivatives of a particular cubic polynomial.
+        </li>
+        <li>
+          <a href = "cubic_integrate.m">cubic_integrate.m</a>,
+          returns the integral of a particular cubic polynomial from A to B.
+        </li>
+        <li>
+          <a href = "cubic_antiderivative.m">cubic_antiderivative.m</a>,
+          evaluates the antiderivative function of a particular cubic polynomial.
+        </li>
+        <li>
+          <a href = "sandia_rules_test_output.txt">sandia_rules_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

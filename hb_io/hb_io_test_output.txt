@@ -1,0 +1,462 @@
+hb_io_test
+18-May-2004 08:01:46
+
+HB_IO_PRB
+  Test the MATLAB routines in HB_IO.
+
+TEST01
+  HB_HEADER_READ reads the header of an HB file.
+
+  Reading the file "rua_32.txt".
+
+1Real unsymmetric assembled matrix based on IBM32
+
+  TOTCRD =     36
+  PTRCRD =      3
+  INDCRD =      8
+  VALCRD =     13
+  RHSCRD =     12
+
+  KEY =    "RUA_32".
+  MXTYPE = "RUA".
+  RHSTYP = "FGX".
+
+  NROW   =     32
+  NCOL   =     32
+  NNZERO =    126
+  NELTVL =      0
+  NRHS   =      1
+  NRHSIX =      0
+
+  PTRFMT =    "(16I5)".
+  INDFMT =    "(16I5)".
+  VALFMT =    "(10F7.1)".
+  RHSFMT =    "(10F7.1)".
+
+TEST01
+  HB_HEADER_READ reads the header of an HB file.
+
+  Reading the file "rse_5.txt".
+
+1Real symmetic unassembled finite element matrix
+
+  TOTCRD =      4
+  PTRCRD =      1
+  INDCRD =      1
+  VALCRD =      2
+  RHSCRD =      0
+
+  KEY =    "RSE_5".
+  MXTYPE = "RSE".
+  RHSTYP = " ".
+
+  NROW   =      5
+  NCOL   =      5
+  NNZERO =      0
+  NELTVL =     15
+  NRHS   =      0
+  NRHSIX =      0
+
+  PTRFMT =    "(16I5)".
+  INDFMT =    "(16I5)".
+  VALFMT =    "(10F7.1)".
+  RHSFMT =    "(10F7.1)".
+
+TEST02
+  HB_HEADER_WRITE writes the header of an HB file.
+
+  Writing the file "rua_32_header.txt".
+
+TEST03
+  HB_STRUCTURE_READ reads the structure of an HB file.
+
+  Reading the file "rua_32.txt".
+  Reading the header.
+  Reading the structure.
+
+1Real unsymmetric assembled matrix based on IBM32
+  KEY =    "RUA_32".
+
+  NROW =   32
+  NCOL =   32
+  NNZERO = 126
+  NELTVL = 0
+
+Column Begin   End   ----------------------------------------
+
+     1     1     6      1   2   3   4   7  26
+     2     7    11      1   2   9  21  28
+     3    12    17      2   3   6   8   9  29
+     4    18    21      3   4   5  12
+     5    22    25      3   5  23  27
+     6    26    28      1   6  16
+     7    29    33      3   7  14  21  31
+     8    34    38      1   8  12  17  27
+     9    39    45      7   9  10  13  19  23  27
+    10    46    52      1  10  11  21  23  25  27
+                     ----------------------------------------
+
+TEST03
+  HB_STRUCTURE_READ reads the structure of an HB file.
+
+  Reading the file "rse_5.txt".
+  Reading the header.
+  Reading the structure.
+
+1Real symmetic unassembled finite element matrix
+  KEY =    "RSE_5".
+
+  NROW =   5
+  NCOL =   5
+  NNZERO = 0
+  NELTVL = 15
+
+Column Begin   End
+
+I haven not thought about how to print an
+unassembled matrix yet!
+
+TEST04
+  HB_STRUCTURE_WRITE writes an HB structure.
+
+  Writing the file "rua_32_structure.txt".
+
+TEST05
+  HB_VALUES_READ reads the values of an HB file.
+
+  Reading the file "rua_32.txt".
+  Reading the header.
+  Reading the structure.
+  Reading the values.
+
+1Real unsymmetric assembled matrix based on IBM32
+  KEY =    "RUA_32".
+  NROW =   32
+  NCOL =   32
+  NNZERO = 126
+  NELTVL = 0
+
+Column Begin   End   ----------------------------------------
+
+    1    1    6     101.000000    102.000000    103.000000    104.000000  
+                    107.000000    126.000000  
+    2    7   11     201.000000    202.000000    209.000000    221.000000  
+                    228.000000  
+    3   12   17     302.000000    303.000000    306.000000    308.000000  
+                    309.000000    329.000000  
+    4   18   21     403.000000    404.000000    405.000000    412.000000  
+    5   22   25     503.000000    505.000000    523.000000    527.000000  
+(Skipping intermediate columns...)
+   32  124  126    3224.000000   3228.000000   3232.000000  
+                     ----------------------------------------
+
+TEST05
+  HB_VALUES_READ reads the values of an HB file.
+
+  Reading the file "rse_5.txt".
+  Reading the header.
+  Reading the structure.
+  Reading the values.
+
+1Real symmetic unassembled finite element matrix
+  KEY =    "RSE_5".
+  NROW =   5
+  NCOL =   5
+  NNZERO = 0
+  NELTVL = 15
+
+Column Begin   End   ----------------------------------------
+                     ----------------------------------------
+
+I have not thought about how to print an
+unassembled matrix yet!
+
+TEST06
+  HB_VALUES_WRITE writes the values of an HB file.
+
+  Writing the file "rua_32_values.txt".
+
+TEST07
+  HB_RHS_READ reads right hand sides from an HB file.
+  HB_GUESS_READ reads starting guesses from an HB file.
+  HB_EXACT_READ reads exact solutions from an HB file.
+
+  Reading the file "rua_32.txt".
+  Reading the header.
+  Reading the structure.
+  Reading the values.
+  Reading the right hand sides.
+
+  Part of RHS
+
+
+
+  Col:       1       
+  Row
+
+     101      
+     102      
+     103      
+     104      
+     107      
+
+  Reading the starting guesses.
+
+  Part of GUESS
+
+
+
+  Col:       1       
+  Row
+
+       1      
+       1      
+       1      
+       1      
+       1      
+
+  Reading the exact solutions.
+
+  Part of EXACT
+
+
+
+  Col:       1       
+  Row
+
+       1      
+       2      
+       3      
+       4      
+       5      
+
+
+TEST08
+  HB_RHS_WRITE writes right hand sides to an HB file.
+  HB_GUESS_WRITE writes starting guesses to an HB file.
+  HB_EXACT_WRITE writes exact solutions to an HB file.
+
+  Writing the file "rua_32_rhs.txt".
+
+TEST09
+  HB_FILE_READ reads all the data in an HB file.
+
+  Reading the file "rua_32.txt".
+
+1Real unsymmetric assembled matrix based on IBM32
+
+  TOTCRD =     36
+  PTRCRD =      3
+  INDCRD =      8
+  VALCRD =     13
+  RHSCRD =     12
+
+  KEY =    "RUA_32".
+  MXTYPE = "RUA".
+  RHSTYP = "FGX".
+
+  NROW   =     32
+  NCOL   =     32
+  NNZERO =    126
+  NELTVL =      0
+  NRHS   =      1
+  NRHSIX =      0
+
+  PTRFMT =    "(16I5)".
+  INDFMT =    "(16I5)".
+  VALFMT =    "(10F7.1)".
+  RHSFMT =    "(10F7.1)".
+
+Column Begin   End   ----------------------------------------
+
+     1     1     6      1   2   3   4   7  26
+     2     7    11      1   2   9  21  28
+     3    12    17      2   3   6   8   9  29
+     4    18    21      3   4   5  12
+     5    22    25      3   5  23  27
+     6    26    28      1   6  16
+     7    29    33      3   7  14  21  31
+     8    34    38      1   8  12  17  27
+     9    39    45      7   9  10  13  19  23  27
+    10    46    52      1  10  11  21  23  25  27
+                     ----------------------------------------
+
+Column Begin   End   ----------------------------------------
+
+    1    1    6     101.000000    102.000000    103.000000    104.000000  
+                    107.000000    126.000000  
+    2    7   11     201.000000    202.000000    209.000000    221.000000  
+                    228.000000  
+    3   12   17     302.000000    303.000000    306.000000    308.000000  
+                    309.000000    329.000000  
+    4   18   21     403.000000    404.000000    405.000000    412.000000  
+    5   22   25     503.000000    505.000000    523.000000    527.000000  
+(Skipping intermediate columns...)
+   32  124  126    3224.000000   3228.000000   3232.000000  
+                     ----------------------------------------
+
+  Part of RHS
+
+
+
+  Col:       1       
+  Row
+
+     101      
+     102      
+     103      
+     104      
+     107      
+
+
+  Part of GUESS
+
+
+
+  Col:       1       
+  Row
+
+       1      
+       1      
+       1      
+       1      
+       1      
+
+
+  Part of EXACT
+
+
+
+  Col:       1       
+  Row
+
+       1      
+       2      
+       3      
+       4      
+       5      
+
+
+TEST10
+  HB_FILE_WRITE writes an HB file.
+
+  Writing the file "rua_32_file.txt".
+
+TEST11
+  HB_MATVEC_A_MEM multiplies a matrix times a vector.
+
+  This particular version assumes:
+  * the matrix is in "A" format (assembled),
+  * the matrix and vectors can fit in memory,
+  * the matrix and multiplicand have been read into
+    memory before the routine is called.
+
+  For this example, the first vector X is zero except
+  for a 1 in row 10.  This means A*X should return
+  column 10 of A.
+
+  The second vector X is all 1's.  A*X should be
+  the sum of the entries of each row.
+
+  The product vectors A*X
+
+
+
+  Col:       1             2       
+  Row
+
+    1001          4606      
+       0          5512      
+       0          8424      
+       0          3816      
+       0          6520      
+       0          6430      
+       0          1721      
+       0          3124      
+       0          4236      
+    1010          3730      
+    1011          5644      
+       0          7860      
+       0          7952      
+       0          5242      
+       0          5145      
+       0          5964      
+       0          7868      
+       0          8072      
+       0          2838      
+       0          5360      
+    1021          6405      
+       0          6466      
+    1023          7815      
+       0         12120      
+    1025          3550      
+       0          9830      
+    1027          8962      
+       0          6284      
+       0          4387      
+       0          4860      
+       0          3862      
+       0          8296      
+
+
+TEST12
+  HB_VECMAT_A_MEM multiplies a vector times a matrix.
+
+  This particular version assumes:
+  * the matrix is in "A" format (assembled),
+  * the matrix and vectors can fit in memory,
+  * the matrix and multiplicand have been read into
+    memory before the routine is called.
+
+  For this example, the first vector X is zero except
+  for a 1 in row 10.  This means A'*X should return
+  row 10 of A.
+
+  The second vector X is all 1's.  A'*X should be
+  the sum of the entries of each column.
+
+  The product vectors A'*X
+
+
+
+  Col:       1             2       
+  Row
+
+       0           643      
+       0          1061      
+       0          1857      
+       0          1624      
+       0          2058      
+       0          1823      
+       0          3576      
+       0          4065      
+     910          6408      
+    1010          7118      
+       0          5575      
+       0          3642      
+       0          2624      
+       0          2817      
+       0          4537      
+       0          4842      
+       0          5137      
+    1810          9084      
+       0          5746      
+       0          6044      
+       0          6356      
+       0          4433      
+       0          9263      
+       0          7262      
+       0         12588      
+       0         10479      
+       0         10882      
+       0          5637      
+       0         14596      
+       0         12082      
+       0          9358      
+       0          9684      
+
+
+HB_IO_PRB:
+  Normal end of execution.
+
+18-May-2004 08:01:50

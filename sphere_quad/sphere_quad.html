@@ -1,0 +1,359 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_QUAD - Quadrature on the Surface of the Unit Sphere
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_QUAD <br> Quadrature on the Surface of the Unit Sphere
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_QUAD</b> 
+      is a MATLAB library which 
+      estimates the integral of a scalar function F(X,Y,Z) over the surface of 
+      the unit sphere centered at the origin.
+    </p>
+
+    <p>
+      The library includes one function, <b>SPHERE01_QUAD_MC</b>, which
+      estimates the integral using a Monte Carlo approach.  It randomly
+      samples points on the surface, and estimates the integral as the
+      average of these values times the area of the surface. 
+    </p>
+
+    <p>
+      The library includes three functions based on the idea of a
+      latitudinal/longitudinal grid: <b>SPHERE01_QUAD_LLC</b>, 
+      <b>SPHERE01_QUAD_LLV</b> and <b>SPHERE01_QUAD_LLM</b>.
+      The surface of the sphere is divided into rectangles whose sides 
+      are always lines of latitude or longitude.  Each rectangle is then
+      split diagonally into a pair of triangles (except for the degenerate
+      rectangles that include the north or south pole as a vertex.)
+    </p>
+
+    <p>
+      The user controls the accuracy of the integral estimate by specifying
+      a maximum side length H.  The functions determine angular increments 
+      that guarantee the size restriction.  Of course, this means that the 
+      restriction on latitude, enforced at the equator, will result in excessively
+      small triangles away from the equator.  That is a penalty of
+      using this simple subdivision scheme.
+    </p>
+
+    <p>
+      The library includes three functions based on the idea of first
+      subdividing the surface into 20 congruent spherical triangles, based
+      on the projection of a regular icosahedron.  The functions
+      <b>SPHERE01_QUAD_ICOS1C</b>, <b>SPHERE01_QUAD_ICOS1V</b> and 
+      <b>SPHERE01_QUAD_ICOS1M</b> use this idea, along with subdivision.
+    </p>
+
+    <p>
+      The function <b>SPHERE01_QUAD_ICOS2V</b> is similar to 
+      <b>SPHERE01_QUAD_ICOS1V</b> but uses a more sophisticated algorithm
+      to project points from the planar triangle to the unit sphere.
+      However, the modifications seem to make little difference to the
+      resulting integral estimate.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_QUAD</b> is available in
+      <a href = "../../c_src/sphere_quad/sphere_quad.html">a C version</a> and
+      <a href = "../../cpp_src/sphere_quad/sphere_quad.html">a C++ version</a> and
+      <a href = "../../f77_src/sphere_quad/sphere_quad.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sphere_quad/sphere_quad.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_quad/sphere_quad.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">
+      SPHERE_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of a quadrature rule for the unit sphere; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>, 
+      a MATLAB library which 
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>, 
+      a MATLAB library which 
+      computes Lebedev quadrature rules for the unit sphere;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_monte_carlo/sphere_monte_carlo.html">
+      SPHERE_MONTE_CARLO</a>, 
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the surface of the sphere in 3D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which 
+      approximates the integral of a function on the surface or in the interior
+      of a variety of geometric shapes.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          James Arvo,<br>
+          Stratified sampling of spherical triangles,<br>
+          Computer Graphics Proceedings, Annual Conference Series, <br>
+          ACM SIGGRAPH '95, pages 437-438, 1995.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Jacob Goodman, Joseph ORourke, editors,<br>
+          Handbook of Discrete and Computational Geometry,<br>
+          Second Edition,<br>
+          CRC/Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-301-4,<br>
+          LC: QA167.H36.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "arc_cosine.m">arc_cosine.m</a>
+          computes the arc cosine function, with argument truncation.
+        </li>
+        <li>
+          <a href = "arc_sine.m">arc_sine.m</a>
+          computes the arc sine function, with argument truncation.
+        </li>
+        <li>
+          <a href = "atan4.m">atan4.m</a>
+          computes the inverse tangent of the ratio Y / X.
+        </li>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>
+          capitalizes a character.
+        </li>
+        <li>
+          <a href = "icos_shape.m">icos_shape.m</a>
+          describes an icosahedron.
+        </li>
+        <li>
+          <a href = "icos_size.m">icos_size.m</a>
+          gives "sizes" for an icosahedron in 3D.
+        </li>
+        <li>
+          <a href = "r8vec_polarize.m">r8vec_polarize.m</a>
+          decomposes an R8VEC into normal and parallel components.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>
+          compares two strings for equality, ignoring case.
+        </li>
+        <li>
+          <a href = "sphere01_distance_xyz.m">sphere01_distance_xyz.m</a>
+          computes great circle distances on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_monomial_integral.m">sphere01_monomial_integral.m</a>
+          returns monomial integrals on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_quad_icos1c.m">sphere01_quad_icos1c.m</a>
+          centroid rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_quad_icos1m.m">sphere01_quad_icos1m.m</a>
+          midside rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_quad_icos1v.m">sphere01_quad_icos1v.m</a>
+          vertex rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_quad_icos2v.m">sphere01_quad_icos2v.m</a>
+          vertex rule, project, then subdivide.
+        </li>
+        <li>
+          <a href = "sphere01_quad_llc.m">sphere01_quad_llc.m</a>
+          Longitude/Latitude grid with centroid rule.
+        </li>
+        <li>
+          <a href = "sphere01_quad_llm.m">sphere01_quad_llm.m</a>
+          longitude/latitude grid plus midside rule.
+        </li>
+        <li>
+          <a href = "sphere01_quad_llv.m">sphere01_quad_llv.m</a>
+          longitude/latitude grid with vertex rule.
+        </li>
+        <li>
+          <a href = "sphere01_quad_mc.m">sphere01_quad_mc.m</a>
+          uses the Monte Carlo rule for sphere quadrature.
+        </li>
+        <li>
+          <a href = "sphere01_quad_mc_size.m">sphere01_quad_mc_size.m</a>
+          sizes a Monte Carlo rule for sphere quadrature.
+        </li>
+        <li>
+          <a href = "sphere01_sample_3d.m">sphere01_sample_3d.m</a>
+          picks random points on a sphere in 3D.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_angles_to_area.m">sphere01_triangle_angles_to_area.m</a>
+          computes the area of a spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_project.m">sphere01_triangle_project.m</a>
+          projects from a plane triangle to a spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_project2.m">sphere01_triangle_project2.m</a>
+          projects from a plane triangle to a spherical triangle using
+          a more sophisticated algorithm.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_sample.m">sphere01_triangle_sample.m</a>
+          samples a spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_sides_to_angles.m">sphere01_triangle_sides_to_angles.m</a>
+          computes spherical triangle angles.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_areas.m">sphere01_triangle_vertices_to_areas.m</a>
+          computes the area of a spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_centroid.m">sphere01_triangle_vertices_to_centroid.m</a>
+          gets a spherical triangle "centroid".
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_midpoints.m">sphere01_triangle_vertices_to_midpoints.m</a>
+          gets the midsides of a spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_sides.m">sphere01_triangle_vertices_to_sides.m</a>
+          computes spherical triangle sides.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tp_to_xyz.m">tp_to_xyz.m</a>
+          converts spherical TP coordinates to XYZ coordinates.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sphere_quad_test.m">sphere_quad_test.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "polyterm_exponent.m">polyterm_exponent.m</a>,
+          allows the user to set or get the exponents defining a monomial.
+        </li>
+        <li>
+          <a href = "polyterm_value_3d.m">polyterm_value_3d.m</a>,
+          evaluates a monomial.
+        </li>
+        <li>
+          <a href = "sphere_quad_test01.m">sphere_quad_test01.m</a>,
+          tests the Monte Carlo rule and the latitude/longitude grids.
+        </li>
+        <li>
+          <a href = "sphere_quad_test02.m">sphere_quad_test02.m</a>,
+          tests the icosahedral centroid subdivision rule.
+        </li>
+        <li>
+          <a href = "sphere_quad_test03.m">sphere_quad_test03.m</a>,
+          tests the icosahedral midpoint subdivision rule.
+        </li>
+        <li>
+          <a href = "sphere_quad_test04.m">sphere_quad_test04.m</a>,
+          tests the icosahedral vertex subdivision rule.
+        </li>
+        <li>
+          <a href = "sphere_quad_test05.m">sphere_quad_test05.m</a>,
+          tests the icosahedral vertex subdivision rule, using
+          a more sophisticated projection.
+        </li>
+        <li>
+          <a href = "sphere_quad_test_output.txt">sphere_quad_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial html skeleton created by HTMLINDEX. -->
+
+</html>

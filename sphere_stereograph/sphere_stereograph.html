@@ -1,0 +1,278 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_STEREOGRAPH - Stereographic Mapping Between Sphere and Plane
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_STEREOGRAPH <br>
+      Stereographic Mapping Between Sphere and Plane
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_STEREOGRAPH</b>
+      is a MATLAB program which
+      implements the standard stereographic mapping between the unit sphere and
+      the plane Z=1, as well as a generalization of this mapping.
+    </p>
+
+    <p>
+      The stereographic projection preserves angles, and is a conformal mapping.
+      This implies, for instance, that the Delaunay triangulation of a sphere
+      maps to a corresponding Delaunay triangulation of the plane.
+    </p>
+
+    <p>
+      Circles on the sphere that do not pass through the focus will be
+      projected to circles on the plane.  Circles on the sphere that do pass
+      through the focus will be projected to straight lines on the plane.
+    </p>
+
+    <h3 align = "center">
+      The Standard Projection
+    </h3>
+
+    <p>
+      We start with a sphere of radius 1 and center <b>C</b> = (0,0,0).
+    </p>
+
+    <p>
+      A plane is chosen, tangent to the sphere, at a point of tangency
+      <b>T</b> which we take to be the "north pole", <b>T</b> = (0,0,1).
+      We use a focus point <b>F</b>, which we take to be the "south pole",
+      (0,0,-1)
+    </p>
+
+    <p>
+      For any point <b>P</b> on the sphere, the stereographic projection <b>Q</b>
+      of the point is defined by drawing the line from <b>F</b> through <b>P</b>,
+      and computing <b>Q</b> as the intersection of this line with the plane.
+    </p>
+
+    <p>
+      For any point <b>Q</b> on the plane, the stereographic inverse projection
+      <b>P</b> of the point is defined by drawing the line from <b>F</b>
+      through <b>Q</b>, and
+      computing <b>P</b> as the intersection of this line with the sphere.
+    </p>
+
+    <p>
+      The function <b>sphere_stereograph</b> carries out the standard projection,
+      and <b>sphere_stereograph_inverse</b> does the inverse.
+    </p>
+
+    <h3 align = "center">
+      Projection with arbitrary center and focus
+    </h3>
+
+    <p>
+      One way to generalize the projection is to allow the center <b>C</b> and
+      focus point <b>F</b> to be arbitrary.  If we assume the point of tangency
+      is antipodal to <b>F</b> then <b>T</b> = 2*<b>C</b>-<b>F</b>.  Once these
+      points are defined, the stereographic projection relative to <b>F</b>,
+      <b>C</b>, and <b>T</b> can be set up in the same way as before.
+    </p>
+
+    <p>
+      The function <b>sphere_stereograph2</b> carries out the generalized
+      projection, and <b>sphere_stereograph2_inverse</b> does the inverse.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_STEREOGRAPH</b> is available in
+      <a href = "../../cpp_src/sphere_stereograph/sphere_stereograph.html">a C++ version</a> and
+      <a href = "../../f_src/sphere_stereograph/sphere_stereograph.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_stereograph/sphere_stereograph.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      performs geometric calculations in 2, 3 and M dimensional space.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>,
+      a MATLAB library which
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_stereograph_display/sphere_stereograph_display.html">
+      SPHERE_STEREOGRAPH_DISPLAY</a>,
+      a MATLAB library which
+      computes and displays the results of several stereographic projections
+      between a sphere and a plane.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_xyz_display/sphere_xyz_display.html">
+      SPHERE_XYZ_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZ information defining points in 3D,
+      and displays a unit sphere and the points in the MATLAB 3D graphics window.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          C F Marcus,<br>
+          The stereographic projection in vector notation,<br>
+          Mathematics Magazine,<br>
+          Volume 39, Number 2, March 1966, pages 100-102.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "plane_normal_basis_3d.m">
+          plane_normal_basis_3d.m</a>,
+          finds two perpendicular vectors in a plane in normal form in 3D;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8vec_any_normal.m">
+          r8vec_any_normal.m</a>,
+          returns a unit normal vector to a given vector;
+        </li>
+        <li>
+          <a href = "r8vec_cross_product_3d.m">r8vec_cross_product_3d.m</a>,
+          computes the cross product of two R8VEC's in 3D;
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>,
+          returns unit pseudonormal R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "sphere_stereograph.m">sphere_stereograph.m</a>
+          maps points on the unit sphere to the plane Z = 1 using
+          the standard projection.
+        </li>
+        <li>
+          <a href = "sphere_stereograph_inverse.m">sphere_stereograph_inverse.m</a>
+          maps points on the plane Z = 1 to the unit sphere
+          using the standard projection.
+        </li>
+        <li>
+          <a href = "sphere_stereograph2.m">sphere_stereograph2.m</a>
+          stereographic mapping
+          using a sphere centered at C, with focus point F and antipodal
+          tangent point T=2*C-F.
+        </li>
+        <li>
+          <a href = "sphere_stereograph2_inverse.m">sphere_stereograph2_inverse.m</a>
+          inverse of stereographic mapping
+          using a sphere centered at C, with focus point F and antipodal
+          tangent point T=2*C-F.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_map.m">uniform_on_sphere01_map.m</a>
+          returns uniformly random points on the unit sphere.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+     <ul>
+        <li>
+          <a href = "sphere_stereograph_test.m">sphere_stereograph_test.m</a>
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "sphere_stereograph_test01.m">sphere_stereograph_test01.m</a>
+          verifies that SPHERE_STEREOGRAPH and SPHERE_STEREOGRAPH_INVERSE
+          are inverse functions of each other.
+        </li>
+        <li>
+          <a href = "sphere_stereograph_test02.m">sphere_stereograph_test02.m</a>
+          verifies that SPHERE_STEREOGRAPH is a special case of SPHERE_STEREOGRAPH2,
+          and the same for the inverse function.
+        </li>
+        <li>
+          <a href = "sphere_stereograph_test03.m">sphere_stereograph_test03.m</a>
+          verifies that SPHERE_STEREOGRAPH2 and SPHERE_STEREOGRAPH2_INVERSE
+          are inverse functions of each other.
+        </li>
+        <li>
+          <a href = "sphere_stereograph_test_output.txt">
+          sphere_stereograph_test_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 November 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

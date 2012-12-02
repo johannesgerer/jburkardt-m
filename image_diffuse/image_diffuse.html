@@ -1,0 +1,211 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_DIFFUSE - Black/White Version of Grayscale Image
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_DIFFUSE <br> Black/White Version of Grayscale Image
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_DIFFUSE</b>
+      is a MATLAB function which
+      uses diffusion to smooth the colors in a picture.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        function <i>g2</i> = <b>image_diffuse</b> ( <i>g</i>, <i>c</i>, <i>k</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>g</i> is an <i>m</i> by <i>n</i> <b>uint8</b>
+          (short integers, 0 to 255) array containing the grayscale image data;
+          MATLAB's <b>imread()</b> command can be used to create such a
+          dataset from a graphics image file.
+        </li>
+        <li>
+          <i>c</i> is a value, typically between 0 and 1, which controls the
+          diffusion.  C = 0 means the picture is unchanged.  C = 1 means each
+          pixel is completely replaced by a neighborhood average.
+        </li>
+        <li>
+          <i>k</i> indicates the number of steps of diffusion to carry out.
+          After k steps, a single black pixel will be diffused with pixels
+          up to k pixels away in all directions.
+        </li>
+        <li>
+          <i>g2</i> is an <i>m</i> by <i>n</i> <b>uint8</b>
+          array containing the diffused version of the image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      a MATLAB library which
+      applies image processing techniques to remove noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB program which
+      demonstrates a simple technique for edge detection in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_noise/image_noise.html">
+      IMAGE_NOISE</a>,
+      a MATLAB library which
+      adds noise to an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_rgb_to_gray/image_rgb_to_gray.html">
+      IMAGE_RGB_TO_GRAY</a>,
+      a MATLAB function which
+      creates a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      a MATLAB library which
+      makes a black and white version of a grayscale image by setting all pixels
+      below or above a threshold value to black or white.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Jonas Gomes, Luiz Velho,<br>
+          Image Processing for Computer Graphics,<br>
+          Springer, 1997,<br>
+          ISBN: 0387948546,<br>
+          LC: T385.G65.
+        </li>
+        <li>
+          William Pratt,<br>
+          Digital Image Processing,<br>
+          Second Edition,<br>
+          Wiley, 1991,<br>
+          ISBN13: 978-0471857662,<br>
+          LC: TA1632.P7.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "image_diffuse.m">image_diffuse.m</a>,
+          applies diffusion to a gray scale image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>FOOL</b> is an image which was originally a true black and white image;
+      that is, as a gray scale image, every pixel was set to 0 or 255.
+      <ul>
+        <li>
+          <a href = "fool.png">fool.png</a>,
+          the original image.
+        </li>
+        <li>
+          <a href = "fool_c0.05_k20.png">fool_c0.05_k20.png</a>,
+          the result for C = 0.05, K = 20;
+        </li>
+        <li>
+          <a href = "fool_c0.50_k01.png">fool_c0.50_k01.png</a>,
+          the result for C = 0.50, K = 1.
+        </li>
+        <li>
+          <a href = "fool_c0.50_k20.png">fool_c0.50_k20.png</a>,
+          the result for C = 0.50, K = 20.
+        </li>
+        <li>
+          <a href = "fool_c1.00_k01.png">fool_c1.00_k01.png</a>,
+          the result for C = 1.00, K = 1
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 July 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

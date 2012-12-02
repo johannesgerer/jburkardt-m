@@ -1,0 +1,371 @@
+<html>
+
+  <head>
+    <title>
+      COLORED_NOISE - 1/F^alpha Power Law Noise Generation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      COLORED_NOISE <br> 1/F^alpha Power Law Noise Generation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>COLORED_NOISE</b>
+      is a MATLAB library which generates sequences that simulate 
+      1/f^alpha power law noise.  This includes white noise (alpha = 0),
+      pink noise (alpha = 1) and brown noise or Brownian motion (alpha = 2),
+      but also values of alpha between 0 and 2.
+    </p>
+
+    <p>
+      The original code listing by Kasdin referenced a number of functions from
+      the Numerical Recipes library (FOUR1, FREE_VECTOR, GASDEV, RAN1, REALFT, 
+      VECTOR).  Numerical Recipes is a proprietary library whose components
+      cannot be freely distributed.  Moreover, the referenced functions
+      have some peculiarities of implementation (the FFT is not normalized;
+      the FFT data must be a power of 2 in order; the code uses single
+      precision real arithmetic).  
+    </p>
+
+    <p>
+      In the code presented here, references to Numerical Recipes functions
+      have been replaced by references to, and the source code of, 
+      nonproprietary code.  In particular, the Fourier
+      transform is implemented by a "slow Fourier transform" method,
+      and by simple uniform and normal random number generators.
+      You are welcome to make an efficient code by replacing these
+      routines.  The purpose of this posting is primarily to demonstrate 
+      the method.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>COLORED_NOISE</b> is available in
+      <a href = "../../c_src/colored_noise/colored_noise.html">a C version</a> and
+      <a href = "../../cpp_src/colored_noise/colored_noise.html">a C++ version</a> and
+      <a href = "../../f77_src/colored_noise/colored_noise.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/colored_noise/colored_noise.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/colored_noise/colored_noise.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/brownian_motion_simulation/brownian_motion_simulation.html">
+      BROWNIAN_MOTION_SIMULATION</a>,
+      a MATLAB program which
+      simulates Brownian motion in an M-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cnoise/cnoise.html">
+      CNOISE</a>,
+      a MATLAB library which
+      generates samples of noise obeying a 1/f^alpha power law,
+      by Miroslav Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/correlation/correlation.html">
+      CORRELATION</a>,
+      a MATLAB library which
+      contains examples of statistical correlation functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>,
+      a MATLAB library which
+      computes elements of a sequence of pseudorandom normally distributed values.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pink_noise/pink_noise.html">
+      PINK_NOISE</a>, 
+      a MATLAB library which
+      computes a "pink noise" signal obeying a 1/f power law.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sftpack/sftpack.html">
+      SFTPACK</a>,
+      a MATLAB library which
+      implements the "slow" Fourier transform, intended as a teaching
+      tool and comparison with the fast Fourier transform.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_rk/stochastic_rk.html">
+      STOCHASTIC_RK</a>, 
+      a MATLAB library which
+      applies a Runge-Kutta scheme to a stochastic differential equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which 
+      computes elements of a uniform pseudorandom sequence.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Martin Gardner,<br>
+          White and brown music, fractal curves and one-over-f fluctuations,<br>
+          Scientific American,<br>
+          Volume 238, Number 4, April 1978, pages 16-32.
+        </li>
+        <li>
+          Jeremy Kasdin,<br>
+          Discrete Simulation of Colored Noise and Stochastic Processes
+          and 1/f^a Power Law Noise Generation,<br>
+          Proceedings of the IEEE,<br>
+          Volume 83, Number 5, 1995, pages 802-827.
+        </li>
+        <li>
+          Edoardo Milotti,<br>
+          1/f noise: a pedagogical review,<br>
+          arXiv:physics/0204033.
+        </li>
+        <li>
+          Sophocles Orfanidis,<br>
+          Introduction to Signal Processing,<br>
+          Prentice-Hall, 1995,<br>
+          ISBN: 0-13-209172-0,<br>
+          LC: TK5102.5.O246.
+        </li>
+        <li>
+          William Press,<br>
+          Flicker Noises in Astronomy and Elsewhere,<br>
+          Comments on Astrophysics,<br>
+          Volume 7, Number 4, 1978, pages 103-119.
+        </li>
+        <li>
+          Miroslav Stoyanov, Max Gunzburger, John Burkardt,<br>
+          Pink Noise, 1/f^alpha Noise, and Their Effect on Solutions
+          of Differential Equations,<br>
+          International Journal for Uncertainty Quantification,<br>
+          Volume 1, Number 3, pages 257-278, 2011.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "f_alpha.m">f_alpha.m</a>
+          generates a 1/F^ALPHA noise sequence.
+        </li>
+        <li>
+          <a href = "r8_normal_01.m">r8_normal_01.m</a>
+          returns a unit pseudonormal R8.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print_part.m">r8vec_print_part.m</a>
+          prints "part" of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_sftb.m">r8vec_sftb.m</a>
+          computes a "slow" backward Fourier transform of real data.
+        </li>
+        <li>
+          <a href = "r8vec_sftf.m">r8vec_sftf.m</a>
+          computes a "slow" forward Fourier transform of real data.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "colored_noise_test.m">colored_noise_test.m</a>
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "colored_noise_test01.m">colored_noise_test01.m</a>
+          generates a series of sequences, each of length 128, with
+          ALPHA increasing from 0.00 to 2.00.
+        </li>
+        <li>
+          <a href = "colored_noise_test02.m">colored_noise_test02.m</a>
+          generates a series of sequences, each of length 128, with
+          ALPHA fixed, and the random number seed varying.  The program
+          displays 5 such paths, and the average of 200 of them.
+        </li>
+        <li>
+          <a href = "colored_noise_test_output.txt">colored_noise_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>COLORED_NOISE_TEST01</b> generates a sequence of 9 sets of data, for ALPHA = 0.00 to ALPHA
+      = 2.00, each time computing a sequence of 128 values, and using the
+      same sequence of random numbers.  This makes the effect of ALPHA
+      very clear.
+      <ul>
+        <li>
+          <a href = "make_plots.m">make_plots.m</a>
+          a MATLAB program which reads the "txt" files and makes plots.
+        </li>
+        <li>
+          <a href = "alpha_0.00.txt">alpha_0.00.txt</a>
+          values for ALPHA = 0.00.
+        </li>
+        <li>
+          <a href = "alpha_0.00.png">alpha_0.00.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_0.25.txt">alpha_0.25.txt</a>
+          values for ALPHA = 0.25.
+        </li>
+        <li>
+          <a href = "alpha_0.25.png">alpha_0.25.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_0.50.txt">alpha_0.50.txt</a>
+          values for ALPHA = 0.50.
+        </li>
+        <li>
+          <a href = "alpha_0.50.png">alpha_0.50.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_0.75.txt">alpha_0.75.txt</a>
+          values for ALPHA = 0.75.
+        </li>
+        <li>
+          <a href = "alpha_0.75.png">alpha_0.75.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_1.00.txt">alpha_1.00.txt</a>
+          values for ALPHA = 1.00.
+        </li>
+        <li>
+          <a href = "alpha_1.00.png">alpha_1.00.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_1.25.txt">alpha_1.25.txt</a>
+          values for ALPHA = 1.25.
+        </li>
+        <li>
+          <a href = "alpha_1.25.png">alpha_1.25.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_1.50.txt">alpha_1.50.txt</a>
+          values for ALPHA = 1.50.
+        </li>
+        <li>
+          <a href = "alpha_1.50.png">alpha_1.50.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_1.75.txt">alpha_1.75.txt</a>
+          values for ALPHA = 1.75.
+        </li>
+        <li>
+          <a href = "alpha_1.75.png">alpha_1.75.png</a>,
+          a plot.
+        </li>
+        <li>
+          <a href = "alpha_2.00.txt">alpha_2.00.txt</a>
+          values for ALPHA = 2.00.
+        </li>
+        <li>
+          <a href = "alpha_2.00.png">alpha_2.00.png</a>,
+          a plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>COLORED_NOISE_TEST02</b> generates 5 plots, with ALPHA = 0.0, 0.5, 1.0,
+      1.5 and 2.0, showing 5 realizations, and the average of 200.
+      <ul>
+        <li>
+          <a href = "alpha_0.00_paths.png">alpha_0.00_paths.png</a>;
+        </li>
+        <li>
+          <a href = "alpha_0.50_paths.png">alpha_0.50_paths.png</a>;
+        </li>
+        <li>
+          <a href = "alpha_1.00_paths.png">alpha_1.00_paths.png</a>;
+        </li>
+        <li>
+          <a href = "alpha_1.50_paths.png">alpha_1.50_paths.png</a>;
+        </li>
+        <li>
+          <a href = "alpha_2.00_paths.png">alpha_2.00_paths.png</a>;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 February 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,476 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_GRID_HW - Sparse Grids for Uniform and Normal Weights - Heiss and Winschel
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_GRID_HW <br> Sparse Grids for Uniform and Normal Weights <br> Heiss and Winschel
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_GRID_HW</b> 
+      is a MATLAB library which 
+      can compute sparse grids for multidimensional integration,
+      based on 1D rules for the unit interval with unit weight function,
+      or for the real line with the Gauss-Hermite weight function.
+      The code is by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      The original version of this software, and other information,
+      is available at <a href = "http://sparse-grids.de/">
+                                 http://sparse-grids.de </a>.
+
+    <p>
+      Four built-in 1D families of quadrature rules are supplied, and the
+      user can extend the package by supplying any family of 1D quadrature
+      rules.
+    </p>
+
+    <p>
+      The built-in families are identified by a 3-letter key which is also
+      the name of the MATLAB function that returns members of the family:
+      <ul>
+        <li>
+          <b>gqu</b>, standard Gauss-Legendre quadrature rules, for
+          the unit interval [0,1], with weight function w(x) = 1.
+        </li>
+        <li>
+          <b>gqn</b>, standard Gauss-Hermite quadrature rules, for
+          the infinite interval (-oo,+oo), with weight function 
+          w(x) = exp(-x*x/2)/sqrt(2*pi).
+        </li>
+        <li>
+          <b>kpu</b>, Kronrod-Patterson quadrature rules, for
+          the unit interval [0,1], with weight function w(x) = 1.
+          These sacrifice some of the precision of <b>gqu</b> in
+          order to provide a family of nested rules.
+        </li>
+        <li>
+          <b>kpn</b>, Kronrod-Patterson quadrature rules, for
+          the infinite interval (-oo,+oo), with weight function 
+          w(x) = exp(-x*x/2)/sqrt(2*pi).
+          These sacrifice some of the precision of <b>gqn</b> in
+          order to provide a family of nested rules.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The user can build new sparse grids by supplying a 1D quadrature family.
+      Examples provided include:
+      <ul>
+        <li>
+          <b>ccu</b>, Clenshaw-Curtis quadrature rules, for
+          the unit interval [0,1], with weight function w(x) = 1.
+          The K-th call returns the rule of order 1
+          if K is 1, and 2*(K-1)+1 otherwise.
+        </li>
+        <li>
+          <b>ccs</b>, slow Clenshaw-Curtis quadrature rules, for
+          the unit interval [0,1], with weight function w(x) = 1.
+          The K-th call returns the rule of order 1
+          if K is 1, and otherwise a rule whose order N has the
+          form 2^E+1 and is the lowest such order with precision at least 2*K-1.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_HW</b> is available in
+      <a href = "../../f_src/sparse_grid_hw/sparse_grid_hw.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>,
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>,
+      a MATLAB program which
+      constructs a product quadrature rule from <i>identical</i> 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for various intervals and weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>,
+      a MATLAB library which
+      generates Gauss quadrature rules of various orders and types.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">
+      SANDIA_SPARSE</a>, 
+      a MATLAB library which
+      computes the points and weights of a Smolyak sparse
+      grid, based on a variety of 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>, 
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules, 
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>, 
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids,
+      by Knut Petras.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>, 
+      a MATLAB library which
+      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_laguerre/sparse_grid_laguerre.html">
+      SPARSE_GRID_LAGUERRE</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Laguerre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>, 
+      a MATLAB library which 
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original MATLAB code by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Alan Genz, Bradley Keister,<br>
+          Fully symmetric interpolatory rules for multiple integrals
+          over infinite regions with Gaussian weight,<br>
+          Journal of Computational and Applied Mathematics,<br>
+          Volume 71, 1996, pages 299-309.
+        </li>
+        <li>
+          Florian Heiss, Viktor Winschel,<br>
+          Likelihood approximation by numerical integration on sparse grids,<br>
+          Journal of Econometrics,<br>
+          Volume 144, 2008, pages 62-80.
+        </li>
+        <li>
+          Thomas Patterson,<br>
+          The optimal addition of points to quadrature formulae,<br>
+          Mathematics of Computation,<br>
+          Volume 22, Number 104, October 1968, pages 847-856.
+        </li>
+        <li>
+          Knut Petras,<br>
+          Smolyak Cubature of Given Polynomial Degree with Few Nodes
+          for Increasing Dimension,<br>
+          Numerische Mathematik,<br>
+          Volume 93, Number 4, February 2003, pages 729-753.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ccu.m">ccu.m</a> 
+          returns one rule from the CCU family defined on [-1,+1] with unit weight.
+        </li>
+        <li>
+          <a href = "ccu_order.m">ccu_order.m</a> 
+          computes the order of a CCU rule from the level.
+        </li>
+        <li>
+          <a href = "get_seq.m">get_seq.m</a> 
+          generates integer vectors that describe component tensor products.
+        </li>
+        <li>
+          <a href = "gqn.m">gqn.m</a> 
+          returns one rule from the GQN family.
+        </li>
+        <li>
+          <a href = "gqn_order.m">gqn_order.m</a> 
+          computes the order of a GQN rule from the level.
+        </li>
+        <li>
+          <a href = "gqu.m">gqu.m</a> 
+          returns one rule from the GQU family.
+        </li>
+        <li>
+          <a href = "gqu_order.m">gqu_order.m</a> 
+          computes the order of a GQU rule from the level.
+        </li>
+        <li>
+          <a href = "i4_factorial2.m">i4_factorial2.m</a> 
+          computes the double factorial function.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a> 
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "kpn.m">kpn.m</a> 
+          returns one rule from the KPN family.
+        </li>
+        <li>
+          <a href = "kpn_order.m">kpn_order.m</a> 
+          returns the order of a member of the KPN family given the level.
+        </li>
+        <li>
+          <a href = "kpu.m">kpu.m</a> 
+          returns one rule from the KPU family.
+        </li>
+        <li>
+          <a href = "kpu_order.m">kpu_order.m</a> 
+          returns the order of a member of the KPU family given the level.
+        </li>
+        <li>
+          <a href = "nwspgr.m">nwspgr.m</a> 
+          the main routine, which the user calls in order to compute
+          a particular sparse grid.
+        </li>
+        <li>
+          <a href = "nwspgr_size.m">nwspgr_size.m</a> 
+          returns the size of a particular sparse grid.
+        </li>
+        <li>
+          <a href = "quad_rule_print.m">quad_rule_print.m</a> 
+          prints a multidimensional quadrature rule.
+        </li>
+        <li>
+          <a href = "r8vecs_print.m">r8vecs_print.m</a>,
+          prints a packed R8VEC.
+        </li>
+        <li>
+          <a href = "rules_1d_set.m">rules_1d_set.m</a> 
+          sets the packed vectors of 1D nodes and weights.
+        </li>
+        <li>
+          <a href = "rules_1d_size.m">rules_1d_size.m</a> 
+          determines the size of the packed RULES_1D array.
+        </li>
+        <li>
+          <a href = "symmetric_sparse_size.m">symmetric_sparse_size.m</a> 
+          sizes a symmetric sparse rule.
+        </li>
+        <li>
+          <a href = "tensor_product.m">tensor_product.m</a> 
+          computes a tensor product quadrature rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> is a script which prints
+          a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_grid_hw_test.m">sparse_grid_hw_test.m</a> 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "sparse_grid_hw_test_output.txt">sparse_grid_hw_test_output.txt</a> 
+          the output file;
+        </li>
+        <li>
+          <a href = "ccs_test.m">ccs_test.m</a> 
+          uses the CCS function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "ccu_sparse_test.m">ccu_sparse_test.m</a> 
+          uses the CCU function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "ccu_test.m">ccu_test.m</a> 
+          uses the CCU function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "fn_integral.m">fn_integral.m</a> 
+          evaluates the exact integral of the Hermite test function.
+        </li>
+        <li>
+          <a href = "fn_value.m">fn_value.m</a> 
+          is a Hermite test function.
+        </li>
+        <li>
+          <a href = "fu_integral.m">fu_integral.m</a> 
+          evaluates the exact integral of a test function over [0,1]^D.
+        </li>
+        <li>
+          <a href = "fu_value.m">fu_value.m</a> 
+          is a test function over [0,1]^D.
+        </li>
+        <li>
+          <a href = "get_seq_test.m">get_seq_test.m</a> 
+          tests GET_SEQ.
+        </li>
+        <li>
+          <a href = "gqn_sparse_test.m">gqn_sparse_test.m</a> 
+          uses the GQN function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "gqn_test.m">gqn_test.m</a> 
+          uses the GQN function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "gqu_sparse_test.m">gqu_sparse_test.m</a> 
+          uses the GQU function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "gqu_test.m">gqu_test.m</a> 
+          uses the GQU function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "kpn_sparse_test.m">kpn_sparse_test.m</a> 
+          uses the KPN function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "kpn_test.m">kpn_test.m</a> 
+          uses the KPN function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "kpu_sparse_test.m">kpu_sparse_test.m</a> 
+          uses the KPU function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "kpu_test.m">kpu_test.m</a> 
+          uses the KPU function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "nwspgr_size_test.m">nwspgr_size_test.m</a> 
+          tests NWSPGR_SIZE.
+        </li>
+        <li>
+          <a href = "nwspgr_test.m">nwspgr_test.m</a> 
+          tests NWSPGR.
+        </li>
+        <li>
+          <a href = "order_report.m">order_report.m</a> 
+          reports on the precision and order of all rules.
+        </li>
+        <li>
+          <a href = "pack_rules_test.m">pack_rules_test.m</a> 
+          tests RULES_1D_SIZE and RULES_1D_SET.
+        </li>
+        <li>
+          <a href = "symmetric_sparse_size_test.m">symmetric_sparse_size_test.m</a> 
+          tests SYMMETRIC_SPARSE_SIZE_TEST.
+        </li>
+        <li>
+          <a href = "tensor_product_test.m">tensor_product_test.m</a> 
+          tests TENSOR_PRODUCT_TEST.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 November 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

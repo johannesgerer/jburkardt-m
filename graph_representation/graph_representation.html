@@ -1,0 +1,366 @@
+<html>
+
+  <head>
+    <title>
+      GRAPH_REPRESENTATION - Representations of a Graph
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      GRAPH_REPRESENTATION <br> Representations of a Graph
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>GRAPH_REPRESENTATION</b>
+      is a MATLAB library which
+      can determine various representations of a graph.
+    </p>
+
+    <p>
+      Most of the routines take as input the number of nodes,
+      the node coordinates, the number of edges, and the edges as
+      a list of pairs of node indices.  They then produce an object
+      related to a representation of the graph.
+    </p>
+
+    <p>
+      Graphs are abstract models of a set of objects and some kind
+      of pairwise relationship that exists between some pairs of
+      the objects.  The objects are called <i>nodes</i> and the
+      relationships are called <i>edges</i> or <i>links</i>.
+    </p>
+
+    <p>
+      A graph is often depicted as a set of points (the nodes),
+      some pairs of which are connected by lines (the edges or links).
+    </p>
+
+    <p>
+      A <b>simple graph</b> is a set of NV vertices <b>V</b> and a set of
+      NE edges <b>E</b>, where each edge <b>e</b> in <b>E</b> is a set of
+      two distinct nodes from <b>V</b>.  By the conventions of set theory,
+      no distinction is made between the edges (A,B) and (B,A).
+      This corresponds to the idea that the relationship being represented
+      is symmetric.
+    </p>
+
+    <h3 align = "center">
+      Graph Representations and Data
+    </h3>
+
+    <p>
+      Perhaps the simplest description of a graph is the <b>edge list</b>.
+      This representation consists of a list of the pairs of nodes that
+      are joined by an edge.  If (A,B) is given in the list, then
+      the equivalent pair (B,A) is not listed.  For convenience, it is
+      often the case that the pair is chosen in which the first node
+      has a lower numeric index than the second.  Similarly, the order
+      in which these edges appear in the edge list, while not specified,
+      is often chosen to be ascending order.
+    </p>
+
+    <p>
+      Another representation of a graph is the <b>adjacency matrix</b>.
+      This is an NV by NV matrix A in which A(I,J) is the number of edges
+      between nodes I and J.  Ordinarily, this value is either 0 or 1,
+      although there are natural extensions to this idea.
+    </p>
+
+    <p>
+      Given an ordering of the edges as well as the nodes, we can
+      represent the graph by an <b>incidence matrix</b> which is an
+      NE by NV matrix, such that A(I,J) is 0 unless edge I uses node J
+      as one of its two endpoints.
+    </p>
+
+    <p>
+      The <b>adjacency structure</b> of a graph is, ideally, a list of
+      NV lists.  For node I, the list contains all nodes joined by an
+      edge to node I.  The length of the list for each node may be
+      anything from 0 to NV-1; in MATLAB this data structure can be
+      represented by a cell array.
+    </p>
+
+    <p>
+      If the cell array or list-of-lists data type is not available,
+      the information in the adjacency structure can also be constructed
+      by a pair of vectors.  The first, the <b>adjacency list</b>, is
+      simply the list of all the node neighbors of node 1, followed by
+      those for node 2, and so on.  The <b>adjacency pointer</b> is a
+      vector of length NV+1, which can be used to locate the data for
+      a given node within the adjacency list.  In particular, the neighbors
+      of node I are listed in the adjacency list between the entry
+      specified by pointer value I, up to, but not including, the entry
+      specified by pointer I+1.
+    </p>
+
+    <p>
+      Since it is quite common to represent a graph as a drawing,
+      or to abstract a graph from a physical situation in which the
+      nodes have positions, it is also useful to have available the
+      <b>node coordinates</b>, which are simply the (X,Y) coordinates
+      of each node.
+    </p>
+
+    <p>
+      Similarly, it may be more suggestive to refer to nodes by letter
+      or name or some other label.  Thus a <b>node label</b> array can
+      be an auxilliary item of data.
+    </p>
+
+    <p>
+      One format for storing graph information included the ability to
+      store a numeric label, the node coordinates, and the neighbors
+      of a node.  This is called the <b>grf format</b>.  There are a few
+      utilities for displaying an image of a graph that has been
+      represented in this format.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/floyd/floyd.html">
+      FLOYD</a>,
+      a MATLAB library which
+      implements Floyd's algorithm for finding the shortest distance between pairs of
+      nodes on a directed graph.
+    </p>
+
+    <p>
+      <a href = "../../datasets/graffiti/graffiti.html">
+      GRAFFITI</a>,
+      a dataset directory which
+      contains 195 abstract graphs, with adjacency and embedding information,
+      stored in the GRF format.
+    </p>
+
+    <p>
+      <a href = "../../data/graph_representation/graph_representation.html">
+      GRAPH_REPRESENTATION</a>,
+      a data directory of examples which
+      representing abstract mathematical graphs in various ways.
+    </p>
+
+    <p>
+      <a href = "../../data/grf/grf.html">
+      GRF</a>,
+      a data directory which
+      contains a description of the GRF format and some examples.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grf_display/grf_display.html">
+      GRF_DISPLAY</a>,
+      a MATLAB program which
+      reads a GRF file defining a mathematical graph and
+      displays it in the MATLAB graphics window.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/grf_display_opengl/grf_display_opengl.html">
+      GRF_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads a GRF file defining a mathematical graph and
+      displays it in an OpenGL graphics window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grf_io/grf_io.html">
+      GRF_IO</a>,
+      a MATLAB library which
+      reads and writes files in the GRF format.
+    </p>
+
+    <p>
+      <a href = "../../f_src/grf_to_eps/grf_to_eps.html">
+      GRF_TO_EPS</a>,
+      a FORTRAN90 program which
+      can make an encapsulated PostScript image of a GRF file.
+    </p>
+
+    <p>
+      <a href = "../../f_src/grf_to_xyl/grf_to_xyl.html">
+      GRF_TO_XYL</a>,
+      a FORTRAN90 program which
+      converts information describing the adjacency and embedding of an
+      abstract graph from GRF to XYL format.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Stephen Skiena,<br>
+          Implementing Discrete Mathematics:
+          Combinatorics and Graph Theory in Mathematica,<br>
+          Addison Wesley, 1990.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gr_adjacency_list.m">gr_adjacency_list.m</a>,
+          returns the adjacency list of a graph.
+        </li>
+        <li>
+          <a href = "gr_adjacency_matrix.m">gr_adjacency_matrix.m</a>,
+          returns the adjacency matrix of a graph.
+        </li>
+        <li>
+          <a href = "gr_adjacency_pointer.m">gr_adjacency_pointer.m</a>,
+          returns the adjacency pointer of a graph.
+        </li>
+        <li>
+          <a href = "gr_adjacency_structure.m">gr_adjacency_structure.m</a>,
+          returns the adjacency structure of a graph.
+        </li>
+        <li>
+          <a href = "gr_degree.m">gr_degree.m</a>,
+          computes the degree of the nodes in a graph.
+        </li>
+        <li>
+          <a href = "gr_grf.m">gr_grf.m</a>,
+          writes a GRF file of a graph.
+        </li>
+        <li>
+          <a href = "gr_incidence_matrix.m">gr_incidence_matrix.m</a>,
+          computes the incidence matrix.
+        </li>
+        <li>
+          <a href = "i4mat_print.m">i4mat_print.m</a>,
+          prints an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">i4mat_print_some.m</a>,
+          prints some of an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT_transpose;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT_transpose;
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints an R8MAT, transposed;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>,
+          prints some of an R8MAT_transpose;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gr_test.m">gr_test.m</a>,
+          the calling program;
+        </li>
+        <li>
+          <a href = "simple_edges.txt">simple_edges.txt</a>,
+          the edge list;
+        </li>
+        <li>
+          <a href = "simple_node_coordinates.txt">simple_node_coordinates.txt</a>,
+          node coordinates.
+        </li>
+        <li>
+          <a href = "simple.grf">simple.grf</a>,
+          the GRF file created by the tests.
+        </li>
+        <li>
+          <a href = "simple.png">simple.png</a>,
+          a PNG image of the GRF file.
+        </li>
+        <li>
+          <a href = "gr_test_output.txt">
+          gr_test_output.txt</a>,
+          the output file;
+        </li>
+        <li>
+          <a href = "gr_test01.m">gr_test01.m</a>,
+          tests GR_ADJACENCY_LIST.
+        </li>
+        <li>
+          <a href = "gr_test02.m">gr_test02.m</a>,
+          tests GR_ADJACENCY_MATRIX.
+        </li>
+        <li>
+          <a href = "gr_test03.m">gr_test03.m</a>,
+          tests GR_ADJACENCY_POINTER.
+        </li>
+        <li>
+          <a href = "gr_test04.m">gr_test04.m</a>,
+          tests GR_ADJACENCY_STRUCTURE.
+        </li>
+        <li>
+          <a href = "gr_test05.m">gr_test05.m</a>,
+          tests GR_DEGREE.
+        </li>
+        <li>
+          <a href = "gr_test06.m">gr_test06.m</a>,
+          tests GR_GRF.
+        </li>
+        <li>
+          <a href = "gr_test07.m">gr_test07.m</a>,
+          tests GR_INCIDENCE_MATRIX.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

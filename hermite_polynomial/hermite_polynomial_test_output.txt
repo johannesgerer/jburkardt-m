@@ -1,0 +1,792 @@
+>> hermite_polynomial_test
+08-Mar-2012 09:01:50
+
+HERMITE_POLYNOMIAL_TEST
+  MATLAB version.
+  Test the HERMITE_POLYNOMIAL library.
+
+HERMITE_POLYNOMIAL_TEST01:
+  H_POLYNOMIAL_VALUES stores values of
+  the physicist's Hermite polynomials.
+  H_POLYNOMIAL evaluates the polynomial.
+
+                        Tabulated                 Computed
+     N        X           H(N,X)                    H(N,X)                     Error
+
+     0      5.000000    1.0000000000000000e+00    1.0000000000000000e+00         0
+     1      5.000000    1.0000000000000000e+01    1.0000000000000000e+01         0
+     2      5.000000    9.8000000000000000e+01    9.8000000000000000e+01         0
+     3      5.000000    9.4000000000000000e+02    9.4000000000000000e+02         0
+     4      5.000000    8.8120000000000000e+03    8.8120000000000000e+03         0
+     5      5.000000    8.0600000000000000e+04    8.0600000000000000e+04         0
+     6      5.000000    7.1788000000000000e+05    7.1788000000000000e+05         0
+     7      5.000000    6.2116000000000000e+06    6.2116000000000000e+06         0
+     8      5.000000    5.2065680000000000e+07    5.2065680000000000e+07         0
+     9      5.000000    4.2127120000000000e+08    4.2127120000000000e+08         0
+    10      5.000000    3.2755297600000000e+09    3.2755297600000000e+09         0
+    11      5.000000    2.4329873600000000e+10    2.4329873600000000e+10         0
+    12      5.000000    1.7123708128000000e+11    1.7123708128000000e+11         0
+     5      0.000000    0.0000000000000000e+00    0.0000000000000000e+00         0
+     5      0.500000    4.1000000000000000e+01    4.1000000000000000e+01         0
+     5      1.000000   -8.0000000000000000e+00   -8.0000000000000000e+00         0
+     5      3.000000    3.8160000000000000e+03    3.8160000000000000e+03         0
+     5     10.000000    3.0412000000000000e+06    3.0412000000000000e+06         0
+
+HERMITE_POLYNOMIAL_TEST02:
+  HE_POLYNOMIAL_VALUES stores values of
+  the probabilist's Hermite polynomials.
+  HE_POLYNOMIAL evaluates the polynomial.
+
+                        Tabulated                 Computed
+     N        X          He(N,X)                   He(N,X)                     Error
+
+     0      5.000000    1.0000000000000000e+00    1.0000000000000000e+00         0
+     1      5.000000    5.0000000000000000e+00    5.0000000000000000e+00         0
+     2      5.000000    2.4000000000000000e+01    2.4000000000000000e+01         0
+     3      5.000000    1.1000000000000000e+02    1.1000000000000000e+02         0
+     4      5.000000    4.7800000000000000e+02    4.7800000000000000e+02         0
+     5      5.000000    1.9500000000000000e+03    1.9500000000000000e+03         0
+     6      5.000000    7.3600000000000000e+03    7.3600000000000000e+03         0
+     7      5.000000    2.5100000000000000e+04    2.5100000000000000e+04         0
+     8      5.000000    7.3980000000000000e+04    7.3980000000000000e+04         0
+     9      5.000000    1.6910000000000000e+05    1.6910000000000000e+05         0
+    10      5.000000    1.7968000000000000e+05    1.7968000000000000e+05         0
+    11      5.000000   -7.9260000000000000e+05   -7.9260000000000000e+05         0
+    12      5.000000   -5.9394800000000000e+06   -5.9394800000000000e+06         0
+     5      0.000000    0.0000000000000000e+00    0.0000000000000000e+00         0
+     5      0.500000    6.2812500000000000e+00    6.2812500000000000e+00         0
+     5      1.000000    6.0000000000000000e+00    6.0000000000000000e+00         0
+     5      3.000000    1.8000000000000000e+01    1.8000000000000000e+01         0
+     5     10.000000    9.0150000000000000e+04    9.0150000000000000e+04         0
+
+HERMITE_POLYNOMIAL_TEST03:
+  HF_FUNCTION_VALUES stores values of
+  the Hermite function Hf(n,x).
+  HF_FUNCTION evaluates the function.
+
+                        Tabulated                 Computed
+     N        X          Hf(N,X)                   Hf(N,X)                     Error
+
+     0      0.000000    7.5112554446494251e-01    7.5112554446494251e-01         0
+     1      0.000000    0.0000000000000000e+00    0.0000000000000000e+00         0
+     2      0.000000   -5.3112596601359852e-01   -5.3112596601359841e-01  -1.1e-16
+     3      0.000000    0.0000000000000000e+00   -0.0000000000000000e+00         0
+     4      0.000000    4.5996857917732659e-01    4.5996857917732659e-01         0
+     5      0.000000    0.0000000000000000e+00    0.0000000000000000e+00         0
+     0      1.000000    4.5558067201133251e-01    4.5558067201133251e-01         0
+     1      1.000000    6.4428836511347520e-01    6.4428836511347520e-01         0
+     2      1.000000    3.2214418255673760e-01    3.2214418255673766e-01  -5.6e-17
+     3      1.000000   -2.6302962362333338e-01   -2.6302962362333343e-01   5.6e-17
+     4      1.000000   -4.6497507629251100e-01   -4.6497507629251100e-01         0
+     5      1.000000   -5.8815211851795807e-02   -5.8815211851795841e-02   3.5e-17
+     6      1.000000    3.9050525154341059e-01    3.9050525154341059e-01         0
+     7      1.000000    2.6318614230640452e-01    2.6318614230640458e-01  -5.6e-17
+     8      1.000000   -2.3369114359965229e-01   -2.3369114359965229e-01         0
+     9      1.000000   -3.5829733614728398e-01   -3.5829733614728410e-01   1.1e-16
+    10      1.000000    6.1463444878830410e-02    6.1463444878830369e-02   4.2e-17
+    11      1.000000    3.6783120679848819e-01    3.6783120679848824e-01  -5.6e-17
+    12      1.000000    9.1319693091662782e-02    9.1319693091662824e-02  -4.2e-17
+     5      0.500000    4.3857509500323211e-01    4.3857509500323216e-01  -5.6e-17
+     5      2.000000   -2.6246895279310060e-02   -2.6246895279309776e-02  -2.8e-16
+     5      3.000000    5.1384261254778185e-01    5.1384261254778230e-01  -4.4e-16
+     5      4.000000    9.3555631180617577e-02    9.3555631180617618e-02  -4.2e-17
+
+HERMITE_POLYNOMIAL_TEST04:
+  H_POLYNOMIAL_ZEROS computes the zeros of H(n,x);
+  Check by calling H_POLYNOMIAL there.
+
+  Computed zeros for H(1,z):
+
+     1:     0.000000
+
+  Evaluate H(1,z):
+
+     1:     0.000000
+
+  Computed zeros for H(2,z):
+
+     1:    -0.707107
+     2:     0.707107
+
+  Evaluate H(2,z):
+
+     1:    -0.000000
+     2:    -0.000000
+
+  Computed zeros for H(3,z):
+
+     1:    -1.224745
+     2:    -0.000000
+     3:     1.224745
+
+  Evaluate H(3,z):
+
+     1:    -0.000000
+     2:     0.000000
+     3:     0.000000
+
+  Computed zeros for H(4,z):
+
+     1:    -1.650680
+     2:    -0.524648
+     3:     0.524648
+     4:     1.650680
+
+  Evaluate H(4,z):
+
+     1:    -0.000000
+     2:    -0.000000
+     3:     0.000000
+     4:    -0.000000
+
+  Computed zeros for H(5,z):
+
+     1:    -2.020183
+     2:    -0.958572
+     3:     0.000000
+     4:     0.958572
+     5:     2.020183
+
+  Evaluate H(5,z):
+
+     1:     0.000000
+     2:    -0.000000
+     3:     0.000000
+     4:    -0.000000
+     5:     0.000000
+
+HERMITE_POLYNOMIAL_TEST05:
+  HE_POLYNOMIAL_ZEROS computes the zeros of He(n,x);
+  Check by calling HE_POLYNOMIAL there.
+
+  Computed zeros for He(1,z):
+
+     1:     0.000000
+
+  Evaluate He(1,z):
+
+     1:     0.000000
+
+  Computed zeros for He(2,z):
+
+     1:    -1.000000
+     2:     1.000000
+
+  Evaluate He(2,z):
+
+     1:     0.000000
+     2:     0.000000
+
+  Computed zeros for He(3,z):
+
+     1:    -1.732051
+     2:    -0.000000
+     3:     1.732051
+
+  Evaluate He(3,z):
+
+     1:    -0.000000
+     2:     0.000000
+     3:     0.000000
+
+  Computed zeros for He(4,z):
+
+     1:    -2.334414
+     2:    -0.741964
+     3:     0.741964
+     4:     2.334414
+
+  Evaluate He(4,z):
+
+     1:    -0.000000
+     2:    -0.000000
+     3:     0.000000
+     4:    -0.000000
+
+  Computed zeros for He(5,z):
+
+     1:    -2.856970
+     2:    -1.355626
+     3:     0.000000
+     4:     1.355626
+     5:     2.856970
+
+  Evaluate He(5,z):
+
+     1:     0.000000
+     2:    -0.000000
+     3:     0.000000
+     4:    -0.000000
+     5:    -0.000000
+
+HERMITE_POLYNOMIAL_TEST06:
+  H_QUADRATURE_RULE computes the quadrature rule
+  associated with H(n,x);
+
+      X            W
+
+       1:      -2.651961      0.000972
+       2:      -1.673552      0.054516
+       3:      -0.816288      0.425607
+       4:      -0.000000      0.810265
+       5:       0.816288      0.425607
+       6:       1.673552      0.054516
+       7:       2.651961      0.000972
+
+  Use the quadrature rule to estimate:
+
+    Q = Integral ( -oo < X < +00 ) X^E exp(-X^2) dx
+
+   E       Q_Estimate      Q_Exact
+
+   0         1.77245         1.77245
+   1     4.16767e-16               0
+   2        0.886227        0.886227
+   3     5.68989e-16               0
+   4         1.32934         1.32934
+   5     1.69309e-15               0
+   6         3.32335         3.32335
+   7     5.77316e-15               0
+   8         11.6317         11.6317
+   9     2.66454e-14               0
+  10         52.3428         52.3428
+  11     1.35003e-13               0
+  12         287.885         287.885
+  13     7.38964e-13               0
+
+HERMITE_POLYNOMIAL_TEST07:
+  HE_QUADRATURE_RULE computes the quadrature rule
+  associated with He(n,x);
+
+      X            W
+
+       1:      -3.750440      0.001374
+       2:      -2.366759      0.077097
+       3:      -1.154405      0.601900
+       4:      -0.000000      1.145887
+       5:       1.154405      0.601900
+       6:       2.366759      0.077097
+       7:       3.750440      0.001374
+
+  Use the quadrature rule to estimate:
+
+    Q = Integral ( -oo < X < +00 ) X^E exp(-X^2) dx
+
+   E       Q_Estimate      Q_Exact
+
+   0         2.50663         2.50663
+   1     7.78891e-16               0
+   2         2.50663         2.50663
+   3     2.52576e-15               0
+   4         7.51988         7.51988
+   5     1.15463e-14               0
+   6         37.5994         37.5994
+   7     6.75016e-14               0
+   8         263.196         263.196
+   9     6.25278e-13               0
+  10         2368.76         2368.76
+  11     7.27596e-12               0
+  12         26056.4         26056.4
+  13     8.73115e-11               0
+
+HERMITE_POLYNOMIAL_TEST08
+  Compute a normalized physicist's Hermite exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hn(I,X) Hn(J,X) exp(-X*X) dx
+
+  where Hn(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 0.000000
+
+  Quadrature rule:
+
+       1:      -3.190993      0.000040
+       2:      -2.266581      0.004944
+       3:      -1.468553      0.088475
+       4:      -0.723551      0.432652
+       5:      -0.000000      0.720235
+       6:       0.723551      0.432652
+       7:       1.468553      0.088475
+       8:       2.266581      0.004944
+       9:       3.190993      0.000040
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1   3.63831e-16   7.43166e-16  -8.39172e-17   1.73472e-18  
+      2 : 3.63831e-16             1   4.62087e-16   1.14188e-15  -4.03323e-16  
+      3 : 7.29289e-16   4.89843e-16             1   -8.1532e-17   6.69603e-16  
+      4 :-4.56449e-17   1.15576e-15   -8.1532e-17             1   9.15934e-16  
+      5 :-1.21431e-17  -4.17201e-16   7.21645e-16   9.64506e-16             1  
+      6 :-1.21864e-16  -7.04298e-16   5.13478e-16   1.38778e-16  -5.55112e-17  
+
+  Col:       6       
+  Row
+      1 :-1.07987e-16  
+      2 :-6.83481e-16  
+      3 : 4.75314e-16  
+      4 : 9.71445e-17  
+      5 :-1.11022e-16  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST08
+  Compute a normalized physicist's Hermite exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hn(I,X) Hn(J,X) exp(-X*X) dx
+
+  where Hn(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 1.000000
+
+  Quadrature rule:
+
+       1:      -3.190993      0.000040
+       2:      -2.266581      0.004944
+       3:      -1.468553      0.088475
+       4:      -0.723551      0.432652
+       5:      -0.000000      0.720235
+       6:       0.723551      0.432652
+       7:       1.468553      0.088475
+       8:       2.266581      0.004944
+       9:       3.190993      0.000040
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.28403      0.907943      0.453972      0.185333     0.0655251  
+      2 :    0.907943       1.92604       1.60503      0.917352      0.416999  
+      3 :    0.453972       1.60503       2.72855       2.42443       1.50583  
+      4 :    0.185333      0.917352       2.42443       3.71832       3.41422  
+      5 :   0.0655251      0.416999       1.50583       3.41422       4.92527  
+      6 :   0.0207208      0.161169      0.739903       2.24593        4.6102  
+
+  Col:       6       
+  Row
+      1 :   0.0207208  
+      2 :    0.161169  
+      3 :    0.739903  
+      4 :     2.24593  
+      5 :      4.6102  
+      6 :     6.37677  
+
+HERMITE_POLYNOMIAL_TEST09
+  Compute a normalized physicist's Hermite polynomial power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hn(I,X) Hn(J,X) exp(-X*X) dx
+
+  where Hn(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponent of X = 0
+
+  Power product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1   -5.3603e-16   -8.8124e-16  -9.02056e-17   4.78784e-16  
+      2 : -5.3603e-16             1  -8.11851e-16  -5.68989e-16  -1.94289e-16  
+      3 : -8.7777e-16  -8.60423e-16             1  -1.27676e-15   1.94289e-16  
+      4 :-3.46945e-17  -5.68989e-16  -1.30451e-15             1  -2.10942e-15  
+      5 :  4.4062e-16  -1.80411e-16   1.94289e-16  -2.05391e-15             1  
+      6 : 3.81639e-17   8.04912e-16    -4.996e-16   2.58127e-15  -1.27676e-15  
+
+  Col:       6       
+  Row
+      1 :-3.46945e-17  
+      2 : 7.49401e-16  
+      3 :-5.55112e-16  
+      4 :   2.498e-15  
+      5 :-1.22125e-15  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST09
+  Compute a normalized physicist's Hermite polynomial power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hn(I,X) Hn(J,X) exp(-X*X) dx
+
+  where Hn(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponent of X = 1
+
+  Power product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 : 2.22045e-16      0.707107   3.69496e-16   2.60209e-16   6.93889e-17  
+      2 :    0.707107   7.70217e-16             1   8.04912e-16   1.11022e-16  
+      3 : 3.97252e-16             1    1.4988e-15       1.22474   9.99201e-16  
+      4 : 2.60209e-16   8.04912e-16       1.22474   2.05391e-15       1.41421  
+      5 : 1.04083e-16   1.38778e-16   9.99201e-16       1.41421   1.66533e-15  
+      6 :-2.15106e-16   2.77556e-17  -8.32667e-16   4.44089e-16       1.58114  
+
+  Col:       6       
+  Row
+      1 : -1.8735e-16  
+      2 :-5.55112e-17  
+      3 :-8.88178e-16  
+      4 : 4.44089e-16  
+      5 :     1.58114  
+      6 : 2.33147e-15  
+
+HERMITE_POLYNOMIAL_TEST10
+  Compute a normalized probabilist's Hermite exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hen(I,X) Hen(J,X) exp(-0.5*X*X) dx
+
+  where Hen(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 0.000000
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1   3.93335e-16   8.43889e-16  -3.15503e-17    -7.069e-17  
+      2 : 4.48846e-16             1   5.18249e-16   1.47712e-15   -3.5822e-16  
+      3 : 9.13278e-16   5.73977e-16             1   1.49186e-16   8.74301e-16  
+      4 :-6.26669e-17   1.47755e-15   2.04697e-16             1   9.50628e-16  
+      5 :-5.33427e-17  -3.29597e-16    8.7777e-16   8.95117e-16             1  
+      6 :-1.47018e-16  -7.94503e-16   2.91434e-16   1.38778e-17  -8.32667e-17  
+
+  Col:       6       
+  Row
+      1 :-1.47018e-16  
+      2 :-7.94503e-16  
+      3 :   2.498e-16  
+      4 :-2.77556e-17  
+      5 :-5.55112e-17  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST10
+  Compute a normalized probabilist's Hermite exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hen(I,X) Hen(J,X) exp(-0.5*X*X) dx
+
+  where Hen(I,X) = normalized physicist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 1.000000
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.64872       1.64872       1.16582      0.673087      0.336543  
+      2 :     1.64872       3.29744       3.49747       2.69235        1.6827  
+      3 :     1.16582       3.49747       5.77052       6.18726       4.99725  
+      4 :    0.673087       2.69235       6.18726       9.34255       10.0284  
+      5 :    0.336543        1.6827       4.99725       10.0284       14.3501  
+      6 :    0.150499      0.902934       3.29819       8.34976       15.3556  
+
+  Col:       6       
+  Row
+      1 :    0.150499  
+      2 :    0.902934  
+      3 :     3.29819  
+      4 :     8.34976  
+      5 :     15.3556  
+      6 :     21.0802  
+
+HERMITE_POLYNOMIAL_TEST11
+  Compute a normalized probabilist's Hermite polynomial power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hen(I,X) Hen(J,X) exp(-0.5*X*X) dx
+
+  where Hen(I,X) = normalized probabilist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponent of X = 0
+
+  Power weighted table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1  -6.47052e-16  -7.87564e-16  -2.77556e-17    4.3715e-16  
+      2 :-6.19296e-16             1  -7.70217e-16  -4.85723e-16  -1.38778e-17  
+      3 :-7.59809e-16   -8.8124e-16             1  -9.71445e-16   5.55112e-16  
+      4 :-2.77556e-17    -4.996e-16  -9.71445e-16             1  -1.55431e-15  
+      5 :  4.4062e-16   2.77556e-17   5.27356e-16  -1.55431e-15             1  
+      6 :-6.93889e-18   9.15934e-16  -3.33067e-16   3.05311e-15  -5.55112e-16  
+
+  Col:       6       
+  Row
+      1 : 4.51028e-17  
+      2 : 9.15934e-16  
+      3 :-3.33067e-16  
+      4 : 3.02536e-15  
+      5 :-5.82867e-16  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST11
+  Compute a normalized probabilist's Hermite polynomial power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hen(I,X) Hen(J,X) exp(-0.5*X*X) dx
+
+  where Hen(I,X) = normalized probabilist's Hermite polynomial of degree I.
+
+  Maximum degree P = 5
+  Exponent of X = 1
+
+  Power weighted table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 : 3.17454e-16             1   4.57967e-16   4.51028e-16  -1.17961e-16  
+      2 :           1    8.7777e-16       1.41421   5.27356e-16   4.16334e-16  
+      3 : 4.26742e-16       1.41421   1.33227e-15       1.73205    9.4369e-16  
+      4 : 4.78784e-16   6.10623e-16       1.73205   1.66533e-15             2  
+      5 :-9.02056e-17     4.996e-16    9.4369e-16             2   2.44249e-15  
+      6 :-2.15106e-16   8.32667e-17  -1.11022e-16   9.99201e-16       2.23607  
+
+  Col:       6       
+  Row
+      1 :-2.22045e-16  
+      2 : 2.77556e-17  
+      3 :-5.55112e-17  
+      4 : 1.11022e-15  
+      5 :     2.23607  
+      6 : 2.88658e-15  
+
+HERMITE_POLYNOMIAL_TEST12
+  Compute a Hermite function exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hf(I,X) Hf(J,X) dx
+
+  where Hf(I,X) = Hermite function of "degree" I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 0.000000
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1   4.90466e-16   8.26487e-16  -3.85976e-17   3.31766e-17  
+      2 : 5.32113e-16             1   6.22115e-16   1.46281e-15  -4.56232e-16  
+      3 : 8.29957e-16   6.29054e-16             1   9.02056e-17   1.00961e-15  
+      4 :-1.09504e-17   1.47625e-15     6.245e-17             1   1.04777e-15  
+      5 : 2.27682e-17   -4.7011e-16   1.03736e-15   1.04777e-15             1  
+      6 :-1.52656e-16  -6.31439e-16   4.19803e-16   2.35922e-16  -5.55112e-17  
+
+  Col:       6       
+  Row
+      1 :-1.52656e-16  
+      2 :-6.31439e-16  
+      3 : 4.33681e-16  
+      4 : 2.08167e-16  
+      5 :-8.32667e-17  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST12
+  Compute a Hermite function exponential product table.
+
+  Tij = integral ( -oo < X < +oo ) exp(B*X) Hf(I,X) Hf(J,X) dx
+
+  where Hf(I,X) = Hermite function of "degree" I.
+
+  Maximum degree P = 5
+  Exponential argument coefficient B = 1.000000
+
+  Exponential product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.28403      0.907943      0.453972      0.185333     0.0655251  
+      2 :    0.907943       1.92604       1.60503      0.917352      0.416999  
+      3 :    0.453972       1.60503       2.72855       2.42443       1.50583  
+      4 :    0.185333      0.917352       2.42443       3.71832       3.41422  
+      5 :   0.0655251      0.416999       1.50583       3.41422       4.92527  
+      6 :   0.0207208      0.161169      0.739903       2.24593        4.6102  
+
+  Col:       6       
+  Row
+      1 :   0.0207208  
+      2 :    0.161169  
+      3 :    0.739903  
+      4 :     2.24593  
+      5 :      4.6102  
+      6 :     6.37677  
+
+HERMITE_POLYNOMIAL_TEST13
+  Compute a Hermite function power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hf(I,X) Hf(J,X) dx
+
+  where Hf(I,X) = Hermite function of "degree" I.
+
+  Maximum degree P = 5
+  Exponent of X = 0
+
+  Power product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :           1   -5.6205e-16  -8.74301e-16  -2.77556e-17   4.30211e-16  
+      2 :-5.34295e-16             1  -9.50628e-16    -6.245e-16   2.77556e-17  
+      3 :-7.91034e-16  -1.00614e-15             1  -1.08247e-15   3.88578e-16  
+      4 :-2.08167e-17    -6.245e-16  -1.08247e-15             1  -1.72085e-15  
+      5 : 4.47559e-16             0   3.88578e-16  -1.60982e-15             1  
+      6 : 1.38778e-17   1.02696e-15  -3.05311e-16    2.9976e-15  -8.32667e-16  
+
+  Col:       6       
+  Row
+      1 : 5.20417e-17  
+      2 : 1.02696e-15  
+      3 :-3.05311e-16  
+      4 : 2.96985e-15  
+      5 :-8.32667e-16  
+      6 :           1  
+
+HERMITE_POLYNOMIAL_TEST13
+  Compute a Hermite function power product table.
+
+  Tij = integral ( -oo < X < +oo ) X^E Hf(I,X) Hf(J,X) dx
+
+  where Hf(I,X) = Hermite function of "degree" I.
+
+  Maximum degree P = 5
+  Exponent of X = 1
+
+  Power product table:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 : 1.11022e-16      0.707107   3.13985e-16   2.32453e-16  -2.08167e-17  
+      2 :    0.707107   6.10623e-16             1   7.77156e-16   1.66533e-16  
+      3 : 3.13985e-16             1   1.27676e-15       1.22474   6.10623e-16  
+      4 : 2.08167e-16   6.52256e-16       1.22474    1.4988e-15       1.41421  
+      5 :-3.46945e-17   2.22045e-16   6.10623e-16       1.41421   1.77636e-15  
+      6 :  -6.245e-17  -2.22045e-16             0   5.55112e-16       1.58114  
+
+  Col:       6       
+  Row
+      1 :-9.02056e-17  
+      2 :-2.22045e-16  
+      3 :-5.55112e-17  
+      4 : 5.55112e-16  
+      5 :     1.58114  
+      6 : 2.66454e-15  
+
+HERMITE_POLYNOMIAL_TEST14
+  H_POLYNOMIAL_COEFFICIENTS determines the physicist's Hermite 
+  polynomial coefficients.
+
+  H(0)
+
+  1.000000
+
+  H(1)
+
+  2.000000 * x
+
+  H(2)
+
+  4.000000 * x^2
+  -2.000000
+
+  H(3)
+
+  8.000000 * x^3
+  -12.000000 * x
+
+  H(4)
+
+  16.000000 * x^4
+  -48.000000 * x^2
+  12.000000
+
+  H(5)
+
+  32.000000 * x^5
+  -160.000000 * x^3
+  120.000000 * x
+
+HERMITE_POLYNOMIAL_TEST15
+  HE_POLYNOMIAL_COEFFICIENTS determines the probabilist's Hermite 
+  polynomial coefficients.
+
+  He(0)
+
+  1.000000
+
+  He(1)
+
+  1.000000 * x
+
+  He(2)
+
+  1.000000 * x^2
+  -1.000000
+
+  He(3)
+
+  1.000000 * x^3
+  -3.000000 * x
+
+  He(4)
+
+  1.000000 * x^4
+  -6.000000 * x^2
+  3.000000
+
+  He(5)
+
+  1.000000 * x^5
+  -10.000000 * x^3
+  15.000000 * x
+
+  He(6)
+
+  1.000000 * x^6
+  -15.000000 * x^4
+  45.000000 * x^2
+  -15.000000
+
+  He(7)
+
+  1.000000 * x^7
+  -21.000000 * x^5
+  105.000000 * x^3
+  -105.000000 * x
+
+  He(8)
+
+  1.000000 * x^8
+  -28.000000 * x^6
+  210.000000 * x^4
+  -420.000000 * x^2
+  105.000000
+
+  He(9)
+
+  1.000000 * x^9
+  -36.000000 * x^7
+  378.000000 * x^5
+  -1260.000000 * x^3
+  945.000000 * x
+
+  He(10)
+
+  1.000000 * x^10
+  -45.000000 * x^8
+  630.000000 * x^6
+  -3150.000000 * x^4
+  4725.000000 * x^2
+  -945.000000
+
+HERMITE_POLYNOMIAL_PLOT01:
+  HF_PLOT creates a plot of one or more Hermite functions.
+
+  Hermite function plot stored in file "hf_plot.png".
+
+HERMITE_POLYNOMIAL_TEST
+  Normal end of execution.
+
+08-Mar-2012 09:01:52
+>> 

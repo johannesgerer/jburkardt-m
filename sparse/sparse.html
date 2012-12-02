@@ -1,0 +1,491 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE - MATLAB's Sparse Matrix Utility
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE <br> MATLAB's Sparse Matrix Utility
+    </h1>
+
+    <hr>
+ 
+    <p>
+      <b>SPARSE</b> 
+      is a directory of MATLAB programs which 
+      demonstrate the use of the MATLAB "sparse" function 
+      for creating a sparse matrix.  
+    </p>
+
+    <h2 align = "center">
+      MATLAB's SPARSE function
+    </h2>
+
+    <p>
+      MATLAB provides a <b>sparse</b> function of the form
+      <blockquote><b>
+        matrix = sparse ( i, j, s, m, n, nz_max )
+      </b></blockquote>
+      This function can be used to create a sparse matrix.
+      The input arguments have the following meaning:
+      <dl>
+        <dt>
+          <b>i</b>
+        </dt>
+        <dd>
+          the row indices of the nonzero elements;
+        </dd>
+        <dt>
+          <b>j</b>
+        </dt>
+        <dd>
+          the column indices of the nonzero elements;
+        </dd>
+        <dt>
+          <b>s</b>
+        </dt>
+        <dd>
+          the values of the nonzero elements;
+        </dd>
+        <dt>
+          <b>m</b>
+        </dt>
+        <dd>
+          the number of rows in the matrix;
+        </dd>
+        <dt>
+          <b>n</b>
+        </dt>
+        <dd>
+          the number of columns in the matrix;
+        </dd>
+        <dt>
+          <b>nz_max</b>
+        </dt>
+        <dd>
+          the maximum number of nonzero elements in the matrix;
+          <b>nz_max</b> is commonly omitted, in which case its value
+          is taken from the length of <b>s</b>.  
+        </dd>
+      </dl>
+      Note that <b>nz_max</b> is commonly omitted, in which case its value
+      is taken from the length of <b>s</b>.  Moreover, if you specify
+      <b>nz_max</b> explicitly, or implicitly through the size of <b>s</b>,
+      MATLAB will allow you to increase the number of nonzero elements
+      at any time.  Specifying <b>nz_max</b> correctly, then, is simply
+      a matter of efficiency.
+    </p>
+
+    <h3 align = "center">
+      Example: Creating a Sparse Matrix at Once
+    </h3>
+
+    <p>
+      Although this is not the usual way to use the <b>sparse</b>
+      command, the following example should help to understand what
+      is going on.  We mean to define the following matrix:
+      <pre>
+        11  12   0   0  15
+         0  22  23   0   0
+        31   0  33  34  35
+      </pre>
+      by the following MATLAB commands:
+      <pre>
+        i = [  1,  1,  1,  2,  2,  3,  3,  3,  3 ];
+        j = [  1,  2,  5,  2,  3,  1,  3,  4,  5 ];
+        s = [ 11, 12, 15, 22, 23, 31, 33, 34, 35 ];
+        m = 3;
+        n = 5;
+        nz_max = 9;
+
+        a = sparse ( i, j, s, m, n, nz_max );
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Example: Building a Sparse Matrix in Steps
+    </h3>
+
+    <p>
+      Of course, in many applications, the matrix data is only
+      available one piece at a time, or has to be modified as you go.
+      This is easy to do, as well.  You can start by defining the
+      matrix to be an "empty" sparse matrix of a particular size,
+      as, for example:
+      <pre>
+        i = [];
+        j = [];
+        s = [];
+        m = 100;
+        n = 100;
+        a = sparse ( i, j, s, m, n );
+      </pre>
+      The matrix will be empty, and entries of the matrix are
+      by default equal to zero.  Then you can simply reference 
+      entries of the matrix as you need them.  For instance,
+      <pre>
+        a(1,1) = 3
+        a(3,8) = a(3,8) + 7    
+        a(4,7) = a(9,5) + 2 * a(8,12)
+        a(4,7) = a(4,7) + 1
+      </pre>
+      If you reference, on the right hand side of these equations,
+      a matrix entry that doesn't exist, it is by default zero.
+      If you assign a value on the left hand side to a matrix entry
+      that doesn't exist, a space is created for it, and it is given 
+      this value.  If the entry already existed, it is overwritten.
+    </p>
+
+    <h3 align = "center">
+      Useful Commands
+    </h3>
+
+    <p>
+      In some cases, Matlab's sparse matrix structure allows you
+      to ignore the fact that you are using a sparse matrix.  We
+      have already seen that you can reference the (i,j) element
+      of the matrix in the same way you would do for a full matrix,
+      and this is true whether you are simply asking to "read" the
+      current value of the element, or to "write" a new value for
+      the element.
+    </p>
+
+    <p>
+      A particular example of this is the fact that you can
+      solve a sparse linear system using the same "backslash"
+      formula that you would use if the matrix were full:
+      <blockquote><b>
+        x = A \ b;
+      </b></blockquote>
+    </p>
+
+    <p>
+      Matlab includes many commands specifically for dealing with
+      a sparse matrix.  For our examples, we will be considering 
+      <ul>
+        <li>
+          <b>nnz(A)</b> returns the number of nonzero matrix elements;
+        </li>
+        <li>
+          <b>nzmax(A)</b> returns the maximum number of nonzero
+          matrix elements allocated;
+        </li>
+        <li>
+          <b>find(A)</b> returns all (i,j) indices of nonzero elements;
+        </li>
+        <li>
+          <b>nonzeros(A)</b> returns all the nonzero elements;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Note:
+    </h3>
+
+    <p>
+      Note that, in a sense, MATLAB actually uses <i>two</i> formats 
+      for sparse matrices.  The user communicates with MATLAB by specifying
+      what is known as a <i>sparse triplet</i>, that is, a set of 
+      row indices, column indices, and values.  But internally, MATLAB
+      uses what is known as the <i>sparse compressed column</i> format.
+      This format allows MATLAB to access matrix entries rapidly.
+    </p>
+
+    <p>
+      For details about the sparse compressed column format, refer to
+      the <b>SPARSE_CC</b> web page listed below.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/csparse/csparse.html">
+      CSPARSE</a>,
+      a C library which
+      implements methods for the direct solution of sparse linear systems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/dlap/dlap.html">
+      DLAP</a>,
+      a FORTRAN90 library which
+      solves sparse linear systems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat_sparse/fem2d_heat_sparse.html">
+      FEM2D_HEAT_SPARSE</a>,
+      a MATLAB program which
+      solves the time dependent heat equation
+      in an arbitrary triangulated 2D region,
+      using MATLAB's sparse matrix storage format and solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_navier_stokes_sparse/fem2d_navier_stokes_sparse.html">
+      FEM2D_NAVIER_STOKES_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) incompressible Navier Stokes equations
+      on an arbitrary triangulated region, using the finite element method
+      and MATLAB's <b>sparse</b> facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse/fem2d_poisson_sparse.html">
+      FEM2D_POISSON_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) Poisson equation on an arbitrary
+      2D triangulated region using MATLAB's sparse solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_stokes_sparse/fem2d_stokes_sparse.html">
+      FEM2D_STOKES_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) incompressible Stokes equations
+      on an arbitrary triangulated region,
+      using the finite element method and MATLAB's <b>sparse</b> facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_stokes_sparse_big_cavity/fem2d_stokes_sparse_big_cavity.html">
+      FEM2D_STOKES_SPARSE_BIG_CAVITY</a>,
+      a MATLAB library which
+      contains the user-supplied routines necessary to run <b>fem2d_stokes_sparse</b>
+      on the "big cavity" problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hb_io/hb_io.html">
+      HB_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear
+      systems stored in the Harwell-Boeing (HB) Sparse Matrix format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hb_to_msm/hb_to_msm.html">
+      HB_TO_MSM</a>,
+      a MATLAB program which
+      converts a Harwell Boeing (HB) sparse matrix file to
+      a MATLAB sparse matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hb_to_st/hb_to_st.html">
+      HB_TO_ST</a>,
+      a MATLAB program which
+      converts the sparse matrix information stored in a Harwell Boeing (HB)
+      file into a Sparse Triplet (ST) file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out linear algebra operations,
+      which includes a set of operations for matrices in the "DCC"
+      format, a format which is equivalent to MATLAB's sparse format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_io/mm_io.html">
+      MM_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear
+      systems stored in the Matrix Market format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/msm_to_hb/msm_to_hb.html">
+      MSM_TO_HB</a>,
+      a MATLAB program which
+      converts a MATLAB sparse
+      matrix into a Harwell Boeing (HB) file.
+    </p>
+
+    <p>
+      <a href = "../../c_src/nsasm/nsasm.html">
+      NSASM</a>,
+      a C library which
+      is intended to be used with a MATLAB
+      calling program, and which sets up the sparse matrix needed for
+      a Newton iteration to solve a finite element formulation of
+      the steady incompressible 2D Navier Stokes equations.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cc/sparse_cc.html">
+      SPARSE_CC</a>,
+      a data directory which
+      contains examples of the sparse "compressed column" structure,
+      equivalent to MATLAB's sparse format, and
+      a file format suitable for storing such information.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cr/sparse_cr.html">
+      SPARSE_CR</a>,
+      a data directory which
+      contains a description and examples of the CR format,
+      ("compressed row") for storing a sparse matrix,
+      including a way to write the matrix as a set of three files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_parfor/sparse_parfor.html">
+      SPARSE_PARFOR</a>,
+      a MATLAB library which
+      demonstrates how a sparse matrix can be constructed by
+      evaluating individual blocks in parallel with the <b>parfor</b>
+      command, and then assembled (on a single processor) using the 
+      <b>sparse()</b> command.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sparsekit/sparsekit.html">
+      SPARSEKIT</a>, 
+      a FORTRAN90 library which
+      carries out sparse matrix
+      operations, by Yousef Saad.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sparsepak/sparsepak.html">
+      SPARSEPAK</a>, 
+      a FORTRAN90 library which
+      forms an obsolete version of
+      the Waterloo Sparse Matrix Package.
+    </p>
+
+    <p>
+      <a href = "../../data/st/st.html">
+      ST</a>, 
+      a data directory which
+      contains examples of the "sparse triplet" format for storing sparse matrices.  This
+      format is equivalent to the form in which sparse matrix data is
+      passed into MATLAB's sparse command (although the sparse compressed
+      column format is used internally).
+    </p>
+
+    <p>
+      <a href = "../../m_src/templates/templates.html">
+      TEMPLATES</a>,
+      a MATLAB library which
+      carries out the iterative solution of
+      linear systems.  It includes a routine <b>mm_to_msm</b> which
+      can read a Matrix Market file and store it as a MATLAB sparse
+      matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Timothy Davis,<br>
+          Direct Methods for Sparse Linear Systems,<br>
+          SIAM, 2006,<br>
+          ISBN: 0898716136.
+        </li>
+        <li>
+          John Gilbert, Cleve Moler, Robert Schreiber,<br>
+          Sparse Matrices in MATLAB: Design and Implementation,<br>
+          SIAM Journal on Matrix Analysis and Applications,<br>
+          Volume 13, Number 1, 1992, pages 333-356.
+        </li>
+        <li>
+          Duane Hanselman, Bruce Littlefield,<br>
+          Mastering MATLAB 7,<br>
+          Pearson Prentice Hall, 2005,<br>
+          ISBN: 0-13-143018-1.
+        </li>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+        <li>
+          The Mathworks,<br>
+          Using MATLAB, Version 6,<br>
+          The Mathworks, 2002.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_test.m">sparse_test.m</a>, 
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "sparse_test_output.txt">sparse_test_output.txt</a>, 
+          the output file;
+        </li>
+        <li>
+          <a href = "sparse_test01.m">sparse_test01.m</a>, 
+          sets up a simple 3 by 5 matrix;
+        </li>
+        <li>
+          <a href = "sparse_test02.m">sparse_test02.m</a>, 
+          sets up a sparse -1,2,-1 matrix of order 100;
+        </li>
+        <li>
+          <a href = "sparse_test03.m">sparse_test03.m</a>, 
+          demonstrates the use of the SIZE, NNZ and FIND functions
+          to describe the structure of a sparse matrix;
+        </li>
+        <li>
+          <a href = "sparse_test04.m">sparse_test04.m</a>, 
+          demonstrates that a sparse matrix can be constructed
+          and incremented one element at a time;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 July 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

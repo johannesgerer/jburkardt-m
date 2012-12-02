@@ -1,0 +1,43 @@
+function x = p14_start ( option, nvar )
+
+%*****************************************************************************80
+%
+%% P14_START returns a starting point for problem 14.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    29 September 2008
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer OPTION, the option index.
+%
+%    Input, integer NVAR, the number of variables.
+%
+%    Output, real X(NVAR), the starting point.
+%
+ x = [ ...
+   0.029742673007439, ...
+   0.029742673007439, ...
+   0.029742673007439, ...
+   0.039933250735582, ...
+   0.061866539016825, ...
+   0.101137641789028, ...
+   0.164623875371221, ...
+   0.258536575943466, ...
+   0.387217701462343, ...
+   0.553103336509555, ...
+   0.757271228030916, ...
+   1.000000000000000, ...
+   0.000000000000000 ]';
+
+  return
+end

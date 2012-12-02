@@ -1,0 +1,264 @@
+<html>
+
+  <head>
+    <title>
+      LEVELS - Choosing Contour Level Values
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LEVELS <br> Choosing Contour Level Values
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LEVELS</b> 
+      is a MATLAB program which 
+      draws a contour plot of a function, using sampling to determine
+      the appropriate contour levels.
+    </p>
+
+    <p>
+      MATLAB's <b>contour</b> function displays a contour plot of a data, described
+      either as a table Z(X,Y), or as a function F(X,Y).  (From here on, we'll assume
+      that the functional description is being used.)  The user can specify the number
+      of contour levels, and can also specify the values of the contour levels, but
+      it is common to let MATLAB handle this task with default settings.
+    </p> 
+
+    <p>
+      But for some functions, the evenly spaced contour levels, from FMIN to FMAX,
+      will not do a good job of showing the "shape" of the data.  This typically
+      happens where there are some extreme, localized values of the function, or
+      when a large area of the region has roughly the same value.  In such cases,
+      the contour lines will cluster around a small area of rapid variation, and
+      ignore the rest of the region.
+    </p>
+
+    <p>
+      <b>LEVELS</b> offers a simple solution.  It simply samples the data at a
+      random number of points and uses those values as the contour levels.  The
+      reason this helps is that this procedure will tend to use more contour lines
+      exactly in those ranges that occur more often.  If a large area has roughly
+      the same value, then there will be many more contour levels used to try to
+      discriminate the behavior in that area.  
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <b>LEVELS_XY</b> is appropriate when the variables X and Y are treated separately.
+      <blockquote>
+        <b>levels_xy</b> ( @<i>f</i>, <i>level_num</i>, <i>x_range</i>, <i>y_range</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          @<i>f</i> is the name of the function that evaluates the data to be contoured.  This
+          function should have the form
+          <blockquote><b>
+            function z = f(x,y)
+          </b></blockquote>
+        </li>
+        <li>
+          <i>level_num</i> is the number of contour levels to use; if omitted, 50 will be used.
+        </li>
+        <li>
+          <i>x_range</i> contains <b>[x_min, x_max]</b>, defining the range of the X variable.
+          If omitted, [-1,+1] is used.
+        </li>
+        <li>
+          <i>y_range</i> contains <b>[y_min, y_max]</b>, defining the range of the Y variable.
+          If omitted, the X range is used.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contour_sequence4/contour_sequence4.html">
+      CONTOUR_SEQUENCE4</a>, 
+      a MATLAB program which
+      expects a separate node coordinate file of the XY coordinates, and a separate 
+      file for the scalar quantity.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dist_plot/dist_plot.html">
+      DIST_PLOT</a>,
+      a MATLAB program which 
+      makes contour plots of the distance function,
+      as defined and used in Persson and Strang's distmesh code;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes contour plot of scattered data, 
+      or of data defined on an order 3 triangulation.  
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order6_contour/triangulation_order6_contour.html">
+      TRIANGULATION_ORDER6_CONTOUR</a>,
+      a MATLAB program which
+      makes contour plots of data defined on an order 6 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_magnitude_grid/vector_magnitude_grid.html">
+      VECTOR_MAGNITUDE_GRID</a>, 
+      a MATLAB program which 
+      reads vector data at "scattered"
+      points, computes an interpolatory function, evaluates it on
+      a uniform grid of user-specified density, and produces a
+      contour plot of the vector magnitude.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "levels.m">levels.m</a>,
+          the code to use when the function expects a single XY input vector variable.
+        </li>
+        <li>
+          <a href = "levels_xy.m">levels_xy.m</a>,
+          the code to use when the function expects a a pair of X, Y input scalar variables.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>BEALE</b> is the Beale function.
+      <ul>
+        <li>
+          <a href = "beale_xy.m">beale_xy.m</a>,
+          defines the function in terms of X and Y.
+        </li>
+        <li>
+          <a href = "beale_xy.png">beale_xy.png</a>,
+          a PNG image created by
+          <blockquote><b>
+            levels_xy ( @beale_xy, 50, [-5,5], [-5,5] )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH1</b> is the Bohachevsky function #1.
+      <ul>
+        <li>
+          <a href = "bohach1_xy.m">bohach1_xy.m</a>,
+          defines the function in terms of X and Y.
+        </li>
+        <li>
+          <a href = "bohach1_xy.png">bohach1_xy.png</a>,
+          a PNG image created by
+          <blockquote><b>
+            levels_xy ( @bohach1_xy, 50, [-0.75,0.75], [-0.75,+0.75] )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH2</b> is the Bohachevsky function #2.
+      <ul>
+        <li>
+          <a href = "bohach2_xy.m">bohach2_xy.m</a>,
+          defines the function in terms of X and Y.
+        </li>
+        <li>
+          <a href = "bohach2_xy.png">bohach2_xy.png</a>,
+          a PNG image created by
+          <blockquote><b>
+            levels_xy ( @bohach2_xy, 50, [-1,+1], [-1,+1] )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GOLDSTEIN_PRICE</b> is the Goldstein-Price function.
+      <ul>
+        <li>
+          <a href = "goldstein_price_xy.m">goldstein_price_xy.m</a>,
+          defines the function in terms of X and Y.
+        </li>
+        <li>
+          <a href = "goldstein_price_xy.png">goldstein_price_xy.png</a>,
+          a PNG image created by
+          <blockquote><b>
+            levels_xy ( @goldstein_price_xy, 50, [-5,+5], [-5,+5] )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LOCAL</b> is a badly scaled function with a local minimum.
+      The local minimum is at roughly X=(0.285,0.279) with F(X)=5.92
+      while the global minimum is at roughly X=(-21.02,-36.76) with F(X)=0.
+      Because of the nature of this function, minimization algorithms
+      may have a very hard time.
+      <ul>
+        <li>
+          <a href = "local_xy.m">local_xy.m</a>,
+          defines the function in terms of X and Y.
+        </li>
+        <li>
+          <a href = "local_xy.png">local_xy.png</a>,
+          a PNG image created by
+          <blockquote><b>
+            levels_xy ( @local_xy, 50, [-35,20], [-40,15] )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 09 February 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

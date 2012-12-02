@@ -1,0 +1,321 @@
+<html>
+
+  <head>
+    <title>
+      CONDITION - Matrix Condition Number Estimation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CONDITION <br> Matrix Condition Number Estimation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CONDITION</b>
+      is a MATLAB library which
+      implements methods for computing or estimating the condition number of a matrix.
+    </p>
+
+    <p>
+      Let ||*|| be a matrix norm, let A be an invertible matrix, and inv(A) the inverse of A.
+      The condition number of A with respect to the norm ||*|| is defined to be
+      <pre>
+        kappa(A) = ||A|| * ||inv(A)||
+      </pre>
+    </p>
+
+    <p>
+      If A is not invertible, the condition number is taken to be infinity.
+    </p>
+
+    <p>
+      Facts about the condition number include:
+      <ul>
+        <li>
+          1 <= kappa(A) for all matrices A.
+        </li>
+        <li>
+          1 = kappa(I), where I is the identity matrix.
+        </li>
+        <li>
+          for the L2 matrix norm, the condition number of any orthogonal matrix is 1.
+        </li>
+        <li>
+          for the L2 matrix norm, the condition number is the ratio of the maximum
+          to minimum singular values;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      MATLAB includes a function cond() which computes the condition number of
+      a matrix, with respect to a particular matrix norm:
+      <ul>
+        <li>
+          cond(a,1) uses the L1 matrix norm;
+        </li>
+        <li>
+          cond(a,2) uses the L2 matrix norm;
+        </li>
+        <li>
+          cond(a,inf) uses the Loo matrix norm;
+        </li>
+        <li>
+          cond(a,'fro') uses the Frobenius matrix norm;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CONDITION</b> is available in
+      <a href = "../../c_src/condition/condition.html">a C version</a> and
+      <a href = "../../cpp_src/condition/condition.html">a C++ version</a> and
+      <a href = "../../f77_src/condition/condition.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/condition/condition.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/condition/condition.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      solves linear systems using double precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../f77_src/napack/napack.html">
+      NAPACK</a>,
+      a FORTRAN77 library which
+      includes many routines for applied numerical linear algebra tasks,
+      including the matrix condition number,
+      by William Hager.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices for which some of the determinant, eigenvalues, inverse,
+      null vectors, P*L*U factorization or linear system solution are already known.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan Cline, Cleve Moler, Pete Stewart, James Wilkinson,<br>
+          An estimate for the Condition Number of a Matrix,<br>
+          Technical Report TM-310,<br>
+          Argonne National Laboratory, 1977.
+        </li>
+        <li>
+          Alan Cline, Russell Rew,<br>
+          A set of counterexamples to three condition number estimators,<br>
+          SIAM Journal on Scientific and Statistical Computing,<br>
+          Volume 4, Number 4, December 1983, pages 602-611.
+        </li>
+        <li>
+          William Hager,<br>
+          Condition Estimates,<br>
+          SIAM Journal on Scientific and Statistical Computing,<br>
+          Volume 5, Number 2, June 1984, pages 311-316.
+        </li>
+        <li>
+          Nicholas Higham,<br>
+          A survey of condition number estimation for triangular matrices,<br>
+          SIAM Review,<br>
+          Volume 9, Number 4, December 1987, pages 575-596.
+        </li>
+        <li>
+          Diane OLeary,<br>
+          Estimating matrix condition numbers,<br>
+          SIAM Journal on Scientific and Statistical Computing,<br>
+          Volume 1, Number 2, June 1980, pages 205-209.
+        </li>
+        <li>
+          Pete Stewart,<br>
+          Efficient Generation of Random Orthogonal Matrices With an Application
+          to Condition Estimators,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 17, Number 3, June 1980, pages 403-409.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "combin.m">combin.m</a>
+          returns the COMBIN matrix.
+        </li>
+        <li>
+          <a href = "combin_inverse.m">combin_inverse.m</a>
+          returns the inverse of the COMBIN matrix A.
+        </li>
+        <li>
+          <a href = "condition_hager.m">condition_hager.m</a>, 
+          estimates the matrix L1 condition number using Hager's method.
+        </li>
+        <li>
+          <a href = "condition_linpack.m">condition_linpack.m</a>, 
+          estimates the matrix L1 condition number using a method from LINPACK.
+        </li>
+        <li>
+          <a href = "condition_sample1.m">condition_sample1.m</a>, 
+          estimates the matrix L1 condition number using sampling.
+        </li>
+        <li>
+          <a href = "conex1.m">conex1.m</a>
+          returns a 4 by 4 LINPACK  condition number counterexample matrix.
+        </li>
+        <li>
+          <a href = "conex1_inverse.m">conex1_inverse.m</a>
+          returns the inverse of the CONEX1 matrix.
+        </li>
+        <li>
+          <a href = "conex2.m">conex2.m</a>
+          returns a 3 by 3 LINPACK  condition number counterexample matrix.
+        </li>
+        <li>
+          <a href = "conex2_inverse.m">conex2_inverse.m</a>
+          returns the inverse of the CONEX2 matrix.
+        </li>
+        <li>
+          <a href = "conex3.m">conex3.m</a>
+          returns a LINPACK condition number counterexample matrix.
+        </li>
+        <li>
+          <a href = "conex3_inverse.m">conex3_inverse.m</a>
+          returns the inverse of the CONEX3 matrix.
+        </li>
+        <li>
+          <a href = "conex4.m">conex4.m</a>
+          returns a 4 by 4 condition number matrix.
+        </li>
+        <li>
+          <a href = "conex4_inverse.m">conex4_inverse.m</a>
+          returns the inverse of the CONEX4 matrix.
+        </li>
+        <li>
+          <a href = "kahan.m">kahan.m</a>
+          returns the KAHAN matrix.
+        </li>
+        <li>
+          <a href = "kahan_inverse.m">kahan_inverse.m</a>
+          returns the inverse of the KAHAN matrix.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8ge_fa.m">r8ge_fa.m</a>, 
+          factors a matrix stored in general storage.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>, 
+          returns a unit pseudorandom R8MAT;
+        </li>
+        <li>
+          <a href = "r8vec_max_abs_index.m">r8vec_max_abs_index.m</a>,
+          returns the index of the maximum absolute value entry in an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>, 
+          returns an R8VEC of unit pseudonormal values;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns an R8VEC of unit pseudouniform values;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_unit.m">r8vec_uniform_unit.m</a>, 
+          returns a random unit vector.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          returns the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "condition_test.m">condition_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "condition_test00.m">condition_test00.m</a>,
+          tests MATLAB's cond() function.
+        </li>
+        <li>
+          <a href = "condition_test01.m">condition_test01.m</a>,
+          tests the LINPACK condition number estimator.
+        </li>
+        <li>
+          <a href = "condition_test02.m">condition_test02.m</a>,
+          tests the SAMPLE1 condition number estimator.
+        </li>
+        <li>
+          <a href = "condition_test03.m">condition_test03.m</a>,
+          tests the Hager condition number estimator.
+        </li>
+        <li>
+          <a href = "condition_test_output.txt">condition_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

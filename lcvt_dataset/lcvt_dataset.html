@@ -1,0 +1,513 @@
+<html>
+
+  <head>
+    <title>
+      LCVT_DATASET - Latin Hypercubes using CVT Startup
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LCVT_DATASET <br> Latin Hypercubes using CVT Startup
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LCVT_DATASET</b>
+      is a MATLAB program which
+      computes a Latin Hypercube in M dimensions,
+      with N points, using a CVT dataset as the initial estimate, and
+      can write it to a file.
+    </p>
+
+    <p>
+      A Latin Square dataset is typically a two dimensional dataset
+      of <b>N</b> points in the unit square, with the property that, if both the
+      <b>x</b> and <b>y</b> axes are divided up into <b>N</b> equal subintervals,
+      exactly one dataset point has an <b>x</b> or <b>y</b> coordinate in
+      each subinterval.  Latin squares can easily be extended to the
+      case of <b>M</b> dimensions, and may be pedantically called <i>Latin
+      Hypersquares</i> or <i>Latin Hypercubes</i> in such a case.
+      Statisticians like Latin Squares, as
+      do experiment designers, and and people who need to approximate
+      scalar functions of many variables.
+    </p>
+
+    <p>
+      The fact that the projection of a Latin Square dataset onto any
+      coordinate axis is either exactly evenly spaced, or approximately
+      so (depending on the algorithm), turns out to be an attractive
+      feature for many uses.
+    </p>
+
+    <p>
+      However, a CVT dataset in a regular domain, such as the unit
+      hypercube, has the tendency for the projections of the points
+      to cluster together in any coordinate axis.  This program is
+      mainly an attempt to explore whether a dataset can be computed
+      using techniques similar to those of a CVT, but with the
+      constraint (whether imposed or expected) that the point projections
+      do not clump up.
+    </p>
+
+    <p>
+      The approach used here is quite simple.  First we compute a CVT
+      in M dimensions, comprising N points.  We assume that the bounding
+      region is the unit hypercube.  We are now going to adjust the
+      coordinates of the points to achieve the Latin Hypercube property.
+      For each coordinate direction, we simply sort the points by that
+      coordinate, and then overwrite the original values by the values
+      we'd expect to get for a centered Latin Hypercube, namely,
+      1/(2*N), 3/(2*N), ..., (2*N-1)/(2*N).
+    </p>
+
+    <p>
+      Now this process guarantees that we get a Latin Hypercube.  Our
+      hope is that the process of adjusting the point coordinates does
+      not too severely damage the nice dispersion properties inherent
+      in the CVT point placement.
+    </p>
+
+    <p>
+      An earlier version of this program was "very" interactive,
+      allowing the user to enter input in any order.  This turned
+      out to be a little too confusing.  The new version of the
+      program asks the user for input in a strict order.  If you
+      find this procedure too restrictive, you can try out the
+      old program.
+    </p>
+
+    <p>
+      Briefly the user needs to specify the following:
+      <ol>
+        <li>
+          The spatial dimension M of the points;
+        </li>
+        <li>
+          The number of points N to be generated.
+        </li>
+        <li>
+          The random number seed;
+        </li>
+        <li>
+          How the initial points are chosen.  If you have no preference,
+          choose UNIFORM.
+          <ul>
+            <li>
+              GRID, use a grid of points;
+            </li>
+            <li>
+              HALTON, use Halton points;
+            </li>
+            <li>
+              RANDOM, use RAND (MATLAB intrinsic);
+            </li>
+            <li>
+              UNIFORM, use a simple uniform random number generator;
+            </li>
+            <li>
+              USER, call the "user" routine;
+            </li>
+            <li>
+             (file_name), read the initial points from a file.
+            </li>
+          </ul>
+        </li>
+        <li>
+          The number of CVT iterations.  If you have no preference,
+          try 5, 10 or 20;
+        </li>
+        <li>
+          How the sampling is done.  If you have no preference, use UNIFORM.
+          <ul>
+            <li>
+              GRID, use a grid of points;
+            </li>
+            <li>
+              HALTON, use Halton points;
+            </li>
+            <li>
+              RANDOM, use RAND (MATLAB intrinsic);
+            </li>
+            <li>
+              UNIFORM, use a simple uniform random number generator;
+            </li>
+            <li>
+              USER, call the "user" routine;
+            </li>
+          </ul>
+        </li>
+        <li>
+          The number of sampling points to use.  Think of this as
+          a sampling of the unit hypercube.  So to compare it to
+          N, the number of points, you need to take its M-th root.
+          In 2D, if you're using 10 generators, and 100 sample points,
+          to get area and sampling computations twice as good requires
+          4 times the sampling.  It never hurts to use more sampling
+          points.
+        </li>
+        <li>
+          The "batch size".  This parameter controls how many sampling
+          points are to be generated at one time.  You can set this
+          value equal to the number of sampling points, but if you
+          are having memory problems, it can be set lower.  In such
+          a case, a smaller value might be 1000, for instance.
+        </li>
+        <li>
+          The number of CVT iterations to carry out.  It's not really
+          necessary to compute the CVT super accurately, since we're
+          just going to perturb it anyway.  This value could be anywhere
+          from 10 to 500.  Convergence of the CVT is typically slow,
+          especially if the starting positions are poor.
+        </li>
+        <li>
+          The number of Latin Hypercube iterations to carry out.
+          Actually, the iterations don't seem to improve the data
+          much, so a value of 1 or 2 can be reasonable.
+        </li>
+        <li>
+          The name of a file into which the final pointset should be
+          written.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LCVT_DATASET</b> is available in
+      <a href = "../../cpp_src/lcvt_dataset/lcvt_dataset.html">a C++ version</a> and
+      <a href = "../../f_src/lcvt_dataset/lcvt_dataset.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lcvt_dataset/lcvt_dataset.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      can compute a
+      Centroidal Voronoi Tessellation (CVT).
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_dataset/cvt_dataset.html">
+      CVT_DATASET</a>,
+      a MATLAB program which
+      can specify and compute a Centroidal Voronoi Tessellation (CVT).
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure_dataset/faure_dataset.html">
+      FAURE_DATASET</a>,
+      a MATLAB program which
+      creates a Faure quasirandom dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_dataset/grid_dataset.html">
+      GRID_DATASET</a>,
+      a MATLAB program which
+      creates a grid sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center_dataset/latin_center_dataset.html">
+      LATIN_CENTER_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Center Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge_dataset/latin_edge_dataset.html">
+      LATIN_EDGE_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Edge Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random_dataset/latin_random_dataset.html">
+      LATIN_RANDOM_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Random Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt/lcvt.html">
+      LCVT</a>,
+      a MATLAB library which
+      is used by LCVT_DATASET; a compiled copy of that library must be
+      available to build the program.
+    </p>
+
+    <p>
+      <a href = "../../datasets/lcvt/lcvt.html">
+      LCVT</a>,
+      a dataset which
+      contains a collection of sample
+      LCVT datasets created by <b>LCVT_DATASET</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2_dataset/niederreiter2_dataset.html">
+      NIEDERREITER2_DATASET</a>,
+      a MATLAB program which
+      creates a Niederreiter quasirandom dataset with base 2;
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal_dataset/normal_dataset.html">
+      NORMAL_DATASET</a>,
+      a MATLAB program which
+      generates a dataset of multivariate normal pseudorandom values and writes them to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol_dataset/sobol_dataset.html">
+      SOBOL_DATASET</a>,
+      a MATLAB program which
+      computes a Sobol quasirandom sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform_dataset/uniform_dataset.html">
+      UNIFORM_DATASET</a>,
+      a MATLAB program which
+      generates a dataset of uniform pseudorandom values and writes them to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput_dataset/van_der_corput_dataset.html">
+      VAN_DER_CORPUT_DATASET</a>,
+      a MATLAB program which
+      creates a van der Corput quasirandom sequence and writes it to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams -
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, September 1991, pages 345-405.
+        </li>
+        <li>
+          Franz Aurenhammer, Rolf Klein,<br>
+          Voronoi Diagrams,<br>
+          in Handbook of Computational Geometry,<br>
+          edited by J Sack, J Urrutia,<br>
+          Elsevier, 1999,<br>
+          LC: QA448.D38H36.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Janet Peterson, Rebecca Brannon,<br>
+          User Manual and Supporting Information for Library of Codes
+          for Centroidal Voronoi Placement and Associated Zeroth,
+          First, and Second Moment Determination,<br>
+          Sandia National Laboratories Technical Report SAND2002-0099,<br>
+          February 2002,<br>
+          <a href = "../../publications/bgpb_2002.pdf">
+                    ../../publications/bgpb_2002.pdf </a>
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, Number 4, December 1999, pages 637-676.
+        </li>
+        <li>
+          Michael McKay, William Conover, Richard Beckman,<br>
+          A Comparison of Three Methods for Selecting Values of Input
+          Variables in the Analysis of Output From a Computer Code,<br>
+          Technometrics,<br>
+          Volume 21, 1979, pages 239-245.
+        </li>
+        <li>
+          Vicente Romero, John Burkardt, Max Gunzburger, Janet Peterson, <br>
+          Initial Evaluation of Pure and "Latinized" Centroidal Voronoi
+          Tessellation for Non-Uniform Statistical Sampling,<br>
+          Sensitivity Analysis of Model Output (SAMO 2004) Conference,
+          Santa Fe, March 8-11, 2004,<br>
+          <a href = "../../publications/rbgp_2004.pdf">rbgp_2004.pdf</a>.
+        </li>
+        <li>
+          Yuki Saka, Max Gunzburger, John Burkardt, <br>
+          Latinized, improved LHS, and CVT point sets in hypercubes, <br>
+          submitted to IEEE Transactions on Information Theory,<br>
+          <a href = "../../publications/sgb_submitted.pdf">sgb_submitted.pdf</a>.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lcvt_dataset.m">lcvt_dataset.m</a>
+          the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>Example 1</b> is a dataset of N=85 points with spatial
+      dimension M=2, using UNIFORM initialization and sampling,
+      and 10,000 sample points:
+      <ul>
+        <li>
+          <a href = "lcvt01_input.txt">lcvt01_input.txt</a>,
+          input commands.
+        </li>
+        <li>
+          <a href = "lcvt01_output.txt">lcvt01_output.txt</a>,
+          printed output.
+        </li>
+        <li>
+          <a href = "lcvt01.txt">lcvt01.txt</a>,
+          the LCVT dataset.
+        </li>
+        <li>
+          <a href = "lcvt01.png">lcvt01.png</a>,
+          a <a href = "../../png/png.html">PNG</a> image of
+          the LCVT dataset,
+          created by
+          <a href =
+          "../../g_src/plot_points/plot_points.html">
+          PLOT_POINTS</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Example 2</b> is a dataset of N=85 points with spatial
+      dimension M=2, using RAND initialization and sampling,
+      and 250000 sample points:
+      <ul>
+        <li>
+          <a href = "lcvt02_input.txt">lcvt02_input.txt</a>,
+          input commands.
+        </li>
+        <li>
+          <a href = "lcvt02_output.txt">lcvt02_output.txt</a>,
+          printed output.
+        </li>
+        <li>
+          <a href = "lcvt02.txt">lcvt02.txt</a>,
+          the LCVT dataset.
+        </li>
+        <li>
+          <a href = "lcvt02.png">lcvt02.png</a>,
+          a <a href = "../../png/png.html">PNG</a> image of
+          the LCVT dataset,
+          created by
+          <a href =
+          "../../g_src/plot_points/plot_points.html">
+          PLOT_POINTS</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Example 3</b> is a dataset of N=200 points with spatial
+      dimension M=7, using UNIFORM initialization and sampling,
+      and 20,000 sample points, 5 CVT iterations
+      and 2 Latinization iterations:
+      <ul>
+        <li>
+          <a href = "lcvt03_input.txt">lcvt03_input.txt</a>,
+          input commands.
+        </li>
+        <li>
+          <a href = "lcvt03_output.txt">lcvt03_output.txt</a>,
+          printed output.
+        </li>
+        <li>
+          <a href = "lcvt03.txt">lcvt03.txt</a>,
+          the LCVT dataset.
+        </li>
+        <li>
+          <a href = "lcvt03_page1.png">lcvt03_page1.png</a>,
+          "page 1" of
+          a <a href = "../../png/png.html">PNG</a> image of
+          pairs of coordinates of the LCVT dataset,
+          created by
+          <a href = "../../f_src/table_top/table_top.html">
+          TABLE_TOP</a>.
+        </li>
+        <li>
+          <a href = "lcvt03_page2.png">lcvt03_page2.png</a>,
+          "page 2" of
+          a <a href = "../../png/png.html">PNG</a> image of
+          pairs of coordinates of the LCVT dataset,
+          created by
+          <a href = "../../f_src/table_top/table_top.html">
+          TABLE_TOP</a>.
+        </li>
+        <li>
+          <a href = "lcvt03_page3.png">lcvt03_page3.png</a>,
+          "page 3" of
+          a <a href = "../../png/png.html">PNG</a> image of
+          pairs of coordinates of the LCVT dataset,
+          created by
+          <a href = "../../f_src/table_top/table_top.html">
+          TABLE_TOP</a>.
+        </li>
+        <li>
+          <a href = "lcvt03_page4.png">lcvt03_page4.png</a>,
+          "page 4" of
+          a <a href = "../../png/png.html">PNG</a> image of
+          pairs of coordinates of the LCVT dataset,
+          created by
+          <a href = "../../f_src/table_top/table_top.html">
+          TABLE_TOP</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 September 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

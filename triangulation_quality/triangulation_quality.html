@@ -1,0 +1,226 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_QUALITY - Triangulation Quality Measures
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_QUALITY <br> 
+      Triangulation Quality Measures
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_QUALITY</b> 
+      is a MATLAB program which 
+      computes and prints a variety
+      of quality measures for a given triangulation of a set of points in 2D.
+    </p>
+
+    <p>
+      The triangulation is defined by a <i>node file</i> containing
+      the coordinates of nodes, and a <i>triangle file</i> containing
+      sets of 3 or 6 node indices.
+    </p>
+
+    <p>
+      The quality measures computed include:
+      <ul>
+        <li>
+          <b>Alpha</b>, the minimum angle divided by the maximum possible
+          minimum angle.
+        </li>
+        <li>
+          <b>Area</b>, the ratio of the minimum area to the maximum area;
+        </li>
+        <li>
+          <b>Q</b>, the triangle shape uniformity measure, twice the
+          radius of the inscribed circle divided by the radius of the
+          circumscribed circle;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Each quality measure is defined as the minimum of its value
+      over all the triangles; the maximum and best possible value is
+      1, and the minimum and worst possible value is 0.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_quality</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common prefix for the node and triangle files
+      <ul>
+        <li>
+          <i>prefix</i><b>_nodes.txt</b>,    the node coordinates;
+        </li>
+        <li>
+          <i>prefix</i><b>_elements.txt</b>,    the triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_QUALITY</b> is available in
+      <a href = "../../cpp_src/triangulation_quality/triangulation_quality.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_quality/triangulation_quality.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which
+      carries out triangular or tetrahedral mesh generation,
+      by Per-Olof Persson and Gilbert Strang.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_quality/tet_mesh_quality.html">
+      TET_MESH_QUALITY</a>,
+      a MATLAB program which
+      computes quality measures of a tetrahedral mesh.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>,
+      a directory which
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_quality.m">triangulation_quality.m</a>, 
+          the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL3</b> is a set of nodes in an L-shaped region, which have
+      been arranged into an order 3 triangulation.
+      <ul>
+        <li>
+          <a href = "../../data/triangulation_order3/ell3_nodes.txt">ell3_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order3/ell3_elements.txt">ell3_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "ell3_quality.txt">ell3_quality.txt</a>,
+          the report from the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HEX_HOLES6</b> is a set of nodes in an square region, with
+      two hexagonal holes, which have
+      been arranged into an order 6 triangulation.
+      <ul>
+        <li>
+          <a href = "../../data/triangulation_order6/hex_holes6_nodes.txt">hex_holes6_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order6/hex_holes6_elements.txt">hex_holes6_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "hex_holes6_quality.txt">hex_holes6_quality.txt</a>,
+          the report from the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

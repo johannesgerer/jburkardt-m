@@ -1,0 +1,371 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_DELAUNAY - Delaunay Triangulation of Points on the Unit Sphere
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_DELAUNAY <br> Delaunay Triangulation of Points on the Unit Sphere
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_DELAUNAY</b>
+      is a MATLAB library which
+      computes the Delaunay triangulation of points on the unit sphere.
+    </p>
+
+    <p>
+      According to Steven Fortune, it is possible to compute the Delaunay triangulation
+      of points on a sphere by computing their convex hull.  If the sphere is the unit
+      sphere at the origin, the facet normals are the Voronoi vertices.
+    </p>
+
+    <p>
+      <b>SPHERE_DELAUNAY</b> uses this approach, by calling MATLAB's <b>convhulln</b>
+      function to generate the convex hull.  The information defining the convex hull
+      is actually the desired triangulation of the points.  Since this computation
+      is so easy, other parts of the program are designed to analyze the resulting
+      Delaunay triangulation and return other information, such as the areas of the
+      triangles and so on.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_DELAUNAY</b> is available in
+      <a href = "../../f_src/sphere_delaunay/sphere_delaunay.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_delaunay/sphere_delaunay.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      computes various geometric quantities, including grids on spheres.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_cvt/sphere_cvt.html">
+      SPHERE_CVT</a>,
+      a MATLAB library which
+      creates a mesh of well-separated points on a unit sphere by applying the
+      Centroidal Voronoi Tessellation (CVT) iteration.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_design_rule/sphere_design_rule.html">
+      SPHERE_DESIGN_RULE</a>,
+      a FORTRAN90 library which
+      returns point sets on the surface of the unit sphere, known as "designs",
+      which can be useful for estimating integrals on the surface, among other uses.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>,
+      a MATLAB library which
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_voronoi/sphere_voronoi.html">
+      SPHERE_VORONOI</a>,
+      a MATLAB program which
+      computes the Voronoi diagram of points on a sphere.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/sphere_voronoi_display_opengl/sphere_voronoi_display_opengl.html">
+      SPHERE_VORONOI_DISPLAY_OPENGL</a>,
+      a C++ program which
+      displays a sphere and randomly selected generator points, and then
+      gradually colors in points in the sphere that are closest to each generator.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_xyz_display/sphere_xyz_display.html">
+      SPHERE_XYZ_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZ information defining points in 3D,
+      and displays a unit sphere and the points in the MATLAB graphics window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_xyzf_display/sphere_xyzf_display.html">
+      SPHERE_XYZF_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZF information defining points and faces,
+      and displays a unit sphere, the points, and the faces,
+      in the MATLAB graphics window.  This can be used, for instance, to
+      display Voronoi diagrams or Delaunay triangulations on the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../f_src/stripack/stripack.html">
+      STRIPACK</a>,
+      a FORTRAN90 library which
+      computes the Delaunay triangulation or Voronoi diagram of points on a unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../f_src/stripack_interactive/stripack_interactive.html">
+      STRIPACK_INTERACTIVE</a>,
+      a FORTRAN90 program which
+      reads an XYZ file of 3D points on
+      the unit sphere, computes the Delaunay triangulation, and writes it
+      to a file.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms772/toms772.html">
+      TOMS772</a>,
+      a FORTRAN77 library which
+      is the original text of the STRIPACK program.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jacob Goodman, Joseph ORourke, editors,<br>
+          Handbook of Discrete and Computational Geometry,<br>
+          Second Edition,<br>
+          CRC/Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-301-4,<br>
+          LC: QA167.H36.
+        </li>
+        <li>
+          Robert Renka,<br>
+          Algorithm 772: <br>
+          STRIPACK:
+          Delaunay Triangulation and Voronoi Diagram on the Surface
+          of a Sphere,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 23, Number 3, September 1997, pages 416-434.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "arc_cosine.m">arc_cosine.m</a>,
+          computes the inverse cosine function;
+        </li>
+        <li>
+          <a href = "arc_sine.m">arc_sine.m</a>,
+          computes the inverse cosine function;
+        </li>
+        <li>
+          <a href = "atan4.m">atan4.m</a>,
+          computes the inverse tangent;
+        </li>
+        <li>
+          <a href = "i4col_compare.m">i4col_compare.m</a>,
+          compares two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">i4col_sort_a.m</a>,
+          ascending sorts the columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_swap.m">
+          i4col_swap.m</a>,
+          swaps two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "icos_shape.m">icos_shape.m</a>,
+          returns the shape of an icosahedron.
+        </li>
+        <li>
+          <a href = "icos_size.m">icos_size.m</a>,
+          returns size information for an icosahedron.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns a unit pseudorandom R8MAT;
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>,
+          returns unit pseudonormal R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_polarize.m">r8vec_polarize.m</a>,
+          decomposes an R8VEC into normal and parallel components;
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>,
+          external sorts a list of values into ascending order;
+        </li>
+        <li>
+          <a href = "sphere_delaunay.m">
+          sphere_delaunay.m</a>,
+          returns the Delaunay triangulation of points on the unit sphere.
+        </li>
+
+        <li>
+          <a href = "sphere_grid_icos_size.m">
+          sphere_grid_icos_size.m</a>,
+          returns size information for an icosahedral grid on the sphere.
+        </li>
+        <li>
+          <a href = "sphere_gridpoints_icos2.m">
+          sphere_gridpoints_icos2.m</a>,
+          returnspoints of an icosahedral grid on the sphere.
+        </li>
+        <li>
+          <a href = "stri_angles_to_area.m">
+          stri_angles_to_area.m</a>,
+          computes the area of a spherical triangle;
+        </li>
+        <li>
+          <a href = "stri_sides_to_angles.m">
+          stri_sides_to_angles.m</a>,
+          computes the angles of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "stri_vertices_to_area.m">
+          stri_vertices_to_area.m</a>,
+          computes the area of a spherical triangle from its vertices;
+        </li>
+        <li>
+          <a href = "stri_vertices_to_sides.m">
+          stri_vertices_to_sides.m</a>,
+          computes the sides of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp;
+        </li>
+        <li>
+          <a href = "triangulation_neighbor_triangles.m">
+          triangulation_neighhbor_triangles.m</a>,
+          determines triangle neighbors in a triangulation;
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_map.m">
+          uniform_on_sphere01_map.m</a>,
+          returns uniform random points on the unit sphere.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sphere_delaunay_test.m">sphere_delaunay_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "sphere_delaunay_test_output.txt">sphere_delaunay_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "sphere_delaunay_test01.m">sphere_delaunay_test01.m</a>,
+          test 1;
+        </li>
+        <li>
+          <a href = "sphere_delaunay_test02.m">sphere_delaunay_test02.m</a>,
+          test 2;
+        </li>
+        <li>
+          <a href = "sphere_delaunay_test03.m">sphere_delaunay_test03.m</a>,
+          test 3;
+        </li>
+        <li>
+          <a href = "test02_plot1.png">test02_plot1.png</a>,
+          a TRISURF plot of the Delaunay triangulation.
+        </li>
+        <li>
+          <a href = "test02_plot2.png">test02_plot2.png</a>,
+          a PATCH plot of the Delaunay triangulation.
+        </li>
+        <li>
+          <a href = "test03_plot1.png">test03_plot1.png</a>,
+          a TRISURF plot of the Delaunay triangulation.
+        </li>
+        <li>
+          <a href = "test03_plot2.png">test03_plot2.png</a>,
+          a PATCH plot of the Delaunay triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 May 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

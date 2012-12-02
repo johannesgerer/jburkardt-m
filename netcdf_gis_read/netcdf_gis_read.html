@@ -1,0 +1,252 @@
+<html>
+
+  <head>
+    <title>
+      NETCDF_GIS_READ - Read NETCDF Files of GLIMMER GIS Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NETCDF_GIS_READ <br> Read NETCDF Files of GLIMMER GIS Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NETCDF_GIS_READ</b>
+      is a MATLAB program which reads data from a GLIMMER data file,
+      written in the NETCDF format, containing GIS data.
+    </p>
+
+    <p>
+      The GIS data includes dimensions:
+      <ul>
+        <li>
+          level
+        </li>
+        <li>
+          time
+        </li>
+        <li>
+          x0
+        </li>
+        <li>
+          x1
+        </li>
+        <li>
+          y0
+        </li>
+        <li>
+          y1
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The GIS data includes data arrays:
+      <ul>
+        <li>
+          acab(x1,y1,time)
+        </li>
+        <li>
+          artm(x1,y1,time)
+        </li>
+        <li>
+          beta(x0,y0,time)
+        </li>
+        <li>
+          bheatflx(x1,y1,time)
+        </li>
+        <li>
+          temp(x1,y1,level,time)
+        </li>
+        <li>
+          thk(x1,y1,time)
+        </li>
+        <li>
+          time(time)
+        </li>
+        <li>
+          topg(x1,y1,time)
+        </li>
+        <li>
+          x0(x0)
+        </li>
+        <li>
+          x1(x1)
+        </li>
+        <li>
+          y0(y0)
+        </li>
+        <li>
+          y1(y1)
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/cdl/cdl.html">
+      CDL</a>,
+      a data directory which
+      contains examples of CDL files,
+      a text version of NETCDF files created by the NCDUMP program;
+    </p>
+
+    <p>
+      <a href = "../../datasets/gfd2/gfd2.html">
+      GFD2</a>,
+      a dataset directory which
+      contains geophysical data, stored in NETCDF format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ice_io/ice_io.html">
+      ICE_IO</a>,
+      a MATLAB library which
+      reads or writes ICE datasets, using the NETCDF format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_to_ice/mesh_to_ice.html">
+      MESH_TO_ICE</a>,
+      a MATLAB program which
+      reads the ICE dataset information from a MESH files and rewrites
+      it to a NETCDF file.
+    </p>
+
+    <p>
+      <a href = "../../data/netcdf/netcdf.html">
+      NETCDF</a>,
+      a data directory which
+      contains examples of NETCDF files,
+      a format for the interchange of scientific data.
+    </p>
+
+    <p>
+      <a href = "../../data/netcdf_gis/netcdf_gis.html">
+      NETCDF_GIS</a>,
+      a data directory which
+      contains examples of GIS data stored as NETCDF files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/netcdf_glimmer/netcdf_glimmer.html">
+      NETCDF_GLIMMER</a>,
+      MATLAB programs which
+      read and write GLIMMER grid and solution data stored as a NETCDF file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/netcdf_mpas/netcdf_mpas.html">
+      NETCDF_MPAS</a>,
+      MATLAB programs which
+      read and write MPAS grid data stored as NETCDF files.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philippe Huybrechts, Tony Payne,<br>
+          The EISMINT benchmarks for testing ice-sheet models,<br>
+          Annals of Glaciology,<br>
+          Volume 23, 1996, pages 1-14.
+        </li>
+        <li>
+          Russ Rew, Glenn Davis, Steve Emmerson, Harvey Davies, Ed Hartne,<br>
+          The NetCDF User's Guide,<br>
+          Unidata Program Center, March 2009,<br>
+          <a href = "../../pdf/netcdf.pdf">netcdf.pdf</a>,
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gis_data_print.m">gis_data_print.m</a>
+          prints the GIS data (usually much too much information!)
+        </li>
+        <li>
+          <a href = "gis_header_print.m">gis_header_print.m</a>
+          prints the GIS header information.
+        </li>
+        <li>
+          <a href = "gis_read.m">gis_read.m</a>
+          reads a specified GLIMMER GIS file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gis_test.m">gis_test.m</a>
+          reads a GLIMMER GIS file and prints the header information.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GIS_5KM.180211</b> contains data for Greenland at a 5KM resolution.
+      <ul>
+        <li>
+          <a href = "gis_5km.180211.nc">gis_5km.180211.nc</a>, the data.
+        </li>
+        <li>
+          <a href = "gis_5km.180211_header.txt">gis_5km.180211_header.txt</a>,
+          the header information as retrieved by NCDUMP.
+        </li>
+        <li>
+          <a href = "gis_5km.180211_output.txt">gis_5km.180211_output.txt</a>,
+          the header information as retrieved and printed by running
+          gis_test on the data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 February 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

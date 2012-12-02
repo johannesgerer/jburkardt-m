@@ -1,0 +1,227 @@
+<html>
+
+  <head>
+    <title>
+      FEM_TO_TEC - Convert an FEM Model to a TECPLOT ASCII File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_TO_TEC <br> Convert an FEM Model to a TECPLOT ASCII File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_TO_TEC</b>
+      is a MATLAB program which
+      reads three files
+      defining a finite element model (FEM format) and writes a
+      TECPLOT ASCII file suitable for display by <b>TECPLOT</b>.
+    </p>
+
+    <p>
+      The finite element model is assumed to include three items:
+      <ul>
+        <li>
+          Node coordinates, stored in a "node file";
+        </li>
+        <li>
+          Elements defined by a sequence of node indices, store in an
+          "element file";
+        </li>
+        <li>
+          Node value data, such as finite element coefficients for pressure,
+          velocity, and so on, stored in a "value file";
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A naming convention assumes that these files share a common prefix,
+      followed by the suffixes "_nodes.txt", "_elements.txt", and "_values.txt".
+      Thus, the "carlos" set of data would be contained in the files
+      "carlos_nodes.txt", "carlos_elements.txt" and "carlos_values.txt".
+    </p>
+
+    <p>
+      <b>FEM_TO_TEC</b> reads these three files and writes an equivalent
+      ASCII ".dat" file that can be processed by the <b>TECPLOT</b> graphics program.
+    </p>
+
+    <p>
+      <a href = "http://www.tecplot.com/">
+      The TECPLOT home page</a> contains a description of the
+      <b>TECPLOT</b> program.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem_to_tec</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common file prefix;
+        </li>
+      </ul>
+      reads the files <i>'prefix'</i>_nodes.txt, <i>'prefix'</i>_elements.txt
+      and <i>'prefix'</i>_values.txt and creates the TECPLOT ASCII file <i>'prefix'</i>.dat.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM_TO_TEC</b> is available in
+      <a href = "../../f_src/fem_to_tec/fem_to_tec.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem_to_tec/fem_to_tec.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd_to_tec/fd_to_tec.html">
+      FD_TO_TEC</a>,
+      a MATLAB program which
+      converts FD models into TECPLOT ASCII files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_io/fem_io.html">
+      FEM_IO</a>,
+      a MATLAB library which
+      reads or writes an FEM model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_mesh/fem_to_mesh.html">
+      FEM_TO_MESH</a>,
+      a MATLAB program which
+      reads a pair of FEM files defining node coordinates and elements,
+      and creates a corresponding MESH file.
+    </p>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which
+      contains examples of 2D FEM files,
+      text files that describe a 2D finite element geometry
+      and associated nodal values;
+    </p>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which
+      contains a description and examples
+      of TECPLOT ASCII graphics files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_io/tec_io.html">
+      TEC_IO</a>,
+      a MATLAB library which
+      reads and writes TECPLOT ASCII graphics files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_to_fem/tec_to_fem.html">
+      TEC_TO_FEM</a>,
+      a MATLAB program which
+      can convert a TECPLOT ASCII graphics file into an FEM model.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem_to_tec.m">fem_to_tec.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is an example of a 2D finite element model
+      in which a scalar value is stored. This data was computed by the
+      <a href = "../../m_src/free_fem_poisson/free_fem_poisson.html">
+      FREE_FEM_POISSON</a> program.
+      <ul>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>
+        </li>
+        <li>
+          <a href = "ell_elements.txt">ell_elements.txt</a>
+        </li>
+        <li>
+          <a href = "ell_values.txt">ell_values.txt</a>
+        </li>
+        <li>
+          <a href = "ell.dat">ell.dat</a>, the TECPLOT ASCII file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TINY</b> is a "tiny" example of a 2D finite element model
+      in which a vector value is stored.
+      <ul>
+        <li>
+          <a href = "tiny_nodes.txt">tiny_nodes.txt</a>
+        </li>
+        <li>
+          <a href = "tiny_elements.txt">tiny_elements.txt</a>
+        </li>
+        <li>
+          <a href = "tiny_values.txt">tiny_values.txt</a>
+        </li>
+        <li>
+          <a href = "tiny.dat">tiny.dat</a>, the TECPLOT ASCII file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

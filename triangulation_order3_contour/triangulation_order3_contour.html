@@ -1,0 +1,367 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_ORDER3_CONTOUR - Contour Plots of Triangulated Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_ORDER3_CONTOUR <br> Contour Plots of Triangulated Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_ORDER3_CONTOUR</b> 
+      is a MATLAB program which 
+      reads datafiles describing a set of nodes, their triangulation, and the
+      value of a scalar quantity at each node, and creates a color
+      contour plot of the scalar.
+    </p>
+
+    <p>
+      The program reads three data files:
+      <ul>
+        <li>
+          a node file, containing 
+          X, Y coordinates of points;
+        </li>
+        <li>
+          an element file, 
+          containing a list of sets of three points making up each 
+          triangular element;  (if this file does not exist, the
+          program will generate the element data automatically).
+        </li>
+        <li>
+          a values file, 
+          containing the values of a scalar function U(X,Y) evaluated
+          at each node.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program automatically displays three plots:
+      <ol>
+        <li>
+          An line drawing of the triangulation;
+        </li>
+        <li>
+          A color contour plot with color constant over a triangle.
+        </li>
+        <li>
+          A color contour plot with color linearly interpolated to make
+          a very nice picture.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_order3_contour</b> ( '<i>prefix</i>' )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt, lists the node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt lists the indices of nodes that form elements
+          (this file is optional, and if not supplied, the information will
+          be generated internally);
+        </li>
+        <li>
+          <i>'prefix'</i>_values.txt contains the value assigned to each node.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dist_plot/dist_plot.html">
+      DIST_PLOT</a>,
+      a MATLAB program which 
+      makes contour plots of the distance function,
+      as defined and used in Persson and Strang's 
+      <a href = "../../m_src/distmesh/distmesh.html">
+      distmesh</a> code;
+    </p>
+
+    <p>
+      <a href = "../../data/fem/fem.html">
+      FEM</a>, 
+      a data directory which
+      contains a description and examples
+      of the FEM format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>, 
+      a MATLAB program which 
+      displays a basis function associated with a linear triangle ("T3") mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>, 
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      the data format which
+      is used for each of the three input data files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which
+      describes the format for
+      the node and element files describing an order 3 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order6_contour/triangulation_order6_contour.html">
+      TRIANGULATION_ORDER6_CONTOUR</a>, 
+      a MATLAB program which 
+      can display a contour plot
+      of scalar data defined on a triangulation of order 6.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_plotc/twod_plotc.html">
+      TWOD_PLOTC</a>, 
+      a MATLAB program which 
+      makes a color contour plot of scalar data defined on a 2D finite element mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_magnitude_grid/vector_magnitude_grid.html">
+      VECTOR_MAGNITUDE_GRID</a>, 
+      a MATLAB program which
+      reads node and vector data from a file, computes an interpolatory function,
+      evaluates on a uniform grid of points specified by the user,
+      and displays a contour plot of the vector magnitude.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_order3_contour.m">
+          triangulation_order3_contour.m</a>, 
+          the routine for creating the contour plot;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CHANNEL</b> is a channel region 3 units wide and 1 unit high.  
+      The Stokes flow solver 
+      <a href = "../free_fem_stokes/free_fem_stokes.html">
+      FREE_FEM_STOKES</a> computes the fluid velocity and pressure
+      in the channel.  The pressure is a scalar and can be plotted
+      by this routine.  Data files you can copy include:
+      <ul>
+        <li>
+          <a href = "channel_nodes.txt">channel_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "channel_elments.txt">channel_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "channel_values.txt">channel_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "channel_contours.png">channel_contours.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the interpolated contour plot of the data;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ELL</b> is an L-shaped region.  Data files you can copy include:
+      <ul>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "ell_elements.txt">ell_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "ell_values.txt">ell_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "ell_triangulation.png">ell_triangulation.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the triangulation;
+        </li>
+        <li>
+          <a href = "ell_contours.png">ell_contours.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the interpolated contour plot of the data;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ELL2</b> is the same as ELL, except we do not supply the elements.
+      The program will work just the same, except it will compute triangular
+      elements internally, and write a copy out as a file.
+      <ul>
+        <li>
+          <a href = "ell2_nodes.txt">ell2_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "ell2_values.txt">ell2_values.txt</a>, 
+          a value file;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LAKE</b> is a simulated lake with an island region.  Data files
+      you can copy include:
+      <ul>
+        <li>
+          <a href = "lake_nodes.txt">lake_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "lake_elements.txt">lake_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "lake_values.txt">lake_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "lake_triangulation.png">lake_triangulation.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the triangulation;
+        </li>
+        <li>
+          <a href = "lake_contours.png">lake_contours.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the interpolated contour plot of the data;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 January 2010
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

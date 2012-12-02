@@ -1,0 +1,308 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_CALLS_C - Examples of MATLAB calling C functions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_CALLS_C <br>
+      Examples of MATLAB calling C functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_CALLS_C</b>
+      is a directory of MATLAB programs which
+      illustrate how a MATLAB program can call a C function, passing data to the function,
+      and receiving results from the C function.
+    </p>
+
+    <p>
+      Of course, a MATLAB call normally looks something like
+      <blockquote><b>
+        [ out1, out2 ] = function_name ( in1, in2, in3 )
+      </b></blockquote>
+      so in order to pass the information to and from MATLAB, the
+      C function is required to have a header like this:
+      <blockquote><b>
+        mexFunction ( int nlhs, mxArray *plhs[], int nrhs,
+          const mxArray *prhs[] )
+      </b></blockquote>
+      where <b>nlhs</b> counts the number of output arguments, and
+      <b>plhs</b> is a set of pointers to those arguments, with <b>nrhs</b>
+      and <b>prhs</b> being the analogous quantities for the input arguments.
+    </p>
+
+    <p>
+      The user C file will need to invoke the <b>mex.h</b> include file,
+      so that all the necessary MEX library functions and constants are
+      declared.
+    </p>
+
+    <p>
+      The MATLAB Mex library includes a number of operators to extract
+      information from the MATLAB input arguments, and to store the
+      computed results into the output arguments.  Information about these
+      functions does not seem to be available online, and instead must
+      be discovered from examples and the MATLAB manuals.  I am referring
+      here to functions such as
+      <ul>
+        <li>
+          <b>mxGetN</b>, which retrieves an integer value from a MATLAB
+          pointer;
+        </li>
+        <li>
+          <b>mxGetPr</b>, which retrieves a C style pointer to a
+          double vector from a MATLAB pointer;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Because MATLAB is in control, you have to be careful in your
+      C code.  For instance, you aren't supposed to use <b>malloc</b>
+      and <b>free</b> for memory management, but rather <b>mxCalloc</b>
+      and <b>mxFree</b>.  Also, you aren't supposed to used <b>printf</b>
+      for output, but rather <b>mexPrintf</b>.  (I have accidentally
+      broken both these rules, and I'm not sure how serious the
+      consequences are, if any!)
+    </p>
+
+    <p>
+      Once the C file is written, it must be "compiled" with the MATLAB
+      MEX compiler, which will, as part of its work, also invoke some
+      C compiler on your machine.  The first time you use the MEX compiler,
+      you may need to tell it where the appropriate compiler is, or
+      which compiler to use.  You can also, at any time, request that
+      MEX switch to a different compiler, if there is a choice.  (For instance,
+      you may be able to choose between your computer's default
+      "cc" compiler and the GNU "gcc" compiler.)  To
+      choose or change your compiler, type (inside of MATLAB)
+      <blockquote><b>
+        mex -seteup
+      </b></blockquote>
+    </p>
+
+    <p>
+      Assuming your C file is called <i>fact.c</i>, for example, you
+      can process it through the MEX compiler.  You can always issue
+      this command inside of MATLAB, and on some systems, the MEX
+      compiler may be availabe directly as an external command.
+      In either case, you issue the command:
+      <blockquote><b>
+        mex fact.c
+      </b></blockquote>
+      which creates a compiled file whose name is system-dependent.  On
+      a Windows PC, it might be called <b>fact.dll</b>, and on a UNIX
+      system, it might be something like <b>fact.mexglx</b>.  In any case,
+      the compiled file behaves essentially like a MATLAB M file called
+      <b>fact.m</b> (except that it should, you hope, execute much faster
+      than a MATLAB script).
+    </p>
+
+    <p>
+      In the very likely event that you have problems compiling the code,
+      or using it from MATLAB, you may want to request the verbose
+      compilation, with symbolic information added for debugging:
+      <blockquote><b>
+        mex -v -g fact.c
+      </b></blockquote>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h1>
+
+    <p>
+      <a href = "../../c_src/c_calls_f77/c_calls_f77.html">
+      C_CALLS_F77</a>,
+      C programs which
+      illustrate a C program calling a FORTRAN77 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../c_src/c_calls_f90/c_calls_f90.html">
+      C_CALLS_F90</a>,
+      C programs which
+      illustrate a C program calling a FORTRAN90 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/c++_calls_f77/c++_calls_f77.html">
+      C++_CALLS_F77</a>,
+      C++ programs which
+      illustrate how a C++ main program can call a FORTRAN77 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/c++_calls_f90/c++_calls_f90.html">
+      C++_CALLS_F90</a>,
+      C++ programs which
+      illustrate how a C++ main program can call a FORTRAN90 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/f77_calls_c/f77_calls_c.html">
+      F77_CALLS_C</a>,
+      FORTRAN77 programs which
+      illustrates how a FORTRAN77 program can call a C function.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/f77_calls_c++/f77_calls_c++.html">
+      F77_CALLS_C++</a>,
+      FORTRAN77 programs which
+      illustrates how a FORTRAN77 program can call a C++ function.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_c/f90_calls_c.html">
+      F90_CALLS_C</a>,
+      FORTRAN90 programs which
+      illustrates how a FORTRAN90 program can call a C function.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_c++/f90_calls_c++.html">
+      F90_CALLS_C++</a>,
+      FORTRAN90 programs which
+      illustrates how a FORTRAN90 program can call a C++ function.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_matlab/f90_calls_matlab.html">
+      F90_CALLS_MATLAB</a>,
+      FORTRAN90 programs which
+      issue a call
+      to MATLAB to carry out an auxillary calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_f77/matlab_calls_f77.html">
+      MATLAB_CALLS_F77</a>,
+      MATLAB programs which
+      call a FORTRAN77 function,
+      using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mex/mex.html">
+      MEX</a>,
+      MATLAB programs which
+      call lower-level functions written in traditional languages such
+      as C, C++, FORTRAN77 or FORTRAN90, compiled with MATLAB's
+      <b>mex</b> compiler.
+    </p>
+
+    <p>
+      <a href = "../../c_src/mixed/mixed.html">
+      MIXED</a>,
+      C programs which
+      call functions in other programming languages, and vice versa.
+    </p>
+
+    <p>
+      <a href = "../../c_src/nsasm/nsasm.html">
+      NSASM</a>,
+      a C library which
+      is intended to be used with a MATLAB
+      calling program, and which set up the sparse matrix needed for
+      a Newton iteration to solve a finite element formulation of
+      the steady incompressible 2D Navier Stokes equations.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h1>
+
+    <p>
+      <ul>
+        <li>
+          Duane Hanselman, Bruce Littlefield,<br>
+          Mastering MATLAB 7,<br>
+          Pearson Prentice Hall, 2005,<br>
+          ISBN: 0-13-143018-1.
+        </li>
+        <li>
+          The Mathworks,<br>
+          MATLAB External Interfaces,<br>
+          The Mathworks, 2000.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h1>
+
+    <p>
+      <b>FACT</b> is an example in which a C function is used to
+      compute the factorial function.  A single routine is used,
+      which takes care of the "translation" between MATLAB and C,
+      and the computation of the result.
+      <ul>
+        <li>
+          <a href = "fact.c">fact.c</a>, the source code of the C function.
+        </li>
+        <li>
+          <a href = "fact_test.m">fact_test.m</a>, a MATLAB M file which
+          compiles C code and uses it.
+        </li>
+        <li>
+          <a href = "fact_test_output.txt">fact_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CHEBY_U</b> is an example in which a C function is used to
+      compute the Chebyshev U polynomial.  The coding is done in such
+      a way that the computation is in a separate C function; the
+      mexFunction is only used to "translate" between MATLAB and C.
+      <ul>
+        <li>
+          <a href = "cheby_u.c">cheby_u.c</a>, the source code of the C function.
+        </li>
+        <li>
+          <a href = "cheby_u_test.m">cheby_u_test.m</a>, a MATLAB M file which
+          compiles the C code and uses it.
+        </li>
+        <li>
+          <a href = "cheby_u_test_output.txt">cheby_u_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 September 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

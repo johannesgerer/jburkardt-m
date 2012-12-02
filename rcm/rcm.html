@@ -1,0 +1,527 @@
+<html>
+
+  <head>
+    <title>
+      RCM - Reverse Cuthill McKee Ordering
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      RCM <br> Reverse Cuthill McKee Ordering
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>RCM</b> 
+      is a MATLAB library which 
+      computes the Reverse Cuthill McKee (RCM) ordering of the nodes of a graph.
+    </p>
+
+    <p>
+      The RCM ordering is frequently used when a matrix is to be
+      generated whose rows and columns are numbered according to
+      the numbering of the nodes.  By an appropriate renumbering
+      of the nodes, it is often possible to produce a matrix with a
+      much smaller bandwidth.
+    </p>
+
+    <p>
+      The bandwidth of a matrix is computed as the maximum bandwidth
+      of each row of the matrix.  The bandwidth of a row of the matrix
+      is essentially the number of matrix entries between the first
+      and last nonzero entries in the row, with the proviso that
+      the diagonal entry is always treated as though it were nonzero.
+    </p>
+
+    <p>
+      This library includes a few routines to handle the common case
+      where the connectivity can be described in terms of a triangulation
+      of the nodes, that is, a grouping of the nodes into sets of
+      3-node or 6-node triangles.  The natural description of a triangulation
+      is simply a listing of the nodes that make up each triangle.  The
+      library includes routines for determining the adjacency structure
+      associated with a triangulation, and the test problems include
+      examples of how the nodes in a triangulation can be relabeled
+      with the RCM permutation.
+    </p>
+
+    <p>
+      Here is a simple example of how reordering can reduce the 
+      bandwidth.  In our first picture, we have nine nodes:
+      <pre>
+           5--7--6
+           |  | /
+        4--8--2
+        |  |  |
+        9--1--3
+      </pre>
+      The corresponding adjacency matrix is:
+      <pre>
+        * . 1 . . . . 1 1
+        . * 1 . . 1 1 1 .
+        1 1 * . . . . . .
+        . . . * . . . 1 1
+        . . . . * . 1 1 .
+        . 1 . . . * 1 . .
+        . 1 . . 1 1 * . .
+        1 1 . 1 1 . . * .
+        1 . . 1 . . . . *
+      </pre>
+      which has a disastrous bandwidth of 17 (lower and upper bandwidths
+      of 8, and 1 for the diagonal.)
+    <p>
+
+    <p>
+      If we keep the same connectivity graph, but relabel the nodes,
+      we could get a picture like this:
+      <pre>
+           7--8--9
+           |  | /
+        3--5--6
+        |  |  |
+        1--2--4
+      </pre>
+      whose adjacency matrix is:
+      <pre>
+        * 1 1 . . . . . .
+        1 * . 1 1 . . . .
+        1 . * . 1 . . . .
+        . 1 . * . 1 . . .
+        . 1 1 . * 1 1 . .
+        . . . 1 1 * . 1 1
+        . . . . 1 . * 1 .
+        . . . . . 1 1 * 1
+        . . . . . 1 . 1 *
+      </pre>
+      which has a bandwidth of 7 (lower and upper bandwidths
+      of 3, and 1 for the diagonal.)
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>RCM</b> is available in
+      <a href = "../../cpp_src/rcm/rcm.html">a C++ version</a> and
+      <a href = "../../f_src/rcm/rcm.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/rcm/rcm.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/mesh_bandwidth/mesh_bandwidth.html">
+      MESH_BANDWIDTH</a>,
+      a MATLAB program which
+      returns the geometric bandwidth associated with a mesh of
+      elements of any order and in a space of arbitrary dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_mesh_rcm/quad_mesh_rcm.html">
+      QUAD_MESH_RCM</a>,
+      a MATLAB program which
+      computes the Reverse Cuthill McKee (RCM) reordering for nodes in a mesh of 4-node 
+      quadrilaterals.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sparsepak/sparsepak.html">
+      SPARSEPAK</a>, 
+      a FORTRAN90 library which
+      solves sparse linear systems using the Reverse Cuthill-McKee
+      reordering scheme.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_rcm/tet_mesh_rcm.html">
+      TET_MESH_RCM</a>, 
+      a MATLAB program which
+      reads files
+      describing a tetrahedral mesh of nodes in 3D, and applies the RCM
+      algorithm to produce a renumbering of the tet mesh with a reduced
+      bandwidth.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION ORDER3</a>, 
+      a directory which
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION ORDER6</a>, 
+      a directory which
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>, 
+      a MATLAB program which
+      reads files describing a triangulation of nodes in 2D, and applies the RCM algorithm
+      to produce a renumbering of the triangulation with a reduced
+      bandwidth.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          HL Crane, Norman Gibbs, William Poole, Paul Stockmeyer,<br>
+          Algorithm 508:
+          Matrix Bandwidth and Profile Reduction,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 2, Number 4, December 1976, pages 375-377.
+        </li>
+        <li>
+          Alan George, Joseph Liu,<br>
+          Computer Solution of Large Sparse Positive Definite Matrices,<br>
+          Prentice Hall, 1981,<br>
+          ISBN: 0131652745,<br>
+          LC: QA188.G46
+        </li>
+        <li>
+          Norman Gibbs,<br>
+          Algorithm 509: 
+          A Hybrid Profile Reduction Algorithm,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 2, Number 4, December 1976, pages 378-387.
+        </li>
+        <li>
+          Norman Gibbs, William Poole, Paul Stockmeyer,<br>
+          An Algorithm for Reducing the Bandwidth 
+          and Profile of a Sparse Matrix,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 13, Number 2, April 1976, pages 236-250.
+        </li>
+        <li>
+          John Lewis,<br>
+          Algorithm 582:
+          The Gibbs-Poole-Stockmeyer and Gibbs-King Algorithms
+          for Reordering Sparse Matrices,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 8, Number 2, June 1982, pages 190-194.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "adj_bandwidth.m">adj_bandwidth.m</a>,
+          computes the bandwidth of an adjacency matrix.
+        </li>
+        <li>
+          <a href = "adj_contains_ij.m">adj_contains_ij.m</a>,
+          determines if (I,J) is in an adjacency structure.
+        </li>
+        <li>
+          <a href = "adj_insert_ij.m">adj_insert_ij.m</a>,
+          inserts (I,J) into an adjacency structure.
+        </li>
+        <li>
+          <a href = "adj_perm_bandwidth.m">adj_perm_bandwidth.m</a>,
+          computes the bandwidth of a permuted adjacency matrix.
+        </li>
+        <li>
+          <a href = "adj_perm_show.m">adj_perm_show.m</a>,
+          displays a symbolic picture of a permuted adjacency matrix.
+        </li>
+        <li>
+          <a href = "adj_print.m">adj_print.m</a>,
+          prints adjacency information.
+        </li>
+        <li>
+          <a href = "adj_print_some.m">adj_print_some.m</a>,
+          prints some adjacency information.
+        </li>
+        <li>
+          <a href = "adj_set.m">adj_set.m</a>,
+          sets up the adjacency information.
+        </li>
+        <li>
+          <a href = "adj_show.m">adj_show.m</a>,
+          displays a symbolic picture of an adjacency matrix.
+        </li>
+        <li>
+          <a href = "degree.m">degree.m</a>,
+          computes the degrees of the nodes in the connected component.
+        </li>
+        <li>
+          <a href = "genrcm.m">genrcm.m</a>,
+          finds the reverse Cuthill-Mckee ordering for a general graph.
+        </li>
+        <li>
+          <a href = "graph_01_adj.m">graph_01_adj.m</a>,
+          returns the adjacency vector for graph 1.
+        </li>
+        <li>
+          <a href = "graph_01_adj_num.m">graph_01_adj_num.m</a>,
+          returns the number of adjacencies for graph 1.
+        </li>
+        <li>
+          <a href = "i4_sign.m">i4_sign.m</a>,
+          returns the sign of an I4.
+        </li>
+        <li>
+          <a href = "i4_swap.m">i4_swap.m</a>,
+          swaps two integer values.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>,
+          returns a scaled pseudorandom I4.
+        </li>
+        <li>
+          <a href = "i4col_compare.m">i4col_compare.m</a>,
+          compares two columns of an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">i4col_sort_a.m</a>,
+          ascending sorts an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_swap.m">i4col_swap.m</a>,
+          swaps two columns of an I4COL.
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">i4mat_print_some.m</a>,
+          prints some of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">i4mat_transpose_print_some.m</a>,
+          prints some of the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4vec_heap_d.m">i4vec_heap_d.m</a>,
+          reorders an I4VEC into a descending heap.
+        </li>
+        <li>
+          <a href = "i4vec_indicator.m">i4vec_indicator.m</a>,
+          sets an I4VEC to the vector A(I)=I.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_reverse.m">i4vec_reverse.m</a>,
+          reverses the elements of an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_sort_heap_a.m">i4vec_sort_heap_a.m</a>,
+          ascending sorts an I4VEC.
+        </li>
+        <li>
+          <a href = "level_set.m">level_set.m</a>,
+          generates the connected level structure rooted at a given node.
+        </li>
+        <li>
+          <a href = "level_set_print.m">level_set_print.m</a>,
+          prints level set information.
+        </li>
+        <li>
+          <a href = "perm_check.m">perm_check.m</a>,
+          checks that a vector represents a permutation.
+        </li>
+        <li>
+          <a href = "perm_inverse3.m">perm_inverse3.m</a>,
+          produces the inverse of a given permutation.
+        </li>
+        <li>
+          <a href = "perm_uniform.m">perm_uniform.m</a>,
+          selects a random permutation of N objects.
+        </li>
+        <li>
+          <a href = "r82vec_permute.m">r82vec_permute.m</a>,
+          permutes an R82VEC.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>,
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "rcm.m">rcm.m</a>,
+          renumbers a connected component by the reverse Cuthill McKee algorithm.
+        </li>
+        <li>
+          <a href = "root_find.m">root_find.m</a>,
+          finds a pseudo-peripheral node.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>,
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>,
+          externally sorts a list of items into ascending order.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangulation_neighbor_triangles.m">
+          triangulation_neighbor_triangles.m</a>,
+          determines triangle neighbors.
+        </li>
+        <li>
+          <a href = "triangulation_order3_adj_count.m">triangulation_order3_adj_count.m</a>,
+          counts adjacencies in a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order3_adj_set.m">triangulation_order3_adj_set.m</a>,
+          sets adjacencies in a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order3_example2.m">
+          triangulation_order3_example2.m</a>,
+          returns an example triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order3_example2_size.m">
+          triangulation_order3_example2_size.m</a>,
+          returns the size of an example.
+        </li>
+        <li>
+          <a href =
+          "triangulation_order6_adj_count.m">
+          triangulation_order6_adj_count.m</a>,
+          counts adjacencies in a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order6_adj_set.m">
+          triangulation_order6_adj_set.m</a>,
+          sets adjacencies in a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order6_example2.m">
+          triangulation_order6_example2.m</a>,
+          returns an example triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order6_example2_size.m">
+          triangulation_order6_example2_size.m</a>,
+          returns the size of an example.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "rcm_test.m">rcm_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "rcm_test01.m">rcm_test01.m</a>,
+          tests ADJ_SET;
+        </li>
+        <li>
+          <a href = "rcm_test02.m">rcm_test02.m</a>,
+          tests GENRCM;
+        </li>
+        <li>
+          <a href = "rcm_test03.m">rcm_test03.m</a>,
+          tests GENRCM;
+        </li>
+        <li>
+          <a href = "rcm_test04.m">rcm_test04.m</a>,
+          tests GENRCM;
+        </li>
+        <li>
+          <a href = "rcm_test05.m">rcm_test05.m</a>,
+          tests GRAPH_01_ADJ and GRAPH_01_SIZE;
+        </li>
+        <li>
+          <a href = "rcm_test06.m">rcm_test06.m</a>,
+          tests LEVEL_SET;
+        </li>
+        <li>
+          <a href = "rcm_test07.m">rcm_test07.m</a>,
+          tests ROOT_FIND;
+        </li>
+        <li>
+          <a href = "rcm_test08.m">rcm_test08.m</a>,
+          tests TRIANGULATION_ORDER3_ADJ_COUNT;
+        </li>
+        <li>
+          <a href = "rcm_test09.m">rcm_test09.m</a>,
+          tests TRIANGULATION_ORDER3_ADJ_SET;
+        </li>
+        <li>
+          <a href = "rcm_test10.m">rcm_test10.m</a>,
+          tests TRIANGULATION_NEIGHBOR_TRIANGLES;
+        </li>
+        <li>
+          <a href = "rcm_test11.m">rcm_test11.m</a>,
+          tests TRIANGULATION_ORDER6_ADJ_COUNT;
+        </li>
+        <li>
+          <a href = "rcm_test12.m">rcm_test12.m</a>,
+          tests TRIANGULATION_ORDER6_ADJ_SET;;
+        </li>
+        <li>
+          <a href = "rcm_test_output.txt">rcm_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 September 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

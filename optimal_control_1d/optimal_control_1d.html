@@ -1,0 +1,325 @@
+<html>
+
+  <head>
+    <title>
+      OPTIMAL_CONTROL_1D - Optimal Control of a 1D System
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      OPTIMAL_CONTROL_1D <br> Optimal Control of a 1D System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>OPTIMAL_CONTROL_1D</b>
+      is a MATLAB program which
+      implements an algorithm for finding the optimal control for a
+      1D system.
+    </p>
+
+    <p>
+      The program is intended as a demonstration and teaching aid.
+    <p>
+
+    <p>
+      The form of this problem is as follows.  We are given
+      <ul>
+        <li>
+          an interval <b>[a,b]</b>,
+        </li>
+        <li>
+          a right hand side function <b>f(x)</b>,
+        </li>
+        <li>
+          a "target" function <b>u_hat(x)</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Consider the following two point boundary value problem:
+      <pre><code>
+        - d/dx ( q(x) * du(x)/dx ) = f(x)
+        u(a) = 0; u(b) = 0
+      </code></pre>
+      There are two unknowns in this problem, the functions <b>u(x)</b> and <b>q(x)</b>.
+      Let us suppose that <b>u(x)</b> represents a state variable, or the
+      value of some important physical quantity, while the function <b>q(x)</b>
+      is a function that we are allowed to select.  Because it represents our
+      ability to "control" the problem, we call the function
+      <b>q(x)</b> the <i>control function</i>.
+    </p>
+
+    <p>
+      As long as the function <b>q(x)</b> satisfies certain conditions
+      (differentiability would be nice, for instance, though it will turn out not to
+      be essential), the two point boundary value
+      problem can be solved for <b>u(x)</b> as soon as we have chosen <b>q(x)</b>.
+      In this case, <b>u(x)</b> depends on <b>q(x)</b>, and we can think of
+      the state function <b>u(x)</b> as a "function" of the control function
+      <b>q(x)</b>.  To emphasize this, we may sometimes write <b>u</b> as <b>u(q)</b>
+    </p>
+
+    <p>
+      We now pose the <i>optimal control problem</i>.  We seek the control function
+      <b>q(x)</b> (out of some space of allowable choices) which is "optimal".
+      A control function which is optimal is termed, of course, an <i>optimal control function</i>.
+      But what is our definition of "optimal"?  Optimality depends on what we
+      want to happen, and how we measure that.  For this example code, we are going
+      to want the solution <b>u(q)</b> to match, as closely as possible, the prescribed
+      function <b>u_hat(x)</b>.  Note that there might be many control functions which
+      achieve a perfect match - in that case, they would all be "optimal".  More commonly,
+      no control function achieves a perfect match, and then we would be interested in
+      the control function that achieved the best approximation.  Thus, for our
+      problem, we define an optimal control function <b>q(x)</b>
+      as one that minimizes the difference between the corresponding
+      state function <b>u(x)</b> and the target solution <b>u_hat(x)</b>.
+    </p>
+
+    <p>
+      We can write
+      <pre><code>
+        J(u) = 1/2 sqrt ( integral ( a &lt; x &lt; b ) ( u(x) - u_hat(x) )<sup>2</sup> dx )
+      </pre></code>
+      so that our optimal problem becomes
+      <blockquote><i>
+        Find a control function <b>q</b> that minimizes <b>J(u(q))</b>.
+      </i></blockquote>
+    </p>
+
+    <p>
+      The function <b>J(u)</b> is known as the <i>cost function</i>.
+      Many other cost functions are possible, depending on the application.
+    </p>
+
+    <p>
+      Now it is common to modify the optimal control problem to include what is
+      called "the cost of the control".  In other words, it is often the situation
+      that a very reasonable approximation of <b>u_hat(x)</b> can be gotten for
+      a control function <b>q(x)</b> of relatively small norm, and that better
+      approximations are only "slightly" better, and come at the cost of a great
+      increase in the norm of the control function <b>q(x)</b>.
+    </p>
+
+    <p>
+      If the cost of the control function is to be included, this can be done
+      by reformulating the original cost function to include a scaled value of the
+      norm of the control function.  A typical formulation might be:
+      <pre><code>
+        J(u,q) = 1/2 sqrt ( integral ( a &lt; x &lt; b ) ( u(x) - u_hat(x) )<sup>2</sup> dx )
+           + alpha * sqrt ( integral ( a &lt; x &lt; b ) ( q(x)            )<sup>2</sup> dx )
+      </code></pre>
+      The form of the cost function will vary from problem to problem.
+    </p>
+
+    <h3 align = "center">
+      The Example Problem
+    </h3>
+
+    <p>
+      For the particular problem considered in our example, we have the data:
+      <pre></code>
+        [a,b] = [0,1]
+      </code></pre>
+      and
+      <pre><code>
+        u_hat(x) = x ( 1-x<sup>2</sup> )
+      </code></pre>
+      and
+      <pre><code>
+        f(x) = -15x<sup>4</sup>+3x<sup>2</sup>-6x
+      </code></pre>
+    </p>
+
+    <p>
+      The cost function used for the example problem does not take the square root
+      of the integrals, and the "cost of control" portion of the cost involves
+      the <i>derivative</i> of <b>q(x)</b>:
+      <pre><code>
+        J(u,q) = 1/2 integral ( a &lt; x &lt; b ) ( u(x) - u_hat(x) )<sup>2</sup> dx
+           + alpha * integral ( a &lt; x &lt; b ) ( dq(x)/dx        )<sup>2</sup> dx
+      </code></pre>
+    </p>
+
+    <p>
+      For this problem, if the coefficient <b>alpha</b> in the cost function
+      <b>J(u,q)</b> is zero, then the optimal control function <b>q(x)</b>
+      can be shown analytically to be:
+      <pre><code>
+        q(x) = x<sup>3</sup>+1
+      </code></pre>
+    </p>
+
+    <p>
+      The code <b>optimal_control_1d_driver</b> carries out an iterative
+      procedure to determine the optimal control function.  The value of
+      <b>alpha</b> is a parameter that can be set by the user.  If it is
+      not zero, then the control function will vary from the exact solution
+      known for <b>alpha</b>=0.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/oned/oned.html">
+      ONED</a>,
+      a MATLAB library which
+      contains functions useful for 1D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_gradient_nd_noise/stochastic_gradient_nd_noise.html">
+      STOCHASTIC_GRADIENT_ND_NOISE</a>,
+      a MATLAB program which
+      solves an optimal control problem involving a functional over a system
+      with stochastic noise.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Jeff Borggaard, John Burkardt, Catalin Trenchea, Clayton Webster
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Richard Macki, Aaron Strauss,<br>
+          Introduction to Optimal Control Theory,<br>
+          Springer, 1982,<br>
+          ISBN: 038790624X,<br>
+          LC: QA402.3.M317.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "adjoint_equation.m">adjoint_equation.m</a>,
+          sets up and solves the adjoint equation.
+        </li>
+        <li>
+          <a href = "cost_function.m">cost_function.m</a>,
+          evaluates quantities associated with the cost function.
+        </li>
+        <li>
+          <a href = "finite_element.m">finite_element.m</a>,
+          sets up and solves the finite element system.
+        </li>
+        <li>
+          <a href = "geometry_1d.m">geometry_1d.m</a>,
+          defines the finite element geometry.
+        </li>
+        <li>
+          <a href = "graphics.m">graphics.m</a>,
+          displays the computed and optimal functions.
+        </li>
+        <li>
+          <a href = "oned_bilinear.m">oned_bilinear.m</a>
+          integrates kernel(x) * basis function(x) * test function(x).
+        </li>
+        <li>
+          <a href = "oned_f_int.m">oned_f_int.m</a>
+          computes the integral of f(x) times a test function.
+        </li>
+        <li>
+          <a href = "oned_gauss.m">oned_gauss.m</a>
+          sets Gauss integration points on (-1,1).
+        </li>
+        <li>
+          <a href = "oned_mesh.m">oned_mesh.m</a>
+          generates a mesh with a prescribed density.
+          This routine returns elements of the same type as
+          xb, e_connb (linear or quadratic)
+        </li>
+        <li>
+          <a href = "oned_shape.m">oned_shape.m</a>
+          computes test functions and derivatives for a Lagrange
+          C0 element given element coordinates and Gauss points.
+          (assumes all nodes are uniformly distributed in the
+          element.)
+        </li>
+        <li>
+          <a href = "optimal_control_1d.m">optimal_control_1d.m</a>,
+          solves the optimal control problem given a finite element mesh,
+          control function Q, right hand side F, and U-HAT function.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "optimal_control_1d_driver.m">optimal_control_1d_driver.m</a>,
+          the driver routine for an example problem.
+        </li>
+        <li>
+          <a href = "optimal_control_1d_output.txt">optimal_control_1d_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "f_function.m">f_function.m</a>,
+          evaluates the right hand side function of the finite element system.
+        </li>
+        <li>
+          <a href = "q_hat.m">q_hat.m</a>,
+          evaluates the Q_HAT optimal control function.
+        </li>
+        <li>
+          <a href = "u_hat.m">u_hat.m</a>,
+          evaluates the U_HAT target function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,331 @@
+<html>
+
+  <head>
+    <title>
+      FEM_BASIS_T6_DISPLAY - Display a T6 Finite Element Basis Function
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_BASIS_T6_DISPLAY <br> 
+      Display a T6 Finite Element Basis Function
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_BASIS_T6_DISPLAY</b> 
+      is a MATLAB program which 
+      reads data defining a 
+      quadratic triangular ("T6") mesh and displays the basis function
+      associated with any node in the mesh.
+    </p>
+
+    <p>
+      The entire mesh is shown (which could be a problem for 
+      large meshes!).  However, a finite element basis function is
+      nonzero over only a relatively small number of elements.
+      Over these elements, the basis function is quadratic, and
+      the curved nature of this part of the surface is suggested by taking
+      many plot points in this region.
+    </p>
+
+    <p>
+      The best part of the presentation is that MATLAB allows the
+      user to turn the plot or zoom in and out, which makes it
+      much easier to understand the information that is being presented.
+    </p>
+
+    <p>
+      The triangular mesh is defined by a <i>node file</i> containing
+      the coordinates of nodes, and an <i>element file</i> containing
+      sets of the six nodes that make up each element.
+    </p>
+
+    <p>
+      Note that the six nodes making up each element are to be listed
+      in a particular order, in which the vertices come first, followed
+      by the midside nodes.  Moreover, the first midside node is the
+      one between vertices 1 and 2, as suggested by the following diagram:
+      <pre>
+        3
+        |\
+        | \
+        |  \
+        6   5
+        |    \
+        |     \
+        |      \
+        1---4---2
+      </pre>
+    </p>
+
+    <p>
+      In general, a mesh of quadratic triangles allows the sides to be
+      bent.  However, for this application, it is assumed that the sides
+      of each triangle are straight, that is, that each midside node
+      lies on the line segment joining the corresponding vertices.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem_basis_t6_display</b> ( <i>'prefix'</i> ) 
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common filename prefix of
+          the node file <i>'prefix'</i><b>_nodes.txt</b> and the element
+          file <i>'prefix'</i><b>_elements.txt</b>
+        </li>
+      </ul>
+      The program queries the user for a node index and then 
+      displays the basis function corresponding to that node.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bezier_surface_display/bezier_surface_display.html">
+      BEZIER_SURFACE_DISPLAY</a>,
+      a MATLAB program which 
+      displays a Bezier surface.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a 3-node triangle "T3" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t4_display/fem_basis_t4_display.html">
+      FEM_BASIS_T4_DISPLAY</a>,
+      a MATLAB program which  
+      displays a basis function associated with a 4-node triangle "T4" mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_pack/fem2d_pack.html">
+      FEM2D_PACK</a>,
+      a MATLAB library which
+      is useful for 2D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygonal_surface_display/polygonal_surface_display.html">
+      POLYGONAL_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads two files defining a polygonal surface and displays it
+      within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_surface_display/quad_surface_display.html">
+      QUAD_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads files defining a 3D quadrilateral mesh surface and displays it
+      within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which 
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>, 
+      a MATLAB program which 
+      reads data defining a triangular mesh
+      of a 3D surface and displays it.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image
+      using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order6_contour/triangulation_order6_contour.html">
+      TRIANGULATION_ORDER6_CONTOUR</a>,
+      a MATLAB program which 
+      can make
+      contours of a scalar quantity defined on the nodes of an order 6
+      triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program which 
+      creates an EPS image of a triangulation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Klaus-Juergen Bathe,<br>
+          Finite Element Procedures,<br>
+          Prentice Hall, 1996.
+        </li>
+        <li>
+          Eric Becker, Graham Carey, John Oden,<br>
+          Finite Elements, An Introduction, Volume I,<br>
+          Prentice-Hall, 1981.
+        </li>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          LC: QA377.E36,<br>
+          ISBN: 0-521-79309-2.
+        </li>
+        <li>
+          Max Gunzburger,<br>
+          Finite Element Methods for Viscous Incompressible Flows,<br>
+          A Guide to Theory, Practice, and Algorithms,<br>
+          Academic Press, 1989,<br>
+          LC: TA357.G86.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Prentice Hall, 1973,<br>
+          LC: TA335.S77.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem_basis_t6_display.m">fem_basis_t6_display.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Tests and Examples
+    </h3>
+
+    <p>
+      <b>SMALL_SQUARE</b> is a simple mesh of 25 nodes and 8 elements
+      over the [0,4] by [0,4] square.
+      Test files you may copy include:
+      <ul>
+        <li>
+          <a href = "small_square_nodes.txt">small_square_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "small_square_elements.txt">small_square_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "small_square_mesh.png">small_square_mesh.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          mesh.
+        </li>
+        <li>
+          <a href = "small_square_node02.png">small_square_node02.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          basis function associated with node 2.
+        </li>
+        <li>
+          <a href = "small_square_node03.png">small_square_node03.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          basis function associated with node 3.
+        </li>
+        <li>
+          <a href = "small_square_node13.png">small_square_node13.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          basis function associated with node 13.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BIG_SQUARE</b> is a simple mesh of 169 nodes and 72 elements
+      over the [0,1] by [0,1] square.
+      Test files you may copy include:
+      <ul>
+        <li>
+          <a href = "big_square_nodes.txt">big_square_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "big_square_elements.txt">big_square_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "big_square_mesh.png">big_square_mesh.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          mesh.
+        </li>
+        <li>
+          <a href = "big_square_node84.png">big_square_node84.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          basis function associated with node 84.
+        </li>
+        <li>
+          <a href = "big_square_node85.png">big_square_node85.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of the
+          basis function associated with node 85.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

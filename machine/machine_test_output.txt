@@ -1,0 +1,149 @@
+machine_test
+25-Apr-2007 09:19:07
+
+MACHINE_PRB:
+  MATLAB version
+
+  Test the routines in the MACHINE library,
+  which returns the value of constants
+  associated with computer arithmetic.
+
+D1MACH_PRB
+  D1MACH reports the value of constants associated
+  with real double precision computer arithmetic.
+
+  Assume that double precision numbers are stored 
+  with a mantissa of T digits in base B, with an 
+  exponent whose value must lie between EMIN and EMAX.
+
+  For input arguments of 1 <= I <= 5,
+  D1MACH will return the following values:
+
+  D1MACH(1) = B^*(EMIN-1), the smallest positive magnitude.
+   4.4501477170144028e-308
+
+  D1MACH(2) = B^EMAX*(1-B^(-T)), the largest magnitude.
+   8.9884656743115785e+307
+
+  D1MACH(3) = B^(-T), the smallest relative spacing.
+   1.1102230246251570e-016
+
+  D1MACH(4) = B^(1-T), the largest relative spacing.
+   2.2204460492503131e-016
+
+  D1MACH(5) = log10(B).
+   3.0102999566398098e-001
+
+I1MACH_PRB
+  I1MACH reports the value of constants associated
+  with integer computer arithmetic.
+
+  Numbers associated with input/output units:
+
+  I1MACH(1) = the standard input unit.
+5
+
+  I1MACH(2) = the standard output unit.
+6
+
+  I1MACH(3) = the standard punch unit.
+7
+
+  I1MACH(4) = the standard error message unit.
+6
+
+  Numbers associated with words:
+
+  I1MACH(5) = the number of bits per integer.
+32
+
+  I1MACH(6) = the number of characters per integer.
+4
+
+  Numbers associated with integer values:
+
+  Assume integers are represented in the S digit 
+  base A form:
+
+    Sign * (X(S-1)*A^(S-1) + ... + X(1)*A + X(0))
+
+  where the digits X satisfy 0 <= X(1:S-1) < A.
+
+  I1MACH(7) = A, the base.
+2
+
+  I1MACH(8) = S, the number of base A digits.
+31
+
+  I1MACH(9) = A^S-1, the largest integer.
+2147483647
+
+  Numbers associated with floating point values:
+
+  Assume floating point numbers are represented 
+  in the T digit base B form:
+
+    Sign * (B^E) * ((X(1)/B) + ... + (X(T)/B^T) )
+
+  where 
+
+    0 <= X(1:T) < B,
+    0 < X(1) (unless the value being represented is 0),
+    EMIN <= E <= EMAX.
+
+  I1MACH(10) = B, the base.
+2
+
+  Numbers associated with single precision values:
+
+  I1MACH(11) = T, the number of base B digits.
+24
+
+  I1MACH(12) = EMIN, the smallest exponent E.
+-125
+
+  I1MACH(13) = EMAX, the largest exponent E.
+128
+
+  Numbers associated with double precision values:
+
+  I1MACH(14) = T, the number of base B digits.
+53
+
+  I1MACH(15) = EMIN, the smallest exponent E.
+-1021
+
+  I1MACH(16) = EMAX, the largest exponent E.
+1024
+
+R1MACH_PRB
+  R1MACH reports the value of constants associated
+  with real single precision computer arithmetic.
+
+  Assume that single precision numbers are stored 
+  with a mantissa of T digits in base B, with an 
+  exponent whose value must lie between EMIN and EMAX.
+
+  For input arguments of 1 <= I <= 5,
+  R1MACH will return the following values:
+
+  R1MACH(1) = B^*(EMIN-1), the smallest positive magnitude.
+   1.1754944000000001e-038
+
+  R1MACH(2) = B^EMAX*(1-B^(-T)), the largest magnitude.
+   3.4028234999999999e+038
+
+  R1MACH(3) = B^(-T), the smallest relative spacing.
+   5.9604645000000006e-008
+
+  R1MACH(4) = B^(1-T), the largest relative spacing.
+   1.1920929000000001e-007
+
+  R1MACH(5) = log10(B).
+   3.0103000000000002e-001
+
+MACHINE_PRB:
+  Normal end of execution.
+
+25-Apr-2007 09:19:08
+>> 

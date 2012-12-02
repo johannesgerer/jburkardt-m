@@ -1,0 +1,217 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_RETURN - Using RETURN May Be Expensive
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_RETURN <br> Using RETURN May Be Expensive
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_RETURN</b>
+      is a directory of MATLAB programs which
+      illustrate the puzzling cost of the MATLAB RETURN statement.
+    </p>
+
+    <p>
+      A MATLAB M-file may contain several functions.  It is enough to simply
+      use the "function" statement itself to indicate the beginning of each
+      function in such a file, as follows:
+      <pre>
+        function a ( )
+          ...body of function
+        function b ( )
+          ...body of function
+        function c ( )
+          ...body of function
+      </pre>
+    </p>
+
+    <p>
+      The MATLAB "end" statement may be used to indicate the termination of
+      a function, as well as that of "if" and "for" statements:
+      <pre>
+        function a ( )
+          ...body of function
+        end
+        function b ( )
+          ...body of function
+        end
+        function c ( )
+          ...body of function
+        end
+      </pre>
+      Using the "end" statement in this way would seem to be merely a fussy
+      formality, or, depending on how you think, a means of improving program
+      readability.
+    </p>
+
+    <p>
+      The MATLAB "return" statement may be used at any point in a function to
+      indicate that execution should return to the calling function.  A function
+      may have several return statements.  Reaching the end of the function definition
+      (end of file, or the beginning of a new function) will also result in 
+      an implicit return to the calling function.  We can use an explicit return
+      as an additional marker in our file:
+      <pre>
+        function a ( )
+          ...body of function
+          return
+        end
+        function b ( )
+          ...body of function
+          return
+        end
+        function c ( )
+          ...body of function
+          return
+        end
+      </pre>
+      Using the "return" statement is again unnecessary, but would seem to me
+      to me a more careful way of indicating that the function's calculations
+      have been completed.
+    </p>
+
+    <p>
+      Call the three skeleton files above "version1", "version2" and "version3".
+      What will you think when I tell you that versions 1 and 2 run in 2 seconds,
+      and version three takes 22 seconds?  (The real problem I wanted to run
+      is 100 times bigger, and there the discrepancy is far worse.)
+    </p>
+
+    <p>
+      The online documentation for the RETURN statement simply states that it
+      causes return to the calling function, and nowhere suggests that there is
+      a significant overhead incurred when calling RETURN explicitly.  Nor is
+      there any explanation for a difference between an implicit and explicit RETURN.
+    </p>
+
+    <p>
+      Since absolutely anything can be "explained" after the fact, it's easy to
+      suppose that the explicit RETURN somehow "exits the entire file", causing all
+      the file memory to be wiped clean, and requiring a reinitialization on reentry,
+      whereas the implicit RETURN from, say, function b, would smoothly jump back
+      to function a (assuming a called b) without exiting the file and its memory.
+      But that's just my vague attempt at a plausible explanation, and there's no
+      reason to believe it.
+    </p>
+
+    <p>
+      What bothers me is that I can't see WHY the return has to cost so much;
+      and I've already written a heap of MATLAB M-files with multiple functions
+      that politely return/end all over the place.  So now I'm stuck with the
+      worry of going back and cleaning them up.
+    </p>
+
+    <p>
+      By the way, it is a peculiarity of MATLAB that:
+      <ul>
+        <li>
+          conventionally, the name of the file and the name of the first function
+          ought to match, but in any case, invoking the file name causes the
+          execution of the first function in the file, no matter what its name;
+        </li>
+        <li>
+          except for the first function, which is invoked by the file name,
+          no other function in the file can be directly invoked by an external command. 
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/feynman_kac_2d/feynman_kac_2d.html">
+      FEYNMAN_KAC_2D</a>,
+      a MATLAB program which
+      demonstrates the use of the Feynman-Kac algorithm
+      to solve Poisson's equation in a 2D ellipse by averaging
+      stochastic paths to the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab/matlab.html">
+      MATLAB</a>,
+      MATLAB programs which
+      illustrate the use of the MATLAB programming language;
+     </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>EXAMPLE</b> is an extremely simplified program which simply calls two
+      versions of the same function many times.  One version has a return statement
+      and one doesn't.
+      <ul>
+        <li>
+          <a href = "example.m">example.m</a>, the program.
+        </li>
+        <li>
+          <a href = "example_output.txt">example_output.txt</a>, the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>VERSION1</b> uses no RETURN and no END statements and runs in 1.9 seconds.
+      <ul>
+        <li>
+          <a href = "version1.m">version1.m</a>, the program.
+        </li>
+        <li>
+          <a href = "version1_output.txt">version1_output.txt</a>, the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>VERSION2</b> uses END, but no RETURN statements and runs in 1.9 seconds.
+      <ul>
+        <li>
+          <a href = "version2.m">version2.m</a>, the program.
+        </li>
+        <li>
+          <a href = "version2_output.txt">version2_output.txt</a>, the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>VERSION3</b> uses RETURN and END statements and runs in 22 seconds.
+      <ul>
+        <li>
+          <a href = "version3.m">version3.m</a>, the program.
+        </li>
+        <li>
+          <a href = "version3_output.txt">version3_output.txt</a>, the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 27 August 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

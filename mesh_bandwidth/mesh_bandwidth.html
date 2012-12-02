@@ -1,0 +1,279 @@
+<html>
+
+  <head>
+    <title>
+      MESH_BANDWIDTH - Geometric Bandwidth of a Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MESH_BANDWIDTH <br> Geometric Bandwidth of a Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MESH_BANDWIDTH</b> 
+      is a MATLAB program which 
+      computes the geometric bandwidth of a mesh.
+    </p>
+
+    <p>
+      The user specifies an element file, containing the indices of the
+      nodes that make up each element.  Examples of such a file include
+      the order 3 and order 6 triangulation files, but any order of element
+      may be used.
+    </p>
+
+    <p>
+      Not only may any element type be used, but the geometric region
+      may be of any spatial dimension.
+    </p>
+
+    <p>
+      The program reads the element information and computes the
+      geometric bandwidth <b>M</b> as
+      <blockquote><b>
+        M = ML + 1 + MU
+      </b></blockquote>
+      where <b>ML</b> is the lower bandwidth, namely, the maximum value
+      over all nodes <b>I</b> of the difference <b>(I-J)</b>, taken over
+      all nodes <b>J</b> that share an element with node <b>I</b>.
+      The upper bandwidth is the maximum value of <b>(J-I)</b> under
+      the same conditions.
+    </p>
+
+    <p>
+      The geometric bandwidth <b>M</b> is the linear algebraic bandwidth
+      of the adjacency matrix of the mesh, where <b>I</b> and <b>J</b>
+      are considered to be adjacent if there is some element that includes
+      both nodes.
+    </p>
+
+    <p>
+      The geometric bandwidth is of interest since it is the bandwidth
+      of the finite element matrix associated with the mesh, when a
+      scalar quantity is being approximated and there is a single
+      unknown for every node, and the unknowns have the same numbering
+      as the nodes.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>mesh_bandwidth</b> ( <i>'element_file'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'element_file'</i> contains a list of sets of node indices;
+          each set of node indices describes a single element.
+        </li>
+      </ul>
+      The program reads the element file and prints out the geometric 
+      mesh bandwidth.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MESH_BANDWIDTH</b> is available in
+      <a href = "../../c_src/mesh_bandwidth/mesh_bandwidth.html">a C version</a> and
+      <a href = "../../cpp_src/mesh_bandwidth/mesh_bandwidth.html">a C++ version</a> and
+      <a href = "../../f77_src/mesh_bandwidth/mesh_bandwidth.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/mesh_bandwidth/mesh_bandwidth.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/mesh_bandwidth/mesh_bandwidth.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image
+      using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which 
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a directory which 
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan George, Joseph Liu,<br>
+          Computer Solution of Large Sparse Positive Definite Matrices,<br>
+          Prentice Hall, 1981,<br>
+          QA 188.G46
+        </li>
+        <li>
+          Norman Gibbs, William Poole, Paul Stockmeyer,<br>
+          An Algorithm for Reducing the Bandwidth 
+          and Profile of a Sparse Matrix,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 13, pages 236-250, 1976.
+        </li>
+        <li>
+          Norman Gibbs,<br>
+          Algorithm 509: A Hybrid Profile Reduction Algorithm,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 2, Issue 4, pages 378-387, 1976.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Cambridge University Press,<br>
+          Second Edition, 1998.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mesh_bandwidth.m">mesh_bandwidth.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mesh_bandwidth_test_output.txt">mesh_bandwidth_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Some sample mesh files include:
+      <ul>
+        <li>
+          <a href = "../../data/polygonal_surface/sphere_q4_elements.txt">
+          sphere_q4_elements.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/polygonal_surface/sphere_t3_elements.txt">
+          sphere_t3_elements.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/tet_mesh_order4/cube_elements.txt">
+          cube_elements.txt</a>
+        </li>
+        <li>
+          <a href = "../../datasets/tet_mesh_order4/twenty_elements.txt">
+          twenty_elements.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/tet_mesh_order10/cube_order10_tetras.txt">
+          cube_order10_tetras.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/tet_mesh_order10/oneoneeight_order10_tetras.txt">
+          oneoneeight_order10_tetras.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order3/ell_tri3.txt">
+          ell_tri3.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order3/hex_cvt_tri3.txt">
+          hex_cvt_tri3.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order3/hex_triangle_tri3.txt">
+          hex_triangle_tri3.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order3/hot_pipe_tri3.txt">
+          hot_pipe_tri3.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order6/ell_tri6.txt">
+          ell_tri6.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/triangulation_order6/hex_jeff_tri6.txt">
+          hex_jeff_tri6.txt</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

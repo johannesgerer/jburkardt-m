@@ -1,0 +1,612 @@
+<html>
+
+  <head>
+    <title>
+      LINPACK_C - Linear Algebra Library - Single Precision Complex
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPACK_C <br> Linear Algebra Library <br> Single Precision Complex
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPACK_C</b>
+      is a MATLAB library which
+      solves systems of linear equations for a variety
+      of matrix types and storage modes,
+      by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+    </p>
+
+    <p>
+      MATLAB already provides a wide set of linear equation solvers.
+      This (partial) set of <b>LINPACK</b> routines is provided just for
+      testing and comparison.
+    </p>
+
+    <p>
+      <b>LINPACK</b> has officially been superseded by the LAPACK library.  The LAPACK
+      library uses more modern algorithms and code structure.  However,
+      the LAPACK library can be extraordinarily complex; what is done
+      in a single <b>LINPACK</b> routine may correspond to 10 or 20 utility
+      routines in LAPACK.  This is fine if you treat LAPACK as a black
+      box.  But if you wish to learn how the algorithm works, or
+      to adapt it, or to convert the code to another language, this
+      is a real drawback.  This is one reason I still keep a copy
+      of <b>LINPACK</b> around.
+    </p>
+
+    <p>
+      Versions of <b>LINPACK</b> in various arithmetic precisions are available
+      through <a href = "http://www.netlib.org/">the NETLIB web site</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINPACK_C</b> is available in
+      <a href = "../../cpp_src/linpack_c/linpack_c.html">a C++ version</a> and
+      <a href = "../../f77_src/linpack_c/linpack_c.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/linpack_c/linpack_c.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/linpack_c/linpack_c.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/blas1_c/blas1_c.html">
+      BLAS1_C</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using single precision complex arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      solves linear systems using double precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_s/linpack_s.html">
+      LINPACK_S</a>,
+      a MATLAB library which
+      solves linear systems using single precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_z/linpack_z.html">
+      LINPACK_Z</a>,
+      a MATLAB library which
+      solves linear systems using double precision complex arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out simple manipulations of matrices in a variety of formats.
+    </p>
+
+    <p>
+      <a href = "../../m_src/templates/templates.html">
+      TEMPLATES</a>,
+      a MATLAB library which
+      carries out simple versions of various iterative solvers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_matrix/test_matrix.html">
+      TEST_MATRIX</a>,
+      a MATLAB library which
+      contains a collection of test matrices
+      by Nick Higham.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original FORTRAN77 version by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+      MATLAB version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539,
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cabs1.m">cabs1.m</a>,
+          returns the L1 norm of a complex number.
+        </li>
+        <li>
+          <a href = "cchdc.m">cchdc.m</a>,
+          computes the Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "cchdd.m">cchdd.m</a>,
+          downdates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "cchex.m">cchex.m</a>,
+          updates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "cchud.m">cchud.m</a>,
+          updates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "cdotc.m">cdotc.m</a>,
+          computes the conjugated dot product of two vectors.
+        </li>
+        <li>
+          <a href = "cgbco.m">cgbco.m</a>,
+          factors a band matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "cgbdi.m">cgbdi.m</a>,
+          computes the determinant of a band matrix factored by CGBCO or CGBFA.
+        </li>
+        <li>
+          <a href = "cgbfa.m">cgbfa.m</a>,
+          factors a complex band matrix by elimination.
+        </li>
+        <li>
+          <a href = "cgbsl.m">cgbsl.m</a>,
+          solves a complex band system factored by CGBCO or CGBFA.
+        </li>
+        <li>
+          <a href = "cgeco.m">cgeco.m</a>,
+          factors a complex matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "cgedi.m">cgedi.m</a>,
+          computes the determinant and inverse of a matrix.
+        </li>
+        <li>
+          <a href = "cgefa.m">cgefa.m</a>,
+          factors a complex matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "cgesl.m">cgesl.m</a>,
+          solves a complex system factored by CGECO or CGEFA.
+        </li>
+        <li>
+          <a href = "cgtsl.m">cgtsl.m</a>,
+          solves a complex tridiagonal system.
+        </li>
+        <li>
+          <a href = "chico.m">chico.m</a>,
+          factors a Hermitian matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "chidi.m">chidi.m</a>,
+          computes inverse, determinant and interia of a Hermitian matrix.
+        </li>
+        <li>
+          <a href = "chifa.m">chifa.m</a>,
+          factors a Hermitian matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "chisl.m">chisl.m</a>,
+          solves a linear system factored by CHIFA or CHICO.
+        </li>
+        <li>
+          <a href = "chpco.m">chpco.m</a>,
+          factors a Hermitian packed matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "chpdi.m">chpdi.m</a>,
+          computes inverse, determinant and interia of a Hermitian packed matrix.
+        </li>
+        <li>
+          <a href = "chpfa.m">chpfa.m</a>,
+          factors a Hermitian packed matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "chpsl.m">chpsl.m</a>,
+          solves a linear system factored by CHPFA or CHPCO.
+        </li>
+        <li>
+          <a href = "cpbco.m">cpbco.m</a>,
+          factors a Hermitian positive definite band matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "cpbdi.m">cpbdi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite band matrix.
+        </li>
+        <li>
+          <a href = "cpbfa.m">cpbfa.m</a>,
+          factors a Hermitian positive definite band matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "cpbsl.m">cpbsl.m</a>,
+          solves a linear system factored by CPBFA or CPBCO.
+        </li>
+        <li>
+          <a href = "cpoco.m">cpoco.m</a>,
+          factors a Hermitian positive definite matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "cpodi.m">cpodi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite matrix.
+        </li>
+        <li>
+          <a href = "cpofa.m">cpofa.m</a>,
+          factors a Hermitian positive definite matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "cposl.m">cposl.m</a>,
+          solves a linear system factored by CPOFA or CPOCO.
+        </li>
+        <li>
+          <a href = "cppco.m">cppco.m</a>,
+          factors a Hermitian positive definite packed matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "cppdi.m">cppdi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite packed matrix.
+        </li>
+        <li>
+          <a href = "cppfa.m">cppfa.m</a>,
+          factors a Hermitian positive definite packed matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "cppsl.m">cppsl.m</a>,
+          solves a linear system factored by CPPFA or CPPCO.
+        </li>
+        <li>
+          <a href = "cptsl.m">cptsl.m</a>,
+          solves a Hermitian positive definite tridiagonal system.
+        </li>
+        <li>
+          <a href = "cqrdc.m">cqrdc.m</a>,
+          computes the QR decomposition of a general rectangular complex matrix.
+        </li>
+        <li>
+          <a href = "cqrsl.m">cqrsl.m</a>,
+          uses the QR decomposition to solve linear systems and other tasks.
+        </li>
+        <li>
+          <a href = "crotg.m">crotg.m</a>,
+          computes a complex Givens rotation.
+        </li>
+        <li>
+          <a href = "csico.m">csico.m</a>,
+          factors a complex symmetric indefinite matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "csidi.m">csidi.m</a>,
+          computes inverse and determinant of a
+          complex symmetric indefinite matrix.
+        </li>
+        <li>
+          <a href = "csign1.m">csign1.m</a>,
+          is a complex transfer-of-sign function.
+        </li>
+        <li>
+          <a href = "csign2.m">csign2.m</a>,
+          is a complex transfer-of-sign function.
+        </li>
+        <li>
+          <a href = "csrot.m">csrot.m</a>,
+          applies a complex Givens rotation.
+        </li>
+        <li>
+          <a href = "csvdc.m">csvdc.m</a>,
+          computes the singular value decomposition of a general
+          complex matrix.
+        </li>
+        <li>
+          <a href = "ctrco.m">ctrco.m</a>,
+          returns the condition of a complex triangular matrix.
+        </li>
+        <li>
+          <a href = "ctrdi.m">ctrdi.m</a>,
+          computes the inverse or determinant of a complex triangular matrix.
+        </li>
+        <li>
+          <a href = "ctrsl.m">ctrsl.m</a>,
+          solves a complex triangular linear system.
+        </li>
+        <li>
+          <a href = "i4_huge.m">i4_huge.m</a>,
+          returns a "huge" I4.
+        </li>
+        <li>
+          <a href = "icamax.m">icamax.m</a>,
+          indexes the complex vector element of maximum absolute value.
+        </li>
+        <li>
+          <a href = "r4_sign.m">r4_sign.m</a>,
+          returns the sign of an R4.
+        </li>
+        <li>
+          <a href = "scasum.m">scasum.m</a>,
+          takes the sum of the absolute values of a complex vector.
+        </li>
+        <li>
+          <a href = "scnrm2.m">scnrm2.m</a>,
+          computes the Euclidean norm of a complex vector.
+        </li>
+        <li>
+          <a href = "srotg.m">srotg.m</a>,
+          computes a real Givens rotation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_c_test.m">
+          linpack_c_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "linpack_c_test_output.txt">linpack_c_test_output.txt</a>,
+          output from the tests.
+        </li>
+        <li>
+          <a href = "linpack_c_test01.m">
+          linpack_c_test01.m</a>, tests CCHDC;
+        </li>
+        <li>
+          <a href = "linpack_c_test02.m">
+          linpack_c_test02.m</a>, tests CCHEX;
+        </li>
+        <li>
+          <a href = "linpack_c_test03.m">
+          linpack_c_test03.m</a>, tests CCHUD;
+        </li>
+        <li>
+          <a href = "linpack_c_test04.m">
+          linpack_c_test04.m</a>, tests CGBCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test05.m">
+          linpack_c_test05.m</a>, tests CGBFA and CGBSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test06.m">
+          linpack_c_test06.m</a>, tests CGBFA and CGBDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test07.m">
+          linpack_c_test07.m</a>, tests CGECO;
+        </li>
+        <li>
+          <a href = "linpack_c_test08.m">
+          linpack_c_test08.m</a>, tests CGEFA and CGESL;
+        </li>
+        <li>
+          <a href = "linpack_c_test09.m">
+          linpack_c_test09.m</a>, tests CGEFA and CGEDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test10.m">
+          linpack_c_test10.m</a>, tests CGTSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test11.m">
+          linpack_c_test11.m</a>, tests CHICO;
+        </li>
+        <li>
+          <a href = "linpack_c_test12.m">
+          linpack_c_test12.m</a>, tests CHIFA and CHISL;
+        </li>
+        <li>
+          <a href = "linpack_c_test13.m">
+          linpack_c_test13.m</a>, tests CHIFA and CHIDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test14.m">
+          linpack_c_test14.m</a>, tests CHPCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test15.m">
+          linpack_c_test15.m</a>, tests CHPFA and CHPSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test16.m">
+          linpack_c_test16.m</a>, tests CHPFA and CHPDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test17.m">
+          linpack_c_test17.m</a>, tests CPBCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test18.m">
+          linpack_c_test18.m</a>, tests CPBFA and CPBSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test19.m">
+          linpack_c_test19.m</a>, tests CPBFA and CPBDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test20.m">
+          linpack_c_test20.m</a>, tests CPOCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test21.m">
+          linpack_c_test21.m</a>, tests CPOFA and CPOSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test22.m">
+          linpack_c_test22.m</a>, tests CPOFA and CPODI;
+        </li>
+        <li>
+          <a href = "linpack_c_test23.m">
+          linpack_c_test23.m</a>, tests CPPCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test24.m">
+          linpack_c_test24.m</a>, tests CPPFA and CPPSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test25.m">
+          linpack_c_test25.m</a>, tests CPPFA and CPPDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test26.m">
+          linpack_c_test26.m</a>, tests CPTSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test27.m">
+          linpack_c_test27.m</a>, tests CQRDC and CQRSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test28.m">
+          linpack_c_test28.m</a>, tests CSICO;
+        </li>
+        <li>
+          <a href = "linpack_c_test29.m">
+          linpack_c_test29.m</a>, tests CSIFA and CSISL;
+        </li>
+        <li>
+          <a href = "linpack_c_test30.m">
+          linpack_c_test30.m</a>, tests CSIFA and CSIDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test31.m">
+          linpack_c_test31.m</a>, tests CSPCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test32.m">
+          linpack_c_test32.m</a>, tests CSPFA and CSPSL;
+        </li>
+        <li>
+          <a href = "linpack_c_test33.m">
+          linpack_c_test33.m</a>, tests CSPFA and CSPDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test34.m">
+          linpack_c_test34.m</a>, tests CSVDC;
+        </li>
+        <li>
+          <a href = "linpack_c_test345.m">
+          linpack_c_test345.m</a>, tests CSVDC;
+        </li>
+        <li>
+          <a href = "linpack_c_test35.m">
+          linpack_c_test35.m</a>, tests CTRCO;
+        </li>
+        <li>
+          <a href = "linpack_c_test36.m">
+          linpack_c_test36.m</a>, tests CTRDI;
+        </li>
+        <li>
+          <a href = "linpack_c_test37.m">
+          linpack_c_test37.m</a>, tests CTRSL;
+        </li>
+        <li>
+          <a href = "c4_uniform_01.m">c4_uniform_01.m</a>,
+          returns a unit pseudorandom C4.
+        </li>
+        <li>
+          <a href = "c4mat_uniform_01.m">c4mat_uniform_01.m</a>,
+          returns a unit pseudorandom C4MAT.
+        </li>
+        <li>
+          <a href = "c4vec_uniform_01.m">c4vec_uniform_01.m</a>,
+          returns a unit pseudorandom C4VEC.
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">r4_uniform_01.m</a>,
+          returns a unit pseudorandom R4.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

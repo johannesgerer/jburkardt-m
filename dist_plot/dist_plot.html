@@ -1,0 +1,610 @@
+<html>
+
+  <head>
+    <title>
+      DIST_PLOT - Contour Plots of Distance Function
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DIST_PLOT <br> Contour Plots of Distance Function
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DIST_PLOT</b> 
+      is a MATLAB program which 
+      creates a color contour plot of the distance function, as used in Strang and
+      Persson's <b>DISTMESH</b> program.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>dist_plot</b> ( <i>p, t, @fd</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>p</i>, a list of node coordinates;
+        </li>
+        <li>
+          <i>t</i>, a list of node indices forming a triangulation of the nodes;
+        </li>
+        <li>
+          <i>@fd</i>, points to a distance function <b>d = fd ( p )</b>
+          which computes the distance <b>d</b> from the region to any
+          point <b>p</b>.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>, 
+      a MATLAB program which
+      is Strang and Persson's code for generating meshes over regions
+      with an associated distance function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>, 
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_io/table_io.html">
+      TABLE_IO</a>, 
+      a MATLAB library which
+      reads and writes files
+      using the <b>TABLE</b> format; these routines are used by
+      <b>DIST_PLOT_DEMO</b> when reading the input files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>, 
+      a MATLAB library which
+      defines some test regions for triangulation.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a data directory which
+      discusses order 3 triangulations;
+      The node and triangle files input to <b>DIST_PLOT</b> are an example
+      of such triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      can make a  plot of a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      can triangulate a region.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://math.mit.edu/~persson/mesh">
+                     http://math.mit.edu/~persson/mesh</a>
+          Per-Olof Persson's web site.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dist_plot.m">dist_plot.m</a> 
+          displays a plot of the distance function over the region.
+        </li>
+      </ul>
+    </p>
+
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>DIST_PLOT_DEMO</b> displays plots for all the standard
+      problems used in <b>DISTMESH</b>:
+      <ul>
+        <li>
+          <a href = "dist_plot_demo.m">dist_plot_demo.m</a> 
+          reads the node and triangle data for each of a set of
+          standard problems for <b>DISTMESH</b>,
+          and displays a plot of the distance function.
+        </li>
+        <li>
+          <a href = "dcircle.m">dcircle.m</a> 
+          returns the signed distance of one or more points to a circle.
+        </li>
+        <li>
+          <a href = "ddiff.m">ddiff.m</a> 
+          returns the signed distance of one or more points to a region
+          defined as the set difference of two regions.
+        </li>
+        <li>
+          <a href = "dintersect.m">dintersect.m</a> 
+          returns the signed distance to a region that is the intersection
+          of two regions.
+        </li>
+        <li>
+          <a href = "dpoly.m">dpoly.m</a> 
+          returns the signed distance of one or more points to a polygon.
+        </li>
+        <li>
+          <a href = "drectangle.m">drectangle.m</a> 
+          returns the signed distance of one or more points to a rectangle.
+        </li>
+        <li>
+          <a href = "dsegment.m">dsegment.m</a> 
+          returns the signed distance 
+          of one or more points to a set of line segments.
+        </li>
+        <li>
+          <a href = "dsegment.dll">dsegment.dll</a> 
+          (binary file), a Windows DLL file, returns the signed distance 
+          of one or more points to a set of line segments.  This version
+          is faster than the M-file.
+        </li>
+        <li>
+          <a href = "dunion.m">dunion.m</a> 
+          returns the signed distance to a region that is the union of
+          two regions.
+        </li>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a> 
+          counts the number of columns in a table file.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a> 
+          counts the number of rows in a table file.
+        </li>
+        <li>
+          <a href = "i4mat_data_read.m">i4mat_data_read.m</a> 
+          reads the data of an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_header_read.m">i4mat_header_read.m</a> 
+          reads the header of an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_read.m">i4mat_read.m</a> 
+          reads an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a> 
+          writes an I4MAT file.
+        </li>
+        <li>
+          <a href = "protate.m">protate.m</a> 
+          rotates a set of points by a given angle.
+        </li>
+        <li>
+          <a href = "pshift.m">pshift.m</a> 
+          shifts a set of points by a given increment.
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">r8mat_data_read.m</a> 
+          reads the data of an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a> 
+          reads the header of an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a> 
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a> 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a> 
+          counts the number of "words" in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P01</b> is the circle:
+      <ul>
+        <li>
+          <a href = "p01_nodes.txt">p01_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p01_triangles.txt">p01_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p01_dist.png">p01_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P02</b> is the circle with a hole:
+      <ul>
+        <li>
+          <a href = "p02_nodes.txt">p02_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p02_triangles.txt">p02_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p02_dist.png">p02_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P03</b> is the square with a hole:
+      <ul>
+        <li>
+          <a href = "p03_nodes.txt">p03_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p03_triangles.txt">p03_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p03_dist.png">p03_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P04</b> is the hexagon with hexagonal hole:
+      <ul>
+        <li>
+          <a href = "p04_nodes.txt">p04_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p04_triangles.txt">p04_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p04_dist.png">p04_dist.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of 
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P05</b> is the horn:
+      <ul>
+        <li>
+          <a href = "p05_nodes.txt">p05_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p05_triangles.txt">p05_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p05_dist.png">p05_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P06</b> is the superellipse:
+      <ul>
+        <li>
+          <a href = "p06_nodes.txt">p06_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p06_triangles.txt">p06_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p06_dist.png">p06_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P07</b> is the bicycle seat:
+      <ul>
+        <li>
+          <a href = "p07_nodes.txt">p07_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p07_triangles.txt">p07_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p07_dist.png">p07_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P08</b> is the holey pie slice:
+      <ul>
+        <li>
+          <a href = "p08_nodes.txt">p08_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p08_triangles.txt">p08_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p08_dist.png">p08_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P09</b> is Jeff Borggaard's square with two hexagonal holes:
+      <ul>
+        <li>
+          <a href = "p09_nodes.txt">p09_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p09_triangles.txt">p09_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p09_dist.png">p09_dist.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P10</b> is the unit square:
+      <ul>
+        <li>
+          <a href = "p10_nodes.txt">p10_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p10_triangles.txt">p10_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p10_dist.png">p10_dist.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P11</b> is the L-shaped region:
+      <ul>
+        <li>
+          <a href = "p11_nodes.txt">p11_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p11_triangles.txt">p11_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p11_dist.png">p11_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P12</b> is the John Shadid's H-shaped region:
+      <ul>
+        <li>
+          <a href = "p12_nodes.txt">p12_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p12_triangles.txt">p12_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p12_dist.png">p12_dist.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P13</b> is the Sandia fork:
+      <ul>
+        <li>
+          <a href = "p13_nodes.txt">p13_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p13_triangles.txt">p13_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p13_dist.png">p13_dist.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P14</b> is Marcus Garvie's Lake Alpha, with Beta Island:
+      <ul>
+        <li>
+          <a href = "p14_nodes.txt">p14_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p14_triangles.txt">p14_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p14_dist.png">p14_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P15</b> is Sangbum Kim's forward step region:
+      <ul>
+        <li>
+          <a href = "p15_nodes.txt">p15_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p15_triangles.txt">p15_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p15_dist.png">p15_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P16</b> is Kevin Pond's elbow:
+      <ul>
+        <li>
+          <a href = "p16_nodes.txt">p16_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p16_triangles.txt">p16_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p16_dist.png">p16_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P17</b> is the channel with a Reuleaux triangle obstruction:
+      <ul>
+        <li>
+          <a href = "p17_nodes.txt">p17_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p17_triangles.txt">p17_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p17_dist.png">p17_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P18</b> is the dumbbell region:
+      <ul>
+        <li>
+          <a href = "p18_nodes.txt">p18_nodes.txt</a> 
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p18_triangles.txt">p18_triangles.txt</a> 
+          the mesh triangles of the problem.
+        </li>
+        <li>
+          <a href = "p18_dist.png">p18_dist.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          a contour plot of the distance function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 March 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

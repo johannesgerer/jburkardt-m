@@ -1,0 +1,745 @@
+<html>
+
+  <head>
+    <title>
+      LAGRANGE_INTERP_1D - Polynomial Interpolation in 1D using Lagrange Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      LAGRANGE_INTERP_1D <br> Polynomial Interpolation in 1D using Lagrange Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LAGRANGE_INTERP_1D</b>
+      is a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <b>LAGRANGE_INTERP_1D</b> needs the R8LIB library.
+      The test uses the TEST_INTERP_1D library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LAGRANGE_INTERP_1D</b> is available in
+      <a href = "../../c_src/lagrange_interp_1d/lagrange_interp_1d.html">a C version</a> and
+      <a href = "../../cpp_src/lagrange_interp_1d/lagrange_interp_1d.html">a C++ version</a> and
+      <a href = "../../f77_src/lagrange_interp_1d/lagrange_interp_1d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/lagrange_interp_1d/lagrange_interp_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/barycentric_interp_1d/barycentric_interp_1d.html">
+      BARYCENTRIC_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the barycentric Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+      The barycentric approach means that very high degree polynomials can
+      safely be used.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev_interp_1d/chebyshev_interp_1d.html">
+      CHEBYSHEV_INTERP_1D</a>,
+      a MATLAB library which
+      determines the combination of Chebyshev polynomials which 
+      interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/divdif/divdif.html">
+      DIVDIF</a>,
+      a MATLAB library which
+      uses divided differences to compute the polynomial interpolant 
+      to a given set of data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite/hermite.html">
+      HERMITE</a>,
+      a MATLAB library which
+      computes the Hermite interpolant, a polynomial that matches function values
+      and derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_approx_1d/lagrange_approx_1d.html">
+      LAGRANGE_APPROX_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) of degree m
+      which approximates a set of nd data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_basis_display/lagrange_basis_display.html">
+      LAGRANGE_BASIS_DISPLAY</a>,
+      a MATLAB library which
+      displays the basis functions associated with a given set of nodes used
+      with the Lagrange interpolation scheme.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_2d/lagrange_interp_2d.html">
+      LAGRANGE_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x,y) 
+      which interpolates a set of data depending on a 2D argument
+      that was evaluated on a product grid,
+      so that p(x(i),y(j)) = z(i,j).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_nd/lagrange_interp_nd.html">
+      LAGRANGE_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data depending on a multidimensional argument x
+      that was evaluated on a product grid, so that p(x(i)) = z(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/nearest_interp_1d/nearest_interp_1d.html">
+      NEAREST_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise constant interpolant
+      defined by the nearest neighbor criterion.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_1d/pwl_interp_1d.html">
+      PWL_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise linear interpolant.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_1d/shepard_interp_1d.html">
+      SHEPARD_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 1D data,
+      which are based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      constructs and evaluates spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lagrange_basis_1d.m">lagrange_basis_1d.m</a>,
+          evaluates the Lagrange basis polynomials.
+        </li>
+        <li>
+          <a href = "lagrange_value_1d.m">lagrange_value_1d.m</a>,
+          evaluates the Lagrange interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The test code requires the <b>test_interp</b> library for test01, and
+      <b>test_interp_1d</b> for test02 and test03.  If these libraries are
+      available in a separate folder at the same "level",
+      then a Matlab command such as "addpath ( '../test_interp')" will make them
+      accessible for a run of the test program.
+      <ul>
+        <li>
+          <a href = "lagrange_interp_1d_test.m">lagrange_interp_1d_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "lagrange_interp_1d_test_output.txt">lagrange_interp_1d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "lagrange_interp_1d_test02.m">lagrange_interp_1d_test02.m</a>,
+          samples a function at ND evenly-spaced points, plots the piecewise
+          linear interpolant to this data, and the Lagrange polynomial interpolant.
+        </li>
+        <li>
+          <a href = "lagrange_interp_1d_test03.m">lagrange_interp_1d_test03.m</a>,
+          samples a function at ND Chebyshev-spaced points, plots the piecewise
+          linear interpolant to this data, and the Lagrange polynomial interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>lagrange_interp_1d_test02()</b> plots the data and Lagrange interpolant
+      for even spacing.
+    <p>
+
+    <p>
+      Images for Problem 1:
+      <ul>
+        <li>
+          <a href = "p01_dataeven_04.png">p01_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lageven_04.png">p01_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_dataeven_08.png">p01_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lageven_08.png">p01_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_dataeven_16.png">p01_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lageven_16.png">p01_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_dataeven_32.png">p01_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lageven_32.png">p01_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_dataeven_64.png">p01_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lageven_64.png">p01_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p01;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for Problem p02:
+      <ul>
+        <li>
+          <a href = "p02_dataeven_04.png">p02_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lageven_04.png">p02_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p02;
+        </li>
+        <li>
+          <a href = "p02_dataeven_08.png">p02_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lageven_08.png">p02_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p02;
+        </li>
+        <li>
+          <a href = "p02_dataeven_16.png">p02_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lageven_16.png">p02_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p02;
+        </li>
+        <li>
+          <a href = "p02_dataeven_32.png">p02_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lageven_32.png">p02_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p02;
+        </li>
+        <li>
+          <a href = "p02_dataeven_64.png">p02_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lageven_64.png">p02_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p02;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p03:
+      <ul>
+        <li>
+          <a href = "p03_dataeven_04.png">p03_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lageven_04.png">p03_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p03;
+        </li>
+        <li>
+          <a href = "p03_dataeven_08.png">p03_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lageven_08.png">p03_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p03;
+        </li>
+        <li>
+          <a href = "p03_dataeven_16.png">p03_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lageven_16.png">p03_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p03;
+        </li>
+        <li>
+          <a href = "p03_dataeven_32.png">p03_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lageven_32.png">p03_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p03;
+        </li>
+        <li>
+          <a href = "p03_dataeven_64.png">p03_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lageven_64.png">p03_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p03;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p04:
+      <ul>
+        <li>
+          <a href = "p04_dataeven_04.png">p04_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lageven_04.png">p04_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p04;
+        </li>
+        <li>
+          <a href = "p04_dataeven_08.png">p04_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lageven_08.png">p04_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p04;
+        </li>
+        <li>
+          <a href = "p04_dataeven_16.png">p04_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lageven_16.png">p04_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p04;
+        </li>
+        <li>
+          <a href = "p04_dataeven_32.png">p04_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lageven_32.png">p04_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p04;
+        </li>
+        <li>
+          <a href = "p04_dataeven_64.png">p04_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lageven_64.png">p04_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p04;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p05:
+      <ul>
+        <li>
+          <a href = "p05_dataeven_04.png">p05_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lageven_04.png">p05_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p05;
+        </li>
+        <li>
+          <a href = "p05_dataeven_08.png">p05_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lageven_08.png">p05_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p05;
+        </li>
+        <li>
+          <a href = "p05_dataeven_16.png">p05_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lageven_16.png">p05_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p05;
+        </li>
+        <li>
+          <a href = "p05_dataeven_32.png">p05_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lageven_32.png">p05_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p05;
+        </li>
+        <li>
+          <a href = "p05_dataeven_64.png">p05_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lageven_64.png">p05_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p05;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p06:
+      <ul>
+        <li>
+          <a href = "p06_dataeven_04.png">p06_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lageven_04.png">p06_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p06;
+        </li>
+        <li>
+          <a href = "p06_dataeven_08.png">p06_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lageven_08.png">p06_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p06;
+        </li>
+        <li>
+          <a href = "p06_dataeven_16.png">p06_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lageven_16.png">p06_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p06;
+        </li>
+        <li>
+          <a href = "p06_dataeven_32.png">p06_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lageven_32.png">p06_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p06;
+        </li>
+        <li>
+          <a href = "p06_dataeven_64.png">p06_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lageven_64.png">p06_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p06;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p07:
+      <ul>
+        <li>
+          <a href = "p07_dataeven_04.png">p07_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lageven_04.png">p07_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p07;
+        </li>
+        <li>
+          <a href = "p07_dataeven_08.png">p07_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lageven_08.png">p07_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p07;
+        </li>
+        <li>
+          <a href = "p07_dataeven_16.png">p07_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lageven_16.png">p07_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p07;
+        </li>
+        <li>
+          <a href = "p07_dataeven_32.png">p07_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lageven_32.png">p07_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p07;
+        </li>
+        <li>
+          <a href = "p07_dataeven_64.png">p07_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lageven_64.png">p07_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p07;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Images for problem p08:
+      <ul>
+        <li>
+          <a href = "p08_dataeven_04.png">p08_dataeven_04.png</a>,
+          a plot of the 4 node even data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lageven_04.png">p08_lageven_04.png</a>,
+          a plot of the Lagrange/even 4 node 
+          polynomial interpolant for problem p08;
+        </li>
+        <li>
+          <a href = "p08_dataeven_08.png">p08_dataeven_08.png</a>,
+          a plot of the 8 node even data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lageven_08.png">p08_lageven_08.png</a>,
+          a plot of the Lagrange/even 8 node 
+          polynomial interpolant for problem p08;
+        </li>
+        <li>
+          <a href = "p08_dataeven_16.png">p08_dataeven_16.png</a>,
+          a plot of the 16 node even data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lageven_16.png">p08_lageven_16.png</a>,
+          a plot of the Lagrange/even 16 node 
+          polynomial interpolant for problem p08;
+        </li>
+        <li>
+          <a href = "p08_dataeven_32.png">p08_dataeven_32.png</a>,
+          a plot of the 32 node even data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lageven_32.png">p08_lageven_32.png</a>,
+          a plot of the Lagrange/even 32 node 
+          polynomial interpolant for problem p08;
+        </li>
+        <li>
+          <a href = "p08_dataeven_64.png">p08_dataeven_64.png</a>,
+          a plot of the 64 node even data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lageven_64.png">p08_lageven_64.png</a>,
+          a plot of the Lagrange/even 64 node 
+          polynomial interpolant for problem p08;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>lagrange_interp_1d_test03()</b> plots the data and Lagrange interpolant
+      for Chebyshev spacing.
+      <ul>
+        <li>
+          <a href = "p01_datacheby_04.png">p01_datacheby_04.png</a>,
+          a plot of the 4 node Chebyshev data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby_04.png">p01_lagcheby_04.png</a>,
+          a plot of the Lagrange/Chebyshev 4 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_datacheby_08.png">p01_datacheby_08.png</a>,
+          a plot of the 8 node Chebyshev data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby_08.png">p01_lagcheby_08.png</a>,
+          a plot of the Lagrange/Chebyshev 8 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_datacheby_16.png">p01_datacheby_16.png</a>,
+          a plot of the 16 node Chebyshev data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby_16.png">p01_lagcheby_16.png</a>,
+          a plot of the Lagrange/Chebyshev 16 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_datacheby_32.png">p01_datacheby_32.png</a>,
+          a plot of the 32 node Chebyshev data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby_32.png">p01_lagcheby_32.png</a>,
+          a plot of the Lagrange/Chebyshev 32 node 
+          polynomial interpolant for problem p01;
+        </li>
+        <li>
+          <a href = "p01_datacheby_64.png">p01_datacheby_64.png</a>,
+          a plot of the 64 node Chebyshev data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby_64.png">p01_lagcheby_64.png</a>,
+          a plot of the Lagrange/Chebyshev 64 node 
+          polynomial interpolant for problem p01;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 31 July 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

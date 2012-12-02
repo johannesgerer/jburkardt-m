@@ -1,0 +1,237 @@
+<html>
+
+  <head>
+    <title>
+      PCE_ODE_HERMITE - Hermite Polynomial Chaos Expansion for a Scalar ODE
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      PCE_ODE_HERMITE <br> Hermite Polynomial Chaos Expansion for a Scalar ODE
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PCE_ODE_HERMITE</b>
+      is a MATLAB library which
+      defines and solves a time-dependent scalar exponential decay ODE
+      with uncertain decay coefficient, using a polynomial chaos expansion, 
+      in terms of Hermite polynomials.
+    </p>
+
+    <p>
+      The deterministic equation is
+      <pre>
+        du/dt = - alpha * u,
+        u(0) = u0
+      </pre>
+      In the stochastic version, it is assumed that the decay coefficient
+      ALPHA is a Gaussian random variable with mean value ALPHA_MU and variance
+      ALPHA_SIGMA^2.
+    </p>
+
+    <p>
+      The exact expected value of the stochastic equation is known to be
+      <pre>
+        u(t) = u0 * exp ( t^2/2)
+      </pre>
+      This should be matched by the first component of the polynomial chaos
+      expansion.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PCE_ODE_HERMITE</b> is available in
+      <a href = "../../c_src/pce_ode_hermite/pce_ode_hermite.html">a C version</a> and
+      <a href = "../../cpp_src/pce_ode_hermite/pce_ode_hermite.html">a C++ version</a> and
+      <a href = "../../f77_src/pce_ode_hermite/pce_ode_hermite.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/pce_ode_hermite/pce_ode_hermite.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/pce_ode_hermite/pce_ode_hermite.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/black_scholes/black_scholes.html">
+      BLACK_SCHOLES</a>,
+      a MATLAB library which
+      implements some simple approaches to
+      the Black-Scholes option valuation theory,
+      by Desmond Higham.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">
+      HERMITE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the physicist's Hermite polynomial, the probabilist's Hermite polynomial,
+      the Hermite function, and related functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_burgers/pce_burgers.html">
+      PCE_BURGERS</a>,
+      a MATLAB program which
+      defines and solves a version of the time-dependent viscous Burgers equation,
+      with uncertain viscosity, using a polynomial chaos expansion in terms
+      of Hermite polynomials,
+      by Gianluca Iaccarino.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_legendre/pce_legendre.html">
+      PCE_LEGENDRE</a>,
+      a MATLAB program which
+      assembles the system matrix of a 2D stochastic PDE, 
+      using a polynomal chaos expansion in terms of Legendre polynomials;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sde/sde.html">
+      SDE</a>,
+      a MATLAB library which
+      illustrates the properties of stochastic differential equations, and
+      common algorithms for their analysis,
+      by Desmond Higham;
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_diffusion/stochastic_diffusion.html">
+      STOCHASTIC_DIFFUSION</a>,
+      MATLAB functions which
+      implement several versions of a stochastic diffusivity coefficient.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_rk/stochastic_rk.html">
+      STOCHASTIC_RK</a>,
+      a MATLAB library which
+      applies a Runge Kutta (RK) scheme to a stochastic differential equation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Roger Ghanem, Pol Spanos,<br>
+          Stochastic Finite Elements: A Spectral Approach,<br>
+          Revised Edition,<br>
+          Dover, 2003,<br>
+          ISBN: 0486428184,<br>
+          LC: TA347.F5.G56.
+        </li>
+        <li>
+          Dongbin Xiu,<br>
+          Numerical Methods for Stochastic Computations: A Spectral Method Approach,<br>
+          Princeton, 2010,<br>
+          ISBN13: 978-0-691-14212-8,<br>
+          LC: QA274.23.X58.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "he_double_product_integral.m">he_double_product_integral.m</a>,
+          returns integral of He(i,x)*He(j,x)*e^(-x^2/2).
+        </li>
+        <li>
+          <a href = "he_triple_product_integral.m">he_triple_product_integral.m</a>,
+          returns integral of He(i,x)*He(j,x)*He(k,x)*e^(-x^2/2).
+        </li>
+        <li>
+          <a href = "pce_ode_hermite.m">pce_ode_hermite.m</a>,
+          the main program, which sets up and solves the problem.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>,
+          computes the factorial function.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pce_ode_hermite_test.m">pce_ode_hermite_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "pce_ode_hermite_test01.m">pce_ode_hermite_test01.m</a>, 
+          tests pce_ode_hermite by plotting the computed and exact expected
+          values over the interval [0,2].
+        </li>
+        <li>
+          <a href = "pce_ode_hermite_test02.m">pce_ode_hermite_test02.m</a>, 
+          tests pce_ode_hermite by computing the solution up to TF = 2.0
+          with a sequence of increasing PCE degrees, and then plotting the
+          errors between the computed and exact expected value there.
+        </li>
+        <li>
+          <a href = "pce_ode_hermite_output.txt">pce_ode_hermite_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "expected_value_plot.png">expected_value_plot.png</a>, 
+          a PNG plot comparing the computed expected value (the first PCE coefficient
+          at each time) versus the known expected value.
+        </li>
+        <li>
+          <a href = "convergence_plot.png">convergence_plot.png</a>, 
+          a PNG plot comparing, at time T=2, the known expected value versus
+          the expected values computed by a sequence of PCE's of increasing degree.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 16 March 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

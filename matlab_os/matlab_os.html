@@ -1,0 +1,267 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_OS - Examples of MATLAB calling the Computer Operating System (OS)
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_OS <br>
+      Examples of MATLAB calling the Computer Operating System (OS)
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_OS</b>
+      is a directory of MATLAB programs which 
+      illustrate how to issue a command to the computer operating system (OS),
+      and collect the results.  This is one way that, for instance,
+      MATLAB can continue running, but start up an external
+      executable program that carries out some useful task.  For
+      example, MATLAB might create a file, the program might modify it,
+      and MATLAB might use the results.
+    </p>
+
+    <p>
+      The call to the operating system has the form
+      <blockquote><b>
+        [ status, string ] = system ( command )
+      </b></blockquote>
+      where
+      <ul>
+        <li>
+          <b>command</b> is a quoted string representing a command
+          to the computer operating system, such as <br>
+          <i>'who'</i> or <br>
+          <i>'sort mydata.txt > sorted.txt'</i> or <br>
+          <i>'myprog < input > output'</i> <br> 
+          where, presumably, <i>myprog</i> is a user program that
+          is in the current path.
+        </li>
+        <li>
+          <b>status</b> is output as 0 if the command was executed successfully,
+          (that is, there was such a command, and it ran without errors),
+          and nonzero otherwise.
+        </li>
+        <li>
+          <b>string</b> is a string containing the printed output from 
+          the command, if it ran successfully.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      For example, while running MATLAB, a UNIX user might issue the command
+      <blockquote><b>
+        [ status, string ] = system ( 'who' );
+      </b></blockquote>
+      and a Microsoft Windows user might issue the command
+      <blockquote><b>
+        [ status, string ] = system ( 'dir' );
+      </b></blockquote>
+    </p>
+
+    <p>
+      On a Unix system, the user may use the <b>unix</b> command, and on
+      a PC running Windows, the <b>dos</b> command may be issued.  In the
+      case of a <b>dos</b> command, it may be useful to terminate 
+      the quoted string with an ampersand, in which case the console
+      will open in a separate window.
+    </p>
+
+    <p>
+      If the status and printed output of the system command are of no
+      interest, it is possible to run the command simply using the
+      exclamation mark followed by the command.  It is not necessary in
+      this case to put quotes around the command. 
+    </p>
+
+    <p>
+      For example, while running MATLAB, a UNIX user might issue the command
+      <blockquote><b>
+        ! who
+      </b></blockquote>
+      and a Microsoft Windows user might issue the command
+      <blockquote><b>
+        ! dir
+      </b></blockquote>
+    </p>
+
+    <p>
+      Since a user's compiled program can be treated as another system
+      command, a MATLAB user might want to run the program <b>a.out</b>
+      while pausing (but not terminating) the MATLAB session.  In this
+      way, the <b>a.out</b> program might be able to read files that
+      MATLAB produced, and produce new files that the MATLAB user will 
+      need.  If the program <b>a.out</b> is in the right place, the
+      command might be as simple as
+      <blockquote><b>
+        [ status, string ] = system ( 'a.out' );
+      </b></blockquote>
+      or, perhaps
+      <blockquote><b>
+        ! a.out
+      </b></blockquote>
+      or, if input and output files need to be named:
+      <blockquote><b>
+        [ status, string ] = system ( 'a.out &lt; input &gt; output' );
+      </b></blockquote>
+      or, perhaps
+      <blockquote><b>
+        ! a.out &lt; input &gt; output
+      </b></blockquote>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h1>
+
+    <p>
+      <a href = "../../f_src/f90_calls_matlab/f90_calls_matlab.html">
+      F90_CALLS_MATLAB</a>,
+      FORTRAN90 programs which
+      call MATLAB to carry out an auxillary calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab/matlab.html">
+      MATLAB</a>,
+      MATLAB programs which
+      illustrate some common operations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_c/matlab_calls_c.html">
+      MATLAB_CALLS_C</a>,
+      MATLAB programs which
+      call a C function using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_commandline/matlab_commandline.html">
+      MATLAB_COMMANDLINE</a>, 
+      MATLAB programs which
+      illustrate how MATLAB can be run from the UNIX command line, that is,
+      not with the usual MATLAB command window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_f77/matlab_calls_f77.html">
+      MATLAB_CALLS_F77</a>,
+      MATLAB programs which
+      call a FORTRAN77 function using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_movies/matlab_movies.html">
+      MATLAB_MOVIES</a>,
+      MATLAB programs which
+      generate animations.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h1>
+
+    <p>
+      <ul>
+        <li>
+          Duane Hanselman, Bruce Littlefield,<br>
+          Mastering MATLAB 7,<br>
+          Pearson Prentice Hall, 2005,<br>
+          ISBN: 0-13-143018-1.
+        </li>
+        <li>
+          The Mathworks,<br>
+          Using MATLAB, Version 6,<br>
+          The Mathworks, 2002.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h1>
+
+    <p>
+      <b>BANG_WHO</b> is an example in which the "bang" command
+      (exclamation mark) is used to invoke the (Unix) system
+      command <b>who</b>.
+      <ul>
+        <li>
+          <a href = "bang_who_test.m">bang_who_test.m</a>, 
+          a MATLAB M file which used the bang command to call <b>who</b>.
+        </li>
+        <li>
+          <a href = "bang_who_test_output.txt">bang_who_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>DOS_DIR</b> is an example in which the <b>dos</b> command
+      is used to invoke the (MS/DOS) system
+      command <b>dir</b>.
+      <ul>
+        <li>
+          <a href = "dos_dir_test.m">dos_dir_test.m</a>, 
+          a MATLAB M file which used the <b>dos</b> command to call <b>dir</b>.
+        </li>
+        <li>
+          <a href = "dos_dir_test_output.txt">dos_dir_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SYSTEM_MORE</b> is an example in which the <b>system</b> command
+      is used to invoke the (Unix or MS/DOS) system command <b>more</b>.
+      <ul>
+        <li>
+          <a href = "system_more_test.m">system_more_test.m</a>, 
+          a MATLAB M file which used the <b>system</b> command to call <b>more</b>.
+        </li>
+        <li>
+          <a href = "system_more_test_output.txt">system_more_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>UNIX_HEAD</b> is an example in which the <b>unix</b> command
+      is used to invoke the (Unix) system command <b>head</b>.
+      <ul>
+        <li>
+          <a href = "unix_head_test.m">unix_head_test.m</a>, 
+          a MATLAB M file which used the <b>unix</b> command to call <b>head</b>.
+        </li>
+        <li>
+          <a href = "unix_head_test_output.txt">unix_head_test_output.txt</a>, the output from
+          a run of the test script.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 July 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

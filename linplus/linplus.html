@@ -1,0 +1,2358 @@
+<html>
+
+  <head>
+    <title>
+      LINPLUS - Linear Algebra Utilities
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPLUS <br> Linear Algebra Utilities
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPLUS</b> 
+      is a MATLAB library which 
+      carries out simple manipulations of matrices in a variety of formats,
+      including matrices stored in banded, border-banded, circulant, 
+      lower triangular, pentadiagonal, sparse, sparse, 
+      toeplitz, tridiagonal, upper triangular and vandermonde formats.
+    </p>
+
+    <p>
+      The routines are primarily organized by the storage format of
+      the matrix they operate on.  Some of these formats were defined by
+      LINPACK, while others are new; I just made them up when I had to solve
+      problems involving such matrices.  The formats include:
+      <ul>
+        <li>
+          <b>C83</b> - Double complex tridiagonal;
+        </li>
+        <li>
+          <b>C8CI</b> - Double complex circulant;
+        </li>
+        <li>
+          <b>C8GE</b> - Double complex general;
+        </li>
+        <li>
+          <b>C8TO</b> - Double complex Toeplitz;
+        </li>
+        <li>
+          <b>R83</b> - Double precision tridiagonal;
+        </li>
+        <li>
+          <b>R83P</b> - Double precision tridiagonal periodic;
+        </li>
+        <li>
+          <b>R85</b> - Double precision pentadiagonal;
+        </li>
+        <li>
+          <b>R8BB</b> - Double precision border-banded;
+        </li>
+        <li>
+          <b>R8BLT</b> - Double precision banded lower triangular matrix;
+        </li>
+        <li>
+          <b>R8BTO</b> - Double precision block Toeplitz;
+        </li>
+        <li>
+          <b>R8BUT</b> - Double precision banded upper triangular matrix;
+        </li>
+        <li>
+          <b>R8CB</b> - Double precision compact band;
+        </li>
+        <li>
+          <b>R8CBB</b> - Double precision compact border-banded;
+        </li>
+        <li>
+          <b>R8CC</b> - Double precision compressed column sparse
+          = Harwell Boeing Real Unsymmetric Assembled (RUA) format
+          = MATLAB sparse format;
+        </li>
+        <li>
+          <b>R8CI</b> - Double precision circulant;
+        </li>
+        <li>
+          <b>R8GB</b> - Double precision general band, 
+          used by LINPACK and LAPACK;
+        </li>
+        <li>
+          <b>R8GD</b> - Double precision general diagonal;
+        </li>
+        <li>
+          <b>R8GE</b> - Double precision general, used by LINPACK and LAPACK;
+        </li>
+        <li>
+          <b>R8LT</b> - Double precision lower triangular;
+        </li>
+        <li>
+          <b>R8NCF</b> - Double precision Nonsymmetric Coordinate Format
+          (one of the formats used by NSPCG);
+        </li>
+        <li>
+          <b>R8PBL</b> - Double precision positive-definite symmetric band
+          matrix, store diagonal and lower triangle;
+        </li>
+        <li>
+          <b>R8PBU</b> - Double precision positive-definite symmetric band 
+          matrix, store diagonal and upper triangle;
+        </li>
+        <li>
+          <b>R8PO</b> - Double precision positive-definite symmetric,
+          used by LINPACK and LAPACK;
+        </li>
+        <li>
+          <b>R8PP</b> - Double precision positive-definite symmetric Packed,
+          used by LINPACK and LAPACK;
+        </li>
+        <li>
+          <b>R8S3</b> - Double precision sparse matrix stored by row,
+          column, value (used by SLAP/DLAP, symmetric or nonsymmetric);
+        </li>
+        <li>
+          <b>R8SD</b> - Double precision symmetric diagonal;
+        </li>
+        <li>
+          <b>R8SM</b> - Double precision Sherman Morrison system A - u * v';
+        </li>
+        <li>
+          <b>R8SP</b> - Double precision sparse matrix stored by row, 
+          column, value (used by CSPARSE ("sparse triplet"),
+          SLAP/DLAP (nonsymmetric SLAP triad format), MATLAB,
+          and SPARSEKIT ("COO" format));
+        </li>
+        <li>
+          <b>R8SR</b> - Double precision sparse matrix stored by rows;
+        </li>
+        <li>
+          <b>R8SS</b> - Double precision symmetric skyline;
+        </li>
+        <li>
+          <b>R8STO</b> - Double precision symmetric Toeplitz;
+        </li>
+        <li>
+          <b>R8TO</b> - Double precision Toeplitz;
+        </li>
+        <li>
+          <b>R8R8GBUT</b> - Double precision upper triangular;
+        </li>
+        <li>
+          <b>R8VM</b> - Double precision Vandermonde;
+        </li>
+        <li>
+          <b>R8VEC</b> - Double precision vector, which in some cases
+          is used to store a matrix;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINPLUS</b> is available in 
+      <a href = "../../c_src/linplus/linplus.html">a C version </a> and 
+      <a href = "../../cpp_src/linplus/linplus.html">a C++ version </a> and 
+      <a href = "../../f77_src/linplus/linplus.html">a FORTRAN77 version </a> and 
+      <a href = "../../f_src/linplus/linplus.html">a FORTRAN90 version </a> and 
+      <a href = "../../m_src/linplus/linplus.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/csparse/csparse.html">
+      CSPARSE</a>, 
+      a C library which
+      contains routines for the direct solution
+      of sparse linear systems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/dlap/dlap.html">
+      DLAP</a>,
+      a FORTRAN90 library which
+      contains iterative linear algebra routines
+      for sparse systems.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/gsl/gsl.html">
+      GSL</a>, 
+      C++ programs which 
+      illustrate the use of the Gnu Scientific Library;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      is a linear algebra package to solve linear systems for a variety of
+      matrix storage formats.
+    </p>
+
+    <p>
+      <a href = "../../f_src/linpack_bench/linpack_bench.html">
+      LINPACK_BENCH</a>, 
+      a FORTRAN90 program which
+      measures the time taken by <b>LINPACK</b> to solve a 
+      particular linear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mgmres/mgmres.html">
+      MGMRES</a>,
+      a MATLAB library which 
+      applies the restarted GMRES algorithm
+      to solve a sparse linear system.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cc/sparse_cc.html">
+      SPARSE_CC</a>,
+      a data directory which
+      contains a description and examples of the CC format,
+      ("compressed column") for storing a sparse matrix,
+      including a way to write the matrix as a set of three files.
+    </p>
+
+    <p>
+      <a href = "../../data/sparse_cr/sparse_cr.html">
+      SPARSE_CR</a>,
+      a data directory which
+      contains a description and examples of the CR format,
+      ("compressed row") for storing a sparse matrix,
+      including a way to write the matrix as a set of three files.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sparsekit/sparsekit.html">
+      SPARSEKIT</a>, 
+      a FORTRAN90 library which
+      carries out operations on sparse matrices, including conversion between various formats.
+    </p>
+
+    <p>
+      <a href = "../../c_src/super_lu/super_lu.html">
+      SUPER_LU</a>, 
+      a C library which 
+      implements some very fast solvers
+      for systems of sparse linear equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/templates/templates.html">
+      TEMPLATES</a>, 
+      a MATLAB library which
+      implements various iterative methods for solving a linear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which 
+      defines test matrices, some of
+      which have known determinants, eigenvalues and eigenvectors,
+      inverses and so on.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toeplitz_cholesky/toeplitz_cholesky.html">
+      TOEPLITZ_CHOLESKY</a>,
+      a MATLAB library which
+      computes the Cholesky factorization of a nonnegative definite symmetric
+      Toeplitz matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Anderson, Zhaojun Bai, Christian Bischof, Susan Blackford, 
+          James Demmel, Jack Dongarra, Jeremy Du Croz, Anne Greenbaum, 
+          Sven Hammarling, Alan McKenney, Danny Sorensen,<br>
+          LAPACK User's Guide,<br>
+          Third Edition,<br>
+          SIAM, 1999,<br>
+          ISBN: 0898714478,<br>
+          LC: QA76.73.F25L36.
+        </li>
+        <li>
+          Frank Beckman,<br>
+          The Solution of Linear Equations by the Conjugate Gradient Method,<br>
+          in Mathematical Methods for Digital Computers,<br>
+          edited by John Ralston, Herbert Wilf,<br>
+          Wiley, 1967,<br>
+          ISBN: 0471706892.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673.
+        </li>
+        <li>
+          Ward Cheney, David Kincaid,<br>
+          Numerical Mathematics and Computing,<br>
+          Brooks-Cole Publishing, 2004,<br>
+          ISBN: 0534201121.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Circulant Matrices,<br>
+          Second Edition,<br>
+          Chelsea, 1994,<br>
+          ISBN: 0828403384,<br>
+          LC: QA188.D37.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Iain Duff, Roger Grimes, John Lewis,<br>
+          User's Guide for the Harwell-Boeing Sparse Matrix Collection,<br>
+          October 1992.
+        </li>
+        <li>
+          Bennett Fox,<br>
+          Algorithm 647:
+          Implementation and Relative Efficiency of Quasirandom
+          Sequence Generators,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 12, Number 4, December 1986, pages 362-376.
+        </li>
+        <li>
+          Gene Golub, Charles VanLoan,<br>
+          Matrix Computations,
+          Third Edition,<br>
+          Johns Hopkins, 1996,<br>
+          ISBN: 0-8018-4513-X,<br>
+          LC: QA188.G65.
+        </li>
+        <li>
+          Roger Hockney,<br>
+          A fast direct solution of Poisson's equation using Fourier Analysis,<br>
+          Journal of the ACM,<br>
+          Volume 12, Number 1, pages 95-113, January 1965.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539: Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "c8_le_l2.m">c8_le_l2.m</a>, 
+          ( X <= Y ) for C8 values and the L2 norm;
+        </li>
+        <li>
+          <a href = "c8_swap.m">c8_swap.m</a>, 
+          swaps two C8 values;
+        </li>
+        <li>
+          <a href = "c83_cr_fa.m">c83_cr_fa.m</a>, 
+          factors a C83 system using cyclic reduction;
+        </li>
+        <li>
+          <a href = "c83_cr_sl.m">c83_cr_sl.m</a>, 
+          solves a C83 system factored by c83_cr_fa;
+        </li>
+        <li>
+          <a href = "c83_cr_sls.m">c83_cr_sls.m</a>, 
+          solves multiple C83 systems factored by c83_cr_fa;
+        </li>
+        <li>
+          <a href = "c83_indicator.m">c83_indicator.m</a>, 
+          sets up a C83 indicator matrix.
+        </li>
+        <li>
+          <a href = "c83_mxv.m">c83_mxv.m</a>, 
+          multiplies a C83 matrix times a vector;
+        </li>
+        <li>
+          <a href = "c8mat_print.m">c8mat_print.m</a>, 
+          prints a C8MAT.
+        </li>
+        <li>
+          <a href = "c8mat_print_some.m">c8mat_print_some.m</a>, 
+          prints some of a C8MAT.
+        </li>
+        <li>
+          <a href = "c8vec_indicator.m">c8vec_indicator.m</a>, 
+          sets a C8VEC to the indicator vector.
+        </li>
+        <li>
+          <a href = "c8vec_print.m">c8vec_print.m</a>, 
+          prints a C8 vector.
+        </li>
+        <li>
+          <a href = "c8vec_print_some.m">c8vec_print_some.m</a>, 
+          prints some of a C8VEC.
+        </li>
+        <li>
+          <a href = "c8vec_sort_a2.m">c8vec_sort_a2.m</a>, 
+          sorts a C8 vector by L2 norm;
+        </li>
+        <li>
+          <a href = "c8vec_unity.m">c8vec_unity.m</a>, 
+          returns the N roots of unity;
+        </li>
+        <li>
+          <a href = "r83_cr_fa.m">r83_cr_fa.m</a>, 
+          factors a R83 system using cyclic reduction;
+        </li>
+        <li>
+          <a href = "r83_cr_sl.m">r83_cr_sl.m</a>, 
+          solves a R83 system factored by r83_cr_fa;
+        </li>
+        <li>
+          <a href = "r83_cr_sls.m">r83_cr_sls.m</a>, 
+          solves several R83 systems factored by r83_cr_fa;
+        </li>
+        <li>
+          <a href = "r83_gs_sl.m">r83_jac_sl.m</a>, 
+          solves a R83 system using Gauss-Seidel iteration;
+        </li>
+        <li>
+          <a href = "r83_indicator.m">r83_indicator.m</a>, 
+          sets up a R83 indicator matrix;
+        </li>
+        <li>
+          <a href = "r83_jac_sl.m">r83_jac_sl.m</a>, 
+          solves a R83 system using Jacobi iteration;
+        </li>
+        <li>
+          <a href = "r83_mxv.m">r83_mxv.m</a>, 
+          multiplies a R83 matrix times a vector;
+        </li>
+        <li>
+          <a href = "r83_np_det.m">r83_np_det.m</a>, 
+          returns the determinant of a system factored by R83_NP_FA;
+        </li>
+        <li>
+          <a href = "r83_np_fa.m">r83_np_fa.m</a>, 
+          factors a R83 linear system with no pivoting;
+        </li>
+        <li>
+          <a href = "r83_np_fs.m">r83_np_fs.m</a>, 
+          factors and solves a R83 linear system with no pivoting;
+        </li>
+        <li>
+          <a href = "r83_np_ml.m">r83_np_ml.m</a>, 
+          computes A * x or x * A, where A has been factored by R83_NP_FA;
+        </li>
+        <li>
+          <a href = "r83_np_sl.m">r83_np_sl.m</a>, 
+          solves a R83 linear system factored by R83_NP_FA;
+        </li>
+        <li>
+          <a href = "r83_print.m">r83_print.m</a>, 
+          prints a R83 matrix;
+        </li>
+        <li>
+          <a href = "r83_print_some.m">r83_print_some.m</a>, 
+          prints some of a R83 matrix;
+        </li>
+        <li>
+          <a href = "r83_random.m">r83_random.m</a>, 
+          randomizes a R83 matrix;
+        </li>
+        <li>
+          <a href = "r83_to_r8ge.m">r83_to_r8ge.m</a>, 
+          copies a R83 matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r83_vxm.m">r83_vxm.m</a>, 
+          multiplies a vector times a R83 matrix;
+        </li>
+        <li>
+          <a href = "r83np_fs.m">r83np_fs.m</a>, 
+          factors and solves a R83NP linear system with no pivoting;
+        </li>
+        <li>
+          <a href = "r83p_det.m">r83p_det.m</a>, 
+          computes the determinant of a R83P matrix factored by
+          R83P_FA;
+        </li>
+        <li>
+          <a href = "r83p_fa.m">r83p_fa.m</a>, 
+          factors a R83P matrix;
+        </li>
+        <li>
+          <a href = "r83p_indicator.m">r83p_indicator.m</a>, 
+          returns a R83P indicator matrix;
+        </li>
+        <li>
+          <a href = "r83p_ml.m">r83p_ml.m</a>, 
+          computes A*x or A'*x after A has been factored by R83P_FA;
+        </li>
+        <li>
+          <a href = "r83p_mxv.m">r83p_mxv.m</a>, 
+          multiplies a R83P matrix times a vector;
+        </li>
+        <li>
+          <a href = "r83p_print.m">r83p_print.m</a>, 
+          prints a R83P matrix;
+        </li>
+        <li>
+          <a href = "r83p_print_some.m">r83p_print_some.m</a>, 
+          prints some of a R83P matrix;
+        </li>
+        <li>
+          <a href = "r83p_random.m">r83p_random.m</a>, 
+          randomizes a R83P matrix;
+        </li>
+        <li>
+          <a href = "r83p_sl.m">r83p_sl.m</a>, 
+          solves a R83P linear system factored by R83P_FA;
+        </li>
+        <li>
+          <a href = "r83p_to_r8ge.m">r83p_to_r8ge.m</a>, 
+          copies a R83P matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r83p_vxm.m">r83p_vxm.m</a>, 
+          multiplies a vector times a R83P matrix;
+        </li>
+        <li>
+          <a href = "r85_indicator.m">r85_indicator.m</a>, 
+          returns a R85 indicator matrix;
+        </li>
+        <li>
+          <a href = "r85_mxv.m">r85_mxv.m</a>, 
+          multiplies a R85 matrix times a vector;
+        </li>
+        <li>
+          <a href = "r85_np_fs.m">r85_np_fs.m</a>, 
+          factors and solves a R85 linear system with no pivoting;
+        </li>
+        <li>
+          <a href = "r85_print.m">r85_print.m</a>, 
+          prints a R85 matrix;
+        </li>
+        <li>
+          <a href = "r85_print_some.m">r85_print_some.m</a>, 
+          prints some of a R85 matrix;
+        </li>
+        <li>
+          <a href = "r85_random.m">r85_random.m</a>, 
+          randomizes a R85 matrix;
+        </li>
+        <li>
+          <a href = "r85_to_r8ge.m">r85_to_r8ge.m</a>, 
+          copies a R85 matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r85_vxm.m">r85_vxm.m</a>, 
+          multiplies a vector times a R85 matrix;
+        </li>
+        <li>
+          <a href = "daxpy.m">daxpy.m</a>, 
+          adds a multiple of one real vector to another;
+        </li>
+        <li>
+          <a href = "r8bb_add.m">r8bb_add.m</a>, 
+          adds a value to an entry in a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_fa.m">r8bb_fa.m</a>, 
+          factors a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_get.m">r8bb_get.m</a>, 
+          gets the value of an entry in a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_indicator.m">r8bb_indicator.m</a>, 
+          returns a R8BB indicator matrix;
+        </li>
+        <li>
+          <a href = "r8bb_mxv.m">r8bb_mxv.m</a>, 
+          multiplies a R8BB matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8bb_print.m">r8bb_print.m</a>, 
+          prints a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_print_some.m">r8bb_print_some.m</a>, 
+          prints some of a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_random.m">r8bb_random.m</a>, 
+          returns a random R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_set.m">r8bb_set.m</a>, 
+          sets one entry of a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8bb_sl.m">r8bb_sl.m</a>, 
+          solves a linear system that was factored by R8BB_FA;
+        </li>
+        <li>
+          <a href = "r8bb_to_r8ge.m">r8bb_to_r8ge.m</a>, 
+          copies a R8BB matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8bb_vxm.m">r8bb_vxm.m</a>, 
+          multiplies a vector times a R8BB matrix;
+        </li>
+        <li>
+          <a href = "r8blt_det.m">r8blt_det.m</a>, 
+          returns the determinant of a R8BLT matrix;
+        </li>
+        <li>
+          <a href = "r8blt_indicator.m">r8blt_indicator.m</a>, 
+          returns a R8BLT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8blt_mxv.m">r8blt_mxv.m</a>, 
+          multiplies a R8BLT matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8blt_print.m">r8blt_print.m</a>, 
+          prints a R8BLT matrix;
+        </li>
+        <li>
+          <a href = "r8blt_print_some.m">r8blt_print_some.m</a>, 
+          prints some of a R8BLT matrix;
+        </li>
+        <li>
+          <a href = "r8blt_random.m">r8blt_random.m</a>, 
+          randomizes a R8BLT matrix;
+        </li>
+        <li>
+          <a href = "r8blt_sl.m">r8blt_sl.m</a>, 
+          solves a R8BLT linear system;
+        </li>
+        <li>
+          <a href = "r8blt_to_r8ge.m">r8blt_to_r8ge.m</a>, 
+          copies a R8BLT matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8blt_vxm.m">r8blt_vxm.m</a>, 
+          multiplies a vector times a R8BLT matrix;
+        </li>
+        <li>
+          <a href = "r8bto_indicator.m">r8bto_indicator.m</a>, 
+          returns a R8BTO indicator matrix;
+        </li>
+        <li>
+          <a href = "r8bto_mxv.m">r8bto_mxv.m</a>, 
+          multiplies a R8BTO matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8bto_print.m">r8bto_print.m</a>, 
+          prints a R8BTO matrix;
+        </li>
+        <li>
+          <a href = "r8bto_print_some.m">r8bto_print_some.m</a>, 
+          prints some of a R8BTO matrix;
+        </li>
+        <li>
+          <a href = "r8bto_random.m">r8bto_random.m</a>, 
+          randomizes a R8BTO matrix;
+        </li>
+        <li>
+          <b>(r8bto_sl.m)</b>, 
+          solves a R8BTO linear system (this routine is NOT available
+          in a MATLAB version);
+        </li>
+        <li>
+          <a href = "r8bto_vxm.m">r8bto_vxm.m</a>, 
+          multiplies a vector times a R8BTO matrix;
+        </li>
+        <li>
+          <a href = "r8but_det.m">r8but_det.m</a>, 
+          returns the determinant of a R8BUT matrix;
+        </li>
+        <li>
+          <a href = "r8but_indicator.m">r8but_indicator.m</a>, 
+          returns a R8BUT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8but_mxv.m">r8but_mxv.m</a>, 
+          multiplies a R8BUT matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8but_print.m">r8but_print.m</a>, 
+          prints a R8BUT matrix;
+        </li>
+        <li>
+          <a href = "r8but_print_some.m">r8but_print_some.m</a>, 
+          prints some of a R8BUT matrix;
+        </li>
+        <li>
+          <a href = "r8but_random.m">r8but_random.m</a>, 
+          randomizes a R8BUT matrix;
+        </li>
+        <li>
+          <a href = "r8but_sl.m">r8but_sl.m</a>, 
+          solves a R8BUT linear system;
+        </li>
+        <li>
+          <a href = "r8but_to_r8ge.m">r8but_to_r8ge.m</a>, 
+          copies a R8BUT matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8but_vxm.m">r8but_vxm.m</a>, 
+          multiplies a vector times a R8BUT matrix;
+        </li>
+        <li>
+          <a href = "r8cb_det.m">r8cb_det.m</a>, 
+          returns the determinant of a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8cb_indicator.m">r8cb_indicator.m</a>, 
+          returns a R8CB indicator matrix;
+        </li>
+        <li>
+          <a href = "r8cb_ml.m">r8cb_ml.m</a>, 
+          computes A*x or A'*x after A has been factored by R8CB_NP_FA;
+        </li>
+        <li>
+          <a href = "r8cb_mxv.m">r8cb_mxv.m</a>, 
+          multiplies a R8CB matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8cb_np_fa.m">r8cb_np_fa.m</a>, 
+          factors a R8CB linear system with no pivoting;
+        </li>
+        <li>
+          <a href = "r8cb_np_sl.m">r8cb_np_sl.m</a>, 
+          solves a R8CB linear system;
+        </li>
+        <li>
+          <a href = "r8cb_print.m">r8cb_print.m</a>, 
+          prints a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8cb_print_some.m">r8cb_print_some.m</a>, 
+          prints some of a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8cb_random.m">r8cb_random.m</a>, 
+          randomizes a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8cb_to_r8ge.m">r8cb_to_r8ge.m</a>, 
+          copies a R8CB matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8cb_vxm.m">r8cb_vxm.m</a>, 
+          multiplies a vector times a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_to_r8ge.m">r8cbb_to_r8ge.m</a>, 
+          copies a R8CBB matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_add.m">r8cbb_add.m</a>, 
+          adds a value to an entry of a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_fa.m">r8cbb_fa.m</a>, 
+          factors a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_get.m">r8cbb_get.m</a>, 
+          gets one entry of a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_indicator.m">r8cbb_indicator.m</a>, 
+          returns a R8CBB indicator matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_mxv.m">r8cbb_mxv.m</a>, 
+          multiplies a vector times a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_print.m">r8cbb_print.m</a>, 
+          print a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_print_some.m">r8cbb_print_some.m</a>, 
+          prints some of a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_random.m">r8cbb_random.m</a>, 
+          returns a random R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_set.m">r8cbb_set.m</a>, 
+          sets one entry of a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cbb_sl.m">r8cbb_sl.m</a>, 
+          solves a linear system factored by R8CBB_FA;
+        </li>
+        <li>
+          <a href = "r8cbb_vxm.m">r8cbb_vxm.m</a>, 
+          multiplies a vector times a R8CBB matrix;
+        </li>
+        <li>
+          <a href = "r8cc_get.m">r8cc_get.m</a>, 
+          gets an entry from a R8CC matrix.
+        </li>
+        <li>
+          <a href = "r8cc_ijk.m">r8cc_ijk.m</a>, 
+          gets the sparse index from the full indices in a R8CC matrix.
+        </li>
+        <li>
+          <a href = "r8cc_inc.m">r8cc_inc.m</a>, 
+          increments an entry from a R8CC matrix.
+        </li>
+        <li>
+          <a href = "r8cc_indicator.m">r8cc_indicator.m</a>, 
+          returns a R8CC indicator matrix;
+        </li>
+        <li>
+          <a href = "r8cc_kij.m">r8cc_kij.m</a>, 
+          gets the full indices from the sparse index in a R8CC matrix.
+        </li>
+        <li>
+          <a href = "r8cc_mxv.m">r8cc_mxv.m</a>, 
+          multiplies a R8CC matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8cc_print.m">r8cc_print.m</a>, 
+          prints a R8CC matrix;
+        </li>
+        <li>
+          <a href = "r8cc_print_some.m">r8cc_print_some.m</a>, 
+          prints some of a R8CC matrix;
+        </li>
+        <li>
+          <a href = "r8cc_random.m">r8cc_random.m</a>, 
+          randomizes a R8CC matrix;
+        </li>
+        <li>
+          <a href = "r8cc_read.m">r8cc_read.m</a>, 
+          reads a R8CC matrix from three files;
+        </li>
+        <li>
+          <a href = "r8cc_read_size.m">r8cc_read_size.m</a>, 
+          reads the sizes associated with a R8CC matrix stored in three files;
+        </li>
+        <li>
+          <a href = "r8cc_set.m">r8cc_set.m</a>, 
+          sets an entry in a R8CC matrix.
+        </li>
+        <li>
+          <a href = "r8cc_to_r8ge.m">r8cc_to_r8ge.m</a>, 
+          solves a R8CC linear system;
+        </li>
+        <li>
+          <a href = "r8cc_vxm.m">r8cc_vxm.m</a>, 
+          multiplies a vector times a R8CC matrix;
+        </li>
+        <li>
+          <a href = "r8cc_write.m">r8cc_write.m</a>, 
+          writes a R8CC matrix to three files;
+        </li>
+        <li>
+          <a href = "r8ci_eval.m">r8ci_eval.m</a>, 
+          returns the eigenvalues of a R8CI matrix;
+        </li>
+        <li>
+          <a href = "r8ci_indicator.m">r8ci_indicator.m</a>, 
+          returns a R8CI indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ci_mxv.m">r8ci_mxv.m</a>, 
+          multiplies a R8CI matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8ci_print.m">r8ci_print.m</a>, 
+          prints a R8CI matrix;
+        </li>
+        <li>
+          <a href = "r8ci_print_some.m">r8ci_print_some.m</a>, 
+          prints some of a R8CI matrix;
+        </li>
+        <li>
+          <a href = "r8ci_random.m">r8ci_random.m</a>, 
+          randomizes a R8CI matrix;
+        </li>
+        <li>
+          <a href = "r8ci_sl.m">r8ci_sl.m</a>, 
+          solves a R8CI linear system;
+        </li>
+        <li>
+          <a href = "r8ci_to_r8ge.m">r8ci_to_r8ge.m</a>, 
+          copies a R8CI matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ci_vxm.m">r8ci_vxm.m</a>, 
+          multiplies a vector times a R8CI matrix;
+        </li>
+        <li>
+          <a href = "r8gb_det.m">r8gb_det.m</a>, 
+          computes the determinant of a R8GB matrix factored by
+          R8GB_FA or R8GB_TRF;
+        </li>
+        <li>
+          <a href = "r8gb_fa.m">r8gb_fa.m</a>, 
+          performs a LINPACK style PLU factorization of a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gb_indicator.m">r8gb_indicator.m</a>, 
+          returns a R8GB indicator matrix;
+        </li>
+        <li>
+          <a href = "r8gb_ml.m">r8gb_ml.m</a>, 
+          computes A*x or A'*x after A has been factored by R8GB_FA;
+        </li>
+        <li>
+          <a href = "r8gb_mu.m">r8gb_mu.m</a>, 
+          computes A*x or A'*x after A has been factored by R8GB_TRF;
+        </li>
+        <li>
+          <a href = "r8gb_mxv.m">r8gb_mxv.m</a>, 
+          multiplies a R8GB matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8gb_nz_num.m">r8gb_nz_num.m</a>, 
+          counts the nonzeroes in a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gb_print.m">r8gb_print.m</a>, 
+          prints a R8GB matrix.;
+        </li>
+        <li>
+          <a href = "r8gb_print_some.m">r8gb_print_some.m</a>, 
+          prints some of a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gb_random.m">r8gb_random.m</a>, 
+          randomizes a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gb_sl.m">r8gb_sl.m</a>, 
+          solves a system factored by R8GB_FA;
+        </li>
+        <li>
+          <a href = "r8gb_to_r8s3.m">r8gb_to_r8s3.m</a>, 
+          copies a R8GB matrix to a R8S3 matrix;
+        </li>
+        <li>
+          <a href = "r8gb_to_r8sp.m">r8gb_to_r8sp.m</a>, 
+          copies a R8GB matrix to a R8SP matrix;
+        </li>
+        <li>
+          <a href = "r8gb_to_r8vec.m">r8gb_to_r8vec.m</a>, 
+          copies a R8GB matrix to a R8VEC;
+        </li>
+        <li>
+          <a href = "r8gb_to_r8ge.m">r8gb_to_r8ge.m</a>, 
+          copies a R8GB matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8gb_trf.m">r8gb_trf.m</a>, 
+          performs a LAPACK style PLU factorization of a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gb_trs.m">r8gb_trs.m</a>, 
+          solves a linear system factored by R8GB_TRS;
+        </li>
+        <li>
+          <a href = "r8gb_vxm.m">r8gb_vxm.m</a>, 
+          multiplies a vector times a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8gd_indicator.m">r8gd_indicator.m</a>, 
+          returns a R8GD indicator matrix;
+        </li>
+        <li>
+          <a href = "r8gd_mxv.m">r8gd_mxv.m</a>, 
+          multiplies a R8GD matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8gd_print.m">r8gd_print.m</a>, 
+          prints a R8GD matrix;
+        </li>
+        <li>
+          <a href = "r8gd_print_some.m">r8gd_print_some.m</a>, 
+          prints some of a R8GD matrix;
+        </li>
+        <li>
+          <a href = "r8gd_random.m">r8gd_random.m</a>, 
+          randomizes a R8GD matrix;
+        </li>
+        <li>
+          <a href = "r8gd_to_r8ge.m">r8gd_to_r8ge.m</a>, 
+          copies a R8GD matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8gd_vxm.m">r8gd_vxm.m</a>, 
+          multiplies a vector times a R8GD matrix;
+        </li>
+        <li>
+          <a href = "r8ge_co.m">r8ge_co.m</a>, 
+          factors a R8GE matrix and estimates its condition number;
+        </li>
+        <li>
+          <a href = "r8ge_det.m">r8ge_det.m</a>, 
+          computes the determinant of a factored R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_dilu.m">r8ge_dilu.m</a>, 
+          produces the diagonal incomplete LU factor of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_fa.m">r8ge_fa.m</a>, 
+          factors a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_fs.m">r8ge_fs.m</a>, 
+          factors and solves a R8GE system;
+        </li>
+        <li>
+          <a href = "r8ge_fss.m">r8ge_fss.m</a>, 
+          factors and solves multiple R8GE systems;
+        </li>
+        <li>
+          <a href = "r8ge_identity.m">r8ge_identity.m</a>, 
+          copies the identity matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_ilu.m">r8ge_ilu.m</a>, 
+          produces the incomplete LU factors of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_indicator.m">r8ge_indicator.m</a>, 
+          returns a R8GE indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ge_inverse.m">r8ge_inverse.m</a>, 
+          returns the inverse of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_ml.m">r8ge_ml.m</a>, 
+          multiplies a R8GE matrix factored by R8GE_FA times a vector;
+        </li>
+        <li>
+          <a href = "r8ge_mu.m">r8ge_mu.m</a>, 
+          multiplies a R8GE matrix factored by R8GE_TRF times a vector;
+        </li>
+        <li>
+          <a href = "r8ge_mxm.m">r8ge_mxm.m</a>, 
+          multiplies two R8GE matrices;
+        </li>
+        <li>
+          <a href = "r8ge_mxv.m">r8ge_mxv.m</a>, 
+          multiplies a R8GE matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8ge_np_det.m">r8ge_np_det.m</a>, 
+          returns the determinant of a system factored by R8GE_NP_FA;
+        </li>
+        <li>
+          <a href = "r8ge_np_fa.m">r8ge_np_fa.m</a>, 
+          factors a R8GE matrix by nonpivoting Gaussian elimination;
+        </li>
+        <li>
+          <a href = "r8ge_np_inverse.m">r8ge_np_inverse.m</a>, 
+          returns the inverse of a matrix factored by R8GE_NP_FA;
+        </li>
+        <li>
+          <a href = "r8ge_np_ml.m">r8ge_np_ml.m</a>, 
+          multiplies a matrix factored by R8GE_NP_FA times a vector;
+        </li>
+        <li>
+          <a href = "r8ge_np_sl.m">r8ge_np_sl.m</a>, 
+          solves a linear system factored by R8GE_NP_FA;
+        </li>
+        <li>
+          <a href = "r8ge_np_trf.m">r8ge_np_trf.m</a>, 
+          computes the LU factorization of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_np_trm.m">r8ge_np_trm.m</a>, 
+          multiplies a matrix factored by R8GE_NP_TRF times a vector;
+        </li>
+        <li>
+          <a href = "r8ge_np_trs.m">r8ge_np_trs.m</a>, 
+          solves a linear system factored by R8GE_NP_TRF;
+        </li>
+        <li>
+          <a href = "r8ge_plu.m">r8ge_plu.m</a>, 
+          produces the PLU factors of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_poly.m">r8ge_poly.m</a>, 
+          computes the characteristic polynomial of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_print.m">r8ge_print.m</a>, 
+          prints a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_print_some.m">r8ge_print_some.m</a>, 
+          prints some of a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_random.m">r8ge_random.m</a>, 
+          returns a random R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_res.m">r8ge_res.m</a>, 
+          computes the residual of a R8GE linear system;
+        </li>
+        <li>
+          <a href = "r8ge_sl.m">r8ge_sl.m</a>, 
+          solves a linear system factored by R8GE_FA;
+        </li>
+        <li>
+          <a href = "r8ge_sl_it.m">r8ge_sl_it.m</a>, 
+          applies one step of iterative refinement to a factored linear system;
+        </li>
+        <li>
+          <a href = "r8ge_to_r8gb.m">r8ge_to_r8gb.m</a>, 
+          converts a R8GE matrix to a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8ge_to_r8vec.m">r8ge_to_r8vec.m</a>, 
+          converts a R8GE matrix to a R8VEC;
+        </li>
+        <li>
+          <a href = "r8ge_trf.m">r8ge_trf.m</a>, 
+          factors a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8ge_trs.m">r8ge_trs.m</a>, 
+          solves a system factored by R8GE_TRF;
+        </li>
+        <li>
+          <a href = "r8ge_vxm.m">r8ge_vxm.m</a>, 
+          multiplies a vector times a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8lt_det.m">r8lt_det.m</a>, 
+          computes the determinant of a R8LT matrix;
+        </li>
+        <li>
+          <a href = "r8lt_indicator.m">r8lt_indicator.m</a>, 
+          returns a R8LT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8lt_inverse.m">r8lt_inverse.m</a>, 
+          returns the inverse of a R8LT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8lt_mxm.m">r8lt_mxm.m</a>, 
+          multiplies two R8LT matrices;
+        </li>
+        <li>
+          <a href = "r8lt_mxv.m">r8lt_mxv.m</a>, 
+          multiplies a R8LT matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8lt_print.m">r8lt_print.m</a>, 
+          prints a R8LT matrix;
+        </li>
+        <li>
+          <a href = "r8lt_print_some.m">r8lt_print_some.m</a>, 
+          prints some of a R8LT matrix;
+        </li>
+        <li>
+          <a href = "r8lt_random.m">r8lt_random.m</a>, 
+          randomizes a R8LT matrix;
+        </li>
+        <li>
+          <a href = "r8lt_sl.m">r8lt_sl.m</a>, 
+          solves a R8LT linear system;
+        </li>
+        <li>
+          <a href = "r8lt_vxm.m">r8lt_vxm.m</a>, 
+          multiplies a vector times a R8LT matrix;
+        </li>
+        <li>
+          <a href = "r8ncf_indicator.m">r8ncf_indicator.m</a>, 
+          returns a R8NCF indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ncf_print.m">r8ncf_print.m</a>, 
+          prints a R8NCF matrix.
+        </li>
+        <li>
+          <a href = "r8ncf_print_some.m">r8ncf_print_some.m</a>, 
+          prints some of a R8NCF matrix.
+        </li>
+        <li>
+          <a href = "r8pbl_det.m">r8pbl_det.m</a>, 
+          computes the determinant of a R8PO matrix factored by
+          R8PBL_FA;
+        </li>
+        <li>
+          <a href = "r8pbl_indicator.m">r8pbl_indicator.m</a>, 
+          returns a R8PBL indicator matrix;
+        </li>
+        <li>
+          <a href = "r8pbl_print.m">r8pbl_print.m</a>, 
+          prints a R8PBL matrix;
+        </li>
+        <li>
+          <a href = "r8pbl_print_some.m">r8pbl_print_some.m</a>, 
+          prints some of a R8PBL matrix;
+        </li>
+        <li>
+          <a href = "r8pbl_random.m">r8pbl_random.m</a>, 
+          randomizes a R8PBL matrix;
+        </li>
+        <li>
+          <a href = "r8pbl_to_r8ge.m">r8pbl_to_r8ge.m</a>, 
+          copies a R8PBL matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_cg.m">r8pbu_cg.m</a>, 
+          uses the conjugate gradient method on a linear system with
+          a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_det.m">r8pbu_det.m</a>, 
+          computes the determinant of a R8PO matrix factored by
+          R8PBU_FA;
+        </li>
+        <li>
+          <a href = "r8pbu_fa.m">r8pbu_fa.m</a>, 
+          factors a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_indicator.m">r8pbu_indicator.m</a>, 
+          returns a R8PBU indicator matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_ml.m">r8pbu_ml.m</a>, 
+          computes A*x or A'*x after A has been factored by R8PBU_FA;
+        </li>
+        <li>
+          <a href = "r8pbu_mxv.m">r8pbu_mxv.m</a>, 
+          multiplies a R8PBU matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8pbu_print.m">r8pbu_print.m</a>, 
+          prints a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_print_some.m">r8pbu_print_some.m</a>, 
+          prints some of a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_random.m">r8pbu_random.m</a>, 
+          randomizes a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_sl.m">r8pbu_sl.m</a>, 
+          solves a R8PBU linear system factored by R83P_FA;
+        </li>
+        <li>
+          <a href = "r8pbu_sor.m">r8pbu_sor.m</a>, 
+          applies the SOR iterative method to solve a linear system
+          with a R8PBU matrix;
+        </li>
+        <li>
+          <a href = "r8pbu_to_r8ge.m">r8pbu_to_r8ge.m</a>, 
+          copies a R8PBU matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8po_det.m">r8po_det.m</a>, 
+          computes the determinant of a R8PO matrix factored by
+          R8PO_FA;
+        </li>
+        <li>
+          <a href = "r8po_fa.m">r8po_fa.m</a>, 
+          factors a R8PO matrix;
+        </li>
+        <li>
+          <a href = "r8po_indicator.m">r8po_indicator.m</a>, 
+          returns a R8PO indicator matrix;
+        </li>
+        <li>
+          <a href = "r8po_inverse.m">r8po_inverse.m</a>, 
+          returns the inverse of a R8PO matrix;
+        </li>
+        <li>
+          <a href = "r8po_ml.m">r8po_ml.m</a>, 
+          computes A*x or A'*x after A has been factored by R8PO_FA;
+        </li>
+        <li>
+          <a href = "r8po_mxm.m">r8po_mxm.m</a>, 
+          multiplies two R8PO matrices;
+        </li>
+        <li>
+          <a href = "r8po_mxv.m">r8po_mxv.m</a>, 
+          multiplies a R8PO matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8po_print.m">r8po_print.m</a>, 
+          prints a R8PO matrix;
+        </li>
+        <li>
+          <a href = "r8po_print_some.m">r8po_print_some.m</a>, 
+          prints some of a R8PO matrix;
+        </li>
+        <li>
+          <a href = "r8po_random.m">r8po_random.m</a>, 
+          randomizes a R8PO matrix;
+        </li>
+        <li>
+          <a href = "r8po_sl.m">r8po_sl.m</a>, 
+          solves a R8PO linear system factored by R83P_FA;
+        </li>
+        <li>
+          <a href = "r8po_to_r8ge.m">r8po_to_r8ge.m</a>, 
+          copies a R8PO matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8pp_det.m">r8pp_det.m</a>, 
+          returns the determinant of a R8PP matrix;
+        </li>
+        <li>
+          <a href = "r8pp_fa.m">r8pp_fa.m</a>, 
+          computes the Cholesky factor of a R8PP matrix;
+        </li>
+        <li>
+          <a href = "r8pp_indicator.m">r8pp_indicator.m</a>, 
+          returns a R8PP indicator matrix;
+        </li>
+        <li>
+          <a href = "r8pp_mxv.m">r8pp_mxv.m</a>, 
+          multiplies a R8PP matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8pp_print.m">r8pp_print.m</a>, 
+          prints a R8PP matrix;
+        </li>
+        <li>
+          <a href = "r8pp_print_some.m">r8pp_print_some.m</a>, 
+          prints some of a R8PP matrix;
+        </li>
+        <li>
+          <a href = "r8pp_random.m">r8pp_random.m</a>, 
+          randomizes a R8PP matrix;
+        </li>
+        <li>
+          <a href = "r8pp_sl.m">r8pp_sl.m</a>, 
+          solves a R8PP linear system;
+        </li>
+        <li>
+          <a href = "r8pp_to_r8ge.m">r8pp_to_r8ge.m</a>, 
+          copies a R8PP matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8s3_indicator.m">r8s3_indicator.m</a>, 
+          returns a R8S3 indicator matrix;
+        </li>
+        <li>
+          <a href = "r8s3_print.m">r8s3_print.m</a>, 
+          prints a R8S3 matrix;
+        </li>
+        <li>
+          <a href = "r8s3_print_some.m">r8s3_print_some.m</a>, 
+          prints some of a R8S3 matrix;
+        </li>
+        <li>
+          <a href = "r8s3_read.m">r8s3_read.m</a>, 
+          reads a R8S3 matrix from a file;
+        </li>
+        <li>
+          <a href = "r8s3_read_size.m">r8s3_read_size.m</a>, 
+          reads the size of a R8S3 matrix from a file;
+        </li>
+        <li>
+          <a href = "r8s3_write.m">r8s3_write.m</a>, 
+          writes a R8S3 matrix to a file;
+        </li>
+        <li>
+          <a href = "r8sd_cg.m">r8sd_cg.m</a>, 
+          uses the conjugate gradient method on a R8SD linear system;
+        </li>
+        <li>
+          <a href = "r8sd_indicator.m">r8sd_indicator.m</a>, 
+          returns a R8SD indicator matrix;
+        </li>
+        <li>
+          <a href = "r8sd_mxv.m">r8sd_mxv.m</a>, 
+          multiplies a R8SD matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8sd_print.m">r8sd_print.m</a>, 
+          prints a R8SD matrix;
+        </li>
+        <li>
+          <a href = "r8sd_print_some.m">r8sd_print_some.m</a>, 
+          prints some of a R8SD matrix;
+        </li>
+        <li>
+          <a href = "r8sd_random.m">r8sd_random.m</a>, 
+          randomizes a R8SD matrix;
+        </li>
+        <li>
+          <a href = "r8sd_to_r8ge.m">r8sd_to_r8ge.m</a>, 
+          copies a R8SD matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sm_ml.m">r8sm_ml.m</a>, 
+          multiplies a R8SM matrix that has been factored by R8GE_FA 
+          times a vector;
+        </li>
+        <li>
+          <a href = "r8sm_mxv.m">r8sm_mxv.m</a>, 
+          multiplies a R8SM matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8sm_print.m">r8sm_print.m</a>, 
+          prints a R8SM matrix;
+        </li>
+        <li>
+          <a href = "r8sm_print_some.m">r8sm_print_some.m</a>, 
+          prints some of a R8SM matrix;
+        </li>
+        <li>
+          <a href = "r8sm_random.m">r8sm_random.m</a>, 
+          randomizes a R8SM matrix;
+        </li>
+        <li>
+          <a href = "r8sm_sl.m">r8sm_sl.m</a>, 
+          solves a R8SM linear system;
+        </li>
+        <li>
+          <a href = "r8sm_to_r8ge.m">r8sm_to_r8ge.m</a>, 
+          copies a R8SM matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sm_vxm.m">r8sm_vxm.m</a>, 
+          multiplies a vector times a R8SM matrix;
+        </li>
+        <li>
+          <a href = "r8sp_check.m">r8sp_check.m</a>, 
+          checks that a R8SP matrix data structure is properly sorted.
+        </li>
+        <li>
+          <a href = "r8sp_ij_to_k.m">r8sp_ij_to_k.m</a>, 
+          seeks the compressed index of the (I,J) entry of A.
+        </li>
+        <li>
+          <a href = "r8sp_indicator.m">r8sp_indicator.m</a>, 
+          sets up a R8SP indicator matrix;
+        </li>
+        <li>
+          <a href = "r8sp_mxv.m">r8sp_mxv.m</a>, 
+          multiplies a R8SP matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8sp_print.m">r8sp_print.m</a>, 
+          prints a R8SP matrix;
+        </li>
+        <li>
+          <a href = "r8sp_print_some.m">r8sp_print_some.m</a>, 
+          prints some of a R8SP matrix;
+        </li>
+        <li>
+          <a href = "r8sp_random.m">r8sp_random.m</a>, 
+          randomizes a R8SP matrix;
+        </li>
+        <li>
+          <a href = "r8sp_read.m">r8sp_read.m</a>, 
+          reads a R8SP matrix from a file;
+        </li>
+        <li>
+          <a href = "r8sp_read_size.m">r8sp_read_size.m</a>, 
+          reads the size of a R8SP matrix from a file;
+        </li>
+        <li>
+          <a href = "r8sp_to_r8ge.m">r8sp_to_r8ge.m</a>, 
+          copies a R8SP matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sp_to_r8ncf.m">r8sp_to_r8ncf.m</a>, 
+          copies a R8SP matrix to a R8NCF matrix;
+        </li>
+        <li>
+          <a href = "r8sp_vxm.m">r8sp_vxm.m</a>, 
+          multiplies a vector times a R8SP matrix;
+        </li>
+        <li>
+          <a href = "r8sp_write.m">r8sp_write.m</a>, 
+          writes a R8SP matrix to a file;
+        </li>
+        <li>
+          <a href = "r8sr_indicator.m">r8sr_indicator.m</a>, 
+          returns a R8SR indicator matrix;
+        </li>
+        <li>
+          <a href = "r8sr_mxv.m">r8sr_mxv.m</a>, 
+          multiplies a R8SR matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8sr_print.m">r8sr_print.m</a>, 
+          prints a R8SR matrix;
+        </li>
+        <li>
+          <a href = "r8sr_print_some.m">r8sr_print_some.m</a>, 
+          prints some of a R8SR matrix;
+        </li>
+        <li>
+          <a href = "r8sr_random.m">r8sr_random.m</a>, 
+          randomizes a R8SR matrix;
+        </li>
+        <li>
+          <a href = "r8sr_to_r8ge.m">r8sr_to_r8ge.m</a>, 
+          copies a R8SR matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sr_vxm.m">r8sr_vxm.m</a>, 
+          multiplies a vector times a R8SR matrix;
+        </li>
+        <li>
+          <a href = "r8ss_indicator.m">r8ss_indicator.m</a>, 
+          sets up a R8SS indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ss_mxv.m">r8ss_mxv.m</a>, 
+          multiplies a R8SS matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8ss_print.m">r8ss_print.m</a>, 
+          prints a R8SS matrix;
+        </li>
+        <li>
+          <a href = "r8ss_print_some.m">r8ss_print_some.m</a>, 
+          prints some of a R8SS matrix;
+        </li>
+        <li>
+          <a href = "r8ss_random.m">r8ss_random.m</a>, 
+          randomizes a R8SS matrix;
+        </li>
+        <li>
+          <a href = "r8ss_to_r8ge.m">r8ss_to_r8ge.m</a>, 
+          copies a R8SS matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sto_indicator.m">r8sto_indicator.m</a>, 
+          returns a R8STO indicator matrix;
+        </li>
+        <li>
+          <a href = "r8sto_inverse.m">r8sto_inverse.m</a>, 
+          returns the inverse of a R8STO indicator matrix;
+        </li>
+        <li>
+          <a href = "r8sto_mxv.m">r8sto_mxv.m</a>, 
+          multiplies a R8STO matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8sto_print.m">r8sto_print.m</a>, 
+          prints a R8STO matrix;
+        </li>
+        <li>
+          <a href = "r8sto_print_some.m">r8sto_print_some.m</a>, 
+          prints some of a R8STO matrix;
+        </li>
+        <li>
+          <a href = "r8sto_random.m">r8sto_random.m</a>, 
+          randomizes a R8STO matrix;
+        </li>
+        <li>
+          <a href = "r8sto_sl.m">r8sto_sl.m</a>, 
+          solves a R8STO linear system;
+        </li>
+        <li>
+          <a href = "r8sto_to_r8ge.m">r8sto_to_r8ge.m</a>, 
+          copies a R8STO matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8sto_yw_sl.m">r8sto_yw_sl.m</a>, 
+          solves the Yule-Walker equations for a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8to_indicator.m">r8to_indicator.m</a>, 
+          returns a R8TO indicator matrix;
+        </li>
+        <li>
+          <a href = "r8to_mxv.m">r8to_mxv.m</a>, 
+          multiplies a R8TO matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8to_print.m">r8to_print.m</a>, 
+          prints a R8TO matrix;
+        </li>
+        <li>
+          <a href = "r8to_print_some.m">r8to_print_some.m</a>, 
+          prints some of a R8TO matrix;
+        </li>
+        <li>
+          <a href = "r8to_random.m">r8to_random.m</a>, 
+          randomizes a R8TO matrix;
+        </li>
+        <li>
+          <a href = "r8to_sl.m">r8to_sl.m</a>, 
+          solves a R8TO linear system;
+        </li>
+        <li>
+          <a href = "r8to_to_r8ge.m">r8to_to_r8ge.m</a>, 
+          copies a R8TO matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8to_vxm.m">r8to_vxm.m</a>, 
+          multiplies a vector times a R8TO matrix;
+        </li>
+        <li>
+          <a href = "r8ut_det.m">r8ut_det.m</a>, 
+          computes the determinant of a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8ut_indicator.m">r8ut_indicator.m</a>, 
+          returns a R8UT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ut_inverse.m">r8ut_inverse.m</a>, 
+          returns the inverse of a R8UT indicator matrix;
+        </li>
+        <li>
+          <a href = "r8ut_mxm.m">r8ut_mxm.m</a>, 
+          multiplies two R8UT matrices;
+        </li>
+        <li>
+          <a href = "r8ut_mxv.m">r8ut_mxv.m</a>, 
+          multiplies a R8UT matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8ut_print.m">r8ut_print.m</a>, 
+          prints a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8ut_print_some.m">r8ut_print_some.m</a>, 
+          prints some of a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8ut_random.m">r8ut_random.m</a>, 
+          randomizes a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8ut_sl.m">r8ut_sl.m</a>, 
+          solves a R8UT linear system;
+        </li>
+        <li>
+          <a href = "r8ut_vxm.m">r8ut_vxm.m</a>, 
+          multiplies a vector times a R8UT matrix;
+        </li>
+        <li>
+          <a href = "r8vm_det.m">r8vm_det.m</a>, 
+          computes the determinant of a R8VM matrix;
+        </li>
+        <li>
+          <a href = "r8vm_mxv.m">r8vm_mxv.m</a>, 
+          multiplies a R8VM matrix times a vector;
+        </li>
+        <li>
+          <a href = "r8vm_print.m">r8vm_print.m</a>, 
+          prints a R8VM matrix;
+        </li>
+        <li>
+          <a href = "r8vm_print_some.m">r8vm_print_some.m</a>, 
+          prints some of a R8VM matrix;
+        </li>
+        <li>
+          <a href = "r8vm_random.m">r8vm_random.m</a>, 
+          randomizes a R8VM matrix;
+        </li>
+        <li>
+          <a href = "r8vm_sl.m">r8vm_sl.m</a>, 
+          solves a R8VM linear system;
+        </li>
+        <li>
+          <a href = "r8vm_to_r8ge.m">r8vm_to_r8ge.m</a>, 
+          copies a R8VM matrix to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8vm_vxm.m">r8vm_vxm.m</a>, 
+          multiplies a vector times a R8VM matrix;
+        </li>
+        <li>
+          <a href = "file_delete.m">file_delete.m</a>, 
+          deletes a file;
+        </li>
+        <li>
+          <a href = "file_exist.m">file_exist.m</a>, 
+          is TRUE if a given file exists;
+        </li>
+        <li>
+          <a href = "hilbert_inverse.m">hilbert_inverse.m</a>, 
+          returns the inverse of the Hilbert matrix;
+        </li>
+        <li>
+          <a href = "i4_log_10.m">i4_log_10.m</a>, 
+          returns the integer part of the logarithm base 10 of abs(X);
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>, 
+          returns a random integer in a given range;
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>, 
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_search_binary_a.m">i4vec_search_binary_a.m</a>, 
+          uses binary search on an ascending sorted I4VEC to
+          find the occurrence of a given value;
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">r4_uniform_01.m</a>, 
+          returns a random real number in [0,1];
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of a double precision number;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          is a uniform random number generator;
+        </li>
+        <li>
+          <a href = "r8vec_indicator.m">r8vec_indicator.m</a>, 
+          sets a R8VEC to the indicator vector;
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints a R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_print_some.m">r8vec_print_some.m</a>, 
+          prints some of a R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_read.m">r8vec_read.m</a>, 
+          reads a R8VEC from a file;
+        </li>
+        <li>
+          <a href = "r8vec_read_size.m">r8vec_read_size.m</a>, 
+          reads the size of a R8VEC in a file;
+        </li>
+        <li>
+          <a href = "r8vec_to_r8cb.m">r8vec_to_r8cb.m</a>, 
+          converts a R8VEC to a R8CB matrix;
+        </li>
+        <li>
+          <a href = "r8vec_to_r8gb.m">r8vec_to_r8gb.m</a>, 
+          converts a R8VEC to a R8GB matrix;
+        </li>
+        <li>
+          <a href = "r8vec_to_r8ge.m">r8vec_to_r8ge.m</a>, 
+          converts a R8VEC to a R8GE matrix;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns a random R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_write.m">r8vec_write.m</a>, 
+          writes a R8VEC to a file;
+        </li>
+        <li>
+          <a href = "r8vec2_print_some.m">r8vec2_print_some.m</a>, 
+          prints some of a pair R8VEC's;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a character string to the last nonblank;
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>, 
+          external sorts a list of items into ascending order;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linplus_test.m">linplus_test.m</a>, 
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "linplus_test_output.txt">linplus_test_output.txt</a>, 
+          the output from all the tests;
+        </li>
+        <li>
+          <a href = "linplus_test0192.m">linplus_test0192.m</a>, 
+          tests R8CC_WRITE;
+        </li>
+        <li>
+          <a href = "linplus_test0193.m">linplus_test0193.m</a>, 
+          tests R8CC_READ_SIZE and R8CC_READ;
+        </li>
+        <li>
+          <a href = "linplus_test0194.m">linplus_test0194.m</a>, 
+          tests R8VEC_TO_R8CB and R8CB_TO_R8VEC;
+        </li>
+        <li>
+          <a href = "linplus_test0195.m">linplus_test0195.m</a>, 
+          tests R8VEC_TO_R8GB and R8GB_TO_R8VEC;
+        </li>
+        <li>
+          <a href = "linplus_test0196.m">linplus_test0196.m</a>, 
+          tests R8VEC_TO_R8GE and R8GE_TO_R8VEC;
+        </li>
+        <li>
+          <a href = "linplus_test02.m">linplus_test02.m</a>, 
+          tests R83_CR_FA and R83_CR_SL;
+        </li>
+        <li>
+          <a href = "linplus_test03.m">linplus_test03.m</a>, 
+          tests R83_CR_FA and R83_CR_SL;
+        </li>
+        <li>
+          <a href = "linplus_test035.m">linplus_test035.m</a>, 
+          tests R83_GS_SL;
+        </li>
+        <li>
+          <a href = "linplus_test037.m">linplus_test037.m</a>, 
+          tests R83_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test04.m">linplus_test04.m</a>, 
+          tests R83_JAC_SL;
+        </li>
+        <li>
+          <a href = "linplus_test05.m">linplus_test05.m</a>, 
+          tests R83_NP_DET and R83_NP_FA;
+        </li>
+        <li>
+          <a href = "linplus_test06.m">linplus_test06.m</a>, 
+          tests R83_NP_FA and R83_NP_SL;
+        </li>
+        <li>
+          <a href = "linplus_test07.m">linplus_test07.m</a>, 
+          tests R83_NP_FS;
+        </li>
+        <li>
+          <a href = "linplus_test08.m">linplus_test08.m</a>, 
+          tests R83_NP_ML;
+        </li>
+        <li>
+          <a href = "linplus_test09.m">linplus_test09.m</a>, 
+          tests R83P_DET;
+        </li>
+        <li>
+          <a href = "linplus_test10.m">linplus_test10.m</a>, 
+          tests R83P_FA and R83P_SL;
+        </li>
+        <li>
+          <a href = "linplus_test105.m">linplus_test105.m</a>, 
+          tests R83P_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test11.m">linplus_test11.m</a>, 
+          tests R83P_ML;
+        </li>
+        <li>
+          <a href = "linplus_test115.m">linplus_test115.m</a>, 
+          tests R85_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test12.m">linplus_test12.m</a>, 
+          tests R85_NP_FS;
+        </li>
+        <li>
+          <a href = "linplus_test13.m">linplus_test13.m</a>, 
+          tests R8BB_FA, R8BB_PRINT, R8BB_RANDOM, R8BB_SL;
+        </li>
+        <li>
+          <a href = "linplus_test14.m">linplus_test14.m</a>, 
+          tests R8BB_FA and R8BB_SL;
+        </li>
+        <li>
+          <a href = "linplus_test15.m">linplus_test15.m</a>, 
+          tests R8BB_FA and R8BB_SL;
+        </li>
+        <li>
+          <a href = "linplus_test151.m">linplus_test151.m</a>, 
+          tests R8BB_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test152.m">linplus_test152.m</a>, 
+          tests R8BLT_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test153.m">linplus_test153.m</a>, 
+          tests R8BLT_MAX, R8BLT_RANDOM, R8BLT_SL, R8BLT_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test154.m">linplus_test154.m</a>, 
+          tests R8BTO_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test155.m">linplus_test155.m</a>, 
+          tests R8BTO_MXV and R8BTO_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test156.m">linplus_test156.m</a>, 
+          tests R8BTO_SL;
+        </li>
+        <li>
+          <a href = "linplus_test1565.m">linplus_test1565.m</a>, 
+          tests R8BUT_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test1566.m">linplus_test1566.m</a>, 
+          tests R8BUT_DET, R8BUT_MXV, R8BUT_RANDOM, R8BUT_SL, and R8BUT_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test157.m">linplus_test157.m</a>, 
+          tests R8CB_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test16.m">linplus_test16.m</a>, 
+          tests R8CB_NP_FA and R8CB_DET;
+        </li>
+        <li>
+          <a href = "linplus_test17.m">linplus_test17.m</a>, 
+          tests R8CB_NP_FA and R8CB_NP_SL;
+        </li>
+        <li>
+          <a href = "linplus_test18.m">linplus_test18.m</a>, 
+          tests R8CB_ML;
+        </li>
+        <li>
+          <a href = "linplus_test19.m">linplus_test19.m</a>, 
+          tests R8CBB_FA, R8CBB_RANDOM, R8CBB_SL;
+        </li>
+        <li>
+          <a href = "linplus_test193.m">linplus_test193.m</a>, 
+          tests R8CBB_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test195.m">linplus_test195.m</a>, 
+          tests R8CI_EVAL;
+        </li>
+        <li>
+          <a href = "linplus_test197.m">linplus_test197.m</a>, 
+          tests R8CI_IND;
+        </li>
+        <li>
+          <a href = "linplus_test20.m">linplus_test20.m</a>, 
+          tests R8CI_SL;
+        </li>
+        <li>
+          <a href = "linplus_test21.m">linplus_test21.m</a>, 
+          tests R8GB_DET;
+        </li>
+        <li>
+          <a href = "linplus_test22.m">linplus_test22.m</a>, 
+          tests R8GB_FA and R8GB_SL;
+        </li>
+        <li>
+          <a href = "linplus_test23.m">linplus_test23.m</a>, 
+          tests R8GB_FA and R8GB_TRF;
+        </li>
+        <li>
+          <a href = "linplus_test235.m">linplus_test235.m</a>, 
+          tests R8GB_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test24.m">linplus_test24.m</a>, 
+          tests R8GB_ML;
+        </li>
+        <li>
+          <a href = "linplus_test25.m">linplus_test25.m</a>, 
+          tests R8GB_PRINT;
+        </li>
+        <li>
+          <a href = "linplus_test26.m">linplus_test26.m</a>, 
+          tests R8GB_NZ_NUM;
+        </li>
+        <li>
+          <a href = "linplus_test265.m">linplus_test265.m</a>, 
+          tests R8GB_TO_R8GE and R8GE_TO_R8GB;
+        </li>
+        <li>
+          <a href = "linplus_test2655.m">linplus_test2655.m</a>, 
+          tests R8GB_TO_R8S3;
+        </li>
+        <li>
+          <a href = "linplus_test27.m">linplus_test27.m</a>, 
+          tests R8GB_TRF and R8GB_TRS;
+        </li>
+        <li>
+          <a href = "linplus_test275.m">linplus_test275.m</a>, 
+          tests R8GB_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test28.m">linplus_test28.m</a>, 
+          tests R8GB_MXV, R8GB_RANDOM, R8GB_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test285.m">linplus_test285.m</a>, 
+          tests R8GE_CO;
+        </li>
+        <li>
+          <a href = "linplus_test29.m">linplus_test29.m</a>, 
+          tests R8GE_DET;
+        </li>
+        <li>
+          <a href = "linplus_test295.m">linplus_test295.m</a>, 
+          tests R8GE_DILU;
+        </li>
+        <li>
+          <a href = "linplus_test30.m">linplus_test30.m</a>, 
+          tests R8GE_FA and R8GE_SL;
+        </li>
+        <li>
+          <a href = "linplus_test31.m">linplus_test31.m</a>, 
+          tests R8GE_FA and R8GE_SL;
+        </li>
+        <li>
+          <a href = "linplus_test315.m">linplus_test315.m</a>, 
+          tests R8GE_ILU;
+        </li>
+        <li>
+          <a href = "linplus_test317.m">linplus_test317.m</a>, 
+          tests R8GE_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test32.m">linplus_test32.m</a>, 
+          tests R8GE_NP_FA and R8GE_NP_SL;
+        </li>
+        <li>
+          <a href = "linplus_test33.m">linplus_test33.m</a>, 
+          tests R8GE_NP_FA and R8GE_NP_INVERSE;
+        </li>
+        <li>
+          <a href = "linplus_test34.m">linplus_test34.m</a>, 
+          tests R8GE_FS;
+        </li>
+        <li>
+          <a href = "linplus_test345.m">linplus_test345.m</a>, 
+          tests R8GE_FSS;
+        </li>
+        <li>
+          <a href = "linplus_test35.m">linplus_test35.m</a>, 
+          tests R8GE_INVERSE;
+        </li>
+        <li>
+          <a href = "linplus_test36.m">linplus_test36.m</a>, 
+          tests R8GE_ML;
+        </li>
+        <li>
+          <a href = "linplus_test37.m">linplus_test37.m</a>, 
+          tests R8GE_NP_ML;
+        </li>
+        <li>
+          <a href = "linplus_test38.m">linplus_test38.m</a>, 
+          tests R8GE_MU;
+        </li>
+        <li>
+          <a href = "linplus_test385.m">linplus_test385.m</a>, 
+          tests R8GE_PLU;
+        </li>
+        <li>
+          <a href = "linplus_test39.m">linplus_test39.m</a>, 
+          tests R8GE_POLY;
+        </li>
+        <li>
+          <a href = "linplus_test40.m">linplus_test40.m</a>, 
+          tests R8GE_SL_IT;
+        </li>
+        <li>
+          <a href = "linplus_test41.m">linplus_test41.m</a>, 
+          tests R8GE_TRF and R8GE_TRS;
+        </li>
+        <li>
+          <a href = "linplus_test42.m">linplus_test42.m</a>, 
+          tests R8GE_NP_TRF, R8GE_NP_TRM, and R8GE_NP_TRS;
+        </li>
+        <li>
+          <a href = "linplus_test422.m">linplus_test422.m</a>, 
+          tests R8CC_GET, R8CC_IJK, R8CC_INC, R8CC_KIJ, R8CC_SET;
+        </li>
+        <li>
+          <a href = "linplus_test423.m">linplus_test423.m</a>, 
+          tests R8CC_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test425.m">linplus_test425.m</a>, 
+          tests R8CC_MXV and R8CC_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test426.m">linplus_test426.m</a>, 
+          tests R8CC_PRINT;
+        </li>
+        <li>
+          <a href = "linplus_test428.m">linplus_test428.m</a>, 
+          tests R8LT_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test43.m">linplus_test43.m</a>, 
+          tests R8LT_MXV, R8LT_SL, R8LT_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test44.m">linplus_test44.m</a>, 
+          tests R8LT_DET, R8LT_INV, R8LT_MXM, R8LT_RANDOM;
+        </li>
+        <li>
+          <a href = "linplus_test443.m">linplus_test443.m</a>, 
+          tests R8NCF_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test445.m">linplus_test445.m</a>, 
+          tests R8PBL_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test45.m">linplus_test45.m</a>, 
+          tests R8PBU_CG;
+        </li>
+        <li>
+          <a href = "linplus_test46.m">linplus_test46.m</a>, 
+          tests R8PBU_DET;
+        </li>
+        <li>
+          <a href = "linplus_test47.m">linplus_test47.m</a>, 
+          tests R8PBU_FA, R8PBU_RANDOM and R8PBU_SL;
+        </li>
+        <li>
+          <a href = "linplus_test48.m">linplus_test48.m</a>, 
+          tests R8PBU_ML;
+        </li>
+        <li>
+          <a href = "linplus_test485.m">linplus_test485.m</a>, 
+          tests R8PBU_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test49.m">linplus_test49.m</a>, 
+          tests R8PBU_SOR;
+        </li>
+        <li>
+          <a href = "linplus_test50.m">linplus_test50.m</a>, 
+          tests R8PO_FA and R8PO_SL;
+        </li>
+        <li>
+          <a href = "linplus_test505.m">linplus_test505.m</a>, 
+          tests R8PO_FA;
+        </li>
+        <li>
+          <a href = "linplus_test51.m">linplus_test51.m</a>, 
+          tests R8PO_DET and R8PO_INVERSE;
+        </li>
+        <li>
+          <a href = "linplus_test515.m">linplus_test515.m</a>, 
+          tests R8PO_FA, R8PO_SL, R8PO_ML, and R8PO_MXV;
+        </li>
+        <li>
+          <a href = "linplus_test517.m">linplus_test517.m</a>, 
+          tests R8PO_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test52.m">linplus_test52.m</a>, 
+          tests R8PO_RANDOM and R8PO_TO_R8GE;
+        </li>
+        <li>
+          <a href = "linplus_test525.m">linplus_test525.m</a>, 
+          tests R8PP_FA and R8PP_SL;
+        </li>
+        <li>
+          <a href = "linplus_test527.m">linplus_test527.m</a>, 
+          tests R8PP_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test53.m">linplus_test53.m</a>, 
+          tests R8PP_RANDOM;
+        </li>
+        <li>
+          <a href = "linplus_test534.m">linplus_test534.m</a>, 
+          tests R8S3_WRITE;
+        </li>
+        <li>
+          <a href = "linplus_test535.m">linplus_test535.m</a>, 
+          tests R8S3_READ_SIZE and R8S3_READ;
+        </li>
+        <li>
+          <a href = "linplus_test54.m">linplus_test54.m</a>, 
+          tests R8SD_CG;
+        </li>
+        <li>
+          <a href = "linplus_test55.m">linplus_test55.m</a>, 
+          tests R8SD_CG;
+        </li>
+        <li>
+          <a href = "linplus_test555.m">linplus_test555.m</a>, 
+          tests R8SD_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test56.m">linplus_test56.m</a>, 
+          tests R8SM_ML;
+        </li>
+        <li>
+          <a href = "linplus_test57.m">linplus_test57.m</a>, 
+          tests R8SM_ML;
+        </li>
+        <li>
+          <a href = "linplus_test5705.m">linplus_test5705.m</a>, 
+          tests R8SP_IJ_TO_K;
+        </li>
+        <li>
+          <a href = "linplus_test571.m">linplus_test571.m</a>, 
+          tests R8SM_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test572.m">linplus_test572.m</a>, 
+          tests R8SP_MXV and R8SP_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test5722.m">linplus_test5722.m</a>, 
+          tests R8SP_PRINT;
+        </li>
+        <li>
+          <a href = "linplus_test5724.m">linplus_test5724.m</a>, 
+          tests R8SP_WRITE;
+        </li>
+        <li>
+          <a href = "linplus_test5725.m">linplus_test5725.m</a>, 
+          tests R8SP_READ_SIZE and R8SP_READ;
+        </li>
+        <li>
+          <a href = "linplus_test573.m">linplus_test573.m</a>, 
+          tests R8SR_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test574.m">linplus_test574.m</a>, 
+          tests R8SR_MXV and R8SR_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test5745.m">linplus_test5745.m</a>, 
+          tests R8SR_PRINT;
+        </li>
+        <li>
+          <a href = "linplus_test575.m">linplus_test575.m</a>, 
+          tests R8SR_RANDOM;
+        </li>
+        <li>
+          <a href = "linplus_test577.m">linplus_test577.m</a>, 
+          tests R8SS_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test58.m">linplus_test58.m</a>, 
+          tests R8SS_MXV and R8SS_PRINT;
+        </li>
+        <li>
+          <a href = "linplus_test581.m">linplus_test581.m</a>, 
+          tests R8STO_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test583.m">linplus_test583.m</a>, 
+          tests R8STO_INVERSE;
+        </li>
+        <li>
+          <a href = "linplus_test585.m">linplus_test585.m</a>, 
+          tests R8STO_MXV and R8STO_YW_SL;
+        </li>
+        <li>
+          <a href = "linplus_test587.m">linplus_test587.m</a>, 
+          tests R8STO_SL;
+        </li>
+        <li>
+          <a href = "linplus_test589.m">linplus_test589.m</a>, 
+          tests R8STO_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test59.m">linplus_test59.m</a>, 
+          tests R8STO_SL;
+        </li>
+        <li>
+          <a href = "linplus_test60.m">linplus_test60.m</a>, 
+          tests R8UT_DET, R8UT_INVERSE, R8UT_MXM and R8UT_RANDOM;
+        </li>
+        <li>
+          <a href = "linplus_test605.m">linplus_test605.m</a>, 
+          tests R8UT_INDICATOR;
+        </li>
+        <li>
+          <a href = "linplus_test61.m">linplus_test61.m</a>, 
+          tests R8UT_MXV, R8UT_SL and R8UT_VXM;
+        </li>
+        <li>
+          <a href = "linplus_test62.m">linplus_test62.m</a>, 
+          tests R8VM_DET;
+        </li>
+        <li>
+          <a href = "linplus_test63.m">linplus_test63.m</a>, 
+          tests R8VM_SL;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

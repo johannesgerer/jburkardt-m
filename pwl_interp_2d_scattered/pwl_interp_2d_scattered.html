@@ -1,0 +1,298 @@
+<html>
+
+  <head>
+    <title>
+      PWL_INTERP_2D_SCATTERED - Piecewise Linear Interpolant to 2D Scattered Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PWL_INTERP_2D_SCATTERED <br> Piecewise Linear Interpolant to 2D Scattered Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PWL_INTERP_2D_SCATTERED</b>
+      is a MATLAB library which
+      produces a piecewise linear interpolant to 2D scattered data,
+      that is, data that is not guaranteed to lie on a regular grid.
+    </p>
+
+    <p>
+      This program computes a Delaunay triangulation of the data points,
+      and then constructs an interpolant triangle by triangle.  Over a given
+      triangle, the interpolant is the linear function which matches the
+      data already given at the vertices of the triangle.
+    </p>
+
+    <p>
+      <b>PWL_INTERP_2D</b> requires the R8LIB library.  The test code
+      requires the TEST_INTERP_2D library.
+    </p>
+
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PWL_INTERP_2D_SCATTERED</b> is available in
+      <a href = "../../c_src/pwl_interp_2d_scattered/pwl_interp_2d_scattered.html">a C version</a> and
+      <a href = "../../cpp_src/pwl_interp_2d_scattered/pwl_interp_2d_scattered.html">a C++ version</a> and
+      <a href = "../../f77_src/pwl_interp_2d_scattered/pwl_interp_2d_scattered.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/pwl_interp_2d_scattered/pwl_interp_2d_scattered.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/pwl_interp_2d_scattered/pwl_interp_2d_scattered.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_2d/lagrange_interp_2d.html">
+      LAGRANGE_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x,y) 
+      which interpolates a set of data depending on a 2D argument
+      that was evaluated on a product grid,
+      so that p(x(i),y(j)) = z(i,j).
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_2d/pwl_interp_2d.html">
+      PWL_INTERP_2D</a>,
+      a MATLAB library which
+      evaluates a piecewise linear interpolant to data defined on
+      a regular 2D grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_2d/rbf_interp_2d.html">
+      RBF_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 
+      scattered 2D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_2d/shepard_interp_2d.html">
+      SHEPARD_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to scattered 2D data,
+      based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_2d/test_interp_2d.html">
+      TEST_INTERP_2D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of regular or scattered data z(x,y),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 (linear) or order 6 (quadratic) triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes contour plot of scattered data, or of data defined on an order 3 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_2d/vandermonde_interp_2d.html">
+      VANDERMONDE_INTERP_2D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to data z(x,y) of a 2D argument
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          William Press, Brian Flannery, Saul Teukolsky, William Vetterling,<br>
+          Numerical Recipes in FORTRAN: The Art of Scientific Computing,<br>
+          Third Edition,<br>
+          Cambridge University Press, 2007,<br>
+          ISBN13: 978-0-521-88068-8,<br>
+          LC: QA297.N866.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pwl_interp_2d_scattered.f90">pwl_interp_2d_scattered.f90</a>, the source code.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered.sh">pwl_interp_2d_scattered.sh</a>,
+          BASH commands to compile the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pwl_interp_2d_scattered_test.m">pwl_interp_2d_scattered_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered_test01.m">pwl_interp_2d_scattered_test01.m</a>,
+          tests R8TRIS2.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered_test02.m">pwl_interp_2d_scattered_test02.m</a>,
+          tests PWL_INTERP_2D_SCATTERED on a simple linear function.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered_test03.m">pwl_interp_2d_scattered_test03.m</a>,
+          tests PWL_INTERP_2D_SCATTERED on the TEST_INTERP_2D tests.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered_test_output.txt">pwl_interp_2d_scattered_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      List of Routines:
+    </h3>
+
+    <p>
+      <ul>
+       <li>
+        <li>
+          <a href = "diaedg.m">
+          diaedg.m</a>,
+          chooses a diagonal edge.
+        </li>
+        <li>
+          <a href = "i4_sign.m">
+          i4_sign.m</a>,
+          returns the sign of an integer.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">
+          i4mat_transpose_print.m</a>,
+          prints the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4vec_heap_d.m">
+          i4vec_heap_d.m</a>,
+          rearranges an I4VEC into a descending heap.
+        </li>
+        <li>
+          <a href = "i4vec_sort_heap_a.m">
+          i4vec_sort_heap_a.m</a>,
+          ascending heap sorts an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_sorted_unique.m">
+          i4vec_sorted_unique.m</a>,
+          returns the unique elements of a sorted I4VEC.
+        </li>
+        <li>
+          <a href = "lrline.m">
+          lrline.m</a>,
+          determines if a point lies to the left or right of a directed line.
+        </li>
+        <li>
+          <a href = "perm_check2.m">
+          perm_check2.m</a>,
+          checks a permutation.
+        </li>
+        <li>
+          <a href = "perm_inverse.m">
+          perm_inverse.m</a>,
+          finds the inverse of a permutation.
+        </li>
+        <li>
+          <a href = "pwl_interp_2d_scattered_value.m">
+          pwl_interp_2d_scattered_value.m</a>,
+          evaluates a piecewise linear interpolant to scattered 2D data.
+        </li>
+        <li>
+          <a href = "r8tris2.m">
+          r8tris2.m</a>,
+          returns the Delaunay triangulation of a set of points in 2D.
+        <li>
+          <a href = "swapec.m">
+          swapec.m</a>,
+          determines which of two diagonals of a quadrilateral should
+          to use in a mesh.
+        </li>
+        <li>
+          <a href = "triangulation_order3_print.m">
+          triangulation_order3_print.m</a>,
+          prints information about an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_search_delaunay.m">
+          triangulation_search_delaunay.m</a>,
+          finds the triangle containing a point, using a Delaunay search;
+        </li>
+        <li>
+          <a href = "vbedg.m">
+          vbedg.m</a>,
+          determines which edges are visible to a point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 October 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,479 @@
+>> hammersley_test
+05-May-2008 08:49:10
+
+HAMMERSLEY_TEST
+  MATLAB version
+
+  Test the HAMMERSLEY routines for computing elements of
+  the Hammersley quasirandom sequence.
+
+TEST005
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  Compare "classical" Hammersley sequences of length 11
+  and 16.
+
+  Note that the second sequence repeats the values of the
+  first sequence, except in the first dimension.
+
+  DIM_NUM =            4
+  N =               6
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =           -5           2           3           5
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.200000      0.500000      0.333333      0.200000  
+       2      0.400000      0.250000      0.666667      0.400000  
+       3      0.600000      0.750000      0.111111      0.600000  
+       4      0.800000      0.125000      0.444444      0.800000  
+       5      1.000000      0.625000      0.777778      0.040000  
+
+  DIM_NUM =            4
+  N =              11
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =          -10           2           3           5
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.100000      0.500000      0.333333      0.200000  
+       2      0.200000      0.250000      0.666667      0.400000  
+       3      0.300000      0.750000      0.111111      0.600000  
+       4      0.400000      0.125000      0.444444      0.800000  
+       5      0.500000      0.625000      0.777778      0.040000  
+       6      0.600000      0.375000      0.222222      0.240000  
+       7      0.700000      0.875000      0.555556      0.440000  
+       8      0.800000      0.062500      0.888889      0.640000  
+       9      0.900000      0.562500      0.037037      0.840000  
+      10      1.000000      0.312500      0.370370      0.080000  
+
+  DIM_NUM =            4
+  N =              16
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =          -15           2           3           5
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.066667      0.500000      0.333333      0.200000  
+       2      0.133333      0.250000      0.666667      0.400000  
+       3      0.200000      0.750000      0.111111      0.600000  
+       4      0.266667      0.125000      0.444444      0.800000  
+       5      0.333333      0.625000      0.777778      0.040000  
+       6      0.400000      0.375000      0.222222      0.240000  
+       7      0.466667      0.875000      0.555556      0.440000  
+       8      0.533333      0.062500      0.888889      0.640000  
+       9      0.600000      0.562500      0.037037      0.840000  
+      10      0.666667      0.312500      0.370370      0.080000  
+      11      0.733333      0.812500      0.703704      0.280000  
+      12      0.800000      0.187500      0.148148      0.480000  
+      13      0.866667      0.687500      0.481481      0.680000  
+      14      0.933333      0.437500      0.814815      0.880000  
+      15      1.000000      0.937500      0.259259      0.120000  
+
+TEST01
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  In this example, we compute the first 10 elements
+  of a "classical" Hammersley sequence, and then
+  the "last" 10 elements.
+
+  DIM_NUM =            4
+  N =              10
+  STEP =            1
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =        -1000           2           3           5
+
+    STEP   Hammersley
+
+       1      0.001000      0.500000      0.333333      0.200000  
+       2      0.002000      0.250000      0.666667      0.400000  
+       3      0.003000      0.750000      0.111111      0.600000  
+       4      0.004000      0.125000      0.444444      0.800000  
+       5      0.005000      0.625000      0.777778      0.040000  
+       6      0.006000      0.375000      0.222222      0.240000  
+       7      0.007000      0.875000      0.555556      0.440000  
+       8      0.008000      0.062500      0.888889      0.640000  
+       9      0.009000      0.562500      0.037037      0.840000  
+      10      0.010000      0.312500      0.370370      0.080000  
+
+  We can jump ahead in the sequence by changing STEP.
+
+  STEP =          991
+
+    STEP   Hammersley
+
+     991      0.991000      0.983398      0.409236      0.355520  
+     992      0.992000      0.030273      0.742570      0.555520  
+     993      0.993000      0.530273      0.187014      0.755520  
+     994      0.994000      0.280273      0.520348      0.955520  
+     995      0.995000      0.780273      0.853681      0.195520  
+     996      0.996000      0.155273      0.298125      0.395520  
+     997      0.997000      0.655273      0.631459      0.595520  
+     998      0.998000      0.405273      0.964792      0.795520  
+     999      0.999000      0.905273      0.014175      0.995520  
+    1000      1.000000      0.092773      0.347508      0.005120  
+
+TEST02
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  We are free to choose the values of BASE.
+  Any negative value indicates a sequence of
+  J/(-BASE) in that coordinate.
+
+  In this example, that is the only kind of base we use.
+
+  DIM_NUM =            4
+  N =              12
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =          -10        -100       -1000      -10000
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.100000      0.010000      0.001000      0.000100  
+       2      0.200000      0.020000      0.002000      0.000200  
+       3      0.300000      0.030000      0.003000      0.000300  
+       4      0.400000      0.040000      0.004000      0.000400  
+       5      0.500000      0.050000      0.005000      0.000500  
+       6      0.600000      0.060000      0.006000      0.000600  
+       7      0.700000      0.070000      0.007000      0.000700  
+       8      0.800000      0.080000      0.008000      0.000800  
+       9      0.900000      0.090000      0.009000      0.000900  
+      10      1.000000      0.100000      0.010000      0.001000  
+      11      0.000000      0.110000      0.011000      0.001100  
+
+TEST03
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  The SEED vector allows us to define the zeroth
+  element of the coordinate subsequence.
+  That is, if we ask for the STEP=0 entry of the
+  subsequence, we will get the SEED(I)th entry
+  of the full sequence.
+
+  In this example, we use a fixed base for simplicity.
+
+  DIM_NUM =            4
+  N =              12
+  STEP =            0
+  SEED =           10          20          30          40
+  LEAP =            1           1           1           1
+  BASE =         -100        -100        -100        -100
+
+    STEP   Hammersley
+
+       0      0.100000      0.200000      0.300000      0.400000  
+       1      0.110000      0.210000      0.310000      0.410000  
+       2      0.120000      0.220000      0.320000      0.420000  
+       3      0.130000      0.230000      0.330000      0.430000  
+       4      0.140000      0.240000      0.340000      0.440000  
+       5      0.150000      0.250000      0.350000      0.450000  
+       6      0.160000      0.260000      0.360000      0.460000  
+       7      0.170000      0.270000      0.370000      0.470000  
+       8      0.180000      0.280000      0.380000      0.480000  
+       9      0.190000      0.290000      0.390000      0.490000  
+      10      0.200000      0.300000      0.400000      0.500000  
+      11      0.210000      0.310000      0.410000      0.510000  
+
+TEST04
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  The LEAP vector allows us to define the distance
+  (in the original sequence) between successive
+  subsequence elements.
+
+  A LEAP of 1 means that, once we start sampling
+  the sequence, we are taking every element.
+  A LEAP of 2 takes every other sequence element,
+  and so on.
+
+  In this example, we use a fixed base for simplicity.
+
+  DIM_NUM =            4
+  N =              12
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =            1           2           4           8
+  BASE =         -100        -100        -100        -100
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.010000      0.020000      0.040000      0.080000  
+       2      0.020000      0.040000      0.080000      0.160000  
+       3      0.030000      0.060000      0.120000      0.240000  
+       4      0.040000      0.080000      0.160000      0.320000  
+       5      0.050000      0.100000      0.200000      0.400000  
+       6      0.060000      0.120000      0.240000      0.480000  
+       7      0.070000      0.140000      0.280000      0.560000  
+       8      0.080000      0.160000      0.320000      0.640000  
+       9      0.090000      0.180000      0.360000      0.720000  
+      10      0.100000      0.200000      0.400000      0.800000  
+      11      0.110000      0.220000      0.440000      0.880000  
+
+TEST05
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  Any entry of the Hammersley sequence can be computed
+  immediately, without having to compute the previous
+  entries.  This is also true of the entries of the
+  leaped Hammersley subsequences we generate.
+
+  In this example, we compute the first 10 elements
+  of a "classical" Hammersley sequence, and then
+  the "last" 10 elements.
+
+  The value of a component of the Hammersley sequence
+  is computed directly from its index.  But there
+  should not be much difficulty handling indices
+  that go as high as a million or a billion.
+
+  In this example, we look at high index entries,
+  attained by large values of STEP, or SEED or LEAP.
+
+  In this example, we use the default bases.
+
+
+  BIG VALUES OF STEP:
+
+
+  DIM_NUM =            4
+  N =               5
+  STEP =          100
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =         -104           2           3           5
+
+    STEP   Hammersley
+
+     100      0.961538      0.148438      0.411523      0.032000  
+     101      0.971154      0.648438      0.744856      0.232000  
+     102      0.980769      0.398438      0.189300      0.432000  
+     103      0.990385      0.898438      0.522634      0.632000  
+     104      1.000000      0.085938      0.855967      0.832000  
+
+  DIM_NUM =            4
+  N =               5
+  STEP =        10000
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =       -10004           2           3           5
+
+    STEP   Hammersley
+
+   10000      0.999600      0.034729      0.386120      0.000512  
+   10001      0.999700      0.534729      0.719453      0.200512  
+   10002      0.999800      0.284729      0.163898      0.400512  
+   10003      0.999900      0.784729      0.497231      0.600512  
+   10004      1.000000      0.159729      0.830564      0.800512  
+
+  DIM_NUM =            4
+  N =               5
+  STEP =      1000000
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =     -1000004           2           3           5
+
+    STEP   Hammersley
+
+  1000000      0.999996      0.008834      0.361066      0.000057  
+  1000001      0.999997      0.508834      0.694399      0.200057  
+  1000002      0.999998      0.258834      0.138844      0.400057  
+  1000003      0.999999      0.758834      0.472177      0.600057  
+  1000004      1.000000      0.133834      0.805511      0.800057  
+
+  DIM_NUM =            4
+  N =               5
+  STEP =    100000000
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =   -100000004           2           3           5
+
+    STEP   Hammersley
+
+  100000000      1.000000      0.002070      0.437356      0.000001  
+  100000001      1.000000      0.502070      0.770689      0.200001  
+  100000002      1.000000      0.252070      0.215134      0.400001  
+  100000003      1.000000      0.752070      0.548467      0.600001  
+  100000004      1.000000      0.127070      0.881801      0.800001  
+
+
+  BIG VALUES OF SEED:
+
+
+  DIM_NUM =            4
+  N =               5
+  STEP =            0
+  SEED =          100       10000     1000000   100000000
+  LEAP =            1           1           1           1
+  BASE =         -104           2           3           5
+
+    STEP   Hammersley
+
+       0      0.961538      0.034729      0.361066      0.000001  
+       1      0.971154      0.534729      0.694399      0.200001  
+       2      0.980769      0.284729      0.138844      0.400001  
+       3      0.990385      0.784729      0.472177      0.600001  
+       4      1.000000      0.159729      0.805511      0.800001  
+
+
+  BIG VALUES OF LEAP:
+
+
+  DIM_NUM =            4
+  N =               5
+  STEP =            0
+  SEED =            0           0           0           0
+  LEAP =          100       10000     1000000   100000000
+  BASE =         -500           2           3           5
+
+    STEP   Hammersley
+
+       0      0.000000      0.000000      0.000000      0.000000  
+       1      0.200000      0.034729      0.361066      0.000001  
+       2      0.400000      0.017365      0.685350      0.000001  
+       3      0.600000      0.049530      0.120355      0.000002  
+       4      0.800000      0.008682      0.481219      0.000002  
+
+TEST06
+  HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified externally, by calling
+  various setup routines.
+
+  In this example, we compute the first 10 elements
+  of a "classical" Hammersley sequence, and then
+  the "last" 10 elements.
+
+  DIM_NUM =            4
+  N =              10
+  STEP =            1
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =        -1000           2           3           5
+
+    STEP   Hammersley
+
+       1      0.001000      0.500000      0.333333      0.200000  
+       2      0.002000      0.250000      0.666667      0.400000  
+       3      0.003000      0.750000      0.111111      0.600000  
+       4      0.004000      0.125000      0.444444      0.800000  
+       5      0.005000      0.625000      0.777778      0.040000  
+       6      0.006000      0.375000      0.222222      0.240000  
+       7      0.007000      0.875000      0.555556      0.440000  
+       8      0.008000      0.062500      0.888889      0.640000  
+       9      0.009000      0.562500      0.037037      0.840000  
+      10      0.010000      0.312500      0.370370      0.080000  
+
+  We can jump ahead in the sequence by changing STEP.
+
+  STEP =          991
+
+    STEP   Hammersley
+
+     991      0.991000      0.983398      0.409236      0.355520  
+     992      0.992000      0.030273      0.742570      0.555520  
+     993      0.993000      0.530273      0.187014      0.755520  
+     994      0.994000      0.280273      0.520348      0.955520  
+     995      0.995000      0.780273      0.853681      0.195520  
+     996      0.996000      0.155273      0.298125      0.395520  
+     997      0.997000      0.655273      0.631459      0.595520  
+     998      0.998000      0.405273      0.964792      0.795520  
+     999      0.999000      0.905273      0.014175      0.995520  
+    1000      1.000000      0.092773      0.347508      0.005120  
+
+TEST07
+  HALHAM_WRITE writes a Halton or Hammersley
+  dataset to a file.
+
+  DIM_NUM =            4
+  N =              10
+  STEP =            0
+  SEED =            1           0           0           0
+  LEAP =            1           1           1           1
+  BASE =          -10           2           3           5
+
+    STEP   Hammersley
+
+       0      0.100000      0.000000      0.000000      0.000000  
+       1      0.200000      0.500000      0.333333      0.200000  
+       2      0.300000      0.250000      0.666667      0.400000  
+       3      0.400000      0.750000      0.111111      0.600000  
+       4      0.500000      0.125000      0.444444      0.800000  
+       5      0.600000      0.625000      0.777778      0.040000  
+       6      0.700000      0.375000      0.222222      0.240000  
+       7      0.800000      0.875000      0.555556      0.440000  
+       8      0.900000      0.062500      0.888889      0.640000  
+       9      1.000000      0.562500      0.037037      0.840000  
+
+  The data was written to "hammersley_04_00010.txt".
+
+TEST08
+  I4_TO_HAMMERSLEY_SEQUENCE computes N elements of
+  a Hammersley sequence on a single call.
+  All arguments are specified explicitly.
+
+  In this example, we demonstrate that any coordinate of
+  the generalized Hammersley sequence that is generated
+  as a fractional sequence J/|BASE(I)| will
+  "wrap around".
+
+  DIM_NUM =            4
+  N =              20
+  STEP =            1
+  SEED =            0           0           0           0
+  LEAP =            1           1           1           1
+  BASE =          -10           2           3           5
+
+    STEP   Hammersley
+
+       1      0.100000      0.500000      0.333333      0.200000  
+       2      0.200000      0.250000      0.666667      0.400000  
+       3      0.300000      0.750000      0.111111      0.600000  
+       4      0.400000      0.125000      0.444444      0.800000  
+       5      0.500000      0.625000      0.777778      0.040000  
+       6      0.600000      0.375000      0.222222      0.240000  
+       7      0.700000      0.875000      0.555556      0.440000  
+       8      0.800000      0.062500      0.888889      0.640000  
+       9      0.900000      0.562500      0.037037      0.840000  
+      10      1.000000      0.312500      0.370370      0.080000  
+      11      0.000000      0.812500      0.703704      0.280000  
+      12      0.100000      0.187500      0.148148      0.480000  
+      13      0.200000      0.687500      0.481481      0.680000  
+      14      0.300000      0.437500      0.814815      0.880000  
+      15      0.400000      0.937500      0.259259      0.120000  
+      16      0.500000      0.031250      0.592593      0.320000  
+      17      0.600000      0.531250      0.925926      0.520000  
+      18      0.700000      0.281250      0.074074      0.720000  
+      19      0.800000      0.781250      0.407407      0.920000  
+      20      0.900000      0.156250      0.740741      0.160000  
+
+HAMMERSLEY_TEST
+  Normal end of execution.
+
+05-May-2008 08:49:10
+>> 

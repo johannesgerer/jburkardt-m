@@ -1,0 +1,1483 @@
+>> cd sparse_grid_open
+>> sparse_grid_open_test
+12-Jan-2010 21:53:17
+
+SPARSE_GRID_OPEN_TEST:
+  MATLAB version
+  Tests for routines in the SPARSE_GRID_OPEN library.
+
+TEST01
+  SPARSE_GRID_OFN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from completely nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           7          17          31          49          71
+       3          15          49         111         209         351
+       4          31         129         351         769        1471
+       5          63         321        1023        2561        5503
+       6         127         769        2815        7937       18943
+       7         255        1793        7423       23297       61183
+       8         511        4097       18943       65537      187903
+       9        1023        9217       47103      178177      553983
+      10        2047       20481      114687      471041     1579007
+
+12-Jan-2010 21:53:18
+
+TEST01
+  SPARSE_GRID_OFN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from completely nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         545         799        1121        1519        2001
+       4        2561        4159        6401        9439       13441
+       5       10625       18943       31745       50623       77505
+       6       40193       78079      141569      242815      397825
+       7      141569      297727      580865     1066495     1862145
+       8      471041     1066495     2228225     4361215     8085505
+       9     1496065     3629055     8085505    16807935    32978945
+      10     4571137    11829247    28000257    61616127   127574017
+
+12-Jan-2010 21:53:54
+
+TEST011
+  SPARSE_GRID_ONN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from non nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is no nesting at all.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           4           7          10          13          16
+       2           9          26          52          87         131
+       3          16          70         190         403         736
+       4          25         155         553        1462        3206
+       5          36         301        1372        4446       11584
+       6          49         532        3024       11826       36234
+       7          64         876        6084       28314      101024
+       8          81        1365       11385       62271      256399
+       9         100        2035       20086      127699      601744
+      10         121        2926       33748      246961     1321749
+
+12-Jan-2010 21:53:55
+
+TEST011
+  SPARSE_GRID_ONN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from non nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is no nesting at all.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          19          22          25          28          31
+       2         184         246         317         397         486
+       3        1216        1870        2725        3808        5146
+       4        6190       10900       17903       27847       41461
+       5       25954       52074       96055      165844      271467
+       6       93536      212738      439019      838915     1506232
+       7      298376      765314     1760035     3711040     7290952
+       8      860639     2476905     6323270    14666470    31453182
+       9     2281045     7330180    20693590    52638760   122920642
+      10     5624944    20089444    62483534   173788174   440815036
+
+12-Jan-2010 21:54:31
+
+TEST012
+  SPARSE_GRID_OWN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from weakly nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is weak nesting,
+  that is, only a single point (0.0) is common to any
+  pair of rules.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           5          17          31          49          71
+       3           7          45         105         201         341
+       4           9          97         297         681        1341
+       5          11         181         735        2001        4543
+       6          13         305        1631        5257       13683
+       7          15         477        3305       12609       37433
+       8          17         705        6209       28017       94473
+       9          19         997       10951       58297      222563
+      10          21        1361       18319      114561      493935
+
+12-Jan-2010 21:54:32
+
+TEST012
+  SPARSE_GRID_OWN_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from weakly nested open 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is weak nesting,
+  that is, only a single point (0.0) is common to any
+  pair of rules.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         533         785        1105        1501        1981
+       4        2381        3921        6097        9061       12981
+       5        9113       16703       28577       46303       71785
+       6       30869       62735      117713      207355      347005
+       7       94601      212481      436033      833017     1501545
+       8      266489      659585     1476673     3053065     5916505
+       9      698373     1899663     4629457    10338603    21503085
+      10     1718697     5124927    13566753    32667567    72810297
+
+12-Jan-2010 21:55:41
+
+TEST013
+  SPARSE_GRID_F2S_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from Fejer Type 2 Slow 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           7          17          31          49          71
+       3           7          33          87         177         311
+       4          15          65         207         513        1071
+       5          15          97         399        1217        3023
+       6          15         161         751        2625        7503
+       7          15         161        1135        4929       16463
+       8          31         257        1759        8705       33183
+       9          31         321        2335       13697       60703
+      10          31         449        3679       21889      105887
+
+12-Jan-2010 21:55:42
+
+TEST013
+  SPARSE_GRID_F2S_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from Fejer Type 2 Slow 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          97         127         161         199         241
+       3         497         743        1057        1447        1921
+       4        1985        3375        5377        8143       11841
+       5        6497       12559       22401       37519       59745
+       6       18401       40111       79745      147343      256545
+       7       46049      112815      249217      506767      963105
+       8      104705      286303      699393     1559839     3227905
+       9      217281      663071     1787649     4362783     9809985
+      10      421185     1423327     4217601    11231007    27377857
+
+12-Jan-2010 21:56:19
+
+TEST015
+  SPARSE_GRID_GPS_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from Gauss Patterson Slow 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            1           2           3           4           5
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1           3           5           7           9          11
+       2           3           9          19          33          51
+       3           7          17          39          81         151
+       4           7          33          87         193         391
+       5           7          33         135         385         903
+       6          15          65         207         641        1743
+       7          15          97         399        1217        3343
+       8          15          97         495        1985        6223
+       9          15         161         751        2881       10063
+      10          15         161        1135        4929       17103
+
+12-Jan-2010 21:56:20
+
+TEST015
+  SPARSE_GRID_GPS_SIZE returns the number of
+  distinct points in a sparse grid made up of all 
+  product grids formed from Gauss Patterson Slow 
+  quadrature rules.
+
+  The sparse grid is the sum of all product grids
+  of order LEVEL, with
+    0 <= LEVEL <= LEVEL_MAX.
+
+  LEVEL is the sum of the levels of the 1D rules,
+  the order of the 1D rule is 2^(LEVEL+1) - 1,
+  the region is [-1,1]^DIM_NUM.
+
+  For this kind of rule, there is complete nesting,
+  that is, a sparse grid of a given level includes
+  ALL the points on grids of lower levels.
+
+   DIM:            6           7           8           9          10
+
+   LEVEL_MAX
+
+       0           1           1           1           1           1
+       1          13          15          17          19          21
+       2          73          99         129         163         201
+       3         257         407         609         871        1201
+       4         737        1303        2177        3463        5281
+       5        1889        3655        6657       11527       19105
+       6        4161        8975       17921       33679       60225
+       7        8481       19855       43137       87823      169185
+       8       16929       42031       97153      211087      434145
+       9       30689       83247      206465      477327     1041185
+      10       53729      154927      411265     1014159     2347809
+
+12-Jan-2010 21:56:59
+
+TEST02:
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 49
+
+  Grid index:
+
+     1     8     8
+     2     4     8
+     3    12     8
+     4     8     4
+     5     8    12
+     6     2     8
+     7     6     8
+     8    10     8
+     9    14     8
+    10     4     4
+    11    12     4
+    12     4    12
+    13    12    12
+    14     8     2
+    15     8     6
+    16     8    10
+    17     8    14
+    18     1     8
+    19     3     8
+    20     5     8
+    21     7     8
+    22     9     8
+    23    11     8
+    24    13     8
+    25    15     8
+    26     2     4
+    27     6     4
+    28    10     4
+    29    14     4
+    30     2    12
+    31     6    12
+    32    10    12
+    33    14    12
+    34     4     2
+    35    12     2
+    36     4     6
+    37    12     6
+    38     4    10
+    39    12    10
+    40     4    14
+    41    12    14
+    42     8     1
+    43     8     3
+    44     8     5
+    45     8     7
+    46     8     9
+    47     8    11
+    48     8    13
+    49     8    15
+
+TEST02:
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  LEVEL_MAX = 4
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 129
+
+  Grid index:
+
+     1    16    16
+     2     8    16
+     3    24    16
+     4    16     8
+     5    16    24
+     6     4    16
+     7    12    16
+     8    20    16
+     9    28    16
+    10     8     8
+    11    24     8
+    12     8    24
+    13    24    24
+    14    16     4
+    15    16    12
+    16    16    20
+    17    16    28
+    18     2    16
+    19     6    16
+    20    10    16
+    21    14    16
+    22    18    16
+    23    22    16
+    24    26    16
+    25    30    16
+    26     4     8
+    27    12     8
+    28    20     8
+    29    28     8
+    30     4    24
+    31    12    24
+    32    20    24
+    33    28    24
+    34     8     4
+    35    24     4
+    36     8    12
+    37    24    12
+    38     8    20
+    39    24    20
+    40     8    28
+    41    24    28
+    42    16     2
+    43    16     6
+    44    16    10
+    45    16    14
+    46    16    18
+    47    16    22
+    48    16    26
+    49    16    30
+    50     1    16
+    51     3    16
+    52     5    16
+    53     7    16
+    54     9    16
+    55    11    16
+    56    13    16
+    57    15    16
+    58    17    16
+    59    19    16
+    60    21    16
+    61    23    16
+    62    25    16
+    63    27    16
+    64    29    16
+    65    31    16
+    66     2     8
+    67     6     8
+    68    10     8
+    69    14     8
+    70    18     8
+    71    22     8
+    72    26     8
+    73    30     8
+    74     2    24
+    75     6    24
+    76    10    24
+    77    14    24
+    78    18    24
+    79    22    24
+    80    26    24
+    81    30    24
+    82     4     4
+    83    12     4
+    84    20     4
+    85    28     4
+    86     4    12
+    87    12    12
+    88    20    12
+    89    28    12
+    90     4    20
+    91    12    20
+    92    20    20
+    93    28    20
+    94     4    28
+    95    12    28
+    96    20    28
+    97    28    28
+    98     8     2
+    99    24     2
+   100     8     6
+   101    24     6
+   102     8    10
+   103    24    10
+   104     8    14
+   105    24    14
+   106     8    18
+   107    24    18
+   108     8    22
+   109    24    22
+   110     8    26
+   111    24    26
+   112     8    30
+   113    24    30
+   114    16     1
+   115    16     3
+   116    16     5
+   117    16     7
+   118    16     9
+   119    16    11
+   120    16    13
+   121    16    15
+   122    16    17
+   123    16    19
+   124    16    21
+   125    16    23
+   126    16    25
+   127    16    27
+   128    16    29
+   129    16    31
+
+TEST02:
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 31
+
+  Grid index:
+
+     1     4     4     4
+     2     2     4     4
+     3     6     4     4
+     4     4     2     4
+     5     4     6     4
+     6     4     4     2
+     7     4     4     6
+     8     1     4     4
+     9     3     4     4
+    10     5     4     4
+    11     7     4     4
+    12     2     2     4
+    13     6     2     4
+    14     2     6     4
+    15     6     6     4
+    16     4     1     4
+    17     4     3     4
+    18     4     5     4
+    19     4     7     4
+    20     2     4     2
+    21     6     4     2
+    22     2     4     6
+    23     6     4     6
+    24     4     2     2
+    25     4     6     2
+    26     4     2     6
+    27     4     6     6
+    28     4     4     1
+    29     4     4     3
+    30     4     4     5
+    31     4     4     7
+
+TEST02:
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 6
+
+  Number of unique points in the grid = 97
+
+  Grid index:
+
+     1     4     4     4     4     4     4
+     2     2     4     4     4     4     4
+     3     6     4     4     4     4     4
+     4     4     2     4     4     4     4
+     5     4     6     4     4     4     4
+     6     4     4     2     4     4     4
+     7     4     4     6     4     4     4
+     8     4     4     4     2     4     4
+     9     4     4     4     6     4     4
+    10     4     4     4     4     2     4
+    11     4     4     4     4     6     4
+    12     4     4     4     4     4     2
+    13     4     4     4     4     4     6
+    14     1     4     4     4     4     4
+    15     3     4     4     4     4     4
+    16     5     4     4     4     4     4
+    17     7     4     4     4     4     4
+    18     2     2     4     4     4     4
+    19     6     2     4     4     4     4
+    20     2     6     4     4     4     4
+    21     6     6     4     4     4     4
+    22     4     1     4     4     4     4
+    23     4     3     4     4     4     4
+    24     4     5     4     4     4     4
+    25     4     7     4     4     4     4
+    26     2     4     2     4     4     4
+    27     6     4     2     4     4     4
+    28     2     4     6     4     4     4
+    29     6     4     6     4     4     4
+    30     4     2     2     4     4     4
+    31     4     6     2     4     4     4
+    32     4     2     6     4     4     4
+    33     4     6     6     4     4     4
+    34     4     4     1     4     4     4
+    35     4     4     3     4     4     4
+    36     4     4     5     4     4     4
+    37     4     4     7     4     4     4
+    38     2     4     4     2     4     4
+    39     6     4     4     2     4     4
+    40     2     4     4     6     4     4
+    41     6     4     4     6     4     4
+    42     4     2     4     2     4     4
+    43     4     6     4     2     4     4
+    44     4     2     4     6     4     4
+    45     4     6     4     6     4     4
+    46     4     4     2     2     4     4
+    47     4     4     6     2     4     4
+    48     4     4     2     6     4     4
+    49     4     4     6     6     4     4
+    50     4     4     4     1     4     4
+    51     4     4     4     3     4     4
+    52     4     4     4     5     4     4
+    53     4     4     4     7     4     4
+    54     2     4     4     4     2     4
+    55     6     4     4     4     2     4
+    56     2     4     4     4     6     4
+    57     6     4     4     4     6     4
+    58     4     2     4     4     2     4
+    59     4     6     4     4     2     4
+    60     4     2     4     4     6     4
+    61     4     6     4     4     6     4
+    62     4     4     2     4     2     4
+    63     4     4     6     4     2     4
+    64     4     4     2     4     6     4
+    65     4     4     6     4     6     4
+    66     4     4     4     2     2     4
+    67     4     4     4     6     2     4
+    68     4     4     4     2     6     4
+    69     4     4     4     6     6     4
+    70     4     4     4     4     1     4
+    71     4     4     4     4     3     4
+    72     4     4     4     4     5     4
+    73     4     4     4     4     7     4
+    74     2     4     4     4     4     2
+    75     6     4     4     4     4     2
+    76     2     4     4     4     4     6
+    77     6     4     4     4     4     6
+    78     4     2     4     4     4     2
+    79     4     6     4     4     4     2
+    80     4     2     4     4     4     6
+    81     4     6     4     4     4     6
+    82     4     4     2     4     4     2
+    83     4     4     6     4     4     2
+    84     4     4     2     4     4     6
+    85     4     4     6     4     4     6
+    86     4     4     4     2     4     2
+    87     4     4     4     6     4     2
+    88     4     4     4     2     4     6
+    89     4     4     4     6     4     6
+    90     4     4     4     4     2     2
+    91     4     4     4     4     6     2
+    92     4     4     4     4     2     6
+    93     4     4     4     4     6     6
+    94     4     4     4     4     4     1
+    95     4     4     4     4     4     3
+    96     4     4     4     4     4     5
+    97     4     4     4     4     4     7
+
+TEST04:
+  Make a sparse Fejer Type 2 grid.
+
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  Now we demonstrate how to convert grid indices
+  into physical grid points.  In this case, we
+  want points on [-1,+1]^DIM_NUM.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 49
+
+  Grid index:
+
+     1     8     8
+     2     4     8
+     3    12     8
+     4     8     4
+     5     8    12
+     6     2     8
+     7     6     8
+     8    10     8
+     9    14     8
+    10     4     4
+    11    12     4
+    12     4    12
+    13    12    12
+    14     8     2
+    15     8     6
+    16     8    10
+    17     8    14
+    18     1     8
+    19     3     8
+    20     5     8
+    21     7     8
+    22     9     8
+    23    11     8
+    24    13     8
+    25    15     8
+    26     2     4
+    27     6     4
+    28    10     4
+    29    14     4
+    30     2    12
+    31     6    12
+    32    10    12
+    33    14    12
+    34     4     2
+    35    12     2
+    36     4     6
+    37    12     6
+    38     4    10
+    39    12    10
+    40     4    14
+    41    12    14
+    42     8     1
+    43     8     3
+    44     8     5
+    45     8     7
+    46     8     9
+    47     8    11
+    48     8    13
+    49     8    15
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.707107  0.000000
+     3  0.707107  0.000000
+     4  0.000000 -0.707107
+     5  0.000000  0.707107
+     6 -0.923880  0.000000
+     7 -0.382683  0.000000
+     8  0.382683  0.000000
+     9  0.923880  0.000000
+    10 -0.707107 -0.707107
+    11  0.707107 -0.707107
+    12 -0.707107  0.707107
+    13  0.707107  0.707107
+    14  0.000000 -0.923880
+    15  0.000000 -0.382683
+    16  0.000000  0.382683
+    17  0.000000  0.923880
+    18 -0.980785  0.000000
+    19 -0.831470  0.000000
+    20 -0.555570  0.000000
+    21 -0.195090  0.000000
+    22  0.195090  0.000000
+    23  0.555570  0.000000
+    24  0.831470  0.000000
+    25  0.980785  0.000000
+    26 -0.923880 -0.707107
+    27 -0.382683 -0.707107
+    28  0.382683 -0.707107
+    29  0.923880 -0.707107
+    30 -0.923880  0.707107
+    31 -0.382683  0.707107
+    32  0.382683  0.707107
+    33  0.923880  0.707107
+    34 -0.707107 -0.923880
+    35  0.707107 -0.923880
+    36 -0.707107 -0.382683
+    37  0.707107 -0.382683
+    38 -0.707107  0.382683
+    39  0.707107  0.382683
+    40 -0.707107  0.923880
+    41  0.707107  0.923880
+    42  0.000000 -0.980785
+    43  0.000000 -0.831470
+    44  0.000000 -0.555570
+    45  0.000000 -0.195090
+    46  0.000000  0.195090
+    47  0.000000  0.555570
+    48  0.000000  0.831470
+    49  0.000000  0.980785
+
+TEST05:
+  Make a sparse Gauss Patterson grid.
+
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  Now we demonstrate how to convert grid indices
+  into physical grid points.  In this case, we
+  want points on [-1,+1]^DIM_NUM.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 49
+
+  Grid index:
+
+     1     8     8
+     2     4     8
+     3    12     8
+     4     8     4
+     5     8    12
+     6     2     8
+     7     6     8
+     8    10     8
+     9    14     8
+    10     4     4
+    11    12     4
+    12     4    12
+    13    12    12
+    14     8     2
+    15     8     6
+    16     8    10
+    17     8    14
+    18     1     8
+    19     3     8
+    20     5     8
+    21     7     8
+    22     9     8
+    23    11     8
+    24    13     8
+    25    15     8
+    26     2     4
+    27     6     4
+    28    10     4
+    29    14     4
+    30     2    12
+    31     6    12
+    32    10    12
+    33    14    12
+    34     4     2
+    35    12     2
+    36     4     6
+    37    12     6
+    38     4    10
+    39    12    10
+    40     4    14
+    41    12    14
+    42     8     1
+    43     8     3
+    44     8     5
+    45     8     7
+    46     8     9
+    47     8    11
+    48     8    13
+    49     8    15
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.774597  0.000000
+     3  0.774597  0.000000
+     4  0.000000 -0.774597
+     5  0.000000  0.774597
+     6 -0.960491  0.000000
+     7 -0.434244  0.000000
+     8  0.434244  0.000000
+     9  0.960491  0.000000
+    10 -0.774597 -0.774597
+    11  0.774597 -0.774597
+    12 -0.774597  0.774597
+    13  0.774597  0.774597
+    14  0.000000 -0.960491
+    15  0.000000 -0.434244
+    16  0.000000  0.434244
+    17  0.000000  0.960491
+    18 -0.993832  0.000000
+    19 -0.888459  0.000000
+    20 -0.621103  0.000000
+    21 -0.223387  0.000000
+    22  0.223387  0.000000
+    23  0.621103  0.000000
+    24  0.888459  0.000000
+    25  0.993832  0.000000
+    26 -0.960491 -0.774597
+    27 -0.434244 -0.774597
+    28  0.434244 -0.774597
+    29  0.960491 -0.774597
+    30 -0.960491  0.774597
+    31 -0.434244  0.774597
+    32  0.434244  0.774597
+    33  0.960491  0.774597
+    34 -0.774597 -0.960491
+    35  0.774597 -0.960491
+    36 -0.774597 -0.434244
+    37  0.774597 -0.434244
+    38 -0.774597  0.434244
+    39  0.774597  0.434244
+    40 -0.774597  0.960491
+    41  0.774597  0.960491
+    42  0.000000 -0.993832
+    43  0.000000 -0.888459
+    44  0.000000 -0.621103
+    45  0.000000 -0.223387
+    46  0.000000  0.223387
+    47  0.000000  0.621103
+    48  0.000000  0.888459
+    49  0.000000  0.993832
+
+TEST06:
+  Make a sparse Newton Cotes Open grid.
+
+  LEVELS_OPEN_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2^(LEVEL+1) - 1.
+
+  Now we demonstrate how to convert grid indices
+  into physical grid points.  In this case, we
+  want points on [0,+1]^DIM_NUM.
+
+  LEVEL_MAX = 4
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 129
+
+  Grid index:
+
+     1    16    16
+     2     8    16
+     3    24    16
+     4    16     8
+     5    16    24
+     6     4    16
+     7    12    16
+     8    20    16
+     9    28    16
+    10     8     8
+    11    24     8
+    12     8    24
+    13    24    24
+    14    16     4
+    15    16    12
+    16    16    20
+    17    16    28
+    18     2    16
+    19     6    16
+    20    10    16
+    21    14    16
+    22    18    16
+    23    22    16
+    24    26    16
+    25    30    16
+    26     4     8
+    27    12     8
+    28    20     8
+    29    28     8
+    30     4    24
+    31    12    24
+    32    20    24
+    33    28    24
+    34     8     4
+    35    24     4
+    36     8    12
+    37    24    12
+    38     8    20
+    39    24    20
+    40     8    28
+    41    24    28
+    42    16     2
+    43    16     6
+    44    16    10
+    45    16    14
+    46    16    18
+    47    16    22
+    48    16    26
+    49    16    30
+    50     1    16
+    51     3    16
+    52     5    16
+    53     7    16
+    54     9    16
+    55    11    16
+    56    13    16
+    57    15    16
+    58    17    16
+    59    19    16
+    60    21    16
+    61    23    16
+    62    25    16
+    63    27    16
+    64    29    16
+    65    31    16
+    66     2     8
+    67     6     8
+    68    10     8
+    69    14     8
+    70    18     8
+    71    22     8
+    72    26     8
+    73    30     8
+    74     2    24
+    75     6    24
+    76    10    24
+    77    14    24
+    78    18    24
+    79    22    24
+    80    26    24
+    81    30    24
+    82     4     4
+    83    12     4
+    84    20     4
+    85    28     4
+    86     4    12
+    87    12    12
+    88    20    12
+    89    28    12
+    90     4    20
+    91    12    20
+    92    20    20
+    93    28    20
+    94     4    28
+    95    12    28
+    96    20    28
+    97    28    28
+    98     8     2
+    99    24     2
+   100     8     6
+   101    24     6
+   102     8    10
+   103    24    10
+   104     8    14
+   105    24    14
+   106     8    18
+   107    24    18
+   108     8    22
+   109    24    22
+   110     8    26
+   111    24    26
+   112     8    30
+   113    24    30
+   114    16     1
+   115    16     3
+   116    16     5
+   117    16     7
+   118    16     9
+   119    16    11
+   120    16    13
+   121    16    15
+   122    16    17
+   123    16    19
+   124    16    21
+   125    16    23
+   126    16    25
+   127    16    27
+   128    16    29
+   129    16    31
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.500000  0.000000
+     3  0.500000  0.000000
+     4  0.000000 -0.500000
+     5  0.000000  0.500000
+     6 -0.750000  0.000000
+     7 -0.250000  0.000000
+     8  0.250000  0.000000
+     9  0.750000  0.000000
+    10 -0.500000 -0.500000
+    11  0.500000 -0.500000
+    12 -0.500000  0.500000
+    13  0.500000  0.500000
+    14  0.000000 -0.750000
+    15  0.000000 -0.250000
+    16  0.000000  0.250000
+    17  0.000000  0.750000
+    18 -0.875000  0.000000
+    19 -0.625000  0.000000
+    20 -0.375000  0.000000
+    21 -0.125000  0.000000
+    22  0.125000  0.000000
+    23  0.375000  0.000000
+    24  0.625000  0.000000
+    25  0.875000  0.000000
+    26 -0.750000 -0.500000
+    27 -0.250000 -0.500000
+    28  0.250000 -0.500000
+    29  0.750000 -0.500000
+    30 -0.750000  0.500000
+    31 -0.250000  0.500000
+    32  0.250000  0.500000
+    33  0.750000  0.500000
+    34 -0.500000 -0.750000
+    35  0.500000 -0.750000
+    36 -0.500000 -0.250000
+    37  0.500000 -0.250000
+    38 -0.500000  0.250000
+    39  0.500000  0.250000
+    40 -0.500000  0.750000
+    41  0.500000  0.750000
+    42  0.000000 -0.875000
+    43  0.000000 -0.625000
+    44  0.000000 -0.375000
+    45  0.000000 -0.125000
+    46  0.000000  0.125000
+    47  0.000000  0.375000
+    48  0.000000  0.625000
+    49  0.000000  0.875000
+    50 -0.937500  0.000000
+    51 -0.812500  0.000000
+    52 -0.687500  0.000000
+    53 -0.562500  0.000000
+    54 -0.437500  0.000000
+    55 -0.312500  0.000000
+    56 -0.187500  0.000000
+    57 -0.062500  0.000000
+    58  0.062500  0.000000
+    59  0.187500  0.000000
+    60  0.312500  0.000000
+    61  0.437500  0.000000
+    62  0.562500  0.000000
+    63  0.687500  0.000000
+    64  0.812500  0.000000
+    65  0.937500  0.000000
+    66 -0.875000 -0.500000
+    67 -0.625000 -0.500000
+    68 -0.375000 -0.500000
+    69 -0.125000 -0.500000
+    70  0.125000 -0.500000
+    71  0.375000 -0.500000
+    72  0.625000 -0.500000
+    73  0.875000 -0.500000
+    74 -0.875000  0.500000
+    75 -0.625000  0.500000
+    76 -0.375000  0.500000
+    77 -0.125000  0.500000
+    78  0.125000  0.500000
+    79  0.375000  0.500000
+    80  0.625000  0.500000
+    81  0.875000  0.500000
+    82 -0.750000 -0.750000
+    83 -0.250000 -0.750000
+    84  0.250000 -0.750000
+    85  0.750000 -0.750000
+    86 -0.750000 -0.250000
+    87 -0.250000 -0.250000
+    88  0.250000 -0.250000
+    89  0.750000 -0.250000
+    90 -0.750000  0.250000
+    91 -0.250000  0.250000
+    92  0.250000  0.250000
+    93  0.750000  0.250000
+    94 -0.750000  0.750000
+    95 -0.250000  0.750000
+    96  0.250000  0.750000
+    97  0.750000  0.750000
+    98 -0.500000 -0.875000
+    99  0.500000 -0.875000
+   100 -0.500000 -0.625000
+   101  0.500000 -0.625000
+   102 -0.500000 -0.375000
+   103  0.500000 -0.375000
+   104 -0.500000 -0.125000
+   105  0.500000 -0.125000
+   106 -0.500000  0.125000
+   107  0.500000  0.125000
+   108 -0.500000  0.375000
+   109  0.500000  0.375000
+   110 -0.500000  0.625000
+   111  0.500000  0.625000
+   112 -0.500000  0.875000
+   113  0.500000  0.875000
+   114  0.000000 -0.937500
+   115  0.000000 -0.812500
+   116  0.000000 -0.687500
+   117  0.000000 -0.562500
+   118  0.000000 -0.437500
+   119  0.000000 -0.312500
+   120  0.000000 -0.187500
+   121  0.000000 -0.062500
+   122  0.000000  0.062500
+   123  0.000000  0.187500
+   124  0.000000  0.312500
+   125  0.000000  0.437500
+   126  0.000000  0.562500
+   127  0.000000  0.687500
+   128  0.000000  0.812500
+   129  0.000000  0.937500
+
+TEST08:
+  Make sparse grids and write to files.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 49
+
+  Grid index:
+
+     1     8     8
+     2     4     8
+     3    12     8
+     4     8     4
+     5     8    12
+     6     2     8
+     7     6     8
+     8    10     8
+     9    14     8
+    10     4     4
+    11    12     4
+    12     4    12
+    13    12    12
+    14     8     2
+    15     8     6
+    16     8    10
+    17     8    14
+    18     1     8
+    19     3     8
+    20     5     8
+    21     7     8
+    22     9     8
+    23    11     8
+    24    13     8
+    25    15     8
+    26     2     4
+    27     6     4
+    28    10     4
+    29    14     4
+    30     2    12
+    31     6    12
+    32    10    12
+    33    14    12
+    34     4     2
+    35    12     2
+    36     4     6
+    37    12     6
+    38     4    10
+    39    12    10
+    40     4    14
+    41    12    14
+    42     8     1
+    43     8     3
+    44     8     5
+    45     8     7
+    46     8     9
+    47     8    11
+    48     8    13
+    49     8    15
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.707107  0.000000
+     3  0.707107  0.000000
+     4  0.000000 -0.707107
+     5  0.000000  0.707107
+     6 -0.923880  0.000000
+     7 -0.382683  0.000000
+     8  0.382683  0.000000
+     9  0.923880  0.000000
+    10 -0.707107 -0.707107
+    11  0.707107 -0.707107
+    12 -0.707107  0.707107
+    13  0.707107  0.707107
+    14  0.000000 -0.923880
+    15  0.000000 -0.382683
+    16  0.000000  0.382683
+    17  0.000000  0.923880
+    18 -0.980785  0.000000
+    19 -0.831470  0.000000
+    20 -0.555570  0.000000
+    21 -0.195090  0.000000
+    22  0.195090  0.000000
+    23  0.555570  0.000000
+    24  0.831470  0.000000
+    25  0.980785  0.000000
+    26 -0.923880 -0.707107
+    27 -0.382683 -0.707107
+    28  0.382683 -0.707107
+    29  0.923880 -0.707107
+    30 -0.923880  0.707107
+    31 -0.382683  0.707107
+    32  0.382683  0.707107
+    33  0.923880  0.707107
+    34 -0.707107 -0.923880
+    35  0.707107 -0.923880
+    36 -0.707107 -0.382683
+    37  0.707107 -0.382683
+    38 -0.707107  0.382683
+    39  0.707107  0.382683
+    40 -0.707107  0.923880
+    41  0.707107  0.923880
+    42  0.000000 -0.980785
+    43  0.000000 -0.831470
+    44  0.000000 -0.555570
+    45  0.000000 -0.195090
+    46  0.000000  0.195090
+    47  0.000000  0.555570
+    48  0.000000  0.831470
+    49  0.000000  0.980785
+
+  Wrote file "f2_d2_level3.txt".
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.774597  0.000000
+     3  0.774597  0.000000
+     4  0.000000 -0.774597
+     5  0.000000  0.774597
+     6 -0.960491  0.000000
+     7 -0.434244  0.000000
+     8  0.434244  0.000000
+     9  0.960491  0.000000
+    10 -0.774597 -0.774597
+    11  0.774597 -0.774597
+    12 -0.774597  0.774597
+    13  0.774597  0.774597
+    14  0.000000 -0.960491
+    15  0.000000 -0.434244
+    16  0.000000  0.434244
+    17  0.000000  0.960491
+    18 -0.993832  0.000000
+    19 -0.888459  0.000000
+    20 -0.621103  0.000000
+    21 -0.223387  0.000000
+    22  0.223387  0.000000
+    23  0.621103  0.000000
+    24  0.888459  0.000000
+    25  0.993832  0.000000
+    26 -0.960491 -0.774597
+    27 -0.434244 -0.774597
+    28  0.434244 -0.774597
+    29  0.960491 -0.774597
+    30 -0.960491  0.774597
+    31 -0.434244  0.774597
+    32  0.434244  0.774597
+    33  0.960491  0.774597
+    34 -0.774597 -0.960491
+    35  0.774597 -0.960491
+    36 -0.774597 -0.434244
+    37  0.774597 -0.434244
+    38 -0.774597  0.434244
+    39  0.774597  0.434244
+    40 -0.774597  0.960491
+    41  0.774597  0.960491
+    42  0.000000 -0.993832
+    43  0.000000 -0.888459
+    44  0.000000 -0.621103
+    45  0.000000 -0.223387
+    46  0.000000  0.223387
+    47  0.000000  0.621103
+    48  0.000000  0.888459
+    49  0.000000  0.993832
+
+  Wrote file "gp_d2_level3.txt".
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -0.500000  0.000000
+     3  0.500000  0.000000
+     4  0.000000 -0.500000
+     5  0.000000  0.500000
+     6 -0.750000  0.000000
+     7 -0.250000  0.000000
+     8  0.250000  0.000000
+     9  0.750000  0.000000
+    10 -0.500000 -0.500000
+    11  0.500000 -0.500000
+    12 -0.500000  0.500000
+    13  0.500000  0.500000
+    14  0.000000 -0.750000
+    15  0.000000 -0.250000
+    16  0.000000  0.250000
+    17  0.000000  0.750000
+    18 -0.875000  0.000000
+    19 -0.625000  0.000000
+    20 -0.375000  0.000000
+    21 -0.125000  0.000000
+    22  0.125000  0.000000
+    23  0.375000  0.000000
+    24  0.625000  0.000000
+    25  0.875000  0.000000
+    26 -0.750000 -0.500000
+    27 -0.250000 -0.500000
+    28  0.250000 -0.500000
+    29  0.750000 -0.500000
+    30 -0.750000  0.500000
+    31 -0.250000  0.500000
+    32  0.250000  0.500000
+    33  0.750000  0.500000
+    34 -0.500000 -0.750000
+    35  0.500000 -0.750000
+    36 -0.500000 -0.250000
+    37  0.500000 -0.250000
+    38 -0.500000  0.250000
+    39  0.500000  0.250000
+    40 -0.500000  0.750000
+    41  0.500000  0.750000
+    42  0.000000 -0.875000
+    43  0.000000 -0.625000
+    44  0.000000 -0.375000
+    45  0.000000 -0.125000
+    46  0.000000  0.125000
+    47  0.000000  0.375000
+    48  0.000000  0.625000
+    49  0.000000  0.875000
+
+  Wrote file "nco_d2_level3.txt".
+
+SPARSE_GRID_OPEN_TEST:
+  Normal end of execution.
+
+12-Jan-2010 21:57:00
+>> 

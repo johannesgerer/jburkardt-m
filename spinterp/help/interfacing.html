@@ -1,0 +1,230 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Interfacing concepts (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="performance.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="ode.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Interfacing concepts</h1>
+		<p>Applying the <code>spvals</code> method to construct interpolants sometimes requires a small interface function. In this section, we show the most important categories of Matlab function headers and (if necessary) how to design an appropriate interface function for them. The following tables shows the basic function header types discussed here. Combinations of those are of course also possible and can be derived from the treated cases. In the tables, the objective interpolation variables (all must be real-valued scalars) are denoted by <code>x<sub>1</sub>,...,x<sub>n</sub></code>. Examples of the presented cases are provided below.</p>
+		<h2>Interface function NOT required</h2>
+		<div align="center">
+		  <table class="properties" border="1" cellspacing="0" cellpadding="2">
+		    <tr>
+          <th class="properties"><b>header</b></th>
+          <th class="properties"><b>variable types</b></th>
+				</tr>
+				<tr class="properties">
+				  <td><a href="#1"><code>out = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>)</code></a></td>
+          <td><code>x<sub>1</sub>, ..., x<sub>n</sub></code> are real scalars</td>
+				</tr>
+				<tr class="properties">
+				  <td><a href="#2"><code>out = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></td>
+          <td><code>x<sub>1</sub>, ..., x<sub>n</sub></code> are real scalars, <code>p<sub>1</sub>, ..., p<sub>m</sub></code> are parameters of arbitrary type (double array, cell array, structure, etc.)</td>
+				</tr>
+				<tr class="properties">
+				  <td><a href="#3"><code>out = fun(x<sub>1</sub>, ..., x<sub>i<sub>1</sub></sub>, p<sub>1</sub>, ..., p<sub>j<sub>1</sub></sub>, x<sub>i<sub>1</sub>+1</sub>, ..., x<sub>i<sub>2</sub></sub>, p<sub>i<sub>1</sub>+1</sub>, ..., p<sub>j<sub>2</sub></sub>, ...)</code></a></td>
+          <td><code>x<sub>1</sub>, ..., x<sub>n</sub></code> are real scalars, <code>p<sub>1</sub>, ..., p<sub>m</sub></code> are parameters of arbitrary type (double array, cell array, structure, etc.)</td>
+				</tr>
+				<tr class="properties">
+				  <td><a href="#4"><code>out = fun(v)</code></a></td>
+          <td><code>v</code> is a row or column vector with the entries <code>x<sub>1</sub>, ..., x<sub>n</sub></code></td>
+				</tr>				  
+				<tr class="properties">
+				  <td><a href="#5"><code>out = fun(v, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></td>
+          <td><code>v</code> is a row or column vector with the real scalar entries <code>x<sub>1</sub>, ..., x<sub>n</sub></code>, and <code>p<sub>1</sub>, ..., p<sub>m</sub></code> are parameters of arbitrary type (double array, cell array, structure, etc.)</td>
+				</tr>				  
+				<tr class="properties">
+				  <td><a href="#6"><code>[out<sub>1</sub>, out<sub>2</sub>, ..., out<sub>n</sub>] = fun(...)</code></a></td>
+          <td><code>out<sub>1</sub>, ..., out<sub>n</sub></code> are real scalar output parameters, input parameters the same as one of the above</td>
+				</tr>				  
+				<tr class="properties">
+				  <td><a href="#7"><code>varargout = fun(...)</code></a></td>
+          <td><code>varargout</code> is a cell array of real scalar output parameters <code>out<sub>1</sub>, ..., out<sub>n</sub></code>, input parameters the same as one of the above</td>
+				</tr>				  
+		  </table>
+		</div>
+		<h2>Interface function REQUIRED (only some exemplary cases)</h2>
+		<div align="center">
+		  <table class="properties" border="1" cellspacing="0" cellpadding="2">
+		    <tr>
+          <th class="properties"><b>header</b></th>
+          <th class="properties"><b>variable types</b></th>
+				</tr>
+
+				<tr class="properties">
+				  <td><a href="#8"><code>out = fun(A, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></td>
+          <td><code>A</code> is a matrix where some of its entries are the objective interpolation parameters <code>x<sub>1</sub>, ..., x<sub>n</sub></code>, and <code>p<sub>1</sub>, ..., p<sub>m</sub></code> are parameters of arbitrary type as above</td>
+				</tr>
+				<tr class="properties">
+				  <td><a href="#9"><code>v<sub>out</sub> = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>)</code></a></td>
+          <td><code>v<sub>out</sub></code> is a row or column vector with real scalar outputs</td>
+				</tr>
+		  </table>
+		</div>
+		     <h2>Examples</h2>
+         <h3>Type 1: <a name="1"><code>out = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun1.m'</span>)
+</pre><pre class="codeoutput">
+function y = fun1(x1, x2)
+y = x1 .* x2;    % Use '.' before any '^', '*' or '/' to enable
+y = y.^2;        % vectorized evaluation of expressions
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+range   = [0,2; 0,2];
+z = spvals(@fun1, 2, range, options);
+</pre><br><h3>Type 2: <a name="2"><code>out = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub>, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun2.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun2(x1, x2, c, params)
+y = c .* (params.p1 .* x1 + length(params.p2) .* x2);
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+range = [];   <span class="comment">% use default range [0,1]^d</span>
+c = 2;
+params = struct(<span class="string">'p1'</span>, 3, <span class="string">'p2'</span>, <span class="string">'hello'</span>);
+z = spvals(@fun2, 2, range, options, c, params);
+</pre><br><h3>Type 3: <a name="3"><code>out = fun(x<sub>1</sub>, ..., x<sub>i<sub>1</sub></sub>, p<sub>1</sub>, ..., p<sub>j<sub>1</sub></sub>, x<sub>i<sub>1</sub>+1</sub>, ..., x<sub>i<sub>2</sub></sub>, p<sub>i<sub>1</sub>+1</sub>, ..., p<sub>j<sub>2</sub></sub>, ...)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun3.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun3(p1, x1, p2, x2)
+y = p1 .* x1 + p2 .* x2;
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'VariablePositions'</span>, [2 4], <span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+range = [0,1; -1,2];
+p1 = 2; p2 = 3;
+z = spvals(@fun3, 2, range, options, p1, p2);
+</pre><br><h3>Type 4: <a name="4"><code>out = fun(v)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun4.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun4(x)
+y = prod(x);
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>);
+range = [0 1; 1 2; 2 3; 3 4; 4 5];
+z = spvals(@fun4, 5, range, options);
+</pre><br><h3>Type 5: <a name="5"><code>out = fun(v, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun5.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun5(x,p);
+y = x(:)'*p;   % Compute dot product
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>);
+range = []; <span class="comment">% use default range [0,1]^d</span>
+p = rand(3,1);
+z = spvals(@fun5, 3, range, options, p);
+</pre><br><h3>Type 6: <a name="6"></a><code>[out<sub>1</sub>, out<sub>2</sub>, ..., out<sub>n</sub>] = fun(...)</code></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun6.m'</span>);
+</pre><pre class="codeoutput">
+function [y1, y2] = fun6(x1, x2);
+y1 = 2*x1 + 3*x2;
+y2 = 4*x1 - 1*x2;
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">options = spset(<span class="string">'NumberOfOutputs'</span>, 2);
+range = []; <span class="comment">% use default range [0,1]^d</span>
+z = spvals(@fun6, 2, range, options);
+</pre><p>To compute interpolated values of functions with multiple output parameters, see the help page <a href="multiple_outputs.html">multiple output arguments</a>.
+         </p><br>
+         <h3>Type 7: <a name="7"><code>varargout = fun(...)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun7.m'</span>);
+</pre><pre class="codeoutput">
+function varargout = fun7(x1,x2,nout);
+for k = 1:nout
+  varargout{k} = x1.^k + k.*x2;
+end
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">nout = 4;
+options = spset(<span class="string">'NumberOfOutputs'</span>, nout, <span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+range = []; <span class="comment">% use default range [0,1]^d</span>
+z = spvals(@fun7, 2, range, options, nout);
+</pre><p>To compute interpolated values of functions with multiple output parameters, see the help page <a href="multiple_outputs.html">multiple output arguments</a>.
+         </p>
+         <br>
+         <h3>Type 8: <a name="8"><code>out = fun(A, p<sub>1</sub>, p<sub>2</sub>, ..., p<sub>m</sub>)</code></a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun8.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun8(A, f);
+y = A\f;
+</pre><p>Assume that the diagonal entries of A a_11, a_22, ..., a_nn vary in some given range. An interpolant of fun8 is sought for
+            these varying diagonal entries of A:
+         </p><pre class="codeinput">d = 3;
+A = magic(d); f = ones(d,1);
+range = [diag(A)-0.5 diag(A)+0.5];
+nout = d;
+options = spset(<span class="string">'NumberOfOutputs'</span>, nout, <span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>);
+z = spvals(@interface_fun8, d, range, options, A, f);
+</pre><p>The interface function <tt>interface_fun8</tt> looks like this:
+         </p><pre class="codeinput">type(<span class="string">'interface_fun8.m'</span>);
+</pre><pre class="codeoutput">
+function varargout = interface_fun8(a, A, f);
+% Interface function to fun8
+
+% Write the modifiable entries into A
+for k = 1:length(a);
+  A(k,k) = a(k);
+end
+
+% Call objective function fun8
+y = fun8(A,f);
+
+% Put the results in cell array (outputs must be cell row vector 
+% of scalars to be treated by spvals)
+varargout = num2cell(y)';
+</pre><p>Note that the original output, a column vector from the solution of the linear equation system is transformed into a cell array
+            with a single row to match one of the admissible output variants. The original input is also modified to contain the interpolation
+            parameters as a vector, which is permitted by <code>spvals</code>. The original Matrix as well as the right-hand side f are passed as additional
+            parameters.
+         </p>
+         <p>To compute interpolated values of functions with multiple output parameters, see the help page <a href="multiple_outputs.html">multiple output arguments</a>.
+         </p>
+         <br>
+         <h3>Type 9: <a name="9"><code>v<sub>out</sub> = fun(x<sub>1</sub>, x<sub>2</sub>, ..., x<sub>n</sub></code>)</a></h3>
+         <p>Objective function:</p><pre class="codeinput">type(<span class="string">'fun9.m'</span>);
+</pre><pre class="codeoutput">
+function y = fun9(x1, x2)
+y = [x2 .* cos(x1); ...
+     x2 .* sin(x1); ...
+     x2];
+</pre><p>Assume that the output of <tt>fun9</tt> is not a list of real scalars or a varargout cell array. In this case, a conversion of the output is required. The interface
+            function uses Matlab's <tt>num2cell</tt> function to achieve this.
+         </p><pre class="codeinput">type(<span class="string">'interface_fun9.m'</span>);
+</pre><pre class="codeoutput">
+function varargout = interface_fun9(x1, x2);
+y = fun9(x1, x2);
+varargout = num2cell(y)';
+</pre><p>Example for call to <tt>spvals</tt>:
+         </p><pre class="codeinput">nout = 3;
+options = spset(<span class="string">'NumberOfOutputs'</span>, nout);
+z = spvals(@interface_fun9, 2, [], options);
+</pre><p>To compute interpolated values of functions with multiple output parameters, see the help page <a href="multiple_outputs.html">multiple output arguments</a>.
+         </p>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="performance.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Optimizing performance</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Approximating ODEs</td>
+        <td width="20" align="right"><a href="ode.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

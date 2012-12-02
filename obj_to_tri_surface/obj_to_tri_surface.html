@@ -1,0 +1,256 @@
+<html>
+
+  <head>
+    <title>
+      OBJ_TO_TRI_SURFACE - Convert data from OBJ to TRI_SURFACE
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      OBJ_TO_TRI_SURFACE <br> Convert data from OBJ to TRI_SURFACE format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>OBJ_TO_TRI_SURFACE</b>
+      is a MATLAB program which
+      reads data from an <b>OBJ</b> file describing a
+      polygonal mesh of a 3D surface, and converts it to a pair of arrays
+      describing a triangular mesh or <b>TRI_SURFACE</b>.
+    </p>
+
+    <p>
+      Since the faces in an OBJ file can be of any polygonal order,
+      while the faces in a TRI_SURFACE file must be triangular, the program
+      automatically uses a crude method to break up higher order faces
+      from the OBJ file into triangles.
+    </p>
+
+    <p>
+      An OBJ file is format for storing a description of the surface of
+      a 3D object, composed of triangles or higher degree polygons.
+    </p>
+
+    <p>
+      A <b>TRI_SURFACE</b> or triangulated mesh surface, is described by a
+      pair of arrays:
+      <ul>
+        <li>
+          a <b>node coordinate</b> array containing the 3D coordinates of nodes;
+        </li>
+        <li>
+          an <b>element  node</b> array containing triples of the indices
+          of the nodes used to form each triangle;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/obj/obj.html">
+      OBJ</a>,
+      a data directory which
+      contains a description and examples of OBJ files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/obj_display/obj_display.html">
+      OBJ_DISPLAY</a>,
+      a MATLAB program which
+      reads an OBJ file and displays it.
+    </p>
+
+    <p>
+      <a href = "../../m_src/obj_io/obj_io.html">
+      OBJ_IO</a>,
+      a MATLAB library which
+      reads or writes an OBJ file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ply_to_tri_surface/ply_to_tri_surface.html">
+      PLY_TO_TRI_SURFACE</a>,
+      a MATLAB program which
+      reads a PLY file and extracts
+      the surface mesh data as a
+      <a href = "../../data/tri_surface/tri_surface.html">TRI_SURFACE</a> dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_to_tri_surface/stla_to_tri_surface.html">
+      STLA_TO_TRI_SURFACE</a>,
+      a MATLAB program which
+      reads an ASCII STL file and extracts
+      the surface mesh data as a TRI_SURFACE dataset.
+    </p>
+
+    <p>
+      <a href = "../../data/tri_surface/tri_surface.html">
+      TRI_SURFACE</a>,
+      a data directory which
+      contains examples of <b>TRI_SURFACE</b> files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      displays a <b>TRI_SURFACE</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_io/tri_surface_io.html">
+      TRI_SURFACE_IO</a>,
+      a MATLAB library which
+      reads and writes the 3D graphics information
+      in a <a href = "../../data/tri_surface/tri_surface.html">TRI_SURFACE</a> file;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_to_obj/tri_surface_to_obj.html">
+      TRI_SURFACE_TO_OBJ</a>,
+      a MATLAB program which
+      reads a
+      <a href = "../data/tri_surface/tri_surface.html">TRI_SURFACE</a> dataset and extracts
+      the surface mesh data as an OBJ file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_to_ply/tri_surface_to_ply.html">
+      TRI_SURFACE_TO_PLY</a>,
+      a MATLAB program which
+      converts TRI_SURFACE data to
+      data suitable for storage as a PLY file.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "obj_to_tri_surface.m">obj_to_tri_surface.m</a>
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CESSNA</b> is a Cessna airplane.  The OBJ version is drawn using
+      3745 nodes and 3897 faces.  The faces range in order from 3 (triangles)
+      up to 42!  OBJ_TO_TRI_SURFACE converts this to
+      3745 nodes and 7446 triangles before writing it out as a TRI_SURFACE file.
+      <ul>
+        <li>
+          <a href = "cessna.obj">cessna.obj</a>
+          the OBJ file.
+        </li>
+        <li>
+          <a href = "cessna_nodes.txt">cessna_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "cessna_elements.txt">cessna_elements.txt</a>
+          the TRI_SURFACE element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CUBE</b> is a cube using 12 triangular faces and 36 nodes.
+      <ul>
+        <li>
+          <a href = "cube.obj">cube.obj</a>
+          the OBJ file.
+        </li>
+        <li>
+          <a href = "cube_nodes.txt">cube_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "cube_elements.txt">cube_elements.txt</a>
+          the TRI_SURFACE element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HUMANOID</b> is a humanoid shape.  The OBJ version is drawn using
+      64 nodes and 48 quadrilaterals.  OBJ_TO_TRI_SURFACE converts this to
+      64 nodes and 96 triangles before writing it out as a TRI_SURFACE file.
+      <ul>
+        <li>
+          <a href = "humanoid.obj">humanoid.obj</a>
+          the OBJ file.
+        </li>
+        <li>
+          <a href = "humanoid_nodes.txt">humanoid_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "humanoid_elements.txt">humanoid_elements.txt</a>
+          the TRI_SURFACE element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SHUTTLE</b> is the space shuttle.  The OBJ version is drawn using
+      310 nodes and 393 faces, with 170 triangles and 223 quadrilaterals.
+      OBJ_TO_TRI_SURFACE converts this to 310 nodes and 616 triangles
+      before writing it out as a TRI_SURFACE file.
+      <ul>
+        <li>
+          <a href = "shuttle.obj">shuttle.obj</a>
+          the OBJ file.
+        </li>
+        <li>
+          <a href = "shuttle_nodes.txt">shuttle_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "shuttle_elements.txt">shuttle_elements.txt</a>
+          the TRI_SURFACE element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 December 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

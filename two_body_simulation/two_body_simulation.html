@@ -1,0 +1,303 @@
+<html>
+
+  <head>
+    <title>
+      TWO_BODY_SIMULATION - Planar Two Body Problem Simulation
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TWO_BODY_SIMULATION <br> Planar Two Body Problem Simulation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TWO_BODY_SIMULATION</b>
+      is a MATLAB library which
+      simulates the solution of the planar two body problem.
+    </p>
+
+    <p>
+      Two bodies, regarded as point masses, are constrained to lie in a plane.
+      The masses of each body are given, as are the positions and velocities
+      at a starting time T = 0.  The bodies move in accordance with the gravitational
+      force between them.  One body is assume to be much more massive than the other.
+      Therefore, the common motion of the two bodies about their center of mass
+      can be approximated by assuming that the large body remains fixed.
+    </p>
+
+    <p>
+      Under these assumptions, Newton's equations for (x(t),y(t)), the positition 
+      of the lighter body with respect to the heavy body at (0,0), can be written as:
+      <pre>
+        r(t) = sqrt ( x(t)^2 + y(t)^2 )
+        x''(t) = - x(t) / r^3
+        y''(t) = - y(t) / r^3
+      </pre>
+    </p>
+
+    <p>
+      These two second order equations can be rewritten as a system of four
+      first order equations using the variable u = [ x(t), x'(t), y(t), y'(t) ],
+      resulting in the equations:
+      <pre>
+        r = sqrt ( u(1)^2 + u(3)^2 )
+        u'(1) =   u(2)
+        u'(2) = - u(1) / r^3
+        u'(3) =   u(4)
+        u'(4) = - u(3) / r^3
+      </pre>
+    </p>
+
+    <p>
+      By specifying some initial condition for u, the system can then be
+      integrated in time using a standard ODE solver.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TWO_BODY_SIMULATION</b> is available in
+      <a href = "../../m_src/two_body_simulation/two_body_simulation.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/brownian_motion_simulation/brownian_motion_simulation.html">
+      BROWNIAN_MOTION_SIMULATION</a>,
+      a MATLAB program which
+      simulates Brownian motion in an M-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dice_simulation/dice_simulation.html">
+      DICE_SIMULATION</a>,
+      a MATLAB program which
+      simulates N tosses of M dice, making a histogram of the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/duel_simulation/duel_simulation.html">
+      DUEL_SIMULATION</a>,
+      a MATLAB program which
+      simulates N repetitions of a duel between two players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gamblers_ruin_simulation/gamblers_ruin_simulation.html">
+      GAMBLERS_RUIN_SIMULATION</a>,
+      a MATLAB program which
+      simulates the game of gambler's ruin.
+    </p>
+
+    <p>
+      <a href = "../../m_src/high_card_simulation/high_card_simulation.html">
+      HIGH_CARD_SIMULATION</a>,
+      a MATLAB program which
+      simulates a situation in which you see the cards in a deck one by one,
+      and must select the one you think is the highest and stop. 
+    </p>
+
+    <p>
+      <a href = "../../m_src/ising_2d_simulation/ising_2d_simulation.html">
+      ISING_2D_SIMULATION</a>,
+      a MATLAB program which
+      carries out a Monte Carlo simulation of an Ising model,
+      a 2D array of positive and negative charges,
+      each of which is likely to "flip" to be in agreement with neighbors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lorenz_simulation/lorenz_simulation.html">
+      LORENZ_SIMULATION</a>,
+      a MATLAB program which
+      solves the Lorenz equations and displays the solution, for various
+      starting conditions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_simulation/poisson_simulation.html">
+      POISSON_SIMULATION</a>,
+      a MATLAB library which
+      simulates a Poisson process in which events randomly occur with an
+      average waiting time of Lambda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_1d_simulation/random_walk_1d_simulation.html">
+      RANDOM_WALK_1D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 1-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_simulation/random_walk_2d_avoid_simulation.html">
+      RANDOM_WALK_2D_AVOID_SIMULATION</a>,
+      a MATLAB program which
+      simulates a self-avoiding random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_simulation/random_walk_2d_simulation.html">
+      RANDOM_WALK_2D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_3d_simulation/random_walk_3d_simulation.html">
+      RANDOM_WALK_3D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 3-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/reactor_simulation/reactor_simulation.html">
+      REACTOR_SIMULATION</a>,
+      a MATLAB program which
+      a simple Monte Carlo simulation of the shielding effect of a slab
+      of a certain thickness in front of a neutron source.  This program was
+      provided as an example with the book "Numerical Methods and Software."
+    </p>
+
+    <p>
+      <a href = "../../m_src/rkf45/rkf45.html">
+      RKF45</a>,
+      a MATLAB library which
+      implements the Runge-Kutta-Fehlberg ODE solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sir_simulation/sir_simulation.html">
+      SIR_SIMULATION</a>,
+      a MATLAB program which
+      simulates the spread of a disease through a hospital room of M by N beds,
+      using the SIR (Susceptible/Infected/Recovered) model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/three_body_simulation/three_body_simulation.html">
+      THREE_BODY_SIMULATION</a>,
+      a MATLAB program which
+      simulates the behavior of three planets, constrained to lie in a plane,
+      and moving under the influence of gravity,
+      by Walter Gander and Jiri Hrebicek.
+    </p>
+
+    <p>
+      <a href = "../../m_src/traffic_simulation/traffic_simulation.html">
+      TRAFFIC_SIMULATION</a>,
+      a MATLAB program which
+      simulates the cars waiting to get through a traffic light.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truel_simulation/truel_simulation.html">
+      TRUEL_SIMULATION</a>,
+      a MATLAB program which
+      simulates N repetitions of a duel between three players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Charles VanLoan,<br>
+          Introduction to Scientific Computing,<br>
+          Prentice Hall, 1997,<br>
+          ISBN: 0-13-125444-8,<br>
+          LC: QA76.9.M35V375.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "kepler.m">kepler.m</a>,
+          evaluates the right hand side of the ODE system.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>INITIAL_ORBIT</b> simulates the problem over approximately two orbits.
+      <ul>
+        <li>
+          <a href = "initial_orbit.m">initial_orbit.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "initial_orbit.png">initial_orbit.png</a>,
+          an image of the trajectory.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ORBITAL_DECAY</b> computes about twenty successive orbits, showing
+      how the orbit gradually decays to a more elliptical form.
+      <ul>
+        <li>
+          <a href = "orbital_decay.m">orbital_decay.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "orbital_decay.png">orbital_decay.png</a>,
+          an image of the trajectory.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 05 November 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

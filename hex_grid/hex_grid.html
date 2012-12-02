@@ -1,0 +1,531 @@
+<html>
+
+  <head>
+    <title>
+      HEX_GRID - Routines for a Hexagonal Grid
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HEX_GRID <br> Routines for a Hexagonal Grid
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HEX_GRID</b>
+      is a MATLAB library which
+      computes points on a hexagonal grid.
+    </p>
+
+    <p>
+      For one set of routines, the hexagonal grid is defined in the
+      unit square [0,1] x [0,1].  For a matching set of routines,
+      the hexagonal grid is defined on a coordinate box [A,B] x [C,D].
+    </p>
+
+    <p>
+      All nodes of the grid lie on one of <b>LAYERS</b> horizontal lines.
+      The first of these lines is the X axis (for grids in the unit square)
+      or the line from (A,C) to (B,C), for grids in a coordinate box.
+      Each successive line is <b>HY</b> units higher.
+    </p>
+
+    <p>
+      On all the odd numbered lines, there are <b>NODES_PER_LAYER</b> points,
+      equally spaced from 0 to 1 or A to B, with a spacing of <b>HX</b>.
+    </p>
+
+    <p>
+      On the even numbered lines, there are <b>NODES_PER_LAYER</b>-1 points,
+      whose values are the midpoints of successive intervals on
+      an odd numbered line.  (The grid is staggered).
+    </p>
+
+    <p>
+      In order to maintain the hexagonal structure, the following relationship
+      is required between <b>HX</b> and <b>HY</b>:
+      <pre>
+        <b>HY</b> = <b>HX</b> * sqrt ( 3 ) / 2.
+      </pre>
+    </p>
+
+    <p>
+      Here is an image of a hexagonal grid with <b>NODES_PER_ROW</b> = 21
+      and <b>LAYERS</b> = 24, and a total of <b>N</b> = 492 nodes.
+      <img src = "../../datasets/hex_grid/hex_grid_01_21_24_492.png"
+           height = "400"
+           width = "400">
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HEX_GRID</b> is available in
+      <a href = "../../cpp_src/hex_grid/hex_grid.html">a C++ version</a> and
+      <a href = "../../f_src/hex_grid/hex_grid.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/hex_grid/hex_grid.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ball_grid/ball_grid.html">
+      BALL_GRID</a>,
+      a MATLAB library which
+      computes grid points that lie inside a ball.
+    </p>
+
+    <p>
+      <a href = "../../m_src/circle_grid/circle_grid.html">
+      CIRCLE_GRID</a>,
+      a MATLAB library which
+      computes grid points that lie inside a circle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ellipse_grid/ellipse_grid.html">
+      ELLIPSE_GRID</a>,
+      a MATLAB library which
+      computes grid points that lie inside an ellipse.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ellipsoid_grid/ellipsoid_grid.html">
+      ELLIPSOID_GRID</a>,
+      a MATLAB library which
+      computes grid points that lie inside a 3D ellipsoid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid/grid.html">
+      GRID</a>,
+      a MATLAB program which
+      computes elements of a grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/halton/halton.html">
+      HALTON</a>,
+      a MATLAB program which
+      computes elements of a
+      Halton quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hammersley/hammersley.html">
+      HAMMERSLEY</a>,
+      a MATLAB program which
+      computes elements of a
+      Hammersley quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../datasets/hex_grid/hex_grid.html">
+      HEX_GRID</a>,
+      a dataset collection which
+      contains examples of hexagonal grids.
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_angle/hex_grid_angle.html">
+      HEX_GRID_ANGLE</a>,
+      a FORTRAN90 library which
+      computes elements of an angled hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid_dataset/hex_grid_dataset.html">
+      HEX_GRID_DATASET</a>,
+      a MATLAB program which
+      can create a hex grid dataset
+      and write it to a file.
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_triangulate/hex_grid_triangulate.html">
+      HEX_GRID_TRIANGULATE</a>,
+      a FORTRAN90 program which
+      uses the <b>HEX_GRID</b> library and
+      finds points on a hex grid that lie within a given arbitrary region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ihs/ihs.html">
+      IHS</a>,
+      a MATLAB program which
+      computes elements of an improved distributed
+      Latin hypercube dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center/latin_center.html">
+      LATIN_CENTER</a>,
+      a MATLAB program which
+      computes elements of a Latin Hypercube dataset,
+      choosing center points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge/latin_edge.html">
+      LATIN_EDGE</a>,
+      a MATLAB program which
+      computes elements of a Latin Hypercube dataset,
+      choosing edge points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random/latin_random.html">
+      LATIN_RANDOM</a>,
+      a MATLAB program which
+      computes elements of a Latin Hypercube dataset,
+      choosing points at random.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lattice_rule/lattice_rule.html">
+      LATTICE_RULE</a>,
+      a MATLAB library which
+      approximates multidimensional integrals using lattice rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt/lcvt.html">
+      LCVT</a>,
+      a MATLAB program which
+      computes a
+      latinized Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2/niederreiter2.html">
+      NIEDERREITER2</a>,
+      a MATLAB program which
+      computes elements of a
+      Niederreiter quasirandom sequence with base 2.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol/sobol.html">
+      SOBOL</a>,
+      a MATLAB program which
+      computes elements of a Sobol quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_grid/tetrahedron_grid.html">
+      TETRAHEDRON_GRID</a>,
+      a MATLAB library which
+      computes a tetrahedral grid of points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB program which
+      computes elements of a uniform pseudorandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput/van_der_corput.html">
+      VAN_DER_CORPUT</a>,
+      a MATLAB program which
+      computes elements of a van der Corput quasirandom sequence.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "box_print_2d.m">box_print_2d.m</a>,
+          prints information about a coordinate box in 2D.
+        </li>
+        <li>
+          <a href = "hex_grid_01_approximate_h.m">
+          hex_grid_01_approximate_h.m</a>,
+          seeks a unit square hex grid with spacing H.
+        </li>
+        <li>
+          <a href = "hex_grid_01_approximate_n.m">
+          hex_grid_01_approximate_n.m</a>,
+          seeks a unit square hex grid of about N nodes.
+        </li>
+        <li>
+          <a href = "hex_grid_01_h.m">hex_grid_01_h.m</a>,
+          computes the unit square hex grid spacings.
+        </li>
+        <li>
+          <a href = "hex_grid_01_layers.m">hex_grid_01_layers.m</a>,
+          computes the unit square hex grid column width.
+        </li>
+        <li>
+          <a href = "hex_grid_01_n.m">hex_grid_01_n.m</a>,
+          computes the number of unit square hex grid points.
+        </li>
+        <li>
+          <a href = "hex_grid_01_points.m">hex_grid_01_points.m</a>,
+          returns unit square hex grid points.
+        </li>
+        <li>
+          <a href = "hex_grid_approximate_h.m">hex_grid_approximate_h.m</a>,
+          seeks a hex grid with spacing H.
+        </li>
+        <li>
+          <a href = "hex_grid_approximate_n.m">hex_grid_approximate_n.m</a>,
+          seeks a hex grid of about N nodes.
+        </li>
+        <li>
+          <a href = "hex_grid_h.m">hex_grid_h.m</a>,
+          computes the coordinate box hex grid spacings.
+        </li>
+        <li>
+          <a href = "hex_grid_layers.m">hex_grid_layers.m</a>,
+          computes the coordinate box hex grid column width.
+        </li>
+        <li>
+          <a href = "hex_grid_n.m">hex_grid_n.m</a>,
+          computes the number of coordinate box hex grid points.
+        </li>
+        <li>
+          <a href = "hex_grid_points.m">hex_grid_points.m</a>,
+          returns coordinate box hex grid points.
+        </li>
+        <li>
+          <a href = "hex_grid_write.m">hex_grid_write.m</a>,
+          writes a hex grid dataset to a file.
+        </li>
+        <li>
+          <a href = "s_blank_delete.m">s_blank_delete.m</a>,
+          removes blanks from a string, left justifying the remainder.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hex_grid_test.m">hex_grid_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "hex_grid_test_output.txt">hex_grid_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "hex_grid_test01.m">hex_grid_test01.m</a>,
+          tests HEX_GRID_01_LAYERS.
+        </li>
+        <li>
+          <a href = "hex_grid_test02.m">hex_grid_test02.m</a>,
+          tests HEX_GRID_01_H.
+        </li>
+        <li>
+          <a href = "hex_grid_test03.m">hex_grid_test03.m</a>,
+          tests HEX_GRID_01_N.
+        </li>
+        <li>
+          <a href = "hex_grid_test04.m">hex_grid_test04.m</a>,
+          tests HEX_GRID_01_POINTS.
+        </li>
+        <li>
+          <a href = "hex_grid_test05.m">hex_grid_test05.m</a>,
+          tests HEX_GRID_01_APPROXIMATE_N.
+        </li>
+        <li>
+          <a href = "hex_grid_test06.m">hex_grid_test06.m</a>,
+          tests HEX_GRID_01_APPROXIMATE_H.
+        </li>
+        <li>
+          <a href = "hex_grid_test07.m">hex_grid_test07.m</a>,
+          tests HEX_GRID_LAYERS.
+        </li>
+        <li>
+          <a href = "hex_grid_test08.m">hex_grid_test08.m</a>,
+          tests HEX_GRID_H.
+        </li>
+        <li>
+          <a href = "hex_grid_test09.m">hex_grid_test09.m</a>,
+          tests HEX_GRID_N.
+        </li>
+        <li>
+          <a href = "hex_grid_test10.m">hex_grid_test10.m</a>,
+          tests HEX_GRID_POINTS.
+        </li>
+        <li>
+          <a href = "hex_grid_test11.m">hex_grid_test11.m</a>,
+          tests HEX_GRID_APPROXIMATE_N.
+        </li>
+        <li>
+          <a href = "hex_grid_test12.m">hex_grid_test12.m</a>,
+          tests HEX_GRID_APPROXIMATE_H.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You may copy grid files defined for the unit square
+      [0,1] x [0,1]:
+      <ul>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_1_1_1.txt">
+          hex_grid_01_1_1_1.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_2_2_3.txt">
+          hex_grid_01_2_2_3.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_3_3_8.txt">
+          hex_grid_01_3_3_8.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_4_4_14.txt">
+          hex_grid_01_4_4_14.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_5_5_23.txt">
+          hex_grid_01_5_5_23.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_6_6_33.txt">
+          hex_grid_01_6_6_33.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_7_7_46.txt">
+          hex_grid_01_7_7_46.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_8_9_68.txt">
+          hex_grid_01_8_9_68.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_9_10_85.txt">
+          hex_grid_01_9_10_85.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_10_11_105.txt">
+          hex_grid_01_10_11_105.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_11_12_126.txt">
+          hex_grid_01_11_12_126.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_21_24_492.txt">
+          hex_grid_01_21_24_492.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_41_47_1904.txt">
+          hex_grid_01_41_47_1904.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_81_93_7487.txt">
+          hex_grid_01_81_93_7487.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_01_101_116_11658.txt">
+          hex_grid_01_101_101_11658.txt</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You may copy grid files defined for the coordinate box
+      [1,4] x [2,7]:
+      <ul>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_1_1_1.txt">
+          hex_grid_1_1_1.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_2_2_3.txt">
+          hex_grid_2_2_3.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_3_4_10.txt">
+          hex_grid_3_4_10.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_4_6_21.txt">
+          hex_grid_4_6_21.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_5_8_36.txt">
+          hex_grid_5_8_36.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_6_10_55.txt">
+          hex_grid_6_10_55.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_7_12_78.txt">
+          hex_grid_7_12_78.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_8_14_105.txt">
+          hex_grid_8_14_105.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_9_16_136.txt">
+          hex_grid_9_16_136.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_10_18_171.txt">
+          hex_grid_10_18_171.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_11_20_210.txt">
+          hex_grid_11_20_210.txt</a>.
+        </li>
+        <li>
+          <a href = "../../datasets/hex_grid/hex_grid_21_39_800.txt">
+          hex_grid_21_39_800.txt</a>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 October 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

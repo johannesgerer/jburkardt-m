@@ -1,0 +1,446 @@
+<html>
+
+  <head>
+    <title>
+      DISTMESH_3D - A Simple Mesh Generator in MATLAB
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DISTMESH_3D <br> A Simple Mesh Generator in MATLAB
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DISTMESH_3D</b>
+      is a MATLAB program which
+      generates and manipulates unstructured meshes
+      in 3D, by Per-Olof Persson.
+    </p>
+
+    <p>
+      The code is relatively simple, and
+      the user is able to define a variety of geometric shapes,
+      and desired mesh densities.
+    </p>
+
+    <p>
+      <b>DISTMESH_3D</b> is, pretty much, simply the subset of
+      Persson and Strang's <b>DISTMESH</b> package that works on
+      3D problems.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      <b>DISTMESH</b> is Copyright (C) 2004 Per-Olof Persson.
+    </p>
+
+    <p>
+      This program is free software; you can redistribute it and/or modify it
+      under the terms of the GNU General Public License as published by the
+      Free Software Foundation; either version 2 of the License, or (at your
+      option) any later version.
+    </p>
+
+    <p>
+      This program is distributed in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+      Public License for more details.
+    </p>
+
+    <p>
+      You should have received a copy of the GNU General Public License along
+      with this program; if not, write to the Free Software Foundation, Inc.,
+      59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+    </p>
+
+    <p>
+      If you use <b>DISTMESH</b> in any program or publication, please
+      acknowledge its authors by citing the reference.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_tet_mesh/cvt_tet_mesh.html">
+      CVT_TET_MESH</a>,
+      a FORTRAN90 program which
+      uses CVT methods to compute a tet mesh in a region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which
+      creates meshes, for 2D or 3D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/geompack/geompack.html">
+      GEOMPACK</a>,
+      a MATLAB library which
+      can compute the tet mesh for a set of 3D points,
+      as well as the adjacency information.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_tet_mesh/table_tet_mesh.html">
+      TABLE_TET_MESH</a>,
+      a FORTRAN90 program which
+      can compute the tet mesh
+      for a given set of points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      is useful for tet mesh calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      can read in the node and tetra files defining a tet mesh and display a wireframe
+      image using OPEN_GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_l2q/tet_mesh_l2q.html">
+      TET_MESH_L2Q</a>,
+      a MATLAB program which
+      converts a linear to a quadratic tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      TET_MESH_ORDER4</a>,
+      a data directory which
+      contains a description and
+      examples of a tet mesh using order 4 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order10/tet_mesh_order10.html">
+      TET_MESH_ORDER10</a>,
+      a data directory which
+      contains a description and
+      examples of a tet mesh using order 10 elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_q2l/tet_mesh_q2l.html">
+      TET_MESH_Q2L</a>,
+      a MATLAB program which
+      converts a quadratic to a linear tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_quality/tet_mesh_quality.html">
+      TET_MESH_QUALITY</a>,
+      is a MATLAB program which
+      computes the quality of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_refine/tet_mesh_refine.html">
+      TET_MESH_REFINE</a>,
+      a MATLAB program which
+      can refine a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a MATLAB program which
+      computes the tetrahedral adjacency information.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Per-Olof Persson
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://math.mit.edu/~persson/">
+                     http://math.mit.edu/~persson/</a> <br>
+          Per-Olof Persson's web site.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ddiff.m">ddiff.m</a>
+          returns the signed distance of one or more points to a region
+          defined as the set difference of two regions.
+        </li>
+        <li>
+          <a href = "dintersect.m">dintersect.m</a>
+          returns the signed distance to a region that is the intersection
+          of two regions.
+        </li>
+        <li>
+          <a href = "distmesh_3d.m">distmesh_3d.m</a>
+          computes a mesh of a given 3D region.
+        </li>
+        <li>
+          <a href = "dsphere.m">dsphere.m</a>
+          returns the signed distance of one or more points to a sphere.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>
+          writes an integer table file.
+        </li>
+        <li>
+          <a href = "meshdemo_3d.m">meshdemo_3d.m</a>
+          demonstrates the use of the program for 3D problems.
+        </li>
+        <li>
+          <a href = "post_3d.m">post_3d.m</a>
+          performs postprocessing for output from DISTMESH_3D.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>
+          writes a real table file.
+        </li>
+        <li>
+          <a href = "simp_plot_3d.m">simp_plot_3d.m</a>
+          displays a plot of the tetrahedrons that form a mesh in 3D.
+        </li>
+        <li>
+          <a href = "simp_qual_3d.m">simp_qual_3d.m</a>
+          computes the simplex quality of the mesh.
+        </li>
+        <li>
+          <a href = "simpvol.m">simpvol.m</a>
+          returns the volume of a simplex.
+        </li>
+        <li>
+          <a href = "surftri.m">surftri.m</a>
+          finds the surface triangles in a tetrahedral mesh.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS time as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>Problem #1</b> is the 3x1x1 channel, using 584 nodes and 2568 elements.
+      <ul>
+        <li>
+          <a href = "fd01.m">fd01.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "fh01.m">fh01.m</a>
+          the mesh spacing function.
+        </li>
+        <li>
+          <a href = "meshdemo_3d_01.m">meshdemo_3d_01.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p01_nodes.txt">p01_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p01_elements.txt">p01_elements.txt</a>
+          the tetrahedrons of the problem.
+        </li>
+        <li>
+          <a href = "p01.png">p01.png</a>
+          is a PNG
+          image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Problem #2</b> is the vertical cylinder, using 588 nodes and 2373 elements.
+      <ul>
+        <li>
+          <a href = "fd02.m">fd02.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "fh02.m">fh02.m</a>
+          the mesh spacing function.
+        </li>
+        <li>
+          <a href = "meshdemo_3d_02.m">meshdemo_3d_02.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p02_nodes.txt">p02_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p02_elements.txt">p02_elements.txt</a>
+          the tetrahedrons of the problem.
+        </li>
+        <li>
+          <a href = "p02.png">p02.png</a>
+          is a PNG
+          image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Problem #3</b> is the unit cube, using 224 nodes and 834 elements.
+      <ul>
+        <li>
+          <a href = "fd03.m">fd03.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "fh03.m">fh03.m</a>
+          the mesh spacing function.
+        </li>
+        <li>
+          <a href = "meshdemo_3d_03.m">meshdemo_3d_03.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p03_nodes.txt">p03_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p03_elements.txt">p03_elements.txt</a>
+          the tetrahedrons of the problem.
+        </li>
+        <li>
+          <a href = "p03.png">p03.png</a>
+          is a PNG
+          image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Problem #4</b> is the unit sphere using 595 nodes and 2782 elements.
+      <ul>
+        <li>
+          <a href = "fd04.m">fd04.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "fh04.m">fh04.m</a>
+          the mesh spacing function.
+        </li>
+        <li>
+          <a href = "meshdemo_3d_04.m">meshdemo_3d_04.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p04_nodes.txt">p04_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p04_elements.txt">p04_elements.txt</a>
+          the tetrahedrons of the problem.
+        </li>
+        <li>
+          <a href = "p04.png">p04.png</a>
+          is a PNG
+          image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>Problem #5</b> is the cylinder with a spherical hole
+      using 165 nodes and 531 elements.
+      <ul>
+        <li>
+          <a href = "fd05.m">fd05.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "fh05.m">fh05.m</a>
+          the mesh spacing function.
+        </li>
+        <li>
+          <a href = "meshdemo_3d_05.m">meshdemo_3d_05.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p05_nodes.txt">p05_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p05_elements.txt">p05_elements.txt</a>
+          the tetrahedrons of the problem.
+        </li>
+        <li>
+          <a href = "p05.png">p05.png</a>
+          is a PNG
+          image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 July 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

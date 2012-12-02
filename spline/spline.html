@@ -1,0 +1,783 @@
+<html>
+
+  <head>
+    <title>
+      SPLINE - Interpolation and Approximation of Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPLINE <br> Interpolation and Approximation of Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPLINE</b>
+      is a MATLAB library which
+      sets up and evaluates splines.
+    </p>
+
+    <p>
+      These spline functions are typically used to
+      <ul>
+        <li>
+          interpolate data exactly at a set of points;
+        </li>
+        <li>
+          approximate data at many points, or over an interval.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The most common use of this software is for situations where
+      a set of (X,Y) data points is known, and it is desired to
+      determine a smooth function which passes exactly through
+      those points, and which can be evaluated everywhere.
+      Thus, it is possible to get a formula that allows you to
+      "connect the dots".
+    </p>
+
+    <p>
+      Of course, you could could just connect the dots with
+      straight lines, but that would look ugly, and if there really
+      is some function that explains your data, you'd expect it to
+      curve around rather than make sudden angular turns.  The
+      functions in <b>SPLINE</b> offer a variety of choices for
+      slinky curves that will make pleasing interpolants of your data.
+    </p>
+
+    <p>
+      There are a variety of types of approximation curves
+      available, including:
+      <ul>
+        <li>
+          least squares polynomials,
+        </li>
+        <li>
+          divided difference polynomials,
+        </li>
+        <li>
+          piecewise polynomials,
+        </li>
+        <li>
+          B splines,
+        </li>
+        <li>
+          Bernstein splines,
+        </li>
+        <li>
+          beta splines,
+        </li>
+        <li>
+          Bezier splines,
+        </li>
+        <li>
+          Hermite splines,
+        </li>
+        <li>
+          Overhauser (or Catmull-Rom) splines.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Also included are a set of routines that return the local "basis matrix",
+      which allows the evaluation of the spline in terms of local function
+      data.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPLINE</b> is available in
+      <a href = "../../c_src/spline/spline.html">a C version</a> and
+      <a href = "../../cpp_src/spline/spline.html">a C++ version</a> and
+      <a href = "../../f77_src/spline/spline.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/spline/spline.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/spline/spline.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bernstein/bernstein.html">
+      BERNSTEIN</a>,
+      a MATLAB library which
+      evaluates the Bernstein polynomials, 
+      useful for uniform approximation of functions;
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev/chebyshev.html">
+      CHEBYSHEV</a>,
+      a MATLAB library which
+      computes the Chebyshev interpolant/approximant to a given function
+      over an interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/divdif/divdif.html">
+      DIVDIF</a>,
+      a MATLAB library which
+      uses divided differences to interpolate data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite/hermite.html">
+      HERMITE</a>,
+      a MATLAB library which
+      computes the Hermite interpolant, a polynomial that matches function values
+      and derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_cubic/hermite_cubic.html">
+      HERMITE_CUBIC</a>,
+      a MATLAB library which
+      can compute the value, derivatives or integral of a Hermite cubic polynomial,
+      or manipulate an interpolating function made up of piecewise Hermite cubic
+      polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/interp/interp.html">
+      INTERP</a>,
+      a MATLAB library which
+      can be used for parameterizing and interpolating data;
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_approx/test_approx.html">
+      TEST_APPROX</a>,
+      a MATLAB library which
+      defines a number of test problems for approximation and interpolation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp/test_interp.html">
+      TEST_INTERP</a>,
+      a MATLAB library which
+      defines a number of test problems for interpolation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 1D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to a function of 1D data
+      by setting up and solving an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          JA Brewer, DC Anderson,<br>
+          Visual Interaction with Overhauser Curves and Surfaces,<br>
+          SIGGRAPH 77,<br>
+          in Proceedings of the 4th Annual Conference on Computer Graphics
+          and Interactive Techniques,<br>
+          ASME, July 1977, pages 132-137.
+        </li>
+        <li>
+          Edwin Catmull, Raphael Rom,<br>
+          A Class of Local Interpolating Splines,<br>
+          in Computer Aided Geometric Design,<br>
+          edited by Robert Barnhill, Richard Reisenfeld,<br>
+          Academic Press, 1974,<br>
+          ISBN: 0120790505.
+        </li>
+        <li>
+          Samuel Conte, Carl deBoor,<br>
+          Elementary Numerical Analysis,<br>
+          Second Edition,<br>
+          McGraw Hill, 1972,<br>
+          ISBN: 07-012446-4.
+        </li>
+        <li>
+          Alan Davies, Philip Samuels,<br>
+          An Introduction to Computational Geometry for Curves and Surfaces,<br>
+          Clarendon Press, 1996,<br>
+          ISBN: 0-19-851478-6,<br>
+          LC: QA448.D38.
+        </li>
+        <li>
+          Carl deBoor,<br>
+          A Practical Guide to Splines,<br>
+          Springer, 2001,<br>
+          ISBN: 0387953663.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1.
+        </li>
+        <li>
+          Gisela Engeln-Muellges, Frank Uhlig,<br>
+          Numerical Algorithms with C,<br>
+          Springer, 1996,<br>
+          ISBN: 3-540-60530-4.
+        </li>
+        <li>
+          James Foley, Andries vanDam, Steven Feiner, John Hughes,<br>
+          Computer Graphics, Principles and Practice,<br>
+          Second Edition,<br>
+          Addison Wesley, 1995,<br>
+          ISBN: 0201848406,<br>
+          LC: T385.C5735.
+        </li>
+        <li>
+          Fred Fritsch, Judy Butland,<br>
+          A Method for Constructing Local Monotone Piecewise
+          Cubic Interpolants,<br>
+          SIAM Journal on Scientific and Statistical Computing,<br>
+          Volume 5, Number 2, 1984, pages 300-304.
+        </li>
+        <li>
+          Fred Fritsch, Ralph Carlson,<br>
+          Monotone Piecewise Cubic Interpolation,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 17, Number 2, April 1980, pages 238-246.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          David Rogers, Alan Adams,<br>
+          Mathematical Elements of Computer Graphics,<br>
+          Second Edition,<br>
+          McGraw Hill, 1989,<br>
+          ISBN: 0070535299.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "basis_function_b_val.m">basis_function_b_val.m</a>,
+          evaluates the B spline basis function at a point.
+        </li>
+        <li>
+          <a href = "basis_function_beta_val.m">basis_function_beta_val.m</a>,
+          evaluates the beta spline basis function at a point.
+        </li>
+        <li>
+          <a href = "basis_matrix_b_uni.m">basis_matrix_b_uni.m</a>,
+          sets up the uniform B spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_beta_uni.m">basis_matrix_beta_uni.m</a>,
+          sets up the uniform beta spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_bezier.m">basis_matrix_bezier.m</a>,
+          sets up a cubic Bezier spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_hermite.m">basis_matrix_hermite.m</a>,
+          sets up a Hermite spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_nonuni.m">
+          basis_matrix_overhauser_nonuni.m</a>,
+          sets up a nonuniform Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_nul.m">
+          basis_matrix_overhauser_nul.m</a>,
+          sets up a nonuniform left Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_nur.m">
+          basis_matrix_overhauser_nur.m</a>,
+          sets up a nonuniform right Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_uni.m">
+          basis_matrix_overhauser_uni.m</a>,
+          sets up the uniform Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_uni_l.m">
+          basis_matrix_overhauser_uni_l.m</a>,
+          sets up the left uniform Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_overhauser_uni_r.m">
+          basis_matrix_overhauser_uni_r.m</a>,
+          sets up the right uniform Overhauser spline basis matrix.
+        </li>
+        <li>
+          <a href = "basis_matrix_tmp.m">basis_matrix_tmp.m</a>,
+          computes Q = T * MBASIS * P.
+        </li>
+        <li>
+          <a href = "bc_val.m">bc_val.m</a>,
+          evaluates a parameterized Bezier curve.
+        </li>
+        <li>
+          <a href = "bez_val.m">bez_val.m</a>,
+          evaluates a Bezier function at a point.
+        </li>
+        <li>
+          <a href = "bpab_approx.m">bpab_approx.m</a>,
+          evaluate the Bernstein polynomial for F(X) on [A,B].
+        </li>
+        <li>
+          <a href = "bpab.m">bpab.m</a>,
+          evaluates the Bernstein basis polynomials for [A,B] at a point.
+        </li>
+        <li>
+          <a href = "chfev.m">chfev.m</a>,
+          evaluates a Hermite cubic function.
+        </li>
+        <li>
+          <a href = "d3_mxv.m">d3_mxv.m</a>,
+          multiplies an D3 matrix times a vector.
+        </li>
+        <li>
+          <a href = "d3_np_fs.m">d3_np_fs.m</a>,
+          factors and solves an D3 linear system with no pivoting.
+        </li>
+        <li>
+          <a href = "d3_uniform.m">d3_uniform.m</a>,
+          returns a random D3 matrix.
+        </li>
+        <li>
+          <a href = "data_to_dif.m">data_to_dif.m</a>,
+          sets up a divided difference table from raw data.
+        </li>
+        <li>
+          <a href = "dif_val.m">dif_val.m</a>,
+          evaluates a divided difference polynomial at a point.
+        </li>
+        <li>
+          <a href = "least_set_old.m">least_set_old.m</a>,
+          constructs the least squares polynomial approximation to data.
+        </li>
+        <li>
+          <a href = "least_val_old.m">least_val_old.m</a>,
+          evaluates a least squares polynomial defined by LEAST_SET_OLD.
+        </li>
+        <li>
+          <a href = "least_set.m">least_set.m</a>,
+          returns the least squares polynomial that approximates
+          given data;
+        </li>
+        <li>
+          <a href = "least_val.m">least_val.m</a>,
+          evaluates the least squares polynomial that approximates
+          given data;
+        </li>
+        <li>
+          <a href = "least_val2.m">least_val2.m</a>,
+          evaluates the least squares polynomial, and its derivative,
+          that approximates given data;
+        </li>
+        <li>
+          <a href = "parabola_val2.m">parabola_val2.m</a>,
+          evaluates a parabolic interpolant through tabulated data.
+        </li>
+        <li>
+          <a href = "pchst.m">pchst.m</a>,
+          PCHIP sign change checker.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          is a uniform random number generator.
+        </li>
+        <li>
+          <a href = "r8vec_bracket.m">r8vec_bracket.m</a>,
+          searches a sorted array for successive brackets of a value.
+        </li>
+        <li>
+          <a href = "r8vec_bracket3.m">r8vec_bracket3.m</a>,
+          finds the interval containing or nearest a given value.
+        </li>
+        <li>
+          <a href = "r8vec_distinct.m">r8vec_distinct.m</a>,
+          is true if the elements of a real vector are distinct.
+        </li>
+        <li>
+          <a href = "r8vec_even.m">r8vec_even.m</a>,
+          returns N real values evenly spaced between ALO and AHI.
+        </li>
+        <li>
+          <a href = "r8vec_indicator.m">r8vec_indicator.m</a>,
+          sets a real vector to the indicator vector.
+        </li>
+        <li>
+          <a href = "r8vec_order_type.m">r8vec_order_type.m</a>,
+          finds if a real vector is (non)strictly ascending/descending.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints a real vector.
+        </li>
+        <li>
+          <a href = "r8vec_sort_bubble_a.m">r8vec_sort_bubble_a.m</a>,
+          ascending sorts a real vector using bubble sort.
+        </li>
+        <li>
+          <a href = "r8vec_uniform.m">r8vec_uniform.m</a>,
+          returns a random real vector.
+        </li>
+        <li>
+          <a href = "r8vec_unique_count.m">r8vec_unique_count.m</a>,
+          counts the number of unique elements in an unsorted R8VEC;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>,
+          returns the length of a character string to the last nonblank.
+        </li>
+        <li>
+          <a href = "spline_b_val.m">spline_b_val.m</a>,
+          evaluates a cubic spline approximant at a point.
+        </li>
+        <li>
+          <a href = "spline_beta_val.m">spline_beta_val.m</a>,
+          evaluates a cubic beta spline approximant at a point.
+        </li>
+        <li>
+          <a href = "spline_constant_val.m">spline_constant_val.m</a>,
+          evaluates a piecewise constant spline at a point.
+        </li>
+        <li>
+          <a href = "spline_cubic_set.m">spline_cubic_set.m</a>,
+          computes the second derivatives of a cubic spline.
+        </li>
+        <li>
+          <a href = "spline_cubic_val.m">spline_cubic_val.m</a>,
+          evaluates a piecewise cubic spline at a point.
+        </li>
+        <li>
+          <a href = "spline_cubic_val2.m">spline_cubic_val2.m</a>,
+          evaluates a piecewise cubic spline at a point.
+        </li>
+        <li>
+          <a href = "spline_hermite_set.m">spline_hermite_set.m</a>,
+          sets up a piecewise cubic Hermite interpolant spline.
+        </li>
+        <li>
+          <a href = "spline_hermite_val.m">spline_hermite_val.m</a>,
+          evaluates a piecewise cubic Hermite spline at a point.
+        </li>
+        <li>
+          <a href = "spline_linear_int.m">spline_linear_int.m</a>,
+          evaluates the integral of a piecewise linear spline.
+        </li>
+        <li>
+          <a href = "spline_linear_intset.m">spline_linear_intset.m</a>,
+          sets a piecewise linear spline with given integral properties.
+        </li>
+        <li>
+          <a href = "spline_linear_val.m">spline_linear_val.m</a>,
+          evaluates a piecewise linear spline at a point.
+        </li>
+        <li>
+          <a href = "spline_overhauser_nonuni_val.m">
+          spline_overhauser_nonuni_val.m</a>,
+          evaluates a nonuniform Overhauser spline at a point.
+        </li>
+        <li>
+          <a href = "spline_overhauser_uni_val.m">
+          spline_overhauser_uni_val.m</a>,
+          evaluates a uniform Overhauser spline at a point.
+        </li>
+        <li>
+          <a href = "spline_overhauser_val.m">spline_overhauser_val.m</a>,
+          evaluates an Overhauser spline at a point.
+        </li>
+        <li>
+          <a href = "spline_pchip_set.m">spline_pchip_set.m</a>,
+          defines a PCHIP spline for given data.
+        </li>
+        <li>
+          <a href = "spline_pchip_val.m">spline_pchip_val.m</a>,
+          evaluates a PCHIP spline at a point.
+        </li>
+        <li>
+          <a href = "spline_quadratic_val.m">spline_quadratic_val.m</a>,
+          evaluates a piecewise quadratic spline at a point.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "spline_test.m">spline_test.m</a>,
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "spline_test_output.txt">spline_test_output.txt</a>,
+          output from all the tests;
+        </li>
+        <li>
+          <a href = "fcube.m">fcube.m</a>,
+          evaluates a cubic function;
+        </li>
+        <li>
+          <a href = "fpcube.m">fpcube.m</a>,
+          evaluates the derivative of a cubic function;
+        </li>
+        <li>
+          <a href = "fppcube.m">fppcube.m</a>,
+          evaluates the second derivative of a cubic function;
+        </li>
+        <li>
+          <a href = "frunge.m">frunge.m</a>,
+          evaluates the Runge function;
+        </li>
+        <li>
+          <a href = "fprunge.m">fprunge.m</a>,
+          evaluates the derivative of the Runge function;
+        </li>
+        <li>
+          <a href = "fpprunge.m">fpprunge.m</a>,
+          evaluates the second derivative of the Runge function;
+        </li>
+        <li>
+          <a href = "spline_test001.m">spline_test001.m</a>,
+          tests PARABOLA_VAL2;
+        </li>
+        <li>
+          <a href = "spline_test002.m">spline_test002.m</a>,
+          tests R8VEC_BRACKET;
+        </li>
+        <li>
+          <a href = "spline_test003.m">spline_test003.m</a>,
+          tests R8VEC_BRACKET3;
+        </li>
+        <li>
+          <a href = "spline_test004.m">spline_test004.m</a>,
+          tests R8VEC_ORDER_TYPE;
+        </li>
+        <li>
+          <a href = "spline_test005.m">spline_test005.m</a>,
+          tests D3_NP_FS;
+        </li>
+        <li>
+          <a href = "spline_test006.m">spline_test006.m</a>,
+          tests DATA_TO_DIF and DIF_VAL;
+        </li>
+        <li>
+          <a href = "spline_test01.m">spline_test01.m</a>,
+          tests BASIS_FUNCTION_B_VAL;
+        </li>
+        <li>
+          <a href = "spline_test02.m">spline_test02.m</a>,
+          tests BASIS_FUNCTION_BETA_VAL;
+        </li>
+        <li>
+          <a href = "spline_test03.m">spline_test03.m</a>,
+          tests BASIS_MATRIX_B_UNI and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test04.m">spline_test04.m</a>,
+          tests BASIS_FUNCTION_BETA_UNI and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test05.m">spline_test05.m</a>,
+          tests BASIS_FUNCTION_BEZIER and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test06.m">spline_test06.m</a>,
+          tests BASIS_MATRIX_HERMITE and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test07.m">spline_test07.m</a>,
+          tests BASIS_OVERHAUSER_UNI and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test08.m">spline_test08.m</a>,
+          tests BASIS_OVERHAUSER_NONUNI and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test09.m">spline_test09.m</a>,
+          tests BASIS_OVERHAUSER_NONUNI and BASIS_MATRIX_TMP;
+        </li>
+        <li>
+          <a href = "spline_test10.m">spline_test10.m</a>,
+          tests BC_VAL;
+        </li>
+        <li>
+          <a href = "spline_test11.m">spline_test11.m</a>,
+          tests BEZ_VAL;
+        </li>
+        <li>
+          <a href = "spline_test115.m">spline_test115.m</a>,
+          tests BP01;
+        </li>
+        <li>
+          <a href = "spline_test116.m">spline_test116.m</a>,
+          tests BPAB;
+        </li>
+        <li>
+          <a href = "spline_test12.m">spline_test12.m</a>,
+          tests BP_APPROX;
+        </li>
+        <li>
+          <a href = "spline_test125.m">spline_test125.m</a>,
+          tests LEAST_SET_OLD and LEAST_VAL_OLD;
+        </li>
+        <li>
+          <a href = "subpak_test126.m">subpak_test126.m</a>,
+          tests LEAST_SET and LEAST_VAL;
+        </li>
+        <li>
+          <a href = "subpak_test127.m">subpak_test127.m</a>,
+          tests LEAST_SET and LEAST_VAL2;
+        </li>
+        <li>
+          <a href = "spline_test13.m">spline_test13.m</a>,
+          tests SPLINE_B_VAL;
+        </li>
+        <li>
+          <a href = "spline_test14.m">spline_test14.m</a>,
+          tests SPLINE_BETA_VAL;
+        </li>
+        <li>
+          <a href = "spline_test145.m">spline_test145.m</a>,
+          tests SPLINE_CONSTANT_VAL;
+        </li>
+        <li>
+          <a href = "spline_test15.m">spline_test15.m</a>,
+          tests SPLINE_CUBIC_SET and SPLINE_CUBIC_VAL;
+        </li>
+        <li>
+          <a href = "spline_test16.m">spline_test16.m</a>,
+          tests SPLINE_CUBIC_SET and SPLINE_CUBIC_VAL2;
+        </li>
+        <li>
+          <a href = "spline_test17.m">spline_test17.m</a>,
+          tests SPLINE_CUBIC_SET and SPLINE_CUBIC_VAL;
+        </li>
+        <li>
+          <a href = "spline_test18.m">spline_test18.m</a>,
+          tests SPLINE_CUBIC_SET and SPLINE_CUBIC_VAL;
+        </li>
+        <li>
+          <a href = "spline_test19.m">spline_test19.m</a>,
+          tests SPLINE_CUBIC_SET and SPLINE_CUBIC_VAL;
+        </li>
+        <li>
+          <a href = "spline_test20.m">spline_test20.m</a>,
+          tests SPLINE_HERMITE_SET and SPLINE_HERMITE_VAL;
+        </li>
+        <li>
+          <a href = "spline_test205.m">spline_test205.m</a>,
+          tests SPLINE_LINEAR_INT and SPLINE_LINEAR_INTSET;
+        </li>
+        <li>
+          <a href = "spline_test21.m">spline_test21.m</a>,
+          tests SPLINE_LINEAR_VAL;
+        </li>
+        <li>
+          <a href = "spline_test215.m">spline_test215.m</a>,
+          tests SPLINE_LINEAR_INT;
+        </li>
+        <li>
+          <a href = "spline_test22.m">spline_test22.m</a>,
+          tests SPLINE_OVERHAUSER_UNI_VAL;
+        </li>
+        <li>
+          <a href = "spline_test225.m">spline_test225.m</a>,
+          tests SPLINE_OVERHAUSER_NONUNI_VAL;
+        </li>
+        <li>
+          <a href = "spline_test23.m">spline_test23.m</a>,
+          tests SPLINE_OVERHAUSER_VAL;
+        </li>
+        <li>
+          <a href = "spline_test235.m">spline_test235.m</a>,
+          tests SPLINE_PCHIP_SET and SPLINE_PCHIP_VAL;
+        </li>
+        <li>
+          <a href = "spline_test24.m">spline_test24.m</a>,
+          tests SPLINE_QUADRATIC_VAL;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 January 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

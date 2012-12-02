@@ -1,0 +1,239 @@
+<html>
+
+  <head>
+    <title>
+      SVD_SNOWFALL - Singular Value Decomposition of Snowfall Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SVD_SNOWFALL <br> Singular Value Decomposition of Snowfall Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SVD_SNOWFALL</b>
+      is a MATLAB library which
+      demonstrates the use of the Singular Value Decomposition (SVD)
+      to analyze a set of historical snowfall data.
+    </p>
+
+    <p>
+     The snowfall data consists of records for the 121 seasons from 
+     1890 to 2010, of the snowfall in inches, over the months from
+     October to May, as measured at Michigan Tech.
+    </p>
+
+    <p>
+      This data can be regarded as an 8 by 121 matrix A.
+      Applying the singular value decomposition produces the
+      factors
+      <blockquote>
+        A = U * S * V'
+      </blockquote>
+      and it is the purpose of this library to consider what these
+      factors indicate about the snowfall data.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/fingerprints/fingerprints.html">
+      FINGERPRINTS</a>,
+      a dataset directory which
+      contains a few images of fingerprints.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>,
+      a MATLAB program which
+      computes a reduced basis for a collection of data vectors using the SVD.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_demo/svd_demo.html">
+      SVD_DEMO</a>,
+      a MATLAB program which
+      demonstrates the singular value decomposition (SVD) for a simple example.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_fingerprint/svd_fingerprint.html">
+      SVD_FINGERPRINT</a>,
+      a MATLAB program which
+      reads a file containing a fingerprint image and uses the 
+      singular value decomposition (SVD) to compute and display a series of 
+      low rank approximations to the image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_truncated/svd_truncated.html">
+      SVD_TRUNCATED</a>
+      a MATLAB program which
+      demonstrates the computation of the reduced or truncated 
+      Singular Value Decomposition (SVD)
+      of an M by N rectangular matrix, in cases where M < N or N < M.
+    </p>
+
+    <p>
+      <a href = "../../datasets/time_series/time_series.html">
+      TIME_SERIES</a>
+      a dataset directory which
+      contains examples of files describing time series.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Anderson, Zhaojun Bai, Christian Bischof, Susan Blackford,
+          James Demmel, Jack Dongarra, Jeremy Du Croz, Anne Greenbaum,
+          Sven Hammarling, Alan McKenney, Danny Sorensen,<br>
+          LAPACK User's Guide,<br>
+          Third Edition,<br>
+          SIAM, 1999,<br>
+          ISBN: 0898714478,<br>
+          LC: QA76.73.F25L36
+        </li>
+        <li>
+          Gene Golub, Charles VanLoan,<br>
+          Matrix Computations,
+          Third Edition,<br>
+          Johns Hopkins, 1996,<br>
+          ISBN: 0-8018-4513-X,<br>
+          LC: QA188.G65.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Lloyd Trefethen, David Bau,<br>
+          Numerical Linear Algebra,<br>
+          SIAM, 1997,<br>
+          ISBN: 0-89871-361-7,<br>
+          LC: QA184.T74.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8col_normalize_li.m">r8col_normalize_li.m</a>, 
+          normalizes the columns of a matrix to have unit infinity norm.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "snowfall.txt">snowfall.txt</a>, 
+          the snowfall data.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "svd_snowfall_test.m">svd_snowfall_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "svd_snowfall_output.txt">svd_snowfall_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "svd_snowfall_test01.m">svd_snowfall_test01.m</a>, 
+          reads and processes the snowfall data.
+        </li>
+        <li>
+          <a href = "svd_snowfall_test02.m">svd_snowfall_test02.m</a>, 
+          computes and plots the singular values.
+        </li>
+        <li>
+          <a href = "svd_snowfall_test03.m">svd_snowfall_test03.m</a>, 
+          computes and displays the rank 1 through rank 5 approximants
+          to the 2010 snowfall data.
+        </li>
+        <li>
+          <a href = "svd_snowfall_test04.m">svd_snowfall_test04.m</a>, 
+          displays the first six U modes in the data.
+        </li>
+        <li>
+          <a href = "svd_snowfall_test05.m">svd_snowfall_test05.m</a>, 
+          displays the first six V modes in the data.
+        </li>
+        <li>
+          <a href = "rank_one_approximants.png">rank_one_approximants.png</a>, 
+          a plot of the rank 1 through rank 5 approximants to the 2010 snowfall.
+        </li>
+        <li>
+          <a href = "singular_values.png">singular_values.png</a>, 
+          a plot of the singular values.
+        </li>
+        <li>
+          <a href = "u_modes.png">u_modes.png</a>, 
+          a plot of the first 6 U modes = monthly snowfall patterns over a year.
+        </li>
+        <li>
+          <a href = "v_modes.png">v_modes.png</a>, 
+          a plot of the first 6 V modes = variation over 1890-2010 of snowfall
+          in a given month.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 09 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

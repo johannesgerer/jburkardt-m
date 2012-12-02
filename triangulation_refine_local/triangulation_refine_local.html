@@ -1,0 +1,389 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_REFINE_LOCAL - Refine one Element of a Triangulation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_REFINE_LOCAL <br> Refine one Element of a Triangulation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_REFINE_LOCAL</b> 
+      is a MATLAB program which 
+      tries to locally refine a triangulation by replacing one triangular
+      element by four smaller ones.
+    </p>
+
+    <p>
+      The refinement process introduces three new nodes, at the midsides of
+      the original element.  This, in turn, will create what is called "hanging nodes"
+      on the neighboring elements, an undesirable feature.  Therefore, each hanging
+      node is used to divide the neighboring element into two new elements.  This
+      removes the hanging node problem.
+    </p>
+
+    <p>
+      Information about the triangulation is updated.  In particular, the coordinates
+      of the three new nodes are assigned indexes, and added to the node coordinate array.  
+      Four old elements are replaced by 10 new, smaller ones.  This requires modifications
+      to the element-node array and to the element-neighbor array.
+    </p>
+
+    <p>
+      This process of refinement does not take into account the shape of the new
+      elements.  The refinement process could create a new triangulation which no
+      longer has the Delaunay property.  If this is a concern, then a simple expedient
+      is to retriangulate the nodes.
+    </p>
+
+    <p>
+      The program presented here presumed the triangulation involves order 3 elements,
+      that the element-node array lists the nodes in counter-clockwise order, and that
+      the element neighbor array indexes the element neighbors by the element node 
+      that is opposite to them.  If any of these assumptions do not hold for the
+      given data, the calculation will need to be modified.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>,
+      a FORTRAN90 program which
+      can read a file of point coordinates and construct the
+      Delaunay triangulation for that set of points.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>, 
+      a MATLAB program which 
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a data directory 
+      which contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and computes a number
+      of quality measures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>,
+      a MATLAB program which
+      refines a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars, 
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>, 
+          counts the number of columns in the first line of a file;
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>, 
+          counts the number of rows in a file;
+        </li>
+        <li>
+          <a href = "grid_read.m">grid_read.m</a>, 
+          reads files defining the node coordinates, element-node information,
+          and element-neighbor information.
+        </li>
+        <li>
+          <a href = "i4_modp.m">i4_modp.m</a>,
+          returns the nonnegative remainder of integer division;
+        </li>
+        <li>
+          <a href = "i4_wrap.m">i4_wrap.m</a>,
+          forces an integer to lie between given limits;
+        </li>
+        <li>
+          <a href = "i4mat_data_read.m">i4mat_data_read.m</a>, 
+          reads a table from an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_header_read.m">i4mat_header_read.m</a>, 
+          reads a header from an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>, 
+          writes an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4vec_find.m">i4vec_find.m</a>,
+          indexes the first occurrence of a specific value in an I4VEC.
+        </li>
+        <li>
+          <a href = "outlier.m">outlier.m</a>, 
+          finds the element of one vector that is not a member of another vector;
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">r8mat_data_read.m</a>, 
+          reads a table from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a>, 
+          reads a table header from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>, 
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank;
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>, 
+          counts the number of "words" in a string;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "triangulation_refine_local.m">triangulation_refine_local.m</a>, 
+          refines a triangulation, making the changes necessary so that one element
+          can be replaced by four smaller ones.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_refine_local_test.m">triangulation_refine_local_test.m</a>, 
+          counts the number of rows in a file;
+        </li>
+        <li>
+          <a href = "triangulation_refine_local_test_output.txt">
+          triangulation_refine_local_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ELL3</b> is the original triangulation:
+      <ul>
+        <li>
+          <a href = "ell3_nodes.txt">ell3_nodes.txt</a>
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "ell3_nodes.png">ell3_nodes.png</a>
+          an image of the nodes.
+        </li>
+        <li>
+          <a href = "ell3_elements.txt">ell3_elements.txt</a>
+          the elements.
+        </li>
+        <li>
+          <a href = "ell3_elements.png">ell3_elements.png</a>
+          a PNG image of the elements.
+        </li>
+        <li>
+          <a href = "ell3_element_neighbors.txt">
+          ell3_element_neighbors.txt</a>,
+          the neighbor triangles.
+        </li>
+        <li>
+          <a href = "ell3_element_neighbors.png">
+          ell3_element_neighbors.png</a>,
+          a PNG image of the neighbor information.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ELL3_REFINED</b> is the triangulation after element 11 has been refined:
+      <ul>
+        <li>
+          <a href = "ell3_refined_nodes.txt">ell3_refined_nodes.txt</a>
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "ell3_refined_nodes.png">ell3_refined_nodes.png</a>
+          an image of the nodes.
+        </li>
+        <li>
+          <a href = "ell3_refined_elements.txt">ell3_refined_elements.txt</a>
+          the elements.
+        </li>
+        <li>
+          <a href = "ell3_refined_elements.png">ell3_refined_elements.png</a>
+          a PNG image of the elements.
+        </li>
+        <li>
+          <a href = "ell3_refined_element_neighbors.txt">
+          ell3_refined_element_neighbors.txt</a>,
+          the neighbor triangles.
+        </li>
+        <li>
+          <a href = "ell3_refined_element_neighbors.png">
+          ell3_refined_element_neighbors.png</a>,
+          a PNG image of the neighbor information.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 August 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

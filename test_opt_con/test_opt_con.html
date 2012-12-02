@@ -1,0 +1,485 @@
+<html>
+
+  <head>
+    <title>
+      TEST_OPT_CON - Test Functions for Scalar Optimization, Constrained to a Hyper-Rectangle
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_OPT_CON <br> 
+      Test Functions for Scalar Optimization <br>
+      Constrained to a Hyper-Rectangle
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_OPT_CON</b>
+      is a MATLAB library which
+      defines a set of constrained global optimization problems.
+    </p>
+
+    <p>
+      A typical constrained global optimization problem presents an M-dimensional
+      hyper-rectangle bounded by A(1:M) <= X(1:M) <= B(1:M), and a scalar-valued
+      function F(X).  The task is to find a point X within the hyper-rectangle
+      at which the function takes its minimum value.
+    </p>
+
+    <p>
+      This task is impossible, mathematically and in general.  However, the problems
+      that can be solved mathematically are often not the ones encountered in
+      real life.  Thus, it is useful to try to solve an impossible problem, since
+      an approximate answer to such a problem can be all we can hope for or need.
+    </p>
+
+    <p>
+      The functions defined include:
+      <ol>
+        <li>
+          NM1: Niederreiter-McCurley function #1, M = 4;
+        </li>
+        <li>
+          NM2: Niederreiter-McCurley function #2, M = 4;
+        </li>
+        <li>
+          NM3: Niederreiter-McCurley function #3, M = 4;
+        </li>
+        <li>
+          NM4: Niederreiter-McCurley function #4, M = 4;
+        </li>
+        <li>
+          NM5: Niederreiter-McCurley function #5, M = 4;
+        </li>
+        <li>
+          NM6: Niederreiter-McCurley function #6, M = 4;
+        </li>
+        <li>
+          L02: Langerman function, M = 2;
+        </li>
+        <li>
+          L10: Langerman function, M = 10;
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      For each function, the library includes a routine to evaluate the function,
+      but also routines to return the limits of the hyper-rectangle, the
+      spatial dimension, the solution, if known, and a title for the problem.
+      These routines have a standard set of names based on the function index.
+      For instance, for function #3, we have the routines:
+      <ul>
+        <li>
+          <b>P03_AB</b> returns bounds for problem 3.
+        </li>
+        <li>
+          <b>P03_F</b> returns the objective function value for problem 3.
+        </li>
+        <li>
+          <b>P03_M</b> returns the spatial dimension for problem 3.
+        </li>
+        <li>
+          <b>P03_SOL</b> returns known solutions for problem 3.
+        </li>
+        <li>
+          <b>P03_TITLE</b> returns a title for problem 3.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Since the same interface is used for each function,
+      if you wish to work with problem 6 instead, you simply change
+      the "03" to "06" in your routine calls.
+    </p>
+
+    <p>
+      If you wish to call <i>all</i> of the functions, you can write a concise
+      program to do so by using the generic interface, in which the function
+      names use the prefix <b>P00_</b>, and require the specific problem index
+      to be supplied as an extra input argument:
+      <ul>
+        <li>
+          <b>P00_AB</b> returns bounds for a problem specified by index.
+        </li>
+        <li>
+          <b>P00_F</b> returns the objective function value for a problem specified by index.
+        </li>
+        <li>
+          <b>P00_M</b> returns the spatial dimension for a problem specified by index.
+        </li>
+        <li>
+          <b>P00_SOL</b> returns known solutions for a problem specified by index.
+        </li>
+        <li>
+          <b>P00_TITLE</b> returns a title for a problem specified by index.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_OPT_CON</b> is available in
+      <a href = "../../c_src/test_opt_con/test_opt_con.html">a C version</a> and
+      <a href = "../../cpp_src/test_opt_con/test_opt_con.html">a C++ version</a> and
+      <a href = "../../f77_src/test_opt_con/test_opt_con.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_opt_con/test_opt_con.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_opt_con/test_opt_con.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align="center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/brent/brent.html">
+      BRENT</a>,
+      a MATLAB library which
+      contains Richard Brent's routines for finding the zero, local minimizer,
+      or global minimizer of a scalar function of a scalar argument, without
+      the use of derivative information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/compass_search/compass_search.html">
+      COMPASS_SEARCH</a>
+      a MATLAB program which
+      minimizes a scalar function of several variables using the compass search algorithm.
+    </p>
+
+    <p>
+      <a href = "../../f_src/dqed/dqed.html">
+      DQED</a>,
+      a FORTRAN90 library which
+      solves constrained least squares problems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust-region methods.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon/fmincon.html">
+      FMINCON</a>,
+      a MATLAB library which
+      demonstrates the use of the <b>fmincon()</b> function to seek the minimizer
+      of a function <b>f(x)</b> subject to a constraint.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm,
+      by Jeff Borggaard.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt/test_opt.html">
+      TEST_OPT</a>,
+      a MATLAB library which
+      defines test problems
+      requiring the minimization of a scalar function of several variables.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_optimization/test_optimization.html">
+      TEST_OPTIMIZATION</a>,
+      a MATLAB library which
+      defines test problems for the minimization of a scalar function
+      of several variables, as described by Molga and Smutnicki.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms178/toms178.html">
+      TOMS178</a>,
+      a MATLAB library which
+      optimizes a scalar functional of multiple variables using the Hooke-Jeeves method.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Harald Niederreiter, Kevin McCurley,<br>
+          Optimization of functions by quasi-random search methods,<br>
+          Computing,<br>
+          Volume 22, Number 2, 1979, pages 119-123.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "p00_ab.m">p00_ab.m</a>, 
+          returns bounds for a problem specified by index.
+        </li>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>, 
+          returns the objective function value for a problem specified by index.
+        </li>
+        <li>
+          <a href = "p00_m.m">p00_m.m</a>, 
+          returns the spatial dimension for a problem specified by index.
+        </li>
+        <li>
+          <a href = "p00_problem_num.m">p00_problem_num.m</a>, 
+          returns the number of problems.
+        </li>
+        <li>
+          <a href = "p00_sol.m">p00_sol.m</a>, 
+          returns known solutions for a problem specified by index.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>, 
+          returns a title for a problem specified by index.
+        </li>
+        <li>
+          <a href = "p01_ab.m">p01_ab.m</a>, 
+          returns bounds for problem 1.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>, 
+          returns the objective function value for problem 1.
+        </li>
+        <li>
+          <a href = "p01_m.m">p01_m.m</a>, 
+          returns the spatial dimension for problem 1.
+        </li>
+        <li>
+          <a href = "p01_sol.m">p01_sol.m</a>, 
+          returns known solutions for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          returns a title for problem 1.
+        </li>
+        <li>
+          <a href = "p02_ab.m">p02_ab.m</a>, 
+          returns bounds for problem 2.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>, 
+          returns the objective function value for problem 2.
+        </li>
+        <li>
+          <a href = "p02_m.m">p02_m.m</a>, 
+          returns the spatial dimension for problem 2.
+        </li>
+        <li>
+          <a href = "p02_sol.m">p02_sol.m</a>, 
+          returns known solutions for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          returns a title for problem 2.
+        </li>
+        <li>
+          <a href = "p03_ab.m">p03_ab.m</a>, 
+          returns bounds for problem 3.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>, 
+          returns the objective function value for problem 3.
+        </li>
+        <li>
+          <a href = "p03_m.m">p03_m.m</a>, 
+          returns the spatial dimension for problem 3.
+        </li>
+        <li>
+          <a href = "p03_sol.m">p03_sol.m</a>, 
+          returns known solutions for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          returns a title for problem 3.
+        </li>
+        <li>
+          <a href = "p04_ab.m">p04_ab.m</a>, 
+          returns bounds for problem 4.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>, 
+          returns the objective function value for problem 4.
+        </li>
+        <li>
+          <a href = "p04_m.m">p04_m.m</a>, 
+          returns the spatial dimension for problem 4.
+        </li>
+        <li>
+          <a href = "p04_sol.m">p04_sol.m</a>, 
+          returns known solutions for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          returns a title for problem 4.
+        </li>
+        <li>
+          <a href = "p05_ab.m">p05_ab.m</a>, 
+          returns bounds for problem 5.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>, 
+          returns the objective function value for problem 5.
+        </li>
+        <li>
+          <a href = "p05_m.m">p05_m.m</a>, 
+          returns the spatial dimension for problem 5.
+        </li>
+        <li>
+          <a href = "p05_sol.m">p05_sol.m</a>, 
+          returns known solutions for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          returns a title for problem 5.
+        </li>
+        <li>
+          <a href = "p06_ab.m">p06_ab.m</a>, 
+          returns bounds for problem 6.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>, 
+          returns the objective function value for problem 6.
+        </li>
+        <li>
+          <a href = "p06_m.m">p06_m.m</a>, 
+          returns the spatial dimension for problem 6.
+        </li>
+        <li>
+          <a href = "p06_sol.m">p06_sol.m</a>, 
+          returns known solutions for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          returns a title for problem 6.
+        </li>
+        <li>
+          <a href = "p07_ab.m">p07_ab.m</a>, 
+          returns bounds for problem 7.
+        </li>
+        <li>
+          <a href = "p07_f.m">p07_f.m</a>, 
+          returns the objective function value for problem 7.
+        </li>
+        <li>
+          <a href = "p07_m.m">p07_m.m</a>, 
+          returns the spatial dimension for problem 7.
+        </li>
+        <li>
+          <a href = "p07_sol.m">p07_sol.m</a>, 
+          returns known solutions for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          returns a title for problem 7.
+        </li>
+        <li>
+          <a href = "p08_ab.m">p08_ab.m</a>, 
+          returns bounds for problem 8.
+        </li>
+        <li>
+          <a href = "p08_f.m">p08_f.m</a>, 
+          returns the objective function value for problem 8.
+        </li>
+        <li>
+          <a href = "p08_m.m">p08_m.m</a>, 
+          returns the spatial dimension for problem 8.
+        </li>
+        <li>
+          <a href = "p08_sol.m">p08_sol.m</a>, 
+          returns known solutions for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          returns a title for problem 8.
+        </li>
+        <li>
+          <a href = "r8col_uniform.m">r8col_uniform.m</a>, 
+          fills an R8COL with scaled pseudorandom numbers.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_opt_con_test.m">test_opt_con_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "test_opt_con_test01.m">test_opt_con_test01.m</a>,
+          prints the title of each problem.
+        </li>
+        <li>
+          <a href = "test_opt_con_test02.m">test_opt_con_test02.m</a>,
+          samples each function and prints the minimum and maximum values encountered.
+        </li>
+        <li>
+          <a href = "test_opt_con_prb_output.txt">test_opt_con_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 16 February 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

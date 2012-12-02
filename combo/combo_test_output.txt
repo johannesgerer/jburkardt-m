@@ -1,0 +1,1469 @@
+>> combo_test
+28-Jan-2011 21:03:22
+
+COMBO_TEST
+  MATLAB version
+  Test the COMBO library.
+
+COMBO_TEST01
+  Balanced sequences:
+
+  BAL_SEQ_ENUM enumerates,
+  BAL_SEQ_RANK ranks,
+  BAL_SEQ_SUCCESSOR lists,
+  BAL_SEQ_UNRANK unranks.
+
+  For N = 5
+  the number of balanced sequences is 42
+
+      0   0 0 0 0 0 1 1 1 1 1
+      1   0 0 0 0 1 0 1 1 1 1
+      2   0 0 0 0 1 1 0 1 1 1
+      3   0 0 0 0 1 1 1 0 1 1
+      4   0 0 0 0 1 1 1 1 0 1
+      5   0 0 0 1 0 0 1 1 1 1
+      6   0 0 0 1 0 1 0 1 1 1
+      7   0 0 0 1 0 1 1 0 1 1
+      8   0 0 0 1 0 1 1 1 0 1
+      9   0 0 0 1 1 0 0 1 1 1
+     10   0 0 0 1 1 0 1 0 1 1
+     11   0 0 0 1 1 0 1 1 0 1
+     12   0 0 0 1 1 1 0 0 1 1
+     13   0 0 0 1 1 1 0 1 0 1
+     14   0 0 1 0 0 0 1 1 1 1
+     15   0 0 1 0 0 1 0 1 1 1
+     16   0 0 1 0 0 1 1 0 1 1
+     17   0 0 1 0 0 1 1 1 0 1
+     18   0 0 1 0 1 0 0 1 1 1
+     19   0 0 1 0 1 0 1 0 1 1
+     20   0 0 1 0 1 0 1 1 0 1
+     21   0 0 1 0 1 1 0 0 1 1
+     22   0 0 1 0 1 1 0 1 0 1
+     23   0 0 1 1 0 0 0 1 1 1
+     24   0 0 1 1 0 0 1 0 1 1
+     25   0 0 1 1 0 0 1 1 0 1
+     26   0 0 1 1 0 1 0 0 1 1
+     27   0 0 1 1 0 1 0 1 0 1
+     28   0 1 0 0 0 0 1 1 1 1
+     29   0 1 0 0 0 1 0 1 1 1
+     30   0 1 0 0 0 1 1 0 1 1
+     31   0 1 0 0 0 1 1 1 0 1
+     32   0 1 0 0 1 0 0 1 1 1
+     33   0 1 0 0 1 0 1 0 1 1
+     34   0 1 0 0 1 0 1 1 0 1
+     35   0 1 0 0 1 1 0 0 1 1
+     36   0 1 0 0 1 1 0 1 0 1
+     37   0 1 0 1 0 0 0 1 1 1
+     38   0 1 0 1 0 0 1 0 1 1
+     39   0 1 0 1 0 0 1 1 0 1
+     40   0 1 0 1 0 1 0 0 1 1
+     41   0 1 0 1 0 1 0 1 0 1
+
+  Rank = 21
+
+  The element of that rank is:
+
+ 0 0 1 0 1 1 0 0 1 1
+
+  The element to be ranked is:
+
+ 0 0 1 0 1 1 0 0 1 1
+
+  Computed rank: 21
+
+COMBO_TEST02
+  BAL_SEQ_TO_TABLEAU converts a balanced
+  sequence to a tableau;
+  TABLEAU_TO_BAL_SEQ converts a tableau
+  to a balanced sequence.
+
+  "Random" balanced sequence:
+
+     0 0 1 1 0 0 1 1
+
+  Corresponding tableau
+
+     1 2 5 6
+     3 4 7 8
+
+  Balance sequence recovered from tableau:
+
+     0 0 1 1 0 0 1 1
+
+COMBO_TEST03
+  BELL_NUMBERS computes Bell numbers.
+
+         0         1
+         1         1
+         2         2
+         3         5
+         4        15
+         5        52
+         6       203
+         7       877
+         8      4140
+         9     21147
+        10    115975
+
+COMBO_TEST04
+  BINOMIAL computes binomial coefficients.
+      -1      -1       0
+      -1       0       0
+      -1       1       0
+      -1       2       0
+      -1       3       0
+      -1       4       0
+      -1       5       0
+       0      -1       0
+       0       0       1
+       0       1       0
+       0       2       0
+       0       3       0
+       0       4       0
+       0       5       0
+       1      -1       0
+       1       0       1
+       1       1       1
+       1       2       0
+       1       3       0
+       1       4       0
+       1       5       0
+       2      -1       0
+       2       0       1
+       2       1       2
+       2       2       1
+       2       3       0
+       2       4       0
+       2       5       0
+       3      -1       0
+       3       0       1
+       3       1       3
+       3       2       3
+       3       3       1
+       3       4       0
+       3       5       0
+       4      -1       0
+       4       0       1
+       4       1       4
+       4       2       6
+       4       3       4
+       4       4       1
+       4       5       0
+       5      -1       0
+       5       0       1
+       5       1       5
+       5       2      10
+       5       3      10
+       5       4       5
+       5       5       1
+
+COMBO_TEST05
+  CYCLE_TO_PERM converts a permutation from
+  cycle to array form;
+  PERM_TO_CYCLE converts a permutation from
+  array to cycle form.
+
+  "Random" permutation:
+
+   1   2   3   4   5   6   7
+   4   5   1   2   3   6   7
+
+  Corresponding cycle form:
+  Number of cycles is 3
+
+       4   2   5   3   1
+       6
+       7
+
+  Corresponding permutation:
+
+   1   2   3   4   5   6   7
+   4   5   1   2   3   6   7
+
+COMBO_TEST06
+  For a distribution of M indistinguishable
+  objects among K distinguishable slots:
+
+  DIST_ENUM enumerates them;
+  DIST_NEXT produces the "next" one.
+
+  Number of:
+    indistinguishable objects = 5
+    distinguishable slots =     3
+    distributions is            21
+
+        1:     0    0    5
+        2:     0    1    4
+        3:     0    2    3
+        4:     0    3    2
+        5:     0    4    1
+        6:     0    5    0
+        7:     1    0    4
+        8:     1    1    3
+        9:     1    2    2
+       10:     1    3    1
+       11:     1    4    0
+       12:     2    0    3
+       13:     2    1    2
+       14:     2    2    1
+       15:     2    3    0
+       16:     3    0    2
+       17:     3    1    1
+       18:     3    2    0
+       19:     4    0    1
+       20:     4    1    0
+       21:     5    0    0
+
+COMBO_TEST07:
+  I4_FACTORIAL evaluates the factorial function.
+
+     X       Exact F       FACTORIAL(X)
+
+     1             1             1
+     2             2             2
+     3             6             6
+     4            24            24
+     5           120           120
+     6           720           720
+     7          5040          5040
+     8         40320         40320
+     9        362880        362880
+    10       3628800       3628800
+    11      39916800      39916800
+    12     479001600     479001600
+
+COMBO_TEST08
+  Gray codes:
+
+  GRAY_CODE_ENUM enumerates,
+  GRAY_CODE_RANK ranks,
+  GRAY_CODE_SUCCESSOR lists,
+  GRAY_CODE_UNRANK unranks.
+
+  For N = 5
+  the number of Gray code elements is 32
+
+       0:     0   0   0   0   0
+       1:     0   0   0   0   1
+       2:     0   0   0   1   1
+       3:     0   0   0   1   0
+       4:     0   0   1   1   0
+       5:     0   0   1   1   1
+       6:     0   0   1   0   1
+       7:     0   0   1   0   0
+       8:     0   1   1   0   0
+       9:     0   1   1   0   1
+      10:     0   1   1   1   1
+      11:     0   1   1   1   0
+      12:     0   1   0   1   0
+      13:     0   1   0   1   1
+      14:     0   1   0   0   1
+      15:     0   1   0   0   0
+      16:     1   1   0   0   0
+      17:     1   1   0   0   1
+      18:     1   1   0   1   1
+      19:     1   1   0   1   0
+      20:     1   1   1   1   0
+      21:     1   1   1   1   1
+      22:     1   1   1   0   1
+      23:     1   1   1   0   0
+      24:     1   0   1   0   0
+      25:     1   0   1   0   1
+      26:     1   0   1   1   1
+      27:     1   0   1   1   0
+      28:     1   0   0   1   0
+      29:     1   0   0   1   1
+      30:     1   0   0   0   1
+      31:     1   0   0   0   0
+
+  Seek the element of rank 16
+
+  The item of the given rank
+
+     1:      1
+     2:      1
+     3:      0
+     4:      0
+     5:      0
+
+  Element to be ranked:
+
+     1:      1
+     2:      1
+     3:      0
+     4:      0
+     5:      0
+
+  Computed rank: 16
+
+COMBO_TEST09
+  Integer vectors.
+
+  I4VEC_SORT_INSERT_A ascending sorts;
+  I4VEC_SEARCH_BINARY_A searches a ascending sorted vector.
+
+  Before ascending sort:
+
+     1:      6
+     2:      7
+     3:      1
+     4:      0
+     5:      4
+     6:      3
+     7:      2
+     8:      1
+     9:      5
+    10:      8
+
+  After ascending sort:
+
+     1:      0
+     2:      1
+     3:      1
+     4:      2
+     5:      3
+     6:      4
+     7:      5
+     8:      6
+     9:      7
+    10:      8
+
+  Now search for an instance of the value 5
+
+  The value occurs at index = 7
+
+COMBO_TEST10
+  Integer vectors:
+
+  I4VEC_SORT_INSERT_D descending sorts;
+  I4VEC_SEARCH_BINARY_D searches a descending
+  sorted vector.
+
+  Before descending sort:
+
+     1:      6
+     2:      7
+     3:      1
+     4:      0
+     5:      4
+     6:      3
+     7:      2
+     8:      1
+     9:      5
+    10:      8
+
+  After descending sort:
+
+     1:      8
+     2:      7
+     3:      6
+     4:      5
+     5:      4
+     6:      3
+     7:      2
+     8:      1
+     9:      1
+    10:      0
+
+  Now search for an instance of the value 5
+
+  The value occurs at index = 4
+
+COMBO_TEST11
+  KNAPSACK_REORDER reorders the knapsack data.
+  KNAPSACK_01 solves the 0/1 knapsack problem.
+
+  Object, Profit, Mass, "Profit Density"
+
+       1   24.000   12.000    2.000
+       2   13.000    7.000    1.857
+       3   23.000   11.000    2.091
+       4   15.000    8.000    1.875
+       5   16.000    9.000    1.778
+
+  After reordering by Profit Density:
+
+  Object, Profit, Mass, "Profit Density"
+
+       1   23.000   11.000    2.091
+       2   24.000   12.000    2.000
+       3   15.000    8.000    1.875
+       4   13.000    7.000    1.857
+       5   16.000    9.000    1.778
+
+  Total mass restriction is 26.000000
+
+  Object, Density, Choice, Profit, Mass
+
+     1    2.091    1.000   23.000   11.000
+     2    2.000    0.000    0.000    0.000
+     3    1.875    1.000   15.000    8.000
+     4    1.857    1.000   13.000    7.000
+     5    1.778    0.000    0.000    0.000
+
+  Total:                   51.000   26.000
+
+COMBO_TEST12
+  KNAPSACK_REORDER reorders the knapsack data.
+  KNAPSACK_RATIONAL solves the rational knapsack problem.
+
+  Object, Profit, Mass, "Profit Density"
+
+       1   24.000   12.000    2.000
+       2   13.000    7.000    1.857
+       3   23.000   11.000    2.091
+       4   15.000    8.000    1.875
+       5   16.000    9.000    1.778
+
+  After reordering by Profit Density:
+
+  Object, Profit, Mass, "Profit Density"
+
+       1   23.000   11.000    2.091
+       2   24.000   12.000    2.000
+       3   15.000    8.000    1.875
+       4   13.000    7.000    1.857
+       5   16.000    9.000    1.778
+
+  Total mass restriction is 26.000000
+
+  Object, Density, Choice, Profit, Mass
+
+     1    2.091    1.000   23.000   11.000
+     2    2.000    1.000   24.000   12.000
+     3    1.875    0.375    5.625    3.000
+     4    1.857    0.000    0.000    0.000
+     5    1.778    0.000    0.000    0.000
+
+  Total:                   52.625   26.000
+
+COMBO_TEST13
+  K-subsets of an N set,
+  using the colexicographic ordering:
+
+  KSUBSET_COLEX_RANK ranks,
+  KSUBSET_COLEX_SUCCESSOR lists,
+  KSUBSET_COLEX_UNRANK unranks.
+  KSUBSET_ENUM enumerates,
+
+  For N = 5
+  the number of K subsets is 10
+
+     0      3    2    1
+     1      4    2    1
+     2      4    3    1
+     3      4    3    2
+     4      5    2    1
+     5      5    3    1
+     6      5    4    1
+     7      5    4    2
+     8      5    4    3
+
+  The element of rank 5:
+
+
+  The element:
+
+     1:      5
+     2:      3
+     3:      1
+
+  The rank of the element is computed as 5:
+
+COMBO_TEST14
+  K-subsets of an N set,
+  using the lexicographic ordering:
+
+  KSUBSET_ENUM enumerates,
+  KSUBSET_LEX_RANK ranks,
+  KSUBSET_LEX_SUCCESSOR lists,
+  KSUBSET_LEX_UNRANK unranks.
+
+  For N = 5
+  the number of K subsets is 10
+
+     0      1    2    3
+     1      1    2    4
+     2      1    2    5
+     3      1    3    4
+     4      1    3    5
+     5      1    4    5
+     6      2    3    4
+     7      2    3    5
+     8      2    4    5
+     9      3    4    5
+
+  The element of rank 5:
+
+            1    4    5
+
+  The rank of the element is computed as 5:
+
+COMBO_TEST15
+  K-subsets of an N set,
+  using the revolving door ordering:
+
+  KSUBSET_ENUM enumerates,
+  KSUBSET_REVDOOR_RANK ranks,
+  KSUBSET_REVDOOR_SUCCESSOR lists,
+  KSUBSET_REVDOOR_UNRANK unranks.
+
+  For N = 5
+  the number of K subsets is 10
+     0      1    2    3
+     1      1    3    4
+     2      2    3    4
+     3      1    2    4
+     4      1    4    5
+     5      2    4    5
+     6      3    4    5
+     7      1    3    5
+     8      2    3    5
+     9      1    2    5
+
+  The element of rank 5:
+
+
+  The element:
+
+     1:      2
+     2:      4
+     3:      5
+
+  The rank of the element is computed as 5:
+
+COMBO_TEST16
+  MARRIAGE arranges a set of stable marriages
+  given a set of preferences.
+
+  Man, Wife's rank, Wife
+
+       1       3       1
+       2       4       4
+       3       3       5
+       4       2       3
+       5       3       2
+
+  Woman, Husband's rank, Husband
+
+       1       2       1
+       2       2       5
+       3       2       4
+       4       2       2
+       5       3       3
+
+  Correct result:
+
+  M:W 1  2  3  4  5
+   1  +  .  .  .  .
+   2  .  .  .  +  .
+   3  .  .  .  .  +
+   4  .  .  +  .  .
+   5  .  +  .  .  .
+
+COMBO_TEST17
+  MOUNTAIN computes mountain numbers.
+
+   Y    MXY
+
+   0     42   0  14   0   5   0   2   0   1   0   1
+   1      0  42   0  14   0   5   0   2   0   1   0
+   2     90   0  28   0   9   0   3   0   1   0   0
+   3      0  48   0  14   0   4   0   1   0   0   0
+   4     75   0  20   0   5   0   1   0   0   0   0
+   5      0  27   0   6   0   1   0   0   0   0   0
+
+COMBO_TEST18
+  Partitions of N with NPART parts
+  in reverse standard form:
+
+  NPART_ENUM enumerates,
+  NPART_RSF_LEX_RANK ranks,
+  NPART_RSF_LEX_SUCCESSOR lists;
+  NPART_RSF_LEX_UNRANK unranks.
+
+  For N = 12
+  and NPART = 3
+  the number of partitions is 12
+
+     0      1    1   10
+     1      1    2    9
+     2      1    3    8
+     3      1    4    7
+     4      1    5    6
+     5      2    2    8
+     6      2    3    7
+     7      2    4    6
+     8      2    5    5
+     9      3    3    6
+    10      3    4    5
+    11      4    4    4
+
+  The element of rank 4:
+
+
+  The element:
+
+     1:      1
+     2:      5
+     3:      6
+
+  The rank of the element is computed as 4:
+
+COMBO_TEST19
+  Partitions of N = 12
+  with NPART = 3 parts
+  in reverse standard form:
+
+  NPART_RSF_LEX_RANDOM produces random examples.
+
+      1    4    7
+      4    4    4
+      3    4    5
+      2    4    6
+      2    2    8
+      1    2    9
+      1    5    6
+      1    3    8
+      1    2    9
+      2    5    5
+
+COMBO_TEST20
+  Partitions of N with NPART parts
+  in standard form:
+
+  NPART_ENUM enumerates,
+  NPART_SF_LEX_SUCCESSOR lists.
+
+  For N = 12
+  and NPART = 3
+  the number of partitions is 12
+
+     0      4    4    4
+     1      5    4    3
+     2      5    5    2
+     3      6    3    3
+     4      6    4    2
+     5      6    5    1
+     6      7    3    2
+     7      7    4    1
+     8      8    2    2
+     9      8    3    1
+    10      9    2    1
+    11     10    1    1
+
+COMBO_TEST21
+  NPART_TABLE tabulates partitions
+  of N with NPART parts;
+  PART_TABLE tabulates partitions of N.
+
+    I P(I)  P(I,0) P(I,1) P(I,2) P(I,3) P(I,4) P(I,5)
+
+    0    1    1    0    0    0    0    0
+    1    1    0    1    0    0    0    0
+    2    2    0    1    1    0    0    0
+    3    3    0    1    1    1    0    0
+    4    5    0    1    2    1    1    0
+    5    7    0    1    2    2    1    1
+    6   11    0    1    3    3    2    1
+    7   15    0    1    3    4    3    2
+    8   22    0    1    4    5    5    3
+    9   30    0    1    4    7    6    5
+   10   42    0    1    5    8    9    7
+
+COMBO_TEST22
+  PART_SUCCESSOR produces partitions of N,
+  PART_ENUM enumerates.
+
+  Partitions of N = 8
+
+  For N = 8
+  the number of partitions is 22
+
+     0    1  1  1  1  1  1  1  1
+     1    2  1  1  1  1  1  1
+     2    2  2  1  1  1  1
+     3    2  2  2  1  1
+     4    2  2  2  2
+     5    3  1  1  1  1  1
+     6    3  2  1  1  1
+     7    3  2  2  1
+     8    3  3  1  1
+     9    3  3  2
+    10    4  1  1  1  1
+    11    4  2  1  1
+    12    4  2  2
+    13    4  3  1
+    14    4  4
+    15    5  1  1  1
+    16    5  2  1
+    17    5  3
+    18    6  1  1
+    19    6  2
+    20    7  1
+    21    8
+
+COMBO_TEST23
+  PART_SUCCESSOR produces partitions of N,
+  PART_SF_CONJUGATE produces the conjugate of a partition.
+
+  Partitions of N = 8
+
+    0     1  1  1  1  1  1  1  1
+  Con     8
+    1     2  1  1  1  1  1  1
+  Con     7  1
+    2     2  2  1  1  1  1
+  Con     6  2
+    3     2  2  2  1  1
+  Con     5  3
+    4     2  2  2  2
+  Con     4  4
+    5     3  1  1  1  1  1
+  Con     6  1  1
+    6     3  2  1  1  1
+  Con     5  2  1
+    7     3  2  2  1
+  Con     4  3  1
+    8     3  3  1  1
+  Con     4  2  2
+    9     3  3  2
+  Con     3  3  2
+   10     4  1  1  1  1
+  Con     5  1  1  1
+   11     4  2  1  1
+  Con     4  2  1  1
+   12     4  2  2
+  Con     3  3  1  1
+   13     4  3  1
+  Con     3  2  2  1
+   14     4  4
+  Con     2  2  2  2
+   15     5  1  1  1
+  Con     4  1  1  1  1
+   16     5  2  1
+  Con     3  2  1  1  1
+   17     5  3
+  Con     2  2  2  1  1
+   18     6  1  1
+  Con     3  1  1  1  1  1
+   19     6  2
+  Con     2  2  1  1  1  1
+   20     7  1
+  Con     2  1  1  1  1  1  1
+   21     8
+  Con     1  1  1  1  1  1  1  1
+
+COMBO_TEST24
+  PART_SF_MAJORIZE determines if one partition
+  majorizes another.
+
+  Partitions of N = 8
+
+  A:   2  2  2  1  1
+  B:   3  1  1  1  1  1
+  C:   2  2  1  1  1  1
+
+  A compare B: -2
+  B compare C: 1
+  C compare A: -1
+  C compare C: 0
+
+COMBO_TEST25
+  PARTITION_GREEDY partitions an integer vector into
+  two subsets with nearly equal sum.
+
+  Data set #1 partitioned:
+
+          10
+     9
+     8
+           7
+           5
+     5
+           3
+     3
+           2
+     2
+
+  Sums:
+
+    27    27
+
+  Data set #2 partitioned:
+
+        1003
+   885
+   854
+         771
+   734
+         486
+         281
+   121
+          83
+    62
+
+  Sums:
+
+  2656  2624
+
+COMBO_TEST26
+  Partitions of N with maximum element NMAX:
+
+  PARTN_SUCCESSOR lists;
+  PARTN_ENUM enumerates.
+
+  For N = 11
+  and NMAX = 4
+  the number of partitions is 11
+
+     0      4    1    1    1    1    1    1    1
+     1      4    2    1    1    1    1    1
+     2      4    2    2    1    1    1
+     3      4    2    2    2    1
+     4      4    3    1    1    1    1
+     5      4    3    2    1    1
+     6      4    3    2    2
+     7      4    3    3    1
+     8      4    4    1    1    1
+     9      4    4    2    1
+    10      4    4    3
+
+  Repeat, but list RSF conjugated partitions.
+
+     0      1    1    1    8
+     1      1    1    2    7
+     2      1    1    3    6
+     3      1    1    4    5
+     4      1    2    2    6
+     5      1    2    3    5
+     6      1    2    4    4
+     7      1    3    3    4
+     8      2    2    2    5
+     9      2    2    3    4
+    10      2    3    3    3
+
+COMBO_TEST27
+  Permutations of the integers:
+
+  PERM_INV computes an inverse permutation,
+  PERM_MUL multiplies two permutations.
+
+  The permutation P is
+
+   1   2   3   4
+   3   1   2   4
+
+  The inverse permutation Q is
+
+   1   2   3   4
+   2   3   1   4
+
+  The product R = P * Q is
+
+   1   2   3   4
+   1   2   3   4
+
+COMBO_TEST28
+  Permutations of the integers,
+  using the lexicographic ordering:
+
+  PERM_ENUM enumerates,
+  PERM_LEX_RANK ranks,
+  PERM_LEX_SUCCESSOR lists,
+  PERM_LEX_UNRANK unranks.
+
+  For N = 4
+  the number of permutations is 24
+
+   0:    1    2    3    4
+   1:    1    2    4    3
+   2:    1    3    2    4
+   3:    1    3    4    2
+   4:    1    4    2    3
+   5:    1    4    3    2
+   6:    2    1    3    4
+   7:    2    1    4    3
+   8:    2    3    1    4
+   9:    2    3    4    1
+  10:    2    4    1    3
+  11:    2    4    3    1
+  12:    3    1    2    4
+  13:    3    1    4    2
+  14:    3    2    1    4
+  15:    3    2    4    1
+  16:    3    4    1    2
+  17:    3    4    2    1
+  18:    4    1    2    3
+  19:    4    1    3    2
+  20:    4    2    1    3
+  21:    4    2    3    1
+  22:    4    3    1    2
+  23:    4    3    2    1
+
+  The element of rank 12:
+
+   1   2   3   4
+   3   1   2   4
+
+  The rank of the element:
+
+   1   2   3   4
+   3   1   2   4
+
+  is computed to be 12.
+
+COMBO_TEST29
+  Permutations of the integers,
+  using the Trotter-Johnson ordering:
+
+  PERM_ENUM enumerates,
+  PERM_TJ_RANK ranks,
+  PERM_TJ_SUCCESSOR lists,
+  PERM_TJ_UNRANK unranks.
+
+  For N = 4
+  the number of permutations is 24
+
+   0:    1    2    3    4
+   1:    1    2    4    3
+   2:    1    4    2    3
+   3:    4    1    2    3
+   4:    4    1    3    2
+   5:    1    4    3    2
+   6:    1    3    4    2
+   7:    1    3    2    4
+   8:    3    1    2    4
+   9:    3    1    4    2
+  10:    3    4    1    2
+  11:    4    3    1    2
+  12:    4    3    2    1
+  13:    3    4    2    1
+  14:    3    2    4    1
+  15:    3    2    1    4
+  16:    2    3    1    4
+  17:    2    3    4    1
+  18:    2    4    3    1
+  19:    4    2    3    1
+  20:    4    2    1    3
+  21:    2    4    1    3
+  22:    2    1    4    3
+  23:    2    1    3    4
+
+  The element of rank 12:
+
+   1   2   3   4
+   4   3   2   1
+
+  The rank of the element:
+
+   1   2   3   4
+   4   3   2   1
+
+  is computed to be 12.
+
+COMBO_TEST30
+  Pruefer codes:
+
+  PRUEFER_ENUM enumerates,
+  PRUEFER_RANK ranks,
+  PRUEFER_SUCCESSOR lists,
+  PRUEFER_UNRANK unranks.
+
+  For N = 4
+  the number of Pruefer codes is 16
+
+    0      1    1
+    1      1    2
+    2      1    3
+    3      1    4
+    4      2    1
+    5      2    2
+    6      2    3
+    7      2    4
+    8      3    1
+    9      3    2
+   10      3    3
+   11      3    4
+   12      4    1
+   13      4    2
+   14      4    3
+   15      4    4
+
+  The element of rank 8:
+
+    3    1
+
+  The rank of the element is computed as 8:
+
+COMBO_TEST31
+  PRUEFER_TO_TREE converts a Pruefer code to
+  a tree;
+  TREE_TO_PRUEFER converts a tree to a Pruefer
+  code.
+
+  Random Pruefer code of rank 27
+
+    2    1    3
+
+  Edge list for the corresponding tree:
+
+    1    5    2    2    4    1    3    2    3    4    3    1
+
+  Corresponding Pruefer code:
+
+    2    1    3
+
+  Random Pruefer code of rank 119
+
+    5    4    5
+
+  Edge list for the corresponding tree:
+
+    1    3    5    2    2    4    3    4    5    4    5    1
+
+  Corresponding Pruefer code:
+
+    5    4    5
+
+  Random Pruefer code of rank 103
+
+    5    1    4
+
+  Edge list for the corresponding tree:
+
+    1    3    5    2    5    1    3    2    4    4    4    1
+
+  Corresponding Pruefer code:
+
+    5    1    4
+
+  Random Pruefer code of rank 70
+
+    3    5    1
+
+  Edge list for the corresponding tree:
+
+    1    4    3    2    3    5    3    5    1    4    2    1
+
+  Corresponding Pruefer code:
+
+    3    5    1
+
+  Random Pruefer code of rank 51
+
+    3    1    2
+
+  Edge list for the corresponding tree:
+
+    1    5    3    2    4    1    3    3    2    4    2    1
+
+  Corresponding Pruefer code:
+
+    3    1    2
+
+COMBO_TEST32
+  QUEENS produces nonattacking queens
+  on a chessboard.
+  BACKTRACK supervises a backtrack search.
+
+   8   4   1   3   6   2   7   5
+   8   3   1   6   2   5   7   4
+   8   2   5   3   1   7   4   6
+   8   2   4   1   7   5   3   6
+   7   5   3   1   6   8   2   4
+   7   4   2   8   6   1   3   5
+   7   4   2   5   8   1   3   6
+   7   3   8   2   5   1   6   4
+   7   3   1   6   8   5   2   4
+   7   2   6   3   1   4   8   5
+   7   2   4   1   8   5   3   6
+   7   1   3   8   6   4   2   5
+   6   8   2   4   1   7   5   3
+   6   4   7   1   8   2   5   3
+   6   4   7   1   3   5   2   8
+   6   4   2   8   5   7   1   3
+   6   4   1   5   8   2   7   3
+   6   3   7   4   1   8   2   5
+   6   3   7   2   8   5   1   4
+   6   3   7   2   4   8   1   5
+   6   3   5   8   1   4   2   7
+   6   3   5   7   1   4   2   8
+   6   3   1   8   5   2   4   7
+   6   3   1   8   4   2   7   5
+   6   3   1   7   5   8   2   4
+   6   2   7   1   4   8   5   3
+   6   2   7   1   3   5   8   4
+   6   1   5   2   8   3   7   4
+   5   8   4   1   7   2   6   3
+   5   8   4   1   3   6   2   7
+   5   7   4   1   3   8   6   2
+   5   7   2   6   3   1   8   4
+   5   7   2   6   3   1   4   8
+   5   7   2   4   8   1   3   6
+   5   7   1   4   2   8   6   3
+   5   7   1   3   8   6   4   2
+   5   3   8   4   7   1   6   2
+   5   3   1   7   2   8   6   4
+   5   3   1   6   8   2   4   7
+   5   2   8   1   4   7   3   6
+   5   2   6   1   7   4   8   3
+   5   2   4   7   3   8   6   1
+   5   2   4   6   8   3   1   7
+   5   1   8   6   3   7   2   4
+   5   1   8   4   2   7   3   6
+   5   1   4   6   8   2   7   3
+   4   8   5   3   1   7   2   6
+   4   8   1   5   7   2   6   3
+   4   8   1   3   6   2   7   5
+   4   7   5   3   1   6   8   2
+   4   7   5   2   6   1   3   8
+   4   7   3   8   2   5   1   6
+   4   7   1   8   5   2   6   3
+   4   6   8   3   1   7   5   2
+   4   6   8   2   7   1   3   5
+   4   6   1   5   2   8   3   7
+   4   2   8   6   1   3   5   7
+   4   2   8   5   7   1   3   6
+   4   2   7   5   1   8   6   3
+   4   2   7   3   6   8   5   1
+   4   2   7   3   6   8   1   5
+   4   2   5   8   6   1   3   7
+   4   1   5   8   6   3   7   2
+   4   1   5   8   2   7   3   6
+   3   8   4   7   1   6   2   5
+   3   7   2   8   6   4   1   5
+   3   7   2   8   5   1   4   6
+   3   6   8   2   4   1   7   5
+   3   6   8   1   5   7   2   4
+   3   6   8   1   4   7   5   2
+   3   6   4   2   8   5   7   1
+   3   6   4   1   8   5   7   2
+   3   6   2   7   5   1   8   4
+   3   6   2   7   1   4   8   5
+   3   6   2   5   8   1   7   4
+   3   5   8   4   1   7   2   6
+   3   5   7   1   4   2   8   6
+   3   5   2   8   6   4   7   1
+   3   5   2   8   1   7   4   6
+   3   1   7   5   8   2   4   6
+   2   8   6   1   3   5   7   4
+   2   7   5   8   1   4   6   3
+   2   7   3   6   8   5   1   4
+   2   6   8   3   1   4   7   5
+   2   6   1   7   4   8   3   5
+   2   5   7   4   1   8   6   3
+   2   5   7   1   3   8   6   4
+   2   4   6   8   3   1   7   5
+   1   7   5   8   2   4   6   3
+   1   7   4   6   8   2   5   3
+   1   6   8   3   7   4   2   5
+   1   5   8   6   3   7   2   4
+
+COMBO_TEST33
+  RGF_G_ENUM enumerates generalized restricted
+  growth functions.
+
+     1     1     1     1     1     1     1
+     1     2     3     4     5     6
+     2     5    10    17    26
+     5    15    37    77
+    15    52   151
+    52   203
+   203
+
+COMBO_TEST34
+  Restricted growth functions:
+
+  RGF_ENUM enumerates,
+  RGF_RANK ranks,
+  RGF_SUCCESSOR lists;
+  RGF_UNRANK unranks.
+
+  For M = 4
+  the number of RGF's is 15
+
+     0      1    1    1    1
+     1      1    1    1    2
+     2      1    1    2    1
+     3      1    1    2    2
+     4      1    1    2    3
+     5      1    2    1    1
+     6      1    2    1    2
+     7      1    2    1    3
+     8      1    2    2    1
+     9      1    2    2    2
+    10      1    2    2    3
+    11      1    2    3    1
+    12      1    2    3    2
+    13      1    2    3    3
+    14      1    2    3    4
+
+  The element of rank 7:
+
+
+  The element
+
+     1:      1
+     2:      2
+     3:      1
+     4:      3
+
+  The rank of the element is computed as 7:
+
+COMBO_TEST35
+  RGF_TO_SETPART converts a balanced
+  sequence to a restricted growth function;
+  SETPART_TO_RGF converts a restricted growth
+  function to a balanced sequence.
+
+  "Random" restricted growth function:
+
+     1:      1
+     2:      1
+     3:      1
+     4:      1
+     5:      1
+     6:      2
+     7:      1
+     8:      3
+
+  Corresponding set partition
+
+   1   2   3   4   5   7
+   6
+   8
+
+  Recovered restricted growth function:
+
+     1:      1
+     2:      1
+     3:      1
+     4:      1
+     5:      1
+     6:      2
+     7:      1
+     8:      3
+
+COMBO_TEST36
+  Set partitions:
+
+  SETPART_ENUM enumerates,
+
+     1     1
+     2     2
+     3     5
+     4    15
+     5    52
+     6   203
+
+COMBO_TEST37
+  STIRLING_NUMBERS1 computes a table of Stirling
+  numbers of the first kind.
+
+    I S(I,0) S(I,1) S(I,2) S(I,3) S(I,4) S(I,5)
+
+    0    1    0    0    0    0    0    0
+    1    0    1    0    0    0    0    0
+    2    0   -1    1    0    0    0    0
+    3    0    2   -3    1    0    0    0
+    4    0   -6   11   -6    1    0    0
+    5    0   24  -50   35  -10    1    0
+    6    0 -120  274 -225   85  -15    1
+
+COMBO_TEST38
+  STIRLING_NUMBERS2 computes a table of Stirling
+  numbers of the second kind.
+
+    I S(I,0) S(I,1) S(I,2) S(I,3) S(I,4) S(I,5)
+
+    0    1    0    0    0    0    0    0
+    1    0    1    0    0    0    0    0
+    2    0    1    1    0    0    0    0
+    3    0    1    3    1    0    0    0
+    4    0    1    7    6    1    0    0
+    5    0    1   15   25   10    1    0
+    6    0    1   31   90   65   15    1
+
+COMBO_TEST39
+  All subsets of a set,
+  using the colexicographic ordering:
+
+  SUBSET_COLEX_RANK ranks,
+  SUBSET_COLEX_SUCCESSOR lists,
+  SUBSET_COLEX_UNRANK unranks.
+  SUBSET_ENUM enumerates.
+
+  For N = 5
+  the number of subsets is 32
+
+     0      0    0    0    0    0
+     1      1    0    0    0    0
+     2      0    1    0    0    0
+     3      1    1    0    0    0
+     4      0    0    1    0    0
+     5      1    0    1    0    0
+     6      0    1    1    0    0
+     7      1    1    1    0    0
+     8      0    0    0    1    0
+     9      1    0    0    1    0
+    10      0    1    0    1    0
+    11      1    1    0    1    0
+    12      0    0    1    1    0
+    13      1    0    1    1    0
+    14      0    1    1    1    0
+    15      1    1    1    1    0
+    16      0    0    0    0    1
+    17      1    0    0    0    1
+    18      0    1    0    0    1
+    19      1    1    0    0    1
+    20      0    0    1    0    1
+    21      1    0    1    0    1
+    22      0    1    1    0    1
+    23      1    1    1    0    1
+    24      0    0    0    1    1
+    25      1    0    0    1    1
+    26      0    1    0    1    1
+    27      1    1    0    1    1
+    28      0    0    1    1    1
+    29      1    0    1    1    1
+    30      0    1    1    1    1
+    31      1    1    1    1    1
+
+  The element of rank 16:
+
+    0    0    0    0    1
+
+  The rank of the element is computed as 1:
+
+COMBO_TEST40
+  All subsets of a set,
+  using the lexicographic ordering:
+
+  SUBSET_ENUM enumerates,
+  SUBSET_LEX_RANK ranks,
+  SUBSET_LEX_SUCCESSOR lists,
+  SUBSET_LEX_UNRANK unranks.
+
+  For N = 5
+  the number of subsets is 32
+
+     0      0    0    0    0    0
+     1      0    0    0    0    1
+     2      0    0    0    1    0
+     3      0    0    0    1    1
+     4      0    0    1    0    0
+     5      0    0    1    0    1
+     6      0    0    1    1    0
+     7      0    0    1    1    1
+     8      0    1    0    0    0
+     9      0    1    0    0    1
+    10      0    1    0    1    0
+    11      0    1    0    1    1
+    12      0    1    1    0    0
+    13      0    1    1    0    1
+    14      0    1    1    1    0
+    15      0    1    1    1    1
+    16      1    0    0    0    0
+    17      1    0    0    0    1
+    18      1    0    0    1    0
+    19      1    0    0    1    1
+    20      1    0    1    0    0
+    21      1    0    1    0    1
+    22      1    0    1    1    0
+    23      1    0    1    1    1
+    24      1    1    0    0    0
+    25      1    1    0    0    1
+    26      1    1    0    1    0
+    27      1    1    0    1    1
+    28      1    1    1    0    0
+    29      1    1    1    0    1
+    30      1    1    1    1    0
+    31      1    1    1    1    1
+
+  Seek the element of rank 16:
+
+  The element:
+
+     1:      1
+     2:      0
+     3:      0
+     4:      0
+     5:      0
+
+  The rank of the element is computed as 16:
+
+COMBO_TEST41
+  SUBSETSUM_SWAP seeks a solution of the subset
+  sum problem using pair swapping.
+
+  The desired sum is 17
+
+    A(I), INDEX(I)
+
+     30      0
+     12      1
+     11      0
+      8      0
+      8      0
+      7      0
+      3      1
+
+  The achieved sum is 15
+
+COMBO_TEST42
+  Trees:
+
+  TREE_ENUM enumerates,
+  TREE_RANK ranks,
+  TREE_SUCCESSOR lists,
+  TREE_UNRANK unranks.
+
+  For N = 4
+  the number of trees is 16
+
+    0      4    3    2
+           1    1    1
+    1      4    3    2
+           1    2    1
+    2      4    2    3
+           1    3    1
+    3      3    2    4
+           1    4    1
+    4      4    3    2
+           2    1    1
+    5      4    3    2
+           2    2    1
+    6      4    2    3
+           2    3    1
+    7      3    2    4
+           2    4    1
+    8      4    3    2
+           3    1    1
+    9      4    3    2
+           3    2    1
+   10      4    2    3
+           3    3    1
+   11      2    3    4
+           3    4    1
+   12      3    4    2
+           4    1    1
+   13      3    4    2
+           4    2    1
+   14      2    4    3
+           4    3    1
+   15      3    2    4
+           4    4    1
+
+  The element of rank 8:
+
+    8      4    3    2
+           3    1    1
+
+  The rank of the element is computed as 8:
+
+COMBO_TEST
+  Normal end of execution.
+
+28-Jan-2011 21:03:22
+>>

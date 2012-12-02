@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>External models (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="ode.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="spinterptool.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>External models</h1>
+	  <p>Through system calls available in Matlab, one can easily execute external programs computing external models. The results from the external program can either be passed as an output stream (requires subsequent parsing of the stream to retrieve the results in usable format), or by saving the results to a file and reading the results from Matlab.</p>
+    <p>By embedding the system calls, reading/parsing of the result, etc., in Matlab functions, one can obtain wrapper functions that are treatable like regular Matlab functions, and thus, easily accessible to the <code>spvals</code> algorithm.</p>
+    <p>In the following, we present Matlab pseudo-code for a possible approach.</p>
+    <pre class="codeinput">
+<span class="keyword">function</span> [varargout] = external_model(external_config, x1, ..., xd)
+
+<span class="keyword">try</span> 
+  store permutation (x1,...xd) to external_config.inputfile
+
+  <span class="comment">% Start external program, pass input file name to program, pass</span>
+  <span class="comment">% output file name to program.</span>
+  system([external_config.program <span class="string">' -i '</span> external_config.inputfile ...
+	       <span class="string">' -o '</span> external_config.outputfile]);
+	       
+  read result from external_config.outputfile into varargout
+<span class="keyword">catch</span>
+  Do some error handling
+<span class="keyword">end</span>
+</pre> 
+    <p>In the presented case, the call to <code>spvals</code> would look like this:</p>
+<pre class="codeinput">
+external_config.program = <span class="string">'myprog.exe'</span>;
+external_config.inputfile = <span class="string">'in.txt'</span>;
+external_config.outputfile = <span class="string">'out.txt'</span>;
+options = spset(<span class="string">'VariablePositions'</span>, [1 + 1:d], <span class="string">'NumberOfOutputs'</span>, nout);
+z = spvals(@external_model, d, range, options, external_config);
+</pre>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="ode.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Approximating ODEs</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Sparse Grid Interpolation product page</td>
+        <td width="20" align="right"><a href="spinterptool.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

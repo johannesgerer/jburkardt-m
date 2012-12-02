@@ -1,0 +1,218 @@
+<html>
+
+  <head>
+    <title>
+      ASA006 - Cholesky Factor of a Positive Definite Symmetric Matrix
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ASA006 <br> Cholesky Factor of a Positive Definite Symmetric Matrix
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ASA006</b> 
+      is a MATLAB program which 
+      computes the Cholesky factor of a positive definite symmetric matrix.
+    </p>
+
+    <p>
+      <b>ASA006</b> is Applied Statistics Algorithm 6.  Source code for many
+      Applied Statistics Algorithms is available through 
+      <a href = "http://lib.stat.cmu.edu/apstat">STATLIB</a>. 
+    </p>
+
+    <p>
+      If <b>A</b> is a positive definite symmetric matrix, then there is an
+      upper triangular matrix <b>U</b> with the property that
+      <blockquote><b>
+        A = U' * U
+      </b></blockquote>
+      The matrix <b>U</b> is known as the <i>Cholesky factor</i> of <b>A</b>,
+      and can be used to easily solve linear systems involving <b>A</b>
+      or compute the inverse of <b>A</b>.
+    </p>
+
+    <p>
+      The algorithm implemented here uses a compressed storage for both the
+      matrix <b>A</b> and the factor <b>U</b>.  This saves some storage, but
+      can make computations a little awkward.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>ASA006</b> is available in
+      <a href = "../../c_src/asa006/asa006.html">a C version</a> and
+      <a href = "../../cpp_src/asa006/asa006.html">a C++ version</a> and
+      <a href = "../../f77_src/asa006/asa006.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/asa006/asa006.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/asa006/asa006.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa007/asa007.html">
+      ASA007</a>,
+      a MATLAB library which
+      computes the inverse of a symmetric positive definite matrix,
+      and uses a version of ASA006 for for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      implements the Nelder-Mead minimization algorithm,
+      and uses a version of ASA006 for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack/lapack.html">
+      LAPACK</a>,
+      a FORTRAN90 library which
+      includes routines for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack/linpack.html">
+      LINPACK</a>,
+      a MATLAB library which
+      includes routines for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/nl2sol/nl2sol.html">
+      NL2SOL</a>,
+      a FORTRAN77 library which
+      solves nonlinear least squares problems, and
+      includes routines for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/pppack/pppack.html">
+      PPPACK</a>,
+      a FORTRAN77 library which
+      carries out piecewise polynomial interpolation and
+      includes routines for Cholesky factorization.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toeplitz_cholesky/toeplitz_cholesky.html">
+      TOEPLITZ_CHOLESKY</a>,
+      a MATLAB library which
+      computes the Cholesky factorization of a nonnegative definite symmetric
+      Toeplitz matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          PR Freeman,<br>
+          Remark AS R44:
+          A Remark on AS 6 and AS7: Triangular decomposition of a symmetric matrix
+          and Inversion of a positive semi-definite symmetric matrix,<br>
+          Applied Statistics,<br>
+          Volume 31, Number 3, 1982, pages 336-339.
+        </li>
+        <li>
+          Michael Healy,<br>
+          Algorithm AS 6:
+          Triangular decomposition of a symmetric matrix,<br>
+          Applied Statistics,<br>
+          Volume 17, Number 2, 1968, pages 195-197.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cholesky.m">cholesky.m</a>
+          computes the Cholesky factorization of a PDS matrix.
+        </li>
+        <li>
+          <a href = "subchl.m">subchl.m</a>
+          computes the Cholesky factorization of a (subset of a) PDS matrix.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "asa006_test.m">asa006_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "asa006_test01.m">asa006_test01.m</a>,
+          tests CHOLESKY on a simple matrix.
+        </li>
+        <li>
+          <a href = "asa006_test02.m">asa006_test02.m</a>,
+          tests CHOLESKY on the Hilbert matrix.
+        </li>
+        <li>
+          <a href = "asa006_test03.m">asa006_test03.m</a>,
+          tests SUBCHL on the Hilbert matrix.
+        </li>
+        <li>
+          <a href = "asa006_test_output.txt">asa006_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

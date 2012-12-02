@@ -1,0 +1,331 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_QUAD - Integral Estimate Over a Triangulated Region
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_QUAD <br> 
+      Integral Estimate Over a Triangulated Region
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_QUAD</b> 
+      is a MATLAB program which 
+      reads information defining a triangulation, and estimates the integral of
+      a function whose values are given at the nodes.
+    </p>
+
+    <p>
+      Note that this program only expects to recieve values of the function <b>f(x,y)</b>
+      at the nodes of the triangulation, that is, as a simple list of values.  No formula
+      for <b>f</b> is expected or used.  A much better estimate for the integral might
+      be possible if a formula for <b>f(x,y)</b> were available, in which case a higher
+      order quadrature scheme could be employed.
+    </p>
+
+    <p>
+      This program should be able to compute exactly the integrals of 1, x, y, and any
+      linear combination of these.  It will only be able to approximate the integrals
+      of other functions, and the accuracy of the approximation will depend in part
+      on the size of the triangles in the triangulation.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>quad</i> = <b>triangulation_quad</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common prefix for the node and triangle files
+      <ul>
+        <li>
+          <i>prefix</i><b>_nodes.txt</b>,    the node coordinates;
+        </li>
+        <li>
+          <i>prefix</i><b>_elements.txt</b>,    the elements of the triangulation.
+        </li>
+        <li>
+          <i>prefix</i><b>_values.txt</b>,    the value (which may be a scalar or vector)
+          of some function at each node.
+        </li>
+        <li>
+          <i>quad</i> is the (scalar or vector) result of the integration estimate.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_QUAD</b> is available in
+      <a href = "../../cpp_src/triangulation_quad/triangulation_quad.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_quad/triangulation_quad.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for 1D domains.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      defines quadrature rules for a variety of multidimensional reqions.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>, 
+      a FORTRAN90 program which
+      triangulates a set of nodes whose coordinates are
+      stored in a file.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms706/toms706.html">
+      TOMS706</a>, 
+      a FORTRAN77 library which 
+      estimates the integral of a function
+      over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>, 
+      a MATLAB program which 
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>, 
+      a MATLAB program which
+      reads data defining a 3-node triangulation and generates
+      midside nodes and writes out the corresponding 6-node triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a directory which
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a directory which
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_q2l/triangulation_q2l.html">
+      TRIANGULATION_Q2L</a>, 
+      a MATLAB program which
+      reads data defining a 6-node triangulation, and subdivides
+      each triangle into 4 3-node triangles, writing the resulting
+      triangulation to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>, 
+      a MATLAB program which
+      computes quality measures of a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines an ordering
+      of the nodes that will reduce the bandwidth of the adjacency
+      matrix, and writes the new triangulation information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_quad.m">triangulation_quad.m</a>, 
+          the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>EXAMPLE</b> is a set of nodes in the unit square, which have
+      been arranged into an order 3 triangulation.
+      <ul>
+        <li>
+          <a href = "example_nodes.txt">example_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "example_elements.txt">example_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "example_values.txt">example_values.txt</a>,
+          the values file, containing 4 values at each node.
+          (These values are actually the values of 1, x, y, and x*y,
+          which have exact integrals of 1, 1/2, 1/2, and 1/4.)
+          Only the first three integrals will be estimated exactly.
+        </li>
+        <li>
+          <a href = "example_output.txt">example_output.txt</a>,
+          the output file from the command<br>
+          quad = triangulation_quad ( 'example' )
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

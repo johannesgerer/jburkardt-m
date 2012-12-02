@@ -1,0 +1,59 @@
+>> tic_toc_test
+20-May-2012 14:25:43
+
+TIC_TOC_TEST
+  Test the TIC and TOC functions.
+
+TIC_TOC_RESOLUTION_TEST:
+  Estimate the resolution of the TIC/TOC functions by calling
+  N times and averaging.
+
+       N    Seconds/Tick     Ticks/Second
+
+       1   1.196e-06  8.361204e+05
+       2    3.55e-07  2.816901e+06
+       4   2.245e-07  4.454343e+06
+       8   1.841e-07  5.431093e+06
+      16   1.658e-07  6.030908e+06
+      32   1.561e-07  6.406406e+06
+      64   1.518e-07  6.588429e+06
+     128   1.492e-07  6.702623e+06
+     256   1.482e-07  6.748563e+06
+     512   1.477e-07  6.770964e+06
+    1024   1.475e-07  6.779167e+06
+
+TIC_TOC_PRINTING_TEST:
+  We can estimate the resolution of the TIC/TOC call by
+  calling them one after the other, with no work in between.
+
+  So calling TIC, and then calling TOC several times, might
+  seem to give us more estimates to compare.
+
+  However, we must realize that calling TOC with the
+  printing option adds the printing time to the next measurement
+  of elapsed time.
+
+  A: Call TIC once, then call TOC five times.
+
+Elapsed time is 0.000001 seconds.
+Elapsed time is 0.000006 seconds.
+Elapsed time is 0.000008 seconds.
+Elapsed time is 0.000010 seconds.
+Elapsed time is 0.000012 seconds.
+
+  B: Call TIC once, then call T=TOC five times,
+  storing the value.  Afterwards, print the five values.
+  Notice that calling the "printing" TOC adds the printing time
+  to the next elapsed time.
+
+Elapsed time is 0.0000004390 seconds
+Elapsed time is 0.0000024730 seconds
+Elapsed time is 0.0000032380 seconds
+Elapsed time is 0.0000038630 seconds
+Elapsed time is 0.0000043770 seconds
+
+TIC_TOC_TEST:
+  Normal end of execution.
+
+20-May-2012 14:25:44
+>> 

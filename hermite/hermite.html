@@ -1,0 +1,325 @@
+<html>
+
+  <head>
+    <title>
+      HERMITE - Hermite polynomial interpolating function and derivative values
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HERMITE <br> Hermite polynomial interpolating function and derivative values
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HERMITE</b>
+      is a MATLAB library which
+      constructs the Hermite polynomial which interpolates function 
+      and derivative values at given points.
+    </p>
+
+    <p>
+      In other words, the user supplies <b>n</b> sets of data,
+      <b>(x(i),y(i),yp(i))</b>, and the algorithm determines a polynomial <b>p(x)</b>
+      such that, for 1 &lt;= <b>i</b> &lt;= <b>n</b>
+      <blockquote>
+        p(x(i)) = y(i) <br>
+        p'(x(i)) = yp(i)
+      </blockquote>
+    </p>
+
+    <p>
+      Note that <b>p(x)</b> is a "global" polynomial, not a piecewise polynomial.
+      Given <b>n</b> data points, <b>p(x)</b> will be a polynomial of degree 2<b>n</b>-1.
+      As the value <b>n</b> increases, the increasing degree of the interpolating
+      polynomial makes it liable to oscillations between the data, and eventually
+      to severe inaccuracy even at the data points.
+    </p>
+
+    <p>
+      Generally, the interpolation problem for a large number of data points should
+      be handled differently, for instance by piecewise polynomials.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HERMITE</b> is available in
+      <a href = "../../c_src/hermite/hermite.html">a C version</a> and
+      <a href = "../../cpp_src/hermite/hermite.html">a C++ version</a> and
+      <a href = "../../f77_src/hermite/hermite.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/hermite/hermite.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/hermite/hermite.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev/chebyshev.html">
+      CHEBYSHEV</a>,
+      a MATLAB library which
+      computes the Chebyshev interpolant/approximant to a given function
+      over an interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/divdif/divdif.html">
+      DIVDIF</a>,
+      a MATLAB library which
+      computes interpolants by divided differences.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_cubic/hermite_cubic.html">
+      HERMITE_CUBIC</a>,
+      a MATLAB library which
+      can compute the value, derivatives or integral of a Hermite cubic polynomial,
+      or manipulate an interpolating function made up of piecewise Hermite cubic
+      polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/interp/interp.html">
+      INTERP</a>,
+      a MATLAB library which
+      can be used for parameterizing and interpolating data;
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_1d/shepard_interp_1d.html">
+      SHEPARD_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 1D data,
+      which are based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      includes many routines to construct
+      and evaluate spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 1D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          Carl deBoor,<br>
+          A Practical Guide to Splines,<br>
+          Springer, 2001,<br>
+          ISBN: 0387953663,<br>
+          LC: QA1.A647.v27.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dif_deriv.m">dif_deriv.m</a>,
+          computes the derivative of a polynomial in divided difference form.
+        </li>
+        <li>
+          <a href = "dif_shift_x.m">dif_shift_x.m</a>,
+          replaces one abscissa of a divided difference table with a new one.
+        </li>
+        <li>
+          <a href = "dif_shift_zero.m">dif_shift_zero.m</a>,
+          shifts a divided difference table so that all abscissas are zero.
+        </li>
+        <li>
+          <a href = "dif_to_r8poly.m">dif_to_r8poly.m</a>,
+          converts a divided difference table to a standard polynomial.
+        </li>
+        <li>
+          <a href = "dif_vals.m">dif_vals.m</a>,
+          evaluates a divided difference polynomial at a set of points.
+        </li>
+        <li>
+          <a href = "hermite_basis_0.m">hermite_basis_0.m</a>,
+          evaluates a zero-order Hermite interpolation basis function.
+        </li>
+        <li>
+          <a href = "hermite_basis_1.m">hermite_basis_1.m</a>,
+          evaluates a first-order Hermite interpolation basis function.
+        </li>
+        <li>
+          <a href = "hermite_demo.m">hermite_demo.m</a>,
+          computes and prints Hermite interpolant information for data.
+        </li>
+        <li>
+          <a href = "hermite_interpolant.m">hermite_interpolant.m</a>,
+          sets up a divided difference table from Hermite data.
+        </li>
+        <li>
+          <a href = "hermite_interpolant_rule.m">hermite_interpolant_rule.m</a>,
+          quadrature rule for a Hermite interpolant.
+        </li>
+        <li>
+          <a href = "hermite_interpolant_value.m">hermite_interpolant_value.m</a>,
+          evaluates the Hermite interpolant polynomial.
+        </li>
+        <li>
+          <a href = "r8poly_ant_val.m">r8poly_ant_val.m</a>,
+          evaluates the antiderivative of a polynomial in standard form.
+        </li>
+        <li>
+          <a href = "r8poly_degree.m">r8poly_degree.m</a>,
+          returns the degree of a polynomial.
+        </li>
+        <li>
+          <a href = "r8poly_print.m">r8poly_print.m</a>,
+          prints out a polynomial.
+        </li>
+        <li>
+          <a href = "r8vec_chebyshev.m">r8vec_chebyshev.m</a>,
+          creates a vector of Chebyshev spaced values.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hermite_test.m">hermite_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "hermite_test01.m">hermite_test01.m</a>,
+          three data points, a cubic function.
+        </li>
+        <li>
+          <a href = "hermite_test02.m">hermite_test02.m</a>,
+          three data points, f(x) = a 5-th degree polynomial.
+        </li>
+        <li>
+          <a href = "hermite_test03.m">hermite_test03.m</a>,
+          three random abscissas, f(x)=random 5-th degree polynomial.
+        </li>
+        <li>
+          <a href = "hermite_test04.m">hermite_test04.m</a>,
+          shows the behavior of the interpolant for Runge's example
+          on equally-spaced data.
+        </li>
+        <li>
+          <a href = "hermite_test05.m">hermite_test05.m</a>,
+          shows the behavior of the interpolant for Runge's example
+          on Chebyshev-spaced data.
+        </li>
+        <li>
+          <a href = "hermite_test06.m">hermite_test06.m</a>,
+          tests HERMITE_BASIS_0 and HERMITE_BASIS_1.
+        </li>
+        <li>
+          <a href = "hermite_test07.m">hermite_test07.m</a>,
+          tests HERMITE_INTERPOLANT_RULE.
+        </li>
+        <li>
+          <a href = "hermite_test08.m">hermite_test08.m</a>,
+          tabulates the interpolant and its derivative.
+        </li>
+        <li>
+          <a href = "hermite_test_output.txt">hermite_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

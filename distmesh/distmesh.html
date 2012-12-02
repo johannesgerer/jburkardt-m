@@ -1,0 +1,1245 @@
+<html>
+
+  <head>
+    <title>
+      DISTMESH - A Simple Mesh Generator in MATLAB
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DISTMESH <br> A Simple Mesh Generator in MATLAB
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DISTMESH</b>
+      is a MATLAB program which generates
+      and manipulates unstructured meshes in 2D, 3D and general ND,
+      by Per-Olof Persson.
+    </p>
+
+    <p>
+      The code is relatively simple, and the user is able to define
+      a variety of geometric shapes, and desired mesh densities.
+    </p>
+
+    <p>
+      <b>DISTMESH</b> can be a very quick and flexible means of computing
+      a set of points in a region.  However, keep in mind the following
+      considerations:
+      <ul>
+        <li>
+          Especially if you are have specified some fixed points which
+          must appear in the mesh, it is possible for <b>DISTMESH</b>
+          to return multiple instances of the same point.  For finite
+          element applications, in particular, this can result in
+          catastrophe.  The program <b>TABLE_MERGE</b> can fix this.
+        </li>
+        <li>
+          The nodes produced by <b>DISTMESH</b> are not ordered or sorted
+          in any way whatsoever.
+        </li>
+        <li>
+          Because the nodes are not ordered in any way, the triangular
+          elements produced by <b>DISTMESH</b> will typically contain
+          nodes with widely ranging indices.  For finite element
+          applications, this can result in a system matrix with an
+          unnecessarily high bandwidth.  The program
+          <b>TRIANGULATION_RCM</b> can fix this, after the fact.
+        </li>
+        <li>
+          The triangles produced by <b>DISTMESH</b> are not necessarily
+          oriented; they are just as likely to have positive or negative
+          orientation.  Some finite element programs insist that all
+          triangles have positive orientation.  The program
+          <b>TRIANGULATION_ORIENT</b> can fix this, after the fact.
+        </li>
+        <li>
+          When <b>DISTMESH</b> is trying to approximate a boundary, particularly
+          a long straight boundary, it is possible for several points
+          that really belong on the boundary to be slightly out of line.
+          This means that they will be used to form a triangle, of
+          very small area, and terrible conditioning.  This can result
+          in perplexing problems near the boundary.
+        </li>
+        <li>
+          Because <b>DISTMESH</b> uses tolerances, it is possible for
+          some nodes to lie outside the boundary of the region; it is
+          possible for some triangles on the boundary to lie partially
+          outside the region; it is possible for triangles that lie
+          partly on the boundary, but entirely within the region, to
+          be deleted, leaving a triangular hole.
+        </li>
+        <li>
+          Once you have the mesh, you may want to know which nodes lie
+          on the boundary.  You'll want this information, for instance, if
+          you need to impose boundary conditions on such nodes.  You can
+          get a list of the boundary nodes using the program
+          <b>TRIANGULATION_BOUNDARY_NODES</b>.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+          [ <i>p, t</i> ] = <b>distmesh_2d</b> ( <i>fd, fh, h,
+          box, iteration_max, fixed</i> );
+      </blockquote>
+      where:
+      <ul>
+        <li>
+          <i>fd</i>, the name of a distance function defining the region;
+        </li>
+        <li>
+          <i>fh</i>, the name of a mesh density function;
+        </li>
+        <li>
+          <i>h</i>, the nominal mesh spacing;
+        </li>
+        <li>
+          <i>box</i>, defining a box that contains the region;
+        </li>
+        <li>
+          <i>iteration_max</i>, the maximum number of iterations;
+        </li>
+        <li>
+          <i>fixed</i>, a list of points which must be included in the mesh,
+          or '[]', if no fixed points are given.
+        </li>
+        <li>
+          <i>p</i>, (output), a list of node coordinates;
+        </li>
+        <li>
+          <i>t</i>, (output), a list of node indices forming triangles;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      <b>DISTMESH</b> is Copyright (C) 2004 Per-Olof Persson.
+    </p>
+
+    <p>
+      This program is free software; you can redistribute it and/or modify it
+      under the terms of the GNU General Public License as published by the
+      Free Software Foundation; either version 2 of the License, or (at your
+      option) any later version.
+    </p>
+
+    <p>
+      This program is distributed in the hope that it will be useful, but
+      WITHOUT ANY WARRANTY; without even the implied warranty of
+      MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General
+      Public License for more details.
+    </p>
+
+    <p>
+      You should have received a copy of the GNU General Public License along
+      with this program; if not, write to the Free Software Foundation, Inc.,
+      59 Temple Place - Suite 330, Boston, MA 02111-1307, USA.
+    </p>
+
+    <p>
+      If you use <b>DISTMESH</b> in any program or publication, please
+      acknowledge its authors by citing the reference.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dist_plot/dist_plot.html">
+      DIST_PLOT</a>,
+      a MATLAB program which
+      creates a color contour plot of the
+      distance functions that are used by DISTMESH.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh_3d/distmesh_3d.html">
+      DISTMESH_3D</a>,
+      a MATLAB program which
+      is a subset of the DISTMESH routines, exclusively for 3D problems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/point_merge/point_merge.html">
+      POINT_MERGE</a>,
+      a MATLAB library which
+      considers N points in M dimensional space, and counts or indexes
+      the unique or "tolerably unique" items.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_io/table_io.html">
+      TABLE_IO</a>,
+      a MATLAB library which
+      reads and writes files
+      using the <b>TABLE</b> format; these routines are used by
+      <b>DISTMESH</b> when creating some output files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_merge/table_merge.html">
+      TABLE_MERGE</a>,
+      a MATLAB program which
+      removes duplicate points from a <b>TABLE</b> file; it can also remove
+      points that are "close" to each other;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>,
+      a MATLAB library which
+      defines some test regions for triangulation.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>,
+      a MATLAB program which
+      reads data defining a triangulation and determines which nodes lie on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../g_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image
+      using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>,
+      a MATLAB program which
+      reads data defining a linear triangulation and adds midpoint nodes to create
+      a quadratic triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>,
+      a MATLAB program which
+      is compiled with a user routine that defines a region; it
+      then reads data defining a triangulation and removes all triangles
+      that are outside the region.  This is one way to clean up an
+      unconstrained Delaunay triangulation of a nonconvex region.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>,
+      a data directory which
+      discusses order 3 triangulations;
+      The node and triangle files output by <b>DISTMESH</b> are an example
+      of such triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>,
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program which
+      plots a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>,
+      a MATLAB program which
+      reads data defining a triangulation, and uses the Reverse
+      Cuthill McKee algorithm to reorder the nodes so as the reduce
+      the bandwidth of the corresponding adjacency matrix.  This can
+      be very helpful for cases where the data is to be handled by a
+      frontal technique, or treated as a banded linear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>,
+      a MATLAB program which
+      reads data defining a triangulation and creates a refinement of the
+      triangulation by subdividing each triangle.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Per-Olof Persson.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://math.mit.edu/~persson/">
+                     http://math.mit.edu/~persson/</a> <br>
+          Per-Olof Persson's web site.
+        </li>
+        <li>
+          Per-Olof Persson and Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "boundedges.m">boundedges.m</a>
+          finds the surface edges in a triangular mesh.
+        </li>
+        <li>
+          <a href = "circumcenter.m">circumcenter.m</a>
+          computes the circumcenters of the triangles that form a triangulation
+          of a set of nodes.
+        </li>
+        <li>
+          <a href = "dcircle.m">dcircle.m</a>
+          returns the signed distance of one or more points to a circle.
+        </li>
+        <li>
+          <a href = "ddiff.m">ddiff.m</a>
+          returns the signed distance of one or more points to a region
+          defined as the set difference of two regions.
+        </li>
+        <li>
+          <a href = "dexpr.m">dexpr.m</a>
+          returns the signed distance of one or more points to a region
+          defined by a general symbolic expression.
+        </li>
+        <li>
+          <a href = "dintersect.m">dintersect.m</a>
+          returns the signed distance to a region that is the intersection
+          of two regions.
+        </li>
+        <li>
+          <a href = "distmesh_2d.m">distmesh_2d.m</a>
+          computes a mesh of a given 2D region.
+        </li>
+        <li>
+          <a href = "distmesh_nd.m">distmesh_nd.m</a>
+          computes a mesh of a given ND region.
+        </li>
+        <li>
+          <a href = "dmatrix.m">dmatrix.m</a>
+          returns the signed distance to a region by interpolation of
+          known distance values on a Cartesian grid.
+        </li>
+        <li>
+          <a href = "dpoly.m">dpoly.m</a>
+          returns the signed distance of one or more points to a polygon.
+        </li>
+        <li>
+          <a href = "drectangle.m">drectangle.m</a>
+          returns the signed distance of one or more points to a rectangle.
+        </li>
+        <li>
+          <a href = "drectangle0.m">drectangle0.m</a>,
+          returns the signed distance of one or more points to a rectangle.
+        </li>
+        <li>
+          <a href = "dsegment.cpp">dsegment.cpp</a>
+          (C++ file), a version of the algorithm for the signed distance
+          of one or more points to a set of line segments, for use with
+          a non-Windows version of MATLAB.  This file must be compiled,
+          and the corresponding MEX file must be available to define the
+          MATLAB/C++ interface.
+        </li>
+        <li>
+          <a href = "dsegment.dll">dsegment.dll</a>
+          (binary file), a Windows DLL file, returns the signed distance
+          of one or more points to a set of line segments.
+        </li>
+        <li>
+          <a href = "dsegment.m">dsegment.m</a>
+          a pure MATLAB version of DSEGMENT, which returns the signed distance
+          of one or more points to a set of line segments.  This routine
+          will be significantly slower than the MEXGLX or DLL versions.
+        </li>
+        <li>
+          <a href = "dsegment.mexglx">dsegment.mexglx</a>
+          (binary file), used on non-Windows machines to allow MATLAB
+          to calculate the DSEGMENT algorithm (distance to a line segment)
+          by calling a compiled C++ routine (dsegment.cpp).
+        </li>
+        <li>
+          <a href = "dsphere.m">dsphere.m</a>
+          returns the signed distance of one or more points to a sphere.
+        </li>
+        <li>
+          <a href = "dunion.m">dunion.m</a>
+          returns the signed distance to a region that is the union of
+          two regions.
+        </li>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>
+          counts the number of columns in a table file.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>
+          counts the number of rows in a table file.
+        </li>
+        <li>
+          <a href = "hmatrix.m">hmatrix.m</a>
+          computes the mesh size function by interpolation from values
+          specified on a Cartesian grid.
+        </li>
+        <li>
+          <a href = "huniform.m">huniform.m</a>
+          computes a uniform mesh size function.
+        </li>
+        <li>
+          <a href = "i4mat_data_read.m">i4mat_data_read.m</a>
+          reads the data of an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_header_read.m">i4mat_header_read.m</a>
+          reads the header of an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_read.m">i4mat_read.m</a>
+          reads an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>
+          writes an I4MAT file.
+        </li>
+        <li>
+          <a href = "meshdemo_nd.m">meshdemo_nd.m</a>
+          demonstrates the use of the program for higher dimensional problems.
+        </li>
+        <li>
+          <a href = "post_2d.m">post_2d.m</a>
+          performs postprocessing for output from DISTMESH_2D.
+        </li>
+        <li>
+          <a href = "protate.m">protate.m</a>
+          rotates a set of points by a given angle.
+        </li>
+        <li>
+          <a href = "pshift.m">pshift.m</a>
+          shifts a set of points by a given increment.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>
+          returns the R8 arithmetic precision.
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">r8mat_data_read.m</a>
+          reads the data of an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a>
+          reads the header of an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>
+          counts the number of "words" in a string.
+        </li>
+        <li>
+          <a href = "simp_plot_2d.m">simp_plot_2d.m</a>
+          displays a plot of the triangles that form a mesh in 2D.
+        </li>
+        <li>
+          <a href = "simp_plot_2d_demo.m">simp_plot_2d_demo.m</a>
+          reads and displays the node and triangle data for each problem.
+        </li>
+        <li>
+          <a href = "simp_plot_3d.m">simp_plot_3d.m</a>
+          displays a plot of the tetrahedrons that form a mesh in 3D.
+        </li>
+        <li>
+          <a href = "simpqual.m">simpqual.m</a>
+          computes the simplex quality of the mesh.
+        </li>
+        <li>
+          <a href = "simpvol.m">simpvol.m</a>
+          computes the volume of a simplex.
+        </li>
+        <li>
+          <a href = "surftri.m">surftri.m</a>
+          finds the surface triangles in a tetrahedral mesh.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS time as a timestamp.
+        </li>
+        <li>
+          <a href = "triangulation_order3_plot.m">
+          triangulation_order3_plot.m</a>
+          writes a PostScript file containing an image of the mesh.
+        </li>
+        <li>
+          <a href = "uniformity.m">uniformity.m</a>
+          computes the uniformity of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>MESHDEMO_2D</b> runs all the 2D tests:
+      <ul>
+        <li>
+          <a href = "meshdemo_2d.m">meshdemo_2d.m</a>
+          demonstrates the use of the program for 2D problems.
+        </li>
+        <li>
+          <a href = "meshdemo_2d_outut.txt">meshdemo_2d_output.txt</a>
+          the output from a run of MESHDEMO_2D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P01</b> is the circle:
+      <ul>
+        <li>
+          <a href = "p01_demo.m">p01_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p01_fd.m">p01_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p01_fh.m">p01_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p01_mesh.png">p01_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p01_nodes.txt">p01_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p01_elements.txt">p01_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P02</b> is the circle with a hole:
+      <ul>
+        <li>
+          <a href = "p02_demo.m">p02_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p02_fd.m">p02_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p02_fh.m">p02_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p02_mesh.png">p02_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p02_nodes.txt">p02_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p02_elements.txt">p02_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P03</b> is the square with a circular hole:
+      <ul>
+        <li>
+          <a href = "p03_demo.m">p03_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p03_fd.m">p03_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p03_fh.m">p03_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p03_mesh.png">p03_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p03_nodes.txt">p03_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p03_elements.txt">p03_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P04</b> is the hexagon with a hexagonal hole:
+      <ul>
+        <li>
+          <a href = "p04_demo.m">p04_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p04_fd.m">p04_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p04_fh.m">p04_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p04_mesh.png">p04_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p04_nodes.txt">p04_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p04_elements.txt">p04_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P05</b> is the horn:
+      <ul>
+        <li>
+          <a href = "p05_demo.m">p05_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p05_fd.m">p05_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p05_fh.m">p05_fh.m</a>
+          a nonuniform mesh density function.
+        </li>
+        <li>
+          <a href = "p05_mesh.png">p05_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p05_nodes.txt">p05_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p05_elements.txt">p05_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P06</b> is the superellipse:
+      <ul>
+        <li>
+          <a href = "p06_demo.m">p06_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p06_fd.m">p06_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p06_fh.m">p06_fh.m</a>
+          a nonuniform mesh density function.
+        </li>
+        <li>
+          <a href = "p06_mesh.png">p06_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p06_nodes.txt">p06_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p06_elements.txt">p06_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P07</b> is the bicycle seat:
+      <ul>
+        <li>
+          <a href = "p07_demo.m">p07_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p07_fd.m">p07_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p07_fh.m">p07_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p07_mesh.png">p07_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p07_nodes.txt">p07_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p07_elements.txt">p07_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P08</b> is the holey pie slice:
+      <ul>
+        <li>
+          <a href = "p08_demo.m">p08_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p08_fd.m">p08_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p08_fh.m">p08_fh.m</a>
+          a nonuniform mesh density function.
+        </li>
+        <li>
+          <a href = "p08_mesh.png">p08_mesh.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p08_nodes.txt">p08_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p08_elements.txt">p08_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P09</b> is Jeff Borggaard's square with two hexagonal holes:
+      <ul>
+        <li>
+          <a href = "p09_demo.m">p09_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p09_fd.m">p09_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p09_fh.m">p09_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p09_mesh.png">p09_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p09_nodes.txt">p09_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p09_elements.txt">p09_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P10</b> is the unit square:
+      <ul>
+        <li>
+          <a href = "p10_demo.m">p10_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p10_fd.m">p10_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p10_fh.m">p10_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p10_mesh.png">p10_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p10_nodes.txt">p10_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p10_elements.txt">p10_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P11</b> is the L-shaped region:
+      <ul>
+        <li>
+          <a href = "p11_demo.m">p11_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p11_fd.m">p11_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p11_fh.m">p11_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p11_mesh.png">p11_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p11_nodes.txt">p11_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p11_elements.txt">p11_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P12</b> is the John Shadid's H-shaped region:
+      <ul>
+        <li>
+          <a href = "p12_demo.m">p12_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p12_fd.m">p12_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p12_fh.m">p12_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p12_mesh.png">p12_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p12_nodes.txt">p12_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p12_elements.txt">p12_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P13</b> is the Sandia fork:
+      <ul>
+        <li>
+          <a href = "p13_demo.m">p13_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p13_fd.m">p13_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p13_fh.m">p13_fh.m</a>
+          a uniform mesh density function.
+        </li>
+        <li>
+          <a href = "p13_mesh.png">p13_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p13_nodes.txt">p13_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p13_elements.txt">p13_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P14</b> is Marcus Garvie's Lake Alpha, with Beta Island:
+      <ul>
+        <li>
+          <a href = "p14_demo.m">p14_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p14_fd.m">p14_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p14_fh.m">p14_fh.m</a>
+          a nonuniform mesh density function.
+        </li>
+        <li>
+          <a href = "p14_mesh.png">p14_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p14_nodes.txt">p14_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p14_elements.txt">p14_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P15</b> is Sangbum Kim's forward step region:
+      <ul>
+        <li>
+          <a href = "p15_demo.m">p15_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p15_fd.m">p15_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p15_fh.m">p15_fh.m</a>
+          a nonuniform mesh density function.
+        </li>
+        <li>
+          <a href = "p15_mesh.png">p15_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p15_nodes.txt">p15_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p15_elements.txt">p15_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P16</b> is Kevin Pond's elbow, a quarter of a circular annulus:
+      <ul>
+        <li>
+          <a href = "p16_demo.m">p16_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p16_fd.m">p16_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p16_fh.m">p16_fh.m</a>
+          the mesh density function.
+        </li>
+        <li>
+          <a href = "p16_mesh.png">p16_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p16_nodes.txt">p16_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p16_elements.txt">p16_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P17</b> is a rectangular region with a Reuleaux triangle obstacle.
+      <ul>
+        <li>
+          <a href = "p17_demo.m">p17_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p17_fd.m">p17_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p17_fh.m">p17_fh.m</a>
+          the mesh density function.
+        </li>
+        <li>
+          <a href = "p17_mesh.png">p17_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p17_nodes.txt">p17_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p17_elements.txt">p17_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P18</b> is a dumbbell shape, two circles connected by a rectangular channel.
+      <ul>
+        <li>
+          <a href = "p18_demo.m">p18_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p18_fd.m">p18_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <b>P18_UNIFORM</b> uses a uniform density:
+          <ul>
+            <li>
+              <a href = "p18_uniform_fh.m">p18_uniform_fh.m</a>
+              the mesh density function.
+            </li>
+            <li>
+              <a href = "p18_uniform_mesh.png">p18_uniform_mesh.png</a>
+              a <a href = "../../data/png/png.html">PNG</a> image of
+              the mesh.
+            </li>
+            <li>
+              <a href = "p18_uniform_nodes.txt">p18_uniform_nodes.txt</a>
+              the mesh nodes of the problem.
+            </li>
+            <li>
+              <a href = "p18_uniform_elements.txt">p18_uniform_elements.txt</a>
+              the mesh triangles of the problem.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>P18_NONUNIFORM</b> uses a nonuniform density:
+          <ul>
+            <li>
+              <a href = "p18_nonuniform_fh.m">p18_nonuniform_fh.m</a>
+              the mesh density function.
+            </li>
+            <li>
+              <a href = "p18_nonuniform_mesh.png">p18_nonuniform_mesh.png</a>
+              a <a href = "../../data/png/png.html">PNG</a> image of
+              the mesh.
+            </li>
+            <li>
+              <a href = "p18_nonuniform_nodes.txt">p18_nonuniform_nodes.txt</a>
+              the mesh nodes of the problem.
+            </li>
+            <li>
+              <a href = "p18_nonuniform_elements.txt">p18_nonuniform_elements.txt</a>
+              the mesh triangles of the problem.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P19</b> is a triangle:
+      <ul>
+        <li>
+          <a href = "p19_demo.m">p19_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p19_fd.m">p19_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <a href = "p19_fh.m">p19_fh.m</a>
+          the mesh density function.
+        </li>
+        <li>
+          <a href = "p19_mesh.png">p19_mesh.png</a>
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the mesh.
+        </li>
+        <li>
+          <a href = "p19_nodes.txt">p19_nodes.txt</a>
+          the mesh nodes of the problem.
+        </li>
+        <li>
+          <a href = "p19_elements.txt">p19_elements.txt</a>
+          the mesh triangles of the problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P20</b> is a rough draft of the first floor of ICAM's Wright House:
+      <ul>
+        <li>
+          <a href = "p20_demo.m">p20_demo.m</a>
+          runs the problem.
+        </li>
+        <li>
+          <a href = "p20_fd.m">p20_fd.m</a>
+          the signed distance function.
+        </li>
+        <li>
+          <b>P20_UNIFORM</b> uses a uniform density:
+          <ul>
+            <li>
+              <a href = "p20_uniform_fh.m">p20_uniform_fh.m</a>
+              the uniform mesh density function.
+            </li>
+            <li>
+              <a href = "p20_uniform_mesh.png">p20_uniform_mesh.png</a>
+              a <a href = "../../data/png/png.html">PNG</a> image of
+              the mesh, for 2 iterations and a mesh size H = 0.25.
+            </li>
+            <li>
+              <a href = "p20_uniform_nodes.txt">p20_uniform_nodes.txt</a>
+              the mesh nodes of the problem.
+            </li>
+            <li>
+              <a href = "p20_uniform_elements.txt">p20_uniform_elements.txt</a>
+              the mesh triangles of the problem.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>P20_NONUNIFORM</b> uses a nonuniform density:
+          <ul>
+            <li>
+              <a href = "p20_nonuniform_fh.m">p20_nonuniform_fh.m</a>
+              the nonuniform mesh density function.
+           </li>
+            <li>
+              <a href = "p20_nonuniform_mesh.png">p20_nonuniform_mesh.png</a>
+              a <a href = "../../data/png/png.html">PNG</a> image of
+              the mesh, for 2 iterations and a mesh size H = 0.25.
+            </li>
+            <li>
+              <a href = "p20_nonuniform_nodes.txt">p20_nonuniform_nodes.txt</a>
+              the mesh nodes of the problem.
+            </li>
+            <li>
+              <a href = "p20_nonuniform_elements.txt">p20_nonuniform_elements.txt</a>
+              the mesh triangles of the problem.
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 June 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

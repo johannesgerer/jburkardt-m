@@ -1,0 +1,305 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_ORDER6_CONTOUR - Color Contour of Triangulated Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_ORDER6_CONTOUR <br> Color Contour of Triangulated Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_ORDER6_CONTOUR</b> 
+      is a MATLAB program which 
+      reads datafiles describing a set of nodes, a triangulation of the nodes
+      into six-node triangles, and a scalar evaluated at the nodes. 
+      It produces a plot of the triangulation, and several styles of
+      color contour plots of the scalar
+    </p>
+
+    <p>
+      This program has a flaw - MATLAB can easily display linear data,
+      so the program essentially divides each quadratic 6-node triangle into
+      smaller 3-node triangles, and lets MATLAB compute and display a
+      surface which is planar over each triangle.  This is only an
+      approximation, and if the "fine scale" quadratic behavior of the 
+      solution is of interest, it will not show up using this program!
+      To do so well requires computing the underlying quadratic function at
+      numerous sampling points before constructing and displaying the
+      (now much smaller) planar surfaces that approximate the quadratic
+      surface.
+    </p>
+
+    <p>
+      The program reads three data files that form a "finite element model"
+      of a scalar quantity defined over a 2D region:
+      <ul>
+        <li>
+          a <i>node</i> file, containing 
+          X, Y coordinates of points;
+        </li>
+        <li>
+          an <i>element</i> file, 
+          containing a list of sets of six points making up each 
+          triangular element;
+        </li>
+        <li>
+          a <i>value</i> file, 
+          containing the value of a scalar function U(X,Y) evaluated
+          at each node.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program automatically displays five plots:
+      <ol>
+        <li>
+          An image of the 3-node triangles created by discarding the
+          midside nodes of the input triangulation;
+        </li>
+        <li>
+          A color contour plot, using the crude 3-node triangulation,
+          with color constant over a triangle.
+        </li>
+        <li>
+          An image of the finer 3-node triangles created by breaking
+          the 6-node triangles into 4 3-node triangles.
+        </li>
+        <li>
+          A color contour plot, using the finer 3-node triangulation,
+          with color constant over a triangle.
+        </li>
+        <li>
+          A color contour plot, using the finer 3-node triangulation,
+          with color linearly interpolated to make a very nice picture.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_order6_contour</b> ( 'prefix' )
+      </blockquote>
+      where <i>prefix</i> is the common filename prefix:
+      <ul>
+        <li>
+          <i>prefix</i>_nodes.txt contains the node coordinates,
+        </li>
+        <li>
+          <i>prefix</i>_elements.txt contains the element definitions.
+        </li>
+        <li>
+          <i>prefix</i>_values.txt contains the nodal values.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which 
+      contains a description and examples
+      of the 2D FEM format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t6_display/fem_basis_t6_display.html">
+      FEM_BASIS_T6_DISPLAY</a>, 
+      a MATLAB program which 
+      reads a quadratic
+      triangle mesh and displays any associated basis function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>, 
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>, 
+      a format which
+      is used for each of the three input data files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>, 
+      a MATLAB program which
+      handles the case where the triangulation is of order 3.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a directory which 
+      describes the format for
+      the node and element files describing an order 6 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_plotc/twod_plotc.html">
+      TWOD_PLOTC</a>, 
+      a MATLAB program which 
+      makes a color contour plot of scalar data defined on a 2D finite element mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_magnitude_grid/vector_magnitude_grid.html">
+      VECTOR_MAGNITUDE_GRID</a>, 
+      a MATLAB program which 
+      reads node and vector data from a file, computes an interpolatory function,
+      evaluates on a uniform grid of points specified by the user,
+      and displays a contour plot of the vector magnitude.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_order6_contour.m">
+          triangulation_order6_contour.m</a>, 
+          the routine for creating the contour plot;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "example_output.txt">
+          example_output.txt</a>, 
+          the printed output from a run of the program;
+        </li>
+        <li>
+          <a href = "example_nodes.txt">example_nodes.txt</a>, 
+          a node file created by FEM2D_POISSON;
+        </li>
+        <li>
+          <a href = "example_elements.txt">example_elements.txt</a>, 
+          an element file created by FEM2D_POISSON;
+        </li>
+        <li>
+          <a href = "example_values.txt">example_values.txt</a>, 
+          a file of nodal solution values created by FEM2D_POISSON;
+        </li>
+        <li>
+          <a href = "example_contours.png">example_contours.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image
+          of the nicest contour plot;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 16 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

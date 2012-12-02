@@ -1,0 +1,642 @@
+<html>
+
+  <head>
+    <title>
+      BARYCENTRIC_INTERP_1D - Barycentric Lagrange Polynomial Interpolation in 1D
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      BARYCENTRIC_INTERP_1D <br> Barycentric Lagrange Polynomial Interpolation in 1D
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BARYCENTRIC_INTERP_1D</b>
+      is a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+      Because a barycentric formulation is used, polynomials of very high
+      degree can safely be used.
+    </p>
+
+    <p>
+      Efficient calculation of the barycentric polynomial interpolant requires
+      that the function to be interpolated be sampled at points from a known
+      family, for which the interpolation weights have been precomputed.
+      Such families include 
+      <ul>
+        <li>
+          evenly spaced points (but this results in an ill-conditioned system);
+        </li>
+        <li>
+          Chebyshev Type 1 points;
+        </li>
+        <li>
+          Chebyshev Type 2 points;
+        </li>
+        <li>
+          Chebyshev Type 3 points;
+        </li>
+        <li>
+          Chebyshev Type 4 points;
+        </li>
+      </ul>
+      and any linear mapping of these points to an arbitary interval [A,B].
+    </p>
+
+    <p>
+      <i>
+        Note that in the Berrut/Trefethen reference, there is a significant
+        typographical error on page 510, where an adjustment is made in cases
+        where the polynomial is to be evaluated exactly at a data point.
+        The paper reads:
+        <pre>
+          exact(xdiff==0) = 1;
+        </pre>
+        but it should read
+        <pre>
+          exact(xdiff==0) = j;
+        </pre>
+      </i>
+    </p>
+
+    <p>
+      <b>BARYCENTRIC_INTERP_1D</b> requires the R8LIB library.  The test also requires
+      the TEST_INTERP_1D library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BARYCENTRIC_INTERP_1D</b> is available in
+      <a href = "../../c_src/barycentric_interp_1d/barycentric_interp_1d.html">a C version</a> and
+      <a href = "../../cpp_src/barycentric_interp_1d/barycentric_interp_1d.html">a C++ version</a> and
+      <a href = "../../f77_src/barycentric_interp_1d/barycentric_interp_1d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/barycentric_interp_1d/barycentric_interp_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/barycentric_interp_1d/barycentric_interp_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev_interp_1d/chebyshev_interp_1d.html">
+      CHEBYSHEV_INTERP_1D</a>,
+      a MATLAB library which
+      determines the combination of Chebyshev polynomials which 
+      interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_approx_1d/lagrange_approx_1d.html">
+      LAGRANGE_APPROX_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) of degree m
+      which approximates a set of nd data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_basis_display/lagrange_basis_display.html">
+      LAGRANGE_BASIS_DISPLAY</a>,
+      a MATLAB library which
+      displays the basis functions associated with a given set of nodes used
+      with the Lagrange interpolation scheme.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/nearest_interp_1d/nearest_interp_1d.html">
+      NEAREST_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise constant interpolant
+      defined by the nearest neighbor criterion.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_1d/pwl_interp_1d.html">
+      PWL_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise linear interpolant.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_1d/shepard_interp_1d.html">
+      SHEPARD_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 1D data,
+      which are based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      constructs and evaluates spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp/test_interp.html">
+      TEST_INTERP</a>,
+      a MATLAB library which
+      defines a number of test problems for interpolation, 
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Jean-Paul Berrut, Lloyd Trefethen,<br>
+          Barycentric Lagrange Interpolation,<br>
+          SIAM Review,<br>
+          Volume 46, Number 3, September 2004, pages 501-517.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lageven_interp_1d.m">lageven_interp_1d.m</a>,
+          evaluates the barycentric Lagrange interpolant in cases where
+          the data is evaluated at evenly-spaced midpoints.
+        </li>
+        <li>
+          <a href = "lagcheby1_interp_1d.m">lagcheby1_interp_1d.m</a>,
+          evaluates the barycentric Lagrange interpolant in cases where
+          the data is evaluated at the Chebyshev type 1 points.
+        </li>
+        <li>
+          <a href = "lagcheby2_interp_1d.m">lagcheby2_interp_1d.m</a>,
+          evaluates the barycentric Lagrange interpolant in cases where
+          the data is evaluated at the Chebyshev type 2 points.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The test code requires the <b>test_interp_1d</b> library.  If this library is
+      available in a separate folder at the same "level",
+      then a Matlab command such as "addpath ( '../test_interp_1d')" will make it
+      accessible for a run of the test program.
+      <ul>
+        <li>
+          <a href = "barycentric_interp_1d_test.m">barycentric_interp_1d_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "barycentric_interp_1d_test_output.txt">barycentric_interp_1d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "barycentric_interp_1d_test01.m">barycentric_interp_1d_test01.m</a>,
+          samples a function at Chebyshev Type 1 points and determines and plots
+          the barycentric Lagrange polynomial interpolant.
+        </li>
+        <li>
+          <a href = "barycentric_interp_1d_test02.m">barycentric_interp_1d_test02.m</a>,
+          samples a function at Chebyshev Type 2 points and determines and plots
+          the barycentric Lagrange polynomial interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>barycentric_interp_1d_test01()</b>
+      samples a function at Chebyshev Type 1 points and determines and plots
+      the barycentric Lagrange polynomial interpolant.
+      <ul>
+        <li>
+          <a href = "p01_lagcheby1_04.png">p01_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby1_08.png">p01_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby1_16.png">p01_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby1_32.png">p01_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby1_64.png">p01_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p01;
+        </li>
+        <li>
+          <a href = "p02_lagcheby1_04.png">p02_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby1_08.png">p02_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby1_16.png">p02_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby1_32.png">p02_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby1_64.png">p02_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p02;
+        </li>
+        <li>
+          <a href = "p03_lagcheby1_04.png">p03_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby1_08.png">p03_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby1_16.png">p03_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby1_32.png">p03_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby1_64.png">p03_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p03;
+        </li>
+        <li>
+          <a href = "p04_lagcheby1_04.png">p04_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby1_08.png">p04_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby1_16.png">p04_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby1_32.png">p04_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby1_64.png">p04_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p04;
+        </li>
+        <li>
+          <a href = "p05_lagcheby1_04.png">p05_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby1_08.png">p05_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby1_16.png">p05_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby1_32.png">p05_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby1_64.png">p05_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p05;
+        </li>
+        <li>
+          <a href = "p06_lagcheby1_04.png">p06_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby1_08.png">p06_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby1_16.png">p06_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby1_32.png">p06_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby1_64.png">p06_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p06;
+        </li>
+        <li>
+          <a href = "p07_lagcheby1_04.png">p07_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby1_08.png">p07_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby1_16.png">p07_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby1_32.png">p07_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby1_64.png">p07_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p07;
+        </li>
+        <li>
+          <a href = "p08_lagcheby1_04.png">p08_lagcheby1_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 1 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby1_08.png">p08_lagcheby1_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 1 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby1_16.png">p08_lagcheby1_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 1 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby1_32.png">p08_lagcheby1_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 1 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby1_64.png">p08_lagcheby1_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 1 points for problem p08;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>barycentric_interp_1d_test02()</b>
+      samples a function at Chebyshev Type 2 points and determines and plots
+      the barycentric Lagrange polynomial interpolant.
+      <ul>
+        <li>
+          <a href = "p01_lagcheby2_04.png">p01_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby2_08.png">p01_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby2_16.png">p01_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby2_32.png">p01_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p01;
+        </li>
+        <li>
+          <a href = "p01_lagcheby2_64.png">p01_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p01;
+        </li>
+        <li>
+          <a href = "p02_lagcheby2_04.png">p02_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby2_08.png">p02_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby2_16.png">p02_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby2_32.png">p02_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p02;
+        </li>
+        <li>
+          <a href = "p02_lagcheby2_64.png">p02_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p02;
+        </li>
+        <li>
+          <a href = "p03_lagcheby2_04.png">p03_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby2_08.png">p03_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby2_16.png">p03_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby2_32.png">p03_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p03;
+        </li>
+        <li>
+          <a href = "p03_lagcheby2_64.png">p03_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p03;
+        </li>
+        <li>
+          <a href = "p04_lagcheby2_04.png">p04_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby2_08.png">p04_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby2_16.png">p04_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby2_32.png">p04_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p04;
+        </li>
+        <li>
+          <a href = "p04_lagcheby2_64.png">p04_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p04;
+        </li>
+        <li>
+          <a href = "p05_lagcheby2_04.png">p05_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby2_08.png">p05_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby2_16.png">p05_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby2_32.png">p05_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p05;
+        </li>
+        <li>
+          <a href = "p05_lagcheby2_64.png">p05_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p05;
+        </li>
+        <li>
+          <a href = "p06_lagcheby2_04.png">p06_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby2_08.png">p06_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby2_16.png">p06_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby2_32.png">p06_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p06;
+        </li>
+        <li>
+          <a href = "p06_lagcheby2_64.png">p06_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p06;
+        </li>
+        <li>
+          <a href = "p07_lagcheby2_04.png">p07_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby2_08.png">p07_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby2_16.png">p07_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby2_32.png">p07_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p07;
+        </li>
+        <li>
+          <a href = "p07_lagcheby2_64.png">p07_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p07;
+        </li>
+        <li>
+          <a href = "p08_lagcheby2_04.png">p08_lagcheby2_04.png</a>,
+          a plot of the interpolant to 4 Chebyshev 2 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby2_08.png">p08_lagcheby2_08.png</a>,
+          a plot of the interpolant to 8 Chebyshev 2 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby2_16.png">p08_lagcheby2_16.png</a>,
+          a plot of the interpolant to 16 Chebyshev 2 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby2_32.png">p08_lagcheby2_32.png</a>,
+          a plot of the interpolant to 32 Chebyshev 2 points for problem p08;
+        </li>
+        <li>
+          <a href = "p08_lagcheby2_64.png">p08_lagcheby2_64.png</a>,
+          a plot of the interpolant to 64 Chebyshev 2 points for problem p08;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 19 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

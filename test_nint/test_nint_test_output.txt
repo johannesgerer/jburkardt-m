@@ -1,0 +1,1588 @@
+>> cd test_nint
+>> test_nint_test
+13-Aug-2008 11:57:59
+
+TEST_NINT_TEST
+  MATLAB version
+  Test the routines in the TEST_NINT library.
+
+TEST01
+  GET_PROBLEM_NUM returns the number of problems.
+  P00_NAME(#) returns the name for problem #.
+
+  We use these two routines to print a directory
+  of all the problems.
+
+  The number of problems available is 32
+
+         1  "SquareSum";
+         2  "QuadSum";
+         3  "QuintSum";
+         4  "HexSum";
+         5  "ST04";
+         6  "DR4061";
+         7  "DR4062";
+         8  "RC01";
+         9  "Patterson #7";
+        10  "Patterson #4";
+        11  "Patterson #2, exp(sum(abs(X)))";
+        12  "BFN02";
+        13  "BFN03";
+        14  "BFN04";
+        15  "Partial product ( X(1:N) )";
+        16  "L1(X-Z)";
+        17  "L2(X-Z)^2";
+        18  "Disk";
+        19  "Sqrt-Prod";
+        20  "Sum^P";
+        21  "SphereMonomial";
+        22  "BallMonomial";
+        23  "SimplexMonomial";
+        24  "(|4X-2|+c)/(1+c)";
+        25  "Patterson #3, exp(c*X)";
+        26  "Patterson #1";
+        27  "Genz #1 / Patterson #5, Oscillatory";
+        28  "Genz #2 / Patterson #6, Product Peak";
+        29  "Genz #3 / Patterson #8, Corner Peak";
+        30  "Genz #4 / Patterson #9, Gaussian";
+        31  "Genz #5, C0 Pseudo-Gaussian";
+        32  "Genz #6, Discontinuous";
+
+TEST02
+  GET_PROBLEM_NUM returns the number of problems.
+  P00_TITLE(#) prints the title for problem #.
+
+  We use these two routines to print a directory
+  of all the problems.
+
+  The number of problems available is 32
+
+
+Problem 01
+  Name:       SquareSum
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( X(i) ) )^2
+
+Problem 02
+  Name:       QuadSum
+              Davis, Rabinowitz, page 370, #1.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( 2 * X(i) - 1 ) )^4
+
+Problem 03
+  Name:       QuintSum
+              Davis, Rabinowitz, page 370, #3.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( X(i) ) )^5
+
+Problem 04
+  Name:       HexSum
+              Davis, Rabinowitz, page 370, #2.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( 2 * X(i) - 1 ) )^6
+
+Problem 05
+  Name:       ST04
+              Stroud #4, page 26.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / ( 1 + sum ( 2 * X(i) ) )
+
+Problem 07
+  Name:       DR4061
+              Davis, Rabinowitz, page 406, #1.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( abs ( 4 * X(i) - 2 ) )
+
+Problem 07
+  Name:       DR4062
+              Davis, Rabinowitz, page 406, #2.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( pi * sin ( pi * X(i) ) / 2 )
+
+Problem 08
+  Name:       RC01
+              Crandall, page 49, #1
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sin^2 ( pi/4 * sum ( X(i) ) )
+
+Problem 09
+  Name:       Patterson #7
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( sum ( C(i) * X(i) ) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 10
+  Name:       Patterson #4
+              Stroud, page ?
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( abs ( X(i) - 0.5 ) )
+
+Problem 11
+  Name:       Patterson #2, exp(sum(abs(X)))
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( sum ( abs ( X(i) )))
+
+Problem 12
+  Name:       BFN02
+              Bratley, Fox, Niederreiter, #2
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( i * cos ( X(i) ) )
+
+Problem 13
+  Name:       BFN03
+              Bratley, Fox, Niederreiter, #3
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( low order Chebyshevs )
+
+Problem 14
+  Name:       BFN04
+              Bratley, Fox, Niederreiter, #4
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( -1^I * product(X(1:I)) )
+
+Problem 15
+  Name:       Partial product ( X(1:N) )
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( X(1:N) )
+  Parameters:
+              N, defaults to 1
+
+Problem 16
+  Name:       L1(X-Z)
+              Lipschitz continuous.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( | X(i) - Z(i) | )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...)
+
+Problem 17
+  Name:       L2(X-Z)^2
+              Zero at point Z.
+              Radially symmetric.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( ( X(i) - Z(i) )^2 )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...)
+
+Problem 18
+  Name:       Disk
+              Disk of radius R centered at Z.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sphere interior characteristic
+  Parameters:
+              R, defaults to 0.5
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...0.5)
+
+Problem 19
+  Name:       Sqrt-Prod
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( sqrt ( | X(i) - Z(i) | ) )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (1/3,1/3,...,1/3)
+
+Problem 20
+  Name:       Sum^P
+  Region:     A <= X(i) <= B
+  Integrand:  F(X) = ( sum ( X(i) ) )^p
+  Parameters:
+              A, defaults to 0.0.
+              B, defaults to 1.0.
+              P, defaults to 2.0.
+
+Problem 21
+  Name:       SphereMonomial
+  Region:     Sphere surface, radius 1, center 0
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 22
+  Name:       BallMonomial
+  Region:     Sphere interior, radius R, center 0
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              R, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 23
+  Name:       SimplexMonomial
+  Region:     Interior of unit simplex
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 24
+  Name:       (|4X-2|+C)/(1+C)
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( (|4*X(i)-2|+C(i)) / (1+C(i)) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 0.0
+
+Problem 25
+  Name:       Patterson #3, exp(c*X)
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( C * product ( X(i) ) )
+  Parameters:
+              C, defaults to 0.3.
+
+Problem 26
+  Name:       Patterson #1
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( C(i) * exp ( - C(i) * X(i) ) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 27
+  Name:       Genz #1 / Patterson #5, Oscillatory
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = cos ( 2 * pi * R + sum ( C(i) * X(i) ) )
+  Parameters:
+              R, defaults to 0.3
+              C(1:DIM_NUM) defaults to 1/DIM_NUM
+
+Problem 28
+  Name:       Genz #2 / Patterson #6, Product Peak
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / product ( C(i)^2 + ( X(i) - Z(i) )^2 )
+  Parameters:
+              C(1:DIM_NUM) defaults to DIM_NUM^(9/4)/sqrt(170)
+              Z(1:DIM_NUM) defaults to 0.5.
+
+Problem 29
+  Name:       Genz #3 / Patterson #8, Corner Peak
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / ( 1 + sum( C(i) * X(i) ) )^R
+  Parameters:
+              R, defaults to 0.3
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 30
+  Name:       Genz #4 / Patterson #9, Gaussian
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( - sum ( C(i)^2 * ( X(i) - Z(i) )^2 )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+              Z(1:DIM_NUM) defaults to 0.5.
+
+Problem 31
+  Name:       Genz #5, C0 Pseudo-Gaussian
+              Nondifferentiable peak at point Z.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( -sum ( C(i) * | X(i) - Z(i) | ))
+  Parameters:
+              C(1:DIM_NUM) defaults to 2.0;
+              Z(1:DIM_NUM) defaults to 0.5;
+
+Problem 32
+  Name:       Genz #6, Discontinuous
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( C(i) * X(i) ) if X <= Z, 0 otherwise.
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+              Z(1:DIM_NUM) defaults to 0.5.
+
+TEST03
+  Use a simple product rule on box regions.
+  Use a fixed spatial dimension.
+
+  Prob   Dim  Subs       Approx          Exact          Error
+
+     1     3     1        2.500000        2.500000        0.000000
+     1     3     3        2.500000        2.500000        0.000000
+     1     3     5        2.500000        2.500000        0.000000
+
+     2     3     1        2.600000        2.600000        0.000000
+     2     3     3        2.600000        2.600000        0.000000
+     2     3     5        2.600000        2.600000        0.000000
+
+     3     3     1       -0.000000        0.000000        0.000000
+     3     3     3       -0.000000        0.000000        0.000000
+     3     3     5       -0.000000        0.000000        0.000000
+
+     4     3     1        9.761905        9.761905        0.000000
+     4     3     3        9.761905        9.761905        0.000000
+     4     3     5        9.761905        9.761905        0.000000
+
+     5     3     1        2.152143        2.152143        0.000000
+     5     3     3        2.152143        2.152143        0.000000
+     5     3     5        2.152143        2.152143        0.000000
+
+     6     3     1        0.843508        1.000000        0.156492
+     6     3     3        0.981729        1.000000        0.018271
+     6     3     5        0.993397        1.000000        0.006603
+
+     7     3     1        1.000000        1.000000        0.000000
+     7     3     3        1.000000        1.000000        0.000000
+     7     3     5        1.000000        1.000000        0.000000
+
+     8     3     1        0.758012        0.758012        0.000000
+     8     3     3        0.758012        0.758012        0.000000
+     8     3     5        0.758012        0.758012        0.000000
+
+     9     3     1        1.671758        1.671758        0.000000
+     9     3     3        1.671758        1.671758        0.000000
+     9     3     5        1.671758        1.671758        0.000000
+
+    10     3     1        0.708638        0.750000        0.041362
+    10     3     3        0.745404        0.750000        0.004596
+    10     3     5        0.748346        0.750000        0.001654
+
+    11     3     1        4.834326        5.073214        0.238888
+    11     3     3        5.046143        5.073214        0.027071
+    11     3     5        5.063453        5.073214        0.009761
+
+    12     3     1        0.107978        0.107978        0.000000
+    12     3     3        0.107978        0.107978        0.000000
+    12     3     5        0.107978        0.107978        0.000000
+
+    13     3     1        0.000000        0.000000        0.000000
+    13     3     3       -0.000000        0.000000        0.000000
+    13     3     5        0.000000        0.000000        0.000000
+
+    14     3     1       -0.375000       -0.375000        0.000000
+    14     3     3       -0.375000       -0.375000        0.000000
+    14     3     5       -0.375000       -0.375000        0.000000
+
+    15     3     1        0.083333        0.083333        0.000000
+    15     3     3        0.083333        0.083333        0.000000
+    15     3     5        0.083333        0.083333        0.000000
+
+    16     3     1        0.708638        0.750000        0.041362
+    16     3     3        0.745404        0.750000        0.004596
+    16     3     5        0.748346        0.750000        0.001654
+
+    17     3     1        0.250000        0.250000        0.000000
+    17     3     3        0.250000        0.250000        0.000000
+    17     3     5        0.250000        0.250000        0.000000
+
+    18     3     1        0.501831        0.523599        0.021768
+    18     3     3        0.538509        0.523599        0.014910
+    18     3     5        0.531268        0.523599        0.007669
+
+    19     3     1        0.130655        0.118506        0.012149
+    19     3     3        0.118682        0.118506        0.000176
+    19     3     5        0.119561        0.118506        0.001055
+
+    20     3     1        2.500000        2.500000        0.000000
+    20     3     3        2.500000        2.500000        0.000000
+    20     3     5        2.500000        2.500000        0.000000
+
+    24     3     1        0.843508        1.000000        0.156492
+    24     3     3        0.981729        1.000000        0.018271
+    24     3     5        0.993397        1.000000        0.006603
+
+    25     3     1        1.039240        1.039240        0.000000
+    25     3     3        1.039240        1.039240        0.000000
+    25     3     5        1.039240        1.039240        0.000000
+
+    26     3     1        0.022778        0.022778        0.000000
+    26     3     3        0.022778        0.022778        0.000000
+    26     3     5        0.022778        0.022778        0.000000
+
+    27     3     1       -0.717110       -0.717110        0.000000
+    27     3     3       -0.717110       -0.717110        0.000000
+    27     3     5       -0.717110       -0.717110        0.000000
+
+    28     3     1        0.797361        0.797359        0.000002
+    28     3     3        0.797359        0.797359        0.000000
+    28     3     5        0.797359        0.797359        0.000000
+
+    29     3     1        0.287607        0.287607        0.000000
+    29     3     3        0.287607        0.287607        0.000000
+    29     3     5        0.287607        0.287607        0.000000
+
+    30     3     1        0.972704        0.972704        0.000000
+    30     3     3        0.972704        0.972704        0.000000
+    30     3     5        0.972704        0.972704        0.000000
+
+    31     3     1        0.286876        0.252580        0.034296
+    31     3     3        0.256268        0.252580        0.003688
+    31     3     5        0.253905        0.252580        0.001324
+
+    32     3     1        2.068101        1.351529        0.716572
+    32     3     3        1.296975        1.351529        0.054555
+    32     3     5        1.395480        1.351529        0.043951
+
+
+TEST04
+  Use a Monte Carlo rule on box regions.
+  Use a fixed spatial dimension.
+
+  Repeatedly multiply the number of points by 16.
+
+  Prob   Dim    Points     Approx        Exact          Error
+
+     1     3           1        2.548762        2.500000        0.048762
+     1     3          16        2.261578        2.500000        0.238422
+     1     3         256        2.510141        2.500000        0.010141
+     1     3        4096        2.549767        2.500000        0.049767
+     1     3       65536        2.501972        2.500000        0.001972
+
+     2     3           1        0.001387        2.600000        2.598613
+     2     3          16        2.242493        2.600000        0.357507
+     2     3         256        1.977388        2.600000        0.622612
+     2     3        4096        2.505521        2.600000        0.094479
+     2     3       65536        2.599704        2.600000        0.000296
+
+     3     3           1        0.000268        0.000000        0.000268
+     3     3          16       -0.478674        0.000000        0.478674
+     3     3         256        0.589828        0.000000        0.589828
+     3     3        4096        0.484442        0.000000        0.484442
+     3     3       65536        0.078407        0.000000        0.078407
+
+     4     3           1        0.000052        9.761905        9.761853
+     4     3          16        5.660965        9.761905        4.100940
+     4     3         256        6.173681        9.761905        3.588223
+     4     3        4096        9.197223        9.761905        0.564682
+     4     3       65536        9.754091        9.761905        0.007814
+
+     5     3           1        1.907956        2.152143        0.244187
+     5     3          16        2.251569        2.152143        0.099426
+     5     3         256        2.113108        2.152143        0.039035
+     5     3        4096        2.126194        2.152143        0.025949
+     5     3       65536        2.150585        2.152143        0.001558
+
+     6     3           1        0.050377        1.000000        0.949623
+     6     3          16        0.474929        1.000000        0.525071
+     6     3         256        0.918899        1.000000        0.081101
+     6     3        4096        0.980927        1.000000        0.019073
+     6     3       65536        1.000031        1.000000        0.000031
+
+     7     3           1        2.990067        1.000000        1.990067
+     7     3          16        1.180898        1.000000        0.180898
+     7     3         256        1.028511        1.000000        0.028511
+     7     3        4096        0.995086        1.000000        0.004914
+     7     3       65536        1.000844        1.000000        0.000844
+
+     8     3           1        0.902879        0.758012        0.144867
+     8     3          16        0.704209        0.758012        0.053804
+     8     3         256        0.770367        0.758012        0.012354
+     8     3        4096        0.766239        0.758012        0.008227
+     8     3       65536        0.758285        0.758012        0.000273
+
+     9     3           1        1.702608        1.671758        0.030850
+     9     3          16        1.625767        1.671758        0.045992
+     9     3         256        1.676198        1.671758        0.004439
+     9     3        4096        1.681361        1.671758        0.009602
+     9     3       65536        1.672163        1.671758        0.000404
+
+    10     3           1        0.341490        0.750000        0.408510
+    10     3          16        0.674809        0.750000        0.075191
+    10     3         256        0.737474        0.750000        0.012526
+    10     3        4096        0.748917        0.750000        0.001083
+    10     3       65536        0.750198        0.750000        0.000198
+
+    11     3           1        1.979769        5.073214        3.093445
+    11     3          16        4.070189        5.073214        1.003025
+    11     3         256        4.903825        5.073214        0.169389
+    11     3        4096        5.039679        5.073214        0.033536
+    11     3       65536        5.075403        5.073214        0.002189
+
+    12     3           1       -1.740787        0.107978        1.848765
+    12     3          16        0.390636        0.107978        0.282659
+    12     3         256       -0.016248        0.107978        0.124225
+    12     3        4096        0.042390        0.107978        0.065588
+    12     3       65536        0.102027        0.107978        0.005951
+
+    13     3           1        0.058492        0.000000        0.058492
+    13     3          16        0.036134        0.000000        0.036134
+    13     3         256       -0.050539        0.000000        0.050539
+    13     3        4096       -0.031813        0.000000        0.031813
+    13     3       65536       -0.000961        0.000000        0.000961
+
+    14     3           1       -0.471114       -0.375000        0.096114
+    14     3          16       -0.423240       -0.375000        0.048240
+    14     3         256       -0.365144       -0.375000        0.009856
+    14     3        4096       -0.380909       -0.375000        0.005909
+    14     3       65536       -0.375426       -0.375000        0.000426
+
+    15     3           1        0.073888        0.083333        0.009445
+    15     3          16        0.085039        0.083333        0.001706
+    15     3         256        0.082275        0.083333        0.001058
+    15     3        4096        0.086020        0.083333        0.002687
+    15     3       65536        0.083566        0.083333        0.000233
+
+    16     3           1        0.341490        0.750000        0.408510
+    16     3          16        0.674809        0.750000        0.075191
+    16     3         256        0.737474        0.750000        0.012526
+    16     3        4096        0.748917        0.750000        0.001083
+    16     3       65536        0.750198        0.750000        0.000198
+
+    17     3           1        0.050111        0.250000        0.199889
+    17     3          16        0.209143        0.250000        0.040857
+    17     3         256        0.242481        0.250000        0.007519
+    17     3        4096        0.249140        0.250000        0.000860
+    17     3       65536        0.250088        0.250000        0.000088
+
+    18     3           1        1.000000        0.523599        0.476401
+    18     3          16        0.812500        0.523599        0.288901
+    18     3         256        0.542969        0.523599        0.019370
+    18     3        4096        0.515625        0.523599        0.007974
+    18     3       65536        0.522781        0.523599        0.000817
+
+    19     3           1        0.055879        0.118506        0.062628
+    19     3          16        0.093760        0.118506        0.024747
+    19     3         256        0.116591        0.118506        0.001916
+    19     3        4096        0.119509        0.118506        0.001002
+    19     3       65536        0.118479        0.118506        0.000028
+
+    20     3           1        2.548762        2.500000        0.048762
+    20     3          16        2.261578        2.500000        0.238422
+    20     3         256        2.510141        2.500000        0.010141
+    20     3        4096        2.549767        2.500000        0.049767
+    20     3       65536        2.501972        2.500000        0.001972
+
+    24     3           1        0.050377        1.000000        0.949623
+    24     3          16        0.474929        1.000000        0.525071
+    24     3         256        0.918899        1.000000        0.081101
+    24     3        4096        0.980927        1.000000        0.019073
+    24     3       65536        1.000031        1.000000        0.000031
+
+    25     3           1        1.042311        1.039240        0.003071
+    25     3          16        1.037799        1.039240        0.001441
+    25     3         256        1.038774        1.039240        0.000466
+    25     3        4096        1.040443        1.039240        0.001203
+    25     3       65536        1.039282        1.039240        0.000042
+
+    26     3           1        0.021753        0.022778        0.001025
+    26     3          16        0.023459        0.022778        0.000681
+    26     3         256        0.022650        0.022778        0.000128
+    26     3        4096        0.022638        0.022778        0.000140
+    26     3       65536        0.022772        0.022778        0.000006
+
+    27     3           1       -0.748847       -0.717110        0.031737
+    27     3          16       -0.696448       -0.717110        0.020662
+    27     3         256       -0.720931       -0.717110        0.003821
+    27     3        4096       -0.721283       -0.717110        0.004173
+    27     3       65536       -0.717289       -0.717110        0.000179
+
+    28     3           1        0.951764        0.797359        0.154405
+    28     3          16        0.825174        0.797359        0.027815
+    28     3         256        0.802283        0.797359        0.004924
+    28     3        4096        0.797800        0.797359        0.000440
+    28     3       65536        0.797311        0.797359        0.000048
+
+    29     3           1        0.244622        0.287607        0.042985
+    29     3          16        0.306993        0.287607        0.019386
+    29     3         256        0.281554        0.287607        0.006053
+    29     3        4096        0.283156        0.287607        0.004451
+    29     3       65536        0.287367        0.287607        0.000240
+
+    30     3           1        0.994448        0.972704        0.021743
+    30     3          16        0.977089        0.972704        0.004385
+    30     3         256        0.973509        0.972704        0.000805
+    30     3        4096        0.972794        0.972704        0.000089
+    30     3       65536        0.972695        0.972704        0.000009
+
+    31     3           1        0.505110        0.252580        0.252529
+    31     3          16        0.272154        0.252580        0.019573
+    31     3         256        0.256535        0.252580        0.003955
+    31     3        4096        0.252583        0.252580        0.000003
+    31     3       65536        0.252549        0.252580        0.000031
+
+    32     3           1        3.550649        1.351529        2.199119
+    32     3          16        1.538406        1.351529        0.186876
+    32     3         256        1.301632        1.351529        0.049897
+    32     3        4096        1.329304        1.351529        0.022226
+    32     3       65536        1.349049        1.351529        0.002480
+
+
+TEST05
+  Demonstrate problems that use a "base point"
+  by moving the base point around.
+  Use a Monte Carlo rule on box regions.
+  Use a fixed spatial dimension.
+
+  Problem number = 16
+
+  Run number 1
+  Basis point Z = ( 0.628832, 0.168501 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.549823        0.626489        0.076666
+    16     2        1000        0.623861        0.626489        0.002628
+    16     2      100000        0.625110        0.626489        0.001380
+
+
+  Run number 2
+  Basis point Z = ( 0.017329, 0.972843 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.746513        0.956551        0.210039
+    16     2        1000        0.945204        0.956551        0.011347
+    16     2      100000        0.956607        0.956551        0.000056
+
+
+  Run number 3
+  Basis point Z = ( 0.656158, 0.518006 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.607324        0.524710        0.082614
+    16     2        1000        0.527564        0.524710        0.002854
+    16     2      100000        0.523386        0.524710        0.001324
+
+
+  Problem number = 17
+
+  Run number 1
+  Basis point Z = ( 0.139408, 0.321705 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.348326        0.328483        0.019843
+    17     2        1000        0.333570        0.328483        0.005088
+    17     2      100000        0.329753        0.328483        0.001270
+
+
+  Run number 2
+  Basis point Z = ( 0.899115, 0.204426 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.553725        0.413323        0.140402
+    17     2        1000        0.412068        0.413323        0.001254
+    17     2      100000        0.412996        0.413323        0.000327
+
+
+  Run number 3
+  Basis point Z = ( 0.142828, 0.398927 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.217359        0.304454        0.087096
+    17     2        1000        0.302146        0.304454        0.002309
+    17     2      100000        0.303510        0.304454        0.000945
+
+
+  Problem number = 18
+
+  Run number 1
+  Basis point Z = ( 0.823610, 0.061574 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.300000        0.785398        0.485398
+    18     2        1000        0.330000        0.785398        0.455398
+    18     2      100000        0.322120        0.785398        0.463278
+
+
+  Run number 2
+  Basis point Z = ( 0.671038, 0.539344 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.700000        0.785398        0.085398
+    18     2        1000        0.693000        0.785398        0.092398
+    18     2      100000        0.687160        0.785398        0.098238
+
+
+  Run number 3
+  Basis point Z = ( 0.780677, 0.520424 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.600000        0.785398        0.185398
+    18     2        1000        0.571000        0.785398        0.214398
+    18     2      100000        0.601570        0.785398        0.183828
+
+
+  Problem number = 19
+
+  Run number 1
+  Basis point Z = ( 0.908416, 0.650436 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.332231        0.290399        0.041833
+    19     2        1000        0.291624        0.290399        0.001225
+    19     2      100000        0.289838        0.290399        0.000561
+
+
+  Run number 2
+  Basis point Z = ( 0.688979, 0.951461 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.270316        0.310981        0.040665
+    19     2        1000        0.312100        0.310981        0.001119
+    19     2      100000        0.311377        0.310981        0.000395
+
+
+  Run number 3
+  Basis point Z = ( 0.205334, 0.502405 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.174806        0.251871        0.077065
+    19     2        1000        0.260266        0.251871        0.008395
+    19     2      100000        0.251876        0.251871        0.000005
+
+
+  Problem number = 31
+
+  Run number 1
+  Basis point Z = ( 0.992767, 0.910087 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.216778        0.219831        0.003053
+    31     2        1000        0.222826        0.219831        0.002995
+    31     2      100000        0.220110        0.219831        0.000279
+
+
+  Run number 2
+  Basis point Z = ( 0.939637, 0.830024 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.257219        0.263817        0.006598
+    31     2        1000        0.260604        0.263817        0.003213
+    31     2      100000        0.264005        0.263817        0.000189
+
+
+  Run number 3
+  Basis point Z = ( 0.348532, 0.951278 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.314374        0.290228        0.024146
+    31     2        1000        0.291512        0.290228        0.001284
+    31     2      100000        0.290592        0.290228        0.000364
+
+
+TEST06
+  Use a simple product rule on a box region.
+  Use a fixed problem;
+  Let the spatial dimension increase.
+
+  Prob   Dim  Subs    Approx         Exact        Error        Calls
+
+     6     1     1      0.944850      1.000000      0.055150             5
+     6     1     3      0.993872      1.000000      0.006128            15
+     6     1     5      0.997794      1.000000      0.002206            25
+
+     6     2     1      0.892742      1.000000      0.107258            25
+     6     2     3      0.987782      1.000000      0.012218           225
+     6     2     5      0.995593      1.000000      0.004407           625
+
+     6     3     1      0.843508      1.000000      0.156492           125
+     6     3     3      0.981729      1.000000      0.018271          3375
+     6     3     5      0.993397      1.000000      0.006603         15625
+
+     6     4     1      0.796989      1.000000      0.203011           625
+     6     4     3      0.975713      1.000000      0.024287         50625
+     6     4     5      0.991205      1.000000      0.008795        390625
+
+     6     5     1      0.753035      1.000000      0.246965          3125
+     6     5     3      0.969735      1.000000      0.030265        759375
+??? Operation terminated by user during ==> p06_i4 at 36
+
+In ==> p06_f at 63
+  p06_i4 ( 'I', '#', point_num );
+
+In ==> p00_f at 40
+    value = p06_f ( dim_num, point_num, x );
+
+In ==> p00_box_gl05 at 101
+      value = p00_f ( problem, dim_num, point_num, x );
+
+In ==> test_nint_test06 at 37
+      result = p00_box_gl05 ( problem, dim_num, sub_num );
+
+In ==> test_nint_test at 30
+  test_nint_test06 ( );
+
+>> test_nint_test
+13-Aug-2008 12:24:21
+
+TEST_NINT_TEST
+  MATLAB version
+  Test the routines in the TEST_NINT library.
+
+TEST01
+  GET_PROBLEM_NUM returns the number of problems.
+  P00_NAME(#) returns the name for problem #.
+
+  We use these two routines to print a directory
+  of all the problems.
+
+  The number of problems available is 32
+
+         1  "SquareSum";
+         2  "QuadSum";
+         3  "QuintSum";
+         4  "HexSum";
+         5  "ST04";
+         6  "DR4061";
+         7  "DR4062";
+         8  "RC01";
+         9  "Patterson #7";
+        10  "Patterson #4";
+        11  "Patterson #2, exp(sum(abs(X)))";
+        12  "BFN02";
+        13  "BFN03";
+        14  "BFN04";
+        15  "Partial product ( X(1:N) )";
+        16  "L1(X-Z)";
+        17  "L2(X-Z)^2";
+        18  "Disk";
+        19  "Sqrt-Prod";
+        20  "Sum^P";
+        21  "SphereMonomial";
+        22  "BallMonomial";
+        23  "SimplexMonomial";
+        24  "(|4X-2|+c)/(1+c)";
+        25  "Patterson #3, exp(c*X)";
+        26  "Patterson #1";
+        27  "Genz #1 / Patterson #5, Oscillatory";
+        28  "Genz #2 / Patterson #6, Product Peak";
+        29  "Genz #3 / Patterson #8, Corner Peak";
+        30  "Genz #4 / Patterson #9, Gaussian";
+        31  "Genz #5, C0 Pseudo-Gaussian";
+        32  "Genz #6, Discontinuous";
+
+TEST02
+  GET_PROBLEM_NUM returns the number of problems.
+  P00_TITLE(#) prints the title for problem #.
+
+  We use these two routines to print a directory
+  of all the problems.
+
+  The number of problems available is 32
+
+
+Problem 01
+  Name:       SquareSum
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( X(i) ) )^2
+
+Problem 02
+  Name:       QuadSum
+              Davis, Rabinowitz, page 370, #1.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( 2 * X(i) - 1 ) )^4
+
+Problem 03
+  Name:       QuintSum
+              Davis, Rabinowitz, page 370, #3.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( X(i) ) )^5
+
+Problem 04
+  Name:       HexSum
+              Davis, Rabinowitz, page 370, #2.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = ( sum ( 2 * X(i) - 1 ) )^6
+
+Problem 05
+  Name:       ST04
+              Stroud #4, page 26.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / ( 1 + sum ( 2 * X(i) ) )
+
+Problem 07
+  Name:       DR4061
+              Davis, Rabinowitz, page 406, #1.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( abs ( 4 * X(i) - 2 ) )
+
+Problem 07
+  Name:       DR4062
+              Davis, Rabinowitz, page 406, #2.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( pi * sin ( pi * X(i) ) / 2 )
+
+Problem 08
+  Name:       RC01
+              Crandall, page 49, #1
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sin^2 ( pi/4 * sum ( X(i) ) )
+
+Problem 09
+  Name:       Patterson #7
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( sum ( C(i) * X(i) ) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 10
+  Name:       Patterson #4
+              Stroud, page ?
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( abs ( X(i) - 0.5 ) )
+
+Problem 11
+  Name:       Patterson #2, exp(sum(abs(X)))
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( sum ( abs ( X(i) )))
+
+Problem 12
+  Name:       BFN02
+              Bratley, Fox, Niederreiter, #2
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( i * cos ( X(i) ) )
+
+Problem 13
+  Name:       BFN03
+              Bratley, Fox, Niederreiter, #3
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( low order Chebyshevs )
+
+Problem 14
+  Name:       BFN04
+              Bratley, Fox, Niederreiter, #4
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( -1^I * product(X(1:I)) )
+
+Problem 15
+  Name:       Partial product ( X(1:N) )
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( X(1:N) )
+  Parameters:
+              N, defaults to 1
+
+Problem 16
+  Name:       L1(X-Z)
+              Lipschitz continuous.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( | X(i) - Z(i) | )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...)
+
+Problem 17
+  Name:       L2(X-Z)^2
+              Zero at point Z.
+              Radially symmetric.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sum ( ( X(i) - Z(i) )^2 )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...)
+
+Problem 18
+  Name:       Disk
+              Disk of radius R centered at Z.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = sphere interior characteristic
+  Parameters:
+              R, defaults to 0.5
+              Z(1:DIM_NUM) defaults to (0.5,0.5,...0.5)
+
+Problem 19
+  Name:       Sqrt-Prod
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( sqrt ( | X(i) - Z(i) | ) )
+  Parameters:
+              Z(1:DIM_NUM) defaults to (1/3,1/3,...,1/3)
+
+Problem 20
+  Name:       Sum^P
+  Region:     A <= X(i) <= B
+  Integrand:  F(X) = ( sum ( X(i) ) )^p
+  Parameters:
+              A, defaults to 0.0.
+              B, defaults to 1.0.
+              P, defaults to 2.0.
+
+Problem 21
+  Name:       SphereMonomial
+  Region:     Sphere surface, radius 1, center 0
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 22
+  Name:       BallMonomial
+  Region:     Sphere interior, radius R, center 0
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              R, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 23
+  Name:       SimplexMonomial
+  Region:     Interior of unit simplex
+  Integrand:  F(X) = C * product ( X(i)^E(i) )
+  Parameters:
+              C, defaults to 1.0.
+              E(1:DIM_NUM) defaults to 2.
+
+Problem 24
+  Name:       (|4X-2|+C)/(1+C)
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = prod ( (|4*X(i)-2|+C(i)) / (1+C(i)) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 0.0
+
+Problem 25
+  Name:       Patterson #3, exp(c*X)
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( C * product ( X(i) ) )
+  Parameters:
+              C, defaults to 0.3.
+
+Problem 26
+  Name:       Patterson #1
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = product ( C(i) * exp ( - C(i) * X(i) ) )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 27
+  Name:       Genz #1 / Patterson #5, Oscillatory
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = cos ( 2 * pi * R + sum ( C(i) * X(i) ) )
+  Parameters:
+              R, defaults to 0.3
+              C(1:DIM_NUM) defaults to 1/DIM_NUM
+
+Problem 28
+  Name:       Genz #2 / Patterson #6, Product Peak
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / product ( C(i)^2 + ( X(i) - Z(i) )^2 )
+  Parameters:
+              C(1:DIM_NUM) defaults to DIM_NUM^(9/4)/sqrt(170)
+              Z(1:DIM_NUM) defaults to 0.5.
+
+Problem 29
+  Name:       Genz #3 / Patterson #8, Corner Peak
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = 1 / ( 1 + sum( C(i) * X(i) ) )^R
+  Parameters:
+              R, defaults to 0.3
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+
+Problem 30
+  Name:       Genz #4 / Patterson #9, Gaussian
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( - sum ( C(i)^2 * ( X(i) - Z(i) )^2 )
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+              Z(1:DIM_NUM) defaults to 0.5.
+
+Problem 31
+  Name:       Genz #5, C0 Pseudo-Gaussian
+              Nondifferentiable peak at point Z.
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( -sum ( C(i) * | X(i) - Z(i) | ))
+  Parameters:
+              C(1:DIM_NUM) defaults to 2.0;
+              Z(1:DIM_NUM) defaults to 0.5;
+
+Problem 32
+  Name:       Genz #6, Discontinuous
+  Region:     0 <= X(i) <= 1
+  Integrand:  F(X) = exp ( C(i) * X(i) ) if X <= Z, 0 otherwise.
+  Parameters:
+              C(1:DIM_NUM) defaults to 1/DIM_NUM.
+              Z(1:DIM_NUM) defaults to 0.5.
+
+TEST03
+  Use a simple product rule on box regions.
+  Use a fixed spatial dimension.
+
+  Prob   Dim  Subs       Approx          Exact          Error
+
+     1     3     1        2.500000        2.500000        0.000000
+     1     3     3        2.500000        2.500000        0.000000
+     1     3     5        2.500000        2.500000        0.000000
+
+     2     3     1        2.600000        2.600000        0.000000
+     2     3     3        2.600000        2.600000        0.000000
+     2     3     5        2.600000        2.600000        0.000000
+
+     3     3     1       -0.000000        0.000000        0.000000
+     3     3     3       -0.000000        0.000000        0.000000
+     3     3     5       -0.000000        0.000000        0.000000
+
+     4     3     1        9.761905        9.761905        0.000000
+     4     3     3        9.761905        9.761905        0.000000
+     4     3     5        9.761905        9.761905        0.000000
+
+     5     3     1        2.152143        2.152143        0.000000
+     5     3     3        2.152143        2.152143        0.000000
+     5     3     5        2.152143        2.152143        0.000000
+
+     6     3     1        0.843508        1.000000        0.156492
+     6     3     3        0.981729        1.000000        0.018271
+     6     3     5        0.993397        1.000000        0.006603
+
+     7     3     1        1.000000        1.000000        0.000000
+     7     3     3        1.000000        1.000000        0.000000
+     7     3     5        1.000000        1.000000        0.000000
+
+     8     3     1        0.758012        0.758012        0.000000
+     8     3     3        0.758012        0.758012        0.000000
+     8     3     5        0.758012        0.758012        0.000000
+
+     9     3     1        1.671758        1.671758        0.000000
+     9     3     3        1.671758        1.671758        0.000000
+     9     3     5        1.671758        1.671758        0.000000
+
+    10     3     1        0.708638        0.750000        0.041362
+    10     3     3        0.745404        0.750000        0.004596
+    10     3     5        0.748346        0.750000        0.001654
+
+    11     3     1        4.834326        5.073214        0.238888
+    11     3     3        5.046143        5.073214        0.027071
+    11     3     5        5.063453        5.073214        0.009761
+
+    12     3     1        0.107978        0.107978        0.000000
+    12     3     3        0.107978        0.107978        0.000000
+    12     3     5        0.107978        0.107978        0.000000
+
+    13     3     1        0.000000        0.000000        0.000000
+    13     3     3       -0.000000        0.000000        0.000000
+    13     3     5        0.000000        0.000000        0.000000
+
+    14     3     1       -0.375000       -0.375000        0.000000
+    14     3     3       -0.375000       -0.375000        0.000000
+    14     3     5       -0.375000       -0.375000        0.000000
+
+    15     3     1        0.083333        0.083333        0.000000
+    15     3     3        0.083333        0.083333        0.000000
+    15     3     5        0.083333        0.083333        0.000000
+
+    16     3     1        0.708638        0.750000        0.041362
+    16     3     3        0.745404        0.750000        0.004596
+    16     3     5        0.748346        0.750000        0.001654
+
+    17     3     1        0.250000        0.250000        0.000000
+    17     3     3        0.250000        0.250000        0.000000
+    17     3     5        0.250000        0.250000        0.000000
+
+    18     3     1        0.501831        0.523599        0.021768
+    18     3     3        0.538509        0.523599        0.014910
+    18     3     5        0.531268        0.523599        0.007669
+
+    19     3     1        0.130655        0.118506        0.012149
+    19     3     3        0.118682        0.118506        0.000176
+    19     3     5        0.119561        0.118506        0.001055
+
+    20     3     1        2.500000        2.500000        0.000000
+    20     3     3        2.500000        2.500000        0.000000
+    20     3     5        2.500000        2.500000        0.000000
+
+    24     3     1        0.843508        1.000000        0.156492
+    24     3     3        0.981729        1.000000        0.018271
+    24     3     5        0.993397        1.000000        0.006603
+
+    25     3     1        1.039240        1.039240        0.000000
+    25     3     3        1.039240        1.039240        0.000000
+    25     3     5        1.039240        1.039240        0.000000
+
+    26     3     1        0.022778        0.022778        0.000000
+    26     3     3        0.022778        0.022778        0.000000
+    26     3     5        0.022778        0.022778        0.000000
+
+    27     3     1       -0.717110       -0.717110        0.000000
+    27     3     3       -0.717110       -0.717110        0.000000
+    27     3     5       -0.717110       -0.717110        0.000000
+
+    28     3     1        0.797361        0.797359        0.000002
+    28     3     3        0.797359        0.797359        0.000000
+    28     3     5        0.797359        0.797359        0.000000
+
+    29     3     1        0.287607        0.287607        0.000000
+    29     3     3        0.287607        0.287607        0.000000
+    29     3     5        0.287607        0.287607        0.000000
+
+    30     3     1        0.972704        0.972704        0.000000
+    30     3     3        0.972704        0.972704        0.000000
+    30     3     5        0.972704        0.972704        0.000000
+
+    31     3     1        0.286876        0.252580        0.034296
+    31     3     3        0.256268        0.252580        0.003688
+    31     3     5        0.253905        0.252580        0.001324
+
+    32     3     1        2.068101        1.351529        0.716572
+    32     3     3        1.296975        1.351529        0.054555
+    32     3     5        1.395480        1.351529        0.043951
+
+
+TEST04
+  Use a Monte Carlo rule on box regions.
+  Use a fixed spatial dimension.
+
+  Repeatedly multiply the number of points by 16.
+
+  Prob   Dim    Points     Approx        Exact          Error
+
+     1     3           1        2.548762        2.500000        0.048762
+     1     3          16        2.261578        2.500000        0.238422
+     1     3         256        2.510141        2.500000        0.010141
+     1     3        4096        2.549767        2.500000        0.049767
+     1     3       65536        2.501972        2.500000        0.001972
+
+     2     3           1        0.001387        2.600000        2.598613
+     2     3          16        2.242493        2.600000        0.357507
+     2     3         256        1.977388        2.600000        0.622612
+     2     3        4096        2.505521        2.600000        0.094479
+     2     3       65536        2.599704        2.600000        0.000296
+
+     3     3           1        0.000268        0.000000        0.000268
+     3     3          16       -0.478674        0.000000        0.478674
+     3     3         256        0.589828        0.000000        0.589828
+     3     3        4096        0.484442        0.000000        0.484442
+     3     3       65536        0.078407        0.000000        0.078407
+
+     4     3           1        0.000052        9.761905        9.761853
+     4     3          16        5.660965        9.761905        4.100940
+     4     3         256        6.173681        9.761905        3.588223
+     4     3        4096        9.197223        9.761905        0.564682
+     4     3       65536        9.754091        9.761905        0.007814
+
+     5     3           1        1.907956        2.152143        0.244187
+     5     3          16        2.251569        2.152143        0.099426
+     5     3         256        2.113108        2.152143        0.039035
+     5     3        4096        2.126194        2.152143        0.025949
+     5     3       65536        2.150585        2.152143        0.001558
+
+     6     3           1        0.050377        1.000000        0.949623
+     6     3          16        0.474929        1.000000        0.525071
+     6     3         256        0.918899        1.000000        0.081101
+     6     3        4096        0.980927        1.000000        0.019073
+     6     3       65536        1.000031        1.000000        0.000031
+
+     7     3           1        2.990067        1.000000        1.990067
+     7     3          16        1.180898        1.000000        0.180898
+     7     3         256        1.028511        1.000000        0.028511
+     7     3        4096        0.995086        1.000000        0.004914
+     7     3       65536        1.000844        1.000000        0.000844
+
+     8     3           1        0.902879        0.758012        0.144867
+     8     3          16        0.704209        0.758012        0.053804
+     8     3         256        0.770367        0.758012        0.012354
+     8     3        4096        0.766239        0.758012        0.008227
+     8     3       65536        0.758285        0.758012        0.000273
+
+     9     3           1        1.702608        1.671758        0.030850
+     9     3          16        1.625767        1.671758        0.045992
+     9     3         256        1.676198        1.671758        0.004439
+     9     3        4096        1.681361        1.671758        0.009602
+     9     3       65536        1.672163        1.671758        0.000404
+
+    10     3           1        0.341490        0.750000        0.408510
+    10     3          16        0.674809        0.750000        0.075191
+    10     3         256        0.737474        0.750000        0.012526
+    10     3        4096        0.748917        0.750000        0.001083
+    10     3       65536        0.750198        0.750000        0.000198
+
+    11     3           1        1.979769        5.073214        3.093445
+    11     3          16        4.070189        5.073214        1.003025
+    11     3         256        4.903825        5.073214        0.169389
+    11     3        4096        5.039679        5.073214        0.033536
+    11     3       65536        5.075403        5.073214        0.002189
+
+    12     3           1       -1.740787        0.107978        1.848765
+    12     3          16        0.390636        0.107978        0.282659
+    12     3         256       -0.016248        0.107978        0.124225
+    12     3        4096        0.042390        0.107978        0.065588
+    12     3       65536        0.102027        0.107978        0.005951
+
+    13     3           1        0.058492        0.000000        0.058492
+    13     3          16        0.036134        0.000000        0.036134
+    13     3         256       -0.050539        0.000000        0.050539
+    13     3        4096       -0.031813        0.000000        0.031813
+    13     3       65536       -0.000961        0.000000        0.000961
+
+    14     3           1       -0.471114       -0.375000        0.096114
+    14     3          16       -0.423240       -0.375000        0.048240
+    14     3         256       -0.365144       -0.375000        0.009856
+    14     3        4096       -0.380909       -0.375000        0.005909
+    14     3       65536       -0.375426       -0.375000        0.000426
+
+    15     3           1        0.073888        0.083333        0.009445
+    15     3          16        0.085039        0.083333        0.001706
+    15     3         256        0.082275        0.083333        0.001058
+    15     3        4096        0.086020        0.083333        0.002687
+    15     3       65536        0.083566        0.083333        0.000233
+
+    16     3           1        0.341490        0.750000        0.408510
+    16     3          16        0.674809        0.750000        0.075191
+    16     3         256        0.737474        0.750000        0.012526
+    16     3        4096        0.748917        0.750000        0.001083
+    16     3       65536        0.750198        0.750000        0.000198
+
+    17     3           1        0.050111        0.250000        0.199889
+    17     3          16        0.209143        0.250000        0.040857
+    17     3         256        0.242481        0.250000        0.007519
+    17     3        4096        0.249140        0.250000        0.000860
+    17     3       65536        0.250088        0.250000        0.000088
+
+    18     3           1        1.000000        0.523599        0.476401
+    18     3          16        0.812500        0.523599        0.288901
+    18     3         256        0.542969        0.523599        0.019370
+    18     3        4096        0.515625        0.523599        0.007974
+    18     3       65536        0.522781        0.523599        0.000817
+
+    19     3           1        0.055879        0.118506        0.062628
+    19     3          16        0.093760        0.118506        0.024747
+    19     3         256        0.116591        0.118506        0.001916
+    19     3        4096        0.119509        0.118506        0.001002
+    19     3       65536        0.118479        0.118506        0.000028
+
+    20     3           1        2.548762        2.500000        0.048762
+    20     3          16        2.261578        2.500000        0.238422
+    20     3         256        2.510141        2.500000        0.010141
+    20     3        4096        2.549767        2.500000        0.049767
+    20     3       65536        2.501972        2.500000        0.001972
+
+    24     3           1        0.050377        1.000000        0.949623
+    24     3          16        0.474929        1.000000        0.525071
+    24     3         256        0.918899        1.000000        0.081101
+    24     3        4096        0.980927        1.000000        0.019073
+    24     3       65536        1.000031        1.000000        0.000031
+
+    25     3           1        1.042311        1.039240        0.003071
+    25     3          16        1.037799        1.039240        0.001441
+    25     3         256        1.038774        1.039240        0.000466
+    25     3        4096        1.040443        1.039240        0.001203
+    25     3       65536        1.039282        1.039240        0.000042
+
+    26     3           1        0.021753        0.022778        0.001025
+    26     3          16        0.023459        0.022778        0.000681
+    26     3         256        0.022650        0.022778        0.000128
+    26     3        4096        0.022638        0.022778        0.000140
+    26     3       65536        0.022772        0.022778        0.000006
+
+    27     3           1       -0.748847       -0.717110        0.031737
+    27     3          16       -0.696448       -0.717110        0.020662
+    27     3         256       -0.720931       -0.717110        0.003821
+    27     3        4096       -0.721283       -0.717110        0.004173
+    27     3       65536       -0.717289       -0.717110        0.000179
+
+    28     3           1        0.951764        0.797359        0.154405
+    28     3          16        0.825174        0.797359        0.027815
+    28     3         256        0.802283        0.797359        0.004924
+    28     3        4096        0.797800        0.797359        0.000440
+    28     3       65536        0.797311        0.797359        0.000048
+
+    29     3           1        0.244622        0.287607        0.042985
+    29     3          16        0.306993        0.287607        0.019386
+    29     3         256        0.281554        0.287607        0.006053
+    29     3        4096        0.283156        0.287607        0.004451
+    29     3       65536        0.287367        0.287607        0.000240
+
+    30     3           1        0.994448        0.972704        0.021743
+    30     3          16        0.977089        0.972704        0.004385
+    30     3         256        0.973509        0.972704        0.000805
+    30     3        4096        0.972794        0.972704        0.000089
+    30     3       65536        0.972695        0.972704        0.000009
+
+    31     3           1        0.505110        0.252580        0.252529
+    31     3          16        0.272154        0.252580        0.019573
+    31     3         256        0.256535        0.252580        0.003955
+    31     3        4096        0.252583        0.252580        0.000003
+    31     3       65536        0.252549        0.252580        0.000031
+
+    32     3           1        3.550649        1.351529        2.199119
+    32     3          16        1.538406        1.351529        0.186876
+    32     3         256        1.301632        1.351529        0.049897
+    32     3        4096        1.329304        1.351529        0.022226
+    32     3       65536        1.349049        1.351529        0.002480
+
+
+TEST05
+  Demonstrate problems that use a "base point"
+  by moving the base point around.
+  Use a Monte Carlo rule on box regions.
+  Use a fixed spatial dimension.
+
+  Problem number = 16
+
+  Run number 1
+  Basis point Z = ( 0.628832, 0.168501 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.549823        0.626489        0.076666
+    16     2        1000        0.623861        0.626489        0.002628
+    16     2      100000        0.625110        0.626489        0.001380
+
+
+  Run number 2
+  Basis point Z = ( 0.017329, 0.972843 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.746513        0.956551        0.210039
+    16     2        1000        0.945204        0.956551        0.011347
+    16     2      100000        0.956607        0.956551        0.000056
+
+
+  Run number 3
+  Basis point Z = ( 0.656158, 0.518006 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    16     2          10        0.607324        0.524710        0.082614
+    16     2        1000        0.527564        0.524710        0.002854
+    16     2      100000        0.523386        0.524710        0.001324
+
+
+  Problem number = 17
+
+  Run number 1
+  Basis point Z = ( 0.139408, 0.321705 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.348326        0.328483        0.019843
+    17     2        1000        0.333570        0.328483        0.005088
+    17     2      100000        0.329753        0.328483        0.001270
+
+
+  Run number 2
+  Basis point Z = ( 0.899115, 0.204426 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.553725        0.413323        0.140402
+    17     2        1000        0.412068        0.413323        0.001254
+    17     2      100000        0.412996        0.413323        0.000327
+
+
+  Run number 3
+  Basis point Z = ( 0.142828, 0.398927 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    17     2          10        0.217359        0.304454        0.087096
+    17     2        1000        0.302146        0.304454        0.002309
+    17     2      100000        0.303510        0.304454        0.000945
+
+
+  Problem number = 18
+
+  Run number 1
+  Basis point Z = ( 0.823610, 0.061574 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.300000        0.785398        0.485398
+    18     2        1000        0.330000        0.785398        0.455398
+    18     2      100000        0.322120        0.785398        0.463278
+
+
+  Run number 2
+  Basis point Z = ( 0.671038, 0.539344 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.700000        0.785398        0.085398
+    18     2        1000        0.693000        0.785398        0.092398
+    18     2      100000        0.687160        0.785398        0.098238
+
+
+  Run number 3
+  Basis point Z = ( 0.780677, 0.520424 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    18     2          10        0.600000        0.785398        0.185398
+    18     2        1000        0.571000        0.785398        0.214398
+    18     2      100000        0.601570        0.785398        0.183828
+
+
+  Problem number = 19
+
+  Run number 1
+  Basis point Z = ( 0.908416, 0.650436 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.332231        0.290399        0.041833
+    19     2        1000        0.291624        0.290399        0.001225
+    19     2      100000        0.289838        0.290399        0.000561
+
+
+  Run number 2
+  Basis point Z = ( 0.688979, 0.951461 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.270316        0.310981        0.040665
+    19     2        1000        0.312100        0.310981        0.001119
+    19     2      100000        0.311377        0.310981        0.000395
+
+
+  Run number 3
+  Basis point Z = ( 0.205334, 0.502405 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    19     2          10        0.174806        0.251871        0.077065
+    19     2        1000        0.260266        0.251871        0.008395
+    19     2      100000        0.251876        0.251871        0.000005
+
+
+  Problem number = 31
+
+  Run number 1
+  Basis point Z = ( 0.992767, 0.910087 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.216778        0.219831        0.003053
+    31     2        1000        0.222826        0.219831        0.002995
+    31     2      100000        0.220110        0.219831        0.000279
+
+
+  Run number 2
+  Basis point Z = ( 0.939637, 0.830024 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.257219        0.263817        0.006598
+    31     2        1000        0.260604        0.263817        0.003213
+    31     2      100000        0.264005        0.263817        0.000189
+
+
+  Run number 3
+  Basis point Z = ( 0.348532, 0.951278 )
+
+  Prob   Dim    Points    Approx        Exact           Error
+
+    31     2          10        0.314374        0.290228        0.024146
+    31     2        1000        0.291512        0.290228        0.001284
+    31     2      100000        0.290592        0.290228        0.000364
+
+
+TEST06
+  Use a simple product rule on a box region.
+  Use a fixed problem;
+  Let the spatial dimension increase.
+
+  Prob   Dim  Subs    Approx         Exact        Error        Calls
+
+     6     1     1      0.944850      1.000000      0.055150             5
+     6     1     3      0.993872      1.000000      0.006128            15
+     6     1     5      0.997794      1.000000      0.002206            25
+
+     6     2     1      0.892742      1.000000      0.107258            25
+     6     2     3      0.987782      1.000000      0.012218           225
+     6     2     5      0.995593      1.000000      0.004407           625
+
+     6     3     1      0.843508      1.000000      0.156492           125
+     6     3     3      0.981729      1.000000      0.018271          3375
+     6     3     5      0.993397      1.000000      0.006603         15625
+
+     6     4     1      0.796989      1.000000      0.203011           625
+     6     4     3      0.975713      1.000000      0.024287         50625
+     6     4     5      0.991205      1.000000      0.008795        390625
+
+
+TEST_NINT_TEST
+  Normal end of execution.
+
+13-Aug-2008 12:32:41
+>> 

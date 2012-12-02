@@ -1,0 +1,282 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_INTERP_ND - Multidimensional Sparse Interpolant
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_INTERP_ND <br> Multidimensional Sparse Interpolant
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_INTERP_ND</b>
+      is a MATLAB library which
+      can be used to construct a sparse interpolant to a function f(x) of
+      a multidimensional argument x.
+    </p>
+
+    <p>
+      The problem is defined as follows: for any point x in some M-dimensional 
+      product space X, such as the unit hypercube, we are able to provide the 
+      value f(x) for some function f().  We wish to determine a new function g(), 
+      (the interpolant) which will match the value of f() on some specified set 
+      of points {xi}.  Presumably, we choose the number and location of the
+      points {xi} to ensure that the interpolating function g() is a good fit
+      to f().
+    </p>
+
+    <p>
+      There are standard techniques for producing a family of interpolants g(j)(),
+      such that, as we increase the index j, the interpolating process will exactly
+      match any function f() which happens to be a polynomial of limited degree.
+      The usual techniques for doing this are derived from tensor product interpolants,
+      whose expense grows exponentially with the spatial dimension.
+    </p>
+
+    <p>
+      For simplicity,
+      we'll assume that the argument space X is the unit hypercube, and that we
+      have a family of 1D interpolation rules g(j)(), where the index j is an indication
+      of the precision of the interpolation rule.  A typical tensor product interpolant
+      G(J)() can then be thought of as constructed by the product
+      <pre>
+        G(J)(X) = g(j1)(x1) * g(j2)(x2) * ... * g(jm)(xm).
+      </pre>
+      where, of course, J = (j1,j2,...jm) and X = (x1,x2,...,xm).
+    </p>
+
+    <p>
+      A procedure due to Smolyak, which is more typically applied to problems in
+      quadrature, can also be used for the interpolation problem.  The Smolyak
+      interpolation rule of level L is defined by
+      <pre>
+        A(L,M) = sum ( L-M+1 <= |J| <= L ) C(|J|) * g(j1)(x1) * g(j2)(x2) * ... * g(jm)(xm).
+      </pre>
+      Here |J| = j1+j2+...+jm, and, for each |J|, the sum must be taken over all
+      possible vectors J with nonnegative integer entries that sum to |J|.
+    </p>
+
+    <p>
+      Thus, a naive implementation of a sparse interpolant would, for a given spatial
+      dimension M, pick a level L, determine the (at most L+1) coefficients C(),
+      construct every tensor product interpolant of total degree L or less, evaluate
+      each interpolant at the point X, and combine these values with the appropriate
+      weights C() to arrive at the sparse grid interpolant value at X.
+    </p>
+
+    <p>
+      Some improvements to this approach can be suggested.  First, many of the
+      coefficients C() may be zero, because the coefficient vector C for an
+      M-dimensional sparse interpolant of level L will have at most M nonzero coefficients.
+      Secondly, if the 1D interpolation family is chosen so that the interpolant points
+      of successive members are nested, then it is possible to simplify the evaluation
+      process greatly.  
+    </p>
+
+    <p>
+      <b>SPARSE_INTERP_ND</b> also requires access to the R8LIB library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_INTERP_ND</b> is available in
+      <a href = "../../c_src/sparse_interp_nd/sparse_interp_nd.html">a C version</a> and
+      <a href = "../../cpp_src/sparse_interp_nd/sparse_interp_nd.html">a C++ version</a> and
+      <a href = "../../f77_src/sparse_interp_nd/sparse_interp_nd.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sparse_interp_nd/sparse_interp_nd.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_interp_nd/sparse_interp_nd.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_nd/lagrange_interp_nd.html">
+      LAGRANGE_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data depending on a multidimensional argument x
+      that was evaluated on a product grid, so that p(x(i)) = z(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_nd/rbf_interp_nd.html">
+      RBF_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates radial basis interpolants to multidimensional data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_nd/shepard_interp_nd.html">
+      SHEPARD_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to multidimensional data,
+      based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_nd/test_interp_nd.html">
+      TEST_INTERP_ND</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x),
+      depending on an M-dimensional argument.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Andreas Klimke, Barbara Wohlmuth,<br>
+          Algorithm 847:
+          SPINTERP: Piecewise Multilinear Hierarchical Sparse Grid
+          Interpolation in MATLAB,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 31, Number 4, December 2005, pages 561-579.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cc_compute_points.m">cc_compute_points.m</a>,
+          computes Clenshaw Curtis points.
+        </li>
+        <li>
+          <a href = "comp_next.m">comp_next.m</a>,
+          returns the next composition of an integer into K parts.
+        </li>
+        <li>
+          <a href = "i4_choose.m">i4_choose.m</a>,
+          computes the binomial coefficient C(N,K) as an I4.
+        </li>
+        <li>
+          <a href = "i4_mop.m">i4_mop.m</a>,
+          returns the I-th power of -1 as an I4.
+        </li>
+        <li>
+          <a href = "i4vec_transpose_print.m">i4vec_transpose_print.m</a>,
+          prints an I4VEC "transposed".
+        </li>
+        <li>
+          <a href = "lagrange_basis_1d.m">lagrange_basis_1d.m</a>,
+          evaluates the Lagrange basis polynomials.
+        </li>
+        <li>
+          <a href = "lagrange_interp_nd_grid2.m">lagrange_interp_nd_grid2.m</a>,
+          sets an M-dimensional Lagrange interpolant grid, using levels instead of orders.
+        </li>
+        <li>
+          <a href = "lagrange_interp_nd_size2.m">lagrange_interp_nd_size2.m</a>,
+          sizes an M-dimensional Lagrange interpolant grid, using levels instead of orders.
+        </li>
+        <li>
+          <a href = "lagrange_interp_nd_value2.m">lagrange_interp_nd_value2.m</a>,
+          evaluates an M-dimensional Lagrange interpolant, using levels instead of orders.
+        </li>
+        <li>
+          <a href = "order_from_level_135.m">order_from_level_135.m</a>,
+          evaluates the 135 level-to-order relationship.
+        </li>
+        <li>
+          <a href = "smolyak_coefficients.m">smolyak_coefficients.m</a>,
+          returns the Smolyak coefficients and counts.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_interp_nd_test.m">sparse_interp_nd_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "sparse_interp_nd_test01.m">sparse_interp_nd_test01.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "f_sinr.m">f_sinr.m</a>, a sample integrand function.
+        </li>
+        <li>
+          <a href = "sparse_interp_nd_test_output.txt">sparse_interp_nd_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 05 October 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

@@ -1,0 +1,456 @@
+<html>
+
+  <head>
+    <title>
+      TET_MESH_DISPLAY - Tet Mesh Wireframe Plot
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TET_MESH_DISPLAY <br>
+      Interactive Program for <br>
+      Tet Mesh Wireframe Plots
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TET_MESH_DISPLAY</b>
+      is a MATLAB program which
+      reads data defining a tet mesh
+      and displays a wireframe plot of the nodes and edges,
+      and a solid plot of selected tetrahedrons.
+    </p>
+
+    <p>
+      The tet mesh is defined by a <i>node file</i> containing
+      the coordinates of nodes, and an <i>element file</i> containing
+      lists of node indices that make up each tetrahedron.
+    </p>
+
+    <p>
+      The tet mesh may be either linear (defined by 4 nodes) or
+      quadratic (defined by 10 nodes).
+    </p>
+
+    <p>
+      Note that, for the 10 node case, we assume that the element file lists
+      the node indices in the following order:
+      <blockquote>
+        P1 P2 P3 P4 P12 P13 P14 P23 P24 P34
+      </blockquote>
+      Here "P14" is meant to indicate the midside node between nodes 1 and 4.
+      There are many possible conventions for ordering the nodes, and if
+      this particular convention is not followed, the display of 10 node
+      tetrahedrons will be garbled.
+    </p>
+
+    <p>
+      The nodes and edges of all tetrahedrons will be displayed automatically.
+    </p>
+
+    <p>
+      The input argument SOLID can be used to specify the indices of
+      tetrahedrons that are to be displayed as solids.  Specifying a single
+      nonzero index will highlight the corresponding element.  If SOLID
+      is not supplied as an argument, it will be prompted for, and can
+      be given as a MATLAB expression, such as '[]', '1', '1:2:9',
+      or '[3,7,8]'.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tet_mesh_display</b> ( <i>'prefix'</i>, <i>solid</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common prefix of the node and element files:
+          <ul>
+            <li>
+              <i>'prefix'</i><b>_nodes.txt</b> lists the coordinates of nodes.
+            </li>
+            <li>
+              <i>'prefix'</i><b>_elements.txt</b> lists sets of 4 or 10 nodes that form each
+              tetrahedron.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <i>solid</i> is an empty list, a single integer, or a vector of
+          indices of tetrahedrons to be displayed as solids.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ball_and_stick_display/ball_and_stick_display.html">
+      BALL_AND_STICK_DISPLAY</a>,
+      a MATLAB program which
+      demonstrates the creation of a 3D "ball and stick" image;
+    </p>
+
+    <p>
+      <a href = "../../m_src/bezier_surface_display/bezier_surface_display.html">
+      BEZIER_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads two files defining a Bezier surface and displays it
+      within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../f_src/cvt_tet_mesh/cvt_tet_mesh.html">
+      CVT_TET_MESH</a>,
+      a FORTRAN90 program which
+      uses CVT methods to compute a tet mesh in a 3D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t6_display/fem_basis_t6_display.html">
+      FEM_BASIS_T6_DISPLAY</a>,
+      a MATLAB program which
+      reads a quadratic triangle mesh and displays any associated basis function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_display/mesh_display.html">
+      MESH_DISPLAY</a>,
+      a MATLAB program which
+      reads data defining a polygonal mesh and displays it, with optional numbering.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mpas_grid_display/mpas_grid_display.html">
+      MPAS_GRID_DISPLAY</a>,
+      a directory of MATLAB programs which
+      can read an MPAS NETCDF grid file and display the primary polygonal
+      mesh or the dual triangular mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/obj_display/obj_display.html">
+      OBJ_DISPLAY</a>,
+      a MATLAB program which
+      reads an OBJ file defining a 3D object and displays it within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygonal_surface_display/polygonal_surface_display.html">
+      POLYGONAL_SURFACE_DISPLAY</a>,,
+      a MATLAB program which
+      reads two files defining a polygonal surface and displays it
+      within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_surface_display/quad_surface_display.html">
+      QUAD_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads files defining a 3D quadrilateral mesh surface and displays it
+      within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_display/stla_display.html">
+      STLA_DISPLAY</a>,
+      a MATLAB program which
+      reads an ASCII STL file defining a 3D object and displays it within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_tet_mesh/test_tet_mesh.html">
+      TEST_TET_MESH</a>,
+      a FORTRAN90 library which
+      defines a few test regions for the
+      generation of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      carries out computations with a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads a tet mesh and displays the
+      nodes and edges using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      TET_MESH_ORDER4</a>,
+      a data directory which
+      contains a description and
+      examples of a tet mesh using order 4 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order10/tet_mesh_order10.html">
+      TET_MESH_ORDER10</a>,
+      a data directory which
+      contains a description and
+      examples of a tet mesh using order 10 elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_slice_display/tetrahedron_slice_display.html">
+      TETRAHEDRON_SLICE_DISPLAY</a>,
+      a MATLAB program which
+      determines the intersection between a tetrahedron and a plane and
+      displays the result.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads data defining a triangular mesh
+      of a 3D surface and displays it.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order1_display/triangulation_order1_display.html">
+      TRIANGULATION_ORDER1_DISPLAY</a>,
+      a MATLAB program which
+      reads files defining a piecewise constant triangulation of data, and displays
+      a corresponding 3D surface.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          ISBN: 0-521-79309-2,<br>
+          LC: QA377.E36.
+        </li>
+        <li>
+          David Field,<br>
+          Qualitative Measures for Initial Meshes,<br>
+          International Journal of Numerical Methods in Engineering,<br>
+          Volume 47, 2000, pages 887-906.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, Number 5, 1991, pages 325-331.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tet_mesh_display.m">tet_mesh_display.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Tests and Examples
+    </h3>
+
+    <p>
+      <b>CUBE_ORDER4</b> is an order 4 tet mesh of a cube, using 8 nodes and
+      6 tetrahedrons.
+      <ul>
+        <li>
+          <a href = "cube_order4_nodes.txt">cube_order4_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "cube_order4_elements.txt">cube_order4_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "cube_order4_output.txt">cube_order4_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "cube_order4.png">cube_order4.png</a>,
+          a PNG image of the mesh, with element 5 displayed as a solid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CUBE_ORDER10</b> is an order 10 tet mesh of a cube, using 27 nodes
+      and 6 tetrahedrons.
+      <ul>
+        <li>
+          <a href = "cube_order10_nodes.txt">cube_order10_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "cube_order10_elements.txt">cube_order10_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "cube_order10_output.txt">cube_order10_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "cube_order10.png">cube_order10.png</a>,
+          a PNG image of the mesh, with element 5 displayed as a solid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ONEONEEIGHT_ORDER10</b> is an order 10 tet mesh using 118 nodes and
+      70 tetrahedrons.
+      <ul>
+        <li>
+          <a href = "tetra_rhombic_order10_nodes.txt">
+          tetra_rhombic_order10_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10_elements.txt">
+          tetra_rhombic_order10_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10_output.txt">tetra_rhombic_order10_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10.png">tetra_rhombic_order10.png</a>,
+          a PNG image of the mesh, with element 1 displayed as a solid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P01_00063</b> is an order 4 tet mesh using 63 nodes and
+      144 tetrahedrons to mesh the 3x1x1 channel.
+      <ul>
+        <li>
+          <a href = "p01_00063_nodes.txt">
+          p01_00063_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "p01_00063_elements.txt">
+          p01_00063_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "p01_00063_output.txt">p01_00063_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "p01_00063.png">p01_00063.png</a>,
+          a PNG image of the mesh, with element 5 displayed as a solid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRISM</b> is an order 4 tet mesh of a triangular prism,
+      using 5 nodes and 3 tetrahedrons.
+      <ul>
+        <li>
+          <a href = "prism_nodes.txt">prism_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "prism_elements.txt">prism_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "prism_output.txt">prism_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "prism.png">prism.png</a>,
+          a PNG image of the mesh, displaying elements 1 and 3 as solids.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TETRA_RHOMBIC_ORDER10</b> is an order 10 tet mesh of a rhombic
+      tetrahedron using 10 nodes and 1 tetrahdron.
+      <ul>
+        <li>
+          <a href = "tetra_rhombic_order10_nodes.txt">
+          tetra_rhombic_order10_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10_elements.txt">
+          tetra_rhombic_order10_elements.txt</a>,
+          the tetrahedron file.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10_output.txt">tetra_rhombic_order10_output.txt</a>,
+          the printed output from the program.
+        </li>
+        <li>
+          <a href = "tetra_rhombic_order10.png">tetra_rhombic_order10.png</a>,
+          a PNG image of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 March 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

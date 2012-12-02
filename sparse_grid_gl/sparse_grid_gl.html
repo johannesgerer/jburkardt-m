@@ -1,0 +1,421 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_GRID_GL - Sparse Grids Based on the Gauss-Legendre Rule
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_GRID_GL <br> Sparse Grids Based on the Gauss-Legendre Rule
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_GRID_GL</b>
+      is a MATLAB library which
+      constructs sparse grids based on 1D Gauss-Legendre rules.
+    </p>
+
+    <p>
+      Sparse grids are more naturally constructed from a nested family
+      of quadrature rules.  Gauss-Legendre rules are not nested, but
+      have higher accuracy.  Thus, there is a tradeoff.  If we compare
+      two sparse grids of the same "level", one using Gauss-Legendre rules
+      and the other, say, Clenshaw-Curtis rules, then the Gauss-Legendre
+      sparse grid will have higher accuracy...but also a significantly
+      greater number of points.  When measuring efficiency, we really need
+      to balance the cost in quadrature points against the accuracy, and
+      so it is not immediately obvious which choice is best!
+    </p>
+
+    <p>
+      To slightly complicate matters, Gauss-Legendre rules are very weakly
+      nested, in that the rules of odd order all include the abscissa
+      value X=0.0.  A sparse grid constructed from Gauss-Legendre rules
+      will thus have to keep track of this minor point as well.
+    </p>
+
+    <p>
+      Here is a table showing the number of points in a sparse grid based on
+      Gauss-Legendre rules, indexed by the spatial dimension, and by the
+      "level", which is simply an index for the family of sparse grids.
+      <table border = "1">
+        <tr>
+          <th>DIM:</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th>
+        </tr>
+        <tr>
+          <th>LEVEL_MAX</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th><th>&nbsp;</th>
+        </tr>
+        <tr>
+          <th>0</th><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td>
+        </tr>
+        <tr>
+          <th>1</th><td>3</td><td>5</td><td>7</td><td>9</td><td>11</td><td>13</td>
+        </tr>
+        <tr>
+          <th>2</th><td>9</td><td>21</td><td>37</td><td>57</td><td>81</td><td>109</td>
+        </tr>
+        <tr>
+          <th>3</th><td>23</td><td>73</td><td>159</td><td>289</td><td>471</td><td>713</td>
+        </tr>
+        <tr>
+          <th>4</th><td>53</td><td>225</td><td>597</td><td>1265</td><td>2341</td><td>3953</td>
+        </tr>
+        <tr>
+          <th>5</th><td>115</td><td>637</td><td>2031</td><td>4969</td><td>10363</td><td>19397</td>
+        </tr>
+        <tr>
+          <th>6</th><td>241</td><td>1693</td><td>6405</td><td>17945</td><td>41913</td><td>86517</td>
+        </tr>
+      </table>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_GL</b> is available in
+      <a href = "../../cpp_src/sparse_grid_gl/sparse_grid_gl.html">a C++ version</a> and
+      <a href = "../../f_src/sparse_grid_gl/sparse_grid_gl.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>,
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules,
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids.
+    </p>
+
+     <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a MATLAB lilbrary which
+      computes sparse
+      grids based on a Clenshaw-Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_composite/sparse_grid_composite.html">
+      SPARSE_GRID_COMPOSITE</a>,
+      a MATLAB library which
+      creates sparse grids based on 1D composite rules (currently only of order 1).
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_f2/sparse_grid_f2.html">
+      SPARSE_GRID_F2</a>,
+      a dataset directory of sparse
+      grids based on a Fejer Type 2 rule.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>,
+      a dataset directory which
+      contains sparse
+      grids based on a Gauss-Legendre rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      constructs a sparse grid using different rules in each spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_open/sparse_grid_open.html">
+      SPARSE_GRID_OPEN</a>,
+      a MATLAB library which
+      defines sparse grids based on open nested quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB program which
+      uses sparse grids to carry out multilinear hierarchical interpolation.
+      It is commonly known as SPINTERP, and is by Andreas Klimke.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+        <li>
+          Dennis Stanton, Dennis White,<br>
+          Constructive Combinatorics,<br>
+          Springer, 1986,<br>
+          ISBN: 0387963472,<br>
+          LC: QA164.S79.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "comp_next.m">
+          comp_next.m</a>
+          computes the compositions of the integer N into K parts.
+        </li>
+        <li>
+          <a href = "gl_abscissa.m">
+          gl_abscissa.m</a>
+          returns Gauss-Legendre abscissas.
+        </li>
+        <li>
+          <a href = "gl_weights.m">
+          gl_weights.m</a>
+          returns Gauss-Legendre weights.
+        </li>
+        <li>
+          <a href = "i4_choose.m">
+          i4_choose.m</a>
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "i4_log_2.m">
+          i4_log_2.m</a>
+          returns the logarithm base 2 of an I4.
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>
+          returns the nonnegative remainder of integer division.
+        </li>
+        <li>
+          <a href = "index_level_gl.m">
+          index_level_gl.m</a>
+          determines the first level at which a given index occurs.
+        </li>
+        <li>
+          <a href = "level_to_order_open.m">
+          level_to_order_open.m</a>
+          converts a level to an order for open rules.
+         </li>
+        <li>
+          <a href = "monomial_int01.m">
+          monomial_int01.m</a>
+          returns the integral of a monomial over the [0,1] hypercube.
+         </li>
+        <li>
+          <a href = "monomial_quadrature.m">
+          monomial_quadrature.m</a>
+          applies a quadrature rule to a monomial.
+        </li>
+        <li>
+          <a href = "monomial_value.m">
+          monomial_value.m</a>
+          evaluates a monomial.
+         </li>
+        <li>
+          <a href = "multigrid_index_z.m">
+          multigrid_index_z.m</a>
+          returns an indexed multidimensional grid.
+         </li>
+        <li>
+          <a href = "multigrid_scale_closed.m">
+          multigrid_scale_closed.m</a>
+          renumbers a grid as a subgrid on a higher level.
+        </li>
+        <li>
+          <a href = "product_weight_gl.m">
+          product_weight_gl.m</a>
+          computes weights for a Gauss-Legendre product rule.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">
+          r8mat_write.m</a>
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8vec_direct_product2.m">
+          r8vec_direct_product2.m</a>
+          direct product of double precision real vectors.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl.m">
+          sparse_grid_gl.m</a>
+          computes a sparse grid of Gauss-Legendre points.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_index.m">
+          sparse_grid_gl_index.m</a>
+          indexes the points forming a sparse grid.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_size.m">
+          sparse_grid_gl_size.m</a>
+          sizes a sparse grid of Gauss-Legendre points.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "vec_colex_next2.m">
+          vec_colex_next2.m</a>
+          generates vectors in colex order.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_grid_gl_test.m">sparse_grid_gl_test.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test01.m">sparse_grid_gl_test01.m</a>,
+          tests SPARSE_GRID_GL_SIZE.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test02.m">sparse_grid_gl_test02.m</a>,
+          tests SPARSE_GRID_GL_INDEX.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test03.m">sparse_grid_gl_test03.m</a>,
+          tests SPARSE_GRID_GL.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test04.m">sparse_grid_gl_test04.m</a>,
+          tests computes the weights and sums them.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test05.m">sparse_grid_gl_test05.m</a>,
+          tests a GL sparse grid rule for exactness on monomials.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test06.m">sparse_grid_gl_test06.m</a>,
+          writes a GL sparse grid rule to three files.
+        </li>
+        <li>
+          <a href = "gl_d2_level3_r.txt">gl_d2_level3_r.txt</a>,
+          the "R" data for a sparse GL quadrature rule.
+        </li>
+        <li>
+          <a href = "gl_d2_level3_w.txt">gl_d2_level3_w.txt</a>,
+          the "W" data for a sparse GL quadrature rule.
+        </li>
+        <li>
+          <a href = "gl_d2_level3_x.txt">gl_d2_level3_x.txt</a>,
+          the "X" data for a sparse GL quadrature rule.
+        </li>
+        <li>
+          <a href = "sparse_grid_gl_test_output.txt">
+          sparse_grid_gl_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 October 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

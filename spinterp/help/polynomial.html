@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Polynomial basis functions (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="linear.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="dimension-adaptive.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Polynomial basis functions</h1>
+    <p>The piecewise multilinear approach can be significantly improved by using higher-order basis functions, such as the Lagrangian characteristic polynomials. The approximation properties of sparse grid interpolation techniques using polynomial basis functions have been studied extensively in <a href="bibliography.html">[4]</a>, where error bounds depending on the smoothness of the function were derived.</p>
+		<p>From the one-dimensional case, we know that one should not use equidistant nodes for higher-order polynomial interpolation. This directly suggests using Chebyshev-based node distributions. Since an additional requirement of an efficient sparse grid algorithm is the nesting of the sets of nodes, the Chebyshev Gauss-Lobatto nodes are clearly the best choice, and are therefore also suggested in <a href="bibliography.html">[4]</a>. In this toolbox, this grid type (CGL) is selected by the value "<b><code>Chebyshev</code></b>" for the <code>GridType</code> property configurable with the <a href="spset.html"><code>spset</code></a> function.</p>
+		<p>Since version 5.0.0, an additional polynomial sparse grid is available, the Gauss-Patterson sparse grid. This grid is based on the abscissae of Gauss-Patterson integration. The Gauss-Patterson formula is a nested quadrature rule that achieves a higher degree of exactness than integration at the Chebyshev Gauss-Lobatto nodes. See <a href="bibliography.html">[9,10]</a> for additional details.
+		<p>For a detailed description of the polynomial basis functions implemented here, please see <a href="bibliography.html">[3, ch. 3]</a>, and the references stated therein. Since version
+v3.2, the toolbox uses an improved construction algorithm employing the fast
+discrete cosine transform, see <a href="bibliography.html">[6]</a>.</p>
+		<h2>Accuracy of polynomial interpolation</h2>
+		<p>From the error bounds of the univariate case, the following general error bounds depending on the smoothness of the objective function f are derived in <a href="bibliography.html">[4]</a>. For f in F<sub>d</sub><sup>k</sup>,</p>
+		<img src="images/ex_polynomial_eq01.gif">
+		<table><tr>
+			<td><img src="images/ex_polynomial_eq02.gif"></td>
+			<td><img src="images/ex_polynomial_eq04.gif"></td>
+		</tr></table>
+  <p>the order of the interpolation error in the maximum norm is given by</p>
+		<img src="images/ex_polynomial_eq03.gif">    
+		<p>where A<sub>q,d</sub>(f) denotes the sparse grid interpolant of f, and N denotes the number of grid points of the sparse grids of type CGL. Note that the number of grid points N of A<sub>q,d</sub>(f) can be computed by <code><a href="spdim.html">spdim</a>(q-d,d)</code>.</p>
+		<h2>Number of grid points</h2>
+		<p>The number of grid points of the CGL-grid is identical to the one of the Clenshaw-Curtis (CC) grid.  The number of grid points of the Gauss-Patterson grid is identical to the one of the NB grid.</p>
+    <p>The following graph illustrates the sparse grids of level 0 and level 2 of the CGL-grid in two and three dimensions.</p><img src="images/ex_polynomial_01.png">
+		<h2>When should I use polynomial rather than linear basis functions?</h2>
+		There is obviously some trade-off between the accuracy gain and the computing time required to construct as well as interpolate the interpolant. Since the higher-order accuracy only becomes effective with increasing number of nodes, we recommend to use the polynomial approach only if the following two conditions are met:
+		<ul>
+		  <li> The objective function to be recovered is known to be very smooth.
+		  <li> High relative accuracies smaller than 10<sup>-2</sup> are required.
+		</ul>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="linear.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Linear basis functions</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Dimensional adaptivity</td>
+        <td width="20" align="right"><a href="dimension-adaptive.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

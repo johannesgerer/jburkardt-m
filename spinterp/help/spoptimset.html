@@ -1,0 +1,141 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spoptimset :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spoptimset</h1>
+		  Create/alter a sparse grid optimization <code>OPTIONS</code> structure.
+		<h2>Syntax</h2>
+			<code>spoptimset</code><br>
+			<code>OPTIONS = spoptimset('NAME1',VALUE1,'NAME2',VALUE2,...)</code><br>
+			<code>OPTIONS = spoptimset(OLDOPTS,'NAME1',VALUE1,...)</code><br>
+			<code>OPTIONS = spoptimset(OLDOPTS,NEWOPTS)</code>
+		<h2>Description</b></h2>
+		  <code>spoptimset</code> with no input arguments displays all property names and their possible values.
+	  <p>
+      <code>OPTIONS = spoptimset('NAME1',VALUE1,'NAME2',VALUE2,...)</code> creates an options structure <code>OPTIONS</code> in which the named properties have the specified values. Any unspecified properties have default values. It is sufficient to type only the leading characters that uniquely identify the property. Case is ignored for property names.
+		<p>
+			<code>OPTIONS = spoptimset(OLDOPTS,'NAME1',VALUE1,...)</code> alters an existing options structure <code>OLDOPTS</code>.
+		<p>
+			<code>OPTIONS = spoptimset(OLDOPTS,NEWOPTS)</code> combines an existing options structure <code>OLDOPTS</code> with a new options structure <code>NEWOPTS</code>. Any new properties overwrite corresponding old properties.
+		<h2>Properties</h2>
+		  <table class="properties" border="1" cellspacing="0" cellpadding="2">
+		    <tr>
+          <th class="properties"><b>Property</b></th>
+          <th class="properties"><b>Value {default}</b></th>
+          <th class="properties"><b>Description</b></th>
+				</tr>
+				<tr class="properties">
+				  <td><code>Minimize</code></td>
+          <td>{on} | off</td>
+          <td>If set to <code>on</code>, the optimization algorithm will search for a minimizer.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>Maximize</code></td>
+          <td>on | {off}</td>
+          <td>If set to <code>on</code>, the optimization algorithm will search for a maximizer (searching for the minimizer and the maximizer at the same time is allowed). Note that searching for a maximizer is currently not supported by <code><a href="spcgsearch.html">spcgsearch</a></code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>TolX</code></td>
+				  <td>positive scalar {1e-4}</td>
+				  <td>Termination tolerance on <code>X</code>. Note that the tolerance on <code>X</code> is taken with respect to the problem being re-scaled to the unit interval in each coordinate direction. That is, for instance, a sparse grid interpolant defined for the box <code>[0,1e6]x[0,1e-6]</code> with <code>TolX = 0.1</code> would mean a break tolerance of <code>1e5</code> in <code>x<sub>1</sub></code> and a tolerance of <code>1e-7</code> in <code>x<sub>2</sub></code>-direction. This parameter does not apply to <code><a href="spcgsearch.html">spcgsearch</a></code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>TolFun</code></td>
+				  <td>positive scalar {1e-6}</td>
+				  <td>The search is terminated when the change of the function value from one iteration to the next is smaller than <code>TolFun</code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>MaxIter</code></td>
+				  <td>integer {100}</td>
+				  <td>Maximum number of allowed iterations.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>StartPoint</code></td>
+				  <td>{best} | random | <code>Dx1</code> vector</td>
+				  <td>Start search from best available, random, or specified start point.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>TestCorners</code></td>
+				  <td> on | {off}</td>
+				  <td>Specifically includes the <code>2^D</code> corner points of the search box as potential start points of the search.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>PrevResult</code></td>
+				  <td><code>(d+1)x{1|2}</code>  double array</td>
+				  <td>Specifies a possible best start point, such as from a previous search over a subdomain of the current search box. Format: <code>[xoptmin;ymin xoptmax;ymax]</code>, where <code>xoptmin</code> and </code>xoptmax</code> are column vectors. Depending on the contents of the <code>Minimize</code> and <code>Maximize</code> fields, minima and/or maxima information should be provided. <code>PrevResult</code> is only considered as a start point if <code>StartPoint</code> is set to <code>best</code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>Method</code></td>
+				  <td>{spcgsearch} | {spcompsearch} | spfminsearch</td>
+				  <td>Specifies the method used by the multiple random start search <code><a href="spmultistart.html">spmultistart</a></code>. <code><a href="spcgsearch.html">spcgsearch</a></code> is the default for the Chebyshev grid, otherwise, it is <code><a href="spcompsearch.html">spcompsearch</a></code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>NumStarts</code></td>
+				  <td>integer {10}</td>
+				  <td>Number of local searches to perform for the multiple random start method <code><a href="spmultistart.html">spmultistart</a></code>. The following points are considered: (best) + (<code>NumStarts-1</code> random points). </td>
+				</tr>
+				<tr class="properties">
+				  <td><code>OptimsetOptions</code></td>
+				  <td>struct {[]}</td>
+				  <td>This feature is useful if additional configuration of the <code>fminsearch</code> algorithm used by <code><a href="spfminsearch.html">spfminsearch</a></code> is required beyond the parameters available through <code>spoptimset</code>.<br> Example: <code>opions = spoptimset('Optimset', optimset('FunValCheck','on'));</code></td>
+				</tr>
+				<tr class="properties">
+				  <td><code>Display</code></td>
+				  <td>{off} | iter</td>
+				  <td>Optionally, displays information at each iteration.</td>
+				</tr>
+			</table>
+		<h2>Examples</h2>
+      <p>As a preliminary to the following example, we construct a sparse grid interpolant of a test function (Branin's function) as
+         follows.
+      </p><pre class="codeinput">f = inline([<span class="string">'(5/pi*x-5.1/(4*pi^2)*x.^2+y-6).^2 +'</span> <span class="keyword">...</span>
+            <span class="string">'10*(1-1/(8*pi))*cos(x)+10'</span>]);
+range = [-5 10; 0 15];
+options = spset(<span class="string">'keepFunctionValues'</span>,<span class="string">'on'</span>, <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+  <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'DimAdaptDegree'</span>, 1, <span class="string">'MinPoints'</span>, 10, <span class="keyword">...</span>
+        <span class="string">'RelTol'</span>, 1e-6);
+z = spvals(f, 2, range, options);
+</pre><p>A typical case of a modification of the sparse grid optimization options structure is given by the need to specify a more
+         stringent error tolerance on the function value to be used by the <tt><a href="spcgsearch.html">spcgsearch</a></tt> algorithm.
+      </p><pre class="codeinput">optoptions = spoptimset(<span class="string">'TolFun'</span>, 1e-10);
+format <span class="string">long</span> <span class="string">e</span>;
+[xopt, fval] = spcgsearch(z, [], optoptions)
+format <span class="string">short</span> <span class="string">e</span>;
+</pre><pre class="codeoutput">xopt =
+     3.141592655097273e+00
+     2.274999997132531e+00
+fval =
+     3.978873577297303e-01
+</pre>
+		<h2>See Also</h2>
+		  <a href="spoptimget.html"><code>spoptimget</code></a>.
+</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

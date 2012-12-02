@@ -1,0 +1,194 @@
+<html>
+
+  <head>
+    <title>
+      MOC_DISPLAY - Estimate and plot the modulus of continuity function
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MOC_DISPLAY <br> 
+      Estimate and plot the modulus of continuity function
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MOC_DISPLAY</b> 
+      is a MATLAB library of functions which 
+      estimate and plot the modulus of continuity function.
+    </p>
+
+    <p>
+      Given a function F(X) and an interval [A,B], the modulus of continuity
+      may be defined as
+      <blockquote>
+        MC(T) = max | F(X+DX) - F(X) |, for 0 &lt;= DX &lt;= T, 
+        and X and X+DX in [A,B].
+      </blockquote>
+      The function MC(T) records the maximum change that can occur in
+      F(X) over an interval of length T or less.  MC(T) is
+      a monotone increasing function.
+    </p>
+
+    <p>
+      For convenience, we define a related function
+      <blockquote>
+        MC1(DX) = max | F(X+DX) - F(X) |, for 0 &lt;= DX, 
+        and X and X+DX in [A,B].
+      </blockquote>
+      The function MC1(DX) records the maximum change that can occur in
+      F(X) over an interval of length exactly DX.  MC1(DX) need
+      not be a strictly increasing function, particularly if F(X) is periodic.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>moc_display</b> ( <i>a</i>, <i>b</i>, <i>n</i>, <b>@</b><i>f</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>a, b</i> are the endpoints of the interval;
+        </li>
+        <li>
+          <i>n</i> is the number of equally spaced sample points;
+        </li>
+        <li>
+          <b>@</b><i>f</i> is a handle to the function F(X).
+        </li>
+      </ul>
+      This command will evaluate F(X) at N points, estimate the modulus
+      of continuity function and displace F(X), MC1(DX) and MC(T).
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "moc.m">moc.m</a> 
+          estimates MC(T).
+        </li>
+        <li>
+          <a href = "moc_display.m">moc_display.m</a> 
+          estimates the modulus of continuity function, and displays
+          F(X), MC1(DX) and MC(T).
+        </li>
+        <li>
+          <a href = "moc1.m">moc1.m</a> 
+          estimates MC1(DX).
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>F1</b> = cos ( 6 * pi * x ) .* exp ( - pi * x .* x );
+      <ul>
+        <li>
+          <a href = "f1.m">f1.m</a>, 
+          evaluates the function.
+        </li>
+        <li>
+          <a href = "f1.png">f1.png</a>, 
+          the plot created by MOC_DISPLAY.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>F2</b> = cos ( 3 * pi * x );
+      <ul>
+        <li>
+          <a href = "f2.m">f2.m</a>, 
+          evaluates the function.
+        </li>
+        <li>
+          <a href = "f2.png">f2.png</a>, 
+          the plot created by MOC_DISPLAY.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>F3</b> = x .* x + 0.5 * x - 2;
+      <ul>
+        <li>
+          <a href = "f3.m">f3.m</a>, 
+          evaluates the function.
+        </li>
+        <li>
+          <a href = "f3.png">f3.png</a>, 
+          the plot created by MOC_DISPLAY.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>F4</b> = exp ( x ) + 3;
+      <ul>
+        <li>
+          <a href = "f4.m">f4.m</a>, 
+          evaluates the function.
+        </li>
+        <li>
+          <a href = "f4.png">f4.png</a>, 
+          the plot created by MOC_DISPLAY.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>F5</b> = floor ( ( x - 1 ).^2 );
+      <ul>
+        <li>
+          <a href = "f5.m">f5.m</a>, 
+          evaluates the function.
+        </li>
+        <li>
+          <a href = "f5.png">f5.png</a>, 
+          the plot created by MOC_DISPLAY.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 October 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,225 @@
+<html>
+
+  <head>
+    <title>
+      TENSOR_GRID_DISPLAY - Plot Points in a 1D/2D/3D Tensor Grid
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TENSOR_GRID_DISPLAY <br> Plot Points in a 1D/2D/3D Tensor Grid
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TENSOR_GRID_DISPLAY</b> 
+      is a MATLAB program which 
+      can generate and display the points of a 1D/2D/3D tensor product grid
+      formed by the same rule in each dimension, but allowing the order of
+      points in each dimensio to vary.
+    </p>
+
+    <p>
+      For instance, it is legal to request a 3D grid using the Gauss-Legendre
+      rule in each dimension, but with 3 points in X, 9 points in Y, and 
+      5 points in Z.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tensor_grid_display</b> ( <i>m</i>, <i>n_1d</i>, <i>rule</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>m</i> is the spatial dimension (1, 2 or 3);
+        </li>
+        <li>
+          <i>n_1d</i> is a vector containing the order of the rule in each dimension.
+          A rule with 3 points in X, 9 points in Y and 5 points in Z would specify
+          [3,9,5];
+        </li>
+        <li>
+          <i>rule</i> is a quoted string indicating the quadrature rule to be used.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The codes for quadrature rules are:
+      <ul>
+        <li>
+          <b>'CC'</b>, Clenshaw-Curtis,
+        </li>
+        <li>
+          <b>'F1'</b>, Fejer Type 1,
+        </li>
+        <li>
+          <b>'F2'</b>, Fejer Type 2,
+        </li>
+        <li>
+          <b>'GL'</b>, Gauss-Legendre,
+        </li>
+        <li>
+          <b>'GP'</b>, Gauss-Patterson, (orders 1, 3, 7, 15, 31, 63, 127, 255 or 511 only)
+        </li>
+        <li>
+          <b>'HR'</b>, Hermite,
+        </li>
+        <li>
+          <b>'JC'</b>, Jacobi,
+        </li>
+        <li>
+          <b>'LG'</b>, Laguerre,
+        </li>
+        <li>
+          <b>'NCC'</b>, Newton-Cotes Closed,
+        </li>
+        <li>
+          <b>'NCO'</b>, Newton-Cotes Open,
+        </li>
+        <li>
+          <b>'NCOH'</b>, Newton-Cotes Open Half.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cc_display/cc_display.html">
+      CC_DISPLAY</a>,
+      a MATLAB program which 
+      displays points on various grids derived from the Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gl_display/gl_display.html">
+      GL_DISPLAY</a>,
+      a MATLAB program which 
+      displays points on various grids derived from the Gauss-Legendre rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB program which
+      reads a file of points on a grid or sparse grid, displays the grid and
+      saves the image in a PNG file;
+    </p>
+
+    <p>
+      <a href = "../../m_src/grids_display/grids_display.html">
+      GRIDS_DISPLAY</a>,
+      a MATLAB program which
+      reads two files of grids or sparse grids, displays the first with
+      hollow blue dots, the second with red dots.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nested_sequence_display/nested_sequence_display.html">
+      NESTED_SEQUENCE_DISPLAY</a>, 
+      a MATLAB program which 
+      displays a set of nested sequences. 
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for 1D domains.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sequence_streak_display/sequence_streak_display.html">
+      SEQUENCE_STREAK_DISPLAY</a>,
+      a MATLAB program which
+      displays a "streak plot" of a numeric sequence;
+    </p>
+
+    <p>
+      <a href = "../../m_src/xy_display/xy_display.html">
+      XY_DISPLAY</a>,
+      a MATLAB program which
+      can read
+      a file of coordinates of points, and display an image of the
+      points in a MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xy_display_opengl/xy_display_opengl.html">
+      XY_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      can read a file containing 2D point coordinates, and display
+      an image of those points using Open GL.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tensor_grid_display.m">tensor_grid_display.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gl_1d.png">gl_1d.png</a>, 
+          the plot for the command <b>tensor_grid_display ( 1, 15, 'gl' )</b>
+        </li>
+        <li>
+          <a href = "cc_2d.png">cc_2d.png</a>, 
+          the plot for the command <b>tensor_grid_display ( 2, [33,17], 'cc' )</b>
+        </li>
+        <li>
+          <a href = "ncc_3d.png">ncc_3d.png</a>, 
+          the plot for the command <b>tensor_grid_display ( 3, [7,7,7], 'ncc' )</b>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

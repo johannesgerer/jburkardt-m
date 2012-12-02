@@ -1,0 +1,438 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_LEBEDEV_RULE - Quadrature Rules for the Unit Sphere
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_LEBEDEV_RULE <br> Quadrature Rules for the Unit Sphere
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_LEBEDEV_RULE</b> 
+      is a MATLAB library which
+      computes a Lebedev quadrature rule for the unit sphere.
+    </p>
+
+    <p>
+      Vyacheslav Lebedev determined a family of 65 quadrature rules for the
+      unit sphere, increasing in precision from 3 to 131, by 2 each time.
+      This software library computes any one of a subset of 32 of these rules.
+    </p>
+
+    <p>
+      Each rule is defined as a list of <b>N</b> values of <b>theta</b>, 
+      <b>phi</b>, and <b>w</b>.
+      Here:
+      <ul>
+        <li>
+          <b>theta</b> is a longitudinal angle, measured in degrees,
+          and ranging from -180 to +180.
+        </li>
+        <li>
+          <b>phi</b> is a latitudinal angle, measured in degrees,
+          and ranging from 0 to 180.
+        </li>
+        <li>
+          <b>w</b> is a weight.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Of course, each pair of values 
+      (<b>theta<sub>i</sub></b>, <b>phi<sub>i</sub></b>) has a corresponding 
+      Cartesian representation:
+      <blockquote>
+        <b>x<sub>i</sub></b> = cos ( <b>theta<sub>i</sub></b> ) * sin ( <b>phi<sub>i</sub></b> )<br>
+        <b>y<sub>i</sub></b> = sin ( <b>theta<sub>i</sub></b> ) * sin ( <b>phi<sub>i</sub></b> )<br>
+        <b>z<sub>i</sub></b> = cos ( <b>phi<sub>i</sub></b> )<br>
+      </blockquote>
+      which may be more useful when evaluating integrands.
+    </p>
+
+    <p>
+      The integral of a function <b>f(x,y,z)</b> over the surface of the
+      unit sphere can be approximated by
+      <blockquote>
+        integral <b>f(x,y,z)</b> = 4 * pi * sum ( 1 &lt;= i &lt;= <b>N</b> ) 
+          f(<b>x<sub>i</sub>,y<sub>i</sub>,z<sub>i</sub></b>)
+      </blockquote>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_LEBEDEV_RULE</b> is available in
+      <a href = "../../c_src/sphere_lebedev_rule/sphere_lebedev_rule.html">a C version</a> and
+      <a href = "../../cpp_src/sphere_lebedev_rule/sphere_lebedev_rule.html">a C++ version</a> and
+      <a href = "../../f77_src/sphere_lebedev_rule/sphere_lebedev_rule.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sphere_lebedev_rule/sphere_lebedev_rule.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_lebedev_rule/sphere_lebedev_rule.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sphere_cvt/sphere_cvt.html">
+      SPHERE_CVT</a>,
+      a MATLAB library which 
+      creates a mesh of well-separated points on a unit sphere using Centroidal Voronoi
+      Tessellations.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_design_rule/sphere_design_rule.html">
+      SPHERE_DESIGN_RULE</a>,
+      a FORTRAN90 library which 
+      returns point sets on the surface of the unit sphere, known as "designs",
+      which can be useful for estimating integrals on the surface, among other uses.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>, 
+      a MATLAB library which 
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>, 
+      a dataset directory which 
+      contains sets of points on a sphere which can be used for
+      quadrature rules of a known precision;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_lebedev_rule_display/sphere_lebedev_rule_display.html">
+      SPHERE_LEBEDEV_RULE_DISPLAY</a>, 
+      a MATLAB program which 
+      reads a file defining a Lebedev quadrature rule for the sphere and
+      displays the point locations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_quad/sphere_quad.html">
+      SPHERE_QUAD</a>,
+      a MATLAB library which
+      approximates an integral over the surface of the unit sphere
+      by applying a triangulation to the surface;
+    </p>
+
+
+    <p>
+      <a href = "../../m_src/sphere_voronoi/sphere_voronoi.html">
+      SPHERE_VORONOI</a>,
+      a MATLAB program which 
+      computes and plots the Voronoi diagram of points on the unit sphere.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/sphere_xyz_display/sphere_xyz_display.html">
+      SPHERE_XYZ_DISPLAY</a>, 
+      a MATLAB program which
+      reads XYZ information defining points in 3D, 
+      and displays a unit sphere and the points in the MATLAB 3D graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/sphere_xyz_display_opengl/sphere_xyz_display_opengl.html">
+      SPHERE_XYZ_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads XYZ information defining points in 3D, 
+      and displays a unit sphere and the points, using OpenGL.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/sphere_xyzf_display/sphere_xyzf_display.html">
+      SPHERE_XYZF_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZF information defining points and faces, 
+      and displays a unit sphere, the points, and the faces,
+      in the MATLAB 3D graphics window.  This can be used, for instance, to
+      display Voronoi diagrams or Delaunay triangulations on the unit sphere.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Axel Becke,<br>
+          A multicenter numerical integration scheme for polyatomic molecules,<br>
+          Journal of Chemical Physics,<br>
+          Volume 88, Number 4, 15 February 1988, pages 2547-2553.
+        </li>
+        <li>
+          Vyacheslav Lebedev, Dmitri Laikov,<br>
+          A quadrature formula for the sphere of the 131st
+          algebraic order of accuracy,<br>
+          Russian Academy of Sciences Doklady Mathematics,<br>
+          Volume 59, Number 3, 1999, pages 477-481.
+        </li>
+        <li>
+          Vyacheslav Lebedev,<br>
+          A quadrature formula for the sphere of 59th algebraic
+          order of accuracy,<br>
+          Russian Academy of Sciences Doklady Mathematics, <br>
+          Volume 50, 1995, pages 283-286. 
+        </li>
+        <li>
+          Vyacheslav Lebedev, A.L. Skorokhodov,<br>
+          Quadrature formulas of orders 41, 47, and 53 for the sphere,<br>
+          Russian Academy of Sciences Doklady Mathematics, <br>
+          Volume 45, 1992, pages 587-592. 
+        </li>
+        <li>
+          Vyacheslav Lebedev,<br>
+          Spherical quadrature formulas exact to orders 25-29,<br>
+          Siberian Mathematical Journal, <br>
+          Volume 18, 1977, pages 99-107. 
+        </li>
+        <li>
+          Vyacheslav Lebedev,<br>
+          Quadratures on a sphere,<br>
+          Computational Mathematics and Mathematical Physics, <br>
+          Volume 16, 1976, pages 10-24. 
+        </li>
+        <li>
+          Vyacheslav Lebedev,<br>
+          Values of the nodes and weights of ninth to seventeenth 
+          order Gauss-Markov quadrature formulae invariant under the
+          octahedron group with inversion,<br>
+          Computational Mathematics and Mathematical Physics,<br>
+          Volume 15, 1975, pages 44-51.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "available_table.m">available_table.m</a>,
+          returns the availability of a Lebedev rule.
+        </li>
+        <li>
+          <a href = "gen_oh.m">gen_oh.m</a>,
+          generates points under OH symmetry.
+        </li>
+        <li>
+          <a href = "ld_by_order.m">ld_by_order.m</a>,
+          returns a Lebedev angular grid given its order.
+        </li>
+        <li>
+          <a href = "ld0006.m">ld0006.m</a>,
+          computes the 6 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0014.m">ld0014.m</a>,
+          computes the 14 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0026.m">ld0026.m</a>,
+          computes the 26 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0038.m">ld0038.m</a>,
+          computes the 38 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0050.m">ld0050.m</a>,
+          computes the 50 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0074.m">ld0074.m</a>,
+          computes the 74 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0086.m">ld0086.m</a>,
+          computes the 86 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0110.m">ld0110.m</a>,
+          computes the 110 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0146.m">ld0146.m</a>,
+          computes the 146 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0170.m">ld0170.m</a>,
+          computes the 170 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0194.m">ld0194.m</a>,
+          computes the 194 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0230.m">ld0230.m</a>,
+          computes the 230 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0266.m">ld0266.m</a>,
+          computes the 266 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0302.m">ld0302.m</a>,
+          computes the 302 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0350.m">ld0350.m</a>,
+          computes the 350 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0434.m">ld0434.m</a>,
+          computes the 434 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0590.m">ld0590.m</a>,
+          computes the 590 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0770.m">ld0770.m</a>,
+          computes the 770 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld0974.m">ld0974.m</a>,
+          computes the 974 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld1202.m">ld1202.m</a>,
+          computes the 1202 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld1454.m">ld1454.m</a>,
+          computes the 1454 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld1730.m">ld1730.m</a>,
+          computes the 1730 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld2030.m">ld2030.m</a>,
+          computes the 2030 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld2354.m">ld2354.m</a>,
+          computes the 2354 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld2702.m">ld2702.m</a>,
+          computes the 2702 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld3074.m">ld3074.m</a>,
+          computes the 3074 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld3470.m">ld3470.m</a>,
+          computes the 3470 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld3890.m">ld3890.m</a>,
+          computes the 3890 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld4334.m">ld4334.m</a>,
+          computes the 4334 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld4802.m">ld4802.m</a>,
+          computes the 4802 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld5294.m">ld5294.m</a>,
+          computes the 5294 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "ld5810.m">ld5810.m</a>,
+          computes the 5810 point Lebedev angular grid.
+        </li>
+        <li>
+          <a href = "order_table.m">order_table.m</a>,
+          returns the order of a Lebedev rule.
+        </li>
+        <li>
+          <a href = "precision_table.m">precision_table.m</a>,
+          returns the precision of a Lebedev rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "xyz_to_tp.m">xyz_to_tp.m</a>,
+          converts (X,Y,Z) to (Theta,Phi) coordinates on the unit sphere.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sphere_lebedev_rule_test.m">sphere_lebedev_rule_test.m<a>, 
+          the calling program;
+        </li>
+        <li>
+          <a href = "sphere_lebedev_rule_test01.m">sphere_lebedev_rule_test01.m<a>, 
+          demonstrates AVAILABLE_TABLE, ORDER_TABLE and PRECISION_TABLE;
+        </li>
+        <li>
+          <a href = "sphere_lebedev_rule_test02.m">sphere_lebedev_rule_test02.m<a>, 
+          checks every available grid.
+        </li>
+        <li>
+          <a href = "sphere_lebedev_rule_test_output.txt">sphere_lebedev_rule_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+ 
+  </body>
+
+</html>

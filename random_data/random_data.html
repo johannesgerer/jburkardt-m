@@ -1,0 +1,1207 @@
+<html>
+
+  <head>
+    <title>
+      RANDOM_DATA - Generation of random data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      RANDOM_DATA <br> Generation of random data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>RANDOM_DATA</b> 
+      is a MATLAB library which 
+      generates sets of data points using certain 
+      random number distributions, in a given dimension, and in a given 
+      physical region.  
+    </p>
+
+    <p>
+      Most of these routines assume that there is an available source
+      of pseudorandom numbers, distributed uniformly in the unit
+      interval [0,1].  In this package, that role is played by the
+      routine <b>R8_UNIFORM_01</b>, which allows us some portability.  
+      We can get the same results in C, FORTRAN or MATLAB, for instance.
+      In general, however, it would be more efficient to use the
+      language-specific random number generator for this purpose.
+    </p>
+
+    <p>
+      If we have a source of pseudorandom values in [0,1], it's trivial 
+      to generate pseudorandom points in any line segment; it's easy to 
+      take pairs of pseudorandom values to sample a square, or triples to 
+      sample a cube.  It's easy to see how to deal with square region that
+      is translated from the origin, or scaled by different amounts in
+      either axis, or given a rigid rotation.  The same simple transformations
+      can be applied to higher dimensional cubes, without giving us any
+      concern.
+    </p>
+
+    <p>
+      For all these simple shapes, which are just generalizations of 
+      a square, we can easily see how to generate sample points that
+      we can guarantee will lie inside the region; in most cases, we
+      can also guarantee that these points will tend to be <i>uniformly
+      distributed</i>, that is, every subregion can expect to contain 
+      a number of points proportional to its share of the total area. 
+    </p>
+
+    <p>
+      However, we will <b>not</b> achieve uniform distribution in the
+      simple case of a rectangle of nonequal sides <b>[0,A]</b> x <b>[0,B]</b>,
+      if we naively scale the random values <b>(u1,u2)</b> to 
+      <b>(A*u1,B*u2)</b>.  In that case, the expected point density of
+      a wide, short region will differ from that of a narrow tall region.
+      The absence of uniformity is most obvious if the points are plotted.
+    </p>
+
+    <p>
+      If you realize that uniformity is desirable, and easily lost,
+      it is possible to adjust the approach so that rectangles are
+      properly handled.
+    </p>
+
+    <p>
+      But rectangles are much too simple.  We are interested in circles,
+      triangles, and other shapes.  Once the geometry of the region 
+      becomes more "interesting", there are two common ways to continue.  
+    </p>
+
+    <p>
+      In the <i>acceptance-rejection method</i>, 
+      uniform points are generated in a superregion that encloses the 
+      region.  Then, points that do not lie within the region are rejected. 
+      More points are generated until enough have been accepted to satisfy the 
+      needs.  If a circle was the region of interest, for instance, we
+      could surround it with a box, generate points in the box, and throw
+      away those points that don't actually lie in the circle.  The resulting
+      set of samples will be a uniform sampling of the circle.
+    </p>
+
+    <p>
+      In the <i>direct mapping</i> method, a formula or mapping
+      is determined so that each time a set of values is taken from
+      the pseudorandom number generator, it is guaranteed to correspond
+      to a point in the region.  For the circle problem, we can use
+      one uniform random number to choose an angle between 0 and 2 PI,
+      the other to choose a radius.  (The radius must be chosen in
+      an appropriate way to guarantee uniformity, however.)  Thus,
+      every time we input two uniform random values, we get a pair
+      (R,T) that corresponds to a point in the circle.
+    </p>
+ 
+    <p>
+      The acceptance-rejection method can be simple to program, and 
+      can handle arbitrary regions.  The direct mapping method is 
+      less sensitive to variations in the aspect ratio of a region 
+      and other irregularities.  However, direct mappings are only 
+      known for certain common mathematical shapes.
+    </p>
+
+    <p>
+      Points may also be generated according to a nonuniform density.
+      This creates an additional complication in programming.  However,
+      there are some cases in which it is possible to use direct mapping
+      to turn a stream of scalar uniform random values into a set of
+      multivariate data that is governed by a normal distribution.
+    </p>
+
+    <p>
+      Another way to generate points replaces the uniform pseudorandom number
+      generator by a <i>quasirandom number generator</i>.  The main difference
+      is that successive elements of a quasirandom sequence may be highly
+      correlated (bad for certain Monte Carlo applications) but will tend
+      to cover the region in a much more regular way than pseudorandom
+      numbers.  Any process that uses uniform random numbers to carry out
+      sampling can easily be modified to do the same sampling with
+      a quasirandom sequence like the Halton sequence, for instance.
+    </p>
+
+    <p>
+      The library includes a routine that can write the resulting 
+      data points to a file.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>RANDOM_DATA</b> is available in
+      <a href = "../../cpp_src/random_data/random_data.html">a C++ version</a> and
+      <a href = "../../f_src/random_data/random_data.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/random_data/random_data.html">a MATLAB version</a>. 
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa183/asa183.html">
+      ASA183</a>,
+      a MATLAB library which
+      implements the Wichman-Hill pseudorandom number generator.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ball_grid/ball_grid.html">
+      BALL_GRID</a>, 
+      a MATLAB library which 
+      computes grid points that lie inside a ball.
+    </p>
+
+    <p>
+      <a href = "../../m_src/circle_grid/circle_grid.html">
+      CIRCLE_GRID</a>, 
+      a MATLAB library which 
+      computes grid points that lie inside a circle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/discrete_pdf_sample/discrete_pdf_sample.html">
+      DISCRETE_PDF_SAMPLE</a>, 
+      a MATLAB program which
+      demonstrates how to construct a Probability Density Function (PDF)
+      from a table of sample data, and then to use that PDF to create new samples.
+    </p>
+
+    <p>
+      <a href = "../../c_src/rbox/rbox.html">
+      RBOX</a>, 
+      a C program which 
+      produces random data from a number of regions.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/rsites/rsites.html">
+      RSITES</a>, 
+      a C++ program which 
+      produces random data in an M-dimensional box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/simplex_coordinates/simplex_coordinates.html">
+      SIMPLEX_COORDINATES</a>, 
+      a MATLAB library which
+      computes the Cartesian coordinates of the vertices of a regular
+      simplex in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_grid/tetrahedron_grid.html">
+      TETRAHEDRON_GRID</a>, 
+      a MATLAB library which 
+      computes a tetrahedral grid of points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_monte_carlo/tetrahedron_monte_carlo.html">
+      TETRAHEDRON_MONTE_CARLO</a>, 
+      a MATLAB program which 
+      uses the Monte Carlo method to estimate integrals over a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../datasets/tetrahedron_samples/tetrahedron_samples.html">
+      TETRAHEDRON_SAMPLES</a>, 
+      a dataset directory which 
+      contains examples of sets of sample points from the unit tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_grid/triangle_grid.html">
+      TRIANGLE_GRID</a>, 
+      a MATLAB library which 
+      computes a triangular grid of points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_histogram/triangle_histogram.html">
+      TRIANGLE_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data on the unit triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_monte_carlo/triangle_monte_carlo.html">
+      TRIANGLE_MONTE_CARLO</a>, 
+      a MATLAB program which 
+      uses the Monte Carlo method to estimate integrals over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../datasets/triangle_samples/triangle_samples.html">
+      TRIANGLE_SAMPLES</a>, 
+      a dataset directory which 
+      contains examples of sets of sample points from the unit triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>, 
+      a MATLAB library which
+      samples the uniform random distribution.
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyz_display/xyz_display.html">
+      XYZ_DISPLAY</a>, 
+      a MATLAB program which
+      reads XYZ information defining points in 3D, 
+      and displays an image in the MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyz_display_opengl/xyz_display_opengl.html">
+      XYZ_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads XYZ information defining points in 3D, 
+      and displays an image using OpenGL.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          James Arvo,<br>
+          Stratified sampling of spherical triangles,<br>
+          Computer Graphics Proceedings, Annual Conference Series, <br>
+          ACM SIGGRAPH '95, pages 437-438, 1995.
+        </li>
+        <li>
+          Gerard Bashein, Paul Detmer,<br>
+          Centroid of a Polygon,<br>
+          in Graphics Gems IV,<br>
+          edited by Paul Heckbert,<br>
+          AP Professional, 1994,<br>
+          ISBN: 0123361559,<br>
+          LC: T385.G6974.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673,<br>
+          LC: QA76.9.C65.B73.
+        </li>
+        <li>
+          Russell Cheng,<br>
+          Random Variate Generation,<br>
+          in Handbook of Simulation,<br>
+          edited by Jerry Banks,<br>
+          Wiley, 1998,<br>
+          ISBN: 0471134031,<br>
+          LC: T57.62.H37.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          John Halton,<br>
+          On the efficiency of certain quasi-random sequences of points
+          in evaluating multi-dimensional integrals,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 84-90.
+        </li>
+        <li>  
+          John Halton, GB Smith,<br>
+          Algorithm 247: 
+          Radical-Inverse Quasi-Random Point Sequence,<br>
+          Communications of the ACM,<br>
+          Volume 7, Number 12, December 1964, pages 701-702.
+        </li>
+        <li>  
+          John Hammersley,<br>
+          Monte Carlo methods for solving multivariable problems,<br>
+          Proceedings of the New York Academy of Science,<br>
+          Volume 86, 1960, pages 844-874.
+        </li>
+        <li>  
+          Ladislav Kocis, William Whiten,<br>
+          Computational Investigations of Low-Discrepancy Sequences,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 23, Number 2, June 1997, pages 266-294.
+        </li>
+        <li>
+          Pierre LEcuyer,<br>
+          Random Number Generation,<br>
+          in Handbook of Simulation,<br>
+          edited by Jerry Banks,<br>
+          Wiley, 1998,<br>
+          ISBN: 0471134031,<br>
+          LC: T57.62.H37.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Reuven Rubinstein,<br>
+          Monte Carlo Optimization, Simulation and Sensitivity of 
+          Queueing Networks,<br>
+          Krieger, 1992,<br>
+          ISBN: 0894647644,<br>
+          LC: QA298.R79.
+        </li>
+        <li>
+          Peter Shirley,<br>
+          Nonuniform Random Point Sets Via Warping,<br> 
+          in Graphics Gems III,<br>
+          edited by David Kirk,<br>
+          Academic Press, 1992,<br>
+          ISBN: 0124096735,<br>
+          LC: T385.G6973
+        </li>
+        <li>
+          Greg Turk,<br>
+          Generating Random Points in a Triangle,<br>
+          in Graphics Gems I,<br>
+          edited by Andrew Glassner,<br>
+          AP Professional, 1990,<br>
+          ISBN: 0122861663,<br>
+          LC: T385.G697
+        </li>
+        <li>
+          Daniel Zwillinger, editor,<br>
+          CRC Standard Mathematical Tables and Formulae,<br>
+          30th Edition,<br>
+          CRC Press, 1996,<br>
+          ISBN: 0-8493-2479-3,<br>
+          LC: QA47.M315.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "arc_cosine.m">arc_cosine.m</a>
+          evaluates the arc cosine function, with argument truncation.
+        </li>
+        <li>
+          <a href = "bad_in_simplex01.m">bad_in_simplex01.m</a>
+          is a "bad" (nonuniform) sampling of the unit simplex.
+        </li>
+        <li>
+          <a href = "brownian.m">brownian.m</a>
+          creates Brownian motion points.
+        </li>
+        <li>
+          <a href = "dpo_fa.m">dpo_fa.m</a>
+          factors a real symmetric positive definite matrix.
+        </li>
+        <li>
+          <a href = "dpo_sl.m">dpo_sl.m</a>
+          solves a linear system factored by DPO_CO or DPO_FA.
+        </li>
+        <li>
+          <a href = "direction_uniform_nd.m">direction_uniform_nd.m</a>
+          generates a random direction vector.
+        </li>
+        <li>
+          <a href = "grid_in_cube01.m">grid_in_cube01.m</a>
+          generates grid points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "grid_side.m">grid_side.m</a>
+          finds the smallest grid containing at least N points.
+        </li>
+        <li>
+          <a href = "halham_dim_num_check.m">halham_dim_num_check.m</a>
+          checks DIM_NUM for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_leap_check.m">halham_leap_check.m</a>
+          checks LEAP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_n_check.m">halham_n_check.m</a>
+          checks N for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_seed_check.m">halham_seed_check.m</a>
+          checks SEED for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_step_check.m">halham_step_check.m</a>
+          checks STEP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halton_base_check.m">halton_base_check.m</a>
+          checks BASE for a Halton sequence.
+        </li>
+        <li> 
+          <a href = "halton_in_circle01_accept.m">halton_in_circle01_accept.m</a>
+          accepts Halton points in the unit circle.
+        </li>
+        <li>
+          <a href = "halton_in_circle01_map.m">halton_in_circle01_map.m</a>
+          maps Halton points into the unit circle.
+        </li>
+        <li>
+          <a href = "halton_in_cube01.m">halton_in_cube01.m</a>
+          generates Halton points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "hammersley_base_check.m">hammersley_base_check.m</a>
+          is TRUE if BASE is legal.
+        </li>
+        <li>
+          <a href = "hammersley_in_cube01.m">hammersley_in_cube01.m</a>
+          generates Hammersley points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "i4_factorial.m">i4_factorial.m</a>
+          computes the factorial N!
+        </li>
+        <li>
+          <a href = "i4_modp.m">i4_modp.m</a>
+          returns the nonnegative remainder of integer division.
+        </li>
+        <li>
+          <a href = "i4_to_halton.m">i4_to_halton.m</a>
+          computes one element of a leaped Halton subsequence.
+        </li>
+        <li>
+          <a href = "i4_to_halton_sequence.m">i4_to_halton_sequence.m</a>
+          computes N elements of a leaped Halton subsequence.
+        </li>
+        <li>
+          <a href = "i4_to_hammersley.m">i4_to_hammersley.m</a>
+          computes one element of a leaped Hammersley subsequence.
+        </li>
+        <li>
+          <a href = "i4_to_hammersley_sequence.m">i4_to_hammersley_sequence.m</a>
+          computes N elements of a leaped Hammersley subsequence.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>
+          returns a integer pseudorandom number.
+        </li>
+        <li>
+          <a href = "i4vec_transpose_print.m">i4vec_transpose_print.m</a>
+          prints an integer vector "transposed".
+        </li>
+        <li>
+          <a href = "ksub_random2.m">ksub_random2.m</a>
+          selects a random subset of size K from a set of size N.
+        </li>
+        <li>
+          <a href = "normal.m">normal.m</a>
+          creates normally distributed points.
+        </li>
+        <li>
+          <a href = "normal_circular.m">normal_circular.m</a>
+          creates circularly normal points.
+        </li>
+        <li>
+          <a href = "normal_multivariate.m">normal_multivariate.m</a>
+          samples a multivariate normal distribution.
+        </li>
+        <li>
+          <a href = "normal_simple.m">normal_simple.m</a>
+          creates normally distributed points.
+        </li>
+        <li>
+          <a href = "polygon_centroid_2d.m">polygon_centroid_2d.m</a>
+          computes the centroid of a polygon in 2D.
+        </li>
+        <li>
+          <a href = "prime.m">prime.m</a>
+          returns any of the first PRIME_MAX prime numbers.
+        </li>
+        <li>
+          <a href = "r8_normal_01.m">r8_normal_01.m</a>
+          returns a unit pseudonormal R8.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8mat_normal_01.m">r8mat_normal_01.m</a>
+          returns a unit pseudonormal R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>
+          prints an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>
+          prints some of an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>
+          returns a unit pseudonormal R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "scale_from_simplex01.m">scale_from_simplex01.m</a>
+          rescales data from a unit to non-unit simplex.
+        </li>
+        <li>
+          <a href = "scale_to_ball01.m">scale_to_ball01.m</a>
+          translates and rescales data to fit within the unit ball.
+        </li>
+        <li>
+          <a href = "scale_to_block01.m">scale_to_block01.m</a>
+          translates and rescales data to fit in the unit block.
+        </li>
+        <li>
+          <a href = "scale_to_cube01.m">scale_to_cube01.m</a>
+          translates and rescales data to the unit hypercube.
+        </li>
+        <li>
+          <a href = "stri_angles_to_area.m">
+          stri_angles_to_area.m</a>, 
+          computes the area of a spherical triangle;
+        </li>
+        <li>
+          <a href = "stri_sides_to_angles.m">
+          stri_sides_to_angles.m</a>, 
+          computes the angles of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "stri_vertices_to_sides.m">
+          stri_vertices_to_sides.m</a>, 
+          computes the sides of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangle_area_2d.m">triangle_area_2d.m</a>
+          computes the area of a triangle in 2D.
+        </li>
+        <li>
+          <a href = "tuple_next_fast.m">tuple_next_fast.m</a>
+          computes the next element of a tuple space, "fast".
+        </li>
+        <li>
+          <a href = "uniform_in_annulus.m">uniform_in_annulus.m</a>
+          samples a circular annulus.
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_accept.m">uniform_in_annulus_accept.m</a>
+          accepts points in an annulus.
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_accept.m">uniform_in_annulus_accept.m</a>
+          samples an annular sector in 2D.
+        </li>
+        <li>
+          <a href = "uniform_in_circle01_map.m">uniform_in_circle01_map.m</a>
+          maps uniform points into the unit circle.
+        </li>
+        <li>
+          <a href = "uniform_in_cube01.m">uniform_in_cube01.m</a>
+          creates uniform points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "uniform_in_ellipsoid_map.m">uniform_in_ellipsoid_map.m</a>
+          maps uniform points into an ellipsoid.
+        </li>
+        <li>
+          <a href = "uniform_in_parallelogram_map.m">uniform_in_parallelogram_map.m</a>
+          maps uniform points into a parallelogram.
+        </li>
+        <li>
+          <a href = "uniform_in_polygon_map.m">uniform_in_polygon_map.m</a>
+          maps uniform points into a polygon.
+        </li>
+        <li>
+          <a href = "uniform_in_sector_map.m">uniform_in_sector_map.m</a>
+          maps uniform points into a circular sector.
+        </li>
+        <li>
+          <a href = "uniform_in_simplex01_map.m">uniform_in_simplex01_map.m</a>
+          maps uniform points into the unit simplex.
+        </li>
+        <li>
+          <a href = "uniform_in_sphere01_map.m">uniform_in_sphere01_map.m</a>
+          maps uniform points into the unit sphere.
+        </li>
+        <li>
+          <a href = "uniform_in_tetrahedron.m">uniform_in_tetrahedron.m</a>
+          maps uniform points into a tetrahedron.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map1.m">uniform_in_triangle_map1.m</a>
+          maps uniform points into a triangle.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map2.m">uniform_in_triangle_map2.m</a>
+          maps uniform points into a triangle.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle01_map.m">uniform_in_triangle01_map.m</a>
+          maps uniform points into the unit triangle.
+        </li>
+        <li>
+          <a href = "uniform_on_ellipsoid_map.m">uniform_on_ellipsoid_map.m</a>
+          maps uniform points onto an ellipsoid. 
+        </li>
+        <li>
+          <a href = "uniform_on_hemisphere01_phong.m">
+          uniform_on_hemisphere01_phong.m</a>
+          maps uniform points onto the unit hemisphere, with the Phong
+          distribution.
+        </li>
+        <li>
+          <a href = "uniform_on_simplex01_map.m">uniform_on_simplex01_map.m</a>
+          maps uniform points onto the unit simplex.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_map.m">uniform_on_sphere01_map.m</a>
+          maps uniform points onto the unit sphere.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_tp.m">uniform_on_sphere01_patch_tp.m</a>
+          maps uniform points onto a unit sphere TP (THETA,PHI) patch in 3D.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_xyz.m">uniform_on_sphere01_patch_xyz.m</a>
+          maps uniform points onto a unit sphere XYZ patch in 3D.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_triangle_xyz.m">uniform_on_sphere01_triangle_xyz.m</a>
+          maps uniform points onto a spherical triangle on the unit sphere, using
+          XYZ coordinates.
+        </li>
+        <li>
+          <a href = "uniform_walk.m">uniform_walk.m</a>
+          generates points on a uniform random walk.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "random_data_test.m">random_data_test.m</a>, 
+          calls all the test programs.
+        </li>
+        <li>
+          <a href = "random_data_test_output.txt">random_data_test_output.txt</a>, 
+          output from the sample calling program.
+        </li>
+        <li>
+          <a href = "random_data_test005.m">random_data_test005.m</a>, 
+          tests BAD_IN_SIMPLEX01.
+        </li>
+        <li>
+          <a href = "random_data_test01.m">random_data_test01.m</a>, 
+          tests BROWNIAN.
+        </li>
+        <li>
+          <a href = "random_data_test02.m">random_data_test02.m</a>, 
+          tests R8_NORMAL_01.
+        </li>
+        <li>
+          <a href = "random_data_test03.m">random_data_test03.m</a>, 
+          tests R8_UNIFORM_01.
+        </li>
+        <li>
+          <a href = "random_data_test04.m">random_data_test04.m</a>, 
+          tests GRID_IN_CUBE01.
+        </li>
+        <li>
+          <a href = "random_data_test05.m">random_data_test05.m</a>, 
+          tests HALTON_IN_CIRCLE01_ACCEPT.
+        </li>
+        <li>
+          <a href = "random_data_test06.m">random_data_test06.m</a>, 
+          tests HALTON_IN_CIRCLE01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test07.m">random_data_test07.m</a>, 
+          tests HALTON_IN_CUBE01.
+        </li>
+        <li>
+          <a href = "random_data_test08.m">random_data_test08.m</a>, 
+          tests HAMMERSLEY_IN_CUBE01.
+        </li>
+        <li>
+          <a href = "random_data_test09.m">random_data_test09.m</a>, 
+          tests NORMAL.
+        </li>
+        <li>
+          <a href = "random_data_test10.m">random_data_test10.m</a>, 
+          tests NORMAL_CIRCULAR.
+        </li>
+        <li>
+          <a href = "random_data_test11.m">random_data_test11.m</a>, 
+          tests NORMAL_SIMPLE.
+        </li>
+        <li>
+          <a href = "random_data_test115.m">random_data_test115.m</a>, 
+          tests UNIFORM_IN_ANNULUS.
+        </li>
+        <li>
+          <a href = "random_data_test12.m">random_data_test12.m</a>, 
+          tests UNIFORM_IN_ANNULUS_ACCEPT.
+        </li>
+        <li>
+          <a href = "random_data_test125.m">random_data_test125.m</a>, 
+          tests UNIFORM_IN_ANNULUS_SECTOR.
+        </li>
+        <li>
+          <a href = "random_data_test13.m">random_data_test13.m</a>, 
+          tests UNIFORM_IN_CIRCLE01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test14.m">random_data_test14.m</a>, 
+          tests UNIFORM_IN_CUBE01.
+        </li>
+        <li>
+          <a href = "random_data_test15.m">random_data_test15.m</a>, 
+          tests UNIFORM_IN_ELLIPSOID_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test16.m">random_data_test16.m</a>, 
+          tests UNIFORM_IN_PARALLELOGRAM_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test17.m">random_data_test17.m</a>, 
+          tests UNIFORM_IN_POLYGON_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test18.m">random_data_test18.m</a>, 
+          tests UNIFORM_IN_SECTOR_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test19.m">random_data_test19.m</a>, 
+          tests UNIFORM_IN_SIMPLEX01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test20.m">random_data_test20.m</a>, 
+          tests UNIFORM_IN_SPHERE01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test21.m">random_data_test21.m</a>, 
+          tests UNIFORM_IN_TRIANGLE_MAP1.
+        </li>
+        <li>
+          <a href = "random_data_test22.m">random_data_test22.m</a>, 
+          tests UNIFORM_IN_TRIANGLE_MAP2.
+        </li>
+        <li>
+          <a href = "random_data_test23.m">random_data_test23.m</a>, 
+          tests UNIFORM_IN_TRIANGLE01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test24.m">random_data_test24.m</a>, 
+          tests UNIFORM_ON_ELLIPSOID_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test245.m">random_data_test245.m</a>, 
+          tests UNIFORM_ON_HEMISPHERE01_PHONG.
+        </li>
+        <li>
+          <a href = "random_data_test25.m">random_data_test25.m</a>, 
+          tests UNIFORM_ON_SIMPLEX01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test26.m">random_data_test26.m</a>, 
+          tests UNIFORM_ON_SPHERE01_MAP.
+        </li>
+        <li>
+          <a href = "random_data_test264.m">random_data_test264.m</a>, 
+          tests UNIFORM_ON_SPHERE01_PATCH_TP.
+        </li>
+        <li>
+          <a href = "random_data_test265.m">random_data_test265.m</a>, 
+          tests UNIFORM_ON_SPHERE01_PATCH_XYZ.
+        </li>
+        <li>
+          <a href = "random_data_test267.m">random_data_test267.m</a>, 
+          tests UNIFORM_ON_SPHERE01_TRIANGLE_XYZ.
+        </li>
+        <li>
+          <a href = "random_data_test27.m">random_data_test27.m</a>, 
+          tests UNIFORM_WALK.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The sample calling program generates sets of points:
+      <ul>
+        <li>
+          <a href = "bad_in_tetrahedron.txt">bad_in_tetrahedron.txt</a>,
+          points in the unit tetrahedron, not uniformly chosen.
+        </li>
+        <li>
+          <a href = "bad_in_triangle.txt">bad_in_triangle.txt</a>,
+          points in the unit triangle, not uniformly chosen.
+        </li>
+        <li>
+          <a href = "brownian.txt">brownian.txt</a>, Brownian motion.
+        </li>
+        <li>
+          <a href = "grid_in_cube01.txt">grid_in_cube01.txt</a>, 
+          grid points in the unit hypercube, with CENTER = 1.
+        </li>
+        <li>
+          <a href = "halton_in_circle01_accept.txt">
+          halton_in_circle01_accept.txt</a>, 
+          Halton points in the unit circle by acceptance/rejection.
+        </li>
+        <li>
+          <a href = "halton_in_circle01_map.txt">
+          halton_in_circle01_map.txt</a>, 
+          Halton points in the unit circle by direct mapping.
+        </li>
+        <li>
+          <a href = "halton_in_cube01.txt">halton_in_cube01.txt</a>, 
+          Halton points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "hammersley_in_cube01.txt">
+          hammersley_in_cube01.txt</a>, Hammersley points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "normal.txt">normal.txt</a>, normal points, with
+          strong correlation between the two coordinates.
+        </li>
+        <li>
+          <a href = "normal_circular.txt">normal_circular.txt</a>, 
+          circular normal points.
+        </li>
+        <li>
+          <a href = "normal_simple.txt">normal_simple.txt</a>, 
+          normal points in which there is no correlation between the
+          X and Y coordinates.
+        </li>
+        <li>
+          <a href = "polygon_vertices.txt">polygon_vertices.txt</a>, 
+          the vertices of a polygon to be filled by random points.
+        </li>
+        <li>
+          <a href = "uniform_in_annulus.txt">
+          uniform_in_annulus.txt</a>, 
+          uniform random points in an annulus, mappint.
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_accept.txt">
+          uniform_in_annulus_accept.txt</a>, 
+          uniform random points in an annulus, acceptance/rejection.
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_sector.txt">
+          uniform_in_annulus_sector.txt</a>, 
+          uniform random points in an annulus sector, mapping.
+        </li>
+        <li>
+          <a href = "uniform_in_cube.txt">uniform_in_cube.txt</a>, 
+          uniform random points in the unit hypercube.
+        </li>
+        <li>
+          <a href = "uniform_in_circle01_map.txt">
+          uniform_in_circle01_map.txt</a>, 
+          uniform random points in the unit circle.
+        </li>
+        <li>
+          <a href = "uniform_in_ellipsoid.txt">uniform_in_ellipsoid.txt</a>, 
+          uniform random points in an ellipsoid.
+        </li>
+        <li>
+          <a href = "uniform_in_parallelogram_map.txt">
+          uniform_in_parallelogram_map.txt</a>, 
+          uniform random points in a parallelogram.
+        </li>
+        <li>
+          <a href = "uniform_in_polygon_map.txt">
+          uniform_in_polygon_map.txt</a>, 
+          uniform random points in a polygon (a star, in this case).
+        </li>
+        <li>
+          <a href = "uniform_in_sector_map.txt">
+          uniform_in_sector_map.txt</a>, 
+          uniform random points in a circular sector.
+        </li>
+        <li>
+          <a href = "uniform_in_simplex01_map.txt">
+          uniform_in_simplex01_map.txt</a>, 
+          uniform random points in the unit simplex.
+        </li>
+        <li>
+          <a href = "uniform_in_sphere01_map.txt">
+          uniform_in_sphere01_map.txt</a>, 
+          uniform random points in the unit sphere.
+        </li>
+        <li>
+          <a href = "uniform_in_tetrahedron.txt">
+          uniform_in_tetrahedron.txt</a>, 
+          uniform random points in an arbitrary tetrahedron.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map1.txt">
+          uniform_in_triangle_map1.txt</a>, 
+          uniform random points in an arbitrary triangle, Turk method 1.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map2.txt">
+          uniform_in_triangle_map2.txt</a>, 
+          uniform random points in an arbitrary triangle, Turk method 2.
+        </li>
+        <li>
+          <a href = "uniform_in_triangle01_map.txt">
+          uniform_in_triangle01_map.txt</a>, 
+          uniform random points in the unit triangle.
+        </li>
+        <li>
+          <a href = "uniform_on_ellipsoid_map.txt">
+          uniform_on_ellipsoid_map.txt</a>, 
+          uniform random points on an ellipsoid.
+        </li>
+        <li>
+          <a href = "uniform_on_hemisphere01_phong.txt">
+          uniform_on_hemisphere01_phong.txt</a>, 
+          uniform random points on the unit hemisphere, Phong distribution.
+        </li>
+        <li>
+          <a href = "uniform_on_simplex01_map.txt">
+          uniform_on_simplex01_map.txt</a>, 
+          uniform random points on the unit simplex.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_map.txt">
+          uniform_on_sphere01_map.txt</a>, 
+          uniform random points on the unit sphere in 2D.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_tp.txt">
+          uniform_on_sphere01_patch_tp.txt</a>, 
+          uniform random points on a unit sphere TP (THETA,PHI) patch in 3D.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_xyz.txt">
+          uniform_on_sphere01_patch_xyz.txt</a>, 
+          uniform random points on a unit sphere XYZ patch in 3D.
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_triangle_xyz.txt">
+          uniform_on_sphere01_triangle_xyz.txt</a>, 
+          uniform random points on a spherical triangle of the unit sphere in 3D
+          using XYZ coordinates.
+        </li>
+        <li>
+          <a href = "uniform_walk.txt">uniform_walk.txt</a>, 
+          points on a uniform random walk.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A file of commands is provided to simplify the use of PLOT_POINTS:
+      <ul>
+        <li>
+          <a href = "plot_points_input.txt">plot_points_input.txt</a>, 
+          commands to PLOT_POINTS.
+        </li>
+        <li>
+          <a href = "plot_points_output.txt">plot_points_output.txt</a>, 
+          printed output from PLOT_POINTS in response to the commands.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      PLOT_POINTS makes Encapsulated PostScript images of the points,
+      in cases where the data is 2 dimensional.  The CONVERT command
+      was used to convert these to
+      <a href = "../../data/png/png.html">PNG</a> files.
+      <ul>
+        <li>
+          <a href = "brownian.png">brownian.png</a>
+        </li>
+        <li>
+          <a href = "grid_in_cube01.png">grid_in_cube01.png</a>
+        </li>
+        <li>
+          <a href = "halton_in_circle01_accept.png">
+          halton_in_circle01_accept.png</a>
+        </li>
+        <li>
+          <a href = "halton_in_circle01_map.png">
+          halton_in_circle01_map.png</a>
+        </li>
+        <li>
+          <a href = "halton_in_cube01.png">halton_in_cube01.png</a>
+        </li>
+        <li>
+          <a href = "hammersley_in_cube01.png">hammersley_in_cube01.png</a>
+        </li>
+        <li>
+          <a href = "normal.png">normal.png</a>
+        </li>
+        <li>
+          <a href = "normal_circular.png">normal_circular.png</a>
+        </li>
+        <li>
+          <a href = "normal_simple.png">normal_simple.png</a>
+        </li>
+        <li>
+          <a href = "polygon_vertices.png">polygon_vertices.png</a>, 
+        </li>
+        <li>
+          <a href = "uniform_in_annulus.png">
+          uniform_in_annulus.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_accept.png">
+          uniform_in_annulus_accept.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_annulus_sector.png">
+          uniform_in_annulus_sector.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_cube01.png">uniform_in_cube01.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_circle01_map.png">
+          uniform_in_circle01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_ellipsoid_map.png">
+          uniform_in_ellipsoid_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_parallelogram_map.png">
+          uniform_in_parallelogram_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_polygon_map.png">uniform_in_polygon_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_sector_map.png">uniform_in_sector_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_simplex01_map.png">
+          uniform_in_simplex01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_sphere01_map.png">
+          uniform_in_sphere01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map1.png">
+          uniform_in_triangle_map1.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_triangle_map2.png">
+          uniform_in_triangle_map2.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_in_triangle01_map.png">
+          uniform_in_triangle01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_on_ellipsoid_map.png">
+          uniform_on_ellipsoid_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_on_simplex01_map.png">
+          uniform_on_simplex01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_map.png">
+          uniform_on_sphere01_map.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_tp.png">
+          uniform_on_sphere01_patch_tp.png</a>
+        </li>
+        <li>
+          <a href = "uniform_on_sphere01_patch_xyz.png">
+          uniform_on_sphere01_patch_xyz.png</a>,
+        </li>
+        <li>
+          <a href = "uniform_walk.png">uniform_walk.png</a>,
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 August 2010.
+    </i>
+
+    <!-- John Burkardt -->
+ 
+  </body>
+
+</html>

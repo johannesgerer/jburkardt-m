@@ -1,0 +1,401 @@
+<html>
+
+  <head>
+    <title>
+      TEST_INTERP_ND - Test Functions for Multidimensional Interpolation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_INTERP_ND <br> Test Functions for Multidimensional Interpolation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_INTERP_ND</b>
+      is a MATLAB library which
+      provides test functions for multidimensional interpolation.
+    </p>
+
+    <p>
+      All the functions are defined over the unit hypercube [0,1]^M, for arbitrary
+      spatial dimension M.  They include:
+      <ol>
+        <li>
+          Oscillatory;
+        </li>
+        <li>
+          Product Peak;
+        </li>
+        <li>
+          Corner Peak;
+        </li>
+        <li>
+          Gaussian;
+        </li>
+        <li>
+          Continuous;
+        </li>
+        <li>
+          Discontinuous;
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      For each function, methods are provided to evaluate:
+      <ul>
+        <li>
+          the function, f(x);
+        </li>
+        <li>
+          the derivative with respect to any coordinate, dfdx(i);
+        </li>
+        <li>
+          the integral of f(x) over the unit hypercube;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Most of the functions include a shift vector w whose entries can be
+      chosen randomly in the unit hypercube, and a coefficient vector c
+      whose entries should be positive, and for which the integration problem
+      becomes harder as the sum of the entries increases.
+    </p>
+
+    <p>
+      <b>TEST_INTERP_ND</b> requires access to the R8LIB library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_INTERP_ND</b> is available in
+      <a href = "../../c_src/test_interp_nd/test_interp_nd.html">a C version</a> and
+      <a href = "../../cpp_src/test_interp_nd/test_interp_nd.html">a C++ version</a> and
+      <a href = "../../f77_src/test_interp_nd/test_interp_nd.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_interp_nd/test_interp_nd.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_interp_nd/test_interp_nd.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_nd/lagrange_interp_nd.html">
+      LAGRANGE_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data depending on a multidimensional argument x
+      that was evaluated on a product grid, so that p(x(i)) = z(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_nd/rbf_interp_nd.html">
+      RBF_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to multidimensional data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_nd/shepard_interp_nd.html">
+      SHEPARD_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to multidimensional data,
+      based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_interp_nd/sparse_interp_nd.html">
+      SPARSE_INTERP_ND</a>
+      a MATLAB library which
+      can be used to define a sparse interpolant to a function f(x) of a 
+      multidimensional argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_2d/test_interp_2d.html">
+      TEST_INTERP_2D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x,y),
+      depending on a 2D argument.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan Genz,<br>
+          Testing Multidimensional Integration Routines,<br>
+          in Tools, Methods, and Languages for Scientific and
+          Engineering Computation,<br>
+          edited by B Ford, JC Rault, F Thomasset,<br>
+          North-Holland, 1984, pages 81-94,<br>
+          ISBN: 0444875700,<br>
+          LC: Q183.9.I53.
+        </li>
+        <li>
+          Alan Genz,<br>
+          A Package for Testing Multiple Integration Subroutines,<br>
+          in Numerical Integration:
+          Recent Developments, Software and Applications,<br>
+          edited by Patrick Keast, Graeme Fairweather,<br>
+          Reidel, 1987, pages 337-340,<br>
+          ISBN: 9027725144,<br>
+          LC: QA299.3.N38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "csevl.m">csevl.m</a>,
+          evaluates a Chebyshev series.
+        </li>
+        <li>
+          <a href = "inits.m">inits.m</a>,
+          initializes a Chebyshev series.
+        </li>
+        <li>
+          <a href = "p00_cw.m">p00_cw.m</a>,
+          returns a random C parameter vector for any problem.
+        </li>
+        <li>
+          <a href = "p00_d.m">p00_d.m</a>,
+          returns a derivative component of any function.
+        </li>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>,
+          returns the value of any function.
+        </li>
+        <li>
+          <a href = "p00_prob_num.m">p00_prob_num.m</a>,
+          returns the number of test functions available.
+        </li>
+        <li>
+          <a href = "p00_q.m">p00_q.m</a>,
+          returns the integral of any function.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>,
+          returns the title for any function.
+        </li>
+        <li>
+          <a href = "p00_w.m">p00_cw.m</a>,
+          returns a random W parameter vector for any problem.
+        </li>
+        <li>
+          <a href = "p01_d.m">p01_d.m</a>,
+          evaluates a derivative component for problem p01.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>,
+          evaluates the function for problem p01.
+        </li>
+        <li>
+          <a href = "p01_q.m">p01_q.m</a>,
+          returns the integral for problem p01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>,
+          returns the name of problem p01.
+        </li>
+        <li>
+          <a href = "p02_d.m">p02_d.m</a>,
+          evaluates a derivative component for problem p02.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>,
+          evaluates the function for problem p02.
+        </li>
+        <li>
+          <a href = "p02_q.m">p02_q.m</a>,
+          returns the integral for problem p02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>,
+          returns the title of problem p02.
+        </li>
+        <li>
+          <a href = "p03_d.m">p03_d.m</a>,
+          evaluates a derivative component for problem p03.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>,
+          evaluates the function for problem p03.
+        </li>
+        <li>
+          <a href = "p03_q.m">p03_q.m</a>,
+          returns the integral for problem p03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>,
+          returns the title of problem p03.
+        </li>
+        <li>
+          <a href = "p04_d.m">p04_d.m</a>,
+          evaluates a derivative component for problem p04.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>,
+          evaluates the function for problem p04.
+        </li>
+        <li>
+          <a href = "p04_q.m">p04_q.m</a>,
+          returns the integral for problem p04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>,
+          returns the title of problem p04.
+        </li>
+        <li>
+          <a href = "p05_d.m">p05_d.m</a>,
+          evaluates a derivative component for problem p05.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>,
+          evaluates the function for problem p05.
+        </li>
+        <li>
+          <a href = "p05_q.m">p05_q.m</a>,
+          returns the integral for problem p05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>,
+          returns the title of problem p05.
+        </li>
+        <li>
+          <a href = "p06_d.m">p06_d.m</a>,
+          evaluates a derivative component for problem p06.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>,
+          evaluates the function for problem p06.
+        </li>
+        <li>
+          <a href = "p06_q.m">p06_q.m</a>,
+          returns the integral for problem p06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>,
+          returns the title of problem p06.
+        </li>
+        <li>
+          <a href = "r8_error.m">r8_error.m</a>,
+          evaluates the error function of an R8 argument.
+        </li>
+        <li>
+          <a href = "r8_errorc.m">r8_errorc.m</a>,
+          evaluates the co-error function of an R8 argument.
+        </li>
+        <li>
+          <a href = "r8_mach.m">r8_mach.m</a>,
+          returns double precision real machine-dependent constants.
+        </li>
+        <li>
+          <a href = "tuple_next.m">tuple_next.m</a>,
+          computes the next element of a tuple space.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_interp_nd_test.m">test_interp_nd_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "test_interp_nd_test_output.txt">test_interp_nd_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "test_interp_nd_test01.m">test_interp_nd_test01.m</a>,
+          prints the titles of the problems.
+        </li>
+        <li>
+          <a href = "test_interp_nd_test02.m">test_interp_nd_test02.m</a>,
+          evaluates the test functions at a few sample points.
+        </li>
+        <li>
+          <a href = "test_interp_nd_test03.m">test_interp_nd_test03.m</a>,
+          evaluates the derivative components at a few sample points.
+        </li>
+        <li>
+          <a href = "test_interp_nd_test04.m">test_interp_nd_test04.m</a>,
+          compares the reported integral to a Monte Carlo estimate.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

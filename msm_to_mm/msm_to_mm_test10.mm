@@ -1,0 +1,13 @@
+%%MatrixMarket matrix array real symmetric
+%%  Created by MSM_TO_MM_ARRAY_REAL_SYMMETRIC.M
+  4  4
+  22.000000
+  33.000000
+  44.000000
+  55.000000
+  44.000000
+  55.000000
+  66.000000
+  66.000000
+  77.000000
+  88.000000

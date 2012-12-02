@@ -1,0 +1,160 @@
+<html>
+
+  <head>
+    <title>
+      TIC_TOC - MATLAB Functions for Elapsed Time
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TIC_TOC <br> MATLAB Functions for Elapsed Time
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TIC_TOC</b> 
+      is a directory of MATLAB programs which 
+      consider the MATLAB tic and toc functions for computing elapsed time.
+    </p>
+
+    <p>
+      MATLAB includes two functions tic and <b>TOC</b>.  If <b>TIC</b>
+      is called before something is to be timed, and <b>TOC</b> is called
+      afterward, then <b>TOC</b> will either print the elapsed wallclock
+      time if its value is not being copied to a variable, or return the 
+      value of the elapsed wallclock time to a variable.
+    </p>
+
+    <p>
+      To time an entire program, the simplest method to get the elapsed
+      wallclock time is to call tic before you run the program
+      and <b>toc</b> afterwards:
+      <pre>
+        tic
+        my_program
+        toc
+      </pre>
+      If <b>toc</b> is called without an output argument, it prints the elapsed time.
+      or you can save the output from <b>toc</b> and print it yourself.
+      <pre>
+        tic
+        my_program
+        wtime = toc
+        fprintf ( 1, '  MY_PROGRAM took %f seconds to run.\n', wtime );
+      </pre>
+    </p>
+
+    <p>
+      For parallel programming, the important thing to measure is the elapsed
+      wallclock time.  This can be found by subtracting an initial reading of
+      the wallclock time from a final one.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      MATLAB programs which
+      demonstrate how to compute CPU time or elapsed time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timestamp/timestamp.html">
+      TIMESTAMP</a>,
+      a MATLAB library which 
+      prints out the current YMDHMS date.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wtime/wtime.html">
+      WTIME</a>,
+      a MATLAB library which
+      returns a reading of the wall clock time in seconds.
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>TIC_TOC_TEST</b>:
+      <ul>
+        <li>
+          <a href = "tic_toc_test.m">tic_toc_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "tic_toc_test_output.txt">tic_toc_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TIC_TOC_PRINTING</b> calls TIC, and then immediately calls TOC several
+      times.  If we call the "printing" TOC, then the cost of printing will be
+      added to each subsequent TOC.  If we instead store the output of TOC and
+      print it later, we get a more reliable result.
+      <ul>
+        <li>
+          <a href = "tic_toc_printing.m">tic_toc_printing.m</a>, 
+          compares two ways to estimate the tic/toc resolution;
+        </li>
+        <li>
+          <a href = "tic_toc_printing_test.m">tic_toc_printing_test.m</a>, 
+          calls tic_toc_printing.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TIC_TOC_RESOLUTION</b> estimates the resolution of the TIC and TOC commands
+      by calling N times and averaging.
+      <ul>
+        <li>
+          <a href = "tic_toc_printing.m">tic_toc_printing.m</a>, 
+          compares two ways to estimate the tic/toc resolution;
+        </li>
+        <li>
+          <a href = "tic_toc_printing_test.m">tic_toc_printing_test.m</a>, 
+          calls tic_toc_printing.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 May 2012
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

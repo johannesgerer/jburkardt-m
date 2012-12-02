@@ -1,0 +1,278 @@
+<html>
+
+  <head>
+    <title>
+      CVT_MOVIE - Animated CVT Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_MOVIE <br> Animated CVT Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_MOVIE</b> 
+      is a MATLAB program which 
+      animates the generation of a Centroidal Voronoi Tessellation (CVT) dataset.
+    </p>
+
+    <p>
+      The data that the user may set includes:
+      <ul>
+        <li>
+          <b>N</b>, the number of points to generate,
+        </li>
+        <li>
+          <b>INIT</b>, initialize the points:
+          <ul>
+            <li>
+              <i>file</i>, by reading data from file;
+            </li>
+            <li>
+              <i>'GRID'</i>, picking points from a grid;
+            </li>
+            <li>
+              <i>'HALTON'</i>, from a Halton sequence;
+            </li>
+            <li>
+              <i>'RAND'</i>, using MATLAB's RAND function;
+            </li>
+            <li>
+              <i>'UNIFORM'</i>, using a simple uniform RNG;
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>IT_MAX</b>, the maximum number of iterations;
+        </li>
+        <li>
+          <b>IT_FIXED</b>, the number of iterations for which each
+          set of sample points should be used (between 1 and <b>IT_MAX</b>);
+        </li>
+        <li>
+          <b>SAMPLE</b>, how to conduct the sampling:
+          <ul>
+            <li>
+              <i>'GRID'</i>, picking points from a grid;
+            </li>
+            <li>
+              <i>'HALTON'</i>, from a Halton sequence;
+            </li>
+            <li>
+              <i>'RAND'</i>, using MATLAB's RAND function;
+            </li>
+            <li>
+              <i>'UNIFORM'</i>, using a simple uniform RNG;
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>SAMPLE_NUM</b>, the number of sampling points:
+        </li>
+        <li>
+          <b>MOVIE_NAME</b>, the number the animation file to be created.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Animation:
+    </h3>
+
+    <p>
+      You can <a href = "show_cvt_movie_avi.html">see a sample AVI animation</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/avi/avi.html">
+      AVI</a>,
+      a data format which
+      is used for the output animation file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/file_name_sequence/file_name_sequence.html">
+      FILE_NAME_SEQUENCE</a>,
+      a MATLAB program which
+      demonstrates four ways to generate a sequence of filenames.
+    </p>
+
+    <p>
+      <a href = "../../m_src/peak_movie/peak_movie.html">
+      PEAK_MOVIE</a>,
+      a MATLAB program which
+      creates the pieces of an animation, one frame at a time.
+      Each frame is independently created and saved as a JPEG file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, 1999, pages 637-676.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a> 
+          capitalizes a single character.
+        </li>
+        <li>
+          <a href = "cvt_iterate.m">cvt_iterate.m</a> 
+          takes one step of the CVT iteration.
+        </li>
+        <li>
+          <a href = "cvt_movie.m">cvt_movie.m</a> 
+          gets information from the user, creates the CVT and 
+          saves the animation.
+        </li>
+        <li>
+          <a href = "cvt_sample.m">cvt_sample.m</a> 
+          returns sample points.
+        </li>
+        <li>
+          <a href = "cvt_write.m">cvt_write.m</a> 
+          writes a CVT dataset to a file.
+        </li>
+        <li>
+          <a href = "data_read.m">data_read.m</a> 
+          reads data from a file.
+        </li>
+        <li>
+          <a href = "file_exist.m">file_exist.m</a> 
+          is true if a file exists.
+        </li>
+        <li>
+          <a href = "file_delete.m">file_delete.m</a> 
+          deletes a file.
+        </li>
+        <li>
+          <a href = "find_closest.m">find_closest.m</a> 
+          finds the Voronoi cell generator closest to a point X.
+        </li>
+        <li>
+          <a href = "get_seed.m">get_seed.m</a> 
+          returns a seed for the random number generator.
+        </li>
+        <li>
+          <a href = "halham_leap_check.m">halham_leap_check.m</a> 
+          checks LEAP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_n_check.m">halham_n_check.m</a> 
+          checks N for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_ndim_check.m">halham_ndim_check.m</a> 
+          checks NDIM for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_seed_check.m">halham_seed_check.m</a> 
+          checks SEED for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_step_check.m">halham_step_check.m</a> 
+          checks STEP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halton_base_check.m">halton_base_check.m</a> 
+          checks BASE for a Halton sequence.
+        </li>
+        <li>
+          <a href = "i4_to_halton_sequence.m">i4_to_halton_sequence.m</a> 
+          next N elements of an NDIM-dimensional Halton sequence
+        </li>
+        <li>
+          <a href = "prime.m">prime.m</a> 
+          returns the N-th prime number.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a> 
+          prints the transpose of an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a> 
+          prints the transpose of some of an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a> 
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "random_initialize.m">random_initialize.m</a> 
+          initializes the MATLAB random number seed.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a> 
+          is TRUE if two strings are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a> 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tuple_next_fast.m">tuple_next_fast.m</a> 
+          computes the next element of a tuple space, "fast".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 November 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

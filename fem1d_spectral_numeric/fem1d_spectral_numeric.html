@@ -1,0 +1,205 @@
+<html>
+
+  <head>
+    <title>
+      FEM1D_SPECTRAL_NUMERIC - Spectral Finite Element Method for 1D problem, Numeric Integration
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM1D_SPECTRAL_NUMERIC <br> Spectral Finite Element Method for 1D problem, Numeric Integration
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM1D_SPECTRAL_NUMERIC</b>
+      is a MATLAB program which
+      applies the spectral finite element method to solve the problem
+      u'' = - pi^2 sin(x) over [-1,+1] with zero boundary conditions,
+      using as basis elements the functions x^n*(x-1)*(x+1),
+      and carrying out the integration numerically using MATLAB's quad() function,
+      by Miro Stoyanov.
+    </p>
+
+    <p>
+      This function solves the problem u'' = - pi^2 * sin( pi * x ) for x 
+      in (-1,1), with boundary conditions u(-1) = u(1) = 0.
+    </p>
+
+    <p>
+      This problem has exact solution u(x) = sin(pi*x).
+    </p>
+
+    <p>
+      We use the spectral finite element method.  We assume that the solution
+      can be written in terms of polynomials:
+      <pre>
+        phi_1 = x^0     * (x-1)*(x+1),
+        phi_2 = x^1     * (x-1)*(x+1)
+        ...
+        phi_i = x^(i-1) * (x-1)*(x+1) ...
+      </pre>
+      For this particular problem, the solution is an odd function, so only every
+      other basis function will actually be useful.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point
+      boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_adaptive/fem1d_adaptive.html">
+      FEM1D_ADAPTIVE</a>,
+      a MATLAB program which
+      applies the finite
+      element method to a linear two point boundary value problem
+      in a 1D region, using adaptive refinement to improve the solution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_display/fem1d_display.html">
+      FEM1D_DISPLAY</a>,
+      a MATLAB program which
+      reads three files defining a 1D arbitrary degree finite element function,
+      and displays a plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_function_10_display/fem1d_function_10_display.html">
+      FEM1D_FUNCTION_10_DISPLAY</a>,
+      a MATLAB program which
+      reads a prefix defining three finite element data files,
+      reads the data, samples the finite element function, and displays
+      a plot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">
+      FEM1D_NONLINEAR</a>,
+      a MATLAB program which
+      applies the finite
+      element method to a nonlinear two point boundary value problem
+      in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_pmethod/fem1d_pmethod.html">
+      FEM1D_PMETHOD</a>,
+      a MATLAB program which
+      applies the p-method
+      version of the finite element method to a linear
+      two point boundary value problem in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_sample/fem1d_sample.html">
+      FEM1D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of one variable,
+      defined by FEM files,
+      returning interpolated values at the sample points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_spectral_symbolic/fem1d_spectral_symbolic.html">
+      FEM1D_SPECTRAL_SYMBOLIC</a>,
+      a MATLAB program which
+      applies the spectral finite element method to solve the problem
+      u'' = - pi^2 sin(x) over [-1,+1] with zero boundary conditions,
+      using as basis elements the functions x^n*(x-1)*(x+1),
+      and carrying out the integration symbolically, using MATLAB's symbolic toolbox,
+      by Miro Stoyanov.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Miro Stoyanov
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_spectral_numeric.m">fem1d_spectral_numeric.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_spectral_numeric_test.m">fem1d_spectral_numeric_test.m</a>,
+          a script that runs the program using an increasing sequence of
+          basis sizes.
+        </li>
+        <li>
+          <a href = "fem1d_spectral_numeric_test_output.txt">fem1d_spectral_numeric_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,835 @@
+<html>
+
+  <head>
+    <title>
+      CHRPAK - Characters and Strings
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CHRPAK <br> Characters and Strings
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CHRPAK</b>
+      is a MATLAB library which
+      can handle characters and strings.
+    </p>
+
+    <p>
+      <b>CHRPAK</b> began when I simply wanted to be able to capitalize
+      a string.  Now it has expanded to a number of interesting uses.
+      Many unusual situations are
+      provided for, including
+      <ul>
+        <li>
+          string '31.2' <=> numeric value 31.2;
+        </li>
+        <li>
+          uppercase <=> lowercase;
+        </li>
+        <li>
+          removal of control characters or blanks;
+        </li>
+        <li>
+          sorting, merging, searching.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Many of the routine names begin with the name of the data type they
+      operate on:
+      <ul>
+        <li>
+          <b>B4</b> - a 4 byte word;
+        </li>
+        <li>
+          <b>CH</b> - a character;
+        </li>
+        <li>
+          <b>CHVEC</b> - a vector of characters;
+        </li>
+        <li>
+          <b>DEC</b> - a decimal fraction;
+        </li>
+        <li>
+          <b>DIGIT</b> - a character representing a numeric digit;
+        </li>
+        <li>
+          <b>I4</b> - an integer;
+        </li>
+        <li>
+          <b>R4</b> - a single precision real;
+        </li>
+        <li>
+          <b>R8</b> - a double precision real;
+        </li>
+        <li>
+          <b>RAT</b> - a ratio I/J;
+        </li>
+        <li>
+          <b>S</b> - a string;
+        </li>
+        <li>
+          <b>SVEC</b> - a vector of strings;
+        </li>
+        <li>
+          <b>SVECI</b> - a vector of strings, implicitly capitalized;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CHRPAK</b> is available in
+      <a href = "../../c_src/chrpak/chrpak.html">a C version</a> and
+      <a href = "../../cpp_src/chrpak/chrpak.html">a C++ version</a> and
+      <a href = "../../f77_src/chrpak/chrpak.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/chrpak/chrpak.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/chrpak/chrpak.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Carl Branden, John Tooze,<br>
+          Introduction to Protein Structure,<br>
+          Second Edition,<br>
+          Garland Publishing, 1999,<br>
+          ISBN: 0815323050,<br>
+          LC: QP551.B7635.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673,<br>
+          LC: QA76.9.C65.B73.
+        </li>
+        <li>
+          IEEE Standards Committee 754,<br>
+          IEEE Standard for Binary Floating Point Arithmetic,<br>
+          ANSI/IEEE Standard 754-1985,<br>
+          SIGPLAN Notices,<br>
+          Volume 22, Number 2, 1987, pages 9-25.
+        </li>
+        <li>
+          Donald Knuth,<br>
+          The Art of Computer Programming,<br>
+          Volume 3, Sorting and Searching,<br>
+          Second Edition,<br>
+          Addison Wesley, 1998,<br>
+          ISBN: 0201896850,<br>
+          LC: QA76.6.K64.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "a_to_i4.m">a_to_i4.m</a>
+          returns the index of an alphabetic character;
+        </li>
+        <li>
+          <a href = "base_to_i4.m">base_to_i4.m</a>
+          returns the value of an integer represented in some base;
+        </li>
+        <li>
+          <a href = "binary_to_i4.m">binary_to_i4.m</a>
+          converts a binary representation into an integer value;
+        </li>
+        <li>
+          <a href = "binary_to_r8.m">binary_to_r8.m</a>
+          converts a binary representation into a real value;
+        </li>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>
+          returns the capitalized version of a character;
+        </li>
+        <li>
+          <a href = "ch_eqi.m">ch_eqi.m</a>
+          returns TRUE if a two characters are equal (ignoring case);
+        </li>
+        <li>
+          <a href = "ch_extract.m">ch_extract.m</a>
+          extracts the next nonblank character from a string;
+        </li>
+        <li>
+          <a href = "ch_index.m">ch_index.m</a>
+          returns the first occurrence of a character in a string;
+        </li>
+        <li>
+          <a href = "ch_index_last.m">ch_index_last.m</a>
+          returns the last occurrence of a character in a string;
+        </li>
+        <li>
+          <a href = "ch_indexi.m">ch_indexi.m</a>
+          returns the first occurrence of a character in a string,
+          without regard to case;
+        </li>
+        <li>
+          <a href = "ch_is_alpha.m">ch_is_alpha.m</a>
+          returns TRUE if a character is alphabetic;
+        </li>
+        <li>
+          <a href = "ch_is_alphanumeric.m">ch_is_alphanumeric.m</a>
+          returns TRUE if a character is alphanumeric;
+        </li>
+        <li>
+          <a href = "ch_is_control.m">ch_is_control.m</a>
+          returns TRUE if a character is a control character;
+        </li>
+        <li>
+          <a href = "ch_is_digit.m">ch_is_digit.m</a>
+          returns TRUE if a character is a decimal digit;
+        </li>
+        <li>
+          <a href = "ch_is_format_code.m">ch_is_format_code.m</a>
+          returns TRUE if a character is a legal FORTRAN format code;
+        </li>
+        <li>
+          <a href = "ch_is_lower.m">ch_is_lower.m</a>
+          returns TRUE if a character is a lowercase alphabetic character;
+        </li>
+        <li>
+          <a href = "ch_is_printable.m">ch_is_printable.m</a>
+          determines if a character is printable;
+        </li>
+        <li>
+          <a href = "ch_is_space.m">ch_is_space.m</a>
+          determines if a character is a "whitespace" character;
+        </li>
+        <li>
+          <a href = "ch_is_upper.m">ch_is_upper.m</a>
+          returns TRUE if a character is an uppercase alphabetic character;
+        </li>
+        <li>
+          <a href = "ch_low.m">ch_low.m</a>
+          returns returns the lowercase version of a character;
+        </li>
+        <li>
+          <a href = "ch_roman_to_i4.m">ch_roman_to_i4.m</a>
+          returns the integer value of a single digit of a Roman numeral;
+        </li>
+        <li>
+          <a href = "ch_scrabble.m">ch_scrabble.m</a>
+          returns the character on a given Scrabble tile;
+        </li>
+        <li>
+          <a href = "ch_scrabble_frequency.m">ch_scrabble_frequency.m</a>
+          returns the Scrabble frequency of a character;
+        </li>
+        <li>
+          <a href = "ch_scrabble_points.m">ch_scrabble_points.m</a>
+          returns the Scrabble point value of a character;
+        </li>
+        <li>
+          <a href = "ch_scrabble_select.m">ch_scrabble_select.m</a>
+          selects a character with the Scrabble probability;
+        </li>
+        <li>
+          <a href = "ch_swap.m">ch_swap.m</a>
+          swaps two characters;
+        </li>
+        <li>
+          <a href = "ch_to_amino_name.m">ch_to_amino_name.m</a>
+          converts a character to an amino acid name;
+        </li>
+        <li>
+          <a href = "ch_to_digit.m">ch_to_digit.m</a>
+          converts a character to a digit;
+        </li>
+        <li>
+          <a href = "ch_to_digit_bin.m">ch_to_digit_bin.m</a>
+          converts a character to a binary digit;
+        </li>
+        <li>
+          <a href = "ch_to_digit_oct.m">ch_to_digit_oct.m</a>,
+          converts a character to an octal digit;
+        </li>
+        <li>
+          <a href = "ch_to_ebcdic.m">ch_to_ebcdic.m</a>,
+          converts a character to EBCDIC;
+        </li>
+        <li>
+          <a href = "ch_to_military.m">ch_to_military.m</a>,
+          converts a character to its military encoding;
+        </li>
+        <li>
+          <a href = "ch_to_rot13.m">ch_to_rot13.m</a>,
+          converts a character to its ROT13 encoding;
+        </li>
+        <li>
+          <a href = "ch_to_scrabble.m">ch_to_scrabble.m</a>,
+          returns the Scrabble index of a character;
+        </li>
+        <li>
+          <a href = "ch_to_soundex.m">ch_to_soundex.m</a>,
+          converts an ASCII character to a Soundex character;
+        </li>
+        <li>
+          <a href = "ch_uniform.m">ch_uniform.m</a>,
+          returns a random character in a given range;
+        </li>
+        <li>
+          <a href = "chvec_permute.m">chvec_permute.m</a>,
+          permutes the entries of a character vector;
+        </li>
+        <li>
+          <a href = "chvec_print.m">chvec_print.m</a>,
+          prints the entries in a character vector;
+        </li>
+        <li>
+          <a href = "chvec_reverse.m">chvec_reverse.m</a>,
+          reverses the order of the entries in a character vector;
+        </li>
+        <li>
+          <a href = "chvec2_reverse.m">chvec2_reverse.m</a>,
+          prints the entries in a pair of character vectors;
+        </li>
+        <li>
+          <a href = "degrees_to_radians.m">degrees_to_radians.m</a>,
+          converts an angle from degrees to radians.
+        </li>
+        <li>
+          <a href = "digit_bin_to_ch.m">digit_bin_to_ch.m</a>,
+          returns the character equivalent of a binary digit;
+        </li>
+        <li>
+          <a href = "digit_dec.m">digit_dec.m</a>,
+          decrements a decimal digit;
+        </li>
+        <li>
+          <a href = "digit_inc.m">digit_inc.m</a>,
+          increments a decimal digit;
+        </li>
+        <li>
+          <a href = "digit_oct_to_ch.m">digit_oct_to_ch.m</a>,
+          returns the character equivalent of an octal digit;
+        </li>
+        <li>
+          <a href = "digit_to_ch.m">digit_to_ch.m</a>,
+          converts a digit to a character;
+        </li>
+        <li>
+          <a href = "file_name_inc.m">file_name_inc.m</a>,
+          "increments" a file name;
+        </li>
+        <li>
+          <a href = "hex_digit_to_i4.m">hex_digit_to_i4.m</a>
+          converts a hexadecimal digit to an I4;
+        </li>
+        <li>
+          <a href = "hex_to_binary_digits.m">hex_to_binary_digits.m</a>,
+          converts a hexadecimal digit to binary digits;
+        </li>
+        <li>
+          <a href = "hex_to_binary_string.m">hex_to_binary_string.m</a>,
+          converts a hexadecimal string to a binary string.
+        </li>
+        <li>
+          <a href = "hex_to_i4.m">hex_to_i4.m</a>,
+          converts a hexadecimal string to an I4;
+        </li>
+        <li>
+          <a href = "i4_huge.m">i4_huge.m</a>,
+          returns a huge I4;
+        </li>
+        <li>
+          <a href = "i4_length.m">i4_length.m</a>,
+          computes the number of characters needed to print an I4.
+        </li>
+        <li>
+          <a href = "i4_swap.m">i4_swap.m</a>,
+          swaps two integer values;
+        </li>
+        <li>
+          <a href = "i4_to_a.m">i4_to_a.m</a>,
+          returns the I-th alphabetic character;
+        </li>
+        <li>
+          <a href = "i4_to_amino_code.m">i4_to_amino_code.m</a>,
+          converts an integer to an amino code.
+          returns the I-th alphabetic character;
+        </li>
+        <li>
+          <a href = "i4_to_base.m">i4_to_base.m</a>
+          converts an I4 to a representation in any base from 1 to 16.
+        </li>
+        <li>
+          <a href = "i4_to_binary.m">i4_to_binary.m</a>
+          produces the binary representation of an integer.
+        </li>
+        <li>
+          <a href = "i4_to_binhex.m">i4_to_binhex.m</a>
+          returns the I-th character in the BINHEX encoding.
+        </li>
+        <li>
+          <a href = "i4_to_hex.m">i4_to_hex.m</a>
+          converts an I4 to a string of hexadecimal characters.
+        </li>
+        <li>
+          <a href = "i4_to_hex_digit.m">i4_to_hex_digit.m</a>,
+          converts a (small) I4 to a hex digit.
+        </li>
+        <li>
+          <a href = "i4_to_isbn.m">i4_to_isbn.m</a>,
+          converts an I4 to its ISBN representation;
+        </li>
+        <li>
+          <a href = "i4_to_month_name.m">i4_to_month_name.m</a>
+          returns the I-th month name;
+        </li>
+        <li>
+          <a href = "i4_to_nunary.m">i4_to_nunary.m</a>
+          produces the "base -1" representation of an integer.
+        </li>
+        <li>
+          <a href = "i4_to_octal.m">i4_to_octal.m</a>
+          converts an I4 to a string of octal characters.
+        </li>
+        <li>
+          <a href = "i4_to_s_left.m">i4_to_s_left.m</a>
+          converts an integer to a (left justified) string;
+        </li>
+        <li>
+          <a href = "i4_to_s_roman.m">i4_to_s_roman.m</a>
+          returns the Roman numeral representation of I;
+        </li>
+        <li>
+          <a href = "i4_to_s_zero.m">i4_to_s_zero.m</a>
+          converts an integer to a right-justified string padded with zeros;
+        </li>
+        <li>
+          <a href = "i4_to_s32.m">i4_to_s32.m</a>
+          converts an I4 to an S32.
+        </li>
+        <li>
+          <a href = "i4_to_unary.m">i4_to_unary.m</a>,
+          produces the "base 1" representation of an I4.
+        </li>
+        <li>
+          <a href = "i4_to_uudecode.m">i4_to_uudecode.m</a>,
+          returns the I-th character in the UUDECODE encoding.
+        </li>
+        <li>
+          <a href = "i4_to_xxdecode.m">i4_to_xxdecode.m</a>,
+          returns the I-th character in the XXDECODE encoding.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>,
+          returns a random integer in a given range;
+        </li>
+        <li>
+          <a href = "ic_to_ibraille.m">ic_to_ibraille.m</a>,
+          converts an ASCII integer code to a Braille code.
+        </li>
+        <li>
+          <a href = "ic_to_iebcdic.m">ic_to_iebcdic.m</a>,
+          converts an ASCII character code to an EBCDIC code.
+        </li>
+        <li>
+          <a href = "ic_to_imorse.m">ic_to_imorse.m</a>,
+          converts an ASCII character code to a Morse integer code.
+        </li>
+        <li>
+          <a href = "ic_to_isoundex.m">ic_to_isoundex.m</a>,
+          converts an ASCII integer code to a Soundex integer code.
+        </li>
+        <li>
+          <a href = "iebcdic_to_ic.m">iebcdic_to_ic.m</a>,
+          converts an EBCDIC character code to ASCII.
+        </li>
+        <li>
+          <a href = "isbn_to_i4.m">isbn_to_i4.m</a>,
+          converts an ISBN character to an I4.
+        </li>
+        <li>
+          <a href = "matlab_real_to_binary_string.m">matlab_real_to_binary_string.m</a>,
+          converts a MATLAB real number to a binary string;
+        </li>
+        <li>
+          <a href = "matlab_real_to_hex_string.m">matlab_real_to_hex_string.m</a>,
+          converts a MATLAB real number to a hexadecimal string;
+        </li>
+        <li>
+          <a href = "oct_to_i4.m">oct_to_i4.m</a>,
+          converts an octal string to an I4;
+        </li>
+        <li>
+          <a href = "r4_to_s_left.m">r4_to_s_left.m</a>,
+          writes an R4 into a (left justified) string;
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">r4_uniform_01.m</a>,
+          returns a unit pseudorandom R4.
+        </li>
+        <li>
+          <a href = "r8_to_s_left.m">r8_to_s_left.m</a>,
+          writes an R8 into a (left justified) string;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "s_alpha_last.m">s_alpha_last.m</a>,
+          returns the location of the last alphabetic character in a string;
+        </li>
+        <li>
+          <a href = "s_adjustl.m">s_adjustl.m</a>,
+          shifts a string to the left, "squeezing" out blanks;
+        </li>
+        <li>
+          <a href = "s_adjustr.m">s_adjustr.m</a>,
+          shifts a string to the right, "squeezing" out blanks;
+        </li>
+        <li>
+          <a href = "s_begin.m">s_begin.m</a>,
+          is TRUE if two strings match, up to the end of the shorter string,
+          ignoring spaces and capitalization;
+        </li>
+        <li>
+          <a href = "s_behead_substring.m">s_behead_substring.m</a>,
+          removes the head of a string, if it matches a given substring;
+        </li>
+        <li>
+          <a href = "s_blank_delete.m">s_blank_delete.m</a>,
+          deletes every blank from a string;
+        </li>
+        <li>
+          <a href = "s_blanks_delete.m">s_blanks_delete.m</a>,
+          replaces consecutive blanks by one blank in a string;
+        </li>
+        <li>
+          <a href = "s_cap.m">s_cap.m</a>,
+          capitalizes all the characters in a string;
+        </li>
+        <li>
+          <a href = "s_cat.m">s_cat.m</a>,
+          concatenates two strings;
+        </li>
+        <li>
+          <a href = "s_ch_delete.m">s_ch_delete.m</a>,
+          removes all occurrences of a character from a string.
+        </li>
+        <li>
+          <a href = "s_compare.m">s_compare.m</a>
+          compares two strings, returning -1, 0, or +1.
+        </li>
+        <li>
+          <a href = "s_control_blank.m">s_control_blank.m</a>
+          replaces control characters by blanks in a string.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>,
+          is TRUE if two strings are equal, ignoring case and trailing blanks;
+        </li>
+        <li>
+          <a href = "s_escape_tex.m">s_escape_tex.m</a>,
+          de-escapes TeX escape sequences;
+        </li>
+        <li>
+          <a href = "s_first_nonblank.m">s_first_nonblank.m</a>
+          indexes the first nonblank character in a string;
+        </li>
+        <li>
+          <a href = "s_inc_c.m">s_inc_c.m</a>
+          "increments" the characters in a string;
+        </li>
+        <li>
+          <a href = "s_index.m">s_index.m</a>
+          returns the index of the first occurrence of a substring in a string;
+        </li>
+        <li>
+          <a href = "s_is_alpha.m">s_is_alpha.m</a>
+          is TRUE if all characters in the string are alphabetic;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank;
+        </li>
+        <li>
+          <a href = "s_low.m">s_low.m</a>
+          makes a lowercase copy of a string;
+        </li>
+        <li>
+          <a href = "s_neqi.m">s_neqi.m</a>
+          is TRUE if two strings are not equal, ignoring case and trailing
+          blanks;
+        </li>
+        <li>
+          <a href = "s_nonalpha_delete.m">s_nonalpha_delete.m</a>
+          removes nonalphabetic characters from a string.
+        </li>
+        <li>
+          <a href = "s_replace_ch.m">s_replace_ch.m</a>
+          replaces all occurrences of one character by another;
+        </li>
+        <li>
+          <a href = "s_replace_ch_by_s.m">s_replace_ch_by_s.m</a>
+          replaces all occurrences of a character by a string;
+        </li>
+        <li>
+          <a href = "s_reverse.m">s_reverse.m</a>
+          reverses a string;
+        </li>
+        <li>
+          <a href = "s_s_subanagram.m">s_s_subanagram.m</a>
+          determines if S2 is a "subanagram" of S1.
+        </li>
+        <li>
+          <a href = "s_s_subanagram_sorted.m">s_s_subanagram_sorted.m</a>
+          determines if S2 is a "subanagram" of S1.
+        </li>
+        <li>
+          <a href = "s_sort_a.m">s_sort_a.m</a>
+          sorts a string into ascending order.
+        </li>
+        <li>
+          <a href = "s_swap.m">s_swap.m</a>
+          swaps two strings;
+        </li>
+        <li>
+          <a href = "s_to_format.m">s_to_format.m</a>
+          converts a string to a FORTRAN format;
+        </li>
+        <li>
+          <a href = "s_to_i4.m">s_to_i4.m</a>
+          converts a string to an integer;
+        </li>
+        <li>
+          <a href = "s_to_i4vec.m">s_to_i4vec.m</a>
+          converts a string to an integer vector;
+        </li>
+        <li>
+          <a href = "s_to_l.m">s_to_l.m</a>
+          converts a string to a logical value;
+        </li>
+        <li>
+          <a href = "s_to_r4.m">s_to_r4.m</a>
+          reads an R4 from a string;
+        </li>
+        <li>
+          <a href = "s_to_r8.m">s_to_r8.m</a>
+          reads an R8 from a string;
+        </li>
+        <li>
+          <a href = "s_to_r8vec.m">s_to_r8vec.m</a>
+          reads an R8VEC from a string;
+        </li>
+        <li>
+          <a href = "s_to_rot13.m">s_to_rot13.m</a>
+          encodes or decodes a string using ROT13;
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>
+          counts the number of "words" in a string;
+        </li>
+        <li>
+          <a href = "s_word_extract_first.m">s_word_extract_first.m</a>
+          extracts the first word from a string;
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>
+          externally sorts a list of values into ascending order;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current HMSDMY date as a timestamp;
+        </li>
+        <li>
+          <a href = "word_next_read.m">word_next_read.m</a>
+          reads words from a string, one at a time.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chrpak_test.m">chrpak_test.m</a>
+          calls all the other test routines;
+        </li>
+        <li>
+          <a href = "chrpak_test_output.txt">chrpak_test_output.txt</a>
+          the output file;
+        </li>
+        <li>
+          <a href = "chrpak_test001.m">chrpak_test001.m</a>
+          tests A_TO_I4 and I4_TO_A;
+        </li>
+        <li>
+          <a href = "chrpak_test005.m">chrpak_test005.m</a>
+          tests BASE_TO_I4 and I4_TO_BASE;
+        </li>
+        <li>
+          <a href = "chrpak_test006.m">chrpak_test006.m</a>
+          tests BINARY_TO_I4 and I4_TO_BINARY;
+        </li>
+        <li>
+          <a href = "chrpak_test011.m">chrpak_test011.m</a>
+          tests CH_CAP;
+        </li>
+        <li>
+          <a href = "chrpak_test016.m">chrpak_test016.m</a>
+          tests CH_LOW;
+        </li>
+        <li>
+          <a href = "chrpak_test021.m">chrpak_test021.m</a>
+          tests CH_TO_DIGIT and DIGIT_TO_CH;
+        </li>
+        <li>
+          <a href = "chrpak_test022.m">chrpak_test022.m</a>
+          tests I4_TO_HEX_DIGIT and HEX_DIGIT_TO_I4;
+        </li>
+        <li>
+          <a href = "chrpak_test026.m">chrpak_test026.m</a>
+          tests CH_TO_ROT13;
+        </li>
+        <li>
+          <a href = "chrpak_test029.m">chrpak_test029.m</a>
+          tests CH_UNIFORM;
+        </li>
+        <li>
+          <a href = "chrpak_test046.m">chrpak_test046.m</a>
+          tests HEX_TO_I4 and I4_TO_HEX;
+        </li>
+        <li>
+          <a href = "chrpak_test051.m">chrpak_test051.m</a>
+          tests I4_LENGTH;
+        </li>
+        <li>
+          <a href = "chrpak_test054.m">chrpak_test054.m</a>
+          tests I4_TO_BINHEX;
+        </li>
+        <li>
+          <a href = "chrpak_test056.m">chrpak_test056.m</a>
+          tests I4_TO_NUNARY;
+        </li>
+        <li>
+          <a href = "chrpak_test057.m">chrpak_test057.m</a>
+          tests I4_TO_OCT and OCT_TO_I4;
+        </li>
+        <li>
+          <a href = "chrpak_test065.m">chrpak_test065.m</a>
+          tests I4_TO_UNARY;
+        </li>
+        <li>
+          <a href = "chrpak_test066.m">chrpak_test066.m</a>
+          tests I4_TO_UUDECODE;
+        </li>
+        <li>
+          <a href = "chrpak_test067.m">chrpak_test067.m</a>
+          tests I4_TO_XXDECODE;
+        </li>
+        <li>
+          <a href = "chrpak_test083.m">chrpak_test083.m</a>
+          tests R4_TO_S_LEFT and S_TO_R4;
+        </li>
+        <li>
+          <a href = "chrpak_test090.m">chrpak_test090.m</a>
+          tests S_BEGIN;
+        </li>
+        <li>
+          <a href = "chrpak_test091.m">chrpak_test091.m</a>
+          tests S_BEHEAD_SUBSTRING;
+        </li>
+        <li>
+          <a href = "chrpak_test1015.m">chrpak_test1015.m</a>
+          tests S_EQI;
+        </li>
+        <li>
+          <a href = "chrpak_test102.m">chrpak_test102.m</a>
+          tests S_ESCAPE_TEX;
+        </li>
+        <li>
+          <a href = "chrpak_test105.m">chrpak_test105.m</a>
+          tests S_INC_C;
+        </li>
+        <li>
+          <a href = "chrpak_test115.m">chrpak_test115.m</a>
+          tests S_REPLACE_CH;
+        </li>
+        <li>
+          <a href = "chrpak_test1155.m">chrpak_test1155.m</a>
+          tests S_REPLACE_CH_BY_S;
+        </li>
+        <li>
+          <a href = "chrpak_test1225.m">chrpak_test1225.m</a>
+          tests S_S_SUBANAGRAM;
+        </li>
+        <li>
+          <a href = "chrpak_test1255.m">chrpak_test1255.m</a>
+          tests S_SORT_A;
+        </li>
+        <li>
+          <a href = "chrpak_test129.m">chrpak_test129.m</a>
+          tests S_TO_FORMAT;
+        </li>
+        <li>
+          <a href = "chrpak_test137.m">chrpak_test137.m</a>
+          tests S_WORD_COUNT;
+        </li>
+        <li>
+          <a href = "chrpak_test138.m">chrpak_test138.m</a>
+          tests S_WORD_EXTRACT_FIRST;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

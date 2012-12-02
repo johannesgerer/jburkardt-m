@@ -1,0 +1,473 @@
+<html>
+
+  <head>
+    <title>
+      LCVT - Latin Centroidal Voronoi Tessellations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LCVT <br> Latin Centroidal Voronoi Tessellations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LCVT</b>
+      is a MATLAB library which
+      creates Latin Centroidal Voronoi Tessellation (CVT) datasets.
+    </p>
+
+    <p>
+      A Latin Square dataset is typically a two dimensional dataset
+      of <b>N</b> points in the unit square, with the property that, if both the
+      <b>x</b> and <b>y</b> axes are divided up into <b>N</b> equal subintervals,
+      exactly one dataset point has an <b>x</b> or <b>y</b> coordinate in
+      each subinterval.  Latin squares can easily be extended to the
+      case of <b>M</b> dimensions, and may be pedantically called <i>Latin
+      Hypersquares</i> or <i>Latin Hypercubes</i> in such a case.
+      Statisticians like Latin Squares, as
+      do experiment designers, and and people who need to approximate
+      scalar functions of many variables.
+    </p>
+
+    <p>
+      The fact that the projection of a Latin Square dataset onto any
+      coordinate axis is either exactly evenly spaced, or approximately
+      so (depending on the algorithm), turns out to be an attractive
+      feature for many uses.
+    </p>
+
+    <p>
+      However, a CVT dataset in a regular domain, such as the unit
+      hypercube, has the tendency for the projections of the points
+      to cluster together in any coordinate axis.  This program is
+      mainly an attempt to explore whether a dataset can be computed
+      using techniques similar to those of a CVT, but with the
+      constraint (whether imposed or expected) that the point projections
+      do not clump up.
+    </p>
+
+    <p>
+      The approach used here is quite simple.  First we compute a CVT
+      in M dimensions, comprising N points.  We assume that the bounding
+      region is the unit hypercube.  We are now going to adjust the
+      coordinates of the points to achieve the Latin Hypercube property.
+      For each coordinate direction, we simply sort the points by that
+      coordinate, and then overwrite the original values by the values
+      we'd expect to get for a centered Latin Hypercube, namely,
+      1/(2*N), 3/(2*N), ..., (2*N-1)/(2*N).
+    </p>
+
+    <p>
+      Now this process guarantees that we get a Latin Hypercube.  Our
+      hope is that the process of adjusting the point coordinates does
+      not too severely damage the nice dispersion properties inherent
+      in the CVT point placement.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LCVT</b> is available in
+      <a href = "../../cpp_src/lcvt/lcvt.html">a C++ version</a> and
+      <a href = "../../f_src/lcvt/lcvt.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lcvt/lcvt.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      computes a Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure/faure.html">
+      FAURE</a>,
+      a MATLAB library which
+      computes elements of a Faure quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid/grid.html">
+      GRID</a>,
+      a MATLAB library which
+      computes elements of a grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/halton/halton.html">
+      HALTON</a>,
+      a MATLAB library which
+      computes elements of a Halton quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hammersley/hammersley.html">
+      HAMMERSLEY</a>,
+      a MATLAB library which
+      computes elements of a Hammersley quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid/hex_grid.html">
+      HEX_GRID</a>,
+      a MATLAB library which
+      computes elements of a hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_angle/hex_grid_angle.html">
+      HEX_GRID_ANGLE</a>,
+      a FORTRAN90 library which
+      computes elements of an angled hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ihs/ihs.html">
+      IHS</a>,
+      a MATLAB library which
+      computes elements of an improved distributed Latin hypercube dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center/latin_center.html">
+      LATIN_CENTER</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing center points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge/latin_edge.html">
+      LATIN_EDGE</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing edge points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random/latin_random.html">
+      LATIN_RANDOM</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing
+      points at random.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latinize/latinize.html">
+      LATINIZE</a>,
+      a MATLAB program which
+      can "latinize" a dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lattice_rule/lattice_rule.html">
+      LATTICE_RULE</a>,
+      a MATLAB library which
+      approximates multidimensional integrals using lattice rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/lcvt/lcvt.html">
+      LCVT_DATASET</a>,
+      a directory which
+      contains a collection of
+      sample LCVT datasets.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt_dataset/lcvt_dataset.html">
+      LCVT_DATASET</a>,
+      a MATLAB program which
+      can create an LCVT dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2/niederreiter2.html">
+      NIEDERREITER2</a>,
+      a MATLAB library which
+      computes elements of a Niederreiter quasirandom sequence with base 2.
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>,
+      a MATLAB library which
+      computes elements of a normal pseudorandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol/sobol.html">
+      SOBOL</a>,
+      a MATLAB library which
+      computes elements of a Sobol quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which
+      computes elements of a uniform pseudorandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput/van_der_corput.html">
+      VAN_DER_CORPUT</a>,
+      a MATLAB library which
+      computes elements of a van der Corput quasirandom sequence.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams -
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, September 1991, pages 345-405.
+        </li>
+        <li>
+          Franz Aurenhammer, Rolf Klein,<br>
+          Voronoi Diagrams,<br>
+          in Handbook of Computational Geometry,<br>
+          edited by J Sack, J Urrutia,<br>
+          Elsevier, 1999,<br>
+          LC: QA448.D38H36.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Janet Peterson, Rebecca Brannon,<br>
+          User Manual and Supporting Information for Library of Codes
+          for Centroidal Voronoi Placement and Associated Zeroth,
+          First, and Second Moment Determination,<br>
+          Sandia National Laboratories Technical Report SAND2002-0099,<br>
+          February 2002,<br>
+          <a href = "../../publications/bgpb_2002.pdf">
+                    ../../publications/bgpb_2002.pdf </a>
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, Number 4, December 1999, pages 637-676.
+        </li>
+        <li>
+          Michael McKay, William Conover, Richard Beckman,<br>
+          A Comparison of Three Methods for Selecting Values of Input
+          Variables in the Analysis of Output From a Computer Code,<br>
+          Technometrics,<br>
+          Volume 21, 1979, pages 239-245.
+        </li>
+        <li>
+          Vicente Romero, John Burkardt, Max Gunzburger, Janet Peterson, <br>
+          Initial Evaluation of Pure and "Latinized" Centroidal Voronoi
+          Tessellation for Non-Uniform Statistical Sampling,<br>
+          Sensitivity Analysis of Model Output (SAMO 2004) Conference,
+          Santa Fe, March 8-11, 2004,<br>
+          <a href = "../../publications/rbgp_2004.pdf">rbgp_2004.pdf</a>.
+        </li>
+        <li>
+          Yuki Saka, Max Gunzburger, John Burkardt, <br>
+          Latinized, improved LHS, and CVT point sets in hypercubes, <br>
+          submitted to IEEE Transactions on Information Theory,<br>
+          <a href = "../../publications/sgb_submitted.pdf">sgb_submitted.pdf</a>.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>
+          capitalizes a single character.
+        </li>
+        <li>
+          <a href = "ch_eqi.m">ch_eqi.m</a>
+          is TRUE if two characters are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "ch_to_digit.m">ch_to_digit.m</a>
+          returns the integer value of a base 10 digit.
+        </li>
+        <li>
+          <a href = "cluster_energy.m">cluster_energy.m</a>
+          returns the energy of a dataset.
+        </li>
+        <li>
+          <a href = "cvt.m">cvt.m</a>
+          computes a Centroidal Voronoi Tessellation.
+        </li>
+        <li>
+          <a href = "cvt_iteration.m">cvt_iteration.m</a>
+          takes one step of the CVT iteration.
+        </li>
+        <li>
+          <a href = "cvt_write.m">cvt_write.m</a>
+          writes a CVT dataset to a file.
+        </li>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>
+          counts the number of columns in the first line of a file.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_rows_count.m</a>
+          counts the number of rows in a file.
+        </li>
+        <li>
+          <a href = "find_closest.m">find_closest.m</a>
+          finds the Voronoi cell generator closest to a point X.
+        </li>
+        <li>
+          <a href = "get_seed.m">get_seed.m</a>
+          returns a seed for the random number generator.
+        </li>
+        <li>
+          <a href = "i4_to_halton.m">i4_to_halton.m</a>
+          computes an element of a vector Halton sequence.
+        </li>
+        <li>
+          <a href = "lcvt_write.m">lcvt_write.m</a>
+          writes a LCVT dataset to a file.
+        </li>
+        <li>
+          <a href = "param_print.m">param_print.m</a>
+          prints the program parameters.
+        </li>
+        <li>
+          <a href = "prime.m">prime.m</a>
+          returns any of the first PRIME_MAX prime numbers.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>
+          is a portable pseudorandom number generator.
+        </li>
+        <li>
+          <a href = "r8mat_latinize.m">r8mat_latinize.m</a>
+          "Latinizes" an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>
+          prints an R8MAT, transposed, with an optional title.
+        </li>
+        <li>
+          <a href = "r8at_transpose_print_some.m">r8mat_transpose_print_some.m</a>
+          prints some of an R8MAT, transpose, with an optional title.
+        </li>
+        <li>
+          <a href = "r8vec_sort_heap_index_a.m">r8vec_sort_heap_index_a.m</a>
+          does an indexed heap ascending sort of a real vector.
+        </li>
+        <li>
+          <a href = "region_sampler.m">region_sampler.m</a>
+          returns a sample point in the physical region.
+        </li>
+        <li>
+          <a href = "s_cap.m">s_cap.m</a>
+          replaces any lowercase letters by uppercase ones in a string.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>
+          is TRUE if two strings are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_to_i4.m">s_to_i4.m</a>
+          reads an I4 from a string.
+        </li>
+        <li>
+          <a href = "s_to_r8.m">s_to_r8.m</a>
+          reads an R8 from a string.
+        </li>
+        <li>
+          <a href = "s_to_r8vec.m">s_to_r8vec.m</a>
+          reads an R8VEC from a string.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>
+          returns the number of words in a string.
+        </li>
+        <li>
+          <a href = "test_region.m">test_region.m</a>
+          determines if a point is within the physical region.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tuple_next_fast.m">tuple_next_fast.m</a>
+          computes the next element of a tuple space, "fast".
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lcvt_test.m">lcvt_test.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "lcvt_test01.m">lcvt_test01.m</a>,
+          repeats a simple calculation using the different CVT sampling options.
+        </li>
+        <li>
+          <a href = "lcvt_test02.m">lcvt_test02.m</a>,
+          carries out a simple calculation in which the generators are
+          initialized to gridpoints.
+        </li>
+        <li>
+          <a href = "lcvt_test_output.txt">lcvt_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 May 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

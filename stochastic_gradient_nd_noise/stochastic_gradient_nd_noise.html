@@ -1,0 +1,218 @@
+<html>
+
+  <head>
+    <title>
+      STOCHASTIC_GRADIENT_ND_NOISE - Optimal Control with Stochastic Noise
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      STOCHASTIC_GRADIENT_ND_NOISE <br> Optimal Control with Stochastic Noise
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STOCHASTIC_GRADIENT_ND_NOISE</b>
+      is a MATLAB program which
+      solves an optimal control problem involving a functional over a system
+      with stochastic noise,
+      by Jeff Borggaard, Catalin Trenchea, Clayton Webster.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/black_scholes/black_scholes.html">
+      BLACK_SCHOLES</a>,
+      a MATLAB library which
+      implements some simple approaches to
+      the Black-Scholes option valuation theory;;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cnoise/cnoise.html">
+      CNOISE</a>,
+      a MATLAB library which
+      generates samples of noise obeying a 1/f^alpha power law,
+      by Miroslav Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/oned/oned.html">
+      ONED</a>,
+      a MATLAB library which
+      contains functions useful for 1D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/optimal_control_1d/optimal_control_1d.html">
+      OPTIMAL_CONTROL_1D</a>,
+      a MATLAB program which
+      seeks the optimal control function for
+      a one dimensional system which is represented using the finite
+      element formulation;
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_legendre/pce_legendre.html">
+      PCE_LEGENDRE</a>,
+      a MATLAB program which
+      assembles the system matrix associated with a polynomal chaos expansion
+      of a 2D stochastic PDE, using Legendre polynomials;
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_diffusion/stochastic_diffusion.html">
+      STOCHASTIC_DIFFUSION</a>,
+      MATLAB functions which
+      implement several versions of a stochastic diffusivity coefficient.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Jeff Borggaard, Catalin Trenchea, Clayton Webster.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "exact_expected_value.m">exact_expected_value.m</a>
+          returns the exact expected value of the solution and the control.
+        </li>
+        <li>
+          <a href = "f_function.m">f_function.m</a>
+          RHS function from exact coefficient Q and the exact solution U.
+        </li>
+        <li>
+          <a href = "monte_carlo.m">monte_carlo.m</a>
+          returns the physical coordinates of Monte Carlo abscissas.
+        </li>
+        <li>
+          <a href = "oned_bilinear.m">oned_bilinear.m</a>
+          integrates kernel(x) * basis function(x) * test function(x).
+        </li>
+        <li>
+          <a href = "oned_f_int.m">oned_f_int.m</a>
+          computes the integral of f(x) times a test function.
+        </li>
+        <li>
+          <a href = "oned_gauss.m">oned_gauss.m</a>
+          sets Gauss integration points on (-1,1).
+        </li>
+        <li>
+          <a href = "oned_mesh.m">oned_mesh.m</a>
+          generates a mesh with a prescribed density.
+          This routine returns elements of the same type as
+          xb, e_connb (linear or quadratic)
+        </li>
+        <li>
+          <a href = "oned_shape.m">oned_shape.m</a>
+          computes test functions and derivatives for a Lagrange
+          C0 element given element coordinates and Gauss points.
+          (assumes all nodes are uniformly distributed in the
+          element.)
+        </li>
+        <li>
+          <a href = "optimal_control.m">optimal_control.m</a>
+          is a script to solve the optimal control problem.
+        </li>
+
+        <li>
+          <a href = "q_exact.m">q_exact.m</a>
+          evaluates the exact control coefficient function.
+        </li>
+        <li>
+          <a href = "u_hat.m">u_hat.m</a>
+          is the exact target function to be matched.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "optimal_control_adjoint_mc_driver.m">
+          optimal_control_adjoint_mc_driver.m</a>
+          driver for the 1D optimal control problem.
+        </li>
+        <li>
+          <a href = "optimal_control_adjoint_mc_driver_output.txt">
+          optimal_control_adjoint_mc_driver_output.txt</a>
+          the output file.
+        </li>
+        <li>
+          <a href = "figure01.png">
+          figure01.png</a>
+          output figure 1.
+        </li>
+        <li>
+          <a href = "figure02.png">
+          figure02.png</a>
+          output figure 2.
+        </li>
+        <li>
+          <a href = "figure05.png">
+          figure05.png</a>
+          output figure 5.
+        </li>
+        <li>
+          <a href = "figure06.png">
+          figure06.png</a>
+          output figure 6.
+        </li>
+        <li>
+          <a href = "figure07.png">
+          figure07.png</a>
+          output figure 7.
+        </li>
+        <li>
+          <a href = "figure08.png">
+          figure08.png</a>
+          output figure 8.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 18 May 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

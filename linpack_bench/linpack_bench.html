@@ -1,0 +1,270 @@
+<html>
+
+  <head>
+    <title>
+      LINPACK_BENCH - The LINPACK Benchmark
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPACK_BENCH <br> The LINPACK Benchmark
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPACK_BENCH</b> 
+      is a MATLAB program which 
+      carries out the LINPACK Benchmark.
+    </p>
+
+    <p>
+      The LINPACK benchmark is a test problem used to rate the performance 
+      of a computer on a simple linear algebra problem.
+    </p>
+
+    <p>
+      The test problem requires the user to set up a random dense matrix
+      <b>A</b> of size <b>N</b> = 1000, and a right hand side vector <b>B</b>
+      which is the product of <b>A</b> and a vector <b>X</b> of all 1's.  
+      The first task is to compute an LU factorization of <b>A</b>.  The 
+      second task is to use the LU factorization to solve the linear system 
+      <blockquote>
+        <b>A</b> * <b>X</b> = <b>B</b>.
+      </blockquote>
+    </p>
+
+    <p>
+      The number of floating point operations required for these two
+      tasks is roughly
+      <blockquote>
+        ops = 2 * N*N*N / 3 + 2 * N * N,
+      </blockquote>
+      therefore, the "MegaFLOPS" rating, or millions of floating point
+      operations per second, can be found as
+      <blockquote>
+        mflops = ops / ( cpu * 1000000 ).
+      </blockquote>
+    </p>
+
+    <p>
+      On a given computer, if you run the benchmark for a sequence of increasing
+      values of N, the behavior of the MegaFLOPS rating will vary as you pass through
+      three main zones of behavior:
+      <ul>
+        <li>
+          a <i>rising</i> zone, as both the local cache memory and the processor
+          are not challenged.
+        </li>
+        <li>
+          a <i>flat</i> zone, where the processor is challenged, that is, it is
+          performing at top efficiency.
+        </li>
+        <li>
+          a <i>decaying</i> zone, where the local cache memory is also challenged,
+          that is the matrix is so large that the cache is not big enough to
+          keep the necessary data close enough to the processor to keep it running
+          at top speed.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <table border="1">
+        <tr>
+          <th>Language</th><th>Precision</th><th>Type</th><th>Machine</th><th>Comment</t><th>MegaFLOPS</th>
+        </tr>
+        <tr>
+          <td>MATLAB</td><td>Double</td><td>Real</td><td>Prism</td><td>&nbsp;</td><td>22</td>
+        </tr>
+        <tr>
+          <td>MATLAB</td><td>Double</td><td>Real</td><td>DHCP95 (Apple G95)</td><td>&nbsp;</td><td>20</td>
+        </tr>
+        <tr>
+          <td>MATLAB</td><td>Double</td><td>Real</td><td>PC</td><td>&nbsp;</td><td>9</td>
+        </tr>
+      </table>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINPACK_BENCH</b> is available in
+      <a href = "../../c_src/linpack_bench/linpack_bench.html">a C version</a> and
+      <a href = "../../cpp_src/linpack_bench/linpack_bench.html">a C++ version</a> and
+      <a href = "../../f77_src/linpack_bench/linpack_bench.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/linpack_bench/linpack_bench.html">a FORTRAN90 version</a> and
+      <a href = "../../j_src/linpack_bench/linpack_bench.html">a JAVA version</a> and
+      <a href = "../../m_src/linpack_bench/linpack_bench.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      supplies the solvers used by <b>LINPACK_BENCH</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_bench_backslash/linpack_bench_backslash.html">
+      LINPACK_BENCH_BACKSLASH</a>,
+      a MATLAB program which
+      measures the time taken by <b>LINPACK</b> to solve a particular linear system,
+      and uses MATLAB's builtin "backslash" operator to do the solving.
+    </p>
+
+    <p>
+      <a href = "../../f_src/matmul/matmul.html">
+      MATMUL</a>,
+      a FORTRAN90 program which 
+      is an interactive matrix multiplication benchmark program.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/mdbnch/mdbnch.html">
+      MDBNCH</a>,
+      a FORTRAN77 program which 
+      is a benchmark code for a molecular dynamics calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/memory_test/memory_test.html">
+      MEMORY_TEST</a>,
+      a MATLAB program which
+      declares and uses a sequence of larger
+      and larger vectors, to see how big a vector can be used on a given
+      machine and compiler.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mxm/mxm.html">
+      MXM</a>,
+      a MATLAB program which
+      sets up a matrix multiplication problem A=B*C of arbitrary size,
+      and compares the time required for IJK, IKJ, JIK, JKI, KIJ and KJI orderings
+      of the loops.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sum_million/sum_million.m">
+      SUM_MILLION</a>,
+      a MATLAB program which 
+      sums the integers from 1 to 1,000,000, as a demonstration of how
+      to rate a computer's speed;
+    </p>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      a MATLAB library which
+      demonstrates how to measure CPU time or elapsed time.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://www.netlib.org/benchmark/1000s">
+                     http://www.netlib.org/benchmark/1000s</a>
+          the LINPACK benchmark website (single precision).
+        </li>
+        <li>
+          <a href = "http://www.netlib.org/benchmark/1000d">
+                     http://www.netlib.org/benchmark/1000d</a>
+          the LINPACK benchmark website (double precision).
+        </li>
+        <li>
+          Jack Dongarra,<br>
+          Performance of Various Computers Using Standard Linear Equations Software,
+          Technical Report CS-89-85,<br>
+          Electrical Engineering and Computer Science Department,<br>
+          University of Tennessee, 2008.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          George Fishman,<br>
+          Multiplicative congruential random number generators with modulus
+          2**b: an exhaustive analysis for b = 32 and a partial analysis for b = 48,<br>
+          Mathematics of Computation,<br>
+          Volume 189, 1990, pages 331-344.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539: 
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_bench.m">linpack_bench.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_bench_dhcp95_output.txt">
+          linpack_bench_dhcp95_output.txt</a>, 
+          the output from DHCP95, an Apple G5, of about 20 MegaFLOPS.
+        </li>
+        <li>
+          <a href = "linpack_bench_pc_output.txt">
+          linpack_bench_pc_output.txt</a>, 
+          the output from a PC, of about 9 MegaFLOPS.
+        </li>
+        <li>
+          <a href = "linpack_bench_prism_output.txt">
+          linpack_bench_prism_output.txt</a>, 
+          the output from PRISM000, of about 22 MegaFLOPS.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 May 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

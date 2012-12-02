@@ -1,0 +1,438 @@
+
+	This is a Classroom License for instructional use only.
+	Research and commercial use is prohibited.
+
+MATLAB's default startup directory is: "/Users/jburkardt/Documents/MATLAB".
+Moving to preferred directory: "/Users/jburkardt/public_html/m_src".
+>> cd divdif
+>> divdif_test
+31-Oct-2011 14:19:27
+
+DIVDIF_TEST
+  MATLAB version.
+  Test the DIVDIF library.
+
+DIVDIF_TEST01
+  For a divided difference polynomial:
+  DATA_TO_DIF_DISPLAY sets up a difference table
+  and displays intermediate calculations;
+  DIF_APPEND appends a new data point;
+  DIF_ANTIDERIV computes the antiderivative;
+  DIF_DERIV_TABLE computes the derivative;
+  DIF_SHIFT_ZERO shifts all the abscissas to 0;
+  DIF_VAL evaluates at a point.
+
+
+Divided difference table:
+
+          1.000000      2.000000      3.000000      4.000000
+
+  0       1.000000      4.000000      9.000000     16.000000
+  1       3.000000      5.000000      7.000000
+  2       1.000000      1.000000
+  3       0.000000
+
+  The divided difference polynomial:
+
+  p(x) =                                 1.000000
+       + ( x -       1.000000) * (       3.000000
+       + ( x -       2.000000) * (       1.000000
+       + ( x -       3.000000) * (       0.000000
+  )))
+
+  Append the data (5,25) to the table.
+
+
+  The augmented divided difference polynomial:
+
+  p(x) =                                25.000000
+       + ( x -       5.000000) * (       6.000000
+       + ( x -       1.000000) * (       1.000000
+       + ( x -       2.000000) * (      -0.000000
+       + ( x -       3.000000) * (      -0.000000
+       + ( x -       4.000000) * (      -0.000000
+  )))))
+
+  Evaluate the table at a point.
+
+
+   P(2.500000) =  6.250000
+
+  The table, rebased at 0:
+
+  p(x) =                                 0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       1.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (      -0.000000
+  )))))
+
+  The derivative:
+
+  p(x) =                                 0.000000
+       + ( x -       0.000000) * (       2.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (      -0.000000
+  ))))
+
+   P'(2.500000) =  5.000000
+
+  The antiderivative:
+
+  p(x) =                                 0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       0.333333
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (       0.000000
+       + ( x -       0.000000) * (      -0.000000
+  ))))))
+
+   (Anti)P(2.500000) =  5.208333
+
+DIVDIF_TEST02
+  Approximate Y = EXP(X) using orders 1 to 8
+  Evaluate at X = 2.500000
+  where EXP(X)=   12.182494
+
+  Order  Approximate Y     Error
+
+       1        1.000000      -11.182494
+       2        5.295705       -6.886789
+       3       10.831628       -1.350866
+       4       12.417007        0.234513
+       5       12.076491       -0.106003
+       6       12.252022        0.069528
+       7       12.126351       -0.056143
+       8       12.234320        0.051826
+
+DIVDIF_TEST04
+  DIF_BASIS computes Lagrange basis polynomials
+  in difference form.
+
+
+  The base points:
+
+     1      1.000000
+     2      2.000000
+     3      3.000000
+     4      4.000000
+     5      5.000000
+
+  The table of difference vectors defining the basis
+  polynomials.  Each column represents a polynomial.
+
+        1.000000      0.000000      0.000000      0.000000      0.000000
+       -1.000000      1.000000      0.000000      0.000000      0.000000
+        0.500000     -1.000000      0.500000      0.000000      0.000000
+       -0.166667      0.500000     -0.500000      0.166667      0.000000
+        0.041667     -0.166667      0.250000     -0.166667      0.041667
+
+  Evaluate basis polynomial #3 at a set of points.
+
+      X        Y
+
+        1.000000        0.000000
+        1.500000       -0.546875
+        2.000000        0.000000
+        2.500000        0.703125
+        3.000000        1.000000
+        3.500000        0.703125
+        4.000000        0.000000
+        4.500000       -0.546875
+        5.000000        0.000000
+
+DIVDIF_TEST05
+  POLY_BASIS computes Lagrange basis polynomials
+  in standard form.
+
+        5.000000    -10.000000     10.000000     -5.000000      1.000000
+       -6.416667     17.833333    -19.500000     10.166667     -2.083333
+        2.958333     -9.833333     12.250000     -6.833333      1.458333
+       -0.583333      2.166667     -3.000000      1.833333     -0.416667
+        0.041667     -0.166667      0.250000     -0.166667      0.041667
+
+  Basis polynomial 3 in standard form:
+
+  p(x) =        0.250000 * x^4
+         -      3.000000 * x^3
+         +     12.250000 * x^2
+         -     19.500000 * x
+         +     10.000000
+
+  Evaluate basis polynomial 3 at a set of points.
+
+      X        Y
+
+        1.000000        0.000000
+        1.500000       -0.546875
+        2.000000        0.000000
+        2.500000        0.703125
+        3.000000        1.000000
+        3.500000        0.703125
+        4.000000        0.000000
+        4.500000       -0.546875
+        5.000000        0.000000
+
+DIVDIF_TEST06
+  DIF_TO_R8POLY converts a difference table to a
+  polynomial;
+  DIF_SHIFT_ZERO shifts a divided difference
+  table to all zero abscissas;
+
+  These are equivalent operations!
+
+
+Divided difference table:
+
+          1.000000      2.000000      3.000000      4.000000
+
+  0      -2.000000      2.000000     14.000000     40.000000
+  1       4.000000     12.000000     26.000000
+  2       4.000000      7.000000
+  3       1.000000
+
+Divided difference table:
+
+          1.000000      2.000000      3.000000      4.000000
+
+  0      -2.000000      2.000000     14.000000     40.000000
+  1       4.000000     12.000000     26.000000
+  2       4.000000      7.000000
+  3       1.000000
+
+  The divided difference polynomial:
+
+  p(x) =                                -2.000000
+       + ( x -       1.000000) * (       4.000000
+       + ( x -       2.000000) * (       4.000000
+       + ( x -       3.000000) * (       1.000000
+  )))
+
+  Using DIF_SHIFT_ZERO
+
+  p(x) =        1.000000 * x^3
+         -      2.000000 * x^2
+         +      3.000000 * x
+         -      4.000000
+
+  Using DIF_TO_R8POLY
+
+  p(x) =        1.000000 * x^3
+         -      2.000000 * x^2
+         +      3.000000 * x
+         -      4.000000
+
+DIVDIF_TEST07
+  NCC_RULE computes closed Newton Cotes formulas;
+
+
+  Newton-Cotes Closed Quadrature Rule:
+
+      Abscissa       Weight
+
+    1       -1.000000        0.086921
+    2       -0.714286        0.414005
+    3       -0.428571        0.153125
+    4       -0.142857        0.345949
+    5        0.142857        0.345949
+    6        0.428571        0.153125
+    7        0.714286        0.414005
+    8        1.000000        0.086921
+
+DIVDIF_TEST08
+  NCO_RULE computes open Newton Cotes formulas.
+
+
+  Newton-Cotes Open Quadrature Rule:
+
+      Abscissa       Weight
+
+    1       -0.777778        0.797768
+    2       -0.555556       -1.251339
+    3       -0.333333        2.217411
+    4       -0.111111       -0.763839
+    5        0.111111       -0.763839
+    6        0.333333        2.217411
+    7        0.555556       -1.251339
+    8        0.777778        0.797768
+
+DIVDIF_TEST09
+  R8POLY_ANT_COF computes the coefficients of the
+  antiderivative of a polynomial;
+  R8POLY_ANT_VAL evaluates the antiderivative of
+  a polynomial;
+  R8POLY_DER_COF computes the coefficients of the
+  derivative of a polynomial;
+  R8POLY_DER_VAL evaluates the derivative of
+  a polynomial;
+  R8POLY_PRINT prints a polynomial;
+  R8POLY_VAL evaluates a polynomial.
+
+  Our initial polynomial:
+
+  p(x) =        5.000000 * x^4
+         +      4.000000 * x^3
+         +      3.000000 * x^2
+         +      2.000000 * x
+         +      1.000000
+
+  The antiderivative polynomial:
+
+  p(x) =        1.000000 * x^5
+         +      1.000000 * x^4
+         +      1.000000 * x^3
+         +      1.000000 * x^2
+         +      1.000000 * x
+
+  The derivative polynomial:
+
+  p(x) =       20.000000 * x^3
+         +     12.000000 * x^2
+         +      6.000000 * x
+         +      2.000000
+
+  Evaluate the polynomial, antiderivative and
+  derivative, using only the original polynomial
+  coefficients:
+
+     X             P(X)         Anti_P(X)     P'(X)
+
+        0.000000        1.000000        0.000000        2.000000
+        1.000000       15.000000        5.000000       40.000000
+        2.000000      129.000000       62.000000      222.000000
+
+DIVDIF_TEST10
+  ROOTS_TO_DIF computes the divided difference
+  polynomial with given roots;
+  DIF_TO_R8POLY converts it to a standard form
+  polynomial.
+
+
+  The roots:
+
+     1      3.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x
+         -      3.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^2
+         -      4.000000 * x
+         +      3.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+     3      2.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^3
+         -      6.000000 * x^2
+         +     11.000000 * x
+         -      6.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+     3      2.000000
+     4      4.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^4
+         -     10.000000 * x^3
+         +     35.000000 * x^2
+         -     50.000000 * x
+         +     24.000000
+
+DIVDIF_TEST11
+  ROOTS_TO_R8POLY computes polynomial coefficients
+    from roots.
+
+
+  The roots:
+
+     1      3.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x
+         -      3.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^2
+         -      4.000000 * x
+         +      3.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+     3      2.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^3
+         -      6.000000 * x^2
+         +     11.000000 * x
+         -      6.000000
+
+  The roots:
+
+     1      3.000000
+     2      1.000000
+     3      2.000000
+     4      4.000000
+
+  The polynomial:
+
+  p(x) =        1.000000 * x^4
+         -     10.000000 * x^3
+         +     35.000000 * x^2
+         -     50.000000 * x
+         +     24.000000
+
+DIVDIF_TEST12
+  R8POLY_SHIFT shifts polynomial coefficients.
+
+  Polynomial coefficients for argument X
+
+    1        6.000000
+    2       -1.000000
+    3        2.000000
+
+  SCALE = 2.000000
+  SHIFT = 3.000000
+
+  Polynomial coefficients for argument
+    Z = SCALE * X + SHIFT
+
+    1       12.000000
+    2       -3.500000
+    3        0.500000
+
+DIVDIF_TEST
+  Normal end of execution.
+
+31-Oct-2011 14:19:27
+>> 

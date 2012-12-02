@@ -1,0 +1,2016 @@
+<html>
+
+  <head>
+    <title>
+      STROUD - Numerical Integration in M Dimensions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      STROUD <br> Numerical Integration<br> in M Dimensions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STROUD</b> 
+      is a MATLAB library which
+      implements multidimensional quadrature rules of Arthur Stroud.
+    </p>
+
+    <p>
+      A few other rules have been collected as well, 
+      particularly for quadrature over the interior of a triangle, which is 
+      useful in finite element calculations.
+    </p>
+
+    <p>
+      Arthur Stroud published his vast collection of quadrature formulas
+      for multidimensional regions in 1971.  In a few cases, he printed 
+      sample FORTRAN77 programs to compute these integrals.  Integration 
+      regions included:
+      <ul>
+        <li>
+          <b>C2</b>, the interior of the square;
+        </li>
+        <li>
+          <b>C3</b>, the interior of the cube;
+        </li>
+        <li>
+          <b>CN</b>, the interior of the N-dimensional hypercube; 
+        </li>
+        <li>
+          <b>CN:C2</b>, a 3-dimensional pyramid;
+        </li>
+        <li>
+          <b>CN:S2</b>, a 3-dimensional cone;
+        </li>
+        <li>
+          <b>CN_SHELL</b>, the region contained between two concentric 
+          N-dimensional hypercubes;
+        </li>
+        <li>
+          <b>ELP</b>, the interior of the 2-dimensional ellipse with
+          weight function 1/sqrt((x-c)^2+y^2)/(sqrt((x+c)^2+y^2);
+        </li>
+        <li>
+          <b>EN_R</b>, all of N-dimensional space, with the weight function:<br>
+          w(x) = exp ( - sqrt ( sum ( 1 <= i < n ) x(i)^2 ) );
+        </li>
+        <li>
+          <b>EN_R2</b>, all of N-dimensional space, with the Hermite weight function:
+          w(x) = product ( 1 <= i <= n ) exp ( - x(i)^2 );
+        </li>
+        <li>
+          <b>GN</b>, the interior of the N-dimensional octahedron;
+        </li>
+        <li>
+          <b>H2</b>, the interior of the 2-dimensional hexagon;
+        </li>
+        <li>
+          <b>PAR</b>, the first parabolic region;
+        </li>
+        <li>
+          <b>PAR2</b>, the second parabolic region;
+        </li>
+        <li>
+          <b>PAR3</b>, the third parabolic region;
+        </li>
+        <li>
+          <b>S2</b>, the interior of the circle;
+        </li>
+        <li>
+          <b>S3</b>, the interior of the sphere;
+        </li>
+        <li>
+          <b>SN</b>, the interior of the N-dimensional hypersphere;
+        </li>
+        <li>
+          <b>SN_SHELL</b>, the region contained between two concentric N-dimensional hyperspheres;
+        </li>
+        <li>
+          <b>T2</b>, the interior of the triangle;
+        </li>
+        <li>
+          <b>T3</b>, the interior of the tetrahedron;
+        </li>
+        <li>
+          <b>TN</b>, the interior of the N-dimensional simplex;
+        </li>
+        <li>
+          <b>TOR3:S2</b>, the interior of a 3-dimensional torus with circular cross-section;
+        </li>
+        <li>
+          <b>TOR3:C2</b>, the interior of a 3-dimensional torus with square cross-section;
+        </li>
+        <li>
+          <b>U2</b>, the "surface" of the circle;
+        </li>
+        <li>
+          <b>U3</b>, the surface of the sphere;
+        </li>
+        <li>
+          <b>UN</b>, the surface of the N-dimensional sphere;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      We have added a few new terms for regions:
+      <ul>
+        <li>
+          <b>CN_GEG</b>, the N dimensional hypercube [-1,+1]^N, with the Gegenbauer
+          weight function:<br>
+          w(alpha;x) = product ( 1 <= i <= n ) ( 1 - x(i)^2 )^alpha;
+        </li>
+        <li>
+          <b>CN_JAC</b>, the N dimensional hypercube [-1,+1]^N, with the Beta or
+          Jacobi weight function:<br>
+          w(alpha,beta;x) = product ( 1 <= i <= n ) ( 1 - x(i) )^alpha * ( 1 + x(i) )^beta;
+        </li>
+        <li>
+          <b>CN_LEG</b>, the N dimensional hypercube [-1,+1]^N, with the Legendre
+          weight function:<br>
+          w(x) = 1;
+        </li>
+        <li>
+          <b>EPN_GLG</b>, the positive space [0,+oo)^N, with the generalized
+          Laguerre weight function:<br>
+          w(alpha;x) = product ( 1 <= i <= n ) x(i)^alpha exp ( - x(i) );
+        </li>
+        <li>
+          <b>EPN_LAG</b>, the positive space [0,+oo)^N, with the exponential or 
+          Laguerre weight function:<br>
+          w(x) = product ( 1 <= i <= n ) exp ( - x(i) );
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>STROUD</b> is available in
+      <a href = "../../c_src/stroud/stroud.html">a C version</a> and
+      <a href = "../../cpp_src/stroud/stroud.html">a C++ version</a> and
+      <a href = "../../f77_src/stroud/stroud.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/stroud/stroud.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/stroud/stroud.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dunavant/dunavant.html">
+      DUNAVANT</a>,
+      a MATLAB library which 
+      defines Dunavant rules for quadrature on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fekete/fekete.html">
+      FEKETE</a>, 
+      a MATLAB library which 
+      defines Fekete rules for quadrature or interpolation on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/felippa/felippa.html">
+      FELIPPA</a>,
+      a MATLAB library which 
+      defines quadrature rules for lines, triangles, quadrilaterals,
+      pyramids, wedges, tetrahedrons and hexahedrons.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gm_rule/gm_rule.html">
+      GM_RULE</a>,
+      a MATLAB library which
+      defines a Grundmann-Moeller
+      rule for quadrature over a triangle, tetrahedron, or general
+      M-dimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../m_src/keast/keast.html">
+      KEAST</a>,
+      a MATLAB library which 
+      defines quadrature rules for a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyness_rule/lyness_rule.html">
+      LYNESS_RULE</a>, 
+      a MATLAB library which
+      returns Lyness-Jespersen quadrature rules for the triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ncc_tetrahedron/ncc_tetrahedron.html">
+      NCC_TETRAHEDRON</a>, 
+      a MATLAB library which
+      defines Newton-Cotes closed quadrature
+      rules on a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ncc_triangle/ncc_triangle.html">
+      NCC_TRIANGLE</a>, 
+      a MATLAB library which 
+      defines Newton-Cotes closed quadrature rules on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nco_tetrahedron/nco_tetrahedron.html">
+      NCO_TETRAHEDRON</a>, 
+      a MATLAB library which 
+      defines Newton-Cotes open quadrature rules on a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nco_triangle/nco_triangle.html">
+      NCO_TRIANGLE</a>, 
+      a MATLAB library which 
+      defines Newton-Cotes open quadrature rules on a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which 
+      demonstrates how to measure the
+      polynomial exactness of a multidimensional quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>, 
+      a MATLAB library which
+      numerically estimates integrals in multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>, 
+      a MATLAB program which
+      can create a multidimensional quadrature rule as a product of
+      one dimensional rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_rule/pyramid_rule.html">
+      PYRAMID_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a pyramid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>, 
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over various 1D intervals or multidimensional hypercubes.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_tet/quadrature_rules_tet.html">
+      QUADRATURE_RULES_TET</a>, 
+      a dataset directory which
+      defines various quadrature
+      rules on tetrahedrons.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_tri/quadrature_rules_tri.html">
+      QUADRATURE_RULES_TRI</a>, 
+      a dataset directory which
+      contains quadrature rules which
+      can be applied to triangular regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_test/quadrature_test.html">
+      QUADRATURE_TEST</a>, 
+      a MATLAB program which 
+      reads the definition of a 
+      multidimensional quadrature rule from three files, applies
+      the rule to a number of test integrals, and prints the
+      results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules on a
+      variety of intervals with different weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule_fast/quadrule_fast.html">
+      QUADRULE_FAST</a> 
+      a MATLAB library which
+      defines efficient versions of a few 1D quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>, 
+      a dataset directory which 
+      contains sets of points on a sphere which can be used for
+      quadrature rules of a known precision;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_nint/test_nint.html">
+      TEST_NINT</a>,
+      a MATLAB library which
+      contains functions that can be used to test N-dimensional
+      quadrature routines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_tri_int/test_tri_int.html">
+      TEST_TRI_INT</a>,
+      a MATLAB library which
+      can be used to test algorithms
+      for quadrature over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../datasets/tetrahedrons/tetrahedrons.html">
+      TETRAHEDRONS</a>, 
+      a dataset directory which 
+      contains examples of tetrahedrons; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      works with triangulations and
+      includes some quadrature rules on triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wandzura/wandzura.html">
+      WANDZURA</a>,
+      a MATLAB library which 
+      defines Wandzura rules for quadrature on a triangle.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          Jarle Berntsen, Terje Espelid,<br>
+          Algorithm 706:
+          DCUTRI: an algorithm for adaptive cubature 
+          over a collection of triangles,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 18, Number 3, September 1992, pages 329-342.
+        </li>
+        <li>      
+          SF Bockman,<br>
+          Generalizing the Formula for Areas of Polygons to Moments,<br>
+          American Mathematical Society Monthly,<br>
+          Volume 96, Number 2, February 1989, pages 131-132.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673,<br>
+          LC: QA76.9.C65.B73.
+        </li>
+        <li>
+          William Cody, Kenneth Hillstrom,<br>
+          Chebyshev Approximations for the Natural Logarithm of the 
+          Gamma Function,
+          Mathematics of Computation,<br>
+          Volume 21, Number 98, April 1967, pages 198-203.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Elise deDoncker, Ian Robinson,<br>
+          Algorithm 612:
+          Integration over a Triangle Using Nonlinear Extrapolation,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 10, Number 1, March 1984, pages 17-22.
+        </li>
+        <li>
+          Hermann Engels,<br>
+          Numerical Quadrature and Cubature,<br>
+          Academic Press, 1980,<br>
+          ISBN: 012238850X,<br>
+          LC: QA299.3E5.
+        </li>
+        <li>
+          Thomas Ericson, Victor Zinoviev,<br>
+          Codes on Euclidean Spheres,<br>
+          Elsevier, 2001,<br>
+          ISBN: 0444503293,<br>
+          LC: QA166.7E75
+        </li>
+        <li>
+          Carlos Felippa,<br>
+          A compendium of FEM integration formulas for symbolic work,<br>
+          Engineering Computation,<br>
+          Volume 21, Number 8, 2004, pages 867-890.
+        </li>
+        <li>
+          Gerald Folland,<br>
+          How to Integrate a Polynomial Over a Sphere,<br>
+          American Mathematical Monthly,<br>
+          Volume 108, Number 5, May 2001, pages 446-448.
+        </li>
+        <li>
+          Bennett Fox,<br>
+          Algorithm 647:
+          Implementation and Relative Efficiency of Quasirandom
+          Sequence Generators,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 12, Number 4, December 1986, pages 362-376.
+        </li>
+        <li>
+          Axel Grundmann, Michael Moeller,<br>
+          Invariant Integration Formulas for the N-Simplex 
+          by Combinatorial Methods,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 15, Number 2, April 1978, pages 282-290.
+        </li>
+        <li>
+          John Harris, Horst Stocker,<br>
+          Handbook of Mathematics and Computational Science,<br>
+          Springer, 1998,<br>
+          ISBN: 0-387-94746-9,<br>
+          LC: QA40.S76.
+        </li>
+        <li>
+          Patrick Keast,<br>
+          Moderate Degree Tetrahedral Quadrature Formulas,<br>
+          Computer Methods in Applied Mechanics and Engineering,<br>
+          Volume 55, Number 3, May 1986, pages 339-348.
+        </li>
+        <li>
+          Vladimir Krylov,<br>
+          Approximate Calculation of Integrals,<br>
+          Dover, 2006,<br>
+          ISBN: 0486445798,<br>
+          LC: QA311.K713.
+        </li>
+        <li>
+          Dirk Laurie,<br>
+          Algorithm 584:
+          CUBTRI, Automatic Cubature Over a Triangle,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 8, Number 2, 1982, pages 210-218.
+        </li>
+        <li>
+          Frank Lether,<br>
+          A Generalized Product Rule for the Circle,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 8, Number 2, June 1971, pages 249-253.
+        </li>
+        <li>
+          James Lyness, Dennis Jespersen,<br>
+          Moderate Degree Symmetric Quadrature Rules for the Triangle,<br>
+          Journal of the Institute of Mathematics and its Applications,<br>
+          Volume 15, Number 1, February 1975, pages 19-32.
+        </li>
+        <li>
+          James Lyness, BJJ McHugh,<br>
+          Integration Over Multidimensional Hypercubes, 
+          A Progressive Procedure,<br>
+          The Computer Journal,<br>
+          Volume 6, 1963, pages 264-270.
+        </li>
+        <li>
+          AD McLaren,<br>
+          Optimal Numerical Integration on a Sphere,<br>
+          Mathematics of Computation,<br>
+          Volume 17, Number 84, October 1963, pages 361-383.
+        </li> 
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          William Peirce,<br>
+          Numerical Integration Over the Planar Annulus,<br>
+          Journal of the Society for Industrial and Applied Mathematics,<br>
+          Volume 5, Number 2, June 1957, pages 66-73.
+        </li>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Arthur Stroud,<br>
+          Approximate Calculation of Multiple Integrals,<br>
+          Prentice Hall, 1971,<br>
+          ISBN: 0130438936,<br>
+          LC: QA311.S85.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Stephen Wandzura, Hong Xiao,<br>
+          Symmetric Quadrature Rules on a Triangle,<br>
+          Computers and Mathematics with Applications,<br>
+          Volume 45, 2003, pages 1829-1840.
+        </li>
+        <li>
+          Stephen Wolfram,<br>
+          The Mathematica Book,<br>
+          Fourth Edition,<br>
+          Cambridge University Press, 1999,<br>
+          ISBN: 0-521-64314-7,<br>
+          LC: QA76.95.W65.
+        </li>
+        <li>
+          Dongbin Xiu,<br>
+          Numerical integration formulas of degree two,<br>
+          Applied Numerical Mathematics,<br>
+          Volume 58, 2008, pages 1515-1520.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+        <li>
+          Daniel Zwillinger, editor,<br>
+          CRC Standard Mathematical Tables and Formulae,<br>
+          30th Edition,<br>
+          CRC Press, 1996,<br>
+          ISBN: 0-8493-2479-3,<br>
+          LC: QA47.M315.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "arc_sine.m">arc_sine.m</a>, 
+          computes the inverse sine of an angle;
+        </li>
+        <li>
+          <a href = "ball_f1_nd.m">ball_f1_nd.m</a>, 
+          approximates an integral in a ball in ND;
+        </li>
+        <li>
+          <a href = "ball_f3_nd.m">ball_f3_nd.m</a>, 
+          approximates an integral in a ball in ND;
+        </li>
+        <li>
+          <a href = "ball_monomial_nd.m">ball_monomial_nd.m</a>, 
+          approximates the integral of a monomial in a ball in ND;
+        </li>
+        <li>
+          <a href = "ball_unit_07_3d.m">ball_unit_07_3d.m</a>, 
+          approximates an integral in the unit ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_unit_14_3d.m">ball_unit_14_3d.m</a>, 
+          approximates an integral in the unit ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_unit_15_3d.m">ball_unit_15_3d.m</a>, 
+          approximates an integral in the unit ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_unit_f1_nd.m">ball_unit_f1_nd.m</a>, 
+          approximates an integral in the unit ball in ND;
+        </li>
+        <li>
+          <a href = "ball_unit_f3_nd.m">ball_unit_f3_nd.m</a>, 
+          approximates an integral in the unit ball in ND;
+        </li>
+        <li>
+          <a href = "ball_unit_volume_3d.m">ball_unit_volume_3d.m</a>, 
+          returns the volume of the unit ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_unit_volume_nd.m">ball_unit_volume_nd.m</a>, 
+          returns the volume of the unit ball in ND;
+        </li>
+        <li>
+          <a href = "ball_volume_3d.m">ball_volume_3d.m</a>, 
+          returns the volume of a ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_volume_nd.m">ball_volume_nd.m</a>, 
+          returns the volume of a ball in ND;
+        </li>
+        <li>
+          <a href = "c1_geg_monomial_integral.m">c1_geg_monomial_integral.m</a>
+          integral of a monomial with Gegenbauer weight over C1.
+        </li>
+        <li>
+          <a href = "c1_jac_monomial_integral.m">c1_jac_monomial_integral.m</a>
+          integral of a monomial with Jacobi weight over C1.
+        </li>
+        <li>
+          <a href = "c1_leg_monomial_integral.m">c1_leg_monomial_integral.m</a>
+          integral of a monomial with Legendre weight over C1.
+        </li>
+        <li>
+          <a href = "circle_annulus.m">
+          circle_annulus.m</a>, 
+          approximates an integral inside a circular annulus in 2D;
+        </li>
+        <li>
+          <a href = "circle_annulus_area_2d.m">
+          circle_annulus_area_2d.m</a>, 
+          returns the area of a circular annulus in 2D;
+        </li>
+        <li>
+          <a href = "circle_annulus_sector.m">
+          circle_annulus_sector.m</a>, 
+          approximates an integral in a sector of a circular annulus in 2D;
+        </li>
+        <li>
+          <a href = "circle_annulus_sector_area_2d.m">
+          circle_annulus_sector_area_2d.m</a>, 
+          returns the area of a sector of a circular annulus in 2D;
+        </li>
+        <li>
+          <a href = "circle_area_2d.m">
+          circle_area_2d.m</a>, 
+          returns the area of a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_cap_area_2d.m">
+          circle_cap_area_2d.m</a>,
+          computes the area of a circle cap in 2D.
+        </li>
+        <li>
+          <a href = "circle_cum.m">
+          circle_cum.m</a>, 
+          computes an integral on the circumference of a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_rt_set.m">
+          circle_rt_set.m</a>, 
+          sets an R-Theta product quadrature rule for inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_rt_size.m">
+          circle_rt_size.m</a>, 
+          sizes an R-Theta product quadrature rule for inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_rt_sum.m">
+          circle_rt_sum.m</a>, 
+          applies an R-Theta product quadrature rule inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_sector.m">
+          circle_sector.m</a>, 
+          approximates an integral in a circular sector in 2D;
+        </li>
+        <li>
+          <a href = "circle_sector_area_2d.m">
+          circle_sector_area_2d.m</a>, 
+          returns the area of a circular sector in 2D;
+        </li>
+        <li>
+          <a href = "circle_triangle_area_2d.m">
+          circle_triangle_area_2d.m</a>, 
+          returns the area of a circular triangle in 2D;
+        </li>
+        <li>
+          <a href = "circle_xy_set.m">
+          circle_xy_set.m</a>, 
+          sets an XY quadrature rule for inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_xy_size.m">
+          circle_xy_size.m</a>, 
+          sizes an XY product quadrature rule for inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_xy_sum.m">
+          circle_xy_sum.m</a>, 
+          applies an XY quadrature rule inside a circle in 2D;
+        </li>
+        <li>
+          <a href = "cn_geg_00_1.m">cn_geg_00_1.m</a>
+          implements the midpoint rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_01_1.m">cn_geg_01_1.m</a> 
+          implements a precision 1 rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_02_xiu.m">cn_geg_02_xiu.m</a>
+          implements the Xiu rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_03_xiu.m">cn_geg_03_xiu.m</a>
+          implements the Xiu rule for region CN_GEG.
+        </li>
+        <li>
+          <a href = "cn_geg_monomial_integral.m">cn_geg_monoial_integral.m</a>
+          integral of a monomial with Gegenbauer weight over CN.
+        </li>
+        <li>
+          <a href = "cn_jac_00_1.m">cn_jac_00_1.m</a>
+          implements the midpoint rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_01_1.m">cn_jac_01_1.m</a> 
+          implements a precision 1 rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_02_xiu.m">cn_jac_02_xiu.m</a>
+          implements the Xiu rule for region CN_JAC.
+        </li>
+        <li>
+          <a href = "cn_jac_monomial_integral.m">cn_jac_monoial_integral.m</a>
+          integral of a monomial with Jacobi weight over CN.
+        </li>
+        <li>
+          <a href = "cn_leg_01_1.m">cn_leg_01_1.m</a> 
+          implements the midpoint rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_02_xiu.m">cn_leg_02_xiu.m</a>
+          implements the Xiu rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_03_1.m">cn_leg_03_1.m</a>
+          implements the Stroud CN:3-1 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_03_xiu.m">cn_leg_03_xiu.m</a>
+          implements the Xiu rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_05_1.m">cn_leg_05_1.m</a>
+          implements the Stroud CN:5-1 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_05_2.m">cn_leg_05_2.m</a>
+          implements the Stroud CN:5-2 rule for region CN_LEG.
+        </li>
+        <li>
+          <a href = "cn_leg_monomial_integral.m">cn_leg_monoial_integral.m</a>
+          integral of a monomial with Legendre weight over CN.
+        </li>
+        <li>
+          <a href = "cone_unit_3d.m">
+          cone_unit_3d.m</a>, 
+          approximates an integral inside a cone in 3D;
+        </li>
+        <li>
+          <a href = "cone_volume_3d.m">
+          cone_volume_3d.m</a>, 
+          returns the volume of a cone in 3D;
+        </li>
+        <li>
+          <a href = "cube_shell_nd.m">
+          cube_shell_nd.m</a>, 
+          aproximates an integral inside a cubic shell in ND;
+        </li>
+        <li>
+          <a href = "cube_shell_volume_nd.m">
+          cube_shell_volume_nd.m</a>, 
+          returns the volume of a cubic shell in ND;
+        </li>
+        <li>
+          <a href = "cube_unit_3d.m">cube_unit_3d.m</a>, 
+          approximates an integral inside the unit cube in 3D;
+        </li>
+        <li>
+          <a href = "cube_unit_nd.m">cube_unit_nd.m</a>, 
+          approximates an integral inside the unit cube in ND;
+        </li>
+        <li>
+          <a href = "cube_unit_volume_nd.m">cube_unit_volume_nd.m</a>, 
+          returns the volume of the unit cube in ND;
+        </li>
+        <li>
+          <a href = "ellipse_area_2d.m">ellipse_area_2d.m</a>, 
+          computes the area of an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_circumference_2d.m">ellipse_circumference_2d.m</a>, 
+          computes the circumference of an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_eccentricity_2d.m">ellipse_eccentricity_2d.m</a>, 
+          computes the eccentricity of an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipsoid_volume_3d.m">ellipsoid_volume_3d.m</a>, 
+          computes the volume of an ellipsoid in 3D;
+        </li>
+        <li>
+          <a href = "en_r2_01_1.m">en_r2_01_1.m</a>
+          a precision 1 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_02_xiu.m">en_r2_02_xiu.m</a>
+          a precision 2 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_03_1.m">en_r2_03_1.m</a>
+          a precision 3 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_03_2.m">en_r2_03_2.m</a>
+          a precision 3 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_03_xiu.m">en_r2_03_xiu.m</a>
+          a precision 3 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_1.m">en_r2_05_1.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_2.m">en_r2_05_2.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_3.m">en_r2_05_3.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_4.m">en_r2_05_4.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_5.m">en_r2_05_5.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_05_6.m">en_r2_05_6.m</a>
+          a precision 5 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_07_1.m">en_r2_07_1.m</a>
+          a precision 7 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_07_2.m">en_r2_07_2.m</a>
+          a precision 7 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_07_3.m">en_r2_07_3.m</a>
+          a precision 7 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_09_1.m">en_r2_09_1.m</a>
+          a precision 9 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_11_1.m">en_r2_11_1.m</a>
+          a precision 11 rule for EN_R2.
+        </li>
+        <li>
+          <a href = "en_r2_monomial_integral.m">en_r2_monomial_integral.m</a>
+          evaluates the exact integral of a monomial in Stroud's EN_R2 region.
+        </li>
+        <li>
+          <a href = "ep1_glg_monomial_integral.m">ep1_glg_monomial_integral.m</a>
+          integral of monomial with generalized Laguerre weight on EP1.
+        </li>
+        <li>
+          <a href = "ep1_lag_monomial_integral.m">ep1_lag_monomial_integral.m</a>
+          integral of monomial with Laguerre weight on EP1.
+        </li>
+        <li>
+          <a href = "epn_glg_00_1.m">epn_glg_001.m</a>
+          implements the midpoint rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_01_1.m">epn_glg_01_1.m</a>
+          implements a precision 1 rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_02_xiu.m">epn_glg_02_xiu.m</a>
+          implements the Xiu rule for region EPN_GLG.
+        </li>
+        <li>
+          <a href = "epn_glg_monomial_integral.m">epn_glg_monomial_integral.m</a>
+          integral of monomial with generalized Laguerre weight on EPN.
+        </li>
+        <li>
+          <a href = "epn_lag_00_1.m">epn_lag_001.m</a>
+          implements the midpoint rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_01_1.m">epn_lag_01_1.m</a>
+          implements a precision 1 rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_02_xiu.m">epn_lag_02_xiu.m</a>
+          implements the Xiu rule for region EPN_LAG.
+        </li>
+        <li>
+          <a href = "epn_lag_monomial_integral.m">epn_lag_monomial_integral.m</a>
+          integral of monomial with Laguerre weight on EPN.
+        </li>
+        <li>
+          <a href = "gw_02_xiu.m">gw_02_xiu.m</a>
+          implements the Golub-Welsch version of the Xiu rule.
+        </li>
+        <li>
+          <a href = "hexagon_area_2d.m">hexagon_area_2d.m</a>, 
+          returns the area of a regular hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_sum.m">hexagon_sum.m</a>, 
+          applies a quadrature rule for a hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_unit_area_2d.m">hexagon_unit_area_2d.m</a>, 
+          returns the area of the unit hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_unit_set.m">hexagon_unit_set.m</a>, 
+          sets a quadrature rule for the unit hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_unit_size.m">hexagon_unit_size.m</a>, 
+          sizes a quadrature rule for the unit hexagon in 2D;
+        </li>
+        <li>
+          <a href = "i4_factorial.m">i4_factorial.m</a>, 
+          computes N! for small values of N;
+        </li>
+        <li>
+          <a href = "i4_factorial2.m">i4_factorial2.m</a>, 
+          computes N!!, the double factorial function;
+        </li>
+        <li>
+          <a href = "ksub_next2.m">ksub_next2.m</a>, 
+          computes the next K subset of an N set;
+        </li>
+        <li>
+          <a href = "legendre_set.m">legendre_set.m</a>, 
+          sets a Gauss-Legendre rule to integrate F(X)
+          on [-1,1];
+        </li>
+        <li>
+          <a href = "legendre_set_x1.m">legendre_set_x1.m</a>, 
+          sets a Gauss-Legendre rule to integrate ( 1 + X ) * F(X)
+          on [-1,1];
+        </li>
+        <li>
+          <a href = "legendre_set_x2.m">legendre_set_x2.m</a>, 
+          sets a Gauss-Legendre rule to integrate ( 1 + X )**2 * F(X)
+          on [-1,1];
+        </li>
+        <li>
+          <a href = "lens_half_area_2d.m">
+          lens_half_area_2d.m</a>, 
+          returns the area of a circular half lens in 2D;
+        </li>
+        <li>
+          <a href = "lens_half_h_area_2d.m">
+          lens_half_area_h_2d.m</a>, 
+          returns the area of a circular half lens in 2D;
+        </li>
+        <li>
+          <a href = "lens_half_w_area_2d.m">
+          lens_half_area_w_2d.m</a>, 
+          returns the area of a circular half lens in 2D;
+        </li>
+        <li>
+          <a href = "monomial_value.m">
+          monomial_value.m</a>, 
+          evaluates a monomial given the exponents.
+        </li>
+        <li>
+          <a href = "octahedron_unit_nd.m">octahedron_volume_nd.m</a>, 
+          approximates an integral in the unit octahedron in ND;
+        </li>
+        <li>
+          <a href = "octahedron_unit_volume_nd.m">octahedron_unit_volume_nd.m</a>, 
+          returns the volume of the unit octahedron in ND;
+        </li>
+        <li>
+          <a href = "parallelipiped_volume_3d.m">parallelipiped_volume_3d.m</a>, 
+          returns the volume of a parallelipiped in 3D;
+        </li>
+        <li>
+          <a href = "parallelipiped_volume_nd.m">parallelipiped_volume_nd.m</a>, 
+          returns the volume of a parallelipiped in ND;
+        </li>
+        <li>
+          <a href = "polygon_1_2d.m">polygon_1_2d.m</a>, 
+          integrates the function 1 over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_x_2d.m">polygon_x_2d.m</a>, 
+          integrates the function X over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_xx_2d.m">polygon_xx_2d.m</a>, 
+          integrates the function X^2 over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_xy_2d.m">polygon_xy_2d.m</a>, 
+          integrates the function X*Y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_y_2d.m">polygon_y_2d.m</a>, 
+          integrates the function Y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_yy_2d.m">polygon_yy_2d.m</a>, 
+          integrates the function Y*Y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "pyramid_unit_o01_3d.m">pyramid_unit_o01_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o05_3d.m">pyramid_unit_o05_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o06_3d.m">pyramid_unit_o06_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o08_3d.m">pyramid_unit_o08_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o08b_3d.m">pyramid_unit_o08b_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o09_3d.m">pyramid_unit_o09_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o13_3d.m">pyramid_unit_o13_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o18_3d.m">pyramid_unit_o18_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o27_3d.m">pyramid_unit_o27_3d.m</a>,
+          approximates an integral inside a unit pyramid in 3d.
+        </li>
+        <li>
+          <a href = "pyramid_unit_o48_3d.m">pyramid_unit_o48_3d.m</a>, 
+          approximates an integral inside a unit pyramid in 3D;
+        </li>
+        <li>
+          <a href = "pyramid_unit_monomial_3d.m">pyramid_unit_monomial_3d.m</a>, 
+          returns the exact integral of a monomial in a unit pyramid in 3D;
+        </li>
+        <li>
+          <a href = "pyramid_unit_volume_3d.m">pyramid_unit_volume_3d.m</a>, 
+          returns the volume of a unit pyramid in 3D;
+        </li>
+        <li>
+          <a href = "pyramid_volume_3d.m">pyramid_volume_3d.m</a>, 
+          returns the volume of a pyramid in 3D;
+        </li>
+        <li>
+          <a href = "qmdpt.m">qmdpt.m</a>, 
+          carries out product midpoint quadrature inside the unit cube in ND;
+        </li>
+        <li>
+          <a href = "qmult_1d.m">qmult_1d.m</a>, 
+          approximates the integral of a function over an interval in 1D;
+        </li>
+        <li>
+          <a href = "qmult_2d.m">qmult_2d.m</a>, 
+          approximates the integral of a function over a region with
+          varying Y dimensions in 2D;
+        </li>
+        <li>
+          <a href = "qmult_3d.m">qmult_3d.m</a>, 
+          approximates the integral of a function over a region with
+          varying Y and Z dimensions in 3D;
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>, 
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>, 
+          returns the R8 machine precision;
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>
+          evaluates the factorial function.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>, 
+          returns a "huge" R8;
+        </li>
+        <li>
+          <a href = "r8_hyper_2f1.m">r8_hyper_2f1.m</a>
+          evaluates the hypergeometric function 2F1(A,B,C,X).
+        </li>
+        <li>
+          <a href = "r8_mop.m">
+          r8_mop.m</a>
+          returns the I-th power of -1 as an R8 value.
+        </li>
+        <li>
+          <a href = "r8_psi.m">r8_psi.m</a>
+          evaluates the function Psi(X).
+        </li>
+        <li>
+          <a href = "r8_swap.m">r8_swap.m</a>, 
+          swaps two R8s;
+        </li>
+        <li>
+          <a href = "r8_swap3.m">r8_swap3.m</a>, 
+          swaps three R8s;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a unit pseudorandom number R8;
+        </li>
+        <li>
+          <a href = "r8ge_det.m">r8ge_det.m</a>, 
+          computes the determinant of a matrix factored by R8GE_FA;
+        </li>
+        <li>
+          <a href = "r8ge_fa.m">r8ge_fa.m</a>, 
+          factors a general matrix;
+        </li>
+        <li>
+          <a href = "r8vec_even_select.m">r8vec_even_select.m</a>, 
+          returns the I-th of N even spaced R8s;
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC;
+        </li>
+        <li>
+          <a href = "rectangle_3d.m">rectangle_3d.m</a>, 
+          approximates an integral inside a rectangular block in 3D;
+        </li>
+        <li>
+          <a href = "rectangle_sub_2d.m">rectangle_sub_2d.m</a>, 
+          carries out composite quadrature in a rectangle in 2D;
+        </li>
+        <li>
+          <a href = "rule_adjust.m">rule_adjust.m</a>, 
+          maps a quadrature rule from [A,B] to [C,D];
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank;
+        </li>
+        <li>
+          <a href = "simplex_nd.m">simplex_nd.m</a>, 
+          approximates an integral in a simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_unit_01_nd.m">simplex_unit_01_nd.m</a>, 
+          approximates an integral in the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_unit_03_nd.m">simplex_unit_03_nd.m</a>, 
+          approximates an integral in the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_unit_05_nd.m">simplex_unit_05_nd.m</a>, 
+          approximates an integral in the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_unit_05_2_nd.m">simplex_unit_05_2_nd.m</a>, 
+          approximates an integral in the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_unit_volume_nd.m">simplex_unit_volume_nd.m</a>, 
+          returns the volume of the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_volume_nd.m">simplex_volume_nd.m</a>, 
+          returns the volume of a simplex in ND;
+        </li>
+        <li>
+          <a href = "sin_power_int.m">sin_power_int.m</a>, 
+          computes the sine power integral;
+        </li>
+        <li>
+          <a href = "sphere_05_nd.m">sphere_05_nd.m</a>, 
+          approximates an integral on the surface of a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_07_1_nd.m">sphere_07_1_nd.m</a>, 
+          approximates an integral on the surface of a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_area_3d.m">sphere_area_3d.m</a>, 
+          computes the surface area of a sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_area_nd.m">sphere_area_nd.m</a>, 
+          computes the surface area of a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_2d.m">sphere_cap_area_2d.m</a>, 
+          computes the surface area of a spherical cap in 2D;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_3d.m">sphere_cap_area_3d.m</a>, 
+          computes the surface area of a spherical cap in 3D;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_nd.m">sphere_cap_area_nd.m</a>, 
+          computes the surface area of a spherical cap in ND;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_2d.m">sphere_cap_volume_2d.m</a>, 
+          computes the volume of a spherical cap in 2D;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_3d.m">sphere_cap_volume_3d.m</a>, 
+          computes the volume of a spherical cap in 3D;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_nd.m">sphere_cap_volume_nd.m</a>, 
+          computes the volume of a spherical cap in ND;
+        </li>
+        <li>
+          <a href = "sphere_k.m">sphere_k.m</a>, 
+          returns a factor useful in spherical calculations;
+        </li>
+        <li>
+          <a href = "sphere_monomial_int_nd.m">sphere_monomial_int_nd.m</a>, 
+          integrates a monomial over the surface of a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_shell_03_nd.m">sphere_shell_03_nd.m</a>, 
+          approximates an integral inside a spherical shell in ND;
+        </li>
+        <li>
+          <a href = "sphere_shell_volume_nd.m">sphere_shell_volume_nd.m</a>, 
+          computes the volume of a spherical shell in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_07_3d.m">sphere_unit_07_3d.m</a>, 
+          approximates an integral on the surface of the unit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_11_3d.m">sphere_unit_11_3d.m</a>, 
+          approximates an integral on the surface of the unit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_14_3d.m">sphere_unit_14_3d.m</a>, 
+          approximates an integral on the surface of the unit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_15_3d.m">sphere_unit_15_3d.m</a>, 
+          approximates an integral on the surface of the unit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_03_nd.m">sphere_unit_03_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_04_nd.m">sphere_unit_04_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_05_nd.m">sphere_unit_05_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_07_1_nd.m">sphere_unit_07_1_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_07_2_nd.m">sphere_unit_07_2_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_11_nd.m">sphere_unit_11_nd.m</a>, 
+          approximates an integral on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_area_3d.m">sphere_unit_area_3d.m</a>, 
+          computes the surface area of the unit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_area_nd.m">sphere_unit_area_nd.m</a>, 
+          computes the surface area of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_area_values.m">sphere_unit_area_values.m</a>, 
+          returns some values of the area of the unit sphere in ND.
+        </li>
+        <li>
+          <a href = "sphere_unit_monomial_nd.m">sphere_unit_monomial_nd.m</a>, 
+          integrates a monomial on the surface of the unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_volume_nd.m">sphere_unit_volume_nd.m</a>, 
+          computes the volume of the unit sphere in ND.
+        </li>
+        <li>
+          <a href = "sphere_unit_volume_values.m">sphere_unit_volume_values.m</a>, 
+          returns some values of the volume of the unit sphere in ND.
+        </li>
+        <li>
+          <a href = "sphere_volume_2d.m">sphere_volume_2d.m</a>, 
+          computes the volume of a sphere in 2D;
+        </li>
+        <li>
+          <a href = "sphere_volume_3d.m">sphere_volume_3d.m</a>, 
+          computes the volume of a sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_volume_nd.m">sphere_volume_nd.m</a>, 
+          computes the volume of a sphere in ND;
+        </li>
+        <li>
+          <a href = "square_sum.m">square_sum.m</a>, 
+          evaluates a quadrature rule for the square;
+        </li>
+        <li>
+          <a href = "square_unit_set.m">square_unit_set.m</a>, 
+          sets one of several quadrature rules for the unit square;
+        </li>
+        <li>
+          <a href = "square_unit_size.m">square_unit_size.m</a>, 
+          sizes one of several quadrature rules for the unit square;
+        </li>
+        <li>
+          <a href = "square_unit_sum.m">square_unit_sum.m</a>, 
+          evaluates a quadrature rule for the unit square;
+        </li>
+        <li>
+          <a href = "subset_gray_next.m">subset_gray_next.m</a>, 
+          generates all subsets of a set, one at a time;
+        </li>
+        <li>
+          <a href = "tetra_07.m">tetra_07.m</a>, 
+          approximates an integral inside a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_sum.m">tetra_sum.m</a>, 
+          evaluates a quadrature rule in a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_tproduct.m">tetra_tproduct.m</a>, 
+          approximates an integral inside a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_unit_set.m">tetra_unit_set.m</a>, 
+          sets one of several quadrature rules for the unit tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_unit_size.m">tetra_unit_size.m</a>, 
+          sizes one of several quadrature rules for the unit tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_unit_sum.m">tetra_unit_sum.m</a>, 
+          evaluates a quadrature rules for the unit tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetra_unit_volume.m">tetra_unit_volume.m</a>, 
+          computes the volume of the unit tetrahedron;
+        </li>
+        <li>
+          <a href = "tetra_volume.m">tetra_volume.m</a>, 
+          computes the volume of a tetrahedron;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp;
+        </li>
+        <li>
+          <a href = "torus_1.m">torus_1.m</a>, 
+          approximates an integral on the surface of a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_5s2.m">torus_5s2.m</a>, 
+          approximates an integral inside a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_6s2.m">torus_6s2.m</a>, 
+          approximates an integral inside a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_14s.m">torus_14s.m</a>, 
+          approximates an integral inside a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_area_3d.m">torus_area_3d.m</a>, 
+          returns the area of a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_square_5c2.m">torus_square_5c2.m</a>, 
+          approximates an integral in a square torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_square_14c.m">torus_square_14c.m</a>, 
+          approximates an integral in a square torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_square_area_3d.m">torus_square_area_3d.m</a>, 
+          returns the area of a square torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_square_volume_3d.m">torus_square_volume_3d.m</a>, 
+          returns the volume of a square torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_volume_3d.m">torus_volume_3d.m</a>, 
+          returns the volume of a torus in 3D;
+        </li>
+        <li>
+          <a href = "triangle_rule_adjust.m">triangle_rule_adjust.m</a>, 
+          adjusts a quadrature rule defined for a unit triangle to be used
+          on a general triangle;
+        </li>
+        <li>
+          <a href = "triangle_sub.m">triangle_sub.m</a>, 
+          carries out a quadrature rule over subdivisions of a triangle;
+        </li>
+        <li>
+          <a href = "triangle_sum.m">triangle_sum.m</a>, 
+          carries out a quadrature rule in a triangle;
+        </li>
+        <li>
+          <a href = "triangle_sum_adjusted.m">triangle_sum_adjusted.m</a>, 
+          carries out an adjusted quadrature rule in a triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_product_set.m">triangle_unit_product_set.m</a>, 
+          sets a product quadrature rule for the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_product_size.m">triangle_unit_product_size.m</a>, 
+          sizes a product quadrature rule for the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_set.m">triangle_unit_set.m</a>, 
+          sets any one of a set of quadrature rules for
+          the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_size.m">triangle_unit_size.m</a>, 
+          returns the order of any one of a set of quadrature rules for
+          the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_sum.m">triangle_unit_sum.m</a>, 
+          carries out a quadrature rule in the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_unit_volume.m">triangle_unit_volume.m</a>, 
+          returns the volume of the unit triangle;
+        </li>
+        <li>
+          <a href = "triangle_volume.m">triangle_volume.m</a>, 
+          returns the volume of a triangle;
+        </li>
+        <li>
+          <a href = "tvec_even.m">tvec_even.m</a>, 
+          computes evenly spaced angles between 0 and 2*PI;
+        </li>
+        <li>
+          <a href = "tvec_even2.m">tvec_even2.m</a>, 
+          computes evenly spaced angles between 0 and 2*PI;
+        </li>
+        <li>
+          <a href = "tvec_even3.m">tvec_even3.m</a>, 
+          computes evenly spaced angles between 0 and 2*PI;
+        </li>
+        <li>
+          <a href = "tvec_even_bracket.m">tvec_even_bracket.m</a>, 
+          computes evenly spaced angles between THETA1 and THETA2;
+        </li>
+        <li>
+          <a href = "tvec_even_bracket2.m">tvec_even_bracket2.m</a>, 
+          computes evenly spaced angles between THETA1 and THETA2;
+        </li>
+        <li>
+          <a href = "tvec_even_bracket3.m">tvec_even_bracket3.m</a>, 
+          computes evenly spaced angles between THETA1 and THETA2;
+        </li>
+        <li>
+          <a href = "vec_lex_next.m">vec_lex_next.m</a>, 
+          generates all N-vectors of integers modulo a given base;
+        </li>
+
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "stroud_test.m">stroud_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "stroud_test_output.txt">stroud_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "stroud_test01.m">stroud_test01.m</a>, 
+          tests BALL_F1_ND and BALL_F3_ND.
+        </li>
+        <li>
+          <a href = "stroud_test02.m">stroud_test02.m</a>, 
+          tests SPHERE_UNIT_MONOMIAL_ND.
+        </li>
+        <li>
+          <a href = "stroud_test03.m">stroud_test03.m</a>, 
+          tests BALL_UNIT_07_3D, BALL_UNIT_14_3D and BALL_UNIT_15_3D.
+        </li>
+        <li>
+          <a href = "stroud_test04.m">stroud_test04.m</a>, 
+          tests BALL_UNIT_F1_ND, BALL_UNIT_F3_ND.
+        </li>
+        <li>
+          <a href = "stroud_test045.m">stroud_test045.m</a>, 
+          tests BALL_UNIT_VOLUME_3D, BALL_UNIT_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test05.m">stroud_test05.m</a>, 
+          tests BALL_UNIT_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test052.m">stroud_test052.m</a>, 
+          tests BALL_VOLUME_3D, BALL_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test054.m">stroud_test054.m</a>, 
+          tests BALL_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test07.m">stroud_test07.m</a>, 
+          tests CIRCLE_ANNULUS.
+        </li>
+        <li>
+          <a href = "stroud_test08.m">stroud_test08.m</a>, 
+          tests CIRCLE_ANNULUS, CIRCLE_RT_SET, and CIRCLE_RT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test085.m">stroud_test085.m</a>, 
+          tests CIRCLE_ANNULUS_AREA_2D.
+        </li>
+        <li>
+          <a href = "stroud_test09.m">stroud_test09.m</a>, 
+          tests CIRCLE_ANNULUS_SECTOR, CIRCLE_RT_SET, and CIRCLE_RT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test10.m">stroud_test10.m</a>, 
+          tests CIRCLE_CUM.
+        </li>
+        <li>
+          <a href = "stroud_test11.m">stroud_test11.m</a>, 
+          tests LENS_HALF_AREA_2D, CIRCLE_SECTOR_AREA_2D and CIRCLE_TRIANGLE_AREA_2D.
+        </li>
+        <li>
+          <a href = "stroud_test12.m">stroud_test12.m</a>, 
+          tests LENS_HALF_AREA_2D, LENS_H_HALF_AREA_2D, LENS_W_HALF_AREA_2D.
+        </li>
+        <li>
+          <a href = "stroud_test13.m">stroud_test13.m</a>, 
+          tests CIRCLE_SECTOR and CIRCLE_SECTOR_AREA_2D.
+        </li>
+        <li>
+          <a href = "stroud_test14.m">stroud_test14.m</a>, 
+          tests CIRCLE_SECTOR, CIRCLE_RT_SET and CIRCLE_RT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test15.m">stroud_test15.m</a>, 
+          tests CIRCLE_RT_SET and CIRCLE_RT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test16.m">stroud_test16.m</a>, 
+          tests CIRCLE_XY_SET and CIRCLE_XY_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test163.m">stroud_test163.m</a>, 
+          tests the CN_GEG rules for the unit hypercube 
+          with the Gegenbauer weight.
+        </li>
+        <li>
+          <a href = "cn_geg_test.m">cn_geg_test.m</a>, 
+          tests the CN_GEG rules for the unit hypercube
+          with the Gegenbauer weight and a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test165.m">stroud_test165.m</a>, 
+          tests the CN_JAC rules for the unit hypercube 
+          with the Jacobi weight.
+        </li>
+        <li>
+          <a href = "cn_jac_test.m">cn_jac_test.m</a>, 
+          tests the CN_JAC rules for the unit hypercube
+          with the Jacobi weight and a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test167.m">stroud_test167.m</a>, 
+          tests the CN_LEG rules for the unit hypercube 
+          with the Legendre weight.
+        </li>
+        <li>
+          <a href = "cn_leg_test.m">cn_leg_test.m</a>, 
+          tests the CN_LEG rules for the unit hypercube
+          with the Legendre weight and a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test17.m">stroud_test17.m</a>, 
+          tests CONE_UNIT_3D and CONE_VOLUME_3D.
+        </li>
+        <li>
+          <a href = "stroud_test18.m">stroud_test18.m</a>, 
+          tests CUBE_SHELL_ND.
+        </li>
+        <li>
+          <a href = "stroud_test19.m">stroud_test19.m</a>, 
+          tests CUBE_UNIT_3D, CUBE_UNIT_ND, QMULT_3D and RECTANGLE_3D.
+        </li>
+        <li>
+          <a href = "stroud_test20.m">stroud_test20.m</a>, 
+          tests CUBE_UNIT_ND.
+        </li>
+        <li>
+          <a href = "stroud_test205.m">stroud_test205.m</a>, 
+          tests ELLIPSE_AREA_2D, ELLIPSE_CIRCUMFERENCE_2D and ELLIPSE_ECCENTRICITY_2D.
+        </li>
+        <li>
+          <a href = "stroud_test207.m">stroud_test207.m</a>, 
+          tests EN_R2 rules for various monomials.
+        </li>
+        <li>
+          <a href = "en_r2_test.m">en_r2_test.m</a>, 
+          tests EN_R2 rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test2075.m">stroud_test2075.m</a>, 
+          tests EPN_GLG rules for various monomials.
+        </li>
+        <li>
+          <a href = "epn_glg_test.m">epn_glg_test.m</a>, 
+          tests EPN_GLG rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test208.m">stroud_test208.m</a>, 
+          tests EPN_LAG rules for various monomials.
+        </li>
+        <li>
+          <a href = "epn_lag_test.m">epn_lag_test.m</a>, 
+          tests EPN_LAG rules for a particular monomial.
+        </li>
+        <li>
+          <a href = "stroud_test21.m">stroud_test21.m</a>, 
+          tests HEXAGON_UNIT_SET and HEXAGON_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test215.m">stroud_test215.m</a>, 
+          tests LENS_HALF_2D.
+        </li>
+        <li>
+          <a href = "stroud_test22.m">stroud_test22.m</a>, 
+          tests OCTAHEDRON_UNIT_ND.
+        </li>
+        <li>
+          <a href = "stroud_test23.m">stroud_test23.m</a>, 
+          tests PARALLELIPIPED_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test24.m">stroud_test24.m</a>, 
+          tests POLYGON_1_2D, POLYGON_X_2D, POLYGON_Y_2D, POLYGON_XX_2D,
+          POLYGON_XY_2D and POLYGON_YY_2D.
+        </li>
+        <li>
+          <a href = "stroud_test25.m">stroud_test25.m</a>, 
+          tests PYRAMID_UNIT_O**_3D and PYRAMID_UNIT_VOLUME_3D.
+        </li>
+        <li>
+          <a href = "stroud_test255.m">stroud_test255.m</a>, 
+          tests PYRAMID_UNIT_MONOMIAL_3D.
+        </li>
+        <li>
+          <a href = "stroud_test26.m">stroud_test26.m</a>, 
+          tests QMULT_1D.
+        </li>
+        <li>
+          <a href = "stroud_test27.m">stroud_test27.m</a>, 
+          tests SIMPLEX_ND.
+        </li>
+        <li>
+          <a href = "stroud_test28.m">stroud_test28.m</a>, 
+          tests SIMPLEX_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test29.m">stroud_test29.m</a>, 
+          tests SIMPLEX_UNIT_01_ND, SIMPLEX_UNIT_03_ND,
+          SIMPLEX_UNIT_05_ND and SIMPLE_UNIT_05_2_ND.
+        </li>
+        <li>
+          <a href = "stroud_test30.m">stroud_test30.m</a>, 
+          tests SPHERE_UNIT_07_3D, SPHERE_UNIT_11_3D, SPHERE_UNIT_14_3D
+          and SPHERE_UNIT_15_3D.
+        </li>
+        <li>
+          <a href = "stroud_test31.m">stroud_test31.m</a>, 
+          tests SPHERE_UNIT_03_ND, SPHERE_UNIT_04_ND, SPHERE_UNIT_05_ND,
+          SPHERE_UNIT_07_1_ND, SPHERE_UNIT_07_2_ND and SPHERE_UNIT_11_ND.
+        </li>
+        <li>
+          <a href = "stroud_test32.m">stroud_test32.m</a>, 
+          tests SPHERE_05_ND and SPHERE_07_1_ND.
+        </li>
+        <li>
+          <a href = "stroud_test322.m">stroud_test322.m</a>, 
+          tests SPHERE_CAP_AREA_3D and SPHERE_CAP_AREA_ND.
+        </li>
+        <li>
+          <a href = "stroud_test324.m">stroud_test324.m</a>, 
+          tests SPHERE_CAP_VOLUME_2D and SPHERE_CAP_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test326.m">stroud_test326.m</a>, 
+          tests SPHERE_CAP_VOLUME_3D and SPHERE_CAP_VOLUME_ND.
+        </li>
+        <li>
+          <a href = "stroud_test33.m">stroud_test33.m</a>, 
+          tests SPHERE_CAP_AREA_ND.
+        </li>
+        <li>
+          <a href = "stroud_test335.m">stroud_test335.m</a>, 
+          tests SPHERE_SHELL_03_ND.
+        </li>
+        <li>
+          <a href = "stroud_test34.m">stroud_test34.m</a>, 
+          tests SPHERE_UNIT_AREA_ND.
+        </li>
+        <li>
+          <a href = "stroud_test345.m">stroud_test345.m</a>, 
+          tests SPHERE_UNIT_VOLUME_ND, SPHERE_UNIT_VOLUME_VALUES.
+        </li>
+        <li>
+          <a href = "stroud_test35.m">stroud_test35.m</a>, 
+          tests SQUARE_UNIT_SET and RECTANGLE_SUB_2D.
+        </li>
+        <li>
+          <a href = "stroud_test36.m">stroud_test36.m</a>, 
+          tests SQUARE_UNIT_SET and SQUARE_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test37.m">stroud_test37.m</a>, 
+          tests SQUARE_UNIT_SET and SQUARE_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test38.m">stroud_test38.m</a>, 
+          tests TETRA_07 and TETRA_TPRODUCT.
+        </li>
+        <li>
+          <a href = "stroud_test39.m">stroud_test39.m</a>, 
+          tests TETRA_UNIT_SET and TETRA_UNIT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test40.m">stroud_test40.m</a>, 
+          tests TETRA_UNIT_SET and TETRA_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test41.m">stroud_test41.m</a>, 
+          tests TRIANGLE_UNIT_SET and TRIANGLE_SUB.
+        </li>
+        <li>
+          <a href = "stroud_test42.m">stroud_test42.m</a>, 
+          tests TRIANGLE_UNIT_SET and TRIANGLE_UNIT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test425.m">stroud_test425.m</a>, 
+          tests TRIANGLE_UNIT_SET.
+        </li>
+        <li>
+          <a href = "stroud_test43.m">stroud_test43.m</a>, 
+          tests TRIANGLE_UNIT_PRODUCT_SET and TRIANGLE_UNIT_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test44.m">stroud_test44.m</a>, 
+          tests TRIANGLE_UNIT_SET and TRIANGLE_SUM.
+        </li>
+        <li>
+          <a href = "stroud_test45.m">stroud_test45.m</a>, 
+          tests TORUS_1.
+        </li>
+        <li>
+          <a href = "stroud_test46.m">stroud_test46.m</a>, 
+          tests TORUS_5S2, TORUS_6S2 and TORUS_14S.
+        </li>
+        <li>
+          <a href = "stroud_test47.m">stroud_test47.m</a>, 
+          tests TORUS_SQUARE_5C2 and TORUS_SQUARE_14C.
+        </li>
+        <li>
+          <a href = "stroud_test48.m">stroud_test48.m</a>, 
+          tests TVEC_EVEN, TVEC_EVEN2, TVEC_EVEN3.
+        </li>
+        <li>
+          <a href = "stroud_test49.m">stroud_test49.m</a>, 
+          tests TVEC_EVEN_BRACKET, TVEC_EVEN_BRACKET2, TVEC_EVEN_BRACKET3.
+        </li>
+        <li>
+          <a href = "f_1_2d.m">f_1_2d.m</a>, 
+          returns the function 1 in 2D.
+        </li>
+        <li>
+          <a href = "f_x_2d.m">f_x_2d.m</a>, 
+          returns the function X in 2D.
+        </li>
+        <li>
+          <a href = "f_r_2d.m">f_r_2d.m</a>, 
+          returns the function R in 2D.
+        </li>
+        <li>
+          <a href = "fl_18.m">fl_18.m</a>, 
+          returns the lower limit of integration as a function of X.
+        </li>
+        <li>
+          <a href = "fl_28.m">fl_28.m</a>, 
+          returns the lower limit of integration as a function of X and Y.
+        </li>
+        <li>
+          <a href = "fu_18.m">fu_18.m</a>, 
+          returns the upper limit of integration as a function of X.
+        </li>
+        <li>
+          <a href = "fu_28.m">fu_28.m</a>, 
+          returns the upper limit of integration as a function of X and Y.
+        </li>
+        <li>
+          <a href = "function_1d.m">function_1d.m</a>, 
+          evaluates the current 1D function.
+        </li>
+        <li>
+          <a href = "function_1d_name.m">function_1d_name.m</a>, 
+          returns the name of the current 1D function.
+        </li>
+        <li>
+          <a href = "function_1d_num.m">function_1d_num.m</a>, 
+          returns the number of 1D functions.
+        </li>
+        <li>
+          <a href = "function_1d_set.m">function_1d_set.m</a>, 
+          sets or gets the current 1D function.
+        </li>
+        <li>
+          <a href = "function_2d.m">function_2d.m</a>, 
+          evaluates the current 2D function.
+        </li>
+        <li>
+          <a href = "function_2d_name.m">function_2d_name.m</a>, 
+          returns the name of the current 2D function.
+        </li>
+        <li>
+          <a href = "function_2d_num.m">function_2d_num.m</a>, 
+          returns the number of 2D functions.
+        </li>
+        <li>
+          <a href = "function_2d_set.m">function_2d_set.m</a>, 
+          sets or gets the current 2D function.
+        </li>
+        <li>
+          <a href = "function_3d.m">function_3d.m</a>, 
+          evaluates the current 3D function.
+        </li>
+        <li>
+          <a href = "function_3d_name.m">function_3d_name.m</a>, 
+          returns the name of the current 3D function.
+        </li>
+        <li>
+          <a href = "function_3d_num.m">function_3d_num.m</a>, 
+          returns the number of 3D functions.
+        </li>
+        <li>
+          <a href = "function_3d_set.m">function_3d_set.m</a>, 
+          sets or gets the current 3D function.
+        </li>
+        <li>
+          <a href = "function_nd.m">func_nd.m</a>, 
+          evaluates the current ND function.
+        </li>
+        <li>
+          <a href = "function_nd_name.m">function_nd_name.m</a>, 
+          returns the name of the current ND function.
+        </li>
+        <li>
+          <a href = "function_nd_num.m">function_nd_num.m</a>, 
+          returns the number of ND functions.
+        </li>
+        <li>
+          <a href = "function_nd_set.m">funcset.m</a>, 
+          sets or gets the index of the current ND function.
+        </li>
+        <li>
+          <a href = "mono_000_3d.m">mono_000_3d.m</a>, 
+          evaluates the monomial F(X,Y,Z)=1.
+        </li>
+        <li>
+          <a href = "mono_111_3d.m">mono_111_3d.m</a>, 
+          evaluates the monomial F(X,Y,Z)=X*Y*Z.
+        </li>
+        <li>
+          <a href = "mono_202_3d.m">mono_202_3d.m</a>, 
+          evaluates the monomial F(X,Y,Z)=X^2*Z^2.
+        </li>
+        <li>
+          <a href = "mono_422_3d.m">mono_422_3d.m</a>, 
+          evaluates the monomial F(X,Y,Z)=X^4*Y^2*Z^2.
+        </li>
+        <li>
+          <a href = "setsim.m">setsim.m</a>, 
+          returns the vertices of a simplex in ND.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

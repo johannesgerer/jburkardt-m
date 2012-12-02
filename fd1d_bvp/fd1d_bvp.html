@@ -1,0 +1,375 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_BVP - Finite Difference Method, 1D, Boundary Value Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_BVP <br> Finite Difference Method, 1D, Boundary Value Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_BVP</b>
+      is a MATLAB program which
+      applies the finite difference method to solve
+      a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      The boundary value problem (BVP) that is to be solved has the form:
+      <pre>
+        - d/dx ( a(x) * du/dx ) + c(x) * u(x) = f(x)
+      </pre>
+      in the interval X(1) &lt; x &lt; X(N).  The functions a(x), c(x), and f(x) are
+      given functions, and a formula for a'(x) is also available.
+    </p>
+
+    <p>
+      Boundary conditions are applied at the endpoints, and in this case,
+      these are assumed to have the form:
+      <pre>
+        u(X(1)) = 0.0;
+        u(X(N)) = 0.0.
+      </pre>
+    </p>
+
+    <p>
+      To compute a finite difference approximation, a set of n
+      nodes is defined over the interval, and, at each interior node,
+      a discretized version of the BVP is written, with u''(x) and u'(x)
+      approximated by central differences.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        [<i>u</i> = <b>fd1d_bvp</b> ( <i>n</i>,
+          <i>@a</i>, <i>@aprime</i>, <i>@c</i>, <i>@f</i>, <i>x</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> the number of nodes.
+        </li>
+        <li>
+          <i>@a</i> the function which evaluates a(x);
+        </li>
+        <li>
+          <i>@aprime</i> the function which evaluates a'(x);
+        </li>
+        <li>
+          <i>@c</i> the function which evaluates c(x);
+        </li>
+        <li>
+          <i>@f</i> the function which evaluates f(x).
+        </li>
+        <li>
+          <i>x</i> the vector of n nodes, which may be nonuniformly spaced.
+        </li>
+        <li>
+          <i>u</i> the output vector of n finite difference values.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_BVP</b> is available in
+      <a href = "../../c_src/fd1d_bvp/fd1d_bvp.html">a C version</a> and
+      <a href = "../../cpp_src/fd1d_bvp/fd1d_bvp.html">a C++ version</a> and
+      <a href = "../../f77_src/fd1d_bvp/fd1d_bvp.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_bvp/fd1d_bvp.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous time-dependent Burgers equation
+      in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>,
+      a MATLAB program which
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_display/fd1d_display.html">
+      FD1D_DISPLAY</a>,
+      a MATLAB program which
+      reads a pair of files defining a 1D finite difference model, and plots the data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_wave/fd1d_wave.html">
+      FD1D_WAVE</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      wave equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a linear two point boundary value problem
+      in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">
+      FEM1D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite element method, with piecewise linear elements,
+      to a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Dianne O'Leary,<br>
+          Finite Differences and Finite Elements: Getting to Know You,<br>
+          Computing in Science and Engineering,<br>
+          Volume 7, Number 3, May/June 2005.
+        </li>
+        <li>
+          Dianne O'Leary,<br>
+          Scientific Computing with Case Studies,<br>
+          SIAM, 2008,<br>
+          ISBN13: 978-0-898716-66-5,<br>
+          LC: QA401.O44.
+        </li>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313..
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp.m">fd1d_bvp.m</a>,
+          is the program.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>FD1D_BVP_TEST</b> runs the first five example problems described
+      by Dianne O'Leary.
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test.m">fd1d_bvp_test.m</a>,
+          a program which runs several test cases.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test_output.txt">fd1d_bvp_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test01_nodes.txt">fd1d_bvp_test01_nodes.txt</a>,
+          the nodes for test 1.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test01_values.txt">fd1d_bvp_test01_values.txt</a>,
+          the computed and exact values for test 1.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test01.png">fd1d_bvp_test01.png</a>,
+          a PNG image of a plot of the computed and exact values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test02_nodes.txt">fd1d_bvp_test02_nodes.txt</a>,
+          the nodes for test 2.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test02_values.txt">fd1d_bvp_test02_values.txt</a>,
+          the computed and exact values for test 2.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test02.png">fd1d_bvp_test02.png</a>,
+          a PNG image of a plot of the computed and exact values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test03_nodes.txt">fd1d_bvp_test03_nodes.txt</a>,
+          the nodes for test 3.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test03_values.txt">fd1d_bvp_test03_values.txt</a>,
+          the computed and exact values for test 3.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test03.png">fd1d_bvp_test03.png</a>,
+          a PNG image of a plot of the computed and exact values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test04_nodes.txt">fd1d_bvp_test04_nodes.txt</a>,
+          the nodes for test 4
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test04_values.txt">fd1d_bvp_test04_values.txt</a>,
+          the computed and exact values for test 4.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test04.png">fd1d_bvp_test04.png</a>,
+          a PNG image of a plot of the computed and exact values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_bvp_test05_nodes.txt">fd1d_bvp_test05_nodes.txt</a>,
+          the nodes for test 5.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test05_values.txt">fd1d_bvp_test05_values.txt</a>,
+          the computed and exact values for test 5.
+        </li>
+        <li>
+          <a href = "fd1d_bvp_test05.png">fd1d_bvp_test05.png</a>,
+          a PNG image of a plot of the computed and exact values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

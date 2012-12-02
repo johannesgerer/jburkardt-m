@@ -1,0 +1,669 @@
+<html>
+
+  <head>
+    <title>
+      TEST_ODE - Initial Value Test Problems
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_ODE <br> Test Problems for <br> Initial Value Solvers
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_ODE</b> 
+      is a  MATLAB library which 
+      defines test initial value problems for ordinary 
+      differential equations.  
+    </p>
+
+    <p>
+      These problems have the common form:
+      <blockquote>
+        determine (some values of) the function <b>Y(T)</b> 
+      </blockquote>
+      given
+      <blockquote>
+        <b>Y'(T) = F(T,Y)</b> 
+      </blockquote>
+      with initial value
+      <blockquote>
+        <b>Y(T<sub>0</sub>) = Y<sub>0</sub></b> 
+      </blockquote>
+    </p>
+
+    <p>
+      A uniform interface makes it easy to solve all the problems
+      automatically, or to concentrate on a single one.
+    </p>
+
+    <p>
+      The problems include:
+      <ol>
+        <li>
+          Enright and Pryce #A1,<br>
+          neqn = 1,<br>
+          y' = -y;
+        </li>
+        <li>
+          Enright and Pryce #A2,<br>
+          neqn = 1,<br>
+          y' = -y^3/2;
+        </li>
+        <li>
+          Enright and Pryce #A3,<br>
+          neqn = 1,<br>
+          y' = cos(t)*y;
+        </li>
+        <li>
+          Enright and Pryce #A4,<br>
+          neqn = 1,<br>
+          y' = y*(20-y)/80;
+        </li>
+        <li>
+          Enright and Pryce #A5,<br>
+          neqn = 1,<br>
+          y' = (y-t)/(y+t);
+        </li>
+        <li>
+          Enright and Pryce #B1,<br>
+          neqn = 2,<br>
+          y1' = 2*y1*(1-y2)<br>
+          y2' = - y2*(1-y1);
+        </li>
+        <li>
+          Enright and Pryce #B2,<br>
+          neqn = 3,<br>
+          y1' = -y1+y2<br>
+          y2' = y1-2*y2+y3<br>
+          y3' = y2-y3;
+        </li>
+        <li>
+          Enright and Pryce #B3,<br>
+          neqn = 3,<br>
+          y1' = -y1<br>
+          y2' = y1-y2^2<br>
+          y3' = y2^2;
+        </li>
+        <li>
+          Enright and Pryce #B4,<br>
+          neqn = 3,<br>
+          y1' = (-y2-y1*y3) / sqrt(y1^2+y2^2)<br>
+          y2' = (y1-y2*y3) / sqrt(y1^2+y2^2)<br>
+          y3' = y1 / sqrt(y1^2+y2^2);
+        </li>
+        <li>
+          Enright and Pryce #B5,<br>
+          neqn = 3,<br>
+          y1' = y2*y3<br>
+          y2' = -y1*y3<br>
+          y3' = -0.51*y1*y2;
+        </li>
+        <li>
+          Enright and Pryce #C1,<br>
+          neqn = 10;
+        </li>
+        <li>
+          Enright and Pryce #C2,<br>
+          neqn = 10;
+        </li>
+        <li>
+          Enright and Pryce #C3,<br>
+          neqn = 10;
+        </li>
+        <li>
+          Enright and Pryce #C4,<br>
+          neqn = 51;
+        </li>
+        <li>
+          Enright and Pryce #C5,<br>
+          neqn = 30;
+        </li>
+        <li>
+          Enright and Pryce #D1,<br>
+          neqn = 4;
+        </li>
+        <li>
+          Enright and Pryce #D2,<br>
+          neqn = 4;
+        </li>
+        <li>
+          Enright and Pryce #D3,<br>
+          neqn = 4;
+        </li>
+        <li>
+          Enright and Pryce #D4,<br>
+          neqn = 4;
+        </li>
+        <li>
+          Enright and Pryce #D5,<br>
+          neqn = 4;
+        </li>
+        <li>
+          Enright and Pryce #E1,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #E2,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #E3,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #E4,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #E5,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #F1,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #F2,<br>
+          neqn = 1;
+        </li>
+        <li>
+          Enright and Pryce #F3,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Enright and Pryce #F4,<br>
+          neqn = 1;
+        </li>
+        <li>
+          Enright and Pryce #F5,<br>
+          neqn = 1;
+        </li>
+        <li>
+          Lotka-Volterra Predator-Prey Equations,<br>
+          neqn = 2;
+        </li>
+        <li>
+          The Lorenz System,<br>
+          neqn = 3;
+        </li>
+        <li>
+          The Van der Pol equation,<br>
+          neqn = 2;
+        </li>
+        <li>
+          The Linearized Damped Pendulum,<br>
+          neqn = 2;
+        </li>
+        <li>
+          The Nonlinear Damped Pendulum,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Duffing's Equation,<br>
+          neqn = 2,
+        </li>
+        <li>
+          Duffing's Equation with Damping and Forcing,<br>
+          neqn = 2;
+        </li>
+        <li>
+          Shampine's Ball of Flame,<br>
+          neqn = 1,<br>
+          y' = y^2-y^3;
+        </li>
+        <li>
+          Polking's First Order System,<br>
+          neqn = 1,<br>
+          y' = y^2-a*t+b;
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_ODE</b> is available in
+      <a href = "../../f_src/test_ode/test_ode.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_ode/test_ode.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dfield8/dfield8.html">
+      DFIELD8</a>,
+      a MATLAB program which
+      interactively displays the direction field of a differential equation,
+      by John Polking.
+    </p>
+
+    <p>
+      <a href = "../../f_src/nms/nms.html">
+      NMS</a>,
+      a FORTRAN90 library which
+      includes the <b>DDRIV</b> package of ODE solvers.
+    </p>
+
+    <p>
+      <a href = "../../f_src/ode/ode.html">
+      ODE</a>, 
+      a FORTRAN90 library which
+      implements the Shampine and Allen ODE solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pplane8/pplane8.html">
+      PPLANE8</a>,
+      a MATLAB program which
+      interactively displays the phase plane of a differential equation,
+      by John Polking.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rkf45/rkf45.html">
+      RKF45</a>, 
+      a MATLAB library which
+      implements the Runge-Kutta-Fehlberg ODE solver.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms648_nsd/toms648_nsd.html">
+      TOMS648_NSD</a>, 
+      a FORTRAN77 library which
+      defines the non-stiff Enright and Pryce test ODE problems,
+      using double precision arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms648_nss/toms648_nss.html">
+      TOMS648_NSS</a>, 
+      a FORTRAN77 library which
+      defines the non-stiff Enright and Pryce test ODE problems,
+      using single precision arithmetic.
+    </p>
+
+    <h3 align = "center">
+      References:
+    </h3>
+
+    <p>
+      The following references include some reliable, sturdy,
+      comprehensive test sets.  (Sometimes I'm just doing this for
+      fun or for classroom exercises.  These people, on the other
+      hand, are serious.)
+      <ol>
+        <li>
+          David Arnold, John Polking,<br>
+          Ordinary Differential Equations using Matlab,<br>
+          Prentice Hall, 1999.
+        </li>
+        <li>
+          Wayne Enright, John Pryce,<br>
+          Algorithm 648,<br>
+          NSDTST and STDTST,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 13, Number 1, 1987, pages 28-34.
+        </li>
+        <li>
+          T Hull, Wayne Enright, B Fellen, A Sedgwick,<br>
+          Comparing numerical methods for ordinary differential equations,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 9, 1972, pages 603-637.
+        <li>
+        </li>
+          Cleve Moler,<br>
+          Cleve's Corner: Stiff Differential Equations,<br>
+          MATLAB News and Notes,<br>
+          May 2003, pages 12-13.
+        </li>
+        <li>
+          <a href = "http://pitagora.dm.uniba.it/~testset/">
+          http://pitagora.dm.uniba.it/~testset/</a>,
+          Test Set for IVP Solvers.
+        </li>
+        <li>
+          <a href =
+          "http://www.unige.ch/math/~hairer/testset/testset.html">
+           http://www.unige.ch/math/~hairer/testset/testset.html</a>
+          Stiff ODE test set of Hairer and Wanner.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>, 
+          capitalizes a character.
+        </li>
+        <li>
+          <a href = "euler_test.m">euler_test.m</a>, 
+          uses Euler's method on a test problem.
+        </li>
+        <li>
+          <a href = "p00_autonomous.m">p00_autonomous.m</a>, 
+          returns TRUE if a given problem is autonomous.
+        </li>
+        <li>
+          <a href = "p00_equil.m">p00_equil.m</a>, 
+          returns the equilibrium solutions for any problem.
+        </li>
+        <li>
+          <a href = "p00_euler_step.m">p00_euler_step.m</a>, 
+          takes a single Euler step from (T0,Y0) to (T1,Y1).
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>, 
+          returns the right hand side of any problem.
+        </li>
+        <li>
+          <a href = "p00_neqn.m">p00_neqn.m</a>, 
+          returns the number of equations for any problem.
+        </li>
+        <li>
+          <a href = "p00_param_default.m">p00_param_default.m</a>, 
+          defaults the parameters for any problem.
+        </li>
+        <li>
+          <a href = "p00_rk_step.m">p00_rk_step.m</a>, 
+          takes a single Runge-Kutta step from (T0,Y0) to (T1,Y1).
+        </li>
+        <li>
+          <a href = "p00_scale.m">p00_scale.m</a>, 
+          returns the scale vector for any test problem.
+        </li>
+        <li>
+          <a href = "p00_start.m">p00_start.m</a>, 
+          returns the initial data for any test problem.
+        </li>
+        <li>
+          <a href = "p00_stop.m">p00_stop.m</a>, 
+          returns the end data for any test problem.
+        </li>
+        <li>
+          <a href = "p00_test_num.m">p00_test_num.m</a>, 
+          returns the number of problems available.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>, 
+          returns the title of any problem.
+        </li>
+        <li>
+          <a href = "p15_param.m">p15_param.m</a>, 
+          manages parameters for problem 15.
+        </li>
+        <li>
+          <a href = "p16_param.m">p16_param.m</a>, 
+          manages parameters for problem 16.
+        </li>
+        <li>
+          <a href = "p17_param.m">p17_param.m</a>, 
+          manages parameters for problem 17.
+        </li>
+        <li>
+          <a href = "p18_param.m">p18_param.m</a>, 
+          manages parameters for problem 18.
+        </li>
+        <li>
+          <a href = "p19_param.m">p19_param.m</a>, 
+          manages parameters for problem 19.
+        </li>
+        <li>
+          <a href = "p20_param.m">p20_param.m</a>, 
+          manages parameters for problem 20.
+        </li>
+        <li>
+          <a href = "p26_param.m">p26_param.m</a>, 
+          manages parameters for problem 26.
+        </li>
+        <li>
+          <a href = "p31_param.m">p31_param.m</a>, 
+          manages parameters for problem 31.
+        </li>
+        <li>
+          <a href = "p32_param.m">p32_param.m</a>, 
+          manages parameters for problem 32.
+        </li>
+        <li>
+          <a href = "p33_param.m">p33_param.m</a>, 
+          manages parameters for problem 33.
+        </li>
+        <li>
+          <a href = "p34_param.m">p34_param.m</a>, 
+          manages parameters for problem 34.
+        </li>
+        <li>
+          <a href = "p35_param.m">p35_param.m</a>, 
+          manages parameters for problem 35.
+        </li>
+        <li>
+          <a href = "p37_param.m">p37_param.m</a>, 
+          manages parameters for problem 37.
+        </li>
+        <li>
+          <a href = "p38_param.m">p38_param.m</a>, 
+          manages parameters for problem 38.
+        </li>
+        <li>
+          <a href = "p39_param.m">p39_param.m</a>, 
+          manages parameters for problem 39.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a>, 
+          is TRUE if two strings are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_ode_test.m">test_ode_test.m</a>, 
+          a sample calling program;
+        </li>
+        <li>
+          <a href = "test_ode_test01.m">test_ode_test01.m</a>, 
+          tests P00_NEQN and P00_TITLE.
+        </li>
+        <li>
+          <a href = "test_ode_test02.m">test_ode_test02.m</a>, 
+          solves most of the problems using an Euler method.
+        </li>
+        <li>
+          <a href = "euler_test.m">euler_test.m</a>, supervises the
+          solution of a test problem by the Euler method;
+        </li>
+        <li>
+          <a href = "test_ode_test03.m">test_ode_test03.m</a>, 
+          solves most of the problems using a Runge Kutta method.
+        </li>
+        <li>
+          <a href = "rk_test.m">rk_test.m</a>, supervises the
+          solution of a test problem by the Runge-Kutta method;
+        </li>
+        <li>
+          <a href = "test_ode_test_output.txt">test_ode_test_output.txt</a>, 
+          the output file;
+        </li>
+      </ul>
+    </p>
+
+   <p>
+      <b>TEST_ODE_TEST04()</b> is a function which solves and plots each of
+      the test problems.
+      <ul>
+        <li>
+          <a href = "test_ode_test04.m">test_ode_test04.m</a>, 
+          the program.
+        </li>
+        <li>
+          <a href = "p01.png">p01.png</a>
+        </li>
+        <li>
+          <a href = "p02.png">p02.png</a>
+        </li>
+        <li>
+          <a href = "p03.png">p03.png</a>
+        </li>
+        <li>
+          <a href = "p04.png">p04.png</a>
+        </li>
+        <li>
+          <a href = "p05.png">p05.png</a>
+        </li>
+        <li>
+          <a href = "p06.png">p06.png</a>
+        </li>
+        <li>
+          <a href = "p07.png">p07.png</a>
+        </li>
+        <li>
+          <a href = "p08.png">p08.png</a>
+        </li>
+        <li>
+          <a href = "p09.png">p09.png</a>
+        </li>
+        <li>
+          <a href = "p10.png">p10.png</a>
+        </li>
+        <li>
+          <a href = "p11.png">p11.png</a>
+        </li>
+        <li>
+          <a href = "p12.png">p12.png</a>
+        </li>
+        <li>
+          <a href = "p13.png">p13.png</a>
+        </li>
+        <li>
+          <a href = "p14.png">p14.png</a>
+        </li>
+        <li>
+          <a href = "p15.png">p15.png</a>
+        </li>
+        <li>
+          <a href = "p16.png">p16.png</a>
+        </li>
+        <li>
+          <a href = "p17.png">p17.png</a>
+        </li>
+        <li>
+          <a href = "p18.png">p18.png</a>
+        </li>
+        <li>
+          <a href = "p19.png">p19.png</a>
+        </li>
+       <li>
+          <a href = "p20.png">p20.png</a>
+        </li>
+        <li>
+          <a href = "p21.png">p21.png</a>
+        </li>
+        <li>
+          <a href = "p22.png">p22.png</a>
+        </li>
+        <li>
+          <a href = "p23.png">p23.png</a>
+        </li>
+        <li>
+          <a href = "p24.png">p24.png</a>
+        </li>
+        <li>
+          <a href = "p25.png">p25.png</a>
+        </li>
+        <li>
+          <a href = "p26.png">p26.png</a>
+        </li>
+        <li>
+          <a href = "p27.png">p27.png</a>
+        </li>
+        <li>
+          <a href = "p28.png">p28.png</a>
+        </li>
+        <li>
+          <a href = "p29.png">p29.png</a>
+        </li>
+       <li>
+          <a href = "p30.png">p30.png</a>
+        </li>
+        <li>
+          <a href = "p31.png">p31.png</a>
+        </li>
+        <li>
+          <a href = "p32.png">p32.png</a>
+        </li>
+        <li>
+          <a href = "p33.png">p33.png</a>
+        </li>
+        <li>
+          <a href = "p34.png">p34.png</a>
+        </li>
+        <li>
+          <a href = "p35.png">p35.png</a>
+        </li>
+        <li>
+          <a href = "p36.png">p36.png</a>
+        </li>
+        <li>
+          <a href = "p37.png">p37.png</a>
+        </li>
+        <li>
+          <a href = "p38.png">p38.png</a>
+        </li>
+        <li>
+          <a href = "p39.png">p39.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 June 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

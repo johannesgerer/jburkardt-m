@@ -1,0 +1,222 @@
+<html>
+
+  <head>
+    <title>
+      TABLE_LATINIZE - Force a Dataset to be a Latin Hypercube
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TABLE_LATINIZE <br> Force a Dataset to be a Latin Hypercube
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TABLE_LATINIZE</b>
+      is a MATLAB program which allows the
+      user to specify a file of data to be read in and adjusted to form a
+      Latin hypercube.
+    </p>
+
+    <p>
+      The data in the file represents N points in M-dimensional space.
+    </p>
+
+    <p>
+      The algorithm is actually very simple.  In each spatial dimension,
+      the point coordinates are sorted, and then replaced by the appropriate
+      values for a Latin hypercube.  In particular, if there are four points,
+      then in every coordinate, the four points will be assigned values
+      of 1/8, 3/8, 5/8 and 7/8 (in some order).  The hope is that if
+      the initial dataset has some nice dispersion property, then the
+      resulting adjusted dataset will inherit some of this dispersion as
+      well; in particular, more dispersion than typically seen in an
+      arbitrary Latin hypercube.
+    </p>
+
+    <p>
+      <b>TABLE_LATINIZE</b> expects the input data file to be in the simple
+      <a href = "../../data/table/table.html">
+      TABLE format</a>.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <dl>
+        <dt>
+          <b>table_latinize</b> ( <i>'file.txt'</i> )<br>
+        </dt>
+        <dd>
+          reads the user's data file <i>file.txt</i> and writes a "latinized"
+          version which will be called <i>file.latin.txt</i>.
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TABLE_LATINIZE</b> is available in
+      <a href = "../../cpp_src/table_latinize/table_latinize.html">a C++ version</a> and
+      <a href = "../../f_src/table_latinize/table_latinize.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/table_latinize/table_latinize.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/latinize/latinize.html">
+      LATINIZE</a>,
+      a MATLAB library which
+      is used by TABLE_LATINIZE.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      a data directory which
+      contains an explanation and examples of the TABLE format.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Yuki Saka, Max Gunzburger, John Burkardt,<br>
+          Latinized, Improved LHS, and CVT Point Sets in Hypercubes, <br>
+          International Journal of Numerical Analysis and Modeling,<br>
+          Volume 4, Number 3-4, 2007, pages 729-743,
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "table_latinize.m">table_latinize.m</a>,
+         the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CVT_02_00010</b> is a set of 10 CVT points in 2D:
+      <ul>
+        <li>
+          <a href = "cvt_02_00010.txt">cvt_02_00010.txt</a>,
+          the original set of 10 points in 2D.
+        </li>
+        <li>
+          <a href = "cvt_02_00010.latin.txt">cvt_02_00010.latin.txt</a>,
+          the latinized version of the dataset.
+        </li>
+        <li>
+          <a href = "cvt_02_00010_output.txt">cvt_02_00010_output.txt</a>,
+          the printed output from the command "latinize cvt_02_00010.txt".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CVT_03_00007</b> is a set of 7 CVT points in 3D:
+      <ul>
+        <li>
+          <a href = "cvt_03_00007.txt">cvt_03_00007.txt</a>,
+          7 points in 3D.
+        </li>
+        <li>
+          <a href = "cvt_03_00007.latin.txt">cvt_03_00007.latin.txt</a>,
+          the latinized version of the dataset.
+        </li>
+        <li>
+          <a href = "cvt_03_00007_output.txt">cvt_03_00007_output.txt</a>,
+          the printed output from the command "latinize cvt_03_00007.txt".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CVT_03_00056</b> is a set of 56 CVT points in 3D:
+      <ul>
+        <li>
+          <a href = "cvt_03_00056.txt">cvt_03_00056.txt</a>,
+          56 points in 3D.
+        </li>
+        <li>
+          <a href = "cvt_03_00056.latin.txt">cvt_03_00056.latin.txt</a>,
+          the latinized version of the dataset.
+        </li>
+        <li>
+          <a href = "cvt_03_00056_output.txt">cvt_03_00056_output.txt</a>,
+          the printed output from the command "latinize cvt_03_00056.txt".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CVT_07_00100</b> is a set of 100 CVT points in 7D:
+      <ul>
+        <li>
+          <a href = "cvt_07_00100.txt">cvt_07_00100.txt</a>,
+          100 points in 7D.
+        </li>
+        <li>
+          <a href = "cvt_07_00100.latin.txt">cvt_07_00100.latin.txt</a>,
+          the latinized version of the dataset.
+        </li>
+        <li>
+          <a href = "cvt_07_00100_output.txt">cvt_07_00100_output.txt</a>,
+          the printed output from the command "latinize cvt_07_00100.txt".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

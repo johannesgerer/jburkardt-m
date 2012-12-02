@@ -1,0 +1,299 @@
+<html>
+
+  <head>
+    <title>
+      TET_MESH_BOUNDARY - Triangular Surface formed by Tet Mesh Boundary
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TET_MESH_BOUNDARY <br>
+      Triangular Surface Formed by Tet Mesh Boundary
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TET_MESH_BOUNDARY</b>
+      is a MATLAB program which
+      reads information defining
+      a tetrahedral mesh of points in 3D, and determines the triangular
+      faces that form the boundary of the mesh; it writes out files containing
+      the nodes and elements defining this "TRI_SURFACE".
+    </p>
+
+    <p>
+      The tet mesh is defined by a <i>node file</i> containing
+      the coordinates of nodes, and an <i>element file</i> containing
+      sets of 4 or 10 node indices.  (The present version of the program
+      will only handle the 4 node case.)
+    </p>
+
+    <p>
+      Each tetrahedron has 4 triangular faces.  Most of these faces
+      will be shared by a neighbor tetrahedron, but those faces that
+      are not shared by a neighbor constitute the boundary of the mesh.
+    </p>
+
+    <p>
+      The program identifies the triangular faces that form the boundary,
+      and writes two files, a "boundary_node" file that lists the coordinates
+      of the nodes, and a "boundary_element" file that lists the indices of
+      the nodes used to form the faces.  This pair of files defines a
+      triangulated 3D surface, or "TRI_SURFACE".
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tet_mesh_boundary</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>prefix</i> is the common file prefix:
+      <ul>
+        <li>
+          <i>prefix</i><b>_nodes.txt</b>, the node coordinates;
+        </li>
+        <li>
+          <i>prefix</i><b>_elements.txt</b>, the element definitions;
+        </li>
+        <li>
+          <i>prefix</i><b>_boundary_node_mask.txt</b>, is 0 for each interior node,
+          1 for each boundary node;
+        </li>
+        <li>
+          <i>prefix</i><b>_boundary_nodes.txt</b>, the boundary node coordinates;
+        </li>
+        <li>
+          <i>prefix</i><b>_boundary_elements.txt</b>, the boundary element definitions;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TET_MESH_BOUNDARY</b> is available in
+      <a href = "../../cpp_src/tet_mesh_boundary/tet_mesh_boundary.html">a C++ version</a> and
+      <a href = "../../f_src/tet_mesh_boundary/tet_mesh_boundary.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tet_mesh_boundary/tet_mesh_boundary.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      is useful for work with tet meshes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads a tet mesh and displays the
+      nodes and edges using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      TET_MESH_ORDER4</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 4 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order10/tet_mesh_order10.html">
+      TET_MESH_ORDER10</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 10 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a data directory which
+      contains a description
+      and examples of the format for storing information about neighboring
+      tetrahedrons in a tetrahedral mesh.
+    </p>
+
+    <p>
+      <a href = "../../data/tri_surface/tri_surface.html">
+      TRI_SURFACE</a>,
+      a data directory which
+      contains examples of TRI_SURFACE files,
+      a 3D surface described by a collection of triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      displays the 3D graphics information
+      in a TRI_SURFACE file;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display_opengl/tri_surface_display_opengl.html">
+      TRI_SURFACE_DISPLAY_OPENGL</a>,
+      a C++ program which
+      displays the 3D graphics information
+      in a TRI_SURFACE file
+      using OpenGL.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          ISBN: 0-521-79309-2,<br>
+          LC: QA377.E36.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, 1991, pages 325-331.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tet_mesh_boundary.m">tet_mesh_boundary.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests
+    </h3>
+
+    <p>
+      <b>CUBE</b> is a tetrahedral mesh of a cube.
+      <ul>
+        <li>
+          <a href = "cube_nodes.txt">cube_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "cube_elements.txt">cube_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "cube.png">cube.png</a>,
+          an image of the tetrahedral mesh.
+        </li>
+        <li>
+          <a href = "cube_boundary_node_mask.txt">cube_boundary_node_mask.txt</a>,
+          the boundary node mask file.
+        </li>
+        <li>
+          <a href = "cube_boundary_nodes.txt">cube_boundary_nodes.txt</a>,
+          the boundary node file.
+        </li>
+        <li>
+          <a href = "cube_boundary_elements.txt">cube_boundary_elements.txt</a>,
+          the boundary element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P04</b> is a tetrahedral mesh of a sphere.
+      <ul>
+        <li>
+          <a href = "p04_nodes.txt">p04_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "p04_elements.txt">p04_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "p04.png">p04.png</a>,
+          an image of the tetrahedral mesh.
+        </li>
+        <li>
+          <a href = "p04_boundary_node_mask.txt">p04_boundary_node_mask.txt</a>,
+          the boundary node mask file.
+        </li>
+        <li>
+          <a href = "p04_boundary_nodes.txt">p04_boundary_nodes.txt</a>,
+          the boundary node file.
+        </li>
+        <li>
+          <a href = "p04_boundary_elements.txt">p04_boundary_elements.txt</a>,
+          the boundary element file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 December 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

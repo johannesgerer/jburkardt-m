@@ -1,0 +1,271 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_HEAT_SPARSE - FEM Applied to Heat Equation, Sparse Storage
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_HEAT_SPARSE <br>
+      Finite Element Solution of the Heat Equation <br>
+      on a Triangulated Region <br>
+      using MATLAB's Sparse Solver
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_HEAT_SPARSE</b>
+      is a MATLAB library which
+      applies the finite element method to solve
+      a form of the time-dependent heat equation over an arbitrary
+      triangulated region.
+    </p>
+
+    <p>
+      The linear system is created and stored using
+      MATLAB's sparse matrix storage.  The system is factored and solved
+      by MATLAB, using sparse matrix solution techniques.
+    </p>
+
+    <p>
+      This program is derived from a similar program, <b>FREE_FEM_HEAT</b>,
+      which uses banded storage, factorization and solution methods.
+    </p>
+
+    <p>
+      The geometry is entirely external to the program.  The user
+      specifies one file of nodal coordinates, and one file that
+      describes the triangles in terms of six node coordinates.
+    </p>
+
+    <p>
+      The program makes a default assumption that all boundary conditions
+      correspond to Dirichlet boundary conditions.  The user
+      can adjust these boundary conditions (and even specify Dirichlet
+      constraints on any variable at any node) by setting the appropriate
+      data in certain user routines.
+    </p>
+
+    <p>
+      <i>At the moment, Neumann conditions, if specified, must have a
+      zero right hand side.  The machinery to integrate a nonzero
+      Neumann condition has not been set up yet.</i>
+    </p>
+
+    <h2 align = "center">
+      Computational Region
+    </h2>
+
+    <p>
+      The computational region is initially unknown by the program.  The user
+      specifies it by preparing a file containing the coordinates of
+      the nodes, and a file containing the indices of nodes that make
+      up triangles that form a triangulation of the region.
+    </p>
+
+    <p>
+      Normally, the user does not type in this information by hand, but has
+      a program fill in the nodes, and perhaps another program that
+      constructs the triangulation.  However, in the simplest case,
+      the user might construct a very crude triangulation by hand, and
+      have <a href = "../../f_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a> refine it to something more reasonable.
+    </p>
+
+    <p>
+      For the following ridiculously small example:
+      <pre>
+       10-11-12
+        |\   |\
+        | \  | \
+        6  7 8  9
+        |   \|   \
+        1-2--3--4-5
+      </pre>
+      the node file would be:
+      <pre>
+         0.0  0.0
+         1.0  0.0
+         2.0  0.0
+         3.0  0.0
+         4.0  0.0
+         0.0  1.0
+         1.0  1.0
+         2.0  1.0
+         3.0  1.0
+         0.0  2.0
+         1.0  2.0
+         2.0  2.0
+      </pre>
+      and the element file would be
+      <pre>
+         1  3 10  2  7  6
+         3  5 12  4  9  8
+        12 10  3 11  7  8
+      </pre>
+    </p>
+
+    <p>
+      The program is set up to handle the time dependent heat
+      equation with a right hand side function, and nonhomogeneous
+      Dirichlet boundary conditions.   The state variable
+      U(T,X,Y) is then constrained by:
+      <pre>
+        Ut - ( Uxx + Uyy ) + K(x,y,t) * U = F(x,y,t)  in the region
+                                        U = G(x,y,t)  on the boundary
+                                        U = H(x,y,t)  at initial time TINIT.
+      </pre>
+    </p>
+
+    <p>
+      To specify the right hand side function F(x,y,t), the linear
+      coefficient K(x,y,t), the boundary condition function G(x,y,t),
+      and the initial condition H(x,y,t),
+      the user has to supply four functions,
+      <ul>
+        <li>
+          <b>FUNCTION F = RHS ( NODE_NUM, NODE_XY, TIME )</b> evaluates the
+          right hand side forcing term F(x,y,t);
+        </li>
+        <li>
+          <b>FUNCTION K = K_COEF ( NODE_NUM, NODE_XY, TIME )</b> evaluates K(x,y,t);
+        </li>
+        <li>
+          <b>FUNCTION G = DIRICHLET_CONDITION ( NODE_NUM, NODE_XY, TIME )</b>
+          evaluates G(x,y,t);
+        </li>
+        <li>
+          <b>FUNCTION H = INITIAL_CONDITION ( NODE_NUM, NODE_XY, TIME )</b>
+          evaluates H(x,y,t), and is only called for TIME = TINIT.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program writes out a file containing an Encapsulated
+      PostScript image of the nodes and elements, with numbers.
+      If there are too many nodes, the plot may be too cluttered
+      to read.  For lower values, however, it is
+      a valuable map of what is going on in the geometry.
+    </p>
+
+    <p>
+      The program is also able to write out a file containing the
+      solution value at every node.  This file may be used to create
+      contour plots of the solution.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      To run the program, the user must write the user files
+      described above, make all the files associated with
+      <b>fem2d_heat_sparse</b> available in the same directory,
+      or in the user's MATLAB path, and supply the names of
+      the node and triangle files to the main program:
+    </p>
+
+    <p>
+      <blockquote>
+        <b>fem2d_heat_sparse</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where 'prefix' is the common input filename prefix:
+      <ul>
+        <li>
+          <i>'prefix_nodes.txt'</i> is the name of the node file;
+        </li>
+        <li>
+          <i>'prefix_elements.txt'</i> is the name of the element file;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat_sparse_square/fem2d_heat_sparse_square.html">
+      FEM2D_HEAT_SPARSE_SQUARE</a>,
+      a MATLAB library which
+      defines the geometry of a square region, as well as boundary and initial
+      conditions for a given heat problem, so that <b>fem2d_heat_sparse</b>
+      can be called for a solution.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_heat_sparse.m">fem2d_heat_sparse.m</a>
+          is the main routine.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

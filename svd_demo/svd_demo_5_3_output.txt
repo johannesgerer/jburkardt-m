@@ -1,0 +1,203 @@
+>> svd_demo ( 5, 3 )
+14-Sep-2006 11:54:54
+
+SVD_DEMO (MATLAB version)
+  Demonstrate the singular value decomposition (SVD)
+
+  A real MxN matrix A can be factored as:
+
+    A = U * S * V'
+
+  where
+
+    U = MxM orthogonal,
+    S = MxN zero except for diagonal,
+    V = NxN orthogonal.
+
+  The diagonal of S contains only nonnegative numbers
+  and these are arranged in descending order.
+
+  Matrix row order    M = 5
+  Matrix column order N = 3
+
+  We choose a "random" matrix A, with integral
+  values between 0 and 10.
+
+  The random number seed used to generate the
+  matrix A is 1066136153
+
+  The matrix A:
+
+  10.000000  6.000000  6.000000
+  4.000000  2.000000  7.000000
+  4.000000  6.000000  4.000000
+  2.000000  9.000000  9.000000
+  9.000000  3.000000  9.000000
+
+  The orthogonal factor U:
+
+  -0.5264   0.3577  -0.5714  -0.1864  -0.4834
+  -0.3298   0.0724   0.5654   0.5802  -0.4793
+  -0.3285  -0.2081  -0.4406   0.6578   0.4711
+  -0.4808  -0.7887   0.1250  -0.3551  -0.0708
+  -0.5244   0.4489   0.3795  -0.2642   0.5565
+
+  The diagonal factor S:
+
+  23.9075   0.0000   0.0000
+   0.0000   7.3431   0.0000
+   0.0000   0.0000   4.5289
+   0.0000   0.0000   0.0000
+   0.0000   0.0000   0.0000
+
+  The orthogonal factor V:
+
+  -0.5680   0.7486  -0.3422
+  -0.4890  -0.6413  -0.5913
+  -0.6621  -0.1685   0.7303
+
+  The product U * S * V'
+
+  10.000000  6.000000  6.000000
+  4.000000  2.000000  7.000000
+  4.000000  6.000000  4.000000
+  2.000000  9.000000  9.000000
+  9.000000  3.000000  9.000000
+
+  Frobenius Norm of A, A_NORM = 25.416530
+
+  ABSOLUTE ERROR for A = U*S*V':
+  Frobenius norm of difference A-U*S*V' = 0.000000
+
+  RELATIVE ERROR for A = U*S*V':
+  Ratio of DIF_NORM / A_NORM = 0.000000
+
+RANK_ONE_TEST:
+  Compare A to the sum of R rank one matrices.
+
+         R    Absolute      Relative
+              Error         Error
+
+         1        8.627407        0.339441
+         2        4.528909        0.178188
+         3        0.000000        0.000000
+
+RANK_ONE_PRINT_TEST:
+  Print the sums of R rank one matrices.
+
+  Rank R = 1
+
+  7.148455  6.154007  8.332578
+  4.478044  3.855087  5.219820
+  4.460818  3.840257  5.199741
+  6.528943  5.620678  7.610445
+  7.120803  6.130202  8.300345
+
+  Rank R = 2
+
+  9.114478  4.469676  7.889900
+  4.876109  3.514056  5.130190
+  3.317202  4.820016  5.457242
+  2.193708  9.334759  8.586583
+  9.588134  4.016390  7.744791
+
+  Rank R = 3
+
+  10.000000  6.000000  6.000000
+  4.000000  2.000000  7.000000
+  4.000000  6.000000  4.000000
+  2.000000  9.000000  9.000000
+  9.000000  3.000000  9.000000
+
+  Original matrix A:
+
+  10.000000  6.000000  6.000000
+  4.000000  2.000000  7.000000
+  4.000000  6.000000  4.000000
+  2.000000  9.000000  9.000000
+  9.000000  3.000000  9.000000
+
+  The pseudoinverse of A:
+
+   0.0921  -0.0275   0.0199  -0.0784   0.0295
+   0.0541  -0.0734   0.0824   0.0624  -0.0780
+  -0.0858   0.0986  -0.0572   0.0516   0.0654
+
+PSEUDO_PRODUCT_TEST
+
+  The following relations MUST hold:
+
+   A  * A+ * A  = A
+   A+ * A  * A+ = A+
+ ( A  * A+ ) is MxM symmetric;
+ ( A+ * A  ) is NxN symmetric
+
+  Here are the Frobenius norms of the errors
+  in these relationships:
+
+   A  * A+ * A  = A            0.000000
+   A+ * A  * A+ = A+           0.000000
+ ( A  * A+ ) is MxM symmetric; 0.000000
+ ( A+ * A  ) is NxN symmetric; 0.000000
+
+  In some cases, the matrix A * A+
+  may be interesting (if M <= N, then
+  it MIGHT look like the identity.)
+
+   0.7316  -0.1236   0.3503  -0.1004   0.2197
+  -0.1236   0.4336  -0.1558   0.1721   0.4200
+   0.3503  -0.1558   0.3454   0.2670  -0.0883
+  -0.1004   0.1721   0.2670   0.8689  -0.0544
+   0.2197   0.4200  -0.0883  -0.0544   0.6205
+
+  In some cases, the matrix A+ * A+
+  may be interesting (if N <= M, then
+  it MIGHT look like the identity.)
+
+   1.0000   0.0000   0.0000
+   0.0000   1.0000   0.0000
+   0.0000   0.0000   1.0000
+
+PSEUDO_LINEAR_SOLVE_TEST
+
+  Given:
+    b = A * x1
+  so that b is in the range of A, solve
+    A * x = b
+  using the pseudoinverse:
+    x2 = A+ * b.
+
+  Norm of x1 = 8.246211
+  Norm of x2 = 8.246211
+  Norm of residual = 0.000000
+
+  For N < M, most systems A*x=b will not be
+  exactly and uniquely solvable, except in the
+  least squares sense.
+
+  Here is an example:
+
+  Given b is NOT in the range of A, solve
+    A * x = b
+  using the pseudoinverse:
+    x2 = A+ * b.
+
+  Norm of x2 = 8.246211
+  Norm of residual = 0.000000
+
+  Given:
+    b = A' * x1
+  so that b is in the range of A', solve
+    A' * x = b
+  using the pseudoinverse:
+    x2 = A+' * b.
+
+  Norm of x1 = 14.456832
+  Norm of x2 = 13.245274
+  Norm of residual = 0.000000
+
+SVD_DEMO:
+  Normal end of execution.
+
+14-Sep-2006 11:54:57
+>> 

@@ -1,0 +1,82 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Multiple output variables (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="dimadaptdegree.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="derivatives.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Multiple output variables</h1>
+	  <p>Real-world problems usually have more than a single output argument. Sparse grids are very well-suited to deal with such kind of problems, since the regular structure allows to construct good approximations for multiple output variables at once.</p>
+	  <p>The sparse grid interpolation package is designed to make dealing with multiple output arguments easy, as the following example demonstrates.</p>
+	  <h2><a name="ex1">Example</a></h2>
+      <p>Consider the following simple test function with multiple output arguments:</p><pre class="codeinput">type <span class="string">multiout.m</span>
+</pre><pre class="codeoutput">
+function [out1, out2, out3, out4] = multiout(x,y)
+% MULTIOUT   Test function with four output arguments
+out1 = (x+y).^2;
+out2 = 1./exp(1+(x-0.5).^2+(y-0.3).^2);
+out3 = sin(pi*(2-x))+cos(pi*(1-y));
+out4 = sinh(4.*(x-0.5));
+</pre><p><tt><a href="spvals.html">spvals</a></tt> will automatically compute interpolants with respect to all four output variables if the number of output variables is specified
+         in the sparse grid <tt>OPTIONS</tt> structure:
+      </p><pre class="codeinput">nout = 4;
+options = spset(<span class="string">'NumberOfOutputs'</span>, nout, <span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+z = spvals(@multiout, 2, [], options)
+</pre><pre class="codeoutput">
+z = 
+               vals: {4x1 cell}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: []
+           maxLevel: 5
+        estRelError: 0.0034
+        estAbsError: 0.0249
+         fevalRange: [4x2 double]
+         minGridVal: [4x2 double]
+         maxGridVal: [4x2 double]
+            nPoints: 145
+          fevalTime: 0.0392
+    surplusCompTime: 0.0129
+            indices: [1x1 struct]
+</pre><p>Note that the output parameters of the objective function must <b>all be scalar</b>. The number of outputs <tt>nout</tt> specified in the options structure may be smaller than the actual number of outputs. In this case, interpolants are constructed only with respect to the first <tt>nout</tt> arguments.
+      </p>
+      <p>To compute interpolated values, the desired output argument must now be specified. This is done by adding an additional field <b><tt>selectOutput</tt></b> to the structure <tt>z</tt> prior to the call to the <tt><a href="spinterp.html">spinterp</a></tt> function. The following code plots the four computed interpolants:
+      </p><pre class="codeinput"><span class="keyword">for</span> k = 1:nout
+  z.selectOutput = k;
+  subplot(2,2,k);
+  ezmesh(@(x,y) spinterp(z,x,y), [0 1]);
+  axis <span class="string">square</span>;
+  title([<span class="string">'out'</span> num2str(k)]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="images/ex_multiple_outputs_01.png"> <p>An additional example of using multiple output arguments with <tt>spvals</tt> is given by the demo <tt>spdemovarout</tt> available at the command line or from the <a href="demos.html">demos page</a>.
+      </p>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="dimadaptdegree.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Degree of Dimensional Adaptivity</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Derivatives</td>
+        <td width="20" align="right"><a href="derivatives.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

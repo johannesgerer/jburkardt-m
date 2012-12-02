@@ -1,0 +1,74 @@
+function [ xstar, seed ] = rk1_tv_step ( x, t, h, q, fv, gv, seed )
+
+%*****************************************************************************80
+%
+%% RK1_TV_STEP takes one step of a stochastic Runge Kutta scheme.
+%
+%  Discussion:
+%
+%    The Runge-Kutta scheme is first-order, and suitable for time-varying
+%    systems.
+%
+%    d/dx X(t,xsi) = F ( X(t,xsi), t ) + G ( X(t,xsi), t ) * w(t,xsi)
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    21 June 2010
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Reference:
+%
+%    Jeremy Kasdin,
+%    Runge-Kutta algorithm for the numerical integration of
+%    stochastic differential equations,
+%    Journal of Guidance, Control, and Dynamics,
+%    Volume 18, Number 1, January-February 1995, pages 114-120.
+%
+%    Jeremy Kasdin,
+%    Discrete Simulation of Colored Noise and Stochastic Processes
+%    and 1/f^a Power Law Noise Generation,
+%    Proceedings of the IEEE,
+%    Volume 83, Number 5, 1995, pages 802-827.
+%
+%  Parameters:
+%
+%    Input, real X, the value at the current time.
+%
+%    Input, real T, the current time.
+%
+%    Input, real H, the time step.
+%
+%    Input, real Q, the spectral density of the input white noise.
+%
+%    Input, external real FV, the name of the deterministic
+%    right hand side function.
+%
+%    Input, external real GV, the name of the stochastic
+%    right hand side function.
+%
+%    Input/output, integer SEED, a seed for the random
+%    number generator.
+%
+%    Output, real XSTAR, the value at time T+H.
+%
+  a21 = 1.0;
+
+  q1 = 1.0;
+
+  t1 = t;
+  x1 = x;
+  [ n1, seed ] = r8_normal_01 ( seed );
+  w1 = n1 * sqrt ( q1 * q / h );
+  k1 = h * fv ( t1, x1 ) + h * gv ( t1, x1 ) * w1;
+
+  xstar = x1 + a21 * k1;
+
+  return
+end

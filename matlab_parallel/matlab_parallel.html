@@ -1,0 +1,618 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_PARALLEL - Local Parallel Computing with MATLAB
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_PARALLEL <br>
+       Local Parallel Computing with MATLAB
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_PARALLEL</b>
+      is a directory of MATLAB programs which
+      illustrate how to do parallel computing with MATLAB on a single multicore or
+      multiprocessor machine.
+    </p>
+
+    <p>
+      This is called "local" parallel computing.  Local parallel computing
+      with MATLAB requires access to MATLAB's <i>Parallel Computing Toolbox</i>.
+    </p>
+
+    <p>
+      It is also possible to run a MATLAB program in parallel, taking advantage
+      of a remote cluster of computers.  This is called "remote" parallel processing,
+      and it requires, in addition to the Parallel Computing Toolbox, the
+      <i>MATLAB Distributed Computing Server</i>.  Remote parallel computing will not
+      be discussed in this article!
+    </p>
+
+    <p>
+      You must be running a copy of MATLAB that is recent enough to have
+      the parallel computing features described here.  In particular, you
+      must be running MATLAB <b>version 2008a</b> or later.  (Sadly, you may
+      find that MATLAB has stopped issuing new releases for your
+      slightly old computer!)
+    </p>
+
+    <p>
+      Your copy of MATLAB must include the Parallel Computing Toolbox.
+      To get a list of <i>all</i> your toolboxes, type:
+      <pre>
+        ver
+      </pre>
+    </p>
+
+    <p>
+      Assuming you have the right version of MATLAB, and the Parallel Computing Toolbox,
+      let's also assume that your computer has multiple processors or cores.  If you
+      don't, you can still run the Parallel Computing Toolbox - but you just won't
+      ever see any speedup!
+    </p>
+
+    <h3 align = "center">
+      Local Parallel Computing
+    </h3>
+
+    <p>
+      If you have access to the Parallel Computing Toolbox, then you can do "local"
+      parallel computing directly on your machine.
+    </p>
+
+    <p>
+      Suppose for a moment that you have a MATLAB M-file which has been modified
+      to compute in parallel (we will explain what this means momentarily).
+    <p>
+
+    <p>
+      The first thing you do, then, is to start up MATLAB in the regular way.
+      This copy of MATLAB that you start with is called the "client" copy; the copies
+      of MATLAB that will be created to assist in the computation
+      are known as "workers".
+    </p>
+
+    <p>
+      The process of running your program in parallel now requires three steps:
+      <ul>
+        <li>
+          request a number of workers;
+        </li>
+        <li>
+          issue the normal command to run the program.  The client program will
+          call on the workers as needed;
+        </li>
+        <li>
+          release the workers;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Supposing that your machine has 8 cores, and that your M file is named
+      "samson.m", the command you might actually issue could look like this:
+      <pre>
+        matlabpool open local 4
+
+        samson
+
+        matlabpool close
+      </pre>
+    </p>
+
+    <p>
+      The number of workers you request can be any value from 0 up to 4.
+      Of course, asking for 0 workers gets you no parallelism!  You can't ask for
+      more than 4 because that's a limitation imposed by the Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      It is probably reasonable to request no more workers than you have cores on
+      your machine.  If you only have 2 cores, and you ask for 4 workers,
+      MATLAB will create 4 workers, but several of them will have to share each core.
+   </p>
+
+    <h3 align = "center">
+      Using the PARFOR Command for Parallel Programs
+    </h3>
+
+    <p>
+      The simplest way of parallelizing a MATLAB program focuses on the
+      <b>for</b> loops in the program.  If a <b>for</b> loop is suitable
+      for parallel execution, this can be indicated simply by replacing the
+      word <b>for</b> by the word <b>parfor</b>.  When the MATLAB program is
+      run, and if workers have been made available by the <b>matlabpool</b>
+      command, then the work in each <b>parfor</b> loop will be distributed
+      among the workers.
+    </p>
+
+    <p>
+      What determines whether a <b>for</b> loop is "suitable" for parallelization?
+      The crucial question that must be answered satisfactorily is this:
+      <i>Can the iterations of the loop be performed in any order without
+      affecting the results?</I>  If the answer is "yes", then generally the
+      loop can be parallelized.
+    </p>
+
+    <p>
+      If you have nested <b>for</b> loops, then generally it is not useful
+      to replace these by nested <b>parfor</b> loops.  If the outer loop can
+      be parallelized, then that is the one that should be controlled by a
+      <b>parfor</b>.  If the outer loop cannot be parallelized, then you are
+      free to try to parallelize some of the inner <b>for</b> loops.
+    </p>
+
+    <h3 align = "center">
+      Things you don't have to worry about:
+    </h3>
+
+    <p>
+      In some parallelization systems, special care must be taken for
+      what are called <i>reduction operations</i>.  Typically, these occur when
+      certain functions such as the maximum, minimum, or sum, are applied
+      to an indexed loop value.  MATLAB does not require any special treatment
+      for such operations, and in general they are not an impediment to parallelization.
+    </p>
+
+    <p>
+      In this loop, for example, the variables <b>total</b> and <b>big</b> are reduction
+      variables.  MATLAB is able to handle this calculation in parallel without
+      any special action from the user, who simply has to replace <b>for</b>
+      by <b>parfor</b>:
+      <pre>
+        total = 0.0;
+        big = - Inf;
+        for i = 1 : n
+          total = total + x(i);
+          big = max ( big, x(i) );
+        end
+      </pre>
+    </p>
+
+    <p>
+      Another feature of some parallelization systems involves the treatment
+      of <i>temporary variables</i>.  In the simplest case, a temporary variable is
+      a scalar that is redefined and then used within each iteration of a loop.
+      It is often simply a convenience or shorthand for a cumbersome expression.
+      Many parallelization systems require such variables to be declared
+      as "private", so that each worker has its own copy of the variable.
+      MATLAB does not require any such special treatment of temporary variables.
+    </p>
+
+    <p>
+      In this loop, for example, the variable <b>angle</b> is a temporary
+      variable.  MATLAB is able to handle this calculation in parallel without
+      any special action from the user, who simply has to replace <b>for</b>
+      by <b>parfor</b>:
+      <pre>
+        for i = 1 : n
+          angle = ( i - 1 ) * pi / ( n - 1 );
+          t(i) = cos ( angle );
+        end
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Things you do have to worry about:
+    </h3>
+
+    <p>
+      The most common programming practice that will make parallelization
+      impossible occurs when the data used in one iteration of the loop
+      is not available until a previous iteration has been computed.
+      Sometimes there is another way of programming the loop that makes
+      this difficulty disappear; other times, the problem cannot be fixed
+      because the quantity being computed is inherently recursive.
+    </p>
+
+    <p>
+      As a simple example, you may be computing the X locations of a set of
+      nodes this way:
+      <pre>
+        dx = 0.25;
+        x = zeros (1,n);
+        for i = 2 : n
+          x(i) = x(i-1) + dx;
+        end
+      </pre>
+      It should be clear that MATLAB's approach to parallelization will fail
+      if applied to this loop.  Correct computation requires that the iterations
+      be done in exactly the order that the standard <b>for</b> specifies.
+      However, it's not hard to see alternative ways of doing this calculation,
+      such as:
+      <pre>
+        dx = 0.25;
+        parfor i = 1 : n
+          x(i) = (i-1) * dx;
+        end
+      </pre>
+      (Of course, in this case, any MATLAB programmer can think of a one line
+      solution, but that's not our point!)
+    </p>
+
+    <p>
+      On the other hand, suppose we are computing an approximation to the
+      solution of a differential equation:
+      <pre>
+        dt = 0.25;
+        u = zeros (1,n);
+        for i = 2 : n
+          u(i) = u(i-1) + dt * f( t, u(i-1) );
+        end
+      </pre>
+      Here, there is generally no way to replace the sequential calculation
+      by a parallel one.  The value of <b>u(i)</b> cannot be computed until
+      the value of <b>u(i-1)</b> is known, and that means the loop iterations
+      cannot be executed in arbitrary order.  Similar issues arise when a Newton
+      iteration is being carried out.
+    </p>
+
+    <p>
+      Some loops include a <b>break</b> or <b>return</b> statement which
+      is invoked if a certain condition is encountered.  Such loops cannot
+      be parallelized!  Sometimes, the jump out of the loop was not actually
+      necessary, but seemed more efficient, at least for sequential computation.
+      It may be possible to execute the loop in parallel, at the cost of
+      carrying out those "useless" final iterations.
+    </p>
+
+    <p>
+      Some temporary variables are used in ways that defeat parallelism.  This
+      usually occurs when the value of the temporary variable is assumed to be
+      saved from one iteration to the next, containing information that is necessary
+      for the computation.  A simple example of this occurs when the variable is
+      counting how many times some condition has occurred.  (There are often
+      ways of rewriting the loop so that parallelization can occur.)
+    </p>
+
+    <p>
+      In this loop, for example, we are looking for nonzero entries of the matrix A,
+      and storing them in a compressed vector.  The variable <b>k</b>, which counts
+      how many such entries we have seen so far, is a "wraparound" temporary,
+      whose value, set in one loop iteration, is needed in a later loop iteration.
+      It is not possible to ask MATLAB to carry out this operation in parallel
+      simply by replacing the <b>for</b> loop by a <b>parfor</b>.  A better choice
+      might be to explore the <b>find</b> command!
+      <pre>
+        k = 0;
+        for i = 1 : m
+          for j = 1 : n
+            if ( a(i,j) ~= 0.0 )
+              k = k + 1
+              a2(k) = a(i,j);
+              i2(k) = i;
+              j2(k) = j;
+            end
+          end
+        end
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      How to measure and report elapsed time
+    </h3>
+
+    <p>
+      MATLAB's <b>cputime</b> function is designed to report the elapsed CPU time;
+      but if your program is being run in parallel, this function might not capture
+      the information you want.  That's because <b>cputime</b> will only measure
+      the work done by the particular worker (or the client) that invokes it.
+      In some cases, the client does very little work, and so a CPU time measurement
+      will be very misleading.
+    </p>
+
+    <p>
+      Instead, you should use the <b>tic</b> and <b>toc</b> functions to begin
+      and end timing.  The call to <b>toc</b> returns the number of seconds elapsed
+      since <b>tic</b> was called.
+      Here is an example of the use of both <b>tic</b> and <b>toc</b>
+      when measuring performance of a parallel computation.  Note that in this example,
+      the parfor loops are not visible.  They occur inside the "compute" and "update"
+      functions.
+    </p>
+
+    <pre>
+  tic;
+
+  for step = 1 : step_num
+
+    [ force, potential, kinetic ] = compute ( np, nd, pos, vel, mass );
+
+    pe(step) = potential;
+    ke(step) = kinetic;
+    ee(step) = ( potential + kinetic - e0 ) / e0;
+
+    [ pos, vel, acc ] = update ( np, nd, pos, vel, force, acc, mass, dt );
+
+  end
+
+  wtime = toc;
+
+  fprintf ( 1, '  Main computation:\n' );
+  fprintf ( 1, '    Wall clock time = %f seconds.\n', wtime );
+    </pre>
+
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/birthday_remote/birthday_remote.html">
+      BIRTHDAY_REMOTE</a>,
+      a MATLAB program which
+      runs a Monte Carlo simulation of the birthday paradox, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/color_remote/color_remote.html">
+      COLOR_REMOTE</a>,
+      a MATLAB program which
+      carries out the color segmentation of an image in parallel,
+      via SPMD commands; this includes instructions on how to run the job,
+      via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/knapsack_tasks/knapsack_tasks.html">
+      KNAPSACK_TASKS</a>,
+      a MATLAB program which
+      solves a knapsack problem by subdividing it into tasks, each of
+      which is carried out as a separate program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+      LYRICS_REMOTE</a>,
+      a MATLAB program which
+      runs in parallel, using three workers which cooperate "systolically", that is,
+      as through they were on an assembly line.  The output from worker 1 is passed to
+      worker 2 for further processing, and so on.  This includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_commandline/matlab_commandline.html">
+      MATLAB_COMMANDLINE</a>,
+      MATLAB programs which
+      illustrate how MATLAB can be run from the UNIX command line, that is,
+      not with the usual MATLAB command window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_remote/matlab_remote.html">
+      MATLAB_REMOTE</a>,
+      MATLAB programs which
+      illustrate the use of remote job execution, in which a desktop copy of
+      MATLAB sends programs and data to a remote machine for execution.
+      Included is information needed to properly configure the local machine.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ithaca_2009b.mat">ithaca_2009b.mat</a>
+          a configuration file, which can be used on the Virginia Tech ITHACA system.
+          It defines the "ithaca" configuration, allowing a user to open a matlabpool
+          that uses multiple nodes.
+        </li>
+        <li>
+          <a href = "reduction_example.m">reduction_example.m</a>
+          shows how MATLAB can carry out reduction operations sequentially
+          or in parallel.
+        </li>
+        <li>
+          <a href = "reduction_failure_example.m">reduction_failure_example.m</a>
+          shows how a MATLAB program can fail when the user intends a variable
+          to be used as a reduction variable, but violates MATLAB's rules
+          for reduction variables.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

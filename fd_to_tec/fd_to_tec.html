@@ -1,0 +1,196 @@
+<html>
+
+  <head>
+    <title>
+      FD_TO_TEC - Convert an FD Model to a TECPLOT ASCII File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD_TO_TEC <br> Convert an FEM Model to a TECPLOT ASCII File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD_TO_TEC</b> 
+      is a MATLAB program which 
+      reads two files
+      defining a finite difference model (FD format) and writes a
+      TECPLOT ASCII file suitable for display by <b>TECPLOT</b>.
+    </p>
+
+    <p>
+      The finite difference model is assumed to include two items:
+      <ul>
+        <li>
+          Node coordinates, stored in a "node file";
+        </li>
+        <li>
+          Node values, such as pressure,
+          velocity, and so on, stored in a "value file";
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A naming convention assumes that these files share a common prefix,
+      followed by the suffixes "_nodes.txt" and "_values.txt".
+      Thus, the "carlos" set of data would be contained in the files
+      "carlos_nodes.txt" and "carlos_values.txt".
+    </p>
+
+    <p>
+      <b>FD_TO_TEC</b> reads these two files, calls MATLAB's <b>delaunayn</b> function
+      to get a triangularization (if the node data is 2D)
+      or a tetrahedralization (if the node data is 3D) and writes the element data
+      to a file (which turns the FD model into an FEM model), and writes an equivalent
+      TECPLOT ASCII ".dat" file.
+    </p>
+
+    <p>
+      <a href = "http://www.tecplot.com/">
+      The TECPLOT home page</a> contains a description of the
+      <b>TECPLOT</b> program.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fd_to_tec</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the common file prefix;
+        </li>
+      </ul>
+      reads the files <i>'prefix'</i>_nodes.txt, 
+      and <i>'prefix'</i>_values.txt; creates an element file <i>'prefix'</i>_elements.txt,
+      and creates the TECPLOT ASCII file <i>'prefix'</i>.dat.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fd/fd.html">
+      FD</a>, 
+      a data directory which
+      contains examples of FD files, two text files that can be used to describe
+      many finite difference models;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_tec/fem_to_tec.html">
+      FEM_TO_TEC</a>, 
+      a MATLAB program which
+      converts FEM models into TECPLOT ASCII graphics files.
+    </p>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which 
+      contains a description and examples
+      of TECPLOT ASCII graphics files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_io/tec_io.html">
+      TEC_IO</a>,
+      a MATLAB library which
+      reads and writes TECPLOT ASCII graphics files.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd_to_tec.m">fd_to_tec.m</a> 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is an example of a 2D finite difference model
+      in which a scalar value is stored. 
+      <ul>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>
+          the nodal coordinates.
+        </li>
+        <li>
+          <a href = "ell_values.txt">ell_values.txt</a>,
+          the nodal values.
+        </li>
+        <li>
+          <a href = "ell_elements.txt">ell_elements.txt</a>,
+          an element file, created by the program.
+        </li>
+        <li>
+          <a href = "ell.dat">ell.dat</a>, the TECPLOT ASCII file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CARLOS</b> is an example of a 3D finite difference model
+      in which a scalar value is stored.  
+      <ul>
+        <li>
+          <a href = "carlos_nodes.txt">carlos_nodes.txt</a>
+        </li>
+        <li>
+          <a href = "carlos_values.txt">carlos_values.txt</a>
+        </li>
+        <li>
+          <a href = "carlos_elements.txt">carlos_elements.txt</a>,
+          an element file, created by the program.
+        </li>
+        <li>
+          <a href = "carlos.dat">carlos.dat</a>, the TECPLOT ASCII file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

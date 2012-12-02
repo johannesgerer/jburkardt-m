@@ -1,0 +1,271 @@
+<html>
+
+  <head>
+    <title>
+      PLY_IO - Read or Write a PLY File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PLY_IO <br> Read or Write a PLY File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PLY_IO</b> 
+      is a MATLAB library which 
+      reads or writes data describing a polygonal mesh
+      in a <b>PLY</b> file.  
+    </p>
+
+    <p>
+      A <b>PLY</b> file contains a sophisticated data structure describing
+      a polygonal surface.  A triangulated mesh is a very simply case of
+      such a surface; a <b>PLY</b> file can also describe a mesh surface
+      involving higher order polygons, and it can contain auxilliary
+      information about normal vectors and so on.
+    </p>
+
+    <p>
+      A <b>TRI_MESH</b> or triangulated mesh surface, is described by a
+      pair of arrays:
+      <ul>
+        <li>
+          a <b>node coordinate</b> array containing the coordinates of nodes;
+        </li>
+        <li>
+          a <b>triangle node</b> array containing triples of the indices
+          of the nodes used to form each triangle;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PLY_IO</b> is available in
+      <a href = "../../c_src/ply_io/ply_io.html">a C version</a> and
+      <a href = "../../m_src/ply_io/ply_io.html">a MATLAB version</a>,
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bezier_surface_display/bezier_surface_display.html">
+      BEZIER_SURFACE_DISPLAY</a>,
+      a MATLAB program which 
+      reads two files defining a Bezier surface and displays it.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>,
+      a MATLAB program which 
+      displays a basis function associated with a linear triangle ("T3") mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t6_display/fem_basis_t6_display.html">
+      FEM_BASIS_T6_DISPLAY</a>, 
+      a MATLAB program which
+      reads a quadratic triangle mesh and displays any associated basis function.
+    </p>
+
+    <p>
+      <a href = "../../c_src/obj_to_ply/obj_to_ply.html">
+      OBJ_TO_PLY</a>, 
+      a C program which 
+      converts an
+      <a href = "../../data/obj/obj.html">Wavefront OBJ file</a>
+      to PLY format.
+    </p>
+
+    <p>
+      <a href = "../../c_src/plato_ply/plato_ply.html">
+      PLATO_PLY</a>,
+      a C program which 
+      creates a Platonic solid 
+      and writes it to an ASCII PLY file, by Greg Turk.
+    </p>
+
+    <p>
+      <a href = "../../data/ply/ply.html">
+      PLY</a>,
+      a data directory which
+      contains a description and examples of <b>PLY</b> files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ply_display/ply_display.html">
+      PLY_DISPLAY</a>,
+      a MATLAB program which
+      displays an image of a 3D graphics file in PLY format;
+    </p>
+
+    <p>
+      <a href = "../../c_src/ply_to_iv/ply_to_iv.html">
+      PLY_TO_IV</a>,
+      a C program which 
+      converts a PLY file to INVENTOR format.
+    </p>
+
+    <p>
+      <a href = "../../c_src/ply_to_obj/ply_to_obj.html">
+      PLY_TO_OBJ</a>, 
+      a C program which
+      reads a PLY 3D graphics file and writes an equivalent OBJ graphics file.
+    </p>
+
+    <p>
+      <a href = "../../data/polygonal_surface/polygonal_surface.html">
+      POLYGONAL_SURFACE</a>, 
+      a data directory which
+      contains examples of polygonal surface files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_display/stla_display.html">
+      STLA_DISPLAY</a>, 
+      a MATLAB program which 
+      reads an ASCII <b>STL</b> file and displays it.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads files defining a triangulation and displays an image
+      using OpenGL.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      The original versions of the files <b>PLY_READ.M</b>. <b>PLY_WRITE.M</b>
+      and <b>PLY_TO_TRI_MESH.M</b> were created by Pascal Getreuer.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">i4mat_transpose_print_some.m</a>, 
+          prints some of the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "ply_read.m">ply_read.m</a> 
+          reads a <b>PLY</b> file.
+        </li>
+        <li>
+          <a href = "ply_write.m">ply_write.m</a> 
+          writes a <b>PLY</b> file.
+        </li>
+        <li>
+          <a href = "ply_to_tri_mesh.m">ply_to_tri_mesh.m</a> 
+          converts <b>PLY</b> data to <b>TRI_MESH</b> data.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>, 
+          prints some of the transpose of an R8MAT.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tri_mesh_to_ply.m">tri_mesh_to_ply.m</a> 
+          converts <b>TRI_MESH</b> data to <b>PLY</b> data.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ply_io_test.m">ply_io_test.m</a>
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "ply_io_test_output.txt">ply_io_test_output.txt</a>
+          the output file.
+        </li>
+        <li>
+          <a href = "ply_io_test01.m">ply_io_test01.m</a>
+          converts data defining a pyramid as a triangular mesh into a PLY
+          data structure, and used <b>PLY_WRITE</b> to write it
+          to a file.
+        </li>
+        <li>
+          <a href = "ply_io_test02.m">ply_io_test02.m</a>
+          reads a <b>PLY</b> file defining a sphere, extracts the
+          data, and displays it.
+        </li>
+        <li>
+          <a href = "pyramid.ply">pyramid.ply</a>
+          the <b>PLY</b> file defining a pyramid.
+        </li>
+        <li>
+          <a href = "pyramide.png">pyramid.png</a>
+          a <a href = "../../data/png/png.html">PNG</b> image 
+          of MATLAB's display of the pyramid.
+        </li>
+        <li>
+          <a href = "sphere.ply">sphere.ply</a>
+          the <b>PLY</b> file defining a sphere.
+        </li>
+        <li>
+          <a href = "sphere.png">sphere.png</a>
+          a <a href = "../../data/png/png.html">PNG</b> image 
+          of MATLAB's display of the sphere.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 June 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

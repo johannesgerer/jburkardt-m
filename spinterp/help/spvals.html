@@ -1,0 +1,147 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spvals :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spvals</h1>
+		  Construct a sparse grid interpolant.
+		<h2>Syntax</h2>
+			<code>Z = spvals(FUN,D)</code><br>
+			<code>Z = spvals(FUN,D,RANGE)</code><br>
+			<code>Z = spvals(FUN,D,RANGE,OPTIONS)</code><br>
+			<code>Z = spvals(FUN,D,RANGE,OPTIONS,P1,P2, ...)</code>
+		<h2>Description</b></h2>
+		  <code>Z = spvals(FUN,D)</code> Compute the sparse grid representation <code>Z</code> for multi-linear sparse grid interpolation of the function <code>FUN</code>. The grid is computed over the d-dimensional unit cube <code>[0,1]^D</code>.
+		<p>
+			<code>Z = spvals(FUN,D,RANGE)</code> In addition to the syntax above, the
+     interpolation box dimensions may be specified. <code>RANGE</code> is a <code>2xD</code> array, e.g. to compute the sparse grid representation over the domain <code>[0,1]x[2,4]x[1,5]</code> of <code>FUN</code>, <code>RANGE</code> must be <code>[0 1; 2 4; 1 5]</code>. If <code>RANGE</code> is empty (=<code>[]</code>), it is assumed to be <code>[0,1]^D</code>.
+		<p>
+			<code>Z = spvals(FUN,D,RANGE,OPTIONS)</code> Computes the sparse grid representation as above, but with default interpolation properties replaced by values in <code>OPTIONS</code>, an argument created with <a href="spset.html"><code>spset</code></a>.
+		<p>
+			<code>Z = spvals(FUN,D,RANGE,OPTIONS,P1,P2, ...)</code> passes the  parameters <code>P1,P2,...</code> to the objective function <code>FUN</code>.
+		<h2><a name="ex1">Examples</a></h2>
+The following examples demonstrate the generation of sparse grid interpolants under a variety of different parameters. The
+            extensive configurability of spvals is achieved via the spset function. Additional examples of constructing interpolants of
+            external functions, models with several output parameters, ODEs, etc. are provided in the <a href="advanced_topics.html">advanced topics</a> section.
+         </p>
+      </introduction>
+      <p>We first define the test function. In the examples below, we use Branin's test function:</p>
+      <p><img src="images/ex_spvals_eq1206822.png"> </p>
+      <p>We set the dimension to <tt>d = 2</tt>, and the interpolation domain to <tt>range = [-5,10; 0,15]</tt>.
+      </p><pre class="codeinput">fun = inline([<span class="string">'(5/pi*x-5.1/(4*pi^2)*x.^2+y-6).^2 + '</span> <span class="keyword">...</span>
+              <span class="string">'10*(1-1/(8*pi))*cos(x)+10'</span>]);
+d = 2;
+range = [-5, 10; 0, 15];
+</pre><p>Now, we compute a regular (i.e. non-adaptive) sparse grid interpolant of <tt>fun</tt> using the default settings of the Sparse Grid Interpolation toolbox. This will compute a piecewise linear interpolant at
+         the Clenshaw-Curtis sparse grid.
+      </p><pre class="codeinput">z1 = spvals(fun, d, range)
+</pre><pre class="codeoutput">
+z1 = 
+               vals: {[145x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: [2x2 double]
+           maxLevel: 5
+        estRelError: 0.0087
+        estAbsError: 2.6622
+         fevalRange: [1.3697 308.1291]
+         minGridVal: [0.1250 0.7500]
+         maxGridVal: [0 0]
+            nPoints: 145
+          fevalTime: 0.2437
+    surplusCompTime: 0.0040
+            indices: [1x1 struct]
+</pre><p><a name="ex2"></a>For comparison, we now compute two additional interpolants, one being a regular Chebyshev-Gauss-Lobatto grid, the other one
+         being a dimension-adaptive sparse grid interpolant of the same grid type. To do this, we must pass an according options structure
+         to the <tt>spvals</tt> routine. We do not have to store this options structure- it is possible to pass a structure generated on-the-fly to the function.
+      </p><pre class="codeinput">z2 = spvals(fun, d, range, spset(<span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>))
+z3 = spvals(fun, d, range, spset(<span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+                                 <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+                                 <span class="string">'DimAdaptDegree'</span>, 1, <span class="keyword">...</span>
+                                 <span class="string">'MinPoints'</span>, 20))
+</pre><pre class="codeoutput">
+z2 = 
+               vals: {[65x1 double]}
+           gridType: 'Chebyshev'
+                  d: 2
+              range: [2x2 double]
+           maxLevel: 4
+        estRelError: 0.0095
+        estAbsError: 2.9017
+         fevalRange: [2.5620 308.1291]
+         minGridVal: [0.5000 0.2222]
+         maxGridVal: [0 0]
+            nPoints: 65
+          fevalTime: 0.1211
+    surplusCompTime: 0.0225
+            indices: [1x1 struct]
+
+z3 = 
+               vals: {[29x1 double]}
+           gridType: 'Chebyshev'
+                  d: 2
+              range: [2x2 double]
+        estRelError: 0.0095
+        estAbsError: 2.9017
+         fevalRange: [2.7065 308.1291]
+         minGridVal: [0.5000 0.1464]
+         maxGridVal: [0 0]
+            nPoints: 29
+          fevalTime: 0.0468
+    surplusCompTime: 0.0094
+            indices: [1x1 struct]
+           maxLevel: [4 2]
+      activeIndices: [3x1 uint32]
+     activeIndices2: [9x1 uint32]
+                  E: [1x9 double]
+                  G: [9x1 double]
+                 G2: [9x1 double]
+       maxSetPoints: 4
+           dimAdapt: 1
+</pre><p>The following code generates a plot comparing the three interpolants. Furthermore, the error is plotted compared to the original
+         function.
+      </p><pre class="codeinput">z = {z1, z2, z3};
+<span class="keyword">for</span> k = 1:3
+  f_z = @(x,y) spinterp(z{k}, x, y);
+  error_z = @(x,y) fun(x,y) - spinterp(z{k}, x, y);
+  subplot(2,3,k);
+  ezmesh(f_z, [range(1,:),range(2,:)]);
+  title([<span class="string">'interpolant z_'</span> num2str(k)]);
+  view(20,30);
+  subplot(2,3,k+3);
+  ezmesh(error_z, [range(1,:),range(2,:)]);
+  title([<span class="string">'error of z_'</span> num2str(k)]);
+  view(20,30);
+<span class="keyword">end</span>
+</pre><img src="images/ex_spvals_01.png">		<h2>See Also</h2>
+		  <a href="spinterp.html"><code>spinterp</code></a>,
+		  <a href="spset.html"><code>spset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

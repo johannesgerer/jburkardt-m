@@ -1,0 +1,295 @@
+<html>
+
+  <head>
+    <title>
+      FEM_50_HEAT - the Time Dependent Heat Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_50_HEAT <br> the Time Dependent Heat Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_50_HEAT</b>
+      is a MATLAB program which
+      is a version of
+      <a href = "../../m_src/fem_50/fem_50.html">
+      FEM_50</a> that applies the finite element method to the time-dependent
+      heat equation in an arbitrary region, using about 50 lines of MATLAB code,
+      by Jochen Alberty, Carsten Carstensen, Stefan Funken.
+    </p>
+
+    <p>
+      Because the underlying routine is so sparse and flexible, the
+      user has the burden of supplying datafiles and routines that
+      specify the geometry, triangulation, boundary and initial
+      conditions, and so on.  In some cases, preparing these files
+      can be a considerable effort.
+    </p>
+
+    <p>
+      The unknown state variable <b>U(x,y,t)</b> is assumed to satisfy
+      the time dependent heat equation:
+      <blockquote><b>
+        dU(x,y,t)/dt = Uxx(x,y,t) + Uyy(x,y,t) + F(x,y,t)
+      </b></blockquote>
+      for <b>(x,y)</b> in the region <b>Omega</b> and times <b>t</b> in
+      <b>[t_start,t_final]</b>.
+    </p>
+
+    <p>
+      Dirichlet boundary conditions have the form
+      <blockquote><b>
+        U(x,y,t) = U_D(x,y,t)
+      </b></blockquote>
+      on <b>Gamma<sub>D</sub></b>.
+    </p>
+
+    <p>
+      Neumann boundary conditions may be specified on the outward
+      normal derivative:
+      <blockquote><b>
+        Un(x,y,t) = G(x,y,t)
+      </b></blockquote>
+      on <b>Gamma<sub>N</sub></b>.
+    </p>
+
+    <p>
+      If <b>Gamma</b> designates the boundary of the region <b>Omega</b>,
+      then we presume that
+      <blockquote><b>
+        Gamma = Gamma<sub>D</sub> + Gamma<sub>N</sub>
+      </b></blockquote>
+      but the user is free to determine which boundary conditions to
+      apply.
+    </p>
+
+    <p>
+      There is also an initial condition to be applied:
+      <blockquote><b>
+        U(x,y,t_start) = U_init(x,y,t_start)
+      </b></blockquote>
+    </p>
+
+    <p>
+      The code uses piecewise linear basis functions on triangular elements.
+      It would not be hard to include the ability to handle quadrilateral
+      elements or mixed grids using both types of elements, as is done in
+      FEM_50.
+    </p>
+
+    <p>
+      Because the geometry is completely up to the user,
+      just about any two dimensional region can be handled, with arbitrary
+      shape, including holes and islands.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <dl>
+        <dt>
+          <b>fem_50_heat</b>
+        </dt>
+        <dd>
+          runs the program (inside of MATLAB, of course!)
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_50/fem_50.html">
+      FEM_50</a>,
+      a MATLAB program which
+      implements the finite element method in just 50 lines of code.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element
+      method, with piecewise linear basis functions, to a linear
+      two point boundary value problem;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>,
+      a MATLAB program which
+      solves Poisson's equation
+      on a square, using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson/fem2d_poisson.html">
+      FEM2D_POISSON</a>,
+      a MATLAB program which
+      solves Poisson's equation
+      on a square, using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hot_pipe/hot_pipe.html">
+      HOT_PIPE</a>,
+      a MATLAB program which
+      can be run with <b>FEM_50_HEAT</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hot_point/hot_point.html">
+      HOT_POINT</a>,
+      a MATLAB program which
+      can be run with <b>FEM_50_HEAT</b>.
+    </p>
+
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Jochen Alberty,<br>
+      Carsten Carstensen,<br>
+      Stefan Funken.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jochen Alberty, Carsten Carstensen, Stefan Funken,<br>
+          Remarks Around 50 Lines of MATLAB:<br>
+          Short Finite Element Implementation,<br>
+          Numerical Algorithms,<br>
+          Volume 20, pages 117-137, 1999.
+        </li>
+        <li>
+          Carsten Carstensen's web page
+          <a href = "http://www.math.hu-berlin.de/~cc">
+                    "http://www.math.hu-berlin.de/~cc"</a>.
+        </li>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313..
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem_50_heat.m">fem_50_heat.m</a>, carries out the finite
+          element method on the user's data.
+        </li>
+        <li>
+          <a href = "show.m">show.m</a>, is called to
+          display an animated plot of the sequence of solutions.
+        </li>
+        <li>
+          <a href = "stima3.m">stima3.m</a>, computes the contributions
+          to the stiffness matrix made by triangular elements.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, prints the
+          YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+       <li>
+          <a href = "../hot_point/hot_point.html">HOT_POINT</a>, 169 nodes
+          with triangular elements, all Dirichlet conditions, and one
+          initally "hot point" in the center of the region.
+        </li>
+        <li>
+          <a href = "../hot_pipe/hot_pipe.html">HOT_PIPE</a>, 169 nodes
+          with triangular elements, mixed Dirichlet and Neumann boundary
+          conditions, and zero initial condition;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+
+  </body>
+
+</html>

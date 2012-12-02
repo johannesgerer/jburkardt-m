@@ -1,0 +1,324 @@
+<html>
+
+  <head>
+    <title>
+      PRIME_PARFOR - A Parallel MATLAB Function Using PARFOR
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PRIME_PARFOR <br> A Parallel MATLAB Function Using PARFOR
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PRIME_PARFOR</b>
+      is a directory which
+      illustrates how a MATLAB function using the PARFOR statement
+      can be run in parallel.
+    </p>
+
+    <p>
+      The algorithm is completely naive.  For each integer I, it simply checks
+      whether any smaller J evenly divides it.  The total amount of work
+      for a given N is thus roughly proportional to 1/2*N^2.
+    </p>
+
+    <p>
+      There is very little memory traffic and no communication, so this program
+      is a good test for the pure computational speedup offered by MATLAB's
+      Parallel Programming Toolbox.
+    </p>
+
+    <p>
+      The basic function has the form:
+      <blockquote>
+        function total = prime_fun ( n )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          n, the largest integer to check.
+        </li>
+        <li>
+          total, the number of primes between 1 and n.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the Ithaca cluster, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the FSU HPC cluster, using the <b>fsuClusterMatlab</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's parfor feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate_parfor/heated_plate_parfor.html">
+      HEATED_PLATE_PARFOR</a>,
+      a MATLAB program which
+      solves the steady (time independent) heat equation in a 2D
+      rectangular region, using MATLAB's parfor facility to run in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hello_parfor/hello_parfor.html">
+      HELLO_PARFOR</a>,
+      a MATLAB program which
+      prints out "Hello, world!" multiple times, using MATLAB's parfor command
+      for parallel execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/high_card_parfor/high_card_parfor.html">
+      HIGH_CARD_PARFOR</a>,
+      a MATLAB program which
+      uses the parfor statement to compute in parallel the statistics for
+      a card game in which you are required to guess the location of the
+      highest card.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_parfor/matrix_assemble_parfor.html">
+      MATRIX_ASSEMBLE_PARFOR</a>,
+      a MATLAB program which
+      demonstrates the parfor parallel programming 
+      feature by assembling the Hilbert matrix in a parallel loop.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../c_src/prime_openmp/prime_openmp.html">
+      PRIME_OPENMP</a>,
+      a C program which
+      counts the number of primes between 1 and N, using OpenMP for parallel execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_plot/prime_plot.html">
+      PRIME_PLOT</a>
+      a MATLAB program which 
+      displays a box plot of the prime and composite numbers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_serial/prime_serial.html">
+      PRIME_SERIAL</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N,
+      intended as a starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_parfor/sparse_parfor.html">
+      SPARSE_PARFOR</a>,
+      a MATLAB library which
+      demonstrates how a sparse matrix can be constructed by
+      evaluating individual blocks in parallel with the <b>parfor</b>
+      command, and then assembled (on a single processor) using the 
+      sparse() command.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "prime_fun.m">prime_fun.m</a>
+          the function which performs the computations.
+        </li>
+      </ul>
+    <p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>PRIME_POOL</b> runs the command locally and interactively.
+      Since I have 4 processors, an interactive pool job can use all 4.
+      <ul>
+        <li>
+          <a href = "prime_pool.m">prime_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "prime_pool_output.txt">prime_pool_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRIME_BATCH_LOCAL</b> runs the command locally, noninteractively.
+      Since I have 4 processors, a batch job can only use 3.
+      <ul>
+        <li>
+          <a href = "prime_batch_local.m">prime_batch_local.m</a>
+          a program which uses the BATCH command to run the script indirectly
+          and locally.
+        </li>
+        <li>
+          <a href = "prime_script.m">prime_script.m</a>
+          a script which calls the function, necessary for the BATCH command.
+        </li>
+        <li>
+          <a href = "prime_batch_local_output.txt">prime_batch_local_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRIME_BATCH_ITHACA</b> runs the command on the Virginia Tech Ithaca cluster,
+      noninteractively.
+      Since I have 4 processors, a batch job can only use 3.
+      <ul>
+        <li>
+          <a href = "prime_batch_ithaca.m">prime_batch_ithaca.m</a>
+          a program which runs the script on the VT Ithaca cluster.
+        </li>
+        <li>
+          <a href = "prime_script.m">prime_script.m</a>
+          a script which calls the function, necessary for the BATCH command.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRIME_FSU</b> runs the command on the Florida State University HPC cluster,
+      noninteractively.
+      <ul>
+        <li>
+          <a href = "prime_fsu.m">prime_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 May 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

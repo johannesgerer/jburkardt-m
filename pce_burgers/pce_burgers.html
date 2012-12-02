@@ -1,0 +1,277 @@
+<html>
+
+  <head>
+    <title>
+      PCE_BURGERS
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      PCE_BURGERS <br> Polynomial Chaos Expansion for Burgers Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PCE_BURGERS</b>
+      is a MATLAB library which
+      defines and solves a version of the time-dependent viscous Burgers equation,
+      with uncertain viscosity, using a polynomial chaos expansion, 
+      in terms of Hermite polynomials,
+      by Gianluca Iaccarino.
+    </p>
+
+    <p>
+      The time-dependent viscous Burgers equation to be solved is:
+      <pre>
+        du/dt = - d ( u*(1/2-u)) /dx + nu d2u/dx2  for -3.0 <= x <= 3.0
+      </pre>
+      with boundary conditions
+      <pre>
+        u(-3.0) = 0.0, u(+3.0) = 1.0.
+      </pre>
+    </p>
+
+    <p>
+      The viscosity nu is assumed to be an uncertain quantity with
+      normal distribution of known mean and variance.
+    </p>
+
+    <p>
+      A polynomial chaos expansion is to be used, with Hermite polynomial
+      basis functions h(i,x), 0 <= i <= n.
+    </p>
+
+    <p>
+      Because the first two Hermite polynomials are simply 1 and x, 
+      we have that 
+      <pre>
+        nu = nu_mean * h(0,x) + nu_variance * h(1,x).
+      </pre>
+      We replace the time derivative by an explicit Euler approximation,
+      so that the equation now describes the value of U(x,t+dt) in terms
+      of known data at time t.
+    </p>
+
+    <p>
+      Now assume that the solution U(x,t) can be approximated
+      by the truncated expansion:
+      <pre>
+        U(x,t) = sum ( 0 <= i <= n ) c(i,t) * h(i,x)
+      </pre>
+      In the equation, we replace U by its expansion, and then multiply
+      successively by each of the basis functions h(*,x) to get a set of
+      n+1 equations that can be used to determine the values of c(i,t+dt).
+    </p>
+
+    <p>
+      This process is repeated until the desired final time is reached.
+    </p>
+
+    <p>
+      At any time, the coefficients c(0,t) contain information definining
+      the expected value of u(x,t) at that time, while the higher order coefficients
+      can be used to deterimine higher moments.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PCE_BURGERS</b> is available in
+      <a href = "../../c_src/pce_burgers/pce_burgers.html">a C version</a> and
+      <a href = "../../cpp_src/pce_burgers/pce_burgers.html">a C++ version</a> and
+      <a href = "../../f77_src/pce_burgers/pce_burgers.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/pce_burgers/pce_burgers.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/pce_burgers/pce_burgers.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../math_src/burgers_characteristics/burgers_characteristics.html">
+      BURGERS_CHARACTERISTICS</a>, 
+      a MATHEMATICA program which
+      solves the time dependent inviscid Burgers equation using the method of characteristics,
+      by Mikel Landajuela.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_steady_viscous/burgers_steady_viscous.html">
+      BURGERS_STEADY_VISCOUS</a>,
+      a MATLAB library which
+      solves the steady (time-independent) viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation, and then applying Newton's method to solve the
+      resulting nonlinear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_time_viscous/burgers_time_viscous.html">
+      BURGERS_TIME_VISCOUS</a>,
+      a MATLAB library which
+      solves the time-dependent viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous Burgers equation
+      in one spatial dimension and time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>,
+      a MATLAB program which
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous Burgers equation in one spatial dimension and time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">
+      HERMITE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the physicist's Hermite polynomial, the probabilist's Hermite polynomial,
+      the Hermite function, and related functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_legendre/pce_legendre.html">
+      PCE_LEGENDRE</a>,
+      a MATLAB program which
+      assembles the system matrix of a 2D stochastic PDE, 
+      using a polynomal chaos expansion in terms of Legendre polynomials;
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_ode_hermite/pce_ode_hermite.html">
+      PCE_ODE_HERMITE</a>,
+      a MATLAB program which
+      sets up a simple scalar ODE for exponential decay with an uncertain
+      decay rate, using a polynomial chaos expansion in terms of Hermite polynomials.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      The original FORTRAN90 version of this program was written by Gianluca Iaccarino.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Roger Ghanem, Pol Spanos,<br>
+          Stochastic Finite Elements: A Spectral Approach,<br>
+          Revised Edition,<br>
+          Dover, 2003,<br>
+          ISBN: 0486428184,<br>
+          LC: TA347.F5.G56.
+        </li>
+        <li>
+          Dongbin Xiu,<br>
+          Numerical Methods for Stochastic Computations: A Spectral Method Approach,<br>
+          Princeton, 2010,<br>
+          ISBN13: 978-0-691-14212-8,<br>
+          LC: QA274.23.X58.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "he_double_product_integral.m">he_double_product_integral.m</a>,
+          returns integral of He(i,x)*He(j,x)*e^(-x^2/2).
+        </li>
+        <li>
+          <a href = "he_triple_product_integral.m">he_triple_product_integral.m</a>,
+          returns integral of He(i,x)*He(j,x)*He(k,x)*e^(-x^2/2).
+        </li>
+        <li>
+          <a href = "pce_burgers.m">pce_burgers.m</a>,
+          the main program, which sets up and solves the problem.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>,
+          computes the factorial function.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pce_burgers_output.txt">pce_burgers_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "burgers.history.txt">burgers.history.txt</a>, 
+          the value of the solution (expansion coefficients) at selected times.
+        </li>
+        <li>
+          <a href = "burgers.modes.txt">burgers.modes.txt</a>,
+          the modes of the solution at the final time.
+        </li>
+        <li>
+          <a href = "burgers.moments.txt">burgers.moments.txt</a>,
+          the mean and variance of the coefficients at each point,
+          at the final time.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 16 March 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

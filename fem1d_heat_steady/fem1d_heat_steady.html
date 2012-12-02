@@ -1,0 +1,279 @@
+<html>
+
+  <head>
+    <title>
+      FEM1D_HEAT_STEADY - Finite Element Method, 1D, Steady State Heat Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM1D_HEAT_STEADY <br> Finite Element Method, 1D, Steady State Heat Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM1D_HEAT_STEADY</b> 
+      is a MATLAB program which
+      applies the finite element method, with piecewise linear elements,
+      to solve the steady state heat equation in one spatial dimension.
+    </p>
+
+    <p>
+      The finite element method is used with piecewise linear elements.
+    </p>
+
+    <p>
+      The steady state heat equation that is to be solved has the form:
+      <pre>
+        - d/dx ( k(x) * du/dx ) = f(x)
+      </pre>
+      in the interval A &lt; x &lt; B.  The functions k(x) and f(x) are
+      given.
+    </p>
+
+    <p>
+      Boundary conditions are applied at the endpoints, and in this case,
+      these are assumed to have the form:
+      <pre>
+        u(A) = UA;
+        u(B) = UB.
+      </pre>
+    </p>
+
+    <p>
+      To compute a finite element approximation, a set of N equally spaced
+      nodes is defined from A to B, a set of piecewise linear basis functions
+      is set up, with one basis function associated with each node, 
+      and then the differential
+      equation is multiplied by each basis function, and integration by parts is
+      used to simplify the integrand.
+    </p>
+
+    <p>
+      A simple two point Gauss quadrature formula is used to estimate the
+      resulting integrals over each interval.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>u</i> = <b>fem1d_heat_steady</b> ( <i>n</i>, <i>a</i>, <i>b</i>, <i>ua</i>, <i>ub</i>,
+        <i>@k</i>, <i>@f</i>, <i>x</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> is the number of equally spaced nodes.
+        </li>
+        <li>
+          <i>a, b</i> are the left and right endpoints.
+        </li>
+        <li>
+          <i>ua, ub</i> are the prescribed values of U at the endpoints;
+        </li>
+        <li>
+          <i>@k</i> is the function which evaluates k(x);
+        </li>
+        <li>
+          <i>@f</i> is the function which evaluates f(x).
+        </li>
+        <li>
+          <i>x</i> is the input vector of <i>n</i> nodes.
+        </li>
+        <li>
+          <i>u</i> is the output vector of <i>n</i> values at the nodes,
+          which can also be regarded as the finite element coefficients.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM1D_HEAT_STEADY</b> is available in
+      <a href = "../../c_src/fem1d_heat_steady/fem1d_heat_steady.html">a C version</a> and
+      <a href = "../../cpp_src/fem1d_heat_steady/fem1d_heat_steady.html">a C++ version</a> and
+      <a href = "../../f77_src/fem1d_heat_steady/fem1d_heat_steady.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem1d_heat_steady/fem1d_heat_steady.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem1d_heat_steady/fem1d_heat_steady.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>, 
+      a MATLAB program which
+      applies the finite difference method
+      to the steady state heat equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_neumann/fem_neumann.html">
+      FEM_NEUMANN</a>,
+      a MATLAB program which
+      sets up a time-dependent reaction-diffusion equation in 1D,
+      with Neumann boundary conditions, 
+      discretized using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../data/fem1d/fem1d.html">
+      FEM1D</a>,
+      a data directory which
+      contains examples of 1D FEM files,
+      three text files that describe a 1D finite element model;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a linear two point boundary value problem
+      in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_adaptive/fem1d_adaptive.html">
+      FEM1D_ADAPTIVE</a>,
+      a MATLAB program which
+      applies the finite
+      element method to a linear two point boundary value problem
+      in a 1D region, using adaptive refinement to improve the solution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">
+      FEM1D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite
+      element method to a linear two point boundary value problem
+      in a 1D region, using piecewise linear elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">
+      FEM1D_NONLINEAR</a>,
+      a MATLAB program which
+      applies the finite element method to a nonlinear two point boundary value problem
+      in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_pmethod/fem1d_pmethod.html">
+      FEM1D_PMETHOD</a>,
+      a MATLAB program which
+      applies the p-method version of the finite element method to a linear
+      two point boundary value problem in a 1D region.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Dianne O'Leary,<br>
+          Finite Differences and Finite Elements: Getting to Know You,<br>
+          Computing in Science and Engineering,<br>
+          Volume 7, Number 3, May/June 2005.
+        </li>
+        <li>
+          Dianne O'Leary,<br>
+          Scientific Computing with Case Studies,<br>
+          SIAM, 2008,<br>
+          ISBN13: 978-0-898716-66-5,<br>
+          LC: QA401.O44.
+        </li>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313..
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_heat_steady.m">fem1d_heat_steady.m</a>,
+          is the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_heat_steady_test.m">fem1d_heat_steady_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "fem1d_heat_steady_test_output.txt">fem1d_heat_steady_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 April 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

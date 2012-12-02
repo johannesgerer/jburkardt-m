@@ -1,0 +1,284 @@
+<html>
+
+  <head>
+    <title>
+      LINEAR_SOLVE_DISTRIBUTED - Solution of a Distributed Linear System
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINEAR_SOLVE_DISTRIBUTED <br> Solution of a Distributed Linear System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINEAR_SOLVE_DISTRIBUTED</b>
+      is a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      This example only illustrates the use of <b>spmd</b>, but does not
+      really explain much about what's going on.
+    </p>
+
+    <p>
+      We use a number of MATLAB workers, LAB_NUM.
+    </p>
+
+    <p>
+      We declare a matrix <b>A</b> of size <b>N</b> by <b>N</b>, but we use the
+      <b>codistributor()</b> function, so that <b>A</b> is distributed among the
+      workers, which each get an <b>N</b> by <b>(N/LAB_NUM)</b> portion of the matrix.
+    </p>
+
+    <p>
+      With a given right hand side <b>b</b>, MATLAB's backslash function is able
+      to solve the linear system <b>A*x=b</b>, even though the matrix is distributed.
+    </p>
+
+    <p>
+      The result, <b>x</b> is compared to the exact solution (a vector of 1's)
+      and the norm of the error is returned.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/knapsack_tasks/knapsack_tasks.html">
+      KNAPSACK_TASKS</a>,
+      a MATLAB program which
+      solves a knapsack problem by subdividing it into tasks, each of
+      which is carried out as a separate program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation in parallel,
+      using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linear_solve_distributed.m">linear_solve_distributed.m</a>,
+          the program, which includes an "spmd" block of statements which set
+          up a codistributed system matrix A.
+        </li>
+        <li>
+          <a href = "linear_solve_distributed_run.m">linear_solve_distributed_run.m</a>,
+          a script which runs the program.
+        </li>
+        <li>
+          <a href = "linear_solve_distributed_output.txt">linear_solve_distributed_output.txt</a>,
+          output from the run.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 April 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

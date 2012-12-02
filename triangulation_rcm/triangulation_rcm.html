@@ -1,0 +1,339 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_RCM - Reverse Cuthill-McKee Node Reordering
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_RCM <br> Reverse Cuthill-McKee Node Reordering
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_RCM</b>
+      is a MATLAB program which
+      computes the reverse
+      Cuthill-McKee reordering for nodes in a triangulation composed
+      of 3-node or 6-node triangles.
+    </p>
+
+    <p>
+      The user supplies a node file and a triangle file, containing
+      the coordinates of the nodes, and the indices of the nodes that
+      make up each triangle.  Either 3-node or 6-node triangles may
+      be used.
+    </p>
+
+    <p>
+      The program reads the data, computes the adjacency information,
+      carries out the RCM algorithm to get the permutation, applies
+      the permutation to the nodes and triangles, and writes out
+      new node and triangle files that correspond to the RCM permutation.
+    </p>
+
+    <p>
+      Note that the node file would normally contain exactly 2 values
+      on each line, namely the X and Y coordinates of the nodes.
+      However, this is not necessary.  Extra information can be
+      included on each line, for instance, a "Z" coordinate.  Each
+      line should include the same number of items, but all will be
+      permuted correctly together.  The program does not actually
+      need to know the coordinates of the nodes, so in fact, ANY data
+      (as long as it is real numeric data) associated with the nodes 
+      can be listed in the node file, and will be correctly permuted.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_rcm</b> <i>'prefix'</i>
+      </blockquote>
+      where <i>'prefix'</i> is the common file prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i><b>_nodes.txt</b>,    the node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_elements.txt</b>,    the element definitions.
+        </li>
+        <li>
+          <i>'prefix'</i><b>_rcm_nodes.txt</b>,    the reordered node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_rcm_elements.txt</b>,    the reordered element definitions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_RCM</b> is available in 
+      <a href = "../../cpp_src/triangulation_rcm/triangulation_rcm.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_rcm/triangulation_rcm.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/mesh_bandwidth/mesh_bandwidth.html">
+      MESH_BANDWIDTH</a>, 
+      a MATLAB program which
+      returns the geometric bandwidth associated with a mesh of
+      elements of any order and in a space of arbitrary dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_mesh_rcm/quad_mesh_rcm.html">
+      QUAD_MESH_RCM</a>,
+      a MATLAB program which
+      computes the reverse Cuthill-McKee (RCM) reordering for nodes in a mesh of 4-node 
+      quadrilaterals.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rcm/rcm.html">
+      RCM</a>,
+      a MATLAB library which
+      carries out reverse Cuthill-McKee computations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_rcm/tet_mesh_rcm.html">
+      TET_MESH_RCM</a>, 
+      a MATLAB program which 
+      applies the reverse Cuthill-McKee reordering to a tetrahedral
+      mesh of nodes in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which 
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          HL Crane, Norman Gibbs, William Poole, Paul Stockmeyer,<br>
+          Algorithm 508:
+          Matrix Bandwidth and Profile Reduction,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 2, Number 4, December 1976, pages 375-377.
+        </li>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars, 
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0.
+        </li>
+        <li>
+          Alan George, Joseph Liu,<br>
+          Computer Solution of Large Sparse Positive Definite Matrices,<br>
+          Prentice Hall, 1981,<br>
+          ISBN: 0131652745,<br>
+          LC: QA188.G46
+        </li>
+        <li>
+          Norman Gibbs,<br>
+          Algorithm 509: 
+          A Hybrid Profile Reduction Algorithm,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 2, Number 4, December 1976, pages 378-387.
+        </li>
+        <li>
+          Norman Gibbs, William Poole, Paul Stockmeyer,<br>
+          An Algorithm for Reducing the Bandwidth 
+          and Profile of a Sparse Matrix,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 13, 1976, pages 236-250.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_rcm.m">
+          triangulation_rcm.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>TEST3</b> works with a 3-node triangulation:
+      <ul>
+        <li>
+          <a href = "test3_output.txt">test3_output.txt</a>,
+          the printed output from the command <br>
+          "triangulation_rcm test3"
+        </li>
+        <li>
+          <a href = "test3_nodes.txt">test3_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "test3_nodes.png">test3_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the nodes created by TRIANGULATION_PLOT.
+        </li>
+        <li>
+          <a href = "test3_elements.txt">test3_elements.txt</a>,
+          the triangle file.
+        </li>
+        <li>
+          <a href = "test3_elements.png">test3_elements.png</a>,
+          an image of the triangles before the reordering.
+        </li>
+        <li>
+          <a href = "test3_rcm_nodes.txt">test3_rcm_nodes.txt</a>,
+          the RCM reordered node file.
+        </li>
+        <li>
+          <a href = "test3_rcm_nodes.png">test3_rcm_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the reordered nodes created by TRIANGULATION_PLOT.
+        </li>
+        <li>
+          <a href = "test3_rcm_elements.txt">test3_rcm_elements.txt</a>,
+          the RCM reordered triangle file.
+        </li>
+        <li>
+          <a href = "test3_rcm_elements.png">test3_rcm_elements.png</a>,
+          an image of the triangles after the reordering.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST6</b> works with a 6-node triangulation:
+      <ul>
+        <li>
+          <a href = "test6_output.txt">test6_output.txt</a>,
+          the printed output from the command <br>
+          "triangulation_rcm test6"
+        </li>
+        <li>
+          <a href = "test6_nodes.txt">test6_nodes.txt</a>,
+          the node file.
+        </li>
+        <li>
+          <a href = "test6_nodes.png">test6_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the nodes created by TRIANGULATION_PLOT.
+        </li>
+        <li>
+          <a href = "test6_elements.txt">test6_elements.txt</a>,
+          the triangle file.
+        </li>
+        <li>
+          <a href = "test6_elements.png">test6_elements.png</a>,
+          an image of the triangles before the reordering.
+        </li>
+        <li>
+          <a href = "test6_rcm_nodes.txt">test6_rcm_nodes.txt</a>,
+          the RCM reordered node file.
+        </li>
+        <li>
+          <a href = "test6_rcm_nodes.png">test6_rcm_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the reordered nodes created by TRIANGULATION_PLOT.
+        </li>
+        <li>
+          <a href = "test6_rcm_elements.txt">test6_rcm_elements.txt</a>,
+          the RCM reordered triangle file.
+        </li>
+        <li>
+          <a href = "test6_rcm_elements.png">test6_rcm_elements.png</a>,
+          an image of the triangles after the reordering.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

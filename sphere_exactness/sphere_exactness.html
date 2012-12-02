@@ -1,0 +1,301 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_EXACTNESS - Exactness of Quadrature on the Unit Sphere
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_EXACTNESS <br> 
+      Exactness of Quadrature on the Unit Sphere
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_EXACTNESS</b> 
+      is a MATLAB program which
+      investigates the polynomial exactness of a
+      quadrature rule for the surface of the unit sphere.
+    </p>
+
+    <p>
+      The polynomial exactness of a quadrature rule is defined as the
+      highest total degree <b>D</b> such that the quadrature rule is
+      guaranteed to integrate exactly all polynomials of total degree
+      <b>DEGREE_MAX</b> or less, ignoring roundoff.
+      The total degree of a polynomial is the maximum of the degrees 
+      of all its monomial terms.  For the unit sphere in 3D, the degree of a monomial
+      term is the sum of the exponents of <b>x</b>, <b>y</b> and <b>z</b>. 
+      Thus, for instance, the <b>DEGREE</b> of 
+      <blockquote><b>
+        x<sup>2</sup>yz<sup>5</sup>
+      </b></blockquote>
+      is 2+1+5=8.
+    </p>
+
+    <p>
+      To be thorough, the program starts at <b>DEGREE</b> = 0, and then 
+      proceeds to <b>DEGREE</b> = 1, 2, and so on up to a maximum degree 
+      <b>DEGREE_MAX</b> specified by the user.  At each value of <b>DEGREE</b>,
+      the program generates every possible monomial term, applies the 
+      quadrature rule to it, and determines the quadrature error. 
+    </p>
+
+    <p>
+      The quadrature rule is read by the program, and there are a number of
+      options for how that information is stored.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>sphere_exactness</b> ( <i>'files'</i>, <i>'prefix'</i>, <i>degree_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'files'</i> indicates how the quadrature rule is stored (see below);
+        </li>
+        <li>
+          <i>'prefix'</i> is the common prefix for the files;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum total monomial degree to check.  A value of 5 or 10 
+          might be reasonable, but a value of 50 or 100 is probably never a
+          good input!
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The input value of <b>files</b> indicates how the quadrature rule information
+      is stored.  It might be in one or two files; the abscissas might be
+      stored as (X,Y,Z) or as angles.  The angles might be in radians or degrees.
+      The weights might be assumed to be equal, in which case they need not be input.
+      <ul>
+        <li>
+          <b>XYZW</b> for file <i>prefix</i>.<b>xyzw</b> containing (X,Y,Z,Weight);
+        </li>
+        <li>
+          <b>RTPW</b> for file <i>prefix</i>.<b>rtpw</b> containing  (Theta, Phi, Weight) (radians);
+        </li>
+        <li>
+          <b>DTPW</b> for file <i>prefix</i>.<b>dtpw</b> containing  (Theta, Phi, Weight) (degrees);
+        </li>
+        <li>
+          <b>XYZ+W</b> for file <i>prefix</i>.<b>xyz</b> containing (X,Y,Z)
+          and file <i>prefix</i>.<b>w</b> containing Weight;
+        </li>
+        <li>
+          <b>RTP+W</b> for file <i>prefix</i>.<b>rtp</b> containing (Theta, Phi ) in radians,
+          and file <i>prefix</i>.<b>w</b> containing Weight;
+        </li>
+        <li>
+          <b>DTP+W</b> for file <i>prefix</i>.<b>dtp</b> containing (Theta, Phi ) in degrees,
+          and file <i>prefix</i>.<b>w</b> containing Weight;
+        </li>
+        <li>
+          <b>XYZ1</b> for file <i>prefix</i>.<b>xyz</b> containing (X,Y,Z), 
+          and equal weights, which do not need to be read in.
+        </li>
+        <li>
+          <b>RTP1</b> for file <i>prefix</i>.<b>rtp</b> containing (Theta, Phi ) in radians,
+          and equal weights, which do not need to be read in.
+        </li>
+        <li>
+          <b>DTP1</b> for file <i>prefix</i>.<b>dtp</b> containing (Theta, Phi ) in degrees,
+          and equal weights, which do not need to be read in.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_EXACTNESS</b> is available in
+      <a href = "../../cpp_src/sphere_exactness/sphere_exactness.html">a C++ version</a> and
+      <a href = "../../f_src/sphere_exactness/sphere_exactness.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/pyramid_exactness/pyramid_exactness.html">
+      PYRAMID_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the pyramid.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sphere_design_rule/sphere_design_rule.html">
+      SPHERE_DESIGN_RULE</a>
+      is a dataset directory which 
+      contains files defining point sets on the surface of the unit sphere, 
+      known as "designs", which can be useful for estimating integrals 
+      on the surface, among other uses.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_design_rule/sphere_design_rule.html">
+      SPHERE_DESIGN_RULE</a>
+      is a FORTRAN90 library which 
+      returns point sets on the surface of the unit sphere, known as "designs",
+      which can be useful for estimating integrals on the surface, among other uses.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>, 
+      a dataset directory which 
+      contains sets of Lebedev points on a sphere, which can be used for
+      quadrature rules of a known precision;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>, 
+      a MATLAB library which 
+      computes Lebedev quadrature rules for the unit sphere;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_quad/sphere_quad.html">
+      SPHERE_QUAD</a>,
+      a MATLAB library which
+      approximates an integral over the surface of the unit sphere
+      by applying a triangulation to the surface;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_exactness/tetrahedron_exactness.html">
+      TETRAHEDRON_EXACTNESS</a> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a quadrature rule for the tetrahedron.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Gerald Folland,<br>
+          How to Integrate a Polynomial Over a Sphere,<br>
+          American Mathematical Monthly,<br>
+          Volume 108, Number 5, May 2001, pages 446-448.
+        </li>
+        <li>
+          Ronald Hardin, Neil Sloane,<br>
+          McLaren's Improved Snub Cube and Other New Spherical Designs
+          in Three Dimensions,<br>
+          Discrete and Computational Geometry,<br>
+          Volume 15, 1996, pages 429-441.
+        </li>
+        <li>
+          Vyacheslav Lebedev, Dmitri Laikov,<br>
+          A quadrature formula for the sphere of the 131st
+          algebraic order of accuracy,<br>
+          Russian Academy of Sciences Doklady Mathematics,<br>
+          Volume 59, Number 3, 1999, pages 477-481.
+        </li>
+        <li>
+          AD McLaren,<br>
+          Optimal Numerical Integration on a Sphere,<br>
+          Mathematics of Computation,<br>
+          Volume 17, Number 84, October 1963, pages 361-383.
+        </li> 
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sphere_exactness.m">sphere_exactness.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "sphere_exactness.sh">sphere_exactness.sh</a>,
+          commands to compile the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>DESIGN_04</b> is a spherical design of precision 4.  Uniform weights
+      are used.
+      <ul>
+        <li>
+          <a href = "design_04.xyz">design_04.xyz</a> contains the XYZ coordinates.
+        </li>
+        <li>
+          <a href = "design_04_output.txt">design_04_output.txt</a> is the output
+          from <b>sphere_exactness xyz1 design_04 5</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LEBEDEV_13</b> is the 74 Lebedev rule of precision 13.  Weights are
+      specified, and the data is stored in the "DTPW" format, that is, theta
+      and phi are specified in degrees.
+      are used.
+      <ul>
+        <li>
+          <a href = "lebedev_013.dtpw">lebedev_013.dtpw</a> contains the 
+          DTPW information.
+        </li>
+        <li>
+          <a href = "lebedev_013_output.txt">lebedev_013_output.txt</a> is the output
+          from <b>sphere_exactness dtpw lebedev_013 5</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

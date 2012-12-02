@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spquad :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spquad</h1>
+		  Compute integral value of sparse grid interpolant.
+		<h2>Syntax</h2>
+			<code>Q = spquad(Z)</code><br>
+		<h2>Description</b></h2>
+		  <code>Q = spquad(Z)</code> Computes the integral over the sparse grid domain. The sparse grid data must be given as a structure <code>Z</code> containing the hierarchical surpluses (computed with with <a href="spvals.html"><code>spvals</code></a>). 
+		<p>
+      The following additional option is available with <code>spquad</code> that is set by adding a field to the structure <code>Z</code>:
+		  <ul>
+		    <li><code>selectOutput [ integer {1} ]</code> Set the output variable number if an interpolant with multiple output variables was constructed with <a href="spvals.html"><code>spvals</code></a>. This determines which ouput variable the integral is computed for.
+		  </ul>
+					<h2><a name="ex1">Examples</a></h2>
+      <p>Assume a sparse grid interpolant of the Matlab <tt>peaks</tt> function has been computed for the domain <tt>[0,2]^2</tt> using the following commands:
+      </p><pre class="codeinput">options = spset(<span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'RelTol'</span>, 1e-4, <span class="keyword">...</span>
+  <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>);
+z = spvals(@(x,y) peaks(x,y), 2, [0,2; 0,2], options);
+</pre><p>Then, we can compute the integral for this domain simply like this:</p><pre class="codeinput">spquad(z)
+</pre><pre class="codeoutput">ans =
+    9.9553
+</pre><p>For comparison, let us compute the integral value with Matlab's <tt>dblquad</tt>:
+      </p><pre class="codeinput">dblquad(@(x,y) peaks(x,y), 0, 2, 0, 2)
+</pre><pre class="codeoutput">ans =
+    9.9553
+</pre>
+		<h2>See Also</h2>
+		  <a href="spvals.html"><code>spvals</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

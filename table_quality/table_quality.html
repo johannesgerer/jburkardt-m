@@ -1,0 +1,319 @@
+<html>
+
+  <head>
+    <title>
+      TABLE_QUALITY - Quality Measures for Pointsets in M dimensions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TABLE_QUALITY <br> Interactive Program for <br> Point Dispersion Quality
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TABLE_QUALITY</b>
+      is a MATLAB program which
+      reads a data file containing
+      the coordinates of N points in an M dimensional region,
+      and computes some measures of the quality of dispersion
+      of the points.
+    </p>
+
+    <p>
+      The program assumes that the pointset lies in the unit hypercube.
+      However, it is easy to modify the program to handle other regions.
+      A single routine, named <b>sample_routine</b>, is required to return
+      sample points in the region.  To handle a different region,
+      simply modify this routine, and rebuild the program.  One other
+      built-in routine is already available, for sampling the unit sphere.
+    </p>
+
+    <p>
+      The unit hypercube in M dimensional space is simply the set of
+      all vectors whose entries are between 0 and 1.  It is
+      a natural abstraction of the unit line segment, the unit square,
+      and the unit cube, and represents a very simple chunk of <b>M</b>
+      dimensional space.
+    </p>
+
+    <p>
+      The quality measures computed include:
+      <ul>
+        <li>
+          <b>Alpha</b>, the minimum angle measure
+          (for triangulated 2D datasets only);
+        </li>
+        <li>
+          <b>Area</b>, the ratio of the minimum to maximum triangle areas,
+          (for triangulated 2D datasets only);
+        </li>
+        <li>
+          <b>Beta</b>, the standard deviation of the minimum spacing
+          between nodes, normalized by the average spacing;
+        </li>
+        <li>
+          <b>Chi</b>, the regularity measure;
+        </li>
+        <li>
+          <b>D</b>, the second moment determinant measure;
+        </li>
+        <li>
+          <b>E</b>, the Voronoi energy measure;
+        </li>
+        <li>
+          <b>Gamma</b>, the mesh ratio;
+        </li>
+        <li>
+          <b>H</b>, the point distribution norm;
+        </li>
+        <li>
+          <b>Lambda</b>, the COV measure;
+        </li>
+        <li>
+          <b>Mu</b>, the point distribution ratio;
+        </li>
+        <li>
+          <b>Nu</b>, the cell volume deviation;
+        </li>
+        <li>
+          <b>Q</b>, the triangle shape uniformity measure
+          (for triangulated 2D datasets only);
+        </li>
+        <li>
+          <b>R0</b>, the Riesz S=0 energy;
+        </li>
+        <li>
+          <b>S</b>, the sphere volume measure
+          (unit hypercube datasets only).
+        </li>
+        <li>
+          <b>Tau</b>, the second moment trace measure;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program also prints:
+      <ul>
+        <li>
+          <b>Gamma_min</b>, the minimum spacing between nodes;
+        </li>
+        <li>
+          <b>Gamma_ave</b>, the average spacing between nodes;
+        </li>
+        <li>
+          <b>Gamma_max</b>, the maximum spacing between nodes;
+        </li>
+        <li>
+          <b>Gamma_std</b>, the standard deviation of the spacing
+          between nodes;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The input data file is assumed to be in the simple
+      <a href = "../../data/table/table.html">
+      TABLE format</a>.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>table_quality</b> <i>'file.txt'</i>
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>file.txt</i> is the input file;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TABLE_QUALITY</b> is available in
+      <a href = "../../cpp_src/table_quality/table_quality.html">a C++ version</a> and
+      <a href = "../../f_src/table_quality/table_quality.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/table_quality/table_quality.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/diaphony/diaphony.html">
+      DIAPHONY</a>,
+      a MATLAB program which
+      reads a file of N points in M dimensions and computes its diaphony, a measure
+      of point dispersion.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quality/quality.html">
+      QUALITY</a>,
+      a MATLAB library which
+      provides most of the routines used by
+      <b>TABLE_QUALITY</b>.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/star_discrepancy/star_discrepancy.html">
+      STAR_DISCREPANCY</a>,
+      a C++ program which
+      reads a TABLE file of M points in N dimensions (presumed to lie in the
+      unit hypercube) and computes bounds on the star discrepancy,
+      a measure of dispersion, by Eric Thiemard.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          David Field,<br>
+          Qualitative Measures for Initial Meshes,<br>
+          International Journal of Numerical Methods in Engineering,<br>
+          Volume 47, 2000, pages 887-906.
+        </li>
+        <li>
+          D P Hardin, Edward Saff,<br>
+          Discretizing Manifolds via Minimum Energy Points,<br>
+          Notices of the AMS,<br>
+          Volume 51, Number 10, November 2004, pages 1186-1194.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, pages 329-345, June 2004.
+        </li>
+        <li>
+          Yuki Saka, Max Gunzburger, John Burkardt,<br>
+          Latinized, Improved LHS, and CVT Point Sets in Hypercubes, <br>
+          International Journal of Numerical Analysis and Modeling,<br>
+          Volume 4, Number 3-4, 2007, pages 729-743,
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "table_quality.m">table_quality.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CVT_02_00100</b> is a set of 100 CVT points in 2D.
+      <ul>
+        <li>
+          <a href = "cvt_02_00100.txt">cvt_02_00100.txt</a>,
+          the point coordinates.
+        </li>
+        <li>
+          <a href = "cvt_02_00100_quality.txt">
+          cvt_02_00100_quality.txt</a>,
+          the quality analysis.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CVT_07_00010</b> is a set of 10 CVT points in 7D.
+      <ul>
+        <li>
+          <a href = "cvt_07_00010.txt">cvt_07_00010.txt</a>,
+          the point coordinates.
+        </li>
+        <li>
+          <a href = "cvt_07_00010_quality.txt">
+          cvt_07_00010_quality.txt</a>,
+          the quality analysis.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>DEGEN_02_00130</b> is a set of 130 points in 2D which
+      involve a degenerate triangulation.
+      <ul>
+        <li>
+          <a href = "degen_02_00130.txt">
+          degen_02_00130.txt</a>,
+          the point coordinates.
+        </li>
+        <li>
+          <a href = "degen_02_00130_quality.txt">
+          degen_02_00130_quality.txt</a>,
+          the quality analysis.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HALTON_02_00100</b> is a set of 100 Halton points in 2D.
+      <ul>
+        <li>
+          <a href = "halton_02_00100.txt">halton_02_00100.txt</a>,
+          the point coordinates/
+        </li>
+        <li>
+          <a href = "halton_02_00100_quality.txt">
+          halton_02_00100_quality.txt</a>,
+          the results of a quality analysis on the Halton points.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,258 @@
+<html>
+
+  <head>
+    <title>
+      TEC_TO_FEM - Convert a TEC Graphics File to an FEM Model
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEC_TO_FEM <br> Convert a TEC Graphics File to an FEM Model
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEC_TO_FEM</b>
+      is a MATLAB program which
+      reads a TEC graphics
+      file containing a finite element model, and writes the information
+      to three files in the FEM format.
+    </p>
+
+    <p>
+      The FEM files created will include:
+      <ul>
+        <li>
+          Node coordinates, stored in a "node file";
+        </li>
+        <li>
+          Elements defined by a sequence of node indices, store in an
+          "element file";
+        </li>
+        <li>
+          Node value data, such as finite element coefficients for pressure,
+          velocity, and so on, stored in a "value file";
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <a href = "http://www.tecplot.com/">
+      The TECPLOT home page</a> contains a description of the
+      <b>TECPLOT</b> program.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tec_to_fem</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i><b>.dat</b>, is the name of the input TECPLOT file;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_nodes.txt</b> is the name of the output FEM node file;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_elements.txt</b> is the name of the output FEM element file;
+        </li>
+        <li>
+          <i>'prefix'</i><b>_values.txt</b> is the name of the output FEM value file;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEC_TO_FEM</b> is available in
+      <a href = "../../f_src/tec_to_fem/tec_to_fem.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tec_to_fem/tec_to_fem.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data diretory which
+      contains a description of the data files
+      that can be used to describe a 2D finite element model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_io/fem_io.html">
+      FEM_IO</a>,
+      a MATLAB library which
+      reads and writes an
+      FEM model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_tec/fem_to_tec.html">
+      FEM_TO_TEC</a>,
+      a MATLAB program which
+      reads the three files
+      defining an FEM model and writes an equivalent TEC file.
+    </p>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which
+      contains a description and examples
+      of the TEC graphics files used by <b>TECPLOT</b>
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_io/tec_io.html">
+      TEC_IO</a>,
+      a MATLAB library which
+      can read or write a TEC file containing a finite element model.
+    </p>
+
+    <p>
+      <a href = "../../f_src/tec_to_obj/tec_to_obj.html">
+      TEC_TO_OBJ</a>,
+      a FORTRAN90 program which
+      can read a TECPLOT file describing a
+      surface in 3D composed of triangles or quadrilaterals, and write
+      an OBJ file.
+    </p>
+
+    <p>
+      <a href = "../../f_src/tec_to_ucd/tec_to_ucd.html">
+      TEC_TO_UCD</a>,
+      a FORTRAN90 program which
+      reads a (finite element) TEC file and writes an equivalent AVS UCD file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_to_vtk/tec_to_vtk.html">
+      TEC_TO_VTK</a>,
+      a MATLAB program which
+      reads a particular TECPLOT file containing 80 frames of the
+      movement of a red blood cell, and creates 80 separate VTK
+      unstructured grid files, which can then be read by PARAVIEW
+      and animated.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangle_to_fem/triangle_to_fem.html">
+      TRIANGLE_TO_FEM</a>,
+      a C++ program which
+      reads the NODE and ELE files created by TRIANGLE to
+      describe a triangular mesh, and writes a corresponding pair of
+      node and element files in the 2D FEM format.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tec_to_fem.m">
+          tec_to_fem.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is an example of a 2D finite element model
+      in which a scalar value is stored.  This data was computed by the
+      <a href = "../../m_src/free_fem_poisson/free_fem_poisson.html">
+      FREE_FEM_POISSON</a> program.
+      <ul>
+        <li>
+          <a href = "ell.dat">ell.dat</a>, the TECPLOT ASCII file;
+        </li>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>,
+          the node coordinate file.
+        </li>
+        <li>
+          <a href = "ell_elements.txt">ell_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "ell_values.txt">ell_values.txt</a>,
+          the node data file.
+        </li>
+        <li>
+          <a href = "ell_output.txt">ell_output.txt</a>, the printed output from the
+          program;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TINY</b> is a "tiny" example of a 2D finite element model
+      in which a vector value is stored.
+      <ul>
+        <li>
+          <a href = "tiny.dat">tiny.dat</a>, the TECPLOT ASCII file;
+        </li>
+        <li>
+          <a href = "tiny_nodes.txt">tiny_nodes.txt</a>,
+          the node coordinate file.
+        </li>
+        <li>
+          <a href = "tiny_elements.txt">tiny_elements.txt</a>,
+          the element file.
+        </li>
+        <li>
+          <a href = "tiny_values.txt">tiny_values.txt</a>,
+          the node data file.
+        </li>
+        <li>
+          <a href = "tiny_output.txt">tiny_output.txt</a>, the printed output from the
+          program;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

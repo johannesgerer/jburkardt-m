@@ -1,0 +1,1824 @@
+<html>
+
+  <head>
+    <title>
+      TEST_NINT - Multi-dimensional Integration Test Functions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_NINT <br> Multi-dimensional Integration <br> Test Functions.  
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_NINT</b> 
+      is a MATLAB library which 
+      defines a set of test problems
+      for the approximate computation of integrals over multi-dimensional
+      regions.  
+    </p>
+
+    <p>
+      Routines are available to evaluate the integrand, return the exact 
+      value of the integral, report the name of the problem, 
+      report the integration limits, get, set or modify a base point.
+    </p>
+
+    <p>
+      The integrands is assigned an index.  The integrands can be invoked 
+      by index.  Most integrands may be defined for any value of the
+      spatial dimension, which we denote here by <b>m</b>.  Most integrands
+      are defined on the unit <b>m</b>-dimensional hypercube.  Some 
+      integrands include one or more parameters.  These generally have
+      default values, which can be altered by the user.
+    </p>
+
+    <p>
+      For each problem, a set of routines are available with a standard
+      interface, for manipulating and evaluating the problem.  For a
+      problem with index "87", for instance, we might have the following
+      set of routines.  The most important is <b>P87_F</b> which evaluates
+      the integrand.  We probably also need <b>P87_LIM</b> to determine
+      the limits of integration, and <b>P87_EXACT</b> to get the exact
+      value of the integral (if known).  A number of routines are available
+      to set, get, or randomize parameters associated with the problem.
+      <ul>
+        <li>
+          <b>P87_DEFAULT</b> sets default values for problem 87.
+        </li>
+        <li>
+          <b>P87_EXACT</b> returns the exact integral for problem 87.
+        </li>
+        <li>
+          <b>P87_F</b> evaluates the integrand for problem 87.
+        </li>
+        <li>
+          <b>P87_I4</b> sets or gets integer scalar parameters for problem 87.
+        </li>
+        <li>
+          <b>P87_I4VEC</b> sets or gets integer vector parameters for problem 87.
+        </li>
+        <li>
+          <b>P87_LIM</b> returns the integration limits for problem 87.
+        </li>
+        <li>
+          <b>P87_NAME</b> returns the name of problem 87.
+        </li>
+        <li>
+          <b>P87_R8</b> sets or gets real scalar parameters for problem 87.
+        </li>
+        <li>
+          <b>P87_R8VEC</b> sets or gets real vector parameters for problem 87.
+        </li>
+        <li>
+          <b>P87_REGION</b> returns the name of the integration region 
+          for problem 87.
+        </li>
+        <li>
+          <b>P87_TITLE</b> prints a title for problem 87.
+        </li>
+      </ul> 
+    </p>
+
+    <p>
+      The list of integrand functions includes:
+      <ol>
+        <li>
+          f(x) = ( sum ( x(1:m) ) )^2;
+        </li>
+        <li>
+          f(x) = ( sum ( 2 * x(1:m) - 1 ) )^4;
+        </li>
+        <li>
+          f(x) = ( sum ( x(1:m) ) )^5;
+        </li>
+        <li>
+          f(x) = ( sum ( 2 * x(1:m) - 1 ) )^6;
+        </li>
+        <li>
+          f(x) = 1 / ( 1 + sum ( 2 * x(1:m) ) );
+        </li>
+        <li>
+          f(x) = product ( 2 * abs ( 2 * x(1:m) - 1 ) );
+        </li>
+        <li>
+          f(x) = product ( pi / 2 ) * sin ( pi * x(1:m) );
+        </li>
+        <li>
+          f(x) = ( sin ( (pi/4) * sum ( x(1:m) ) ) )^2;
+        </li>
+        <li>
+          f(x) = exp ( sum ( c(1:m) * x(1:m) ) );
+        </li>
+        <li>
+          f(x) = sum ( abs ( x(1:m) - 0.5 ) );
+        </li>
+        <li>
+          f(x) = exp ( sum ( abs ( 2 * x(1:m) - 1 ) ) );
+        </li>
+        <li>
+          f(x) = product ( 1 <= i <= m ) ( i * cos ( i * x(i) ) );
+        </li>
+        <li>
+          f(x) = product ( 1 <= i <= m ) t(n(i))(x(i)), t(n(i)) 
+          is a Chebyshev polynomial;
+        </li>
+        <li>
+          f(x) = sum ( 1 <= i <= m ) (-1)^i * product ( 1 <= j <= i ) x(j);
+        </li>
+        <li>
+          f(x) = product ( 1 <= i <= order ) x(mod(i-1,m)+1);
+        </li>
+        <li>
+          f(x) = sum ( abs ( x(1:m) - x0(1:m) ) );
+        </li>
+        <li>
+          f(x) = sum ( ( x(1:m) - x0(1:m) )^2 );
+        </li>
+        <li>
+          f(x) = 1 inside an m-dimensional sphere around x0(1:m), 0 outside;
+        </li>
+        <li>
+          f(x) = product ( sqrt ( abs ( x(1:m) - x0(1:m) ) ) );
+        </li>
+        <li>
+          f(x) = ( sum ( x(1:m) ) )^power;
+        </li>
+        <li>
+          f(x) = c * product ( x(1:m)^e(1:m) ) on the surface of
+          an m-dimensional unit sphere;
+        </li>
+        <li>
+          f(x) = c * product ( x(1:m)^e(1:m) ) in an m-dimensional ball;
+        </li>
+        <li>
+          f(x) = c * product ( x(1:m)^e(1:m) ) in the unit m-dimensional simplex;
+        </li>
+        <li>
+          f(x) = product ( abs ( 4 * x(1:m) - 2 ) + c(1:m) ) 
+          / ( 1 + c(1:m) ) );
+        </li>
+        <li>
+          f(x) = exp ( c * product ( x(1:m) ) );
+        </li>
+        <li>
+          f(x) = product ( c(1:m) * exp ( - c(1:m) * x(1:m) ) );
+        </li>
+        <li>
+          f(x) = cos ( 2 * pi * r + sum ( c(1:m) * x(1:m) ) ), <br>
+          Genz "Oscillatory";
+        </li>
+        <li>
+          f(x) = 1 / product ( c(1:m)^2 + (x(1:m) - x0(1:m))^2),<br>
+          Genz "Product Peak";
+        </li>
+        <li>
+          f(x) = 1 / ( 1 + sum ( c(1:m) * x(1:m) ) )^(m+r),<br>
+          Genz "Corner Peak";
+        </li>
+        <li>
+          f(x) = exp(-sum(c(1:m)^2 * ( x(1:m) - x0(1:m))^2 ) ),<br>
+          Genz "Gaussian";
+        </li>
+        <li>
+          f(x) = exp ( - sum ( c(1:m) * abs ( x(1:m) - x0(1:m) ) ) ),
+          Genz "Continuous";
+        </li>
+        <li>
+          f(x) = exp(sum(c(1:m)*x(1:m)) for x(1:m) <= x0(1:m), 0 otherwise,<br>
+          Genz "Discontinuous";
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      An Important Quote:
+    </h3>
+
+    <p>
+      <blockquote><i>
+        "When good results are obtained in integrating a high-dimensional 
+        function, we should conclude first of all that an especially tractable 
+        integrand was tried and not that a generally successful method has 
+        been found.  A secondary conclusion is that we might have made a
+        very good choice in selecting an integration method to exploit whatever 
+        features of f made it tractable."
+      </i></blockquote>
+      Art Owen,<br>
+      Latin Supercube Sampling for Very High Dimensional Simulation,<br>
+      ACM Transactions on Modeling and Computer Simulations,<br>
+      Volume 8, Number 1, January 1998, pages 71-102.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_NINT</b> is available in
+      <a href = "../../cpp_src/test_nint/test_nint.html">a C++ version</a> and
+      <a href = "../../f_src/test_nint/test_nint.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_nint/test_nint.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cubpack/cubpack.html">
+      CUBPACK</a>,
+      a FORTRAN90 library which 
+      estimates the integral of a function over a collection of N-dimensional
+      hyperrectangles and simplices.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/gsl/gsl.html">
+      GSL</a>,
+      a C++ library which
+      includes routines for estimating multidimensional integrals.
+    </p>
+
+    <p>
+      <a href = "../../f_src/integral_test/integral_test.html">
+      INTEGRAL_TEST</a>,
+      a FORTRAN90 program which 
+      uses some of
+      these test integrals to evaluate sets of quadrature points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which
+      demonstrates how to measure the
+      polynomial exactness of a multidimensional quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nintlib/nintlib.html">
+      NINTLIB</a>, 
+      a MATLAB library which 
+      numerically estimates integrals in multiple dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/product_rule/product_rule.html">
+      PRODUCT_RULE</a>, 
+      a MATLAB program which
+      can create a multidimensional quadrature rule as a product of
+      one dimensional rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>, 
+      a dataset directory which
+      contains a description and examples of quadrature rules defined
+      by a set of "X", "W" and "R" files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_test/quadrature_test.html">
+      QUADRATURE_TEST</a>, 
+      a MATLAB program which
+      reads the definition of a 
+      multidimensional quadrature rule from three files, applies
+      the rule to a number of test integrals, and prints the
+      results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">
+      SANDIA_SPARSE</a>, 
+      a MATLAB library which
+      can produce a multidimensional sparse grid, based on a variety of 1D
+      quadrature rules; only isotropic grids are generated, that is, the same
+      rule is used in each dimension, and the same maximum order is used in
+      each dimension.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/simpack/simpack.html">
+      SIMPACK</a>,
+      a FORTRAN77 library which 
+      approximates the integral of a function over a multidimensional simplex.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>, 
+      a MATLAB library which
+      creates sparse grids based on Clenshaw-Curtis rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      contains quadrature
+      rules for a variety of unusual areas, surfaces and volumes in 2D,
+      3D and N-dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/testpack/testpack.html">
+      TESTPACK</a>,
+      a MATLAB library which
+      defines a set of integrands used to test multidimensional quadrature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          JD Beasley, SG Springer,<br>
+          Algorithm AS 111:
+          The Percentage Points of the Normal Distribution,<br>
+          Applied Statistics,<br>
+          Volume 26, 1977, pages 118-121.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Harald Niederreiter,<br>
+          Implementation and Tests of Low-Discrepancy Sequences,<br>
+          ACM Transactions on Modeling and Computer Simulation,<br>
+          Volume 2, Number 3, July 1992, pages 195-213.
+        </li>
+        <li>
+          Roger Broucke,<br>
+          Algorithm 446:
+          Ten Subroutines for the Manipulation of Chebyshev Series,<br>
+          Communications of the ACM,<br>
+          Volume 16, 1973, pages 254-256.
+        </li>
+        <li>
+          William Cody, Kenneth Hillstrom,<br>
+          Chebyshev Approximations for the Natural Logarithm of the 
+          Gamma Function,
+          Mathematics of Computation,<br>
+          Volume 21, Number 98, April 1967, pages 198-203.
+        </li>
+        <li>
+          Richard Crandall,<br>
+          Projects in Scientific Computing,<br>
+          Springer, 2005,<br>
+          ISBN: 0387950095,<br>
+          LC: Q183.9.C733.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Gerald Folland,<br>
+          How to Integrate a Polynomial Over a Sphere,<br>
+          American Mathematical Monthly,<br>
+          Volume 108, Number 5, May 2001, pages 446-448.
+        </li>
+        <li>
+          Leslie Fox, Ian Parker,<br>
+          Chebyshev Polynomials in Numerical Analysis,<br>
+          Oxford Press, 1968,<br>
+          LC: QA297.F65.
+        </li>
+        <li>
+          Alan Genz,<br>
+          Testing Multidimensional Integration Routines,<br>
+          in Tools, Methods, and Languages for Scientific and
+          Engineering Computation,<br>
+          edited by B Ford, JC Rault, F Thomasset,<br>
+          North-Holland, 1984, pages 81-94.
+        </li>
+        <li>
+          Alan Genz,<br>
+          A Package for Testing Multiple Integration Subroutines,<br>
+          in Numerical Integration: 
+          Recent Developments, Software and Applications,<br>
+          edited by Patrick Keast, Graeme Fairweather,<br>
+          D Reidel, 1987, pages 337-340.
+        </li>
+        <li>
+          Kenneth Hanson,<br>
+          Quasi-Monte Carlo: halftoning in high dimensions?<br>
+          in Computatinal Imaging,<br>
+          Edited by CA Bouman, RL Stevenson,<br>
+          Proceedings SPIE,<br>
+          Volume 5016, 2003, pages 161-172.
+        </li>
+        <li>
+          John Hart, Ward Cheney, Charles Lawson, Hans Maehly, 
+          Charles Mesztenyi, John Rice, Henry Thatcher, 
+          Christoph Witzgall,<br>
+          Computer Approximations,<br>
+          Wiley, 1968,<br>
+          LC: QA297.C64.
+        </li>
+        <li>
+          Claude Itzykson, Jean-Michel Drouffe,<br>
+          Statistical Field Theory,<br>
+          Volume 1,<br>
+          Cambridge, 1991,<br>
+          ISBN: 0-521-40806-7,<br>
+          LC: QC174.8.I89.
+        </li>
+        <li>
+          Stephen Joe, Frances Kuo<br>
+          Remark on Algorithm 659:
+          Implementing Sobol's Quasirandom Sequence Generator,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 29, Number 1, March 2003, pages 49-57.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Bradley Keister,<br>
+          Multidimensional Quadrature Algorithms,<br>
+          Computers in Physics,<br>
+          Volume 10, Number 2, March/April, 1996, pages 119-122.
+        </li>
+        <li>
+          Arnold Krommer, Christoph Ueberhuber,<br>
+          Numerical Integration on Advanced Compuer Systems,<br>
+          Springer, 1994,<br>
+          ISBN: 3540584102,<br>
+          LC: QA299.3.K76.
+        </li>
+        <li>
+          Anargyros Papageorgiou, Joseph Traub,<br>
+          Faster Evaluation of Multidimensional Integrals,<br>
+          Computers in Physics,<br>
+          Volume 11, Number 6, November/December 1997, pages 574-578.
+        </li>
+        <li>
+          Thomas Patterson,<br>
+          On the Construction of a Practical Ermakov-Zolotukhin 
+          Multiple Integrator,<br>
+          in Numerical Integration: 
+          Recent Developments, Software and Applications,<br>
+          edited by Patrick Keast and Graeme Fairweather,<br>
+          D. Reidel, 1987, pages 269-290.
+        </li>
+        <li>
+          Arthur Stroud,<br>
+          Approximate Calculation of Multiple Integrals,<br>
+          Prentice Hall, 1971,<br>
+          ISBN: 0130438936,<br>
+          LC: QA311.S85.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Xiaoqun Wang, Kai-Tai Fang,<br>
+          The Effective Dimension and quasi-Monte Carlo Integration,<br>
+          Journal of Complexity,<br>
+          Volume 19, pages 101-124, 2003.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "csevl.m">csevl.m</a>, 
+          evaluates an N-term Chebyshev series.
+        </li>
+        <li>
+          <a href = "error_f.m">error_f.m</a>, 
+          evaluates the Error function.
+        </li>
+        <li>
+          <a href = "error_fc.m">error_fc.m</a>, 
+          evaluates the complementary Error function.
+        </li>
+        <li>
+          <a href = "get_problem_num.m">get_problem_num.m</a>, 
+          returns the number of test integration problems.
+        </li>
+        <li>
+          <a href = "inits.m">inits.m</a>, 
+          estimates the order of an orthogonal series for a given accuracy.
+        </li>
+        <li>
+          <a href = "normal_01_cdf_inv.m">normal_01_cdf_inv.m</a>, 
+          inverts the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "p00_box_gl05.m">p00_box_gl05.m</a>, 
+          uses Gauss-Legendre quadrature in an N-dimensional box. 
+        </li>
+        <li>
+          <a href = "p00_box_mc.m">p00_box_mc.m</a>, 
+          integrates over an multi-dimensional box using Monte Carlo.
+        </li>
+        <li>
+          <a href = "p00_default.m">p00_default.m</a>, 
+          sets a problem to a default state.
+        </li>
+        <li>
+          <a href = "p00_exact.m">p00_exact.m</a>, 
+          returns the exact integral for any problem.
+        </li>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>, 
+          evaluates the integrand for any problem.
+        </li>
+        <li>
+          <a href = "p00i4.m">p00_i4.m</a>, 
+          sets or gets integer scalar parameters for any problem.
+        </li>
+        <li>
+          <a href = "p00_lim.m">p00_lim.m</a>, 
+          returns the integration limits for any problem.
+        </li>
+        <li>
+          <a href = "p00_name.m">p00_name.m</a>, 
+          returns the name of any problem.
+        </li>
+        <li>
+          <a href = "p00_r8vec.m">p00_r8vec.m</a>, 
+          sets or gets real vector parameters for any problem.
+        </li>
+        <li>
+          <a href = "p00_region.m">p00_region.m</a>, 
+          returns the name of the integration region for any problem.
+        </li>
+        <li>
+          <a href = "p00_remap01.m">p00_remap01.m</a>, 
+          remaps points in [0,1]^DIM_NUM into [A(1:DIM_NUM),B(1:DIM_NUM)].
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>, 
+          prints a title for any problem.
+        </li>
+        <li>
+          <a href = "p00_volume.m">p00_volume.m</a>, 
+          returns the volume of the integration region.
+        </li>
+        <li>
+          <a href = "p01_default.m">p01_default.m</a>, 
+          sets default values for problem 01.
+        </li>
+        <li>
+          <a href = "p01_exact.m">p01_exact.m</a>, 
+          sets the exact integral for problem 01.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>, 
+          evaluates the integrand for problem 01.
+        </li>
+        <li>
+          <a href = "p01_i4.m">p01_i4.m</a>, 
+          sets or gets I4 parameters for problem 01.
+        </li>
+        <li>
+          <a href = "p01_lim.m">p01_lim.m</a>, 
+          returns the integration limits for problem 01.
+        </li>
+        <li>
+          <a href = "p01_name.m">p01_name.m</a>, 
+          returns a name for problem 01.
+        </li>
+        <li>
+          <a href = "p01_region.m">p01_region.m</a>, 
+          returns the region type for problem 01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          prints a title for problem 01.
+        </li>
+        <li>
+          <a href = "p02_default.m">p02_default.m</a>, 
+          sets default values for problem 02.
+        </li>
+        <li>
+          <a href = "p02_exact.m">p02_exact.m</a>, 
+          sets the exact integral for problem 02.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>, 
+          evaluates the integrand for problem 02.
+        </li>
+        <li>
+          <a href = "p02_i4.m">p02_i4.m</a>, 
+          sets or gets I4 parameters for problem 02.
+        </li>
+        <li>
+          <a href = "p02_lim.m">p02_lim.m</a>, 
+          returns the integration limits for problem 02.
+        </li>
+        <li>
+          <a href = "p02_name.m">p02_name.m</a>, 
+          returns a name for problem 02.
+        </li>
+        <li>
+          <a href = "p02_region.m">p02_region.m</a>, 
+          returns the region type for problem 02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          prints a title for problem 02.
+        </li>
+        <li>
+          <a href = "p03_default.m">p03_default.m</a>, 
+          sets default values for problem 03.
+        </li>
+        <li>
+          <a href = "p03_exact.m">p03_exact.m</a>, 
+          sets the exact integral for problem 03.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>, 
+          evaluates the integrand for problem 03.
+        </li>
+        <li>
+          <a href = "p03_i4.m">p03_i4.m</a>, 
+          sets or gets I4 parameters for problem 03.
+        </li>
+        <li>
+          <a href = "p03_lim.m">p03_lim.m</a>, 
+          returns the integration limits for problem 03.
+        </li>
+        <li>
+          <a href = "p03_name.m">p03_name.m</a>, 
+          returns a name for problem 03.
+        </li>
+        <li>
+          <a href = "p03_region.m">p03_region.m</a>, 
+          returns the region type for problem 03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          prints a title for problem 03.
+        </li>
+        <li>
+          <a href = "p04_default.m">p04_default.m</a>, 
+          sets default values for problem 04.
+        </li>
+        <li>
+          <a href = "p04_exact.m">p04_exact.m</a>, 
+          sets the exact integral for problem 04.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>, 
+          evaluates the integrand for problem 04.
+        </li>
+        <li>
+          <a href = "p04_i4.m">p04_i4.m</a>, 
+          sets or gets I4 parameters for problem 04.
+        </li>
+        <li>
+          <a href = "p04_lim.m">p04_lim.m</a>, 
+          returns the integration limits for problem 04.
+        </li>
+        <li>
+          <a href = "p04_name.m">p04_name.m</a>, 
+          returns a name for problem 04.
+        </li>
+        <li>
+          <a href = "p04_region.m">p04_region.m</a>, 
+          returns the region type for problem 04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          prints a title for problem 04.
+        </li>
+        <li>
+          <a href = "p05_default.m">p05_default.m</a>, 
+          sets default values for problem 05.
+        </li>
+        <li>
+          <a href = "p05_exact.m">p05_exact.m</a>, 
+          sets the exact integral for problem 05.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>, 
+          evaluates the integrand for problem 05.
+        </li>
+        <li>
+          <a href = "p05_i4.m">p05_i4.m</a>, 
+          sets or gets I4 parameters for problem 05
+        </li>
+        <li>
+          <a href = "p05_lim.m">p05_lim.m</a>, 
+          returns the integration limits for problem 05.
+        </li>
+        <li>
+          <a href = "p05_name.m">p05_name.m</a>, 
+          returns a name for problem 05.
+        </li>
+        <li>
+          <a href = "p05_region.m">p05_region.m</a>, 
+          returns the region type for problem 05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          prints a title for problem 05.
+        </li>
+        <li>
+          <a href = "p06_default.m">p06_default.m</a>, 
+          sets default values for problem 06.
+        </li>
+        <li>
+          <a href = "p06_exact.m">p06_exact.m</a>, 
+          sets the exact integral for problem 06.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>, 
+          evaluates the integrand for problem 06.
+        </li>
+        <li>
+          <a href = "p06_i4.m">p06_i4.m</a>, 
+          sets or gets I4 parameters for problem 06.
+        </li>
+        <li>
+          <a href = "p06_lim.m">p06_lim.m</a>, 
+          returns the integration limits for problem 06.
+        </li>
+        <li>
+          <a href = "p06_name.m">p06_name.m</a>, 
+          returns a name for problem 06.
+        </li>
+        <li>
+          <a href = "p06_region.m">p06_region.m</a>, 
+          returns the region type for problem 06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          prints a title for problem 06.
+        </li>
+        <li>
+          <a href = "p07_default.m">p07_default.m</a>, 
+          sets default values for problem 07.
+        </li>
+        <li>
+          <a href = "p07_exact.m">p07_exact.m</a>, 
+          sets the exact integral for problem 07.
+        </li>
+        <li>
+          <a href = "p07_f.m">p07_f.m</a>, 
+          evaluates the integrand for problem 07.
+        </li>
+        <li>
+          <a href = "p07_i4.m">p07_i4.m</a>, 
+          sets or gets I4 parameters for problem 07.
+        </li>
+        <li>
+          <a href = "p07_lim.m">p07_lim.m</a>, 
+          returns the integration limits for problem 07.
+        </li>
+        <li>
+          <a href = "p07_name.m">p07_name.m</a>, 
+          returns a name for problem 07.
+        </li>
+        <li>
+          <a href = "p07_region.m">p07_region.m</a>, 
+          returns the region type for problem 07.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          prints a title for problem 07.
+        </li>
+        <li>
+          <a href = "p08_default.m">p08_default.m</a>, 
+          sets default values for problem 08.
+        </li>
+        <li>
+          <a href = "p08_exact.m">p08_exact.m</a>, 
+          sets the exact integral for problem 08.
+        </li>
+        <li>
+          <a href = "p08_f.m">p08_f.m</a>, 
+          evaluates the integrand for problem 08.
+        </li>
+        <li>
+          <a href = "p08_i4.m">p08_i4.m</a>, 
+          sets or gets I4 parameters for problem 08.
+        </li>
+        <li>
+          <a href = "p08_lim.m">p08_lim.m</a>, 
+          returns the integration limits for problem 08.
+        </li>
+        <li>
+          <a href = "p08_name.m">p08_name.m</a>, 
+          returns a name for problem 08.
+        </li>
+        <li>
+          <a href = "p08_region.m">p08_region.m</a>, 
+          returns the region type for problem 08.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          prints a title for problem 08.
+        </li>
+        <li>
+          <a href = "p09_default.m">p09_default.m</a>, 
+          sets default values for problem 09.
+        </li>
+        <li>
+          <a href = "p09_exact.m">p09_exact.m</a>, 
+          sets the exact integral for problem 09.
+        </li>
+        <li>
+          <a href = "p09_f.m">p09_f.m</a>, 
+          evaluates the integrand for problem 09.
+        </li>
+        <li>
+          <a href = "p09_i4.m">p09_i4.m</a>, 
+          sets or gets I4 parameters for problem 09.
+        </li>
+        <li>
+          <a href = "p09_lim.m">p09_lim.m</a>, 
+          returns the integration limits for problem 09.
+        </li>
+        <li>
+          <a href = "p09_name.m">p09_name.m</a>, 
+          returns a name for problem 09.
+        </li>
+        <li>
+          <a href = "p09_r8vec.m">p09_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 09.
+        </li>
+        <li>
+          <a href = "p09_region.m">p09_region.m</a>, 
+          returns the region type for problem 09.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>, 
+          prints a title for problem 09.
+        </li>
+        <li>
+          <a href = "p10_default.m">p10_default.m</a>, 
+          sets default values for problem 10.
+        </li>
+        <li>
+          <a href = "p10_exact.m">p10_exact.m</a>, 
+          sets the exact integral for problem 10.
+        </li>
+        <li>
+          <a href = "p10_f.m">p10_f.m</a>, 
+          evaluates the integrand for problem 10.
+        </li>
+        <li>
+          <a href = "p10_i4.m">p10_i4.m</a>, 
+          sets or gets I4 parameters for problem 10.
+        </li>
+        <li>
+          <a href = "p10_lim.m">p10_lim.m</a>, 
+          returns the integration limits for problem 10.
+        </li>
+        <li>
+          <a href = "p10_name.m">p10_name.m</a>, 
+          returns a name for problem 10.
+        </li>
+        <li>
+          <a href = "p10_region.m">p10_region.m</a>, 
+          returns the region type for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>, 
+          prints a title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_default.m">p11_default.m</a>, 
+          sets default values for problem 11.
+        </li>
+        <li>
+          <a href = "p11_exact.m">p11_exact.m</a>, 
+          sets the exact integral for problem 11.
+        </li>
+        <li>
+          <a href = "p11_f.m">p11_f.m</a>, 
+          evaluates the integrand for problem 11.
+        </li>
+        <li>
+          <a href = "p11_i4.m">p11_i4.m</a>, 
+          sets or gets I4 parameters for problem 11.
+        </li>
+        <li>
+          <a href = "p11_lim.m">p11_lim.m</a>, 
+          returns the integration limits for problem 11.
+        </li>
+        <li>
+          <a href = "p11_name.m">p11_name.m</a>, 
+          returns a name for problem 11.
+        </li>
+        <li>
+          <a href = "p11_region.m">p11_region.m</a>, 
+          returns the region type for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>, 
+          prints a title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_default.m">p12_default.m</a>, 
+          sets default values for problem 12.
+        </li>
+        <li>
+          <a href = "p12_exact.m">p12_exact.m</a>, 
+          sets the exact integral for problem 12.
+        </li>
+        <li>
+          <a href = "p12_f.m">p12_f.m</a>, 
+          evaluates the integrand for problem 12.
+        </li>
+        <li>
+          <a href = "p12_i4.m">p12_i4.m</a>, 
+          sets or gets I4 parameters for problem 12.
+        </li>
+        <li>
+          <a href = "p12_lim.m">p12_lim.m</a>, 
+          returns the integration limits for problem 12.
+        </li>
+        <li>
+          <a href = "p12_name.m">p12_name.m</a>, 
+          returns a name for problem 12.
+        </li>
+        <li>
+        <li>
+          <a href = "p12_region.m">p12_region.m</a>, 
+          returns the region type for problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>, 
+          prints a title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_default.m">p13_default.m</a>, 
+          sets default values for problem 13.
+        </li>
+        <li>
+          <a href = "p13_exact.m">p13_exact.m</a>, 
+          sets the exact integral for problem 13.
+        </li>
+        <li>
+          <a href = "p13_f.m">p13_f.m</a>, 
+          evaluates the integrand for problem 13.
+        </li>
+        <li>
+          <a href = "p13_i4.m">p13_i4.m</a>, 
+          sets or gets I4 parameters for problem 13.
+        </li>
+        <li>
+          <a href = "p13_lim.m">p13_lim.m</a>, 
+          returns the integration limits for problem 13.
+        </li>
+        <li>
+          <a href = "p13_name.m">p13_name.m</a>, 
+          returns a name for problem 13.
+        </li>
+        <li>
+          <a href = "p13_region.m">p13_region.m</a>, 
+          returns the region type for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>, 
+          prints a title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_default.m">p14_default.m</a>, 
+          sets default values for problem 14.
+        </li>
+        <li>
+          <a href = "p14_exact.m">p14_exact.m</a>, 
+          sets the exact integral for problem 14.
+        </li>
+        <li>
+          <a href = "p14_f.m">p14_f.m</a>, 
+          evaluates the integrand for problem 14.
+        </li>
+        <li>
+          <a href = "p14_i4.m">p14_i4.m</a>, 
+          sets or gets I4 parameters for problem 14.
+        </li>
+        <li>
+          <a href = "p14_lim.m">p14_lim.m</a>, 
+          returns the integration limits for problem 14.
+        </li>
+        <li>
+          <a href = "p14_name.m">p14_name.m</a>, 
+          returns a name for problem 14.
+        </li>
+        <li>
+          <a href = "p14_region.m">p14_region.m</a>, 
+          returns the region type for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>, 
+          prints a title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_default.m">p15_default.m</a>, 
+          sets default values for problem 15.
+        </li>
+        <li>
+          <a href = "p15_exact.m">p15_exact.m</a>, 
+          sets the exact integral for problem 15.
+        </li>
+        <li>
+          <a href = "p15_f.m">p15_f.m</a>, 
+          evaluates the integrand for problem 15.
+        </li>
+        <li>
+          <a href = "p15_i4.m">p15_i4.m</a>, 
+          sets or gets I4 parameters for problem 15.
+        </li>
+        <li>
+          <a href = "p15_lim.m">p15_lim.m</a>, 
+          returns the integration limits for problem 151.
+        </li>
+        <li>
+          <a href = "p15_name.m">p15_name.m</a>, 
+          returns a name for problem 15.
+        </li>
+        <li>
+          <a href = "p15_region.m">p15_region.m</a>, 
+          returns the region type for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>, 
+          prints a title for problem 15.
+        </li>
+        <li>
+          <a href = "p16_default.m">p16_default.m</a>, 
+          sets default values for problem 16.
+        </li>
+        <li>
+          <a href = "p16_exact.m">p16_exact.m</a>, 
+          sets the exact integral for problem 16.
+        </li>
+        <li>
+          <a href = "p16_f.m">p16_f.m</a>, 
+          evaluates the integrand for problem 16.
+        </li>
+        <li>
+          <a href = "p16_i4.m">p16_i4.m</a>, 
+          sets or gets I4 parameters for problem 16.
+        </li>
+        <li>
+          <a href = "p16_lim.m">p16_lim.m</a>, 
+          returns the integration limits for problem 16.
+        </li>
+        <li>
+          <a href = "p16_name.m">p16_name.m</a>, 
+          returns a name for problem 16.
+        </li>
+        <li>
+          <a href = "p16_r8vec.m">p16_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 16.
+        </li>
+        <li>
+          <a href = "p16_region.m">p16_region.m</a>, 
+          returns the region type for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>, 
+          prints a title for problem 16.
+        </li>
+        <li>
+          <a href = "p17_default.m">p17_default.m</a>, 
+          sets default values for problem 17.
+        </li>
+        <li>
+          <a href = "p17_exact.m">p17_exact.m</a>, 
+          sets the exact integral for problem 17.
+        </li>
+        <li>
+          <a href = "p17_f.m">p17_f.m</a>, 
+          evaluates the integrand for problem 17.
+        </li>
+        <li>
+          <a href = "p17_i4.m">p17_i4.m</a>, 
+          sets or gets I4 parameters for problem 17.
+        </li>
+        <li>
+          <a href = "p17_lim.m">p17_lim.m</a>, 
+          returns the integration limits for problem 17.
+        </li>
+        <li>
+          <a href = "p17_name.m">p17_name.m</a>, 
+          returns a name for problem 17.
+        </li>
+        <li>
+          <a href = "p17_r8vec.m">p17_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 17.
+        </li>
+        <li>
+          <a href = "p17_region.m">p17_region.m</a>, 
+          returns the region type for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>, 
+          prints a title for problem 17.
+        </li>
+        <li>
+          <a href = "p18_default.m">p18_default.m</a>, 
+          sets default values for problem 18.
+        </li>
+        <li>
+          <a href = "p18_exact.m">p18_exact.m</a>, 
+          sets the exact integral for problem 18.
+        </li>
+        <li>
+          <a href = "p18_f.m">p18_f.m</a>, 
+          evaluates the integrand for problem 18.
+        </li>
+        <li>
+          <a href = "p18_i4.m">p18_i4.m</a>, 
+          sets or gets I4 parameters for problem 18.
+        </li>
+        <li>
+          <a href = "p18_lim.m">p18_lim.m</a>, 
+          returns the integration limits for problem 18.
+        </li>
+        <li>
+          <a href = "p18_name.m">p18_name.m</a>, 
+          returns a name for problem 18.
+        </li>
+        <li>
+          <a href = "p18_r8.m">p18_r8.m</a>, 
+          sets or gets R8 parameters for problem 18.
+        </li>
+        <li>
+          <a href = "p18_r8vec.m">p18_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 18.
+        </li>
+        <li>
+          <a href = "p18_region.m">p18_region.m</a>, 
+          returns the region type for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>, 
+          prints a title for problem 18.
+        </li>
+        <li>
+          <a href = "p19_default.m">p19_default.m</a>, 
+          sets default values for problem 19.
+        </li>
+        <li>
+          <a href = "p19_exact.m">p19_exact.m</a>, 
+          sets the exact integral for problem 19.
+        </li>
+        <li>
+          <a href = "p19_f.m">p19_f.m</a>, 
+          evaluates the integrand for problem 19.
+        </li>
+        <li>
+          <a href = "p19_i4.m">p19_i4.m</a>, 
+          sets or gets I4 parameters for problem 19.
+        </li>
+        <li>
+          <a href = "p19_lim.m">p19_lim.m</a>, 
+          returns the integration limits for problem 19.
+        </li>
+        <li>
+          <a href = "p19_name.m">p19_name.m</a>, 
+          returns a name for problem 19.
+        </li>
+        <li>
+          <a href = "p19_r8vec.m">p19_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 19.
+        </li>
+        <li>
+          <a href = "p19_region.m">p19_region.m</a>, 
+          returns the region type for problem 19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>, 
+          prints a title for problem 19.
+        </li>
+        <li>
+          <a href = "p20_default.m">p20_default.m</a>, 
+          sets default values for problem 20.
+        </li>
+        <li>
+          <a href = "p20_exact.m">p20_exact.m</a>, 
+          sets the exact integral for problem 20.
+        </li>
+        <li>
+          <a href = "p20_f.m">p20_f.m</a>, 
+          evaluates the integrand for problem 20.
+        </li>
+        <li>
+          <a href = "p20_i4.m">p20_i4.m</a>, 
+          sets or gets I4 parameters for problem 20.
+        </li>
+        <li>
+          <a href = "p20_lim.m">p20_lim.m</a>, 
+          returns the integration limits for problem 20.
+        </li>
+        <li>
+          <a href = "p20_name.m">p20_name.m</a>, 
+          returns a name for problem 20.
+        </li>
+        <li>
+          <a href = "p20_r8.m">p20_r8.m</a>, 
+          sets or gets R8 parameters for problem 20.
+        </li>
+        <li>
+          <a href = "p20_region.m">p20_region.m</a>, 
+          returns the region type for problem 20.
+        </li>
+        <li>
+          <a href = "p20_title.m">p20_title.m</a>, 
+          prints a title for problem 20.
+        </li>
+        <li>
+          <a href = "p21_default.m">p21_default.m</a>, 
+          sets default values for problem 21.
+        </li>
+        <li>
+          <a href = "p21_exact.m">p21_exact.m</a>, 
+          sets the exact integral for problem 21.
+        </li>
+        <li>
+          <a href = "p21_f.m">p21_f.m</a>, 
+          evaluates the integrand for problem 21.
+        </li>
+        <li>
+          <a href = "p21_i4.m">p21_i4.m</a>, 
+          sets or gets I4 parameters for problem 21.
+        </li>
+        <li>
+          <a href = "p21_i4vec.m">p21_i4vec.m</a>, 
+          sets or gets I4VEC parameters for problem 21.
+        </li>
+        <li>
+          <a href = "p21_lim.m">p21_lim.m</a>, 
+          returns the integration limits for problem 21.
+        </li>
+        <li>
+          <a href = "p21_name.m">p21_name.m</a>, 
+          returns a name for problem 21.
+        </li>
+        <li>
+          <a href = "p21_r8.m">p21_r8.m</a>, 
+          sets or gets R8 parameters for problem 21.
+        </li>
+        <li>
+          <a href = "p21_region.m">p21_region.m</a>, 
+          returns the region type for problem 21.
+        </li>
+        <li>
+          <a href = "p21_title.m">p21_title.m</a>, 
+          prints a title for problem 21.
+        </li>
+        <li>
+          <a href = "p22_default.m">p22_default.m</a>, 
+          sets default values for problem 22.
+        </li>
+        <li>
+          <a href = "p22_exact.m">p22_exact.m</a>, 
+          sets the exact integral for problem 22.
+        </li>
+        <li>
+          <a href = "p22_f.m">p22_f.m</a>, 
+          evaluates the integrand for problem 22.
+        </li>
+        <li>
+          <a href = "p22_i4.m">p22_i4.m</a>, 
+          sets or gets I4 parameters for problem 22.
+        </li>
+        <li>
+          <a href = "p22_i4vec.m">p22_i4vec.m</a>, 
+          sets or gets I4VEC parameters for problem 22.
+        </li>
+        <li>
+          <a href = "p22_lim.m">p22_lim.m</a>, 
+          returns the integration limits for problem 22.
+        </li>
+        <li>
+          <a href = "p22_name.m">p22_name.m</a>, 
+          returns a name for problem 22.
+        </li>
+        <li>
+          <a href = "p22_r8.m">p22_r8.m</a>, 
+          sets or gets R8 parameters for problem 22.
+        </li>
+        <li>
+          <a href = "p22_region.m">p22_region.m</a>, 
+          returns the region type for problem 22.
+        </li>
+        <li>
+          <a href = "p22_title.m">p22_title.m</a>, 
+          prints a title for problem 22.
+        </li>
+        <li>
+          <a href = "p23_default.m">p23_default.m</a>, 
+          sets default values for problem 23.
+        </li>
+        <li>
+          <a href = "p23_exact.m">p23_exact.m</a>, 
+          sets the exact integral for problem 23.
+        </li>
+        <li>
+          <a href = "p23_f.m">p23_f.m</a>, 
+          evaluates the integrand for problem 23.
+        </li>
+        <li>
+          <a href = "p23_i4.m">p23_i4.m</a>, 
+          sets or gets I4 parameters for problem 23.
+        </li>
+        <li>
+          <a href = "p23_i4vec.m">p23_i4vec.m</a>, 
+          sets or gets I4VEC parameters for problem 23.
+        </li>
+        <li>
+          <a href = "p23_lim.m">p23_lim.m</a>, 
+          returns the integration limits for problem 23.
+        </li>
+        <li>
+          <a href = "p23_name.m">p23_name.m</a>, 
+          returns a name for problem 23.
+        </li>
+        <li>
+          <a href = "p23_r8.m">p23_r8.m</a>, 
+          sets or gets R8 parameters for problem 23.
+        </li>
+        <li>
+          <a href = "p23_region.m">p23_region.m</a>, 
+          returns the region type for problem 23.
+        </li>
+        <li>
+          <a href = "p23_title.m">p23_title.m</a>, 
+          prints a title for problem 23.
+        </li>
+        <li>
+          <a href = "p24_default.m">p24_default.m</a>, 
+          sets default values for problem 24.
+        </li>
+        <li>
+          <a href = "p24_exact.m">p24_exact.m</a>, 
+          sets the exact integral for problem 24.
+        </li>
+        <li>
+          <a href = "p24_f.m">p24_f.m</a>, 
+          evaluates the integrand for problem 24.
+        </li>
+        <li>
+          <a href = "p24_i4.m">p24_i4.m</a>, 
+          sets or gets I4 parameters for problem 24.
+        </li>
+        <li>
+          <a href = "p24_lim.m">p24_lim.m</a>, 
+          returns the integration limits for problem 24.
+        </li>
+        <li>
+          <a href = "p24_name.m">p24_name.m</a>, 
+          returns a name for problem 24.
+        </li>
+        <li>
+          <a href = "p24_r8vec.m">p24_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 24.
+        </li>
+        <li>
+          <a href = "p24_region.m">p24_region.m</a>, 
+          returns the region type for problem 24.
+        </li>
+        <li>
+          <a href = "p24_title.m">p24_title.m</a>, 
+          prints a title for problem 24.
+        </li>
+        <li>
+          <a href = "p25_default.m">p25_default.m</a>, 
+          sets default values for problem 25.
+        </li>
+        <li>
+          <a href = "p25_exact.m">p25_exact.m</a>, 
+          sets the exact integral for problem 25.
+        </li>
+        <li>
+          <a href = "p25_f.m">p25_f.m</a>, 
+          evaluates the integrand for problem 25.
+        </li>
+        <li>
+          <a href = "p25_i4.m">p25_i4.m</a>, 
+          sets or gets I4 parameters for problem 25.
+        </li>
+        <li>
+          <a href = "p25_lim.m">p25_lim.m</a>, 
+          returns the integration limits for problem 25.
+        </li>
+        <li>
+          <a href = "p25_name.m">p25_name.m</a>, 
+          returns a name for problem 25.
+        </li>
+        <li>
+          <a href = "p25_r8.m">p25_r8.m</a>, 
+          sets or gets R8 parameters for problem 25.
+        </li>
+        <li>
+          <a href = "p25_region.m">p25_region.m</a>, 
+          returns the region type for problem 25.
+        </li>
+        <li>
+          <a href = "p25_title.m">p25_title.m</a>, 
+          prints a title for problem 25.
+        </li>
+        <li>
+          <a href = "p26_default.m">p26_default.m</a>, 
+          sets default values for problem 26.
+        </li>
+        <li>
+          <a href = "p26_exact.m">p26_exact.m</a>, 
+          sets the exact integral for problem 26.
+        </li>
+        <li>
+          <a href = "p26_f.m">p26_f.m</a>, 
+          evaluates the integrand for problem 26.
+        </li>
+        <li>
+          <a href = "p26_i4.m">p26_i4.m</a>, 
+          sets or gets I4 parameters for problem 26.
+        </li>
+        <li>
+          <a href = "p26_lim.m">p26_lim.m</a>, 
+          returns the integration limits for problem 26.
+        </li>
+        <li>
+          <a href = "p26_name.m">p26_name.m</a>, 
+          returns a name for problem 26.
+        </li>
+        <li>
+          <a href = "p26_r8vec.m">p26_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 26.
+        </li>
+        <li>
+          <a href = "p26_region.m">p26_region.m</a>, 
+          returns the region type for problem 26.
+        </li>
+        <li>
+          <a href = "p26_title.m">p26_title.m</a>, 
+          prints a title for problem 26.
+        </li>
+        <li>
+          <a href = "p27_default.m">p27_default.m</a>, 
+          sets default values for problem 27.
+        </li>
+        <li>
+          <a href = "p27_exact.m">p27_exact.m</a>, 
+          sets the exact integral for problem 27.
+        </li>
+        <li>
+          <a href = "p27_f.m">p27_f.m</a>, 
+          evaluates the integrand for problem 27.
+        </li>
+        <li>
+          <a href = "p27_i4.m">p27_i4.m</a>, 
+          sets or gets I4 parameters for problem 27.
+        </li>
+        <li>
+          <a href = "p27_lim.m">p27_lim.m</a>, 
+          returns the integration limits for problem 27.
+        </li>
+        <li>
+          <a href = "p27_name.m">p27_name.m</a>, 
+          returns a name for problem 27.
+        </li>
+        <li>
+          <a href = "p27_r8.m">p27_r8.m</a>, 
+          sets or gets R8 parameters for problem 27.
+        </li>
+        <li>
+          <a href = "p27_r8vec.m">p27_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 27.
+        </li>
+        <li>
+          <a href = "p27_region.m">p27_region.m</a>, 
+          returns the region type for problem 27.
+        </li>
+        <li>
+          <a href = "p27_title.m">p27_title.m</a>, 
+          prints a title for problem 27.
+        </li>
+        <li>
+          <a href = "p28_default.m">p28_default.m</a>, 
+          sets default values for problem 28.
+        </li>
+        <li>
+          <a href = "p28_exact.m">p28_exact.m</a>, 
+          sets the exact integral for problem 28.
+        </li>
+        <li>
+          <a href = "p28_f.m">p28_f.m</a>, 
+          evaluates the integrand for problem 28.
+        </li>
+        <li>
+          <a href = "p28_i4.m">p28_i4.m</a>, 
+          sets or gets I4 parameters for problem 28.
+        </li>
+        <li>
+          <a href = "p28_lim.m">p28_lim.m</a>, 
+          returns the integration limits for problem 28.
+        </li>
+        <li>
+          <a href = "p28_name.m">p28_name.m</a>, 
+          returns a name for problem 28.
+        </li>
+        <li>
+          <a href = "p28_r8vec.m">p28_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 281.
+        </li>
+        <li>
+          <a href = "p28_region.m">p28_region.m</a>, 
+          returns the region type for problem 28.
+        </li>
+        <li>
+          <a href = "p28_title.m">p28_title.m</a>, 
+          prints a title for problem 28.
+        </li>
+        <li>
+          <a href = "p29_default.m">p29_default.m</a>, 
+          sets default values for problem 29.
+        </li>
+        <li>
+          <a href = "p29_exact.m">p29_exact.m</a>, 
+          sets the exact integral for problem 29.
+        </li>
+        <li>
+          <a href = "p29_f.m">p29_f.m</a>, 
+          evaluates the integrand for problem 29.
+        </li>
+        <li>
+          <a href = "p29_i4.m">p29_i4.m</a>, 
+          sets or gets I4 parameters for problem 29.
+        </li>
+        <li>
+          <a href = "p29_lim.m">p29_lim.m</a>, 
+          returns the integration limits for problem 29.
+        </li>
+        <li>
+          <a href = "p29_name.m">p29_name.m</a>, 
+          returns a name for problem 29.
+        </li>
+        <li>
+          <a href = "p29_r8.m">p29_r8.m</a>, 
+          sets or gets R8 parameters for problem 29.
+        </li>
+        <li>
+          <a href = "p29_r8vec.m">p29_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 29.
+        </li>
+        <li>
+          <a href = "p29_region.m">p29_region.m</a>, 
+          returns the region type for problem 29.
+        </li>
+        <li>
+          <a href = "p29_title.m">p29_title.m</a>, 
+          prints a title for problem 29.
+        </li>
+        <li>
+          <a href = "p30_default.m">p30_default.m</a>, 
+          sets default values for problem 30.
+        </li>
+        <li>
+          <a href = "p30_exact.m">p30_exact.m</a>, 
+          sets the exact integral for problem 30.
+        </li>
+        <li>
+          <a href = "p30_f.m">p30_f.m</a>, 
+          evaluates the integrand for problem 30.
+        </li>
+        <li>
+          <a href = "p30_i4.m">p30_i4.m</a>, 
+          sets or gets I4 parameters for problem 30.
+        </li>
+        <li>
+          <a href = "p30_lim.m">p30_lim.m</a>, 
+          returns the integration limits for problem 30.
+        </li>
+        <li>
+          <a href = "p30_name.m">p30_name.m</a>, 
+          returns a name for problem 30.
+        </li>
+        <li>
+          <a href = "p30_r8vec.m">p30_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 30.
+        </li>
+        <li>
+          <a href = "p30_region.m">p30_region.m</a>, 
+          returns the region type for problem 30.
+        </li>
+        <li>
+          <a href = "p30_title.m">p30_title.m</a>, 
+          prints a title for problem 30.
+        </li>
+        <li>
+          <a href = "p31_default.m">p31_default.m</a>, 
+          sets default values for problem 31.
+        </li>
+        <li>
+          <a href = "p31_exact.m">p31_exact.m</a>, 
+          sets the exact integral for problem 31.
+        </li>
+        <li>
+          <a href = "p31_f.m">p31_f.m</a>, 
+          evaluates the integrand for problem 31.
+        </li>
+        <li>
+          <a href = "p31_i4.m">p31_i4.m</a>, 
+          sets or gets I4 parameters for problem 31.
+        </li>
+        <li>
+          <a href = "p31_lim.m">p31_lim.m</a>, 
+          returns the integration limits for problem 31.
+        </li>
+        <li>
+          <a href = "p31_name.m">p31_name.m</a>, 
+          returns a name for problem 31.
+        </li>
+        <li>
+          <a href = "p31_r8vec.m">p31_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 31.
+        </li>
+        <li>
+          <a href = "p31_region.m">p31_region.m</a>, 
+          returns the region type for problem 31.
+        </li>
+        <li>
+          <a href = "p31_title.m">p31_title.m</a>, 
+          prints a title for problem 31.
+        </li>
+        <li>
+          <a href = "p32_default.m">p32_default.m</a>, 
+          sets default values for problem 32.
+        </li>
+        <li>
+          <a href = "p32_exact.m">p32_exact.m</a>, 
+          sets the exact integral for problem 32.
+        </li>
+        <li>
+          <a href = "p32_f.m">p32_f.m</a>, 
+          evaluates the integrand for problem 32.
+        </li>
+        <li>
+          <a href = "p32_i4.m">p32_i4.m</a>, 
+          sets or gets I4 parameters for problem 32.
+        </li>
+        <li>
+          <a href = "p32_lim.m">p32_lim.m</a>, 
+          returns the integration limits for problem 32.
+        </li>
+        <li>
+          <a href = "p32_name.m">p32_name.m</a>, 
+          returns a name for problem 32.
+        </li>
+        <li>
+          <a href = "p32_r8vec.m">p32_r8vec.m</a>, 
+          sets or gets R8VEC parameters for problem 32.
+        </li>
+        <li>
+          <a href = "p32_region.m">p32_region.m</a>, 
+          returns the region type for problem 32.
+        </li>
+        <li>
+          <a href = "p32_title.m">p32_title.m</a>, 
+          prints a title for problem 32.
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>, 
+          computes the combinatorial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>, 
+          returns the R8 roundoff unit.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a>, 
+          returns a "huge" R8.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8_tiny.m">r8_tiny.m</a>, 
+          returns a "tiny" R8.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "simplex_unit_volume_nd.m">simplex_unit_volume_nd.m</a>, 
+          computes the volume of a unit simplex in ND.
+        </li>
+        <li>
+          <a href = "sphere_unit_area_nd.m">sphere_unit_area_nd.m</a>, 
+          computes the area of a unit sphere in ND.
+        </li>
+        <li>
+          <a href = "sphere_unit_volume_nd.m">sphere_unit_volume_nd.m</a>, 
+          computes the volume of a unit sphere in ND.
+        </li>
+        <li>
+          <a href = "sphere_volume_nd.m">sphere_volume_nd.m</a>, 
+          computes the volume of a sphere in ND.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tuple_next.m">tuple_next.m</a>, 
+          computes the next element of a tuple space.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_nint_test.m">test_nint_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "test_nint_test01.m">test_nint_test01.m</a>, 
+          just prints out the title information.
+        </li>
+        <li>
+          <a href = "test_nint_test02.m">test_nint_test02.m</a>, 
+          just prints out the title information.
+        </li>
+        <li>
+          <a href = "test_nint_test03.m">test_nint_test03.m</a>, 
+          applies a composite midpoint rule to box regions.
+        </li>
+        <li>
+          <a href = "test_nint_test04.m">test_nint_test04.m</a>, 
+          applies a Monte Carlo rule to box regions.
+        </li>
+        <li>
+          <a href = "test_nint_test05.m">test_nint_test05.m</a>, 
+          demonstrates how a base point can be moved.
+        </li>
+        <li>
+          <a href = "test_nint_test06.m">test_nint_test06.m</a>, 
+          applies a composite midpoint rule for increasing spatial dimension.
+        </li>
+        <li>
+          <a href = "test_nint_test_output.txt">test_nint_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 June 2007.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

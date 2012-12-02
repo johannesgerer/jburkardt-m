@@ -1,0 +1,288 @@
+<html>
+
+  <head>
+    <title>
+      ASA058 - the K-Means Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ASA058 <br> the K-Means Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ASA058</b> 
+      is a MATLAB library which 
+      seeks solutions of the K-Means problem.
+    </p>
+
+    <p>
+      <b>ASA058</b> is Applied Statistics Algorithm 58.  Source code for many
+      Applied Statistics Algorithms is available through 
+      <a href = "http://lib.stat.cmu.edu/apstat">STATLIB</a>. 
+    </p>
+
+    <p>
+      In the K-Means problem, a set of N points X(I) in M-dimensions is
+      given.  The goal is to arrange these points into K clusters,
+      with each cluster having a representative point Z(J), usually
+      chosen as the centroid of the points in the cluster.  The energy
+      of each cluster is <pre>
+        E(J) = Sum ( all points X(I) in cluster J ) || X(I) - Z(J) ||^2
+      </pre>
+    </p>
+
+    <p>
+      For a given set of clusters, the total energy is then simply
+      the sum of the cluster energies E(J).  The goal is to choose the 
+      clusters in such a way that the total energy is minimized.
+      Usually, a point X(I) goes into the cluster with the closest
+      representative point Z(J).  So to define the clusters, it's
+      enough simply to specify the locations of the cluster representatives.
+    </p>
+
+    <p>
+      This is actually a fairly hard problem.  Most algorithms do
+      reasonably well, but cannot guarantee that the best solution
+      has been found.  It is very common for algorithms to get
+      stuck at a solution which is merely a "local minimum".
+      For such a local minimum, every slight rearrangement of
+      the solution makes the energy go up; however a major
+      rearrangement would result in a big drop in energy.
+    </p>
+
+    <p>
+      A simple algorithm for the problem is known as "H-Means".
+      It alternates between two procedures:
+      <ul>
+        <li>
+          Using the given cluster centers, assign each point to the
+          cluster with the nearest center;
+        </li>
+        <li>
+          Using the given cluster assignments, replace each cluster
+          center by the centroid or average of the points in the cluster.
+        </li>
+      </ul>
+      These steps are repeated until no points are moved, or some
+      other termination criterion is reached.
+    </p>
+
+    <p>
+      A more sophisticated algorithm, known as "K-Means", takes advantage
+      of the fact that it is possible to quickly determine the decrease in
+      energy caused by moving a point from its current cluster to another.
+      It repeats the following procedure:
+      <ul>
+        <li>
+          For each point, move it to another cluster if that would lower
+          the energy.  If you move a point, immediately update the
+          cluster centers of the two affected clusters.
+        </li>
+      </ul>
+      This procedure is repeated until no points are moved, or some
+      other termination criterion is reached.
+    </p>
+
+    <p>
+      <b>Note</b>: the original reference lists the input variable <b>F</b> 
+      as an <i>integer</i> workspace array.  However, <b>F</b> is used in the 
+      CLUSTR routine exclusively as a <i>real</i> array.  Even in single 
+      precision, this causes the routine to compute incorrect results (try it,
+      please!); in double precision it also causes memory overwrites.
+      The code presented here has corrected this mistake.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>ASA058</b> is available in
+      <a href = "../../c_src/asa058/asa058.html">a C version</a> and
+      <a href = "../../cpp_src/asa058/asa058.html">a C++ version</a> and
+      <a href = "../../f77_src/asa058/asa058.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/asa058/asa058.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/asa058/asa058.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa113/asa113.html">
+      ASA113</a>,
+      a MATLAB library which
+      implements the Banfield and Bassill clustering algorithm using 
+      transfers and swaps.
+    </p>
+
+    <p>
+      <a href = "../../m_src/asa136/asa136.html">
+      ASA136</a>,
+      a MATLAB library which
+      implements the Hartigan and Wong clustering algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cities/cities.html">
+      CITIES</a>, 
+      a MATLAB library which
+      contains various problems associated with a set of
+      "cities" on a map.
+    </p>
+
+    <p>
+      <a href = "../../datasets/cities/cities.html">
+      CITIES</a>,
+      a dataset directory which 
+      contains sets of data defining groups of cities.
+    </p>
+
+    <p>
+      <a href = "../../m_src/kmeans/kmeans.html">
+      KMEANS</a>, 
+      a MATLAB library which
+      contains several different algorithms for the K-Means
+      problem.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lau_np/lau_np.html">
+      LAU_NP</a>,
+      a FORTRAN90 library which
+      contains heuristic algorithms for the
+      K-center and K-median problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/spaeth/spaeth.html">
+      SPAETH</a>, 
+      a FORTRAN90 library which
+      clusters data according to various principles.
+    </p>
+
+    <p>
+      <a href = "../../datasets/spaeth/spaeth.html">
+      SPAETH</a>,
+      a dataset directory which 
+      contains sets of test data for clustering.
+    </p>
+
+    <p>
+      <a href = "../../f_src/spaeth2/spaeth2.html">
+      SPAETH2</a>,
+      a FORTRAN90 library which
+      clusters data according to various principles.
+    </p>
+
+    <p>
+      <a href = "../../datasets/spaeth2/spaeth2.html">
+      SPAETH2</a>,
+      a dataset directory which 
+      contains sets of test data for clustering.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          John Hartigan, Manchek Wong,<br>
+          Algorithm AS 136: 
+          A K-Means Clustering Algorithm,<br>
+          Applied Statistics,<br>
+          Volume 28, Number 1, 1979, pages 100-108.
+        </li>
+        <li>
+          Wendy Martinez, Angel Martinez,<br>
+          Computational Statistics Handbook with MATLAB,<br>
+          Chapman and Hall / CRC, 2002,<br>
+          ISBN: 1-58488-229-8,<br>
+          LC: QA276.4.M272.
+        </li>
+        <li>
+          David Sparks,<br>
+          Algorithm AS 58: 
+          Euclidean Cluster Analysis,<br>
+          Applied Statistics,<br>
+          Volume 22, Number 1, 1973, pages 126-130.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "clustr.m">clustr.m</a>
+          clusters a set of data to minimize the within-cluster sum of squares.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "asa058_test.m">asa058_test.m</a>
+          carries out the tests.
+        </li>
+        <li>
+          <a href = "asa058_test01.m">asa058_test01.m</a>, 
+          tests CLUSTR.
+        </li>
+        <li>
+          <a href = "asa058_test_output.txt">asa058_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "points_100.txt">points_100.txt</a>, 100 2D points,
+          used as a case study by the sample problem.  
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 February 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

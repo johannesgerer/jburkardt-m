@@ -1,0 +1,328 @@
+<html>
+
+  <head>
+    <title>
+      FEM3D_PROJECT - Project Data onto a 3D Finite Element Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM3D_PROJECT <br>  Project Data onto a 3D Finite Element Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM3D_PROJECT</b> 
+      is a MATLAB program which
+      projects a finite element function.
+    </p>
+
+    <p>
+      Let us suppose we have a region R and a "tet mesh" (tetrahedral mesh) of R, that is,
+      a set of nodes N1 and tetrahedrons T1 whose union is R.  Let P1(I)(X,Y,Z)
+      be the finite element basis function associated with node N1(I).
+      Now let us suppose that we have a finite element function V1, that is 
+      a scalar- or vector-valued function V1(X,Y,Z) defined over R, 
+      with the formula
+      <blockquote>
+        V1(X,Y,Z) = sum ( 1 <= I <= NODE_NUM1 ) V1(I) * P1(I)(X,Y,Z)
+      </blockquote>
+    </p>
+
+    <p>
+      Now suppose we have a second tet mesh of R comprising
+      a set of nodes N2 and tetrahedrons T2.  Can we determine an appropriate
+      set of finite element coefficients V2(I) which best approximate V1 in 
+      the finite element space defined by N2 and T2?  The finite element
+      coefficient vector V2 is defined by the following relationship:
+      <blockquote>
+        Integral Sum ( 1 <= I <= NODE_NUM2 ) V2(I) P2(I)(X,Y,Z) P2(J)(X,Y,Z) dx dy dz
+        = Integral V1(X,Y,Z) P2(J)(X,Y,Z) dx dy dz
+      </blockquote>
+      Thus, in particular, the function V1(X,Y,Z), which is defined on the first finite
+      element space, must be evaluated in a computation that uses the second finite element
+      space.
+    </p>
+
+    <p>
+      This procedure can be used to determine the least squares approximant to
+      data (actually, to the piecewise linear interpolant of that data) or to
+      determine the finite element coefficients appropriate when recomputing
+      a finite element solution from a fine mesh to a coarse mesh.
+    </p>
+
+    <p>
+      The sample data is given as three tables, each stored in a file:
+      <ul>
+        <li>
+          the <b>SAMPLE_NODES</b> file contains the 3D coordinates of sample points.
+          Every sample point is presumed to lie within the area covered by the finite
+          element mesh.
+        </li>
+        <li>
+          the <b>SAMPLE_ELEMENTS</b> file contains the indices of nodes that
+          form the elements.  The elements are presumed to be 4-node tetrahedrons
+          that form a Delaunay tetrahedralization of the sample nodes.
+        </li>
+        <li>
+          the <b>SAMPLE_VALUES</b> file contains the value of some vector quantity 
+          V at each sample point.  The dimensionality of the V data is arbitrary.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The finite element mesh is given as two tables, each stored in a file:
+      <ul>
+        <li>
+          the <b>FEM_NODES</b> file contains the 3D coordinates of nodes.
+        </li>
+        <li>
+          the <b>FEM_ELEMENTS</b> file contains the indices of nodes that
+          form the elements.  The elements are presumed to be 4-node tetrahedrons.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The program produces a new table <b>FEM_VALUES</b>, of the same dimensionality
+      as <b>SAMPLE_VALUES</b>.  The vector <b>FEM_VALUES</b> can be used in conjunction with
+      the finite element mesh data to produce a finite element function that is
+      an approximant to the <b>SAMPLE_VALUES</b> data.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem3d_project</b> ( <i>'sample_prefix'</i>, <i>'fem_prefix'</i> )
+      </blockquote>
+      where <i>'sample_prefix'</i> is the common prefix for the SAMPLE files:
+      <ul>
+        <li>
+          <i>'sample_prefix'</i><b>_nodes.txt</b>,  the node coordinates (input);
+        </li>
+        <li>
+          <i>'sample_prefix'</i><b>_elements.txt</b>,  the 4 nodes that make up each element (input);
+        </li>
+        <li>
+          <i>'sample_prefix'</i><b>_values.txt</b>, the data values (input);
+        </li>
+      </ul>
+      and <i>'fem_prefix'</i> is the common prefix for the FEM files:
+      <ul>
+        <li>
+          <i>'fem_prefix'</i><b>_nodes.txt</b>,    the node coordinates (input);
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_elements.txt</b>, the 4 nodes that make up each element (input);
+        </li>
+        <li>
+          <i>'fem_prefix'</i><b>_values.txt</b>,   the data values (output).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The file <i>fem_prefix</i>_values.txt is created by the program, and contains
+      the projections of the sample data values onto the finite element space, that is,
+      these may be regarded as coefficients of finite element functions
+      representing the projections of the sample data.  Note that we may also regard
+      this operation as the refinement or coarsening of a finite element function,
+      in that we are transferring information from the ``sample'' space to the ``fem''
+      space.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM3D_PROJECT</b> is available in
+      <a href = "../../cpp_src/fem3d_project/fem3d_project.html">a C++ version</a> and
+      <a href = "../../f_src/fem3d_project/fem3d_project.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem3d_project/fem3d_project.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem1d_project/fem1d_project.html">
+      FEM1D_PROJECT</a>,
+      a MATLAB program which
+      projects data into a finite element space, including the least squares
+      approximation of data, or the projection of a finite element solution
+      from one mesh to another.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_project/fem2d_project.html">
+      FEM2D_PROJECT</a>,
+      a MATLAB program which
+      projects a function F(X,Y,Z), given as a data, into a given finite element space 
+      of piecewise linear triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../data/fem3d/fem3d.html">
+      FEM3D</a>, 
+      a data directory which
+      contains examples of 3D FEM files, 
+      three text files that describe a 3D finite element geometry;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem3d_pack/fem3d_pack.html">
+      FEM3D_PACK</a>,
+      a MATLAB library which
+      contains utilities for 3D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem3d_sample/fem3d_sample.html">
+      FEM3D_SAMPLE</a>,
+      a MATLAB program which
+      evaluates a finite element function defined on 3D tetrahedral mesh.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem3d_project.m">fem3d_project.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>LINEAR</b> starts with sample data for the vector function f(x)=[ 1, 2x, 3y, 4z ], 
+      on an 8x8x8 grid of equally spaced nodes from [0.0,8.0]x[0.0,8.0], and projects this onto 
+      a piecewise linear finite element meshes defined on equally spaced grids of
+      dimension 4x4x4, 2x2x2 and 1x1x1.
+      <ul>
+        <li>
+          <a href = "r8x8x8_t4_nodes.txt">r8x8x8_t3_nodes.txt</a>,
+          the sample nodes, on an 8x8x8 grid.
+        </li>
+        <li>
+          <a href = "r8x8x8_t4_elements.txt">r8x8_t4_elements.txt</a>,
+          elements that can be used to form an 8x8x8 finite element mesh associated 
+          with the sample data.  This is provide only so that a finite element
+          function can be formed with the original sample data.
+        </li>
+        <li>
+          <a href = "r8x8x8_t4_values.txt">r8x8_t4_values.txt</a>,
+          the sample nodal values.
+        </li>
+        <li>
+          <a href = "r4x4x4_t4_nodes.txt">r4x4x4_t4_nodes.txt</a>,
+          the FEM nodes for a 4x4x4 grid.
+        </li>
+        <li>
+          <a href = "r4x4x4_t4_elements.txt">r4x4x4_t4_elements.txt</a>,
+          the FEM elements for a 4x4x4 grid.
+        </li>
+        <li>
+          <a href = "r4x4x4_t4_values.txt">r4x4x4_t4_values.txt</a>,
+          the nodal values as projected from the 8x8x8 grid.
+        </li>
+        <li>
+          <a href = "r2x2x2_t4_nodes.txt">r2x2x2_t4_nodes.txt</a>,
+          the FEM nodes for a 2x2x2 grid.
+        </li>
+        <li>
+          <a href = "r2x2x2_t4_elements.txt">r2x2x2_t4_elements.txt</a>,
+          the FEM elements for a 2x2x2 grid.
+        </li>
+        <li>
+          <a href = "r2x2x2_t4_values.txt">r2x2x2_t4_values.txt</a>,
+          the nodal values as projected from the 8x8x8 grid.
+        </li>
+        <li>
+          <a href = "r1x1x1_t4_nodes.txt">r1x1x1_t4_nodes.txt</a>,
+          the FEM nodes for a 1x1x1 grid.
+        </li>
+        <li>
+          <a href = "r1x1x1_t4_elements.txt">r1x1x1_t4_elements.txt</a>,
+          the FEM elements for a 1x1x1 grid.
+        </li>
+        <li>
+          <a href = "r1x1x1_t4_values.txt">r1x1x1_t4_values.txt</a>,
+          the nodal values as projected from the 8x8x8 grid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

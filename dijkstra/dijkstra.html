@@ -1,0 +1,206 @@
+<html>
+
+  <head>
+    <title>
+      DIJKSTRA - Demonstration of Dijkstra's Minimum Distance Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DIJKSTRA <br> Demonstration of Dijkstra's Minimum Distance Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DIJKSTRA</b>
+      is a MATLAB program which
+      runs a simple demonstration of Dijkstra's algorithm for determining
+      the minimum distance from one node in a graph to all other nodes.
+    </p>
+
+    <p>
+      The program is mainly of interest as a starting point for a parallelization
+      effort.
+    </p>
+
+    <p>
+      The example graph handled by the program has 6 nodes and 8 links,
+      each with a positive length:
+      <pre>
+    N0--15--N2-100--N3
+      \      |     /
+       \     |    /
+        40  20  10
+          \  |  /
+           \ | /
+            N1
+            / \
+           /   \
+          6    25
+         /       \
+        /         \
+      N5----8-----N4
+      </pre>
+    </p>
+
+    <p>
+      Using "Inf" to indicate that there is no link between two nodes,
+      the distance matrix for this graph is:
+      <pre>
+          0   40   15  Inf  Inf  Inf
+         40    0   20   10   25    6
+         15   20    0  100  Inf  Inf
+        Inf   10  100    0  Inf  Inf
+        Inf   25  Inf  Inf    0    8
+        Inf    6  Inf  Inf    8    0
+      </pre>
+    </p>
+
+    <p>
+      Dijkstra's algorithm efficiently determines the length of the shortest
+      path from node 0 to other nodes as:
+      <pre>
+        From 0 to:  0    1    2    3    4    5
+        Distance:   0   35   15   45   49   41
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>DIJKSTRA</b> is available in
+      <a href = "../../c_src/dijkstra/dijkstra.html">a C version</a> and
+      <a href = "../../cpp_src/dijkstra/dijkstra.html">a C++ version</a> and
+      <a href = "../../f77_src/dijkstra/dijkstra.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/dijkstra/dijkstra.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/dijkstra/dijkstra.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>,
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's 
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/floyd/floyd.html">
+      FLOYD</a>,
+      a MATLAB library which
+      implements Floyd's algorithm for finding the shortest distance between pairs of
+      nodes on a directed graph.
+    </p>
+
+    <p>
+      <a href = "../../f_src/grafpack/grafpack.html">
+      GRAFPACK</a>,
+      a FORTRAN90 library which
+      carries out operations on abstract graphs.
+    </p>
+
+    <p>
+      <a href = "../../f_src/laupack/laupack.html">
+      LAUPACK</a>,
+      a FORTRAN90 library which
+      carries out various operations on graphs.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edsger Dijkstra,<br>
+          A note on two problems in connexion with graphs,<br>
+          Numerische Mathematik,<br>
+          Volume 1, 1959, pages 269-271.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dijkstra_distance.m">dijkstra_distance.m</a>,
+          carries out Dijkstra's minimum distance algorithm.
+        </li>
+        <li>
+          <a href = "find_nearest.m">find_nearest.m</a>,
+          finds the nearest unconnected node.
+        </li>
+        <li>
+          <a href = "init.m">init.m</a>,
+          initializes the problem data.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "update_mind.m">update_mind.m</a>,
+          updates the minimum distance vector.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dijkstra_test.m">dijkstra_test.m</a>,
+          runs an example of Dijkstra's minimum distance algorithm.
+        </li>
+        <li>
+          <a href = "dijkstra_test_output.txt">dijkstra_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 July 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

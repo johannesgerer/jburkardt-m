@@ -1,0 +1,269 @@
+<html>
+
+  <head>
+    <title>
+      SUBSET_SUM - The Subset Sum Problem
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SUBSET_SUM <br> The Subset Sum Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SUBSET_SUM</b>
+      is a MATLAB program which
+      seeks solutions of the subset sum problem.
+    </p>
+
+    <p>
+      This function tries to compute a target value as the sum of
+      a selected subset of a given set of weights.
+    </p>
+
+    <p>
+      This function works by brute force, that is, it tries every
+      possible subset to see if it sums to the desired value.
+    </p>
+
+    <p>
+      Given N weights, every possible selection can be described by
+      one of the N-digit binary numbers from 0 to 2^N-1.
+    </p>
+
+    <p>
+      This function includes a range, which allows the user to
+      control which subsets are to be checked.  Thus, if there are
+      N weights, specifying a range of [ 0, 2^N-1] indicates that
+      all subsets should be checked.  On the other hand, this full
+      range could be broken down into smaller subranges, each of
+      which could be checked independently.
+    </p>
+
+    <p>
+      It is possible that, in the given range, there may be multiple
+      solutions of the problem.  This function will only return
+      one such solution, if found.  However, the function may be called
+      again, with an appropriate restriction of the range, to continue
+      the search for other solutions.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        [ <i>c</i>, <i>index</i> ] = <b>subset_sum</b> ( <i>w</i>, <i>t</i>, <i>r</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>w</i>, a set of N weights.  N must be no more than 31.
+        </li>
+        <li>
+          <i>t</i>, the target value.
+        </li>
+        <li>
+          <i>r</i>, a vector of length 2, containing the lower and upper
+          limits to be searched.  To search the entire range, use [ 0, 2^N-1].
+          This argument is optional, and if omitted, the full range is searched.
+        </li>
+        <li>
+          <i>c</i>, a vector containing the indices of the weights used to
+          make the combination.  This array is empty if no solution was found.
+          Otherwise, the list of weights used to form the sum is <i>w(c)</i>.
+        </li>
+        <li>
+          <i>index</i>, the index, between <i>r(1)</i> and <i>r(2)</i>, of the solution
+          that was found, or an empty value if no solution was found.
+          If a solution was found, you might call again for further solutions
+          in the unchecked portion of the range, using the range
+          [ <i>i+1</i>, <i>r(2)</i> ].
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Example:
+    </h3>
+
+    <p>
+      <pre>
+        w = [ 1, 2, 4, 8, 16, 32 ];
+        t = 22;
+        r = [ 0, 2^6 - 1 ];
+
+        [ c, index ] = subset_sum ( w, t, r )
+
+        c = [ 2, 3, 5 ]
+        index = 22
+        ( the binary representation of 22 is 010110 )
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SUBSET_SUM</b> is available in
+      <a href = "../../c_src/subset_sum/subset_sum.html">a C version</a> and
+      <a href = "../../cpp_src/subset_sum/subset_sum.html">a C++ version</a> and
+      <a href = "../../f_src/subset_sum/subset_sum.html">a FORTRAN90 version</a> and
+      <a href = "../../f77_src/subset_sum/subset_sum.html">a FORTRAN77 version</a> and
+      <a href = "../../m_src/subset_sum/subset_sum.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/combination_lock/combination_lock.html">
+      COMBINATION_LOCK</a>,
+      a MATLAB program which
+      simulates the process of determining the secret combination of a lock.
+    </p>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes many combinatorial routines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/partition_problem/partition_problem.html">
+      PARTITION_PROBLEM</a>,
+      a MATLAB library which
+      seeks solutions of the partition problem, splitting a set of integers into
+      two subsets with equal sum.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy/satisfy.html">
+      SATISFY</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem.
+    </p>
+
+    <p>
+      <a href = "../../datasets/subset_sum/subset_sum.html">
+      SUBSET_SUM</a>,
+      a dataset directory which
+      contains examples of the subset sum problem, in which a set of numbers is given,
+      and is desired to find at least one subset that sums to a given target value.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum_tasks/subset_sum_tasks.html">
+      SUBSET_SUM_TASKS</a>,
+      a MATLAB program which
+      runs in parallel, seeking solutions of the "subset sum" version
+      of the knapsack problem.  Instructions are available
+      on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Donald Kreher, Douglas Simpson,<br>
+          Combinatorial Algorithms,<br>
+          CRC Press, 1998,<br>
+          ISBN: 0-8493-3988-X,<br>
+          LC: QA164.K73.
+        </li>
+        <li>
+          Silvano Martello, Paolo Toth,<br>
+          Knapsack Problems: Algorithms and Computer Implementations,<br>
+          Wiley, 1990,<br>
+          ISBN: 0-471-92420-2,<br>
+          LC: QA267.7.M37.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "subset_sum_count.m">subset_sum_counts.m</a>,
+          counts the solutions to the subset sum problem in a given range.
+        </li>
+        <li>
+          <a href = "subset_sum_find.m">subset_sum_find.m</a>,
+          seeks a subset of a set that has a given sum.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "subset_sum_test.m">subset_sum_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "subset_sum_test01.m">subset_sum_test01.m</a>,
+          tests subset_sum_find.
+        </li>
+        <li>
+          <a href = "subset_sum_test02.m">subset_sum_test02.m</a>,
+          tests subset_sum_count.
+        </li>
+        <li>
+          <a href = "subset_sum_test_output.txt">subset_sum_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 18 May 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

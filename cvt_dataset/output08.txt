@@ -1,0 +1,431 @@
+cvt_dataset
+23-Aug-2004 16:15:01
+
+CVT_DATASET (MATLAB version)
+  Generate a CVT dataset.
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input 
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * NDIM, the spatial dimension,
+  * N, the number of points to generate,
+  * SEED, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * IT_MAX, the maximum number of iterations.
+  * IT_TOL, the iteration tolerance.
+  * SAMPLE, how to conduct the sampling.
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * SAMPLE_NUM, the number of sample points.
+  * BATCH, the number of sampling points to create at one time:
+
+  The program generates the data, writes it to the file
+
+   cvt_NDIM_N.txt
+
+  where "NDIM" and "N" are the numeric values specified
+  by the user, and then asks the user for more input.
+
+  To indicate that no further computations are 
+  desired, it is enough to input a nonsensical value, 
+  such as -1.
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  NDIM is the spatial dimension.
+  Any value less than 1 terminates execution.
+  Enter NDIM:  2
+  User input NDIM =            2
+
+  N is the number of points to generate.
+  Any value less than 1 terminates execution.
+  Enter N:  85
+  User input N =           85
+
+  SEED is a seed for the random number generation.
+  Any value less than 0 terminates execution.
+  Enter SEED:  123456789
+  User input SEED = 123456789
+
+  INIT is the method of initializing the data:
+
+  file       read data from a file;
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+ 
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter INIT:  'UNIFORM'
+  User input INIT = "UNIFORM".
+
+  IT_MAX is the maximum number of iterations.
+
+  An iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (A negative value terminates execution).
+
+  Enter IT_MAX:  40
+  User input IT_MAX =           40
+
+  IT_TOL is the iteration tolerance.
+
+  Each iteration replaces the generators by the
+  centroids.  The L2 norm of the difference between
+  these two sets of points is an indirect measure
+  of convergence.
+
+  If this L2 norm falls below IT_TOL, the iteration
+  is presumed to have converged, and is terminated
+  early.
+
+  A zero value is acceptable, and simply means that
+  early termination will not occur.
+
+  (A negative value terminates execution).
+
+  Enter IT_TOL:  0.0
+  User input IT_TOL = 0.000000
+
+  SAMPLE is the method of sampling the region:
+
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+
+  Enter SAMPLE:  'UNIFORM'
+  User input SAMPLE = "UNIFORM".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:  10000
+  User input SAMPLE_NUM =        10000
+
+  BATCH is the number of sample points to create
+  at one time
+
+  BATCH should be between 1 and SAMPLE_NUM.
+
+  It is FASTER to set BATCH to SAMPLE_NUM;
+  setting BATCH to 1 requires the least memory.
+
+  (A zero or negative value terminates execution.)
+
+  Enter BATCH:  5
+  User input BATCH =            5
+
+  Step  L2-Change
+
+     1   2.665152e+000
+     2   1.202317e+000
+     3   7.468266e-001
+     4   6.127832e-001
+     5   5.252265e-001
+     6   4.858170e-001
+     7   4.295360e-001
+     8   4.204628e-001
+     9   4.103556e-001
+    10   3.699255e-001
+    11   3.609337e-001
+    12   3.643112e-001
+    13   3.852157e-001
+    14   3.838088e-001
+    15   4.324904e-001
+    16   3.670470e-001
+    17   3.514759e-001
+    18   3.813351e-001
+    19   4.006916e-001
+    20   3.542785e-001
+    21   3.874407e-001
+    22   3.498238e-001
+    23   3.451799e-001
+    24   3.792464e-001
+    25   3.340831e-001
+    26   3.552430e-001
+    27   3.304931e-001
+    28   3.663789e-001
+    29   3.756062e-001
+    30   3.583794e-001
+    31   3.950652e-001
+    32   3.739602e-001
+    33   3.741333e-001
+    34   3.660955e-001
+    35   3.788304e-001
+    36   3.853368e-001
+    37   3.485483e-001
+    38   3.597112e-001
+    39   3.738656e-001
+    40   3.591891e-001
+
+  The data was written to the file "cvt_2_85.txt".
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  NDIM is the spatial dimension.
+  Any value less than 1 terminates execution.
+  Enter NDIM:  -1
+  User input NDIM =           -1
+
+CVT_DATASET
+  The input value of NDIM =           -1
+  is interpreted as a request for termination.
+  Normal end of execution.
+
+  Final value of SEED = 1118006509
+
+23-Aug-2004 16:15:50
+>> cvt_dataset
+23-Aug-2004 16:15:01
+
+CVT_DATASET (MATLAB version)
+  Generate a CVT dataset.
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input 
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * NDIM, the spatial dimension,
+  * N, the number of points to generate,
+  * SEED, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * IT_MAX, the maximum number of iterations.
+  * IT_TOL, the iteration tolerance.
+  * SAMPLE, how to conduct the sampling.
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * SAMPLE_NUM, the number of sample points.
+  * BATCH, the number of sampling points to create at one time:
+
+  The program generates the data, writes it to the file
+
+   cvt_NDIM_N.txt
+
+  where "NDIM" and "N" are the numeric values specified
+  by the user, and then asks the user for more input.
+
+  To indicate that no further computations are 
+  desired, it is enough to input a nonsensical value, 
+  such as -1.
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  NDIM is the spatial dimension.
+  Any value less than 1 terminates execution.
+  Enter NDIM:  2
+  User input NDIM =            2
+
+  N is the number of points to generate.
+  Any value less than 1 terminates execution.
+  Enter N:  85
+  User input N =           85
+
+  SEED is a seed for the random number generation.
+  Any value less than 0 terminates execution.
+  Enter SEED:  123456789
+  User input SEED = 123456789
+
+  INIT is the method of initializing the data:
+
+  file       read data from a file;
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+ 
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter INIT:  'UNIFORM'
+  User input INIT = "UNIFORM".
+
+  IT_MAX is the maximum number of iterations.
+
+  An iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (A negative value terminates execution).
+
+  Enter IT_MAX:  40
+  User input IT_MAX =           40
+
+  IT_TOL is the iteration tolerance.
+
+  Each iteration replaces the generators by the
+  centroids.  The L2 norm of the difference between
+  these two sets of points is an indirect measure
+  of convergence.
+
+  If this L2 norm falls below IT_TOL, the iteration
+  is presumed to have converged, and is terminated
+  early.
+
+  A zero value is acceptable, and simply means that
+  early termination will not occur.
+
+  (A negative value terminates execution).
+
+  Enter IT_TOL:  0.0
+  User input IT_TOL = 0.000000
+
+  SAMPLE is the method of sampling the region:
+
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+
+  Enter SAMPLE:  'UNIFORM'
+  User input SAMPLE = "UNIFORM".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:  10000
+  User input SAMPLE_NUM =        10000
+
+  BATCH is the number of sample points to create
+  at one time
+
+  BATCH should be between 1 and SAMPLE_NUM.
+
+  It is FASTER to set BATCH to SAMPLE_NUM;
+  setting BATCH to 1 requires the least memory.
+
+  (A zero or negative value terminates execution.)
+
+  Enter BATCH:  5
+  User input BATCH =            5
+
+  Step  L2-Change
+
+     1   2.665152e+000
+     2   1.202317e+000
+     3   7.468266e-001
+     4   6.127832e-001
+     5   5.252265e-001
+     6   4.858170e-001
+     7   4.295360e-001
+     8   4.204628e-001
+     9   4.103556e-001
+    10   3.699255e-001
+    11   3.609337e-001
+    12   3.643112e-001
+    13   3.852157e-001
+    14   3.838088e-001
+    15   4.324904e-001
+    16   3.670470e-001
+    17   3.514759e-001
+    18   3.813351e-001
+    19   4.006916e-001
+    20   3.542785e-001
+    21   3.874407e-001
+    22   3.498238e-001
+    23   3.451799e-001
+    24   3.792464e-001
+    25   3.340831e-001
+    26   3.552430e-001
+    27   3.304931e-001
+    28   3.663789e-001
+    29   3.756062e-001
+    30   3.583794e-001
+    31   3.950652e-001
+    32   3.739602e-001
+    33   3.741333e-001
+    34   3.660955e-001
+    35   3.788304e-001
+    36   3.853368e-001
+    37   3.485483e-001
+    38   3.597112e-001
+    39   3.738656e-001
+    40   3.591891e-001
+
+  The data was written to the file "cvt_2_85.txt".
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  NDIM is the spatial dimension.
+  Any value less than 1 terminates execution.
+  Enter NDIM:  -1
+  User input NDIM =           -1
+
+CVT_DATASET
+  The input value of NDIM =           -1
+  is interpreted as a request for termination.
+  Normal end of execution.
+
+  Final value of SEED = 1118006509
+23-Aug-2004 16:16:00

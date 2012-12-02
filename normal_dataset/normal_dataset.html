@@ -1,0 +1,285 @@
+<html>
+
+  <head>
+    <title>
+      NORMAL_DATASET - Generate Multivariate Normal Random Datasets
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NORMAL_DATASET <br> Generate Multivariate Normal Random Datasets
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NORMAL_DATASET</b>
+      is a MATLAB program which
+      creates a multivariate normal random dataset and writes it to a file.
+    </p>
+
+    <p>
+      The multivariate normal distribution for the M dimensional vector X
+      has the form:
+      <pre>
+        pdf(X) = (2*pi*det(A))**(-M/2) * exp(-0.5*(X-MU)'*inverse(A)*(X-MU))
+      </pre>
+      where MU is the mean vector, and A is a positive definite symmetric
+      matrix called the variance-covariance matrix.
+    </p>
+
+    <p>
+      To create X, an MxN matrix containing N samples from this distribution,
+      it is only necessary to
+      <ol>
+        <li>
+          create an MxN vector Y, each of whose elements is a sample of the
+          1-dimensional normal distribution with mean 0 and variance 1;
+        </li>
+        <li>
+          determine the upper triangular Cholesky factor R of the matrix A, so that
+          A = R' * R;
+        </li>
+        <li>
+          compute X = MU + R' * Y.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>r</I> = <b>normal_dataset</b> <i>m</i> <i>n</i> <i>seed</i> <i>mu</i> <i>a</i>
+     </blockquote>
+     where
+      <ul>
+        <li>
+          <i>m</i> is the spatial dimension;
+        </li>
+        <li>
+          <i>n</i> is the number of points to generate;
+        </li>
+        <li>
+          <i>seed</i> is the initial seed value;
+        </li>
+        <li>
+          <i>mu</i> is the mean vector, of length <i>m</i>;
+        </li>
+        <li>
+          <i>a</i> is the positive definite symmetric variance-covariance matrix
+          of dimension <i>m</i> by <i>m</i>.
+        </li>
+        <li>
+          <i>r</i> is the computed <i>m</i> by <i>n</i> sequence.
+        </li>
+      </ul>
+      The data is written to the file <b>normal_<i>m</i>_<i>n</i>.txt</b>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NORMAL_DATASET</b> is available in
+      <a href = "../../cpp_src/normal_dataset/normal_dataset.html">a C++ version</a> and
+      <a href = "../../f_src/normal_dataset/normal_dataset.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/normal_dataset/normal_dataset.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt_dataset/cvt_dataset.html">
+      CVT_DATASET</a>,
+      a MATLAB program which
+      computes a Centroidal Voronoi Tessellation and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure_dataset/faure_dataset.html">
+      FAURE_DATASET</a>,
+      a MATLAB program which
+      creates a Faure quasirandom dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid_dataset/grid_dataset.html">
+      GRID_DATASET</a>,
+      a MATLAB program which
+      creates a grid sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/halton_dataset/halton_dataset.html">
+      HALTON_DATASET</a>,
+      a MATLAB program which
+      creates a Halton sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hammersley_dataset/hammersley_dataset.html">
+      HAMMERSLEY_DATASET</a>,
+      a MATLAB program which
+      creates a Hammersley sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid_dataset/hex_grid_dataset.html">
+      HEX_GRID_DATASET</a>,
+      a MATLAB program which
+      creates a hexagonal grid dataset and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ihs_dataset/ihs_dataset.html">
+      IHS_DATASET</a>,
+      a MATLAB program which
+      creates an improved distributed Latin hypercube dataset and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center_dataset/latin_center_dataset.html">
+      LATIN_CENTER_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Center Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge_dataset/latin_edge_dataset.html">
+      LATIN_EDGE_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Edge Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random_dataset/latin_random_dataset.html">
+      LATIN_RANDOM_DATASET</a>,
+      a MATLAB program which
+      creates a Latin Random Hypercube dataset;
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt_dataset/lcvt_dataset.html">
+      LCVT_DATASET</a>,
+      a MATLAB program which
+      computes a latinized Centroidal Voronoi Tessellation and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2_dataset/niederreiter2_dataset.html">
+      NIEDERREITER2_DATASET</a>,
+      a MATLAB program which
+      creates a Niederreiter quasirandom dataset with base 2;
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>,
+      a MATLAB library which
+      computes normally distributed pseudorandom values.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol_dataset/sobol_dataset.html">
+      SOBOL_DATASET</a>,
+      a MATLAB program which
+      computes a Sobol quasirandom sequence and writes it to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform_dataset/uniform_dataset.html">
+      UNIFORM_DATASET</a>,
+      a MATLAB program which
+      generates a dataset of uniform pseudorandom values and write them to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput_dataset/van_der_corput_dataset.html">
+      VAN_DER_CORPUT_DATASET</a>,
+      a MATLAB program which
+      creates a van der Corput quasirandom sequence and writes it to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Springer Verlag, pages 201-202, 1983.
+        </li>
+        <li>
+          Donald Knuth, <br>
+          The Art of Computer Programming,<br>
+          Volume 2: Seminumerical Algorithms,<br>
+          Addison Wesley, 1969.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "normal_dataset.m">normal_dataset.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "normal_2_1000.txt">normal_2_1000.txt</a>,
+          is the file created in response to the command <pre>
+          <b>"normal_dataset ( 2, 25, 123456789, [ 1 2 ],  [ 1 0; 0 3] )"</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 December 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,261 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_QUANTIZATION - Reduce Number of Colors in an Image
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_QUANTIZATION <br> Reduce Number of Colors in an Image
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_QUANTIZATION</b>
+      is a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/color_remote/color_remote.html">
+      COLOR_REMOTE</a>,
+      a MATLAB program which
+      carries out the color segmentation of an image in parallel,
+      via SPMD commands; this includes instructions on how to run the job,
+      via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_components/image_components.html">
+      IMAGE_COMPONENTS</a>,
+      a MATLAB library which
+      seeks the connected "nonzero" or "nonblack" components of an image or integer vector,
+      array or 3D block.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      a MATLAB program which
+      applies image processing techniques to remove noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_diffuse/image_diffuse.html">
+      IMAGE_DIFFUSE</a>,
+      a MATLAB library which
+      uses diffusion to smooth out an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_noise/image_noise.html">
+      IMAGE_NOISE</a>,
+      MATLAB programs which
+      add noise to an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_rgb_to_gray/image_rgb_to_gray.html">
+      IMAGE_RGB_TO_GRAY</a>,
+      MATLAB programs which
+      makes a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      MATLAB programs which
+      make a black and white version of a grayscale image by setting all pixels
+      below or above a threshold value to black or white.
+    </p>
+
+    <p>
+      <a href = "../../m_src/kmeans/kmeans.html">
+      KMEANS</a>,
+      a MATLAB library which
+      contains several different algorithms for the K-Means problem.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jonas Gomes, Luiz Velho,<br>
+          Image Processing for Computer Graphics,<br>
+          Springer, 1997,<br>
+          ISBN: 0387948546,<br>
+          LC: T385.G65.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "grayscale_quantization.m">grayscale_quantization.m</a>,
+          carries out KMEANS quantization on a grayscale image.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "image_quantization_test.m">image_quantization_test.m</a>,
+          a program which calls all the tests.
+        </li>
+        <li>
+          <a href = "image_quantization_test_output.txt">image_quantization_test_output.txt</a>,
+          the output from the tests.
+        </li>
+        <li>
+          <a href = "image_quantization_test01.m">image_quantization_test01.m</a>,
+          tests <b>grayscale_quantization</b> on an image.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CASABLANCA</b> is a still from the movie "Casablanca".
+      <ul>
+        <li>
+          <a href = "casablanca.png">casablanca.png</a>,
+          a grayscale PNG image, using 256 shades.
+        </li>
+        <li>
+          <a href = "casablanca_histogram.png">casablanca_histogram.png</a>,
+          a histogram of the grayscale shades.
+        </li>
+        <li>
+          <a href = "casablanca_ten.png">casablanca_ten.png</a>,
+          the image using only 10 shades.
+        </li>
+        <li>
+          <a href = "casablanca_three.png">casablanca_three.png</a>,
+          the image using only three shades.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SNAP</b> is a snapshot of a mother and daughter.
+      <ul>
+        <li>
+          <a href = "snap.png">snap.png</a>,
+          a grayscale PNG image, using 208 shades.
+        </li>
+        <li>
+          <a href = "snap_histogram.png">snap_histogram.png</a>,
+          a histogram of the grayscale shades.
+        </li>
+        <li>
+          <a href = "snap_ten.png">snap_ten.png</a>,
+          the image using only 10 shades.
+        </li>
+        <li>
+          <a href = "snap_three.png">snap_three.png</a>,
+          the image using only three shades.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 15 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

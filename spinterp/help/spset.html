@@ -1,0 +1,282 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spset :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spset</h1>
+		  Create/alter a sparse grid interpolation <code>OPTIONS</code> structure.
+		<h2>Syntax</h2>
+			<code>spset</code><br>
+			<code>OPTIONS = spset('NAME1',VALUE1,'NAME2',VALUE2,...)</code><br>
+			<code>OPTIONS = spset(OLDOPTS,'NAME1',VALUE1,...)</code><br>
+			<code>OPTIONS = spset(OLDOPTS,NEWOPTS)</code>
+		<h2>Description</b></h2>
+		  <code>spset</code> with no input arguments displays all property names and their possible values.
+	  <p>
+      <code>OPTIONS = spset('NAME1',VALUE1,'NAME2',VALUE2,...)</code> creates an options structure <code>OPTIONS</code> in which the named properties have the specified values. Any unspecified properties have default values. It is sufficient to type only the leading characters that uniquely identify the property. Case is ignored for property names.
+		<p>
+			<code>OPTIONS = spset(OLDOPTS,'NAME1',VALUE1,...)</code> alters an existing options structure <code>OLDOPTS</code>.
+		<p>
+			<code>OPTIONS = spset(OLDOPTS,NEWOPTS)</code> combines an existing options structure <code>OLDOPTS</code> with a new options structure <code>NEWOPTS</code>. Any new properties overwrite corresponding old properties.
+		<h2>Properties</h2>
+		  <table class="properties" border="1" cellspacing="0" cellpadding="2">
+		    <tr>
+          <th class="properties"><b>Property</b></th>
+          <th class="properties"><b>Value {default}</b></th>
+          <th class="properties"><b>Description</b></th>
+				</tr>
+				<tr class="properties">
+				  <td><code>GridType</code></td>
+          <td>{Clenshaw-Curtis} | Maximum | NoBoundary | Chebyshev | Gauss-Patterson</td>
+          <td>Sparse grid type and basis functions to use by <code>spvals</code>. For an illustration of the grid types, run <a href="cmpgrids.html"><code>cmpgrids</code></a>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>RelTol</code></td>
+				  <td>positive scalar {1e-2}</td>
+				  <td>A relative error tolerance that applies to all hierarchical
+    surpluses of the sparse grid representation. The grid is further refined until all hierarchical surpluses are less than max(<code>RelTol</code>*(max(<code>fevalRange</code>)-min(<code>fevalRange</code>)),<code>AbsTol</code>), with <code>fevalRange</code> containing all results evaluating <code>FUN</code> up to that point.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>AbsTol</code></td>
+				  <td>positive scalar {1e-6}</td>
+				  <td>Absolute error tolerance, used by the error criterion stated under the property <code>RelTol</code>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>Vectorized</code></td>
+				  <td>on | {off}</td>
+				  <td>Indicates if <code>FUN</code> is available for vectorized evaluation. Vectorized coding of <code>FUN</code> can significantly reduce the computation time used by <a href="spvals.html"><code>spvals</code></a>. For an example using a vectorized function, please see <a href="spdemo.html"><code>spdemo</code></a>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>MinDepth</code></td>
+				  <td>integer {2}</td>
+				  <td>Minimum interpolation depth, specifies the minimum number of hierarchical interpolation levels <code>N</code> to compute.<br> <b>Remark:</b> <code>MinDepth</code> has no effect if the dimension-adaptive grid refinement is switched on. An <a href="spset.html#1">example</a> is provided below.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>MaxDepth</code></td>
+				  <td>integer {8}</td>
+				  <td>Maximum interpolation depth, specifies the maximum number of hierarchical interpolation levels <code>N</code> to compute.<br> <b>Remark:</b> Since version 5.0, <code>MaxDepth</code> also applies to the dimension-adaptive algorithm. If <code>MaxDepth</code> is reached with respect to a coordinate direction, this direction is no longer refined further.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>VariablePositions</code></td>
+				  <td><code>1xD</code> vector {[]}</td>
+				  <td>Position of the ranges in the argument list when <code>FUN</code> is evaluated. By setting <code>VariablePositions</code>, <a href="spvals.html"><code>spvals</code></a> will evaluate <code>FUN</code> with respect to some of its input parameters, but not necessarily the first <code>D</code> ones. The actual position is assigned by providing the number in the input argument list of the function <code>FUN</code>. This number must be provided for each interpolation dimension. Therefore, the value of <code>VariablePositions</code> must be a <code>1xD</code> array. An <a href="spset.html#4">example</a> is provided below.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>NumberOfOutputs</code></td>
+				  <td>integer {1}</td>
+				  <td>If <code>FUN</code> produces multiple outputs (where all must be scalar!), indicate this here to perform the sparse grid computation for many output variables at once. Also see the example <a href="spdemovarout.html"><code>spdemovarout</code></a>.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>PrevResults</code></td>
+				  <td>struct {[]}</td>
+				  <td>Previous sparse grid data. An existing result structure obtained from <a href="spvals.html"><code>spvals</code></a> may be provided to further refine an existing sparse grid. An <a href="spset.html#3">example</a> is provided below.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>FunctionArgType</code></td>
+				  <td>{list} | vector</td>
+				  <td>Indicates whether the objective function takes the input parameters as a comma-separated list (default) or as a vector.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>KeepFunctionValues</code></td>
+				  <td>{off} | on</td>
+				  <td>If this parameter is set, a structure field <code>fvals</code> is
+          returned, containing a cell array with the function values at the sparse grid points.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>KeepGrid</code></td>
+				  <td>{off} | on</td>
+				  <td>If this parameter is set, a structure field <code>grid</code> is
+          returned, containing a cell array with the the sparse grid points.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>DimensionAdaptive</code></td>
+				  <td>{off} | on</td>
+				  <td>Dimension-adaptive grids try to adaptively find important dimensions and adjust the sparse grid structure accordingly. Especially in case of higher-dimensional problems, a dimension-adaptive strategy can significantly reduce the number of support nodes required to achieve a good interpolant.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>DimadaptDegree</code></td>
+				  <td>positive scalar {0.9}</td>
+				  <td>Fine-tuning parameter to alter the degree of dimensional adaptivity. A value of 1 places strong emphasis on the error estimates, and thus leads to strong dimensional adaptivity. A value of 0 disregards the error estimates, and constructs a conventional sparse grid based on the amount of work involved.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>DegreeStrategy</code></td>
+				  <td>{balancing} | depth</td>
+				  <td> Strategy for the degree of dimensional adaptivity.<br>
+					The <b>balancing</b> strategy balances the number of grid points generated according to the greedy, error estimate-based refine ment rule compared to the number of points generated by the conventional (regular) sparse grid refinement rule. I.e., a <code>DimadaptDegree</code> value of 0.9 would mean that around 90% of the grid points are generated by the error estimate-based rule, and the remaining points are selected according to the regular rule. See Advanced Topics, <a href="dimadaptdegree.html">Degree of Dimensional Adaptivity</a> for additional information.<br>
+					The <b>depth</b> strategy makes sure that the maximum level depth reached by the error estimate-based refinement in one dimension does not get too deep compared to the depth reached in the other dimensions. This strategy is the one used prior to version 5.1 of the toolbox, and is described in <a href="bibliography.html">[3, ch. 3]</a>. This approach is still supported but not the default strategy.
+					</tr>
+					<tr class="properties">
+				  <td><code>MinPoints</code></td>
+				  <td>integer {100}</td>
+				  <td>This parameter only applies to dimension-adaptive sparse grids, and indicates the minimum number of support nodes (i.e. function evaluations to perform). An <a href="spset.html#1">example</a> is provided below.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>MaxPoints</code></td>
+				  <td>integer {10000}</td>
+				  <td>This parameter only applies to dimension-adaptive sparse grids. The dimension-adaptive algorithm is aborted once the function evaluation count exceeds this number.</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>SparseIndices</code></td>
+				  <td>{auto} | off | on</td>
+				  <td>Manually turn the efficient sparse storage scheme (new feature since version 3.0) of the multi-index arrays on or off. The default switch <code>auto</code> uses the new scheme for the <code>ClenshawCurtis</code>, the <code>Chebyshev</code>, and the <code>Gauss-Patterson</code> grid, and the old (full) storage scheme from version 2.x for the <code>Maximum</code> and the <code>NoBoundary</code> grid (the sparse grid storage scheme is not supported for these two grid types).</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>DropTol</code></td>
+				  <td><code>1x2</code> vector | {auto} | off</td>
+				  <td>During the sparse grid construction progress, the <code>spvals</code> algorithm may add subgrids with hierarchical surpluses that are all close to zero or of negligible magnitude compared to the surpluses of other sub-grids. In particular, this occurs when additive structure is present in the objective function. To increase the performance of the <code>spinterp</code> algorithm, you may run the <a href="sppurge.html"><code>sppurge</code></a> algorithm that marks subgrids to be neglected where all hierarchical surpluses <code>w</code> are less than max(relDropTol*(max(fevalRange)-min(fevalRange),absDropTol)). You may specify the absolute and the relative drop tolerance as a vector <code>[absDropTol, relDropTol]</code>, or turn it <code>off</code> completely (= behavior of version 3.0 and earlier). The switch <code>auto</code> uses the values <code>absDropTol = 0</code>, <code>relDropTol = 100*eps</code>, that is, by default, only a relative drop tolerance is used.
+					</td>
+				</tr>
+				<tr class="properties">
+				  <td><code>EnableDCT</code></td>
+				  <td>{on} | off</td>
+				  <td>Enables/disables the DCT-based algorithm when constructing the Chebyshev-Gauss-Lobatto type sparse grid.</td>
+				</tr>
+			</table>
+		<h2>Examples</h2>
+            <p>Since <tt>spset</tt> offers many possibilities to alter the behavior of the sparse grid interpolant construction, we provide several typical examples
+               in the following.
+            </p>
+         <div>
+            <ul>
+               <li><a href="#1">Example 1: Basic usage of spset</a></li>
+               <li><a href="#3">Example 2: Providing previous results</a></li>
+               <li><a href="#4">Example 3: Using the VariablePositions property</a></li><br>
+            </ul>
+         </div>
+         <h3>Example 1: Basic usage of spset<a name="1"></a></h3>
+         <p>As an example for a typical task requiring the modification of the sparse grid options structure. we construct an interpolant
+            with a specified number of function evaluations. The dimension-adaptive approach permits to do this in an elegant manner.
+            The following code constructs an interpolant with about 100 nodes, since both <tt>MinPoints</tt> as well as <tt>MaxPoints</tt> are set to 100.
+         </p><pre class="codeinput">f = @(x,y) exp(x+y);
+z = spvals(f, 2, [], spset(<span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+                     <span class="string">'MinPoints'</span>, 100, <span class="string">'MaxPoints'</span>, 100))
+</pre><pre class="codeoutput">z = 
+               vals: {[129x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: []
+        estRelError: 8.3520e-04
+        estAbsError: 0.0053
+         fevalRange: [1 7.3891]
+         minGridVal: [0 0]
+         maxGridVal: [1 1]
+            nPoints: 129
+          fevalTime: 0.0546
+    surplusCompTime: 0.0058
+            indices: [1x1 struct]
+           maxLevel: [5 5]
+      activeIndices: [5x1 uint32]
+     activeIndices2: [13x1 uint32]
+                  E: [1x19 double]
+                  G: [19x1 double]
+                 G2: [19x1 double]
+       maxSetPoints: 5
+           dimAdapt: 1
+</pre><p>Note that the <tt>MinPoints</tt> and <tt>MaxPoints</tt> properties only work for dimension-adaptive grids. If we want to construct a non-adaptive grid of a certain depth, the <tt>MinDepth</tt> and <tt>MaxDepth</tt> options can be used. Recall that the number of points of a regular sparse grid can be determined a priori with the <tt>spdim</tt> function.
+         </p><pre class="codeinput">n = 4; d=2;
+spdim(4,2);
+z = spvals(f, 2, [], spset(<span class="string">'MinDepth'</span>, n, <span class="string">'MaxDepth'</span>, n))
+</pre><pre class="codeoutput">z = 
+               vals: {[65x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: []
+           maxLevel: 4
+        estRelError: 0.0031
+        estAbsError: 0.0201
+         fevalRange: [1 7.3891]
+         minGridVal: [0 0]
+         maxGridVal: [1 1]
+            nPoints: 65
+          fevalTime: 0.1066
+    surplusCompTime: 0.0029
+            indices: [1x1 struct]
+</pre><h3>Example 2: Providing previous results<a name="3"></a></h3>
+         <p>After computing an interpolant with a certain accuracy, it is often required to improve it further later on. Due to the hierarchical
+            construction scheme, the previous results are not lost but can be passed to <tt>spvals</tt> for further refinement, as the following code illustrates.
+         </p><pre class="codeinput">f = @(x,y) exp(x+y);
+z = [];
+<span class="keyword">for</span> n = 1:4
+  z = spvals(f, 2, [], spset(<span class="string">'MinDepth'</span>, n, <span class="string">'MaxDepth'</span>, n, <span class="keyword">...</span>
+                             <span class="string">'PrevResults'</span>, z));
+  disp([<span class="string">'n = '</span> num2str(z.maxLevel) <span class="string">', estimated rel. error: '</span>, <span class="keyword">...</span>
+        num2str(z.estRelError)]);
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+Warning: MaxDepth = 1 reached before accuracies
+    RelTol = 0.01 or AbsTol = 1e-06 were achieved.
+The current estimated relative accuracy is 0.62246.
+n = 1, estimated rel. error: 0.62246
+Warning: MaxDepth = 2 reached before accuracies 
+   RelTol = 0.01 or AbsTol = 1e-06 were achieved.
+The current estimated relative accuracy is 0.17905.
+n = 2, estimated rel. error: 0.17905
+Warning: MaxDepth = 3 reached before accuracies
+   RelTol = 0.01 or AbsTol = 1e-06 were achieved.
+The current estimated relative accuracy is 0.011133.
+n = 3, estimated rel. error: 0.011133
+n = 4, estimated rel. error: 0.0031415
+</pre><h3>Example 3: Using the VariablePositions property<a name="4"></a></h3>
+         <p>Consider the case of a function of four parameters, e.g.</p>
+         <p><img vspace="5" hspace="5" src="images/ex_spset_eq39851.png"> </p>
+         <p>Suppose that the parameters <tt>a</tt> and <tt>b</tt> are fixed to <tt>a = 0.5</tt> and <tt>b = 0.2</tt>, and we wish to compute an approximation of <tt>f</tt> for <tt>x</tt>, <tt>y</tt> in <tt>[0,1]^2</tt>. The default syntax of <tt>spvals</tt> would require the interpolated parameters to appear at the start of the argument list, i.e. would require an argument list
+            (x,y,a,b) to enable the call <tt>spvals(f,2,[],[],a,b)</tt>.
+         </p>
+         <p>By using <tt>VariablePositions</tt>, we can use the function as it is defined above, as the following code shows.
+         </p><pre class="codeinput">f = inline(<span class="string">'a.*(x.^2+y.^2) + b.*exp(x+y)'</span>,<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'x'</span>,<span class="string">'y'</span>)
+a = 0.5; b = 0.2;
+options = spset(<span class="string">'VariablePositions'</span>, [3 4]);
+z = spvals(f,2,[],options,a,b)
+</pre><pre class="codeoutput">f =
+     Inline function:
+     f(a,b,x,y) = a.*(x.^2+y.^2) + b.*exp(x+y)
+z = 
+               vals: {[29x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: []
+           maxLevel: 3
+        estRelError: 0.0062
+        estAbsError: 0.0142
+         fevalRange: [0.2000 2.4778]
+         minGridVal: [0 0]
+         maxGridVal: [1 1]
+            nPoints: 29
+          fevalTime: 0.0508
+    surplusCompTime: 0.0015
+            indices: [1x1 struct]
+</pre><p>Since the interpolation problem is two-dimensional, we assign a <tt>1x2</tt> vector to the <tt>VariablePositions</tt> property, indicating that the first parameter an interpolation of which is required is located at position 3 of the argument
+            list of <tt>f</tt>, and the second one at position 4. Note that since the function <tt>f</tt> takes four input paramters, the remaining parameters are appended to the argument list of <tt>spvals</tt> after the <tt>options</tt> argument.
+         </p>
+		<h2>See Also</h2>
+		  <a href="spget.html"><code>spget</code></a>,
+		  <a href="spvals.html"><code>spvals</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

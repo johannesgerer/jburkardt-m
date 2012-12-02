@@ -1,0 +1,429 @@
+<html>
+
+  <head>
+    <title>
+      INT_EXACTNESS - Exactness of One Dimensional Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      INT_EXACTNESS <br> Exactness of One Dimensional Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>INT_EXACTNESS</b> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a one dimensional
+      quadrature rule defined on a finite interval.
+    </p>
+
+    <p>
+      <i>
+        Although this program was intended for use with 1D rules, it
+        should also work for quadrature rules defined for multiple dimensions.
+        The spatial dimension is inferred from the form of the "X" file
+        that is one of the input quadrature files.  See the last example
+        for a demonstration of the use of this program for a 2D quadrature rule.
+        See the companion program <b>NINT_EXACTNESS</b> for a program
+        that was explicitly intended for use in multiple dimensions.
+      </i>
+    </p>
+
+    <p>
+      The polynomial exactness of a quadrature rule is defined as the
+      highest degree <b>D</b> such that the quadrature rule is
+      guaranteed to integrate exactly all polynomials of degree
+      <b>DEGREE_MAX</b> or less, ignoring roundoff.  The degree of a polynomial
+      is the maximum of the degrees of all its monomial terms.  The degree
+      of a monomial term is the exponent.  Thus, for instance,
+      the <b>DEGREE</b> of 
+      <blockquote><b>
+        3*x<sup>5</sup> - 7*x<sup>9</sup> + 27
+      </b></blockquote>
+      is the maximum of 5, 9 and 0, so it is 9.
+    </p>
+
+    <p>
+      To be thorough, the program starts at <b>DEGREE</b> = 0, and then 
+      proceeds to <b>DEGREE</b> = 1, 2, and so on up to a maximum degree 
+      <b>DEGREE_MAX</b> specified by the user.  At each value of <b>DEGREE</b>,
+      the program generates the corresponding monomial term, applies the 
+      quadrature rule to it, and determines the quadrature error.  The program 
+      uses a scaling factor on each monomial so that the exact integral 
+      should always be 1; therefore, each reported error can be compared
+      on a fixed scale.
+    </p>
+
+    <p>
+      The program is very flexible and interactive.  The quadrature rule 
+      is defined by three files, to be read at input, and the 
+      maximum degree is specified by the user as well.
+    </p>
+
+    <p>
+      Note that the three files that define the quadrature rule
+      are assumed to have related names, of the form
+      <ul>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>
+        </li>
+      </ul>
+      When running the program, the user only enters the common <i>prefix</i> 
+      part of the file names, which is enough information for the program
+      to find all three files.
+    </p>
+
+    <p>
+      For information on the form of these files, see the 
+      <b>QUADRATURE_RULES</b> directory listed below.
+    </p>
+
+    <p>
+      The exactness results are written to an output file with the 
+      corresponding name:
+      <ul>
+        <li>
+          <i>prefix</i>_<b>exact.txt</b>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>int_exactness</b> ( <i>'prefix'</i>, <i>degree_max</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is a quoted string, the common prefix for the files containing the abscissa, weight
+          and region information of the quadrature rule;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum monomial degree to check.  This would normally be
+          a relatively small nonnegative number, such as 5, 10 or 15.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>INT_EXACTNESS</b> is available in
+      <a href = "../../cpp_src/int_exactness/int_exactness.html">a C++ version</a> and
+      <a href = "../../f_src/int_exactness/int_exactness.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/int_exactness/int_exactness.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev1/int_exactness_chebyshev1.html">
+      INT_EXACTNESS_CHEBYSHEV1</a>,
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Chebyshev type 1 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev2/int_exactness_chebyshev2.html">
+      INT_EXACTNESS_CHEBYSHEV2</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Chebyshev type 2 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gegenbauer/int_exactness_gegenbauer.html">
+      INT_EXACTNESS_GEGENBAUER</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Gegenbauer quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gen_hermite/int_exactness_gen_hermite.html">
+      INT_EXACTNESS_GEN_HERMITE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of generalized Gauss-Hermite quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gen_laguerre/int_exactness_gen_laguerre.html">
+      INT_EXACTNESS_GEN_LAGUERRE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of generalized Gauss-Laguerre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_hermite/int_exactness_hermite.html">
+      INT_EXACTNESS_HERMITE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Hermite quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_jacobi/int_exactness_jacobi.html">
+      INT_EXACTNESS_JACOBI</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Jacobi quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_laguerre/int_exactness_laguerre.html">
+      INT_EXACTNESS_LAGUERRE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Laguerre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_legendre/int_exactness_legendre.html">
+      INT_EXACTNESS_LEGENDRE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Legendre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness/nint_exactness.html">
+      NINT_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of multidimensional integration rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_exactness/pyramid_exactness.html">
+      PYRAMID_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the pyramid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_exactness/sphere_exactness.html">
+      SPHERE_EXACTNESS</a>,
+      a MATLAB program which
+      tests the polynomial exactness of a quadrature rule for the unit sphere;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_exactness/tetrahedron_exactness.html">
+      TETRAHEDRON_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_exactness/triangle_exactness.html">
+      TRIANGLE_EXACTNESS</a>,
+      a MATLAB program which
+      investigates the polynomial exactness of a quadrature rule for the triangle.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "int_exactness.m">int_exactness.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CC_D1_O2</b> is a Clenshaw-Curtis order 2 rule for 1D.
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o2_x.txt">cc_d1_o2_x.txt</a>,
+          the abscissas of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o2_w.txt">cc_d1_o2_w.txt</a>,
+          the weights of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o2_r.txt">cc_d1_o2_r.txt</a>,
+          defines the region for the rule.
+        </li>
+        <li>
+          <a href = "cc_d1_o2_exact.txt">cc_d1_o2_exact.txt</a>,
+          the results of the command:
+          <blockquote><b>
+            int_exactness ( 'cc_d1_o2', 5 )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CC_D1_O3</b> is a Clenshaw-Curtis order 3 rule for 1D.
+      If you are paying attention, you may be surprised to see that
+      a Clenshaw Curtis rule of odd order has one more degree of
+      accuracy than you'd expect!
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o3_x.txt">cc_d1_o3_x.txt</a>,
+          the abscissas of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o3_w.txt">cc_d1_o3_w.txt</a>,
+          the weights of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/cc_d1_o3_r.txt">cc_d1_o3_r.txt</a>,
+          defines the region for the rule.
+        </li>
+        <li>
+          <a href = "cc_d1_o3_exact.txt">cc_d1_o3_exact.txt</a>,
+          the results of the command:
+          <blockquote><b>
+            int_exactness ( 'cc_d1_o3', 5 )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GL_D1_O3</b> is a Gauss-Legendre order 3 rule for 1D.
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o3_x.txt">gl_d1_o3_x.txt</a>,
+          the abscissas of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o3_w.txt">gl_d1_o3_w.txt</a>,
+          the weights of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/gl_d1_o3_r.txt">gl_d1_o3_r.txt</a>,
+          defines the region for the rule.
+        </li>
+        <li>
+          <a href = "gl_d1_o3_exact.txt">gl_d1_o3_exact.txt</a>,
+          the results of the command:
+          <blockquote><b>
+            int_exactness ( 'gl_d1_o3', 5 )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>NCC_D1_O5</b> is a Newton-Cotes Closed order 5 rule for 1D.
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d1_o5_x.txt">ncc_d1_o5_x.txt</a>,
+          the abscissas of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d1_o5_w.txt">ncc_d1_o5_w.txt</a>,
+          the weights of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d1_o5_r.txt">ncc_d1_o5_r.txt</a>,
+          defines the region for the rule.
+        </li>
+        <li>
+          <a href = "ncc_d1_o5_exact.txt">ncc_d1_o5_exact.txt</a>,
+          the results of the command:
+          <blockquote><b>
+            int_exactness ( 'ncc_d1_o5', 7 )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>NCC_D2_O5X5</b> is a Newton-Cotes Closed order 5 tensor product rule for 2D.
+      <ul>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d2_o5x5_x.txt">ncc_d2_o5x5_x.txt</a>,
+          the abscissas of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d2_o5x5_w.txt">ncc_d2_o5x5_w.txt</a>,
+          the weights of the rule.
+        </li>
+        <li>
+          <a href = "../../datasets/quadrature_rules/ncc_d2_o5x5_r.txt">ncc_d2_o5x5_r.txt</a>,
+          defines the region for the rule.
+        </li>
+        <li>
+          <a href = "ncc_d2_o5x5_exact.txt">ncc_d2_o5x5_exact.txt</a>,
+          the results of the command:
+          <blockquote><b>
+            int_exactness ( 'ncc_d2_o5x5', 7 )
+          </b></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

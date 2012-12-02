@@ -1,0 +1,162 @@
+<html>
+
+  <head>
+    <title>
+      SHALLOW_WATER_1D - The Shallow Water Equations in 1D
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SHALLOW_WATER_1D <br> The Shallow Water Equations in 1D
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SHALLOW_WATER_1D</b> 
+      is a MATLAB program which 
+      simulates a system governed by the shallow water equations in 1D.  
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SHALLOW_WATER_1D</b> is available in
+      <a href = "../../cpp_src/shallow_water_1d/shallow_water_1d.html">a C++ version</a> and
+      <a href = "../../f_src/shallow_water_1d/shallow_water_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/shallow_water_1d/shallow_water_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/shallow_water_1d_display/shallow_water_1d_display.html">
+      SHALLOW_WATER_1D_DISPLAY</a>, 
+      a MATLAB program which 
+      can display a solution of the shallow water equations in 1D, 
+      generally as computed by the program shallow_water_1d.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shallow_water_2d/shallow_water_2d.html">
+      SHALLOW_WATER_2D</a>,
+      a MATLAB program which 
+      solves the 2D shallow water equations.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Cleve Moler,<br>
+          Experiments with MATLAB,<br>
+          <a href = "http://www.mathworks.com/moler/exm/index.html">
+                     http://www.mathworks.com/moler/exm/index.html </a>
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "make_animation.m">make_animation.m</a>,
+          a script that calls shallow_water_1d to compute the data arrays,
+          and then shallow_water_1d_animation to create a sequence of JPG image files.
+        </li>
+        <li>
+          <a href = "shallow_water_1d.m">shallow_water_1d.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "shallow_water_1d_animation.m">shallow_water_1d_animation.m</a>,
+          a program to animate the solution by creating a series of JPEG files.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A simple dataset was created by the command
+      <pre>
+        [ h_array, uh_array, x, t ] = shallow_water_1d ( 41, 100, 1.0, 0.2, 9.8 )
+      </pre>
+      This was then animated by the command
+      <pre>
+        shallow_water_1d_animation ( h_array, uh_array, x, t )
+      </pre>
+      and the resulting JPG files were turned into QuickTime movies.
+      <ul>
+        <li>
+          <a href = "h_reflective.mov">h_reflective.mov</a>,
+          a QuickTime movie of H for 101 steps.
+        </li>
+        <li>
+          <a href = "uh_reflective.mov">uh_reflective.mov</a>,
+          a QuickTime movie of UH for 101 steps.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      An internal switch was modified so that the code used periodic boundary
+      conditions.  In this case, we can expect momentum conservation.  
+      The dataset was created by the command
+      <pre>
+        [ h_array, uh_array, x, t ] = shallow_water_1d ( 41, 100, 1.0, 0.2, 9.8 )
+      </pre>
+      This was then animated by the command
+      <pre>
+        shallow_water_1d_animation ( h_array, uh_array, x, t )
+      </pre>
+      and the resulting JPG files were turned into QuickTime movies.
+      <ul>
+        <li>
+          <a href = "h_periodic.mov">h_periodic.mov</a>,
+          a QuickTime movie of H for 101 steps.
+        </li>
+        <li>
+          <a href = "uh_periodic.mov">uh_periodic.mov</a>,
+          a QuickTime movie of UH for 101 steps.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 17 July 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+ 

@@ -1,0 +1,283 @@
+<html>
+
+  <head>
+    <title>
+      PERIDYNAMICS_1D_STEADY - Steady 1D Poisson Equation, Nonlocal Peridynamics Model
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      PERIDYNAMICS_1D_STEADY <br> 
+      Steady 1D Poisson Equation <br>
+      Nonlocal Peridynamics Model
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PERIDYNAMICS_1D_STEADY</b>
+      a MATLAB library which
+      solves a 1D steady version of the Poisson equation, 
+      using the non-local peridynamics model,
+      by Marta D'Elia.
+    </p>
+
+    <p>
+      The problem data is specified by a user-supplied file which evaluates:
+      <ul>
+        <li>
+          the exact solution u(x);
+        </li>
+        <li>
+          the derivative of the exact solution u'(x).
+        </li>
+        <li>
+          the right hand side of the Poisson equation, -u"(x).
+        </li>
+        <li>
+          the lifting, a function which adjusts the problem for nonzero Dirichlet
+          boundary conditions;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/peri1d/peri1d.html">
+      PERI1D</a>,
+      a C program which
+      sets up and solves a 1D time-dependent peridynamics problem,
+      by Miroslav Stoyanov;
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Marta D'Elia
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Qiang Du, Max Gunzburger, Rich Lehoucq, Kun Zhou,<br>
+          Analysis and approximation of nonlocal diffusion problems with volume constraints,<br>
+          SIAM Review, <br>
+          Volume 54, Number 4, pages 667-696, 2012.
+        </li>
+        <li>
+          Max Gunzburger, Rich Lehoucq,<br>
+          A nonlocal vector calculus with application to nonlocal boundary value problems,<br>
+          Multiscale Modeling and Simulation,<br>
+          Volume 8, Number 5, 2010, pages 1581-1598.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nonlocal_diffusion.m">nonlocal_diffusion.m</a>,
+          solves the steady 1D Poisson equation for given problem data.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "pd1d_steady_test.m">pd1d_steady_test.m</a>,
+          calls both convergence tests for all problems.  You probably
+          don't want to call this function, but it shows you how to call
+          either test below for any of the five sample problems.
+        </li>
+        <li>
+          <a href = "pd1d_steady_test01.m">pd1d_steady_test01.m</a>,
+          for a given problem (1, 2, 3, 4 or 5), this test computes convergence results 
+          as EPSILON and H go to zero in fixed ratio.  
+          You specify the problem as an input quantity that is a MATLAB function handle, 
+          such as "@problem1".
+        </li>
+        <li>
+          <a href = "pd1d_steady_test02.m">pd1d_steady_test02.m</a>,
+          for a given problem (1, 2, 3, 4 or 5), this test computes convergence results 
+          for fixed EPSILON, while H goes to zero.
+          You specify the problem as an input quantity that is a MATLAB function handle, 
+          such as "@problem5".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PROBLEM 1</b> has the solution U(X) = X^2, on the domain [0,1].
+      <ul>
+        <li>
+          <a href = "problem1.m">problem1.m</a>, specifies the data for problem 1.
+        </li>
+        <li>
+          <a href = "problem1_output.txt">problem1_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "problem1_plot1.png">problem1_plot1.png</a>,
+          convergence results as EPSILON and H go to zero in fixed ratio.
+        </li>
+        <li>
+          <a href = "problem1_plot2.png">problem1_plot2.png</a>,
+          convergence results for fixed EPSILON, while H goes to zero.
+        </li>
+        <li>
+          <a href = "problem1_plot3.png">problem1_plot3.png</a>,
+          comparison of computed and exact solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PROBLEM 2</b> has the solution U(X) = X^2*(1-X^2), on the domain [0,1].
+      <ul>
+        <li>
+          <a href = "problem2.m">problem2.m</a>, specifies the data for problem 2.
+        </li>
+        <li>
+          <a href = "problem2_output.txt">problem2_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "problem2_plot1.png">problem2_plot1.png</a>,
+          convergence results as EPSILON and H go to zero in fixed ratio.
+        </li>
+        <li>
+          <a href = "problem2_plot2.png">problem2_plot2.png</a>,
+          convergence results for fixed EPSILON, while H goes to zero.
+        </li>
+        <li>
+          <a href = "problem2_plot3.png">problem2_plot3.png</a>,
+          comparison of computed and exact solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PROBLEM 3</b> has the solution U(X) = X^2, on the domain [0,1].
+      <ul>
+        <li>
+          <a href = "problem3.m">problem3.m</a>, specifies the data for problem 3.
+        </li>
+        <li>
+          <a href = "problem3_output.txt">problem3_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "problem3_plot1.png">problem3_plot1.png</a>,
+          convergence results as EPSILON and H go to zero in fixed ratio.
+        </li>
+        <li>
+          <a href = "problem3_plot2.png">problem3_plot2.png</a>,
+          convergence results for fixed EPSILON, while H goes to zero.
+        </li>
+        <li>
+          <a href = "problem3_plot3.png">problem3_plot3.png</a>,
+          comparison of computed and exact solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PROBLEM 4</b> has the solution U(X)=X-1/4 left of 1/2, and U(X)=X-1/2
+      to the right of 1/2, on the domain [0,1].  This problem was devised to
+      study the behavior of singularities.
+      <ul>
+        <li>
+          <a href = "problem4.m">problem4.m</a>, specifies the data for problem 4.
+        </li>
+        <li>
+          <a href = "problem4_output.txt">problem4_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "problem4_plot1.png">problem4_plot1.png</a>,
+          convergence results as EPSILON and H go to zero in fixed ratio.
+        </li>
+        <li>
+          <a href = "problem4_plot2.png">problem4_plot2.png</a>,
+          convergence results for fixed EPSILON, while H goes to zero.
+        </li>
+        <li>
+          <a href = "problem4_plot3.png">problem4_plot3.png</a>,
+          comparison of computed and exact solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PROBLEM 5</b> has the solution U(X) = 1+X, on the domain [0,1].
+      This problem was devised for a simple accuracy check.
+      <ul>
+        <li>
+          <a href = "problem5.m">problem5.m</a>, specifies the data for problem 5.
+        </li>
+        <li>
+          <a href = "problem5_output.txt">problem5_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "problem5_plot1.png">problem5_plot1.png</a>,
+          convergence results as EPSILON and H go to zero in fixed ratio.
+        </li>
+        <li>
+          <a href = "problem5_plot2.png">problem5_plot2.png</a>,
+          convergence results for fixed EPSILON, while H goes to zero.
+        </li>
+        <li>
+          <a href = "problem5_plot3.png">problem5_plot3.png</a>,
+          comparison of computed and exact solutions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 29 February 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

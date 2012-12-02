@@ -1,0 +1,215 @@
+<html>
+
+  <head>
+    <title>
+      MM_TO_ST - Matrix Market File to ST Sparse Triplet File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MM_TO_ST<br>
+      Matrix Market File <br>
+      converted to<br>
+      ST Sparse Triplet File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MM_TO_ST</b> 
+      is a MATLAB program which 
+      accepts the name of
+      a file containing a sparse matrix in the
+      <a href = "../../data/mm/mm.html">
+      Matrix Market File Format</a>, and which reads
+      that data and writes a corresponding ST Sparse Triplet file.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/dsp_to_st/dsp_to_st.html">
+      DSP_TO_ST</a>,
+      a FORTRAN90 program which 
+      converts a DSP sparse matrix file to ST format.
+    </p>
+
+    <p>
+      <a href = "../../data/mm/mm.html">
+      MM<a>,
+      a data directory which 
+      contains a description and
+      examples of the Matrix Market format for storing matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_io/mm_io.html">
+      MM_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Matrix Market format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_to_hb/mm_to_hb.html">
+      MM_TO_HB</a>,
+      a MATLAB program which
+      reads the sparse matrix information from an MM Matrix Market file 
+      and writes a corresponding HB Harwell Boeing file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_to_msm/mm_to_msm.html">
+      MM_TO_MSM</a>,
+      a MATLAB program which
+      reads a Matrix Market file defining a sparse matrix, and creates
+      a corresponding MATLAB sparse matrix data structure.
+    </p>
+
+    <p>
+      <a href = "../../data/st/st.html">
+      ST</a>,
+      a format which
+      is used for the output of this program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_io/st_io.html">
+      ST_IO</a>,
+      a MATLAB library which
+      reads and writes ST Sparse Triplet files.
+    </p>
+
+    <p>
+      <a href = "../../f_src/st_to_dsp/st_to_dsp.html">
+      ST_TO_DSP</a>,
+      a FORTRAN90 program which 
+      converts an ST sparse matrix file to DSP format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_to_hb/st_to_hb.html">
+      ST_TO_HB</a>,
+      a MATLAB program which 
+      converts an ST sparse matrix file to HB Harwell Boeing format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_to_mm/st_to_mm.html">
+      ST_TO_MM</a>,
+      a MATLAB program which 
+      converts an ST sparse matrix file to MM Matrix Market format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_to_msm/st_to_msm.html">
+      ST_TO_MSM</a>,
+      a MATLAB program which 
+      converts an ST sparse matrix file to a MATLAB Sparse Matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://math.nist.gov/MatrixMarket/">
+                     http://math.nist.gov/MatrixMarket/</a>
+          the Matrix Market web site.
+        </li>
+        <li>
+          Ronald Boisvert, Roldan Pozo, Karin Remington,<br>
+          The Matrix Market Exchange Formats: Initial Design,<br>
+          National Institute of Standards and Technology,<br>
+          NISTIR 5935, December 1996,<br>
+          Available online at
+          <a href = "../../pdf/mm_format.pdf">
+                     ../../pdf/mm_format.pdf</a>
+        </li>
+      </ol>
+    </p>
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mm_to_msm.m">mm_to_msm.m</a> 
+          reads a Matrix Market file and returns a MATLAB Sparse Matrix.
+        </li>
+        <li>
+          <a href = "mm_to_st.m">mm_to_st.m</a> 
+          reads a Matrix Market file and writes an ST Sparse Triplet file.
+        </li>
+        <li>
+          <a href = "msm_to_st.m">msm_to_st.m</a> 
+          accepts a MATLAB Sparse Matrix and writes an ST Sparse Triplet file.
+        </li>
+        <li>
+          <a href = "st_data_write.m">st_data_write.m</a>,
+          writes the data of an ST file.
+        </li>
+        <li>
+          <a href = "st_header_write.m">st_header_write.m</a>,
+          writes the header of an ST file.
+        </li>
+        <li>
+          <a href = "st_rebase.m">st_rebase.m</a>,
+          changes the base of an index array.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mm_to_st_test.m">mm_to_st_test.m</a>,
+          uses MM_TO_ST to convert a file.
+        </li>
+        <li>
+          <a href = "mm_to_st_test_output.txt">mm_to_st_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "wathen_29_29_adg.mm">wathen_29_29_adg.mm</a>,
+          the MM file to be read.
+        </li>
+        <li>
+          <a href = "wathen_29_29_adg.st">wathen_29_29_adg.st</a>,
+          the ST file to be created.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 November 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

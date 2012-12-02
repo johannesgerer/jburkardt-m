@@ -1,0 +1,292 @@
+mm_io_test
+02-May-2004 08:31:48
+
+MM_IO_TEST
+  Test the MATLAB MM_IO routines.
+
+MM_IO_TEST01:
+  MM_HEADER_WRITE writes the header 
+  of a Matrix Market file.
+
+MM_HEADER_PRINT:
+  Header information from Matrix Market file "Internal data".
+
+  Matrix Market ID = "%%MatrixMarket".
+    "%%MatrixMarket" is only allowed value.
+
+  Matrix Market TYPE = "matrix".
+    "matrix" is only allowed value.
+
+  Representation type REP = "array".
+    "coordinate" for sparse matrices,
+    "array"      for dense matrices,
+    "elemental"  for unassembled finite element matrices.
+
+  Numeric FIELD = "real".
+    "integer" for integer values,
+    "real"    for real values,
+    "double"  for double precision real values,
+    "complex" for complex values,
+    "pattern" for nonzero pattern only.
+
+  Symmetry type SYMM = "general".
+    "general"         no symmetry,
+    "symmetric"       A(I,J) = A(J,I),
+                      input only lower triangle.
+    "skew-symmetric"  A(I,J) = - A(J,I),
+                      input only strict lower triangle.
+    "Hermitian"       A(I,J) = A*(J,I),
+                      input only lower triangle.
+
+MM_IO_TEST01:
+  The partial MM file "mm_io_test01.mm" containing 
+  the header has been created.
+
+
+MM_IO_TEST02:
+  MM_HEADER_READ reads the header 
+  of a Matrix Market file.
+
+MM_HEADER_PRINT:
+  Header information from Matrix Market file "mm_io_test01.mm".
+
+  Matrix Market ID = "%%MatrixMarket".
+    "%%MatrixMarket" is only allowed value.
+
+  Matrix Market TYPE = "matrix".
+    "matrix" is only allowed value.
+
+  Representation type REP = "array".
+    "coordinate" for sparse matrices,
+    "array"      for dense matrices,
+    "elemental"  for unassembled finite element matrices.
+
+  Numeric FIELD = "real".
+    "integer" for integer values,
+    "real"    for real values,
+    "double"  for double precision real values,
+    "complex" for complex values,
+    "pattern" for nonzero pattern only.
+
+  Symmetry type SYMM = "general".
+    "general"         no symmetry,
+    "symmetric"       A(I,J) = A(J,I),
+                      input only lower triangle.
+    "skew-symmetric"  A(I,J) = - A(J,I),
+                      input only strict lower triangle.
+    "Hermitian"       A(I,J) = A*(J,I),
+                      input only lower triangle.
+
+MM_IO_TEST02:
+  The partial MM file "mm_io_test01.mm" containing 
+  the header has been read.
+
+
+MM_IO_TEST03:
+  MM_COMMENT_WRITE writes comment lines 
+  to a Matrix Market file.
+
+  Here are the comments we are putting into the file:
+
+ 
+This is the file mm_io_test03.mm
+ 
+It is a partial Matrix Market file,
+containing a header line and comments.
+ 
+
+MM_IO_TEST03:
+  The partial MM file "mm_io_test03.mm" containing 
+  the header and several comments has been created.
+
+
+MM_IO_TEST04:
+  MM_COMMENT_READ reads the header 
+  of a Matrix Market file.
+
+  Here is the comment field of the file:
+
+%
+%  This is the file mm_io_test03.mm
+%
+%  It is a partial Matrix Market file,
+%  containing a header line and comments.
+%
+
+  (End of input)
+
+MM_IO_TEST04:
+  The partial MM file "mm_io_test03.mm" containing 
+  the header and comments has been read.
+
+
+MM_IO_TEST05:
+  MM_SIZE_WRITE writes the size line 
+  to a Matrix Market file.
+
+  Here is the size information we intend to write
+  to a Matrix Market file:
+
+
+MM_SIZE_PRINT:
+  Size information from Matrix Market file "mm_io_test05.mm"
+
+
+  Number of rows    NROW = 5
+  Number of columns NCOL = 4
+  Inferred number of nonzeros NNZ = 20
+
+MM_IO_TEST05:
+  The partial MM file "mm_io_test05.mm" containing 
+  the header, comments, and sizes has been created.
+
+
+MM_IO_TEST06:
+  MM_SIZE_READ_STRING reads the size record 
+  of a Matrix Market file from a string.
+
+  Here is the size information read from the file:
+
+
+MM_SIZE_PRINT:
+  Size information from Matrix Market file "mm_io_test05.mm"
+
+
+  Number of rows    NROW = 5
+  Number of columns NCOL = 4
+  Inferred number of nonzeros NNZ = 20
+
+MM_IO_TEST06:
+  The partial MM file "mm_io_test05.mm" containing 
+  the header, comments and size has been read.
+
+
+MM_IO_TEST07:
+  MM_VALUE_WRITE writes the matrix values 
+  to a Matrix Market file.
+
+  Here is the value information we intend to write
+  to a Matrix Market file:
+
+
+  Sparse array storage by coordinate.
+  Listing entries 1 through 10
+
+   1       1       1  11.000000
+   2       1       4  14.000000
+   3       2       2  22.000000
+   4       2       4  24.000000
+   5       3       1  31.000000
+   6       3       3  33.000000
+   7       4       4  44.000000
+   8       5       1  51.000000
+   9       5       4  54.000000
+  10       5       5  55.000000
+
+MM_IO_TEST07:
+  The MM file "mm_io_test07.mm" containing 
+  the header, comments, sizes and values has been created.
+
+
+MM_IO_TEST08:
+  MM_VALUE_READ reads the value records 
+  of a Matrix Market file.
+
+  Here is the value information read from the file:
+
+
+  Sparse array storage by coordinate.
+  Listing entries 1 through 10
+
+   1       1       1  11.000000
+   2       1       4  14.000000
+   3       2       2  22.000000
+   4       2       4  24.000000
+   5       3       1  31.000000
+   6       3       3  33.000000
+   7       4       4  44.000000
+   8       5       1  51.000000
+   9       5       4  54.000000
+  10       5       5  55.000000
+
+MM_IO_TEST08:
+  The MM file "mm_io_test07.mm" containing 
+  the header, comments, size and values, has been read.
+
+
+MM_IO_TEST07:
+  MM_FILE_WRITE writes an entire Matrix Market file.
+
+MM_IO_TEST09:
+  The MM file "mm_io_test09.mm" containing 
+  the header, comments, sizes and values has been created.
+
+
+MM_IO_TEST10:
+  MM_VALUE_READ reads the value records 
+  of a Matrix Market file.
+
+  Here is the information read from the file:
+
+
+MM_HEADER_PRINT:
+  Header information from Matrix Market file "mm_io_test09.mm".
+
+  Matrix Market ID = "%%MatrixMarket".
+    "%%MatrixMarket" is only allowed value.
+
+  Matrix Market TYPE = "matrix".
+    "matrix" is only allowed value.
+
+  Representation type REP = "coordinate".
+    "coordinate" for sparse matrices,
+    "array"      for dense matrices,
+    "elemental"  for unassembled finite element matrices.
+
+  Numeric FIELD = "real".
+    "integer" for integer values,
+    "real"    for real values,
+    "double"  for double precision real values,
+    "complex" for complex values,
+    "pattern" for nonzero pattern only.
+
+  Symmetry type SYMM = "general".
+    "general"         no symmetry,
+    "symmetric"       A(I,J) = A(J,I),
+                      input only lower triangle.
+    "skew-symmetric"  A(I,J) = - A(J,I),
+                      input only strict lower triangle.
+    "Hermitian"       A(I,J) = A*(J,I),
+                      input only lower triangle.
+
+MM_SIZE_PRINT:
+  Size information from Matrix Market file "mm_io_test09.mm"
+
+
+  Number of rows    NROW = 5
+  Number of columns NCOL = 5
+  Declared number of nonzeros NNZ = 10
+
+  Sparse array storage by coordinate.
+  Listing entries 1 through 10
+
+   1       1      11  1.000000
+   2       4      14  1.000000
+   3       2      22  2.000000
+   4       4      24  2.000000
+   5       1      31  3.000000
+   6       3      33  3.000000
+   7       4      44  4.000000
+   8       1      51  5.000000
+   9       4      54  5.000000
+  10       5      55  5.000000
+
+MM_IO_TEST10:
+  The MM file "mm_io_test09.mm" containing 
+  the header, comments, size and values, has been read.
+
+
+MM_IO_TEST
+  Normal end of execution.
+
+02-May-2004 08:31:48

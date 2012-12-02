@@ -1,0 +1,377 @@
+<html>
+
+  <head>
+    <title>
+      BLEND - Transfinite Interpolation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BLEND <br> Transfinite Interpolation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BLEND</b> 
+      is a MATLAB library which 
+      "blends" multidimensional data, that is, performs a kind
+      of interpolation.  However, in this case, the data may be known at
+      points, or curves, or planes, and is to be extended to a higher-dimensional
+      domain.
+    </p>
+
+    <p>
+      This is a common way of creating a smooth set of data based on
+      a small set of known values.  For instance, if we measure the
+      temperature every hour, we naturally assume that the temperature
+      at 2:15 can be approximated by "blending" 1/4 of the temperature
+      at 3:00 and 3/4 of the temperature at 2:00.
+    </p>
+
+    <p>
+      Now suppose that we take the temperature at evenly spaced points
+      on the floor of a room.  We can again see how to use blending so
+      that, in each little square, we take a blend of the values at the
+      four corners to get the value at any point within the square.
+      Similar ideas can be used with a cube.
+    </p>
+
+    <p>
+      More complicated cases might arise where we know the temperature
+      everywhere along lines, or along planes that cut through a cube.
+      Even then, it is possible to blend the data in a smooth and
+      sensible way.
+    </p>
+
+    <p>
+      <b>BLEND</b> interpolates values based on a set of given data.
+      <b>BLEND</b> can handle input data that is 1, 2, or 3 dimensional.
+      In the general, 3D case, the data can depend on smoothly varying 
+      space parameters (R,S,T) or on tabular indices (I,J,K).  The data 
+      may be given at the corners, edges, or faces of the unit cube.
+      In the (R,S,T) case, <b>BLEND</b> can supply an interpolated value at
+      any point in the cube.  In the (I,J,K) case, <b>BLEND</b> will fill in
+      tabular values for all intermediate indices.
+    </p>
+
+    <p>
+      In the simplest case, where <b>BLEND</b> is only given data values at the
+      endpoints of a line segment, the 4 corners of a square, or the 8
+      corners of a cube, <b>BLEND</b> is equivalent to linear, bilinear
+      or trilinear finite element interpolation of the data.  However,
+      in the more interesting cases where <b>BLEND</b> is given, say, a formula
+      for the data along the sides of the square, or the edges of the
+      cube, the interpolation is called "transfinite", since in theory
+      it samples the input data at more than a finite number of points.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BLEND</b> is available in
+      <a href = "../../cpp_src/blend/blend.html">a C++ version</a> and
+      <a href = "../../f_src/blend/blend.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/blend/blend.html">a MATLAB version</a>.  
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/tiler_2d/tiler_2d.html">
+      TILER_2D</a>,
+      a FORTRAN90 program which 
+      demonstrates a 2D example of transfinite interpolation.
+    </p>
+
+    <p>
+      <a href = "../../f_src/tiler_3d/tiler_3d.html">
+      TILER_3D</a>,
+      a FORTRAN90 program which 
+      demonstrates a 3D example of transfinite interpolation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          William Gordon,<br>
+          Blending-Function Methods of Bivariate and Multivariate 
+          Interpolation and Approximation,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 8, Number 1, March 1971, pages 158-177.
+        </li>
+        <li>
+          William Gordon, Charles Hall,<br>
+          Transfinite Element Methods: Blending-Function Interpolation over
+          Arbitrary Curved Element Domains,<br>
+          Numerische Mathematik,<br>
+          Volume 21, Number 1, 1973, pages 109-129.
+        </li>
+        <li>
+          William Gordon, Charles Hall,<br>
+          Construction of Curvilinear Coordinate Systems and Application to
+          Mesh Generation,<br>
+          International Journal of Numerical Methods in Engineering,<br>
+          Volume 7, pages 461-477, 1973.
+        </li>
+        <li>
+          Charles Hall, Thomas Porsching,<br>
+          Numerical Analysis of Partial Differential Equations,<br>
+          Prentice-Hall, 1990,<br>
+          ISBN: 013626557X,<br>
+          LC: QA374.H29.
+        </li>
+        <li>
+          Joe Thompson, Bharat Soni, Nigel Weatherill,<br>
+          Handbook of Grid Generation,<br>
+          CRC Press, 1999.
+        </li>
+      </ol> 
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "blend_101.m">blend_101.m</a>,
+          extends scalar endpoint data to a line.
+        </li>
+        <li>
+          <a href = "blend_102.m">blend_102.m</a>,
+          extends scalar point data into a square.
+        </li>
+        <li>
+          <a href = "blend_103.m">blend_103.m</a>,
+          extends scalar point data into a cube.
+        </li>
+        <li>
+          <a href = "blend_112.m">blend_112.m</a>,
+          extends scalar line data into a square.
+        </li>
+        <li>
+          <a href = "blend_113.m">blend_113.m</a>,
+          extends scalar line data into a cube.
+        </li>
+        <li>
+          <a href = "blend_123.m">blend_123.m</a>,
+          extends scalar face data into a cube.
+        </li>
+        <li>
+          <a href = "blend_i_0d1.m">blend_i_0d1.m</a>,
+          extends indexed scalar data at endpoints along a line.
+        </li>
+        <li>
+          <a href = "blend_ij_0d1.m">blend_ij_0d1.m</a>,
+          extends indexed scalar data at corners into a table.
+        </li>
+        <li>
+          <a href = "blend_ij_1d1.m">blend_ij_1d1.m</a>,
+          extends indexed scalar data along edges into a table.
+        </li>
+        <li>
+          <a href = "blend_ij_w_1d1.m">blend_ij_w_1d1.m</a>,
+          extends weighted indexed scalar data along edges into a table.
+        </li>
+        <li>
+          <a href = "blend_ijk_0d1.m">blend_ijk_0d1.m</a>,
+          extends indexed scalar corner data into a cubic table.
+        </li>
+        <li>
+          <a href = "blend_ijk_1d1.m">blend_ijk_1d1.m</a>,
+          extends indexed scalar edge data into a cubic table.
+        </li>
+        <li>
+          <a href = "blend_ijk_2d1.m">blend_ijk_2d1.m</a>,
+          extends indexed scalar face data into a cubic table.
+        </li>
+        <li>
+          <a href = "blend_r_0dn.m">blend_r_0dn.m</a>,
+          extends vector data at endpoints into a line.
+        </li>
+        <li>
+          <a href = "blend_rs_0dn.m">blend_rs_0dn.m</a>,
+          extends vector data at corners into a square.
+        </li>
+        <li>
+          <a href = "blend_rs_1dn.m">blend_rs_1dn.m</a>,
+          extends vector data along sides into a square.
+        </li>
+        <li>
+          <a href = "blend_rst_0dn.m">blend_rst_0dn.m</a>,
+          extends vector data at corners into a cube.
+        </li>
+        <li>
+          <a href = "blend_rst_1dn.m">blend_rst_1dn.m</a>,
+          extends vector data on edges into a cube.
+        </li>
+        <li>
+          <a href = "blend_rst_2dn.m">blend_rst_2dn.m</a>,
+          extends vector data on faces into a cube.
+        </li>
+        <li>
+          <a href = "r8block_print.m">r8block_print.m</a>,
+          prints a real block (a 3D matrix).
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "blend_test.m">blend_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "blend_test_output.txt">blend_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "blend_test01.m">blend_test01.m</a>, 
+          checks for a gross error in the blend coefficients.
+        </li>
+        <li>
+          <a href = "blend_test02.m">blend_test02.m</a>, 
+          checks for simple errors in the blend coefficients.
+        </li>
+        <li>
+          <a href = "blend_test03.m">blend_test03.m</a>, 
+          checks out BLEND_I_0D1.
+        </li>
+        <li>
+          <a href = "blend_test04.m">blend_test04.m</a>, 
+          checks out BLEND_IJ_0D1 and BLEND_IJ_1D1.
+        </li>
+        <li>
+          <a href = "blend_test05.m">blend_test05.m</a>, 
+          checks out BLEND_IJK_0D1
+        </li>
+        <li>
+          <a href = "blend_test06.m">blend_test06.m</a>, 
+          checks out BLEND_IJK_1D1
+        </li>
+        <li>
+          <a href = "blend_test07.m">blend_test07.m</a>, 
+          checks out BLEND_IJK_2D1
+        </li>
+        <li>
+          <a href = "cubic_rs.m">cubic_rs.m</a>, 
+          evaluates a function of R and S used for some tests.
+        </li>
+        <li>
+          <a href = "quad_rst.m">quad_rst.m</a>, 
+          evaluates a function of (R,S,T) used for some tests.
+        </li>
+        <li>
+          <a href = "identity_r.m">identity_r.m</a>, 
+          returns a data component given (R).
+        </li>
+        <li>
+          <a href = "identity_rs.m">identity_rs.m</a>, 
+          returns a data component given (R,S).
+        </li>
+        <li>
+          <a href = "identity_rst.m">identity_rst.m</a>, 
+          returns a data component given (R,S,T).
+        </li>
+        <li>
+          <a href = "stretch_r.m">stretch_r.m</a>, 
+          returns a data component given (R).
+        </li>
+        <li>
+          <a href = "stretch_rs.m">stretch_rs.m</a>, 
+          returns a data component given (R,S).
+        </li>
+        <li>
+          <a href = "stretch_rst.m">stretch_rst.m</a>, 
+          returns a data component given (R,S,T).
+        </li>
+        <li>
+          <a href = "ellipse_rs.m">ellipse_rs.m</a>, 
+          maps the boundary of the unit square to an ellipse.
+        </li>
+        <li>
+          <a href = "sphere_rst.m">sphere_rst.m</a>, 
+          maps the boundary of the unit cube to a sphere.
+        </li>
+        <li>
+          <a href = "blend_test08.m">blend_test08.m</a>, 
+          tests BLEND_IJ_W_1D1.
+        </li>
+        <li>
+          <a href = "blend_test09.m">blend_test09.m</a>, 
+          tests BLEND_102.
+        </li>
+        <li>
+          <a href = "blend_test10.m">blend_test10.m</a>, 
+          tests BLEND_112.
+        </li>
+        <li>
+          <a href = "blend_test11.m">blend_test11.m</a>, 
+          tests BLEND_103.
+        </li>
+        <li>
+          <a href = "blend_test12.m">blend_test12.m</a>, 
+          tests BLEND_113.
+        </li>
+        <li>
+          <a href = "blend_test13.m">blend_test13.m</a>, 
+          tests BLEND_123.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 October 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

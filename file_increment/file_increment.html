@@ -1,0 +1,165 @@
+<html>
+
+  <head>
+    <title>
+      FILE_INCREMENT - Increment an Integer Array Stored in a File
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FILE_INCREMENT <br> Increment an Integer Array Stored in a File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FILE_INCREMENT</b> 
+      is a MATLAB program which 
+      increments every entry of an integer array which is stored in a file.
+    </p>
+
+    <p>
+      The program is restricted to handling a file that can be recognized as having
+      M lines of text, each line containing N integer values.
+    </p>
+
+    <p>
+      The program might be most naturally useful if a given file contains an array
+      of index values that need to be converted between 0-based and 1-based indexing.
+    </p>
+
+    <p>
+      Note that the following MATLAB commands will work faster:
+      <pre>
+        array = load ( 'input_file' );
+        array = array + increment;
+        save -ASCII 'output_file' array;
+      </pre>
+      However, the data is written in real number format, with exponents.
+      I specifically want the output to be integers in recognizably integer formats.
+      I don't care if it takes longer and requires more MATLAB commands.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>file_increment</b> ( <i>'input_file'</i>, <i>'output_file'</i>, <i>increment</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'input_file'</i>, the name of the file containing the data to be incremented.
+        </li>
+        <li>
+          <i>'output_file'</i>, the name of the file to contain the incremented data.
+        </li>
+        <li>
+          <i>increment</i>, the amount by which all the data should be incremented.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/filum/filum.html">
+      FILUM</a> 
+      is a MATLAB library which
+      can work with information in text files.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_scale/table_scale.html">
+      TABLE_SCALE</a>, 
+      a FORTRAN90 program which
+      reads a <a href = "../../data/table/table.html">TABLE file</a>
+      of N points in M dimensions and creates a copy with every entry scaled by a 
+      given scale vector. 
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_shift/table_shift.html">
+      TABLE_SHIFT</a>, 
+      a FORTRAN90 program which
+      reads a <a href = "../../data/table/table.html">TABLE file</a>
+      of N points in M
+      dimensions, creates a copy with every entry shifted by a given
+      displacement vector. 
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "file_increment.m">file_increment.m</a> 
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>RBC</b> is a set of 500 3D nodes and 996 triangles.  The triangle data was
+      given using 1-based indexing, but the plotting program to be used expected
+      0-based indexing.  Therefore, the file
+      RBC_ELEMENTS_0.TXT was created by the command:
+      <pre>
+        file_increment ( 'rbc_elements_1.txt', 'rbc_elements_0.txt', -1 )
+      </pre>
+      <ul>
+        <li>
+          <a href = "rbc_nodes.txt">rbc_nodes.txt</a>
+          500 node coordinates.
+        </li>
+        <li>
+          <a href = "rbc_elements_0.txt">rbc_elements_0.txt</a>
+          996 triangles, defined using 0-based indexing of the nodes.
+        </li>
+        <li>
+          <a href = "rbc_elements_1.txt">rbc_elements_1.txt</a>
+          996 triangles, defined using 1-based indexing of the nodes.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 February 2010
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

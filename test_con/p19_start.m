@@ -1,0 +1,43 @@
+function x = p19_start ( option, nvar )
+
+%*****************************************************************************80
+%
+%% P19_START returns a starting point for problem 19.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    29 September 2008
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer OPTION, the option index.
+%
+%    Input, integer NVAR, the number of variables.
+%
+%    Output, real X(NVAR), the starting point.
+%
+  x = [ ...
+      0.00218216, ...
+      0.03171126, ...
+      0.00010562, ...
+      0.48301846, ...
+      0.48298250, ...
+      0.41554567, ...
+      0.14949595, ...
+      0.43425476, ...
+      0.00018983, ...
+      0.00051379, ...
+    207.02239583, ...
+     22.97760417, ...
+      1.00000000 ]';
+
+  return
+end

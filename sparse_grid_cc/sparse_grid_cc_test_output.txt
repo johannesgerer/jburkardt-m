@@ -1,0 +1,1478 @@
+>> sparse_grid_cc_test
+22-Dec-2009 15:46:15
+
+SPARSE_GRID_CC_TEST
+  MATLAB version.
+
+  Test the routines in the SPARSE_GRID_CC library.
+
+TEST01
+  SPARSE_GRID_CC_SIZE returns the number of distinct
+  points in a Clenshaw Curtis sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:          1         2         3         4         5
+
+   LEVEL_MAX
+
+       0         1         1         1         1         1
+       1         3         5         7         9        11
+       2         5        13        25        41        61
+       3         9        29        69       137       241
+       4        17        65       177       401       801
+       5        33       145       441      1105      2433
+       6        65       321      1073      2929      6993
+       7       129       705      2561      7537     19313
+       8       257      1537      6017     18945     51713
+       9       513      3329     13953     46721    135073
+      10      1025      7169     32001    113409    345665
+
+22-Dec-2009 15:46:16
+
+TEST01
+  SPARSE_GRID_CC_SIZE returns the number of distinct
+  points in a Clenshaw Curtis sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:          6         7         8         9        10
+
+   LEVEL_MAX
+
+       0         1         1         1         1         1
+       1        13        15        17        19        21
+       2        85       113       145       181       221
+       3       389       589       849      1177      1581
+       4      1457      2465      3937      6001      8801
+       5      4865      9017     15713     26017     41265
+       6     15121     30241     56737    100897    171425
+       7     44689     95441    190881    361249    652065
+       8    127105    287745    609025   1218049   2320385
+       9    350657    836769   1863937   3918273   7836545
+      10    943553   2362881   5515265  12133761  25370753
+
+22-Dec-2009 15:46:54
+
+TEST01
+  SPARSE_GRID_CC_SIZE returns the number of distinct
+  points in a Clenshaw Curtis sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:        100
+
+   LEVEL_MAX
+
+       0         1
+       1       201
+       2     20201
+       3   1353801
+
+22-Dec-2009 15:47:06
+
+TEST015
+  SPARSE_GRID_CCS_SIZE returns the number of distinct
+  points in a Clenshaw Curtis Slow-Growth sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:          1         2         3         4         5
+
+   LEVEL_MAX
+
+       0         1         1         1         1         1
+       1         3         5         7         9        11
+       2         5        13        25        41        61
+       3         9        29        69       137       241
+       4         9        49       153       369       761
+       5        17        81       297       849      2033
+       6        17       129       545      1777      4833
+       7        17       161       881      3377     10433
+       8        17       225      1361      5953     20753
+       9        33       257      1953      9857     38593
+      10        33       385      2721     15361     67425
+
+22-Dec-2009 15:47:06
+
+TEST015
+  SPARSE_GRID_CCS_SIZE returns the number of distinct
+  points in a Clenshaw Curtis Slow-Growth sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:          6         7         8         9        10
+
+   LEVEL_MAX
+
+       0         1         1         1         1         1
+       1        13        15        17        19        21
+       2        85       113       145       181       221
+       3       389       589       849      1177      1581
+       4      1409      2409      3873      5929      8721
+       5      4289      8233     14689     24721     39665
+       6     11473     24529     48289     88945    155105
+       7     27697     65537    141601    284209    536705
+       8     61345    159953    377729    823057   1677665
+       9    126401    361665    930049   2192865   4810625
+      10    244289    765089   2136577   5436321  12803073
+
+22-Dec-2009 15:47:45
+
+TEST015
+  SPARSE_GRID_CCS_SIZE returns the number of distinct
+  points in a Clenshaw Curtis Slow-Growth sparse grid.
+
+  Each sparse grid is of spatial dimension DIM,
+  and is made up of all product grids of levels up to LEVEL_MAX.
+
+   DIM:        100
+
+   LEVEL_MAX
+
+       0         1
+       1       201
+       2     20201
+       3   1353801
+
+22-Dec-2009 15:47:56
+
+TEST02:
+  SPARSE_GRID_CC_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2**LEVEL + 1.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 29
+
+  Grid index:
+
+     1     4     4
+     2     0     4
+     3     8     4
+     4     4     0
+     5     4     8
+     6     2     4
+     7     6     4
+     8     0     0
+     9     8     0
+    10     0     8
+    11     8     8
+    12     4     2
+    13     4     6
+    14     1     4
+    15     3     4
+    16     5     4
+    17     7     4
+    18     2     0
+    19     6     0
+    20     2     8
+    21     6     8
+    22     0     2
+    23     8     2
+    24     0     6
+    25     8     6
+    26     4     1
+    27     4     3
+    28     4     5
+    29     4     7
+
+TEST02:
+  SPARSE_GRID_CC_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2**LEVEL + 1.
+
+  LEVEL_MAX = 4
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 65
+
+  Grid index:
+
+     1     8     8
+     2     0     8
+     3    16     8
+     4     8     0
+     5     8    16
+     6     4     8
+     7    12     8
+     8     0     0
+     9    16     0
+    10     0    16
+    11    16    16
+    12     8     4
+    13     8    12
+    14     2     8
+    15     6     8
+    16    10     8
+    17    14     8
+    18     4     0
+    19    12     0
+    20     4    16
+    21    12    16
+    22     0     4
+    23    16     4
+    24     0    12
+    25    16    12
+    26     8     2
+    27     8     6
+    28     8    10
+    29     8    14
+    30     1     8
+    31     3     8
+    32     5     8
+    33     7     8
+    34     9     8
+    35    11     8
+    36    13     8
+    37    15     8
+    38     2     0
+    39     6     0
+    40    10     0
+    41    14     0
+    42     2    16
+    43     6    16
+    44    10    16
+    45    14    16
+    46     4     4
+    47    12     4
+    48     4    12
+    49    12    12
+    50     0     2
+    51    16     2
+    52     0     6
+    53    16     6
+    54     0    10
+    55    16    10
+    56     0    14
+    57    16    14
+    58     8     1
+    59     8     3
+    60     8     5
+    61     8     7
+    62     8     9
+    63     8    11
+    64     8    13
+    65     8    15
+
+TEST02:
+  SPARSE_GRID_CC_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2**LEVEL + 1.
+
+  LEVEL_MAX = 0
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 1
+
+  Grid index:
+
+     1     0     0     0
+
+TEST02:
+  SPARSE_GRID_CC_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2**LEVEL + 1.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 25
+
+  Grid index:
+
+     1     2     2     2
+     2     0     2     2
+     3     4     2     2
+     4     2     0     2
+     5     2     4     2
+     6     2     2     0
+     7     2     2     4
+     8     1     2     2
+     9     3     2     2
+    10     0     0     2
+    11     4     0     2
+    12     0     4     2
+    13     4     4     2
+    14     2     1     2
+    15     2     3     2
+    16     0     2     0
+    17     4     2     0
+    18     0     2     4
+    19     4     2     4
+    20     2     0     0
+    21     2     4     0
+    22     2     0     4
+    23     2     4     4
+    24     2     2     1
+    25     2     2     3
+
+TEST02:
+  SPARSE_GRID_CC_INDEX returns all grid indexes
+  whose level value satisfies
+    0 <= LEVEL <= LEVEL_MAX.
+  Here, LEVEL is the sum of the levels of the 1D rules,
+  and the order of the rule is 2**LEVEL + 1.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 6
+
+  Number of unique points in the grid = 85
+
+  Grid index:
+
+     1     2     2     2     2     2     2
+     2     0     2     2     2     2     2
+     3     4     2     2     2     2     2
+     4     2     0     2     2     2     2
+     5     2     4     2     2     2     2
+     6     2     2     0     2     2     2
+     7     2     2     4     2     2     2
+     8     2     2     2     0     2     2
+     9     2     2     2     4     2     2
+    10     2     2     2     2     0     2
+    11     2     2     2     2     4     2
+    12     2     2     2     2     2     0
+    13     2     2     2     2     2     4
+    14     1     2     2     2     2     2
+    15     3     2     2     2     2     2
+    16     0     0     2     2     2     2
+    17     4     0     2     2     2     2
+    18     0     4     2     2     2     2
+    19     4     4     2     2     2     2
+    20     2     1     2     2     2     2
+    21     2     3     2     2     2     2
+    22     0     2     0     2     2     2
+    23     4     2     0     2     2     2
+    24     0     2     4     2     2     2
+    25     4     2     4     2     2     2
+    26     2     0     0     2     2     2
+    27     2     4     0     2     2     2
+    28     2     0     4     2     2     2
+    29     2     4     4     2     2     2
+    30     2     2     1     2     2     2
+    31     2     2     3     2     2     2
+    32     0     2     2     0     2     2
+    33     4     2     2     0     2     2
+    34     0     2     2     4     2     2
+    35     4     2     2     4     2     2
+    36     2     0     2     0     2     2
+    37     2     4     2     0     2     2
+    38     2     0     2     4     2     2
+    39     2     4     2     4     2     2
+    40     2     2     0     0     2     2
+    41     2     2     4     0     2     2
+    42     2     2     0     4     2     2
+    43     2     2     4     4     2     2
+    44     2     2     2     1     2     2
+    45     2     2     2     3     2     2
+    46     0     2     2     2     0     2
+    47     4     2     2     2     0     2
+    48     0     2     2     2     4     2
+    49     4     2     2     2     4     2
+    50     2     0     2     2     0     2
+    51     2     4     2     2     0     2
+    52     2     0     2     2     4     2
+    53     2     4     2     2     4     2
+    54     2     2     0     2     0     2
+    55     2     2     4     2     0     2
+    56     2     2     0     2     4     2
+    57     2     2     4     2     4     2
+    58     2     2     2     0     0     2
+    59     2     2     2     4     0     2
+    60     2     2     2     0     4     2
+    61     2     2     2     4     4     2
+    62     2     2     2     2     1     2
+    63     2     2     2     2     3     2
+    64     0     2     2     2     2     0
+    65     4     2     2     2     2     0
+    66     0     2     2     2     2     4
+    67     4     2     2     2     2     4
+    68     2     0     2     2     2     0
+    69     2     4     2     2     2     0
+    70     2     0     2     2     2     4
+    71     2     4     2     2     2     4
+    72     2     2     0     2     2     0
+    73     2     2     4     2     2     0
+    74     2     2     0     2     2     4
+    75     2     2     4     2     2     4
+    76     2     2     2     0     2     0
+    77     2     2     2     4     2     0
+    78     2     2     2     0     2     4
+    79     2     2     2     4     2     4
+    80     2     2     2     2     0     0
+    81     2     2     2     2     4     0
+    82     2     2     2     2     0     4
+    83     2     2     2     2     4     4
+    84     2     2     2     2     2     1
+    85     2     2     2     2     2     3
+
+TEST03:
+  SPARSE_GRID_CC makes a sparse Clenshaw Curtis grid.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 29
+
+  Grid weights:
+
+     1   -1.269841
+     2   -0.190476
+     3   -0.190476
+     4   -0.190476
+     5   -0.190476
+     6    0.203175
+     7    0.203175
+     8   -0.066667
+     9   -0.066667
+    10   -0.066667
+    11   -0.066667
+    12    0.203175
+    13    0.203175
+    14    0.292437
+    15    0.723436
+    16    0.723436
+    17    0.292437
+    18    0.177778
+    19    0.177778
+    20    0.177778
+    21    0.177778
+    22    0.177778
+    23    0.177778
+    24    0.177778
+    25    0.177778
+    26    0.292437
+    27    0.723436
+    28    0.723436
+    29    0.292437
+
+  Grid points:
+
+     1  0.000000  0.000000
+     2 -1.000000  0.000000
+     3  1.000000  0.000000
+     4  0.000000 -1.000000
+     5  0.000000  1.000000
+     6 -0.707107  0.000000
+     7  0.707107  0.000000
+     8 -1.000000 -1.000000
+     9  1.000000 -1.000000
+    10 -1.000000  1.000000
+    11  1.000000  1.000000
+    12  0.000000 -0.707107
+    13  0.000000  0.707107
+    14 -0.923880  0.000000
+    15 -0.382683  0.000000
+    16  0.382683  0.000000
+    17  0.923880  0.000000
+    18 -0.707107 -1.000000
+    19  0.707107 -1.000000
+    20 -0.707107  1.000000
+    21  0.707107  1.000000
+    22 -1.000000 -0.707107
+    23  1.000000 -0.707107
+    24 -1.000000  0.707107
+    25  1.000000  0.707107
+    26  0.000000 -0.923880
+    27  0.000000 -0.382683
+    28  0.000000  0.382683
+    29  0.000000  0.923880
+
+TEST03:
+  SPARSE_GRID_CC makes a sparse Clenshaw Curtis grid.
+
+  LEVEL_MAX = 0
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 1
+
+  Grid weights:
+
+     1    8.000000
+
+  Grid points:
+
+     1  0.000000  0.000000  0.000000
+
+TEST03:
+  SPARSE_GRID_CC makes a sparse Clenshaw Curtis grid.
+
+  LEVEL_MAX = 1
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 7
+
+  Grid weights:
+
+     1   -0.000000
+     2    1.333333
+     3    1.333333
+     4    1.333333
+     5    1.333333
+     6    1.333333
+     7    1.333333
+
+  Grid points:
+
+     1  0.000000  0.000000  0.000000
+     2 -1.000000  0.000000  0.000000
+     3  1.000000  0.000000  0.000000
+     4  0.000000 -1.000000  0.000000
+     5  0.000000  1.000000  0.000000
+     6  0.000000  0.000000 -1.000000
+     7  0.000000  0.000000  1.000000
+
+TEST04:
+  Compute the weights of a Clenshaw Curtis sparse grid .
+
+  As a simple test, sum these weights.
+  They should sum to exactly 2^DIM_NUM.
+
+  LEVEL_MAX = 4
+  Spatial dimension DIM_NUM = 2
+
+  Number of unique points in the grid = 65
+
+    Weight sum     Exact sum    Difference
+
+  4.000000e+00  4.000000e+00  0.000000e+00
+
+TEST04:
+  Compute the weights of a Clenshaw Curtis sparse grid .
+
+  As a simple test, sum these weights.
+  They should sum to exactly 2^DIM_NUM.
+
+  LEVEL_MAX = 0
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 1
+
+    Weight sum     Exact sum    Difference
+
+  8.000000e+00  8.000000e+00  0.000000e+00
+
+TEST04:
+  Compute the weights of a Clenshaw Curtis sparse grid .
+
+  As a simple test, sum these weights.
+  They should sum to exactly 2^DIM_NUM.
+
+  LEVEL_MAX = 1
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 7
+
+    Weight sum     Exact sum    Difference
+
+  8.000000e+00  8.000000e+00  0.000000e+00
+
+TEST04:
+  Compute the weights of a Clenshaw Curtis sparse grid .
+
+  As a simple test, sum these weights.
+  They should sum to exactly 2^DIM_NUM.
+
+  LEVEL_MAX = 6
+  Spatial dimension DIM_NUM = 3
+
+  Number of unique points in the grid = 1073
+
+    Weight sum     Exact sum    Difference
+
+  8.000000e+00  8.000000e+00  9.769963e-15
+
+TEST04:
+  Compute the weights of a Clenshaw Curtis sparse grid .
+
+  As a simple test, sum these weights.
+  They should sum to exactly 2^DIM_NUM.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 10
+
+  Number of unique points in the grid = 1581
+
+    Weight sum     Exact sum    Difference
+
+  1.024000e+03  1.024000e+03  3.615241e-11
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 0
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 3
+
+  We expect this rule to be accurate up to and including total degree 1
+
+  Number of unique points in the grid = 1
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.250000     2       2 0
+      0.000000     2       1 1
+      0.250000     2       0 2
+
+      0.500000     3       3 0
+      0.250000     3       2 1
+      0.250000     3       1 2
+      0.500000     3       0 3
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 1
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 5
+
+  We expect this rule to be accurate up to and including total degree 3
+
+  Number of unique points in the grid = 5
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.000000     2       2 0
+      0.000000     2       1 1
+      0.000000     2       0 2
+
+      0.000000     3       3 0
+      0.000000     3       2 1
+      0.000000     3       1 2
+      0.000000     3       0 3
+
+      0.041667     4       4 0
+      0.000000     4       3 1
+      0.062500     4       2 2
+      0.000000     4       1 3
+      0.041667     4       0 4
+
+      0.125000     5       5 0
+      0.041667     5       4 1
+      0.125000     5       3 2
+      0.125000     5       2 3
+      0.041667     5       1 4
+      0.125000     5       0 5
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 7
+
+  We expect this rule to be accurate up to and including total degree 5
+
+  Number of unique points in the grid = 13
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.000000     2       2 0
+      0.000000     2       1 1
+      0.000000     2       0 2
+
+      0.000000     3       3 0
+      0.000000     3       2 1
+      0.000000     3       1 2
+      0.000000     3       0 3
+
+      0.000000     4       4 0
+      0.000000     4       3 1
+      0.000000     4       2 2
+      0.000000     4       1 3
+      0.000000     4       0 4
+
+      0.000000     5       5 0
+      0.000000     5       4 1
+      0.000000     5       3 2
+      0.000000     5       2 3
+      0.000000     5       1 4
+      0.000000     5       0 5
+
+      0.001042     6       6 0
+      0.000000     6       5 1
+      0.010417     6       4 2
+      0.000000     6       3 3
+      0.010417     6       2 4
+      0.000000     6       1 5
+      0.001042     6       0 6
+
+      0.004167     7       7 0
+      0.001042     7       6 1
+      0.031250     7       5 2
+      0.020833     7       4 3
+      0.020833     7       3 4
+      0.031250     7       2 5
+      0.001042     7       1 6
+      0.004167     7       0 7
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 9
+
+  We expect this rule to be accurate up to and including total degree 7
+
+  Number of unique points in the grid = 29
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.000000     2       2 0
+      0.000000     2       1 1
+      0.000000     2       0 2
+
+      0.000000     3       3 0
+      0.000000     3       2 1
+      0.000000     3       1 2
+      0.000000     3       0 3
+
+      0.000000     4       4 0
+      0.000000     4       3 1
+      0.000000     4       2 2
+      0.000000     4       1 3
+      0.000000     4       0 4
+
+      0.000000     5       5 0
+      0.000000     5       4 1
+      0.000000     5       3 2
+      0.000000     5       2 3
+      0.000000     5       1 4
+      0.000000     5       0 5
+
+      0.000000     6       6 0
+      0.000000     6       5 1
+      0.000000     6       4 2
+      0.000000     6       3 3
+      0.000000     6       2 4
+      0.000000     6       1 5
+      0.000000     6       0 6
+
+      0.000000     7       7 0
+      0.000000     7       6 1
+      0.000000     7       5 2
+      0.000000     7       4 3
+      0.000000     7       3 4
+      0.000000     7       2 5
+      0.000000     7       1 6
+      0.000000     7       0 7
+
+      0.000000     8       8 0
+      0.000000     8       7 1
+      0.000260     8       6 2
+      0.000000     8       5 3
+      0.001736     8       4 4
+      0.000000     8       3 5
+      0.000260     8       2 6
+      0.000000     8       1 7
+      0.000000     8       0 8
+
+      0.000000     9       9 0
+      0.000000     9       8 1
+      0.001042     9       7 2
+      0.000521     9       6 3
+      0.005208     9       5 4
+      0.005208     9       4 5
+      0.000521     9       3 6
+      0.001042     9       2 7
+      0.000000     9       1 8
+      0.000000     9       0 9
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 4
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 11
+
+  We expect this rule to be accurate up to and including total degree 9
+
+  Number of unique points in the grid = 65
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.000000     2       2 0
+      0.000000     2       1 1
+      0.000000     2       0 2
+
+      0.000000     3       3 0
+      0.000000     3       2 1
+      0.000000     3       1 2
+      0.000000     3       0 3
+
+      0.000000     4       4 0
+      0.000000     4       3 1
+      0.000000     4       2 2
+      0.000000     4       1 3
+      0.000000     4       0 4
+
+      0.000000     5       5 0
+      0.000000     5       4 1
+      0.000000     5       3 2
+      0.000000     5       2 3
+      0.000000     5       1 4
+      0.000000     5       0 5
+
+      0.000000     6       6 0
+      0.000000     6       5 1
+      0.000000     6       4 2
+      0.000000     6       3 3
+      0.000000     6       2 4
+      0.000000     6       1 5
+      0.000000     6       0 6
+
+      0.000000     7       7 0
+      0.000000     7       6 1
+      0.000000     7       5 2
+      0.000000     7       4 3
+      0.000000     7       3 4
+      0.000000     7       2 5
+      0.000000     7       1 6
+      0.000000     7       0 7
+
+      0.000000     8       8 0
+      0.000000     8       7 1
+      0.000000     8       6 2
+      0.000000     8       5 3
+      0.000000     8       4 4
+      0.000000     8       3 5
+      0.000000     8       2 6
+      0.000000     8       1 7
+      0.000000     8       0 8
+
+      0.000000     9       9 0
+      0.000000     9       8 1
+      0.000000     9       7 2
+      0.000000     9       6 3
+      0.000000     9       5 4
+      0.000000     9       4 5
+      0.000000     9       3 6
+      0.000000     9       2 7
+      0.000000     9       1 8
+      0.000000     9       0 9
+
+      0.000000    10      10 0
+      0.000000    10       9 1
+      0.000000    10       8 2
+      0.000000    10       7 3
+      0.000043    10       6 4
+      0.000000    10       5 5
+      0.000043    10       4 6
+      0.000000    10       3 7
+      0.000000    10       2 8
+      0.000000    10       1 9
+      0.000000    10       010
+
+      0.000000    11      11 0
+      0.000000    11      10 1
+      0.000000    11       9 2
+      0.000000    11       8 3
+      0.000174    11       7 4
+      0.000130    11       6 5
+      0.000130    11       5 6
+      0.000174    11       4 7
+      0.000000    11       3 8
+      0.000000    11       2 9
+      0.000000    11       110
+      0.000000    11       011
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 5
+  Spatial dimension DIM_NUM = 2
+
+  The maximum total degree to be checked is DEGREE_MAX = 13
+
+  We expect this rule to be accurate up to and including total degree 11
+
+  Number of unique points in the grid = 145
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0
+
+      0.000000     1       1 0
+      0.000000     1       0 1
+
+      0.000000     2       2 0
+      0.000000     2       1 1
+      0.000000     2       0 2
+
+      0.000000     3       3 0
+      0.000000     3       2 1
+      0.000000     3       1 2
+      0.000000     3       0 3
+
+      0.000000     4       4 0
+      0.000000     4       3 1
+      0.000000     4       2 2
+      0.000000     4       1 3
+      0.000000     4       0 4
+
+      0.000000     5       5 0
+      0.000000     5       4 1
+      0.000000     5       3 2
+      0.000000     5       2 3
+      0.000000     5       1 4
+      0.000000     5       0 5
+
+      0.000000     6       6 0
+      0.000000     6       5 1
+      0.000000     6       4 2
+      0.000000     6       3 3
+      0.000000     6       2 4
+      0.000000     6       1 5
+      0.000000     6       0 6
+
+      0.000000     7       7 0
+      0.000000     7       6 1
+      0.000000     7       5 2
+      0.000000     7       4 3
+      0.000000     7       3 4
+      0.000000     7       2 5
+      0.000000     7       1 6
+      0.000000     7       0 7
+
+      0.000000     8       8 0
+      0.000000     8       7 1
+      0.000000     8       6 2
+      0.000000     8       5 3
+      0.000000     8       4 4
+      0.000000     8       3 5
+      0.000000     8       2 6
+      0.000000     8       1 7
+      0.000000     8       0 8
+
+      0.000000     9       9 0
+      0.000000     9       8 1
+      0.000000     9       7 2
+      0.000000     9       6 3
+      0.000000     9       5 4
+      0.000000     9       4 5
+      0.000000     9       3 6
+      0.000000     9       2 7
+      0.000000     9       1 8
+      0.000000     9       0 9
+
+      0.000000    10      10 0
+      0.000000    10       9 1
+      0.000000    10       8 2
+      0.000000    10       7 3
+      0.000000    10       6 4
+      0.000000    10       5 5
+      0.000000    10       4 6
+      0.000000    10       3 7
+      0.000000    10       2 8
+      0.000000    10       1 9
+      0.000000    10       010
+
+      0.000000    11      11 0
+      0.000000    11      10 1
+      0.000000    11       9 2
+      0.000000    11       8 3
+      0.000000    11       7 4
+      0.000000    11       6 5
+      0.000000    11       5 6
+      0.000000    11       4 7
+      0.000000    11       3 8
+      0.000000    11       2 9
+      0.000000    11       110
+      0.000000    11       011
+
+      0.000000    12      12 0
+      0.000000    12      11 1
+      0.000000    12      10 2
+      0.000000    12       9 3
+      0.000000    12       8 4
+      0.000000    12       7 5
+      0.000001    12       6 6
+      0.000000    12       5 7
+      0.000000    12       4 8
+      0.000000    12       3 9
+      0.000000    12       210
+      0.000000    12       111
+      0.000000    12       012
+
+      0.000000    13      13 0
+      0.000000    13      12 1
+      0.000000    13      11 2
+      0.000000    13      10 3
+      0.000000    13       9 4
+      0.000000    13       8 5
+      0.000004    13       7 6
+      0.000004    13       6 7
+      0.000000    13       5 8
+      0.000000    13       4 9
+      0.000000    13       310
+      0.000000    13       211
+      0.000000    13       112
+      0.000000    13       013
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 0
+  Spatial dimension DIM_NUM = 3
+
+  The maximum total degree to be checked is DEGREE_MAX = 2
+
+  We expect this rule to be accurate up to and including total degree 1
+
+  Number of unique points in the grid = 1
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0 0
+
+      0.000000     1       1 0 0
+      0.000000     1       0 1 0
+      0.000000     1       0 0 1
+
+      0.250000     2       2 0 0
+      0.000000     2       1 1 0
+      0.250000     2       0 2 0
+      0.000000     2       1 0 1
+      0.000000     2       0 1 1
+      0.250000     2       0 0 2
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 1
+  Spatial dimension DIM_NUM = 3
+
+  The maximum total degree to be checked is DEGREE_MAX = 4
+
+  We expect this rule to be accurate up to and including total degree 3
+
+  Number of unique points in the grid = 7
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0 0
+
+      0.000000     1       1 0 0
+      0.000000     1       0 1 0
+      0.000000     1       0 0 1
+
+      0.000000     2       2 0 0
+      0.000000     2       1 1 0
+      0.000000     2       0 2 0
+      0.000000     2       1 0 1
+      0.000000     2       0 1 1
+      0.000000     2       0 0 2
+
+      0.000000     3       3 0 0
+      0.000000     3       2 1 0
+      0.000000     3       1 2 0
+      0.000000     3       0 3 0
+      0.000000     3       2 0 1
+      0.000000     3       1 1 1
+      0.000000     3       0 2 1
+      0.000000     3       1 0 2
+      0.000000     3       0 1 2
+      0.000000     3       0 0 3
+
+      0.041667     4       4 0 0
+      0.000000     4       3 1 0
+      0.062500     4       2 2 0
+      0.000000     4       1 3 0
+      0.041667     4       0 4 0
+      0.000000     4       3 0 1
+      0.000000     4       2 1 1
+      0.000000     4       1 2 1
+      0.000000     4       0 3 1
+      0.062500     4       2 0 2
+      0.000000     4       1 1 2
+      0.062500     4       0 2 2
+      0.000000     4       1 0 3
+      0.000000     4       0 1 3
+      0.041667     4       0 0 4
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 2
+  Spatial dimension DIM_NUM = 3
+
+  The maximum total degree to be checked is DEGREE_MAX = 6
+
+  We expect this rule to be accurate up to and including total degree 5
+
+  Number of unique points in the grid = 25
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0 0
+
+      0.000000     1       1 0 0
+      0.000000     1       0 1 0
+      0.000000     1       0 0 1
+
+      0.000000     2       2 0 0
+      0.000000     2       1 1 0
+      0.000000     2       0 2 0
+      0.000000     2       1 0 1
+      0.000000     2       0 1 1
+      0.000000     2       0 0 2
+
+      0.000000     3       3 0 0
+      0.000000     3       2 1 0
+      0.000000     3       1 2 0
+      0.000000     3       0 3 0
+      0.000000     3       2 0 1
+      0.000000     3       1 1 1
+      0.000000     3       0 2 1
+      0.000000     3       1 0 2
+      0.000000     3       0 1 2
+      0.000000     3       0 0 3
+
+      0.000000     4       4 0 0
+      0.000000     4       3 1 0
+      0.000000     4       2 2 0
+      0.000000     4       1 3 0
+      0.000000     4       0 4 0
+      0.000000     4       3 0 1
+      0.000000     4       2 1 1
+      0.000000     4       1 2 1
+      0.000000     4       0 3 1
+      0.000000     4       2 0 2
+      0.000000     4       1 1 2
+      0.000000     4       0 2 2
+      0.000000     4       1 0 3
+      0.000000     4       0 1 3
+      0.000000     4       0 0 4
+
+      0.000000     5       5 0 0
+      0.000000     5       4 1 0
+      0.000000     5       3 2 0
+      0.000000     5       2 3 0
+      0.000000     5       1 4 0
+      0.000000     5       0 5 0
+      0.000000     5       4 0 1
+      0.000000     5       3 1 1
+      0.000000     5       2 2 1
+      0.000000     5       1 3 1
+      0.000000     5       0 4 1
+      0.000000     5       3 0 2
+      0.000000     5       2 1 2
+      0.000000     5       1 2 2
+      0.000000     5       0 3 2
+      0.000000     5       2 0 3
+      0.000000     5       1 1 3
+      0.000000     5       0 2 3
+      0.000000     5       1 0 4
+      0.000000     5       0 1 4
+      0.000000     5       0 0 5
+
+      0.001042     6       6 0 0
+      0.000000     6       5 1 0
+      0.010417     6       4 2 0
+      0.000000     6       3 3 0
+      0.010417     6       2 4 0
+      0.000000     6       1 5 0
+      0.001042     6       0 6 0
+      0.000000     6       5 0 1
+      0.000000     6       4 1 1
+      0.000000     6       3 2 1
+      0.000000     6       2 3 1
+      0.000000     6       1 4 1
+      0.000000     6       0 5 1
+      0.010417     6       4 0 2
+      0.000000     6       3 1 2
+      0.015625     6       2 2 2
+      0.000000     6       1 3 2
+      0.010417     6       0 4 2
+      0.000000     6       3 0 3
+      0.000000     6       2 1 3
+      0.000000     6       1 2 3
+      0.000000     6       0 3 3
+      0.010417     6       2 0 4
+      0.000000     6       1 1 4
+      0.010417     6       0 2 4
+      0.000000     6       1 0 5
+      0.000000     6       0 1 5
+      0.001042     6       0 0 6
+
+
+TEST05
+  Check the exactness of a Clenshaw Curtis sparse grid quadrature rule,
+  applied to all monomials of orders 0 to DEGREE_MAX.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 3
+
+  The maximum total degree to be checked is DEGREE_MAX = 8
+
+  We expect this rule to be accurate up to and including total degree 7
+
+  Number of unique points in the grid = 69
+
+      Error      Total   Monomial
+                 Degree  Exponents
+
+      0.000000     0       0 0 0
+
+      0.000000     1       1 0 0
+      0.000000     1       0 1 0
+      0.000000     1       0 0 1
+
+      0.000000     2       2 0 0
+      0.000000     2       1 1 0
+      0.000000     2       0 2 0
+      0.000000     2       1 0 1
+      0.000000     2       0 1 1
+      0.000000     2       0 0 2
+
+      0.000000     3       3 0 0
+      0.000000     3       2 1 0
+      0.000000     3       1 2 0
+      0.000000     3       0 3 0
+      0.000000     3       2 0 1
+      0.000000     3       1 1 1
+      0.000000     3       0 2 1
+      0.000000     3       1 0 2
+      0.000000     3       0 1 2
+      0.000000     3       0 0 3
+
+      0.000000     4       4 0 0
+      0.000000     4       3 1 0
+      0.000000     4       2 2 0
+      0.000000     4       1 3 0
+      0.000000     4       0 4 0
+      0.000000     4       3 0 1
+      0.000000     4       2 1 1
+      0.000000     4       1 2 1
+      0.000000     4       0 3 1
+      0.000000     4       2 0 2
+      0.000000     4       1 1 2
+      0.000000     4       0 2 2
+      0.000000     4       1 0 3
+      0.000000     4       0 1 3
+      0.000000     4       0 0 4
+
+      0.000000     5       5 0 0
+      0.000000     5       4 1 0
+      0.000000     5       3 2 0
+      0.000000     5       2 3 0
+      0.000000     5       1 4 0
+      0.000000     5       0 5 0
+      0.000000     5       4 0 1
+      0.000000     5       3 1 1
+      0.000000     5       2 2 1
+      0.000000     5       1 3 1
+      0.000000     5       0 4 1
+      0.000000     5       3 0 2
+      0.000000     5       2 1 2
+      0.000000     5       1 2 2
+      0.000000     5       0 3 2
+      0.000000     5       2 0 3
+      0.000000     5       1 1 3
+      0.000000     5       0 2 3
+      0.000000     5       1 0 4
+      0.000000     5       0 1 4
+      0.000000     5       0 0 5
+
+      0.000000     6       6 0 0
+      0.000000     6       5 1 0
+      0.000000     6       4 2 0
+      0.000000     6       3 3 0
+      0.000000     6       2 4 0
+      0.000000     6       1 5 0
+      0.000000     6       0 6 0
+      0.000000     6       5 0 1
+      0.000000     6       4 1 1
+      0.000000     6       3 2 1
+      0.000000     6       2 3 1
+      0.000000     6       1 4 1
+      0.000000     6       0 5 1
+      0.000000     6       4 0 2
+      0.000000     6       3 1 2
+      0.000000     6       2 2 2
+      0.000000     6       1 3 2
+      0.000000     6       0 4 2
+      0.000000     6       3 0 3
+      0.000000     6       2 1 3
+      0.000000     6       1 2 3
+      0.000000     6       0 3 3
+      0.000000     6       2 0 4
+      0.000000     6       1 1 4
+      0.000000     6       0 2 4
+      0.000000     6       1 0 5
+      0.000000     6       0 1 5
+      0.000000     6       0 0 6
+
+      0.000000     7       7 0 0
+      0.000000     7       6 1 0
+      0.000000     7       5 2 0
+      0.000000     7       4 3 0
+      0.000000     7       3 4 0
+      0.000000     7       2 5 0
+      0.000000     7       1 6 0
+      0.000000     7       0 7 0
+      0.000000     7       6 0 1
+      0.000000     7       5 1 1
+      0.000000     7       4 2 1
+      0.000000     7       3 3 1
+      0.000000     7       2 4 1
+      0.000000     7       1 5 1
+      0.000000     7       0 6 1
+      0.000000     7       5 0 2
+      0.000000     7       4 1 2
+      0.000000     7       3 2 2
+      0.000000     7       2 3 2
+      0.000000     7       1 4 2
+      0.000000     7       0 5 2
+      0.000000     7       4 0 3
+      0.000000     7       3 1 3
+      0.000000     7       2 2 3
+      0.000000     7       1 3 3
+      0.000000     7       0 4 3
+      0.000000     7       3 0 4
+      0.000000     7       2 1 4
+      0.000000     7       1 2 4
+      0.000000     7       0 3 4
+      0.000000     7       2 0 5
+      0.000000     7       1 1 5
+      0.000000     7       0 2 5
+      0.000000     7       1 0 6
+      0.000000     7       0 1 6
+      0.000000     7       0 0 7
+
+      0.000000     8       8 0 0
+      0.000000     8       7 1 0
+      0.000260     8       6 2 0
+      0.000000     8       5 3 0
+      0.001736     8       4 4 0
+      0.000000     8       3 5 0
+      0.000260     8       2 6 0
+      0.000000     8       1 7 0
+      0.000000     8       0 8 0
+      0.000000     8       7 0 1
+      0.000000     8       6 1 1
+      0.000000     8       5 2 1
+      0.000000     8       4 3 1
+      0.000000     8       3 4 1
+      0.000000     8       2 5 1
+      0.000000     8       1 6 1
+      0.000000     8       0 7 1
+      0.000260     8       6 0 2
+      0.000000     8       5 1 2
+      0.002604     8       4 2 2
+      0.000000     8       3 3 2
+      0.002604     8       2 4 2
+      0.000000     8       1 5 2
+      0.000260     8       0 6 2
+      0.000000     8       5 0 3
+      0.000000     8       4 1 3
+      0.000000     8       3 2 3
+      0.000000     8       2 3 3
+      0.000000     8       1 4 3
+      0.000000     8       0 5 3
+      0.001736     8       4 0 4
+      0.000000     8       3 1 4
+      0.002604     8       2 2 4
+      0.000000     8       1 3 4
+      0.001736     8       0 4 4
+      0.000000     8       3 0 5
+      0.000000     8       2 1 5
+      0.000000     8       1 2 5
+      0.000000     8       0 3 5
+      0.000260     8       2 0 6
+      0.000000     8       1 1 6
+      0.000260     8       0 2 6
+      0.000000     8       1 0 7
+      0.000000     8       0 1 7
+      0.000000     8       0 0 8
+
+
+TEST06:
+  SPARSE_GRID_CC makes a sparse Clenshaw-Curtis grid.
+  Write the data to a set of quadrature files.
+
+  LEVEL_MAX = 3
+  Spatial dimension DIM_NUM = 2
+
+  R data written to "cc_d2_level3_r.txt".
+  W data written to "cc_d2_level3_w.txt".
+  X data written to "cc_d2_level3_x.txt",
+
+SPARSE_GRID_CC_TEST
+  Normal end of execution.
+
+22-Dec-2009 15:48:31
+>> 

@@ -1,0 +1,353 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATE - Triangulate a Polygonal Region
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATE <br> Triangulate a Polygonal Region
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATE</b>
+      is a MATLAB program which
+      triangulates a polygonal region.  The region need not be convex.
+    </p>
+
+    <p>
+      The polygon is defined by an input file which gives the coordinates
+      of the vertices of the polygon, in counterclockwise order.
+    </p>
+
+    <p>
+      Note that no two successive vertices can be equal, nor can the first
+      and last vertices be equal.
+    </p>
+
+    <p>
+      The output of the program is a list of the "diagonal lines"
+      defined by pairs of vertices which constitute the triangulation,
+      a list of the nodes that form the triangles of the triangulation,
+      and an image of the triangulated polygon.
+    </p>
+
+    <p>
+      The program is based on a C program by Joseph ORourke.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulate</b> ( <i>'prefix'</i>, <i>'animate'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the filename prefix,
+        </li>
+        <li>
+          <i>'animate'</i> (optional argument) is 'y' if you want to
+          see the process animated;
+        </li>
+      </ul>
+      reads the file
+      <ul>
+        <li>
+          <i>'prefix'</i><b>_nodes.txt</b>, containing the vertex coordinates,
+        </li>
+      </ul>
+      and writes the files
+      <ul>
+        <li>
+          <i>'prefix'</i><b>_diagonals.txt</b> listing N-3 pairs of vertices that
+          form the internal diagonals of the triangulation.
+        </li>
+        <li>
+          <i>'prefix'</i><b>_elements.txt</b> listing N-2 triples of vertices that
+          form the triangles of the triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATE</b> is available in
+      <a href = "../../c_src/triangulate/triangulate.html">a C version</a> and
+      <a href = "../../m_src/triangulate/triangulate.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/convex_hull/convex_hull.html">
+      CONVEX_HULL</a>,
+      a MATLAB program which
+      demonstrates the computation of the convex hull of a set of 2D points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hand_data/hand_data.html">
+      HAND_DATA</a>,
+      MATLAB programs which
+      carry out some numerical exercises based on data that came from
+      tracing several points on a person's hand.
+    </p>
+
+    <p>
+      <a href = "../../datasets/polygon/polygon.html">
+      POLYGON</a>,
+      a dataset directory which
+      contains examples of polygons.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      triangulates a set of points.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry in C,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulate.m">triangulate.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>COMB</b> is an example of a "comb" polygon of 10 vertices
+      <ul>
+        <li>
+          <a href = "comb_nodes.txt">comb_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "comb.png">comb.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "comb_triangulated.png">comb_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "comb_output.txt">comb_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "comb_diagonals.txt">comb_diagonals.txt</a>,
+          the output file of internal diagonal edges.
+        </li>
+        <li>
+          <a href = "comb_elements.txt">comb_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HAND</b> outlines a hand using 59 vertices.
+      <ul>
+        <li>
+          <a href = "hand_nodes.txt">hand_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "hand.png">hand.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "hand_triangulated.png">hand_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "hand_output.txt">hand_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "hand_diagonals.txt">hand_diagonals.txt</a>,
+          the output file of internal diagonal edges.
+        </li>
+        <li>
+          <a href = "hand_elements.txt">hand_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>I18</b> is an example of a complicated nonconvex polygon.
+      <ul>
+        <li>
+          <a href = "i18_nodes.txt">i18_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "i18.png">i18.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "i18_triangulated.png">i18_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "i18_output.txt">i18_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "i18_diagonals.txt">i18_diagonals.txt</a>,
+          the output file of diagonal edges.
+        </li>
+        <li>
+          <a href = "i18_elements.txt">i18_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SNAKE</b> is an example defining a "snake" polygon.
+      <ul>
+        <li>
+          <a href = "snake_nodes.txt">snake_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "snake.png">snake.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "snake_triangulated.png">snake_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "snake_output.txt">snake_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "snake_diagonals.txt">snake_diagonals.txt</a>,
+          the output file of diagonal edges.
+        </li>
+        <li>
+          <a href = "snake_elements.txt">snake_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SQUARE</b> is an example defining a square.
+      <ul>
+        <li>
+          <a href = "square_nodes.txt">square_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "square.png">square.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "square_triangulated.png">square_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "square_output.txt">square_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "square_diagonals.txt">square_diagonals.txt</a>,
+          the output file of diagonal edges.
+        </li>
+        <li>
+          <a href = "square_elements.txt">square_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TRIANGLE</b> is an example defining a triangle.
+      <ul>
+        <li>
+          <a href = "triangle_nodes.txt">triangle_nodes.txt</a>,
+          the input file of vertex coordinates.
+        </li>
+        <li>
+          <a href = "triangle.png">triangle.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "triangle_triangulated.png">triangle_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "triangle_output.txt">triangle_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "triangle_diagonals.txt">triangle_diagonals.txt</a>,
+          the output file of diagonal edges.
+        </li>
+        <li>
+          <a href = "triangle_elements.txt">triangle_elements.txt</a>,
+          the output file of triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 April 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

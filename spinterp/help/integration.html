@@ -1,0 +1,221 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Numerical Integration (Quadrature) (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="derivatives.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="optimization.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Numerical Integration (Quadrature)</h1>
+      <p>Once you have computed a sparse grid interpolant of an objective function, you can compute the integral value of it for the given range. You can do this for any grid type, and for both regular and dimension-adaptive sparse grid interpolants by simply calling the <tt><a href="spquad.html">spquad</a></tt> function. A couple of examples are provided below.
+      </p>
+      <h2>Contents</h2>
+      <div>
+         <ul>
+            <li><a href="#2">Integration of regular sparse grid interpolants</a></li>
+            <li><a href="#6">Integration of dimension-adaptive sparse grid interpolants</a></li>
+         </ul>
+      </div>
+      <h2><a name="2">Integration of regular sparse grid interpolants</a></h2>
+      <p>Consider the task of integrating the test function</p>
+      <p><img vspace="5" hspace="5" src="images/ex_integration_eq66156.png"> </p>
+      <p>for the domain <tt>[0,1]^d</tt>, and <tt>d = 5</tt>. The exact value of the integral is 1. We reproduce the results of Table 1 for the columns labelled "Trapez", "Clenshaw",
+         and "Gauss-Patterson"  from the paper "Numerical integration using sparse grids" by T. Gerstner and M. Griebel, Numerical
+         Algorithms 18(3-4), 1998, pp. 209-232.
+      </p>
+      <p>Note that the grid type Clenshaw-Curtis and Chebyshev of the Sparse Grid Interpolation Toolbox correspond to the sparse grids
+         based on the Trapez rule and the Clenshaw Curtis rule in the paper, respectively.
+      </p>
+      <p>Define the objective function, dimension, and maximum depth:</p><pre class="codeinput">d = 5;
+maxDepth = 6;
+f = @(x) (1+1/d)^d * prod(x)^(1/d);
+</pre><p>Compute integral for increasing sparse grid depth, and generate the results table:</p><pre class="codeinput">warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:insufficientDepth'</span>);
+z = cell(3,1);
+quadr = zeros(3,1);
+disp(<span class="string">' Clenshaw-Curtis |    Chebyshev     | Gauss-Patterson'</span>);
+disp(<span class="string">' points    error | points     error | points     error'</span>);
+<span class="keyword">for</span> k = 0:maxDepth
+  options = spset(<span class="string">'MinDepth'</span>, k, <span class="string">'MaxDepth'</span>, k, <span class="keyword">...</span>
+                  <span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>);
+
+        <span class="comment">% Compute integral values with Clenshaw-Curtis grid</span>
+        options = spset(options, <span class="string">'GridType'</span>, <span class="string">'Clenshaw-Curtis'</span>, <span class="keyword">...</span>
+                  <span class="string">'PrevResults'</span>, z{1});
+  z{1} = spvals(f,d,[],options);
+  quadr(1) = spquad(z{1});
+
+        <span class="comment">% Compute integral values with Chebyshev grid</span>
+        options = spset(options, <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+                  <span class="string">'PrevResults'</span>, z{2});
+  z{2} = spvals(f,d,[],options);
+  quadr(2) = spquad(z{2});
+
+        <span class="comment">% Compute integral values with Gauss-Patterson grid</span>
+        options = spset(options, <span class="string">'GridType'</span>, <span class="string">'Gauss-Patterson'</span>, <span class="keyword">...</span>
+                  <span class="string">'PrevResults'</span>, z{3});
+  z{3} = spvals(f,d,[],options);
+  quadr(3) = spquad(z{3});
+
+  <span class="comment">% Results output</span>
+  disp(sprintf(<span class="string">'%5d  %8.3e | %5d  %8.3e | %5d  %8.3e'</span>, <span class="keyword">...</span>
+          z{1}.nPoints, abs(1-quadr(1)), <span class="keyword">...</span>
+                z{2}.nPoints, abs(1-quadr(2)), <span class="keyword">...</span>
+                z{3}.nPoints, abs(1-quadr(3))));
+<span class="keyword">end</span>
+</pre><pre class="codeoutput"> Clenshaw-Curtis |    Chebyshev     | Gauss-Patterson
+ points    error | points     error | points     error
+    1  2.442e-01 |     1  2.442e-01 |     1  2.442e-01
+   11  1.080e+00 |    11  6.385e-01 |    11  8.936e-03
+   61  7.578e-02 |    61  1.441e-01 |    71  8.073e-04
+  241  2.864e-01 |   241  1.237e-01 |   351  2.070e-04
+  801  1.079e-01 |   801  6.650e-03 |  1471  2.256e-05
+ 2433  8.001e-02 |  2433  1.060e-02 |  5503  1.420e-06
+ 6993  5.030e-02 |  6993  1.743e-03 | 18943  3.437e-09
+</pre><h2><a name="6">Integration of dimension-adaptive sparse grid interpolants</a></h2>
+      <p>To illustrate a higher-dimensional, dimension-adpative case, we consider the absorption problem from W. Morokoff, R. Caflisch,
+         "Quasi-monte carlo integration", J. Comp. Phys. 122, pp. 218-230, 1995, given by the integral equation
+      </p>
+      <p><img vspace="5" hspace="5" src="images/ex_integration_eq29488.png"> </p>
+      <p>The exact solution of this equation is given by</p>
+      <p><img vspace="5" hspace="5" src="images/ex_integration_eq92146.png"> </p>
+      <p>Two alternate representations are given in the paper, the first being an infinite integral with an integrand with a jump,
+         and the second one with a smooth integrand.
+      </p>
+      <p>The sparse grid method does not work well for the first representation, since it is a non-smooth function where the discontinuities
+         are not parallel to the coordinate directions (see S. Dirnsdorfer, "Numerical Quadrature on Sparse Grids", Diploma Thesis,
+         TU Munich, 2000). However, in case of the second representation, very accurate results can be computed using the dimension-adaptive
+         approach, as shown below.
+      </p>
+      <p>We define the integrand of the absorption problem as follows. The optional parameter named <tt>SMOOTH</tt> indicates which of the two representation should be used.
+      </p><pre class="codeinput">type(<span class="string">'absorb.m'</span>);
+</pre><pre class="codeoutput">
+function y = absorb(varargin)
+% ABSORB(R1,...,RD,GAMMA,X,SMOOTH)   Finite sum integrand of 
+%   the integrral representation of the absorption problem 
+%   paper W. Morokoff, R. Caflisch, "Quasi-monte carlo 
+%   integration", J. Comp. Phys. 122, pp. 218-230, 1995.
+
+d = length(varargin) - 3;
+gamma = varargin{end-2};
+x = varargin{end-1};
+smooth = varargin{end};
+
+% Compute F as in paper 
+if ~smooth
+  % First representation with jump
+
+  phi = @(z) (1 .* (z &gt;= 0));  % Heaviside function
+  d = d - 1;
+  sumR = cell(d+1,1);
+  sumR{1} = varargin{1};
+  for k = 2:d+1
+    sumR{k} = sumR{k-1} + varargin{k};
+  end
+  F = @(n) (gamma^n * phi(1-x-sumR{n}) ...
+    .* phi(sumR{n+1}-(1-x)));
+else
+  % Second, smooth representation
+  
+  prodR1 = cell(d,1);
+  prodR1{1} = ones(size(varargin{1}));
+  for k = 2:d
+    prodR1{k} = prodR1{k-1};
+    for l = 1:k-1
+      prodR1{k} = prodR1{k} .* varargin{l};
+    end
+  end
+  prodR2 = cell(d,1);
+  prodR2{1} = varargin{1};
+  for k = 2:d
+    prodR2{k} = prodR2{k-1} .* varargin{k};
+  end
+  F = @(n) (gamma^n * (1 - x)^n * ...
+    prodR1{n} .* (1 - (1 - x) * prodR2{n}));
+end
+
+% Compute integrand value(s) (finite sum)
+y = zeros(size(varargin{1}));
+for n = 1:d
+  y = y + F(n);
+end
+</pre><p>The following loop computes increasingly accurate approximations to the solution of the absorption problem with <tt>d = 20</tt>, <tt>gamma = 0.5</tt>, and <tt>x = 0</tt> by computing a dimension-adaptive polynomial interpolant of the smooth integrand which is then integrated using the <tt><a href="spquad.html">spquad</a></tt> function. For comparison, we also compute the integral using crude Monte Carlo (MC) with the same number of points.
+      </p><pre class="codeinput">gamma = 0.5; x = 0; d = 20;
+
+<span class="comment">% Show exact solution</span>
+I_exact = 1/gamma - (1-gamma)/gamma*exp(gamma*(1-x))
+
+options = spset(<span class="string">'DimensionAdaptive'</span>,<span class="string">'on'</span>, <span class="string">'DimadaptDegree'</span>, 1, <span class="keyword">...</span>
+                <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="string">'Vectorized'</span>, <span class="string">'on'</span>);
+Nmax = 50000;
+N = 2*d;
+z = [];
+
+warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+<span class="keyword">while</span> N &lt;= Nmax
+  <span class="comment">% Compute integral via sparse grid</span>
+  spoptions = spset(options, <span class="string">'MinPoints'</span>, N, <span class="keyword">...</span>
+    <span class="string">'MaxPoints'</span>, N, <span class="string">'PrevResults'</span>, z);
+  z = spvals(@absorb, d, [], spoptions, gamma, x, true);
+  e1 = abs(I_exact - spquad(z));
+
+  <span class="comment">% Compute integral via MC (error average for 10 runs)</span>
+  e2 = 0;
+  <span class="keyword">for</span> k = 1:10
+    p = rand(z.nPoints,d);
+    p = num2cell(p,1);
+    I = sum(absorb(p{:}, gamma, x, true)) / double(z.nPoints);
+    e2 = e2 + abs(I_exact - I);
+  <span class="keyword">end</span>
+  e2 = e2 / 10;
+
+  disp([<span class="string">' points: '</span> sprintf(<span class="string">'%5d'</span>, z.nPoints) <span class="keyword">...</span>
+      <span class="string">' | error (CGL): '</span> sprintf(<span class="string">'%9.3e'</span>,e1) <span class="keyword">...</span>
+      <span class="string">' | error (MC): '</span> sprintf(<span class="string">'%9.3e'</span>,e2)]);
+  N = round(z.nPoints .* 2);
+<span class="keyword">end</span>
+warning(<span class="string">'on'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+</pre><pre class="codeoutput">
+I_exact =
+    0.3513
+
+ points:    41 | error (CGL): 4.622e-04 | error (MC): 1.298e-02
+ points:    87 | error (CGL): 5.606e-06 | error (MC): 6.008e-03
+ points:   177 | error (CGL): 6.010e-07 | error (MC): 7.791e-03
+ points:   367 | error (CGL): 1.566e-07 | error (MC): 3.442e-03
+ points:   739 | error (CGL): 3.893e-08 | error (MC): 4.761e-03
+ points:  1531 | error (CGL): 2.461e-08 | error (MC): 1.895e-03
+ points:  3085 | error (CGL): 1.061e-09 | error (MC): 1.036e-03
+ points:  6181 | error (CGL): 2.750e-09 | error (MC): 6.147e-04
+ points: 12393 | error (CGL): 1.335e-09 | error (MC): 6.609e-04
+ points: 24795 | error (CGL): 3.006e-10 | error (MC): 5.420e-04
+ points: 49739 | error (CGL): 1.791e-10 | error (MC): 3.305e-04
+</pre>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="derivatives.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Derivatives</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Optimization</td>
+        <td width="20" align="right"><a href="optimization.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

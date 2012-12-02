@@ -1,0 +1,373 @@
+<html>
+
+  <head>
+    <title>
+      BLAS1_Z - Basic Linear Algebra Subprograms - Level 1 -
+      Double precision Complex Arithmetic
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BLAS1_Z <br>
+      Basic Linear Algebra Subprograms <br>
+      Level 1 <br>
+      Double Precision Complex Arithmetic
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BLAS1_Z</b>
+      is a MATLAB library which
+      implements the Level 1
+      <b>BLAS</b>, or Basic Linear Algebra Subprograms.
+    </p>
+
+    <p>
+      The <b>BLAS</b> are a small core library of linear algebra utilities,
+      which can be highly optimized for various architectures.  Software
+      that relies on the <b>BLAS</b> is thus highly portable, and will typically
+      run very efficiently.  The
+      <a href = "../../f_src/linpack/linpack.html">LINPACK</a>
+      and
+      <a href = "../../f_src/lapack/lapack.html">LAPACK</a>
+      linear algebra libraries make extensive use of the <b>BLAS</b>.
+    </p>
+
+    <p>
+      The Level 1 BLAS are primarily for use in vector operations.
+      In certain cases, they may also be used to operate on the rows
+      or columns of a two-dimensional array.
+    </p>
+
+    <p>
+      It is worth questioning whether one should try to implement the
+      Level 1 BLAS in MATLAB: for one thing, the MATLAB language makes
+      it very easy to carry out vector operations, even with nonunit
+      incrementing on the vector indices.  Moreover, MATLAB actually
+      makes it more difficult to stick with the syntax of the BLAS, since
+      it is not so easy to make a two dimensional array "look like" a
+      vector.
+    </p>
+
+    <p>
+      In particular, if you want to work on a row of a matrix,
+      MATLAB essentially prefers you to make a temporary vector, as in
+      "A(3,1:N)"; in the standard BLAS, you would instead pass the location
+      of the first entry, A(3,1), and an increment, LDA, that will lead to
+      the next entry of the row.  This is not easy or natural to do
+      in MATLAB.  Still, for consistency, I have gone ahead and tried
+      to make a reasonable effort at implementing the Level 1 BLAS.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BLAS1_Z</b> is available in
+      <a href = "../../c_src/blas1_z/blas1_z.html">a C version</a> and
+      <a href = "../../cpp_src/blas1_z/blas1_z.html">a C++ version</a> and
+      <a href = "../../f77_src/blas1_z/blas1_z.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/blas1_z/blas1_z.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/blas1_z/blas1_z.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/blas1_c/blas1_c.html">
+      BLAS1_C</a>,
+      a MATLAB library  which
+      is a version of <b>BLAS1</b> for single precision complex arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_d/blas1_d.html">
+      BLAS1_D</a>,
+      a MATLAB library which
+      is a version of <b>BLAS1</b> for double precision real arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_s/blas1_s.html">
+      BLAS1_S</a>,
+      a MATLAB library which
+      is a version of <b>BLAS1</b> for single precision real arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/gsl/gsl.html">
+      GSL</a>,
+      a C++ library which
+      includes an implementation of the <b>BLAS1</b> routines.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack/linpack.html">
+      LINPACK</a>,
+      a MATLAB library which
+      a linear algebra package that uses the <b>BLAS1</b> routines.
+    </p>
+
+    <p>
+      <a href = "../../c_src/super_blas/super_blas.html">
+      SUPER_BLAS</a>,
+      a C library which
+      is a version of some of the <b>BLAS1</b> routines.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Thomas Coleman, Charles vanLoan,<br>
+          Handbook for Matrix Computations,<br>
+          SIAM, 1988,<br>
+          ISBN13: 978-0-898712-27-8,<br>
+          LC: QA188.C65.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539:
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dzasum.m">dzasum.m</a>,
+          sums the absolute values of the entries of a complex vector;
+        </li>
+        <li>
+          <a href = "dznrm2.m">dznrm2.m</a>,
+          computes the Euclidean norm of a complex vector.
+        </li>
+        <li>
+          <a href = "izamax.m">izamax.m</a>,
+          returns the index of the complex vector entry of greatest magnitude;
+        </li>
+        <li>
+          <a href = "zabs1.m">zabs1.m</a>,
+          returns the L1 magnitude of a complex number;
+        </li>
+        <li>
+          <a href = "zabs2.m">zabs2.m</a>,
+          returns the L2 magnitude of a complex number;
+        </li>
+        <li>
+          <a href = "zaxpy.m">zaxpy.m</a>,
+          adds a constant times one complex vector to another.
+        </li>
+        <li>
+          <a href = "zcopy.m">zcopy.m</a>,
+          makes a copy of a complex vector;
+        </li>
+        <li>
+          <a href = "zdotc.m">zdotc.m</a>,
+          computes the conjugated scalar product of two complex vectors;
+        </li>
+        <li>
+          <a href = "zdotu.m">zdotu.m</a>,
+          computes the unconjugated scalar product of two complex vectors;
+        </li>
+        <li>
+          <a href = "zdrot.m">zdrot.m</a>,
+          applies a plane rotation to complex vectors.
+        </li>
+        <li>
+          <a href = "zdscal.m">zdscal.m</a>,
+          scale a complex vector by a real constant.
+        </li>
+        <li>
+          <a href = "zmach.m">zmach.m</a>,
+          computes machine parameters.
+        </li>
+        <li>
+          <a href = "zrotg.m">zrotg.m</a>,
+          constructs a complex Givens plane rotation.
+        </li>
+        <li>
+          <a href = "zscal.m">zscal.m</a>,
+          scales a complex vector by a constant.
+        </li>
+        <li>
+          <a href = "zsign1.m">zsign1.m</a>,
+          transfer of sign to the L1 magnitude of a complex number.
+        </li>
+        <li>
+          <a href = "zsign2.m">zsign2.m</a>,
+          transfer of sign to the L2 magnitude of a complex number.
+        </li>
+        <li>
+          <a href = "zswap.m">zswap.m</a>,
+          interchanges two complex vectors.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "blas1_z_test.m">blas1_z_test.m</a>,
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "blas1_z_test_output.txt">blas1_z_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "blas1_z_test01.m">blas1_z_test01.m</a>,
+          tests DZASUM;
+        </li>
+        <li>
+          <a href = "blas1_z_test02.m">blas1_z_test02.m</a>,
+          tests DZNRM2;
+        </li>
+        <li>
+          <a href = "blas1_z_test03.m">blas1_z_test03.m</a>,
+          tests IZAMAX;
+        </li>
+        <li>
+          <a href = "blas1_z_test04.m">blas1_z_test04.m</a>,
+          tests ZABS1;
+        </li>
+        <li>
+          <a href = "blas1_z_test05.m">blas1_z_test05.m</a>,
+          tests ZABS2;
+        </li>
+        <li>
+          <a href = "blas1_z_test06.m">blas1_z_test06.m</a>,
+          tests ZAXPY;
+        </li>
+        <li>
+          <a href = "blas1_z_test07.m">blas1_z_test07.m</a>,
+          tests ZCOPY;
+        </li>
+        <li>
+          <a href = "blas1_z_test08.m">blas1_z_test08.m</a>,
+          tests ZDOTC;
+        </li>
+        <li>
+          <a href = "blas1_z_test09.m">blas1_z_test09.m</a>,
+          tests ZDOTU;
+        </li>
+        <li>
+          <a href = "blas1_z_test10.m">blas1_z_test10.m</a>,
+          tests ZDROT;
+        </li>
+        <li>
+          <a href = "blas1_z_test11.m">blas1_z_test11.m</a>,
+          tests ZDSCAL;
+        </li>
+        <li>
+          <a href = "blas1_z_test12.m">blas1_z_test12.m</a>,
+          tests ZMACH.
+        </li>
+        <li>
+          <a href = "blas1_z_test13.m">blas1_z_test13.m</a>,
+          tests ZROTG;
+        </li>
+        <li>
+          <a href = "blas1_z_test14.m">blas1_z_test14.m</a>,
+          tests ZSCAL;
+        </li>
+        <li>
+          <a href = "blas1_z_test15.m">blas1_z_test15.m</a>,
+          tests ZSIGN1;
+        </li>
+        <li>
+          <a href = "blas1_z_test16.m">blas1_z_test16.m</a>,
+          tests ZSIGN2;
+        </li>
+        <li>
+          <a href = "blas1_z_test17.m">blas1_z_test17.m</a>,
+          tests ZSWAP;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Utility Routines:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "c8_uniform_01.m">c8_uniform_01.m</a>,
+          returns a unit pseudorandom C8.
+        </li>
+        <li>
+          <a href = "lsame.m">lsame.m</a>,
+          returns .TRUE. if CA is the same letter as CB regardless of case.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "xerbla.m">xerbla.m</a>,
+          is an error handler for the LAPACK routines.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 June 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

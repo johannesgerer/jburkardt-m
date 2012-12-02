@@ -1,0 +1,256 @@
+<html>
+
+  <head>
+    <title>
+      VECTOR_MAGNITUDE_GRID - Vector Magnitude Contour Plot, Uniform Grid from Scattered Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      VECTOR_MAGNITUDE_GRID <br> 
+      Vector Magnitude Contour Plot,<br>
+      Uniform Grid from Scattered Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>VECTOR_MAGNITUDE_GRID</b>
+      is a MATLAB library which 
+      reads vector
+      data defined at possibly scattered points, creates an interpolating
+      function to the data, and evaluates that data on an even grid
+      to produce a contour plot of the vector magnitude.
+    </p>
+
+    <p>
+      The program is mainly a preprocessor for MATLAB's <b>contour</b>
+      routine.  It reads the (X,Y) coordinates of a set of points from 
+      a "node" file, and the corresponding vector values
+      from a "vector" file.  It uses MATLAB's <b>griddata</b> facility
+      to create an interpolatory function to the given data.
+      The interpolated function is then sampled on a regular grid,
+      and the data is used to produce a contour plot.
+    </p>
+
+    <p>
+      Both the node and vector files are simple "table" files whose
+      format is described online.
+    </p>
+
+    <p>
+      This program was written as a quick and convenient way to
+      view finite element data.  It can also be used for any situation
+      in which a collection of points and vectors are available.
+    </p>
+
+    <p>
+      However, a small "sin" is committed when we use this program
+      on finite element data, since we take only the node locations 
+      and vector values, but not the elements.  We simply use MATLAB's grid 
+      data feature which constructs a cubic spline interpolant to 
+      scattered data.  This is OK, and probably doesn't distort the 
+      data too much, but in fact, we are not actually viewing 
+      values of the finite element function, and there is no guarantee
+      that this surrogate function will actually satisfy the boundary
+      conditions or other characteristics of the finite element
+      function.
+    </p>
+
+    <p>
+      <b>VECTOR_MAGNITUDE_GRID</b> is based in part on a plotting routine
+      written by Professor Hyung-Chun Lee of Ajou University, Korea.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      The calling sequence is:
+      <blockquote><b>
+        vector_magnitude_grid ( node_file, vector_file, grid_num, contour_num )
+      </b></blockquote>
+      where
+      <dl>
+        <dt>
+          node_file
+        </dt>
+        <dd>
+          the name of the node file, which must be a quoted string;
+        </dd>
+        <dt>
+          vector_file
+        </dt>
+        <dd>
+          the name of the vector file, which must be a quoted string;
+        </dd>
+        <dt>
+          grid_num
+        </dt>
+        <dd>
+          the number of grid points to use in one direction.  This is
+          actually the number that will be used in the <i>longest</i>
+          dimension of the region.  A value of 10 is reasonable to start
+          with, which would result in 100 grid points if your region happens
+          to be a square.   The grid points don't show up directly in
+          your plot, but you should use enough so that the function
+          can be properly contoured.       
+        </dd>
+        <dt>
+          contour_num
+        </dt>
+        <dd>
+          the number of contour lines to draw.         
+        </dd>
+      </dl>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/direction_arrows/direction_arrows.html">
+      DIRECTION_ARROWS</a>, 
+      a MATLAB program which 
+      plots the velocity direction field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/direction_arrows_sequence/direction_arrows_sequence.html">
+      DIRECTION_ARROWS_SEQUENCE</a>, 
+      a MATLAB program which 
+      plots the velocity direction fields of many data files
+      with names that are numbered in sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>, 
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../f_src/vector_plot/vector_plot.html">
+      VECTOR_PLOT</a>, 
+      a FORTRAN90 program which 
+      can read an XY file
+      and a UV file and plot the velocity and velocity direction fields.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vector_stream_grid/vector_stream_grid.html">
+      VECTOR_STREAM_GRID</a>,
+      a MATLAB program which
+      reads node and vector data from a file, computes an interpolatory function,
+      evaluates on a uniform grid of points specified by the user,
+      and displays a streamline plot of the vector field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows/velocity_arrows.html">
+      VELOCITY_ARROWS</a>, 
+      a MATLAB program which
+      plots a velocity vector field.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_grid/velocity_arrows_grid.html">
+      VELOCITY_ARROWS_GRID</a>, 
+      a MATLAB program which
+      reads node and velocity data from a file, and using interpolation is
+      able to display a velocity vector field along any uniform grid
+      of points specified by the user.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_sequence/velocity_arrows_sequence.html">
+      VELOCITY_ARROWS_SEQUENCE</a>,
+      a MATLAB program which
+      can process a set of many data files
+      with names that are numbered in sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_sequence2/velocity_arrows_sequence2.html">
+      VELOCITY_ARROWS_SEQUENCE2</a>, 
+      a MATLAB program which
+      reads a single XYUV file of nodes
+      and velocities, plots the data and writes it to a PNG file,
+      and then repeats the process for the next file.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "vector_magnitude_grid.m">vector_magnitude_grid.m</a>, 
+          is the program;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>BIG_CAVITY</b> is a fluid flow problem involving an irregular
+      mesh of 8,185 nodes in a square region.  
+      <ul>
+        <li>
+          <a href = "nodes.txt">nodes.txt</a>, 
+          the coordinates of 8185 nodes.
+        </li>
+        <li>
+          <a href = "velocity.txt">velocity.txt</a>, 
+          the velocity at the nodes.
+        </li>
+        <li>
+          <a href = "magnitude_10x20.png">magnitude_10x20.png</a>, 
+          a PNG image of
+          the plot of the direction field on a 10x10 grid and
+          20 contour lines.
+        </li>
+        <li>
+          <a href = "magnitude_20x20.png">magnitude_20x20.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the plot of the direction field on a 20x20 grid
+          and 20 contour lines.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 October 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

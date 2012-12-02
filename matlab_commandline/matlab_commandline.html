@@ -1,0 +1,573 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_COMMANDLINE - Running MATLAB From a Unix Commandline
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_COMMANDLINE <br>
+      Running MATLAB From a Unix Commandline
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_COMMANDLINE</b> 
+      is a directory of MATLAB programs which 
+      illustrate how MATLAB can be used from the UNIX commandline,
+      rather than within the usual MATLAB command window.
+      There may be cases where this mode is more convenient (because
+      you know what you want MATLAB to do, and you don't want to interact)
+      or necessary (because you're logging into a remote system, and can't
+      get X-Windows set up properly to transmit a command window).
+    </p>
+
+    <p>
+      Some issues that immediately arise include:
+      <ul>
+        <li>
+          <i>Where is MATLAB?</i> <br>
+          (how should the program be invoked?)
+        </li>
+        <li>
+          <i>Where will MATLAB's input come from?</i> <br>
+          (how do we tell it what to do?)
+        </li>
+        <li>
+          <i>Where does MATLAB's output go?</i><br>
+          (where does the printed output go?)
+        </li>
+        <li>
+          <i>How does MATLAB know to stop?</i>
+        </li>
+        <li>
+          <i>Where is MATLAB's visual interface?</i> <br>
+         (how do we suppress the graphical interface?)
+        </li>
+        <li>
+          <i>Where is MATLAB's default directory?</i> <br>
+          (if files are read or written, where will that occur?)
+        </li>
+        <li>
+          <i>Where does MATLAB's graphical output go?</i> <br>
+          (what options allow us to create and save graphical information?)
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/f90_matlab/f90_matlab.html">
+      F90_MATLAB</a>
+      is a directory of FORTRAN90 programs which
+      issue calls to MATLAB to carry out an auxillary calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab/matlab.html">
+      MATLAB</a>
+      is a directory of MATLAB programs which
+      contains some examples of scripts and M-files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_c/matlab_c.html">
+      MATLAB_C</a>
+      is a directory of MATLAB and C programs which
+      illustrate how MATLAB can call a C function,
+      using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_condor/matlab_condor.html">
+      MATLAB_CONDOR</a>,
+      MATLAB programs which
+      illustrate how MATLAB can be run in batch mode using the CONDOR
+      queueing system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_f77/matlab_f77.html">
+      MATLAB_F77</a>
+      is a directory of MATLAB and FORTRAN77 programs which
+      illustrate how MATLAB can call a FORTAN77 function,
+      using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_movies/matlab_movies.html">
+      MATLAB_MOVIES</a>, 
+      examples of making movies using MATLAB;
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_os/matlab_os.html">
+      MATLAB_OS</a>, 
+      examples of how the <b>system</b> command can be used to allow MATLAB
+      to issue commands to the computer operating system (UNIX or DOS);
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Duane Hanselman, Bruce Littlefield,<br>
+          Mastering MATLAB 7,<br>
+          Pearson Prentice Hall, 2005,<br>
+          ISBN: 0-13-143018-1,<br>
+          LC: QA297.H2963.
+        </li>
+        <li>
+          The Mathworks,<br>
+          Using MATLAB, Version 6,<br>
+          The Mathworks, 2002.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Where is MATLAB?
+    </h3>
+
+    <p>
+      In order to run MATLAB, you probably simply type
+      <blockquote><code>
+        matlab
+      </code></blockquote>
+    </p>
+
+    <p>
+      However, this only happens because <b>matlab</b> is in your path,
+      that is, the executable program is in one of the directories that
+      the your login shell told the operating system to search.
+    </p>
+
+    <p>
+      When you want to run MATLAB in batch mode, you may need to specify
+      exactly where the MATLAB executable can be found.  (This might not
+      be necessary if you've set up your path carefully, but it's good to
+      know in any case.)  To identify exactly where the executable is,
+      type
+      <blockquote><code>
+        which matlab
+      </code></blockquote>
+    </p>
+
+    <p>
+      The response should be something like:
+      <blockquote><code>
+        /usr/local/bin/matlab
+      </code></blockquote>
+      This is the "full path name" of MATLAB on your machine.  If you
+      start up MATLAB with this specification, the operating system will
+      never return a complaint like "command not found".
+    </p>
+
+    <h3 align = "center">
+      Where is MATLAB's Input?
+    </h3>
+
+    <p>
+      MATLAB expects the user to issue a series of commands.  MATLAB
+      users are familiar with the idea of MATLAB "script" files, which
+      are simply text files containing a series of commands to MATLAB
+      that could have been entered interactively.  A script file typically
+      has a ".m" filename extension, such as "power_table.m".  
+    </p>
+
+    <p>
+      The file <i>power_table.m</i> might consist simply of a computation of a table
+      of squares and cubes, as follows:
+      <pre><code>
+        fprintf ( 1, '\n' );
+        fprintf ( 1, '           N   N-squared     N-cubed\n' );
+        fprintf ( 1, '\n' );
+        for i = 1 : 10
+          fprintf ( 1, '  %10d  %10d  %10d\n', i, i^2, i^3 );
+        end
+      </code></pre>
+    </p>
+
+    <p>
+      During an interactive
+      session with MATLAB, the commands in the script are executed simply
+      by invoking the script file's name:
+      <blockquote><code>
+        &gt;&gt; power_table
+      </code></blockquote>
+    </p>
+
+    <p>
+      <pre><code>
+           N   N-squared     N-cubed
+
+           1           1           1
+           2           4           8
+           3           9          27
+           4          16          64
+           5          25         125
+           6          36         216
+           7          49         343
+           8          64         512
+           9          81         729
+          10         100        1000
+      &gt;&gt;
+      </code></pre>
+    </p>
+
+    <p>
+      You might suspect that part of the technique for running MATLAB
+      in batch mode will be to redirect MATLAB's input stream to
+      the M-file we have created, as in
+      <blockquote><code>
+        /usr/local/bin/matlab < power_table.m
+      </code></blockquote>
+      This is indeed part of the solution.
+      Note, however, that when we ran the M-file interactively, that even after
+      MATLAB carried out all the input commands in power_table.m, it still
+      expected more input.  If we're not careful, MATLAB will simply
+      continue to run, expecting more input from us.
+    </p>
+
+    <p>
+      The key to using MATLAB in batch mode is this idea of an
+      M-file.  Presumably, though, the actual computation we want to
+      carry out is more complicated than this simple example.  We must
+      prepare an appropriate M-file that completely defines this
+      calculation, that is, that instructs MATLAB on all the tasks
+      we need it to do, including where to find other input files,
+      what to name the output files, and so on, all without any chance
+      of interactive correction by us.  As you can imagine, this can
+      take some thought and patience.
+    </p>
+
+    <p>
+      This means that we will need to know precisely some things we often
+      don't worry about, such as what our default directory will be,
+      how we can create graphics, and how we can terminate the session
+      with MATLAB.
+    </p>
+
+    <h3 align = "center">
+      Where does MATLAB's output go?
+    </h3>
+
+    <p>
+      If you simply issue the command
+      <blockquote><code>
+        /usr/local/bin/matlab < power_table.m
+      </code></blockquote>
+      then MATLAB starts up OK, and it knows where to get its output.
+    </p>
+
+    </p>
+      Of course there's output from these commands, and it has to go
+      somewhere.  In fact, it goes straight to
+      standard output - in this case, to the user terminal.  So
+      if you issue this command, you should see the table
+      of powers printed out.  That's fine for a test, but probably not
+      what you want for your big batch computation!
+    </p>
+
+    <p>
+      Of course we know what to do - simply redirect the standard output
+      (MATLAB's responses, that is) to a file:
+      <blockquote><code>
+        /usr/local/bin/matlab < power_table.m > power_table_output.txt
+      </code></blockquote>
+    </p>
+
+    <p>
+      This seems logical enough, but if you issue this command, you'll
+      probably note that the program never seems to terminate.  You may
+      have to type CONTROL-C to kill it, and you may not actually have
+      any output in the output file.  That's because MATLAB, after reading
+      all the input in <i>power_table.m</i>, doesn't terminate, it just
+      waits patiently for you, just as it would in interactive mode.
+    </p>
+
+    <p>
+      We need to tell MATLAB when it's time to die!
+    </p>
+
+    <h3 align = "center">
+      How Does MATLAB Know to Stop?
+    </h3>
+
+    <p>
+      When you want to end an interactive MATLAB session, you probably
+      go up to a pull-down menu and select <b>QUIT</b>.  However, we'll
+      have no access to menus in a batch job.  Instead, to get MATLAB to
+      terminate the session, we need to use the <b>exit</b> command.
+    </p>
+
+    <p>
+      So if we add an <b>exit</b> statement as the last line of our
+      <i>power_table.m</i> script, we can run it as follows:
+      <blockquote><code>
+        /usr/local/bin/matlab < power_table.m > power_table_output.txt
+      </code></blockquote>
+    </p>
+
+    <p>
+      It should be the case that this program begins, runs, and terminates,
+      all in an orderly fashion.  The output file includes our desired 
+      results (plus some other junk).
+      <pre><code>
+
+                              < M A T L A B >
+                  Copyright 1984-2006 The MathWorks, Inc.
+                         Version 7.3.0.298 (R2006b)
+                              August 03, 2006
+ 
+  To get started, type one of these: helpwin, helpdesk, or demo.
+  For product information, visit www.mathworks.com.
+ 
+>> >> >> >> >> >> >> >> >> >> >> 
+>>            N   N-squared     N-cubed
+>> 
+>>            1           1           1
+           2           4           8
+           3           9          27
+           4          16          64
+           5          25         125
+           6          36         216
+           7          49         343
+           8          64         512
+           9          81         729
+          10         100        1000
+>> >> 
+      </pre></code>
+    </p>
+
+    <p>
+      However, you probably also noticed, after you issued the command,
+      that a MATLAB X-Window showed up, with the MATLAB logo.  This is
+      because MATLAB doesn't quite realize that we're only interested in
+      a batch session.  It's establishing an X-Window connection to the
+      current display.  For now, this is a minor annoyance, but we'll
+      actually want to suppress this behavior entirely.
+    </p>
+
+    <h3 align = "center">
+      Where is MATLAB's visual interface?
+    </h3>
+
+    <p>
+      On a UNIX system, MATLAB uses the X-Windows Interface to interact
+      with the user.  In a batch execution, this communication is not
+      necessary.  
+    </p>
+
+    <p>
+      We don't need the initial "splash" which displays the MATLAB logo.
+      We can turn this off with the <b>-nosplash</b> option.
+    </p>
+
+    <p>
+      We also don't want the interactive menu window to be
+      set up, which can be suppressed with the <b>-nodisplay</b> option 
+    </p>
+
+    <p>
+      Now our statement to run a batch job looks like this:
+      <blockquote><code>
+        /usr/local/bin/matlab -nosplash -nodisplay < power_table.m > power_table_output.txt
+      </code></blockquote>
+    </p>
+
+    <h3 align = "center">
+      Where is MATLAB's default directory?
+    </h3>
+
+    <p>
+      When you use MATLAB as a simple calculator, you may not care
+      that MATLAB defines a working directory, which is the default location
+      where files will be created, and where certain things like user
+      M-files will be looked for.
+    </p>
+
+    <p>
+      If you have used M-files, you know that the easiest way to access them
+      is to "move" MATLAB's current working directory to the directory 
+      containing your M-files; of course, you could also modify MATLAB's
+      "path", or even write out the full directory information needed to
+      find the file you are referring to.
+    </p>
+
+    <p>
+      When using MATLAB in batch, however, you'll probably need to know
+      <ul>
+        <li>
+          where MATLAB sets its default working directory.
+        </li>
+        <li>
+          how to change the default working directory.
+        </li>
+        <li>
+          how to change the working directory at any time.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      To find out where MATLAB sets its default working directory,
+      simply start the program up in interactive mode, and issue the
+      command <b>pwd</b>.  This directory is the same place that your
+      MATLAB batch jobs will start out in.
+    </p>
+
+    <p>
+      To change the default working directory (once and for all),
+      you need to create a file called <i>startup.m</i> with the
+      appropriate command, and place this file somewhere in the
+      MATLAB path (which you may or may not be able to do!).
+    </p>
+
+    <p>
+      The appropriate command to put in <i>startup.m</i> is
+      simply a <b>cd</b> command that moves to the directory
+      where you want to work.
+      <blockquote><code>
+        cd /Users/burkardt/public_html/m_src/matlab_batch
+      </code></blockquote>
+      make sure
+      that it is placed somewhere in the MATLAB path.
+    </p>
+
+    <p>
+      If the <i>startup.m</i> file cannot be used to reset the
+      default initial working directory, you just have to insert
+      a similar <b>cd</b> command in the main M-file that you want to 
+      execute in batch.  When you explicitly move MATLAB's working
+      directory, you gain the ability to easily access all the M-files in
+      that directory, and to know how to access files you wish to
+      read or write.
+    </p>
+
+    <h3>
+      Where does MATLAB's graphical output go?
+    </h3>
+
+    <p>
+      Despite the fact that we've suppressed the visual interface interface
+      to MATLAB, we can still generate graphics...we won't see them of course,
+      unless we are careful to save them to files.
+    </p>
+
+    <p>
+      Perhaps the simplest example of a MATLAB graphics command is the
+      basic <b>plot(x,y)</b> command that makes a line plot of data.
+      So now let us suppose that our M-file generates some data,
+      as before, but rather than printing it, or writing it to a text
+      file, we wish to create a graphics file using the <b>plot</b> command.
+    </p>
+
+    <p>
+      One way to do this is simply to follow the <b>plot</b> command by
+      a version of the <b>print</b> command that "prints" the image
+      to a graphics file:
+      <pre><code>
+        print -dpng 'power_plot.png';
+      </code></pre>
+      Here the <b>-dpng</b> switch specifies that we wish to create
+      a PNG graphics file, and the second argument is simply the name
+      of the file to be created.   The graphics file created will be
+      stored in the current working directory.
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>POWER_TABLE</b> is an example in which we simply want to print a
+      table of powers of integers.
+      <ul>
+        <li>
+          <a href = "power_table.m">power_table.m</a>, 
+          is a MATLAB M file which carries out the commands, and is
+          terminated by an <b>exit</b> command, so it is appropriate for
+          batch use.
+        </li>
+        <li>
+          <a href = "power_table_output.txt">power_table_output.txt</a>
+          is the output file from the simple batch invocation:
+          <blockquote><code>
+            /usr/local/bin/matlab -nosplash -nodisplay < power_table.m > power_table_output.txt
+          </code></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>POWER_WRITE</b> is similar to <b>POWER_TABLE</b> except that the
+      table of integer powers is written to a file.
+      <ul>
+        <li>
+          <a href = "power_write.m">power_write.m</a>, 
+          is a MATLAB M file which writes a table to a file.
+        </li>
+        <li>
+          <a href = "power_write.txt">power_write.txt</a>, 
+          is the file created by the program.
+        </li>
+        <li>
+          <a href = "power_write_output.txt">power_write_output.txt</a>
+          is the output file from the simple batch invocation:
+          <blockquote><code>
+            /usr/local/bin/matlab -nosplash -nodisplay < power_write.m > power_write_output.txt
+          </code></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>POWER_PLOT</b> is similar to <b>POWER_TABLE</b> except that the
+      data is (X,Y) data, with X evenly spaced and Y randomized, and we
+      wish to plot the data, and export it as a PNG graphics file.
+      <ul>
+        <li>
+          <a href = "power_plot.m">power_plot.m</a>, 
+          is a MATLAB M file which creates the data, plots it and exports it.
+        </li>
+        <li>
+          <a href = "power_plot.png">power_plot.png</a>, 
+          is the PNG graphics file created by the program.
+        </li>
+        <li>
+          <a href = "power_plot_output.txt">power_plot_output.txt</a>
+          is the output file from the simple batch invocation:
+          <blockquote><code>
+            /usr/local/bin/matlab -nosplash -nodisplay < power_plot.m > power_plot_output.txt
+          </code></blockquote>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 April 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

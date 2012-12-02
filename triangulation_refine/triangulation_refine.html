@@ -1,0 +1,462 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_REFINE - Refine a Triangulation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_REFINE <br> Refine a Triangulation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_REFINE</b> 
+      is a MATLAB program which 
+      reads information 
+      describing a triangulation of a set of points and creates
+      a refined triangulation.
+    </p>
+
+    <p>
+      The refined triangulation is created by dividing each triangle
+      into four similar subtriangles.  The mesh size parameter <b>h</b>
+      will be halved by such a procedure.  If the input triangulation
+      is Delaunay, then so will be the output triangulation.
+    </p>
+
+    <p>
+      The program can handle triangulations that use 3 or 6 nodes
+      per triangle.
+    </p>
+
+    <p> 
+      The input and output files use the simple 
+      <a href = "../../data/table/table.html">TABLE format</a>;
+      comment lines begin with a "#" character.  Otherwise, each line
+      of the file contains one set of information, either the coordinates
+      of a node (for a node file), or the indices of nodes that make up
+      a triangle, (for a triangle file).
+    </p>
+
+    <p> 
+      The input file <i>prefix</i>_nodes.txt contains the node information
+      for the triangulation.  Each data line contains the X and 
+      Y coordinates of a single node.
+    </p>
+
+    <p> 
+      The input file <i>prefix</i>_elements.txt contains the triangle information
+      for the triangulation.  Each line contains the indices of 3 or 6
+      nodes that form a triangle.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_refine</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common filename prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt contains the node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt contains the element definitions.
+        </li>
+        <li>
+          <i>'prefix'</i>_ref_nodes.txt is the refined node file;
+        </li>
+        <li>
+          <i>'prefix'</i>_ref_elements.txt is the refined element fle.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_REFINE</b> is available in
+      <a href = "../../cpp_src/triangulation_rcm/triangulation_rcm.html">a C++ version</a> and
+      <a href = "../../f_src/triangulation_rcm/triangulation_rcm.html">a FORTRAN90 version</a> and
+.     <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      a data format which
+      is used for the input and output files.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>,
+      a FORTRAN90 program which
+      can read a file of point coordinates and construct the
+      Delaunay triangulation for that set of points.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>, 
+      a C program which
+      computes a triangulation of a geometric region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which 
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      a MATLAB program which 
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which 
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>, 
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>, 
+      a MATLAB program which 
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>, 
+      a MATLAB program which
+      reads data defining a 3-node triangulation and generates
+      midside nodes and writes out the corresponding 6-node triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>, 
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>, 
+      a data directory 
+      which contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>, 
+      a data directory which 
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_q2l/triangulation_q2l.html">
+      TRIANGULATION_Q2L</a>, 
+      a MATLAB program which
+      reads data defining a 6-node triangulation, and subdivides
+      each triangle into 4 3-node triangles, writing the resulting
+      triangulation to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>, 
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>, 
+      a MATLAB program which
+      reads data defining a triangulation and computes a number
+      of quality measures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines an ordering
+      of the nodes that will reduce the bandwidth of the adjacency
+      matrix, and writes the new triangulation information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>, 
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars, 
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_refine.m">triangulation_refine.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>BOX3</b> is an example of the refinement of a 
+      3-node triangulation of a rectangular box.
+      <ul>
+        <li>
+          <a href = "box3_nodes.txt">box3_nodes.txt</a>,
+          the nodes for a 3-node triangulation.
+        </li>
+        <li>
+          <a href = "box3_elements.txt">box3_elements.txt</a>,
+          the triangles for an order 3 triangulation.
+        </li>
+        <li>
+          <a href = "box3.png">box3.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "box3_ref_nodes.txt">box3_ref_nodes.txt</a>,
+          the nodes for the refined triangulation.
+        </li>
+        <li>
+          <a href = "box3_ref_elements.txt">
+          box3_ref_elements.txt</a>,
+          the triangles for the refined triangulation.
+        </li>
+        <li>
+          <a href = "box3_ref.png">
+          box3_ref.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the refined triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "box3_output.txt">
+          box3_output.txt</a>,
+          output printed by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>IRREG6</b> is an example of the refinement of a 
+      6-node triangulation of an irregular region with a hole:
+      <ul>
+        <li>
+          <a href = "irreg6_nodes.txt">irreg6_nodes.txt</a>,
+          the nodes for a 6-node triangulation.
+        </li>
+        <li>
+          <a href = "irreg6_elements.txt">irreg6_elements.txt</a>,
+          the triangles for an order 6 triangulation.
+        </li>
+        <li>
+          <a href = "irreg6.png">irreg6.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "irreg6_ref_nodes.txt">irreg6_ref_nodes.txt</a>,
+          the nodes for the refined triangulation.
+        </li>
+        <li>
+          <a href = "irreg6_ref_elements.txt">
+          irreg6_ref_elements.txt</a>,
+          the triangles for the refined triangulation.
+        </li>
+        <li>
+          <a href = "irreg6_ref.png">
+          irreg6_ref.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the refined triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "irreg6_output.txt">
+          irreg6_output.txt</a>,
+          output printed by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HOUSE6</b> is an example of the refinement of a 
+      simple 6-node triangulation of a "house" diagram that involved
+      3 triangles.
+      <ul>
+        <li>
+          <a href = "house6_nodes.txt">house6_nodes.txt</a>,
+          the nodes for a 6-node triangulation.
+        </li>
+        <li>
+          <a href = "house6_elements.txt">house6_elements.txt</a>,
+          the triangles for an order 6 triangulation.
+        </li>
+        <li>
+          <a href = "house6.png">house6.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "house6_ref_nodes.txt">house6_ref_nodes.txt</a>,
+          the nodes for the refined triangulation.
+        </li>
+        <li>
+          <a href = "house6_ref_elements.txt">
+          house6_ref_elements.txt</a>,
+          the triangles for the refined triangulation.
+        </li>
+        <li>
+          <a href = "house6_ref.png">
+          house6_ref.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the refined triangulation, created by
+          <a href = "../triangulation_plot/triangulation_plot.html">
+          TRIANGULATION_PLOT</a>.
+        </li>
+        <li>
+          <a href = "house6_output.txt">
+          house6_output.txt</a>,
+          output printed by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

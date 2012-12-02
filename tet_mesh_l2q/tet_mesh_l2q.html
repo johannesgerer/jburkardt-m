@@ -1,0 +1,350 @@
+<html>
+
+  <head>
+    <title>
+      TET_MESH_L2Q - 10-Node Tet Mesh from 4-Node Tet Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TET_MESH_L2Q <br> 10-Node Tet Mesh <br> from <br> 4-Node Tet Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TET_MESH_L2Q</b>
+      is a MATLAB program which
+      converts a 4-node tetrahedral mesh ("tet mesh") into a 10-node tet mesh.
+    </p>
+
+    <p>
+      In particular, <b>TET_MESH_L2Q</b> reads information
+      describing a set of 3D points, and a 4 node ("linear")
+      tet mesh of those points.  It creates a "quadratic" tet
+      mesh, which has the same number of tetrahedrons, but in
+      which each tetrahedron is defined by 10 nodes.  In the process,
+      it adds just enough nodes, at the midsides of the edges of
+      the original mesh, to define the new mesh.  The data defining
+      the new mesh is written out to files for further use.
+    </p>
+
+    <p>
+      The refinement of a single tetrahedron is easy.  Every pair
+      of nodes generates a new node whose location is the average of
+      the locations of the original two nodes.  The problem is that
+      many tetrahedrons may share the same edge.  The new node needs
+      to be generated exactly once, and assigned a unique index, which
+      all the tetrahedrons will share.  The tricky part of this calculation
+      is thus figuring out whether it is time to generate a new node, or
+      whether the node has already been generated, in which case the
+      appropriate index must be retrieved.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tet_mesh_l2q</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt contains the node definitions;
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt contains the element definitions;
+        </li>
+        <li>
+          <i>'prefix'</i>_l2q_nodes.txt contains the new node definitions;
+        </li>
+        <li>
+          <i>'prefix'</i>_l2q_elements.txt contains the new element definitions;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The input and output files use the simple TABLE format;
+      comment lines begin with a "#" character.  Otherwise, each line
+      of the file contains one set of information, either the coordinates
+      of a node (for a node file), or the indices of nodes that make up
+      a tetrahedron, (for a tetrahedron file).
+    </p>
+
+    <p>
+      The input file <i>prefix_nodes.txt</i> contains the coordinate information
+      for the 4-node tet mesh.  Each data line contains the X and
+      Y coordinates of a single node.
+    </p>
+
+    <p>
+      The input file <i>prefix_elements.txt</i> contains the tetrahedron information
+      for the 4-node tet mesh.  Each data line contains the indices
+      of four nodes that form a tetrahedron.
+    </p>
+
+    <p>
+      The output file <i>prefix_l2q_nodes.txt</i> contains the coordinate information
+      for the 10-node tet mesh.  The data lines begin with the node
+      information from <i>nodes.txt</i>, followed by the coordinates of
+      the new nodes.
+    </p>
+
+    <p>
+      The output file <i>prefix_l2q_elements.txt</i> contains the tetrahedron
+      information for the 10-node tet mesh.  There are exactly
+      as many tetrahedrons as before, but now each tetrahedron uses 10 nodes.
+      Each line of the file contains the indices of 10 nodes that form the
+      tetrahedron, listed in a particular order.  The first four
+      node indices are the same as for the linear tet mesh.  The next six
+      node indices may be thought of as being obtained as averages of
+      pairs of the first four nodes.  Symbolically, this may be thought of as:
+      <pre>
+        1  2  3  4 (1+2) (1+3) (1+4) (2+3) (2+4) (3+4)
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TET_MESH_L2Q</b> is available in
+      <a href = "../../cpp_src/tet_mesh_l2q/tet_mesh_l2q.html">a C++ version</a> and
+      <a href = "../../f_src/tet_mesh_l2q/tet_mesh_l2q.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tet_mesh_l2q/tet_mesh_l2q.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_tet_mesh/cvt_tet_mesh.html">
+      CVT_TET_MESH</a>,
+      a FORTRAN90 library which
+      uses CVT methods to compute a tet mesh in a region.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_tet_mesh/table_tet_mesh.html">
+      TABLE_TET_MESH</a>,
+      a FORTRAN90 program which
+      can compute the tet mesh
+      for a given set of points.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_tet_mesh/test_tet_mesh.html">
+      TEST_TET_MESH</a>,
+      a FORTRAN90 library which
+      defines a few test regions for the generation
+      of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      includes a variety of routines for working
+      with tetrahedral meshes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_boundary/tet_mesh_boundary.html">
+      TET_MESH_BOUNDARY</a>,
+      a MATLAB program which
+      returns the nodes and faces of the boundary of a tetrahedral mesh,
+      which themselves form a 3D triangular mesh or "TRI_SURFACE".
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads a tet mesh and displays the
+      nodes and edges using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      TET_MESH_ORDER4</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 4 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order10/tet_mesh_order10.html">
+      TET_MESH_ORDER10</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 10 elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_q2l/tet_mesh_q2l.html">
+      TET_MESH_Q2L</a>,
+      a MATLAB program which
+      takes a 10-node tet mesh and makes
+      a 4-node tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_quality/tet_mesh_quality.html">
+      TET_MESH_QUALITY</a>,
+      a MATLAB program which
+      takes a 4-node tet mesh and computes
+      the "quality" of the mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_rcm/tet_mesh_rcm.html">
+      TET_MESH_RCM</a>,
+      a MATLAB program which
+      takes a tet mesh and
+      relabels the nodes to reduce the bandwidth of the
+      corresponding adjacency matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_refine/tet_mesh_refine.html">
+      TET_MESH_REFINE</a>,
+      a MATLAB program which
+      can refine a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a MATLAB program which
+      computes the tetrahedral adjacency information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_volumes/tet_mesh_volumes.html">
+      TET_MESH_VOLUMES</a>,
+      a MATLAB program which
+      computes the volume of each tetrahedron in a tet mesh;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          ISBN: 0-521-79309-2,<br>
+          LC: QA377.E36.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, Number 5, 1991, pages 325-331.
+        </li>
+        <li>
+          Anwei Liu, Barry Joe,<br>
+          Quality Local Refinement of Tetrahedral Meshes Based
+          on 8-Subtetrahedron Subdivision,<br>
+          Mathematics of Computation,<br>
+          Volume 65, Number 215, July 1996, pages 1183-1200.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tet_mesh_l2q.m">tet_mesh_l2q.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mesh_nodes.txt">mesh_nodes.txt</a>,
+          the nodes for the 4-node tet mesh.
+        </li>
+        <li>
+          <a href = "mesh_tetras.txt">mesh_tetras.txt</a>,
+          the tetras for the 4-node tet mesh.
+        </li>
+        <li>
+          <a href = "mesh_l2q_nodes.txt">mesh_l2q_nodes.txt</a>,
+          the nodes for the 10-node tet mesh.
+        </li>
+        <li>
+          <a href = "mesh_l2q_elements.txt">mesh_l2q_elements.txt</a>,
+          the tetras for the 10-node tet mesh.
+        </li>
+        <li>
+          <a href = "mesh_output.txt">mesh_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

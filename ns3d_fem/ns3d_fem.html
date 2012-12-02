@@ -1,0 +1,368 @@
+<html>
+
+  <head>
+    <title>
+      NS3D_FEM - Steady Navier Stokes Equations in 3D - Finite Element Solution
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      NS3D_FEM <br> Steady Navier Stokes Equations in 3D <br> Finite Element Solution
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NS3D_FEM</b>
+      is a MATLAB program which
+      sets up and solves a finite
+      element formulation of the steady 3D Navier Stokes equations in an
+      arbitrary geometry defined by the user,
+      by Jeff Borggaard.
+    </p>
+
+    <p>
+      The user defines the geometry as a collection of tetrahedrons.  These
+      tetrahedrons may be <i>linear</i> (using four nodes) or <i>quadratic</i>
+      (using ten nodes, which are the four vertices and the six midside nodes).
+    </p>
+
+    <h3 align = "center">
+      Graphics Options:
+    </h3>
+
+    <p>
+      The data from the program can be written out to a graphics file suitable
+      for use with a visualization program.  This is done by "turning on" the
+      appropriate call in <b>steady_navierstokes_3d.m</b>  There are currently
+      several functions that can be called, to make an output file of various types:
+      <ul>
+        <li>
+          <b>threed_to_tecplot</b> creates an output file for TECPLOT.
+        </li>
+        <li>
+          <b>threed_to_vtk</b> creates a "legacy" (old style)
+          VTK output file for PARAVIEW.
+        </li>
+        <li>
+          <b>threed_to_vtu</b> creates a modern (XML-based)
+          VTU output file for PARAVIEW.
+        </li>
+        <li>
+          <b>threed_to_vu</b> creates an output file for VU.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Information about TECPLOT is available at
+      <a href = "http://www.tecplot.com/">
+                 http://www.tecplot.com/</a>.
+    </p>
+
+    <p>
+      Information about PARAVIEW is available at
+      <a href = "http://www.paraview.org/">
+                 http://www.paraview.org/ </a>.
+    </p>
+
+    <p>
+      Information about VU is available at
+      <a href = "http://www.invisu.ca/e/index.php">
+                 http://www.invisu.ca/e/index.php</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which
+      contains examples of TEC files,
+      TECPLOT files used for storing 2D or 3D graphics with attributes;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">
+      TET_MESH</a>,
+      a MATLAB library which
+      carries out various operations on tetrahedral meshes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a MATLAB program which
+      reads information about a tet mesh and writes out a list of the
+      tetrahedrons that are adjacent to a given tetrahedron;
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed/threed.html">
+      THREED</a>,
+      a MATLAB library which
+      contains functions useful for 3D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_tecplot/threed_to_tecplot.html">
+      THREED_TO_TECPLOT</a>,
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program
+      and writes it to a PLT file for postprocessing by TECPLOT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_vtk/threed_to_vtk.html">
+      THREED_TO_VTK</a>,
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program
+      and writes it to a VTK "legacy" file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_vtu/threed_to_vtu.html">
+      THREED_TO_VTU</a>,
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program
+      and writes it to a VTK unstructured grid file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_vu/threed_to_vu.html">
+      THREED_TO_VU</a>,
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program
+      and writes it to a file for postprocessing by VU.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms866/toms866.html">
+      TOMS866</a>,
+      a MATLAB library which
+      is the Incompressible Flow Iterative Solution Software;<br>
+      this library is commonly called <b>IFISS</b>;<br>
+      this is ACM TOMS algorithm 866.
+    </p>
+
+    <p>
+      <a href = "../../data/vtk/vtk.html">
+      VTK</a>,
+      a data directory which
+      contains examples of VTK files,
+      an obsolete file format used by the Visual Toolkit, and which can be displayed
+      by the PARAVIEW program;
+    </p>
+
+    <p>
+      <a href = "../../data/vtu/vtu.html">
+      VTU</a>,
+      a data directory which
+      contains examples of VTU files,
+      a modern XML-based file format for unstructured grid data,
+      used by the Visual Toolkit, and which can be displayed
+      by the PARAVIEW program;
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      <b>NS3D_FEM</b> was written by Jeff Borggaard, Mathematics Department,
+      Virginia Tech.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Max Gunzburger,<br>
+          Finite Element Methods for Viscous Incompressible Flows,<br>
+          A Guide to Theory, Practice, and Algorithms,<br>
+          Academic Press, 1989,<br>
+          ISBN: 0-12-307350-2,<br>
+          LC: TA357.G86.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "steady_navierstokes_3d.m">steady_navierstokes_3d.m</a>,
+          solves the steady incompressible 3D Navier Stokes equations.
+        </li>
+        <li>
+          <a href = "tet_mesh_boundary.m">tet_mesh_boundary.m</a>,
+          reads a tetrahedral mesh and neighbor information, and produces a
+          list of boundary edges and boundary nodes.
+        </li>
+        <li>
+          <a href = "threed_bilinear.m">threed_bilinear.m</a>,
+          integrates a bilinear quantity.
+        </li>
+        <li>
+          <a href = "threed_f_int.m">threed_f_int.m</a>,
+          integrates a function f(x) times a test function.
+        </li>
+        <li>
+          <a href = "threed_gauss.m">threed_gauss.m</a>,
+          calculates Gauss integration points for a tetrahedral element.
+        </li>
+        <li>
+          <a href = "threed_mesh.m">threed_mesh.m</a>,
+          creates a mesh for a rectangular domain, using linear or quadratic
+          tetrahedral elements.
+        </li>
+        <li>
+          <a href = "threed_shape.m">threed_shape.m</a>,
+          computes test functions and derivatives on a 3D element.
+        </li>
+        <li>
+          <a href = "threed_shapeiso.m">threed_shapeiso.m</a>,
+          computes test functions and derivatives on a 3D isoparametric element.
+        </li>
+        <li>
+          <a href = "../threed_to_tecplot/threed_to_tecplot.m">threed_to_tecplot.m</a>,
+          writes out a 3D finite element solution to a format readable by
+          the Tecplot flow visualization package.
+        </li>
+        <li>
+          <a href = "../threed_to_vtk/threed_to_vtk.m">threed_to_vtk.m</a>,
+          writes out a 3D finite element solution to the "legacy" VTK format,
+          (which has been superseded by the VTU format),
+          which can be read and displayed by the Paraview program.
+        </li>
+        <li>
+          <a href = "../threed_to_vtu/threed_to_vtu.m">threed_to_vtu.m</a>,
+          writes out a 3D finite element solution to the modern XML-based VTU format,
+          (the Visual Toolkit format for unstructured grid data),
+          which can be read and displayed by the Paraview program.
+        </li>
+        <li>
+          <a href = "../threed_to_vu/threed_to_vu.m">threed_to_vu.m</a>,
+          writes out a 3D finite element solution to a format readable by
+          the Vu flow visualization package.
+        </li>
+        <li>
+          <a href = "../threed_to_vtk/vtk_puvw_write.m">vtk_puvw_write.m</a>,
+          writes pressure and 3D velocity vectors to a "legacy" VTK unstructured grid file.
+        </li>
+        <li>
+          <a href = "../threed_to_vtu/vtu_puvw_write.m">vtu_puvw_write.m</a>,
+          writes pressure and 3D velocity vectors to a modern XML-based
+          VTU unstructured grid file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CASE1</b> is a built-in example, which can be run by the command
+      <pre>
+        steady_navierstokes_3d ( 1 )
+      </pre>
+      All data for this example is generated internally; no input files are needed.
+      <ul>
+        <li>
+          <a href = "case1_output.txt">case1_output.txt</a>, the printed output.
+        </li>
+        <li>
+          <a href = "case1_output.mat">case1_output.mat</a>, a MATLAB structure
+          which saves the values of X, E_CONN, U, V, W, and P.
+        </li>
+        <li>
+          <a href = "../threed_to_tecplot/case1_output.plt">case1_output.plt</a>,
+          computed data in a format
+          suitable for input to TECPLOT.
+        </li>
+        <li>
+          <a href = "../threed_to_vtk/case1.vtk">case1.vtk</a>,
+          computed (U,V,W) and P
+          data in a VTK "legacy" file format suitable for input to PARAVIEW.
+        </li>
+        <li>
+          <a href = "../threed_to_vtu/case1.vtu">case1.vtu</a>,
+          computed (U,V,W) and P
+          data in a VTU file suitable for input to PARAVIEW.
+        </li>
+        <li>
+          <a href = "../threed_to_vu/case1.vu">case1.vu</a>,
+          computed (U,V,W) and P
+          data in a VU file suitable for input to VU.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CASE2</b> is a built-in example, which can be run by the command
+      <pre>
+        steady_navierstokes_3d ( 2 )
+      </pre>
+      This example needs some large external input files.
+      <ul>
+        <li>
+          <a href = "sphere_mesh2rcm.node">sphere_mesh2rcm.node</a>,
+          an input data file specifying the node coordinates.
+        </li>
+        <li>
+          <a href = "sphere_mesh2rcm.elem">sphere_mesh2rcm.elem</a>,
+          an input data file specifying the nodes which make up each element.
+        </li>
+        <li>
+          <a href = "sphere_mesh2rcm.boundary">sphere_mesh2rcm.boundary</a>,
+          a data file specifying the boundary faces.
+        </li>
+        <li>
+          <a href = "case2_output.txt">case2_output.txt</a>, the printed output.
+        </li>
+        <li>
+          <a href = "../threed_to_tecplot/case2_output.plt">case2_output.plt</a>,
+          computed data in a format
+          suitable for input to TECPLOT.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 21 December 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

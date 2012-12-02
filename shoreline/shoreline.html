@@ -1,0 +1,259 @@
+<html>
+
+  <head>
+    <title>
+      SHORELINE - Triangulate the Domain where 0 <= F(X,Y)
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SHORELINE <br> Triangulate the Domain where 0 <= F(X,Y)
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SHORELINE</b>
+      is a MATLAB library which
+      tries to identify and triangulate the 2D domain over which some 
+      function F(X,Y) is nonnegative.
+    </p>
+
+    <p>
+      It does this by starting with a set of sample points, where the function is
+      evaluated.  Triangles are dropped from the triangulation if all 3 vertices 
+      have negative functions.  Triangles with 3 positive vertices are assumed
+      (to within the requested resolution) to be part of the region.  Therefore,
+      a more accurate answer can be sought by refining those triangles whose
+      vertices include both positive and negative values.
+    </p>
+
+    <p>
+      This results in a refined "shoreline" around the positive triangles.
+      The function is evaluated at the new nodes, and again the negative triangles
+      are dropped, the positive ones kept, and the intermediate triangles can
+      be further refined, if desired.
+    </p>
+
+    <p>
+      It is also possible to estimate the integral of some function g(x,y)
+      over the region implicitly defined by 0 <= f(x,y).
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contour_gradient/contour_gradient.html">
+      CONTOUR_GRADIENT</a>,
+      a MATLAB program which
+      displays contours and gradient vectors for a function f(x,y).
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>,
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shoreline2/shoreline2.html">
+      SHORELINE2</a>,
+      a MATLAB program which
+      tries to identify and triangulate the 2D domain over which some 
+      function f(x,y) is roughly zero.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms626/toms626.html">
+      TOMS626</a>,
+      a FORTRAN77 library which
+      creates a contour plot of data associated with a triangulated set of points;<br>
+      this is ACM TOMS algorithm 626.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes contour plot of scattered data, or of data defined on an order 3 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_plotc/twod_plotc.html">
+      TWOD_PLOTC</a>,
+      a MATLAB program which
+      makes a color contour plot of scalar data defined on a 2D finite element mesh,
+      by Jeff Borggaard.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "circular_normal_pdf.m">circular_normal_pdf.m</a>,
+          evaluates the Circular Normal PDF.
+        </li>
+        <li>
+          <a href = "cull_negative_triangles.m">cull_negative_triangles.m</a>,
+          removes from the triangulation those triangles for which all vertices
+          have a negative function value.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>,
+          writes an I4MAT to a file.
+        </li>
+        <li>
+          <a href = "product_grid.m">product_grid.m</a>,
+          samples a rectangle with a product grid.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT to a file.
+        </li>
+        <li>
+          <a href = "refine_compute.m">refine_compute.m</a>,
+          computes the refinement of a triangulation.
+        </li>
+        <li>
+          <a href = "refine_size.m">refine_size.m</a>,
+          determines the "size" of the refinement of a triangulation.
+        </li>
+        <li>
+          <a href = "shoreline.m">shoreline.m</a>,
+          traces out a triangulated region for which 0 <= F(X,Y).
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangulation_area.m">triangulation_area.m</a>,
+          returns the area of a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_quad.m">triangulation_quad.m</a>,
+          estimates the integral of a function over a triangulated region.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      A number of functions are available to define the F(X,Y):
+      <ul>
+        <li>
+          <a href = "annulus.m">annulus.m</a>, a function which is positive
+          between two off-centered circles.
+        </li>
+        <li>
+          <a href = "annulus.png">annulus.png</a>, 
+          an image of the triangulated region.
+        </li>
+        <li>
+          <a href = "bohach1.m">bohach1.m</a>, a function which is positive
+          at four roughly circular regions.
+        </li>
+        <li>
+          <a href = "bohach1.png">bohach1.png</a>, 
+          an image of the triangulated region.
+        </li>
+        <li>
+          <a href = "camel.m">camel.m</a>, a function which is positive
+          in a somewhat twisted region.
+        </li>
+        <li>
+          <a href = "camel.png">camel.png</a>, 
+          an image of the triangulated region.
+        </li>
+        <li>
+          <a href = "circle.m">circle.m</a>, a function which is positive
+          inside a circle.
+        </li>
+        <li>
+          <a href = "ellipse.m">ellipse.m</a>, a function which is positive
+          inside an ellipse.
+        </li>
+        <li>
+          <a href = "nannulus.m">nannulus.m</a>, a function which is positive
+          except between two off-centered circles.
+        </li>
+        <li>
+          <a href = "nannulus.png">nannulus.png</a>, 
+          an image of the triangulated region.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SHORELINE_TEST</b> simply uses <b>shoreline</b> with 1, 2, 3, and 4
+      refinement steps, comparing the estimates of the area of the region
+      for a centered circle, an off-center circle, a centered ellipse, and
+      a slanted ellipse.
+      <ul>
+        <li>
+          <a href = "shoreline_test.m">shoreline_test.m</a>, 
+          the test code.
+        </li>
+        <li>
+          <a href = "shoreline_test_output.txt">shoreline_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SHORELINE_INTEGRAL_TEST</b>  uses <b>shoreline</b> with 1, 2, 3, and 4
+      refinement steps to triangulate a region implicitly defined by 0 &lt; F(X,Y),
+      and then uses the resulting triangulation to estimate the integral over
+      that region of a circular Gaussian function, for a centered circle and
+      an off-center circle, with initial uniform grids of 11x11 and 21x21 points.
+      <ul>
+        <li>
+          <a href = "shoreline_integral_test.m">shoreline_integral_test.m</a>, 
+          the test code.
+        </li>
+        <li>
+          <a href = "shoreline_integral_test_output.txt">shoreline_integral_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 06 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

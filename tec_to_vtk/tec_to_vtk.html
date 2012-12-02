@@ -1,0 +1,202 @@
+<html>
+
+  <head>
+    <title>
+      TEC_TO_VTK - Convert a (particular) TECPLOT File to a set of VTK files
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEC_TO_VTK <br> Convert a (particular) TECPLOT File to a set of VTK files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEC_TO_VTK</b> 
+      is a MATLAB program which 
+      reads a TECPLOT graphics
+      file containing 80 images of the motion and deformation of a red blood cell,
+      and outputs 80 separate VTK unstructured grid files, which can be read into
+      PARAVIEW and animated.
+    </p>
+
+    <p>
+      The program was written to handle a single specific file.  Some parts of the
+      program might be useful for someone needing a similar kind of translation.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tec_to_vtk</b> ( )
+      </blockquote>
+      expects to read the TECPLOT ASCII file 'rbc.dat' and 
+      creates 'rbc_001.vtk' through 'rbc_080.vtk'.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/tec/tec.html">
+      TEC</a>,
+      a data directory which 
+      contains a description and examples
+      of the <b>TEC</b> graphics files used by TECPLOT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_io/tec_io.html">
+      TEC_IO</a> 
+      a MATLAB library which
+      can read or write a TEC file containing a finite element model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tec_to_fem/tec_to_fem.html">
+      TEC_TO_FEM</a>, 
+      a MATLAB program which
+      converts a TEC file into an FEM model.
+    </p>
+
+    <p>
+      <a href = "../../f_src/tec_to_obj/tec_to_obj.html">
+      TEC_TO_OBJ</a>, 
+      a FORTRAN90 program which 
+      can read a TECPLOT file describing a
+      surface in 3D composed of triangles or quadrilaterals, and write
+      an OBJ file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_vtk/threed_to_vtk.html">
+      THREED_TO_VTK</a>, 
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program 
+      and writes it to a VTK "legacy" file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_to_vtk/twod_to_vtk.html">
+      TWOD_TO_VTK</a>, 
+      a MATLAB program which
+      accepts computational data from a 2D finite element fluid flow program 
+      and writes it to a VTK "legacy" file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_to_vtu/twod_to_vtu.html">
+      TWOD_TO_VTU</a>, 
+      a MATLAB program which
+      accepts computational data from a 2D finite element fluid flow program 
+      and writes it to a VTK unstructured grid file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../data/vtk/vtk.html">
+      VTK</a>, 
+      a data directory which
+      contains examples of "legacy" (old style) VTK files,
+      a file format used by the Visual Toolkit, and which can be displayed
+      by the PARAVIEW program;
+    </p>
+
+    <p>
+      <a href = "../../f_src/vtk_io/vtk_io.html">
+      VTK_IO</a>, 
+      a FORTRAN90 library which
+      reads and writes files in the VTK format.
+    </p>
+
+    <p>
+      <a href = "../../data/vtu/vtu.html">
+      VTU</a>, 
+      a data directory which
+      contains examples of VTU files,
+      an XML-based file format used by the Visual Toolkit for unstructured grids, 
+      and which can be displayed by the PARAVIEW program;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tec_to_vtk.m">
+          tec_to_vtk.m</a> 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>RBC</b> is data defining 80 "snapshots" of the motion and deformation
+      of a red blood cell.  This data was originally stored in a TECPLOT file.
+      The tec_to_vtk program extracted 80 VTK files, and PARAVIEW turned that
+      into an animation.  (Actually, PARAVIEW turned it into an AVI animation
+      which my bonehead copy of QUICKTIME couldn't decode, so I had to idiotize
+      myself, and have PARAVIEW create 80 JPEG files, which QUICKTIME was then
+      able to turn into a MOV file.  Soon everything will be possible and 
+      nothing will work...)
+      <ul>
+        <li>
+          <a href = "rbc.dat">rbc.dat</a>, the original TECPLOT ASCII file;
+        </li>
+        <li>
+          <a href = "rbc.avi">rbc.avi</a>,
+          an AVI animation created by TECPLOT.
+        </li>
+        <li>
+          <a href = "rbc_001.vtk">rbc_001.vtk</a>,
+          the first VTK file created by tec_to_vtk.
+        </li>
+        <li>
+          <a href = "rbc_vtk.tar.gz">rbc_vtk.tar.gz</a>,
+          a GZIP'ed TAR file of all 80 VTK files.
+        </li>
+        <li>
+          <a href = "rbc.mov">rbc.mov</a>,
+          the MOV animation created by PARAVIEW.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

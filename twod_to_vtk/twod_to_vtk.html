@@ -1,0 +1,228 @@
+<html>
+
+  <head>
+    <title>
+      TWOD_TO_VTK - Write 2D Finite Element Data to VTK File
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TWOD_TO_VTK <br> Write 2D Finite Element Data to VTK File
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TWOD_TO_VTK</b>
+      is a MATLAB program which
+      takes a certain set of 2D finite element data
+      and writes it to a VTK "legacy" unstructured grid file for
+      postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      The finite element data is assumed to be given in terms of:
+      <ul>
+        <li>
+          the xy coordinates of a set of nodes;
+        </li>
+        <li>
+          the (1-based) indices of nodes that form triangular elements;
+        </li>
+        <li>
+          the values of U, V, and P at each node (velocity components
+          and pressure).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Since the VTK format expects 3D data, this program appends a 0 value
+      to coordinate and vector data, where appropriate.  It also changes
+      the triangular element definitions so that the node indices are 0-based.
+    </p>
+
+    <p>
+      The "legacy" VTK format is simply an older version of the VTK
+      graphics file format which has been widely used for some time
+      and hence is still popular despite the fact that a more modern
+      VTK format is now also available.
+    </p>
+
+    <p>
+      Information about PARAVIEW is available at
+      <a href = "http://www.paraview.org/">
+                 http://www.paraview.org/ </a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ns3d_fem/ns3d_fem.html">
+      NS3D_FEM</a>,
+      a MATLAB program which
+      sets up and solves a finite element formulation of the steady
+      incompressible 3D Navier Stokes equations on a user-defined geometry.
+      The program can output graphics files for TECPLOT, VU or the VTK format
+      used by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/threed_to_vtk/threed_to_vtk.html">
+      THREED_TO_VTK</a>,
+      a MATLAB program which
+      accepts computational data from a 3D finite element fluid flow program
+      and writes it to a VTK "legacy" file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod/twod.html">
+      TWOD</a>,
+      a MATLAB library which
+      contains functions useful for 2D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_to_vtu/twod_to_vtu.html">
+      TWOD_TO_VTU</a>,
+      a MATLAB program which
+      accepts computational data from a 2D finite element fluid flow program
+      and writes it to a VTK unstructured grid file for postprocessing by PARAVIEW.
+    </p>
+
+    <p>
+      <a href = "../../data/vtk/vtk.html">
+      VTK</a>,
+      a data directory which
+      contains examples of "legacy" (old style) VTK files,
+      a file format used by the Visual Toolkit, and which can be displayed
+      by the PARAVIEW program;
+    </p>
+
+    <p>
+      <a href = "../../f_src/vtk_io/vtk_io.html">
+      VTK_IO</a>,
+      a FORTRAN90 library which
+      reads and writes files in the VTK format.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Will Schroeder, Ken Martin, Bill Lorensen,<br>
+          The Visualization Toolkit,
+          An Object-Oriented Approach to 3D Graphics,<br>
+          Prentice Hall, 1998,<br>
+          ISBN: 0139546944,<br>
+          LC: QA76.64.S36.
+        </li>
+        <li>
+          Amy Henderson Squillacote,<br>
+          The ParaView Guide,<br>
+          Kitware Inc, 2007,<br>
+          ISBN13: 978-1-930934-21-4.
+        </li>
+        <li>
+          Will Schroeder, Ken Martin, Lisa Avila, Charles Law,<br>
+          The Visualization Toolkit User's Guide,<br>
+          Kitware Inc, May 2000,<br>
+          ISBN13: 978-1930934030.
+        </li>
+        <li>
+          <a href = "http://public.kitware.com/VTK/">
+                     http://public.kitware.com/VTK/</a>
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "twod_to_vtk.m">two_to_vtk.m</a>,
+          writes out a 2D finite element solution.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "twod_to_vtk_test.m">twod_to_vtk_test.m</a>,
+          a MATLAB function which runs a test of TWOD_TO_VTK.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CHANNEL</b> is finite element data associated with a
+      4 by 11 grid of points in a 3x10 rectangular channel, the
+      triangular elements formed from those nodes, and the velocity
+      and pressure of an associated Poiseuille flow solution.
+      <ul>
+        <li>
+          <a href = "channel_nodes.txt">channel_nodes.txt</a>,
+          the coordinates of the nodes;
+        </li>
+        <li>
+          <a href = "channel_elements.txt">channel_elements.txt</a>,
+          the element definitions;
+        </li>
+        <li>
+          <a href = "channel_values.txt">channel_values.txt</a>,
+          the values of U, V and P at each node.
+        </li>
+        <li>
+          <a href = "channel.vtk">channel.vtk</a>,
+          the legacy VTK file created from this data by the
+          TWOD_TO_VTK_TEST function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 20 December 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

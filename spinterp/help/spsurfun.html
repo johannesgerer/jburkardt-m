@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spsurfun :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spsurfun</h1>
+		  Evaluate the sparse grid interpolant at a single point.
+			<p>
+      <code>spsurfun</code> is provided for conveniece to be used as an alternative to <a href="spinterp.html"><code>spinterp</code></a>, where the point <code>Y</code> to be evaluated is given as a row or column vector. This functional form is often adopted by multivariate optimization algorithms in Matlab.
+			<p>
+      Note that this form allows the evaluation of the sparse grid interpolant at a single point only. Therefore, It is recommended to use <a href="spinterp.html"><code>spinterp</code></a> instead if multiple evaluations of the interpolant can be performed simultaneously.
+		<h2>Syntax</h2>
+			<code>IP = spsurfun(Y,Z)</code><br>
+			<code>[IP,IPGRAD] = spsurfun(Y,Z)</code><br>
+		<h2>Description</b></h2>
+		  <code>IP = spsurfun(Y,Z)</code> Computes the interpolated value IP at the single point <code>[Y1, ..., YD]</code> for the sparse grid interpolant <code>Z</code>.
+
+		<p>
+		  <code>[IP,IPGRAD] = spsurfun(...)</code> Computes the interpolated value <code>IP</code> and the gradient vector <code>IPGRAD</code>.
+		<p>
+      Two additional options are available with <code>spsurfun</code> that are set by adding a field to the structure <code>Z</code>:
+		  <ul>
+		    <li><code>selectOutput [ integer {1} ]</code> Set the output variable number if an interpolant with multiple output variables was constructed with <a href="spvals.html"><code>spvals</code></a>.
+        <li><code>continuousDerivatives [ 'on' | {'off'} ]</code> Enable augmented continuous derivatives for the Clenshaw-Curtis grid.   
+		  </ul>
+					<h2><a name="ex1">Examples</a></h2>
+      <p>The following code shows how to use <tt>spsurfun</tt>. Note that as opposed to the <tt>spinterp</tt> syntax, the <b>second</b> argument is the sparse grid interpolant, not the first one.
+      </p><pre class="codeinput">f = inline(<span class="string">'x.^2 + y.^2 - 2.*z'</span>);
+z = spvals(f,3,[],spset(<span class="string">'GridType'</span>,<span class="string">'Chebyshev'</span>));
+[ip,ipgrad] = spinterp(z, 0.5, 0.2, 0.2)
+[ip,ipgrad] = spsurfun([0.5, 0.2, 0.2], z)
+</pre><pre class="codeoutput">
+in =
+   -0.1100
+ipgrad = 
+    [3x1 double]
+ip =
+   -0.1100
+ipgrad =
+    1.0000
+    0.4000
+   -2.0000
+</pre><p>See the <a href="optimization.html">help page on sparse grid optimization</a> for an example where <tt>spsurfun</tt> is used with an optimization method from Mathwork's Optimization Toolbox.
+		<h2>See Also</h2>
+		  <a href="spvals.html"><code>spinterp</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

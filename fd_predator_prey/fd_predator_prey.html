@@ -1,0 +1,292 @@
+<html>
+
+  <head>
+    <title>
+      FD_PREDATOR_PREY - Finite Difference Solution of a Predator Prey ODE System
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD_PREDATOR_PREY <br> Finite Difference Solution of a Predator Prey ODE System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD_PREDATOR_PREY</b>
+      is a MATLAB program which
+      applies the finite difference method to estimate solutions of a
+      pair of ordinary differential equations that model the behavior of
+      a pair of predator and prey populations.
+    </p>
+
+    <p>
+      The physical system under consideration is a pair of animal populations.
+    </p>
+
+    <p>
+      The PREY reproduce rapidly; for each animal alive at the beginning of the
+      year, two more will be born by the end of the year.  The prey do not have
+      a natural death rate; instead, they only die by being eaten by the predator.
+      Every prey animal has 1 chance in 1000 of being eaten in a given year by
+      a given predator.
+    </p>
+
+    <p>
+      The PREDATORS only die of starvation, but this happens very quickly.
+      If unfed, a predator will tend to starve in about 1/10 of a year.
+      On the other hand, the predator reproduction rate is dependent on
+      eating prey, and the chances of this depend on the number of available prey.
+    </p>
+
+    <p>
+      The resulting differential equations can be written:
+      <pre>
+        PREY(0) = 5000
+        PRED(0) =  100
+
+        d PREY / dT =    2 * PREY(T) - 0.001 * PREY(T) * PRED(T)
+        d PRED / dT = - 10 * PRED(T) + 0.002 * PREY(T) * PRED(T)
+      </pre>
+      Here, the initial values (5000,100) are a somewhat arbitrary starting point.
+    </p>
+
+    <p>
+      The pair of ordinary differential equations that result have an interesting
+      behavior.  For certain choices of the interaction coefficients (such as
+      those given here), the populations of predator and prey will tend to
+      a periodic oscillation.  The two populations will be out of phase; the number
+      of prey will rise, then after a delay, the predators will rise as the prey
+      begins to fall, causing the predator population to crash again.
+    </p>
+
+    <p>
+      In this program, the pair of ODE's is solved with a simple finite difference
+      approximation using a fixed step size.  In general, this is NOT an efficient
+      or reliable way of solving differential equations.  However, this program is
+      intended to illustrate the ideas of finite difference approximation.
+    </p>
+
+    <p>
+      In particular, if we choose a fixed time step size DT, then a derivative
+      such as dPREY/dT is approximated by:
+      <pre>
+        d PREY / dT = approximately ( PREY(T+DT) - PREY(T) ) / DT
+      </pre>
+      which means that the first differential equation can be written as
+      <pre>
+        PREY(T+DT) = PREY(T) + DT * ( 2 * PREY(T) - 0.001 * PREY(T) * PRED(T) ).
+      </pre>
+    </p>
+
+    <p>
+      We can rewrite the equation for PRED as well.  Then, since we know the
+      values of PRED and PREY at time 0, we can use these finite difference
+      equations to estimate the values of PRED and PREY at time DT.  These values
+      can be used to get estimates at time 2*DT, and so on.  To get from time
+      T_START = 0 to time T_STOP = 5, we simply take STEP_NUM steps each of size
+      <pre>
+        DT = ( T_STOP - T_START ) / STEP_NUM
+      </pre>
+    </p>
+
+    <p>
+      Because finite differences are only an approximation to derivatives, this
+      process only produces estimates of the solution.  And these estimates tend
+      to become more inaccurate for large values of time.  Usually, we can reduce
+      this error by decreasing DT and taking more, smaller time steps.
+    </p>
+
+    <p>
+      In this example, for instance, taking just 100 steps gives nonsensical
+      answers.  Using STEP_NUM = 1000 gives an approximate solution that seems
+      to have the right kind of oscillatory behavior, except that the amplitude
+      of the waves increases with each repetition.  Using 10000 steps, the
+      approximation begins to become accurate enough that we can see that the
+      waves seem to have a fixed period and amplitude.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fd_predator_prey</b> ( <i>[ prey, pred ]</i>, <i>[t0, tmax]</i>, <i>step_num</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>[ prey, pred ]</i> is the initial number of prey and predators;
+        </li>
+        <li>
+          <i>[ t0, tmax ]</i> is the initial and final time;
+        </li>
+        <li>
+          <i>step_num</i> is the number of steps.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD_PREDATOR_PREY</b> is available in
+      <a href = "../../c_src/fd_predator_prey/fd_predator_prey.html">a C version</a> and
+      <a href = "../../cpp_src/fd_predator_prey/fd_predator_prey.html">a C++ version</a> and
+      <a href = "../../f77_src/fd_predator_prey/fd_predator_prey.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd_predator_prey/fd_predator_prey.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd_predator_prey/fd_predator_prey.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../f_src/fd2d_predator_prey/fd2d_predator_prey.html">
+      FD2D_PREDATOR_PREY</a>,
+      a FORTRAN90 program which
+      implements a finite difference algorithm for a predator-prey system
+      with spatial variation in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_predator_prey/ode_predator_prey.html">
+      ODE_PREDATOR_PREY</a>,
+      a MATLAB program which
+      solves a pair of predator prey differential equations using MATLAB's ODE23 solver.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd_predator_prey.m">fd_predator_prey.m</a>, the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>TRF_100</b> uses 100 timesteps, which are not enough.
+      <ul>
+        <li>
+          <a href = "trf_100.txt">trf_100.txt</a>, the data.
+        </li>
+        <li>
+          <a href = "trf_100_time.png">trf_100_time.png</a>, a time plot.
+        </li>
+        <li>
+          <a href = "trf_100_phase.png">trf_100_phase.png</a>, a phase plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TRF_1000</b> uses 1000 timesteps, which are enough to see that there
+      is a pattern, but not enough to catch the pattern accurately.
+      <ul>
+        <li>
+          <a href = "trf_1000.txt">trf_1000.txt</a>, the data.
+        </li>
+        <li>
+          <a href = "trf_1000_time.png">trf_1000_time.png</a>, a time plot.
+        </li>
+        <li>
+          <a href = "trf_1000_phase.png">trf_1000_phase.png</a>, a phase plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TRF_10000</b> uses 10000 timesteps, which are enough.
+      <ul>
+        <li>
+          <a href = "trf_10000.txt">trf_10000.txt</a>, the data.
+        </li>
+        <li>
+          <a href = "trf_10000_time.png">trf_10000_time.png</a>, a time plot.
+        </li>
+        <li>
+          <a href = "trf_10000_phase.png">trf_10000_phase.png</a>, a phase plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 June 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,0 +1,218 @@
+<html>
+
+  <head>
+    <title>
+      ODE_SWEEP_SERIAL - Analyze an ODE Solution for Many Parameter Values
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ODE_SWEEP_SERIAL <br> Analyze an ODE Solution for Many Parameter Values
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ODE_SWEEP_SERIAL</b>
+      is a directory which
+      computes the solution of an ODE for many parameter values, keeping track
+      of the maximum absolute value of the solution.
+    </p>
+
+    <p>
+      Consider the parameterized second order differential equation:
+      <pre>
+        m x'' + b x' + k x = 0
+      </pre>
+      which represents the behavior of a spring mass system with a
+      mass of <b>m</b>, a spring constant of <b>k</b> and a damping
+      coefficient <b>b</b>.
+    </p>
+
+    <p>
+      We now suppose that we are interested in properties of the solution <b>x(t)</b>
+      over the time interval from 0 to 25 seconds, as we vary the physical properties
+      <b>b</b> and <b>k</b>.  In particular, we would like to know the maximum value
+      of <b>x(t)</b> over the time interval for each choice of the physical parameters.
+    </p>
+
+    <p>
+      To answer this question, we must solve the ODE for each choice of the parameters.
+    </p>
+
+    <p>
+      The basic function has the form:
+      <blockquote>
+        function peakVals = ode_fun ( bVals, kVals )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          bVals is an array of B values;
+        </li>
+        <li>
+          kVals is an array of K values;
+        </li>
+        <li>
+          peakVals is an array containing the maximum value of the ODE solution
+          for each combination of B and K.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz/collatz.html">
+      COLLATZ</a>, 
+      a MATLAB library which
+      computes and analyzes the Collatz
+      sequence (or "hailstone" sequence or "3n+1 sequence");
+    </p>
+
+    <p>
+      <a href = "../../m_src/fft_serial/fft_serial.html">
+      FFT_SERIAL</a>,
+      a MATLAB program which
+      demonstrates the computation of a Fast Fourier Transform,
+      and is intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md/md.html">
+      MD</a>,
+      a MATLAB program which 
+      carries out a molecular dynamics simulation, and is intended as
+      a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mxm/mxm.html">
+      MXM</a>,
+      a MATLAB program which
+      sets up a matrix multiplication problem A=B*C,
+      intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_serial/poisson_serial.html">
+      POISSON_SERIAL</a>,
+      a MATLAB program which
+      computes an approximate solution to the Poisson equation in a rectangle,
+      and is intended as the starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_serial/prime_serial.html">
+      PRIME_SERIAL</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N,
+      intended as a starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_serial/quad_serial.html">
+      QUAD_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral using a quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad2d_serial/quad2d_serial.html">
+      QUAD2D_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral over a 2D region using a product quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy/satisfy.html">
+      SATISFY</a>,
+      a MATLAB program which 
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      MATLAB programs which
+      demonstrate how to compute CPU time or elapsed time.
+    </p>
+
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ode_fun.m">ode_fun.m</a>,
+          the function which performs the calculations.
+        </li>
+        <li>
+          <a href = "ode_system.m">ode_system.m</a>,
+          a function which redefines the second order ODE as a pair of first order
+          ODE's, suitable for treatment by MATLAB's ODE solvers.
+        </li>
+        <li>
+          <a href = "ode_display.m">ode_display.m</a>,
+          a script which displays a contour plot of the results of the parameter sweep.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ode_script.m">ode_script.m</a>,
+          sets up a parameter sweep and runs the code.
+        </li>
+        <li>
+          <a href = "ode_script_output.txt">ode_script_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "ode_display.png">ode_display.png</a>,
+          a surface plot of the data XMAX(B,K) computed by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 June 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

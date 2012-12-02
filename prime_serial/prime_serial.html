@@ -1,0 +1,303 @@
+<html>
+
+  <head>
+    <title>
+      PRIME_SERIAL - Program to Count Primes
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PRIME_SERIAL <br> Program to Count Primes
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PRIME_SERIAL</b> 
+      is a MATLAB program which
+      counts the number of primes between 1 and N,
+      and is intended as a starting point for a parallel version.
+    </p>
+
+    <p>
+      The algorithm is completely naive.  For each integer I, it simply checks
+      whether any smaller J evenly divides it.  The total amount of work
+      for a given N is thus roughly proportional to 1/2*N^2.
+    </p>
+
+    <p>
+      Here are the counts of the number of primes for some selected values of N:
+      <table border="1" align="center">
+        <tr>
+          <th>N</th><th>Number of Primes</th>
+        </tr>
+        <tr>
+          <td>1</td><td>0</td>
+        </tr>
+        <tr>
+          <td>10</td><td>4</td>
+        </tr>
+        <tr>
+          <td>100</td><td>25</td>
+        </tr>
+        <tr>
+          <td>1,000</td><td>168</td>
+        </tr>
+        <tr>
+          <td>10,000</td><td>1,229</td>
+        </tr>
+        <tr>
+          <td>100,000</td><td>9,592</td>
+        </tr>
+        <tr>
+          <td>1,000,000</td><td>78,498</td>
+        </tr>
+        <tr>
+          <td>10,000,000</td><td>664,579</td>
+        </tr>
+        <tr>
+          <td>100,000,000</td><td>5,761,455</td>
+        </tr>
+        <tr>
+          <td>1,000,000,000</td><td>50,847,534</td>
+        </tr>
+      </table> 
+    </p>
+
+    <p>
+      The following results were observed for the elapsed time, running on a
+      Macintosh PowerPC G5:
+      <table border="1" align="center">
+        <tr>
+          <th>N</th><th>Pi</th><th>Time</th>
+        </tr>
+<tr><td>       1</td><td>         0</td><td>        0.000030</td></tr>
+<tr><td>       2</td><td>         1</td><td>        0.000016</td></tr>
+<tr><td>       4</td><td>         2</td><td>        0.000016</td></tr>
+<tr><td>       8</td><td>         4</td><td>        0.000017</td></tr>
+<tr><td>      16</td><td>         6</td><td>        0.000020</td></tr>
+<tr><td>      32</td><td>        11</td><td>        0.000030</td></tr>
+<tr><td>      64</td><td>        18</td><td>        0.000057</td></tr>
+<tr><td>     128</td><td>        31</td><td>        0.000147</td></tr>
+<tr><td>     256</td><td>        54</td><td>        0.000452</td></tr>
+<tr><td>     512</td><td>        97</td><td>        0.001548</td></tr>
+<tr><td>   1,024</td><td>       172</td><td>        0.005303</td></tr>
+<tr><td>   2,048</td><td>       309</td><td>        0.018660</td></tr>
+<tr><td>   4,096</td><td>       564</td><td>        0.068059</td></tr>
+<tr><td>   8,192</td><td>     1,028</td><td>        0.246378</td></tr>
+<tr><td>  16,384</td><td>     1,900</td><td>        0.914953</td></tr>
+<tr><td>  32,768</td><td>     3,512</td><td>        3.380086</td></tr>
+<tr><td>  65,536</td><td>     6,542</td><td>       12.619071</td></tr>
+<tr><td> 131,072</td><td>    12,251</td><td>       47.412759</td></tr>
+      </table>
+    </p>
+
+    <p>
+      <table border="1" align="center">
+        <tr>
+          <th>N</th><th>Pi</th><th>Time</th>
+        </tr>
+<tr><td>       5</td><td>         3</td><td>        0.000095</td></tr>
+<tr><td>      50</td><td>        15</td><td>        0.000123</td></tr>
+<tr><td>     500</td><td>        95</td><td>        0.003194</td></tr>
+<tr><td>    5000</td><td>       669</td><td>        0.170837</td></tr>
+<tr><td>  50,000</td><td>     5,133</td><td>       13.081281</td></tr>
+<tr><td> 500,000</td><td>    41,538</td><td>    1,076.868061</td></tr>
+      </table> 
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>total</i> = <b>prime</b> ( <i>n</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> is the maximum number to check.
+        </li>
+        <li>
+          <i>total</i> is the number of primes found between 2 and <i>n</i>.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PRIME_SERIAL</b> is available in
+      <a href = "../../c_src/prime_serial/prime_serial.html">a C version</a> and
+      <a href = "../../cpp_src/prime_serial/prime_serial.html">a C++ version</a> and
+      <a href = "../../f77_src/prime_serial/prime_serial.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/prime_serial/prime_serial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/prime_serial/prime_serial.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz/collatz.html">
+      COLLATZ</a>, 
+      a MATLAB library which
+      computes and analyzes the Collatz
+      sequence (or "hailstone" sequence or "3n+1 sequence");
+    </p>
+
+    <p>
+      <a href = "../../m_src/fft_serial/fft_serial.html">
+      FFT_SERIAL</a>,
+      a MATLAB program which
+      demonstrates the computation of a Fast Fourier Transform,
+      and is intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md/md.html">
+      MD</a>,
+      a MATLAB program which 
+      carries out a molecular dynamics simulation, and is intended as
+      a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mxm/mxm.html">
+      MXM</a>,
+      a MATLAB program which
+      sets up a matrix multiplication problem A=B*C,
+      intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_serial/poisson_serial.html">
+      POISSON_SERIAL</a>,
+      a MATLAB program which
+      computes an approximate solution to the Poisson equation in a rectangle,
+      and is intended as the starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which 
+      counts the number of primes between 1 and N; it runs in parallel
+      using MATLAB's "parfor" facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_plot/prime_plot.html">
+      PRIME_PLOT</a>
+      a MATLAB program which 
+      displays a box plot of the prime and composite numbers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which 
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_serial/quad_serial.html">
+      QUAD_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral using a quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad2d_serial/quad2d_serial.html">
+      QUAD2D_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral over a 2D region using a product quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy/satisfy.html">
+      SATISFY</a>,
+      a MATLAB program which 
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/timer/timer.html">
+      TIMER</a>,
+      MATLAB programs which
+      demonstrate how to compute CPU time or elapsed time.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Eratosthenes,<br>
+          A Method For Finding Prime Numbers,<br>
+          Papyrus 487, <br>
+          Library of Alexandria.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "prime_number.m">prime_number.m</a>,
+          counts the primes in a given range.
+        </li>
+        <li>
+          <a href = "prime.m">prime.m</a>, 
+          a function which calls PRIME_NUMBER for various ranges.
+        </li>
+        <li>
+          <a href = "prime_output.txt">prime_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 09 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

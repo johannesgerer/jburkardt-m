@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spgrid :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td><td align=right>
+					<a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a>
+				</td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spgrid</h1>
+		  Compute the sparse grid point coordinates.
+		<h2>Syntax</h2>
+			<code>X = spgrid(N,D)</code><br>
+			<code>X = spgrid(N,D,OPTIONS)</code><br>
+		<h2>Description</b></h2>
+		  <code>X = spgrid(N,D)</code> Computes the sparse grid points of level <code>N</code> and problem dimension <code>D</code>. The coordinate value of dimension <code>i = 1..d</code> is stored in column <code>i</code> of the matrix <code>X</code>. One row of the matrix <code>X</code> represents one grid point.
+	  <p>
+      <code>X = spgrid(N,D,OPTIONS)</code> computes the sparse grid points as
+     above, but with default grid type replaced by the grid type specified in <code>OPTIONS</code>, an argument created with the <a href="spset.html"><code>spset</code></a> function.
+    <p>
+		 <b>Remark.</b> Note that <code>spgrid</code> only computes the grid points that are <b>added</b> to the interpolant at level <code>N</code>.
+		<h2>Examples</h2>
+Compute the grid points of the Clenshaw-Curtis (default) grid for the first 3 levels (<tt>n = 0..2</tt>), dimension <tt>d = 2</tt>, and display them:
+         </p><pre class="codeinput">d = 2;
+<span class="keyword">for</span> n = 0:2
+  x = spgrid(n,d)
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">
+x =
+    0.5000    0.5000
+
+x =
+         0    0.5000
+    1.0000    0.5000
+    0.5000         0
+    0.5000    1.0000
+
+x =
+    0.2500    0.5000
+    0.7500    0.5000
+         0         0
+    1.0000         0
+         0    1.0000
+    1.0000    1.0000
+    0.5000    0.2500
+    0.5000    0.7500
+</pre>
+		<h2>See Also</h2>
+		  <a href="cmpgrids.html"><code>cmpgrids</code></a>,
+		  <a href="plotgrid.html"><code>plotgrid</code></a>,
+		  <a href="spset.html"><code>spset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

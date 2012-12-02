@@ -1,0 +1,209 @@
+>> stla_io_test
+17-Feb-2007 09:41:17
+
+STLA_IO_TEST
+  MATLAB version
+  Test the routines in the STLA_IO library.
+
+TEST01
+  STLA_CHECK makes some simple checks on a file.
+
+  The file "cube.stla" seems to be a legal ASCII STL file.
+
+TEST02
+  STLA_SIZE determines the size of various objects
+  in an ASCII STL file.
+
+  Object sizes for STLA file "cube.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  36
+  Faces (triangular only) =  12
+
+  Number of lines of text =  86
+
+TEST03
+  STLA_READ reads an object in an ASCII STL file.
+
+  Object sizes for STLA file "cube.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  36
+  Faces (triangular only) =  12
+
+  Number of lines of text =  86
+
+    Face         Nodes
+
+       1       1       2       3
+       2       4       5       6
+       3       7       8       9
+       4      10      11      12
+       5      13      14      15
+       6      16      17      18
+       7      19      20      21
+       8      22      23      24
+       9      25      26      27
+      10      28      29      30
+      11      31      32      33
+      12      34      35      36
+
+    Face         Normal Vectors
+
+
+face_num =
+
+    12
+
+       1        0.000000        0.000000       -1.000000
+
+    Node         Coordinates
+
+       1        0.000000        0.000000        0.000000
+       2        1.000000        1.000000        0.000000
+       3        1.000000        0.000000        0.000000
+       4        0.000000        0.000000        0.000000
+       5        0.000000        1.000000        0.000000
+       6        1.000000        1.000000        0.000000
+       7        0.000000        0.000000        0.000000
+       8        0.000000        1.000000        1.000000
+       9        0.000000        1.000000        0.000000
+      10        0.000000        0.000000        0.000000
+      11        0.000000        0.000000        1.000000
+      12        0.000000        1.000000        1.000000
+      13        0.000000        1.000000        0.000000
+      14        1.000000        1.000000        1.000000
+      15        1.000000        1.000000        0.000000
+      16        0.000000        1.000000        0.000000
+      17        0.000000        1.000000        1.000000
+      18        1.000000        1.000000        1.000000
+      19        1.000000        0.000000        0.000000
+      20        1.000000        1.000000        0.000000
+      21        1.000000        1.000000        1.000000
+      22        1.000000        0.000000        0.000000
+      23        1.000000        1.000000        1.000000
+      24        1.000000        0.000000        1.000000
+      25        0.000000        0.000000        0.000000
+      26        1.000000        0.000000        0.000000
+      27        1.000000        0.000000        1.000000
+      28        0.000000        0.000000        0.000000
+      29        1.000000        0.000000        1.000000
+      30        0.000000        0.000000        1.000000
+      31        0.000000        0.000000        1.000000
+      32        1.000000        0.000000        1.000000
+      33        1.000000        1.000000        1.000000
+      34        0.000000        0.000000        1.000000
+      35        1.000000        1.000000        1.000000
+      36        0.000000        1.000000        1.000000
+
+TEST04
+  STLA_WRITE writes an ASCII STL file.
+
+  Graphics data was written to the STLA file "cube_new.stla".
+
+TEST05
+  STLA_FACE_NORMAL_COMPUTE computes the face normal
+  vectors for an STLA file.
+
+  We have an STLA solid, and its exact normals.
+  We now call STLA_FACE_NORMAL_COMPUTE to
+  recompute the normals.
+
+  We print out the maximum error, defined as
+    |1 - dot ( n1, n2 )|
+  where n1 and n2 are the exact and computed normals.
+
+  Maximum error = 0.000000
+
+TEST06
+  The MATLAB routine TRIMESH will plot a triangulated surface.
+  It can be used to display the object described by an
+  ASCII STL file.
+
+TEST07
+  Compare two routines with the same functionality.
+  One is designed to run faster than the other,
+  especially on large problems with thousands of faces.
+
+  STLA_SIZE determines the size of various objects
+    in an ASCII STL file.
+  STLA_SIZE_FAST determines the size of various objects
+    in an ASCII STL file.
+
+  STLA_SIZE_FAST scanned the file in 0.016000 seconds.
+  STLA_SIZE      scanned the file in 0.156000 seconds.
+
+  Object sizes for STLA file "cube.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  36
+  Faces (triangular only) =  12
+
+  Number of lines of text =  86
+
+TEST07
+  Compare two routines with the same functionality.
+  One is designed to run faster than the other,
+  especially on large problems with thousands of faces.
+
+  STLA_SIZE determines the size of various objects
+    in an ASCII STL file.
+  STLA_SIZE_FAST determines the size of various objects
+    in an ASCII STL file.
+
+  STLA_SIZE_FAST scanned the file in 0.250000 seconds.
+  STLA_SIZE      scanned the file in 5.766000 seconds.
+
+  Object sizes for STLA file "sphere.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  684
+  Faces (triangular only) =  228
+
+  Number of lines of text =  1598
+
+TEST07
+  Compare two routines with the same functionality.
+  One is designed to run faster than the other,
+  especially on large problems with thousands of faces.
+
+  STLA_SIZE determines the size of various objects
+    in an ASCII STL file.
+  STLA_SIZE_FAST determines the size of various objects
+    in an ASCII STL file.
+
+  STLA_SIZE_FAST scanned the file in 2.078000 seconds.
+  STLA_SIZE      scanned the file in 50.313000 seconds.
+
+  Object sizes for STLA file "teapot.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  6048
+  Faces (triangular only) =  2016
+
+  Number of lines of text =  14114
+
+TEST08
+  Compare two routines with the same functionality.
+  One is designed to run faster than the other,
+  especially on large problems with thousands of faces.
+
+  STLA_READ reads various data from an ASCII STL file.
+  STLA_READ_FAST reads data from an ASCII STL file.
+
+  STLA_READ_FAST read the file in 0.266000 seconds.
+  STLA_READ      read the file in 5.688000 seconds.
+
+  Object sizes for STLA file "sphere.stla":
+
+  Solids =                   1
+  Nodes (may be repeated) =  684
+  Faces (triangular only) =  228
+
+  Number of lines of text =  1598
+
+STLA_IO_TEST
+  Normal end of execution.
+
+17-Feb-2007 09:42:32
+>> 

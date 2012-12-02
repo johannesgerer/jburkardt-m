@@ -1,0 +1,290 @@
+<html>
+
+  <head>
+    <title>
+      LATIN_COVER - N Latin Squares which cover an NxN square.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LATIN_COVER <br> N Latin Squares which cover an NxN square.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LATIN_COVER</b>
+      is a MATLAB library which
+      produces a set of N Latin Squares which cover an NxN square.
+    </p>
+
+    <p>
+      Given an NxN grid, a Latin Square is a selection of N pairs of indices
+      (I,J) such that every possible value of I and J occurs exactly once.
+      A picture for the case N = 5 may suggest what is going on:
+      <pre>
+          - - - 1 -
+          - 1 - - -
+        I 1 - - - -
+          - - - - 1
+          - - 1 - -
+              J
+      </pre>
+      The above Latin Square can also be described by the index pairs (1,4),
+      (2,2), (3,1), (4,5), (5,3).
+    </p>
+
+    <p>
+      A Latin square will always contain N index pairs.  Since the original
+      square contains NxN index pairs, it is interesting to speculate whether
+      it would be possible to find N Latin squares with the property that
+      every possible index pair (I,J) in the NxN square occurs in exactly one
+      of the Latin Squares.  In that case, we would say that the Latin Squares
+      "cover" or decompose the square.
+    </p>
+
+    <p>
+      Here is an example which starts with the Latin square pictured above,
+      and generates 4 more Latin squares to cover the 5x5 square.
+      <pre>
+          3 2 5 1 4
+          2 1 4 5 3
+        I 1 5 3 4 2
+          5 4 2 3 1
+          4 3 1 2 5
+              J
+      </pre>
+    </p>
+
+    <p>
+      Given a value N, this program produces a Latin cover for an NxN square.
+    </p>
+
+    <p>
+      Given a description of a Latin square of order N, this program produces
+      N-1 more Latin squares, so that together with the input Latin square,
+      a Latin cover is produced.
+    </p>
+
+    <p>
+      It is also possible to generate a 3D Latin covering.  Here, a single
+      Latin cube contains only N subcubes, so we require NxN such cubes if
+      we have a hope of covering all the subcubes.  The routine LATIN_COVER_3D
+      will compute such a covering.
+    </p>
+
+    <p>
+      A small example of a 3D a Latin Cover:
+      <pre>
+ 
+       K =        1
+ 
+        J:       1       2       3
+       I:
+       1:        4       1       7
+       2:        6       3       9
+       3:        5       2       8
+ 
+       K =        2
+ 
+        J:       1       2       3
+       I:
+       1:        3       9       6
+       2:        2       8       5
+       3:        1       7       4
+ 
+       K =        3
+ 
+        J:       1       2       3
+       I:
+       1:        8       5       2
+       2:        7       4       1
+       3:        9       6       3
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LATIN_COVER</b> is available in
+      <a href = "../../c_src/latin_cover/latin_cover.html">a C version</a> and
+      <a href = "../../cpp_src/latin_cover/latin_cover.html">a C++ version</a> and
+      <a href = "../../f77_src/latin_cover/latin_cover.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/latin_cover/latin_cover.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/latin_cover/latin_cover.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/latin_center/latin_center.html">
+      LATIN_CENTER</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing center points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge/latin_edge.html">
+      LATIN_EDGE</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing edge points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random/latin_random.html">
+      LATIN_RANDOM</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing points at random.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latinize/latinize.html">
+      LATINIZE</a>,
+      a MATLAB library which
+      adjusts N points in M dimensions to form a Latin hypercube.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Ryser,<br>
+          Combinatorial Mathematics,<br>
+          Mathematical Association of America, 1963.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_modp.m">i4_modp.m</a>,
+          returns the nonnegative remainder of integer division;
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>,
+          returns a pseudorandom I4 in a given range;
+        </li>
+        <li>
+          <a href = "i4_wrap.m">i4_wrap.m</a>,
+          forces an integer to lie between given limits;
+        </li>
+        <li>
+          <a href = "i4block_print.m">i4block_print.m</a>,
+          prints an I4BLOCK;
+        </li>
+        <li>
+          <a href = "i4mat_print.m">i4mat_print.m</a>,
+          prints an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">i4mat_print_some.m</a>,
+          prints some of an I4MAT;
+        </li>
+        <li>
+          <a href = "latin_cover.m">latin_cover.m</a>,
+          returns a 2D Latin Square Covering.
+        </li>
+        <li>
+          <a href = "latin_cover_2d.m">latin_cover_2d.m</a>,
+          returns a 2D Latin Square Covering.
+        </li>
+        <li>
+          <a href = "latin_cover_3d.m">latin_cover_3d.m</a>,
+          returns a 3D Latin Square Covering.
+        </li>
+        <li>
+          <a href = "perm_check.m">perm_check.m</a>,
+          checks that a permutation is legal.
+        </li>
+        <li>
+          <a href = "perm_print.m">perm_mul.m</a>,
+          prints a permutation.
+        </li>
+        <li>
+          <a href = "perm_uniform.m">perm_uniform.m</a>,
+          returns a random permutation.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>,
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          returns the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "latin_cover_test.m">latin_cover_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "latin_cover_test_output.txt">latin_cover_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "latin_cover_test01.m">latin_cover_test01.m</a>,
+          tests LATIN_COVER.
+        </li>
+        <li>
+          <a href = "latin_cover_test02.m">latin_cover_test02.m</a>,
+          tests LATIN_COVER_2D.
+        </li>
+        <li>
+          <a href = "latin_cover_test03.m">latin_cover_test03.m</a>,
+          tests LATIN_COVER_3D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

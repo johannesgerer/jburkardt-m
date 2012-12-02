@@ -1,0 +1,415 @@
+>> sphere_grid_test
+27-Sep-2012 15:07:39
+
+SPHERE_GRID_TEST
+  MATLAB version
+  Test the SPHERE_GRID library.
+
+TEST01
+  SPHERE_GRID_ICOS_SIZE determines the size
+  (number of vertices, edges and faces) in a grid
+  on a sphere, made by subdividing an initial
+  projected icosahedron.
+
+  N determines the number of subdivisions of each
+  edge of the icosahedral faces.
+
+         N         V         E         F
+  --------  --------  --------  --------
+
+         1        12        30        20
+         2        42       120        80
+         3        92       270       180
+         4       162       480       320
+         5       252       750       500
+         6       362      1080       720
+         7       492      1470       980
+         8       642      1920      1280
+         9       812      2430      1620
+        10      1002      3000      2000
+        11      1212      3630      2420
+        12      1442      4320      2880
+        13      1692      5070      3380
+        14      1962      5880      3920
+        15      2252      6750      4500
+        16      2562      7680      5120
+        17      2892      8670      5780
+        18      3242      9720      6480
+        19      3612     10830      7220
+        20      4002     12000      8000
+
+  Repeat, but using N constrained by doubling:
+
+         N         V         E         F
+  --------  --------  --------  --------
+
+         1        12        30        20
+         2        42       120        80
+         4       162       480       320
+         8       642      1920      1280
+        16      2562      7680      5120
+        32     10242     30720     20480
+        64     40962    122880     81920
+       128    163842    491520    327680
+       256    655362   1966080   1310720
+       512   2621442   7864320   5242880
+      1024  10485762  31457280  20971520
+
+TEST02
+  SPHERE_GRID_ICOS_SIZE "sizes" a grid generated
+  on an icosahedron and projected to a sphere.
+  SPHERE_GRIDPOINTS_ICOS1 creates the grid points.
+
+  Sizing factor =       3.000000
+
+  Number of nodes =     92
+  Number of edges =     270
+  Number of triangles = 180
+
+  Initial part of NODE_XYZ array:
+
+  Row:       1             2             3       
+  Col
+    1:    0.850651    0.525731    0.000000
+    2:    0.850651   -0.525731    0.000000
+    3:    0.525731    0.000000    0.850651
+    4:    0.525731    0.000000   -0.850651
+    5:    0.000000    0.850651    0.525731
+    6:    0.000000    0.850651   -0.525731
+    7:    0.000000   -0.850651    0.525731
+    8:    0.000000   -0.850651   -0.525731
+    9:   -0.525731    0.000000    0.850651
+   10:   -0.525731    0.000000   -0.850651
+   11:   -0.850651    0.525731    0.000000
+   12:   -0.850651   -0.525731    0.000000
+   13:    0.979432    0.201774    0.000000
+   14:    0.979432   -0.201774    0.000000
+   15:    0.854729    0.403548    0.326477
+   16:    0.730026    0.201774    0.652955
+   17:    0.854729    0.403548   -0.326477
+   18:    0.730026    0.201774   -0.652955
+   19:    0.652955    0.730026    0.201774
+   20:    0.326477    0.854729    0.403548
+
+  Plot file saved to "sphere_grid_icos1_f3.png".
+  Wrote grid nodes to "sphere_grid_icos1_f3.xyz".
+
+TEST03
+  SPHERE_GRID_ICOS_SIZE "sizes" a grid generated
+  on an icosahedron and projected to a sphere.
+  SPHERE_GRIDPOINTS_ICOS2 creates the grid.
+
+  Sizing factor FACTOR = 3
+
+  Number of nodes =     92
+  Number of edges =     270
+  Number of triangles = 180
+
+  Initial part of NODE_XYZ array:
+
+  Row:       1             2             3       
+  Col
+    1:    0.850651    0.525731    0.000000
+    2:    0.850651   -0.525731    0.000000
+    3:    0.525731    0.000000    0.850651
+    4:    0.525731    0.000000   -0.850651
+    5:    0.000000    0.850651    0.525731
+    6:    0.000000    0.850651   -0.525731
+    7:    0.000000   -0.850651    0.525731
+    8:    0.000000   -0.850651   -0.525731
+    9:   -0.525731    0.000000    0.850651
+   10:   -0.525731    0.000000   -0.850651
+   11:   -0.850651    0.525731    0.000000
+   12:   -0.850651   -0.525731    0.000000
+   13:    0.983024    0.183479    0.000000
+   14:    0.983024   -0.183479    0.000000
+   15:    0.851981    0.395511    0.343074
+   16:    0.738585    0.212031    0.639950
+   17:    0.851981    0.395511   -0.343074
+   18:    0.738585    0.212031   -0.639950
+   19:    0.639950    0.738585    0.212031
+   20:    0.343074    0.851981    0.395511
+
+ans =
+
+     0
+
+
+  Wrote grid nodes to "sphere_grid_icos2_f3.xyz".
+
+TEST04
+  SPHERE_GRIDPOINTS produces a grid of
+  points on an implicit sphere in 3D.
+
+  Radius = 10.000000
+
+  Center:
+
+     1:     0.000000
+     2:     0.000000
+     3:     0.000000
+
+  The number of latitudes =  3
+  The number of longitudes = 4
+
+  The number of grid points is 14
+
+         1      0.000000      0.000000     10.000000
+
+         2      7.071068      0.000000      7.071068
+         3      0.000000      7.071068      7.071068
+         4     -7.071068      0.000000      7.071068
+         5     -0.000000     -7.071068      7.071068
+
+         6     10.000000      0.000000      0.000000
+         7      0.000000     10.000000      0.000000
+         8    -10.000000      0.000000      0.000000
+         9     -0.000000    -10.000000      0.000000
+
+        10      7.071068      0.000000     -7.071068
+        11      0.000000      7.071068     -7.071068
+        12     -7.071068      0.000000     -7.071068
+        13     -0.000000     -7.071068     -7.071068
+        14      0.000000      0.000000    -10.000000
+
+TEST05
+  SPHERE_SPIRALPOINTS produces a spiral of
+  points on an implicit sphere in 3D.
+
+  Radius = 1.000000
+
+  Center:
+
+     1:     0.000000
+     2:     0.000000
+     3:     0.000000
+
+  The number of spiral points is 500
+
+  The spiral points:
+
+  Row:       1             2             3       
+  Col
+    1:    0.000000    0.000000   -1.000000
+    2:   -0.020322    0.087103   -0.995992
+    3:   -0.126076    0.008525   -0.991984
+    4:   -0.086913   -0.127866   -0.987976
+    5:    0.053682   -0.170075   -0.983968
+    6:    0.178769   -0.087864   -0.979960
+    7:    0.209391    0.060608   -0.975952
+    8:    0.133698    0.193520   -0.971944
+    9:   -0.009127    0.251032   -0.967936
+   10:   -0.159212    0.213294   -0.963928
+
+  Wrote grid nodes to "115".
+  Wrote grid nodes to "112".
+  Wrote grid nodes to "104".
+  Wrote grid nodes to "101".
+  Wrote grid nodes to "114".
+  Wrote grid nodes to "101".
+  Wrote grid nodes to "95".
+  Wrote grid nodes to "103".
+  Wrote grid nodes to "114".
+  Wrote grid nodes to "105".
+  Wrote grid nodes to "100".
+  Wrote grid nodes to "95".
+  Wrote grid nodes to "115".
+  Wrote grid nodes to "112".
+  Wrote grid nodes to "105".
+  Wrote grid nodes to "114".
+  Wrote grid nodes to "97".
+  Wrote grid nodes to "108".
+  Wrote grid nodes to "95".
+  Wrote grid nodes to "110".
+  Wrote grid nodes to "53".
+  Wrote grid nodes to "48".
+  Wrote grid nodes to "48".
+  Wrote grid nodes to "46".
+  Wrote grid nodes to "120".
+  Wrote grid nodes to "121".
+  Wrote grid nodes to "122".
+
+TEST06
+  SPHERE_GRIDLINES computes gridlines
+  on a sphere in 3D.
+
+  Number of latitudes is  3
+  Number of longitudes is 4
+
+  Number of line segments is 36
+
+  Grid line vertices:
+
+  Row:       1        2  
+  Col
+
+    1:       1        2  
+    2:       2        6  
+    3:       6       10  
+    4:      10       14  
+    5:       1        3  
+    6:       3        7  
+    7:       7       11  
+    8:      11       14  
+    9:       1        4  
+   10:       4        8  
+   11:       8       12  
+   12:      12       14  
+   13:       1        5  
+   14:       5        9  
+   15:       9       13  
+   16:      13       14  
+   17:       2        3  
+   18:       3        4  
+   19:       4        5  
+   20:       5        2  
+   21:       6        7  
+   22:       7        8  
+   23:       8        9  
+   24:       9        6  
+   25:      10       11  
+   26:      11       12  
+   27:      12       13  
+   28:      13       10  
+   29:       2        7  
+   30:       7       12  
+   31:       3        8  
+   32:       8       13  
+   33:       4        9  
+   34:       9       10  
+   35:       5        6  
+   36:       6       11  
+
+TEST07
+  SPHERE_GRID_Q4 computes a grid
+  of Q4 rectangular elements on a sphere in 3D.
+
+  Number of latitudes is      3
+  Number of longitudes is     4
+  The number of rectangles is 12
+
+  Rectangle vertices:
+
+  Row:       1        2        3        4  
+  Col
+
+    1:       2        3        1        1  
+    2:       3        4        1        1  
+    3:       4        5        1        1  
+    4:       5        2        1        1  
+    5:       6        7        3        2  
+    6:       7        8        4        3  
+    7:       8        9        5        4  
+    8:       9        6        2        5  
+    9:       7        6       10       10  
+   10:       8        7       10       10  
+   11:       9        8       10       10  
+   12:       6        9       10       10  
+
+TEST08
+  SPHERE_GRID_T3 computes a grid
+  of T3 triangular elements on a sphere in 3D.
+
+  Number of latitudes is  3
+  Number of longitudes is 4
+
+  The number of triangles is 32
+
+  Triangle vertices:
+
+  Row:       1        2        3  
+  Col
+
+    1:       2        3        1  
+    2:       3        4        1  
+    3:       4        5        1  
+    4:       5        2        1  
+    5:       6        7        2  
+    6:       3        2        7  
+    7:       7        8        3  
+    8:       4        3        8  
+    9:       8        9        4  
+   10:       5        4        9  
+   11:       9        6        5  
+   12:       2        5        6  
+   13:      10       11        6  
+   14:       7        6       11  
+   15:      11       12        7  
+   16:       8        7       12  
+   17:      12       13        8  
+   18:       9        8       13  
+   19:      13       10        9  
+   20:       6        9       10  
+   21:      14       15       10  
+   22:      11       10       15  
+   23:      15       16       11  
+   24:      12       11       16  
+   25:      16       17       12  
+   26:      13       12       17  
+   27:      17       14       13  
+   28:      10       13       14  
+   29:      15       14       18  
+   30:      16       15       18  
+   31:      17       16       18  
+   32:      14       17       18  
+
+TEST09
+  For the unit sphere in 3 dimensions:
+  SPHERE_UNIT_SAMPLE does a random sampling.
+
+  First 10 values:
+
+  Row:       1             2             3       
+  Col
+    1:    0.795416   -0.223966   -0.563163
+    2:   -0.696321   -0.284310    0.659018
+    3:    0.901719    0.397757   -0.169386
+    4:    0.674043    0.557308   -0.484844
+    5:   -0.272750   -0.305351   -0.912342
+    6:   -0.457329    0.150061   -0.876546
+    7:    0.028783   -0.979903   -0.197387
+    8:    0.803987    0.009287    0.594574
+    9:   -0.358866    0.489058    0.795008
+   10:    0.583030    0.050005   -0.810910
+
+  Wrote grid nodes to "sphere_sample_n1000.xyz".
+
+TEST10
+  SPHERE_CUBED_POINTS computes points on a cubed sphere grid.
+
+  Number of divisions on each face = 10
+  Total number of points = 488
+
+  Initial part of XYZ array:
+
+  Row:       1             2             3       
+  Col
+    1:   -0.577350   -0.577350   -0.577350
+    2:   -0.615457   -0.492366   -0.615457
+    3:   -0.650945   -0.390567   -0.650945
+    4:   -0.680414   -0.272166   -0.680414
+    5:   -0.700140   -0.140028   -0.700140
+    6:   -0.707107    0.000000   -0.707107
+    7:   -0.700140    0.140028   -0.700140
+    8:   -0.680414    0.272166   -0.680414
+    9:   -0.650945    0.390567   -0.650945
+   10:   -0.615457    0.492366   -0.615457
+   11:   -0.577350    0.577350   -0.577350
+   12:   -0.492366   -0.615457   -0.615457
+   13:   -0.529813   -0.529813   -0.662266
+   14:   -0.565685   -0.424264   -0.707107
+   15:   -0.596285   -0.298142   -0.745356
+   16:   -0.617213   -0.154303   -0.771517
+   17:   -0.624695    0.000000   -0.780869
+   18:   -0.617213    0.154303   -0.771517
+   19:   -0.596285    0.298142   -0.745356
+   20:   -0.565685    0.424264   -0.707107
+
+  Plot file saved to "sphere_cubed_grid_10.png".
+  Wrote grid nodes to "sphere_cubed_grid_10.xyz".
+
+SPHERE_GRID_TEST
+  Normal end of execution.
+
+27-Sep-2012 15:07:41
+>> 

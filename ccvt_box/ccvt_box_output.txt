@@ -1,0 +1,220 @@
+ccvt_box
+04-Dec-2004 14:47:33
+
+CCVT_BOX (MATLAB version)
+  Generate and animate a constrained CVT dataset.
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input 
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * NDIM, the spatial dimension,
+  * N, the number of points to generate,
+  * NPP, the number of points to place on the boundary.
+  * SEED, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * IT_MAX, the maximum number of iterations.
+  * IT_FIXED, the number of iterative steps to take
+    using a fixed set of sampling points.
+  * SAMPLE, how to conduct the sampling.
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+  * SAMPLE_NUM, the number of sample points;
+  * BATCH, the number of sampling points to create at one time;
+  * OUTPUT, a file into which the data is stored.
+
+  To indicate that no further computations are 
+  desired, it is enough to input a nonsensical value, 
+  such as -1.
+  Default NDIM =            2
+
+  N is the number of points to generate.
+  (Try '25' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter N:  100
+  User input N =          100
+
+  NPP is the number of sample points used to check
+  the boundary.
+  (Try '1000' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter NPP:  1000
+  User input NPP =         1000
+  Default SEED = 123456789
+
+  INIT is the method of initializing the data:
+
+  file       read data from a file;
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+ 
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter INIT:  'rand'
+  User input INIT = "rand".
+
+  IT_MAX is the maximum number of iterations.
+
+  An iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (Try '50' if you have no preference.)
+  (A negative value terminates execution).
+
+  Enter IT_MAX:  50
+  User input IT_MAX =           50
+
+  IT_FIXED is the number of consecutive iterations
+  to take with a fixed set of sample points.
+
+  Setting IT_FIXED to 1 means a new set of sample
+  points is generated on every iterative step;
+  Setting IT_FIXED equal to IT_MAX means a single set
+  of sample points is used for the entire iteration.
+
+  Any value between 1 and IT_MAX is reasonable.
+
+  (Try "50" if you do not have a preference).
+  (A 0 or negative value terminates execution).
+
+  Enter IT_FIXED:  1
+  User input IT_FIXED =            1
+
+  SAMPLE is the method of sampling the region:
+
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+
+  Enter SAMPLE:  'rand'
+  User input SAMPLE = "rand".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (Try '10000' if you have no preference.)
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:  100000
+  User input SAMPLE_NUM =       100000
+  BATCH =         1000
+
+  MOVIE_NAME is the name of the file in which the movie is stored;
+
+  (Try 'movie.avi' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter MOVIE_NAME:  'bob.avi'
+  User input MOVIE_NAME = bob.avi
+  OUTPUT = "cvt.txt".
+
+                            Energy         Energy after
+  Iteration     Seed        of CVT         projection
+
+       0     123456789        0.003153        0.003472
+Warning: The frame height has been padded to be a multiple of four as required by the specified codec.
+> In avifile.addframe at 150
+  In ccvt_box at 565
+       1     123456789        0.002084        0.002587
+       2     123656789        0.001953        0.002410
+       3     123856789        0.001899        0.002303
+       4     124056789        0.001872        0.002234
+       5     124256789        0.001858        0.002225
+       6     124456789        0.001854        0.002271
+       7     124656789        0.001844        0.002220
+       8     124856789        0.001844        0.002185
+       9     125056789        0.001818        0.002150
+      10     125256789        0.001816        0.002145
+      11     125456789        0.001815        0.002127
+      12     125656789        0.001809        0.002113
+      13     125856789        0.001819        0.002105
+      14     126056789        0.001805        0.002095
+      15     126256789        0.001802        0.002094
+      16     126456789        0.001816        0.002121
+      17     126656789        0.001808        0.002102
+      18     126856789        0.001810        0.002098
+      19     127056789        0.001813        0.002095
+      20     127256789        0.001815        0.002098
+      21     127456789        0.001813        0.002084
+      22     127656789        0.001819        0.002079
+      23     127856789        0.001813        0.002089
+      24     128056789        0.001816        0.002078
+      25     128256789        0.001821        0.002084
+      26     128456789        0.001816        0.002073
+      27     128656789        0.001808        0.002070
+      28     128856789        0.001810        0.002070
+      29     129056789        0.001813        0.002070
+      30     129256789        0.001819        0.002075
+      31     129456789        0.001812        0.002075
+      32     129656789        0.001822        0.002057
+      33     129856789        0.001815        0.002065
+      34     130056789        0.001816        0.002062
+      35     130256789        0.001810        0.002069
+      36     130456789        0.001810        0.002047
+      37     130656789        0.001807        0.002062
+      38     130856789        0.001810        0.002063
+      39     131056789        0.001814        0.002063
+      40     131256789        0.001812        0.002060
+      41     131456789        0.001809        0.002057
+      42     131656789        0.001809        0.002057
+      43     131856789        0.001804        0.002056
+      44     132056789        0.001802        0.002046
+      45     132256789        0.001814        0.002055
+      46     132456789        0.001810        0.002049
+      47     132656789        0.001815        0.002055
+      48     132856789        0.001803        0.002055
+      49     133056789        0.001804        0.002050
+      50     133256789        0.001807        0.002044
+
+  The data was written to the file "cvt.txt".
+
+  Press RETURN to proceed.
+  Default NDIM =            2
+
+  N is the number of points to generate.
+  (Try '25' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter N:  0
+  User input N =            0
+
+CCVT_BOX
+  The input value of N =            0
+  is interpreted as a request for termination.
+  Normal end of execution.
+
+  Final value of SEED = 133456789
+
+04-Dec-2004 15:09:10

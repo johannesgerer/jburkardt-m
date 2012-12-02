@@ -1,0 +1,582 @@
+<html>
+
+  <head>
+    <title>
+      TANH_QUAD - A Rapidly Converging Quadrature Rule.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TANH_QUAD <br> A Rapidly Converging Quadrature Rule.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TANH_QUAD</b>
+      is a MATLAB library which
+      sets up the tanh quadrature scheme and related rules.
+    </p>
+
+    <p>
+      These schemes typically have two parameters, <b>N</b> the
+      (truncated) order, and <b>H</b>, a discretization size.
+      To construct a family of quadrature rules, it is typical to
+      ensure that H goes to zero as N goes to infinity.  Sometimes
+      this is done by fixing the value of the product N*H, and sometimes
+      in other ways.
+    </p>
+
+    <p>
+      The <b>tanh</b> quadrature scheme approximates the integral
+      <pre>
+        Integral ( -1 <= X <= 1 ) F(X) dx
+      </pre>
+      by
+      <pre>
+        Sum ( -N <= I <= N ) W(i) * F ( X(i) )
+      </pre>
+      where Kahaner, Moler and Nash suggest choosing N freely, and then
+      taking H as
+      <pre>
+        H = pi * sqrt ( 2 / N ) - ( 1 / N ).
+      </pre>
+      and
+      <pre>
+        X(i) = tanh(i*H/2)
+      </pre>
+      and
+      <pre>
+        W(i) = H / 2 / cosh(I*H/2) / cosh(I*H/2)
+      </pre>
+    </p>
+
+    <p>
+      This rule has some unusual properties.  In particular, it is not
+      exact for any polynomial; it can't even integrate the function f(x)=1
+      exactly.  But while it is not <i>exact</i>, it can be highly <i>accurate</i>,
+      that is, for relatively low values of <b>N</b> and for a wide range of
+      integrals, the estimate will have a very low error, and as <b>N</b>  increases,
+      the error can decrease exponentially.
+    </p>
+
+    <p>
+      The <b>tanh-sinh</b> quadrature scheme approximates the integral
+      <pre>
+        Integral ( -1 <= X <= 1 ) F(X) dx
+      </pre>
+      by
+      <pre>
+        Sum ( -N <= I <= N ) W(i) * F ( X(i) )
+      </pre>
+      where Bailey suggests parameterizing by an integer M, with
+      <pre>
+        N = 8 * 2^M,
+        H = 1 / 2^M,
+        N * H = 8.
+      </pre>
+      and
+      <pre>
+        Ti = i * H,
+        X(i) = tanh(pi/2*sinh(Ti))
+      </pre>
+      and
+      <pre>
+        W(i) = H * ( pi / 2 ) * cosh(Ti) / cosh^2(pi/2*sinh(Ti))
+      </pre>
+    </p>
+
+    <p>
+      Quadrature rules can be transformed from the [-1,1] interval to the interval [a,b]
+      by using the <b>rule_adjust</b> routine.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TANH_QUAD</b> is available in
+      <a href = "../../cpp_src/tanh_quad/tanh_quad.html">a C++ version</a> and
+      <a href = "../../f_src/tanh_quad/tanh_quad.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tanh_quad/tanh_quad.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev1_rule/chebyshev1_rule.html">
+      CHEBYSHEV1_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 1 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev2_rule/chebyshev2_rule.html">
+      CHEBYSHEV2_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Chebyshev type 2 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gegenbauer_rule/gegenbauer_rule.html">
+      GEGENBAUER_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Gegenbauer quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_hermite_rule/gen_hermite_rule.html">
+      GEN_HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gen_jacobi_rule/gen_jacobi_rule.html">
+      GEN_LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a generalized Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_rule/hermite_rule.html">
+      HERMITE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Hermite quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness/int_exactness.html">
+      INT_EXACTNESS</a>,
+      a MATLAB program which
+      checks the polynomial exactness
+      of a 1-dimensional quadrature rule for a finite interval.
+    </p>
+
+    <p>
+      <a href = "../../f_src/intlib/intlib.html">
+      INTLIB</a>,
+      a FORTRAN90 library which
+      contains a variety
+      of routines for numerical estimation of integrals in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/jacobi_rule/jacobi_rule.html">
+      JACOBI_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Jacobi quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/laguerre_rule/laguerre_rule.html">
+      LAGUERRE_RULE</a>,
+      a MATLAB program which
+      can compute and print a Gauss-Laguerre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_rule/legendre_rule.html">
+      LEGENDRE_RULE</a>,
+      a MATLAB program which
+      computes a Gauss-Legendre quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for 1D domains.
+    </p>
+
+    <p>
+      <a href = "../../f_src/quadpack/quadpack.html">
+      QUADPACK</a>,
+      a FORTRAN90 library which
+      contains a variety of routines for
+      numerical estimation of integrals in 1D.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
+      QUADRATURE_RULES</a>,
+      a dataset directory which
+      contains sets of files that define quadrature
+      rules over various 1D intervals or multidimensional hypercubes.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_int/test_int.html">
+      TEST_INT</a>,
+      a FORTRAN90 library which
+      contains a number of functions that may be used as test integrands for
+      quadrature rules in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_2d/test_int_2d.html">
+      TEST_INT_2D</a>,
+      a MATLAB library which
+      defines test integrands for 2D quadrature rules.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          David Bailey, Jonathan Borwein,<br>
+          Experimental Mathematics: Examples, Methods and Implications,<br>
+          Notices of the American Mathematical Society,<br>
+          Volume 52, Number 5, pages 502-514.
+        </li>
+        <li>
+          David Bailey, Karthik Jeyabalan, Xiaoye Li,<br>
+          A Comparison of Three High-Precision Quadrature Schemes,<br>
+          Experimental Mathematics,<br>
+          Volume 14, Number 3, pages 317-329.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Charles Schwartz,<br>
+          Numerical Integration of Analytic Functions,<br>
+          Journal of Computational Physics,<br>
+          Volume 4, Number 1, June 1969, pages 19-29.
+        </li>
+        <li>
+          William Squire,<br>
+          An Eficient Iterative Method for Numerical Evaluation of Integrals
+          Over a Semi-infinite Range,<br>
+          International Journal for Numerical Methods in Engineering,<br>
+          Volume 10, Number 2, 1976, pages 478-484.
+        </li>
+        <li>
+          William Squire,<br>
+          A Quadrature Method for Finite Intervals,<br>
+          International Journal for Numerical Methods in Engineering,<br>
+          Volume 10, Number 3, 1976, pages 708-712.
+        </li>
+        <li>
+          William Squire,<br>
+          In Defense of Linear Quadrature Rules,<br>
+          Computers and Mathematics with Applications,<br>
+          Volume 7, Number 2, 1981, pages 147-149.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "midpoint_rule.m">midpoint_rule.m</a>
+          computes a midpoint quadrature rule.
+        </li>
+        <li>
+          <a href = "rule_adjust.m">rule_adjust.m</a>
+          maps a quadrature rule from [A,B] to [C,D].
+        </li>
+        <li>
+          <a href = "tanh_h_to_n.m">tanh_h_to_n.m</a>
+          computes N as a function of H and TOL.
+        </li>
+        <li>
+          <a href = "tanh_m_to_h.m">tanh_m_to_h.m</a>
+          computes H as a function of M.
+        </li>
+        <li>
+          <a href = "tanh_to_h.m">tanh_n_to_h.m</a>
+          computes N as a function of H.
+        </li>
+        <li>
+          <a href = "tanh_rule.m">tanh_rule.m</a>
+          computes a tanh quadrature rule.
+        </li>
+        <li>
+          <a href = "tanh_sinh_h_to_n.m">tanh_sinh_h_to_n.m</a>
+          computes N as a function of H and TOL for the tanh-sinh rule.
+        </li>
+        <li>
+          <a href = "tanh_sinh_rule.m">tanh_sinh_rule.m</a>
+          computes a tanh-sinh quadrature rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "trap_rule.m">trap_rule.m</a>
+          computes a trapezoid quadrature rule.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tanh_quad_test.m">tanh_quad_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "tanh_quad_test_output.txt">tanh_quad_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "tanh_quad_test01.m">tanh_quad_test01.m</a>,
+          demonstrates TANH_M_TO_H and TANH_H_TO_N.
+        </li>
+        <li>
+          <a href = "tanh_quad_test02.m">tanh_quad_test02.m</a>,
+          computes a particular tanh rule.
+        </li>
+        <li>
+          <a href = "tanh_quad_test025.m">tanh_quad_test025.m</a>,
+          computes a particular tanh-sinh rule.
+        </li>
+        <li>
+          <a href = "tanh_quad_test03.m">tanh_quad_test03.m</a>,
+          computes a tanh rule based on a tolerance.
+        </li>
+        <li>
+          <a href = "tanh_quad_test04.m">tanh_quad_test04.m</a>,
+          uses the trapezoid rule on some test integrals.
+        </li>
+        <li>
+          <a href = "tanh_quad_test05.m">tanh_quad_test05.m</a>,
+          uses the tanh rule on some test integrals.
+        </li>
+        <li>
+          <a href = "tanh_quad_test06.m">tanh_quad_test06.m</a>,
+          uses the tanh-sinh rule on some test integrals.
+        </li>
+        <li>
+          <a href = "p00_ab.m">p00_ab.m</a>,
+          returns the integration limits for any test integral.
+        </li>
+        <li>
+          <a href = "p00_e.m">p00_e.m</a>,
+          returns the exact integral value for any test integral.
+        </li>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>,
+          evaluates the integrand for any test integral.
+        </li>
+        <li>
+          <a href = "p01_ab.m">p01_ab.m</a>,
+          returns the integration limits for test integral 01.
+        </li>
+        <li>
+          <a href = "p01_e.m">p01_e.m</a>,
+          returns the exact integral value for test integral 01.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>,
+          evaluates the integrand for test integral 01.
+        </li>
+        <li>
+          <a href = "p02_ab.m">p02_ab.m</a>,
+          returns the integration limits for test integral 02.
+        </li>
+        <li>
+          <a href = "p02_e.m">p02_e.m</a>,
+          returns the exact integral value for test integral 02.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>,
+          evaluates the integrand for test integral 02.
+        </li>
+        <li>
+          <a href = "p03_ab.m">p03_ab.m</a>,
+          returns the integration limits for test integral 03.
+        </li>
+        <li>
+          <a href = "p03_e.m">p03_e.m</a>,
+          returns the exact integral value for test integral 03.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>,
+          evaluates the integrand for test integral 03.
+        </li>
+        <li>
+          <a href = "p04_ab.m">p04_ab.m</a>,
+          returns the integration limits for test integral 04.
+        </li>
+        <li>
+          <a href = "p04_e.m">p04_e.m</a>,
+          returns the exact integral value for test integral 04.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>,
+          evaluates the integrand for test integral 04.
+        </li>
+        <li>
+          <a href = "p05_ab.m">p05_ab.m</a>,
+          returns the integration limits for test integral 05.
+        </li>
+        <li>
+          <a href = "p05_e.m">p05_e.m</a>,
+          returns the exact integral value for test integral 05.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>,
+          evaluates the integrand for test integral 05.
+        </li>
+        <li>
+          <a href = "p06_ab.m">p06_ab.m</a>,
+          returns the integration limits for test integral 06.
+        </li>
+        <li>
+          <a href = "p06_e.m">p06_e.m</a>,
+          returns the exact integral value for test integral 06.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>,
+          evaluates the integrand for test integral 06.
+        </li>
+        <li>
+          <a href = "p07_ab.m">p07_ab.m</a>,
+          returns the integration limits for test integral 07.
+        </li>
+        <li>
+          <a href = "p07_e.m">p07_e.m</a>,
+          returns the exact integral value for test integral 07.
+        </li>
+        <li>
+          <a href = "p07_f.m">p07_f.m</a>,
+          evaluates the integrand for test integral 07.
+        </li>
+        <li>
+          <a href = "p08_ab.m">p08_ab.m</a>,
+          returns the integration limits for test integral 08.
+        </li>
+        <li>
+          <a href = "p08_e.m">p08_e.m</a>,
+          returns the exact integral value for test integral 08.
+        </li>
+        <li>
+          <a href = "p08_f.m">p08_f.m</a>,
+          evaluates the integrand for test integral 08.
+        </li>
+        <li>
+          <a href = "p09_ab.m">p09_ab.m</a>,
+          returns the integration limits for test integral 09.
+        </li>
+        <li>
+          <a href = "p09_e.m">p09_e.m</a>,
+          returns the exact integral value for test integral 09.
+        </li>
+        <li>
+          <a href = "p09_f.m">p09_f.m</a>,
+          evaluates the integrand for test integral 09.
+        </li>
+        <li>
+          <a href = "p10_ab.m">p10_ab.m</a>,
+          returns the integration limits for test integral 10.
+        </li>
+        <li>
+          <a href = "p10_e.m">p10_e.m</a>,
+          returns the exact integral value for test integral 10.
+        </li>
+        <li>
+          <a href = "p10_f.m">p10_f.m</a>,
+          evaluates the integrand for test integral 10.
+        </li>
+        <li>
+          <a href = "p11_ab.m">p11_ab.m</a>,
+          returns the integration limits for test integral 11.
+        </li>
+        <li>
+          <a href = "p11_e.m">p11_e.m</a>,
+          returns the exact integral value for test integral 11.
+        </li>
+        <li>
+          <a href = "p11_f.m">p11_f.m</a>,
+          evaluates the integrand for test integral 11.
+        </li>
+        <li>
+          <a href = "p12_ab.m">p12_ab.m</a>,
+          returns the integration limits for test integral 12.
+        </li>
+        <li>
+          <a href = "p12_e.m">p12_e.m</a>,
+          returns the exact integral value for test integral 12.
+        </li>
+        <li>
+          <a href = "p12_f.m">p12_f.m</a>,
+          evaluates the integrand for test integral 12.
+        </li>
+        <li>
+          <a href = "p13_ab.m">p13_ab.m</a>,
+          returns the integration limits for test integral 13.
+        </li>
+        <li>
+          <a href = "p13_e.m">p13_e.m</a>,
+          returns the exact integral value for test integral 13.
+        </li>
+        <li>
+          <a href = "p13_f.m">p13_f.m</a>,
+          evaluates the integrand for test integral 13.
+        </li>
+        <li>
+          <a href = "p14_ab.m">p14_ab.m</a>,
+          returns the integration limits for test integral 14.
+        </li>
+        <li>
+          <a href = "p14_e.m">p14_e.m</a>,
+          returns the exact integral value for test integral 14.
+        </li>
+        <li>
+          <a href = "p14_f.m">p14_f.m</a>,
+          evaluates the integrand for test integral 14.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 09 January 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

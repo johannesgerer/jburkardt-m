@@ -1,0 +1,249 @@
+<html>
+
+  <head>
+    <title>
+      SANDIA_SGMGG - Sparse Grid Mixed Growth, Generalized Construction
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SANDIA_SGMGG <br> Sparse Grid Mixed Growth, Generalized Construction
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SANDIA_SGMGG</b>
+      is a MATLAB library which
+      contains some experimental code for the investigation of sparse
+      grids constructed in a generalized fashion, in which the set of
+      indices corresponding to a sparse grid is chosen in a generalized
+      way, rather than being defined by a linear constraint.
+    </p>
+
+    <p>
+      The sparse grid is associated with a data structure, whose management
+      is a significant part of the computation.
+    </p>
+
+    <p>
+      We assume we are working in a space of dimension <b>ND</b>.  An
+      index vector is a list of <b>ND</b> nonnegative integers, which
+      represent the level of quadrature in each dimension.  A single 
+      index vector can be used to construct a product rule.
+    </p>
+
+    <p>
+      A sparse grid can be thought of as a weighted summation of product
+      rules; our represention of a sparse grid will then consist of a list 
+      of <b>NI</b> index vectors, which we can regard as an <b>ND</b> by 
+      <b>NI</b> array.
+    </p>
+
+    <p>
+      Not every collection of index vectors will be admissible.  For our
+      purposes, a collection of index vectors is admissible if each vector
+      in the set is admissible.  An index vector that is part of a collection
+      is admissible if it is the 0 vector, or every vector formed by
+      decrementing exactly one entry by 1 is an admissible vector in the set.
+    </p>
+
+    <p>
+      Here is an example of an admissible collection of index vectors in 2D:
+      <pre>
+        (0,3)
+        (0,2) (1,2)
+        (0,1) (1,1)
+        (0,0) (1,0) (2,0) (3,0) (4,0)
+      </pre>
+      For the 2D case, an index is admissible if every possible index below
+      or to the left of it is also in the set.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SANDIA_SGMGG</b> is available in
+      <a href = "../../cpp_src/sandia_sgmgg/sandia_sgmgg.html">a C++ version</a> and
+      <a href = "../../f_src/sandia_sgmgg/sandia_sgmgg.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sandia_sgmgg/sandia_sgmgg.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>, 
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules, 
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Dimension-adaptive tensor-product quadrature,<br>
+          Computing,<br>
+          Volume 71, Number 1, August 2003, pages 65-87.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_modp.m">i4_modp.m</a>,
+          returns the nonnegative remainder of integer division;
+        </li>
+        <li>
+          <a href = "i4_wrap.m">i4_wrap.m</a>,
+          forces an integer to lie between given limits;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r8vec_indexed_heap_d.m">r8vec_indexed_heap_d.m</a>,
+          creates a descending heap from an indexed R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_indexed_heap_d_extract.m">r8vec_indexed_heap_d_extract.m</a>,
+          extract from heap descending indexed R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_indexed_heap_d_insert.m">r8vec_indexed_heap_d_insert.m</a>,
+          insert value into heap descending indexed R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_indexed_heap_d_max.m">r8vec_indexed_heap_d_max.m</a>,
+          maximum value in heap descending indexed R8VEC.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_coef_inc2.m">sandia_sgmgg_coef_inc2.m</a>,
+          computes tentative coefficient changes.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_coef_naive.m">sandia_sgmgg_coef_naive.m</a>,
+          returns the combinatorial coefficients.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_neighbor_naive.m">sandia_sgmgg_neighbor_naive.m</a>,
+          returns the immediate forward neighbor vector.
+        </li>
+        <li>
+          <a href = "sgmgg_print.m">sgmgg_print.m</a>,
+           prints out an SGMGG data structure.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sandia_sgmgg_test.m">sandia_sgmgg_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test01.m">sandia_sgmgg_test01.m</a>,
+          demonstrates the naive coefficient calculations.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test02.m">sandia_sgmgg_test02.m</a>,
+          demonstrates the naive neighbor calculations.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test03.m">sandia_sgmgg_test03.m</a>,
+          sets up the GG data structure.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test04.m">sandia_sgmgg_test04.m</a>,
+          simulates a set of incremental coefficient calculations.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test05.m">sandia_sgmgg_test05.m</a>,
+          demonstrates SANDIA_SGMGG_COEF_INC2.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test06.m">sandia_sgmgg_test06.m</a>,
+          demonstrates SANDIA_SGMGG_COEF_INC2.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_coef_naive_test.m">sandia_sgmgg_coef_naive_test.m</a>,
+          demonstrates SANDIA_SGMGG_COEF_NAIVE.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_neighbor_naive_test.m">sandia_sgmgg_neighbor_naive_test.m</a>,
+          demonstrates SANDIA_SGMGG_NEIGHBOR_NAIVE.
+        </li>
+        <li>
+          <a href = "sandia_sgmgg_test_output.txt">sandia_sgmgg_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 August 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

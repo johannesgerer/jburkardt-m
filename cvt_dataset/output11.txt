@@ -1,0 +1,213 @@
+24 August 2004 10:15:11 AM
+
+CVT_DATASET (C++ version)
+  Generate a CVT dataset.
+
+  Compiled on Aug 24 2004 at 07:47:40
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * NDIM, the spatial dimension,
+  * N, the number of points to generate,
+  * SEED, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** GRID, by picking points from a grid;
+    ** HALTON, from a Halton sequence;
+    ** RANDOM, using FORTRAN RANDOM function;
+    ** UNIFORM, using a simple uniform RNG;
+  * IT_MAX, the maximum number of iterations.
+  * IT_TOL, the iteration tolerance.
+  * SAMPLE, how to conduct the sampling.
+    ** GRID, by picking points from a grid;
+    ** HALTON, from a Halton sequence;
+    ** RANDOM, using FORTRAN RANDOM function;
+    ** UNIFORM, using a simple uniform RNG;
+  * SAMPLE_NUM, the number of sample points.
+  * BATCH, the number of sample points to generate at one time.
+
+  The program generates the data, writes it to the file
+
+   cvt_NDIM_N.txt
+
+  where "NDIM" and "N" are the numeric values specified
+  by the user, and then asks the user for more input.
+
+  To indicate that no further computations are
+  desired, it is enough to input a nonsensical value,
+  such as -1.
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+  Enter NDIM, the spatial dimension:
+  (0 or any negative value terminates execution).
+  User input NDIM = 2
+
+  Enter N, the number of points to generate:
+  (0 or any negative value terminates execution).
+  User input N = 15
+
+  Enter SEED, a seed for the random number generator:
+  (Any negative value terminates execution).
+  User input SEED = 123456789
+
+  INIT is the method of initializing the data:
+
+  file     read data from a file;
+  GRID     by picking points from a grid;
+  HALTON   from a Halton sequence;
+  RANDOM   using C++ RANDOM function;
+  UNIFORM  using a simple uniform RNG;
+
+  (A blank value terminates execution).
+
+  Enter INIT:
+  User input INIT = "initial11.txt".
+
+  IT_MAX is the maximum number of iterations.
+
+  An iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (A negative value terminates execution).
+
+  Enter IT_MAX:
+  User input IT_MAX = 40
+
+  IT_TOL is the iteration tolerance.
+
+  Each iteration replaces the generators by the
+  centroids.  The L2 norm of the difference between
+  these two sets of points is an indirect measure
+  of convergence.
+
+  If this L2 norm falls below IT_TOL, the iteration
+  is presumed to have converged, and is terminated
+  early.
+
+  A zero value is acceptable, and simply means that
+  early termination will not occur.
+
+  (A negative value terminates execution).
+
+  Enter IT_TOL:
+  User input IT_TOL = 0
+
+  SAMPLE is the method of sampling the region:
+
+  GRID     by picking points from a grid;
+  HALTON   from a Halton sequence;
+  RANDOM   using C++ RANDOM function;
+  UNIFORM  using a simple uniform RNG;
+
+  (A blank value terminates execution).
+
+  Enter SAMPLE:
+  User input SAMPLE = "uniform".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:
+  User input SAMPLE_NUM = 10000
+
+  BATCH is the number of sample points to create at one time.
+
+  BATCH should be between 1 and SAMPLE_NUM.
+
+  It is FASTER to set BATCH to SAMPLE_NUM;
+  setting BATCH to 1 requires the least memory.
+
+  (A zero or negative value terminates execution.)
+
+  Enter BATCH:
+  User input BATCH = 1000
+
+  OUTPUT is a file in which to store the data.
+
+  (A blank value terminates execution).
+
+  Enter OUTPUT:
+  User input OUTPUT = "cvt11.txt".
+
+  Step  L2-Change
+
+     1        0.682674
+     2        0.341341
+     3        0.288699
+     4        0.214247
+     5        0.179436
+     6        0.153722
+     7        0.115914
+     8        0.122529
+     9        0.116235
+    10         0.11503
+    11        0.114192
+    12        0.114322
+    13       0.0945578
+    14       0.0815863
+    15       0.0799948
+    16         0.07013
+    17       0.0822222
+    18       0.0860385
+    19       0.0540568
+    20       0.0592706
+    21       0.0713829
+    22       0.0608356
+    23       0.0770329
+    24       0.0650965
+    25       0.0622333
+    26       0.0646596
+    27        0.057146
+    28       0.0676428
+    29       0.0748537
+    30       0.0605896
+    31       0.0547824
+    32       0.0719961
+    33       0.0627877
+    34       0.0718352
+    35       0.0838971
+    36        0.077353
+    37       0.0777251
+    38       0.0795602
+    39       0.0619234
+    40       0.0579335
+
+  The data was written to the file "cvt11.txt
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+  Enter NDIM, the spatial dimension:
+  (0 or any negative value terminates execution).
+  User input NDIM = -1
+
+CVT_DATASET
+  The input value of NDIM = -1
+  is interpreted as a request for termination.
+  Normal end of execution.
+
+24 August 2004 10:15:12 AM

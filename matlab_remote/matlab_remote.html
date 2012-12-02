@@ -1,0 +1,337 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_REMOTE - Remote Computing with MATLAB
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_REMOTE <br>
+      Remote Computing with MATLAB
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_REMOTE</b>
+      is a directory of information which
+      discusses the use of remote computing with MATLAB.
+    </p>
+
+    <p>
+      The latest versions of MATLAB include a facility for preparing jobs and data
+      on a desktop machine, and then submitting them for execution on a remote machine.
+      The local copy of MATLAB is responsible for communicating with the remote machine,
+      transferring files and data to the remote machine,
+      setting up the appropriate job control language and submitting a job there,
+      and then retrieving the results when the job is completed.  In the meantime,
+      the user can do other work, or turn off MATLAB, or in fact turn off the
+      desktop computer and go home for a while!
+    </p>
+
+    <p>
+      There are a number of steps that must be taken to ensure that this remote
+      job submission process works correctly.  These steps are outlined in the
+      document "Notes on Enabling Remote Submission of MATLAB Jobs".
+    </p>
+
+    <p>
+      In outline, these steps involve:
+      <ol>
+        <li>
+          Setting up passwordless remote access to Ithaca from your machine.
+        </li>
+        <li>
+          Copying some necessary files into the <b>toolbox/local</b> subdirectory
+          of your copy of MATLAB.
+        </li>
+        <li>
+          Copying a parallel configuration file <i>ithaca_2009b.mat</i> to
+          your machine, installing it into MATLAB, and modifying it appropriately
+          for your environment.
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      Once these steps are completed, you should try first to validate the
+      ithaca_2009b configuration.  Then you could go to the directory
+      <a href = "../../m_src/matlab_distcomp/matlab_distcomp.html">MATLAB_DISTCOMP</a>
+      and download the set of tests there.  Then by typing the single command <b>test_all</b>,
+      your local copy of MATLAB can send commands and data to ITHACA for processing
+      there.
+    </p>
+
+    <p>
+      One issue is that certain MATLAB utility functions must be copied into
+      the <b>toolbox/local</b> directory on the user's desktop machine.  These
+      scripts may be found lower down on this page.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/birthday_remote/birthday_remote.html">
+      BIRTHDAY_REMOTE</a>,
+      a MATLAB program which
+      runs a Monte Carlo simulation of the birthday paradox, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/color_remote/color_remote.html">
+      COLOR_REMOTE</a>,
+      a MATLAB program which
+      carries out the color segmentation of an image in parallel,
+      via SPMD commands; this includes instructions on how to run the job,
+      via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lyrics_remote/lyrics_remote.html">
+      LYRICS_REMOTE</a>,
+      a MATLAB program which
+      runs in parallel, using three workers which cooperate "systolically", that is,
+      as through they were on an assembly line.  The output from worker 1 is passed to
+      worker 2 for further processing, and so on.  This includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_distcomp/matlab_distcomp.html">
+      MATLAB_DISTCOMP</a>,
+      a MATLAB program which
+      remotely runs a set of 5 jobs on the Ithaca cluster.
+      These jobs are equivalent to the BIRTHDAY_REMOTE, COLOR_REMOTE,
+      KNAPSACK_REMOTE, LYRICS_REMOTE and MD_PARALLEL jobs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum_tasks/subset_sum_tasks.html">
+      SUBSET_SUM_TASKS</a>,
+      a MATLAB program which
+      solves a subset sum problem by exhaustive search,
+      subdividing the search range among separate tasks.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      In order to carry out remote job submission, copies of the following functions
+      and one shell script must be available on the user's local machine, in
+      MATLAB's subdirectory <b>toolbox/local</b>.
+      <ul>
+        <li>
+          <a href = "copyDataFromCluster.m">copyDataFromCluster.m</a>
+        </li>
+        <li>
+          <a href = "copyDataToCluster.m">copyDataToCluster.m</a>
+        </li>
+        <li>
+          <a href = "copyJobFilesIfFinished.m">copyJobFilesIfFinished.m</a>
+        </li>
+        <li>
+          <a href = "pbsDestroyJob.m">pbsDestroyJob.m</a>
+        </li>
+        <li>
+          <a href = "pbsGetJobState.m">pbsGetJobState.m</a>
+        </li>
+        <li>
+          <a href = "pbsNonSharedParallelDecodeFcn.m">pbsNonSharedParallelDecodeFcn.m</a>
+        </li>
+        <li>
+          <a href = "pbsNonSharedParallelSubmitFcn.m">pbsNonSharedParallelSubmitFcn.m</a>
+        </li>
+        <li>
+          <a href = "pbsNonSharedSimpleDecodeFcn.m">pbsNonSharedSimpleDecodeFcn.m</a>
+        </li>
+        <li>
+          <a href = "pbsNonSharedSimpleSubmitFcn.m">pbsNonSharedSimpleSubmitFcn.m</a>
+        </li>
+        <li>
+          <a href = "pbsParallelWrapper.sh">pbsParallelWrapper.sh</a>
+        </li>
+        <li>
+          <a href = "runCmdOnCluster.m">runCmdOnCluster.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 December 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

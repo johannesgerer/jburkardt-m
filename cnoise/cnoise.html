@@ -1,0 +1,271 @@
+<html>
+
+  <head>
+    <title>
+      CNOISE - 1/F^alpha Power Law Noise Generation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CNOISE <br> 1/F^alpha Power Law Noise Generation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CNOISE</b>
+      is a MATLAB library which
+      generates sequences that simulate 1/f^alpha power law noise.  This includes 
+      white noise (alpha = 0), pink noise (alpha = 1) and red or Brownian noise (alpha = 2),
+      as well as noise for values of alpha between 0 and 2.
+    </p>
+
+    <p>
+      <b>CNOISE</b> is based in part on an algorithm by Kasdin,
+      as cited in the references.
+    </p>
+
+    <p>
+      Kasdin's implementation referenced a number of functions from the
+      Numerical Recipes library (FOUR1, FREE_VECTOR, GASDEV, RAN1,
+      REALFT, VECTOR).  Numerical Recipes is a proprietary library
+      whose components cannot be freely distributed.  Moreover,
+      the Fourier transform functions require the size of the data
+      to be a power of 2.
+    </p>
+
+    <p>
+      This version of the program is implemented as a MATLAB function.
+      The Fourier transform functions that are invoked can handle input
+      data of any size.
+    </p>
+
+    <p>
+      Versions of the algorithm are implemented which generate a vector x
+      of size N with a 1/f^alpha frequency distribution, with three choices
+      for the underlying distribution of the white noise vector:
+      <ul>
+        <li>
+          <b>f_alpha_uniform ( n, range, alpha )</b>,
+          a uniform distribution on (-range,+range);
+        </li>
+        <li>
+          <b>f_alpha_gaussian ( n, q_d, alpha )</b>,
+          a Gaussian distribution with mean 0, variance q_d;
+        </li>
+        <li>
+          <b>f_alpha_tgaussian ( n, q_d, range, alpha )</b>,
+          a Gaussian distribution with mean 0,
+          variance q_d, truncated to (-range,range).
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CNOISE</b> is available in
+      <a href = "../../c_src/cnoise/cnoise.html">a C version</a> and
+      <a href = "../../m_src/cnoise/cnoise.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/colored_noise/colored_noise.html">
+      COLORED_NOISE</a>,
+      a MATLAB library which
+      generates samples of noise obeying a 1/f^alpha power law.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pink_noise/pink_noise.html">
+      PINK_NOISE</a>,
+      a MATLAB library which
+      computes a "pink noise" signal obeying a 1/f power law.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stochastic_rk/stochastic_rk.html">
+      STOCHASTIC_RK</a>,
+      a MATLAB library which
+      applies a Runge-Kutta scheme to a stochastic differential equation.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Miroslav Stoyanov,
+      Department of Scientific Computing,
+      Florida State University.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Martin Gardner,<br>
+          White and brown music, fractal curves and one-over-f fluctuations,<br>
+          Scientific American,<br>
+          Volume 238, Number 4, April 1978, pages 16-32.
+        </li>
+        <li>
+          Jeremy Kasdin,<br>
+          Discrete Simulation of Colored Noise and Stochastic Processes
+          and 1/f^a Power Law Noise Generation,<br>
+          Proceedings of the IEEE,<br>
+          Volume 83, Number 5, 1995, pages 802-827.
+        </li>
+        <li>
+          Edoardo Milotti,<br>
+          1/f noise: a pedagogical review,<br>
+          arXiv:physics/0204033.
+        </li>
+        <li>
+          Sophocles Orfanidis,<br>
+          Introduction to Signal Processing,<br>
+          Prentice-Hall, 1995,<br>
+          ISBN: 0-13-209172-0,<br>
+          LC: TK5102.5.O246.
+        </li>
+        <li>
+          William Press,<br>
+          Flicker Noises in Astronomy and Elsewhere,<br>
+          Comments on Astrophysics,<br>
+          Volume 7, Number 4, 1978, pages 103-119.
+        </li>
+        <li>
+          Miroslav Stoyanov, Max Gunzburger, John Burkardt,<br>
+          Pink Noise, 1/f^alpha Noise, and Their Effect on Solutions
+          of Differential Equations,<br>
+          International Journal for Uncertainty Quantification,<br>
+          Volume 1, Number 3, pages 257-278, 2011.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      ZIP File:
+    </h3>
+
+    <p>
+      The following ZIP file contains the three noise algorithms and the
+      frequency plotter:
+      <ul>
+        <li>
+          <a href = "f_alpha_code.zip">f_alpha_code.zip</a>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "f_alpha_gaussian.m">f_alpha_gaussian.m</a>, 
+          generates a discrete colored noise vector of size N with power 
+          spectrum distribution of ALPHA.
+          White noise is sampled from a Gaussian (0,q_d) distribution.
+        </li>
+        <li>
+          <a href = "f_alpha_tgaussian.m">f_alpha_tgaussian.m</a>, 
+          generates a discrete colored noise vector of size N with power 
+          spectrum distribution of ALPHA.
+          White noise is sampled from a truncated Gaussian distribution
+          with zero-mean, variance Q_D, and range (-R,+R).
+        </li>
+        <li>
+          <a href = "f_alpha_uniform.m">f_alpha_uniform.m</a>, 
+          generates a discrete colored noise vector of size N with power 
+          spectrum distribution of ALPHA.
+          White noise is sampled from a uniform distribution
+          with range (-R,+R).
+        </li>
+        <li>
+          <a href = "freq_plotter.m">freq_plotter.m</a>, 
+          performs a numerical test on the frequency distribution of
+          discrete approximations to a continuous noise field.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cnoise_test.m">cnoise_test.m</a>
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "cnoise_test01.m">cnoise_test01.m</a>,
+          tests F_ALPHA_GAUSSIAN.
+        </li>
+        <li>
+          <a href = "cnoise_test02.m">cnoise_test02.m</a>,
+          tests F_ALPHA_TGAUSSIAN.
+        </li>
+        <li>
+          <a href = "cnoise_test03.m">cnoise_test03.m</a>,
+          tests F_ALPHA_UNIFORM.
+        </li>
+        <li>
+          <a href = "cnoise_test_output.txt">cnoise_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "test10k1k.png">test10k1k.png</a>,
+          a PNG image of the plot created by the command
+          freq_plotter(10000,1000,1,'test10k1k')
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 April 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

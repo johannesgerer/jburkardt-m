@@ -1,0 +1,332 @@
+<html>
+
+  <head>
+    <title>
+      ZIGGURAT - Ziggurat Method for Exponential or Normal Random Numbers
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ZIGGURAT <br> Ziggurat Method for Exponential or Normal Random Numbers
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ZIGGURAT</b> 
+      is a MATLAB library which 
+      rapidly generates random variates from the uniform, normal or
+      exponential distributions,
+      by Marsaglia and Tsang.
+    </p>
+
+    <p>
+      The uniform numbers are generated directly.  The ziggurate method is used 
+      to compute the normal and exponential values.
+    </p>
+
+    <p>
+      In the reference, the underlying generators are implemented "inline", 
+      invoking a function call only in exceptional cases.  This results in
+      very fast execution.
+    </p>
+
+    <p>
+      In this implementation, the advantages of inline code are not used.
+      All the routines and inline functions are isolated in a separate file,
+      so that a user invokes them through the familiar library interface.
+    </p>
+
+    <p>
+      <i>
+        This code is a translation of software written in C.  The C code used
+        unsigned integers for the underlying SHR3 algorithm.  Getting the MATLAB
+        code to reproduce the results of the C code has been somewhat tricky.
+        The results seem to match the C code, but I have not tried to be
+        efficient in my modifications.
+      </i>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>ZIGGURAT</b> is available in
+      <a href = "../../c_src/ziggurat/ziggurat.html">a C version</a> and
+      <a href = "../../cpp_src/ziggurat/ziggurat.html">a C++ version</a> and
+      <a href = "../../f77_src/ziggurat/ziggurat.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/ziggurat/ziggurat.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/ziggurat/ziggurat.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>, 
+      a MATLAB library which 
+      computes elements of a Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure/faure.html">
+      FAURE</a>,
+      a MATLAB library which 
+      computes elements of a Faure quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid/grid.html">
+      GRID</a>, 
+      a MATLAB library which 
+      computes elements of a grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/halton/halton.html">
+      HALTON</a>,
+      a MATLAB library which 
+      computes elements of a Halton quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hammersley/hammersley.html">
+      HAMMERSLEY</a>,
+      a MATLAB library which 
+      computes elements of a Hammersley quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid/hex_grid.html">
+      HEX_GRID</a>,
+      a MATLAB library which 
+      computes elements of a hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid_angle/hex_grid_angle.html">
+      HEX_GRID_ANGLE</a>,
+      a MATLAB library which
+      computes elements of an angled hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ihs/ihs.html">
+      IHS</a>,
+      a MATLAB library which 
+      computes elements of an improved distributed Latin hypercube dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center/latin_center.html">
+      LATIN_CENTER</a>, 
+      a MATLAB library which 
+      computes elements of a Latin Hypercube dataset, choosing center points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge/latin_edge.html">
+      LATIN_EDGE</a>, 
+      a MATLAB library which 
+      computes elements of a Latin Hypercube dataset, choosing edge points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random/latin_random.html">
+      LATIN_RANDOM</a>, 
+      a MATLAB library which 
+      computes elements of a Latin Hypercube dataset, choosing 
+      points at random.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt/lcvt.html">
+      LCVT</a>,
+      a MATLAB library which 
+      computes a latinized Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2/niederreiter2.html">
+      NIEDERREITER2</a>, 
+      a MATLAB library which 
+      computes elements of a Niederreiter quasirandom sequence with base 2.
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>, 
+      a MATLAB library which
+      computes elements of a sequence of pseudorandom normally distributed values.
+    </p>
+
+    <p>
+      <a href = "../../c_src/rbox/rbox.html">
+      RBOX</a>, 
+      a C program which
+      generates a set of points in a region, selected at random according to a given distribution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol/sobol.html">
+      SOBOL</a>,
+      a MATLAB library which 
+      computes elements of a Sobol quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which 
+      computes elements of uniform pseudorandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput/van_der_corput.html">
+      VAN_DER_CORPUT</a>,
+      a MATLAB library which 
+      computes elements of a van der Corput quasirandom sequence.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      George Marsaglia, Wai Wan Tsang.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Marsaglia, Wai Wan Tsang,<br>
+          The Ziggurat Method for Generating Random Variables,<br>
+          Journal of Statistical Software,<br>
+          Volume 5, Number 8, October 2000, seven pages.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r4_exp.m">r4_exp.m</a>
+          returns an exponentially distributed single precision real value.
+        </li>
+        <li>
+          <a href = "r4_exp_setup.m">r4_exp_setup.m</a>
+          sets data needed by R4_EXP.
+        </li>
+        <li>
+          <a href = "r4_nor.m">r4_nor.m</a>
+          returns a normally distributed single precision real value.
+        </li>
+        <li>
+          <a href = "r4_nor_setup.m">r4_nor_setup.m</a>
+          sets data needed by R4_NOR.
+        </li>
+        <li>
+          <a href = "r4_uni.m">r4_uni.m</a>
+          returns a uniformly distributed real value.
+        </li>
+        <li>
+          <a href = "shr3.m">shr3.m</a>
+          evaluates the SHR3 generator for integers.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          returns the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ziggurat_test.m">ziggurat_test.m</a>
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "ziggurat_test_output.txt">ziggurat_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "ziggurat_test001.m">ziggurat_test001.m</a>
+          checks the behavior of SHR3 based on the seed value.
+        </li>
+        <li>
+          <a href = "ziggurat_test02.m">ziggurat_test02.m</a>
+          checks the behavior of R4_UNI based on the seed value.
+        </li>
+        <li>
+          <a href = "ziggurat_test03.m">ziggurat_test03.m</a>
+          checks the behavior of R4_NOR based on the seed value.
+        </li>
+        <li>
+          <a href = "ziggurat_test04.m">ziggurat_test04.m</a>
+          checks the behavior of R4_EXP based on the seed value.
+        </li>
+        <li>
+          <a href = "ziggurat_test05.m">ziggurat_test05.m</a>
+          times SHR3.
+        </li>
+        <li>
+          <a href = "ziggurat_test06.m">ziggurat_test06.m</a>
+          times R4_UNI.
+        </li>
+        <li>
+          <a href = "ziggurat_test07.m">ziggurat_test07.m</a>
+          times R4_NOR.
+        </li>
+        <li>
+          <a href = "ziggurat_test08.m">ziggurat_test08.m</a>
+          times R4_EXP.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 May 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

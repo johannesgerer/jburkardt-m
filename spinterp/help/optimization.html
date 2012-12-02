@@ -1,0 +1,215 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Optimization (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="integration.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="performance.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Optimization</h1>
+	  <p>Once a sparse grid interpolant providing a surrogate function or meta-model of an expensive to evaluate model has been obtained, a very common task to be performed is often a search for local/global minimizers or maximizers. Since version 4.0 of the toolbox, several efficient optimization methods are available to perform this task. Furthermore, it is easy to use third-party optimization codes on sparse grid interpolants.</p>
+      <h2>Contents</h2>
+      <div>
+         <ul>
+            <li><a href="#1">Available algorithms</a></li>
+            <li><a href="#2">Optimizing piecewise linear interpolants</a></li>
+            <li><a href="#4">Optimizing polynomial interpolants</a></li>
+            <li><a href="#5">A high-dimensional example</a></li>
+            <li><a href="#8">Using third-party optimization algorithms</a></li>
+         </ul>
+      </div>
+      <h2><a name="1">Available algorithms</a></h2>
+      <p>The following optimization algorithms are included with the toolbox:</p>
+      <div>
+         <ul>
+            <li><tt><a href="spcgsearch.html">spcgsearch</a></tt> - suitable for optimizing polynomial sparse grid interpolants.
+            </li>
+            <li><tt><a href="spcompsearch.html">spcompsearch</a></tt> - suitable for optimizing piecewise linear sparse grid interpolants.
+            </li>
+            <li><tt><a href="spfminsearch.html">spfminsearch</a></tt> - works for all types of interpolants, but usually less efficient than <tt>spcompsearch</tt> or <tt>spcgsearch</tt>.
+            </li>
+            <li><tt><a href="spmultistart.html">spmultistart</a></tt> - a multiple random start search method that uses any of the above methods for the local searches.
+            </li>
+         </ul>
+      </div>
+      <p>Many parameters of these algorithms can be configured with an options structure created with the <tt><a href="spoptimset.html">spoptimset</a></tt> function.
+      </p>
+      <h2><a name="2">Optimizing piecewise linear interpolants</a></h2>
+      <p>We consider a simple algebraic test function <tt>f</tt>, the well-known six-hump camel back function. Here, we visualize <tt>f</tt> slightly shifted and in logarithmic scaling to cleary show the 6 minima. Two minima are global, indicated by the red triangle.
+      </p><pre class="codeinput">f = @(x,y) (4-2.1.*x.^2+x.^4./3).*x.^2+x.*y+(-4+4.*y.^2).*y.^2;
+ezcontour(@(x,y) log(2+f(x,y)), [-3 3 -2 2], 51);
+hold <span class="string">on</span>;
+plot([ 0.08984201  -0.08984201], [-0.71265640   0.71265640], <span class="string">'r^'</span>);
+</pre><img vspace="5" hspace="5" src="images/ex_optim_01.png"> <p>We construct a sequence of piecewise linear interpolants, and optimize them by the <tt>spcompsearch</tt> function in each step. Here, we use a maximum of <tt>N = 705</tt> points, as used by the Clenshaw-Curtis grid of level <tt>nmax = 5</tt>, to approximate the (global) minimum.
+      </p><pre class="codeinput">nmax = 7;
+z = [];
+range = [-3 3; -2 2];
+f_exact = -1.0316284535
+
+warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:insufficientDepth'</span>);
+tic;
+<span class="keyword">for</span> n = 1:nmax
+  spoptions = spset(<span class="string">'MinDepth'</span>, n, <span class="string">'MaxDepth'</span>, n, <span class="string">'PrevResults'</span>, z, <span class="keyword">...</span>
+          <span class="string">'KeepFunctionValues'</span>, <span class="string">'on'</span>);
+  z = spvals(f,2,range,spoptions);
+  [xopt, fval, exitflag, output] = spcompsearch(z,range);
+  disp([<span class="string">' grid pnts: '</span> sprintf(<span class="string">'%3d'</span>, z.nPoints) <span class="keyword">...</span>
+        <span class="string">' | optim fevals: '</span> sprintf(<span class="string">'%3d'</span>, output.nFEvals) <span class="keyword">...</span>
+        <span class="string">' | fval: '</span> sprintf(<span class="string">'%+5f'</span>, fval) <span class="keyword">...</span>
+        <span class="string">' | abs. error: '</span> num2str(abs(f_exact-fval))]);
+<span class="keyword">end</span>
+toc;
+warning(<span class="string">'on'</span>, <span class="string">'MATLAB:spinterp:insufficientDepth'</span>);
+</pre><pre class="codeoutput">
+f_exact =
+
+   -1.0316
+
+ grid pnts:   5 | optim fevals:   8 | fval: +0.000000 | abs. error: 1.0316
+ grid pnts:  13 | optim fevals:   8 | fval: +0.000000 | abs. error: 1.0316
+ grid pnts:  29 | optim fevals:  12 | fval: -0.750000 | abs. error: 0.28163
+ grid pnts:  65 | optim fevals:  12 | fval: -0.984375 | abs. error: 0.047253
+ grid pnts: 145 | optim fevals:  20 | fval: -0.986956 | abs. error: 0.044672
+ grid pnts: 321 | optim fevals:  20 | fval: -1.026468 | abs. error: 0.0051603
+ grid pnts: 705 | optim fevals:  24 | fval: -1.031286 | abs. error: 0.00034234
+Elapsed time is 0.641286 seconds.
+</pre><h2><a name="4">Optimizing polynomial interpolants</a></h2>
+      <p>If the objective function is smooth, polynomial interpolants are a good choice. In the example below, by using the Chebyshev-Gauss-Lobatto
+         sparse grid, we achieve an exponential convergence rate for the considered analytic function. To further reduce the number
+         of sparse grid points, we use a dimension-adaptive interpolant. We start with <tt>N = 5</tt> nodes, and increase the number of nodes by about a factor of 1.5 in each step of the loop, up to about 100 points.
+      </p><pre class="codeinput">Nmax = 100;
+N = 5;
+z = [];
+warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+tic;
+<span class="keyword">while</span> N &lt;= Nmax
+  spoptions = spset(<span class="string">'MinPoints'</span>, N, <span class="string">'MaxPoints'</span>, N, <span class="string">'PrevResults'</span>, z, <span class="keyword">...</span>
+    <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+    <span class="string">'KeepFunctionValues'</span>, <span class="string">'on'</span>);
+  z = spvals(f,2,range,spoptions);
+  N = round(z.nPoints .* 1.5);
+  [xopt, fval, exitflag, output] = spcgsearch(z,range);
+  disp([<span class="string">' grid pnts: '</span> sprintf(<span class="string">'%3d'</span>, z.nPoints) <span class="keyword">...</span>
+        <span class="string">' | optim fevals: '</span> sprintf(<span class="string">'%3d'</span>, output.nFEvals) <span class="keyword">...</span>
+        <span class="string">' | fval: '</span> sprintf(<span class="string">'%+5f'</span>, fval) <span class="keyword">...</span>
+        <span class="string">' | abs. error: '</span> num2str(abs(f_exact-fval))]);
+<span class="keyword">end</span>
+toc;
+warning(<span class="string">'on'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+</pre><pre class="codeoutput"> grid pnts:   5 | optim fevals:   1 | fval: +0.000000 | abs. error: 1.0316
+ grid pnts:  11 | optim fevals:   9 | fval: +0.000000 | abs. error: 1.0316
+ grid pnts:  17 | optim fevals:  20 | fval: -0.537875 | abs. error: 0.49375
+ grid pnts:  29 | optim fevals:  29 | fval: -1.031628 | abs. error: 1.9134e-11
+ grid pnts:  53 | optim fevals:  30 | fval: -1.031628 | abs. error: 1.924e-11
+ grid pnts:  85 | optim fevals:  30 | fval: -1.031628 | abs. error: 1.9262e-11
+Elapsed time is 1.146093 seconds.
+</pre><h2><a name="5">A high-dimensional example</a></h2>
+      <p>Let us look at the optimization of a higher-dimensional function. We consider again the function <tt>trid.m</tt> that was already used to illustrate the dimension-adaptive algorithm:
+      </p><pre class="codeinput">type(<span class="string">'trid.m'</span>);
+</pre><pre class="codeoutput">
+function y = trid(x)
+% TRID   Quadratic function with a tridiagonal Hessian.
+%   Y = TRID(X)   returns the function value Y for a D-
+%   dimensional input vector X.
+%
+% The test function is due to Arnold Neumaier, listed
+% on the global optimization Web page at 
+%   http://www.mat.univie.ac.at/~neum/glopt/
+
+d = length(x);
+y = sum((x-1).^2) - sum(x(2:d).*x(1:d-1));
+</pre><p>We let <tt>d=100</tt>, and compute the known exact minimal value for comparison:
+      </p><pre class="codeinput">d = 100;
+range = repmat([-d^2 d^2],d,1);
+f_exact = -d*(d+4)*(d-1)/6
+</pre><pre class="codeoutput">
+f_exact =
+     -171600
+</pre><p>For high-dimensional problems, it is important to use dimensional adaptivity. Note that here, as well as in the examples above,
+         we use the <tt>KeepFunctionValues</tt> property to indicate that the function values obtained during the sparse grid construction should be retained in order to
+         save time when selecting a good start point for the search.
+      </p><pre class="codeinput">options = spset(<span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+                <span class="string">'DimadaptDegree'</span>, 1, <span class="keyword">...</span>
+                <span class="string">'FunctionArgType'</span>, <span class="string">'vector'</span>, <span class="keyword">...</span>
+                <span class="string">'RelTol'</span>, 1e-3, <span class="keyword">...</span>
+                <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+                <span class="string">'KeepFunctionValues'</span>, <span class="string">'on'</span>);
+
+Nmax = 40000;
+N = 2*d;
+z = [];
+warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+tic;
+xopt = [];
+fval = [];
+<span class="keyword">while</span> N &lt;= Nmax
+  spoptions = spset(options, <span class="string">'MinPoints'</span>, N, <span class="keyword">...</span>
+    <span class="string">'MaxPoints'</span>, N, <span class="string">'PrevResults'</span>, z);
+  z = spvals(@trid,d,range,spoptions);
+  z = sppurge(z);
+  spoptoptions = spoptimset(<span class="string">'TolFun'</span>,1e-6);
+  [xopt,fval,exitflag,output] = spcgsearch(z,range,spoptoptions);
+  N = round(z.nPoints .* 2);
+  disp([<span class="string">' grid pnts: '</span> sprintf(<span class="string">'%5d'</span>, z.nPoints) <span class="keyword">...</span>
+        <span class="string">' | optim fevals: '</span> sprintf(<span class="string">'%4d'</span>, output.nFEvals) <span class="keyword">...</span>
+        <span class="string">' | fval: '</span> sprintf(<span class="string">'%+9.1f'</span>, fval) <span class="keyword">...</span>
+        <span class="string">' | abs. error: '</span> num2str(abs(f_exact-fval))]);
+<span class="keyword">end</span>
+toc;
+warning(<span class="string">'on'</span>, <span class="string">'MATLAB:spinterp:maxPointsReached'</span>);
+</pre><pre class="codeoutput"> grid pnts:   201 | optim fevals:   11 | fval:      -0.0 | abs. error: 171600
+ grid pnts:   443 | optim fevals:   29 | fval:     -18.0 | abs. error: 171582
+ grid pnts:   923 | optim fevals:   48 | fval:    -132.0 | abs. error: 171468
+ grid pnts:  1883 | optim fevals:   93 | fval:    -537.0 | abs. error: 171063
+ grid pnts:  3899 | optim fevals:  117 | fval:   -1202.0 | abs. error: 170398
+ grid pnts:  7889 | optim fevals:  188 | fval:   -3293.0 | abs. error: 168307
+ grid pnts: 16043 | optim fevals:  248 | fval:  -10725.9 | abs. error: 160874.1483
+ grid pnts: 32477 | optim fevals:  305 | fval: -171600.0 | abs. error: 5.6811e-08
+Elapsed time is 188.371965 seconds.
+</pre><a name="8"><h2>Using third-party optimization algorithms</h2></a>
+      <p>Instead of using the optimization algorithms provided with the Sparse Grid Interpolation Toolbox, you can also use third-party
+         optimization methods. In the following example, we use <tt>fmincon</tt> from The Mathwork's Optimization Toolbox on <tt>spsurfun</tt> to optimize the sparse grid interpolant obtained in the last step of the loop from the example above.
+      </p><pre class="codeinput">optimsetoptions = optimset(<span class="string">'GradObj'</span>,<span class="string">'on'</span>, <span class="keyword">...</span>
+  <span class="string">'LargeScale'</span>,<span class="string">'off'</span>);
+[xopt,fval,exitflag,output] = fmincon(@(x) spsurfun(x,z), <span class="keyword">...</span>
+  range(:,1)+range(:,2))/2,[],[],[],[],range(:,1),range(:,2), <span class="keyword">...</span>
+  [], optimsetoptions);
+disp([<span class="string">' grid pnts: '</span> sprintf(<span class="string">'%5d'</span>, z.nPoints) <span class="keyword">...</span>
+      <span class="string">' | optim fevals: '</span> sprintf(<span class="string">'%4d'</span>, output.funcCount) <span class="keyword">...</span>
+      <span class="string">' | fval: '</span> sprintf(<span class="string">'%+9.1f'</span>, fval) <span class="keyword">...</span>
+      <span class="string">' | abs. error: '</span> num2str(abs(f_exact-fval))]);
+</pre><pre class="codeoutput">Optimization terminated: magnitude of directional derivative in search
+ direction less than 2*options.TolFun and maximum constraint violation
+  is less than options.TolCon.
+No active inequalities
+ grid pnts: 32477 | optim fevals: 5711 | fval: -171600.0 | abs. error: 1.1176e-07
+</pre>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="integration.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Integration</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Improving performance</td>
+        <td width="20" align="right"><a href="performance.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,120 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Degree of Dimensional Adaptivity (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="advanced_topics.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="multiple_outputs.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Degree of Dimensional Adaptivity</h1>
+	  <p>When dealing with high-dimensional problems, an "exhaustive" exploration of the objective function with a standard sparse grid becomes too expensive, since too many points are generated. Therefore, dimension-adaptive sparse grids were introduced that adaptively refine the interpolant with respect to dimensions that are most important, determined by error indicators. However, there is still one problem with this approach: due to the fact that the error indicator is a measure computed from hierarchical surpluses at a few points only, it can happen that the error indicator understimates the actual error with respect to some dimensions. As a consequence, the interpolant may no longer be further refined in these dimensions. In other words, the global convergence property of sparse grid interpolants for the before-mentioned classes of functions is lost for purely greedy dimension-adaptive refinement.</p>
+		<p>The solution to this problem is to take a "middle ground" approach by introducing an additional parameter, the <it>degree of dimensional adaptivity</it> <a href="bibliography.html">[8]</a>, that lets the user gradually shift emphasis between greedy (= purely adaptive) and conservative (= standard sparse grid) refinement.<p> 
+		<h2><i>Degree balancing</i> approach</h2>
+		<p>Version 5.1 of the toolbox introduces a simple yet very powerful new strategy to the degree of dimensional adaptivity called <i>degree balancing</i>, replacing the previous approach based on the interpolation depth described in <a href="bibliography.html">[3, ch. 3]</a>. The new approach is decribed in the following.</p>
+		<h3>Definition of the degree of dimensional adaptivity</h3>
+		<p>As a preliminary, we define the actual degree of dimensional adaptivity as the ratio <code>r</code> = <code>nAdaptPoints</code> / <code>nTotalPoints</code>, where <code>nAdaptPoints</code> denotes the number of points added according to a greedy, purely dimension-adaptive refinement rule, and <code>nTotalPoints</code> denotes the total number of sparse grid points. We assume that the remaining points <code>(nTotalPoints - nAdaptPoints)</code> are constructed by the standard sparse grid refinement rule.</p>
+		<h3>Specifying the target dimensional adaptivity degree</h3>
+		<p>The user may specify a target degree of dimensionsonal adaptivity using the <code>DimadaptDegree</code> parameter of the sparse grid options structure.</p> 
+		<h3>Refinement rule</h3>
+		<p>During interpolant construction, index sets of both a greedy dimension-adaptive (<i>adaptive</i> refinement rule) and a regular sparse grid interpolant (<i>regular</i> refinement rule) are maintained. Then, at each step of the construction algorithm, the ratio <code>r</code> = <code>nAdaptPoints</code> / <code>nTotalPoints</code> is computed. The ratio <code>r</code> represents the current degree of dimensional adaptivity. Now, if the target rate is smaller than the current rate <code>r</code>, points corresponding to an index set maintained by the adaptive rule are added to the interpolant, otherwise, points according to the regular rule are added. Thus, the generated interpolant will have a degree of dimensional adaptivity close to the target degree (it is "balanced" around the target degree).</p>
+		<h3>Benefits of the new approach</h3>
+		<p>The new degree balancing approach has the following benefits:
+		  <ul>
+			  <li>Transparent, easy to understand definition of the degree of dimensional adaptivity.</li>
+				<li>Works independently of the problem dimension.</li>
+				<li>The target degree of adaptivity can be adjusted interactively at any time (see example below).</li>
+			</ul>
+		</p>
+      <h2>Examples</h2>
+      <div>
+         <ul>
+            <li><a href="#1">Comparison of different degrees of dimensional adaptivity</a></li>
+            <li><a href="#5">Adjusting the adaptivity degree during interpolant construction</a></li>
+         </ul>
+      </div>
+      <h2><a name="1">Comparison of different degrees of dimensional adaptivity</a></h2>
+      <p>Let us use Branin's function to illustrate how the degree of dimensional adaptivity affects the grid construction.</p><pre class="codeinput">fun = inline([<span class="string">'(5/pi*x-5.1/(4*pi^2)*x.^2+y-6).^2 + '</span> <span class="keyword">...</span>
+              <span class="string">'10*(1-1/(8*pi))*cos(x)+10'</span>]);
+d = 2;
+range = [-5, 10; 0, 15];
+</pre><p>The code snippet below generates sparse grid interpolants for target degrees of dimensional adaptivity 0, 0.5, and 1, i.e.,
+         about 0%, 50%, or 100% of the grid points are generated by the greedy, error-indicator based refinement rule. For each interpolant,
+         we set the minimum and maximum number of points to 65 in order to get an interpolant with close to that number of points.
+      </p><pre class="codeinput">options = spset(<span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+  <span class="string">'MinPoints'</span>, 65, <span class="string">'MaxPoints'</span>, 65, <span class="string">'Vectorized'</span>, <span class="string">'on'</span>, <span class="string">'KeepGrid'</span>, <span class="string">'on'</span>);
+z1 = spvals(fun, d, range, spset(options, <span class="string">'DimadaptDegree'</span>, 0));
+z2 = spvals(fun, d, range, spset(options, <span class="string">'DimadaptDegree'</span>, 0.5));
+z3 = spvals(fun, d, range, spset(options, <span class="string">'DimadaptDegree'</span>, 1));
+</pre><p>We can check how closely the actual degrees of dimensional adaptivity meet the target rates:</p><pre class="codeinput">disp(sprintf(<span class="string">'Degree of dimensional adaptivity: z1: %.2f, z2: %.2f, z3: %.2f'</span>, <span class="keyword">...</span>
+  z1.dimadaptDegree, z2.dimadaptDegree, z3.dimadaptDegree));
+</pre><pre class="codeoutput">Degree of dimensional adaptivity: z1: 0.00, z2: 0.52, z3: 0.99
+</pre><p>The following plot compares the generated grids and subgrid indices.</p><pre class="codeinput">z = {z1, z2, z3};
+<span class="keyword">for</span> k = 1:3
+  subplot(2,3,k);
+  plot(z{k}.grid{1}(:,1), z{k}.grid{1}(:,2), <span class="string">'k.'</span>);
+  axis([range(1,:), range(2,:)]);
+  axis <span class="string">square</span>;
+  subplot(2,3,3+k);
+  plotindices(z{k});
+  title(sprintf(<span class="string">'z%d, degree: %2.0f%%'</span>, k, 100*z{k}.dimadaptDegree))
+  axis([0,8,0,6]);
+<span class="keyword">end</span>
+</pre><img vspace="5" hspace="5" src="images/ex_dimadaptdegree_01.png"> 
+<h2><a name="5">Adjusting the adaptivity degree during interpolant construction</a></h2>
+      <p>Suppose we have created a dimension-adaptive interpolant with purely greedy refinement to achieve a target estimated error
+         of <code>1e-3</code>.
+      </p><pre class="codeinput">options = spset(<span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+  <span class="string">'RelTol'</span>, 1e-3, <span class="string">'Vectorized'</span>, <span class="string">'on'</span>, <span class="string">'KeepGrid'</span>, <span class="string">'on'</span>, <span class="string">'MinPoints'</span>, 30);
+z = spvals(fun, d, range, spset(options, <span class="string">'DimadaptDegree'</span>, 1));
+</pre><p>We find that it took 45 points to achieve this estimated accuracy:</p><pre class="codeinput">z.nPoints
+z.estRelError
+</pre><pre class="codeoutput">ans =
+          45
+ans =
+   6.3274e-07
+</pre><p>We are happy with the achieved accuracy, but in order to be more comfortable with the result, we would like to add some additional
+         points according to the standard sparse grid refinement rule. We thus change the degree of dimensional adaptivity to 0 (=conservative,
+         non-adaptive refinement), and add another approx. 20 points to the interpolant.
+      </p><pre class="codeinput">z = spvals(fun, d, range, spset(options, <span class="string">'DimadaptDegree'</span>, 0, <span class="keyword">...</span>
+  <span class="string">'MinPoints'</span>, z.nPoints + 20, <span class="string">'PrevResults'</span>, z));
+</pre><p>We can now check if the estimated error is still satisfied:</p><pre class="codeinput">z.estRelError
+</pre><pre class="codeoutput">ans =
+   6.3244e-07
+</pre><p>The actual degree of dimensional adaptivity of the interpolant reflects our refinement by the two different rules. 44 points
+         (64%) out of the total points of now 69 were added according to the dimension-adaptive refinement rule.
+      </p><pre class="codeinput">z.nPoints
+z.dimadaptDegree
+</pre><pre class="codeoutput">ans =
+          69
+ans =
+    0.6377
+</pre>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="advanced_topics.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Advanced Topics</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Multiple Output Variables</td>
+        <td width="20" align="right"><a href="multiple_outputs.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

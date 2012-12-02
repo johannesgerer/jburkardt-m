@@ -1,0 +1,514 @@
+<html>
+
+  <head>
+    <title>
+      CHEBYSHEV_POLYNOMIAL - Chebyshev Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      CHEBYSHEV_POLYNOMIAL <br> Chebyshev Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CHEBYSHEV_POLYNOMIAL</b>
+      is a MATLAB library which
+      considers the Chebyshev polynomials T(i,x), U(i,x), V(i,x) and W(i,x).
+      Functions are provided to evaluate the polynomials, determine their zeros, 
+      produce their polynomial coefficients, produce related quadrature rules,
+      project other functions onto these polynomial bases, and integrate
+      double and triple products of the polynomials.
+    </p>
+
+    <p>
+      The Chebyshev polynomial T(n,x), or Chebyshev polynomial of the first kind,
+      may be defined, for 0 <= n, and -1 <= x <= +1 by:
+      <pre>
+        cos ( t ) = x
+        T(n,x) = cos ( n * t )
+      </pre>
+      For any value of x, T(n,x) may be evaluated by a three
+      term recurrence:
+      <pre>
+        T(0,x) = 1
+        T(1,x) = x
+        T(n+1,x) = 2x T(n,x) - T(n-1,x)
+      </pre>
+    </p>
+
+    <p>
+      The Chebyshev polynomial U(n,x), or Chebyshev polynomial of the second kind,
+      may be defined, for 0 <= n, and -1 <= x <= +1 by:
+      <pre>
+        cos ( t ) = x
+        U(n,x) = sin ( ( n + 1 ) t ) / sin ( t )
+      </pre>
+      For any value of x, U(n,x) may be evaluated by a three
+      term recurrence:
+      <pre>
+        U(0,x) = 1
+        U(1,x) = 2x
+        U(n+1,x) = 2x U(n,x) - U(n-1,x)
+      </pre>
+    </p>
+
+    <p>
+      The Chebyshev polynomial V(n,x), or Chebyshev polynomial of the third kind,
+      may be defined, for 0 <= n, and -1 <= x <= +1 by:
+      <pre>
+        cos ( t ) = x
+        V(n,x) = cos ( (2n+1)*t/2) / cos ( t/2)
+      </pre>
+      For any value of x, V(n,x) may be evaluated by a three
+      term recurrence:
+      <pre>
+        V(0,x) = 1
+        V(1,x) = 2x-1
+        V(n+1,x) = 2x V(n,x) - V(n-1,x)
+      </pre>
+    </p>
+
+    <p>
+      The Chebyshev polynomial W(n,x), or Chebyshev polynomial of the fourth kind,
+      may be defined, for 0 <= n, and -1 <= x <= +1 by:
+      <pre>
+        cos ( t ) = x
+        W(n,x) = sin((2*n+1)*t/2)/sin(t/2)
+      </pre>
+      For any value of x, W(n,x) may be evaluated by a three
+      term recurrence:
+      <pre>
+        W(0,x) = 1
+        W(1,x) = 2x+1
+        W(n+1,x) = 2x W(n,x) - W(n-1,x)
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CHEBYSHEV_POLYNOMIAL</b> is available in
+      <a href = "../../cpp_src/chebyshev_polynomial/chebyshev_polynomial.html">a C++ version</a> and
+      <a href = "../../f_src/chebyshev_polynomial/chebyshev_polynomial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/chebyshev_polynomial/chebyshev_polynomial.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev/chebyshev.html">
+      CHEBYSHEV</a>,
+      a MATLAB library which
+      computes the Chebyshev interpolant/approximant to a given function
+      over an interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev1_rule/chebyshev1_rule.html">
+      CHEBYSHEV1_RULE</a>,
+      a MATLAB program which
+      computes and prints a Gauss-Chebyshev type 1 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev2_rule/chebyshev2_rule.html">
+      CHEBYSHEV2_RULE</a>,
+      a MATLAB program which
+      compute and print a Gauss-Chebyshev type 2 quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">
+      HERMITE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the physicist's Hermite polynomial, the probabilist's Hermite polynomial,
+      the Hermite function, and related functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev1/int_exactness_chebyshev1.html">
+      INT_EXACTNESS_CHEBYSHEV1</a>,
+      a MATLAB program which
+      tests the polynomial exactness of Gauss-Chebyshev type 1 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev2/int_exactness_chebyshev2.html">
+      INT_EXACTNESS_CHEBYSHEV2</a>,
+      a MATLAB program which
+      tests the polynomial exactness of Gauss-Chebyshev type 2 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/jacobi_polynomial/jacobi_polynomial.html">
+      JACOBI_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Jacobi polynomial and associated functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/laguerre_polynomial/laguerre_polynomial.html">
+      LAGUERRE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Laguerre polynomial, the generalized Laguerre polynomial,
+      and the Laguerre function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_polynomial/legendre_polynomial.html">
+      LEGENDRE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Legendre polynomial and associated functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polpak/polpak.html">
+      POLPAK</a>,
+      a MATLAB library which
+      evaluates a variety of mathematical functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_values/test_values.html">
+      TEST_VALUES</a>,
+      a MATLAB library which
+      supplies test values of various mathematical functions.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Theodore Chihara,<br>
+          An Introduction to Orthogonal Polynomials,<br>
+          Gordon and Breach, 1978,<br>
+          ISBN: 0677041500,<br>
+          LC: QA404.5 C44.
+        </li>
+        <li>
+          Walter Gautschi,<br>
+          Orthogonal Polynomials: Computation and Approximation,<br>
+          Oxford, 2004,<br>
+          ISBN: 0-19-850672-4,<br>
+          LC: QA404.5 G3555.
+        </li>
+        <li>
+          John Mason, David Handscomb,<br>
+          Chebyshev Polynomials,<br>
+          CRC Press, 2002,<br>
+          ISBN: 0-8493-035509,<br>
+          LC: QA404.5.M37.
+        </li>
+        <li>
+          Frank Olver, Daniel Lozier, Ronald Boisvert, Charles Clark,<br>
+          NIST Handbook of Mathematical Functions,<br>
+          Cambridge University Press, 2010,<br>
+          ISBN: 978-0521192255,<br>
+          LC: QA331.N57.
+        </li>
+        <li>
+          Gabor Szego,<br>
+          Orthogonal Polynomials,<br>
+          American Mathematical Society, 1992,<br>
+          ISBN: 0821810235,<br>
+          LC: QA3.A5.v23.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>,
+          returns a scaled pseudorandom I4.
+        </li>
+        <li>
+          <a href = "imtqlx.m">imtqlx.m</a>,
+          diagonalizes a symmetric tridiagonal matrix;
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>,
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8vec_in_ab.m">r8vec_in_ab.m</a>,
+          is TRUE if all elements of an R8VEC lie in [A,B].
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a uniform pseudorandom R8VEC in [0,1].
+        </li>
+        <li>
+          <a href = "r8vec2_print.m">r8vec2_print.m</a>,
+          prints a pair of R8VEC's;
+        </li>
+        <li>
+          <a href = "t_double_product_integral.m">t_double_product_integral.m</a>,
+          integral ( -1 <= x <= +1 ) T(i,x)*T(j,x)/sqrt(1-x^2) dx.
+        </li>
+        <li>
+          <a href = "t_integral.m">t_integral.m</a>,
+          integral ( -1 <= x <= +1 ) x^e/sqrt(1-x^2) dx.
+        </li>
+        <li>
+          <a href = "t_polynomial.m">t_polynomial.m</a>,
+          evaluates the Chebyshev polynomials T(n,x).
+        </li>
+        <li>
+          <a href = "t_polynomial_ab.m">t_polynomial_ab.m</a>,
+          evaluates the Chebyshev polynomials T(n,x) in [A,B].
+        </li>
+        <li>
+          <a href = "t_polynomial_coefficients.m">t_polynomial_coefficients.m</a>,
+          evaluates the coefficients of the Chebyshev polynomials T(n,x).
+        </li>
+        <li>
+          <a href = "t_polynomial_plot.m">t_polynomial_plot.m</a>,
+          plots selected Chebyshev polynomials T(n,x).
+        </li>
+        <li>
+          <a href = "t_polynomial_value.m">t_polynomial_value.m</a>,
+          evaluates one Chebyshev polynomial T(n,x) at one point.
+        </li>
+        <li>
+          <a href = "t_polynomial_values.m">t_polynomial_values.m</a>,
+          returns selected values of the Chebyshev polynomials T(n,x).
+        </li>
+        <li>
+          <a href = "t_polynomial_zeros.m">t_polynomial_zeros.m</a>,
+          returns the zeros of the Chebyshev polynomials T(n,x).
+        </li>
+        <li>
+          <a href = "t_project_coefficients.m">t_project_coefficients.m</a>,
+          given a function in [-1,1], estimates the coefficients of a corresponding
+          Chebyshev expansion of degree N.
+        </li>
+        <li>
+          <a href = "t_project_coefficients_ab.m">t_project_coefficients_ab.m</a>,
+          given a function in [A,B], estimates the coefficients of a corresponding
+          Chebyshev expansion of degree N.
+        </li>
+        <li>
+          <a href = "t_project_coefficients_data.m">t_project_coefficients_data.m</a>,
+          given N arbitrary data values in [A,B], estimates the coefficients of a corresponding
+          Chebyshev expansion of degree N.
+        </li>
+        <li>
+          <a href = "t_project_value.m">t_project_value.m</a>,
+          evaluates an expansion of degree N in Chebyshev polynomials T(n,x) over [-1,+1].
+        </li>
+        <li>
+          <a href = "t_project_value_ab.m">t_project_value_ab.m</a>,
+          evaluates an expansion of degree N in Chebyshev polynomials T(n,x) over [A,B].
+        </li>
+        <li>
+          <a href = "t_quadrature_rule.m">t_quadrature_rule.m</a>,
+          computes a quadrature rule for f(x)/sqrt(1-x^2) based on T(n,x).
+        </li>
+        <li>
+          <a href = "t_triple_product_integral.m">t_triple_product_integral.m</a>,
+          integral (-1<=x<=1) T(i,x)*T(j,x)*T(k,x)/sqrt(1-x^2) dx
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "u_double_product_integral.m">u_double_product_integral.m</a>,
+          integral ( -1 <= x <= +1 ) U(i,x)*U(j,x)*sqrt(1-x^2) dx.
+        </li>
+        <li>
+          <a href = "u_integral.m">u_integral.m</a>,
+          integral ( -1 <= x <= +1 ) x^e * sqrt(1-x^2) dx.
+        </li>
+        <li>
+          <a href = "u_polynomial.m">u_polynomial.m</a>,
+          evaluates the Chebyshev polynomials U(n,x).
+        </li>
+        <li>
+          <a href = "u_polynomial_coefficients.m">u_polynomial_coefficients.m</a>,
+          evaluates the coefficients of the Chebyshev polynomials U(n,x).
+        </li>
+        <li>
+          <a href = "u_polynomial_values.m">u_polynomial_values.m</a>,
+          returns selected values of the Chebyshev polynomials U(n,x).
+        </li>
+        <li>
+          <a href = "u_polynomial_zeros.m">u_polynomial_zeros.m</a>,
+          returns the zeros of the Chebyshev polynomials U(n,x).
+        </li>
+        <li>
+          <a href = "u_quadrature_rule.m">u_quadrature_rule.m</a>,
+          computes a quadrature rule for f(x)*sqrt(1-x^2) based on U(n,x).
+        </li>
+        <li>
+          <a href = "v_double_product_integral.m">v_double_product_integral.m</a>,
+          integral ( -1 <= x <= +1 ) V(i,x)*V(j,x)*sqrt(1+x)/sqrt(1-x) dx.
+        </li>
+        <li>
+          <a href = "v_polynomial.m">v_polynomial.m</a>,
+          evaluates the Chebyshev polynomials V(n,x).
+        </li>
+        <li>
+          <a href = "v_polynomial_values.m">v_polynomial_values.m</a>,
+          returns selected values of the Chebyshev polynomials V(n,x).
+        </li>
+        <li>
+          <a href = "v_polynomial_zeros.m">v_polynomial_zeros.m</a>,
+          returns the zeros of the Chebyshev polynomials V(n,x).
+        </li>
+        <li>
+          <a href = "w_double_product_integral.m">w_double_product_integral.m</a>,
+          integral ( -1 <= x <= +1 ) W(i,x)*W(j,x)*sqrt(1-x)/sqrt(1+x) dx.
+        </li>
+        <li>
+          <a href = "w_polynomial.m">w_polynomial.m</a>,
+          evaluates the Chebyshev polynomials W(n,x).
+        </li>
+        <li>
+          <a href = "w_polynomial_values.m">w_polynomial_values.m</a>,
+          returns selected values of the Chebyshev polynomials W(n,x).
+        </li>
+        <li>
+          <a href = "w_polynomial_zeros.m">w_polynomial_zeros.m</a>,
+          returns the zeros of the Chebyshev polynomials W(n,x).
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebyshev_polynomial_test.m">chebyshev_polynomial_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test_output.txt">chebyshev_polynomial_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "t_polynomial_plot.png">t_polynomial_plot.png</a>,
+          a plot of Chebyshev polynomials T(0,x) through T(5,x).
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test01.m">chebyshev_polynomial_test01.m</a>,
+          tests t_polynomial_project_data.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test02.m">chebyshev_polynomial_test02.m</a>,
+          tests t_polynomial_coefficients.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test03.m">chebyshev_polynomial_test03.m</a>,
+          tests t_polynomial.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test04.m">chebyshev_polynomial_test04.m</a>,
+          tests t_polynomial_zeros.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test05.m">chebyshev_polynomial_test05.m</a>,
+          tests t_quadrature_rule.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test06.m">chebyshev_polynomial_test06.m</a>,
+          tests that T(i,x) and T(j,x) are orthogonal.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test07.m">chebyshev_polynomial_test07.m</a>,
+          tests t_project_coefficients.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test08.m">chebyshev_polynomial_test08.m</a>,
+          tests t_project_coefficients_data.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test09.m">chebyshev_polynomial_test09.m</a>,
+          tests t_project_coefficients and t_project_value.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test10.m">chebyshev_polynomial_test10.m</a>,
+          tests t_project_coefficients_ab and t_project_value_ab.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test11.m">chebyshev_polynomial_test11.m</a>,
+          tests u_polynomial_coefficients.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test12.m">chebyshev_polynomial_test12.m</a>,
+          tests u_polynomial.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test13.m">chebyshev_polynomial_test13.m</a>,
+          tests u_polynomial_zeros.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test14.m">chebyshev_polynomial_test14.m</a>,
+          tests u_quadrature_rule.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test15.m">chebyshev_polynomial_test15.m</a>,
+          tests v_polynomial.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test16.m">chebyshev_polynomial_test16.m</a>,
+          tests w_polynomial.
+        </li>
+        <li>
+          <a href = "chebyshev_polynomial_test17.m">chebyshev_polynomial_test17.m</a>,
+          tests t_triple_product_integral.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

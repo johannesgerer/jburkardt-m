@@ -1,0 +1,144 @@
+<html>
+
+  <head>
+    <title>
+      TASK_DIVISION - Divide T Tasks Among P Processors
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TASK_DIVISION <br> Divide T Tasks Among P Processors
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TASK_DIVISION</b>
+      is a MATLAB library which
+      implements a simple procedure for smoothly dividing T tasks among
+      P processors; such a method can be useful in MPI and other parallel
+      environments, particularly when T is not an exact multiple of P,
+      and when the processors can be indexed starting from 0 or from 1.
+    </p>
+
+    <p>
+      If we have 16 tasks and 8 processors, it's easy to see that each processor
+      gets two tasks, and that processor 3 gets tasks 5 and 6...(unless we
+      index our processors starting at 0 rather than 1, but let's ignore that
+      possibility for the moment.)
+    </p>
+
+    <p>
+      If we have 17 tasks and 8 processors, then we can just give the last processor
+      the extra task, because someone has to do it.  But if we have 18 tasks, we
+      shouldn't given everyone else 2 tasks, and the last processor 4 tasks.  A
+      better assignment would have two of the processors working on 3 tasks, the
+      rest on 2.
+    </p>
+
+    <p>
+      Moreover, we'd like to do this kind of assignment in a regular enough 
+      nonarbitrary way, so that any processor, knowning just its processor index
+      and the number of tasks, can work out the number of tasks it got assigned,
+      and even the indices of those tasks.
+    </p>
+
+    <p>
+      The TASK_DIVISION library outlines a simple way to do this, which is essentially
+      a "greedy" algorithm that cuts up the "task pie" a slice at a time, using rounding
+      to give each processor about the same number of tasks, in a way that avoids having
+      leftovers.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TASK_DIVISION</b> is available in
+      <a href = "../../c_src/task_division/task_division.html">a C version</a> and
+      <a href = "../../cpp_src/task_division/task_division.html">a C++ version</a> and
+      <a href = "../../f77_src/task_division/task_division.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/task_division/task_division.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/task_division/task_division.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      examples which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_div_rounded.m">i4_div_rounded.m</a>,
+          computes the rounded result of I4 division.
+        </li>
+        <li>
+          <a href = "task_division.m">task_division.m</a>,
+          divides tasks among processors.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "task_division_test.m">task_division_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "task_division_test_output.txt">task_division_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 23 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

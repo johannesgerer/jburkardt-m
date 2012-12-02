@@ -1,0 +1,235 @@
+<html>
+
+  <head>
+    <title>
+      BURGERS_SOLUTION - Exact Solution of Time Dependent 1D Viscous Burgers Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BURGERS_SOLUTION <br> Exact Solution of Time Dependent 1D Viscous Burgers Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BURGERS_SOLUTION</b>
+      is a MATLAB library which
+      evaluates an exact solution of the time-dependent 1D viscous Burgers equation.
+    </p>
+
+    <p>
+      The form of the Burgers equation considered here is:
+      <pre>
+        du       du        d^2 u
+        -- + u * -- = nu * -----
+        dt       dx        dx^2
+      </pre>
+      for -1.0 < x < +1.0, and 0.0 < t.
+    </p>
+
+    <p>
+      Initial conditions are u(x,0) = - sin(pi*x).  Boundary conditions
+      are u(-1,t) = u(+1,t) = 0.  The viscosity parameter nu is taken
+      to be 0.01 / pi, although this is not essential.
+    </p>
+
+    <p>
+      The authors note an integral representation for the solution u(x,t),
+      and present a better version of the formula that is amenable to
+      approximation using Hermite quadrature.  
+    </p>
+
+    <p>
+      This program library does little more than evaluate the exact solution
+      at a user-specified set of points, using the quadrature rule.
+      Internally, the order of this quadrature rule is set to 8, but the
+      user can easily modify this value if greater accuracy is desired.
+    </p>
+    
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BURGERS_SOLUTION</b> is available in
+      <a href = "../../c_src/burgers_solution/burgers_solution.html">a C version</a> and
+      <a href = "../../cpp_src/burgers_solution/burgers_solution.html">a C++ version</a> and
+      <a href = "../../f77_src/burgers_solution/burgers_solution.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/burgers_solution/burgers_solution.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/burgers_solution/burgers_solution.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/burgers/burgers.html">
+      BURGERS</a>,
+      a dataset directory which
+      contains 40 solutions of the Burgers equation in one space dimension and time,
+      at equally spaced times from 0 to 1, with values
+      at 41 equally spaced nodes in [0,1];
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_steady_viscous/burgers_steady_viscous.html">
+      BURGERS_STEADY_VISCOUS</a>,
+      a MATLAB library which
+      solves the steady (time-independent) viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation, and then applying Newton's method to solve the
+      resulting nonlinear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous Burgers equation
+      in one spatial dimension and time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>,
+      a MATLAB program which
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous Burgers equation in one spatial dimension and time.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Claude Basdevant, Michel Deville, Pierre Haldenwang, J Lacroix, 
+          J Ouazzani, Roger Peyret, Paolo Orlandi, Anthony Patera,<br>
+          Spectral and finite difference solutions of the Burgers equation,<br>
+          Computers and Fluids,<br>
+          Volume 14, Number 1, 1986, pages 23-41.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "burgers_solution.m">burgers_solution.m</a>, 
+          evaluates a solution to the Burgers equation.
+        </li>
+        <li>
+          <a href = "hermite_ek_compute.m">hermite_ek_compute.m</a>, 
+          computes a Gauss-Hermite quadrature rule.
+        </li>
+        <li>
+          <a href = "imtqlx.m">imtqlx.m</a>, 
+          diagonalizes a symmetric tridiagonal matrix.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>, 
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>, 
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>, 
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>, 
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "burgers_test.m">burgers_solution_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "burgers_test01.m">burgers_solution_test01.m</a>,
+          generates solution values for -1 <= x <= +1, 
+          0 <= t <= 3/pi, using 11 grid points in x and in t.
+        </li>
+        <li>
+          <a href = "burgers_test02.m">burgers_solution_test02.m</a>,
+          generates solution values for -1 <= x <= +1, 
+          0 <= t <= 3/pi, using 41 grid points in x and in t.
+        </li>
+        <li>
+          <a href = "burgers_solution_test_output.txt">burgers_solution_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "burgers_test01.txt">burgers_test01.txt</a>,
+          a data file of solution values for -1 <= x <= +1, 
+          0 <= t <= 3/pi, using 11 grid points in x and in t.
+        </li>
+        <li>
+          <a href = "burgers_test02.txt">burgers_test02.txt</a>,
+          a data file of solution values for -1 <= x <= +1, 
+          0 <= t <= 3/pi, using 41 grid points in x and in t.
+        </li>
+        <li>
+          <a href = "burgers_test02.png">burgers_test01.png</a>,
+          an image of U(X,T) for the burgers_test02 data,
+          produced by MATLAB's surf() command.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

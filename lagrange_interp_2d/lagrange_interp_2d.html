@@ -1,0 +1,544 @@
+<html>
+
+  <head>
+    <title>
+      LAGRANGE_INTERP_2D - Polynomial Interpolation in 2D using Lagrange Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      LAGRANGE_INTERP_2D <br> Polynomial Interpolation in 2D using Lagrange Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LAGRANGE_INTERP_2D</b>
+      is a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x,y) 
+      which interpolates a set of data depending on a 2D argument
+      that was evaluated on a product grid,
+      so that p(x(i),y(j)) = z(i,j).
+    </p>
+
+    <p>
+      If the data is available on a product grid, then both the LAGRANGE_INTERP_2D
+      and VANDERMONDE_INTERP_2D libraries will be trying to compute the same
+      interpolating function.  However, especially for higher degree polynomials,
+      the Lagrange approach will be superior because it avoids the badly conditioned
+      Vandermonde matrix associated with the usage of monomials as the basis.
+      The Lagrange approach uses as a basis a set of Lagrange basis polynomials
+      l(i,j)(x) which are 1 at node (x(i),y(j)) and zero at the other nodes.
+    </p>
+
+    <p>
+      <b>LAGRANGE_INTERP_2D</b> needs access to the R8LIB library.  The test
+      also needs the TEST_INTERP_2D library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LAGRANGE_INTERP_2D</b> is available in
+      <a href = "../../c_src/lagrange_interp_2d/lagrange_interp_2d.html">a C version</a> and
+      <a href = "../../cpp_src/lagrange_interp_2d/lagrange_interp_2d.html">a C++ version</a> and
+      <a href = "../../f77_src/lagrange_interp_2d/lagrange_interp_2d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/lagrange_interp_2d/lagrange_interp_2d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lagrange_interp_2d/lagrange_interp_2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_nd/lagrange_interp_nd.html">
+      LAGRANGE_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data depending on a multidimensional argument x
+      that was evaluated on a product grid, so that p(x(i)) = z(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_2d/pwl_interp_2d.html">
+      PWL_INTERP_2D</a>,
+      a MATLAB library which
+      evaluates a piecewise linear interpolant to data defined on
+      a regular 2D grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_2d/rbf_interp_2d.html">
+      RBF_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 2D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_2d/shepard_interp_2d.html">
+      SHEPARD_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 2D data,
+      which are based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_2d/test_interp_2d.html">
+      TEST_INTERP_2D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x,y)),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_2d/vandermonde_interp_2d.html">
+      VANDERMONDE_INTERP_2D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to data z(x,y) of a 2D argument
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lagrange_basis_function_1d.m">lagrange_basis_function_1d.m</a>,
+          evaluates a 1D Lagrange basis function.
+        </li>
+        <li>
+          <a href = "lagrange_interp_2d.m">lagrange_interp_2d.m</a>,
+          evaluates the Lagrange interpolant for a product grid.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The test code requires the <b>test_interp_2d</b> library as well.  If this library is
+      available in a separate folder at the same "level" as the lagrange_interp library,
+      then a Matlab command such as "addpath ( '../test_interp_2d')" will make that library
+      accessible for a run of the test program.
+      <ul>
+        <li>
+          <a href = "lagrange_interp_2d_test.m">lagrange_interp_2d_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "lagrange_interp_2d_test_output.txt">lagrange_interp_2d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "lagrange_interp_2d_test01.m">lagrange_interp_2d_test01.m</a>,
+          tests the interpolation condition, and the approximation power of the interpolant
+          at the midpoints.
+        </li>
+        <li>
+          <a href = "lagrange_interp_2d_test02.m">lagrange_interp_2d_test02.m</a>,
+          plots a linear interpolant to a triangulation of the original data, 
+          and the Lagrange interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>lagrange_interp_2d_test02()</b> plots a piecewise linear interpolant to
+      the original data, and the Lagrange interpolant.
+      <ul>
+        <li>
+          <a href = "p01_data.png">p01_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p01;
+        </li>
+        <li>
+          <a href = "p01_poly01.png">p01_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p01, degree 1;
+        </li>
+        <li>
+          <a href = "p01_poly02.png">p01_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p01, degree 2;
+        </li>
+        <li>
+          <a href = "p01_poly03.png">p01_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p01, degree 3;
+        </li>
+        <li>
+          <a href = "p01_poly04.png">p01_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p01, degree 4;
+        </li>
+        <li>
+          <a href = "p01_poly08.png">p01_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p01, degree 8;
+        </li>
+        <li>
+          <a href = "p02_data.png">p02_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p02;
+        </li>
+        <li>
+          <a href = "p02_poly01.png">p02_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p02, degree 1;
+        </li>
+        <li>
+          <a href = "p02_poly02.png">p02_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p02, degree 2;
+        </li>
+        <li>
+          <a href = "p02_poly03.png">p02_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p02, degree 3;
+        </li>
+        <li>
+          <a href = "p02_poly04.png">p02_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p02, degree 4;
+        </li>
+        <li>
+          <a href = "p02_poly08.png">p02_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p02, degree 8;
+        </li>
+        <li>
+          <a href = "p03_data.png">p03_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p03;
+        </li>
+        <li>
+          <a href = "p03_poly01.png">p03_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p03, degree 1;
+        </li>
+        <li>
+          <a href = "p03_poly02.png">p03_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p03, degree 2;
+        </li>
+        <li>
+          <a href = "p03_poly03.png">p03_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p03, degree 3;
+        </li>
+        <li>
+          <a href = "p03_poly04.png">p03_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p03, degree 4;
+        </li>
+        <li>
+          <a href = "p03_poly08.png">p03_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p03, degree 8;
+        </li>
+        <li>
+          <a href = "p04_data.png">p04_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p04;
+        </li>
+        <li>
+          <a href = "p04_poly01.png">p04_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p04, degree 1;
+        </li>
+        <li>
+          <a href = "p04_poly02.png">p04_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p04, degree 2;
+        </li>
+        <li>
+          <a href = "p04_poly03.png">p04_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p04, degree 3;
+        </li>
+        <li>
+          <a href = "p04_poly04.png">p04_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p04, degree 4;
+        </li>
+        <li>
+          <a href = "p04_poly08.png">p04_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p04, degree 8;
+        </li>
+        <li>
+          <a href = "p05_data.png">p05_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p05;
+        </li>
+        <li>
+          <a href = "p05_poly01.png">p05_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p05, degree 1;
+        </li>
+        <li>
+          <a href = "p05_poly02.png">p05_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p05, degree 2;
+        </li>
+        <li>
+          <a href = "p05_poly03.png">p05_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p05, degree 3;
+        </li>
+        <li>
+          <a href = "p05_poly04.png">p05_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p05, degree 4;
+        </li>
+        <li>
+          <a href = "p05_poly08.png">p05_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p05, degree 8;
+        </li>
+        <li>
+          <a href = "p06_data.png">p06_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p06;
+        </li>
+        <li>
+          <a href = "p06_poly01.png">p06_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p06, degree 1;
+        </li>
+        <li>
+          <a href = "p06_poly02.png">p06_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p06, degree 2;
+        </li>
+        <li>
+          <a href = "p06_poly03.png">p06_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p06, degree 3;
+        </li>
+        <li>
+          <a href = "p06_poly04.png">p06_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p06, degree 4;
+        </li>
+        <li>
+          <a href = "p06_poly08.png">p06_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p06, degree 8;
+        </li>
+        <li>
+          <a href = "p07_data.png">p07_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p07;
+        </li>
+        <li>
+          <a href = "p07_poly01.png">p07_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p07, degree 1;
+        </li>
+        <li>
+          <a href = "p07_poly03.png">p07_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p07, degree 3;
+        </li>
+        <li>
+          <a href = "p07_poly02.png">p07_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p07, degree 2;
+        </li>
+        <li>
+          <a href = "p07_poly04.png">p07_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p07, degree 4;
+        </li>
+        <li>
+          <a href = "p07_poly08.png">p07_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p07, degree 8;
+        </li>
+        <li>
+          <a href = "p08_data.png">p08_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p08;
+        </li>
+        <li>
+          <a href = "p08_poly01.png">p08_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p08, degree 1;
+        </li>
+        <li>
+          <a href = "p08_poly02.png">p08_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p08, degree 2;
+        </li>
+        <li>
+          <a href = "p08_poly03.png">p08_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p08, degree 3;
+        </li>
+        <li>
+          <a href = "p08_poly04.png">p08_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p08, degree 4;
+        </li>
+        <li>
+          <a href = "p08_poly08.png">p08_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p08, degree 8;
+        </li>
+        <li>
+          <a href = "p09_data.png">p09_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p09;
+        </li>
+        <li>
+          <a href = "p09_poly01.png">p09_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p09, degree 1;
+        </li>
+        <li>
+          <a href = "p09_poly02.png">p09_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p09, degree 2;
+        </li>
+        <li>
+          <a href = "p09_poly03.png">p09_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p09, degree 3;
+        </li>
+        <li>
+          <a href = "p09_poly04.png">p09_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p09, degree 4;
+        </li>
+        <li>
+          <a href = "p09_poly08.png">p09_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p09, degree 8;
+        </li>
+        <li>
+          <a href = "p10_data.png">p10_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p10;
+        </li>
+        <li>
+          <a href = "p10_poly01.png">p10_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p10, degree 1;
+        </li>
+        <li>
+          <a href = "p10_poly02.png">p10_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p10, degree 2;
+        </li>
+        <li>
+          <a href = "p10_poly03.png">p10_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p10, degree 3;
+        </li>
+        <li>
+          <a href = "p10_poly04.png">p10_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p10, degree 4;
+        </li>
+        <li>
+          <a href = "p10_poly08.png">p10_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p10, degree 8;
+        </li>
+        <li>
+          <a href = "p11_data.png">p11_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p11;
+        </li>
+        <li>
+          <a href = "p11_poly01.png">p11_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p11, degree 1;
+        </li>
+        <li>
+          <a href = "p11_poly02.png">p11_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p11, degree 2;
+        </li>
+        <li>
+          <a href = "p11_poly03.png">p11_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p11, degree 3;
+        </li>
+        <li>
+          <a href = "p11_poly04.png">p11_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p11, degree 4;
+        </li>
+        <li>
+          <a href = "p11_poly08.png">p11_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p11, degree 8;
+        </li>
+        <li>
+          <a href = "p12_data.png">p12_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p12;
+        </li>
+        <li>
+          <a href = "p12_poly01.png">p12_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p12, degree 1;
+        </li>
+        <li>
+          <a href = "p12_poly02.png">p12_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p12, degree 2;
+        </li>
+        <li>
+          <a href = "p12_poly03.png">p12_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p12, degree 3;
+        </li>
+        <li>
+          <a href = "p12_poly04.png">p12_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p12, degree 4;
+        </li>
+        <li>
+          <a href = "p12_poly08.png">p12_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p12, degree 8;
+        </li>
+        <li>
+          <a href = "p13_data.png">p13_data.png</a>,
+          a plot of the piecewise linear interpolant to the data for problem p13;
+        </li>
+        <li>
+          <a href = "p13_poly01.png">p13_poly01.png</a>,
+          a plot of the polynomial interpolant for problem p13, degree 1;
+        </li>
+        <li>
+          <a href = "p13_poly02.png">p13_poly02.png</a>,
+          a plot of the polynomial interpolant for problem p13, degree 2;
+        </li>
+        <li>
+          <a href = "p13_poly03.png">p13_poly03.png</a>,
+          a plot of the polynomial interpolant for problem p13, degree 3;
+        </li>
+        <li>
+          <a href = "p13_poly04.png">p13_poly04.png</a>,
+          a plot of the polynomial interpolant for problem p13, degree 4;
+        </li>
+        <li>
+          <a href = "p13_poly08.png">p13_poly08.png</a>,
+          a plot of the polynomial interpolant for problem p13, degree 8;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 04 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

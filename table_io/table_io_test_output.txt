@@ -1,0 +1,164 @@
+>> table_io_test
+05-Aug-2009 08:39:41
+
+TABLE_IO_TEST
+  Test the MATLAB TABLE_IO routines.
+
+TEST01
+  R8MAT_WRITE1 writes an R8MAT file.
+
+  Spatial dimension M = 5
+  Number of points N  = 20
+
+  5x5 portion of the data written to file:
+
+  Col:       1             2             3             4             5       
+  Row
+      1       101           201           301           401           501      
+      2       102           202           302           402           502      
+      3       103           203           303           403           503      
+      4       104           204           304           404           504      
+      5       105           205           305           405           505      
+
+  5x5 portion of the TRANSPOSED data:
+
+  Row:       1             2             3             4             5       
+  Col
+    1   101.000000  102.000000  103.000000  104.000000  105.000000
+    2   201.000000  202.000000  203.000000  204.000000  205.000000
+    3   301.000000  302.000000  303.000000  304.000000  305.000000
+    4   401.000000  402.000000  403.000000  404.000000  405.000000
+    5   501.000000  502.000000  503.000000  504.000000  505.000000
+
+  Wrote the header and data for r8mat_05_00020.txt
+
+TEST02
+  For data stored in an R8MAT,
+  R8MAT_HEADER_READ reads the header information
+  (about the dimensions of the data);
+  R8MAT_DATA_READ reads the data.
+
+  Read the header of r8mat_05_00020.txt
+
+  Spatial dimension M = 5
+  Number of points N  = 20
+
+  Read the data in r8mat_05_00020.txt
+
+  5x5 portion of data read from file:
+
+  Col:       1             2             3             4             5       
+  Row
+      1       101           201           301           401           501      
+      2       102           202           302           402           502      
+      3       103           203           303           403           503      
+      4       104           204           304           404           504      
+      5       105           205           305           405           505      
+
+TEST03
+  I4MAT_WRITE1 writes an integer TABLE file.
+
+  Spatial dimension M = 5
+  Number of points N  = 20
+
+  5x5 portion of the data written to file:
+
+  Col:       1        2        3        4        5  
+  Row
+
+    1      101      201      301      401      501  
+    2      102      202      302      402      502  
+    3      103      203      303      403      503  
+    4      104      204      304      404      504  
+    5      105      205      305      405      505  
+
+  Wrote the header and data for i4mat_05_00020.txt
+
+TEST04
+  For data stored in an I4MAT file,
+  I4MAT_HEADER_READ reads the header information
+  (about the dimensions of the data);
+  I4MAT_DATA_READ reads the data.
+
+  Read the header of i4mat_05_00020.txt
+
+  Spatial dimension M = 5
+  Number of points N  = 20
+
+  Read the data in i4mat_05_00020.txt
+
+  5x5 portion of data read from file:
+
+  Col:       1        2        3        4        5  
+  Row
+
+    1      101      201      301      401      501  
+    2      102      202      302      402      502  
+    3      103      203      303      403      503  
+    4      104      204      304      404      504  
+    5      105      205      305      405      505  
+
+TEST05
+  R8MAT_UNIFORM_01 sets a random R8MAT.
+
+  Spatial dimension M = 2
+  Number of points N  = 10
+
+  5x10 portion of the data:
+
+  Col:       1             2             3             4             5       
+  Row
+      1      0.218418      0.829509      0.415307      0.257578      0.043829  
+      2      0.956318      0.561695     0.0661187      0.109957      0.633966  
+
+  Col:       6             7             8             9            10       
+  Row
+      1     0.0617272      0.401306      0.797287      0.897504     0.0945448  
+      2      0.449539      0.754673    0.00183837      0.350752     0.0136169  
+
+TEST06
+  I4MAT_BORDER_CUT cuts off the border;
+  I4MAT_BORDER_ADD adds a zero border;
+
+  Spatial dimension M = 6
+  Number of points N  = 4
+
+  Initial dataset:
+
+  Col:       1        2        3        4  
+  Row
+
+    1       11       12       13       14  
+    2       21       22       23       24  
+    3       31       32       33       34  
+    4       41       42       43       44  
+    5       51       52       53       54  
+    6       61       62       63       64  
+
+  "Cut" dataset:
+
+  Col:       1        2  
+  Row
+
+    1       22       23  
+    2       32       33  
+    3       42       43  
+    4       52       53  
+
+  "Added" dataset:
+
+  Col:       1        2        3        4  
+  Row
+
+    1        0        0        0        0  
+    2        0       22       23        0  
+    3        0       32       33        0  
+    4        0       42       43        0  
+    5        0       52       53        0  
+    6        0        0        0        0  
+
+TABLE_IO_TEST
+  Normal end of execution.
+
+05-Aug-2009 08:39:42
+>> 

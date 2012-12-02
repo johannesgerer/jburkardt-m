@@ -1,0 +1,275 @@
+<html>
+
+  <head>
+    <title>
+      PIECEWISE_LINEAR_PRODUCT_INTEGRAL - Piecewise Linear Product Integral
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PIECEWISE_LINEAR_PRODUCT_INTEGRAL <br> Piecewise Linear Product Integral
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PIECEWISE_LINEAR_PRODUCT_INTEGRAL</b>
+      is a MATLAB library which
+      calculates the exact value of the integral of the product of two
+      piecewise linear functions F(X) and G(X).
+    </p>
+
+    <p>
+      The piecewise linear function F(X) is defined by
+      <ul>
+        <li>
+          <b>F_NUM</b>, the number of nodes;
+        </li>
+        <li>
+          <b>F_X</b>(1:F_NUM), the X coordinates of the nodes (in ascending order);
+        </li>
+        <li>
+          <b>F_V</b>(1:F_NUM), the value of F at each node;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The piecewise linear function G(X) is defined similarly, and there is
+      no requirement that G(X) uses the same nodes as F(X), or the same number of nodes.
+    </p>
+
+    <p>
+      The task, then, is to determine the value of
+      <pre>
+        Integral ( A <= X <= B ) F(X) * G(X) dx
+      </pre>
+      This value can be determined exactly, by breaking the interval ot integration
+      into subintervals over which F(X) and G(X) are simple linear functions.
+    </p>
+
+    <p>
+      In finite element programs over 1-dimensional geometries, integrals like
+      this may occur when assembling the stiffness matrix, but these integrals
+      are generally treated using quadrature.
+    </p>
+
+    <p>
+      A more appropriate use for this function occurs when coarsening a finite
+      element solution, or constructing a piecewise linear least squares
+      finite element approximant to data that is regarded as a piecewise linear
+      function.
+    </p>
+
+    <p>
+      In case 1, we treat the original finite element solution as the function F(X),
+      and in case 2, we treat the data as a finite element function whose mesh
+      is implicit in the X coordinates of the given data.
+    </p>
+
+    <p>
+      Our G_X is, in case 1, the coarse mesh and in case 2 the given mesh.
+      To determine the finite element coefficient U(I) on this mesh, we
+      must integrate our data function F(X) against the I-th basis function,
+      which in this case is simply the I-th "hat function.  So to use
+      our formula for G(X), we set G_V(1:G_NUM) to 0, except that G_V(I) = 1,
+      and compute
+      <pre>
+        U(I) = Integral ( G_X(I-1) <= X <= G_X(I+1) ) F(X) * G(X) dx
+      </pre>
+      Doing this for I from 1 to G_NUM allows us to compute the coefficients
+      of the coarsened solution (case 1) or the least squares approximant to
+      the piecewise linear function representing the data F.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PIECEWISE_LINEAR_PRODUCT_INTEGRAL</b> is available in
+      <a href = "../../cpp_src/piecewise_linear_product_integral/piecewise_linear_product_integral.html">a C++ version</a> and
+      <a href = "../../f77_src/piecewise_linear_product_integral/piecewise_linear_product_integral.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/piecewise_linear_product_integral/piecewise_linear_product_integral.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/piecewise_linear_product_integral/piecewise_linear_product_integral.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fem1d/fem1d.html">
+      FEM1D</a>,
+      a data directory which
+      contains a description and examples of files that describe a 1D finite element model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_adaptive/fem1d_adaptive.html">
+      FEM1D_ADAPTIVE</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D linear two point boundary value problem
+      using adaptive refinement to improve the solution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">
+      FEM1D_NONLINEAR</a>,
+      a MATLAB program which
+      applies the finite element method to a 1D nonlinear two point boundary value problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_pmethod/fem1d_pmethod.html">
+      FEM1D_PMETHOD</a>,
+      a MATLAB program which
+      applies the p-method version of the finite element method to a linear
+      two point boundary value problem in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_sample/fem1d_sample.html">
+      FEM1D_SAMPLE</a>,
+      a MATLAB program which
+      samples a scalar or vector finite element function of one variable,
+      defined by FEM files,
+      returning interpolated values at the sample points.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          TA640.2.Z54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "piecewise_linear_product_integral.m">
+          piecewise_linear_product_integral.m</a>,
+          computes the integral of a product of piecewise linear functions.
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_quad.m">
+          piecewise_linear_product_quad.m</a>,
+          estimates the integral of a product of piecewise linear functions.
+        </li>
+        <li>
+          <a href = "r8vec_bracket3.m">
+          r8vec_bracket3.m</a>,
+          finds the interval containing or nearest a given value.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "piecewise_linear_product_integral_test.m">
+          piecewise_linear_product_integral_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_integral_test01.m">
+          piecewise_linear_product_integral_test01.m</a>,
+          test 1;
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_integral_test02.m">
+          piecewise_linear_product_integral_test02.m</a>,
+          test 2;
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_integral_test03.m">
+          piecewise_linear_product_integral_test03.m</a>,
+          test 3;
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_integral_test04.m">
+          piecewise_linear_product_integral_test04.m</a>,
+          test 4;
+        </li>
+        <li>
+          <a href = "piecewise_linear_product_integral_prb_output.txt">
+          piecewise_linear_product_integral_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 April 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

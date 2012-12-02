@@ -1,0 +1,236 @@
+<html>
+
+  <head>
+    <title>
+      SATISFY - Seek Binary Circuit Inputs that Output 1
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SATISFY <br> Seek Binary Circuit Inputs that Output 1
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SATISFY</b> 
+      is a MATLAB program which 
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfy problem.
+    </p>
+
+    <p>
+      This problem assumes that we are given a logical circuit of AND, OR and NOT
+      gates, with N binary inputs and a single output.  We are to determine all
+      inputs which produce a 1 as the output.
+    </p>
+
+    <p>
+      The general problem is NP complete, so there is no known polynomial-time
+      algorithm to solve the general case.  The natural way to search for solutions
+      then is exhaustive search.
+    </p>
+
+    <p>
+      In an interesting way, this is a very extreme and discrete version of
+      the problem of maximizing a scalar function of multiple variables.
+      The difference is that here we know that both the input and output
+      only have the values 0 and 1, rather than a continuous range of real
+      values!
+    </p>
+
+    <p>
+      This problem is a natural candidate for parallel computation, since
+      the individual evaluations of the circuit are completely independent.
+    </p>
+
+    <p>
+      The example circuit considered here has been described in conjunctive
+      normal form ("CNF").  This is a standard format for logical formulas.
+      At the highest level, the formula consists of <i>clauses</i> joined
+      by the <b>AND</b> (conjunction) operator.  Each clause consists of
+      <i>signed literals</i> joined by the <b>OR</b> (disjunction) operator.
+      Each signed literal is either the name of a variable (positive literal), 
+      or the name of a variable preceded by the <b>NOT</b> (negation) operator
+      (a negative literal).  There is a CNF file format that can be used to
+      store logical formulas that have been cast into conjunctive normal form.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SATISFY</b> is available in
+      <a href = "../../c_src/satisfy/satisfy.html">a C version</a> and
+      <a href = "../../cpp_src/satisfy/satisfy.html">a C++ version</a> and
+      <a href = "../../f77_src/satisfy/satisfy.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/satisfy/satisfy.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/satisfy/satisfy.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/cnf/cnf.html">
+      CNF</a>,
+      a data directory which 
+      describes the DIMACS CNF file format for defining instances of the
+      satisfy problem for boolean formulas in conjunctive normal form.
+    </p>
+
+    <p>
+      <a href = "../../m_src/combination_lock/combination_lock.html">
+      COMBINATION_LOCK</a>,
+      a MATLAB program which
+      simulates the process of determining the secret combination of a lock.
+    </p>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes many combinatorial routines.
+    </p>
+
+    <p>
+      <a href = "../../m_src/partition_problem/partition_problem.html">
+      PARTITION_PROBLEM</a>,
+      a MATLAB library which
+      seeks solutions of the partition problem, splitting a set of integers into
+      two subsets with equal sum.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which 
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's parfor feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset/subset.html">
+      SUBSET</a>,
+      a MATLAB library which
+      enumerates combinations, partitions, subsets, index sets, 
+      and other combinatorial objects.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum/subset_sum.html">
+      SUBSET_SUM</a>,
+      a MATLAB library which
+      seeks solutions of the subset sum problem.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Rina Dechter,<br>
+          Enhancement Schemes for constraint processing:
+          Backjumping, learning, and cutset decomposition,<br>
+          Artificial Intelligence,<br>
+          Volume 41, Number 3, January 1990, pages 273-312.
+        </li>
+        <li>
+          Michael Quinn,<br>
+          Parallel Programming in C with MPI and OpenMP,<br>
+          McGraw-Hill, 2004,<br>
+          ISBN13: 978-0071232654,<br>
+          LC: QA76.73.C15.Q55.
+        </li>
+        <li>
+          Steven Skiena,<br>
+          The Algorithm Design Manual,<br>
+          Springer, 1997,<br>
+          ISBN: 0-387-94860-0,<br>
+          LC: QA76.9.A43S55.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "satisfy.m">satisfy.m</a>, 
+          the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "satisfy_output.txt">satisfy_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      List of Routines:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <b>MAIN</b> is the main program for SATISFY.
+        </li>
+        <li>
+          <b>CIRCUIT_VALUE</b> returns the value of a circuit for a given input set.
+        </li>
+        <li>
+          <b>I4_TO_BVEC</b> converts an integer into a binary vector.
+        </li>
+        <li>
+          <b>TIMESTAMP</b> prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 March 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

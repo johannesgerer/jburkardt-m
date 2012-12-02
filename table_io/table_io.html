@@ -1,0 +1,325 @@
+<html>
+
+  <head>
+    <title>
+      TABLE_IO - Read or Write a TABLE file
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TABLE_IO <br>TABLE files<br>Read and Write Utilities
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TABLE_IO</b> 
+      is a MATLAB library which 
+      can read or write a TABLE file.
+    </p>
+
+    <p>
+      A TABLE file is a simple format for storing a double-indexed
+      array of data.  We regard this is a situation involving <b>N</b>
+      points in <b>M</b> dimensions, with <b>M</b> relatively small
+      (often just 2 or 3, but possibly 10 or 20) while <b>N</b> can
+      be "enormous" (10, 100, 1,000 or 10,000).
+    </p>
+
+    <p>
+      To keep things simple, then, the data is written to an ASCII
+      file, with optional comment lines (which must start with the
+      '#' character) and blank lines (which are ignored).  The point
+      data is stored by writing the coordinates of each point on
+      a separate line.  No information about <b>M</b> or <b>N</b> is 
+      explicitly included in the file.
+      It is up to the I/O program to determine this.
+    </p>
+
+    <p>
+      <b>TABLE_IO</b> supplies routines by which a TABLE file can
+      easily be written or read.  A typical write operation simply
+      calls routine <b>R8MAT_WRITE</b>.  A typical read operation
+      will probably first want to call <b>R8MAT_HEADER_READ</b>
+      to determine the values of <b>M</b> and <b>N</b>, and then
+      allocate space for the table, and then call <b>R8MAT_DATA_READ</b> 
+      to read the data. 
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TABLE_IO</b> is available in
+      <a href = "../../c_src/table_io/table_io.html">a C version</a> and
+      <a href = "../../cpp_src/table_io/table_io.html">a C++ version</a> and
+      <a href = "../../f77_src/table_io/table_io.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/table_io/table_io.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/table_io/table_io.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>,
+      a format which
+      is used for the files input or output by the TABLE_IO library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_latinize/table_latinize.html">
+      TABLE_LATINIZE</a>,
+      a MATLAB program which
+      can read in a TABLE file,
+      "latinize" it, and write out the new version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_quality/table_quality.html">
+      TABLE_QUALITY</a>,
+      a MATLAB program which
+      can read in a TABLE file
+      and compute and print various measures of the quality of
+      dispersion of the point set.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a>, 
+          returns the uppercase version of a character.
+        </li>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>, 
+          counts the number of columns in the first line of a file.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>, 
+          counts the number of row records in a file.
+        </li>
+        <li>
+          <a href = "i4_log_10.m">i4_log_10.m</a>, 
+          returns the integer part of the logarithm, base 10, of an integer.
+        </li>
+        <li>
+          <a href = "i4mat_border_add.m">i4mat_border_add.m</a>, 
+          adds a "border" to an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_border_cut.m">i4mat_border_cut.m</a>, 
+          cuts the "border" of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_data_read.m">i4mat_data_read.m</a>, 
+          reads a table from an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_header_read.m">i4mat_header_read.m</a>, 
+          reads a header from an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_indicator.m">i4mat_indicator.m</a>, 
+          sets up an indicator I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_print.m">i4mat_print.m</a>, 
+          prints an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">i4mat_print_some.m</a>, 
+          prints some of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_read.m">i4mat_read.m</a>, 
+          reads an I4MAT file.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>, 
+          writes an I4MAT to a file.
+        </li>
+        <li>
+          <a href = "lvec_data_read.m">lvec_data_read.m</a>, 
+          reads a table from an LVEC file.
+        </li>
+        <li>
+          <a href = "lvec_header_read.m">lvec_header_read.m</a>, 
+          reads a header from an LVEC file.
+        </li>
+        <li>
+          <a href = "lvec_write.m">lvec_write.m</a>, 
+          writes an LVEC (logical vector) to a file.
+        </li>
+        <li>
+          <a href = "r8mat_border_add.m">r8mat_border_add.m</a>, 
+          adds a "border" to an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_border_cut.m">r8mat_border_cut.m</a>, 
+          cuts the "border" of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">r8mat_data_read.m</a>, 
+          reads the data from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a>, 
+          reads the header from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_indicator.m">r8mat_indicator.m</a>, 
+          sets up an indicator R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>, 
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>, 
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_read.m">r8mat_read.m</a>, 
+          reads a table from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>, 
+          prints the transpose of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>, 
+          prints the transpose of some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">
+          r8mat_uniform_01.m</a>, 
+          fills an R8MAT with pseudorandom numbers.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>, 
+          writes an R8MAT to a file.
+        </li>
+        <li>
+          <a href = "r8vec_data_read.m">r8vec_data_read.m</a>, 
+          reads the data from an R8VEC file.
+        </li>
+        <li>
+          <a href = "r8vec_header_read.m">r8vec_header_read.m</a>, 
+          reads the header from an R8VEC file.
+        </li>
+        <li>
+          <a href = "r8vec_write.m">r8vec_write.m</a>, 
+          writes an R8VEC to a file.
+        </li>
+        <li>
+          <a href = "r8vec2_write.m">r8vec2_write.m</a>, 
+          writes an R8VEC2 to a file.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a character string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_to_l.m">s_to_l.m</a>, 
+          extracts a logical value from a string.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>, 
+          counts the number of words in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "table_io_test.m">table_io_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "table_io_test_output.txt">table_io_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "table_io_test01.m">table_io_test01.m</a>,
+          tests the routines that write a R8MAT.
+        </li>
+        <li>
+          <a href = "table_io_test02.m">table_io_test02.m</a>,
+          tests the routines that read a R8MAT.
+        </li>
+        <li>
+          <a href = "table_io_test03.m">table_io_test03.m</a>,
+          tests the routines that write an I4MAT.
+        </li>
+        <li>
+          <a href = "table_io_test04.m">table_io_test04.m</a>,
+          tests the routines that read an I4MAT.
+        </li>
+        <li>
+          <a href = "table_io_test05.m">table_io_test05.m</a>,
+          tests the routine that randomizes a R8MAT.
+        </li>
+        <li>
+          <a href = "table_io_test06.m">table_io_test06.m</a>,
+          tests I4MAT_BORDER_ADD and I4MAT_BORDER_CUT.
+        </li>
+        <li>
+          <a href = "r8mat_05_00020.txt">r8mat_05_00020.txt</a>,
+          the file created by the sample program, with
+          N = 20 points in M = 5 dimensions.
+        </li>
+        <li>
+          <a href = "i4mat_05_00020.txt">i4mat_05_00020.txt</a>,
+          the file created by the sample program, with
+          N = 20 points in M = 5 dimensions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 June 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

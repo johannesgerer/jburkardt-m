@@ -1,0 +1,277 @@
+<html>
+
+  <head>
+    <title>
+      MATRIX_ASSEMBLE_SPMD - SPMD (Single Program/Multiple Data) Matrix Assembly
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATRIX_ASSEMBLE_SPMD <br> SPMD (Single Program/Multiple Data) Matrix Assembly
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATRIX_ASSEMBLE_SPMD</b>
+      is a MATLAB program which
+      uses the <b>SPMD</b> (single program, multiple data) command to
+      assemble a large matrix as a collection of strips which are joined
+      at the end of the computation.
+    </p>
+
+    <p>
+      The MxN Hilbert matrix is to be computed.  Supposing we have K
+      SPMD workers, each worker will generate a strip of size Mx(N/K).
+      The SPMD client can concatenate these strips at the end of the
+      computation.
+    </p>
+
+    <p>
+      Of course, this is a fairly trivial calculation, and not a terribly
+      exciting exhibition of parallelism.  However, it is one step in a
+      process of trying to figure out how a finite element code could
+      use parallelism to assemble the system matrix, for instance.
+    </p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        function a = hilbert_fun ( m, n )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>m</i>, <i>n</i> are the number of rows and columns;
+        </li>
+        <li>
+          <i>a</i> is the computed matrix.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on a remote cluster, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the FSU HPC cluster, using the <b>fsuClusterMatlab</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>,
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_parfor/matrix_assemble_parfor.html">
+      MATRIX_ASSEMBLE_PARFOR</a>,
+      a MATLAB program which
+      demonstrates the parfor parallel programming 
+      feature by assembling the Hilbert matrix in a parallel loop.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs each estimate part of an integral using quadrature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>HILBERT</b> is a simple example of matrix assembly, in which
+      the calculation of the individual entries does not take very much time.
+      (A better example might have fewer matrix entries which each take up
+      much more time to calculate).
+      <ul>
+        <li>
+          <a href = "hilbert_fun.m">hilbert_fun.m</a>,
+          a MATLAB function which returns the MxN Hilbert matrix,
+          using the available SPMD workers.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hilbert_pool.m">hilbert_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "hilbert_script.m">hilbert_script.m</a>,
+          a MATLAB script file which simply invokes the function with
+          M = N = 100.
+        </li>
+        <li>
+          <a href = "hilbert_batch_local.m">hilbert_batch_local.m</a>,
+          a batch command to run the job indirectly on the local system,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "hilbert_fsu.m">hilbert_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 February 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

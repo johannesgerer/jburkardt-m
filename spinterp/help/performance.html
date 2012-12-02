@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Improving Performance (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="optimization.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="interfacing.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>Improving Performance</h1>
+	  <p>The aim of this section is to provide an overview on how to optimize the performance of the Sparse Grid Interpolation Toolbox.</p>
+      <h2>Contents</h2>
+      <div>
+         <ul>
+            <li><a href="#1">Vectorizing the objective function</a></li>
+            <li><a href="#4">Reusing previous results</a></li>
+            <li><a href="#6">Purging interpolant data</a></li>
+            <li><a href="#9">Vectorized interpolant evaluation</a></li>
+         </ul>
+      </div>
+      <h2><a name="1">Vectorizing the objective function</a></h2>
+      <p>Vectorizing the objective function is most beneficial if the function evaluations are very cheap, in the order of less than
+         1/100 s. In this case, providing a vectorized function can improve the performance of the <code><a href="spvals.html">spvals</a></code> function. Consider the following
+         function
+      </p>
+      <p><img src="images/ex_performance_eq15084.png"> </p>
+      <p>and the following two m-files implementing it:</p><pre class="codeinput">type <span class="string">fun.m</span>
+</pre><pre class="codeoutput">
+function y = fun(x1, x2)
+y = x1 * x2;
+y = y^2;
+</pre><pre class="codeinput">type <span class="string">fun_vec.m</span>
+</pre><pre class="codeoutput">
+function y = fun_vec(x1, x2)
+y = x1 .* x2;    % Use '.' before any '^', '*' or '/' to enable
+y = y.^2;        % vectorized evaluation of expressions
+</pre><p>The first m-file allows for evaluation at a single real-valued point only, the second one permits vectorized evaluation. Since
+         in case of cheap functions, the function calls in Matlab represent a significant overhead, the function evaluation part of
+         the <code>spvals</code> algorithm is much slower if the non-vectorized form is used. This is demonstrated by the following code.
+      </p><pre class="codeinput">tic, z1 = spvals(<span class="string">'fun'</span>,2); toc;
+tic, z2 = spvals(<span class="string">'fun_vec'</span>,2,[],spset(<span class="string">'Vectorized'</span>,<span class="string">'on'</span>)); toc;
+z1.fevalTime
+z2.fevalTime
+</pre><pre class="codeoutput">Elapsed time is 0.112452 seconds.
+Elapsed time is 0.069006 seconds.
+ans =
+    0.1021
+ans =
+    0.0480
+</pre><h2><a name="4">Reusing previous results</a></h2>
+      <p>An important feature of the toolbox is that you do not have to discard previously computed results. A "best practice" is,
+         therefore, to embed the interpolant construction in a loop. Proceeding in this way has two advantages: First, it gives the
+         user a maximum of control in monitoring the decay of the estimated interpolation error. Second, it makes it possible to start
+         with a low number of required points, and to increase this number slowly if the targeted accuracy is not yet achieved. There
+         are several examples on how to implement such a loop in the provided demos. See, for instance, <tt>spadaptanim.m</tt> or <tt>spcompare.m</tt> in the <tt>examples</tt> directory.
+      </p>
+      <p>A small example on implementing dimension-adaptive interpolant construction in a loop is provided below.</p><pre class="codeinput">np = 2;
+z  = [];
+options = spset(<span class="string">'Vectorized'</span>, <span class="string">'on'</span>, <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="keyword">...</span>
+  <span class="string">'RelTol'</span>, inf);
+<span class="keyword">while</span> np &lt; 4000
+  options = spset(options, <span class="string">'PrevResults'</span>, z, <span class="string">'MinPoints'</span>, np, <span class="string">'MaxPoints'</span>, np);
+  z = spvals(<span class="string">'fun_vec'</span>,2,[],options);
+  np = z.nPoints;
+  disp([<span class="string">'np = '</span> num2str(np) <span class="string">', e_rel = '</span>, num2str(z.estRelError)]);
+  np = np * 2;
+<span class="keyword">end</span>
+</pre><pre class="codeoutput">np = 5, e_rel = 0.75
+np = 13, e_rel = 0.5625
+np = 29, e_rel = 0.046875
+np = 73, e_rel = 0.011719
+np = 177, e_rel = 0.0029297
+np = 417, e_rel = 0.00073242
+np = 897, e_rel = 6.1035e-05
+np = 1921, e_rel = 4.5776e-05
+np = 4097, e_rel = 3.8147e-06
+</pre><h2><a name="6">Purging interpolant data</a></h2>
+      <p>Since version v3.2 of the toolbox, a new function called <tt><a href="sppurge.html">sppurge</a></tt> is available. This function serves to "purge" or "clean up" the interpolant data from subgrids that do not contribute significantly
+         to the result. This is done by introducing a drop tolerance that is applied to the hierarchical surpluses. Subgrids where
+         the absolute value of all hierarchical surpluses fall below this drop tolerance are marked and neglected during the interpolation
+         process. By default, very conservative purging parameters are used, guaranteeing that the accuracy of the interpolation will
+         not be affected up to about the 12th significant digit. However, if the accuracy requirements are lower, the user may use
+         higher drop tolerances, and thus, trade improved interpolation speed against lower accuracy. This is illustrated by the following
+         example.
+      </p>
+      <p>We assume that an interpolant was computed for the function <tt>fun_vec</tt> by the code above with 4097 points, using piecewise multilinear basis functions. The following code generates a plot that
+         shows the time required to compute 1000 randomly sampled points for different drop tolerances. The maximum absolute error
+         is shown for comparison. This example only uses absolute drop tolerances (the relative drop tolerance is set to zero).
+      </p><pre class="codeinput"><span class="comment">% Define drop tolerances</span>
+dropTols = [1e-5, 1e-4, 1e-3];
+
+<span class="comment">% Generate 1000 random points</span>
+rand(<span class="string">'state'</span>,0);
+x = rand(1000,1); y = rand(1000,1);
+
+<span class="comment">% Compute exact function values</span>
+f_exact = fun_vec(x,y);
+
+e = zeros(3,1); t = zeros(3,1);
+<span class="keyword">for</span> k = 1:3
+  <span class="comment">% Purge interpolant with drop tolerance</span>
+  z = sppurge(z,spset(<span class="string">'DropTol'</span>, [dropTols(k), 0]));
+  <span class="comment">% Interpolate and measure time</span>
+  tic, ip = spinterp(z, x, y); t(k) = toc;
+  <span class="comment">% Compute maximum error</span>
+  e(k) = max(abs(f_exact - ip));
+<span class="keyword">end</span>
+
+<span class="comment">% Plot results</span>
+subplot(1,2,1);
+bar(t, <span class="string">'b'</span>);
+set(gca,<span class="string">'XTickLabel'</span>, {<span class="string">'1e-5'</span>,<span class="string">'1e-4'</span>,<span class="string">'1e-3'</span>})
+xlabel(<span class="string">'Abs. drop tolerance'</span>);
+ylabel(<span class="string">'Computing time [s]'</span>);
+subplot(1,2,2);
+bar(log10(e), <span class="string">'r'</span>);
+set(gca,<span class="string">'XTickLabel'</span>, {<span class="string">'1e-5'</span>,<span class="string">'1e-4'</span>,<span class="string">'1e-3'</span>})
+set(gca,<span class="string">'YDir'</span>,<span class="string">'reverse'</span>);
+set(gca,<span class="string">'YLim'</span>, [-6 -2]);
+set(gca,<span class="string">'YTick'</span>,[-5 -4 -3]);
+set(gca,<span class="string">'YTickLabel'</span>, {<span class="string">'1e-5'</span>,<span class="string">'1e-4'</span>,<span class="string">'1e-3'</span>})
+xlabel(<span class="string">'Abs. drop tolerance'</span>);
+ylabel(<span class="string">'Max. absolute error'</span>);
+</pre><img src="images/ex_performance_01.png"> <p>For another example using the default relative drop tolerance, see <tt><a href="sppurge.html">sppurge</a></tt>.
+      </p>
+      <h2><a name="9">Vectorized interpolant evaluation</a></h2>
+      <p>The <tt><a href="spinterp.html">spinterp</a></tt> function is designed for vectorized evaluation. Since the sparse grid algorithm involves more computational overhead than
+         other, simpler interpolation methods, and due to the fact that Matlab is relatively slow if many function calls are performed
+         (since it is an interpreted language), it is recommended to evaluate as many interpolation points at a time as possible. The
+         following code illustrates non-vectorized vs. vectorized evaluation at 1000 points for the interpolant from above.
+      </p><pre class="codeinput"><span class="comment">% Non-vectorized interpolation</span>
+tic
+<span class="keyword">for</span> k = 1:1000
+  ip = spinterp(z,x(k),y(k));
+<span class="keyword">end</span>
+toc
+
+<span class="comment">% Vectorized interpolation</span>
+tic, ip = spinterp(z,x,y); toc
+</pre><pre class="codeoutput">Elapsed time is 2.526127 seconds.
+Elapsed time is 0.045744 seconds.
+</pre>  
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="optimization.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Optimization</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Interfacing concepts</td>
+        <td width="20" align="right"><a href="interfacing.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

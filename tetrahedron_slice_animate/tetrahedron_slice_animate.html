@@ -1,0 +1,270 @@
+<html>
+
+  <head>
+    <title>
+      TETRAHEDRON_SLICE_ANIMATE - Animated Tetrahedron/Plane Intersection
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TETRAHEDRON_SLICE_ANIMATE <br> Animated Tetrahedron/Plane Intersection
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TETRAHEDRON_SLICE_ANIMATE</b>
+      is a MATLAB program which
+      displays the intersection of a tetrahedron with a sequence of equally
+      spaced planes that share a common normal vector.
+    </p>
+
+    <p>
+     The intersection of a plane and a tetrahedron is a convex
+     planar polygon which is bounded by 0 to 4 points.  The possibilities are:
+     <ul>
+       <li>
+         0) empty (no intersection);
+       </li>
+       <li>
+         1) a single point;
+       </li>
+       <li>
+         2) a single line segment;
+       </li>
+       <li>
+         3) a triangle;
+       </li>
+       <li>
+         4) a quadrilateral.
+       </li>
+     </ul>
+    </p>
+
+    <p>
+      Given a tetrahedron and a normal vector, the program displays a wireframe 
+      image of the tetrahedron, and the points of intersection, and the convex 
+      intersection polygon, between the tetrahedron and each of a sequence of
+      equally spaced planes that share the normal vector.
+    </p>
+
+    <p>
+      The user defines the tetrahedron by giving a 3x4 vertex array <b>T</b>
+      containing the XYZ coordinates of the vertices.
+    </p>
+
+    <p>
+      The user defines the planes by specifying a vector <b>NORMAL</b> 
+      which defines the direction normal to the planes.
+    </p>
+
+    <p>
+      The program includes an internal switch <b>create_frames</b> which,
+      if set to 1, results in each image being stored in a JPG file, so that
+      a movie file can be created.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>tetrahedron_slice_animate</b> ( <i>normal</i>, <i>t</i>, <i>n</i> )
+      </blockquote>
+      where 
+      <ul>
+        <li>
+          <i>normal</i> is the normal vector to the plane;
+        </li>
+        <li>
+          <i>t</i> contains the coordinates of the vertices.
+        </li>
+        <li>
+          <i>n</i> is the number of equally spaced planes to compute.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      performs geometric calculations in 2, 3 and N dimensional space.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_properties/tetrahedron_properties.html">
+      TETRAHEDRON_PROPERTIES</a>, 
+      a MATLAB program which 
+      computes properties of a tetrahedron
+      whose vertex coordinates are read from a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_slice_display/tetrahedron_slice_display.html">
+      TETRAHEDRON_SLICE_DISPLAY</a>, 
+      a MATLAB program which 
+      determines the intersection between a tetrahedron and a plane and
+      displays the result.
+    </p>
+
+    <p>
+      <a href = "../../datasets/tetrahedrons/tetrahedrons.html">
+      TETRAHEDRONS</a>, 
+      a dataset directory which 
+      contains examples of tetrahedrons; 
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "parallelogram_area_3d.m">
+          parallelogram_area_3d.m</a>, 
+          computes the area of a parallelogram in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_tetrahedron_intersect.m">
+          plane_normal_tetrahedron_intersect.m</a>, 
+          finds intersections of a normal plane and a tetrahedron;
+        </li>
+        <li>
+          <a href = "quad_area_3d.m">
+          quad_area_3d.m</a>, 
+          returns the area of a quadrilateral in 3D;
+        </li>
+        <li>
+          <a href = "r8_sign_opposite_strict.m">r8_sign_opposite_strict.m</a>, 
+          is TRUE if two R8's have strictly opposite signs.
+        </li>
+        <li>
+          <a href = "tetrahedron_slice_animate.m">tetrahedron_slice_animate.m</a>, 
+          computes a sequence of equally spaced planes, and displays their
+          intersection with a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_slice_display.m">tetrahedron_slice_display.m</a>, 
+          displays an image of the intersection of a tetrahedron and a plane.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      A sequence of 20 frames was created.
+      <ul>
+        <li>
+          <a href = "frame0001.jpg">frame0001.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0002.jpg">frame0002.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0003.jpg">frame0003.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0004.jpg">frame0004.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0005.jpg">frame0005.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0006.jpg">frame0006.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0007.jpg">frame0007.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0008.jpg">frame0008.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0009.jpg">frame0009.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0010.jpg">frame0010.jpg</a>, PNG version:
+          <a href = "frame0010.png">frame0010.png</a>
+        </li>
+        <li>
+          <a href = "frame0011.jpg">frame0011.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0012.jpg">frame0012.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0013.jpg">frame0013.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0014.jpg">frame0014.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0015.jpg">frame0015.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0016.jpg">frame0016.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0017.jpg">frame0017.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0018.jpg">frame0018.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0019.jpg">frame0019.jpg</a>
+        </li>
+        <li>
+          <a href = "frame0020.jpg">frame0020.jpg</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SLICE.MOV</b> is an animation created from the JPG files by QUICKTIME.
+      <ul>
+        <li>
+          <a href = "slice.mov">slice.mov</a>
+          an animation of the slices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 June 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

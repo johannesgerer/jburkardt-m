@@ -1,0 +1,467 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_NAVIER_STOKES_SPARSE - FEM applied to Navier Stokes, Sparse Storage
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_NAVIER_STOKES_SPARSE <br>
+      Steady Incompressible Navier Stokes Equations in 2D <br>
+      Finite Element Method <br>
+      Sparse Storage
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_NAVIER_STOKES_SPARSE</b>
+      is a MATLAB program which
+      applies the finite element method to solve a form of the
+      steady incompressible Navier Stokes equations over an arbitrary
+      triangulated region in 2D.
+    </p>
+
+    <p>
+      The geometry is entirely external to the program.  The user
+      specifies one file of nodal coordinates, and one file that
+      describes the triangles in terms of six node coordinates.
+    </p>
+
+    <p>
+      The program makes a default assumption that all boundary velocities
+      correspond to Dirichlet boundary conditions, and that one pressure
+      is specified (for uniqueness of the pressure system).  The user
+      can adjust these boundary conditions (and even specify Dirichlet
+      constraints on any variable at any node) by setting the appropriate
+      data in certain user routines.
+    </p>
+
+    <p>
+      <i>At the moment, Neumann conditions, if specified, must have a
+      zero right hand side.  The machinery to integrate a nonzero
+      Neumann condition has not been set up yet.</i>
+    </p>
+
+    <p>
+      The linear system is created and stored using
+      MATLAB's sparse matrix storage.  The system is factored and solved
+      by MATLAB, using sparse matrix solution techniques.
+    </p>
+
+    <p>
+      This program is derived from a similar program,
+      <b>FEM2D_NAVIER_STOKES</b>,
+      which uses banded storage, factorization and solution methods.
+    </p>
+
+    <h2 align = "center">
+      Computational Region
+    </h2>
+
+    <p>
+      The computational region is initially unknown by the program.  The user
+      specifies it by preparing a file containing the coordinates of
+      the nodes, and a file containing the indices of nodes that make
+      up triangles that form a triangulation of the region.  For the
+      following ridiculously small example:
+      <pre>
+       10-11-12
+        |\    |\
+        | \   | \
+        6  7  8  9
+        |   \ |   \
+        |    \|    \
+        1--2--3--4--5
+      </pre>
+      the node file could be:
+      <pre>
+         0.0 0.0
+         1.0 0.0
+         2.0 0.0
+         3.0 0.0
+         0.0 1.0
+         1.0 1.0
+         2.0 1.0
+         3.0 1.0
+         0.0 2.0
+         1.0 2.0
+         2.0 2.0
+      </pre>
+      and the triangle file would be
+      <pre>
+         1  3  10  2  7  6
+        12 10  3  11  7  8
+         3  5 12   4  9  8
+      </pre>
+    </p>
+
+    <h2 align = "center">
+      The Stokes Equations
+    </h2>
+
+    <p>
+      The state variables are a velocity vector (U,V)(X,Y) and a scalar
+      pressure P(X,Y).  The state variables are constrained by the
+      momentum and continuity equations, which apply inside the region:
+      <pre><b>
+        - nu * ( Uxx + Uyy ) + dP/dx = U_RHS(x,y)
+        - nu * ( Vxx + Vyy ) + dP/dy = V_RHS(x,y)
+                       dU/dx + dV/dy = P_RHS(x,y)
+      </b></pre>
+      where, typically, the right hand side functions are zero.  However,
+      the user is free to assign nonzero values to these functions
+      through a user routine.
+    </p>
+
+    <h2 align = "center">
+      Boundary Conditions
+    </h2>
+
+    <p>
+      At every point on the boundary of the region, the program assumes
+      that both components of the velocity are specified.
+      <pre><b>
+        U(node) = U_BC(node)
+        V(node) = V_BC(node)
+      </b></pre>
+      This is known as a "Dirichlet boundary condition".  The right hand side
+      of the boundary condition is left unspecified until the user
+      routine is called.  If a wall is intended, then the appropriate
+      condition has U_BC and V_BC zero.  An inlet might have a
+      particular flow profile function used to assign nonzero values.
+    </p>
+
+    <p>
+      At one point in the region, the program assumes
+      that the value of the pressure is specified.
+      <pre><b>
+        P(node) = P_BC(node)
+      </b></pre>
+      Such a condition must be supplied; otherwise the pressure cannot
+      be uniquely determined, since it is essentially a potential function,
+      and so is unique only "up to a constant".  Note that the program allows
+      the user to specify pressure conditions anyway, and these can be
+      of Dirichlet or Neumann type.  In general, however, this is not
+      a physically or mathematically or computationally good thing to do!
+    </p>
+
+    <p>
+      The user routine <b>boundary_type</b> can be used to modify the
+      type of the boundary conditions associated with a degree of freedom
+      at a boundary node - or even to add constraints to variables
+      associated with nodes in the interior.
+    </p>
+
+    <p>
+      One choice that the user can make is to reset certain boundary
+      conditions to be of Neumann type:
+      <pre><b>
+        dU/dn(node) = U_BC(node)
+        dV/dn(node) = V_BC(node)
+      </b></pre>
+      The right hand side of the boundary condition is left unspecified
+      until the user routine is called.  As mentioned earlier, the program
+      cannot currently handle Neumann conditions with nonzero right hand side.
+      (A nonzero value is simply ignored, but won't actually cause the
+      program to fail.)
+    </p>
+
+    <h2 align = "center">
+      Computational Procedure
+    </h2>
+
+    <p>
+      We use linear finite elements for the pressure function, and to
+      generate these, we only need the nodes that are the vertices of
+      the triangles.  (We will call these vertices "pressure nodes.")
+      Because quadratic basis functions are to be used
+      for the velocity, however, each triangle will also have three extra
+      midside nodes available for that.
+    </p>
+
+    <p>
+      We now assume that the unknown velocity component functions U(x,y)
+      and V(x,y) can be represented as linear combinations of the quadratic
+      basis functions associated with each node, and that the scalar
+      pressure P(x,y) can be represented as a linear combination of the linear
+      basis functions associated with each pressure node.
+    </p>
+
+    <p>
+      For every node, we can determine a quadratic velocity basis function
+      PSI(I)(x,y).  For every pressure node I, we can determine a linear
+      basis function PHI(I)(x,y).  If we assume that our solutions are linear
+      combinations of these basis functions, then we need to solve for
+      the coefficients.
+    </p>
+
+    <p>
+      To do so, we apply the Galerkin-Petrov method.  For each pressure
+      node, and its corresponding basis function PHI(I), we generate a
+      copy of the continuity equation, multiplied by that basis function,
+      and integrated over the region:
+      <blockquote>
+        Integral ( Ux(x,y) + Vy(x,y) ) * PHI(I)(x,y) dx dy =
+        Integral ( P_RHS(x,y) * PHI(I)(x,y) dx dy )
+      </blockquote>
+    </p>
+
+    <p>
+      Similarly, for each node and its corresponding velocity basis function
+      PSI(I), we generate two copies of the momentum equation, one for
+      each component.  We multiply by PSI(I), integrate over the region,
+      and use integration by parts to lower the order of differentiation.
+      This gives us:
+      <blockquote>
+        Integral nu * ( Ux(x,y) * PSIx(I)(x,y) + Uy(x,y) * PSIy(I)(x,y) )
+        + Px(x,y) * PSI(I)(x,y) dx dy =
+        Integral ( U_RHS(x,y) * PSI(I)(x,y) dx dy )
+        <br>
+        Integral nu * ( Vx(x,y) * PSIx(I)(x,y) + Vy(x,y) * PSIy(I)(x,y) )
+        + Py(x,y) * PSI(I)(x,y) dx dy =
+        Integral ( V_RHS(x,y) * PSI(I)(x,y) dx dy )
+      </blockquote>
+    </p>
+
+    <p>
+      After adjusting for the boundary conditions, the set of all such
+      equations yields a linear system for the coefficients of the
+      finite element representation of the solution.
+    </p>
+
+    <h2 align = "center">
+      User Input Routines
+    </h2>
+
+    <p>
+      The program requires the user to supply the following routines:
+    </p>
+
+    <p>
+      The default boundary condition types are passed to the user, along
+      with other information.  The user modifies any data as necessary, and
+      returns it.  This is done by a user-supplied MATLAB M file of the form:
+      <blockquote><b>
+        function [ node_u_condition, node_v_condition, node_p_condition ] =
+          boundary_type ( node_num, node_xy, node_boundary, node_type,
+          node_u_condition, node_v_condition, node_p_condition )
+      </b></blockquote>
+    </p>
+
+    <p>
+      The value of the kinematic viscosity is
+      determined by a user-supplied MATLAB M file of the form
+      <blockquote><b>
+        function nu = constants ( )
+      </b></blockquote>
+    </p>
+
+    <p>
+      The right hand side of any Dirichlet boundary conditions are
+      determined by a user-supplied MATLAB M file of the form
+      <blockquote><b>
+        function [ u_bc, v_bc, p_bc ] = dirichlet_condition ( n, xy )
+      </b></blockquote>
+    </p>
+
+    <p>
+      The right hand side of any Neumann boundary conditions are
+      determined by a user-supplied MATLAB M file of the form
+      <blockquote><b>
+        function [ u_bc, v_bc, p_bc ] = neumann_condition ( n, xy )
+      </b></blockquote>
+    </p>
+
+    <p>
+      The right hand side source term functions are determined
+      by a user-supplied MATLAB M file of the form
+      <blockquote><b>
+        function [ u_rhs, v_rhs, p_rhs ] = rhs ( m, xy )
+      </b></blockquote>
+    </p>
+
+    <h2 align = "center">
+      Program Output
+    </h2>
+
+    <p>
+      The program writes out various node, triangle, pressure and velocity
+      data files that can be used to create plots of the geometry and
+      the solution.
+    </p>
+
+    <p>
+      Graphics files created include:
+      <ul>
+        <li>
+          <b>nodes6.eps</b>, an image of the nodes;
+        </li>
+        <li>
+          <b>triangles6.eps</b>, an image of the elements;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Data files created include:
+      <ul>
+        <li>
+          <b>nodes3.txt</b>, the nodes associated with pressure;
+        </li>
+        <li>
+          <b>triangles3.txt</b>, the linear triangles associated with pressure;
+        </li>
+        <li>
+          <b>stokes_pressure3.txt</b>, the Stokes pressure at the pressure
+          nodes (if requested);
+        </li>
+        <li>
+          <b>stokes_velocity6.txt</b>, the Stokes velocity at the velocity
+          nodes (if requested).
+        </li>
+        <li>
+          <b>pressure3.txt</b>, the Navier Stokes pressure at the pressure nodes;
+        </li>
+        <li>
+          <b>velocity6.txt</b>, the Navier Stokes velocity at the velocity nodes.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem2d_navier_stokes_sparse</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where 'prefix' is the common input filename prefix:
+      <ul>
+        <li>
+          <i>'prefix_nodes.txt'</i> is the name of the node file;
+        </li>
+        <li>
+          <i>'prefix_elements.txt'</i> is the name of the element file;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_navier_stokes_sparse_big_cavity/fem2d_navier_stokes_sparse_big_cavity.html">
+      FEM2D_NAVIER_STOKES_SPARSE_BIG_CAVITY</a>,
+      a MATLAB library which
+      contains the user-supplied routines necessary to run
+      <b>fem2d_navier_stokes_sparse</b> on the "big cavity" problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_navier_stokes_sparse_cavity/fem2d_navier_stokes_sparse_cavity.html">
+      FEM2D_NAVIER_STOKES_SPARSE_CAVITY</a>,
+      a MATLAB library which
+      contains the user-supplied routines necessary to run
+      <b>fem2d_navier_stokes_sparse</b> on the "cavity" problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_navier_stokes_sparse_channel/fem2d_navier_stokes_sparse_channel.html">
+      FEM2D_NAVIER_STOKES_SPARSE_CHANNEL</a>,
+      a MATLAB library which
+      contains the user-supplied routines necessary to run
+      <b>fem2d_navier_stokes_sparse</b> on the "channel" problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_navier_stokes_sparse_inout/fem2d_navier_stokes_sparse_inout.html">
+      FEM2D_NAVIER_STOKES_SPARSE_INOUT</a>,
+      a MATLAB library which
+      contains the user-supplied routines necessary to run
+      <b>fem2d_navier_stokes_sparse</b> on the "inout" problem.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Max Gunzburger,<br>
+          Finite Element Methods for Viscous Incompressible Flows,<br>
+          A Guide to Theory, Practice, and Algorithms,<br>
+          Academic Press, 1989,<br>
+          ISBN: 0-12-307350-2,<br>
+          LC: TA357.G86.
+        </li>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_navier_stokes_sparse.m">fem2d_navier_stokes_sparse.m</a>,
+          the main program;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

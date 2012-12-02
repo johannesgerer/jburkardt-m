@@ -1,0 +1,124 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spcgsearch :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spcgsearch</h1>
+		  Optimizes the sparse grid interpolant using the CG method. <b>Recommended for optimizing polynomial sparse grids (Chebyshev grid).</b> It is discouraged to apply this method to piecewise linear sparse grids since they are not smooth enough for the algorithm to perform well (use <a href="spcompsearch.html"><code>spcompsearch</code></a> instead for these grid types).
+
+		<h2>Syntax</h2>
+			<code>X = spcgsearch(Z)</code><br>
+			<code>X = spcgsearch(Z,XBOX)</code><br>
+			<code>X = spcgsearch(Z,XBOX,OPTIONS)</code><br>
+			<code>[X,FVAL] = spcgsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG] = spcgsearch(...)</code><br>
+			<code>[X,FVAL,EXITFLAG,OUTPUT] = spcgsearch(...)</code><br>
+		<h2>Description</h2>
+      <code>X = spcgsearch(Z)</code> Starts the search at the best available sparse grid point and attempts to find a local minimizer of the sparse grid interpolant <code>Z</code>. The entire range of the sparse grid interpolant is searched.
+    <p>
+      <code>X = spcgsearch(Z,XBOX)</code> Uses the search box <code>XBOX = [a1, b1; a2, b2; ...]</code>. The size of search box <code>XBOX</code> must be smaller than or equal to the range of the interpolant.
+		<p>
+      <code>X = spcgsearch(Z,XBOX,OPTIONS)</code> Minimizes with the default optimization parameters replaced by values in the structure <code>OPTIONS</code>, created with the <code>spoptimset</code> function. See <a href="spoptimset.html"><code>spoptimset</code></a> for details.
+		<p>
+      <code>[X,FVAL] = spcgsearch(...)</code> Returns the value of the sparse grid interpolant at <code>X</code>. 
+		<p>  
+      <code>[X,FVAL,EXITFLAG] = spcgsearch(...)</code> Returns an <code>EXITFLAG</code> that describes the exit condition of <code>spcgsearch</code>. Possible values of <code>EXITFLAG</code> and the corresponding exit conditions are
+			<ul>
+			  <li> <code>1</code>&nbsp;&nbsp;&nbsp;<code>spcgsearch</code> converged to a solution <code>X</code>.
+				<li> <code>0</code>&nbsp;&nbsp;&nbsp;Maximum number of function evaluations or iterations reached.
+			</ul> 
+		<p>  
+      <code>[X,FVAL,EXITFLAG,OUTPUT] = spcgsearch(...)</code> Returns a structure <code>OUTPUT</code> with the number of function evaluations in <code>OUTPUT.nFEvals</code>, the number of gradients in <code>.nGradEvals</code>, and the computing time in <code>.time</code>.
+		<a name="1"><h2>Examples</h2></a>
+      <p>Usually, the objective function will be expensive to evaluate. Here, we just consider the well-known the six-hump camel-back
+         for function simplicity.
+      </p><pre class="codeinput">f = @(x,y) (4-2.1.*x.^2+x.^4./3).*x.^2+x.*y+(-4+4.*y.^2).*y.^2;
+</pre><p>Before applying the <tt>spcgsearch</tt> algorithm, we need to create a sparse grid interpolant of the objective function. This is done as usual using the <tt><a href="spvals.html">spvals</a></tt> algorithm.
+      </p>
+      <p>In preparation to calling <tt>spvals</tt>, we first set up the interpolant construction with adequate parameters. A conjugate gradient (CG) line search algorithm uses
+         derivatives to determine the search direction, it best to use the smooth Chebyshev grid in order to obtain an interpolant
+         with accurate, smooth derivatives. Furthermore, it is useful to keep the function values as they can be used by the optimization
+         algorithm to select good starting values for the optimization.
+      </p><pre class="codeinput">options = spset(<span class="string">'keepFunctionValues'</span>,<span class="string">'on'</span>, <span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>, <span class="keyword">...</span>
+  <span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'DimAdaptDegree'</span>, 1, <span class="string">'MinPoints'</span>, 10);
+</pre><p>We construct the interpolant for the range that we are interested in optimizing the objective function for.</p><pre class="codeinput">range = [-3 3; -2 2];
+</pre><p>Now, we are ready to construct the sparse grid interpolant.</p><pre class="codeinput">z = spvals(f, 2, range, options)
+</pre><pre class="codeoutput">z = 
+               vals: {[37x1 double]}
+           gridType: 'Chebyshev'
+                  d: 2
+              range: [2x2 double]
+        estRelError: 6.7208e-16
+        estAbsError: 1.1013e-13
+         fevalRange: [-0.9706 162.9000]
+         minGridVal: [0.5000 0.6913]
+         maxGridVal: [0 0]
+            nPoints: 37
+          fevalTime: 0.0690
+    surplusCompTime: 0.3137
+            indices: [1x1 struct]
+           maxLevel: [4 3]
+      activeIndices: [4x1 uint32]
+     activeIndices2: [11x1 uint32]
+                  E: [Inf 108.9000 48 48.6000 10.7392 6 16.0000 7.1054e-15 1.1013e-13 7.1054e-15 1.4211e-14]
+                  G: [11x1 double]
+                 G2: [11x1 double]
+       maxSetPoints: 4
+           dimAdapt: 1
+              fvals: {[37x1 double]}
+</pre><p>Having obtained the interpolant, we can now search for the minimizer using <tt>spcgsearch</tt>. This is achieved by simply calling
+      </p><pre class="codeinput">[xopt, fval] = spcgsearch(z)
+</pre><pre class="codeoutput">xopt =
+   -0.0898
+    0.7127
+fval =
+   -1.0316
+</pre><p>There are multiple ways of configuring the search using an options structure defined with <tt><a href="spoptimset.html">spoptimset</a></tt>. For instance, you can display information at each iteration. Additional information on the optimization can be obtained
+         by specifying optional left-hand parameters:
+      </p><pre class="codeinput">optoptions = spoptimset(<span class="string">'Display'</span>, <span class="string">'iter'</span>);
+[xopt, fval, exitflag, output] = spcgsearch(z, [], optoptions)
+</pre><pre class="codeoutput"> Iteration   Func-count Grad-count     f(x)            Procedure
+     0            1         1        -0.970563         start point
+     1           10         1           -1.024         line search
+     2           17         2         -1.03161         line search
+     3           24         3         -1.03163         line search
+     4           29         4         -1.03163         line search
+xopt =
+   -0.0898
+    0.7127
+fval =
+   -1.0316
+exitflag =
+     1
+output = 
+       nFEvals: 29
+    nGradEvals: 4
+          time: 0.2737
+</pre>
+		<h2>See Also</h2>
+		  <a href="spoptimset.html"><code>spoptimset</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

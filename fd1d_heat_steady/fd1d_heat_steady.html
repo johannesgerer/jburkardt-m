@@ -1,0 +1,430 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_HEAT_STEADY - Finite Difference Solution of a 1D Steady State Heat Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_HEAT_STEADY <br> Finite Difference Solution of a 1D Steady State Heat Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_HEAT_STEADY</b>
+      is a MATLAB program which
+      applies the finite difference method to estimate the solution of
+      the steady state heat equation over a one dimensional region, which
+      can be thought of as a thin metal rod.
+    </p>
+
+    <p>
+      We will assume the rod extends over the range A &lt;= X &lt;= B.
+    </p>
+
+    <p>
+      The quantity of interest is the temperature U(X) at each point in the rod.
+    </p>
+
+    <p>
+      We will assume that the temperature of the rod is fixed at known values
+      at the two endpoints.  Symbolically, we write the <i>boundary conditions</i>:
+      <pre>
+        U(A) = UA
+        U(B) = UB
+      </pre>
+    </p>
+
+    <p>
+      Inside the rod, we assume that a version of the steady (time independent)
+      heat equation applies.  This assumes that the situation in the rod has
+      "settled down", so that the temperature configuration has no further
+      tendency to change.  The equation we will consider is
+      <pre>
+        - d/dx ( K(X) * d/dx U(X) ) = F(X)
+      </pre>
+      Here, the right hand side term F(X) allows us to consider internal
+      heat sources in the metal - perhaps a portion of the rod is sitting
+      above a blow torch.  The coefficient K(X) is a measure of heat conductivity.
+      It measures the rate at which the heat from a local hot spot will spread out.
+    </p>
+
+    <p>
+      If the heat source function F(X) is zero everywhere, and if K(X) is
+      constant, then the solution U(X) will be the straight line function
+      that matches the two endpoint values.  Making F(X) positive over a small
+      interval will "heat up" that portion.  You can simulate a rod that is
+      divided into regions of different materials by setting the function K(X)
+      to have a given value K1 over some subinteral of [A,B] and value K2 over
+      the rest of the region.
+    </p>
+
+    <p>
+      To estimate the value of the solution, we will pick a uniform mesh
+      of N points X(1) through X(N), from A to B.  At the I-th point, we will
+      compute an estimated temperature U(I).  To do this, we will need to
+      use the boundary conditions and the differential equation.
+    </p>
+
+    <p>
+      Since X(1) = A and X(N) = B, we can use the boundary conditions to
+      set U(1) = UA and U(N) = UB.
+    </p>
+
+    <p>
+      For the points in the interior, we need to approximate the differential
+      equation in a way that allows us to determine the solution values.
+      We will do this using a finite difference approximation.
+    </p>
+
+    <p>
+      Suppose we are working at node X(I), which is associated with U(I).
+      Then a centered difference approximation to
+      <pre>
+        - d/dx ( K(X) * d/dx U(X) )
+      </pre>
+      is
+      <pre>
+       - ( + K(X(I)+DX/2) * ( U(X(I+1)) - U(X(I))   ) / DX )
+           - K(X(I)-DX/2) * ( U(X(I))   - U(X(I-1)) ) / DX ) / DX
+      </pre>
+    </p>
+
+    <p>
+      If we rearrange the terms in this approximation, and set it equal to F(X(I)),
+      we get the finite difference approximation to the differential equation at X(I):
+      <pre>
+            - K(X(I)-DX/2)                   * U(X(I-1)
+        + (   K(X(I)-DX/2) + K(X(I)+DX(2)) ) * U(X(I))
+                           - K(X(I)+DX(2))   * U(X(I+1)) = DX * DX * F(X(I))
+      </pre>
+    </p>
+
+    <p>
+      This means that we have N-2 equations, each of which involves
+      an unknown U(I) and its left and right neighbors, plus the two boundary
+      conditions, which give us a total of N equations in N unknowns.
+    </p>
+
+    <p>
+      We can set up and solve these linear equations using a matrix A for
+      the coefficients, and a vector RHS for the right hand side terms,
+      and the simple MATLAB command <b>u = A \ rhs</b> will give us the solution!
+    </p>
+
+    <p>
+      Because finite differences are only an approximation to derivatives, this
+      process only produces estimates of the solution.  Usually, we can reduce
+      this error by decreasing DX.
+    </p>
+
+    <p>
+      This program assumes that the user will provide a calling program, and
+      functions to evaluate K(X) and F(X).
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>[ x, u ]</i> = <b>fd1d_steady_heat</b> ( <i>n, a, b, ta, tb, @k, @f</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i>, the number of spatial points.
+        </li>
+        <li>
+          <i>a, b</i>, the left and right endpoints.
+        </li>
+        <li>
+          <i>ta, tb</i>, the temperature values at the left and right endpoints.
+        </li>
+        <li>
+          <i>@k</i>, the name of the function which evaluates K(X);
+        </li>
+        <li>
+          <i>@f</i>, the name of the function which evaluates the right hand side F(X).
+        </li>
+        <li>
+          <i>x</i>, output, the location of the nodes;
+        </li>
+        <li>
+          <i>u</i>, output, the computed value of the temperature at the nodes.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_HEAT_STEADY</b> is available in
+      <a href = "../../c_src/fd1d_heat_steady/fd1d_heat_steady.html">a C version</a> and
+      <a href = "../../cpp_src/fd1d_heat_steady/fd1d_heat_steady.html">a C++ version</a> and
+      <a href = "../../f77_src/fd1d_heat_steady/fd1d_heat_steady.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_heat_steady/fd1d_heat_steady.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/fd1d/fd1d.html">
+      FD1D</a>,
+      a data directory which
+      contains examples of 1D FD files, two text files that can be used to describe
+      many finite difference models with one space variable, and either no time dependence
+      or a snapshot at a given time;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous time-dependent Burgers equation
+      in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>,
+      a MATLAB program which
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
+      FD1D_BVP</a>,
+      a MATLAB program which
+      applies the finite difference method
+      to a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_display/fd1d_display.html">
+      FD1D_DISPLAY</a>,
+      a MATLAB program which
+      reads a pair of files defining a 1D finite difference model, and plots the data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey_plot/fd1d_predator_prey_plot.html">
+      FD1D_PREDATOR_PREY_PLOT</a>,
+      a MATLAB program which
+      plots the output from the FD1D_PREDATOR_PREY program;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_wave/fd1d_wave.html">
+      FD1D_WAVE</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      wave equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_50_heat/fem_50_heat.html">
+      FEM_50_HEAT</a>,
+      a MATLAB program which
+      implements a finite element calculation for the heat equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>,
+      a MATLAB program which
+      solves the 2D time dependent heat equation on the unit square.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_heat_steady.m">fd1d_heat_steady.m</a>, the program.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT to a file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "problem1.m">problem1.m</a>,
+          uses K(X) = 1, F(X) = 0, so the solution should be the straight
+          line that connects the boundary values.
+        </li>
+        <li>
+          <a href = "problem1_nodes.txt">problem1_nodes.txt</a>,
+          the coordinates of the nodes.
+        </li>
+        <li>
+          <a href = "problem1_values.txt">problem1_values.txt</a>,
+          the computed temperatures at the nodes.
+        </li>
+        <li>
+          <a href = "problem1.png">problem1.png</a>,
+          a PNG image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "problem2.m">problem2.m</a>,
+          uses K(X) which is set to different constants over three subregions,
+          and F(X) = 0.0, so the solution will be a piecewise linear function
+          that connects the boundary values.
+        </li>
+        <li>
+          <a href = "problem2_nodes.txt">problem2_nodes.txt</a>,
+          the coordinates of the nodes.
+        </li>
+        <li>
+          <a href = "problem2_values.txt">problem2_values.txt</a>,
+          the computed temperatures at the nodes.
+        </li>
+        <li>
+          <a href = "problem2.png">problem2.png</a>,
+          a PNG image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "problem3.m">problem3.m</a>,
+          uses K(X) = 1, F(X) defines a heat source, so the solution can
+          rise above the boundary values.
+        </li>
+        <li>
+          <a href = "problem3_nodes.txt">problem3_nodes.txt</a>,
+          the coordinates of the nodes.
+        </li>
+        <li>
+          <a href = "problem3_values.txt">problem3_values.txt</a>,
+          the computed temperatures at the nodes.
+        </li>
+        <li>
+          <a href = "problem3.png">problem3.png</a>,
+          a PNG image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "problem4.m">problem4.m</a>,
+          uses K(X) = 1, F(X) defines a heat source and a heat sink, so the
+          solution can go above and below the boundary values.
+        </li>
+        <li>
+          <a href = "problem4_nodes.txt">problem4_nodes.txt</a>,
+          the coordinates of the nodes.
+        </li>
+        <li>
+          <a href = "problem4_values.txt">problem4_values.txt</a>,
+          the computed temperatures at the nodes.
+        </li>
+        <li>
+          <a href = "problem4.png">problem4.png</a>,
+          a PNG image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 February 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

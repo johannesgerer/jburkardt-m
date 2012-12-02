@@ -1,0 +1,729 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_GRID_MIXED - Sparse Grids using Mixed Factors
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_GRID_MIXED <br> Sparse Grids using Mixed Factors
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_GRID_MIXED</b>
+      is a MATLAB library which
+      can be used to construct a sparse grid whose factors are
+      possibly distinct 1D quadrature rules.
+    </p>
+
+    <p>
+      The 1D quadrature rules are designed to approximate an integral
+      of the form:
+      <blockquote><b>
+        Integral ( A < X < B ) F(X) W(X) dX
+      </b></blockquote>
+      where <b>W(X)</b> is a weight function, by the quadrature sum:
+      <blockquote><b>
+        Sum ( 1 <= I <= ORDER) F(X(I)) * W(I)
+      </b></blockquote>
+      where the set of <b>X</b> values are known as <i>abscissas</i> and
+      the set of <b>W</b> values are known as <i>weights</i>.
+    </p>
+
+    <p>
+      Note that the letter <b>W</b>, unfortunately, is used to denote both the
+      weight function in the original integral, and the vector of weight
+      values in the quadrature sum.
+    </p>
+
+    <p>
+      <table border=1>
+        <tr>
+          <th>Index</th>
+          <th>Name</th>
+          <th>Abbreviation</th>
+          <th>Default Growth Rule</th>
+          <th>Interval</th>
+          <th>Weight function</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Clenshaw-Curtis Exponential Growth</td>
+          <td>CC</td>
+          <td>Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Fejer Type 2, Exponential Growth</td>
+          <td>F2</td>
+          <td>Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Gauss Patterson, Exponential Growth</td>
+          <td>GP</td>
+          <td>Exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Gauss-Legendre</td>
+          <td>GL</td>
+          <td>Linear</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Gauss-Hermite</td>
+          <td>GH</td>
+          <td>Linear</td>
+          <td>(-oo,+oo)</td>
+          <td>e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Generalized Gauss-Hermite</td>
+          <td>GGH</td>
+          <td>Linear</td>
+          <td>(-oo,+oo)</td>
+          <td>|x|<sup>alpha</sup> e<sup>-x*x</sup></td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Gauss-Laguerre</td>
+          <td>LG</td>
+          <td>Linear</td>
+          <td>[0,+oo)</td>
+          <td>e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Generalized Gauss-Laguerre</td>
+          <td>GLG</td>
+          <td>Linear</td>
+          <td>[0,+oo)</td>
+          <td>x<sup>alpha</sup> e<sup>-x</sup></td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td>Gauss-Jacobi</td>
+          <td>GJ</td>
+          <td>Linear</td>
+          <td>[-1,+1]</td>
+          <td>(1-x)<sup>alpha</sup> (1+x)<sup>beta</sup></td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td>Golub-Welsch</td>
+          <td>GW</td>
+          <td>?</td>
+          <td>?</td>
+          <td>?</td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td>Clenshaw-Curtis, Slow Exponential Growth</td>
+          <td>CC_SE</td>
+          <td>Slow exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>12</td>
+          <td>Fejer Type 2, Slow Exponential Growth</td>
+          <td>F2_SE</td>
+          <td>Slow exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td>Gauss Patterson, Slow Exponential Growth</td>
+          <td>GP_SE</td>
+          <td>Slow exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>14</td>
+          <td>Clenshaw-Curtis, Moderate Exponential Growth</td>
+          <td>CC_ME</td>
+          <td>Moderate exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>15</td>
+          <td>Fejer Type 2, Moderate Exponential Growth</td>
+          <td>F2_ME</td>
+          <td>Moderate exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>16</td>
+          <td>Gauss Patterson, Moderate Exponential Growth</td>
+          <td>GP_ME</td>
+          <td>Moderate exponential</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td>Clenshaw-Curtis Nested, linear growth</td>
+          <td>CCN</td>
+          <td>Linear (2*L+1)</td>
+          <td>[-1,+1]</td>
+          <td>1</td>
+        </tr>
+      </table>
+    </p>
+    <p>
+      A sparse grid is a quadrature rule for a multidimensional integral.
+      It is formed by taking a certain linear combination of lower-order
+      product rules.  The product rules, in turn, are formed as direct products
+      of 1D quadrature rules.  It is common to form a sparse grid in which the
+      1D component quadrature rules are the same.  This package, however,
+      is intended to produce sparse grids based on sums of product rules for
+      which the rule chosen for each spatial dimension may be freely chosen
+      from the set listed above.
+    </p>
+
+    <p>
+      These sparse grids are still indexed by a number known as <b>level</b>,
+      and assembled as a sum of low order product rules.  As the value of
+      <b>level</b> increases, the point growth becomes more complicated.
+      This is because the 1D rules have somewhat varying point growth patterns
+      to begin with, and the varying levels of nestedness have a dramatic
+      effect on the sparsity of the total grid.
+    </p>
+
+    <p>
+      Since a sparse grid is made up of a combination of product grids,
+      it is frequently the case that many of the product grids include the
+      same point.  For efficiency, it is usually desirable to merge or
+      consolidate such duplicate points when expressing the resulting
+      sparse grid rule.  It is possible to "logically" determine when
+      a duplicate point will be generated; however, this logic changes
+      depending on the specific 1-dimensional rules being used, and the
+      tests can become quite elaborate.  Moreover, for rules which include
+      real parameters, the determination of duplication can require
+      a numerical tolerance.
+    </p>
+
+    <p>
+      In order to simplify the matter of the detection of duplicate points,
+      the codes presented begin by generating the entire "naive" set of
+      points.  Then a user-specified tolerance <b>TOL</b> is used to determine when
+      two points are equal.  If the maximum difference between any two components
+      is less than or equal to <b>TOL</b>, the points are declared to be equal.
+    </p>
+
+    <p>
+      A reasonable value for <b>TOL</b> might be the square root of the machine
+      precision.  Setting <b>TOL</b> to zero means that only points which are
+      identical to the last significant digit are taken to be duplicates.  Setting
+      <b>TOL</b> to a negative value means that no duplicate points will be eliminated -
+      in other words, this choice produces the full or "naive" grid.
+    </p>
+
+    <h3  align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The code described and made available on this web page is distributed
+      under the
+      <a href = "gnu_lgpl.txt">GNU LGPL</a> license.
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_MIXED</b> is available in
+      <a href = "../../cpp_src/sparse_grid_mixed/sparse_grid_mixed.html">a C++ version</a> and
+      <a href = "../../f_src/sparse_grid_mixed/sparse_grid_mixed.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nint_exactness_mixed/nint_exactness_mixed.html">
+      NINT_EXACTNESS_MIXED</a>,
+      a MATLAB program which
+      measures the polynomial exactness of a multidimensional quadrature rule
+      based on a mixture of 1D quadrature rule factors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for various intervals and weight functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>,
+      a MATLAB library which
+      generates Gauss quadrature rules of various orders and types.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">
+      SANDIA_SPARSE</a>,
+      a MATLAB library which
+      computes the points and weights of a Smolyak sparse
+      grid, based on a variety of 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>,
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules,
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids,
+      by Knut Petras.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a MATLAB library which
+      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_composite/sparse_grid_composite.html">
+      SPARSE_GRID_COMPOSITE</a>,
+      a MATLAB library which
+      creates sparse grids based on 1D composite rules (currently only of order 1).
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_laguerre/sparse_grid_laguerre.html">
+      SPARSE_GRID_LAGUERRE</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Laguerre rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed_dataset/sparse_grid_mixed_dataset.html">
+      SPARSE_GRID_MIXED_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on a mixture of 1D rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_open/sparse_grid_open.html">
+      SPARSE_GRID_OPEN</a>,
+      a MATLAB library which
+      creates sparse grids based on
+      open rules (Fejer 2, Gauss-Patterson, Newton-Cotes-Open).
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB program which
+      uses sparse grids to carry out multilinear hierarchical interpolation.
+      It is commonly known as SPINTERP, and is by Andreas Klimke.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          Charles Clenshaw, Alan Curtis,<br>
+          A Method for Numerical Integration on an Automatic Computer,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 197-205.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Walter Gautschi,<br>
+          Numerical Quadrature in the Presence of a Singularity,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 4, Number 3, September 1967, pages 357-362.
+        </li>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Gene Golub, John Welsch,<br>
+          Calculation of Gaussian Quadrature Rules,<br>
+          Mathematics of Computation,<br>
+          Volume 23, Number 106, April 1969, pages 221-230.
+        </li>
+        <li>
+          Prem Kythe, Michael Schaeferkotter,<br>
+          Handbook of Computational Methods for Integration,<br>
+          Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-428-2,<br>
+          LC: QA299.3.K98.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Thomas Patterson,<br>
+          The Optimal Addition of Points to Quadrature Formulae,<br>
+          Mathematics of Computation,<br>
+          Volume 22, Number 104, October 1968, pages 847-856.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+        <li>
+          Joerg Waldvogel,<br>
+          Fast Construction of the Fejer and Clenshaw-Curtis
+          Quadrature Rules,<br>
+          BIT Numerical Mathematics,<br>
+          Volume 43, Number 1, 2003, pages 1-18.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_index.m">
+          sparse_grid_mixed_index.m</a>
+          returns index information that identifies each point in a sparse grid
+          based on a mixed set of 1D factors.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_point.m">
+          sparse_grid_mixed_point.m</a>
+          computes the abscissa of a sparse grid rule based on a mixed set of 1D factors.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size.m">
+          sparse_grid_mixed_size.m</a>
+          sizes a sparse grid, discounting duplicate points.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size_total.m">
+          sparse_grid_mixed_size_total.m</a>
+          sizes a sparse grid, counting duplicate points.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_unique_index.m">
+          sparse_grid_mixed_unique_index.m</a>
+          determines a mapping from all the points to the unique points.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_weight.m">
+          sparse_grid_mixed_weight.m</a>
+          computes the weights of a sparse grid rule based on a mixed set of 1D factors.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_write.m">
+          sparse_grid_mixed_write.m</a>
+          writes a sparse grid rule to three files.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>COMP_NEXT_TESTS</b> tests COMP_NEXT.
+      <ul>
+        <li>
+          <a href = "comp_next_tests.m">comp_next_tests.m</a>,
+          the test code.
+        </li>
+        <li>
+          <a href = "comp_next_test.m">comp_next_test.m</a>,
+          tests COMP_NEXT.
+        </li>
+        <li>
+          <a href = "comp_next_test_output.txt">
+                     comp_next_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRODUCT_MIXED_WEIGHT_TESTS</b> tests PRODUCT_MIXED_WEIGHT.
+      <ul>
+        <li>
+          <a href = "product_mixed_weight_tests.m">product_mixed_weight_tests.m</a>,
+          calls PRODUCT_MIXED_WEIGHT_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "product_mixed_weight_test.m">product_mixed_weight_test.m</a>,
+          tests PRODUCT_MIXED_WEIGHT.
+        </li>
+        <li>
+          <a href = "product_mixed_weight_test_output.txt">
+                     product_mixed_weight_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_INDEX_TESTS</b> tests SPARSE_GRID_MIXED_INDEX.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_index_tests.m">sparse_grid_mixed_index_tests.m</a>,
+          calls SPARSE_GRID_MIXED_INDEX_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_index_test.m">sparse_grid_mixed_index_test.m</a>,
+          tests SPARSE_GRID_MIXED_INDEX.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_index_prb_output.txt">
+                     sparse_grid_mixed_index_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_POINT_TESTS</b> tests SPARSE_GRID_MIXED_POINT.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_point_tests.m">sparse_grid_mixed_point_tests.m</a>,
+          calls SPARSE_GRID_MIXED_POINT_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_point_test.m">sparse_grid_mixed_point_test.m</a>,
+          tests SPARSE_GRID_MIXED_POINT.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_point_prb_output.txt">
+                     sparse_grid_mixed_point_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_SIZE_TESTS</b> tests SPARSE_GRID_MIXED_SIZE and SPARSE_GRID_MIXED_SIZE_TOTAL.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_size_tests.m">sparse_grid_mixed_size_tests.m</a>,
+          calls SPARSE_GRID_MIXED_SIZE_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size_test.m">sparse_grid_mixed_size_test.m</a>,
+          tests SPARSE_GRID_MIXED_SIZE and SPARSE_GRID_MIXED_SIZE_TOTAL.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size_prb_output.txt">
+                     sparse_grid_mixed_size_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_SIZE_TABLE</b> makes a point count table.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_size_table.m">sparse_grid_mixed_size_table.m</a>,
+          calls SPARSE_GRID_MIXED_SIZE_TABULATE with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size_tabulate.m">sparse_grid_mixed_size_tabulate.m</a>,
+          makes a table using SPARSE_GRID_MIXED_SIZE.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_size_table_output.txt">
+                     sparse_grid_mixed_size_table_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_UNIQUE_INDEX_TESTS</b> tests SPARSE_GRID_MIXED_UNIQUE_INDEX.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_unique_index_tests.m">sparse_grid_mixed_unique_index_tests.m</a>,
+          calls SPARSE_GRID_MIXED_UNIQUE_INDEX_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_unique_index_test.m">sparse_grid_mixed_unique_index_test.m</a>,
+          tests SPARSE_GRID_MIXED_UNIQUE_INDEX.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_unique_index_prb_output.txt">
+                     sparse_grid_mixed_unique_index_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_WEIGHT_TESTS</b> tests SPARSE_GRID_MIXED_WEIGHT.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_weight_tests.m">sparse_grid_mixed_weight_tests.m</a>,
+          calls SPARSE_GRID_MIXED_WEIGHT_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_weight_test.m">sparse_grid_mixed_weight_test.m</a>,
+          tests SPARSE_GRID_MIXED_WEIGHT.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_weight_prb_output.txt">
+                     sparse_grid_mixed_weight_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_WRITE_TESTS</b> tests SPARSE_GRID_MIXED_WRITE.
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_write_tests.m">sparse_grid_mixed_write_tests.m</a>,
+          calls SPARSE_GRID_MIXED_WRITE_TEST with various arguments.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_write_test.m">sparse_grid_mixed_write_test.m</a>,
+          tests SPARSE_GRID_MIXED_WRITE.
+        </li>
+        <li>
+          <a href = "sparse_grid_mixed_write_prb_output.txt">
+                     sparse_grid_mixed_write_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 February 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>
+

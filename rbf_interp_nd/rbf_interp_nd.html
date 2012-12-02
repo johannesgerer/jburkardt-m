@@ -1,0 +1,293 @@
+<html>
+
+  <head>
+    <title>
+      RBF_INTERP_ND - Multidimensional Interpolation with Radial Basis Functions
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      RBF_INTERP_ND <br> Multidimensional Interpolation with Radial Basis Functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>RBF_INTERP_ND</b>
+      is a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to multidimensional data.
+    </p>
+
+    <p>
+      A radial basis interpolant is a useful, but expensive, technique for 
+      definining a smooth function which interpolates a set of function values
+      specified at an arbitrary set of data points.
+    </p>
+
+    <p>
+      Given nd multidimensional points xd with function values fd, and a 
+      basis function phi(r), the form of the interpolant is
+      <pre>
+       f(x) = sum ( 1 <= i <= nd ) w(i) * phi(||x-xd(i)||)
+      </pre>
+      where the weights w have been precomputed by solving
+      <pre>
+        sum ( 1 <= i <= nd ) w(i) * phi(||xd(j)-xd(i)||) = fd(j)
+      </pre>
+    </p>
+
+    <p>
+      Four families of radial basis functions are provided. 
+      <ul>
+        <li>
+          phi1(r) = sqrt ( r^2 + r0^2 ) (multiquadric)
+        </li>
+        <li>
+          phi2(r) = 1 / sqrt ( r^2 + r0^2 ) (inverse multiquadric)
+        </li>
+        <li>
+          phi3(r) = r^2 * log ( r / r0 )   (thin plate spline)
+        </li>
+        <li>
+          phi4(r) = exp ( -0.5 r^2 / r0^2 )   (gaussian)
+        </li>
+      </ul>
+      Each uses a 
+      "scale factor" r0, whose value is recommended to be greater than
+      the minimal distance between points, and rather less than the maximal distance.
+      Changing the value of r0 changes the shape of the interpolant function.
+    <p>
+
+    <p>
+      <b>RBF_INTERP_ND</b> needs access to the R8LIB library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>RBF_INTERP_ND</b> is available in
+      <a href = "../../c_src/rbf_interp_nd/rbf_interp_nd.html">a C version</a> and
+      <a href = "../../cpp_src/rbf_interp_nd/rbf_interp_nd.html">a C++ version</a> and
+      <a href = "../../f77_src/rbf_interp_nd/rbf_interp_nd.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/rbf_interp_nd/rbf_interp_nd.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/rbf_interp_nd/rbf_interp_nd.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_nd/lagrange_interp_nd.html">
+      LAGRANGE_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data depending on a multidimensional argument x
+      that was evaluated on a product grid, so that p(x(i)) = z(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_2d/rbf_interp_2d.html">
+      RBF_INTERP_2D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 2D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_nd/shepard_interp_nd.html">
+      SHEPARD_INTERP_ND</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to multidimensional data,
+      based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_interp_nd/sparse_interp_nd.html">
+      SPARSE_INTERP_ND</a>
+      a MATLAB library which
+      can be used to define a sparse interpolant to a function f(x) of a 
+      multidimensional argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_nd/test_interp_nd.html">
+      TEST_INTERP_ND</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x),
+      depending on an M-dimensional argument.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Richard Franke,<br>
+          Scattered Data Interpolation: Tests of Some Methods,<br>
+          Mathematics of Computation,<br>
+          Volume 38, Number 157, January 1982, pages 181-200.
+        </li>
+        <li>
+          William Press, Brian Flannery, Saul Teukolsky, William Vetterling,<br>
+          Numerical Recipes in FORTRAN: The Art of Scientific Computing,<br>
+          Third Edition,<br>
+          Cambridge University Press, 2007,<br>
+          ISBN13: 978-0-521-88068-8,<br>
+          LC: QA297.N866.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "phi1.m">phi1.m</a>,
+          evaluates the multiquadric radial basis function.
+        </li>
+        <li>
+          <a href = "phi2.m">phi2.m</a>,
+          evaluates the inverse multiquadric radial basis function.
+        </li>
+        <li>
+          <a href = "phi3.m">phi3.m</a>,
+          evaluates the thin-plate spline radial basis function.
+        </li>
+        <li>
+          <a href = "phi4.m">phi4.m</a>,
+          evaluates the gaussian radial basis function.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd.m">rbf_interp_nd.m</a>,
+          evaluates a radial basis function interpolant.
+        </li>
+        <li>
+          <a href = "rbf_weight.m">rbf_weight.m</a>,
+          computes weights for radial basis function interpolation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "rbf_interp_nd_test.m">rbf_interp_nd_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test_output.txt">rbf_interp_nd_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test01.m">rbf_interp_nd_test01.m</a>,
+          tests RBF_WEIGHT and RBF_INTERP_ND with PHI1.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test01_exact.png">rbf_interp_nd_test01_exact.png</a>,
+          a plot of the exact function f(x,y).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test01_interp.png">rbf_interp_nd_test01_interp.png</a>,
+          a plot of the interpolant function using phi1(r).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test02.m">rbf_interp_nd_test02.m</a>,
+          tests RBF_WEIGHT and RBF_INTERP_ND with PHI2.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test02_exact.png">rbf_interp_nd_test02_exact.png</a>,
+          a plot of the exact function f(x,y).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test02_interp.png">rbf_interp_nd_test02_interp.png</a>,
+          a plot of the interpolant function using phi2(r).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test03.m">rbf_interp_nd_test03.m</a>,
+          tests RBF_WEIGHT and RBF_INTERP_ND with PHI3.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test03_exact.png">rbf_interp_nd_test03_exact.png</a>,
+          a plot of the exact function f(x,y).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test03_interp.png">rbf_interp_nd_test03_interp.png</a>,
+          a plot of the interpolant function using phi3(r).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test04.m">rbf_interp_nd_test04.m</a>,
+          tests RBF_WEIGHT and RBF_INTERP_ND with PHI4.
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test04_exact.png">rbf_interp_nd_test04_exact.png</a>,
+          a plot of the exact function f(x,y).
+        </li>
+        <li>
+          <a href = "rbf_interp_nd_test04_interp.png">rbf_interp_nd_test04_interp.png</a>,
+          a plot of the interpolant function using phi4(r).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 27 September 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

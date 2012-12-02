@@ -1,0 +1,306 @@
+<html>
+
+  <head>
+    <title>
+      MD - Molecular Dynamics
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MD <br> Molecular Dynamics
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MD</b> 
+      is a MATLAB program which
+      carries out a molecular dynamics simulation.
+    </p>
+
+    <p>
+      The computation involves following the paths of particles which
+      exert a distance-dependent force on each other.  The particles
+      are not constrained by any walls; if particles meet, they simply
+      pass through each other.
+    </p>
+
+    </p>
+      The problem is treated as a coupled set of differential equations.
+      The system of differential equation is discretized by choosing a 
+      discrete time step.  Given the position and velocity of each particle
+      at one time step, the algorithm estimates these values at the next time step.
+    </p>
+
+    <p>
+      To compute the next position of each particle requires the evaluation of 
+      the right hand side of its corresponding differential equation.  Since each 
+      of these calculations is independent, there is a potential speedup if the 
+      program can take advantage of parallel computing.
+    </p>
+
+    <p>
+      This version of the program is intended as a starting point; 
+      students are asked to examine the program and add the appropriate
+      parallel MATLAB modifications to run it in parallel.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>md</b> ( <i>nd</i>, <i>np</i>, <i>step_num</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>nd</i> is the spatial dimension, usually 2 or 3.
+        </li>
+        <li>
+          <i>np</i> is the number of particles in the system.  A typical value
+          might be 1000.
+        </li>
+        <li>
+          <i>step_num</i> is the number of time steps, which might be 500
+          or 1,000.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MD</b> is available in
+      <a href = "../../c_src/md/md.html">a C version</a> and
+      <a href = "../../cpp_src/md/md.html">a C++ version</a> and
+      <a href = "../../f77_src/md/md.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/md/md.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/md/md.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fft_serial/fft_serial.html">
+      FFT_SERIAL</a>,
+      a MATLAB program which
+      demonstrates the computation of a Fast Fourier Transform,
+      and is intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate/heated_plate.html">
+      HEATED_PLATE</a>,
+      a MATLAB program which
+      solves the steady (time independent) heat equation in a 2D
+      rectangular region, and is intended as
+      a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../f_src/md_openmp/md_openmp.html">
+      MD_OPENMP</a>,
+      a FORTRAN90 program which 
+      carries out a molecular dynamics simulation,
+      using OpenMP for parallel execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation; it runs in parallel
+      using MATLAB's "parfor" facility, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../f_src/md1/md1.html">
+      MD1</a>,
+      a FORTRAN90 program which 
+      carries out a molecular dynamics simulation.
+    </p>
+
+    <p>
+      <a href = "../../f_src/md2/md2.html">
+      MD2</a>,
+      a FORTRAN90 program which 
+      carries out a molecular dynamics simulation.
+    </p>
+
+    <p>
+      <a href = "../../f_src/md3/md3.html">
+      MD3</a>,
+      a FORTRAN90 program which 
+      carries out a molecular dynamics simulation.
+    </p>
+
+    <p>
+      <a href = "../../f_src/md3glue/md3glue.html">
+      MD3GLUE</a>,
+      a FORTRAN90 program which 
+      carries out a molecular dynamics simulation.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/mdbnch/mdbnch.html">
+      MDBNCH</a>,
+      a FORTRAN77 program which
+      is a benchmark molecular simulation calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_serial/poisson_serial.html">
+      POISSON_SERIAL</a>,
+      a MATLAB program which
+      computes an approximate solution to the Poisson equation in a rectangle,
+      and is intended as the starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_serial/prime_serial.html">
+      PRIME_SERIAL</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N,
+      intended as a starting point for the creation of a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_serial/quad_serial.html">
+      QUAD_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral using a quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Matthew Allen, Dominic Tildesley,<br>
+          Computer Simulation of Liquids,<br>
+          Oxford University Press, 1987,<br>
+          ISBN: 0198556454,<br>
+          LC: QC145.2.
+        </li>
+        <li>
+          Peter Arbenz, Wesley Petersen,<br>
+          Introduction to Parallel Computing - A practical guide with examples in C,<br>
+          Oxford University Press,<br>
+          ISBN: 0-19-851576-6,<br>
+          LC: QA76.58.P47.
+        </li>
+        <li>
+          Rohit Chandra, Leonardo Dagum, Dave Kohr, Dror Maydan,
+          Jeff McDonald, Ramesh Menon,<br>
+          Parallel Programming in OpenMP,<br>
+          Morgan Kaufmann, 2001,<br>
+          ISBN: 1-55860-671-8,<br>
+          LC: QA76.642.P32.
+        </li>
+        <li>
+          Barbara Chapman, Gabriele Jost, Ruud vanderPas, David Kuck,<br>
+          Using OpenMP: Portable Shared Memory Parallel Processing,<br>
+          MIT Press, 2007,<br>
+          ISBN13: 978-0262533027,<br>
+          LC: QA76.642.C49.
+        </li>
+        <li>
+          Furio Ercolessi,<br>
+          A Molecular Dynamics Primer.
+        </li>
+        <li>
+          Philipp Janert,<br>
+          Gnuplot in Action: Understanding Data with Graphs,<br>
+          Manning, 2008,<br>
+          ISBN: 1-933988-39-8.
+        </li>
+        <li>
+          Dennis Rapaport,<br>
+          An Introduction to Interactive Molecular-Dynamics Simulation,<br>
+          Computers in Physics,<br>
+          Volume 11, Number 4, July/August 1997, pages 337-347.
+        </li>
+        <li>
+          Dennis Rapaport,<br>
+          The Art of Molecular Dynamics Simulation,<br>
+          Cambridge University Press, 2004,<br>
+          ISBN: 0521825687.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "md.m">md.m</a>,
+          the program, which includes the functions MD,
+          COMPUTE, INITIALIZE, TIMESTAMP, and UPDATE.
+        </li>
+        <li>
+          <a href = "md_new.m">md_new.m</a>,
+          a revised version of the program; a new compute_new()
+          function is used to try to speed up the computation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "md_output.txt">md_output.txt</a>, 
+          the output file for md;
+        </li>
+        <li>
+          <a href = "md_new_output.txt">md_new_output.txt</a>, 
+          the output file for md_new;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 July 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

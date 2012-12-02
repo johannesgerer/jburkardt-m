@@ -1,0 +1,555 @@
+>> calpak_test
+15-Jul-2012 17:57:01
+
+CALPAK_TEST
+  MATLAB version.
+  Test the CALPAK library.
+
+CALPAK_TEST0005
+  For the GPS calendar:
+  JED_TO_CWS_GPS: JED -> CWS.
+  CWS_TO_JED_GPS: CWS -> JED.
+
+   JED (in)       CWS                            JED (out)
+
+   2444244.50     00/0000/000000.00 GPS   2444244.50
+   2449790.50     00/0792/172800.00 GPS   2449790.50
+   2450138.50     00/0842/000000.00 GPS   2450138.50
+   2451544.50     01/0018/518400.00 GPS   2451544.50
+   2456124.25     01/0673/064621.61 GPS   2456124.25
+   2456284.50     01/0696/000000.00 GPS   2456284.50
+   2913943.00     65/0539/475200.00 GPS   2913943.00
+
+CALPAK_TEST0007
+  DAY_LIST_COMMON prints a list of days between
+  two given YMD dates in the common calendar.
+
+  Initial date: CE 2012/9/1
+  Final date:   CE 2012/12/31
+
+Fri, Sep 01 2012 -
+Sat, Sep 02 2012 -
+Sun, Sep 03 2012 -
+Mon, Sep 04 2012 -
+Tue, Sep 05 2012 -
+Wed, Sep 06 2012 -
+Thu, Sep 07 2012 -
+Fri, Sep 08 2012 -
+Sat, Sep 09 2012 -
+Sun, Sep 10 2012 -
+Mon, Sep 11 2012 -
+Tue, Sep 12 2012 -
+Wed, Sep 13 2012 -
+Thu, Sep 14 2012 -
+Fri, Sep 15 2012 -
+Sat, Sep 16 2012 -
+Sun, Sep 17 2012 -
+Mon, Sep 18 2012 -
+Tue, Sep 19 2012 -
+Wed, Sep 20 2012 -
+Thu, Sep 21 2012 -
+Fri, Sep 22 2012 -
+Sat, Sep 23 2012 -
+Sun, Sep 24 2012 -
+Mon, Sep 25 2012 -
+Tue, Sep 26 2012 -
+Wed, Sep 27 2012 -
+Thu, Sep 28 2012 -
+Fri, Sep 29 2012 -
+Sat, Sep 30 2012 -
+Sun, Oct 01 2012 -
+Mon, Oct 02 2012 -
+Tue, Oct 03 2012 -
+Wed, Oct 04 2012 -
+Thu, Oct 05 2012 -
+Fri, Oct 06 2012 -
+Sat, Oct 07 2012 -
+Sun, Oct 08 2012 -
+Mon, Oct 09 2012 -
+Tue, Oct 10 2012 -
+Wed, Oct 11 2012 -
+Thu, Oct 12 2012 -
+Fri, Oct 13 2012 -
+Sat, Oct 14 2012 -
+Sun, Oct 15 2012 -
+Mon, Oct 16 2012 -
+Tue, Oct 17 2012 -
+Wed, Oct 18 2012 -
+Thu, Oct 19 2012 -
+Fri, Oct 20 2012 -
+Sat, Oct 21 2012 -
+Sun, Oct 22 2012 -
+Mon, Oct 23 2012 -
+Tue, Oct 24 2012 -
+Wed, Oct 25 2012 -
+Thu, Oct 26 2012 -
+Fri, Oct 27 2012 -
+Sat, Oct 28 2012 -
+Sun, Oct 29 2012 -
+Mon, Oct 30 2012 -
+Tue, Oct 31 2012 -
+Wed, Nov 01 2012 -
+Thu, Nov 02 2012 -
+Fri, Nov 03 2012 -
+Sat, Nov 04 2012 -
+Sun, Nov 05 2012 -
+Mon, Nov 06 2012 -
+Tue, Nov 07 2012 -
+Wed, Nov 08 2012 -
+Thu, Nov 09 2012 -
+Fri, Nov 10 2012 -
+Sat, Nov 11 2012 -
+Sun, Nov 12 2012 -
+Mon, Nov 13 2012 -
+Tue, Nov 14 2012 -
+Wed, Nov 15 2012 -
+Thu, Nov 16 2012 -
+Fri, Nov 17 2012 -
+Sat, Nov 18 2012 -
+Sun, Nov 19 2012 -
+Mon, Nov 20 2012 -
+Tue, Nov 21 2012 -
+Wed, Nov 22 2012 -
+Thu, Nov 23 2012 -
+Fri, Nov 24 2012 -
+Sat, Nov 25 2012 -
+Sun, Nov 26 2012 -
+Mon, Nov 27 2012 -
+Tue, Nov 28 2012 -
+Wed, Nov 29 2012 -
+Thu, Nov 30 2012 -
+Fri, Dec 01 2012 -
+Sat, Dec 02 2012 -
+Sun, Dec 03 2012 -
+Mon, Dec 04 2012 -
+Tue, Dec 05 2012 -
+Wed, Dec 06 2012 -
+Thu, Dec 07 2012 -
+Fri, Dec 08 2012 -
+Sat, Dec 09 2012 -
+Sun, Dec 10 2012 -
+Mon, Dec 11 2012 -
+Tue, Dec 12 2012 -
+Wed, Dec 13 2012 -
+Thu, Dec 14 2012 -
+Fri, Dec 15 2012 -
+Sat, Dec 16 2012 -
+Sun, Dec 17 2012 -
+Mon, Dec 18 2012 -
+Tue, Dec 19 2012 -
+Wed, Dec 20 2012 -
+Thu, Dec 21 2012 -
+Fri, Dec 22 2012 -
+Sat, Dec 23 2012 -
+Sun, Dec 24 2012 -
+Mon, Dec 25 2012 -
+Tue, Dec 26 2012 -
+Wed, Dec 27 2012 -
+Thu, Dec 28 2012 -
+Fri, Dec 29 2012 -
+Sat, Dec 30 2012 -
+Sun, Dec 31 2012 -
+
+TEST001
+  For the Gregorian calendar,
+  for a given year, compute the day and month of Easter.
+  EASTER_DS uses Duffett-Smith's algorithm.
+  EASTER_EGR uses Richards's algorithm.
+  EASTER_EGR2 uses Richards's algorithm 2.
+  EASTER_KNUTH uses Knuth's algorithm.
+  EASTER_STEWART uses Stewart's algorithm.
+
+  CORRECT:        AD 1997/3/30
+  EASTER_DS:      AD 1997/3/30
+  EASTER_EGR:     AD 1997/3/30
+  EASTER_EGR2:    AD 1997/3/30
+  EASTER_KNUTH:   AD 1997/3/30
+  EASTER_STEWART: AD 1997/3/30
+
+  CORRECT:        AD 1998/4/12
+  EASTER_DS:      AD 1998/4/12
+  EASTER_EGR:     AD 1998/4/12
+  EASTER_EGR2:    AD 1998/4/12
+  EASTER_KNUTH:   AD 1998/4/12
+  EASTER_STEWART: AD 1998/4/12
+
+  CORRECT:        AD 1999/4/4
+  EASTER_DS:      AD 1999/4/4
+  EASTER_EGR:     AD 1999/4/4
+  EASTER_EGR2:    AD 1999/4/4
+  EASTER_KNUTH:   AD 1999/4/4
+  EASTER_STEWART: AD 1999/4/4
+
+  CORRECT:        AD 2000/4/23
+  EASTER_DS:      AD 2000/4/23
+  EASTER_EGR:     AD 2000/4/23
+  EASTER_EGR2:    AD 2000/4/23
+  EASTER_KNUTH:   AD 2000/4/23
+  EASTER_STEWART: AD 2000/4/23
+
+  CORRECT:        AD 2001/4/15
+  EASTER_DS:      AD 2001/4/15
+  EASTER_EGR:     AD 2001/4/15
+  EASTER_EGR2:    AD 2001/4/15
+  EASTER_KNUTH:   AD 2001/4/15
+  EASTER_STEWART: AD 2001/4/15
+
+  CORRECT:        AD 2002/3/31
+  EASTER_DS:      AD 2002/3/31
+  EASTER_EGR:     AD 2002/3/31
+  EASTER_EGR2:    AD 2002/3/31
+  EASTER_KNUTH:   AD 2002/3/31
+  EASTER_STEWART: AD 2002/3/31
+
+  CORRECT:        AD 2003/4/20
+  EASTER_DS:      AD 2003/4/20
+  EASTER_EGR:     AD 2003/4/20
+  EASTER_EGR2:    AD 2003/4/20
+  EASTER_KNUTH:   AD 2003/4/20
+  EASTER_STEWART: AD 2003/4/20
+
+  CORRECT:        AD 2004/4/11
+  EASTER_DS:      AD 2004/4/11
+  EASTER_EGR:     AD 2004/4/11
+  EASTER_EGR2:    AD 2004/4/11
+  EASTER_KNUTH:   AD 2004/4/11
+  EASTER_STEWART: AD 2004/4/11
+
+  CORRECT:        AD 2005/3/27
+  EASTER_DS:      AD 2005/3/27
+  EASTER_EGR:     AD 2005/3/27
+  EASTER_EGR2:    AD 2005/3/27
+  EASTER_KNUTH:   AD 2005/3/27
+  EASTER_STEWART: AD 2005/3/27
+
+  CORRECT:        AD 2006/4/16
+  EASTER_DS:      AD 2006/4/16
+  EASTER_EGR:     AD 2006/4/16
+  EASTER_EGR2:    AD 2006/4/16
+  EASTER_KNUTH:   AD 2006/4/16
+  EASTER_STEWART: AD 2006/4/16
+
+CALPAK_TEST002
+  For the Julian calendar,
+  for a given year, compute the day and month of Easter.
+  EASTER_JULIAN uses Richard's algorithm.
+  EASTER_JULIAN2 uses Richards's algorithm.
+
+  CORRECT (Gregorian): AD 1997/4/27
+  CORRECT (Julian):    AD 1997/4/14
+  EASTER_JULIAN:       AD 1997/4/14
+  EASTER_JULIAN2:      AD 1997/4/14
+
+  CORRECT (Gregorian): AD 1998/4/19
+  CORRECT (Julian):    AD 1998/4/6
+  EASTER_JULIAN:       AD 1998/4/6
+  EASTER_JULIAN2:      AD 1998/4/6
+
+  CORRECT (Gregorian): AD 1999/4/11
+  CORRECT (Julian):    AD 1999/3/29
+  EASTER_JULIAN:       AD 1999/3/29
+  EASTER_JULIAN2:      AD 1999/3/29
+
+  CORRECT (Gregorian): AD 2000/4/30
+  CORRECT (Julian):    AD 2000/4/17
+  EASTER_JULIAN:       AD 2000/4/17
+  EASTER_JULIAN2:      AD 2000/4/17
+
+  CORRECT (Gregorian): AD 2001/4/15
+  CORRECT (Julian):    AD 2001/4/2
+  EASTER_JULIAN:       AD 2001/4/2
+  EASTER_JULIAN2:      AD 2001/4/2
+
+  CORRECT (Gregorian): AD 2002/5/5
+  CORRECT (Julian):    AD 2002/4/22
+  EASTER_JULIAN:       AD 2002/4/22
+  EASTER_JULIAN2:      AD 2002/4/22
+
+  CORRECT (Gregorian): AD 2003/4/27
+  CORRECT (Julian):    AD 2003/4/14
+  EASTER_JULIAN:       AD 2003/4/14
+  EASTER_JULIAN2:      AD 2003/4/14
+
+  CORRECT (Gregorian): AD 2004/4/11
+  CORRECT (Julian):    AD 2004/3/29
+  EASTER_JULIAN:       AD 2004/3/29
+  EASTER_JULIAN2:      AD 2004/3/29
+
+  CORRECT (Gregorian): AD 2005/5/1
+  CORRECT (Julian):    AD 2005/4/18
+  EASTER_JULIAN:       AD 2005/4/18
+  EASTER_JULIAN2:      AD 2005/4/18
+
+  CORRECT (Gregorian): AD 2006/4/23
+  CORRECT (Julian):    AD 2006/4/10
+  EASTER_JULIAN:       AD 2006/4/10
+  EASTER_JULIAN2:      AD 2006/4/10
+
+CALPAK_TEST003
+  For converting between Julian Ephemeris Dates
+  and Mayan Long Count dates:
+  JED_TO_MAYAN_LONG,
+  MAYAN_LONG_TO_JED.
+
+  JED (in)       MAYAN			   JED (out)
+                 P   B   K   T   U   D
+
+    584282.50        0   0   0   0   0   0       584282.50
+    588465.75        0   0   0  11  11   3       588465.75
+    758325.50        0   1   4   3   8   3       758325.50
+   1438178.50        0   5  18  11  16  16      1438178.50
+   1446389.50        0   5  19  14  13   7      1446389.50
+   1448637.50        0   6   0   0  17  15      1448637.50
+   1448637.50        0   6   0   0  17  15      1448637.50
+   1607708.50        0   7   2   2  15   6      1607708.50
+   1607738.50        0   7   2   2  16  16      1607738.50
+   1713262.50        0   7  16  16   1   0      1713262.50
+   1721058.50        0   7  17  17  12  16      1721058.50
+   1721422.50        0   7  17  18  13   0      1721422.50
+   1721423.50        0   7  17  18  13   1      1721423.50
+   1721425.50        0   7  17  18  13   3      1721425.50
+   1721425.50        0   7  17  18  13   3      1721425.50
+   1724220.50        0   7  18   6   8  18      1724220.50
+   1741959.50        0   8   0  15  13  17      1741959.50
+   1749994.50        0   8   1  18   1  12      1749994.50
+   1825029.50        0   8  12   6   9   7      1825029.50
+   1862836.50        0   8  17  11   9  14      1862836.50
+   1922867.50        0   9   5  18   5   5      1922867.50
+   1936747.50        0   9   7  16  15   5      1936747.50
+   1940351.50        0   9   8   6  15   9      1940351.50
+   1948320.50        0   9   9   8  17  18      1948320.50
+   1948438.50        0   9   9   9   5  16      1948438.50
+   1948439.50        0   9   9   9   5  17      1948439.50
+   1952062.50        0   9   9  19   7   0      1952062.50
+   1952067.50        0   9   9  19   7   5      1952067.50
+   2110700.50        0  10  12   0   0  18      2110700.50
+   2114872.50        0  10  12  11  11  10      2114872.50
+   2289425.50        0  11  16  16   9   3      2289425.50
+   2299160.00        0  11  18   3   9  17      2299160.00
+   2299161.00        0  11  18   3   9  18      2299161.00
+   2333269.50        0  12   2  18   5   7      2333269.50
+   2361221.00        0  12   6  15  16  18      2361221.00
+   2361222.00        0  12   6  15  16  19      2361222.00
+   2372547.50        0  12   8   7   7   5      2372547.50
+   2375839.50        0  12   8  16   9  17      2375839.50
+   2394646.50        0  12  11   8  14   4      2394646.50
+   2394710.50        0  12  11   8  17   8      2394710.50
+   2397383.50        0  12  11  16   7   1      2397383.50
+   2400000.50        0  12  12   3  11  18      2400000.50
+   2409702.50        0  12  13  10  11   0      2409702.50
+   2415020.31        0  12  14   5   6  17      2415020.31
+   2429702.50        0  12  16   6   3   0      2429702.50
+   2439702.50        0  12  17  13  17   0      2439702.50
+   2440587.50        0  12  17  16   7   5      2440587.50
+   2443817.50        0  12  18   5   6  15      2443817.50
+   2443818.50        0  12  18   5   6  16      2443818.50
+   2444244.50        0  12  18   6  10   2      2444244.50
+   2449790.50        0  12  19   1  17   8      2449790.50
+   2450138.50        0  12  19   2  16  16      2450138.50
+   2451544.50        0  12  19   6  15   2      2451544.50
+   2456124.25        0  12  19  19  10   1      2456124.25
+   2456284.50        0  13   0   0   0   2      2456284.50
+   2913943.00        0  16   3  11   5   0      2913943.00
+
+CALPAK_TEST004
+  For converting between Julian Ephemeris Dates
+  and Mayan Round dates:
+  JED_TO_MAYAN_ROUND,
+  MAYAN_ROUND_TO_JED.
+
+  JED (in)      MAYAN                       JED (out)
+                Y   A   B   C  D  F
+
+    584282.50        0   4  20   8  17 0.00       584282.50
+    588465.75        0   1   3  11   7 0.25       588465.75
+    758325.50        9   3   3   6  14 0.00       758325.50
+   1438178.50       44   8  16   4   7 0.00      1438178.50
+   1446389.50       45   3   7   5  16 0.00      1446389.50
+   1448637.50       45   2  15  18   0 0.00      1448637.50
+   1448637.50       45   2  15  18   0 0.00      1448637.50
+   1607708.50       53   5   6  14  15 0.00      1607708.50
+   1607738.50       53   9  16   4  17 0.00      1607738.50
+   1713262.50       59  12  20  18   0 0.00      1713262.50
+   1721058.50       59   8  16   9   7 0.00      1721058.50
+   1721422.50       59   8  20   8   7 0.00      1721422.50
+   1721423.50       59   9   1   9   7 0.00      1721423.50
+   1721425.50       59  11   3  11   7 0.00      1721425.50
+   1721425.50       59  11   3  11   7 0.00      1721425.50
+   1724220.50       60  11  18   6   1 0.00      1724220.50
+   1741959.50       60   5  17   5  12 0.00      1741959.50
+   1749994.50       61   6  12  10  12 0.00      1749994.50
+   1825029.50       65   5   7  15   4 0.00      1825029.50
+   1862836.50       67   8  14   7  15 0.00      1862836.50
+   1922867.50       70   5   5  13   5 0.00      1922867.50
+   1936747.50       71   1   5   3   6 0.00      1936747.50
+   1940351.50       71   4   9  17   3 0.00      1940351.50
+   1948320.50       71   4  18  16   0 0.00      1948320.50
+   1948438.50       71   5  16  14   6 0.00      1948438.50
+   1948439.50       71   6  17  15   6 0.00      1948439.50
+   1952062.50       72   2  20   8   5 0.00      1952062.50
+   1952067.50       72   7   5  13   5 0.00      1952067.50
+   2110700.50       80   1  18  16  16 0.00      2110700.50
+   2114872.50       80  13  10   8   6 0.00      2114872.50
+   2289425.50       89   2   3  11  10 0.00      2289425.50
+   2299160.00       90  12  17  10   4 0.50      2299160.00
+   2299161.00       90  13  18  11   4 0.50      2299161.00
+   2333269.50       92  10   7  15  12 0.00      2333269.50
+   2361221.00       93  11  18   1   5 0.50      2361221.00
+   2361222.00       93  12  19   2   5 0.50      2361222.00
+   2372547.50       94   2   5  13   5 0.00      2372547.50
+   2375839.50       94   5  17   0   6 0.00      2375839.50
+   2394646.50       95   1   4  12  15 0.00      2394646.50
+   2394710.50       95  13   8  11   0 0.00      2394710.50
+   2397383.50       95   8   1   9   6 0.00      2397383.50
+   2400000.50       95  12  18  11   9 0.00      2400000.50
+   2409702.50       96   3  20  18   1 0.00      2409702.50
+   2415020.31       96   3  17   5  12 0.81      2415020.31
+   2429702.50       97   9  20   8  16 0.00      2429702.50
+   2439702.50       97  12  20   8   5 0.00      2439702.50
+   2440587.50       97  13   5   3  13 0.00      2440587.50
+   2443817.50       97   6  15   8  10 0.00      2443817.50
+   2443818.50       97   7  16   9  10 0.00      2443818.50
+   2444244.50       97   4   2  10  13 0.00      2444244.50
+   2449790.50       98  12   8   1  17 0.00      2449790.50
+   2450138.50       98   9  16   4  16 0.00      2450138.50
+   2451544.50       98  11   2  10  13 0.00      2451544.50
+   2456124.25       98   1   1   4   5 0.75      2456124.25
+   2456284.50       98   6   2   5  13 0.00      2456284.50
+   2913943.00      122  12  20  13  10 0.50      2913943.00
+
+CALPAK_TEST005
+  JED_TO_WEEKDAY reports the day of the week
+  for a Julian Ephemeris Date.
+
+   JED     W  Name
+
+         0.00  2  Monday   
+         1.00  3  Tuesday  
+    259258.00  1  Sunday   
+    347999.00  3  Tuesday  
+    584283.00  2  Monday   
+    588466.00  6  Friday   
+    758326.00  4  Wednesday
+   1438179.00  3  Tuesday  
+   1446390.00  3  Tuesday  
+   1448638.00  4  Wednesday
+   1448638.00  4  Wednesday
+   1607709.00  7  Saturday 
+   1607739.00  2  Monday   
+   1713263.00  1  Sunday   
+   1721059.00  6  Friday   
+   1721423.00  6  Friday   
+   1721424.00  7  Saturday 
+   1721426.00  2  Monday   
+   1721426.00  2  Monday   
+   1724221.00  4  Wednesday
+   1741960.00  5  Thursday 
+   1749995.00  4  Wednesday
+   1825030.00  6  Friday   
+   1862837.00  6  Friday   
+   1922868.00  5  Thursday 
+   1936748.00  4  Wednesday
+   1940352.00  3  Tuesday  
+   1948321.00  6  Friday   
+   1948439.00  5  Thursday 
+   1948440.00  6  Friday   
+   1952063.00  3  Tuesday  
+   1952068.00  1  Sunday   
+   2110701.00  7  Saturday 
+   2114873.00  7  Saturday 
+   2289426.00  1  Sunday   
+   2299160.00  5  Thursday 
+   2299161.00  6  Friday   
+   2333270.00  4  Wednesday
+   2361221.00  4  Wednesday
+   2361222.00  5  Thursday 
+   2372548.00  5  Thursday 
+   2375840.00  7  Saturday 
+   2394647.00  5  Thursday 
+   2394711.00  6  Friday   
+   2397384.00  5  Thursday 
+   2400001.00  4  Wednesday
+   2409703.00  4  Wednesday
+   2415021.00  2  Monday   
+   2429703.00  5  Thursday 
+   2439703.00  2  Monday   
+   2440588.00  5  Thursday 
+   2443818.00  1  Sunday   
+   2443819.00  2  Monday   
+   2444245.00  1  Sunday   
+   2449791.00  3  Tuesday  
+   2450139.00  1  Sunday   
+   2451545.00  7  Saturday 
+   2456125.00  2  Monday   
+   2456285.00  1  Sunday   
+   2913943.00  6  Friday   
+
+CALPAK_TEST006
+  For the Hebrew calendar,
+  JED_TO_YEAR_HEBREW returns the year of a given JED.
+
+     JED      Hebrew Year
+
+    347998.50     1 AM
+    584282.50     647 AM
+    588465.75     659 AM
+    758325.50     1124 AM
+   1438178.50     2985 AM
+   1446389.50     3008 AM
+   1448637.50     3014 AM
+   1448637.50     3014 AM
+   1607708.50     3449 AM
+   1607738.50     3449 AM
+   1713262.50     3738 AM
+   1721058.50     3760 AM
+   1721422.50     3761 AM
+   1721423.50     3761 AM
+   1721425.50     3761 AM
+   1721425.50     3761 AM
+   1724220.50     3768 AM
+   1741959.50     3817 AM
+   1749994.50     3839 AM
+   1825029.50     4044 AM
+   1862836.50     4148 AM
+   1922867.50     4312 AM
+   1936747.50     4350 AM
+   1940351.50     4360 AM
+   1948320.50     4382 AM
+   1948438.50     4382 AM
+   1948439.50     4382 AM
+   1952062.50     4392 AM
+   1952067.50     4392 AM
+   2110700.50     4826 AM
+   2114872.50     4838 AM
+   2289425.50     5316 AM
+   2299160.00     5342 AM
+   2299161.00     5342 AM
+   2333269.50     5436 AM
+   2361221.00     5512 AM
+   2361222.00     5512 AM
+   2372547.50     5543 AM
+   2375839.50     5552 AM
+   2394646.50     5604 AM
+   2394710.50     5604 AM
+   2397383.50     5611 AM
+   2400000.50     5619 AM
+   2409702.50     5645 AM
+   2415020.31     5660 AM
+   2429702.50     5700 AM
+   2439702.50     5727 AM
+   2440587.50     5730 AM
+   2443817.50     5739 AM
+   2443818.50     5739 AM
+   2444244.50     5740 AM
+   2449790.50     5755 AM
+   2450138.50     5756 AM
+   2451544.50     5760 AM
+   2456124.25     5772 AM
+   2456284.50     5773 AM
+   2913943.00     7026 AM
+
+CALPAK_TEST
+  Normal end of execution.
+
+15-Jul-2012 17:57:01
+>> 

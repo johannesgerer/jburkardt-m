@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>plotgrid :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>plotgrid</h1>
+		  Plots a sparse grid.
+		<h2>Syntax</h2>
+			<code>plotgrid(N,D)</code><br>
+			<code>plotgrid(N,D,OPTIONS)</code><br>
+			<code>H = plotgrid(...)</code>
+		<h2>Description</h2>
+		  <code>plotgrid(N,D)</code> Plots the sparse grid of level <code>N</code> and dimension <code>D</code>. By default, the Clenshaw-Curtis sparse grid type is selected.
+	  <p>
+      <code>plotgrid(N,D,OPTIONS)</code> Plots the sparse grid, but with the grid type as specified in <code>OPTIONS</code>. <code>OPTIONS</code> must be a structure created with the <a href="spset.html"><code>spset</code></a> function.
+	  <p>
+	    <code>H = PLOTGRID(...)</code> Returns a vector of handles to the grid points (useful for changing the look of the plotted grid).
+		<h2><a name="ex1">Examples</a></h2>
+		  The following statements can be used to plot the Chebyshev-Gauss-Lobatto sparse grid of level <code>N = 4</code> in three dimensions, highlighting the grid points of the levels in different colors:
+<pre class="codeinput">options = spset(<span class="string">'GridType'</span>, <span class="string">'Chebyshev'</span>);
+n = 4;
+h = plotgrid(n,3,options);
+cols = brighten(jet(n+1),-1);
+legendstr = cell(1,n+1);
+<span class="keyword">for</span> k = 0:n
+  set(h(k+1), <span class="string">'Color'</span>, cols(k+1,:), <span class="string">'MarkerSize'</span>, 20);
+  legendstr{k+1} = [<span class="string">'n = '</span> num2str(k)];
+<span class="keyword">end</span>
+grid <span class="string">on</span>;
+legend(legendstr);
+</pre>		
+      <img src="images/ex_plotgrid_01.png">
+		<h2>See Also</h2>
+		  <a href="cmpgrids.html"><code>cmpgrids</code></a>, 
+		  <a href="plotindices.html"><code>plotindices</code></a>, 
+			<a href="spgrid.html"><code>spgrid</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>
+

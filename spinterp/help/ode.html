@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>Approximating ODEs (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="interfacing.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="external.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1><a name="ex1">Approximating ODEs</a></h1>
+    <p>As an example for a more complex function with multiple input- and output arguments, we show how to handle an ordinary differential equation. The model considered is a second order differential equation</p>
+    <div align="center">
+    <p> Q''(t) + a Q'(t) + b = 50 cos(t)</p>
+    </div>
+    <p>from <a href="#10">[1, pp. 145-162]</a> simulating an electrical circuit.</p>
+    <h2>Contents</h2>
+         <div>
+            <ul>
+               <li><a href="#1">The ODE model in Matlab</a></li>
+               <li><a href="#3">Interpolation problem statement and possible applications</a></li>
+               <li><a href="#4">The interface function</a></li>
+               <li><a href="#5">Interpolant construction</a></li>
+               <li><a href="#6">Computing interpolated values</a></li>
+            </ul>
+         </div>
+     <h2>The ODE model in Matlab<a name="1"></a></h2><p>Rewriting this second-order equation as a system of first order equations, we can define the ODE file in MATLAB format as follows:</p><pre class="codeinput">type(<span class="string">'circuit.m'</span>)
+</pre><pre class="codeoutput">
+function [out1, out2, out3] = circuit(t, u, flag, a, b);
+% CIRCUIT   definition of the electrical circuit ODE.
+	
+switch flag
+ case ''
+	out1 = [u(2); 50*cos(t) - a*u(2) - b*u(1)];
+ case 'init'
+	out1 = [0; 5];       % tspan
+	out2 = [5; 1];       % initial conditions
+	out3 = odeset('RelTol', 1e-6);
+end
+</pre><p>We can solve this ODE for a = 2, b = 4, and the default initial conditions and time span as defined in the ODE file using
+            the MATLAB solver ODE45.
+         </p><pre class="codeinput">[t,Q] = ode45(<span class="string">'circuit'</span>, [], [], [], 2, 4);
+plot(t,Q)
+xlabel(<span class="string">'t'</span>);
+grid <span class="string">on</span>;
+legend(<span class="string">'Q(t)'</span>, <span class="string">'Q''(t)'</span>);
+</pre><img src="images/ex_ode_01.png"> <h2>Interpolation problem statement and possible applications<a name="3"></a></h2>
+         <p>We now consider the initial conditions and the parameters a,b to vary in some range, that is we assume intervals for Q(0),
+            Q'(0), a, and b, and compute an error-controlled sparse grid interpolant for the ODE model at each time step. The interpolant
+            can then be used to do several useful analyses, for instance, perform a Monte Carlo simulation with random variables, optimize
+            the model for the given range of parameters and initial conditions, e.g. minimize or maximize the amplitude, or compute an
+            envelope of the result using fuzzy calculus or interval analysis. In many cases, this can be done considerably faster than
+            by using the original ODE directly, since the construction and evaluation of the interpolant is very fast.
+         </p>
+         <h2>The interface function<a name="4"></a></h2>
+         <p>We proceed as follows. First of all, we write an <a href="interfacing.html">interface function</a> of the ODE model to enable its evaluation by the spvals function.
+         </p><pre class="codeinput">type(<span class="string">'interface_circuit.m'</span>)
+</pre><pre class="codeoutput">
+function varargout = interface_circuit(Q0, Q0prime, a, b, tspan, nsteps)
+% Definition of the complete model as a function of the uncertain
+% input parameters. 
+
+% The time steps must be at fixed steps such that the number of
+% outputs and time steps stay the same for each parameter
+% variation. 
+t = linspace(tspan(1), tspan(2), nsteps);
+
+% Call the ODE solver
+[t, Q] = ode45('circuit', t, [Q0 Q0prime], [], a, b);
+
+% Convert result vector to parameter list. This conversion is
+% necessary, since the output arguments of the objective function
+% to SPVALS must all be scalar. In this case, we assume that only
+% the first column (i.e. Q, not Q') is of interest and thus
+% returned.
+varargout = num2cell(Q(:,1)');
+</pre><h2>Interpolant construction<a name="5"></a></h2>
+         <p>Next, we construct the interpolant, simultaneously for all time steps. Here, we use the intervals [Q(0)] = [4,6], [Q'(0)]
+            = [0,2], [a] = [1,3], and [b] = [3,5].
+         </p><pre class="codeinput"><span class="comment">% Problem dimension</span>
+d = 4;
+
+<span class="comment">% Define the time span considered</span>
+tspan = [0 5];
+
+<span class="comment">% Define the number of steps to consider</span>
+nsteps = 101;
+
+<span class="comment">% Define the objective range of the initial conditions and the</span>
+<span class="comment">% parameters</span>
+range = [4 6;  <span class="comment">% [Q(0)]</span>
+         0 2;  <span class="comment">% [Q'(0)]</span>
+         1 3;  <span class="comment">% [a]</span>
+         3 5]; <span class="comment">% [b]</span>
+
+<span class="comment">% Maximum number of sparse grid levels to compute</span>
+nmax = 3;
+
+<span class="comment">% Initialize z</span>
+z = [];
+
+<span class="comment">% Turn insufficient depth warning off, since it is anticipated.</span>
+warning(<span class="string">'off'</span>, <span class="string">'MATLAB:spinterp:insufficientDepth'</span>);
+
+<span class="comment">% Compute increasingly accurate interpolants; use previous results;</span>
+<span class="comment">% display estimated maximum relative error over all time steps at</span>
+<span class="comment">% each iteration.</span>
+<span class="keyword">for</span> n = 1:nmax
+  options = spset(<span class="string">'Vectorized'</span>, <span class="string">'off'</span>, <span class="string">'MinDepth'</span>, n, <span class="string">'MaxDepth'</span>, <span class="keyword">...</span>
+                  n, <span class="string">'NumberOfOutputs'</span>, nsteps, <span class="string">'PrevResults'</span>, z);
+  z = spvals(<span class="string">'interface_circuit'</span>, d, range, options, tspan, nsteps);
+  disp([<span class="string">'Current (estimated) maximum relative error over all time'</span> <span class="keyword">...</span>
+        <span class="string">'steps: '</span>, num2str(z.estRelError)]);
+<span class="keyword">end</span>
+
+<span class="comment">% Turn insufficient depth warning back on</span>
+warning(<span class="string">'on'</span>, <span class="string">'MATLAB:spinterp:insufficientDepth'</span>);
+</pre><pre class="codeoutput">Current (estimated) maximum relative error over all timesteps: 0.64844
+Current (estimated) maximum relative error over all timesteps: 0.34119
+Current (estimated) maximum relative error over all timesteps: 0.057381
+</pre><h2>Computing interpolated values<a name="6"></a></h2>
+         <p>We can now compute interpolated values at each time step, for any combination of parameters within the range that the interpolant
+            was computed for. The structure z contains all the required information. We only need to select the desired output parameter
+            (i.e. the time step in this example). To compute 10 randomly distributed values at time t=5 (which is step #101 with the chosen
+            discretization) within the box [Q(0)] x [Q'(0)] x [a] x [b], we would simply use the following commands:
+         </p><pre class="codeinput"><span class="comment">% Compute 10 randomly distributed points in [0,1] and re-scale them to</span>
+<span class="comment">% the objective range</span>
+x = cell(1,4);
+<span class="keyword">for</span> k = 1:d
+  x{k} = range(k,1) + rand(1,10) .* (range(k,2) - range(k,1));
+<span class="keyword">end</span>
+
+<span class="comment">% Select output parameter #101</span>
+z.selectOutput = 101;
+<span class="comment">% Compute and display interpolated values</span>
+y = spinterp(z, x{:})
+</pre><pre class="codeoutput">
+y =
+  Columns 1 through 7 
+   -2.7824   -1.3367   -1.8990   -3.4497   -1.9133   -4.1978   -0.1284
+  Columns 8 through 10 
+   -4.9939   -8.1073   -3.3928
+</pre>
+    <h2><a name="10">References</a></h2>
+    <table>
+      <tr>
+        <td valign="top">[1]</td>
+				<td>J. J. Buckley, E. Eslami, and T. Feuring. <i>Fuzzy Mathematics in Economics and Engineering</i>. Physica-Verlag, Heidelberg, Germany, 2002.</td>
+			</tr>		
+    </table>
+		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="interfacing.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Interfacing concepts</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">External models</td>
+        <td width="20" align="right"><a href="external.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

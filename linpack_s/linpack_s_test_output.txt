@@ -1,0 +1,812 @@
+>> linpack_s_test
+24-Jun-2009 22:08:35
+
+LINPACK_S_TEST
+  Test the single precision real MATLAB LINPACK routines.
+
+TEST01
+  For single precision, general storage,
+  SCHDC computes the Cholesky decomposition.
+
+  The number of equations is N = 4
+
+  The matrix A:
+
+        2.000000       -1.000000        0.000000        0.000000
+        0.000000        2.000000       -1.000000        0.000000
+        0.000000        0.000000        2.000000       -1.000000
+        0.000000        0.000000        0.000000        2.000000
+
+  Decompose the matrix.
+
+  The Cholesky factor U:
+
+        1.414214       -0.707107        0.000000        0.000000
+        0.000000        1.224745       -0.816497        0.000000
+        0.000000        0.000000        1.154701       -0.866025
+        0.000000        0.000000        0.000000        1.118034
+
+  The product U' * U:
+
+        2.000000       -1.000000        0.000000        0.000000
+       -1.000000        2.000000       -1.000000        0.000000
+        0.000000       -1.000000        2.000000       -1.000000
+        0.000000        0.000000       -1.000000        2.000000
+
+TEST02
+  For ingle precision, general storage,
+  SCHEX can shift columns in a Cholesky factorization.
+
+  The number of equations is N = 5
+
+  The matrix A:
+
+        2.000000       -1.000000        0.000000        0.000000        0.000000
+        0.000000        2.000000       -1.000000        0.000000        0.000000
+        0.000000        0.000000        2.000000       -1.000000        0.000000
+        0.000000        0.000000        0.000000        2.000000       -1.000000
+        0.000000        0.000000        0.000000        0.000000        2.000000
+
+  The vector Z:
+
+        1.000000
+        2.000000
+        3.000000
+        4.000000
+        5.000000
+
+  Decompose the matrix.
+
+  The Cholesky factor U:
+
+        1.414214       -0.707107        0.000000        0.000000        0.000000
+        0.000000        1.224745       -0.816497        0.000000        0.000000
+        0.000000        0.000000        1.154701       -0.866025        0.000000
+        0.000000        0.000000        0.000000        1.118034       -0.894427
+        0.000000        0.000000        0.000000        0.000000        1.095445
+
+  Right circular shift columns K  = 1 through L = 3
+
+  Left circular shift columns K+1 = 2 through L = 3
+
+  The shifted Cholesky factor U:
+
+        1.414214       -0.707107        0.000000       -0.707107        0.000000
+        0.000000       -1.224745        0.816497        0.408248       -0.000000
+        0.000000        0.000000        1.154701       -0.288675        0.000000
+        0.000000        0.000000        0.000000        1.118034       -0.894427
+        0.000000        0.000000        0.000000        0.000000        1.095445
+
+  The shifted vector Z:
+
+        1.294789
+       -2.170197
+        2.759306
+        4.000000
+        5.000000
+
+  The shifted product U' * U:
+
+        2.000000       -1.000000        0.000000       -1.000000        0.000000
+       -1.000000        2.000000       -1.000000        0.000000        0.000000
+        0.000000       -1.000000        2.000000        0.000000        0.000000
+       -1.000000        0.000000        0.000000        2.000000       -1.000000
+        0.000000        0.000000        0.000000       -1.000000        2.000000
+
+TEST03
+  For single precision, general storage,
+  SCHUD updates a Cholesky decomposition.
+
+  In this example, we use SCHUD to solve a
+  least squares problem R * b = z.
+
+  The number of equations is P = 20
+
+  Solution vector # 1
+  (Should be (1,2,3...,n))
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      16       16.000000
+      17       17.000000
+      18       18.000000
+      19       19.000000
+      20       20.000000
+
+TEST04
+  For a general banded matrix,
+  SGBCO estimates the reciprocal condition number.
+  The matrix size is N = 10
+  The bandwidth of the matrix is 3
+
+  Estimate the condition.
+
+  Estimated reciprocal condition = 0.023302
+
+TEST05
+  For a general banded matrix,
+  SGBFA factors the matrix,
+  SGBSL solves a factored linear system.
+  The matrix size is N = 10
+  The bandwidth of the matrix is 3
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last 5 entries of the solution:
+  (All should be 1):
+
+       1        1.000000
+       2        1.000000
+       3        1.000000
+       4        1.000000
+       5        1.000000
+  ......  ..............
+       6        1.000000
+       7        1.000000
+       8        1.000000
+       9        1.000000
+      10        1.000000
+
+TEST06
+  For a general banded matrix,
+  SGBFA factors the matrix,
+  SGBDI computes the determinant as
+    det = MANTISSA * 10^EXPONENT
+
+  Find the determinant of the -1,2,-1 matrix
+  for N = 2, 4, 8, 16, 32, 64, 128.
+
+  (For this matrix, det ( A ) = N + 1.)
+  The bandwidth of the matrix is 3
+
+       N    Mantissa       Exponent
+
+       2        3.000000        0.000000
+       4        5.000000        0.000000
+       8        9.000000        0.000000
+      16        1.700000        1.000000
+      32        3.300000        1.000000
+      64        6.500000        1.000000
+     128        1.290000        2.000000
+
+TEST07
+  For a general banded matrix,
+  SGBFA factors the matrix,
+  SGBSL solves a factored linear system.
+  The matrix size is N = 100
+  The bandwidth of the matrix is 51
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last 5 entries of the solution:
+  (All should be 1):
+
+       1        1.000000
+       2        1.000000
+       3        1.000000
+       4        1.000000
+       5        1.000000
+  ......  ..............
+      96        1.000000
+      97        1.000000
+      98        1.000000
+      99        1.000000
+     100        1.000000
+
+TEST08
+  For a general matrix,
+  SGECO computes the LU factors and computes
+  its reciprocal condition number;
+  SGESL solves a factored linear system.
+  The matrix size is N = 3
+
+  Factor the matrix.
+  The reciprocal matrix condition number = 0.024645
+
+  Solve the linear system.
+
+  Solution returned by SGESL
+  (Should be (1,1,1))
+
+        1.000000
+        1.000000
+        1.000000
+
+  Call SGESL for a new right hand
+  side for the same, factored matrix.
+
+  Solve a linear system.
+
+  Solution returned by SGESL
+  (should be (1,0,0))
+
+        1.000000
+        0.000000
+        0.000000
+
+  Call SGESL for transposed problem.
+
+  Call SGESL to solve a transposed linear system.
+
+  Solution returned by SGESL
+  (should be (-1,0,1))
+
+       -1.000000
+       -0.000000
+        1.000000
+
+TEST09
+  For a general matrix,
+  SGEFA computes the LU factors;
+  SGEDI computes the inverse and determinant
+  of a factored matrix.
+  The matrix size is N = 3
+
+  Factor the matrix
+
+  Get the inverse and determinant
+
+  The determinant = 2.700000 * 10 ^ 1.000000
+
+  The inverse matrix:
+
+       -1.777778        0.888889       -0.111111
+        1.555556       -0.777778        0.222222
+       -0.111111        0.222222       -0.111111
+
+TEST10
+  For a general matrix,
+  SGEFA computes the LU factors;
+  SGESL solves a factored linear system;
+
+  The number of equations is N = 3
+
+  The matrix A:
+
+      1.000000      2.000000      3.000000
+      4.000000      5.000000      6.000000
+      7.000000      8.000000      0.000000
+
+  The right hand side B is
+
+      6.000000
+     15.000000
+     15.000000
+
+  Factor the matrix
+
+  Solve the linear system.
+
+  SGESL returns the solution:
+  (Should be (1,1,1))
+
+      1.000000
+      1.000000
+      1.000000
+
+TEST11
+  For a general matrix,
+  SGEFA computes the LU factors;
+  SGESL solves a factored linear system;
+  The matrix size is N = 100
+
+  Factor the matrix
+
+  Solve the linear system.
+
+  The first and last five entries of the solution:
+  (All of them should be 1.)
+
+       1        1.000000
+       2        1.000000
+       3        1.000000
+       4        1.000000
+       5        1.000000
+  ......  ..............
+      96        1.000000
+      97        1.000000
+      98        1.000000
+      99        1.000000
+     100        1.000000
+
+TEST12
+  For a general tridiagonal matrix,
+  SGTSL factors and solves a linear system.
+  The matrix size is N = 100
+
+
+  Factor the matrix and solve the system.
+
+  The first and last 5 entries of the solution:
+  (Should be 1,2,3,4,5,...,n,n-1):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      96       96.000000
+      97       97.000000
+      98       98.000000
+      99       99.000000
+     100      100.000000
+
+TEST13
+  For a positive definite symmetric band matrix,
+  SPBCO estimates the reciprocal condition number.
+  The matrix size is N = 10
+
+  Estimate the condition.
+
+  Reciprocal condition  = 0.020492
+
+TEST14
+  For a positive definite symmetric band matrix,
+  SPBDI computes the determinant as
+    det = MANTISSA * 10**EXPONENT
+
+  Find the determinant of the -1,2,-1 matrix
+  for N = 2, 4, 8, 16, 32, 64, 128.
+
+  (For this matrix, det ( A ) = N + 1.)
+
+  The bandwidth of the matrix is 3
+
+       N    Mantissa       Exponent
+
+       2        3.000000        0.000000
+       4        5.000000        0.000000
+       8        9.000000        0.000000
+      16        1.700000        1.000000
+      32        3.300000        1.000000
+      64        6.500000        1.000000
+     128        1.290000        2.000000
+
+TEST15
+  For a positive definite symmetric band matrix,
+  SPBFA computes the LU factors.
+  SPBSL solves a factored linear system.
+  The matrix size is N = 10
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last 5 entries of the solution:
+  (All should be 1):
+
+       1        1.000000
+       2        1.000000
+       3        1.000000
+       4        1.000000
+       5        1.000000
+  ......  ..............
+       6        1.000000
+       7        1.000000
+       8        1.000000
+       9        1.000000
+      10        1.000000
+
+TEST16
+  For a positive definite symmetric matrix,
+  SPOCO estimates the reciprocal condition number.
+  The matrix size is N = 5
+
+  Estimate the condition.
+
+  Reciprocal condition  = 0.067568
+
+TEST17
+  For a positive definite symmetric matrix,
+  SPOFA computes the LU factors,
+  SPODI computes the inverse or determinant.
+  The matrix size is N = 5
+
+  Factor the matrix.
+
+  Get the determinant and inverse.
+
+  Determinant  = 6.000000 * 10 ^ 0.000000
+
+  First row of inverse:
+
+        0.833333        0.666667        0.500000        0.333333        0.166667
+
+TEST18
+  For a positive definite symmetric matrix,
+  SPOFA computes the LU factors.
+  SPOSL solves a factored linear system.
+  The matrix size is N = 20
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last five entries of the solution:
+  (Should be 1,2,3,4,5,...,n-1,n.)
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      16       16.000000
+      17       17.000000
+      18       18.000000
+      19       19.000000
+      20       20.000000
+
+TEST19
+  For a positive definite symmetric packed matrix,
+  SPPCO estimates the reciprocal condition number.
+  The matrix size is N = 5
+
+  Estimate the condition number.
+
+  Reciprocal condition number = 0.067568
+
+TEST20
+  For a positive definite symmetric packed matrix,
+  SPPFA factors the matrix.
+  SPPDI computes the inverse or determinant.
+  The matrix size is N = 5
+
+  Factor the matrix.
+
+  Get the determinant and inverse.
+
+  Determinant  = 6.000000 * 10 ^ 0.000000
+
+  Inverse:
+
+        0.833333        0.666667        0.500000        0.333333        0.166667
+        0.666667        1.333333        1.000000        0.666667        0.333333
+        0.500000        1.000000        1.500000        1.000000        0.500000
+        0.333333        0.666667        1.000000        1.333333        0.666667
+        0.166667        0.333333        0.500000        0.666667        0.833333
+
+TEST21
+  For a positive definite symmetric packed matrix,
+  SPPFA factors the matrix.
+  SPPSL solves a factored linear system.
+  The matrix size is N = 20
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last five entries of the solution:
+  (Should be 1,2,3,4,5,...,n-1,n.)
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      16       16.000000
+      17       17.000000
+      18       18.000000
+      19       19.000000
+      20       20.000000
+
+TEST22
+  For a positive definite symmetric tridiagonal matrix,
+  SPTSL factors and solves a linear system.
+  The matrix size is N = 20
+
+  Factor the matrix and solve the system.
+
+  The first and last five entries of the solution:
+  (Should be 1,2,3,4,5,...,n-1,n):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      16       16.000000
+      17       17.000000
+      18       18.000000
+      19       19.000000
+      20       20.000000
+
+TEST23
+  For a general matrix,
+  SQRDC computes the QR decomposition of a
+  matrix, but does not return Q and R explicitly.
+
+  Show how Q and R can be recovered using SQRSL.
+
+  The original matrix A:
+
+        1.000000        1.000000        0.000000
+        1.000000        0.000000        1.000000
+        0.000000        1.000000        1.000000
+
+  Decompose the matrix.
+
+  The packed matrix A which describes Q and R:
+
+       -1.414214       -0.707107       -0.707107
+        0.707107        1.224745        0.408248
+        0.000000       -0.816497        1.154701
+
+  The QRAUX vector, containing some additional
+  information defining Q:
+
+        1.707107        1.577350        0.000000
+
+  The R factor:
+
+       -1.414214       -0.707107       -0.707107
+        0.000000        1.224745        0.408248
+        0.000000        0.000000        1.154701
+
+  The Q factor:
+
+       -0.707107        0.408248       -0.577350
+       -0.707107       -0.408248        0.577350
+        0.000000        0.816497        0.577350
+
+  The product Q * R:
+
+        1.000000        1.000000       -0.000000
+        1.000000       -0.000000        1.000000
+        0.000000        1.000000        1.000000
+
+TEST24
+  For a symmetric indefinite matrix,
+  SSICO estimates the reciprocal condition number.
+  The matrix size is N = 100
+
+  Estimate the condition.
+
+  Estimated reciprocal condition = 0.000245
+
+TEST25
+  For a symmetric indefinite matrix,
+  SSIFA factors the matrix,
+  SSISL solves a factored linear system,
+  The matrix size is N = 100
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last five entries of the solution:
+  (Should be 1,2,3,4,5,...,n-1,n):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      96       96.000000
+      97       97.000000
+      98       98.000000
+      99       99.000000
+     100      100.000000
+
+TEST26
+  For a symmetric indefinite packed matrix,
+  SSPCO estimates the reciprocal condition number.
+  The matrix size is N = 100
+
+  Estimate the condition.
+
+  Estimated reciprocal condition = 0.000245
+
+TEST27
+  For a symmetric indefinite packed matrix,
+  SSPFA factors the matrix,
+  SSPSL solves a factored linear system.
+  The matrix size is N = 100
+
+  Factor the matrix.
+
+  Solve the linear system.
+
+  The first and last five entries of the solution:
+  (Should be 1,2,3,4,5,...,n-1,n):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+  ......  ..............
+      96       96.000000
+      97       97.000000
+      98       98.000000
+      99       99.000000
+     100      100.000000
+
+TEST28
+  For an MxN matrix A in general storage,
+  SSVDC computes the singular value decomposition:
+    A = U * S * V'
+
+  Matrix rows M =    6
+  Matrix columns N = 4
+
+  The matrix A:
+
+        0.218418        0.257578        0.401306        0.094545
+        0.956318        0.109957        0.754673        0.013617
+        0.829509        0.043829        0.797287        0.859097
+        0.561695        0.633966        0.001838        0.840847
+        0.415307        0.061727        0.897504        0.123104
+        0.066119        0.449539        0.350752        0.007512
+
+  Decompose the matrix.
+
+  Singular values:
+
+     1        2.228984
+     2        1.031751
+     3        0.606304
+     4        0.441098
+
+  Left Singular Vector Matrix U:
+
+       -0.214893        0.070269        0.351627        0.141528       -0.569749       -0.693252
+       -0.493857        0.399434        0.040847       -0.765911       -0.032738        0.084834
+       -0.621035       -0.122005       -0.541178        0.351135       -0.341570        0.258051
+       -0.378730       -0.803888        0.211678       -0.195040        0.319591       -0.159192
+       -0.394186        0.417037        0.113540        0.424627        0.652486       -0.227508
+       -0.159444        0.021775        0.723960        0.227388       -0.172534        0.607053
+
+  Right Singular Vector Matrix V:
+
+       -0.637670        0.018636       -0.196482       -0.744597
+       -0.212197       -0.404587        0.887338       -0.062549
+       -0.612157        0.593962        0.159466        0.497035
+       -0.416669       -0.695105       -0.385482        0.441157
+
+  The product U * S * V' (should equal A):
+
+        0.218418        0.257578        0.401306        0.094545
+        0.956318        0.109957        0.754673        0.013617
+        0.829509        0.043829        0.797287        0.859097
+        0.561695        0.633966        0.001838        0.840847
+        0.415307        0.061727        0.897504        0.123104
+        0.066119        0.449539        0.350752        0.007512
+
+TEST29
+  For a triangular matrix,
+  STRCO computes the LU factors and
+  computes its reciprocal condition number.
+  The matrix size is N = 5
+
+  Lower triangular matrix A:
+
+        0.218418        0.000000        0.000000        0.000000        0.000000
+        0.956318        0.257578        0.000000        0.000000        0.000000
+        0.829509        0.109957        0.401306        0.000000        0.000000
+        0.561695        0.043829        0.754673        0.094545        0.000000
+        0.415307        0.633966        0.797287        0.013617        0.260303
+
+  Estimate the condition:
+
+  The reciprocal condition number = 0.004820
+
+  Upper triangular matrix A:
+
+        0.912484        0.692066        0.597917        0.574366        0.714471
+        0.000000        0.561662        0.188955        0.367027        0.117707
+        0.000000        0.000000        0.761492        0.617205        0.299329
+        0.000000        0.000000        0.000000        0.361529        0.825003
+        0.000000        0.000000        0.000000        0.000000        0.824660
+
+  Estimate the condition:
+
+  The reciprocal condition number = 0.061401
+
+TEST30
+  For a triangular matrix,
+  STRDI computes the determinant or inverse.
+  The matrix size is N = 5
+
+  Lower triangular matrix A:
+
+        0.218418        0.000000        0.000000        0.000000        0.000000
+        0.956318        0.257578        0.000000        0.000000        0.000000
+        0.829509        0.109957        0.401306        0.000000        0.000000
+        0.561695        0.043829        0.754673        0.094545        0.000000
+        0.415307        0.633966        0.797287        0.013617        0.260303
+
+  The determinant = 5.556355 * 10 ^ -4.000000
+ 
+  The inverse matrix:
+
+        4.578371        0.000000        0.000000        0.000000        0.000000
+      -16.998269        3.882322        0.000000        0.000000        0.000000
+       35.541072        0.273997        2.491862        0.000000        0.000000
+     -151.322957        1.341275        7.982183       10.577002        0.000000
+      779.719256        2.778914        3.102397        0.052312        3.841677
+
+  Upper triangular matrix A:
+
+        0.912484        0.692066        0.597917        0.574366        0.714471
+        0.000000        0.561662        0.188955        0.367027        0.117707
+        0.000000        0.000000        0.761492        0.617205        0.299329
+        0.000000        0.000000        0.000000        0.361529        0.825003
+        0.000000        0.000000        0.000000        0.000000        0.824660
+
+  The determinant = 1.163546 * 10 ^ -1.000000
+ 
+  The inverse matrix:
+
+        1.095910       -1.350353       -0.525426        0.526812       -1.093052
+        0.000000        1.780429       -0.441791       -1.053275        0.959944
+        0.000000        0.000000        1.313211       -2.241925        1.766198
+        0.000000        0.000000        0.000000        2.766032       -2.767182
+        0.000000        0.000000        0.000000        0.000000        1.212621
+
+TEST31
+  For a triangular matrix,
+  STRSL solves a linear system.
+  The matrix size is N = 5
+
+  For a lower triangular matrix A,
+  solve A * x = b
+
+  The solution (should be 1,2,3,4,5):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+
+  For a lower triangular matrix A,
+  solve A' * x = b
+
+  The solution (should be 1,2,3,4,5):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+
+  For an upper triangular matrix A,
+  solve A * x = b
+
+  The solution (should be 1,2,3,4,5):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+
+  For an upper triangular matrix A,
+  solve A' * x = b
+
+  The solution (should be 1,2,3,4,5):
+
+       1        1.000000
+       2        2.000000
+       3        3.000000
+       4        4.000000
+       5        5.000000
+
+LINPACK_S_TEST
+  Normal end of execution.
+
+24-Jun-2009 22:08:37
+>> 

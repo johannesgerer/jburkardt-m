@@ -1,0 +1,605 @@
+<html>
+
+  <head>
+    <title>
+      LINPACK_Z - Linear Algebra Library - Double Precision Complex
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINPACK_Z <br> Linear Algebra Library <br> Double Precision Complex
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINPACK_Z</b>
+      is a MATLAB library which
+      solves systems of linear equations for a variety
+      of matrix types and storage modes,
+      by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+    </p>
+
+    <p>
+      MATLAB already provides a wide set of linear equation solvers.
+      This (partial) set of <b>LINPACK</b> routines is provided just for
+      testing and comparison.
+    </p>
+
+    <p>
+      <b>LINPACK</b> has officially been superseded by the LAPACK library.  The LAPACK
+      library uses more modern algorithms and code structure.  However,
+      the LAPACK library can be extraordinarily complex; what is done
+      in a single <b>LINPACK</b> routine may correspond to 10 or 20 utility
+      routines in LAPACK.  This is fine if you treat LAPACK as a black
+      box.  But if you wish to learn how the algorithm works, or
+      to adapt it, or to convert the code to another language, this
+      is a real drawback.  This is one reason I still keep a copy
+      of <b>LINPACK</b> around.
+    </p>
+
+    <p>
+      Versions of <b>LINPACK</b> in various arithmetic precisions are available
+      through <a href = "http://www.netlib.org/">the NETLIB web site</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINPACK_Z</b> is available in
+      <a href = "../../cpp_src/linpack_z/linpack_z.html">a C++ version</a> and
+      <a href = "../../f77_src/linpack_z/linpack_z.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/linpack_z/linpack_z.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/linpack_z/linpack_z.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/blas1_z/blas1_z.html">
+      BLAS1_Z</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using double precision complex arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lapack_examples/lapack_examples.html">
+      LAPACK_EXAMPLES</a>,
+      a FORTRAN90 program which
+      demonstrates the use of the LAPACK linear algebra library.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_z/linpack_z.html">
+      LINPACK_C</a>,
+      a MATLAB library which
+      solves linear systems using sihgle precision complex arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      solves linear systems using double precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_s/linpack_s.html">
+      LINPACK_S</a>,
+      a MATLAB library which
+      solves linear systems using single precision real arithmetic;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out simple manipulations of matrices in a variety of formats.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_matrix/test_matrix.html">
+      TEST_MATRIX</a>,
+      a MATLAB library which
+      contains a collection of test matrices
+      by Nick Higham.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original FORTRAN77 version by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+      MATLAB version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539,
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "drotg.m">drotg.m</a>,
+          computes a real Givens rotation.
+        </li>
+        <li>
+          <a href = "dzasum.m">dzasum.m</a>,
+          takes the sum of the absolute values of a complex vector.
+        </li>
+        <li>
+          <a href = "dznrm2.m">dznrm2.m</a>,
+          computes the Euclidean norm of a complex vector.
+        </li>\
+        <li>
+          <a href = "i4_huge.m">i4_huge.m</a>,
+          returns a "huge" I4.
+        </li>
+        <li>
+          <a href = "izamax.m">izamax.m</a>,
+          indexes the complex vector element of maximum absolute value.
+        </li>
+        <li>
+          <a href = "r8_sign.m">r8_sign.m</a>,
+          returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "zabs1.m">zabs1.m</a>,
+          returns the L1 norm of a complex number.
+        </li>
+        <li>
+          <a href = "zchdc.m">zchdc.m</a>,
+          computes the Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "zchdd.m">zchdd.m</a>,
+          downdates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "zchex.m">zchex.m</a>,
+          updates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "zchud.m">zchud.m</a>,
+          updates a Cholesky decomposition of a positive definite matrix;
+        </li>
+        <li>
+          <a href = "zdotc.m">zdotc.m</a>,
+          computes the conjugated dot product of two vectors.
+        </li>
+        <li>
+          <a href = "zdrot.m">zdrot.m</a>,
+          applies a complex Givens rotation.
+        </li>
+        <li>
+          <a href = "zgbco.m">zgbco.m</a>,
+          factors a band matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "zgbdi.m">zgbdi.m</a>,
+          computes the determinant of a band matrix factored by ZGBCO or ZGBFA.
+        </li>
+        <li>
+          <a href = "zgbfa.m">zgbfa.m</a>,
+          factors a complex band matrix by elimination.
+        </li>
+        <li>
+          <a href = "zgbsl.m">zgbsl.m</a>,
+          solves a complex band system factored by ZGBCO or ZGBFA.
+        </li>
+        <li>
+          <a href = "zgeco.m">zgeco.m</a>,
+          factors a complex matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "zgedi.m">zgedi.m</a>,
+          computes the determinant and inverse of a matrix.
+        </li>
+        <li>
+          <a href = "zgefa.m">zgefa.m</a>,
+          factors a complex matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zgesl.m">zgesl.m</a>,
+          solves a complex system factored by ZGECO or ZGEFA.
+        </li>
+        <li>
+          <a href = "zgtsl.m">zgtsl.m</a>,
+          solves a complex tridiagonal system.
+        </li>
+        <li>
+          <a href = "zhico.m">zhico.m</a>,
+          factors a Hermitian matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "zhidi.m">zhidi.m</a>,
+          computes inverse, determinant and interia of a Hermitian matrix.
+        </li>
+        <li>
+          <a href = "zhifa.m">zhifa.m</a>,
+          factors a Hermitian matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zhisl.m">zhisl.m</a>,
+          solves a linear system factored by ZHIFA or ZHICO.
+        </li>
+        <li>
+          <a href = "zhpco.m">zhpco.m</a>,
+          factors a Hermitian packed matrix and estimates its condition.
+        </li>
+        <li>
+          <a href = "zhpdi.m">zhpdi.m</a>,
+          computes inverse, determinant and interia of a Hermitian packed matrix.
+        </li>
+        <li>
+          <a href = "zhpfa.m">zhpfa.m</a>,
+          factors a Hermitian packed matrix by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zhpsl.m">zhpsl.m</a>,
+          solves a linear system factored by ZHPFA or ZHPCO.
+        </li>
+        <li>
+          <a href = "zpbco.m">zpbco.m</a>,
+          factors a Hermitian positive definite band matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "zpbdi.m">zpbdi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite band matrix.
+        </li>
+        <li>
+          <a href = "zpbfa.m">zpbfa.m</a>,
+          factors a Hermitian positive definite band matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zpbsl.m">zpbsl.m</a>,
+          solves a linear system factored by ZPBFA or ZPBCO.
+        </li>
+        <li>
+          <a href = "zpoco.m">zpoco.m</a>,
+          factors a Hermitian positive definite matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "zpodi.m">zpodi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite matrix.
+        </li>
+        <li>
+          <a href = "zpofa.m">zpofa.m</a>,
+          factors a Hermitian positive definite matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zposl.m">zposl.m</a>,
+          solves a linear system factored by ZPOFA or ZPOCO.
+        </li>
+        <li>
+          <a href = "zppco.m">zppco.m</a>,
+          factors a Hermitian positive definite packed matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "zppdi.m">zppdi.m</a>,
+          computes inverse, determinant and interia of a
+          Hermitian positive definite packed matrix.
+        </li>
+        <li>
+          <a href = "zppfa.m">zppfa.m</a>,
+          factors a Hermitian positive definite packed matrix
+          by Gaussian elimination.
+        </li>
+        <li>
+          <a href = "zppsl.m">zppsl.m</a>,
+          solves a linear system factored by ZPPFA or ZPPCO.
+        </li>
+        <li>
+          <a href = "zptsl.m">zptsl.m</a>,
+          solves a Hermitian positive definite tridiagonal system.
+        </li>
+        <li>
+          <a href = "zqrdc.m">zqrdc.m</a>,
+          computes the QR decomposition of a general rectangular complex matrix.
+        </li>
+        <li>
+          <a href = "zqrsl.m">zqrsl.m</a>,
+          uses the QR decomposition to solve linear systems and other tasks.
+        </li>
+        <li>
+          <a href = "zrotg.m">zrotg.m</a>,
+          computes a complex Givens rotation.
+        </li>
+        <li>
+          <a href = "zsico.m">zsico.m</a>,
+          factors a complex symmetric indefinite matrix
+          and estimates its condition.
+        </li>
+        <li>
+          <a href = "zsidi.m">zsidi.m</a>,
+          computes inverse and determinant of a
+          complex symmetric indefinite matrix.
+        </li>
+        <li>
+          <a href = "zsign1.m">zsign1.m</a>,
+          is a complex transfer-of-sign function.
+        </li>
+        <li>
+          <a href = "zsign2.m">zsign2.m</a>,
+          is a complex transfer-of-sign function.
+        </li>
+        <li>
+          <a href = "zsvdc.m">zsvdc.m</a>,
+          computes the singular value decomposition of a general
+          complex matrix.
+        </li>
+        <li>
+          <a href = "ztrco.m">ztrco.m</a>,
+          returns the condition of a complex triangular matrix.
+        </li>
+        <li>
+          <a href = "ztrdi.m">ztrdi.m</a>,
+          computes the inverse or determinant of a complex triangular matrix.
+        </li>
+        <li>
+          <a href = "ztrsl.m">ztrsl.m</a>,
+          solves a complex triangular linear system.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "linpack_z_test.m">
+          linpack_z_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "linpack_z_test_output.txt">linpack_z_test_output.txt</a>,
+          output from the tests.
+        </li>
+        <li>
+          <a href = "linpack_z_test01.m">
+          linpack_z_test01.m</a>, tests ZCHDC;
+        </li>
+        <li>
+          <a href = "linpack_z_test02.m">
+          linpack_z_test02.m</a>, tests ZCHEX;
+        </li>
+        <li>
+          <a href = "linpack_z_test03.m">
+          linpack_z_test03.m</a>, tests ZCHUD;
+        </li>
+        <li>
+          <a href = "linpack_z_test04.m">
+          linpack_z_test04.m</a>, tests ZGBCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test05.m">
+          linpack_z_test05.m</a>, tests ZGBFA and ZGBSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test06.m">
+          linpack_z_test06.m</a>, tests ZGBFA and ZGBDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test07.m">
+          linpack_z_test07.m</a>, tests ZGECO;
+        </li>
+        <li>
+          <a href = "linpack_z_test08.m">
+          linpack_z_test08.m</a>, tests ZGEFA and ZGESL;
+        </li>
+        <li>
+          <a href = "linpack_z_test09.m">
+          linpack_z_test09.m</a>, tests ZGEFA and ZGEDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test10.m">
+          linpack_z_test10.m</a>, tests ZGTSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test11.m">
+          linpack_z_test11.m</a>, tests ZHICO;
+        </li>
+        <li>
+          <a href = "linpack_z_test12.m">
+          linpack_z_test12.m</a>, tests ZHIFA and XZISL;
+        </li>
+        <li>
+          <a href = "linpack_z_test13.m">
+          linpack_z_test13.m</a>, tests ZHIFA and ZHIDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test14.m">
+          linpack_z_test14.m</a>, tests ZHPCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test15.m">
+          linpack_z_test15.m</a>, tests ZHPFA and ZHPSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test16.m">
+          linpack_z_test16.m</a>, tests ZHPFA and ZHPDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test17.m">
+          linpack_z_test17.m</a>, tests ZPBCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test18.m">
+          linpack_z_test18.m</a>, tests ZPBFA and ZPBSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test19.m">
+          linpack_z_test19.m</a>, tests ZPBFA and ZPBDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test20.m">
+          linpack_z_test20.m</a>, tests ZPOCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test21.m">
+          linpack_z_test21.m</a>, tests ZPOFA and ZPOSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test22.m">
+          linpack_z_test22.m</a>, tests ZPOFA and ZPODI;
+        </li>
+        <li>
+          <a href = "linpack_z_test23.m">
+          linpack_z_test23.m</a>, tests ZPPCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test24.m">
+          linpack_z_test24.m</a>, tests ZPPFA and ZPPSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test25.m">
+          linpack_z_test25.m</a>, tests ZPPFA and ZPPDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test26.m">
+          linpack_z_test26.m</a>, tests ZPTSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test27.m">
+          linpack_z_test27.m</a>, tests ZQRDC and ZQRSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test28.m">
+          linpack_z_test28.m</a>, tests ZSICO;
+        </li>
+        <li>
+          <a href = "linpack_z_test29.m">
+          linpack_z_test29.m</a>, tests ZSIFA and ZSISL;
+        </li>
+        <li>
+          <a href = "linpack_z_test30.m">
+          linpack_z_test30.m</a>, tests ZSIFA and ZSIDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test31.m">
+          linpack_z_test31.m</a>, tests ZSPCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test32.m">
+          linpack_z_test32.m</a>, tests ZSPFA and ZSPSL;
+        </li>
+        <li>
+          <a href = "linpack_z_test33.m">
+          linpack_z_test33.m</a>, tests ZSPFA and ZSPDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test34.m">
+          linpack_z_test34.m</a>, tests ZSVDC;
+        </li>
+        <li>
+          <a href = "linpack_z_test345.m">
+          linpack_z_test345.m</a>, tests ZSVDC;
+        </li>
+        <li>
+          <a href = "linpack_z_test35.m">
+          linpack_z_test35.m</a>, tests ZTRCO;
+        </li>
+        <li>
+          <a href = "linpack_z_test36.m">
+          linpack_z_test36.m</a>, tests ZTRDI;
+        </li>
+        <li>
+          <a href = "linpack_z_test37.m">
+          linpack_z_test37.m</a>, tests ZTRSL;
+        </li>
+        <li>
+          <a href = "c8_uniform_01.m">c8_uniform_01.m</a>,
+          returns a unit pseudorandom C8.
+        </li>
+        <li>
+          <a href = "c8mat_uniform_01.m">c4mat_uniform_01.m</a>,
+          returns a unit pseudorandom C8MAT.
+        </li>
+        <li>
+          <a href = "c8vec_uniform_01.m">c4vec_uniform_01.m</a>,
+          returns a unit pseudorandom C8VEC.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

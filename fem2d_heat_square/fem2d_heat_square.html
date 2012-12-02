@@ -1,0 +1,282 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_HEAT_SQUARE - A Problem in a Square Region for FEM2D_HEAT
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_HEAT_SQUARE <br> A Problem in a Square Region for FEM2D_HEAT
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_HEAT_SQUARE</b> is a MATLAB library which
+      defines the geometry and other data for the the heat equation
+      over a square region, for solution by FEM2D_HEAT.
+    </p>
+
+    <p>
+      This mesh uses 81 nodes and forms 32 quadratic triangular elements.
+    </p>
+
+    <p>
+      We assume that the equation to be solved is
+      <blockquote><b>
+        dUdT - Laplacian U + K * U = F
+      </b></blockquote>
+      with
+      <blockquote><b>
+        K = 0,
+      </b></blockquote>
+      and
+      <blockquote><b>
+        F = (2*pi*pi-1)*sin(pi*x)*sin(pi*y)*exp(-t).
+      </b></blockquote>
+      The exact solution is:
+      <blockquote><b>
+        U = sin(pi*x) * sin(pi*y) * exp(-t).
+      </b></blockquote>
+      which is the formula we use to define our functions <b>G</b>
+      (for the boundary conditions) and <b>H</b> (for the initial
+      conditions).
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contour_sequence4/contour_sequence4.html">
+      CONTOUR_SEQUENCE4</a>,
+      a MATLAB program which
+      makes a sequence of contour plots based on a single XY coordinate file,
+      and a sequence of Z(X,Y) data files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>,
+      a MATLAB program which
+      uses the finite element method and the backward Euler method to solve the
+      2D time-dependent heat equation on an arbitrary triangulated region.
+      In order to run, it requires
+      user-supplied routines that define problem data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Hans Rudolf Schwarz,<br>
+          Finite Element Methods,<br>
+          Academic Press, 1988,<br>
+          ISBN: 0126330107,<br>
+          LC: TA347.F5.S3313.
+        </li>
+        <li>
+          Gilbert Strang, George Fix,<br>
+          An Analysis of the Finite Element Method,<br>
+          Cambridge, 1973,<br>
+          ISBN: 096140888X,<br>
+          LC: TA335.S77.
+        </li>
+        <li>
+          Olgierd Zienkiewicz,<br>
+          The Finite Element Method,<br>
+          Sixth Edition,<br>
+          Butterworth-Heinemann, 2005,<br>
+          ISBN: 0750663200,<br>
+          LC: TA640.2.Z54
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dirichlet_condition.m">dirichlet_condition.m</a>,
+          the user-supplied routine to evaluate the boundary conditions;
+        </li>
+        <li>
+          <a href = "initial_condition.m">initial_condition.m</a>,
+          the user-supplied routines to evaluate the initial conditions;
+        </li>
+        <li>
+          <a href = "k_coef.m">k_coef.m</a>,
+          the user-supplied routines to evaluate the linear coefficient.
+        </li>
+        <li>
+          <a href = "rhs.m">rhs.m</a>,
+          the user-supplied routines to evaluate the right hand side;
+        </li>
+        <li>
+          <a href = "square.out">square.out</a>,
+          output from a run of the program;
+        </li>
+        <li>
+          <a href = "square_nodes.png">square_nodes.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the 49 nodes;
+        </li>
+        <li>
+          <a href = "square_nodes.txt">square_nodes.txt</a>,
+          a text file containing a list, for each node, of its X and Y
+          coordinates;
+        </li>
+        <li>
+          <a href = "square_elements.png">square_elements.png</a>,
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the 32 elements;
+        </li>
+        <li>
+          <a href = "square_elements.txt">square_elements.txt</a>,
+          a text file containing a list, for each element, of the six
+          nodes that compose it;
+        </li>
+        <li>
+          <a href = "square_time.txt">square_time.txt</a>,
+          a text file containing the solution times;
+        </li>
+        <li>
+          <a href = "u0000.txt">u0000.txt</a>,
+          the solution U at time step 0;
+        </li>
+        <li>
+          <a href = "u0001.txt">u0001.txt</a>,
+          the solution U at time step 1;
+        </li>
+        <li>
+          <a href = "u0002.txt">u0002.txt</a>,
+          the solution U at time step 2;
+        </li>
+        <li>
+          <a href = "u0003.txt">u0003.txt</a>,
+          the solution U at time step 3;
+        </li>
+        <li>
+          <a href = "u0004.txt">u0004.txt</a>,
+          the solution U at time step 4;
+        </li>
+        <li>
+          <a href = "u0005.txt">u0005.txt</a>,
+          the solution U at time step 5;
+        </li>
+        <li>
+          <a href = "u0006.txt">u0006.txt</a>,
+          the solution U at time step 6;
+        </li>
+        <li>
+          <a href = "u0007.txt">u0007.txt</a>,
+          the solution U at time step 7;
+        </li>
+        <li>
+          <a href = "u0008.txt">u0008.txt</a>,
+          the solution U at time step 8;
+        </li>
+        <li>
+          <a href = "u0009.txt">u0009.txt</a>,
+          the solution U at time step 9;
+        </li>
+        <li>
+          <a href = "u0010.txt">u0010.txt</a>,
+          the solution U at time step 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The MATLAB program <b>CONTOUR_SEQUENCE4</b> can make contour
+      plots from the sequence of solutions:
+      <ul>
+        <li>
+          <a href = "u0000.png">u0000.png</a>,
+          the solution U at time step 0;
+        </li>
+        <li>
+          <a href = "u0001.png">u0001.png</a>,
+          the solution U at time step 1;
+        </li>
+        <li>
+          <a href = "u0002.png">u0002.png</a>,
+          the solution U at time step 2;
+        </li>
+        <li>
+          <a href = "u0003.png">u0003.png</a>,
+          the solution U at time step 3;
+        </li>
+        <li>
+          <a href = "u0004.png">u0004.png</a>,
+          the solution U at time step 4;
+        </li>
+        <li>
+          <a href = "u0005.png">u0005.png</a>,
+          the solution U at time step 5;
+        </li>
+        <li>
+          <a href = "u0006.png">u0006.png</a>,
+          the solution U at time step 6;
+        </li>
+        <li>
+          <a href = "u0007.png">u0007.png</a>,
+          the solution U at time step 7;
+        </li>
+        <li>
+          <a href = "u0008.png">u0008.png</a>,
+          the solution U at time step 8;
+        </li>
+        <li>
+          <a href = "u0009.png">u0009.png</a>,
+          the solution U at time step 9;
+        </li>
+        <li>
+          <a href = "u0010.png">u0010.png</a>,
+          the solution U at time step 10;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source code page</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 January 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

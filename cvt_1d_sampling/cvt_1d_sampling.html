@@ -1,0 +1,245 @@
+<html>
+
+  <head>
+    <title>
+      CVT_1D_SAMPLING - Centroidal Voronoi Tessellation in [0,1]
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_1D_SAMPLING <br> Centroidal Voronoi Tessellation in [0,1]
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_1D_SAMPLING</b> 
+      is a MATLAB program which 
+      allows the user to carry out Lloyd's algorithm for a centroidal
+      Voronoi Tessellation in the interval [0,1].
+    </p>
+
+    <p>
+      The determination of the Voronoi regions is carried out using
+      sampling.  This means that the convergence of the iteration is
+      influenced by the accuracy of the estimates provided by sampling.
+    </p>
+
+    <p>
+      For <b>n</b> generators, the solution is known in advance:
+      <blockquote>
+        x(i) = ( 2 * i - 1 ) / ( 2 * n )
+      </blockquote>
+      Lloyd's algorithm starts from an arbitrary vector <b>x</b>, however,
+      so it is interesting to see how the approximate solution evolves
+      toward the correct answer.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>cvt_1d_sampling</b> ( <i>n</i>, <i>it_num</i>, <i>sample_num</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> is the number of generators;
+        </li>
+        <li>
+          <i>it_num</i> is the number of iterative steps to take.
+        </li>
+        <li>
+          <i>sample_num</i> is the number of sample points in [0,1]
+          used to estimate the Voronoi regions.  A value between 1,000
+          and 100,000 is typical.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ccvt_box/ccvt_box.html">
+      CCVT_BOX</a>,
+      a MATLAB program which
+      constructs a modified CVT in which some points are forced to
+      lie on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ccvt_reflect/ccvt_reflect.html">
+      CCVT_REFLECT</a>,
+      a MATLAB program which
+      tries to construct a modified CVT in which some points are forced to
+      lie on the boundary, using a reflection idea.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      computes CVT's.
+    </p>
+
+    <p>
+      <a href = "../../datasets/cvt/cvt.html">
+      CVT</a>,
+      a dataset directory which 
+      contains a variety of examples of CVT datasets.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_lloyd/cvt_1d_lloyd.html">
+      CVT_1D_LLOYD</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density,
+      using exact techniques to determine the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_nonuniform/cvt_1d_nonuniform.html">
+      CVT_1D_NONUNIFORM</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal 
+      Voronoi Tessellation in 1 dimension, under a nonuniform density,
+      and plots the evolution of the locations of the generators
+      during the iteration;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_2d_sampling/cvt_2d_sampling.html">
+      CVT_2D_SAMPLING</a>,
+      a MATLAB program which
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the unit square [0,1]x[0,1], under a uniform density,
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_3d_sampling/cvt_3d_sampling.html">
+      CVT_3D_SAMPLING</a>,
+      a MATLAB program which
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the unit cube [0,1]x[0,1]x[0,1], under a uniform density,
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_dataset/cvt_dataset.html">
+      CVT_DATASET</a>,
+      a MATLAB program which
+      can create a CVT dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_demo/cvt_demo.html">
+      CVT_DEMO</a>,
+      a MATLAB program which 
+      demonstrates a CVT calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt/lcvt.html">
+      LCVT</a>,
+      a MATLAB library which 
+      computes a "Latinized" 
+      Centroidal Voronoi Tessellation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review, Volume 41, 1999, pages 637-676.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cvt_1d_sampling.m">cvt_1d_sampling.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cvt_1d_sampling_output.txt">cvt_1d_sampling_output.txt</a> 
+          the printed output from a run with 10 generators, 400 iterations,
+          100,000 sample points.
+        </li>
+        <li>
+          <a href = "energy.png">energy.png</a> 
+          a PNG image of the "energy" of the partition, which is the averaged sum of
+          squares of the distances between each sample point and its nearest generator.
+        </li>
+        <li>
+          <a href = "evolution.png">evolution.png</a> 
+          a PNG image of the evolution or trajectories of the generators as the
+          iteration proceeds.
+        </li>
+        <li>
+          <a href = "motion.png">motion.png</a> 
+          a PNG image of the "motion" of the generators, which is the averaged distance
+          each generator moves during an iteration.
+        </li>
+      </ul>
+    </p>
+
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 09 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

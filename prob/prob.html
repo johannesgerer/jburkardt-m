@@ -1,0 +1,3749 @@
+<html>
+
+  <head>
+    <title>
+      PROB - Probability Density Functions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PROB <br> Probability Density Functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PROB</b> 
+      is a MATLAB library which 
+      handles various discrete and
+      continuous probability density functions
+      ("PDF's").
+    </p>
+
+    <p>
+      For a discrete variable X, PDF(X) is the probability that the value 
+      X will occur; for a continuous variable, PDF(X) is the probability 
+      density of X, that is, the probability of a value between X and X+dX
+      is PDF(X) * dX.
+    </p>
+
+    <p>
+      The corresponding cumulative density functions or "CDF"'s are also
+      handled.  For a discrete or continuous variable, CDF(X) is the
+      probability that the variable takes on a value less than or equal to X.
+    </p>
+
+    <p>
+      In some cases, the inverse of the CDF can easily be computed.
+      If 
+      <pre><b>
+        X = CDF_INV ( P ) 
+      </b></pre>
+      then we are asserting that the value <b>X</b> has a cumulative
+      probability density function of <b>P</b>, in other words, 
+      the probability that the variable is less than or equal to <b>X</b>
+      is <b>P</b>.  If the CDF cannot be analytically inverted, there
+      are simple ways to try to estimate the inverse.  Depending on
+      the PDF, these methods may be rapid and accurate, or not.
+    </p>
+
+    <p>
+      For most distributions, the <i>mean</i> or "average value" or 
+      "expected value" is also available.  For a discrete variable, MEAN 
+      is simply the sum of the products X * PDF(X); for a continuous
+      variable, MEAN is the integral of X * PDF(X) over the range.
+      For the distributions covered here, the means are known beforehand,
+      and no summation or integration is required.
+    </p>
+
+    <p>
+      For most distributions, the <i>variance</i> is available.  For a 
+      discrete variable, the variance is the sum of the products 
+      ( X - MEAN )^2 * PDF(X); for a continuous variable, the 
+      variance is the integral of ( X - MEAN )^2 * PDF(X) over the range.
+      The square root of the variance is known as the <i>standard
+      deviation</i>.  For the distributions covered here, the variances are
+      often known beforehand, and no summation or integration is required.
+    </p>
+
+    <p>
+      For many of the distributions, it is possible to repeatedly
+      request "samples", that is, a pseudorandom sequence of realizations 
+      of the PDF.  These samples are always associated with an integer
+      seed, which controls the calculation.  Using the same seed as input
+      will guarantee the same sample value on output.  Ultimately, a
+      random number generator must be invoked internally.  In most cases,
+      the current code will call a routine called <b>R8_UNIFORM</b> or
+      <b>I4_UNIFORM</b>, each of which in turn calls a routine called
+      <b>R8_UNIFORM_01</b>.  You may prefer a different random number generator
+      for this purpose.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PROB</b> is available in 
+      <a href = "../../cpp_src/prob/prob.html">a C++ version</a> and
+      <a href = "../../f_src/prob/prob.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/prob/prob.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/dcdflib/dcdflib.html">
+      DCDFLIB</a>,
+      a FORTRAN90 library which
+      includes routines for evaluating and inverting a number of
+      distributions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/discrete_pdf_sample/discrete_pdf_sample.html">
+      DISCRETE_PDF_SAMPLE</a>, 
+      a MATLAB program which
+      demonstrates how to construct a Probability Density Function (PDF)
+      from a table of sample data, and then to use that PDF to create new samples.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/gsl/gsl.html">
+      GSL</a>, 
+      a C++ library which 
+      includes many routines for evaluating
+      probability distributions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>, 
+      a MATLAB library which
+      samples the normal distribution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_values/test_values.html">
+      TEST_VALUES</a>, 
+      a MATLAB library which
+      contains sample values for a number of distributions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which
+      samples the uniform distribution.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Roger Abernathy, Robert Smith,<br>
+          Algorithm 724,<br>
+          Program to Calculate F Percentiles,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 19, Number 4, December 1993, pages 481-483.
+        </li>
+        <li>
+          Milton Abramowitz, Irene Stegun,<br>
+          Handbook of Mathematical Functions,<br>
+          National Bureau of Standards, 1964,<br>
+          ISBN: 0-486-61272-4,<br>
+          LC: QA47.A34.
+        </li>
+        <li>
+          AG Adams,<br>
+          Algorithm 39:
+          Areas Under the Normal Curve,<br>
+          Computer Journal, <br>
+          Volume 12, 1969, pages 197-198.
+        </li>
+        <li>
+          Joachim Ahrens, Ulrich Dieter,<br>
+          Generating Gamma Variates by a Modified Rejection Technique,<br>
+          Communications of the ACM, <br>
+          Volume 25, Number 1, January 1982, pages 47-54.
+        </li>
+        <li>
+          Joachim Ahrens, Ulrich Dieter,<br>
+          Computer Methods for Sampling from Gamma, Beta, Poisson and
+          Binomial Distributions.<br>
+          Computing,<br>
+          Volume 12, 1974, pages 223-246.
+        </li>
+        <li>
+          Joachim Ahrens, Klaus-Dieter Kohrt, Ulrich Dieter,<br>
+          Algorithm 599:
+          Sampling from Gamma and Poisson Distributions,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 9, Number 2, June 1983, pages 255-257.
+        </li>
+        <li>
+          Jerry Banks, editor,<br>
+          Handbook of Simulation,<br>
+          Wiley, 1998,<br>
+          ISBN: 0471134031,<br>
+          LC: T57.62.H37.
+        </li>
+        <li>
+          JD Beasley, SG Springer,<br>
+          Algorithm AS 111:
+          The Percentage Points of the Normal Distribution,<br>
+          Applied Statistics,<br>
+          Volume 26, 1977, pages 118-121.
+        </li>
+        <li>
+          Frank Benford,<br>
+          The Law of Anomalous Numbers,<br>
+          Proceedings of the American Philosophical Society,<br>
+          Volume 78, 1938, pages 551-572.
+        </li>
+        <li>
+          Jose Bernardo,<br>
+          Algorithm AS 103:
+          Psi ( Digamma ) Function,<br>
+          Applied Statistics,<br>
+          Volume 25, Number 3, 1976, pages 315-317.
+        </li>
+        <li>
+          Donald Best, Nicholas Fisher,<br>
+          Efficient Simulation of the von Mises Distribution,<br>
+          Applied Statistics,<br>
+          Volume 28, Number 2, pages 152-157.
+        </li>
+        <li>
+          Donald Best, Roberts,<br>
+          Algorithm AS 91:
+          The Percentage Points of the Chi-Squared Distribution,<br>
+          Applied Statistics,<br>
+          Volume 24, Number 3, 1975, pages 385-390.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673.
+        </li>
+        <li>
+          William Cody,<br>
+          An Overview of Software Development for Special Functions, 
+          in Numerical Analysis Dundee, 1975, <br>
+          edited by GA Watson,<br>
+          Lecture Notes in Mathematics, 506, <br>
+          Springer, 1976.
+        </li>
+        <li>
+          William Cody,<br>
+          Rational Chebyshev Approximations for the Error Function,<br>
+          Mathematics of Computation,<br>
+          Volume 23, Number 107, July 1969, pages 631-638.
+        </li>
+        <li>
+          William Cody, Kenneth Hillstrom,<br>
+          Chebyshev Approximations for the Natural Logarithm of the 
+          Gamma Function,
+          Mathematics of Computation,<br>
+          Volume 21, Number 98, April 1967, pages 198-203.
+        </li>
+        <li>
+          BE Cooper,<br>
+          Algorithm AS 5: 
+          The Integral of the Non-Central T-Distribution,<br>
+          Applied Statistics,<br>
+          Volume 17, 1968, page 193.
+        </li>
+        <li>
+          Luc Devroye,<br>
+          Non-Uniform Random Variate Generation,<br>
+          Springer, 1986,<br>
+          ISBN: 0387963057,<br>
+          LC: QA274.D48
+        </li>
+        <li>
+          Merran Evans, Nicholas Hastings, Brian Peacock,<br>
+          Statistical Distributions,<br>
+          Wiley, 2000,<br>
+          ISBN: 0471371246,<br>
+          LC: QA273.6E92.
+        </li>
+        <li>
+          Nicholas Fisher,<br>
+          Statistical Analysis of Circular Data,<br>
+          Cambridge, 1993,<br>
+          ISBN: 0521568900,<br>
+          LC: QA276.F488
+        </li>
+        <li>
+          Nicholas Fisher, Toby Lewis, Brian Embleton,<br>
+          Statistical Analysis of Spherical Data,<br>
+          Cambridge, 2003,<br>
+          ISBN13: 978-0521456999,<br>
+          LC: QA276.F489
+        </li>
+        <li>
+          Darren Glass, Philip Lowry,<br>
+          Quasigeometric Distributions and Extra Inning Baseball Games,<br>
+          Mathematics Magazine,<br>
+          Volume 81, Number 2, April 2008, pages 127-137.
+        </li>
+        <li>
+          John Hart, Ward Cheney, Charles Lawson, Hans Maehly, 
+          Charles Mesztenyi, John Rice, Henry Thatcher, 
+          Christoph Witzgall,<br>
+          Computer Approximations,<br>
+          Wiley, 1968,<br>
+          LC: QA297.C64.
+        </li>
+        <li>
+          Geoffrey Hill,<br>
+          Algorithm 518:
+          Incomplete Bessel Function I0: The Von Mises Distribution,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 3, Number 3, September 1977, pages 279-284.
+        </li>
+        <li>
+          Ted Hill,<br>
+          The First Digit Phenomenon,<br>
+          American Scientist,<br>
+          Volume 86, July/August 1998, pages 358-363.
+        </li>
+        <li>
+          Mark Johnson,<br>
+          Multivariate Statistical Simulation:
+          A Guid to Selecting and Generating Continuous Multivariate
+          Distributions,<br>
+          Wiley, 1987,<br>
+          ISBN: 0471822906,<br>
+          LC: QA278.J62
+        </li>
+        <li>
+          Norman Johnson, Samuel Kotz, Narayanaswamy Balakrishnan,<br>
+          Continuous Univariate Distributions,<br>
+          Second edition,<br>
+          Wiley, 1994,<br>
+          ISBN: 0471584940,<br>
+          LC: QA273.6.J6
+        </li>
+        <li>
+          Norman Johnson, Samuel Kotz, Adrienne Kemp,<br>
+          Univariate Discrete Distributions,<br>
+          Third edition,<br>
+          Wiley, 2005,<br>
+          ISBN: 0471272469,<br>
+          LC: QA273.6.J64
+        </li>
+        <li>
+          William Kennedy, James Gentle,<br>
+          Statistical Computing,<br>
+          Marcel Dekker, 1980,<br>
+          ISBN: 0824768981,<br>
+          LC: QA276.4 K46.
+        </li>
+        <li>
+          Robert Knop,<br>
+          Algorithm 441: 
+          Random Deviates from the Dipole Distribution,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 16, Number 1, January 1973, page 51.
+        </li>
+        <li>
+          Kalimutha Krishnamoorthy,<br>
+          Handbook of Statistical Distributions with Applications,<br>
+          Chapman and Hall, 2006,<br>
+          ISBN: 1-58488-635-8,<br>
+          LC: QA273.6.K75.
+        </li>
+        <li>
+          Henry Kucera, Winthrop Francis,<br>
+          Computational Analysis of Present-Day American English,<br>
+          Brown University Press, 1967,<br>
+          LC: PE2839.K8.
+        </li>
+        <li>
+          Kenneth Lange,<br>
+          Mathematical and Statistical Methods for Genetic Analysis,<br>
+          Springer, 1997,<br>
+          ISBN: 0387953892,<br>
+          LC: QH438.4.M33.L36.
+        </li>
+        <li>
+          Alfred Lotka,<br>
+          The frequency distribution of scientific productivity,<br>
+          Journal of the Washington Academy of Sciences,<br>
+          Volume 16, Number 12, 1926, pages 317-324.
+        </li>
+        <li>
+          KL Majumder, GP Bhattacharjee,<br>
+          Algorithm AS63:
+          The incomplete Beta Integral,<br>
+          Applied Statistics,<br>
+          Volume 22, number 3, 1973, pages 409-411.
+        </li>
+        <li>
+          Kanti Mardia, Peter Jupp,<br>
+          Directional Statistics,<br>
+          Wiley, 2000,<br>
+          ISBN: 0471953334,<br>
+          LC: QA276.M335
+        </li>
+        <li>
+          <a href = "http://www.geocities.com/~mikemclaughlin/math_stat/Dists/Compendium.html">
+          Michael McLaughlin</a><br>
+          A Compendium of Common Probability Distributions
+        </li>
+        <li>
+          Paul Nahin,<br>
+          Digital Dice: Computational Solutions to Practical Probability Problems,<br>
+          Princeton University Press, 2008,<br>
+          ISBN13: 978-0-691-12698-2,<br>
+          LC: QA273.25.N34.
+        </li>
+        <li>
+          Keith Ord,<br>
+          Families of Frequency Distributions,<br>
+          Lubrecht & Cramer, 1972,<br>
+          ISBN: 0852641370.
+        </li>
+        <li>
+          Donald Owen,<br>
+          Tables for Computing Bivariate Normal Probabilities,<br>
+          The Annals of Mathematical Statistics,<br>
+          Volume 27, Number 4, December 1956, pages 1075-1090.
+        </li>
+        <li>
+          Frank Powell,<br>
+          Statistical Tables for Sociology, Biology and Physical Sciences,<br>
+          Cambridge University Press, 1982,<br>
+          ISBN: 0521284732,<br>
+          LC: QA276.25.S73.
+        </li>
+        <li>
+          Sudarshan Raghunathan,<br>
+          Making a Supercomputer Do What You Want: High Level Tools for 
+          Parallel Programming,<br>
+          Computing in Science and Engineering,<br>
+          Volume 8, Number 5, September/October 2006, pages 70-80.
+        </li>
+        <li>
+          Ralph Raimi,<br>
+          The Peculiar Distribution of First Digits,<br>
+          Scientific American,<br>
+          December 1969, pages 109-119.
+        </li>
+        <li>
+          Reuven Rubinstein,<br>
+          Monte Carlo Optimization, Simulation and Sensitivity of 
+          Queueing Networks,<br>
+          Krieger, August 1992,<br>
+          ISBN: 0894647644,<br>
+          LC: QA298.R79
+        </li>
+        <li>
+          BE Schneider,<br>
+          Algorithm AS 121:
+          Trigamma Function,<br>
+          Applied Statistics,<br>
+          Volume 27, Number 1, 1978, page 97-99.
+        </li>
+        <li>
+          BL Shea,<br>
+          Algorithm AS 239:
+          Chi-squared and Incomplete Gamma Integral,<br>
+          Applied Statistics,<br>
+          Volume 37, Number 3, 1988, pages 466-473.
+        </li>
+        <li>
+          Eric Weisstein,<br>
+          CRC Concise Encyclopedia of Mathematics,<br>
+          CRC Press, 2002,<br>
+          Second edition,<br>
+          ISBN: 1584883472,<br>
+          LC: QA5.W45
+        </li>
+        <li>
+          Michael Wichura,<br>
+          Algorithm AS 241:
+          The Percentage Points of the Normal Distribution,<br>
+          Applied Statistics,<br>
+          Volume 37, Number 3, 1988, pages 477-484.
+        </li>
+        <li>
+          Herbert Wilf,<br>
+          Some New Aspects of the Coupon Collector's Problem,<br>
+          SIAM Review,<br>
+          Volume 48, Number 3, September 2006, pages 549-565.
+        </li>
+        <li>
+          ML Wolfson, HV Wright,<br>
+          Algorithm 160:
+          Combinatorial of M Things Taken N at a Time,<br>
+          Communications of the ACM,<br>
+          Volume 6, Number 4, April 1963, page 161.
+        </li>
+        <li>
+          JC Young, CE Minder,<br>
+          Algorithm AS 76: 
+          An Algorithm Useful in Calculating Non-Central T and 
+          Bivariate Normal Distributions,<br>
+          Applied Statistics,<br>
+          Volume 23, Number 3, 1974, pages 455-457.
+        </li>
+        <li>
+          Daniel Zwillinger, Steven Kokoska,<br>
+          Standard Probability and Statistical Tables,<br>
+          CRC Press, 2000,<br>
+          ISBN: 1-58488-059-7,<br>
+          LC: QA273.3.Z95.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "angle_mean.m">angle_mean.m</a>
+          returns the mean of the Angle PDF.
+        </li>
+        <li>
+          <a href = "angle_pdf.m">angle_pdf.m</a> 
+          evaluates the Angle PDF.
+        </li>
+        <li>
+          <a href = "anglit_cdf.m">anglit_cdf.m</a> 
+          evaluates the Anglit CDF.
+        </li>
+        <li>
+          <a href = "anglit_cdf_inv.m">anglit_cdf_inv.m</a> 
+          inverts the Anglit CDF.
+        </li>
+        <li>
+          <a href = "anglit_mean.m">anglit_mean.m</a> 
+          returns the mean of the Anglit PDF.
+        </li>
+        <li>
+          <a href = "anglit_pdf.m">anglit_pdf.m</a> 
+          evaluates the Anglit PDF.
+        </li>
+        <li>
+          <a href = "anglit_sample.m">anglit_sample.m</a> 
+          samples the Anglit PDF.
+        </li>
+        <li>
+          <a href = "anglit_variance.m">anglit_variance.m</a> 
+          returns the variance of the Anglit PDF.
+        </li>
+        <li>
+          <a href = "arcsin_cdf.m">arcsin_cdf.m</a> 
+          evaluates the Arcsin CDF.
+        </li>
+        <li>
+          <a href = "arcsin_check.m">arcsin_check.m</a> 
+          checks the parameters of the Arcsin PDF.
+        </li>
+        <li>
+          <a href = "arcsin_cdf_inv.m">arcsin_cdf_inv.m</a> 
+          inverts the Arcsin CDF.
+        </li>
+        <li>
+          <a href = "arcsin_mean.m">arcsin_mean.m</a> 
+          returns the mean of the Arcsin PDF.
+        </li>
+        <li>
+          <a href = "arcsin_pdf.m">arcsin_pdf.m</a> 
+          evaluates the Arcsin PDF.
+        </li>
+        <li>
+          <a href = "arcsin_sample.m">arcsin_sample.m</a> 
+          samples the Arcsin PDF.
+        </li>
+        <li>
+          <a href = "arcsin_variance.m">arcsin_variance.m</a> 
+          returns the variance of the Arcsin PDF.
+        </li>
+        <li>
+          <a href = "benford_pdf.m">benford_pdf.m</a> 
+          returns the Benford probability of one or more significant digits.
+        </li>
+        <li>
+          <a href = "bernoulli_cdf.m">bernoulli_cdf.m</a> 
+          evaluates the Bernoulli CDF.
+        </li>
+        <li>
+          <a href = "bernoulli_cdf_inv.m">bernoulli_cdf_inv.m</a> 
+          inverts the Bernoulli CDF.
+        </li>
+        <li>
+          <a href = "bernoulli_check.m">bernoulli_check.m</a> 
+          checks the parameter of the Bernoulli CDF.
+        </li>
+        <li>
+          <a href = "bernoulli_mean.m">bernoulli_mean.m</a> 
+          returns the mean of the Bernoulli PDF.
+        </li>
+        <li>
+          <a href = "bernoulli_pdf.m">bernoulli_pdf.m</a> 
+          evaluates the Bernoulli PDF.
+        </li>
+        <li>
+          <a href = "bernoulli_sample.m">bernoulli_sample.m</a> 
+          samples the Bernoulli PDF.
+        </li>
+        <li>
+          <a href = "bernoulli_variance.m">bernoulli_variance.m</a> 
+          returns the variance of the Bernoulli PDF.
+        </li>
+        <li>
+          <a href = "bessel_i0.m">bessel_i0.m</a> 
+          evaluates the Bessel function I0(x).  
+        </li>
+        <li>
+          <a href = "bessel_i0_values.m">bessel_i0_values.m</a> 
+          returns some values of the Bessel function I0(x).  
+        </li>
+        <li>
+          <a href = "bessel_i1.m">bessel_i1.m</a> 
+          evaluates the Bessel function I1(x).  
+        </li>
+        <li>
+          <a href = "bessel_i1_values.m">bessel_i1_values.m</a> 
+          returns some values of the Bessel function I1(x).  
+        </li>
+        <li>
+          <a href = "bessel_ix_values.m">bessel_ix_values.m</a> 
+          returns some values of the Bessel function In(x) 
+          for noninteger order.  
+        </li>
+        <li>
+          <a href = "beta.m">beta.m</a> 
+          returns the value of the Beta function.
+        </li>
+        <li>
+          <a href = "beta_binomial_cdf.m">beta_binomial_cdf.m</a> 
+          evaluates the Beta Binomial CDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_cdf_inv.m">beta_binomial_cdf_inv.m</a> 
+          inverts the Beta Binomial CDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_check.m">beta_binomial_check.m</a> 
+          checks the parameters of the Beta Binomial PDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_mean.m">beta_binomial_mean.m</a> 
+          returns the mean of the Beta Binomial PDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_pdf.m">beta_binomial_pdf.m</a> 
+          evaluates the Beta Binomial PDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_sample.m">beta_binomial_sample.m</a> 
+          samples the Beta Binomial CDF.
+        </li>
+        <li>
+          <a href = "beta_binomial_variance.m">beta_binomial_variance.m</a> 
+          returns the variance of the Beta Binomial PDF.
+        </li>
+        <li>
+          <a href = "beta_cdf.m">beta_cdf.m</a>
+          evaluates the Beta CDF.
+        </li>
+        <li>
+          <a href = "beta_cdf_inv.m">beta_cddf_inv.m</a>
+          inverts the Beta CDF.
+        </li>
+        <li>
+          <a href = "beta_cdf_values.m">beta_cdf_values.m</a>
+          returns some values of the Beta CDF.
+        </li>
+        <li>
+          <a href = "beta_check.m">beta_check.m</a>
+          checks the parameters of the Beta PDF.
+        </li>
+        <li>
+          <a href = "beta_inc.m">beta_inc.m</a>
+          returns the value of the incomplete Beta function.
+        </li>
+        <li>
+          <a href = "beta_inc_values.m">beta_inc_values.m</a>
+          returns some values of the incomplete Beta function.
+        </li>
+        <li>
+          <a href = "beta_mean.m">beta_mean.m</a>
+          returns the mean of the Beta PDF.
+        </li>
+        <li>
+          <a href = "beta_pdf.m">beta_pdf.m</a>
+          evaluates the Beta PDF.
+        </li>
+        <li>
+          <a href = "beta_sample.m">beta_sample.m</a>
+          samples the Beta PDF.
+        </li>
+        <li>
+          <a href = "beta_variance.m">beta_variance.m</a>
+          returns the variance of the Beta PDF.
+        </li>
+        <li>
+          <a href = "binomial_cdf.m">binomial_cdf.m</a>
+          evaluates the Binomial CDF.
+        </li>
+        <li>
+          <a href = "binomial_cdf_values.m">binomial_cdf_values.m</a>
+          returns some values of the binomial CDF.
+        </li>
+        <li>
+          <a href = "binomial_cdf_inv.m">binomial_cdf_inv.m</a>
+          inverts the Binomial CDF.
+        </li>
+        <li>
+          <a href = "binomial_cdf_values.m">binomial_cdf_values.m</a>
+          returns some values of the Binomial CDF.
+        </li>
+        <li>
+          <a href = "binomial_check.m">binomial_check.m</a>
+          checks the parameter of the Binomial PDF.
+        </li>
+        <li>
+          <a href = "binomial_coef.m">binomial_coef.m</a>
+          computes the Binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "binomial_coef_log.m">binomial_coef_log.m</a>
+          computes the logarithm of the Binomial coefficient.
+        </li>
+        <li>
+          <a href = "binomial_mean.m">binomial_mean.m</a>
+          returns the mean of the Binomial PDF.
+        </li>
+        <li>
+          <a href = "binomial_pdf.m">binomial_pdf.m</a>
+          evaluates the Binomial PDF.
+        </li>
+        <li>
+          <a href = "binomial_sample.m">binomial_sample.m</a>
+          samples the Binomial PDF.
+        </li>
+        <li>
+          <a href = "binomial_variance.m">binomial_variance.m</a>
+          returns the variance of the Binomial PDF.
+        </li>
+        <li>
+          <a href = "birthday_cdf.m">birthday_cdf.m</a>
+          evaluates the Birthday CDF.
+        </li>
+        <li>
+          <a href = "birthday_cdf_inv.m">birthday_cdf_inv.m</a>
+          inverts the Birthday CDF.
+        </li>
+        <li>
+          <a href = "birthday_pdf.m">birthday_pdf.m</a>
+          evaluates the Birthday PDF.
+        </li>
+        <li>
+          <a href = "bradford_cdf.m">bradford_cdf.m</a>
+          evaluates the Bradford CDF.
+        </li>
+        <li>
+          <a href = "bradford_cdf_inv.m">bradford_cdf_inv.m</a>
+          inverts the Bradford CDF.
+        </li>
+        <li>
+          <a href = "bradford_check.m">bradford_check.m</a>
+          checks the parameters of the Bradford PDF.
+        </li>
+        <li>
+          <a href = "bradford_mean.m">bradford_mean.m</a>
+          returns the mean of the Bradford PDF.
+        </li>
+        <li>
+          <a href = "bradford_pdf.m">bradford_pdf.m</a>
+          evaluates the Bradford PDF.
+        </li>
+        <li>
+          <a href = "bradford_sample.m">bradford_sample.m</a>
+          samples the Bradford PDF.
+        </li>
+        <li>
+          <a href = "bradford_variance.m">bradford_variance.m</a>
+          returns the variance of the Bradford PDF.
+        </li>
+        <li>
+          <a href = "buffon_laplace_pdf.m">buffon_laplace_pdf.m</a>
+          evaluates the Buffon-Laplace PDF.
+        </li>
+        <li>
+          <a href = "buffon_laplace_simulate.m">buffon_laplace_simulate.m</a>
+          simulates the Buffon-Laplace needle experiment.
+        </li>
+        <li>
+          <a href = "buffon_pdf.m">buffon_pdf.m</a>
+          evaluates the Buffon PDF.
+        </li>
+        <li>
+          <a href = "buffon_simulate.m">buffon_simulate.m</a>
+          simulates the Buffon needle experiment.
+        </li>
+        <li>
+          <a href = "burr_cdf.m">burr_cdf.m</a>
+          evaluates the Burr CDF.
+        </li>
+        <li>
+          <a href = "burr_cdf_inv.m">burr_cdf_inv.m</a>
+          inverts the Burr CDF.
+        </li>
+        <li>
+          <a href = "burr_check.m">burr_check.m</a>
+          checks the parameters of the Burr CDF.
+        </li>
+        <li>
+          <a href = "burr_mean.m">burr_mean.m</a>
+          returns the mean of the Burr PDF.
+        </li>
+        <li>
+          <a href = "burr_pdf.m">burr_pdf.m</a>
+          evaluates the Burr PDF.
+        </li>
+        <li>
+          <a href = "burr_sample.m">burr_sample.m</a>
+          samples the Burr PDF.
+        </li>
+        <li>
+          <a href = "burr_variance.m">burr_variance.m</a>
+          returns the variance of the Burr PDF.
+        </li>
+        <li>
+          <a href = "c_normal_01_sample.m">c_normal_01_sample.m</a>
+          samples the complex Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "cardioid_cdf.m">cardioid_cdf.m</a>
+          evaluates the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cardioid_cdf_inv.m">cardioid_cdf_inv.m</a>
+          inverts the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cardioid_check.m">cardioid_check.m</a>
+          checks the parameters of the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cardioid_mean.m">cardioid_mean.m</a>
+          returns the mean of the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cardioid_pdf.m">cardioid_pdf.m</a>
+          evaluates the Cardioid PDF.
+        </li>
+        <li>
+          <a href = "cardioid_sample.m">cardioid_sample.m</a>
+          samples the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cardioid_variance.m">cardioid_variance.m</a>
+          returns the variance of the Cardioid CDF.
+        </li>
+        <li>
+          <a href = "cauchy_cdf.m">cauchy_cdf.m</a>
+          evaluates the Cauchy CDF.
+        </li>
+        <li>
+          <a href = "cauchy_cdf_inv.m">cauchy_cdf_inv.m</a>
+          inverts the Cauchy CDF.
+        </li>
+        <li>
+          <a href = "cauchy_cdf_values.m">cauchy_cdf_values.m</a>
+          returns some values of the Cauchy CDF.
+        </li>
+        <li>
+          <a href = "cauchy_check.m">cauchy_check.m</a>
+          checks the parameters of the Cauchy CDF.
+        </li>
+        <li>
+          <a href = "cauchy_mean.m">cauchy_mean.m</a>
+          returns the mean of the Cauchy PDF.
+        </li>
+        <li>
+          <a href = "cauchy_pdf.m">cauchy_pdf.m</a>
+          evaluates the Cauchy PDF.
+        </li>
+        <li>
+          <a href = "cauchy_sample.m">cauchy_sample.m</a>
+          samples the Cauchy PDF.
+        </li>
+        <li>
+          <a href = "cauchy_variance.m">cauchy_variance.m</a>
+          returns the variance of the Cauchy PDF.
+        </li>
+        <li>
+          <a href = "chi_cdf.m">chi_cdf.m</a> 
+          evaluates the Chi CDF.
+        </li>
+        <li>
+          <a href = "chi_cdf_inv.m">chi_cdf_inv.m</a> 
+          inverts the Chi CDF.
+        </li>
+        <li>
+          <a href = "chi_check.m">chi_check.m</a> 
+          checks the parameters of the Chi CDF.
+        </li>
+        <li>
+          <a href = "chi_mean.m">chi_mean.m</a> 
+          returns the mean of the Chi PDF.
+        </li>
+        <li>
+          <a href = "chi_pdf.m">chi_pdf.m</a> 
+          evaluates the Chi PDF.
+        </li>
+        <li>
+          <a href = "chi_sample.m">chi_sample.m</a> 
+          samples the Chi PDF.
+        </li>
+        <li>
+          <a href = "chi_variance.m">chi_variance.m</a> 
+          returns the variance of the Chi PDF.
+        </li>
+        <li>
+          <a href = "chi_square_cdf.m">chi_square_cdf.m</a> 
+          evaluates the chi-squared CDF.
+        </li>
+        <li>
+          <a href = "chi_square_cdf_inv.m">chi_square_cdf_inv.m</a> 
+          inverts the chi-squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_cdf_values.m">chi_square_cdf_values.m</a> 
+          returns values of the Chi-Square central CDF.
+        </li>
+        <li>
+          <a href = "chi_square_check.m">chi_square_check.m</a> 
+          checks the parameter of the central Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_mean.m">chi_square_mean.m</a> 
+          returns the mean of the central Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_pdf.m">chi_square_pdf.m</a> 
+          evaluates the central Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_sample.m">chi_square_sample.m</a> 
+          samples the central Chisquare PDF.
+        </li>
+        <li>
+          <a href = "chi_square_variance.m">chi_square_variance.m</a> 
+          returns the variance of the central Chisquare PDF.
+        </li>
+        <li>
+          <a href = "chi_square_noncentral_check.m">
+          chi_square_noncentral_check.m</a> 
+          checks the parameters of the noncentral Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_noncentral_cdf_values.m">
+          chi_square_noncentral_cdf_values.m</a>
+          returns some values of the noncentral Chi-Squared CDF.
+        </li>
+        <li>
+          <a href = "chi_square_noncentral_mean.m">
+          chi_square_noncentral_mean.m</a> 
+          returns the mean of the noncentral Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "chi_square_noncentral_sample.m">
+          chi_square_noncentral_sample.m</a> 
+          samples the noncentral Chisquare PDF.
+        </li>
+        <li>
+          <a href = "chi_square_noncentral_variance.m">
+          chi_square_noncentral_variance.m</a> 
+          returns the variance of the noncentral Chi-Squared PDF.
+        </li>
+        <li>
+          <a href = "circle_sample.m">circle_sample.m</a> 
+          samples points from a circle.
+        </li>
+        <li>
+          <a href = "circular_normal_01_mean.m">circular_normal_01_mean.m</a> 
+          returns the mean of the Circular Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_01_pdf.m">circular_normal_01_pdf.m</a> 
+          evaluates the Circular Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_01_sample.m">
+          circular_normal_01_sample.m</a> 
+          samples the Circular Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_01_variance.m">
+          circular_normal_01_variance.m</a> 
+          returns the variance of the Circular Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_mean.m">circular_normal_mean.m</a> 
+          returns the mean of the Circular Normal PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_pdf.m">circular_normal_pdf.m</a> 
+          evaluates the Circular Normal PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_sample.m">
+          circular_normal_sample.m</a> 
+          samples the Circular Normal PDF.
+        </li>
+        <li>
+          <a href = "circular_normal_variance.m">
+          circular_normal_variance.m</a> 
+          returns the variance of the Circular Normal PDF.
+        </li>
+        <li>
+          <a href = "combinatorial.m">combinatorial.m</a> 
+          returns the combinatorial coefficient.
+        </li>
+        <li>
+          <a href = "cosine_cdf.m">cosine_cdf.m</a> 
+          evaluates the Cosine CDF.
+        </li>
+        <li>
+          <a href = "cosine_cdf.m">cosine_cdf.m</a> 
+          inverts the Cosine CDF.
+        </li>
+        <li>
+          <a href = "cosine_check.m">cosine_check.m</a> 
+          checks the parameters of the Cosine CDF.
+        </li>
+        <li>
+          <a href = "cosine_mean.m">cosine_mean.m</a> 
+          returns the mean of the Cosine PDF.
+        </li>
+        <li>
+          <a href = "cosine_pdf.m">cosine_pdf.m</a> 
+          evaluates the Cosine PDF.
+        </li>
+        <li>
+          <a href = "cosine_sample.m">cosine_sample.m</a> 
+          samples the Cosine PDF.
+        </li>
+        <li>
+          <a href = "cosine_variance.m">cosine_variance.m</a> 
+          returns the variance of the Cosine PDF.
+        </li>
+        <li>
+          <a href = "coupon_complete_pdf.m">coupon_complete_pdf.m</a> 
+          returns the variance of the Complete Coupon PDF.
+        </li>
+        <li>
+          <a href = "coupon_mean.m">coupon_mean.m</a> 
+          returns the variance of the Coupon PDF.
+        </li>
+        <li>
+          <a href = "coupon_simulate.m">coupon_simulate.m</a> 
+          simulates the coupon collector's problem.
+        </li>
+        <li>
+          <a href = "coupon_variance.m">coupon_variance.m</a> 
+          returns the variance of the Coupon PDF.
+        </li>
+        <li>
+          <a href = "csc.m">csc.m</a> 
+          returns the cosecant of an angle.
+        </li>
+        <li>
+          <a href = "deranged_cdf.m">deranged_cdf.m</a> 
+          evaluates the Deranged CDF.
+        </li>
+        <li>
+          <a href = "deranged_cdf_inv.m">deranged_cdf_inv.m</a> 
+          inverts the Deranged CDF.
+        </li>
+        <li>
+          <a href = "deranged_check.m">deranged_check.m</a> 
+          checks the parameter of the Deranged PDF.
+        </li>
+        <li>
+          <a href = "deranged_enum.m">deranged_enum.m</a> 
+          returns the number of derangements of N objects.
+        </li>
+        <li>
+          <a href = "deranged_mean.m">deranged_mean.m</a> 
+          returns the mean of the Deranged CDF.
+        </li>
+        <li>
+          <a href = "deranged_pdf.m">deranged_pdf.m</a> 
+          evaluates the Deranged PDF.
+        </li>
+        <li>
+          <a href = "deranged_sample.m">deranged_sample.m</a> 
+          samples the Deranged PDF.
+        </li>
+        <li>
+          <a href = "deranged_variance.m">deranged_variance.m</a> 
+          returns the variance of the Deranged CDF.
+        </li>
+        <li>
+          <a href = "digamma.m">digamma.m</a> 
+          calculates the digamma or Psi function 
+          = d ( LOG ( GAMMA ( X ) ) ) / dX
+        </li>
+        <li>
+          <a href = "dipole_cdf.m">dipole_cdf.m</a> 
+          evaluates the Dipole CDF.
+        </li>
+        <li>
+          <a href = "dipole_cdf_inv.m">dipole_cdf_inv.m</a> 
+          inverts the Dipole CDF.
+        </li>
+        <li>
+          <a href = "dipole_check.m">dipole_check.m</a> 
+          checks the parameters of the Dipole CDF.
+        </li>
+        <li>
+          <a href = "dipole_pdf.m">dipole_pdf.m</a> 
+          evaluates the Dipole PDF.
+        </li>
+        <li>
+          <a href = "dipole_sample.m">dipole_sample.m</a> 
+          samples the Dipole PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_check.m">dirichlet_check.m</a> 
+          checks the parameters of the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_mean.m">dirichlet_mean.m</a> 
+          returns the means of the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_mix_check.m">dirichlet_mix_check.m</a> 
+          checks the parameters of a Dirichlet mixture PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_mix_mean.m">dirichlet_mix_mean.m</a> 
+          returns the means of a Dirichlet mixture PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_mix_pdf.m">dirichlet_mix_pdf.m</a> 
+          evaluates a Dirichlet mixture PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_mix_sample.m">dirichlet_mix_sample.m</a> 
+          samples a Dirichlet mixture PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_moment2.m">dirichlet_moment2.m</a> 
+          returns the second moments of the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_multinomial_pdf.m">dirichlet_multinomial_pdf.m</a> 
+          evaluates a Dirichlet Multinomial PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_pdf.m">dirichlet_pdf.m</a> 
+          evaluates the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_sample.m">dirichlet_sample.m</a> 
+          samples the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "dirichlet_variance.m">dirichlet_variance.m</a> 
+          returns the variances of the Dirichlet PDF.
+        </li>
+        <li>
+          <a href = "discrete_cdf.m">discrete_cdf.m</a> 
+          evaluates the Discrete CDF.
+        </li>
+        <li>
+          <a href = "discrete_cdf_inv.m">discrete_cdf_inv.m</a> 
+          inverts the Discrete CDF.
+        </li>
+        <li>
+          <a href = "discrete_check.m">discrete_check.m</a> 
+          checks the parameters of the Discrete CDF.
+        </li>
+        <li>
+          <a href = "discrete_mean.m">discrete_mean.m</a> 
+          evaluates the mean of the Discrete PDF.
+        </li>
+        <li>
+          <a href = "discrete_pdf.m">discrete_pdf.m</a> 
+          evaluates the Discrete PDF.
+        </li>
+        <li>
+          <a href = "discrete_sample.m">discrete_sample.m</a> 
+          samples the Discrete PDF.
+        </li>
+        <li>
+          <a href = "discrete_variance.m">discrete_variance.m</a> 
+          evaluates the variance of the Discrete PDF.
+        </li>
+        <li>
+          <a href = "e_constant.m">e_constant.m</a> 
+          returns the value of E.
+        </li>
+        <li>
+          <a href = "empirical_discrete_cdf.m">empirical_discrete_cdf.m</a> 
+          evaluates the Empirical Discrete CDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_cdf_inv.m">
+          empirical_discrete_cdf_inv.m</a> 
+          inverts the Empirical Discrete CDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_check.m">empirical_discrete_check.m</a> 
+          checks the parameters of the Empirical Discrete CDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_mean.m">empirical_discrete_mean.m</a> 
+          returns the mean of the Empirical Discrete PDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_pdf.m">empirical_discrete_pdf.m</a> 
+          evaluates the Empirical Discrete PDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_sample.m">empirical_discrete_sample.m</a> 
+          samples the Empirical Discrete PDF.
+        </li>
+        <li>
+          <a href = "empirical_discrete_variance.m">
+          empirical_discrete_variance.m</a> 
+          returns the variance of the Empirical Discrete PDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_cdf.m">english_sentence_length_cdf.m</a> 
+          evaluates the English Sentence Length CDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_cdf_inv.m">english_sentence_length_cdf_inv.m</a> 
+          inverts the English Sentence Length CDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_mean.m">english_sentence_length_mean.m</a> 
+          evaluates the mean of the English Sentence Length PDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_pdf.m">english_sentence_length_pdf.m</a> 
+          evaluates the English Sentence Length PDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_sample.m">english_sentence_length_sample.m</a> 
+          samples the English Sentence Length PDF.
+        </li>
+        <li>
+          <a href = "english_sentence_length_variance.m">english_sentence_length_variance.m</a> 
+          evaluates the variance of the English Sentence Length PDF.
+        </li>
+        <li>
+          <a href = "english_word_length_cdf.m">english_word_length_cdf.m</a> 
+          evaluates the English Word Length CDF.
+        </li>
+        <li>
+          <a href = "english_word_length_cdf_inv.m">english_word_length_cdf_inv.m</a> 
+          inverts the English Word Length CDF.
+        </li>
+        <li>
+          <a href = "english_word_length_mean.m">english_word_length_mean.m</a> 
+          evaluates the mean of the English Word Length PDF.
+        </li>
+        <li>
+          <a href = "english_word_length_pdf.m">english_word_length_pdf.m</a> 
+          evaluates the English Word Length PDF.
+        </li>
+        <li>
+          <a href = "english_word_length_sample.m">english_word_length_sample.m</a> 
+          samples the English Word Length PDF.
+        </li>
+        <li>
+          <a href = "english_word_length_variance.m">english_word_length_variance.m</a> 
+          evaluates the variance of the English Word Length PDF.
+        </li>
+        <li>
+          <a href = "erlang_cdf.m">erlang_cdf.m</a> 
+          evaluates the Erlang CDF.
+        </li>
+        <li>
+          <a href = "erlang_cdf_inv.m">erlang_cdf_inv.m</a> 
+          inverts the Erlang CDF.
+        </li>
+        <li>
+          <a href = "erlang_check.m">erlang_check.m</a> 
+          checks the parameters of the Erlang PDF.
+        </li>
+        <li>
+          <a href = "erlang_mean.m">erlang_mean.m</a> 
+          returns the mean of the Erlang PDF.
+        </li>
+        <li>
+          <a href = "erlang_pdf.m">erlang_pdf.m</a> 
+          evaluates the Erlang PDF.
+        </li>
+        <li>
+          <a href = "erlang_sample.m">erlang_sample.m</a> 
+          samples the Erlang PDF.
+        </li>
+        <li>
+          <a href = "erlang_variance.m">erlang_variance.m</a> 
+          returns the variance of the Erlang PDF.
+        </li>
+        <li>
+          <a href = "error_f.m">error_f.m</a> 
+          evaluates the error function ERF.
+        </li>
+        <li>
+          <a href = "error_f_inverse.m">error_f_inverse.m</a> 
+          inverts the error function ERF.
+        </li>
+        <li>
+          <a href = "euler_constant.m">euler_constant.m</a> 
+          returns the value of the Euler-Mascheroni constant.
+        </li>
+        <li>
+          <a href = "exponential_01_cdf.m">exponential_01_cdf.m</a> 
+          evaluates the Exponential 01 CDF.
+        </li>
+        <li>
+          <a href = "exponential_01_cdf_inv.m">exponential_01_cdf_inv.m</a> 
+          inverts the Exponential 01 CDF.
+        </li>
+        <li>
+          <a href = "exponential_01_mean.m">exponential_01_mean.m</a> 
+          returns the mean of the Exponential 01 PDF.
+        </li>
+        <li>
+          <a href = "exponential_01_pdf.m">exponential_01_pdf.m</a> 
+          evaluates the Exponential 01 PDF.
+        </li>
+        <li>
+          <a href = "exponential_01_sample.m">exponential_01_sample.m</a> 
+          samples the Exponential PDF with parameter 1.
+        </li>
+        <li>
+          <a href = "exponential_01_variance.m">exponential_01_variance.m</a> 
+          returns the variance of the Exponential 01 PDF.
+        </li>
+        <li>
+          <a href = "exponential_cdf.m">exponential_cdf.m</a> 
+          evaluates the Exponential CDF.
+        </li>
+        <li>
+          <a href = "exponential_cdf_inv.m">exponential_cdf_inv.m</a> 
+          inverts the Exponential CDF.
+        </li>
+        <li>
+          <a href = "exponential_cdf_values.m">exponential_cdf_values.m</a>
+          returns some values of the Exponential CDF.
+        </li>
+        <li>
+          <a href = "exponential_check.m">exponential_check.m</a> 
+          checks the parameters of the Exponential CDF.
+        </li>
+        <li>
+          <a href = "exponential_mean.m">exponential_mean.m</a> 
+          returns the mean of the Exponential PDF.
+        </li>
+        <li>
+          <a href = "exponential_pdf.m">exponential_pdf.m</a> 
+          evaluates the Exponential PDF.
+        </li>
+        <li>
+          <a href = "exponential_sample.m">exponential_sample.m</a> 
+          samples the Exponential PDF.
+        </li>
+        <li>
+          <a href = "exponential_variance.m">exponential_variance.m</a> 
+          returns the variance of the Exponential PDF.
+        </li>
+        <li>
+          <a href = "extreme_values_cdf.m">extreme_values_cdf.m</a> 
+          evaluates the Extreme Values CDF.
+        </li>
+        <li>
+          <a href = "extreme_values_cdf_inv.m">extreme_values_cdf_inv.m</a> 
+          inverts the Extreme Values CDF.
+        </li>
+        <li>
+          <a href = "extreme_values_cdf_values.m">
+          extreme_values_cdf_values.m</a>
+          returns some values of the Extreme Values CDF.
+        </li>
+        <li>
+          <a href = "extreme_values_check.m">extreme_values_check.m</a> 
+          checks the parameters of the Extreme Values CDF.
+        </li>
+        <li>
+          <a href = "extreme_values_mean.m">extreme_values_mean.m</a> 
+          returns the mean of the Extreme Values PDF.
+        </li>
+        <li>
+          <a href = "extreme_values_pdf.m">extreme_values_pdf.m</a> 
+          evaluates the Extreme Values PDF.
+        </li>
+        <li>
+          <a href = "extreme_values_sample.m">extreme_values_sample.m</a> 
+          samples the Extreme Values PDF.
+        </li>
+        <li>
+          <a href = "extreme_values_variance.m">extreme_values_variance.m</a> 
+          returns the variance of the Extreme Values PDF.
+        </li>
+        <li>
+          <a href = "f_cdf.m">f_cdf.m</a> 
+          evaluates the F central CDF.
+        </li>
+        <li>
+          <a href = "f_cdf_values.m">f_cdf_values.m</a> 
+          returns some values of the F central CDF test function.
+        </li>
+        <li>
+          <a href = "f_check.m">f_check.m</a> 
+          checks the parameters of the F central PDF.
+        </li>
+        <li>
+          <a href = "f_mean.m">f_mean.m</a> 
+          returns the mean of the F central PDF.
+        </li>
+        <li>
+          <a href = "f_pdf.m">f_pdf.m</a> 
+          evaluates the F central PDF.
+        </li>
+        <li>
+          <a href = "f_sample.m">f_sample.m</a> 
+          samples the F central PDF.
+        </li>
+        <li>
+          <a href = "f_variance.m">f_variance.m</a> 
+          returns the variance of the F central PDF.
+        </li>
+        <li>
+          <a href = "f_noncentral_cdf_values.m">f_noncentral_cdf_values.m</a>
+          returns some values of the Noncentral F CDF.
+        </li>
+        <li>
+          <a href = "f_noncentral_check.m">f_noncentral_check.m</a> 
+          checks the parameters of the F noncentral PDF.
+        </li>
+        <li>
+          <a href = "f_noncentral_mean.m">f_noncentral_mean.m</a> 
+          returns the mean of the F noncentral PDF.
+        </li>
+        <li>
+          <a href = "f_noncentral_variance.m">f_noncentral_variance.m</a> 
+          returns the variance of the F noncentral PDF.
+        </li>
+        <li>
+          <a href = "factorial_log.m">factorial_log.m</a> 
+          returns the logarithm of N!.
+        </li>
+        <li>
+          <a href = "factorial_sterling.m">factorial_sterling.m</a> 
+          computes Stirling's approximation to N!.
+        </li>
+        <li>
+          <a href = "fisher_pdf.m">fisher_pdf.m</a> 
+          evaluates the Fisher PDF.
+        </li>
+        <li>
+          <a href = "fisher_sample.m">fisher_sample.m</a> 
+          samples the Fisher PDF.
+        </li>
+        <li>
+          <a href = "fisk_cdf.m">fisk_cdf.m</a> 
+          evaluates the Fisk CDF.
+        </li>
+        <li>
+          <a href = "fisk_cdf_inv.m">fisk_cdf_inv.m</a> 
+          inverts the Fisk CDF.
+        </li>
+        <li>
+          <a href = "fisk_check.m">fisk_check.m</a> 
+          checks the parameters of the Fisk PDF.
+        </li>
+        <li>
+          <a href = "fisk_mean.m">fisk_mean.m</a> 
+          returns the mean of the Fisk PDF.
+        </li>
+        <li>
+          <a href = "fisk_pdf.m">fisk_pdf.m</a> 
+          evaluates the Fisk PDF.
+        </li>
+        <li>
+          <a href = "fisk_sample.m">fisk_sample.m</a> 
+          samples the Fisk PDF.
+        </li>
+        <li>
+          <a href = "fisk_variance.m">fisk_variance.m</a> 
+          returns the variance of the Fisk PDF.
+        </li>
+        <li>
+          <a href = "folded_normal_cdf.m">folded_normal_cdf.m</a> 
+          evaluates the Folded Normal CDF.
+        </li>
+        <li>
+          <a href = "folded_normal_cdf_inv.m">folded_normal_cdf_inv.m</a> 
+          inverts the Folded Normal CDF.
+        </li>
+        <li>
+          <a href = "folded_normal_check.m">folded_normal_check.m</a> 
+          checks the parameters of the Folded Normal CDF.
+        </li>
+        <li>
+          <a href = "folded_normal_mean.m">folded_normal_mean.m</a> 
+          returns the mean of the Folded Normal PDF.
+        </li>
+        <li>
+          <a href = "folded_normal_pdf.m">folded_normal_pdf.m</a> 
+          evaluates the Folded Normal PDF.
+        </li>
+        <li>
+          <a href = "folded_normal_sample.m">folded_normal_sample.m</a> 
+          samples the Folded Normal PDF.
+        </li>
+        <li>
+          <a href = "folded_normal_variance.m">folded_normal_variance.m</a> 
+          returns the variance of the Folded Normal PDF.
+        </li>
+        <li>
+          <a href = "frechet_cdf.m">frechet_cdf.m</a> 
+          evaluates the Frechet CDF.
+        </li>
+        <li>
+          <a href = "frechet_cdf_inv.m">frechet_cdf_inv.m</a> 
+          inverts the Frechet CDF.
+        </li>
+        <li>
+          <a href = "frechet_mean.m">frechet_mean.m</a> 
+          returns the mean of the Frechet PDF.
+        </li>
+        <li>
+          <a href = "frechet_pdf.m">frechet_pdf.m</a> 
+          evaluates the Frechet PDF.
+        </li>
+        <li>
+          <a href = "frechet_sample.m">frechetk_sample.m</a> 
+          samples the Frechet PDF.
+        </li>
+        <li>
+          <a href = "frechet_variance.m">frechet_variance.m</a> 
+          returns the variance of the Frechet PDF.
+        </li>
+        <li>
+          <a href = "gamma_cdf.m">gamma_cdf.m</a> 
+          evaluates the Gamma CDF.
+        </li>
+        <li>
+          <a href = "gamma_cdf_values.m">gamma_cdf_values.m</a>
+          returns some values of the Gamma CDF.
+        </li>
+        <li>
+          <a href = "gamma_check.m">gamma_check.m</a> 
+          checks the parameters of the Gamma PDF.
+        </li>
+        <li>
+          <a href = "gamma_inc.m">gamma_inc.m</a> 
+          computes the incomplete Gamma function.
+        </li>
+        <li>
+          <a href = "gamma_inc_values.m">gamma_inc_values.m</a> 
+          returns some values of the incomplete Gamma function.
+        </li>
+        <li>
+          <a href = "gamma_log_int.m">gamma_log_int.m</a> 
+          computes the logarithm of Gamma of an integer N.
+        </li>
+        <li>
+          <a href = "gamma_mean.m">gamma_mean.m</a> 
+          returns the mean of the Gamma PDF.
+        </li>
+        <li>
+          <a href = "gamma_pdf.m">gamma_pdf.m</a> 
+          evaluates the Gamma PDF.
+        </li>
+        <li>
+          <a href = "gamma_sample.m">gamma_sample.m</a> 
+          samples the Gamma PDF.
+        </li>
+        <li>
+          <a href = "gamma_variance.m">gamma_variance.m</a> 
+          returns the variance of the Gamma PDF.
+        </li>
+        <li>
+          <a href = "genlogistic_cdf.m">genlogistic_cdf.m</a> 
+          evaluates the Generalized Logistic CDF.
+        </li>
+        <li>
+          <a href = "genlogistic_cdf_inv.m">genlogistic_cdf_inv.m</a> 
+          inverts the Generalized Logistic CDF.
+        </li>
+        <li>
+          <a href = "genlogistic_check.m">genlogistic_check.m</a> 
+          checks the parameters of the Generalized Logistic CDF.
+        </li>
+        <li>
+          <a href = "genlogistic_mean.m">genlogistic_mean.m</a> 
+          returns the mean of the Generalized Logistic PDF.
+        </li>
+        <li>
+          <a href = "genlogistic_pdf.m">genlogistic_pdf.m</a> 
+          evaluates the Generalized Logistic PDF.
+        </li>
+        <li>
+          <a href = "genlogistic_sample.m">genlogistic_sample.m</a> 
+          samples the Generalized Logistic PDF.
+        </li>
+        <li>
+          <a href = "genlogistic_variance.m">genlogistic_variance.m</a> 
+          returns the variance of the Generalized Logistic PDF.
+        </li>
+        <li>
+          <a href = "geometric_cdf.m">geometric_cdf.m</a> 
+          evaluates the Geometric CDF.
+        </li>
+        <li>
+          <a href = "geometric_cdf_inv.m">geometric_cdf_inv.m</a> 
+          inverts the Geometric CDF.
+        </li>
+        <li>
+          <a href = "geometric_cdf_values.m">geometric_cdf_values.m</a>
+          returns some values of the Geometric CDF.
+        </li>
+        <li>
+          <a href = "geometric_check.m">geometric_check.m</a> 
+          checks the parameter of the Geometric CDF.
+        </li>
+        <li>
+          <a href = "geometric_mean.m">geometric_mean.m</a> 
+          returns the mean of the Geometric PDF.
+        </li>
+        <li>
+          <a href = "geometric_pdf.m">geometric_pdf.m</a> 
+          evaluates the Geometric PDF.
+        </li>
+        <li>
+          <a href = "geometric_sample.m">geometric_sample.m</a> 
+          samples the Geometric PDF.
+        </li>
+        <li>
+          <a href = "geometric_variance.m">geometric_variance.m</a> 
+          returns the variance of the Geometric PDF.
+        </li>
+        <li>
+          <a href = "gompertz_cdf.m">gompertz_cdf.m</a> 
+          evaluates the Gompertz CDF.
+        </li>
+        <li>
+          <a href = "gompertz_cdf_inv.m">gompertz_cdf_inv.m</a> 
+          inverts the Gompertz CDF.
+        </li>
+        <li>
+          <a href = "gompertz_check.m">gompertz_check.m</a> 
+          checks the parameters of the Gompertz PDF.
+        </li>
+        <li>
+          <a href = "gompertz_pdf.m">gompertz_pdf.m</a> 
+          evaluates the Gompertz PDF.
+        </li>
+        <li>
+          <a href = "gompertz_sample.m">gompertz_sample.m</a> 
+          samples the Gompertz PDF.
+        </li>
+        <li>
+          <a href = "gumbel_cdf.m">gumbel_cdf.m</a> 
+          evaluates the Gumbel CDF.
+        </li>
+        <li>
+          <a href = "gumbel_cdf_inv.m">gumbel_cdf_inv.m</a> 
+          inverts the Gumbel CDF.
+        </li>
+        <li>
+          <a href = "gumbel_mean.m">gumbel_mean.m</a> 
+          returns the mean of the Gumbel PDF.
+        </li>
+        <li>
+          <a href = "gumbel_pdf.m">gumbel_pdf.m</a> 
+          evaluates the Gumbel PDF.
+        </li>
+        <li>
+          <a href = "gumbel_sample.m">gumbel_sample.m</a> 
+          samples the Gumbel PDF.
+        </li>
+        <li>
+          <a href = "gumbel_variance.m">gumbel_variance.m</a> 
+          returns the variance of the Gumbel PDF.
+        </li>
+        <li>
+          <a href = "half_normal_cdf.m">half_normal_cdf.m</a> 
+          evaluates the Half Normal CDF.
+        </li>
+        <li>
+          <a href = "half_normal_cdf_inv.m">half_normal_cdf_inv.m</a> 
+          inverts the Half Normal CDF.
+        </li>
+        <li>
+          <a href = "half_normal_check.m">half_normal_check.m</a> 
+          checks the parameters of the Half Normal PDF.
+        </li>
+        <li>
+          <a href = "half_normal_mean.m">half_normal_mean.m</a> 
+          returns the mean of the Half Normal PDF.
+        </li>
+        <li>
+          <a href = "half_normal_pdf.m">half_normal_pdf.m</a> 
+          evaluates the Half Normal PDF.
+        </li>
+        <li>
+          <a href = "half_normal_sample.m">half_normal_sample.m</a> 
+          samples the Half Normal PDF.
+        </li>
+        <li>
+          <a href = "half_normal_variance.m">half_normal_variance.m</a> 
+          returns the variance of the Half Normal PDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_cdf.m">hypergeometric_cdf.m</a> 
+          evaluates the Hypergeometric CDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_cdf_values.m">hypergeometric_cdf_values.m</a>
+          returns some values of the Hypergeometric CDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_check.m">hypergeometric_check.m</a> 
+          checks the parameters of the Hypergeometric CDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_mean.m">hypergeometric_mean.m</a> 
+          returns the mean of the Hypergeometric PDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_pdf.m">hypergeometric_pdf.m</a> 
+          evaluates the Hypergeometric PDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_sample.m">hypergeometric_sample.m</a> 
+          samples the Hypergeometric PDF.
+        </li>
+        <li>
+          <a href = "hypergeometric_variance.m">hypergeometric_variance.m</a> 
+          returns the variance of the Hypergeometric PDF.
+        </li>
+        <li>
+          <a href = "i4_factorial.m">i4_factorial.m</a> 
+          returns the value of N!.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a> 
+          returns a random integer in a given range.
+        </li>
+        <li>
+          <a href = "i4row_max.m">i4row_max.m</a> 
+          returns the maximums of rows of an I4ROW.
+        </li>
+        <li>
+          <a href = "i4row_mean.m">i4row_mean.m</a> 
+          returns the means of the rows of an I4ROW.
+        </li>
+        <li>
+          <a href = "i4row_min.m">i4row_min.m</a> 
+          returns the minimums of rows of an I4ROW.
+        </li>
+        <li>
+          <a href = "i4row_variance.m">i4row_variance.m</a> 
+          returns the variances of the rows of an I4ROW.
+        </li>
+        <li>
+          <a href = "i4vec_max.m">i4vec_max.m</a> 
+          returns the maximum value in an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_mean.m">i4vec_mean.m</a> 
+          returns the mean of an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_min.m">i4vec_min.m</a> 
+          returns the minimum value in an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a> 
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_run_count.m">i4vec_run_count.m</a> 
+          counts the runs of equal values in an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_variance.m">i4vec_variance.m</a> 
+          returns the variance of an I4VEC.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_cdf.m">inverse_gaussian_cdf.m</a> 
+          evaluates the Inverse Gaussian CDF.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_check.m">inverse_gaussian_check.m</a> 
+          checks the parameters of the Inverse Gaussian CDF.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_mean.m">inverse_gaussian_mean.m</a> 
+          returns the mean of the Inverse Gaussian PDF.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_pdf.m">inverse_gaussian_pdf.m</a> 
+          evaluates the Inverse Gaussian PDF.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_sample.m">inverse_gaussian_sample.m</a> 
+          samples the Inverse Gaussian PDF.
+        </li>
+        <li>
+          <a href = "inverse_gaussian_variance.m">inverse_gaussian_variance.m</a> 
+          returns the variance of the Inverse Gaussian PDF.
+        </li>
+         <li>
+          <a href = "laplace_cdf.m">laplace_cdf.m</a> 
+          evaluates the Laplace CDF.
+        </li>
+        <li>
+          <a href = "laplace_cdf_inv.m">laplace_cdf_inv.m</a> 
+          inverts the Laplace CDF.
+        </li>
+        <li>
+          <a href = "laplace_cdf_values.m">laplace_cdf_values.m</a>
+          returns some values of the Laplace CDF.
+        </li>
+        <li>
+          <a href = "laplace_check.m">laplace_check.m</a> 
+          checks the parameters of the Laplace PDF.
+        </li>
+        <li>
+          <a href = "laplace_mean.m">laplace_mean.m</a> 
+          returns the mean of the Laplace PDF.
+        </li>
+        <li>
+          <a href = "laplace_pdf.m">laplace_pdf.m</a> 
+          evaluates the Laplace PDF.
+        </li>
+        <li>
+          <a href = "laplace_sample.m">laplace_sample.m</a> 
+          samples the Laplace PDF.
+        </li>
+        <li>
+          <a href = "laplace_variance.m">laplace_variance.m</a> 
+          returns the variance of the Laplace PDF.
+        </li>
+        <li>
+          <a href = "lerch.m">lerch.m</a> 
+          estimates the Lerch transcendent function.
+        </li>
+        <li>
+          <a href = "levy_cdf.m">levy_cdf.m</a> 
+          evaluates the Levy CDF.
+        </li>
+        <li>
+          <a href = "levy_cdf_inv.m">levy_cdf_inv.m</a> 
+          inverts the Levy CDF.
+        </li>
+        <li>
+          <a href = "levy_pdf.m">levy_pdf.m</a> 
+          evaluates the Levy PDF.
+        </li>
+        <li>
+          <a href = "levy_sample.m">levy_sample.m</a> 
+          samples the Levy PDF.
+        </li>
+        <li>
+          <a href = "logistic_cdf.m">logistic_cdf.m</a> 
+          evaluates the Logistic CDF.
+        </li>
+        <li>
+          <a href = "logistic_cdf_inv.m">logistic_cdf_inv.m</a> 
+          inverts the Logistic CDF.
+        </li>
+        <li>
+          <a href = "logistic_cdf_values.m">logistic_cdf_values.m</a>
+          returns some values of the Logistic CDF.
+        </li>
+        <li>
+          <a href = "logistic_check.m">logistic_check.m</a> 
+          checks the parameters of the Logistic CDF.
+        </li>
+        <li>
+          <a href = "logistic_mean.m">logistic_mean.m</a> 
+          returns the mean of the Logistic PDF.
+        </li>
+        <li>
+          <a href = "logistic_pdf.m">logistic_pdf.m</a> 
+          evaluates the Logistic PDF.
+        </li>
+        <li>
+          <a href = "logistic_sample.m">logistic_sample.m</a> 
+          samples the Logistic PDF.
+        </li>
+        <li>
+          <a href = "logistic_variance.m">logistic_variance.m</a> 
+          returns the variance of the Logistic PDF.
+        </li>
+        <li>
+          <a href = "log_normal_cdf.m">log_normal_cdf.m</a> 
+          evaluates the Lognormal CDF.
+        </li>
+        <li>
+          <a href = "log_normal_cdf_inv.m">log_normal_cdf_inv.m</a> 
+          inverts the Lognormal CDF.
+        </li>
+        <li>
+          <a href = "log_normal_cdf_values.m">log_normal_cdf_values.m</a>
+          returns some values of the Log Normal CDF.
+        </li>
+        <li>
+          <a href = "log_normal_check.m">log_normal_check.m</a> 
+          checks the parameters of the Lognormal PDF.
+        </li>
+        <li>
+          <a href = "log_normal_mean.m">log_normal_mean.m</a> 
+          returns the mean of the Lognormal PDF.
+        </li>
+        <li>
+          <a href = "log_normal_pdf.m">log_normal_pdf.m</a> 
+          evaluates the Lognormal PDF.
+        </li>
+        <li>
+          <a href = "log_normal_sample.m">log_normal_sample.m</a> 
+          samples the Lognormal PDF.
+        </li>
+        <li>
+          <a href = "log_normal_variance.m">log_normal_variance.m</a> 
+          returns the variance of the Lognormal PDF.
+        </li>
+        <li>
+          <a href = "log_series_cdf.m">log_series_cdf.m</a> 
+          evaluates the Logarithmic Series CDF.
+        </li>
+        <li>
+          <a href = "log_series_cdf_inv.m">log_series_cdf_inv.m</a> 
+          inverts the Logarithmic Series CDF.
+        </li>
+        <li>
+          <a href = "log_series_cdf_values.m">log_series_cdf_values.m</a>
+          returns some values of the Log Series CDF.
+        </li>
+        <li>
+          <a href = "log_series_check.m">log_series_check.m</a> 
+          checks the parameter of the Logarithmic Series PDF.
+        </li>
+        <li>
+          <a href = "log_series_mean.m">log_series_mean.m</a> 
+          returns the mean of the Logarithmic Series PDF.
+        </li>
+        <li>
+          <a href = "log_series_pdf.m">log_series_pdf.m</a> 
+          evaluates the Logarithmic Series PDF.
+        </li>
+        <li>
+          <a href = "log_series_sample.m">log_series_sample.m</a> 
+          samples the Logarithmic Series PDF.
+        </li>
+        <li>
+          <a href = "log_series_variance.m">log_series_variance.m</a> 
+          returns the variance of the Logarithmic Series PDF.
+        </li>
+        <li>
+          <a href = "log_uniform_cdf.m">log_uniform_cdf.m</a> 
+          evaluates the Log Uniform CDF.
+        </li>
+        <li>
+          <a href = "log_uniform_cdf_inv.m">log_uniform_cdf_inv.m</a> 
+          inverts the Log Uniform CDF.
+        </li>
+        <li>
+          <a href = "log_uniform_check.m">log_uniform_check.m</a> 
+          checks the parameters of the Log Uniform PDF.
+        </li>
+        <li>
+          <a href = "log_uniform_mean.m">log_uniform_mean.m</a> 
+          returns the mean of the Log Uniform PDF.
+        </li>
+        <li>
+          <a href = "log_uniform_pdf.m">log_uniform_pdf.m</a> 
+          evaluates the Log Uniform PDF.
+        </li>
+        <li>
+          <a href = "log_uniform_sample.m">log_uniform_sample.m</a> 
+          samples the Log Uniform PDF.
+        </li>
+        <li>
+          <a href = "log_uniform_variance.m">log_uniform_variance.m</a> 
+          returns the variance of the Log Uniform PDF.
+        </li>
+        <li>
+          <a href = "lorentz_cdf.m">lorentz_cdf.m</a> 
+          evaluates the Lorentz CDF.
+        </li>
+        <li>
+          <a href = "lorentz_cdf_inv.m">lorentz_cdf_inv.m</a> 
+          inverts the Lorentz CDF.
+        </li>
+        <li>
+          <a href = "lorentz_mean.m">lorentz_mean.m</a> 
+          returns the mean of the Lorentz PDF.
+        </li>
+        <li>
+          <a href = "lorentz_pdf.m">lorentz_pdf.m</a> 
+          evaluates the Lorentz PDF.
+        </li>
+        <li>
+          <a href = "lorentz_sample.m">lorentz_sample.m</a> 
+          samples the Lorentz PDF.
+        </li>
+        <li>
+          <a href = "lorentz_variance.m">lorentz_variance.m</a> 
+          returns the variance of the Lorentz PDF.
+        </li>
+        <li>
+          <a href = "maxwell_cdf.m">maxwell_cdf.m</a> 
+          evaluates the Maxwell CDF.
+        </li>
+        <li>
+          <a href = "maxwell_cdf_inv.m">maxwell_cdf_inv.m</a> 
+          inverts the Maxwell CDF.
+        </li>
+        <li>
+          <a href = "maxwell_check.m">maxwell_check.m</a> 
+          checks the parameters of the Maxwell CDF.
+        </li>
+        <li>
+          <a href = "maxwell_mean.m">maxwell_mean.m</a> 
+          returns the mean of the Maxwell PDF.
+        </li>
+        <li>
+          <a href = "maxwell_pdf.m">maxwell_pdf.m</a> 
+          evaluates the Maxwell PDF.
+        </li>
+        <li>
+          <a href = "maxwell_sample.m">maxwell_sample.m</a> 
+          samples the Maxwell PDF.
+        </li>
+        <li>
+          <a href = "maxwell_variance.m">maxwell_variance.m</a> 
+          returns the variance of the Maxwell PDF.
+        </li>
+        <li>
+          <a href = "multicoef_check.m">multicoef_check.m</a> 
+          checks the parameters of the multinomial coefficient.
+        </li>
+        <li>
+          <a href = "multinomial_coef1.m">multinomial_coef1.m</a> 
+          computes a Multinomial coefficient.
+        </li>
+        <li>
+          <a href = "multinomial_coef2.m">multinomial_coef2.m</a> 
+          computes a Multinomial coefficient.
+        </li>
+        <li>
+          <a href = "multinomial_check.m">multinomial_check.m</a> 
+          checks the parameters of the Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multinomial_covariance.m">multinomial_covariance.m</a> 
+          returns the covariances of the Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multinomial_mean.m">multinomial_mean.m</a> 
+          returns the means of the Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multinomial_pdf.m">multinomial_pdf.m</a> 
+          computes a Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multinomial_sample.m">multinomial_sample.m</a> 
+          samples the Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multinomial_variance.m">multinomial_variance.m</a> 
+          returns the variances of the Multinomial PDF.
+        </li>
+        <li>
+          <a href = "multivariate_normal_sample.m">
+          multivariate_normal_sample.m</a> 
+          samples the Multivariate Normal PDF.
+        </li>
+        <li>
+          <a href = "nakagami_cdf.m">nakagami_cdf.m</a> 
+          evaluates the Nakagami CDF.
+        </li>
+        <li>
+          <a href = "nakagami_check.m">nakagami_check.m</a> 
+          checks the parameters of the Nakagami PDF.
+        </li>
+        <li>
+          <a href = "nakagami_mean.m">nakagami_mean.m</a> 
+          returns the mean of the Nakagami PDF.
+        </li>
+        <li>
+          <a href = "nakagami_pdf.m">nakagami_pdf.m</a> 
+          evaluates the Nakagami PDF.
+        </li>
+        <li>
+          <a href = "nakagami_variance.m">nakagami_variance.m</a> 
+          returns the variance of the Nakagami PDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_cdf.m">negative_binomial_cdf.m</a> 
+          evaluates the Negative Binomial CDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_cdf_inv.m">
+          negative_binomial_cdf_inv.m</a> 
+          inverts the Negative Binomial CDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_cdf_values.m">
+          negative_binomial_cdf_values.m</a>
+          returns some values of the Negative Binomial CDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_check.m">negative_binomial_check.m</a> 
+          checks the parameters of the Negative Binomial PDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_mean.m">negative_binomial_mean.m</a> 
+          returns the mean of the Negative Binomial PDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_pdf.m">negative_binomial_pdf.m</a> 
+          evaluates the Negative Binomial PDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_sample.m">negative_binomial_sample.m</a> 
+          samples the Negative Binomial PDF.
+        </li>
+        <li>
+          <a href = "negative_binomial_variance.m">
+          negative_binomial_variance.m</a> 
+          returns the variance of the Negative Binomial PDF.
+        </li>
+        <li>
+          <a href = "normal_01_cdf.m">normal_01_cdf.m</a> 
+          evaluates the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_cdf_inv.m">normal_01_cdf_inv.m</a> 
+          inverts the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_cdf_values.m">normal_01_cdf_values.m</a>
+          returns some values of the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_mean.m">normal_01_mean.m</a> 
+          returns the mean of the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_pdf.m">normal_01_pdf.m</a> 
+          evaluates the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_sample.m">normal_01_sample.m</a> 
+          samples the standard normal probability distribution.
+        </li>
+        <li>
+          <a href = "normal_01_variance.m">normal_01_variance.m</a> 
+          returns the variance of the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_vector.m">normal_01_vector.m</a> 
+          samples the standard normal probability distribution.
+        </li>
+        <li>
+          <a href = "normal_cdf.m">normal_cdf.m</a> 
+          evaluates the Normal CDF.
+        </li>
+        <li>
+          <a href = "normal_cdf_inv.m">normal_cdf_inv.m</a> 
+          inverts the Normal CDF.
+        </li>
+        <li>
+          <a href = "normal_cdf_values.m">normal_cdf_values.m</a>
+          returns some values of the Normal CDF.
+        </li>
+        <li>
+          <a href = "normal_check.m">normal_check.m</a> 
+          checks the parameters of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_mean.m">normal_mean.m</a> 
+          returns the mean of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_pdf.m">normal_pdf.m</a> 
+          evaluates the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_sample.m">normal_sample.m</a> 
+          samples the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_variance.m">normal_variance.m</a> 
+          returns the variance of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_vector.m">normal_vector.m</a> 
+          samples the normal probability distribution.
+        </li>
+        <li>
+          <a href = "owen_values.m">owen_values.m</a> 
+          returns values of Owen's T function.
+        </li>
+        <li>
+          <a href = "pareto_cdf.m">pareto_cdf.m</a> 
+          evaluates the Pareto CDF.
+        </li>
+        <li>
+          <a href = "pareto_cdf_inv.m">pareto_cdf_inv.m</a> 
+          inverts the Pareto CDF.
+        </li>
+        <li>
+          <a href = "pareto_check.m">pareto_check.m</a> 
+          checks the parameters of the Pareto CDF.
+        </li>
+        <li>
+          <a href = "pareto_mean.m">pareto_mean.m</a> 
+          returns the mean of the Pareto PDF.
+        </li>
+        <li>
+          <a href = "pareto_pdf.m">pareto_pdf.m</a> 
+          evaluates the Pareto PDF.
+        </li>
+        <li>
+          <a href = "pareto_sample.m">pareto_sample.m</a> 
+          samples the Pareto PDF.
+        </li>
+        <li>
+          <a href = "pareto_variance.m">pareto_variance.m</a> 
+          returns the variance of the Pareto PDF.
+        </li>
+        <li>
+          <a href = "pearson_05_check.m">pearson_05_check.m</a> 
+          checks the parameters of the Pearson 5 PDF.
+        </li>
+        <li>
+          <a href = "pearson_05_mean.m">pearson_05_mean.m</a> 
+          evaluates the mean of the Pearson 5 PDF.
+        </li>
+        <li>
+          <a href = "pearson_05_pdf.m">pearson_05_pdf.m</a> 
+          evaluates the Pearson 5 PDF.
+        </li>
+        <li>
+          <a href = "pearson_05_sample.m">pearson_05_sample.m</a> 
+          samples the Pearson 5 PDF.
+        </li>
+        <li>
+          <a href = "planck_check.m">planck_check.m</a> 
+          checks the parameters of the Planck PDF.
+        </li>
+        <li>
+          <a href = "planck_mean.m">planck_mean.m</a> 
+          returns the mean of the Planck PDF.
+        </li>
+        <li>
+          <a href = "planck_pdf.m">planck_pdf.m</a> 
+          evaluates the Planck PDF.
+        </li>
+        <li>
+          <a href = "planck_sample.m">planck_sample.m</a> 
+          samples the Planck PDF.
+        </li>
+        <li>
+          <a href = "planck_variance.m">planck_variance.m</a> 
+          returns the variance of the Planck PDF.
+        </li>
+        <li>
+          <a href = "point_distance_1d_pdf.m">point_distance_1d_pdf.m</a> 
+          evaluates the point distance PDF in 1D.
+        </li>
+        <li>
+          <a href = "point_distance_2d_pdf.m">point_distance_2d_pdf.m</a> 
+          evaluates the point distance PDF in 2D.
+        </li>
+        <li>
+          <a href = "point_distance_3d_pdf.m">point_distance_3d_pdf.m</a> 
+          evaluates the point distance PDF in the 3D.
+        </li>
+        <li>
+          <a href = "poisson_cdf.m">poisson_cdf.m</a> 
+          evaluates the Poisson CDF.
+        </li>
+        <li>
+          <a href = "poisson_cdf_inv.m">poisson_cdf_inv.m</a> 
+          inverts the Poisson CDF.
+        </li>
+        <li>
+          <a href = "poisson_cdf_values.m">poisson_cdf_values.m</a>
+          returns some values of the Poisson CDF.
+        </li>
+        <li>
+          <a href = "poisson_check.m">poisson_check.m</a> 
+          checks the parameter of the Poisson PDF.
+        </li>
+        <li>
+          <a href = "poisson_kernel.m">poisson_kernel.m</a> 
+          evaluates the Poisson kernel.
+        </li>
+        <li>
+          <a href = "poisson_mean.m">poisson_mean.m</a> 
+          returns the mean of the Poisson PDF.
+        </li>
+        <li>
+          <a href = "poisson_pdf.m">poisson_pdf.m</a> 
+          evaluates the Poisson PDF.
+        </li>
+        <li>
+          <a href = "poisson_sample.m">poisson_sample.m</a> 
+          samples the Poisson PDF.
+        </li>
+        <li>
+          <a href = "poisson_variance.m">poisson_variance.m</a> 
+          returns the variance of the Poisson PDF.
+        </li>
+        <li>
+          <a href = "power_cdf.m">power_cdf.m</a> 
+          evaluates the Power CDF.
+        </li>
+        <li>
+          <a href = "power_cdf_inv.m">power_cdf_inv.m</a> 
+          inverts the Power CDF.
+        </li>
+        <li>
+          <a href = "power_check.m">power_check.m</a> 
+          checks the parameter of the Power PDF.
+        </li>
+        <li>
+          <a href = "power_mean.m">power_mean.m</a> 
+          returns the mean of the Power PDF.
+        </li>
+        <li>
+          <a href = "power_pdf.m">power_pdf.m</a> 
+          evaluates the Power PDF.
+        </li>
+        <li>
+          <a href = "power_sample.m">power_sample.m</a> 
+          samples the Power PDF.
+        </li>
+        <li>
+          <a href = "power_variance.m">power_variance.m</a> 
+          returns the variance of the Power PDF.
+        </li>
+        <li>
+          <a href = "psi_values.m">psi_values.m</a>
+          returns some values of the Psi or Digamma function.
+        </li>
+        <li>
+          <a href = "quasigeometric_cdf.m">quasigeometric_cdf.m</a> 
+          evaluates the Quasigeometric CDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_cdf_inv.m">quasigeometric_cdf_inv.m</a> 
+          inverts the Quasigeometric CDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_check.m">quasigeometric_check.m</a> 
+          checks the parameters of the Quasigeometric CDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_mean.m">quasigeometric_mean.m</a> 
+          returns the mean of the Quasigeometric PDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_pdf.m">quasigeometric_pdf.m</a> 
+          evaluates the Quasigeometric PDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_sample.m">quasigeometric_sample.m</a> 
+          samples the Quasigeometric PDF.
+        </li>
+        <li>
+          <a href = "quasigeometric_variance.m">quasigeometric_variance.m</a> 
+          returns the variance of the Quasigeometric PDF.
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">r4_uniform_01.m</a> 
+          returns a random real in [0,1].
+        </li>
+        <li>
+          <a href = "r8_ceiling.m">r8_ceiling.m</a> 
+          rounds a double precision value "up" to the nearest integer.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a> 
+          returns the double precision arithmetic precision.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a> 
+          returns a very large double precision value.
+        </li>
+        <li>
+          <a href = "r8_uniform.m">r8_uniform.m</a> 
+          returns a uniformly random double precision value in a given range.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a> 
+          is a portable pseudorandom number generator.
+        </li>
+        <li>
+          <a href = "r8poly_value.m">r8poly_value.m</a> 
+          evaluates a polynomial.
+        </li>
+        <li>
+          <a href = "r8row_max.m">r8row_max.m</a> 
+          returns the maximums of rows of an R8ROW.
+        </li>
+        <li>
+          <a href = "r8row_mean.m">r8row_mean.m</a> 
+          returns the means of rows of an R8ROW.
+        </li>
+        <li>
+          <a href = "r8row_min.m">r8row_min.m</a> 
+          returns the minimums of rows of an R8ROW.
+        </li>
+        <li>
+          <a href = "r8row_variance.m">r8row_variance.m</a> 
+          returns the variances of the rows of an R8ROW.
+        </li>
+        <li>
+          <a href = "r8vec_circular_variance.m">r8vec_circular_variance.m</a> 
+          returns the circular variance in an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_diff_norm.m">r8vec_diff_norm.m</a>,
+          returns the L2 norm of the difference of two R8VEC's.
+        </li>
+        <li>
+          <a href = "r8vec_max.m">r8vec_max.m</a> 
+          returns the maximum value in an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_mean.m">r8vec_mean.m</a> 
+          returns the mean of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_min.m">r8vec_min.m</a> 
+          returns the minimum value in an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a> 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform.m">r8vec_uniform.m</a> 
+          returns an R8VEC. of random double precision values in a given range.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a> 
+          returns an R8VEC. of random double precision values in [0,1].
+        </li>
+        <li>
+          <a href = "r8vec_unit_sum.m">r8vec_unit_sum.m</a> 
+          normalizes an R8VEC. to have unit sum.
+        </li>
+        <li>
+          <a href = "r8vec_variance.m">r8vec_variance.m</a> 
+          returns the variance of an R8VEC..
+        </li>
+        <li>
+          <a href = "rayleigh_cdf.m">rayleigh_cdf.m</a>
+          evaluates the Rayleigh CDF.
+        </li>
+        <li>
+          <a href = "rayleigh_cdf_inv.m">rayleigh_cdf_inv.m</a>
+          inverts the Rayleigh CDF.
+        </li>
+        <li>
+          <a href = "rayleigh_cdf_values.m">rayleigh_cdf_values.m</a>
+          returns some values of the Rayleigh CDF.
+        </li>
+        <li>
+          <a href = "rayleigh_check.m">rayleigh_check.m</a>
+          checks the parameter of the Rayleigh PDF.
+        </li>
+        <li>
+          <a href = "rayleigh_mean.m">rayleigh_mean.m</a>
+          returns the mean of the Rayleigh PDF.
+        </li>
+        <li>
+          <a href = "rayleigh_pdf.m">rayleigh_pdf.m</a>
+          evaluates the Rayleigh PDF.
+        </li>
+        <li>
+          <a href = "rayleigh_sample.m">rayleigh_sample.m</a>
+          samples the Rayleigh PDF.
+        </li>
+        <li>
+          <a href = "rayleigh_variance.m">rayleigh_variance.m</a>
+          returns the variance of the Rayleigh PDF.
+        </li>
+        <li>
+          <a href = "reciprocal_cdf.m">reciprocal_cdf.m</a>
+          evaluates the Reciprocal CDF.
+        </li>
+        <li>
+          <a href = "reciprocal_cdf_inv.m">reciprocal_cdf_inv.m</a>
+          inverts the Reciprocal CDF.
+        </li>
+        <li>
+          <a href = "reciprocal_check.m">reciprocal_check.m</a>
+          checks the parameters of the Reciprocal CDF.
+        </li>
+        <li>
+          <a href = "reciprocal_mean.m">reciprocal_mean.m</a>
+          returns the mean of the Reciprocal PDF.
+        </li>
+        <li>
+          <a href = "reciprocal_pdf.m">reciprocal_pdf.m</a>
+          evaluates the Reciprocal PDF.
+        </li>
+        <li>
+          <a href = "reciprocal_sample.m">reciprocal_sample.m</a>
+          samples the Reciprocal PDF.
+        </li>
+        <li>
+          <a href = "reciprocal_variance.m">reciprocal_variance.m</a>
+          returns the variance of the Reciprocal PDF.
+        </li>
+        <li>
+          <a href = "ribesl.m">ribesl.m</a>
+          evaluates an I Bessel function of NONINTEGER order.
+        </li>
+        <li>
+          <a href = "runs_mean.m">runs_mean.m</a>
+          returns the mean of the Runs PDF.
+        </li>
+        <li>
+          <a href = "runs_pdf.m">runs_pdf.m</a>
+          evaluates the Runs PDF.
+        </li>
+        <li>
+          <a href = "runs_sample.m">runs_sample.m</a>
+          samples the Runs PDF.
+        </li>
+        <li>
+          <a href = "runs_simulate.m">runs_simulate.m</a>
+          simulates the Runs PDF.
+        </li>
+        <li>
+          <a href = "runs_variance.m">runs_variance.m</a>
+          returns the variance of the Runs PDF.
+        </li>
+        <li>
+          <a href = "sech_cdf.m">sech_cdf.m</a>
+          evaluates the Hyperbolic Secant CDF.
+        </li>
+        <li>
+          <a href = "sech_cdf_inv.m">sech_cdf_inv.m</a>
+          inverts the Hyperbolic Secant CDF.
+        </li>
+        <li>
+          <a href = "sech_check.m">sech_check.m</a>
+          checks the parameters of the Hyperbolic Secant CDF.
+        </li>
+        <li>
+          <a href = "sech_mean.m">sech_mean.m</a>
+          returns the mean of the Hyperbolic Secant PDF.
+        </li>
+        <li>
+          <a href = "sech_pdf.m">sech_pdf.m</a>
+          evaluates the Hypebolic Secant PDF.
+        </li>
+        <li>
+          <a href = "sech_sample.m">sech_sample.m</a>
+          samples the Hyperbolic Secant PDF.
+        </li>
+        <li>
+          <a href = "sech_variance.m">sech_variance.m</a>
+          returns the variance of the Hyperbolic Secant PDF.
+        </li>
+        <li>
+          <a href = "semicircular_cdf.m">semicircular_cdf.m</a>
+          evaluates the Semicircular CDF.
+        </li>
+        <li>
+          <a href = "semicircular_cdf_inv.m">semicircular_cdf_inv.m</a>
+          inverts the Semicircular CDF.
+        </li>
+        <li>
+          <a href = "semicircular_check.m">semicircular_check.m</a>
+          checks the parameters of the Semicircular CDF.
+        </li>
+        <li>
+          <a href = "semicircular_mean.m">semicircular_mean.m</a>
+          returns the mean of the Semicircular PDF.
+        </li>
+        <li>
+          <a href = "semicircular_pdf.m">semicircular_pdf.m</a>
+          evaluates the Semicircular PDF.
+        </li>
+        <li>
+          <a href = "semicircular_sample.m">semicircular_sample.m</a>
+          samples the Semicircular PDF.
+        </li>
+        <li>
+          <a href = "semicircular_variance.m">semicircular_variance.m</a>
+          returns the variance of the Semicircular PDF.
+        </li>
+        <li>
+          <a href = "sin_power_int.m">sin_power_int.m</a>
+          returns the integral of the N-th power of the sine function.
+        </li>
+        <li>
+          <a href = "sphere_unit_area_nd.m">
+          sphere_unit_area_nd.m</a>,
+          returns the area of a unit sphere in ND;
+        </li>
+        <li>
+          <a href = "stirling2_value.m">stirling2_value.m</a>
+          returns a value of the Stirling numbers of the second kind.
+        </li>
+        <li>
+          <a href = "student_cdf.m">student_cdf.m</a>
+          evaluates the central Student T CDF.
+        </li>
+        <li>
+          <a href = "student_cdf_values.m">student_cdf_values.m</a>
+          returns some values of the Student CDF.
+        </li>
+        <li>
+          <a href = "student_check.m">student_check.m</a>
+          checks the parameter of the central Student T CDF.
+        </li>
+        <li>
+          <a href = "student_mean.m">student_mean.m</a>
+          returns the mean of the central Student T PDF.
+        </li>
+        <li>
+          <a href = "student_pdf.m">student_pdf.m</a>
+          evaluates the central Student T PDF.
+        </li>
+        <li>
+          <a href = "student_sample.m">student_sample.m</a>
+          samples the central Student T PDF.
+        </li>
+        <li>
+          <a href = "student_variance.m">student_variance.m</a>
+          returns the variance of the central Student T PDF.
+        </li>
+        <li>
+          <a href = "student_noncentral_cdf.m">student_noncentral_cdf.m</a>
+          evaluates the noncentral Student T CDF.
+        </li>
+        <li>
+          <a href = "student_noncentral_cdf_values.m">
+          student_noncentral_cdf_values.m</a>
+          returns some values of the Noncentral Student CDF.
+        </li>
+        <li>
+          <a href = "tfn.m">tfn.m</a>
+          calculates the T function of Owen.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          returns the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "triangle_cdf.m">triangle_cdf.m</a>
+          evaluates the Triangle CDF.
+        </li>
+        <li>
+          <a href = "triangle_cdf_inv.m">triangle_cdf_inv.m</a>
+          inverts the Triangle CDF.
+        </li>
+        <li>
+          <a href = "triangle_check.m">triangle_check.m</a>
+          checks the parameters of the Triangle CDF.
+        </li>
+        <li>
+          <a href = "triangle_mean.m">triangle_mean.m</a>
+          returns the mean of the Triangle PDF.
+        </li>
+        <li>
+          <a href = "triangle_pdf.m">triangle_pdf.m</a>
+          evaluates the Triangle PDF.
+        </li>
+        <li>
+          <a href = "triangle_sample.m">triangle_sample.m</a>
+          samples the Triangle PDF.
+        </li>
+        <li>
+          <a href = "triangle_variance.m">triangle_variance.m</a>
+          returns the variance of the Triangle PDF.
+        </li>
+        <li>
+          <a href = "triangular_cdf.m">triangular_cdf.m</a>
+          evaluates the Triangular CDF.
+        </li>
+        <li>
+          <a href = "triangular_cdf_inv.m">triangular_cdf_inv.m</a>
+          inverts the Triangular CDF.
+        </li>
+        <li>
+          <a href = "triangular_check.m">triangular_check.m</a>
+          checks the parameters of the Triangular CDF.
+        </li>
+        <li>
+          <a href = "triangular_mean.m">triangular_mean.m</a>
+          returns the mean of the Triangular PDF.
+        </li>
+        <li>
+          <a href = "triangular_pdf.m">triangular_pdf.m</a>
+          evaluates the Triangular PDF.
+        </li>
+        <li>
+          <a href = "triangular_sample.m">triangular_sample.m</a>
+          samples the Triangular PDF.
+        </li>
+        <li>
+          <a href = "triangular_variance.m">triangular_variance.m</a>
+          returns the variance of the Triangular PDF.
+        </li>
+        <li>
+          <a href = "trigamma.m">trigamma.m</a>
+          calculates trigamma(x) = d**2 log(Gamma(x)) / dx**2.
+        </li>
+        <li>
+          <a href = "uniform_01_cdf.m">uniform_01_cdf.m</a>
+          evaluates the Uniform 01 CDF.
+        </li>
+        <li>
+          <a href = "uniform_01_cdf_inv.m">uniform_01_cdf_inv.m</a>
+          inverts the Uniform 01 CDF.
+        </li>
+        <li>
+          <a href = "uniform_01_mean.m">uniform_01_mean.m</a>
+          returns the mean of the Uniform 01 PDF.
+        </li>
+        <li>
+          <a href = "uniform_01_order_sample.m">uniform_01_order_sample.m</a>
+          samples the Uniform 01 Order PDF.
+        </li>
+        <li>
+          <a href = "uniform_01_pdf.m">uniform_01_pdf.m</a>
+          evaluates the Uniform 01 PDF.
+        </li>
+        <li>
+          <a href = "uniform_01_sample.m">uniform_01_sample.m</a>
+          is a portable random number generator.
+        </li>
+        <li>
+          <a href = "uniform_01_variance.m">uniform_01_variance.m</a>
+          returns the variance of the Uniform 01 PDF.
+        </li>
+        <li>
+          <a href = "uniform_cdf.m">uniform_cdf.m</a>
+          evaluates the Uniform CDF.
+        </li>
+        <li>
+          <a href = "uniform_cdf_inv.m">uniform_cdf_inv.m</a>
+          inverts the Uniform CDF.
+        </li>
+        <li>
+          <a href = "uniform_check.m">uniform_check.m</a>
+          checks the parameters of the Uniform CDF.
+        </li>
+        <li>
+          <a href = "uniform_mean.m">uniform_mean.m</a>
+          returns the mean of the Uniform PDF.
+        </li>
+        <li>
+          <a href = "uniform_pdf.m">uniform_pdf.m</a>
+          evaluates the Uniform PDF.
+        </li>
+        <li>
+          <a href = "uniform_sample.m">uniform_sample.m</a>
+          samples the Uniform PDF.
+        </li>
+        <li>
+          <a href = "uniform_variance.m">uniform_variance.m</a>
+          returns the variance of the Uniform PDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_cdf.m">uniform_discrete_cdf.m</a>
+          evaluates the Uniform Discrete CDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_cdf_inv.m">uniform_discrete_cdf_inv.m</a>
+          inverts the Uniform Discrete CDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_check.m">uniform_discrete_check.m</a>
+          checks the parameters of the Uniform discrete CDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_mean.m">uniform_discrete_mean.m</a>
+          returns the mean of the Uniform discrete PDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_pdf.m">uniform_discrete_pdf.m</a>
+          evaluates the Uniform discrete PDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_sample.m">uniform_discrete_sample.m</a>
+          samples the Uniform discrete PDF.
+        </li>
+        <li>
+          <a href = "uniform_discrete_variance.m">uniform_discrete_variance.m</a>
+          returns the variance of the Uniform discrete PDF.
+        </li>
+        <li>
+          <a href = "uniform_nsphere_sample.m">uniform_nsphere_sample.m</a>
+          samples the Uniform Unit Sphere PDF.
+        </li>
+        <li>
+          <a href = "von_mises_cdf.m">von_mises_cdf.m</a>
+          evaluates the von Mises CDF.
+        </li>
+        <li>
+          <a href = "von_mises_cdf_inv.m">von_mises_cdf_inv.m</a>
+          inverts the von Mises CDF.
+        </li>
+        <li>
+          <a href = "von_mises_cdf_values.m">von_mises_cdf_values.m</a>
+          returns some values of the von Mises CDF.
+        </li>
+        <li>
+          <a href = "von_mises_check.m">von_mises_check.m</a>
+          checks the parameters of the von Mises PDF.
+        </li>
+        <li>
+          <a href = "von_mises_circular_variance.m">
+          von_mises_circular_variance.m</a>
+          returns the circular variance of the von Mises PDF.
+        </li>
+        <li>
+          <a href = "von_mises_mean.m">von_mises_mean.m</a>
+          returns the mean of the von Mises PDF.
+        </li>
+        <li>
+          <a href = "von_mises_pdf.m">von_mises_pdf.m</a>
+          evaluates the von Mises PDF.
+        </li>
+        <li>
+          <a href = "von_mises_sample.m">von_mises_sample.m</a>
+          samples the von Mises PDF.
+        </li>
+        <li>
+          <a href = "weibull_cdf.m">weibull_cdf.m</a>
+          evaluates the Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_cdf_inv.m">weibull_cdf_inv.m</a>
+          inverts the Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_cdf_values.m">weibull_cdf_values.m</a>
+          returns some values of the Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_check.m">weibull_check.m</a>
+          checks the parameters of the Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_mean.m">weibull_mean.m</a>
+          returns the mean of the Weibull PDF.
+        </li>
+        <li>
+          <a href = "weibull_pdf.m">weibull_pdf.m</a>
+          evaluates the Weibull PDF.
+        </li>
+        <li>
+          <a href = "weibull_sample.m">weibull_sample.m</a>
+          samples the Weibull PDF.
+        </li>
+        <li>
+          <a href = "weibull_variance.m">weibull_variance.m</a>
+          returns the variance of the Weibull PDF.
+        </li>
+        <li>
+          <a href = "weibull_discrete_cdf.m">weibull_discrete_cdf.m</a>
+          evaluates the Discrete Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_discrete_cdf_inv.m">weibull_discrete_cdf_inv.m</a>
+          inverts the Discrete Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_discrete_check.m">weibull_discrete_check.m</a>
+          checks the parameters of the discrete Weibull CDF.
+        </li>
+        <li>
+          <a href = "weibull_discrete_pdf.m">weibull_discrete_pdf.m</a>
+          evaluates the discrete Weibull PDF.
+        </li>
+        <li>
+          <a href = "weibull_discrete_sample.m">weibull_discrete_sample.m</a>
+          samples the discrete Weibull PDF.
+        </li>
+        <li>
+          <a href = "zeta.m">zeta.m</a> 
+          estimates the Riemann Zeta function.
+        </li>
+        <li>
+          <a href = "zipf_cdf.m">zipf_cdf.m</a> 
+          evaluates the Zipf CDF.
+        </li>
+        <li>
+          <a href = "zipf_check.m">zipf_check.m</a> 
+          checks the parameter of the Zipf PDF.
+        </li>
+        <li>
+          <a href = "zipf_mean.m">zipf_mean.m</a> 
+          returns the mean of the Zipf PDF.
+        </li>
+        <li>
+          <a href = "zipf_pdf.m">zipf_pdf.m</a> 
+          evaluates the Zipf PDF.
+        </li>
+        <li>
+          <a href = "zipf_sample.m">zipf_sample.m</a> 
+          samples the Zipf PDF.
+        </li>
+        <li>
+          <a href = "zipf_variance.m">zipf_variance.m</a> 
+          returns the variance of the Zipf PDF.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Test Files:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "prob_test.m">prob_test.m</a>,
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "prob_test_output.txt">prob_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "prob_test001.m">prob_test001.m</a>
+          tests ANGLE_CDF.
+        </li>
+        <li>
+          <a href = "prob_test002.m">prob_test002.m</a>
+          tests ANGLE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test003.m">prob_test003.m</a>
+          tests ANGLE_MEAN;
+        </li>
+        <li>
+          <a href = "prob_test004.m">prob_test004.m</a> 
+          tests ANGLIT_CDF,  ANGLIT_CDF_INV, and ANGLIT_PDF.
+        </li>
+        <li>
+          <a href = "prob_test005.m">prob_test005.m</a>
+          tests ANGLIT_MEAN, ANGLIT_SAMPLE, andANGLIT_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test006.m">prob_test006.m</a>
+          tests ARCSIN_CDF, ARCSIN_CDF_INV, and ARCSIN_PDF.
+        </li>
+        <li>
+          <a href = "prob_test007.m">prob_test007.m</a>
+          tests ARCSIN_MEAN, ARCSIN_SAMPLE, and ARCSIN_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test008.m">prob_test008.m</a>
+          tests BENFORD_PDF.
+        </li>
+        <li>
+          <a href = "prob_test009.m">prob_test009.m</a>
+          tests BERNOULLI_CDF, BERNOULLI_CDF_INV, and BERNOULLI_PDF.
+        </li>
+        <li>
+          <a href = "prob_test010.m">prob_test010.m</a>
+          tests BERNOULLI_MEAN, BERNOULLI_SAMPLE, and BERNOULLI_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0105.m">prob_test0105.m</a>
+          tests BESSEL_I0 and BESSEL_I0_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test0106.m">prob_test0106.m</a>
+          tests BESSEL_I1 and BESSEL_I1_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test011.m">prob_test011.m</a>
+          tests BETA and GAMMA.
+        </li>
+        <li>
+          <a href = "prob_test012.m">prob_test012.m</a>
+          tests BETA_CDF, BETA_CDF_INV, and BETA_PDF;
+        </li>
+        <li>
+          <a href = "prob_test013.m">prob_test013.m</a>
+          tests BETA_INC and BETA_INC_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test014.m">prob_test014.m</a>
+          tests BETA_MEAN, BETA_SAMPLE, and BETA_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test015.m">prob_test015.m</a>
+          tests BETA_BINOMIAL_CDF, BETA_BINOMIAL_CDF_INV, and BETA_BINOMIAL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test016.m">prob_test016.m</a>
+          tests BETA_BINOMIAL_MEAN, BETA_BINOMIAL_SAMPLE,
+          and BETA_BINOMIAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test020.m">prob_test020.m</a>
+          tests BINOMIAL_CDF and BINOMIAL_CDF_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test021.m">prob_test021.m</a>
+          tests BINOMIAL_CDF, BINOMIAL_CDF_INV, and BINOMIAL_PDF;
+        </li>
+        <li>
+          <a href = "prob_test022.m">prob_test022.m</a>
+          tests BINOMIAL_COEF and BINOMIAL_COEF_LOG.
+        </li>
+        <li>
+          <a href = "prob_test023.m">prob_test023.m</a>
+          tests BINOMIAL_MEAN, BINOMIAL_SAMPLE and BINOMIAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0235.m">prob_test0235.m</a>
+          tests BIRTHDAY_CDF, BIRTHDAY_CDF_INV, BIRTHDAY_PDF.
+        </li>
+        <li>
+          <a href = "prob_test024.m">prob_test024.m</a>
+          tests BRADFORD_CDF, BRADFORD_CDF_INV and BRADFORD_PDF.
+        </li>
+        <li>
+          <a href = "prob_test025.m">prob_test025.m</a>
+          tests BRADFORD_MEAN, BRADFORD_SAMPLE and BRADFORD_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0251.m">prob_test0251.m</a>
+          tests BUFFON_LAPLACE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0252.m">prob_test0252.m</a>
+          tests BUFFON_LAPLACE_SIMULATE.
+        </li>
+        <li>
+          <a href = "prob_test0253.m">prob_test0253.m</a>
+          tests BUFFON_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0254.m">prob_test0254.m</a>
+          tests BUFFON_SIMULATE.
+        </li>
+        <li>
+          <a href = "prob_test026.m">prob_test026.m</a>
+          tests BURR_CDF, BURR_CDF_INV and BURR_PDF.
+        </li>
+        <li>
+          <a href = "prob_test027.m">prob_test027.m</a>
+          tests BURR_MEAN, BURR_VARIANCE and BURR_SAMPLE;
+        </li>
+        <li>
+          <a href = "prob_test0275.m">prob_test0275.m</a>
+          tests CARDIOID_CDF, CARDIOID_CDF_INV and CARDIOID_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0276.m">prob_test0276.m</a>
+          tests CARDIOID_MEAN, CARDIOID_VARIANCE and CARDIOID_SAMPLE;
+        </li>
+        <li>
+          <a href = "prob_test028.m">prob_test028.m</a>
+          tests CAUCHY_CDF, CAUCHY_CDF_INV, and CAUCHY_PDF.
+        </li>
+        <li>
+          <a href = "prob_test029.m">prob_test029.m</a>
+          tests CAUCHY_MEAN, CAUCHY_SAMPLE and CAUCHY_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test030.m">prob_test030.m</a>
+          tests CHI_CDF, CHI_CDF_INV and CHI_PDF.
+        </li>
+        <li>
+          <a href = "prob_test031.m">prob_test031.m</a>
+          tests CHI_MEAN, CHI_SAMPLE and CHI_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test032.m">prob_test032.m</a>
+          tests CHI_SQUARE_CDF and CHI_SQUARE_CDF_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test033.m">prob_test033.m</a>
+          tests CHI_SQUARE_CDF, CHI_SQUARE_CDF_INV and CHI_SQUARE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test034.m">prob_test034.m</a>
+          tests CHI_SQUARE_MEAN, CHI_SQUARE_SAMPLE and CHI_SQUARE_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test035.m">prob_test035.m</a>
+          tests CHI_SQUARE_NONCENTRAL_*.
+        </li>
+        <li>
+          <a href = "prob_test036.m">prob_test036.m</a>
+          tests CIRCLE_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test037.m">prob_test037.m</a>
+          tests CIRCULAR_NORMAL_01_*.
+        </li>
+        <li>
+          <a href = "prob_test0375.m">prob_test0375.m</a>
+          tests CIRCULAR_NORMAL_*.
+        </li>
+        <li>
+          <a href = "prob_test038.m">prob_test038.m</a>
+          tests COSINE_*.
+        </li>
+        <li>
+          <a href = "prob_test039.m">prob_test039.m</a>
+          tests COSINE_*.
+        </li>
+        <li>
+          <a href = "prob_test0395.m">prob_test0395.m</a>
+          tests COUPON_COMPLETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test040.m">prob_test040.m</a>
+          tests COUPON_SIMULATE.
+        </li>
+        <li>
+          <a href = "prob_test041.m">prob_test041.m</a>
+          tests DERANGED_*;
+        </li>
+        <li>
+          <a href = "prob_test042.m">prob_test042.m</a>
+          tests DERANGED_CDF and DERANGED_PDF.
+        </li>
+        <li>
+          <a href = "prob_test043.m">prob_test043.m</a>
+          tests DERANGED_*.
+        </li>
+        <li>
+          <a href = "prob_test044.m">prob_test044.m</a>
+          tests DIGAMMA and PSI_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test045.m">prob_test045.m</a>
+          tests DIPOLE_CDF, DIPOLE_CDF_INV and DIPOLE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test046.m">prob_test046.m</a>
+          tests DIPOLE_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test047.m">prob_test047.m</a>
+          tests DIRICHLET_MEAN, DIRICHLET_SAMPLE and DIRICHLET_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test048.m">prob_test048.m</a>
+          tests DIRICHLET_PDF.
+        </li>
+        <li>
+          <a href = "prob_test049.m">prob_test049.m</a>
+          tests DIRICHLET_MIX_MEAN and DIRICHLET_MIX_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test050.m">prob_test050.m</a>
+          tests DIRICHLET_MIX_PDF.
+        </li>
+        <li>
+          <a href = "prob_test051.m">prob_test051.m</a>
+          tests BETA_PDF and tests DIRICHLET_PDF.
+        </li>
+        <li>
+          <a href = "prob_test052.m">prob_test052.m</a>
+          tests DISCRETE_CDF, DISCRETE_CDF_INV and DISCRETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test053.m">prob_test053.m</a>
+          tests DISCRETE_MEAN, DISCRETE_SAMPLE and DISCRETE_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test054.m">prob_test054.m</a>
+          tests EMPIRICAL_DISCRETE_CDF, EMPIRICAL_DISCRETE_CDF_INV and
+          EMPIRICAL_DISCRETE_PDF;
+        </li>
+        <li>
+          <a href = "prob_test055.m">prob_test055.m</a>
+          tests EMPIRICAL_DISCRETE_MEAN, EMPIRICAL_DISCRETE_SAMPLE and
+          EMPIRICAL_DISCRETE_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test056.m">prob_test056.m</a>
+          tests EMPIRICAL_DISCRETE_CDF and EMPIRICAL_DISCRETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0563.m">prob_test0563.m</a>
+          tests ENGLISH_SENTENCE_LENGTH_CDF, ENGLISH_SENTENCE_LENGTH_CDF_INV and
+          ENGLISH_SENTENCE_LENGTH_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0564.m">prob_test0564.m</a>
+          tests ENGLISH_SENTENCE_LENGTH_MEAN and ENGLISH_SENTENCE_LENGTH_SAMPLE
+          and ENGLISH_SENTENCE_LENGTH_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0565.m">prob_test0565.m</a>
+          tests ENGLISH_WORD_LENGTH_CDF, ENGLISH_WORD_LENGTH_CDF_INV and
+          ENGLISH_WORD_LENGTH_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0566.m">prob_test0566.m</a>
+          tests ENGLISH_WORD_LENGTH_MEAN and ENGLISH_WORD_LENGTH_SAMPLE
+          and ENGLISH_WORD_LENGTH_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test057.m">prob_test057.m</a>
+          tests ERLANG_CDF, ERLANG_CDF_INV and ERLANG_PDF.
+        </li>
+        <li>
+          <a href = "prob_test058.m">prob_test058.m</a>
+          tests ERLANG_MEAN, ERLANG_SAMPLE and ERLANG_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test059.m">prob_test059.m</a>
+          tests ERROR_F.
+        </li>
+        <li>
+          <a href = "prob_test060.m">prob_test060.m</a>
+          tests EXPONENTIAL_01_CDF,  EXPONENTIAL_01_CDF_INV 
+          and EXPONENTIAL_01_PDF;
+        </li>
+        <li>
+          <a href = "prob_test061.m">prob_test061.m</a>
+          tests EXPONENTIAL_01_MEAN, EXPONENTIAL_01_SAMPLE and
+          EXPONENTIAL_01_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test062.m">prob_test062.m</a>
+          tests EXPONENTIAL_CDF, EXPONENTIAL_CDF_INV and EXPONENTIAL_PDF;
+        </li>
+        <li>
+          <a href = "prob_test063.m">prob_test063.m</a>
+          tests EXPONENTIAL_MEAN, EXPONENTIAL_SAMPLE and EXPONENTIAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test064.m">prob_test064.m</a>
+          tests EXTREME_VALUES_CDF, EXTREME_VALUES_CDF_INV
+          and EXTREME_VALUES_PDF.
+        </li>
+        <li>
+          <a href = "prob_test065.m">prob_test065.m</a>
+          tests EXTREME_VALUES_MEAN, EXTREME_VALUES_SAMPLE 
+          and EXTREME_VALUES_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test066.m">prob_test066.m</a>
+          tests F_CDF and F_CDF_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test067.m">prob_test067.m</a>
+          tests F_CDF and F_PDF.
+        </li>
+        <li>
+          <a href = "prob_test068.m">prob_test068.m</a>
+          tests F_MEAN, F_SAMPLE and F_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test069.m">prob_test069.m</a>
+          tests FACTORIAL_LOG and GAMMA_LOG_INT;
+        </li>
+        <li>
+          <a href = "prob_test070.m">prob_test070.m</a>
+          tests FACTORIAL_STIRLING and I_FACTORIAL.
+        </li>
+        <li>
+          <a href = "prob_test0705.m">prob_test0705.m</a>
+          tests FISHER_PDF.
+        </li>
+        <li>
+          <a href = "prob_test071.m">prob_test071.m</a>
+          tests FISK_CDF, FISK_CDF_INV and FISK_PDF.
+        </li>
+        <li>
+          <a href = "prob_test072.m">prob_test072.m</a>
+          tests FISK_MEAN, FISK_SAMPLE and FISK_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test073.m">prob_test073.m</a>
+          tests FOLDED_NORMAL_CDF, FOLDED_NORMAL_CDF_INV and FOLDED_NORMAL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test074.m">prob_test074.m</a>
+          tests FOLDED_NORMAL_MEAN, FOLDED_NORMAL_SAMPLE and
+          FOLDED_NORMAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0744.m">prob_test0744.m</a>
+          tests FRECHET_CDF, FRECHET_CDF_INV and FRECHET_PDF.
+        </li>
+        <li>
+          <a href = "prob_test0745.m">prob_test0745.m</a>
+          tests FRECHET_MEAN, FRECHET_SAMPLE and FRECHET_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test075.m">prob_test075.m</a>
+          tests GAMMA, GAMMA_LOG, GAMMA_LOG_INT and I_FACTORIAL.
+        </li>
+        <li>
+          <a href = "prob_test076.m">prob_test076.m</a>
+          tests GAMMA_INC and GAMMA_INC_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test077.m">prob_test077.m</a>
+          tests GAMMA_CDF and GAMMA_PDF.
+        </li>
+        <li>
+          <a href = "prob_test078.m">prob_test078.m</a>
+          tests GAMMA_MEAN, GAMMA_SAMPLE and GAMMA_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test079.m">prob_test079.m</a>
+          tests GENLOGISTIC_CDF, GENLOGISTIC_CDF_INV and GENLOGISTIC_PDF.
+        </li>
+        <li>
+          <a href = "prob_test080.m">prob_test080.m</a>
+          tests GENLOGISTIC_MEAN, GENLOGISTIC_SAMPLE and GENLOGISTIC_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test081.m">prob_test081.m</a>
+          tests GEOMETRIC_CDF, GEOMETRIC_CDF_INV and GEOMETRIC_PDF;
+        </li>
+        <li>
+          <a href = "prob_test082.m">prob_test082.m</a>
+          tests GEOMETRIC_MEAN, GEOMETRIC_SAMPLE and GEOMETRIC_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test083.m">prob_test083.m</a>
+          tests GEOMETRIC_CDF and GEOMETRIC_PDF.
+        </li>
+        <li>
+          <a href = "prob_test084.m">prob_test084.m</a>
+          tests GOMPERTZ_CDF, GOMPERTZ_CDF_INV and GOMPERTZ_PDF.
+        </li>
+        <li>
+          <a href = "prob_test085.m">prob_test085.m</a>
+          tests GOMPERTZ_SAMPLE;
+        </li>
+        <li>
+          <a href = "prob_test086.m">prob_test086.m</a>
+          tests GUMBEL_CDF, GUMBEL_CDF_INV and GUMBEL_PDF;
+        </li>
+        <li>
+          <a href = "prob_test087.m">prob_test087.m</a>
+          tests GUMBEL_MEAN, GUMBEL_SAMPLE and GUMBEL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test088.m">prob_test088.m</a>
+          tests HALF_NORMAL_CDF, HALF_NORMAL_CDF_INV and HALF_NORMAL_PDF;
+        </li>
+        <li>
+          <a href = "prob_test089.m">prob_test089.m</a>
+          tests HALF_NORMAL_MEAN, HALF_NORMAL_SAMPLE and HALF_NORMAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test090.m">prob_test090.m</a>
+          tests HYPERGEOMETRIC_CDF and HYPERGEOMETRIC_PDF.
+        </li>
+        <li>
+          <a href = "prob_test091.m">prob_test091.m</a>
+          tests HYPERGEOMETRIC_MEAN, HYPERGEOMETRIC_SAMPLE and
+          HYPERGEOMETRIC_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test092.m">prob_test092.m</a>
+          tests D_CEILING.
+        </li>
+        <li>
+          <a href = "prob_test093.m">prob_test093.m</a>
+          tests INVERSE_GAUSSIAN_CDF and tests INVERSE_GAUSSIAN_PDF.
+        </li>
+        <li>
+          <a href = "prob_test094.m">prob_test094.m</a>
+          tests INVERSE_GAUSSIAN_MEAN, INVERSE_GAUSSIAN_SAMPLE and
+          INVERSE_GAUSSIAN_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test095.m">prob_test095.m</a>
+          tests LAPLACE_CDF, LAPLACE_CDF_INV and LAPLACE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test096.m">prob_test096.m</a>
+          tests LAPLACE_MEAN, LAPLACE_SAMPLE and LAPLACE_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test0965.m">prob_test0965.m</a>
+          tests LEVY_CDF, LEVY_CDF_INV and LEVY_PDF.
+        </li>
+        <li>
+          <a href = "prob_test097.m">prob_test097.m</a>
+          tests LOGISTIC_CDF, LOGISTIC_CDF_INV and LOGISTIC_PDF.
+        </li>
+        <li>
+          <a href = "prob_test098.m">prob_test098.m</a>
+          tests LOGISTIC_MEAN, LOGISTIC_SAMPLE and LOGISTIC_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test099.m">prob_test099.m</a>
+          tests LOG_NORMAL_CDF, LOG_NORMAL_CDF_INV and LOG_NORMAL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test100.m">prob_test100.m</a>
+          tests LOG_NORMAL_MEAN, LOG_NORMAL_SAMPLE and LOG_NORMAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test101.m">prob_test101.m</a>
+          tests LOG_SERIES_CDF, LOG_SERIES_CDF_INV and LOG_SERIES_PDF.
+        </li>
+        <li>
+          <a href = "prob_test102.m">prob_test102.m</a>
+          tests LOG_SERIES_CDF and LOG_SERIES_PDF.
+        </li>
+        <li>
+          <a href = "prob_test103.m">prob_test103.m</a>
+          tests LOG_SERIES_MEAN, LOG_SERIES_SAMPLE and LOG_SERIES_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test104.m">prob_test104.m</a>
+          tests LOG_UNIFORM_CDF, LOG_UNIFORM_INV and LOG_UNIFORM_PDF;
+        </li>
+        <li>
+          <a href = "prob_test105.m">prob_test105.m</a>
+          tests LOG_UNIFORM_MEAN, LOG_UNIFORM_SAMPLE, and LOG_UNIFORM_VARIANCE;
+        </li>
+        <li>
+          <a href = "prob_test106.m">prob_test106.m</a>
+          tests LORENTZ_CDF, LORENTZ_CDF_INV and LORENTZ_PDF.
+        </li>
+        <li>
+          <a href = "prob_test107.m">prob_test107.m</a>
+          tests LORENTZ_MEAN, LORENTZ_SAMPLE and LORENTZ_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test108.m">prob_test108.m</a>
+          tests MAXWELL_CDF, MAXWELL_CDF_INV and MAXWELL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test109.m">prob_test109.m</a>
+          tests MAXWELL_MEAN, MAXWELL_SAMPLE and MAXWELL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test110.m">prob_test110.m</a>
+          tests MULTINOMIAL_COEF1 and MULTINOMIAL_COEF2.
+        </li>
+        <li>
+          <a href = "prob_test111.m">prob_test111.m</a>
+          tests MULTINOMIAL_MEAN, MULTINOMIAL_SAMPLE and MULTINOMIAL_VARIANCE;
+        </li>
+        <li>
+          <a href = "prob_test112.m">prob_test112.m</a>
+          tests MULTINOMIAL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test113.m">prob_test113.m</a>
+          tests NAKAGAMI_CDF and NAKAGAMI_PDF.
+        </li>
+        <li>
+          <a href = "prob_test114.m">prob_test114.m</a>
+          tests NAKAGAMI_MEAN and NAKAGAMI_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test1145.m">prob_test1145.m</a>
+          tests NEGATIVE_BINOMIAL_CDF, NEGATIVE_BINOMIAL_CDF_INV
+          and NEGATIVE_BINOMIAL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test1146.m">prob_test1146.m</a>
+          tests NEGATIVE_BINOMIAL_MEAN, NEGATIVE_BINOMIAL_SAMPLE
+          and NEGATIVE_BINOMIAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test115.m">prob_test115.m</a>
+          tests NORMAL_01_CDF, NORMAL_01_CDF_INV and NORMAL_01_PDF;
+        </li>
+        <li>
+          <a href = "prob_test116.m">prob_test116.m</a>
+          tests NORMAL_01_MEAN, NORMAL_01_SAMPLE and NORMAL_01_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test117.m">prob_test117.m</a>
+          tests NORMAL_CDF, NORMAL_CDF_INV and NORMAL_PDF;
+        </li>
+        <li>
+          <a href = "prob_test118.m">prob_test118.m</a>
+          tests NORMAL_MEAN, NORMAL_SAMPLE and NORMAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test119.m">prob_test119.m</a>
+          tests PARETO_CDF, PARETO_CDF_INV and PARETO_PDF.
+        </li>
+        <li>
+          <a href = "prob_test120.m">prob_test120.m</a>
+          tests PARETO_MEAN, PARETO_SAMPLE and PARETO_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test123.m">prob_test123.m</a>
+          tests PEARSON_05_PDF.
+        </li>
+        <li>
+          <a href = "prob_test124.m">prob_test124.m</a>
+          tests PLANCK_PDF.
+        </li>
+        <li>
+          <a href = "prob_test125.m">prob_test125.m</a>
+          tests PLANCK_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test126.m">prob_test126.m</a>
+          tests POISSON_CDF and POISSON_CDF_VALUES>
+        </li>
+        <li>
+          <a href = "prob_test127.m">prob_test127.m</a>
+          tests POISSON_CDF, POISSON_CDF_INV and POISSON_PDF.
+        </li>
+        <li>
+          <a href = "prob_test128.m">prob_test128.m</a>
+          tests POISSON_MEAN, POISSON_SAMPLE and POISSON_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test129.m">prob_test129.m</a>
+          tests POWER_CDF, POWER_CDF_INV and POWER_PDF;
+        </li>
+        <li>
+          <a href = "prob_test130.m">prob_test130.m</a>
+          tests POWER_MEAN, POWER_SAMPLE and POWER_VARIANCE.
+        </li>
+       <li>
+          <a href = "prob_test1304.m">prob_test1304.m</a>
+          tests QUASIGEOMETRIC_CDF, QUASIGEOMETRIC_CDF_INV and QUASIGEOMETRIC_PDF;
+        </li>
+        <li>
+          <a href = "prob_test1306.m">prob_test1306.m</a>
+          tests QUASIGEOMETRIC_MEAN, QUASIGEOMETRIC_SAMPLE and QUASIGEOMETRIC_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test131.m">prob_test131.m</a>
+          tests RAYLEIGH_CDF, RAYLEIGH_CDF_INV and RAYLEIGH_PDF.
+        </li>
+        <li>
+          <a href = "prob_test132.m">prob_test132.m</a>
+          tests RAYLEIGH_MEAN, RAYLEIGH_SAMPLE and RAYLEIGH_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test133.m">prob_test133.m</a>
+          tests RECIPROCAL_CDF, RECIPROCAL_CDF_INV and RECIPROCAL_CDF;
+        </li>
+        <li>
+          <a href = "prob_test134.m">prob_test134.m</a>
+          tests RECIPROCAL_MEAN, RECIPROCAL_SAMPLE and RECIPROCAL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test1341.m">prob_test1341.m</a>
+          tests RIBESL and BESSEL_IX_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test1342.m">prob_test1342.m</a>
+          tests RUNS_PDF.
+        </li>
+        <li>
+          <a href = "prob_test1344.m">prob_test1344.m</a>
+          tests RUNS_MEAN, RUNS_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test135.m">prob_test135.m</a>
+          tests SECH_CDF, SECH_CDF_INV and SECH_PDF.
+        </li>
+        <li>
+          <a href = "prob_test136.m">prob_test136.m</a>
+          tests SECH_MEAN, SECH_SAMPLE and SECH_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test137.m">prob_test137.m</a>
+          tests SEMICIRCULAR_CDF, SEMICIRCULAR_CDF_INV and SEMICIRCULAR_PDF.
+        </li>
+        <li>
+          <a href = "prob_test138.m">prob_test138.m</a>
+          tests SEMICIRCULAR_MEAN, SEMICIRCULAR_SAMPLE 
+          and SEMICIRCULAR_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test139.m">prob_test139.m</a>
+          tests STUDENT_CDF and STUDENT_CDF_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test140.m">prob_test140.m</a>
+          tests STUDENT_CDF and STUDENT_PDF.
+        </li>
+        <li>
+          <a href = "prob_test141.m">prob_test141.m</a>
+          tests STUDENT_MEAN, STUDENT_SAMPLE and STUDENT_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test142.m">prob_test142.m</a>
+          tests STUDENT_NONCENTRAL_CDF.
+        </li>
+        <li>
+          <a href = "prob_test1425.m">prob_test1425.m</a>
+          tests TFN.
+        </li>
+        <li>
+          <a href = "prob_test143.m">prob_test143.m</a>
+          tests TRIANGLE_CDF, TRIANGLE_CDF_INV and TRIANGLE_PDF;
+        </li>
+        <li>
+          <a href = "prob_test144.m">prob_test144.m</a>
+          tests TRIANGLE_MEAN, TRIANGLE_SAMPLE, and TRIANGLE_VARIANCE;
+        </li>
+        <li>
+          <a href = "prob_test145.m">prob_test145.m</a>
+          tests TRIANGULAR_CDF, TRIANGULAR_CDF_INV and TRIANGULAR_PDF;
+        </li>
+        <li>
+          <a href = "prob_test146.m">prob_test146.m</a>
+          tests TRIANGULAR_MEAN, TRIANGULAR_SAMPLE and TRIANGULAR_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test147.m">prob_test147.m</a>
+          tests UNIFORM_01_ORDER_SAMPLE;
+        </li>
+        <li>
+          <a href = "prob_test148.m">prob_test148.m</a>
+          tests UNIFORM_NSPHERE_SAMPLE;
+        </li>
+        <li>
+          <a href = "prob_test1485.m">prob_test1485.m</a>
+          tests UNIFORM_01_CDF, UNIFORM_01_CDF_INV and UNIFORM_01_PDF;
+        </li>
+        <li>
+          <a href = "prob_test1486.m">prob_test1486.m</a>
+          tests UNIFORM_01_MEAN, UNIFORM_01_SAMPLE and UNIFORM_01_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test149.m">prob_test149.m</a>
+          tests UNIFORM_CDF, UNIFORM_CDF_INV and UNIFORM_PDF;
+        </li>
+        <li>
+          <a href = "prob_test150.m">prob_test150.m</a>
+          tests UNIFORM_MEAN, UNIFORM_SAMPLE and UNIFORM_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test151.m">prob_test151.m</a>
+          tests UNIFORM_DISCRETE_CDF, UNIFORM_DISCRETE_CDF_INV and
+          UNIFORM_DISCRETE_PDF;
+        </li>
+        <li>
+          <a href = "prob_test152.m">prob_test152.m</a>
+          tests UNIFORM_DISCRETE_MEAN, UNIFORM_DISCRETE_SAMPLE and
+          UNIFORM_DISCRETE_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test153.m">prob_test153.m</a>
+          tests UNIFORM_DISCRETE_CDF and UNIFORM_DISCRETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test154.m">prob_test154.m</a>
+          tests VON_MISES_CDF, VON_MISES_CDF_INV and VON_MISES_PDF.
+        </li>
+        <li>
+          <a href = "prob_test155.m">prob_test155.m</a>
+          tests VON_MISES_MEAN, VON_MISES_CIRCULAR_VARIANCE
+          and VON_MISES_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test1555.m">prob_test1555.m</a>
+          tests VON_MISES_CDF and VON_MISES_CDF_VALUES.
+        </li>
+        <li>
+          <a href = "prob_test156.m">prob_test156.m</a>
+          tests WEIBULL_CDF, WEIBULL_CDF_INV and WEIBULL_PDF.
+        </li>
+        <li>
+          <a href = "prob_test157.m">prob_test157.m</a>
+          tests WEIBULL_MEAN, WEIBULL_SAMPLE and WEIBULL_VARIANCE.
+        </li>
+        <li>
+          <a href = "prob_test158.m">prob_test158.m</a>
+          tests WEIBULL_DISCRETE_CDF, WEIBULL_DISCRETE_CDF_INV,
+          WEIBULL_DISCRETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test159.m">prob_test159.m</a>
+          tests WEIBULL_DISCRETE_CDF and WEIBULL_DISCRETE_PDF.
+        </li>
+        <li>
+          <a href = "prob_test160.m">prob_test160.m</a>
+          tests WEIBULL_DISCRETE_SAMPLE.
+        </li>
+        <li>
+          <a href = "prob_test161.m">prob_test161.m</a>
+          tests ZIPF_CDF and ZIPF_PDF.
+        </li>
+        <li>
+          <a href = "prob_test162.m">prob_test162.m</a>
+          tests ZIPF_SAMPLE.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

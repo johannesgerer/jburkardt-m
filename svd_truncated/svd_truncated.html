@@ -1,0 +1,224 @@
+<html>
+
+  <head>
+    <title>
+      SVD_TRUNCATED - The Truncated Singular Value Decomposition
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SVD_TRUNCATED <br> The Truncated Singular Value Decomposition
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SVD_TRUNCATED</b>
+      is a MATLAB program which
+      demonstrates the computation of the reduced or truncated 
+      Singular Value Decomposition (SVD)
+      of an M by N rectangular matrix, in cases where M < N or N < M.
+    </p>
+
+    <p>
+      The singular value decomposition of an M by N rectangular matrix A has
+      the form
+      <pre>
+        A(mxn) = U(mxm) * S(mxn) * V'(nxn)
+      </pre>
+      where
+      <ul>
+        <li>
+          U is an orthogonal matrix, whose columns are the left singular vectors;
+        </li>
+        <li>
+          S is a diagonal matrix, whose min(m,n) diagonal entries are the singular values;
+        </li>
+        <li>
+          V is an orthogonal matrix, whose columns are the right singular vectors;
+        </li>
+      </ul>
+      Note that the transpose of V is used in the decomposition, and that the diagonal matrix
+      S is typically stored as a vector.
+    </p>
+
+    <p>
+      It is often the case that the matrix A has one dimension much bigger than the other.
+      For instance, M = 3 and N = 10,000 might be such a case.
+      For such examples, much of the computation and memory required for the standard SVD
+      may not actually be needed.  Instead, a truncated, or reduced version is appropriate.
+      It will be computed faster, and require less memory to store the data.
+    </p>
+
+    <p>
+      If M < N, we have the "truncated V" SVD:
+      <pre>
+        A(mxn) = U(mxm) * Sm(mxm) * Vm'(nxm)
+      </pre>
+      Notice that, for our example, we will have to compute and store a Vm of size
+      30,000 instead of a V of size 1,000,000 entries.
+    </p>
+
+    <p>
+      If N < M, we have the "truncated U" SVD:
+      <pre>
+        A(mxn) = Un(mxn) * Sn(nxn) * V'(nxn)
+      </pre>
+      Similarly, in this case, the computation and storage of Un can be much reduced
+      from that of U.
+    </p>
+
+    <p>
+      The MATLAB function
+      <blockquote>
+        [ u, s, v ] = svd ( a )
+      </blockquote>
+      returns the standard SVD.  However, by including the switch 'econ', you can
+      request the truncated SVD:
+      <blockquote>
+        [ u, s, v ] = svd ( a, 'econ' )
+      </blockquote>
+      This will automatically create the truncated V or truncated U decomposition,
+      depending on whether M < N or N < M.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SVD_TRUNCATED</b> is available in
+      <a href = "../../cpp_src/svd_truncated/svd_truncated.html">a C++ version</a> and
+      <a href = "../../f_src/svd_truncated/svd_truncated.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/svd_truncated/svd_truncated.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/fingerprints/fingerprints.html">
+      FINGERPRINTS</a>,
+      a dataset directory which
+      contains a few images of fingerprints.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_basis/svd_basis.html">
+      SVD_BASIS</a>,
+      a MATLAB program which
+      computes a reduced basis for a collection of data vectors using the SVD.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_demo/svd_demo.html">
+      SVD_DEMO</a>,
+      a MATLAB program which
+      demonstrates the singular value decomposition (SVD) for a simple example.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_fingerprint/svd_fingerprint.html">
+      SVD_FINGERPRINT</a>,
+      a MATLAB program which
+      reads a file containing a fingerprint image and uses the 
+      singular value decomposition (SVD) to compute and display a series of 
+      low rank approximations to the image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/svd_snowfall/svd_snowfall.html">
+      SVD_SNOWFALL</a>,
+      a MATLAB program which
+      reads a file containing historical snowfall data and 
+      analyzes the data with the Singular Value Decomposition (SVD).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Anderson, Zhaojun Bai, Christian Bischof, Susan Blackford,
+          James Demmel, Jack Dongarra, Jeremy Du Croz, Anne Greenbaum,
+          Sven Hammarling, Alan McKenney, Danny Sorensen,<br>
+          LAPACK User's Guide,<br>
+          Third Edition,<br>
+          SIAM, 1999,<br>
+          ISBN: 0898714478,<br>
+          LC: QA76.73.F25L36
+        </li>
+        <li>
+          Gene Golub, Charles VanLoan,<br>
+          Matrix Computations,
+          Third Edition,<br>
+          Johns Hopkins, 1996,<br>
+          ISBN: 0-8018-4513-X,<br>
+          LC: QA188.G65.
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Lloyd Trefethen, David Bau,<br>
+          Numerical Linear Algebra,<br>
+          SIAM, 1997,<br>
+          ISBN: 0-89871-361-7,<br>
+          LC: QA184.T74.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "svd_truncated.m">svd_truncated.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "svd_truncated_output.txt">svd_truncated_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 March 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,238 @@
+<html>
+
+  <head>
+    <title>
+      MULTIGRID_POISSON_1D - Multigrid Solver for 1D Poisson Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MULTIGRID_POISSON_1D <br> Multigrid Solver for 1D Poisson Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MULTIGRID_POISSON_1D</b>
+      is a MATLAB library which
+      applies a multigrid method to solve the linear system associated
+      with a discretized version of the 1D Poisson equation.
+    </p>
+
+    <p>
+      The 1D Poisson equation is assumed to have the form
+      <pre>
+        -u''(x) = f(x), for a < x < b
+         u(a) = ua, u(b) = ub
+      </pre>
+    </p>
+
+    <p>
+      Let K be a small positive integer called the mesh index, and let
+      N = 2^K be the corresponding number of uniform subintervals into which
+      [A,B] is divided.  Assigning a value U(I) to each of the N+1 equally
+      spaced nodes with coordinate X(I), we approximate the equation by
+      <pre>
+        -U(i-1) + 2 U(i) - U(i+1)
+        -------------------------   = f( X(i) ), 1 < I < N+1
+                  h^2
+
+        U(1) = ua, U(N+1) = ub.
+      </pre>
+    </p>
+
+    <p>
+      It remains to solve the linear system for the desired values of U.
+      This could be done directly, or iteratively.  An iterative method
+      such as Jacobi, Gauss-Seidel or SOR might be suitable, but experience
+      shows that the convergence rate of these iterative methods decreases
+      drastically as the value of K is increased - that is, as a more
+      refined and accurate answer is sought.
+    </p>
+
+    <p>
+      The multigrid method defines a nested set of grids, and corresponding
+      solutions, to the problem, and applies an iterative linear solver.
+      By transfering information from one grid to a finer or coarser one,
+      a more rapid convergence behavior can be encouraged.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MULTIGRID_POISSON_1D</b> is available in
+      <a href = "../../c_src/multigrid_poisson_1d/multigrid_poisson_1d.html">a C version</a> and
+      <a href = "../../cpp_src/multigrid_poisson_1d/multigrid_poisson_1d.html">a C++ version</a> and
+      <a href = "../../f77_src/multigrid_poisson_1d/multigrid_poisson_1d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/multigrid_poisson_1d/multigrid_poisson_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/multigrid_poisson_1d/multigrid_poisson_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cyclic_reduction/cyclic_reduction.html">
+      CYCLIC_REDUCTION</a>,
+      a MATLAB library which
+      solves a tridiagonal linear system using cyclic reduction.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
+      FD1D_BVP</a>,
+      a MATLAB program which
+      applies the finite difference method
+      to a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mgmres/mgmres.html">
+      MGMRES</a>,
+      a MATLAB library which
+      applies the restarted GMRES algorithm to solve a sparse linear system,
+      by Lili Ju.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          William Briggs, Van Emden Henson, Steve McCormick,<br>
+          A Multigrid Tutorial,<br>
+          SIAM, 2000,<br>
+          ISBN13: 978-0-898714-62-3,<br>
+          LC: QA377.B75.
+        </li>
+        <li>
+          William Hager,<br>
+          Applied Numerical Linear Algebra,<br>
+          Prentice-Hall, 1988,<br>
+          ISBN13: 978-0130412942,<br>
+          LC: QA184.H33.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "monogrid_poisson_1d.m">monogrid_poisson_1d.m</a>, 
+          solves a 1D PDE, using the Gauss-Seidel method.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d.m">multigrid_poisson_1d.m</a>,
+          solves a 1D PDE using the multigrid method.
+        </li>
+        <li>
+          <a href = "ctof.m">ctof.m</a>,
+          transfers data from a coarse to a finer grid.
+        </li>
+        <li>
+          <a href = "ftoc.m">ftoc.m</a>,
+          transfers data from a fine grid to a coarser grid.
+        </li>
+        <li>
+          <a href = "gauss_seidel.m">gauss_seidel.m</a>,
+          carries out one step of a Gauss-Seidel iteration.
+        </li>
+        <li>
+          <a href = "i4_log_2.m">i4_log_2.m</a>,
+          computes the logarithm base 2 of an I4.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "multigrid_poisson_1d_test.m">multigrid_poisson_1d_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d_test_output.txt">multigrid_poisson_1d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d_test01_mono.m">multigrid_poisson_1d_test01_mono.m</a>,
+          solves test problem 1 using Gauss-Seidel.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d_test01_multi.m">multigrid_poisson_1d_test01_multi.m</a>,
+          solves test problem 1 using the multigrid method.
+        </li>
+        <li>
+          <a href = "exact1.m">exact1.m</a>,
+          the exact solution for test problem 1.
+        </li>
+        <li>
+          <a href = "force1.m">force1.m</a>,
+          the forcing term for test problem 1.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d_test02_mono.m">multigrid_poisson_1d_test02_mono.m</a>,
+          solves test problem 2 using Gauss-Seidel.
+        </li>
+        <li>
+          <a href = "multigrid_poisson_1d_test02_multi.m">multigrid_poisson_1d_test02_multi.m</a>,
+          solves test problem 2 using the multigrid method.
+        </li>
+        <li>
+          <a href = "exact2.m">exact2.m</a>,
+          the exact solution for test problem 2.
+        </li>
+        <li>
+          <a href = "force2.m">force2.m</a>,
+          the forcing term for test problem 2.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 July 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

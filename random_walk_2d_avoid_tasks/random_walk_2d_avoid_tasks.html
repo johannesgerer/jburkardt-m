@@ -1,0 +1,341 @@
+<html>
+
+  <head>
+    <title>
+      RANDOM_WALK_2D_AVOID_TASKS - Task Computation of Multiple Self Avoiding Walks
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      RANDOM_WALK_2D_AVOID_TASKS <br> Task Computation of Multiple Self Avoiding Walks
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>RANDOM_WALK_2D_AVOID_TASKS</b>
+      is a MATLAB program which
+      sets up a job as a collection of tasks.  Each task is required to initialize
+      the random number generator, and then attempt to construct a self-avoiding walk
+      in 2D, returning the number of steps it was able to take, and its final
+      distance from the origin.
+    </p>
+
+    <p>
+      The task computing feature of MATLAB's Parallel Computing Toolbox is used
+      to manage the creation, execution, and analysis of the multiple tasks.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/birthday_remote/birthday_remote.html">
+      BIRTHDAY_REMOTE</a>,
+      a program which
+      runs a Monte Carlo simulation of the birthday paradox, and includes
+      instructions on how to run the job, via MATLAB's BATCH facility,
+      on a remote system such as Virginia Tech's ITHACA cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_1d_simulation/random_walk_1d_simulation.html">
+      RANDOM_WALK_1D_SIMULATION</a>,
+      a program which
+      simulates a random walk in a 1-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_simulation/random_walk_2d_avoid_simulation.html">
+      RANDOM_WALK_2D_AVOID_SIMULATION</a>,
+      a program which
+      simulates a self-avoiding random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_simulation/random_walk_2d_simulation.html">
+      RANDOM_WALK_2D_SIMULATION</a>,
+      a program which
+      simulates a random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_3d_simulation/random_walk_3d_simulation.html">
+      RANDOM_WALK_3D_SIMULATION</a>,
+      a program which
+      simulates a random walk in a 3-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum_tasks/subset_sum_tasks.html">
+      SUBSET_SUM_TASKS</a>,
+      a program which
+      solves a subset sum problem by exhaustive search,
+      subdividing the search range among separate tasks.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          Brian Hayes,<br>
+          How To Avoid Yourself,<br>
+          American Scientist,<br>
+          Volume 86, Number 4, July-August 1998, pages 314-319.
+        </li>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "walk_task.m">walk_task.m</a>,
+          a function which carries out a single instance of the task.
+        </li>
+        <li>
+          <a href = "walk_job_local.m">walk_job_local.m</a>,
+          sets up a job as a collection of tasks and runs it locally.
+        </li>
+        <li>
+          <a href = "walk_local_output.txt">walk_local_output.txt</a>,
+          the output from a local run of the tasks.
+        </li>
+        <li>
+          <a href = "walk_job_ithaca.m">walk_job_ithaca.m</a>,
+          sets up a job as a collection of tasks and runs it on the Ithaca cluster.
+        </li>
+        <li>
+          <a href = "walk_fsu.m">walk_fsu.m</a>,
+          sets up a job as a collection of tasks and runs it on the FSU HPC cluster.
+        </li>
+        <li>
+          <a href = "walk_fsu_output.txt">walk_fsu_output.txt</a>,
+          the output from a run of walk_fsu on the FSU HPC cluster.
+        </li>
+        <li>
+          <a href = "dist_vs_steps.png">dist_vs_steps.png</a>,
+          a plot of steps taken versus distance squared.
+        </li>
+        <li>
+          <a href = "fit_plot.png">fit_plot.png</a>,
+          a plot of the least squares linear fit through the logarithms 
+          of the number of steps versus logarithm of distance squared.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 April 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

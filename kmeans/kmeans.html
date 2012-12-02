@@ -1,0 +1,685 @@
+<html>
+
+  <head>
+    <title>
+      KMEANS - the K-Means Data Clustering Problem
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      KMEANS <br> the K-Means Data Clustering Problem
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>KMEANS</b>
+      is a MATLAB library which
+      handles the K-Means problem,
+      which organizes a set of N points in M dimensions into K clusters;
+    </p>
+
+    <p>
+      In the K-Means problem, a set of N points X(I) in M-dimensions is
+      given.  The goal is to arrange these points into K clusters,
+      with each cluster having a representative point Z(J), usually
+      chosen as the centroid of the points in the cluster.  <pre>
+        Z(J) = Sum ( all X(I) in cluster J ) X(I) /
+               Sum ( all X(I) in cluster J ) 1.
+      </pre>
+      The energy of cluster J is <pre>
+        E(J) = Sum ( all X(I) in cluster J ) || X(I) - Z(J) ||^2
+      </pre>
+    </p>
+
+    <p>
+      For a given set of clusters, the total energy is then simply
+      the sum of the cluster energies E(J).  The goal is to choose the
+      clusters in such a way that the total energy is minimized.
+      Usually, a point X(I) goes into the cluster with the closest
+      representative point Z(J).  So to define the clusters, it's
+      enough simply to specify the locations of the cluster representatives.
+    </p>
+
+    <p>
+      This is actually a fairly hard problem.  Most algorithms do
+      reasonably well, but cannot guarantee that the best solution
+      has been found.  It is very common for algorithms to get
+      stuck at a solution which is merely a "local minimum".
+      For such a local minimum, every slight rearrangement of
+      the solution makes the energy go up; however a major
+      rearrangement would result in a big drop in energy.
+    </p>
+
+    <p>
+      A simple algorithm for the problem is known as the "H-Means algorithm".
+      It alternates between two procedures:
+      <ul>
+        <li>
+          Using the given cluster centers, assign each point to the
+          cluster with the nearest center;
+        </li>
+        <li>
+          Using the given cluster assignments, replace each cluster
+          center by the centroid or average of the points in the cluster.
+        </li>
+      </ul>
+      These steps are repeated until no points are moved, or some
+      other termination criterion is reached.
+    </p>
+
+    <p>
+      A more sophisticated algorithm, known as the "K-Means algorithm",
+      takes advantage of the fact that it is possible to quickly determine
+      the decrease in energy caused by moving a point from its current cluster
+      to another.  It repeats the following procedure:
+      <ul>
+        <li>
+          For each point, move it to another cluster if that would lower
+          the energy.  If you move a point, immediately update the
+          cluster centers of the two affected clusters.
+        </li>
+      </ul>
+      This procedure is repeated until no points are moved, or some
+      other termination criterion is reached.
+    </p>
+
+    <h3 align = "center">
+      The Weighted K-Means Problem
+    </h3>
+
+    <p>
+      A natural extension of the K-Means problem allows us to include
+      some more information, namely, a set of <i>weights</i> associated
+      with the data points.  These might represent a measure of importance,
+      a frequency count, or some other information.  The intent is that
+      a point with a weight of 5.0 is twice as "important" as a point with
+      a weight of 2.5, for instance.  This gives rise to the "weighted"
+      K-Means problem.
+    </p>
+
+    <p>
+      In the <i>weighted K-Means problem</i>, we are given a set of N points
+      X(I) in M-dimensions, and a corresponding set of nonnegative weights
+      W(I).  The goal is to arrange the points into K clusters,
+      with each cluster having a representative point Z(J), usually
+      chosen as the weighted centroid of the points in the cluster: <pre>
+        Z(J) = Sum ( all X(I) in cluster J ) W(I) * X(I) /
+               Sum ( all X(I) in cluster J ) W(I).
+      </pre>
+      The weighted energy of cluster J is <pre>
+        E(J) = Sum ( all X(I) in cluster J ) W(I) * || X(I) - Z(J) ||^2
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>KMEANS</b> is available in
+      <a href = "../../cpp_src/kmeans/kmeans.html">a C++ version</a> and
+      <a href = "../../f_src/kmeans/kmeans.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/kmeans/kmeans.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa058/asa058.html">
+      ASA058</a>,
+      a MATLAB library which
+      implements the K-means algorithm of Sparks.
+    </p>
+
+    <p>
+      <a href = "../../m_src/asa136/asa136.html">
+      ASA136</a>,
+      a MATLAB library which
+      implements the Hartigan and Wong clustering algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cities/cities.html">
+      CITIES</a>,
+      a MATLAB library which
+      handles various problems associated with a set of "cities" on a map.
+    </p>
+
+    <p>
+      <a href = "../../datasets/cities/cities.html">
+      CITIES</a>,
+      a dataset directory which
+      contains sets of data defining groups of cities.
+    </p>
+
+    <p>
+      <a href = "../../f_src/cluster_energy/cluster_energy.html">
+      CLUSTER_ENERGY</a>,
+      a FORTRAN90 program which
+      groups data into a given number of clusters to minimize the energy.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lau_np/lau_np.html">
+      LAU_NP</a>,
+      a FORTRAN90 library which
+      contains heuristic algorithms for the K-center and K-median problems.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sammon_data/sammon_data.html">
+      SAMMON_DATA</a>,
+      a MATLAB program which
+      generates six sets of M-dimensional data for cluster analysis.
+    </p>
+
+    <p>
+      <a href = "../../f_src/spaeth/spaeth.html">
+      SPAETH</a>,
+      a FORTRAN90 library which
+      can cluster data according to various principles.
+    </p>
+
+    <p>
+      <a href = "../../datasets/spaeth/spaeth.html">
+      SPAETH</a>,
+      a dataset directory which
+      contains a set of test data.
+    </p>
+
+    <p>
+      <a href = "../../f_src/spaeth2/spaeth2.html">
+      SPAETH2</a>,
+      a FORTRAN90 library which
+      can cluster data according to various principles.
+    </p>
+
+    <p>
+      <a href = "../../datasets/spaeth2/spaeth2.html">
+      SPAETH2</a>,
+      a dataset directory which
+      contains a set of test data.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          John Hartigan, Manchek Wong,<br>
+          Algorithm AS 136:
+          A K-Means Clustering Algorithm,<br>
+          Applied Statistics,<br>
+          Volume 28, Number 1, 1979, pages 100-108.
+        </li>
+        <li>
+          Wendy Martinez, Angel Martinez,<br>
+          Computational Statistics Handbook with MATLAB,<br>
+          Chapman and Hall / CRC, 2002.
+        </li>
+        <li>
+          David Sparks,<br>
+          Algorithm AS 58:
+          Euclidean Cluster Analysis,<br>
+          Applied Statistics,<br>
+          Volume 22, Number 1, 1973, pages 126-130.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cluster_energy_compute.m">cluster_energy_compute.m</a>
+          computes the energy of the clusters.
+        </li>
+        <li>
+          <a href = "cluster_initialize_1.m">cluster_initialize_1.m</a>
+          initializes the clusters to data points.
+        </li>
+        <li>
+          <a href = "cluster_initialize_2.m">cluster_initialize_2.m</a>
+          initializes the cluster centers to random values.
+        </li>
+        <li>
+          <a href = "cluster_initialize_3.m">cluster_initialize_3.m</a>
+          initializes the cluster centers to random values.
+        </li>
+        <li>
+          <a href = "cluster_initialize_4.m">cluster_initialize_4.m</a>
+          initializes the cluster centers to random values.
+        </li>
+        <li>
+          <a href = "cluster_initialize_5.m">cluster_initialize_5.m</a>
+          initializes the cluster centers to random values.
+        </li>
+        <li>
+          <a href = "cluster_print_summary.m">cluster_print_summary.m</a>
+          prints a summary of data about a clustering.
+        </li>
+        <li>
+          <a href = "cluster_variance_compute.m">cluster_variance_compute.m</a>
+          computes the cluster variance.
+        </li>
+        <li>
+          <a href = "file_column_count.m">file_column_count.m</a>
+          counts the number of columns in the first line of a file.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>
+          counts the number of row records in a file.
+        </li>
+        <li>
+          <a href = "hmeans_01.m">hmeans_01.m</a>
+          applies the H-Means algorithm.
+        </li>
+        <li>
+          <a href = "hmeans_02.m">hmeans_02.m</a>
+          applies the H-Means algorithm.
+        </li>
+        <li>
+          <a href = "hmeans_w_01.m">hmeans_w_01.m</a>
+          applies the weighted H-Means algorithm.
+        </li>
+        <li>
+          <a href = "hmeans_w_02.m">hmeans_w_02.m</a>
+          applies the weighted H-Means algorithm.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>
+          returns a pseudorandom I4.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>,
+          writes an I4MAT file.
+        </li>
+        <li>
+          <a href = "kmeans_01.m">kmeans_01.m</a>
+          applies the K-Means algorithm.
+        </li>
+        <li>
+          <a href = "kmeans_02.m">kmeans_02.m</a>
+          applies the K-Means algorithm.
+        </li>
+        <li>
+          <a href = "kmeans_02_optra.m">kmeans_02_optra.m</a>
+          carries out the optimal transfer stage.
+        </li>
+        <li>
+          <a href = "kmeans_01_qtran.m">kmeans_01_qtran.m</a>
+          carries out the quick transfer stage.
+        </li>
+        <li>
+          <a href = "kmeans_03.m">kmeans_03.m</a>
+          applies the K-Means algorithm.
+        </li>
+        <li>
+          <a href = "kmeans_w_01.m">kmeans_w_01.m</a>
+          applies the weighted K-Means algorithm.
+        </li>
+        <li>
+          <a href = "kmeans_w_03.m">kmeans_w_03.m</a>
+          applies the weighted K-Means algorithm.
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">r4_uniform_01.m</a>
+          returns a unit pseudorandom R4.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8mat_data_read.m">r8mat_data_read.m</a>,
+          reads a table from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_header_read.m">r8mat_header_read.m</a>,
+          reads a table header from an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">
+          r8mat_uniform_01.m</a>,
+          fills an R8MAT with pseudorandom numbers.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>,
+          writes an R8MAT file.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "random_initialize.m">random_initialize.m</a>
+          initializes the random number seed.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>,
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>,
+          counts the number of words in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "kmeans_test.m">kmeans_test.m</a>, calls all the tests.
+        </li>
+        <li>
+          <a href = "kmeans_test01.m">kmeans_test01.m</a>, tests HMEANS_01.
+        </li>
+        <li>
+          <a href = "kmeans_test02.m">kmeans_test02.m</a>, tests HMEANS_02.
+        </li>
+        <li>
+          <a href = "kmeans_test_output.txt">kmeans_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      There are data files read by the sample code:
+      <ul>
+        <li>
+          <a href = "points_100.txt">points_100.txt</a>, 100 2D points,
+          used as a case study by the sample problem.
+        </li>
+        <li>
+          <a href = "points_100.png">points_100.png</a>, 
+          an image of the points.
+        </li>
+        <li>
+          <a href = "ruspini.txt">ruspini.txt</a>, 75 points in 2D,
+          with integer coordinates, and 0 < X < 120, 0 < Y < 160,
+          which might naturally be grouped into 4 sets.
+        </li>
+        <li>
+          <a href = "weights_equal_100.txt">weights_equal_100.txt</a>,
+          100 equal weights, for doing equally weighted calculations when
+          a program expects weights.
+        </li>
+        <li>
+          <a href = "weights_unequal_100.txt">weights_unequal_100.txt</a>,
+          100 weights, not all equal, for testing programs that can use weights.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST01</b> applies HMEANS_01 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test01_clusters.txt">test01_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test01_centers.txt">test01_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST02</b> applies HMEANS_02 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test02_clusters.txt">test02_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test02_centers.txt">test02_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST03</b> applies KMEANS_01 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test03_clusters.txt">test03_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test03_centers.txt">test03_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST04</b> applies KMEANS_02 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test04_clusters.txt">test04_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test04_centers.txt">test04_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST05</b> applies KMEANS_03 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test05_clusters.txt">test05_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test05_centers.txt">test05_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST06</b> applies HMEANS_01 + KMEANS_01 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test06_clusters.txt">test06_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test06_centers.txt">test06_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST07</b> applies HMEANS_01 + KMEANS_02 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test07_clusters.txt">test07_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test07_centers.txt">test07_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST08</b> applies KMEANS_01 + KMEANS_03 to points_100.txt:
+      <ul>
+        <li>
+          <a href = "test08_clusters.txt">test08_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test08_centers.txt">test08_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST09</b> applies HMEANS_W_01 to points_100.txt and weights_equal_100.txt:
+      <ul>
+        <li>
+          <a href = "test09_clusters.txt">test09_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test09_centers.txt">test09_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST10</b> applies HMEANS_W_02 to points_100.txt and weights_equal_100.txt:
+      <ul>
+        <li>
+          <a href = "test10_clusters.txt">test10_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test10_centers.txt">test10_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST11</b> applies KMEANS_W_01 to points_100.txt and weights_equal_100.txt:
+      <ul>
+        <li>
+          <a href = "test11_clusters.txt">test11_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test11_centers.txt">test11_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST12</b> applies KMEANS_W_03 to points_100.txt and weights_equal_100.txt:
+      <ul>
+        <li>
+          <a href = "test12_clusters.txt">test12_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test12_centers.txt">test12_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST13</b> applies HMEANS_W_01 to points_100.txt and weights_unequal_100.txt:
+      <ul>
+        <li>
+          <a href = "test13_clusters.txt">test13_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test13_centers.txt">test13_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST14</b> applies HMEANS_W_02 to points_100.txt and weights_unequal_100.txt:
+      <ul>
+        <li>
+          <a href = "test14_clusters.txt">test14_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test14_centers.txt">test14_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST15</b> applies KMEANS_W_01 to points_100.txt and weights_unequal_100.txt:
+      <ul>
+        <li>
+          <a href = "test15_clusters.txt">test15_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test15_centers.txt">test15_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST16</b> applies KMEANS_W_03 to points_100.txt and weights_unequal_100.txt:
+      <ul>
+        <li>
+          <a href = "test16_clusters.txt">test16_clusters.txt</a>
+          the cluster assignments.
+        </li>
+        <li>
+          <a href = "test16_centers.txt">test16_centers.txt</a>
+          the cluster centers.
+        </li>
+      </ul>
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

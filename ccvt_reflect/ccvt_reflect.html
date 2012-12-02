@@ -1,0 +1,293 @@
+<html>
+
+  <head>
+    <title>
+      CCVT_REFLECT - Constrained CVT Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CCVT_REFLECT <br> Constrained CVT Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CCVT_REFLECT</b> 
+      is a MATLAB program which 
+      allows the user to specify certain parameters, and then
+      creates a Centroidal Voronoi Tessellation
+      of points in a region, using a special reflection technique
+      to try to attract some points to move to the boundary.
+    </p>
+
+    <p>
+      The standard CVT algorithm will tend to place points uniformly
+      inside the region, but will never place points <i>on</i> the boundary.
+      However, in many cases, it would be very desirable to smoothly
+      modify the set of points so that some of them fall on the boundary.
+      This is the case, for instance, when the points are to be used to
+      triangulate the region and define a finite element grid.
+    </p>
+
+    <p>
+      The method for doing this relies on the observation that the
+      generator points become uniformly distributed because they
+      "push" each other away, by grabbing sample points.  The generator
+      points do not approach the boundary too closely, because there
+      are no sample points on the other side of the boundary.  In essence,
+      the boundary also "pushes" the generator points away.
+      By making "reflected" sample points whenever a generator is near 
+      the boundary, we essentially neutralize the boundary effect, allowing
+      the generator points in the interior to push a layer of generators
+      onto the boundary.  In most cases, once a point hits the boundary,
+      it will not leave, although it may continue to adjust its position
+      on the boundary itself.
+    </p>
+
+    <p>
+      <i>
+        This program is a "work in progress".  Currently, only a simple
+        2D box region has been examined.  The next step is to work on
+        more general 2D regions; then to make the natural extension to
+        3D or arbitrary dimension.
+      </i>
+    </p>
+
+    <p>
+      <b>CCVT_REFLECT</b> is an experimental code; so far, the experiment
+      is not doing well.  I haven't figured out yet how to make the
+      points behave as well as they do for <b>CCVT_BOX</b>.  The idea is,
+      though, that the method of pulling points to the boundary seems
+      fairly natural and flexible to me, so maybe I just need to
+      find the right way to implement it.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ccvt_box/ccvt_box.html">
+      CCVT_BOX</a>,
+      a MATLAB program which
+      solves a similar problem on a box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_lloyd/cvt_1d_lloyd.html">
+      CVT_1D_LLOYD</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_sampling/cvt_1d_sampling.html">
+      CVT_1D_SAMPLING</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density, 
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, September 1991, pages 345-405.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Janet Peterson, Rebecca Brannon,<br>
+          User Manual and Supporting Information for Library of Codes
+          for Centroidal Voronoi Placement and Associated Zeroth,
+          First, and Second Moment Determination,<br>
+          Sandia National Laboratories Technical Report SAND2002-0099,<br>
+          February 2002.
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, Number 4, December 1999, pages 637-676.
+        </li>
+        <li>
+          Qiang Du, Max Gunzburger, Lili Ju,<br>
+          Meshfree, Probabilistic Determination of Point Sets and Support
+          Regions for Meshfree Computing,<br>
+          Computer Methods in Applied Mechanics in Engineering,<br>
+          Volume 191, 2002, pages 1349-1366.
+        </li>
+        <li>
+          Lili Ju, Qiang Du, Max Gunzburger,<br>
+          Probabilistic methods for centroidal Voronoi tessellations
+          and their parallel implementations,<br>
+          Parallel Computing,<br>
+          Volume 28, 2002, pages 1477-1500.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ccvt_reflect.m">ccvt_reflect.m</a> 
+          gets information from the user, creates the CVT using
+          reflection, and saves the animation.
+        </li>
+        <li>
+          <a href = "ch_cap.m">ch_cap.m</a> 
+          capitalizes a single character.
+        </li>
+        <li>
+          <a href = "cvt_energy.m">cvt_energy.m</a> 
+          computes the CVT energy of a dataset.
+        </li>
+        <li>
+          <a href = "cvt_sample.m">cvt_sample.m</a> 
+          returns sample points.
+        </li>
+        <li>
+          <a href = "cvt_write.m">cvt_write.m</a> 
+          writes a CVT dataset to a file.
+        </li>
+        <li>
+          <a href = "data_read.m">data_read.m</a> 
+          reads data from a file.
+        </li>
+        <li>
+          <a href = "file_exist.m">file_exist.m</a> 
+          is true if a file exists.
+        </li>
+        <li>
+          <a href = "file_delete.m">file_delete.m</a> 
+          deletes a file.
+        </li>
+        <li>
+          <a href = "find_closest.m">find_closest.m</a> 
+          finds the Voronoi cell generator closest to a point X.
+        </li>
+        <li>
+          <a href = "get_seed.m">get_seed.m</a> 
+          returns a seed for the random number generator.
+        </li>
+        <li>
+          <a href = "halham_leap_check.m">halham_leap_check.m</a> 
+          checks LEAP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_n_check.m">halham_n_check.m</a> 
+          checks N for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_dim_num_check.m">halham_dim_num_check.m</a> 
+          checks NDIM for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_seed_check.m">halham_seed_check.m</a> 
+          checks SEED for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halham_step_check.m">halham_step_check.m</a> 
+          checks STEP for a Halton or Hammersley sequence.
+        </li>
+        <li>
+          <a href = "halton_base_check.m">halton_base_check.m</a> 
+          checks BASE for a Halton sequence.
+        </li>
+        <li>
+          <a href = "i4_to_halton_sequence.m">i4_to_halton_sequence.m</a> 
+          next N elements of an NDIM-dimensional Halton sequence
+        </li>
+        <li>
+          <a href = "mpb.m">mpb.m</a> 
+          replaces points near the boundary by their projections on
+          the boundary.
+        </li>
+        <li>
+          <a href = "points_eps.m">points_eps.m</a> 
+          make an EPS plot of the generators.
+        </li>
+        <li>
+          <a href = "prime.m">prime.m</a> 
+          returns the N-th prime number.
+        </li>
+        <li>
+          <a href = "r8_huge.m">r8_huge.m</a> 
+          returns a "huge" R8.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a> 
+          prints the transpose of an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a> 
+          prints the transpose of some of an R8MAT, with an optional title.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a> 
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "random_initialize.m">random_initialize.m</a> 
+          initializes the MATLAB random number seed.
+        </li>
+        <li>
+          <a href = "s_eqi.m">s_eqi.m</a> 
+          is TRUE if two strings are equal, ignoring case.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a> 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tuple_next_fast.m">tuple_next_fast.m</a> 
+          computes the next element of a tuple space, "fast".
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 November 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

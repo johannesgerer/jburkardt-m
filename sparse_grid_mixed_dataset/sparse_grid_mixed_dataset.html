@@ -1,0 +1,393 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_GRID_MIXED_DATASET - Create Sparse Grid Using Mixed Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_GRID_MIXED_DATASET <br> Create Sparse Grid Using Mixed Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_DATASET</b>
+      is a MATLAB program which
+      creates a sparse grid dataset from a mixture of 1D rules, using
+      instructions from a user.
+    </p>
+
+    <p>
+      The available 1D quadrature rules are identified by a 2 or 3 letter code,
+      and include:
+      <ol>
+        <li>
+          <b>CC</b>, Clenshaw-Curtis:<br>
+           defined on [-1,+1], with w(x)=1,<br>
+           a closed, fully nested rule.
+        </li>
+        <li>
+          <b>F2</b>, Fejer Type 2: <br>
+          defined on (-1,+1), with w(x)=1,<br>
+          an open, fully nested rule.
+        </li>
+        <li>
+          <b>GP</b>, Gauss Patterson: <br>
+          defined on (-1,+1), with w(x)=1,<br>
+          a family of the midpoint rule, the 3 point
+          Gauss Legendre rule, and then successive Patterson refinements,<br>
+          an open, fully nested rule.
+        </li>
+        <li>
+          <b>GL</b>, Gauss Legendre: <br>
+          defined on (-1,+1), with w(x)=1,<br>
+          an open, weakly nested rule.
+        </li>
+        <li>
+          <b>GH</b>, Gauss Hermite: <br>
+          defined on (-oo,+oo), with w(x)=exp(-x*x),<br>
+          an open, weakly nested rule.
+        </li>
+        <li>
+          <b>GGH</b>, Generalized Gauss Hermite: <br>
+          defined on (-oo,+oo), with w(x)=|x|^alpha * exp(-x*x),<br>
+          an open, weakly nested rule.
+        </li>
+        <li>
+          <b>LG</b>, Gauss Laguerre: <br>
+          defined on (0,+oo) with w(x)=exp(-x),<br>
+          an open, non-nested rule.
+        </li>
+        <li>
+          <b>GLG</b>, Generalized Gauss Laguerre: <br>
+          defined on (0,+oo) with w(x)=x^alpha * exp(-x),<br>
+          an open, non-nested rule.
+        </li>
+        <li>
+          <b>GJ</b>, Gauss Jacobi: <br>
+          defined on [-1,+1] with w(x)=(1-x)^alpha (1+x)^beta<br>
+          an open, non-nested rule.
+        </li>
+        <li>
+          <b>GW</b>, Golub Welsch: <br>
+          a rule defined by the user based on the Golub-Welsch algorithm,<br>
+          with points and weights supplied by external routines,<br>
+          presumably an open, non-nested rule.<br>
+          <i>(not supported yet)</i>
+        </li>
+        <li>
+          <b>CCS</b>, Clenshaw-Curtis Slow-Growth:<br>
+           defined on [-1,+1], with w(x)=1,<br>
+           a closed, fully nested rule.
+        </li>
+        <li>
+          <b>F2S</b>, Fejer Type 2, Slow-Growth: <br>
+          defined on (-1,+1), with w(x)=1,<br>
+          an open, fully nested rule.
+        </li>
+        <li>
+          <b>GPS</b>, Gauss Patterson, Slow-Growth: <br>
+          defined on (-1,+1), with w(x)=1,<br>
+          a family of the midpoint rule, the 3 point
+          Gauss Legendre rule, and then successive Patterson refinements,<br>
+          an open, fully nested rule.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      The user first specifies:
+      <ul>
+        <li>
+          <b>M</b> the spatial dimension of the quadrature region,
+        </li>
+        <li>
+          <b>L</b> the level that defines the Smolyak grid.
+        </li>
+      </ul>
+      and these two values can actuallyb be specified on the command line.
+    </p>
+
+    <p>
+      Then the user specifies rules for each of the M dimensions.
+      A rule, when specified, may be used for one, or for multiple consecutive
+      dimensions.
+      <ul>
+        <li>
+          RULE identifies the 1D rule, and must be one of
+          "CC", "F2", "GP", "GL", "GH", "GGH", "LG", "GLG", "GJ", "GW",
+          "CCS", "F2S", "GPS".
+        </li>
+        <li>
+          the number of times the rule is to be used for consecutive dimensions;
+        </li>
+        <li>
+          ALPHA, a rule parameter, if needed.  (Rules GGH, GLG and GJ);
+        </li>
+        <li>
+          BETA, a rule parameter, if needed.  (Rule GJ only).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Finally, the user specifies a "file identifier", that is, the main part
+      of a string to be used when creating the files.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_GRID_MIXED_DATASET</b> is available in
+      <a href = "../../cpp_src/sparse_grid_mixed_dataset/sparse_grid_mixed_dataset.html">a CPP version</a> and
+      <a href = "../../f_src/sparse_grid_mixed_dataset/sparse_grid_mixed_dataset.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_grid_mixed_dataset/sparse_grid_mixed_dataset.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>,
+      a MATLAB library which
+      produces 1D quadrature rules of
+      Chebyshev, Clenshaw Curtis, Fejer 2, Gegenbauer, generalized Hermite,
+      generalized Laguerre, Hermite, Jacobi, Laguerre, Legendre and Patterson types.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Clenshaw Curtis rule;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc_dataset/sparse_grid_cc_dataset.html">
+      SPARSE_GRID_CC_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on Clenshaw-Curtis rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_ccs/sparse_grid_ccs.html">
+      SPARSE_GRID_CCS</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Clenshaw Curtis rule with Slow Exponential Growth;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_closed_dataset/sparse_grid_closed_dataset.html">
+      SPARSE_GRID_CLOSED_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on
+      closed rules (Clenshaw-Curtis, Newton-Cotes-Closed).
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_f2/sparse_grid_f2.html">
+      SPARSE_GRID_F2</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Fejer type 2 rule;
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Gauss-Legendre rule;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl_dataset/sparse_grid_gl_dataset.html">
+      SPARSE_GRID_GL_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on Gauss-Legendre rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_gp/sparse_grid_gp.html">
+      SPARSE_GRID_GP</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Gauss-Patterson rule;
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Gauss-Hermite rule;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite_dataset/sparse_grid_hermite_dataset.html">
+      SPARSE_GRID_HERMITE_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_laguerre/sparse_grid_laguerre.html">
+      SPARSE_GRID_LAGUERRE</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Gauss-Laguerre rule;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_laguerre_dataset/sparse_grid_laguerre_dataset.html">
+      SPARSE_GRID_LAGUERRE_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on Gauss-Laguerrre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a MATLAB library which
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_mixed_growth/sparse_grid_mixed_growth.html">
+      SPARSE_GRID_MIXED_GROWTH</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on a mixed set of 1D factor rules and a choice of exponential or linear growth rates.
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_ncc/sparse_grid_ncc.html">
+      SPARSE_GRID_NCC</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Newton Cotes Closed rule;
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_nco/sparse_grid_nco.html">
+      SPARSE_GRID_NCO</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids
+      based on the 1D Newton Cotes Open rule;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_open_dataset/sparse_grid_open_dataset.html">
+      SPARSE_GRID_OPEN_DATASET</a>,
+      a MATLAB program which
+      creates a sparse grid dataset based on
+      open rules (Fejer 2, Gauss-Patterson, Newton-Cotes-Open).
+    </p>
+
+    <p>
+      <a href = "../../datasets/sparse_grid_tanh_sinh/sparse_grid_tanh_sinh.html">
+      SPARSE_GRID_TANH_SINH</a>,
+      a dataset directory which
+      contains multidimensional Smolyak sparse grids based on a 1D tanh-sinh rule;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_grid_mixed_dataset.m">sparse_grid_mixed_dataset.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 December 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

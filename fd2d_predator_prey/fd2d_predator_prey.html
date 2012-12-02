@@ -1,0 +1,204 @@
+<html>
+
+  <head>
+    <title>
+      FD2D_PREDATOR_PREY - 2D Predator Prey Simulation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD2D_PREDATOR_PREY <br> Predator Prey Simulation <br> in 2D
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD2D_PREDATOR_PREY</b>
+      is a MATLAB function which
+      uses finite
+      difference methods for the dynamics of predator-prey interactions
+      in two space dimensions and time,
+      by Marcus Garvie.
+    </p>
+
+    <p>
+      The MATLAB code is mostly self explanatory, with the names of
+      variables and parameters corresponding to the symbols used in
+      the finite difference methods described in the paper.
+    </p>
+
+    <p>
+      The code employs the sparse matrix facilities of MATLAB when solving
+      the linear systems, which provides advantages in both matrix storage
+      and computation time. The code is <it>vectorized</it> to minimize the
+      number of "for-loops" and conditional "if-then-else" statements,
+      which again helps speed up the computations.
+    </p>
+
+    <p>
+      The linear systems are solved using MATLAB's built in function
+      </tt>gmres.m</tt>. The <tt>gmres.m</tt> algorithm in
+      MATLAB requires a number of input arguments.  For our simulations
+      we found it acceptable to use the default settings, e.g., no
+      "restarts" of the iterative method or use of preconditioners, and a
+      tolerance for the relative error of 1E-6.  In practise, the
+      user will need to experiment with the restart value, tolerance, and
+      "maxit" (maximum number of outer iterations) in order to achieve
+      satisfactory rates of convergence of the <tt>gmres.m</tt> function.
+      For definitions of these input arguments (and others) see
+      the description in MATLAB's Help pages.  We remark that a pure C or
+      FORTRAN code is likely to be faster than our codes, but with the
+      disadvantage of much greater complexity and length.
+    </p>
+
+    <p>
+      The user is prompted for all the necessary parameters, time and
+      space-steps, and initial data.  Due to a limitation in MATLAB, vector
+      indices cannot be equal to zero; thus the nodal indices
+      <tt>0,...,J</tt> are shifted up one unit to give <tt>1,...,(J+1)</tt>
+      so <b>x<sub>i</sub>=(i-1)*h + a</b>.
+    </p>
+
+    <p>
+      It is easy to have MATLAB draw a contour plot of either the predator
+      or prey density at any time.  By making a plot at every timestep,
+      an animation can be constructed, which gives an intriguing experience
+      of how the dynamics of the system can support stable spiral patterns
+      which eventually dissolve into a sort of chaos.
+    </p>
+
+    <p>
+      The initial data is again entered by the user as a string, but now the
+      functions depend on a grid of <tt>x</tt> and <tt>y</tt> values denoted
+      by <b>X</b> and <b>Y</b> (as a common MATLAB convention, a variable
+      name using capital letters indicates that the variable is a matrix).
+      Functions are entered using the same element-by-element rules for
+      the arithmetic operation as in the 1-D code.
+    </p>
+
+    <p>
+      An example with an acceptable format is the following:<pre>
+        >> Enter initial prey function U0(X,Y)  <b>0.2*exp(-(X.^2+Y.^2))</b>
+        >> Enter initial predator function V0(X,Y)  <b>1.0</b></pre>
+      We can also define functions in a piecewise fashion. For example, with
+      <b>Omega=[-500,500]<sup>2</sup></b>, in order to choose an initial
+      prey density of 0.2 within the circle with radius 10 and center
+      <tt>(-50,200)</tt>, and a density of 0.01 elsewhere on <b>Omega</b>
+      we input the following:<pre>
+        >> Enter initial predator function V0(X,Y)
+      <b>0.2*(((X+50).^2+(Y-200).^2)<100)+0.01*(((X+50).^2+(Y-200).^2)>=100)</b></pre>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD2D_PREDATOR_PREY</b> is available in
+      <a href = "../../f_src/fd2d_predator_prey/fd2d_predator_prey.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd2d_predator_prey/fd2d_predator_prey.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd_predator_prey/fd_predator_prey.html">
+      FD_PREDATOR_PREY</a>,
+      a MATLAB program which
+      solves a pair of predator prey ODE's using a finite difference approximation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      uses finite differences to solve a 1D predator prey problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_predator_prey/ode_predator_prey.html">
+      ODE_PREDATOR_PREY</a>,
+      a MATLAB program which
+      solves a pair of predator prey differential equations using MATLAB's ODE23 solver.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Marcus Garvie
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marcus Garvie,<br>
+          Finite-Difference Schemes for Reaction-Diffusion Equations
+          Modeling Predator-Prey Interactions in MATLAB,<br>
+          Bulletin of Mathematical Biology,<br>
+          Volume 69, Number 3, 2007, pages 931-956.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd2d_predator_prey.m">fd2d_predator_prey.m</a>,
+          the code for the two dimensional problem.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd2d_predator_prey_input.txt">fd2d_predator_prey_input.txt</a>,
+          a text file containing the input that a user might enter
+          to define a simple problem.
+        </li>
+        <li>
+          <a href = "fd2d_predator_prey_output.txt">fd2d_predator_prey_output.txt</a>,
+          printed output from a run of the program with the sample input.
+        </li>
+        <li>
+          <a href = "fd2d_predator_prey_v.png">fd2d_predator_prey_v.png</a>,
+          a PNG file containing an image of the <b>v</b> component
+          of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 April 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

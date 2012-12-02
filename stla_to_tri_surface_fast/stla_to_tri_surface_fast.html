@@ -1,0 +1,250 @@
+<html>
+
+  <head>
+    <title>
+      STLA_TO_TRI_SURFACE_FAST - Convert data from ASCII STL to TRI_SURFACE
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      STLA_TO_TRI_SURFACE_FAST <br> Convert data from ASCII STL to TRI_SURFACE format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STLA_TO_TRI_SURFACE_FAST</b> 
+      is a MATLAB program which 
+      is a "fast" version of <b>STLA_TO_TRI_SURFACE</b>.
+    </p>
+
+    <p>
+      <b>STLA_TO_TRI_SURFACE_FAST</b> 
+      reads data from an ASCII <b>STLA</b> file describing a triangular
+      mesh of a 3D surface, and converts it to a pair of arrays
+      describing a triangular mesh or <b>TRI_SURFACE</b>.
+    </p>
+
+    <p>
+      An ASCII <b>STL</b> file contains a description of the surface of a solid 
+      that has been decomposed into triangles.  The vertices of the triangles should
+      be listed in counterclockwise order, as viewed from outside the surface.
+      A normal vector for the triangle may also be listed.
+    </p>
+
+    <p>
+      A <b>TRI_SURFACE</b> or triangulated mesh surface, is described by a
+      pair of arrays:
+      <ul>
+        <li>
+          a <b>node coordinate</b> array containing the coordinates of nodes;
+        </li>
+        <li>
+          a <b>triangle node</b> array containing triples of the indices
+          of the nodes used to form each triangle;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+    
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/obj_to_tri_surface/obj_to_tri_surface.html">
+      OBJ_TO_TRI_SURFACE</a>,
+      a MATLAB program which
+      reads an OBJ file and extracts
+      the surface mesh data as a TRI_SURFACE dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ply_to_tri_surface/ply_to_tri_surface.html">
+      PLY_TO_TRI_SURFACE</a>,
+      a MATLAB program which
+      reads a <a href = "../../data/ply/ply.html">PLY file</a>, and extracts
+      the surface mesh data as a
+      <a href = "../../data/tri_surface/tri_surface.html">TRI_SURFACE</a> dataset.
+    </p>
+
+    <p>
+      <a href = "../../data/stla/stla.html">
+      STLA</a>,
+      a data directory which
+      contains a description and examples of ASCII STL files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_display/stla_display.html">
+      STLA_DISPLAY</a>, 
+      a MATLAB program which 
+      reads an ASCII STL file and displays it.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_io/stla_io.html">
+      STLA_IO</a>, 
+      a MATLAB library which
+      reads or writes a PLY file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stla_to_tri_surface/stla_to_tri_surface.html">
+      STLA_TO_TRI_SURFACE</a>,
+      a MATLAB program which
+      reads an ASCII STL file and extracts
+      the surface mesh data as a TRI_SURFACE dataset.
+    </p>
+
+    <p>
+      <a href = "../../data/tri_surface/tri_surface.html">
+      TRI_SURFACE</a>, 
+      a data directory which
+      contains examples of TRI_SURFACE files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>, 
+      a MATLAB program which 
+      displays a TRI_SURFACE dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_io/tri_surface_io.html">
+      TRI_SURFACE_IO</a>, 
+      a MATLAB library which
+      reads and writes the 3D graphics information
+      in a TRI_SURFACE file;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_to_ply/tri_surface_to_ply.html">
+      TRI_SURFACE_TO_PLY</a>, 
+      a MATLAB program which 
+      converts TRI_SURFACE data to
+      data suitable for storage as a <b>PLY</b> file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_to_stla/tri_surface_to_stla.html">
+      TRI_SURFACE_TO_STLA</a>,
+      a MATLAB program which
+      reads a TRI_SURFACE dataset and extracts
+      the surface mesh data as an ASCII STL file.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Bill Seufzer, NASA Langley.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          3D Systems, Inc,<br>
+          Stereolithography Interface Specification,<br>
+          October 1989.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "stla_to_tri_surface_fast.m">stla_to_tri_surface_fast.m</a> 
+          converts <b>STLA</b> data to <b>TRI_SURFACE</b> data, using "faster" methods.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CUBE</b> is a cube using 12 triangular faces and 36 nodes.
+      <ul>
+        <li>
+          <a href = "../../data/stla/cube.stl">cube.stl</a>
+          the ASCII STL file.
+        </li>
+        <li>
+          <a href = "../../data/tri_surface/cube_nodes.txt">cube_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "../../data/tri_surface/cube_triangles.txt">cube_triangles.txt</a>
+          the TRI_SURFACE triangles file.
+        </li>
+        <li>
+          <a href = "../../data/stla/cube.png">cube.png</a>,   
+          a <a href = "../../data/png/png.html">PNG</a> image of the shape;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MAGNOLIA</b> is a magnolia blossom, using 1247 triangular faces
+      and 3741 nodes.
+      <ul>
+        <li>
+          <a href = "../../data/stla/magnolia.stl">magnolia.stl</a>,
+          the ASCII STL file;
+        </li>
+        <li>
+          <a href = "../../data/tri_surface/magnolia_nodes.txt">magnolia_nodes.txt</a>
+          the TRI_SURFACE nodes file.
+        </li>
+        <li>
+          <a href = "../../data/tri_surface/magnolia_triangles.txt">magnolia_triangles.txt</a>
+          the TRI_SURFACE triangles file.
+        </li>
+        <li>
+          <a href = "../../data/stla/magnolia.png">magnolia.png</a>,   
+          a <a href = "../../data/png/png.html">PNG</a> image of the shape;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

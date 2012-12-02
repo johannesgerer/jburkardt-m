@@ -1,0 +1,306 @@
+<html>
+
+  <head>
+    <title>
+      CELL_DETECTION_TASKS - Independent Execution of Multiple Tasks
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CELL_DETECTION_TASKS <br> Independent Execution of Multiple Tasks
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CELL_DETECTION_TASKS</b>
+      is a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      The key idea is that a single "job" is created, but the job is defined
+      to comprise a number of tasks.  Each task, in turn, is defined as
+      a MATLAB function to be executed with certain arguments.  Once the job
+      is defined, it can be submitted, and the tasks will be carried out,
+      in somewhat arbitrary order, and perhaps on a variety of different
+      processors.  In any case, once all the tasks are finished, it is
+      possible to access the functional output from all the tasks; even though
+      the tasks were carried out in an arbitrary fashion, their output
+      was collected and saved.
+    </p>
+
+    <p>
+      In this example, each task involves processing a single frame of an
+      animation.  Each frame is a gray scale image of biological cells, and
+      the (rather complicated) graphics operation involves simply identifying
+      cells and surrounding them with a thin white boundary.  The point of
+      the example is that independent tasks can each open a separate
+      input file, carry out some operations on the data, and write corresponding
+      output files.
+    </p>
+
+    <p>
+      Thus, in this case, the output of the tasks is a collection of data files
+      that can be turned, perhaps, into an animation.
+    </p>
+
+    <p>
+      This program is based on an example for parallel batch processing
+      (using the PARFOR command originally) of images, found on the MathWorks
+      web site in the Image Processing Toolbox demos area.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum_tasks/subset_sum_tasks.html">
+      SUBSET_SUM_TASKS</a>,
+      a MATLAB program which
+      solves a subset sum problem by exhaustive search,
+      subdividing the search range among separate tasks.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+        <li>
+          Michael Quinn,<br>
+          Parallel Programming in C with MPI and OpenMP,<br>
+          McGraw-Hill, 2004,<br>
+          ISBN13: 978-0071232654,<br>
+          LC: QA76.73.C15.Q55.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cell_task.m">cell_detection_task.m</a>,
+          a function which carries out a single task, opening a TIF file,
+          processing the data, and writing the modified data to a new TIF file.
+        </li>
+        <li>
+          <a href = "cell_job_local.m">cell_job_local.m</a>,
+          a function which sets up the job as a collection of tasks and runs it locally.
+        </li>
+        <li>
+          <a href = "cell_local_output.txt">cell_local_output.txt</a>,
+          the output from a local run of the tasks.
+        </li>
+        <li>
+          <a href = "cell_job_ithaca.m">cell_job_ithaca.m</a>,
+          a function which sets up the job as a collection of tasks and runs it
+          on the Ithaca cluster.  This assumes that the input files have been placed
+          in a particular directory on Ithaca.  The output files will be stored there
+          on completion.
+        </li>
+        <li>
+          <a href = "cell_fsu.m">cell_fsu.m</a>,
+          runs the cell tasks on the FSU HPC cluster using the fsuMatlabCluster command.
+        </li>
+        <li>
+          <a href = "cell_fsu_output.txt">cell_fsu_output.txt</a>,
+          the output from running cell_fsu on the FSU HPC cluster.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>AT3_1m4_**.tif</b> is the original sequence of data.
+      <ul>
+        <li>
+          <a href = "AT3_1m4_01.tif">AT3_1m4_01.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_02.tif">AT3_1m4_02.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_03.tif">AT3_1m4_03.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_04.tif">AT3_1m4_04.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_05.tif">AT3_1m4_05.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_06.tif">AT3_1m4_06.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_07.tif">AT3_1m4_07.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_08.tif">AT3_1m4_08.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_09.tif">AT3_1m4_09.tif</a>
+        </li>
+        <li>
+          <a href = "AT3_1m4_10.tif">AT3_1m4_10.tif</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>AT3_1m4.mov</b> animates the original sequence of data.
+      <ul>
+        <li>
+          <a href = "AT3_1m4.mov">AT3_1m4.mov</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BT3_1m4_**.tif</b> is the sequence of modified data.
+      <ul>
+        <li>
+          <a href = "BT3_1m4_01.tif">BT3_1m4_01.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_02.tif">BT3_1m4_02.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_03.tif">BT3_1m4_03.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_04.tif">BT3_1m4_04.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_05.tif">BT3_1m4_05.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_06.tif">BT3_1m4_06.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_07.tif">BT3_1m4_07.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_08.tif">BT3_1m4_08.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_09.tif">BT3_1m4_09.tif</a>
+        </li>
+        <li>
+          <a href = "BT3_1m4_10.tif">BT3_1m4_10.tif</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BT3_1m4.mov</b> animates the sequence of modified data.
+      <ul>
+        <li>
+          <a href = "BT3_1m4.mov">BT3_1m4.mov</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

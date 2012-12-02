@@ -1,0 +1,310 @@
+<html>
+
+  <head>
+    <title>
+      FACE_SPMD - SPMD Labs Cooperate to Find a Boundary
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FACE_SPMD <br> SPMD Labs Cooperate to Find a Boundary
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FACE_SPMD</b>
+      is a MATLAB program which
+      uses the <b>SPMD</b> (single program, multiple data) command
+      so that multiple MATLAB workers or "labs" can cooperate in a task.
+    </p>
+
+    <p>
+      A rectangular box, of dimensions 1x1x3, has been subdivided into
+      tetrahedral elements.  These elements are defined by
+      <ul>
+        <li>
+          <b>x</b>, a list of 3D point coordinates.
+        </li>
+        <li>
+          <b>e_conn</b>, a list of sets of 4 point indices, representing
+          the four points that define each tetrahedron.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      It is desired to determine the triangular faces that lie on a
+      boundary face of the box.  The boundary face is described by the
+      variable (one of X, Y, or Z) that is held constant, along with bounds
+      for the other two variables.  Thus, the output of the program will
+      be a list of triples of point indices, with each triple representing
+      a triangular face of a tetrahedron.
+    </p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        <i>F_conn</i> = <b>face_fun</b> ( <i>x</i>, <i>e_conn</i>, <i>ii</i>, <i>val_ii</i>,
+          <i>xj_lb</i>, <i>xj_ub</i>, <i>xk_lb</i>, <i>xk_ub</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>x</i>, the list of 3D point coordinates.
+        </li>
+        <li>
+          <i>e_conn</i>, a list of sets of 4 point indices, representing
+          the four points that define each tetrahedron.
+        </li>
+        <li>
+          <i>ii</i>, the index of the "I" variable, which is constant on the
+          boundary plane.  If the constant variable is X, then II is 1, and so on.
+        </li>
+        <li>
+          <i>val_ii</i>, the value of the constant "I" variable.
+        </li>
+        <li>
+          <i>xj_lb</i>, <i>xj_ub</i>, the upper and lower bounds
+          for the "J" nonconstant variable.
+        </li>
+        <li>
+          <i>xk_lb</i>, <i>xk_ub</i>, the upper and lower bounds
+          for the "K" nonconstant variable.
+        </li>
+      </ul>
+      The "J" and "K" variables are the first and second variables to follow
+      the "I" variable, assuming that we are counting with wrap around.
+      There are thus three possibilities for I, J and K:
+<pre>
+    I  J  K
+   -- -- --
+    1  2  3
+    2  3  1
+    3  1  2
+</pre>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the Ithaca cluster, using the <b>batch</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>,
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "face_fun.m">face_fun.m</a>,
+          a MATLAB function which carries out the operation.
+        </li>
+        <li>
+          <a href = "face_pool.m">face_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "face_script.m">face_script.m</a>,
+          a MATLAB script file which simply invokes the function.
+        </li>
+        <li>
+          <a href = "face_batch_local.m">face_batch_local.m</a>,
+          a batch command to run the job indirectly on the local system,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "face_batch_ithaca.m">face_batch_ithaca.m</a>,
+          a batch command to run the job indirectly on the Ithaca cluster,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "GRID.mat">GRID.mat</a>,
+          a MAT file containing the coordinates of points, and the
+          list of point indices that define tetrahedrons.
+        </li>
+        <li>
+          <a href = "channel.png">channel.png</a>,
+          an image of the 3D region, dissected into tetrahedrons,
+          with the Z=3 face highlighted.
+        </li>
+        <li>
+          <a href = "face.png">face.png</a>,
+          an image of the 2D boundary face Z=3, and the triangular
+          faces that touch it.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 June 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

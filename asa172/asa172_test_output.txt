@@ -1,0 +1,226 @@
+>> asa172_test
+26-Jul-2008 17:46:51
+
+ASA172_TEST
+  MATLAB version
+
+  Test the ASA172 routines.
+
+TEST01:
+  SIMDO can convert between compressed and
+  vector indices representing a nested loop.
+
+  Here, we set QFOR = FALSE, meaning we do
+  NOT want to convert from FORTRAN ordering
+  to lexical ordering.
+
+  Here, we actually carry out a triple loop
+  list the indices, and then compare.
+
+  #1: Generate JSUB by counting as we DO the loops:
+
+  DO I1 = 1, N1
+    DO I2 = 1, N2
+      DO I3 = 1, N3
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             1         1         2
+         3             1         1         3
+         4             1         1         4
+         5             1         2         1
+         6             1         2         2
+         7             1         2         3
+         8             1         2         4
+         9             2         1         1
+        10             2         1         2
+        11             2         1         3
+        12             2         1         4
+        13             2         2         1
+        14             2         2         2
+        15             2         2         3
+        16             2         2         4
+        17             3         1         1
+        18             3         1         2
+        19             3         1         3
+        20             3         1         4
+        21             3         2         1
+        22             3         2         2
+        23             3         2         3
+        24             3         2         4
+
+  #2: Loop on JSUB, retrieve loop indices
+      QIND = TRUE J ->I(J)
+      QFOR = FALSE
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             1         1         2
+         3             1         1         3
+         4             1         1         4
+         5             1         2         1
+         6             1         2         2
+         7             1         2         3
+         8             1         2         4
+         9             2         1         1
+        10             2         1         2
+        11             2         1         3
+        12             2         1         4
+        13             2         2         1
+        14             2         2         2
+        15             2         2         3
+        16             2         2         4
+        17             3         1         1
+        18             3         1         2
+        19             3         1         3
+        20             3         1         4
+        21             3         2         1
+        22             3         2         2
+        23             3         2         3
+        24             3         2         4
+
+  #3: For any set of loop indices, retrieve JSUB
+      QIND = FALSE I(J) -> J
+      QFOR = FALSE
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             1         1         2
+         3             1         1         3
+         4             1         1         4
+         5             1         2         1
+         6             1         2         2
+         7             1         2         3
+         8             1         2         4
+         9             2         1         1
+        10             2         1         2
+        11             2         1         3
+        12             2         1         4
+        13             2         2         1
+        14             2         2         2
+        15             2         2         3
+        16             2         2         4
+        17             3         1         1
+        18             3         1         2
+        19             3         1         3
+        20             3         1         4
+        21             3         2         1
+        22             3         2         2
+        23             3         2         3
+        24             3         2         4
+
+TEST02:
+  SIMDO can convert between compressed and
+  vector indices representing a nested loop.
+
+  Here, we set QFOR = TRUE, meaning we DO
+  want to convert from the FORTRAN
+  ordering to lexical convention.
+
+  Here, we actually carry out a triple loop
+  list the indices, and then compare.
+
+  #1: Generate JSUB by counting as we do the loops.
+
+  DO I3 = 1, N3
+    DO I2 = 1, N2
+      DO I1 = 1, N1
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             2         1         1
+         3             3         1         1
+         4             1         2         1
+         5             2         2         1
+         6             3         2         1
+         7             1         1         2
+         8             2         1         2
+         9             3         1         2
+        10             1         2         2
+        11             2         2         2
+        12             3         2         2
+        13             1         1         3
+        14             2         1         3
+        15             3         1         3
+        16             1         2         3
+        17             2         2         3
+        18             3         2         3
+        19             1         1         4
+        20             2         1         4
+        21             3         1         4
+        22             1         2         4
+        23             2         2         4
+        24             3         2         4
+
+  #2: Setting QFOR false means loop indices
+  are generated in lexical order.
+      QIND = TRUE J -> I(J)
+      QFOR = TRUE
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             2         1         1
+         3             3         1         1
+         4             1         2         1
+         5             2         2         1
+         6             3         2         1
+         7             1         1         2
+         8             2         1         2
+         9             3         1         2
+        10             1         2         2
+        11             2         2         2
+        12             3         2         2
+        13             1         1         3
+        14             2         1         3
+        15             3         1         3
+        16             1         2         3
+        17             2         2         3
+        18             3         2         3
+        19             1         1         4
+        20             2         1         4
+        21             3         1         4
+        22             1         2         4
+        23             2         2         4
+        24             3         2         4
+
+  #3: For any set of loop indices, retrieve JSUB
+      QIND = FALSE I(J) -> J
+      QFOR = TRUE
+
+      JSUB            I1        I2        I3
+
+         1             1         1         1
+         2             2         1         1
+         3             3         1         1
+         4             1         2         1
+         5             2         2         1
+         6             3         2         1
+         7             1         1         2
+         8             2         1         2
+         9             3         1         2
+        10             1         2         2
+        11             2         2         2
+        12             3         2         2
+        13             1         1         3
+        14             2         1         3
+        15             3         1         3
+        16             1         2         3
+        17             2         2         3
+        18             3         2         3
+        19             1         1         4
+        20             2         1         4
+        21             3         1         4
+        22             1         2         4
+        23             2         2         4
+        24             3         2         4
+
+ASA172_TEST
+  Normal end of execution.
+
+26-Jul-2008 17:46:51
+>> 

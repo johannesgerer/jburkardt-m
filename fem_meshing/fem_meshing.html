@@ -1,0 +1,219 @@
+<html>
+
+  <head>
+    <title>
+      FEM_MESHING - Simple Issues in 2D Mesh Generation for the Finite Element Method
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_MESHING <br> Simple Issues in 2D Mesh Generation for the Finite Element Method
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_MESHING</b>
+      is a MATLAB library which
+      looks at some simple issues in defining a geometric mesh for
+      the finite element method in 2D.
+    </p>
+
+    <p>
+      The issues raised here are simple examples that arose during a presentation
+      on finite element meshing.  That presentation is available in
+      <a href = "../../classes/fem_2011/fem_meshing.pdf">
+                 ../../classes/fem_2011/fem_meshing.pdf</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which
+      carries out triangular or tetrahedral mesh generation,
+      by Per-Olof Persson and Gilbert Strang.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh_3d/distmesh_3d.html">
+      DISTMESH_3D</a>,
+      a MATLAB library which
+      constitutes the 3D subset of
+      <a href = "../../m_src/distmesh/distmesh.html">
+      distmesh</a>, code for tetrahedral mesh generation,
+      by Per-Olof Persson and Gilbert Strang.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 ("linear") or order 6 ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../datasets/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>,
+      a dataset directory of TRIANGULATION_ORDER3 files,
+      a linear triangulation
+      of a set of 2D points, using a pair of files to list the node
+      coordinates and the 3 nodes that make up each triangle;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      There are various simple scripts to display the mesh.
+      <ul>
+        <li>
+          <a href = "boundary_display.m">boundary_display.m</a>,
+          displays vertices V and boundary indices BI.
+        </li>
+        <li>
+          <a href = "node_display.m">node_display.m</a>,
+          displays vertices V, boundary indices BI, and nodes P.
+        </li>
+        <li>
+          <a href = "triangulation_display.m">triangulation_display.m</a>,
+          displays vertices V, boundary indices BI, nodes P, and triangles T.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      It is useful to write the P and T data to files, so that they
+      can later be read by a C++ or FORTRAN90 program.
+      <ul>
+        <li>
+          <a href = "node_write.m">node_write.m</a>,
+          writes the node data to a file.
+        </li>
+        <li>
+          <a href = "triangle_write.m">triangle_write.m</a>,
+          writes the triangle data to a file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The C++ function "triangle_read" suggests one way to read a triangle file.
+      There is also an example program which shows how the function can be
+      used to read the triangles associated with the ELL region.
+      <ul>
+        <li>
+          <a href = "triangle_read.C">triangle_read.C</a>,
+          a C++ function to read a triangle file.
+        </li>
+        <li>
+          <a href = "triangle_read_example.C">triangle_read_example.C</a>,
+          a C++ program which reads the ELL triangle data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The FORTRAN90 routine "triangle_read" suggests one way to read a triangle file.
+      There is also an example program which shows how the function can be
+      used to read the triangles associated with the ELL region.
+      <ul>
+        <li>
+          <a href = "triangle_read.f90">triangle_read.f90</a>,
+          a FORTRAN90 routine to read a triangle file.
+        </li>
+        <li>
+          <a href = "triangle_read_example.f90">triangle_read_example.f90</a>,
+          a FORTRAN90 program which reads the ELL triangle data.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is the L-shaped region.
+      <ul>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>,
+          the nodes.
+        </li>
+        <li>
+          <a href = "ell_triangles.txt">ell_triangles.txt</a>,
+          the triangles.
+        </li>
+        <li>
+          <a href = "ell_vertex_indices.txt">ell_vertex_indices.txt</a>,
+          the sequence of vertex indices that form the boundary.
+        </li>
+        <li>
+          <a href = "ell_vertices.txt">ell_vertices.txt</a>,
+          the vertices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>STH</b> is the square region with triangular hole.
+      <ul>
+        <li>
+          <a href = "sth_vertex_indices.txt">sth_vertex_indices.txt</a>,
+          the sequence of vertex indices that form the boundary.
+        </li>
+        <li>
+          <a href = "sth_vertices.txt">sth_vertices.txt</a>,
+          the vertices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

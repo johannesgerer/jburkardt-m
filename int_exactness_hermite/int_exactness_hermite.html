@@ -1,0 +1,362 @@
+<html>
+
+  <head>
+    <title>
+      INT_EXACTNESS_HERMITE - Exactness of Gauss-Hermite Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      INT_EXACTNESS_HERMITE <br> Exactness of Gauss-Hermite Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>INT_EXACTNESS_HERMITE</b> 
+      is a MATLAB program which 
+      investigates the polynomial exactness of a Gauss-Hermite
+      quadrature rule for the infinite interval (-oo,+oo).
+    </p>
+
+    <p>
+      The Gauss Hermite quadrature assumes that the integrand we are
+      considering has a form like:
+      <pre>
+        Integral ( -oo &lt; x &lt; +oo ) w(x) * f(x) dx
+      </pre>
+      where the factor <b>w(x)</b> is regarded as a weight factor.
+    </p>
+
+    <p>
+      We consider three variations of the rule, depending on the
+      form of the weight factor w(x):
+      <ul>
+        <li>
+          <b>option</b> = 0, the unweighted rule:
+          <pre>
+            Integral ( -oo &lt; x &lt; +oo ) f(x) dx
+          </pre>
+        </li>
+        <li>
+          <b>option</b> = 1, the physicist weighted rule:
+          <pre>
+            Integral ( -oo &lt; x &lt; +oo ) exp(-x*x) f(x) dx
+          </pre>
+        <li>
+          <b>option</b> = 2, the probabilist weighted rule:
+          <pre>
+            Integral ( -oo &lt; x &lt; +oo ) exp(-x*x/2) f(x) dx
+          </pre>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The corresponding Gauss-Hermite rule that uses <b>order</b> points
+      will approximate the integral by
+      <pre>
+        sum ( 1 &lt;= i &lt;= order ) w(i) * f(x(i)) 
+      </pre>
+      where, confusingly, <b>w(i)</b> is a vector of quadrature weights, which has no
+      connection with the <b>w(x)</b> weight function.
+    </p>
+
+    <p>
+      When using a Gauss-Hermite quadrature rule, it's important to know whether
+      the rule has been developed for the unweighted, physicist weighted or
+      probabilist weighted cases.
+    </p>
+
+    <p>
+      For an unweighted Gauss-Hermite rule, polynomial exactness may be defined 
+      by assuming that <b>f(x)</b> has the form </b>f(x) = exp(-x*x) * x^n</b> for some
+      nonnegative integer exponent <b>n</b>.  We say an unweighted Gauss-Hermite rule 
+      is exact for polynomials up to degree DEGREE_MAX if the quadrature rule will 
+      produce the correct value of the integrals of such integrands for all
+      exponents <b>n</b> from 0 to <b>DEGREE_MAX</b>.
+    </p>
+
+    <p>
+      For a physicist or probabilist weighted Gauss-Hermite rules, polynomial exactness 
+      may be defined by assuming that <b>f(x)</b> has the form </b>f(x) = x^n</b> for some
+      nonnegative integer exponent <b>n</b>.  We say the physicist or probabilist 
+      weighted Gauss-Hermite rule is exact for polynomials up to degree DEGREE_MAX 
+      if the quadrature rule will produce the correct value of the integrals of such
+      integrands for all exponents <b>n</b> from 0 to <b>DEGREE_MAX</b>.
+    </p>
+
+    <p>
+      To test the polynomial exactness of a Gauss-Hermite quadrature rule of
+      one of these three forms, the program starts at <b>n</b> = 0, and then 
+      proceeds to <b>n</b> = 1, 2, and so on up to a maximum degree 
+      <b>DEGREE_MAX</b> specified by the user.  At each value of <b>n</b>,
+      the program generates the appropriate corresponding integrand function
+      (either <b>exp(-x*x)*x^n</b> or <b>x^n</b>), applies the 
+      quadrature rule to it, and determines the quadrature error.  The program 
+      uses a scaling factor on each monomial so that the exact integral 
+      should always be 1; therefore, each reported error can be compared
+      on a fixed scale.
+    </p>
+
+    <p>
+      The program is very flexible and interactive.  The quadrature rule 
+      is defined by three files, to be read at input, and the 
+      maximum degree top be checked is specified by the user as well.
+    </p>
+
+    <p>
+      Note that the three files that define the quadrature rule
+      are assumed to have related names, of the form
+      <ul>
+        <li>
+          <i>prefix</i>_<b>x.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>w.txt</b>
+        </li>
+        <li>
+          <i>prefix</i>_<b>r.txt</b>
+        </li>
+      </ul>
+      When running the program, the user only enters the common <i>prefix</i> 
+      part of the file names, which is enough information for the program
+      to find all three files.
+    </p>
+
+    <p>
+      Note that when approximating these kinds of integrals, or even when 
+      evaluating an exact formula for these integrals, numerical inaccuracies 
+      can become overwhelming.  The formula for the exact integral of 
+      <b>x^n*exp(-x*x)</b> (which we use to test for polynomial exactness)
+      involves the double factorial function, which "blows up" almost as
+      fast as the ordinary factorial.  Thus, even for formulas of order 
+      16, where we would like to consider monomials up to degree 31, the
+      evaluation of the exact formula loses significant accuracy.
+    </p>
+
+    <p>
+      For information on the form of these files, see the 
+      <b>QUADRATURE_RULES_HERMITE</b> directory listed below.
+    </p>
+
+    <p>
+      The exactness results are written to an output file with the 
+      corresponding name:
+      <ul>
+        <li>
+          <i>prefix</i>_<b>exact.txt</b>
+        </li>
+      </ul>
+    </p>
+
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>int_exactness_hermite</b> ( <i>'prefix'</i>, <i>degree_max</i>, <i>option</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is a quoted string containing the common prefix for the files containing the 
+          abscissa, weight and region information of the quadrature rule;
+        </li>
+        <li>
+          <i>degree_max</i> is the maximum monomial degree to check.  This would normally be
+          a relatively small nonnegative number, such as 5, 10 or 15.
+        </li>
+        <li>
+          <i>option</i>:<br>
+          0 indicates the unweighted rule for integrating f(x),<br>
+          1 indicates the physicist weighted rule for integrating exp(-x*x)*f(x),<br>
+          2 indicates the probabilist weighted rule for integrating exp(-x*x/2)*f(x).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      If the arguments are not supplied on the command line, the
+      program will prompt for them.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>INT_EXACTNESS_HERMITE</b> is available in
+      <a href = "../../cpp_src/int_exactness_hermite/int_exactness_hermite.html">a C++ version</a> and
+      <a href = "../../f_src/int_exactness_hermite/int_exactness_hermite.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/int_exactness_hermite/int_exactness_hermite.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/hermite_rule/hermite_rule.html">
+      HERMITE_RULE</a>,
+      a MATLAB program which
+      generates a Gauss-Hermite quadrature 
+      rule on request.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness/int_exactness.html">
+      INT_EXACTNESS</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of a quadrature rule for a finite interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev1/int_exactness_chebyshev1.html">
+      INT_EXACTNESS_CHEBYSHEV1</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Chebyshev type 1 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_chebyshev2/int_exactness_chebyshev2.html">
+      INT_EXACTNESS_CHEBYSHEV2</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Chebyshev type 2 quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gegenbauer/int_exactness_gegenbauer.html">
+      INT_EXACTNESS_GEGENBAUER</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Gegenbauer quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gen_hermite/int_exactness_gen_hermite.html">
+      INT_EXACTNESS_GEN_HERMITE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of generalized Gauss-Hermite quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_gen_laguerre/int_exactness_gen_laguerre.html">
+      INT_EXACTNESS_GEN_LAGUERRE</a>,
+      a MATLAB program which 
+      tests the polynomial exactness of generalized Gauss-Laguerre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_jacobi/int_exactness_jacobi.html">
+      INT_EXACTNESS_JACOBI</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Jacobi quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_laguerre/int_exactness_laguerre.html">
+      INT_EXACTNESS_LAGUERRE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Laguerre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/int_exactness_legendre/int_exactness_legendre.html">
+      INT_EXACTNESS_LEGENDRE</a>, 
+      a MATLAB program which 
+      tests the polynomial exactness of Gauss-Legendre quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_hermite_physicist/quadrature_rules_hermite_physicist.html">
+      QUADRATURE_RULES_HERMITE_PHYSICIST</a>,
+      a dataset directory which
+      contains Gauss-Hermite quadrature rules, for integration
+      on the interval (-oo,+oo), with weight function exp(-x^2).
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_hermite_probabilist/quadrature_rules_hermite_probabilist.html">
+      QUADRATURE_RULES_HERMITE_PROBABILIST</a>,
+      a dataset directory which
+      contains Gauss-Hermite quadrature rules, for integration
+      on the interval (-oo,+oo), with weight function exp(-x^2/2).
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_hermite_unweighted/quadrature_rules_hermite_unweighted.html">
+      QUADRATURE_RULES_HERMITE_UNWEIGHTED</a>,
+      a dataset directory which
+      contains Gauss-Hermite quadrature rules, for integration
+      on the interval (-oo,+oo), with weight function 1.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_hermite/test_int_hermite.html">
+      TEST_INT_HERMITE</a>,
+      a MATLAB library which
+      defines integrand functions that can be approximately integrated by a Gauss-Hermite rule.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "int_exactness_hermite.m">int_exactness_hermite.m</a>,
+          is the source code.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 November 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

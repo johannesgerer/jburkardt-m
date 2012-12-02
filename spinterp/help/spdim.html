@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>spdim :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>spdim</h1>
+		  Computes the number of sparse grid points.
+		<h2>Syntax</h2>
+			<code>P = spdim(N,D)</code><br>
+			<code>P = spdim(N,D,OPTIONS)</code><br>
+		<h2>Description</h2>
+      <code>P = spdim(N,D)</code> Computes the number of points of the sparse grid of dimension <code>D</code> and level <code>N</code>.
+    <p>
+      <code>P = spdim(N,D,OPTIONS)</code> Computes the number of points as above, but 
+      with the default grid type replaced by the grid type specified in 
+      <code>OPTIONS/<code>, an argument created with 
+     <a href="spset.html"><code>spset</code></a>. See <code>spset</code> for details.
+		<h2>Examples</h2>
+Compute the number of support nodes of the 10-dimensional sparse grid of level 7 for the Clenshaw-Curtis (default) grid with the following command:</p><pre class="codeinput">spdim(7,10)
+</pre><pre class="codeoutput">
+ans =
+      652065
+</pre><p>For comparison, compute the number of nodes of the maximum-norm-based sparse grid:</p><pre class="codeinput">options = spset(<span class="string">'GridType'</span>,<span class="string">'Maximum'</span>);
+spdim(7,10,options)
+</pre><pre class="codeoutput">
+ans =
+   1.8317e+09
+</pre>
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

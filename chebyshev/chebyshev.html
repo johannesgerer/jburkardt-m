@@ -1,0 +1,291 @@
+<html>
+
+  <head>
+    <title>
+      CHEBYSHEV - Interpolation Using Chebyshev Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CHEBYSHEV <br> Interpolation Using Chebyshev Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CHEBYSHEV</b>
+      is a MATLAB library which
+      constructs the Chebyshev interpolant to a function.
+    </p>
+
+    <p>
+      Note that the user is not free to choose the interpolation points.
+      Instead, the function f(x) will be evaluated at points chosen by the algorithm.
+      In the standard case, in which the interpolation interval is [-1,+1], 
+      these points will be the zeros of the Chebyshev polynomial of order N.
+      However, the algorithm can also be applied to an interval of the form [a,b],
+      in which case the evaluation points are linearly mapped from [-1,+1].
+    </p>
+
+    <p>
+      The resulting interpolant is defined by a set of N coefficients c(),
+      and has the form:
+      <pre>
+        C(f)(x) = sum ( 1 <= i <= n ) c(i) T(i-1,x) - 0.5 * c(1)
+      </pre>
+      where T(i-1,x) is the (i-1)-th Chebyshev polynomial.
+    </p>
+
+    <p>
+      Within the interval [-1,+1], or the generalized interval [a,b], the
+      interpolant actually remains bounded by the sum of the absolute values
+      of the coefficients c().  It is therefore common to use Chebyshev
+      interpolants as approximating functions over a given interval.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CHEBYSHEV</b> is available in
+      <a href = "../../c_src/chebyshev/chebyshev.html">a C version</a> and
+      <a href = "../../cpp_src/chebyshev/chebyshev.html">a C++ version</a> and
+      <a href = "../../f77_src/chebyshev/chebyshev.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/chebyshev/chebyshev.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/chebyshev/chebyshev.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bernstein/bernstein.html">
+      BERNSTEIN</a>,
+      a MATLAB library which
+      evaluates the Bernstein polynomials, 
+      useful for uniform approximation of functions;
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev_polynomial/chebyshev_polynomial.html">
+      CHEBYSHEV_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Chebyshev polynomial and associated functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/divdif/divdif.html">
+      DIVDIF</a>,
+      a MATLAB library which
+      computes interpolants by divided differences.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite/hermite.html">
+      HERMITE</a>,
+      a MATLAB library which
+      computes the Hermite interpolant, a polynomial that matches function values
+      and derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_cubic/hermite_cubic.html">
+      HERMITE_CUBIC</a>,
+      a MATLAB library which
+      can compute the value, derivatives or integral of a Hermite cubic polynomial,
+      or manipulate an interpolating function made up of piecewise Hermite cubic
+      polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/interp/interp.html">
+      INTERP</a>,
+      a MATLAB library which
+      can be used for parameterizing and interpolating data;
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_1d/shepard_interp_1d.html">
+      SHEPARD_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 1D data,
+      which are based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      includes many routines to construct
+      and evaluate spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_approx/test_approx.html">
+      TEST_APPROX</a>,
+      a MATLAB library which
+      defines test problems for approximation,
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 1D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to a function of 1D data
+      by setting up and solving an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Roger Broucke,<br>
+          Algorithm 446:
+          Ten Subroutines for the Manipulation of Chebyshev Series,<br>
+          Communications of the ACM,<br>
+          Volume 16, Number 4, April 1973, pages 254-256.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          William Press, Brian Flannery, Saul Teukolsky, William Vetterling,<br>
+          Numerical Recipes in C: The Art of Scientific Computing,<br>
+          Cambridge University Press, 1988,<br>
+          ISBN: 0-521-35465-X,<br>
+          LC: QA76.73.C15N865.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebyshev_coefficients.m">chebyshev_coefficients.m</a>,
+          computes the Chebyshev coefficients for a function.
+        </li>
+        <li>
+          <a href = "chebyshev_interpolant.m">chebyshev_interpolant.m</a>,
+          evaluates the Chebyshev interpolant at a point.
+        </li>
+        <li>
+          <a href = "chebyshev_zeros.m">chebyshev_zeros.m</a>,
+          returns the zeros of a Chebyshev polynomial.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebyshev_test.m">chebyshev_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "chebyshev_test01.m">chebyshev_test01.m</a>,
+          tests CHEBYSHEV_COEFFICIENTS and CHEBYSHEV_INTERPOLANT on several functions.
+        </li>
+        <li>
+          <a href = "f1.m">f1.m</a>,
+          f(x) = cos ( 2.0 * pi * x ) .* sin ( 3.0 * pi * x );
+        </li>
+        <li>
+          <a href = "f2.m">f2.m</a>,
+          f(x) = exp(x);
+        </li>
+        <li>
+          <a href = "f3.m">f3.m</a>,
+          f(x) = ( x - 3 ) .* ( x - 1 ) .* ( x - 1 ) .* ( x + 2 );
+        </li>
+        <li>
+          <a href = "chebyshev_test_output.txt">chebyshev_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 September 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

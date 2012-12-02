@@ -1,0 +1,267 @@
+<html>
+
+  <head>
+    <title>
+      SUDOKU - Solve a Sudoku Puzzle
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SUDOKU <br> Solve a Sudoku Puzzle
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SUDOKU</b> 
+      is a MATLAB library which 
+      handles Sudoku puzzles.
+    </p>
+
+    <p>
+      The most interesting routine is <b>sudoku_solve.m</b>, which accepts a 
+      partially worked-out Sudoku, and returns a solution.  It does
+      this by using an exhaustive search.  That is, it finds the first
+      empty spot in the grid, and then tries, in turn, putting in each
+      of the digits in that spot.  Once it puts in the trial digit,
+      it calls itself again with the slightly more filled-in puzzle.
+      If the routine fills in the whole puzzle, it returns to the user.
+      Otherwise, it backs up to the most recent trial digit, and increases
+      it by one.  And if that's not possible, because we got to "9",
+      it sets that cell back to blank, and backs up to the <i>previous</i>
+      trial digit.
+    </p>
+
+    <p>
+      If there is a solution, this procedure should find it.  However,
+      I don't know what the routine will do if there is no solution.
+      I don't know what the routine will do if there are multiple solutions
+      (I assume it just comes back with one solution.)  And the routine
+      does not check that your partially filled input puzzle is 
+      consistent (doesn't have a 12 in one cell, or two 5's in one row.)
+    </p>
+
+    <p>
+      A Sudoku has a lot of symmetry.  You can permute the digits.
+      You can swap two rows if they are in the same row of boxes.
+      You can swap two columns if they are in the same column of boxes.
+      You can swap two columns of boxes, or two rows of boxes.
+      Each of these operations preserves the underlying structure of
+      the Sudoku.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes several examples of backtracking routines
+      used to solve problems such as the placement of Queens on a 
+      chessboard.
+    </p>
+
+    <p>
+      <a href = "../../f_src/graph_paper/graph_paper.html">
+      GRAPH_PAPER</a>,
+      is a FORTRAN90 library which
+      includes a routine which can print out a partial
+      or complete Sudoku puzzle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset/subset.html">
+      SUBSET</a>, 
+      a MATLAB library which
+      includes several examples of backtracking routines
+      used to solve problems such as the number of derangements 
+      (complete scramblings) of a set.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      GM Boynton wrote <b>sudoku_solve.m</b>.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Brian Hayes,<br>
+          Unwed Numbers,</br>
+          American Scientist,<br>
+          Volume 94, pages 12-15, January-February 2006.
+        </li>
+        <li>
+          Robin Wilson,<br>
+          The Sudoku Epidemic,</br>
+          Focus, <br>
+          pages 5-7, January 2006.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sudoku_box_column_swap.m">
+          sudoku_box_column_swap.m</a>,
+          swaps two columns of boxes in a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_box_invert.m">
+          sudoku_box_invert.m</a>,
+          "inverts" all the Sudoku boxes through the center box.
+        </li>
+        <li>
+          <a href = "sudoku_box_row_swap.m">
+          sudoku_box_row_swap.m</a>,
+          swaps two rows of boxes in a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_check.m">
+          sudoku_check.m</a>,
+          examines a partially filled-in Sudoku, and checks that
+          it is legal (digits are 0, or between 1 and 9, no repeats
+          in rows, columns or boxes).
+        </li>
+        <li>
+          <a href = "sudoku_choice.m">
+          sudoku_choice.m</a>,
+          determines the number of remaining choices in a Sudoku puzzle
+          based just on row, column and box checks.
+        </li>
+        <li>
+          <a href = "sudoku_choice_print.m">
+          sudoku_choice_prints.m</a>,
+          prints the choices available in each box.
+        </li>
+        <li>
+          <a href = "sudoku_digit_permute.m">
+          sudoku_digit_permute.m</a>,
+          permutes the digits in a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_line_column_swap.m">
+          sudoku_line_column_swap.m</a>,
+          swaps two columns that share the same box column in a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_line_row_swap.m">
+          sudoku_line_row_swap.m</a>,
+          swaps two rows that share the same box row in a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_print.m">
+          sudoku.m</a>,
+          prints a partial or complete Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "sudoku_reflect.m">sudoku_reflect.m</a>,
+          reflects a Sudoku puzzle across the 0, 45, 90 or 135 degree lines.
+        </li>
+        <li>
+          <a href = "sudoku_rotate.m">sudoku_rotate.m</a>,
+          rotates a Sudoku puzzle by 90 degrees.
+        </li>
+        <li>
+          <a href = "sudoku_solve.m">sudoku_solve.m</a>,
+          solves a Sudoku puzzle.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sudoku_test.m">sudoku_test.m</a>, 
+          runs the tests.
+        </li>
+        <li>
+          <a href = "sudoku_test01.m">sudoku_test01.m</a>, 
+          tests SUDOKU_SOLVE.
+        </li>
+        <li>
+          <a href = "sudoku_test02.m">sudoku_test02.m</a>, 
+          tests SUDOKU_DIGIT_PERMUTE.
+        </li>
+        <li>
+          <a href = "sudoku_test03.m">sudoku_test03.m</a>, 
+          tests SUDOKU_LINE_COLUMN_SWAP and SUDOKU_LINE_ROW_SWAP.
+        </li>
+        <li>
+          <a href = "sudoku_test04.m">sudoku_test04.m</a>, 
+          tests SUDOKU_BOX_COLUMN_SWAP and SUDOKU_BOX_ROW_SWAP.
+        </li>
+        <li>
+          <a href = "sudoku_test05.m">sudoku_test05.m</a>, 
+          tests SUDOKU_BOX_INVERT.
+        </li>
+        <li>
+          <a href = "sudoku_test06.m">sudoku_test06.m</a>, 
+          tests SUDOKU_ROTATE.
+        </li>
+        <li>
+          <a href = "sudoku_test07.m">sudoku_test07.m</a>, 
+          tests SUDOKU_REFLECT.
+        </li>
+        <li>
+          <a href = "sudoku_test08.m">sudoku_test08.m</a>, 
+          tests SUDOKU_CHOICE.
+        </li>
+        <li>
+          <a href = "sudoku_test09.m">sudoku_test09.m</a>, 
+          tests SUDOKU_CHOICE_PRINT.
+        </li>
+        <li>
+          <a href = "sudoku_test10.m">sudoku_test10.m</a>, 
+          tests SUDOKU_CHECK.
+        </li>
+        <li>
+          <a href = "sudoku_test_output.txt">sudoku_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 October 2007..
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,226 @@
+<html>
+
+  <head>
+    <title>
+      FMINCON - Examples of Constrained Minimization using FMINCON
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FMINCON <br> Examples of Constrained Minimization using FMINCON
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FMINCON</b>
+      is a function included in MATLAB's Optimization Toolbox which
+      seeks the minimizer of a scalar function of multiple variables,
+      within a region specified by linear constraints and bounds.
+    </p>
+
+    <p>
+      A related function built into MATLAB is
+      <a href = "http://www.mathworks.com/help/techdoc/ref/fminsearch.html">
+      fminsearch</a>
+      which minimizes a scalar function of several variables using the
+      Nelder-Mead algorithm.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>x_opt</i> = fmincon ( <i>fun</i>, <i>x0</i>, <i>A</i>, <i>b</i>,
+        <i>Aeq</i>, <i>beq</i>, <i>lb</i>, <i>ub</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>fun</i> is the "function handle"; that is, the name of an M-file
+          that defines the function, preceded by an "@" sign;
+        </li>
+        <li>
+          <i>x0</i> is an initial value for the optimizer;
+        </li>
+        <li>
+          <i>A, b</i> define a linear inequality constraint A * x &lt;= b on the solution.
+        </li>
+        <li>
+          <i>Aeq, beq</i> define a linear equality constraint Aeq * x = beq on the solution.
+        </li>
+        <li>
+          <i>lb, ub</i> define bounds on the solution, lb &lt;= x &lt;= ub.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/compass_search/compass_search.html">
+      COMPASS_SEARCH</a>,
+      a MATLAB library which 
+      seeks the minimizer of a scalar function of several variables
+      using compass search, a direct search algorithm that does not use derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust-region methods.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm,
+      by Jeff Borggaard.
+    </p>
+
+    <p>
+      <a href = "../../f_src/praxis/praxis.html">
+      PRAXIS</a>,
+      a FORTRAN90 library which
+      implements the principal axis method of Richard Brent for minimization of
+      a function without the use of derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt/test_opt.html">
+      TEST_OPT</a>,
+      a MATLAB library which
+      defines test problems
+      requiring the minimization of a scalar function of several variables.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms178/toms178.html">
+      TOMS178</a>,
+      a MATLAB library which
+      optimizes a scalar functional of multiple variables using the Hooke-Jeeves method.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Harald Niederreiter, Kevin McCurley,<br>
+          Optimization of functions by quasi-random search methods,<br>
+          Computing,<br>
+          Volume 22, Number 2, 1979, pages 119-123.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fmincon_test.m">fmincon_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "fmincon_test_output.txt">fmincon_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "fmincon_test01.m">fmincon_test01.m</a>,
+          uses the Niederreiter-McCurley function #1.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley1.m">niederreiter_mccurley1.m</a>,
+          evaluates the Niederreiter-McCurley function #1.
+        </li>
+        <li>
+          <a href = "fmincon_test02.m">fmincon_test02.m</a>,
+          uses the Niederreiter-McCurley function #2.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley2.m">niederreiter_mccurley2.m</a>,
+          evaluates the Niederreiter-McCurley function #2.
+        </li>
+        <li>
+          <a href = "fmincon_test03.m">fmincon_test03.m</a>,
+          uses the Niederreiter-McCurley function #3.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley3.m">niederreiter_mccurley3.m</a>,
+          evaluates the Niederreiter-McCurley function #3.
+        </li>
+        <li>
+          <a href = "fmincon_test04.m">fmincon_test04.m</a>,
+          uses the Niederreiter-McCurley function #4.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley4.m">niederreiter_mccurley4.m</a>,
+          evaluates the Niederreiter-McCurley function #4.
+        </li>
+        <li>
+          <a href = "fmincon_test05.m">fmincon_test05.m</a>,
+          uses the Niederreiter-McCurley function #5.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley5.m">niederreiter_mccurley5.m</a>,
+          evaluates the Niederreiter-McCurley function #5.
+        </li>
+        <li>
+          <a href = "fmincon_test06.m">fmincon_test06.m</a>,
+          uses the Niederreiter-McCurley function #6.
+        </li>
+        <li>
+          <a href = "niederreiter_mccurley6.m">niederreiter_mccurley6.m</a>,
+          evaluates the Niederreiter-McCurley function #6.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 September 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,798 @@
+<html>
+
+  <head>
+    <title>
+      SANDIA_SPARSE - Sparse Grids for Sandia
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SANDIA_SPARSE <br> Sparse Grids for Sandia
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SANDIA_SPARSE</b> 
+      is a MATLAB library which 
+      computes the points and weights of a Smolyak sparse
+      grid, based on a variety of 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      The sparse grids that can be created may  be based on any one of
+      a variety of 1D quadrature rules.  However, only <b>isotropic</b> 
+      grids are generated, that is, the same 1D quadrature rule is used 
+      in each dimension, and the same maximum order is used in each dimension.
+      This is a limitation of this library, and not an inherent limitation
+      of the sparse grid method.
+    </p>
+
+    <p>
+      The 1D quadrature rules that can be used to construct sparse grids include:
+      <ul>
+        <li>
+          <b>CFN</b>, Closed Fully Nested rules:
+          <ul>
+            <li>
+              <b>CC</b>, Clenshaw-Curtis:<br>
+              defined on [-1,+1], with w(x)=1.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>OFN</b>, Open Fully Nested rules:
+          <ul>
+            <li>
+              <b>F1</b>, Fejer Type 1: <br>
+              defined on (-1,+1), with w(x)=1.
+            </li>
+            <li>
+              <b>F2</b>, Fejer Type 2: <br>
+              defined on (-1,+1), with w(x)=1.
+            </li>
+            <li>
+              <b>GP</b>, Gauss Patterson: <br>
+              defined on (-1,+1), with w(x)=1,<br>
+              a family of the midpoint rule, the 3 point
+              Gauss Legendre rule, and then successive Patterson refinements.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>OWN</b>, Open Weakly Nested rules:
+          <ul>
+            <li>
+              <b>GL</b>, Gauss Legendre: <br>
+              defined on (-1,+1), with w(x)=1.
+            </li>
+            <li>
+              <b>GH</b>, Gauss Hermite: <br>
+              defined on (-oo,+oo), with w(x)=exp(-x*x).
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>ONN</b>, Open Non-Nested rules:
+          <ul>
+            <li>
+              <b>LG</b>, Gauss Laguerre: <br>
+              defined on (0,+oo) with w(x)=exp(-x).
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Point Growth of 1D Rules
+    </h3>
+
+    <p>
+      A major advantage of sparse grids is that they can achieve accuracy that
+      is comparable to a corresponding product rule, while using far fewer points,
+      that is, evaluations of the function that is to be integrated.  We will leave
+      aside the issue of comparing accuracy for now, and simply focus on the pattern
+      of point growth.
+    </p>
+
+    <p>
+      A sparse grid is essentially a linear combination of lower order product
+      grids.  One way point growth is controlled is to only use product grids
+      based on a set of factors that are nested.  In other words, the underlying
+      1D rules are selected so that, when we increase the order of such a rule,
+      all the points of the current rule are included in the new one.  
+    </p>
+
+    <p>
+      The exact details of how this works depend on the particular 1D rule being
+      used and the nesting behavior it satisfies.  We classify the cases as follows:
+      <ul>
+        <li>
+          <b>CFN</b>, "Closed, Fully Nested", based on Clenshaw Curtis.
+        </li>
+        <li>
+          <b>OFN</b>, "Open, Fully Nested", based on Fejer Type 1, Fejer Type 2, or
+          Gauss Patterson.
+        </li>
+        <li>
+          <b>OWN</b>, "Open, Weakly Nested", based on Gauss Legendre or
+          Gauss Hermite rules.
+        </li>
+        <li>
+          <b>ONN</b>, "Open, Non-Nested", based on Gauss Laguerre rules;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      For <b>CFN</b> rules we have the following relationship between the level (index of 
+      the grid) and the 1D order (the number of points in the 1D rule.)
+      <pre><b>
+        order = 2<sup>level</sup> + 1
+      </b></pre>
+      except that for the special case of <b>level=0</b> we assign
+      <b>order=1</b>.
+    </p>
+
+    <p>
+      For <b>OFN</b>, <b>OWN</b> and <b>ONN</b> rules, the relationship between level 
+      and 1D order is:
+      <pre><b>
+        order = 2<sup>level+1</sup> - 1
+      </b></pre>
+    </p>
+
+    <p>
+      Thus, as we allow <b>level</b> to grow, the <b>order</b> of the 1D closed
+      and open rules behaves as follows:
+      <table border = "1" align = "center">
+        <tr><th>Level</th><th>CFN</th><th>OFN/OWN/ONN</th></tr>
+        <tr align = "right"><td>    0</td><td>    1</th><td>    1</th></tr>
+        <tr align = "right"><td>    1</td><td>    3</th><td>    3</th></tr>
+        <tr align = "right"><td>    2</td><td>    5</th><td>    7</th></tr>
+        <tr align = "right"><td>    3</td><td>    9</th><td>   15</th></tr>
+        <tr align = "right"><td>    4</td><td>   17</th><td>   31</th></tr>
+        <tr align = "right"><td>    5</td><td>   33</th><td>   63</th></tr>
+        <tr align = "right"><td>    6</td><td>   65</th><td>  127</th></tr>
+        <tr align = "right"><td>    7</td><td>  129</th><td>  255</th></tr>
+        <tr align = "right"><td>    8</td><td>  257</th><td>  511</th></tr>
+        <tr align = "right"><td>    9</td><td>  513</th><td> 1,023</th></tr>
+        <tr align = "right"><td>   10</td><td> 1,025</th><td> 2,057</th></tr>
+      </table>
+    </p>
+
+    <p>
+      When we move to multiple dimensions, the counting becomes more complicated.  This is because
+      a multidimensional sparse grid is made up of a logical sum of product grids.  A multidimensional
+      sparse grid has a multidimensional level, which is a single number.  Each product grid
+      that forms part of this sparse grid has a multidimensional level which is the sum of the
+      1D levels of its factors.  A sparse grid whose multidimensional level is represented by
+      <b>LEVEL</b> includes all product grids whose level ranges <b>LEVEL</b>+1-<b>DIM</b> 
+      and <b>LEVEL</b>.
+    </p>
+
+    <p>
+      Thus, as one example, if <b>DIM</b> is 2, the sparse grid of level 3, formed from
+      a CFN rule, will be formed from the following product rules.
+      <table border = "1" align = "center">
+      <tr><th>level</th><th>level 1</th><th>level 2</th><th>order 1</th><th>order 2</th><th>order</th></tr>
+      <tr align = "right"><td>1</td><td>0</td><td>1</td><td>1</td><td>3</td><td>3</td></tr>
+      <tr align = "right"><td>1</td><td>1</td><td>0</td><td>3</td><td>1</td><td>3</td></tr>
+      <tr align = "right"><td>2</td><td>0</td><td>2</td><td>1</td><td>5</td><td>5</td></tr>
+      <tr align = "right"><td>2</td><td>1</td><td>1</td><td>3</td><td>3</td><td>9</td></tr>
+      <tr align = "right"><td>2</td><td>2</td><td>0</td><td>5</td><td>1</td><td>5</td></tr>
+      </table>
+      Because of the nesting pattern for <b>CFN</b> rules, instead of 25 points (the sum of the orders), 
+      we will actually have just 13 unique points.
+    <p>
+
+    <p>
+      For a <b>CFN</b> sparse grid, here is the pattern of growth in the number of points,
+      as a function of spatial dimension and grid level:
+      <table border = "1" align = "center">
+        <tr><th>DIM  </th><th>   1</th><th>   2</th><th>   3</th><th>   4</th><th>   5</th></tr>
+        <tr><th>Level</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr align = "right"><td>    0</td><td>  1</th><td>    1</th><td>    1</td><td>     1</td><td>     1</td></tr>
+        <tr align = "right"><td>    1</td><td>  3</th><td>    5</th><td>    7</td><td>     9</td><td>    11</td></tr>
+        <tr align = "right"><td>    2</td><td>  5</th><td>   13</th><td>   25</td><td>    41</td><td>    61</td></tr>
+        <tr align = "right"><td>    3</td><td>  9</th><td>   29</th><td>   69</td><td>   137</td><td>   241</td></tr>
+        <tr align = "right"><td>    4</td><td> 17</th><td>   65</th><td>  177</td><td>   401</td><td>   801</td></tr>
+        <tr align = "right"><td>    5</td><td> 33</th><td>  145</th><td>  441</td><td> 1,105</td><td> 2,433</td></tr>
+        <tr align = "right"><td>    6</td><td> 65</th><td>  321</th><td>1,073</td><td> 2,929</td><td> 6,993</td></tr>
+        <tr align = "right"><td>    7</td><td>129</th><td>  705</th><td>2,561</td><td> 7,537</td><td>19,313</td></tr>
+        <tr align = "right"><td>    8</td><td>257</th><td>1,537</th><td>6,017</td><td>18,945</td><td>51,713</td></tr>
+      </table>
+    </p>
+
+    <p>
+      For an <b>OFN</b> sparse grid, here is the pattern of growth in the number of points,
+      as a function of spatial dimension and grid level:
+      <table border = "1" align = "center">
+        <tr><th>DIM  </th><th>   1</th><th>   2</th><th>   3</th><th>    4</th><th>    5</th></tr>
+        <tr><th>Level</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr align = "right"><td>    0</td><td>  1</th><td>    1</th><td>     1</td><td>     1</td><td>      1</td></tr>
+        <tr align = "right"><td>    1</td><td>  3</th><td>    5</th><td>     7</td><td>     9</td><td>     11</td></tr>
+        <tr align = "right"><td>    2</td><td>  7</th><td>   17</th><td>    31</td><td>    49</td><td>     71</td></tr>
+        <tr align = "right"><td>    3</td><td> 15</th><td>   49</th><td>   111</td><td>   209</td><td>    351</td></tr>
+        <tr align = "right"><td>    4</td><td> 31</th><td>  129</th><td>   351</td><td>   769</td><td>  1,471</td></tr>
+        <tr align = "right"><td>    5</td><td> 63</th><td>  321</th><td> 1,023</td><td> 2,561</td><td>  5,503</td></tr>
+        <tr align = "right"><td>    6</td><td>127</th><td>  769</th><td> 2,815</td><td> 7,937</td><td> 18,943</td></tr>
+        <tr align = "right"><td>    7</td><td>255</th><td>1,793</th><td> 7,423</td><td>23,297</td><td> 61,183</td></tr>
+        <tr align = "right"><td>    8</td><td>511</th><td>4,097</th><td>18,943</td><td>65,537</td><td>187,903</td></tr>
+      </table>
+    </p>
+
+    <p>
+      For an <b>OWN</b> sparse grid, here is the pattern of growth in the number of points,
+      as a function of spatial dimension and grid level:
+      <table border = "1" align = "center">
+        <tr><th>DIM  </th><th>  1</th><th>    2</th><th>    3</th><th>     4</th><th>    5</th></tr>
+        <tr><th>Level</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr align = "right"><td>    0</td><td>  1</th><td>     1</th><td>     1</td><td>      1</td><td>      1</td></tr>
+        <tr align = "right"><td>    1</td><td>  3</th><td>     5</th><td>     7</td><td>      9</td><td>     11</td></tr>
+        <tr align = "right"><td>    2</td><td>  7</th><td>    21</th><td>    37</td><td>     57</td><td>     81</td></tr>
+        <tr align = "right"><td>    3</td><td> 15</th><td>    73</th><td>   159</td><td>    289</td><td>    471</td></tr>
+        <tr align = "right"><td>    4</td><td> 31</th><td>   225</th><td>   597</td><td>  1,265</td><td>  2,341</td></tr>
+        <tr align = "right"><td>    5</td><td> 63</th><td>   637</th><td> 2,031</td><td>  4,969</td><td> 10,363</td></tr>
+        <tr align = "right"><td>    6</td><td>127</th><td> 1,693</th><td> 6,405</td><td> 17,945</td><td> 41,913</td></tr>
+        <tr align = "right"><td>    7</td><td>255</th><td> 4,289</th><td>19,023</td><td> 60,577</td><td>157,583</td></tr>
+        <tr align = "right"><td>    8</td><td>511</th><td>10,473</th><td>53,829</td><td>193,457</td><td>557,693</td></tr>
+      </table>
+    </p>
+
+    <p>
+      For an <b>ONN</b> sparse grid, here is the pattern of growth in the number of points,
+      as a function of spatial dimension and grid level:
+      <table border = "1" align = "center">
+        <tr><th>DIM  </th><th>  1</th><th>    2</th><th>    3</th><th>     4</th><th>    5</th></tr>
+        <tr><th>Level</th><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+        <tr align = "right"><td>    0</td><td>  1</th><td>     1</th><td>     1</td><td>      1</td><td>        1</td></tr>
+        <tr align = "right"><td>    1</td><td>  3</th><td>     7</th><td>    10</td><td>     13</td><td>       16</td></tr>
+        <tr align = "right"><td>    2</td><td>  7</th><td>    29</th><td>    58</td><td>     95</td><td>      141</td></tr>
+        <tr align = "right"><td>    3</td><td> 15</th><td>    95</th><td>   255</td><td>    515</td><td>      906</td></tr>
+        <tr align = "right"><td>    4</td><td> 31</th><td>   273</th><td>   945</td><td>  2,309</td><td>    4,746</td></tr>
+        <tr align = "right"><td>    5</td><td> 63</th><td>   723</th><td> 3,120</td><td>  9,065</td><td>   21,503</td></tr>
+        <tr align = "right"><td>    6</td><td>127</th><td> 1,813</th><td> 9,484</td><td> 32,259</td><td>   87,358</td></tr>
+        <tr align = "right"><td>    7</td><td>255</th><td> 4,375</th><td>27,109</td><td>106,455</td><td>  325,943</td></tr>
+        <tr align = "right"><td>    8</td><td>511</th><td>10,265</th><td>73,915</td><td>330,985</td><td>1,135,893</td></tr>
+      </table>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      To integrate a function <b>f(x)</b> over a multidimensional cube [-1,+1]^DIM using
+      a sparse grid based on a Clenshaw Curtis rule, we might use a program something
+      like the following:
+    </p>
+
+    <pre>
+      dim = 2;
+      level = 3;
+      rule = 1;
+
+      point_num = levels_index_size ( dim, level, rule );
+
+      [ w, x ] = sparse_grid ( dim, level, rule, point_num );
+
+      quad = 0.0;
+      for j = 1 : point_num
+        quad = quad + w(j) * f ( x(1:dim,j) );
+      end
+    </pre>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+    
+    <p>
+      The code described and made available on this web page is distributed
+      under the 
+      <a href = "gnu_lgpl.txt">GNU LGPL</a> license.
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SANDIA_SPARSE</b> is available in
+      <a href = "../../cpp_src/sandia_sparse/sandia_sparse.html">a C++ version</a> and
+      <a href = "../../f_src/sandia_sparse/sandia_sparse.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/grid_display/grid_display.html">
+      GRID_DISPLAY</a>,
+      a MATLAB library which
+      can display a 2D or 3D grid or sparse grid.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sandia_rules/sandia_rules.html">
+      SANDIA_RULES</a>, 
+      a MATLAB library which
+      generates Gauss quadrature rules of various orders and types.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids,
+      by Knut Petras.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a MATLAB library which
+      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc_dataset/sparse_grid_cc_dataset.html">
+      SPARSE_GRID_CC_DATASET</a>, 
+      a MATLAB program which
+      reads user input, creates a multidimensional sparse grid based on a 
+      1D Clenshaw Curtis rule and writes it to three files that define a
+      quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>, 
+      a MATLAB library which
+      uses a sparse grid to perform multilinear hierarchical interpolation,
+      by Andreas Klimke.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Charles Clenshaw, Alan Curtis,<br>
+          A Method for Numerical Integration on an Automatic Computer,<br>
+          Numerische Mathematik,<br>
+          Volume 2, Number 1, December 1960, pages 197-205.
+        </li>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Thomas Gerstner, Michael Griebel,<br>
+          Numerical Integration Using Sparse Grids,<br>
+          Numerical Algorithms,<br>
+          Volume 18, Number 3-4, 1998, pages 209-232.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          A Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2309-2345.
+        </li>
+        <li>
+          Fabio Nobile, Raul Tempone, Clayton Webster,<br>
+          An Anisotropic Sparse Grid Stochastic Collocation Method for Partial Differential
+          Equations with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 46, Number 5, 2008, pages 2411-2442.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+        <li>
+          Dennis Stanton, Dennis White,<br>
+          Constructive Combinatorics,<br>
+          Springer, 1986,<br>
+          ISBN: 0387963472,<br>
+          LC: QA164.S79.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "abscissa_level_closed_nd.m">
+          abscissa_level_closed_nd.m</a>
+          first level at which given abscissa is generated.
+        </li>
+        <li>
+          <a href = "abscissa_level_open_nd.m">
+          abscissa_level_open_nd.m</a>
+          first level at which given abscissa is generated.
+        </li>
+        <li>
+          <a href = "cc_abscissa.m">
+          cc_abscissa.m</a>
+          returns the I-th abscissa of the Clenshaw Curtis rule.
+        </li>
+        <li>
+          <a href = "cc_weights.m">
+          cc_weights.m</a>
+          computes Clenshaw Curtis weights.
+        </li>
+        <li>
+          <a href = "comp_next.m">
+          comp_next.m</a>
+          computes the compositions of the integer N into K parts. 
+        </li>
+        <li>
+          <a href = "f1_abscissa.m">
+          f1_abscissa.m</a>
+          returns the I-th abscissa of the Fejer Type 1 rule.
+        </li>
+        <li>
+          <a href = "f1_weights.m">
+          f1_weights.m</a>
+          computes Fejer Type 1 weights.
+        </li>
+        <li>
+          <a href = "f2_abscissa.m">
+          f2_abscissa.m</a>
+          returns the I-th abscissa of the Fejer Type 2 rule.
+        </li>
+        <li>
+          <a href = "f2_weights.m">
+          f2_weights.m</a>
+          computes Fejer Type 2 weights.
+        </li>
+        <li>
+          <a href = "gh_abscissa.m">
+          gh_abscissa.m</a>
+          returns the I-th abscissa of the Gauss Hermite rule.
+        </li>
+        <li>
+          <a href = "gh_weights.m">
+          gh_weights.m</a>
+          computes Gauss Hermite weights.
+        </li>
+        <li>
+          <a href = "gl_abscissa.m">
+          gl_abscissa.m</a>
+          returns the I-th abscissa of the Gauss Legendre rule.
+        </li>
+        <li>
+          <a href = "gl_weights.m">
+          gl_weights.m</a>
+          computes Gauss Legendre weights.
+        </li>
+        <li>
+          <a href = "gp_abscissa.m">
+          gp_abscissa.m</a>
+          returns the I-th abscissa of the Gauss Patterson rule.
+        </li>
+        <li>
+          <a href = "gp_weights.m">
+          gp_weights.m</a>
+          computes Gauss Patterson weights.
+        </li>
+        <li>
+          <a href = "i4_log_2.m">
+          i4_log_2.m</a>
+          returns the integer part of the logarithm base 2 of an I4.
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>
+          returns the nonnegative remainder of integer division. 
+        </li>
+        <li>
+          <a href = "index_level_own.m">
+          index_level_own.m</a>
+          determine first level at which given index is generated.
+        </li>
+        <li>
+          <a href = "index_to_level_closed.m">
+          index_to_level_closed.m</a>
+          determines the level of a point given its index. 
+        </li>
+        <li>
+          <a href = "index_to_level_open.m">
+          index_to_level_open.m</a>
+          determines the level of a point given its index. 
+        </li>
+        <li>
+          <a href = "level_to_order_closed.m">
+          level_to_order_closed.m</a>
+          converts a level to an order for closed rules.
+         </li>
+        <li>
+          <a href = "level_to_order_open.m">
+          level_to_order_open.m</a>
+          converts a level to an order for open rules.
+         </li>
+        <li>
+          <a href = "levels_index.m">
+          levels_index.m</a>
+          indexes a sparse grid.
+        </li>
+        <li>
+          <a href = "levels_index_cfn.m">
+          levels_index_cfn.m</a>
+          indexes a sparse grid made from CFN 1D rules.
+        </li>
+        <li>
+          <a href = "levels_index_ofn.m">
+          levels_index_ofn.m</a>
+          indexes a sparse grid made from OFN 1D rules.
+        </li>
+        <li>
+          <a href = "levels_index_onn.m">
+          levels_index_onn.m</a>
+          indexes a sparse grid made from ONN 1D rules.
+        </li>
+        <li>
+          <a href = "levels_index_own.m">
+          levels_index_own.m</a>
+          indexes a sparse grid made from OWN 1D rules.
+        </li>
+        <li>
+          <a href = "levels_index_size.m">
+          levels_index_size.m</a>
+          sizes a sparse grid.
+        </li>
+        <li>
+          <a href = "levels_index_size_onn.m">
+          levels_index_size_onn.m</a>
+          sizes a sparse grid made from ONN 1D rules.
+        </li>
+        <li>
+          <a href = "levels_index_size_own.m">
+          levels_index_size_own.m</a>
+          sizes a sparse grid made from OWN 1D rules.
+        </li>
+        <li>
+          <a href = "lg_abscissa.m">
+          lg_abscissa.m</a>
+          returns the I-th abscissa of the Gauss Laguerre rule.
+        </li>
+        <li>
+          <a href = "lg_weights.m">
+          lg_weights.m</a>
+          computes Gauss Laguerre weights.
+        </li>
+        <li>
+          <a href = "monomial_integral_hermite.m">
+          monomial_integral_hermite.m</a>
+          integrates a Hermite monomial.
+        </li>
+        <li>
+          <a href = "monomial_integral_laguerre.m">
+          monomial_integral_laguerre.m</a>
+          integrates a Laguerre monomial.
+        </li>
+        <li>
+          <a href = "monomial_integral_legendre.m">
+          monomial_integral_legendre.m</a>
+          integrates a Legendre monomial.
+        </li>
+        <li>
+          <a href = "monomial_quadrature.m">
+          monomial_quadrature.m</a>
+          applies a quadrature rule to a monomial. 
+        </li>
+        <li>
+          <a href = "monomial_value.m">
+          monomial_value.m</a>
+          evaluates a monomial.
+        </li>
+        <li>
+          <a href = "multigrid_index_cfn.m">
+          multigrid_index_cfn.m</a>
+          indexes a sparse grid based on CFN 1D rules.
+        </li>
+        <li>
+          <a href = "multigrid_index_ofn.m">
+          multigrid_index_ofn.m</a>
+          indexes a sparse grid based on OFN 1D rules.
+        </li>
+        <li>
+          <a href = "multigrid_index_onn.m">
+          multigrid_index_onn.m</a>
+          indexes a sparse grid based on ONN 1D rules.
+        </li>
+        <li>
+          <a href = "multigrid_index_own.m">
+          multigrid_index_own.m</a>
+          indexes a sparse grid based on OWN 1D rules.
+        </li>
+        <li>
+          <a href = "multigrid_scale_closed.m">
+          multigrid_scale_closed.m</a>
+          renumbers a grid as a subgrid on a higher level.
+        </li>
+        <li>
+          <a href = "multigrid_scale_open.m">
+          multigrid_scale_open.m</a>
+          renumbers a grid as a subgrid on a higher level.
+        </li>
+        <li>
+          <a href = "product_weights.m">
+          product_weights.m</a>
+          computes the weights of a product rule.
+        </li>
+        <li>
+          <a href = "r8_choose.m">
+          r8_choose.m</a>
+          computes the binomial coefficient C(N,K).        
+        </li>
+        <li>
+          <a href = "r8_factorial.m">
+          r8_factorial.m</a>
+          computes the factorial function.
+        </li>
+        <li>
+          <a href = "r8_factorial2.m">
+          r8_factorial2.m</a>
+          computes the double factorial function.
+        </li>
+        <li>
+          <a href = "r8_huge.m">
+          r8_huge.m</a>
+          returns a very large R8.
+        </li>
+        <li>  
+          <a href = "r8vec_direct_product2.m">
+          r8vec_direct_product2.m</a>
+          direct product of double precision real vectors. 
+        </li>
+        <li>
+          <a href = "sparse_grid.m">
+          sparse_grid.m</a>
+          computes a sparse grid. 
+        </li>
+        <li>
+          <a href = "sparse_grid_cc_size.m">
+          sparse_grid_cc_size.m</a>
+          computes the size of a CC sparse grid.
+        </li>
+        <li>
+          <a href = "sparse_grid_cfn.m">
+          sparse_grid_cfn.m</a>
+          computes a sparse grid based on a CFN 1D rule. 
+        </li>
+        <li>
+          <a href = "sparse_grid_ofn.m">
+          sparse_grid_ofn.m</a>
+          computes a sparse grid based on an OFN 1D rule. 
+        </li>
+        <li>
+          <a href = "sparse_grid_ofn_size.m">
+          sparse_grid_ofn_size.m</a>
+          sizes a sparse grid made from Open Fully Nested rules.
+        </li>
+        <li>
+          <a href = "sparse_grid_onn.m">
+          sparse_grid_onn.m</a>
+          computes a sparse grid based on a ONN 1D rule.
+        </li>
+        <li>
+          <a href = "sparse_grid_own.m">
+          sparse_grid_own.m</a>
+          computes a sparse grid based on a OWN 1D rule.
+        </li>
+        <li>
+          <a href = "spase_grid_weights_cfn.m">
+          sparse_grid_weights_cfn.m</a>
+          computes sparse grid weights based on a CFN 1D rule.
+        </li>
+        <li>
+          <a href = "sparse_grid_weights_ofn.m">
+          sparse_grid_weights_ofn.m</a>
+          computes sparse grid weights based on a OFN 1D rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>
+          prints the current YMDHMS date as a time stamp. 
+        </li>
+        <li>
+          <a href = "vec_colex_next2.m">
+          vec_colex_next2.m</a>
+          generates vectors in colex order. 
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sandia_sparse_test.m">sandia_sparse_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "sandia_sparse_test_output.txt">sandia_sparse_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+        <li>
+          <a href = "levels_index_size_test.m">levels_index_size_test.m</a>,
+          tests LEVELS_INDEX_SIZE.
+        </li>
+        <li>
+          <a href = "levels_index_test.m">levels_index_test.m</a>,
+          tests LEVELS_INDEX.
+        </li>
+        <li>
+          <a href = "sparse_grid_compute_test.m">sparse_grid_compute_test.m</a>,
+          tests SPARSE_GRID_COMPUTE by having it compute a sparse grid.
+        </li>
+        <li>
+          <a href = "sparse_grid_weight_test.m">sparse_grid_weight_test.m</a>,
+          tests SPARSE_GRID_COMPUTE by having it compute a sparse grid, and
+          then adding up the quadrature weights.
+        </li>
+        <li>
+          <a href = "sparse_grid_monomial_test.m">sparse_grid_monomial_test.m</a>,
+          tests SPARSE_GRID_COMPUTE by having it compute a sparse grid, and
+          using it to estimate the integrals of monomials.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 March 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>
+

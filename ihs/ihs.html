@@ -1,0 +1,305 @@
+<html>
+
+  <head>
+    <title>
+      IHS - Improved Distributed Hypercube Sampling
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IHS <br> Improved Distributed Hypercube Sampling
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IHS</b>
+      is a MATLAB library which
+      carries out the improved distributed hypercube sampling algorithm.
+    </p>
+
+    <p>
+      N Points in an M dimensional Latin hypercube are to be selected.
+      Each of the M coordinate dimensions is discretized to the values
+      1 through N.  The points are to be chosen in such a way that
+      no two points have any coordinate value in common.  This is
+      a standard Latin hypercube requirement, and there are many
+      solutions.
+    </p>
+
+    <p>
+      This algorithm differs in that it tries to pick a solution
+      which has the property that the points are "spread out"
+      as evenly as possible.  It does this by determining an optimal
+      even spacing, and using the duplication factor D to allow it
+      to choose the best of the various options available to it
+      (the more duplication, the better chance of optimization).
+    </p>
+
+    <p>
+      One drawback to this algorithm is that it requires an internal
+      real distance array of dimension D * N * N.  For a relatively moderate
+      problem with N = 1000, this can exceed the easily accessible
+      memory.  Moreover, the program is inherently quadratic in N
+      in execution time as well as memory; the computation of the I-th
+      point in the set of N requires a consideration of the value of
+      the coordinates used up by the previous points, and the distances
+      from each of those points to the candidates for the next point.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>IHS</b> is available in
+      <a href = "../../cpp_src/ihs/ihs.html">a C++ version</a> and
+      <a href = "../../f_src/ihs/ihs.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/ihs/ihs.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      computes elements of a Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/faure/faure.html">
+      FAURE</a>,
+      a MATLAB library which
+      computes elements of a Faure quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grid/grid.html">
+      GRID</a>,
+      a MATLAB library which
+      computes elements of a grid sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/halton/halton.html">
+      HALTON</a>,
+      a MATLAB library which
+      computes elements of a Halton quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hammersley/hammersley.html">
+      HAMMERSLEY</a>,
+      a MATLAB library which
+      computes elements of a Hammersley quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hex_grid/hex_grid.html">
+      HEX_GRID</a>,
+      a MATLAB library which
+      computes elements of a hexagonal grid dataset.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_center/latin_center.html">
+      LATIN_CENTER</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing center points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_edge/latin_edge.html">
+      LATIN_EDGE</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing edge points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/latin_random/latin_random.html">
+      LATIN_RANDOM</a>,
+      a MATLAB library which
+      computes elements of a Latin Hypercube dataset, choosing points at random.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lattice_rule/lattice_rule.html">
+      LATTICE_RULE</a>,
+      a MATLAB library which
+      approximates multidimensional integrals using lattice rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lcvt/lcvt.html">
+      LCVT</a>,
+      a MATLAB library which
+      computes a latinized Centroidal Voronoi Tessellation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/niederreiter2/niederreiter2.html">
+      NIEDERREITER2</a>,
+      a MATLAB library which
+      computes elements of a Niederreiter quasirandom sequence using base 2.
+    </p>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>,
+      a MATLAB library which
+      computes elements of a sequence of pseudorandom normally distributed values.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sobol/sobol.html">
+      SOBOL</a>,
+      a MATLAB library which
+      computes elements of a Sobol quasirandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_quality/table_quality.html">
+      TABLE_QUALITY</a>,
+      a MATLAB program which
+      measures the dispersion quality of points in a dataset read from a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which
+      computes elements of a uniform pseudorandom sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/van_der_corput/van_der_corput.html">
+      VAN_DER_CORPUT</a>,
+      a MATLAB library which
+      computes elements of a 1D van der Corput sequence.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Brian Beachkofski, Ramana Grandhi,<br>
+          Improved Distributed Hypercube Sampling,<br>
+          American Institute of Aeronautics and Astronautics Paper 2002-1274.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "covariance.m">covariance.m</a>,
+          does a covariance calculation for IHS solutions.
+        </li>
+        <li>
+          <a href = "get_seed.m">get_seed.m</a>,
+          returns a seed for the random number generator.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>,
+          returns a random integer in a given range.
+        </li>
+        <li>
+          <a href = "ihs.m">ihs.m</a>,
+          implements the improved hypercube sampling algorithm.
+        </li>
+        <li>
+          <a href = "ihs_write.m">ihs_write.m</a>,
+          writes an IHS dataset to a file.
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">r8_epsilon.m</a>,
+          returns the machine precision.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a pseudorandom double precision value in [0,1].
+        </li>
+        <li>
+          <a href = "r8vec_std.m">r8vec_std.m</a>,
+          returns the standard deviation of a double precision vector.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ihs_test.m">ihs_prb.m</a>,
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "ihs_test01.m">ihs_test01.m</a>,
+          demonstrates IHS for several dimensions.
+        </li>
+        <li>
+          <a href = "ihs_test02.m">ihs_test02.m</a>,
+          demonstrates IHS for several duplication values.
+        </li>
+        <li>
+          <a href = "ihs_test03.m">ihs_test03.m</a>,
+          demonstrates IHS for several numbers of points.
+        </li>
+        <li>
+          <a href = "ihs_test04.m">ihs_test04.m</a>,
+          demonstrates IHS for several random number seeds.
+        </li>
+        <li>
+          <a href = "ihs_test_output.txt">ihs_test_output.txt</a>,
+          the output from all the tests.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 September 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

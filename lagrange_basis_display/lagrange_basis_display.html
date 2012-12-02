@@ -1,0 +1,196 @@
+<html>
+
+  <head>
+    <title>
+      LAGRANGE_BASIS_DISPLAY - Display Basis Functions for Lagrange Interpolation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LAGRANGE_BASIS_DISPLAY <br> Display Basis Functions for Lagrange Interpolation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LAGRANGE_BASIS_DISPLAY</b>
+      is a MATLAB program which
+      displays the basis functions associated with any set of interpolation
+      points to be used for Lagrange interpolation.
+    </p>
+
+    <p>
+      The Lagrange interpolating polynomial to a set of m+1 data pairs (xi,yi)
+      can be represented as
+      <pre>
+        p(x) = sum ( 1 <= i <= m + 1 ) yi * l(i,x)
+      </pre>
+      Each function l(i,x) is a Lagrange basis function associated with the
+      set of x data values.  Each l(i,x) is a polynomial of degree m, which
+      is 1 at node xi and zero at the other nodes.  Moreover, there is an
+      explicit formula:
+      <pre>
+        l(i,x) = product ( 1 <= j <= m + 1, j /= i ) ( x  - xj ) 
+               / product ( 1 <= j <= m + 1, j /= i ) ( xi - xj )
+      </pre>
+      Thus the interpolating polynomial can be represented as a linear combination
+      of the Lagrange basis functions, and the coefficients are simply the
+      data values yi.
+    </p>
+
+    <p>
+      For a given set of m+1 data pairs (xi,yi), you may also define the same
+      interpolating polynomial using a Vandermonde matrix; this approach
+      essentially uses the monomials 1, x, x^2, ..., x^m as the basis functions.
+      The unknown polynomial coefficients c must be determined by forming
+      and solving the Vandermonde system; not only is this method more costly,
+      but this linear system is numerically ill-conditioned, so that the resulting
+      answers can be unreliable.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LAGRANGE_BASIS_DISPLAY</b> is available in
+      <a href = "../../m_src/lagrange_basis_display/lagrange_basis_display.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to data y(x) of a 1D argument,
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kendall Atkinson,<br>
+          An Introduction to Numerical Analysis,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0471624896,<br>
+          LC: QA297.A94.1989.
+        </li>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lagrange_basis_display.m">lagrange_basis_display.m</a>, 
+          displays Lagrange basis functions over [A,B], of degree M,
+          for given nodes XD.
+        </li>
+        <li>
+          <a href = "standard_basis_display.m">standard_basis_display.m</a>, 
+          displays standard monomial basis functions over [A,B], up to degree M.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lagrange_basis_display_test.m">lagrange_basis_display_test.m</a>, 
+          tests the software.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Plots made by the test include:
+      <ul>
+        <li>
+          <a href = "lagrange_10_chebyshev.png">lagrange_10_chebyshev.png</a>,
+          the Lagrange basis functions of degree 10, for the Chebyshev points
+          on [-1,+1].
+        </li>
+        <li>
+          <a href = "lagrange_10_even.png">lagrange_10_evem.png</a>,
+          the Lagrange basis functions of degree 10, for evenly-spaced points
+          on [0,+1].
+        </li>
+        <li>
+          <a href = "standard_10.png">standard_10.png</a>,
+          the standard monomial basis functions up to degree 10, for evenly-spaced points
+          on [0,+1].
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

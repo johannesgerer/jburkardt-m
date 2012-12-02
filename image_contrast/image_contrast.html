@@ -1,0 +1,250 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_CONTRAST - Enhance Contrast in an Image
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_CONTRAST <br> Enhance Contrast in an Image
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_CONTRAST</b>
+      is a MATLAB function which
+      carries out a simple contrast enhancement operation on an image.
+    </p>
+
+    <p>
+      Note that MATLAB's image processing toolbox includes a functions such
+      as <b>nlfilter</b> which can do a more sophisticated treatment of images.
+      But the purpose of this example is to demonstrate the process of image
+      enhancement in a way that is clear enough to understand quickly.
+    </p>
+
+    <p>
+      For a gray-scale image, the function has the form:
+      <blockquote>
+        function <i>gray_enhanced</i> = <b>contrast_gray</b> ( <i>gray</i>, <i>s</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>gray</i> is an <i>m</i> by <i>n</i> <b>uint8</b>
+          (short integers, 0 to 255) array containing the gray scale values;
+          MATLAB's <b>imread()</b> command can be used to create such a
+          dataset from a graphics image file.
+        </li>
+        <li>
+          <i>s</i> is the sharpness parameter.  Normally, <b>s</b> is
+          greater than 1, and larger values increase the contrast.
+        </li>
+        <li>
+          <i>gray_enhanced</i> is an <i>m</i> by <i>n</i> <b>uint8</b>
+          (short integer) array containing the gray scale values
+          after the contrast has been enhanced.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The corresponding function <b>contrast_rgb()</b> operates on RGB images.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for a image operations;
+      the client reads an image, the workers process portions of it to enhance
+      the contrast, and the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_components/image_components.html">
+      IMAGE_COMPONENTS</a>,
+      a MATLAB library which
+      seeks the connected "nonzero" or "nonblack" components of an image or integer vector,
+      array or 3D block.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      a MATLAB program which
+      demonstrates a simple technique for removing noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_noise/image_noise.html">
+      IMAGE_NOISE</a>,
+      MATLAB programs which
+      add noise to an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_rgb_to_gray/image_rgb_to_gray.html">
+      IMAGE_RGB_TO_GRAY</a>,
+      MATLAB programs which
+      makes a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      MATLAB programs which
+      make a black and white version of a grayscale image by setting all pixels
+      below or above a threshold value to black or white.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Jonas Gomes, Luiz Velho,<br>
+          Image Processing for Computer Graphics,<br>
+          Springer, 1997,<br>
+          ISBN: 0387948546,<br>
+          LC: T385.G65.
+        </li>
+        <li>
+          William Pratt,<br>
+          Digital Image Processing,<br>
+          Second Edition,<br>
+          Wiley, 1991,<br>
+          ISBN13: 978-0471857662,<br>
+          LC: TA1632.P7.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "contrast_gray.m">contrast_gray.m</a>,
+          applies the contrast enhancement procedure to a gray-scale image.
+        </li>
+        <li>
+          <a href = "contrast_rgb.m">contrast_rgb.m</a>,
+          applies the contrast enhancement procedure to an RGB image.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SURFSUP</b> is a grayscale image.
+      <ul>
+        <li>
+          <a href = "surfsup.png">surfsup.png</a>,
+          the original image, somewhat blurry.
+        </li>
+        <li>
+          <a href = "surfsup_contrast_0.25.png">surfsup_contrast_0.25.png</a>,
+          the image, with contrast S = 0.25.  The result is blurrier.
+        </li>
+        <li>
+          <a href = "surfsup_contrast_5.00.png">surfsup_contrast_5.00.png</a>,
+          the image, with contrast S = 5.00.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>UNDERWATER_BMX</b> is an RGB image.  Note that attempts to increase the
+      blurriness of this image using a value of S less than 1 didn't seem to have
+      much effect.
+      <ul>
+        <li>
+          <a href = "underwater_bmx.png">underwater_bmx.png</a>,
+          the original image, somewhat blurry.
+        </li>
+
+        <li>
+          <a href = "underwater_bmx_contrast_5.00.png">underwater_bmx_contrast_5.00.png</a>,
+          the image, with contrast S = 5.00.
+        </li>
+        <li>
+          <a href = "underwater_bmx_contrast_10.00.png">underwater_bmx_contrast_10.00.png</a>,
+          the image, with contrast S = 10.00.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 December 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

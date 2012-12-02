@@ -1,0 +1,80 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>plotindices :: (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<table class="header">
+			<tr>
+				<td><b>Sparse Grid Interpolation Toolbox</b></td>
+				<td align="right"><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1>plotindices</h1>
+		  Visualizes the index sets of a two-dimensional dimension-adaptive sparse grid.
+		<h2>Syntax</h2>
+			<code>plotindices(Z)</code>
+		<h2>Description</h2>
+		  <code>plotindices(Z)</code> Plots the set of multi-indices <code>S_k</code> of a two-dimensional dimension-adaptive sparse grid interpolant <code>A_{S_k}(f)</code>. <code>Z</code> must be the sparse grid data as returned by <a href="spvals.html"><code>spvals</code></a>. <code>spvals</code> must be called with the option <code>'DimensionAdaptive'</code> switched <code>'on'</code> (this can be done using <a href="spset.html"><code>spset</code></a>).
+			<h2><a name="ex1">Examples</a></h2>
+         <p>The following code constructs a dimension-adaptive sparse grid interpolant of the function</p>
+         <p><img src="images/ex_plotindices_eq12917.png"> </p>
+         <p>using greedy grid refinement (the degree of dimensional adaptivity is set to 1). The default interpolation box is <tt>range = [0,1]^2</tt>.
+         </p><pre class="codeinput">f = inline(<span class="string">'sin(10.*x)+y.^2'</span>);
+options = spset(<span class="string">'DimensionAdaptive'</span>, <span class="string">'on'</span>, <span class="string">'DimAdaptDegree'</span>, 1);
+z = spvals(f, 2, [], options)
+</pre><pre class="codeoutput">
+z = 
+
+               vals: {[149x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: []
+        estRelError: 0.0018
+        estAbsError: 0.0039
+         fevalRange: [-0.9589 1.2500]
+         minGridVal: [0.5000 0]
+         maxGridVal: [0.1562 0.5000]
+            nPoints: 149
+          fevalTime: 0.3286
+    surplusCompTime: 0.0089
+            indices: [1x1 struct]
+           maxLevel: [7 4]
+      activeIndices: [3x1 uint32]
+     activeIndices2: [13x1 uint32]
+                  E: [1x13 double]
+                  G: [13x1 double]
+                 G2: [13x1 double]
+       maxSetPoints: 7
+           dimAdapt: 1
+</pre><p>The resulting interpolant is plotted using Matlab's <tt>ezmesh</tt> command and an anonymous function containing the call to <tt>spinterp</tt>. Plotting the multi-index sets used by the interpolant reveals that the refinement is more dense in the x-direction, since
+            more points are required to resolve the oscillation of the sine curve. Due to the greedy refinement, only a single index (2,2)
+            is computed in joint dimensions, since the error indicator of the multi-index (2,2) is equal to zero (f is a separable function).
+         </p><pre class="codeinput">subplot(1,2,1);
+ezmesh(@(x,y) spinterp(z,x,y), [0 1]);
+axis <span class="keyword">square</span>;
+subplot(1,2,2);
+plotindices(z);
+</pre><img src="images/ex_plotindices_01.png"> 
+		<h2>See Also</h2>
+		  <a href="plotgrid.html"><code>plotgrid</code></a>, 
+		  <a href="plotindices.html"><code>plotindices</code></a>, 
+			<a href="spgrid.html"><code>spgrid</code></a>.
+		</div>
+		<table class="footer">
+			<tr>
+				<td align=right><a href="functions_list.html"><img src="images/b_prev.gif" alt="Previous page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,170 @@
+<html>
+
+  <head>
+    <title>
+      BISECTION_INTEGER - Seek Integer Roots for F(X)=0
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BISECTION_INTEGER <br> Seek Integer Roots for F(X)=0
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BISECTION_INTEGER</b>
+      is a MATLAB library which
+      seeks an integer solution to the equation F(X)=0,
+      using bisection within a user-supplied change of sign interval [A,B].
+    </p>
+
+    <p>
+      A function F(X) confined to integer arguments is given, with an
+      interval [A,B] over which F changes sign.  An integer C is sought
+      such that A &leq; C &leq; B and F(C) = 0.
+    </p>
+
+    <p>
+      Because we are restricted to integer arguments, it may the case that
+      there is no such C.
+    </p>
+
+    <p>
+      This routine proceeds by a form of bisection, in which the enclosing
+      interval is restricted to be defined by integer values.
+    </p>
+
+    <p>
+      If the user has given a true change of sign interval [A,B], and if,
+      in the interval, there is a single integer value C for which F(C) = 0,
+      with the additional restrictions that F(C-1) and F(C+1) are of opposite
+      signs, then this procedure should locate and return C.
+    </p>
+
+    <p>
+      In particular, if the function F is monotone, and there is an integer
+      solution C in the interval, then this procedure will find it.
+    </p>
+
+    <p>
+      However, in general, even if there is an integer C in the interval,
+      such that F(C) = 0, this procedure may be unable to find it, particularly
+      if there are also nonintegral solutions within the same interval.
+    </p>
+
+    <p>
+      While any integer function can be used with this program, the bisection
+      approach is most useful if the integer function is monotone, or
+      varies slowly, or can be regarded as the restriction to integer arguments
+      of a continuous (and smoothly varying) function of a real argument.
+      In such cases, knowing that F is negative at A and positive at B
+      suggests that F generally increases from A to B, and might attain 
+      the value 0 at some intermediate argument C.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BISECTION_INTEGER</b> is available in 
+      <a href = "../../c_src/bisection_integer/bisection_integer.html">a C version</a> and
+      <a href = "../../cpp_src/bisection_integer/bisection_integer.html">a C++ version</a> and
+      <a href = "../../f77_src/bisection_integer/bisection_integer.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/bisection_integer/bisection_integer.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/bisection_integer/bisection_integer.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/brent/brent.html">
+      BRENT</a>,
+      a MATLAB library which
+      contains Richard Brent's routines for finding the zero, local minimizer,
+      or global minimizer of a scalar function of a scalar argument, without
+      the use of derivative information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_zero/test_zero.html">
+      TEST_ZERO</a>,
+      a MATLAB library which
+      defines functions which can be used to test zero finders.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisection_integer.m">bisection_integer.m</a>, 
+          uses bisection to search for the root of a function with an integer argument.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          returns the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisection_integer_test.m">bisection_integer_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "bisection_integer_test01.m">bisection_integer_test01.m</a>,
+          tests BISECTION_INTEGER with a specific function.
+        </li>
+        <li>
+          <a href = "f01.m">f01.m</a>,
+          the function to be tested.
+        </li>
+        <li>
+          <a href = "bisection_integer_prb_output.txt">bisection_integer_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

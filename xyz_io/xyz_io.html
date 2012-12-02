@@ -1,0 +1,464 @@
+<html>
+
+  <head>
+    <title>
+      XYZ_IO - XYZ File Input/Output routines.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      XYZ_IO <br> XYZ File Input/Output routines.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>XYZ_IO</b> 
+      is a MATLAB  library which
+      reads and writes files in the XYZ, XYZL and XYZF formats.
+    </p>
+
+    <p>
+      XYZ files are a simple way of storing information about sets of points in 3D.
+    </p>
+
+    <p>
+      An XYZ file has a simple structure.  There are three kinds of records:
+      <ul>
+        <li>
+          COMMENT LINES begin with the character '#' and are ignored;
+        </li>
+        <li>
+          BLANK LINES are ignored;
+        </li>
+        <li>
+          COORDINATE LINES each contain one triple of XYZ coordinates;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Here is an example of an XYZ file containing 13 points:
+      <pre>
+#  cube.xyz
+#
+        0.000000        0.000000        0.000000
+        1.000000        0.000000        0.000000
+        1.000000        1.000000        0.000000
+        0.000000        1.000000        0.000000
+        0.000000        0.000000        1.000000
+        1.000000        0.000000        1.000000
+        1.000000        1.000000        1.000000
+        0.000000        1.000000        1.000000
+      </pre>
+    </p>
+
+    <p>
+      Of course, in many cases, we would like to describe LINES between the points.
+      We can add this information by including a second file, called an XYZL file,
+      which consists of a string of point indices.  A line is drawn from one point
+      to the next, and so on for each point index on a record.  Thus, an XYZL file
+      associated with the above XYZ file might be:
+      <pre>
+#  cube.xyzl
+#
+  1 2 3 4 1
+  5 6 7 8 5
+  1 5
+  2 6
+  3 7
+  4 8
+      </pre>
+    </p>
+
+    <p>
+      We might also like to describe FACES defined by the points.
+      We can add this information by including a file, called an XYZF file,
+      which consists of a string of point indices.  A face is defined by
+      listing in counterclockwise order the vertices that lie on it.
+      The first vertex is not repeated
+      as the final vertex. Thus, an XYZF file
+      associated with the above XYZ file might be:
+      <pre>
+#  cube.xyzf
+#
+  1 4 3 2
+  2 3 7 6
+  5 6 7 8
+  5 8 4 1
+  1 2 6 5
+  3 4 8 7
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>XYZ_IO</b> is available in
+      <a href = "../../cpp_src/xyz_io/xyz_io.html">a C++ version</a> and
+      <a href = "../../f_src/xyz_io/xyz_io.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/xyz_io/xyz_io.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/ivread/ivread.html">
+      IVREAD</a>,
+      a FORTRAN90 program which
+      can convert graphics information between various 3D formats,
+      including the XYZ format.
+    </p>
+
+    <p>
+      <a href = "../../f_src/pdb_to_xyz/pdb_to_xyz.html">
+      PDB_TO_XYZ</a>,
+      a FORTRAN90 program which
+      reads the ATOM records 
+      from a PDB file, and writes the atomic coordinates to an XYZ file.
+    </p>
+
+    <p>
+      <a href = "../../f_src/stripack_interactive/stripack_interactive.html">
+      STRIPACK_INTERACTIVE</a>,
+      a FORTRAN90 program which 
+      reads an XYZ file of 3D points on
+      the unit sphere, computes the Delaunay triangulation, and writes it
+      to a file.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sxyz_voronoi/sxyz_voronoi.html">
+      SXYZ_VORONOI</a>,
+      a FORTRAN90 library which 
+      reads an XYZ file of 3D points on the unit sphere, and
+      computes and plots Delaunay triangulations and Voronoi diagrams.
+    </p>
+
+    <p>
+      <a href = "../../data/table/table.html">
+      TABLE</a>, 
+      a data directory which
+      contains examples of TABLE files,
+      a simple format for N points in M dimensions;
+    </p>
+
+    <p>
+      <a href = "../../data/xy/xy.html">
+      XY</a>, 
+      a data directory which
+      contains examples of XY files,
+      a simple 2D graphics point and line format;
+    </p>
+
+    <p>
+      <a href = "../../data/xyz/xyz.html">
+      XYZ</a>, 
+      a data directory which
+      contains examples of XYZ files,
+      a simple 3D graphics point and line format;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyz_display/xyz_display.html">
+      XYZ_DISPLAY</a> 
+      a MATLAB program which
+      reads XYZ information defining points in 3D, and displays
+      an image in the MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyz_display_opengl/xyz_display_opengl.html">
+      XYZ_DISPLAY_OPENGL</a> 
+      a C++ program which
+      reads an XYZ file of 3D point coordinates, and displays
+      an image of those points using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../f_src/xyz_to_pdb/xyz_to_pdb.html">
+      XYZ_TO_PDB</a>,
+      a FORTRAN90 program which
+      reads a set of XYZ spatial coordinates, and
+      rewrites them as ATOM records in a PDB file.
+    </p>
+
+    <p>
+      <a href = "../../data/xyzf/xyzf.html">
+      XYZF</a>, 
+      a data directory which
+      contains examples of XYZF files,
+      a simple 3D graphics point and face format;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyzf_display/xyzf_display.html">
+      XYZF_DISPLAY</a> 
+      a MATLAB program which
+      reads XYZF information defining points and faces in 3D, 
+      and displays an image in a MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyzf_display_opengl/xyzf_display_opengl.html">
+      XYZF_DISPLAY_OPENGL</a> 
+      a C++ program which
+      reads XYZF information defining points and faces in 3D, and displays
+      an image using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../data/xyzl/xyzl.html">
+      XYZL</a>, 
+      a data directory which
+      contains examples of XYZL files,
+      a simple 3D graphics point and line format;
+    </p>
+
+    <p> 
+      <a href = "../../m_src/xyzl_display/xyzl_display.html">
+      XYZL_DISPLAY</a>,
+      a MATLAB program which
+      reads XYZL information defining points and lines in 3D, 
+      and displays an image in a MATLAB graphics window.
+    </p>
+
+    <p> 
+      <a href = "../../cpp_src/xyzl_display_opengl/xyzl_display_opengl.html">
+      XYZL_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads XYZL information defining points and lines in 3D, and displays
+      an image using OpenGL.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>, 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>, 
+          returns the number of "words" in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "xyz_data_print.m">xyz_data_print.m</a>, 
+          prints the data of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_data_read.m">xyz_data_read.m</a>, 
+          reads the data of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_data_write.m">xyz_data_write.m</a>, 
+          writes the data of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_example.m">xyz_example.m</a>, 
+          sets up sample XYZ data.
+        </li>
+        <li>
+          <a href = "xyz_example_size.m">xyz_example_size.m</a>, 
+          sizes the sample XYZ data.
+        </li>
+        <li>
+          <a href = "xyz_header_print.m">xyz_header_print.m</a>, 
+          prints the header of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_header_read.m">xyz_header_read.m</a>, 
+          reads the header of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_header_write.m">xyz_header_write.m</a>, 
+          writes the header of an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_read.m">xyz_read.m</a>, 
+          reads an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_write.m">xyz_write.m</a>, 
+          writes an XYZ file.
+        </li>
+        <li>
+          <a href = "xyz_write_test.m">xyz_write_test.m</a>, 
+          tests the XYZ write routines.
+        </li>
+        <li>
+          <a href = "xyzf_data_print.m">xyzf_data_print.m</a>, 
+          prints the data of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_data_read.m">xyzf_data_read.m</a>, 
+          reads the data of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_data_write.m">xyzf_data_write.m</a>, 
+          writes the data of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_example.m">xyzf_example.m</a>, 
+          sets up sample XYZF data.
+        </li>
+        <li>
+          <a href = "xyzf_example_size.m">xyzf_example_size.m</a>, 
+          sizes the sample XYZF data.
+        </li>
+        <li>
+          <a href = "xyzf_header_print.m">xyzf_header_print.m</a>, 
+          prints the header of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_header_read.m">xyzf_header_read.m</a>, 
+          reads the header of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_header_write.m">xyzf_header_write.m</a>, 
+          writes the header of an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzf_write.m">xyzf_write.m</a>, 
+          writes an XYZF file.
+        </li>
+        <li>
+          <a href = "xyzl_data_print.m">xyzl_data_print.m</a>, 
+          prints the data of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_data_read.m">xyzl_data_read.m</a>, 
+          reads the data of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_data_write.m">xyzl_data_write.m</a>, 
+          writes the data of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_example.m">xyzl_example.m</a>, 
+          sets up sample XYZL data.
+        </li>
+        <li>
+          <a href = "xyzl_example_size.m">xyzl_example_size.m</a>, 
+          sizes the sample XYZL data.
+        </li>
+        <li>
+          <a href = "xyzl_header_print.m">xyzl_header_print.m</a>, 
+          prints the header of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_header_read.m">xyzl_header_read.m</a>, 
+          reads the header of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_header_write.m">xyzl_header_write.m</a>, 
+          writes the header of an XYZL file.
+        </li>
+        <li>
+          <a href = "xyzl_write.m">xyzl_write.m</a>, 
+          writes an XYZL file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "xyz_io_test.m">xyz_io_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "xyz_io_test_output.txt">xyz_io_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+        <li>
+          <a href = "xyz_io_test01.m">xyz_io_test01.m</a>,
+          demonstrates the use of XYZ_WRITE routines.
+        </li>
+        <li>
+          <a href = "xyz_io_test02.m">xyz_io_test02.m</a>,
+          demonstrates the use of XYZ_READ routines.
+        </li>
+        <li>
+          <a href = "xyz_io_test03.m">xyz_io_test03.m</a>,
+          demonstrates the use of XYZL_WRITE routines.
+        </li>
+        <li>
+          <a href = "xyz_io_test04.m">xyz_io_test04.m</a>,
+          demonstrates the use of XYZL_READ routines.
+        </li>
+        <li>
+          <a href = "xyz_io_test05.m">xyz_io_test05.m</a>,
+          demonstrates the use of XYZF_WRITE routines.
+        </li>
+        <li>
+          <a href = "xyz_io_test06.m">xyz_io_test06.m</a>,
+          demonstrates the use of XYZF_READ routines.
+        </li>
+        <li>
+          <a href = "helix.xyz">helix.xyz</a>,
+          an XYZ file created by the example program.
+        </li>
+        <li>
+          <a href = "xy_io_prb_02.xyz">xy_io_prb_02.xyz</a>,
+          an XYZ file created by the example program.
+        </li>
+        <li>
+          <a href = "cube.xyz">cube.xyz</a>,
+          an XYZ file of points created by the example program.
+        </li>
+        <li>
+          <a href = "cube.xyzl">cube.xyzl</a>,
+          an XYZL file of lines created by the example program.
+        </li>
+        <li>
+          <a href = "cube.xyzf">cube.xyzf</a>,
+          an XYZF file of lines created by the example program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 January 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+ 

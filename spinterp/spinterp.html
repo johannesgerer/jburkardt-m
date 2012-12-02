@@ -1,0 +1,371 @@
+<html>
+
+  <head>
+    <title>
+      SPINTERP - Piecewise multilinear hierarchical sparse grid interpolation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPINTERP <br> Piecewise multilinear hierarchical sparse grid interpolation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPINTERP</b>
+      is a MATLAB library which 
+      can determine points defining a sparse grid in a multidimensional
+      space, and given specific values at those points, can construct
+      an interpolating function that can be evaluated anywhere.
+    </p>
+
+    <p>
+      The program can plot the interpolating function, perform optimization
+      (seeking minima or maxima) and can integrate the function.
+    </p>
+
+    <p>
+      An early version of this library was documented and released as 
+      ACM TOMS Algorithm 847.
+    </p>
+
+    <p>
+      The sparse grid is constructed using Smolyak's construction.  In fact,
+      a nested series of grids is defined, each a refinement of the previous
+      one, but chosen in such a way that the typical exponential growth
+      in order does not occur.  Moreover, because the grids are nested,
+      the procedure produces a hierarchical series of piecewise linear
+      interpolants.  The nesting of these interpolants allows the estimation
+      of the interpolation error.
+    </p>
+
+    <p>
+      The package includes several choices for the underlying one dimensional
+      rule used to construct the sparse grids.  The recommended rule is
+      a Newton Cotes Closed rule, which produces grids of uniformly spaced 
+      points in [0,1], including the endpoints, of orders 1, 3, 5, 9,
+      17, 33, 65, and in general (2^I)+1.  Note that the first rule is
+      a special case (it doesn't include the endpoints, and the number
+      of points in the rule is not equal to (2^0)+1!).  Also note that
+      the authors denote this rule as the "Clenshaw Curtis" or "CC" rule,
+      although that name is more properly associated with the grid obtained by
+      taking the cosine of the points given by the Newton Cotes Closed rule!
+    </p>
+
+    <p>
+      Another 1D rule is denoted by the authors as the "NB" or "no boundary"
+      rule.  This is simply a Newton Cotes Open rule which produces grids 
+      of uniformly spaced points in [0,1], omitting the endpoints, 
+      of orders 1, 3, 7, 15, 31, 63, and in general (2^(I+1))-1. 
+    </p>
+
+    <p>
+      Another 1D rule is denoted by the authors as the "M" or "maximum norm"
+      rule.  This rule is the same as the CC rule, except that it starts
+      with the rule of order 3.  This seemingly minor difference forces
+      this rule to use many more points than the other rules in the
+      multidimensional case.  The difference is evident in 2 dimensions,
+      and quickly overwhelming even in dimensions as low as 4!
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Andreas Klimke, <br>
+      Universitaet Stuttgart,<br>
+      Stuttgart, Germany.
+    </p>
+
+    <h3 align = "center">
+      License:
+    </h3>
+
+    <p>
+      SPARSE GRID INTERPOLATION TOOLBOX - LICENSE
+    </p>
+
+    <p>
+      Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart. 
+      Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+      All Rights Reserved.
+    </p>
+
+    <p>
+      Permission is hereby granted, free of charge, to any person
+      obtaining a copy of this software and associated documentation
+      files (the "Software"), to deal in the Software without
+      restriction, including without limitation the rights to use, copy,
+      modify, merge, publish, distribute, sublicense, and/or sell copies
+      of the Software, and to permit persons to whom the Software is
+      furnished to do so, subject to the following conditions: 
+    </p>
+
+    <p>
+      The above copyright notice and this permission notice shall be
+      included in all copies or substantial portions of the Software.
+    </p>
+
+    <p>
+      THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+      EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES
+      OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND
+      NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT
+      HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+      WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+      FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+      OTHER DEALINGS IN THE SOFTWARE.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/rbf_interp/rbf_interp.html">
+      RBF_INTERP</a>,
+      a MATLAB library which
+      defines and evaluates radial basis interpolants to multidimensional data.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_interpolant/sparse_interpolant.html">
+      SPARSE_INTERPOLANT</a>
+      a MATLAB library which
+      can be used to define a sparse interpolant to a function f(x) of a 
+      multidimensional argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp_examples/spinterp_examples.html">
+      SPINTERP_EXAMPLES</a>,
+      a MATLAB library which
+      demonstrates some simple uses of the spinterp program, which uses
+      sparse grids for interpolation, optimization, and quadrature in
+      higher dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_fun_2d/test_interp_fun_2d.html">
+      TEST_INTERP_FUN_2D</a>,
+      a MATLAB library which
+      defines a number of test problems for interpolation in 2D,
+      provided as functions v = f(x,y).
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      this library is commonly called SPINTERP (version 2.1);
+      this is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Alan Genz,<br>
+          A Package for Testing Multiple Integration Subroutines,<br>
+          in Numerical Integration: 
+          Recent Developments, Software and Applications,<br>
+          edited by Patrick Keast, Graeme Fairweather,<br>
+          Reidel, 1987, pages 337-340,<br>
+          ISBN: 9027725144,<br>
+          LC: QA299.3.N38
+        </li>
+        <li>
+          Andreas Klimke, Barbara Wohlmuth,<br>
+          Algorithm 847:
+          SPINTERP: Piecewise Multilinear Hierarchical Sparse Grid
+          Interpolation in MATLAB,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 31, Number 4, December 2005, pages 561-579.
+        </li>
+        <li>
+          Andreas Klimke,<br>
+          SPINTERP V2.1: Piecewise multilinear hierarchical sparse
+          grid interpolation in MATLAB: Documentation.
+        </li>
+        <li>
+          Andreas Klimke,<br>
+          SPINTERP V2.1: Examples: Reference Results..
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "plotgrid.m">plotgrid.m</a>
+          plots a sparse grid.
+        </li>
+        <li>
+          <a href = "plotindices.m">plotindices.m</a>
+          visualizes the index sets of a 2d dimension-adaptive sparse grid.
+        </li>
+        <li>
+          <a href = "spcgsearch.m">spcgsearch.m</a>
+          optimizes the sparse grid interpolant using the CG method.
+        </li>
+        <li>
+          <a href = "spcompsearch.m">spcompsearch.m</a>
+          modified compass (coordinate) search algorithm.
+        </li>
+        <li>
+          <a href = "spdim.m">spdim.m</a>
+          computes the number of points in a sparse grid.
+        </li>
+        <li>
+          <a href = "spfminsearch.m">spfminsearch.m</a>
+          optimization of sparse grids using FMINSEARCH.
+        </li>
+        <li>
+          <a href = "spget.m">spget.m</a>
+          gets the sparse interpolation OPTIONS parameters.
+        </li>
+        <li>
+          <a href = "spgetseq.m">spgetseq.m</a>
+          computes the sequence of subgrids that form a sparse grid.
+        </li>
+        <li>
+          <a href = "spgrid.m">spgrid.m</a>
+          computes the sparse grid point coordinates.
+        </li>
+        <li>
+          <a href = "spinit.m">spinit.m</a>
+          adds the sparse grid directories to the MATLAB path.
+        </li>
+        <li>
+          <a href = "spinterp.m">spinterp.m</a>
+          evaluates a sparse grid interpolant.
+        </li>
+        <li>
+          <a href = "spmultistart.m">spmultistart.m</a>
+          implements the multiple random starting point optimization method
+          for a sparse grid interpolant.
+        </li>
+        <li>
+          <a href = "spoptimget.m">spoptimget.m</a>
+          gets sparse grid optimization OPTIONS parameters.
+        </li>
+        <li>
+          <a href = "spoptimset.m">spoptimset.m</a>
+          create or alters the sparse grid optimization OPTIONS structure.
+        </li>
+        <li>
+          <a href = "sppurge.m">sppurge.m</a>
+          purges sparse grid data.
+        </li>
+        <li>
+          <a href = "spquad.m">spquad.m</a>
+          computes the integral of the sparse grid interpolant.
+        </li>
+        <li>
+          <a href = "spset.m">spset.m</a>
+          creates or alters the sparse interpolation OPTIONS structure.
+        </li>
+        <li>
+          <a href = "spsurfun.m">spsurfun.m</a>
+          evaluates the sparse grid interpolant function at a single point.
+        </li>
+        <li>
+          <a href = "spvals.m">spvals.m</a>
+          constructs a sparse grid interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Other Directories
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "doc/doc.html">doc</a>
+          contains the SPINTERP user manual as a PDF file.
+        </li>
+        <li>
+          <a href = "examples/examples.html">examples</a>
+          contains several M-files which can be used to demonstrate the
+          features of SPINTERP.
+        </li>
+        <li>
+          <a href = "help/spinterptool.html">help</a>
+          contains HTML documentation for the toolbox, which can also be accessed
+          inside the program by typing <b>doc spinterptool</b>.
+        </li>
+        <li>
+          <a href = "html/html.html">html</a>
+          contains PNG image files used in the documentation.
+        </li>
+        <li>
+          <a href = "private/private.html">private</a>
+          contains MATLAB functions needed by SPINTERP but of little direct interest
+          to the user.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 October 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

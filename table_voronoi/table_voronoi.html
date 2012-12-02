@@ -1,0 +1,242 @@
+<html>
+
+  <head>
+    <title>
+      TABLE_VORONOI - Voronoi Diagram Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TABLE_VORONOI <br> Voronoi Diagram Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TABLE_VORONOI</b>
+      is a MATLAB program which
+      reads in a dataset
+      describing a 2D pointset, and prints out information defining
+      the Voronoi diagram of the pointset.
+    </p>
+
+    <p>
+      <b>TABLE_VORONOI</b> is based on the
+      GEOMPACK library of
+      Barry Joe, which computes the Delaunay triangulation.  The
+      main work that <b>TABLE_VORONOI</b> does is to analyze that
+      Delaunay information and work out the location of the Voronoi
+      vertices, and their specific arrangement around each of the
+      original data nodes.
+    </p>
+
+    <p>
+      <b>TABLE_VORONOI</b> is a work in progress; the output is
+      currently simply printed, which is not very useful except for
+      toy problems; printed output is of very little use for big problems. 
+      To handle big, interesting problems, I have to think about how
+      to store this information in a useful and accessible data structure.
+    </p>
+
+    <p>
+      Moreover, I haven't thought enough about how to deal with the
+      inevitable "infinite" Voronoi cells.
+    </p>
+
+    <p>
+      The program begins with the pointset, of which a typical element
+      is a point <b>G</b>.  Each <b>G</b> generates a Voronoi polygon (or 
+      semi-infinite region, which we will persist in calling a polygon).
+      A typical vertex of the polygon is called <b>V</b>.    For the semi-infinite
+      regions, we have a vertex at infinity, but it's really not helpful to
+      store a vertex (Inf,Inf), since we have lost information about the
+      direction from which we reach that infinite vertex.  We will have to
+      treat these special regions with a little extra care.
+    </p>
+
+    <p>
+      We are interested in computing the following quantities:
+      <ul>
+        <li>
+          <b>G_DEGREE</b>, for generator <b>G</b>, the degree (number of
+          vertices) of the Voronoi polygon;
+        </li>
+        <li>
+          <b>G_START</b>, for generator <b>G</b>, the index of the first 
+          Voronoi vertex in a traversal of the sides of the Voronoi polygon;
+        </li>
+        <li>
+          <b>G_FACE</b>, for all generators <b>G</b>, the sequence of Voronoi
+          vertices in a traversal of the sides of the Voronoi polygon.  
+          A traversal of a semi-infinite polygon begins at an "infinite"
+          vertex, lists the finite vertices, and then ends with a 
+          (different) infinite vertex.  Infinite vertices are given
+          negative indexes.
+        </li>
+        <li>
+          <b>V_NUM</b>, the number of (finite) Voronoi vertices <b>V</b>;
+        </li>
+        <li>
+          <b>V_XY</b>, for each finite Voronoi vertex <b>V</b>, 
+          the XY coordinates.
+        </li>
+        <li>
+          <b>I_NUM</b>, the number of Voronoi vertices at infinity;
+        </li>
+        <li>
+          <b>I_XY</b>, the "direction" associated with each Voronoi vertex
+          at infinity.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      So if we have to draw a semi-infinite region, we start at infinity.
+      We then need to draw a line from infinity to vertex #2.  We do so
+      by drawing a line in the appropriate direction, stored in I_XY.
+      Having safely reached finite vertex #2, we can connect the finite
+      vertices, until it is time to draw another line to infinity, this
+      time in another direction, also stored in I_XY.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>table_voronoi</b> ( <i>'file_name.xy'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'file_name.xy'</i> is a file containing the (x,y) coordinates of points.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TABLE_VORONOI</b> is available in
+      <a href = "../../cpp_src/table_voronoi/table_voronoi.html">a C++ version</a> and
+      <a href = "../../f_src/table_voronoi/table_voronoi.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/table_voronoi/table_voronoi.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/geompack/geompack.html">
+      GEOMPACK</a>,
+      a MATLAB library which
+      supplies the routines used to compute the Voronoi
+      information.
+    </p>
+
+    <p>
+      <a href = "../m_src/voronoi_display/voronoi_display.html">
+      VORONOI_DISPLAY</a>,
+      a MATLAB program which
+      computes the exact Voronoi diagram using geompack, and displays it.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          Jacob Goodman, Joseph ORourke, editors,<br>
+          Handbook of Discrete and Computational Geometry,<br>
+          Second Edition,<br>
+          CRC/Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-301-4,<br>
+          LC: QA167.H36.
+        </li>
+        <li>
+          Barry Joe, <br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms, <br>
+          Advances in Engineering Software,<br>
+          Volume 13, pages 325-331, 1991.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "table_voronoi.m">table_voronoi.m</a>, 
+          the source code.
+        </li>
+        <li>
+          <a href = "table_voronoi.csh">table_voronoi.csh</a>,
+          commands to compile the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "diamond_02_00009.xy">diamond_02_00009.xy</a>,
+          a simple data file of 9 points.
+        </li>
+        <li>
+          <a href = "diamond_02_00009_output.txt">diamond_02_00009_output.txt</a>,
+          the output from the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 August 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -1,0 +1,651 @@
+<html>
+
+  <head>
+    <title>
+      TET_MESH - Routines for a Tet Mesh
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TET_MESH <br> Routines for a Tet Mesh
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TET_MESH</b>
+      is a MATLAB library which
+      constructs, describes, or modifies a mesh of tetrahedrons.
+    </p>
+
+    <h3 align = "center">
+      Linear and Quadratic Meshes
+    </h3>
+
+    <p>
+      The simplest tet mesh, which we term an <i>order 4</i>
+      or <i>linear</i> mesh, uses four points to define each tetrahedron.
+      A second type of mesh, known as an <i>order 10</i> or <i>quadratic</i>
+      mesh, uses ten points.
+    </p>
+
+    <p>
+      While an order 4 mesh can naturally be constructed directly from
+      most sets of data points, a mesh of order 10 is not usually
+      constructed directly from the data; at least in the simplest case,
+      one wants the 6 extra nodes to be the midpoints of the sides
+      determined by the 4 vertices.
+    </p>
+
+    <p>
+      Thus, an order 10 tet mesh is typically generated in two steps:
+      <ul>
+        <li>
+          generate an order 4 mesh, in which every tetrahedral vertex
+          comes from a user data point;
+        </li>
+        <li>
+          generate an order 10 mesh from the order 4 mesh, in which
+          the new midside points are not user data points, but rather
+          <i>averages</i> of pairs of tetrahedral vertices.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TET_MESH</b> is available in
+      <a href = "../../cpp_src/tet_mesh/tet_mesh.html">a C++ version</a> and
+      <a href = "../../f_src/tet_mesh/tet_mesh.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tet_mesh/tet_mesh.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_tet_mesh/cvt_tet_mesh.html">
+      CVT_TET_MESH</a>,
+      a FORTRAN90 library which
+      uses CVT methods to compute
+      a tet mesh in a region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      includes a number of routines for
+      making computations involving tetrahedrons.
+    </p>
+
+    <p>
+      <a href = "../../m_src/geompack/geompack.html">
+      GEOMPACK</a>,
+      a MATLAB library which
+      contains a routine
+      <b>DTRIS3</b> that can compute the tet mesh for a set of 3D points,
+      as well as the adjacency information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/keast/keast.html">
+      KEAST</a>,
+      a MATLAB library which
+      defines a number of quadrature rules
+      for a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ncc_tetrahedron/ncc_tetrahedron.html">
+      NCC_TETRAHEDRON</a>,
+      a MATLAB library which
+      defines Newton-Cotes closed quadrature
+      rules on a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nco_tetrahedron/nco_tetrahedron.html">
+      NCO_TETRAHEDRON</a>,
+      a MATLAB library which
+      defines Newton-Cotes open quadrature
+      rules on a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_tet/quadrature_rules_tet.html">
+      QUADRATURE_RULES_TET</a>,
+      a dataset directory which
+      contains triples of files defining various quadrature
+      rules on tetrahedrons.
+    </p>
+
+    <p>
+      <a href = "../../f_src/table_tet_mesh/table_tet_mesh.html">
+      TABLE_TET_MESH</a>,
+      a FORTRAN90 program which
+      can compute the tet mesh
+      for a given set of points.
+    </p>
+
+    <p>
+      <a href = "../../f_src/test_tet_mesh/test_tet_mesh.html">
+      TEST_TET_MESH</a>,
+      a FORTRAN90 library which
+      defines a few test regions for the generation
+      of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_boundary/tet_mesh_boundary.html">
+      TET_MESH_BOUNDARY</a>,
+      a MATLAB program which
+      returns the nodes and faces of the boundary of a tetrahedral mesh,
+      which themselves form a 3D triangular mesh or "TRI_SURFACE".
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_display/tet_mesh_display.html">
+      TET_MESH_DISPLAY</a>,
+      a MATLAB program which
+      reads in the node and tetra files defining a tet mesh and displays a wireframe
+      image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/tet_mesh_display_opengl/tet_mesh_display_opengl.html">
+      TET_MESH_DISPLAY_OPENGL</a>,
+      a C++ program which
+      can read in the
+      node and tetra files defining a tet mesh and display a wireframe
+      image using OpenGL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_l2q/tet_mesh_l2q.html">
+      TET_MESH_L2Q</a>,
+      a MATLAB program which
+      converts a linear to quadratic tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order4/tet_mesh_order4.html">
+      TET_MESH_ORDER4</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 4 elements.
+    </p>
+
+    <p>
+      <a href = "../../data/tet_mesh_order10/tet_mesh_order10.html">
+      TET_MESH_ORDER10</a>,
+      a directory which
+      contains a description and
+      examples of a tet mesh using order 10 elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_q2l/tet_mesh_q2l.html">
+      TET_MESH_Q2L</a>,
+      a MATLAB program which
+      converts a quadratic to linear tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_quality/tet_mesh_quality.html">
+      TET_MESH_QUALITY</a>,
+      a MATLAB program which
+      computes the quality of a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_rcm/tet_mesh_rcm.html">
+      TET_MESH_RCM</a>,
+      a MATLAB program which
+      takes a tet mesh and
+      relabels the nodes to reduce the bandwidth of the
+      corresponding adjacency matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_refine/tet_mesh_refine.html">
+      TET_MESH_REFINE</a>,
+      a MATLAB program which
+      can refine a tet mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_tet_neighbors/tet_mesh_tet_neighbors.html">
+      TET_MESH_TET_NEIGHBORS</a>,
+      a MATLAB program which
+      computes the tetrahedral adjacency information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tet_mesh_volumes/tet_mesh_volumes.html">
+      TET_MESH_VOLUMES</a>,
+      a MATLAB program which
+      computes the volume of each tetrahedron in a tet mesh;
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_properties/tetrahedron_properties.html">
+      TETRAHEDRON_PROPERTIES</a>,
+      a MATLAB program which
+      computes properties of a given tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../datasets/tetrahedrons/tetrahedrons.html">
+      TETRAHEDRONS</a>,
+      a dataset directory which
+      contains examples of tetrahedrons;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Herbert Edelsbrunner,<br>
+          Geometry and Topology for Mesh Generation,<br>
+          Cambridge, 2001,<br>
+          ISBN: 0-521-79309-2,<br>
+          LC: QA377.E36.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, Number 5, 1991, pages 325-331.
+        </li>
+        <li>
+          Anwei Liu, Barry Joe,<br>
+          Quality Local Refinement of Tetrahedral Meshes Based
+          on 8-Subtetrahedron Subdivision,<br>
+          Mathematics of Computation,<br>
+          Volume 65, Number 215, July 1996, pages 1183-1200.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_swap.m">i4_swap.m</a>
+          swaps two I4's.
+        </li>
+        <li>
+          <a href = "i4_uniform.m">i4_uniform.m</a>
+          returns a pseudorandom I4.
+        </li>
+        <li>
+          <a href = "i4col_compare.m">i4col_compare.m</a>
+          compares columns I and J of an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">i4col_sort_a.m</a>
+          ascending sorts an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_sort2_a.m">i4col_sort2_a.m</a>
+          ascending sorts the elements of each column of an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_sorted_unique_count.m">i4col_sorted_unique_count.m</a>
+          counts unique elements in an I4COL.
+        </li>
+        <li>
+          <a href = "i4col_swap.m">i4col_swap.m</a>
+          swaps columns J1 and J2 of an I4COL.
+        </li>
+        <li>
+          <a href = "i4i4_sort_a.m">i4i4_sort_a.m</a>
+          ascending sorts a pair of I4's.
+        </li>
+        <li>
+          <a href = "i4i4i4_sort_a.m">i4i4i4_sort_a.m</a>
+          ascending sorts a triple of I4's.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>
+          prints the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">i4mat_transpose_print_some.m</a>
+          prints some of the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "mesh_base_one.m">mesh_base_one.m</a>
+          detects and corrects 0-based indexing.
+        </li>
+        <li>
+          <a href = "r8_swap.m">r8_swap.m</a>
+          switches two R8's.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8mat_det_4d.m">r8mat_det_4d.m</a>
+          computed the determiannt of a 4x4 R8MAT .
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_solve.m">r8mat_solve.m</a>
+          uses Gauss-Jordan elimination to solve an N by N linear system.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_cross_3d.m">r8vec_cross_3d.m</a>
+          computes the cross product of two R8VEC's in 3D.
+        </li>
+        <li>
+          <a href = "r8vec_length.m">r8vec_length.m</a>
+          returns the Euclidean length of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_mean.m">r8vec_mean.m</a>
+          returns the mean of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_variance.m">r8vec_variance.m</a>
+          returns the variance of an R8VEC.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>
+          externally sorts a list of items into ascending order.
+        </li>
+        <li>
+          <a href = "tet_mesh_neighbor_tets.m">tet_mesh_neighbor_tets.m</a>
+          determines tetrahedron neighbors.
+        </li>
+        <li>
+          <a href = "tet_mesh_node_order.m">tet_mesh_node_order.m</a>
+          determine the order of nodes in a tetra mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_adj_count.m">
+          tet_mesh_order4_adj_count.m</a>
+          counts the number of nodal adjacencies.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_adj_set.m">tet_mesh_order4_adj_set.m</a>
+          sets the nodal adjacency matrix.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_boundary_face_count.m">
+          tet_mesh_order4_boundary_face_count.m</a>
+          counts the number of boundary faces.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_edge_count.m">
+          tet_mesh_order4_edge_count.m</a>
+          counts the number of edges.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_example_set.m">
+          tet_mesh_order4_example_set.m</a>
+          returns an example order 4 tet mesh for a cube.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_example_size.m">
+          tet_mesh_order4_example_size.m</a>
+          sizes an example order 4 tet mesh for a cube.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_refine_compute.m">tet_mesh_order4_refine_compute.m</a>
+          computes a refined order 4 tet mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_refine_size.m">tet_mesh_order4_refine_size.m</a>
+          sizes a refined order 4 tet mesh
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_to_order10_compute.m">tet_mesh_order4_to_order10_compute.m</a>
+          computes a quadratic tet mesh from a linear one.
+        </li>
+        <li>
+          <a href = "tet_mesh_order4_to_order10_size.m">tet_mesh_order4_to_order10_size.m</a>
+          sizes a quadratic tet mesh from a linear one.
+        </li>
+        <li>
+          <a href = "tet_mesh_order10_example_set.m">
+          tet_mesh_order10_example_set.m</a>
+          returns an example order 10 tet mesh for a cube.
+        </li>
+        <li>
+          <a href = "tet_mesh_order10_example_size.m">
+          tet_mesh_order10_example_size.m</a>
+          sizes an example order 10 tet mesh for a cube.
+        </li>
+        <li>
+          <a href = "tet_mesh_order10_to_order4_compute.m">
+          tet_mesh_order10_to_order4_compute.m</a>
+          linearizes a quadratic tet mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_order10_to_order4_size.m">
+          tet_mesh_order10_to_order4_size.m</a>
+          sizes a linear mesh from a quadratic tet mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quad.m">tet_mesh_quad.m</a>
+          approximates an integral over a tet mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quality1.m">tet_mesh_quality1.m</a>
+          returns the quality of each tet in a mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quality2.m">tet_mesh_quality2.m</a>
+          returns the quality of each tet in a mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quality3.m">tet_mesh_quality3.m</a>
+          returns the quality of each tet in a mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quality4.m">tet_mesh_quality4.m</a>
+          returns the quality of each tet in a mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_quality5.m">tet_mesh_quality5.m</a>
+          returns the quality of each tet in a mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_search_naive.m">tet_mesh_search_naive.m</a>
+          naively searches a tet mesh.
+        </li>
+        <li>
+          <a href = "tet_mesh_search_delaunay.m">tet_mesh_search_delaunay.m</a>
+          searches a Delaunay tet mesh.
+        </li>
+        <li>
+          <a href = "tetrahedron_barycentric.m">
+          tetrahedron_barycentric.m</a>
+          computes the barycentric coordinates of a point with respect to a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_circumsphere_3d.m">
+          tetrahedron_circumsphere_3d.m</a>
+          computes the circumsphere of a tetrahedron in 3D.
+        </li>
+        <li>
+          <a href = "tetrahedron_edge_length_3d.m">
+          tetrahedron_edge_length_3d.m</a>
+          returns edge lengths of a tetrahedron in 3D.
+        </li>
+        <li>
+          <a href = "tetrahedron_insphere_3d.m">tetrahedron_insphere_3d.m</a>
+          finds the insphere of a tetrahedron in 3D.
+        </li>
+        <li>
+          <a href = "tetrahedron_order4_physical_to_reference.m">
+          tetrahedron_order4_physical_to_reference.m</a>
+          converts physical points to reference points in a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_order4_reference_to_physical.m">
+          tetrahedron_order4_reference_to_physical.m</a>
+          converts reference points to physical points in a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_quality1_3d.m">tetrahedron_quality1_3d.m</a>
+          "quality" of a tetrahedron in 3D.
+        </li>
+        <li>
+          <a href = "tetrahedron_quality2_3d.m">tetrahedron_quality2_3d.m</a>
+          "quality" of a tetrahedron in 3D.
+        </li>
+        <li>
+          <a href = "tetrahedron_quality3_3d.m">tetrahedron_quality3_3d.m</a>
+          computes the mean ratio of a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_quality4_3d.m">tetrahedron_quality4_3d.m</a>
+          computes the minimum solid angle of a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_reference_sample.m">tetrahedron_reference_sample.m</a>
+          returns random points in the reference tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_sample.m">tetrahedron_sample.m</a>
+          returns random points in a tetrahedron.
+        </li>
+        <li>
+          <a href = "tetrahedron_volume.m">tetrahedron_volume.m</a>
+          computes the volume of a tetrahedron.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tet_mesh_test.m">tet_mesh_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "tet_mesh_test001.m">tet_mesh_test001.m</a>,
+          tests R8MAT_SOLVE.
+        </li>
+        <li>
+          <a href = "tet_mesh_test002.m">tet_mesh_test002.m</a>,
+          tests TETRAHEDRON_ORDER4_PHYSICAL_TO_REFERENCE and
+          TETRAHEDRON_ORDER4_REFERENCE_TO_PHYSICAL.
+        </li>
+        <li>
+          <a href = "tet_mesh_test003.m">tet_mesh_test003.m</a>,
+          tests TETRAHEDRON_ORDER10_TO_ORDER4.
+        </li>
+        <li>
+          <a href = "tet_mesh_test004.m">tet_mesh_test004.m</a>,
+          tests TET_MESH_NODE_ORDER.
+        </li>
+        <li>
+          <a href = "tet_mesh_test005.m">tet_mesh_test005.m</a>,
+          tests TETRAHEDRON_BARYCENTRIC.
+        </li>
+        <li>
+          <a href = "tet_mesh_test006.m">tet_mesh_test006.m</a>,
+          tests TET_MESH_NEIGHBOR_TETS.
+        </li>
+        <li>
+          <a href = "tet_mesh_test007.m">tet_mesh_test007.m</a>,
+          tests TET_MESH_SEARCH_NAIVE and TET_MESH_SEARCH_DELAUNAY.
+        </li>
+        <li>
+          <a href = "tet_mesh_test_output.txt">tet_mesh_test_output.txt</a>,
+          the output from a run of the sample program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 August 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

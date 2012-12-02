@@ -1,0 +1,203 @@
+lcvt_dataset
+22-Sep-2006 10:06:22
+
+LCVT_DATASET (MATLAB version)
+  Generate a Latinized CVT dataset.
+
+  This program is meant to be used interactively.
+  It is also possible to prepare a simple input 
+  file beforehand and use it in batch mode.
+
+  The program requests input values from the user:
+
+  * DIM_NUM, the spatial dimension,
+  * N, the number of points to generate,
+  * SEED_INIT, a seed to use for random number generation,
+  * INIT, initialize the points:
+    ** file, read data from a file;
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+    ** 'USER', refers to the USER routine;
+  * CVT_IT_NUM, the number of CVT iterations.
+  * SAMPLE, how to conduct the sampling.
+    ** 'GRID', by picking points from a grid;
+    ** 'HALTON', from a Halton sequence;
+    ** 'RAND', using MATLAB's RAND function;
+    ** 'UNIFORM', using a simple uniform RNG;
+    ** 'USER', refers to the USER routine;
+  * SAMPLE_NUM, the number of sample points;
+  * BATCH, the number of sample points to create at a time;
+  * LAT_IT_NUM, the number of Latinizing iterations.
+  * OUTPUT, a file into which the data is stored.
+
+  To indicate that no further computations are 
+  desired, it is enough to input a nonsensical value, 
+  such as -1.
+  *
+ *
+*  Ready to generate a new dataset:
+ *
+  *
+
+  DIM_NUM is the spatial dimension.
+  (Try '2' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter DIM_NUM:  2
+  User input DIM_NUM =            2
+
+  N is the number of points to generate.
+  (Try '25' if you have no preference.)
+  (Any value less than 1 terminates execution.)
+  Enter N:  85
+  User input N =           85
+
+  SEED_INIT is a seed for the random number generation.
+  (Try '123456789' if you have no preference.)
+  (Any value less than 0 terminates execution.)
+  Enter SEED_INIT:  123456789
+  User input SEED_INIT = 123456789
+
+  INIT is the method of initializing the data:
+
+  file       read data from a file;
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+  'USER'     refers to the USER routine;
+ 
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter INIT:  'RAND'
+  User input INIT = "RAND".
+
+  CVT_IT_NUM is the number of CVT iterations.
+
+  A CVT iteration carries out the following steps:
+  * the Voronoi region associated with each
+    generator is estimated by sampling;
+  * the centroid of each Voronoi region is estimated.
+  * the generator is replaced by the centroid.
+
+  If "enough" sampling points are used,
+  and "enough" iterations are taken, this process
+  will converge.
+
+  (Try '50' if you have no preference.)
+  (A negative value terminates execution).
+
+  Enter CVT_IT_NUM:  20
+  User input CVT_IT_NUM =           20
+
+  SAMPLE is the method of sampling the region:
+
+  'GRID'     by picking points from a grid;
+  'HALTON'   from a Halton sequence;
+  'RAND'     using MATLAB's RAND function;
+  'UNIFORM'  using a simple uniform RNG;
+  'USER'     refers to the USER routine;
+
+  (Try 'RAND' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+
+  Enter SAMPLE:  'RAND'
+  User input SAMPLE = "RAND".
+
+  SAMPLE_NUM is the number of sample points.
+
+  The Voronoi regions will be explored by generating
+  SAMPLE_NUM points.  For each sample point, the
+  nearest generator is found.  Using more points
+  gives a better estimate of these regions.
+
+  SAMPLE_NUM should be much larger than N, the
+  number of generators.
+
+  (Try '10000' if you have no preference.)
+  (A zero or negative value terminates execution.)
+
+  Enter SAMPLE_NUM:  250000
+  User input SAMPLE_NUM =       250000
+
+  BATCH is the number of sample points to create
+  at one time
+
+  BATCH should be between 1 and SAMPLE_NUM.
+
+  It is FASTER to set BATCH to SAMPLE_NUM;
+  setting BATCH to 1 requires the least memory.
+
+  (Try '1000' if you have no preference.)
+  (A zero or negative value terminates execution.)
+
+  Enter BATCH:  1000
+  User input BATCH = 1000
+
+  LAT_IT_NUM is the number of Latinizing iterations.
+
+  Each step of the latinizing iteration begins
+  by carrying out CVT_IT_NUM steps of CVT iteration,
+  after which the data is "latinized".
+
+  Often, one latinizing step is enough.
+
+  In some cases, it may be worth while to carry
+  out several latinizing steps; that is, the
+  Latinized data is smoothed by another series
+  of CVT steps, then latinized, and so on.
+
+  (Try '1' if you have no preference.)
+  (A negative value terminates execution).
+
+  Enter LAT_IT_NUM:  1
+  User input LAT_IT_NUM =            1
+
+  OUTPUT is a file into which the data is stored;
+
+  (Try 'lcvt.txt' if you have no preference.)
+  (A blank value terminates execution).
+  (Be sure to INCLUDE QUOTES around the string!
+ 
+  Enter OUTPUT:  'lcvt02.txt'
+  User input OUTPUT = "lcvt02.txt".
+
+  Latin IT      CVT Energy    Latin Energy
+
+
+    CVT IT         Change
+
+         1        0.259041
+         2        0.126820
+         3        0.080797
+         4        0.060347
+         5        0.049850
+         6        0.043522
+         7        0.035586
+         8        0.031773
+         9        0.028720
+        10        0.027365
+        11        0.023192
+        12        0.022354
+        13        0.019645
+        14        0.020011
+        15        0.019091
+        16        0.019161
+        17        0.017516
+        18        0.016930
+        19        0.016030
+        20        0.015459
+
+         1        0.001987        0.002103
+
+  The data was written to the file "lcvt02.txt".
+
+LCVT_DATASET:
+  Normal end of execution.
+
+22-Sep-2006 10:16:32
+>> 

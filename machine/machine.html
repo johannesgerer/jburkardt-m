@@ -1,0 +1,297 @@
+<html>
+
+  <head>
+    <title>
+      MACHINE - Table of Machine Constants
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MACHINE <br> Table of Machine Constants
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MACHINE</b>
+      is a MATLAB library which
+      returns machine constants, particularly those related to arithmetic
+      with single precision real and double precision real quantities.
+    </p>
+
+    <h3 align = "center">
+      MACHINE must be reset for your computer
+    </h3>
+
+    <p>
+      <b>MACHINE</b> is not an "intelligent" program; it's simply a way to
+      store and retrieve the information necessary to describe the arithmetic
+      performed on a given computer.  Therefore, if you plan to use
+      <b>MACHINE</b> on a particular kind of computer, you must verify
+      that the values being returned are appropriate.  
+    </p>
+
+    <p>
+      One way to do this is to run the program <b>MACHAR</b> which is an 
+      "intelligent" program that actually tries to determine machine arithmetic 
+      properties dynamically.
+    </p>
+
+    <h3 align = "center">
+      MACHINE's arithmetic assumptions
+    </h3>
+
+    <p>
+      <b>MACHINE</b> uses some simple conventions to describe how 
+      integers and real numbers are stored on an arbitrary computer.
+    </p>
+
+    <p>
+      <b>MACHINE</b> assumes that integers are represented using <b>S</b> digits 
+      in base <b>A</b>:
+      <blockquote><b>
+        Sign * ( X(S-1)*A^(S-1) + ... + X(1)*A + X(0))
+      </b></blockquote>
+    </p>
+
+    <p>
+      <b>MACHINE</b> assumes that real numbers are represented using a 
+      mantissa <b>T</b>, base <b>B</b> and exponent <b>E</b> as:
+      <blockquote><b>
+        Sign * T * B<sup>E</sup>
+      </b></blockquote>
+    </p>
+
+    <h3 align = "center">
+      What MACHINE can return
+    </h3>
+
+    <p>
+      <b>D1MACH</b> returns quantities associated with double precision
+      arithmetic, including:
+      <ol>
+        <li>
+          <b>B^(EMIN-1)</b>, the smallest positive magnitude.
+        </li>
+        <li>
+          <b>B^EMAX*(1-B^(-T))</b>, the largest magnitude.
+        </li>
+        <li>
+          <b>B^(-T)</b>, the smallest relative spacing.
+        </li>
+        <li>
+          <b>B^(1-T)</b>, the largest relative spacing.
+        </li>
+        <li>
+          <b>log10(B)</b>
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      <b>I1MACH</b> returns quantities associated with integer arithmetic,
+      as well as some integer quantities associated with real and
+      double precision arithmetic, and other machine-specific information.
+      <ol>
+        <li>
+          the standard input unit.
+        </li>
+        <li>
+          the standard output unit.
+        </li>
+        <li>
+          the standard punch unit.
+        </li>
+        <li>
+          the standard error message unit.
+        </li>
+        <li>
+          the number of bits per integer storage unit.
+        </li>
+        <li>
+          the number of characters per integer storage unit.
+        </li>
+        <li>
+          <b>A</b>, the base for integers.
+        </li>
+        <li>
+          <b>S</b>, the number of base <b>A</b> digits in an integer.
+        </li>
+        <li>
+          <b>A^S-1</b>, the largest integer.
+        </li>
+        <li>
+          <b>B</b>, the base for single and double precision numbers.
+        </li>
+        <li>
+          <b>T</b>, the number of base <b>B</b> digits for single precision.
+        </li>
+        <li>
+          <b>EMIN</b>, the smallest exponent <b>E</b> for single precision.
+        </li>
+        <li>
+          <b>EMAX</b>, the largest exponent <b>E</b> for single precision.
+        </li>
+        <li>
+          <b>T</b>, the number of base <b>B</b> digits for double precision.
+        </li>
+        <li>
+          <b>EMIN</b>, the smallest exponent <b>E</b> for double precision.
+        </li>
+        <li>
+          <b>EMAX</b>, the largest exponent <b>E</b> for double precision.
+        </li>
+      </ol>
+    <p>
+
+    <p>
+      <b>R1MACH</b> returns quantities associated with single precision
+      arithmetic, including:
+      <ol>
+        <li>
+          <b>B^(EMIN-1)</b>, the smallest positive magnitude.
+        </li>
+        <li>
+          <b>B^EMAX*(1-B^(-T))</b>, the largest magnitude.
+        </li>
+        <li>
+          <b>B^(-T)</b>, the smallest relative spacing.
+        </li>
+        <li>
+          <b>B^(1-T)</b>, the largest relative spacing.
+        </li>
+        <li>
+          <b>log10(B)</b>
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MACHINE</b> is available in
+      <a href = "../../c_src/machine/machine.html">a C version</a> and
+      <a href = "../../cpp_src/machine/machine.html">a C++ version</a> and
+      <a href = "../../f77_src/machine/machine.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/machine/machine.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/machine/machine.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/machar/machar.html">
+      MACHAR</a>,
+      a MATLAB library which
+      computes machine arithmetic quantities dynamically.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Phyllis Fox, Andrew Hall, Norman Schryer,<br>
+          Algorithm 528:
+          Framework for a Portable Library,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 4, Number 2, June 1978, page 176-188.
+        </li>
+        <li>
+          <a href = "http://www.netlib.org/toms/528">
+                   http://www.netlib.org/toms/528 </a> <br>
+          the NETLIB web site for ACM TOMS algorithms.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "d1mach.m">d1mach.m</a>, 
+          returns double precision real machine constants.
+        </li>
+        <li>
+          <a href = "i1mach.m">i1mach.m</a>, 
+          returns integer machine constants.
+        </li>
+        <li>
+          <a href = "r1mach.m">r1mach.m</a>, 
+          returns single precision real machine constants.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "machine_test.m">machine_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "d1mach_test.m">d1mach_test.m</a>,
+          tests D1MACH.
+        </li>
+        <li>
+          <a href = "i1mach_test.m">i1mach_test.m</a>,
+          tests I1MACH.
+        </li>
+        <li>
+          <a href = "r1mach_test.m">r1mach_test.m</a>,
+          tests R1MACH.
+        </li>
+        <li>
+          <a href = "machine_test_output.txt">machine_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 September 2008.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

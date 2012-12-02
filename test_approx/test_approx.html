@@ -1,0 +1,628 @@
+<html>
+
+  <head>
+    <title>
+      TEST_APPROX - Test Data for Approximation Algorithms
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_APPROX <br> Test Data for Approximation Algorithms
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_APPROX</b>
+      is a MATLAB library which
+      provides sets of test data for approximation algorithms.
+    </p>
+
+    <p>
+      <b>TEST_APPROX</b> contains a number of vectors of data (X(1:N),Y(1:N))
+      for which no underlying functional relationship is given.
+    </p>
+
+    <p>
+      The task of interpolation software is to find, from some given
+      class of functions, the function G(X) which exactly matches the
+      known data values.  That is, G(X(1:N)) = Y(1:N).
+    </p>
+
+    <p>
+      The task of approximation software is to find, from some given
+      class of functions, the function H(X) for which some approximation
+      error is minimized.  There are many forms of error measurement.
+      For instance, the error might simply be the sum of the differences
+      of the function and the data at the data abscissas:
+      <blockquote>
+        l1(X) = sum ( 1 <= I <= N ) abs ( H(X(I)) - Y(I) )
+      </blockquote>
+      or the square root of the sum of squares
+      <blockquote>
+        l2(X) = sqrt ( sum ( 1 <= I <= N ) ( H(X(I)) - Y(I) )^2 )
+      </blockquote>
+      or the maximum pointwise error:
+      <blockquote>
+        l_inf(X) = max ( abs ( H(X(I)) - Y(I) ) )
+      </blockquote>
+      In cases where a functional form is given, the error might be
+      measured in terms of the integral of the absolute value of the
+      difference over some interval:
+      <blockquote>
+        L1(X,A,B) = integral ( A <= X <= B ) abs ( H(X) - F(X) ) dx
+      </blockquote>
+      and so on.
+    </p>
+
+    <p>
+      The problems available include:
+      <ol>
+        <li>
+          <a href = "p01_data.png">p01_data.png</a>: DeBoor example, Mars position data
+        </li>
+        <li>
+          <a href = "p02_data.png">p02_data.png</a>: DeBoor example, roughly linear data
+        </li>
+        <li>
+          <a href = "p03_data.png">p03_data.png</a>: The pulse data, 0 0 0 0 0 1 0 0 0 0 0;
+        </li>
+        <li>
+          <a href = "p04_data.png">p04_data.png</a>: The jump data, 0 0 0 0 0 1/2 1 1 1 1 1;
+        </li>
+        <li>
+          <a href = "p05_data.png">p05_data.png</a>: DeBoor's Titanium Property data;
+        </li>
+        <li>
+          <a href = "p06_data.png">p06_data.png</a>: The Sawtooth data;
+        </li>
+        <li>
+          <a href = "p07_data.png">p07_data.png</a>: Concavity test data;
+        </li>
+        <li>
+          <a href = "p08_data.png">p08_data.png</a>: Extrapolation test data;
+        </li>
+        <li>
+          <a href = "p09_data.png">p09_data.png</a>: Sunspot data, 1700-1960;
+        </li>
+        <li>
+          <a href = "p10_data.png">p10_data.png</a>: 100 samples of y=2+5x+10*N(0,1),
+          where N(0,1) is a random normal value with 0 mean and unit variance;
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_APPROX</b> is available in
+      <a href = "../../c_src/test_approx/test_approx.html">a C version</a> and
+      <a href = "../../cpp_src/test_approx/test_approx.html">a C++ version</a> and
+      <a href = "../../f77_src/test_approx/test_approx.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_approx/test_approx.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_approx/test_approx.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bernstein/bernstein.html">
+      BERNSTEIN</a>,
+      a MATLAB library which
+      evaluates the Bernstein polynomials, 
+      useful for uniform approximation of functions;
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev/chebyshev.html">
+      CHEBYSHEV</a>,
+      a MATLAB library which
+      computes the Chebyshev interpolant/approximant to a given function
+      over an interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_approx_1d/lagrange_approx_1d.html">
+      LAGRANGE_APPROX_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) of degree m
+      which approximates a set of nd data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_approx_1d/pwl_approx_1d.html">
+      PWL_APPROX_1D</a>,
+      a MATLAB library which
+      approximates a set of data using a piecewise linear function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      includes many routines to construct and evaluate spline
+      interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../datasets/test_approx/test_approx.html">
+      TEST_APPROX</a>,
+      a dataset directory which
+      contains sets of data (x,y) for which an approximating formula is desired.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp/test_interp.html">
+      TEST_INTERP</a>,
+      a MATLAB library which
+      defines a number of test problems for interpolation,
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">
+      TEST_INTERP_1D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data y(x),
+      depending on a 1D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to a function of 1D data
+      by setting up and solving an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Samuel Conte, Carl deBoor,<br>
+          Elementary Numerical Analysis,<br>
+          Second Edition,<br>
+          McGraw Hill, 1972,<br>
+          ISBN: 07-012446-4,<br>
+          LC: QA297.C65.
+        </li>
+        <li>
+          Carl deBoor,<br>
+          A Practical Guide to Splines,<br>
+          Springer, 2001,<br>
+          ISBN: 0387953663,<br>
+          LC: QA1.A647.v27.
+        </li>
+        <li>
+          Max Waldmeier,<br>
+          The Sunspot-Activity in the Years 1610-1960,<br>
+          Shulthess, 1961,<br>
+          LC: QB525.W34.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "p00_dat.m">p00_dat.m</a>,
+          returns the data vector for any problem.
+        </li>
+        <li>
+          <a href = "p00_data_num.m">p00_data_num.m</a>,
+          returns the dimension of the data vector for any problem.
+        </li>
+        <li>
+          <a href = "p00_data_plot.m">p00_data_plot.m</a>,
+          plots the data.
+        </li>
+        <li>
+          <a href = "p00_prob_num.m">p00_prob_num.m</a>,
+          returns the number of test problems.
+        </li>
+        <li>
+          <a href = "p00_story.m">p00_story.m</a>,
+          prints the "story" for any problem.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>,
+          returns the title of any problem.
+        </li>
+        <li>
+          <a href = "p01_dat.m">p01_dat.m</a>,
+          returns the data vector for problem 1.
+        </li>
+        <li>
+          <a href = "p01_data_num.m">p01_data_num.m</a>,
+          returns the dimension of the data vector for problem 1.
+        </li>
+        <li>
+          <a href = "p01_story.m">p01_story.m</a>,
+          prints the "story" for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>,
+          returns the title of problem 1.
+        </li>
+        <li>
+          <a href = "p02_dat.m">p02_dat.m</a>,
+          returns the data vector for problem 2.
+        </li>
+        <li>
+          <a href = "p02_data_num.m">p02_data_num.m</a>,
+          returns the dimension of the data vector for problem 2.
+        </li>
+        <li>
+          <a href = "p02_story.m">p02_story.m</a>,
+          prints the "story" for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>,
+          returns the title of problem 2.
+        </li>
+        <li>
+          <a href = "p03_dat.m">p03_dat.m</a>,
+          returns the data vector for problem 3.
+        </li>
+        <li>
+          <a href = "p03_data_num.m">p03_data_num.m</a>,
+          returns the dimension of the data vector for problem 3.
+        </li>
+        <li>
+          <a href = "p03_story.m">p03_story.m</a>,
+          prints the "story" for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>,
+          returns the title of problem 3.
+        </li>
+        <li>
+          <a href = "p04_dat.m">p04_dat.m</a>,
+          returns the data vector for problem 4.
+        </li>
+        <li>
+          <a href = "p04_data_num.m">p04_data_num.m</a>,
+          returns the dimension of the data vector for problem 4.
+        </li>
+        <li>
+          <a href = "p04_story.m">p04_story.m</a>,
+          prints the "story" for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>,
+          returns the title of problem 4.
+        </li>
+        <li>
+          <a href = "p05_dat.m">p05_dat.m</a>,
+          returns the data vector for problem 5.
+        </li>
+        <li>
+          <a href = "p05_data_num.m">p05_data_num.m</a>,
+          returns the dimension of the data vector for problem 5.
+        </li>
+        <li>
+          <a href = "p05_story.m">p05_story.m</a>,
+          prints the "story" for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>,
+          returns the title of problem 5.
+        </li>
+        <li>
+          <a href = "p06_dat.m">p06_dat.m</a>,
+          returns the data vector for problem 6.
+        </li>
+        <li>
+          <a href = "p06_data_num.m">p06_data_num.m</a>,
+          returns the dimension of the data vector for problem 6.
+        </li>
+        <li>
+          <a href = "p06_story.m">p06_story.m</a>,
+          prints the "story" for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>,
+          returns the title of problem 6.
+        </li>
+        <li>
+          <a href = "p07_dat.m">p07_dat.m</a>,
+          returns the data vector for problem 7.
+        </li>
+        <li>
+          <a href = "p07_data_num.m">p07_data_num.m</a>,
+          returns the dimension of the data vector for problem 7.
+        </li>
+        <li>
+          <a href = "p07_story.m">p07_story.m</a>,
+          prints the "story" for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>,
+          returns the title of problem 7.
+        </li>
+        <li>
+          <a href = "p08_dat.m">p08_dat.m</a>,
+          returns the data vector for problem 8.
+        </li>
+        <li>
+          <a href = "p08_data_num.m">p08_data_num.m</a>,
+          returns the dimension of the data vector for problem 8.
+        </li>
+        <li>
+          <a href = "p08_story.m">p08_story.m</a>,
+          prints the "story" for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>,
+          returns the title of problem 8.
+        </li>
+        <li>
+          <a href = "p09_dat.m">p09_dat.m</a>,
+          returns the data vector for problem 9.
+        </li>
+        <li>
+          <a href = "p09_data_num.m">p09_data_num.m</a>,
+          returns the dimension of the data vector for problem 9.
+        </li>
+        <li>
+          <a href = "p09_story.m">p09_story.m</a>,
+          prints the "story" for problem 9.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>,
+          returns the title of problem 9.
+        </li>
+        <li>
+          <a href = "p10_dat.m">p10_dat.m</a>,
+          returns the data vector for problem 10.
+        </li>
+        <li>
+          <a href = "p10_data_num.m">p10_data_num.m</a>,
+          returns the dimension of the data vector for problem 10.
+        </li>
+        <li>
+          <a href = "p10_story.m">p10_story.m</a>,
+          prints the "story" for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>,
+          returns the title of problem 10.
+        </li>
+        <li>
+          <a href = "r8vec2_print.m">r8vec2_print.m</a>,
+          prints an R8VEC2.
+        </li>
+        <li>
+          <a href = "r8vec2_write.m">r8vec2_write.m</a>,
+          writes an R8VEC2 to a file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_approx_test.m">test_approx_test.m</a>, the
+          calling program;
+        </li>
+        <li>
+          <a href = "test_approx_test01.m">test_approx_test01.m</a>,
+          shows how P00_TITLE can be called.
+        </li>
+        <li>
+          <a href = "test_approx_test02.m">test_approx_test02.m</a>,
+          shows how P00_STORY can be called.
+        </li>
+        <li>
+          <a href = "test_approx_test03.m">test_approx_test03.m</a>,
+          uses polynomial interpolation on data vector problems.
+        </li>
+        <li>
+          <a href = "test_approx_test04.m">test_approx_test04.m</a>,
+          uses linear spline interpolation on all problems.
+        </li>
+        <li>
+          <a href = "test_approx_test05.m">test_approx_test05.m</a>,
+          uses Overhauser spline interpolation on all problems.
+        </li>
+        <li>
+          <a href = "test_approx_test06.m">test_approx_test06.m</a>,
+          uses cubic spline interpolation on all problems.
+        </li>
+        <li>
+          <a href = "test_approx_test07.m">test_approx_test07.m</a>,
+          plots an Overhauser spline interpolant for problem 7.
+        </li>
+        <li>
+          <a href = "test_approx_test08.m">test_approx_test08.m</a>,
+          plots a cubic spline interpolant for problem 7.
+        </li>
+        <li>
+          <a href = "test_approx_test09.m">test_approx_test09.m</a>,
+          uses B spline approximation on all problems.
+        </li>
+        <li>
+          <a href = "test_approx_test10.m">test_approx_test10.m</a>,
+          plots a B spline approximant for problem 7.
+        </li>
+        <li>
+          <a href = "test_approx_test11.m">test_approx_test11.m</a>,
+          plots a beta spline approximant for problem 7.
+        </li>
+        <li>
+          <a href = "test_approx_test12.m">test_approx_test12.m</a>,
+          plots a Bernstein spline approximant for problem 7.
+        </li>
+        <li>
+          <a href = "test_approx_test13.m">test_approx_test13.m</a>,
+          plots a cubic spline interpolant for problem 5.
+        </li>
+        <li>
+          <a href = "test_approx_test_output.txt">test_approx_test_output.txt</a>, the sample
+          output.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST07</b> creates data files for an Overhauser spline interpolant
+      to data set 7.
+      <ul>
+        <li>
+          <a href = "test07_data.txt">test07_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test07_approx.txt">test07_approx.txt</a>
+          the interpolant values.
+        </li>
+        <li>
+          <a href = "test07.png">test07.png</a>
+          a PNG image of the data and interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST08</b> creates data files for a cubic spline interpolant
+      to data set 7.
+      <ul>
+        <li>
+          <a href = "test08_data.txt">test08_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test08_approx.txt">test08_approx.txt</a>
+          the interpolant values.
+        </li>
+        <li>
+          <a href = "test08.png">test08.png</a>
+          a PNG image of the data and interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST10</b> creates data files for a B-spline approximant
+      to data set 7.
+      <ul>
+        <li>
+          <a href = "test10_data.txt">test10_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test10_approx.txt">test10_approx.txt</a>
+          the approximant values.
+        </li>
+        <li>
+          <a href = "test10.png">test10.png</a>
+          a PNG image of the data and approximant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST11</b> creates data files for a beta spline approximant to
+      data set 7:
+      <ul>
+        <li>
+          <a href = "test11_data.txt">test11_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test11_approx.txt">test11_approx.txt</a>
+          the approximant values.
+        </li>
+        <li>
+          <a href = "test11.png">test11.png</a>
+          a PNG image of the data and approximant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST12</b> creates data files for a Bernstein approximant
+      to data set 5.
+      <ul>
+        <li>
+          <a href = "test12_data.txt">test12_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test12_approx.txt">test12_approx.txt</a>
+          the interpolant values.
+        </li>
+        <li>
+          <a href = "test12.png">test12.png</a>
+          a PNG image of the data and approximant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST13</b> creates data files for a cubic spline interpolant
+      to data set 5.
+      <ul>
+        <li>
+          <a href = "test13_data.txt">test13_data.txt</a>
+          the data.
+        </li>
+        <li>
+          <a href = "test13_approx.txt">test13_approx.txt</a>
+          the interpolant values.
+        </li>
+        <li>
+          <a href = "test13.png">test13.png</a>
+          a PNG image of the data and interpolant.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 February 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

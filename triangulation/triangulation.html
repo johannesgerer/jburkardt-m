@@ -1,0 +1,1192 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION - Triangulation of 2D data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION <br> Triangulation of 2D data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION</b>
+      is a MATLAB library which
+      computes a triangulation of
+      a set of points in 2D, and carries out various other related
+      operations on triangulations of order 3 or 6.
+    </p>
+
+    <p>
+      The mesh is the collection of triangles.  Each triangle
+      is termed an "element".  The points used to define the shape of the
+      triangle (the corners, and sometimes a few more points) are called
+      the "nodes".
+    </p>
+
+    <p>
+      Routines are available to:
+      <ul>
+        <li>
+          evaluate "quality measures" for the mesh;
+        </li>
+        <li>
+          create a "node neighbor array" for each node;
+        </li>
+        <li>
+          create an "element neighbor array" for each element;
+        </li>
+        <li>
+          estimate the integral of a function over the region covered by the mesh;
+        </li>
+        <li>
+          plot the nodes and elements of a mesh;
+        </li>
+        <li>
+          determine the parts of the mesh that lie on the boundary;
+        </li>
+        <li>
+          sample points at random from the region covered by the mesh;
+        </li>
+        <li>
+          search a mesh to determine which element contains a point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Since triangulations are often used to define a finite element
+      mesh, which in turn defines a sparse matrix, there are routines
+      available which can define the sparse compressed column arrays
+      needed for a sparse matrix associated with a mesh of order 3
+      or 6.  The special case of the Taylor-Hood mixed element is also
+      handled, which is essentially an order 6 grid counted twice
+      and an order 3 grid that only uses the vertices of the order 6 grid.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION</b> is available in
+      <a href = "../../c_src/triangulation/triangulation.html">a C version</a> and
+      <a href = "../../cpp_src/triangulation/triangulation.html">a C++ version</a> and
+      <a href = "../../f77_src/triangulation/triangulation.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/triangulation/triangulation.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation/triangulation.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_triangulation/cvt_triangulation.html">
+      CVT_TRIANGULATION</a>,
+      a FORTRAN90 program which
+      uses routines from the TEST_TRIANGULATION library
+      to create a CVT-based triangularization.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB program which
+      takes the definition of
+      a 2D region, and fills it up with a set of nodes, and triangulates
+      those nodes to make a triangulation of the region.  The region may
+      be nonconvex and may include holes; the user may request a specific
+      density for the nodes, and may require certain points to be in the
+      set of nodes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_sample/fem2d_sample.html">
+      FEM2D_SAMPLE</a>,
+      a MATLAB library which
+      evaluates a finite element function defined on an order 3
+      or order 6 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../f_src/hex_grid_triangulate/hex_grid_triangulate.html">
+      HEX_GRID_TRIANGULATE</a>,
+      a FORTRAN90 program which
+      uses this library of test regions and computes points on a hexagonal grid
+      inside each region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_bandwidth/mesh_bandwidth.html">
+      MESH_BANDWIDTH</a>,
+      a MATLAB program which
+      returns the geometric bandwidth associated with a mesh of
+      elements of any order and in a space of arbitrary dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/table_delaunay/table_delaunay.html">
+      TABLE_DELAUNAY</a>,
+      a MATLAB program which
+      triangulates a set of nodes whose coordinates are
+      stored in a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>,
+      a MATLAB library which
+      can set up a number of triangulation test problems.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_nodes/triangulation_boundary_nodes.html">
+      TRIANGULATION_BOUNDARY_NODES</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines which nodes
+      lie on the boundary, and writes their coordinates to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
+      TRIANGULATION_CORNER</a>,
+      a MATLAB program which
+      patches triangulations so that no triangle has two sides on the boundary.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
+      TRIANGULATION_DELAUNAY_DISCREPANCY</a>,
+      a MATLAB program which
+      measures the amount by which a triangulation fails the local Delaunay test;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which
+      displays the nodes and elements of a triangulation on the MATLAB graphics screen;
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
+      TRIANGULATION_HISTOGRAM</a>,
+      a MATLAB program which
+      computes histograms of data over a triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>,
+      a MATLAB program which
+      reads data defining a 3-node triangulation and generates
+      midside nodes and writes out the corresponding 6-node triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
+      TRIANGULATION_MASK</a>,
+      a MATLAB program which
+      takes an existing triangulation and deletes triangles and
+      their corresponding nodes as requested by the user.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order3/triangulation_order3.html">
+      TRIANGULATION_ORDER3</a>,
+      a directory which
+      contains a description and
+      examples of order 3 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../data/triangulation_order6/triangulation_order6.html">
+      TRIANGULATION_ORDER6</a>,
+      a directory which
+      contains a description and
+      examples of order 6 triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_orient/triangulation_orient.html">
+      TRIANGULATION_ORIENT</a>,
+      a MATLAB program which
+      reads data defining a triangulation, makes sure that
+      every triangle has positive orientation, and if not, writes a
+      corrected triangle file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program
+      that reads data defining a triangulation and creates a
+      PostScript image of the nodes and triangles.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_q2l/triangulation_q2l.html">
+      TRIANGULATION_Q2L</a>,
+      a MATLAB program which
+      reads data defining a 6-node triangulation, and subdivides
+      each triangle into 4 3-node triangles, writing the resulting
+      triangulation to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quad/triangulation_quad.html">
+      TRIANGULATION_QUAD</a>,
+      a MATLAB program which
+      estimates the integral of a function over a triangulated region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_quality/triangulation_quality.html">
+      TRIANGULATION_QUALITY</a>,
+      a MATLAB program which
+      reads data defining a triangulation and computes a number
+      of quality measures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_rcm/triangulation_rcm.html">
+      TRIANGULATION_RCM</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines an ordering
+      of the nodes that will reduce the bandwidth of the adjacency
+      matrix, and writes the new triangulation information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_refine/triangulation_refine.html">
+      TRIANGULATION_REFINE</a>,
+      a MATLAB program which
+      reads data defining a triangulation, replaces each triangle
+      by four congruent smaller ones, and writes the new triangulation
+      information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
+      TRIANGULATION_TRIANGLE_NEIGHBORS</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines the neighboring
+      triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams -
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, September 1991, pages 345-405.
+        </li>
+        <li>
+          Paul Bratley, Bennett Fox, Linus Schrage,<br>
+          A Guide to Simulation,<br>
+          Second Edition,<br>
+          Springer, 1987,<br>
+          ISBN: 0387964673.
+        </li>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars,
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0.
+        </li>
+        <li>
+          Barry Joe, <br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms, <br>
+          Advances in Engineering Software,<br>
+          Volume 13, Number 5, 1991, pages 325-331.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Atsuyuki Okabe, Barry Boots, Kokichi Sugihara, Sung Nok Chiu,<br>
+          Spatial Tessellations:
+          Concepts and Applications of Voronoi Diagrams,<br>
+          Second Edition,<br>
+          Wiley, 2000,<br>
+          ISBN: 0-471-98635-6,<br>
+          LC: QA278.2.O36.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+        <li>
+          Per-Olof Persson, Gilbert Strang,<br>
+          A Simple Mesh Generator in MATLAB,<br>
+          SIAM Review,<br>
+          Volume 46, Number 2, June 2004, pages 329-345.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "alpha_measure.m">
+          alpha_measure.m</a>,
+          measures the triangulated point set quality measure ALPHA.
+        </li>
+        <li>
+          <a href = "angle_rad_2d.m">
+          angle_rad_2d.m</a>,
+          returns the angle swept out by two rays in 2D;
+        </li>
+        <li>
+          <a href = "area_measure.m">
+          area_measure.m</a>,
+          measures the triangulated point set area ratio quality measure.
+        </li>
+        <li>
+          <a href = "bandwidth.m">
+          bandwidth.m</a>,
+          determines the bandwidth associated with the finite element mesh;
+        </li>
+        <li>
+          <a href = "delaunay_swap_test.m">
+          delaunay_swap_test.m</a>,
+          chooses a diagonal edge;
+        </li>
+        <li>
+          <a href = "diaedg.m">
+          diaedg.m</a>,
+          chooses a diagonal edge;
+        </li>
+        <li>
+          <a href = "get_seed.m">
+          get_seed.m</a>,
+          chooses an arbitrary seed for the random number generator;
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>,
+          returns the nonnegative remainder of I4 division;
+        </li>
+        <li>
+          <a href = "i4_sign.m">
+          i4_sign.m</a>,
+          returns the sign of an I4;
+        </li>
+        <li>
+          <a href = "i4_swap.m">
+          i4_swap.m</a>,
+          swaps two I4's;
+        </li>
+        <li>
+          <a href = "i4_uniform.m">
+          i4_uniform.m</a>,
+          returns a random I4 in a given range;
+        </li>
+        <li>
+          <a href = "i4_wrap.m">
+          i4_wrap.m</a>,
+          forces an I4 to lie in a given range;
+        </li>
+        <li>
+          <a href = "i4col_compare.m">
+          i4col_compare.m</a>,
+          compares two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">
+          i4col_sort_a.m</a>,
+          ascending sorts the columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_sorted_unique_count.m">
+          i4col_sorted_unique_count.m</a>,
+          counts the unique columns in a sorted I4COL;
+        </li>
+        <li>
+          <a href = "i4col_swap.m">
+          i4col_swap.m</a>,
+          swaps two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4i4_sort_a.m">
+          i4i4_sort_a.m</a>,
+          ascending sorts a pair of I4's;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">
+          i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4vec_heap_d.m">
+          i4vec_heap_d.m</a>,
+          reorders an I4VEC into a descending heap;
+        </li>
+        <li>
+          <a href = "i4vec_indicator.m">
+          i4vec_indicator.m</a>,
+          sets an I4VEC to the indicator vector;
+        </li>
+        <li>
+          <a href = "i4vec_print.m">
+          i4vec_print.m</a>,
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_sort_heap_a.m">
+          i4vec_sort_heap_a.m</a>,
+          ascending sorts an I4VEC using heap sort;
+        </li>
+        <li>
+          <a href = "i4vec_sorted_unique.m">
+          i4vec_sorted_unique.m</a>,
+          returns the unique elements in a sorted I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec2_compare.m">
+          i4vec2_compare.m</a>,
+          compares pairs of elements in an I4VEC2;
+        </li>
+        <li>
+          <a href = "i4vec_sort_a.m">
+          i4vec_sorta.m</a>,
+          ascending sorts an I4VEC2;
+        </li>
+        <li>
+          <a href = "i4vec2_sorted_unique.m">
+          i4vec2_sorted_unique.m</a>,
+          returns the unique elements in a sorted I4VEC2;
+        </li>
+        <li>
+          <a href = "lrline.m">
+          lrline.m</a>,
+          determines if a point is left or right of a directed line;
+        </li>
+        <li>
+          <a href = "lvec_print.m">
+          lvec_print.m</a>,
+          prints an LVEC.
+        </li>
+        <li>
+          <a href = "mesh_base_one.m">mesh_base_one.m</a>
+          detects and corrects 0-based indexing.
+        </li>
+        <li>
+          <a href = "node_merge.m">
+          node_merge.m</a>,
+          detects nodes that should be merged.
+        </li>
+        <li>
+          <a href = "ns_adj_col_set.m">
+          ns_adj_col_set.m</a>,
+          sets up the column vector associated with the sparse compressed
+          column storage of the variable adjacencies in a Taylor-Hood
+          order 3/order 6 triangulation for Navier Stokes velocity and pressure.
+        </li>
+        <li>
+          <a href = "ns_adj_count.m">
+          ns_adj_count.m</a>,
+          counts the variable adjacencies in a Taylor-Hood order 3/order 6
+          triangulation for Navier Stokes velocity and pressure.
+        </li>
+        <li>
+          <a href = "ns_adj_insert.m">
+          ns_adj_insert.m</a>,
+          inserts an adjacency into a compressed column adjacency matrix.
+        </li>
+        <li>
+          <a href = "ns_adj_row_set.m">
+          ns_adj_row_set.m</a>,
+          sets the Navier Stokes sparse compressed column row indices.
+        </li>
+        <li>
+          <a href = "perm_check.m">
+          perm_check.m</a>,
+          checks that a permutation of 1:N is valid;
+        </li>
+        <li>
+          <a href = "perm_check2.m">
+          perm_check2.m</a>,
+          checks that a permutation of BASE:BASE+N-1 is valid;
+        </li>
+        <li>
+          <a href = "perm_inverse.m">
+          perm_inverse.m</a>,
+          computes the inverse of a permutation;
+        </li>
+        <li>
+          <a href = "points_delaunay_naive_2d.m">
+          points_delaunay_naive_2d.m</a>,
+          a "naive" algorithm for computing the Delaunay triangulation
+          of a set of points in 2D;
+        </li>
+        <li>
+          <a href = "points_hull_2d.m">
+          points_hull_2d.m</a>,
+          computes the convex hull of a set of points in 2D;
+        </li>
+        <li>
+          <a href = "points_point_near_naive_nd.m">
+          points_point_near_naive_nd.m</a>,
+          finds the nearest of a set of points to a point in ND;
+        </li>
+        <li>
+          <a href = "q_measure.m">
+          q_measure.m</a>,
+          measures the triangulated point set quality measure Q.
+        </li>
+        <li>
+          <a href = "quad_convex_random.m">
+          quad_convex_random.m</a>,
+          returns a random convex quadrilateral in the unit square.
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">
+          r4_uniform_01.m</a>,
+          returns a random R4 in [0,1];
+        </li>
+        <li>
+          <a href = "r8_acos.m">
+          r8_acos.m</a>,
+          computes the inverse cosine;
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">
+          r8_epsilon.m</a>,
+          returns the machine precision for R8's;
+        </li>
+        <li>
+          <a href = "r8_huge.m">
+          r8_huge.m</a>,
+          returns a huge R8;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">
+          r8_uniform_01.m</a>,
+          returns a random R8 in [0,1];
+        </li>
+        <li>
+          <a href = "r82vec_permute.m">
+          r82vec_permute.m</a>,
+          permutes an R82VEC in place;
+        </li>
+        <li>
+          <a href = "r82vec_sort_heap_index_a.m">
+          r82vec_sort_heap_index_a.m</a>,
+          does an indexed heap ascending sort of an R82VEC;
+        </li>
+        <li>
+          <a href = "r8mat_print.m">
+          r8mat_print.m</a>,
+          prints an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">
+          r8mat_print_some.m</a>,
+          prints some of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">
+          r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8tris2.m">
+          r8tris2.m</a>,
+          computes the Delaunay triangulation of a set of points in 2D;
+        </li>
+        <li>
+          <a href = "r8vec_bracket.m">
+          r8vec_bracket.m</a>,
+          searches a sorted R8VEC for brackets of a value;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">
+          s_len_trim.m</a>,
+          returns the length of a string to the last nonblank;
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">
+          sort_heap_external.m</a>,
+          externally sorts a list of values into ascending order;
+        </li>
+        <li>
+          <a href = "swapec.m">
+          swapec.m</a>,
+          swaps diagonal edges until all triangles are Delaunay;
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp;
+        </li>
+        <li>
+          <a href = "triangle_angles_2d.m">
+          triangle_angles_2d.m</a>,
+          returns the angles of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_area_2d.m">
+          triangle_area_2d.m</a>,
+          returns the area of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_circumcenter_2d.m">
+          triangle_circumcenter_2d.m</a>,
+          returns the circumcenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_reference_sample.m">
+          triangle_reference_sample.m</a>,
+          randomly samples a point from the reference triangle;
+        </li>
+        <li>
+          <a href = "triangle_sample.m">
+          triangle_sample.m</a>,
+          randomly samples a point from a triangle;
+        </li>
+        <li>
+          <a href = "triangulation_area.m">
+          triangulation_area.m</a>
+          returns the area of a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_areas.m">
+          triangulation_areas.m</a>
+          returns the triangle areas in a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_delaunay_discrepancy_compute.m">
+          triangulation_delaunay_discrepancy_compute.m</a>
+          reports if a triangulation is Delaunay.
+        </li>
+        <li>
+          <a href = "triangulation_neighbor_elements.m">
+          triangulation_neighhbor_elements.m</a>,
+          determines element neighbors in a triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_node_order.m">
+          triangulation_node_order.m</a>,
+          determines the order of the nodes in a triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_adj_count.m">
+          triangulation_order3_adj_count.m</a>,
+          counts adjacencies in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_adj_set.m">
+          triangulation_order3_adj_set.m</a>,
+          records adjacencies in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_adj_set2.m">
+          triangulation_order3_adj_set2.m</a>,
+          records adjacencies in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_boundary_edge_count.m">
+          triangulation_order3_boundary_edge_count.m</a>,
+          determines the number of boundary edges in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_boundary_edge_count_euler.m">
+          triangulation_order3_boundary_edge_count_euler.m</a>,
+          uses Euler's formula to determine the number of boundary edges
+          in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_boundary_node.m">
+          triangulation_order3_boundary_node.m</a>,
+          determines the boundary nodes in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_check.m">
+          triangulation_order3_check.m</a>,
+          carries out some simple checks on an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_edge_check.m">
+          triangulation_order3_edge_check.m</a>,
+          checks the edges of an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_example1.m">
+          triangulation_order3_example1.m</a>,
+          returns an example order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_example2_size.m">
+          triangulation_order3_example_size.m</a>,
+          returns the sizes of arrays in an example order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_example2.m">
+          triangulation_order3_example.m</a>,
+          returns an example order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_example_size.m">
+          triangulation_order3_example_size.m</a>,
+          returns the sizes of arrays in an example order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_neighbor.m">
+          triangulation_order3_neighhbor.m</a>,
+          determines a neighbor of a given triangle in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_neighbor_nodes.m">
+          triangulation_order3_neighhbor_nodes.m</a>,
+          determines the neighbors of nodes in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_neighbor_nodes_print.m">
+          triangulation_order3_neighhbor_nodes_print.m</a>,
+          prints information about an order 3 triangulation neighbor nodes;
+        </li>
+        <li>
+          <a href = "triangulation_order3_plot.m">
+          triangulation_order3_plot.m</a>,
+          creates a EPS image of an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_print.m">
+          triangulation_order3_print.m</a>,
+          prints information about an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order3_quad.m">
+          triangulation_order3_quad.m</a>,
+          approximates the integral of a function over
+          an order 3 triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order3_refine_compute.m">
+          triangulation_order3_refine_compute.m</a>,
+          computes a refinement of an order3 mesh
+        </li>
+        <li>
+          <a href = "triangulation_order3_refine_size.m">
+          triangulation_order3_refine_size.m</a>,
+          sizes a refinement of an order3 mesh;
+        </li>
+        <li>
+          <a href = "triangulation_order3_sample.m">
+          triangulation_order3_sample.m</a>,
+          returns random points in an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order4_plot.m">
+          triangulation_order4_plot.m</a>,
+          creates a EPS image of an order 4 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_adj_count.m">
+          triangulation_order6_adj_count.m</a>,
+          counts adjacencies in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_adj_set.m">
+          triangulation_order6_adj_set.m</a>,
+          records adjacencies in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_boundary_edge_count.m">
+          triangulation_order6_boundary_edge_count.m</a>,
+          determines the number of boundary edges in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_boundary_edge_count_euler.m">
+          triangulation_order6_boundary_edge_count_euler.m</a>,
+          uses Euler's formula to determine the number of boundary edges
+          in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_boundary_node.m">
+          triangulation_order6_boundary_node.m</a>,
+          determines the boundary nodes in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_example1.m">
+          triangulation_order6_example1.m</a>,
+          returns an example order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_example1_size.m">
+          triangulation_order6_example1_size.m</a>,
+          returns the sizes of arrays in an example order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_example2.m">
+          triangulation_order6_example2.m</a>,
+          returns an example order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_example2_size.m">
+          triangulation_order6_example2_size.m</a>,
+          returns the sizes of arrays in an example order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_neighbor.m">
+          triangulation_order6_neighhbor.m</a>,
+          determines a neighbor of a given triangle in an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_plot.m">
+          triangulation_order6_plot.m</a>,
+          creates a EPS image of an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_print.m">
+          triangulation_order6_print.m</a>,
+          prints information about an order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_refine_compute.m">
+          triangulation_order6_refine_compute.m</a>,
+          computes a refinement of an order6 mesh
+        </li>
+        <li>
+          <a href = "triangulation_order6_refine_size.m">
+          triangulation_order6_refine_size.m</a>,
+          sizes a refinement of an order6 mesh;
+        </li>
+        <li>
+          <a href = "triangulation_order6_to_order3.m">
+          triangulation_order6_to_order3.m</a>,
+          converts an order 6 triangulation to an order 3 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_order6_vertex_count.m">
+          triangulation_order6_vertex_count.m</a>,
+          counts the number of vertex and midside nodes in an
+          order 6 triangulation;
+        </li>
+        <li>
+          <a href = "triangulation_search_delaunay.m">
+          triangulation_search_delaunay.m</a>,
+          finds the triangle containing a point, using a Delaunay search;
+        </li>
+        <li>
+          <a href = "triangulation_search_naive.m">
+          triangulation_search_naive.m</a>,
+          finds the triangle containing a point, using a naive search;
+        </li>
+        <li>
+          <a href = "vbedg.m">
+          vbedg.m</a>,
+          determines which boundary edges are visible to a point;
+        </li>
+        <li>
+          <a href = "voronoi_polygon_area.m">
+          voronoi_polygon_area.m</a>,
+          computes the area of a Voronoi polygon.
+        </li>
+        <li>
+          <a href = "voronoi_polygon_centroid.m">
+          voronoi_polygon_centroid.m</a>,
+          computes the centroid of a Voronoi polygon.
+        </li>
+        <li>
+          <a href = "voronoi_polygon_vertices.m">
+          voronoi_polygon_vertices.m</a>,
+          computes the vertices of a Voronoi polygon.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_test.m">triangulation_test.m</a>,
+          calls all the other test routines;
+        </li>
+        <li>
+          <a href = "triangulation_test_output.txt">triangulation_test_output.txt</a>,
+          the output ffile;
+        </li>
+        <li>
+          <a href = "triangulation_test01.m">triangulation_test01.m</a>,
+          tests ALPHA_MEASURE;
+        </li>
+        <li>
+          <a href = "triangulation_test02.m">triangulation_test02.m</a>,
+          tests AREA_MEASURE;
+        </li>
+        <li>
+          <a href = "triangulation_test025.m">triangulation_test025.m</a>,
+          tests DELAUNAY_SWAP_TEST;
+        </li>
+        <li>
+          <a href = "triangulation_test026.m">triangulation_test026.m</a>,
+          tests DIAEDG;
+        </li>
+        <li>
+          <a href = "triangulation_test03.m">triangulation_test03.m</a>,
+          tests NODE_MERGE;
+        </li>
+        <li>
+          <a href = "triangulation_test04.m">triangulation_test04.m</a>,
+          tests NS_ADJ_COL_SET, NS_ADJ_COUNT and NS_ADJ_ROW_SET;
+        </li>
+        <li>
+          <a href = "triangulation_test05.m">triangulation_test05.m</a>,
+          tests POINTS_DELAUNAY_NAIVE_2D;
+        </li>
+        <li>
+          <a href = "triangulation_test06.m">triangulation_test06.m</a>,
+          tests POINTS_HULL_2D;
+        </li>
+        <li>
+          <a href = "triangulation_test07.m">triangulation_test07.m</a>,
+          tests Q_MEASURE;
+        </li>
+        <li>
+          <a href = "triangulation_test08.m">triangulation_test08.m</a>,
+          tests R8TRIS2;
+        </li>
+        <li>
+          <a href = "triangulation_test09.m">triangulation_test09.m</a>,
+          tests TRIANGLE_ORDER3_PHYSICAL_TO_REFERENCE,
+          TRIANGLE_ORDER3_REFERENCE_TO_PHYSICAL;
+        </li>
+        <li>
+          <a href = "triangulation_test10.m">triangulation_test10.m</a>,
+          tests TRIANGLE_ORDER6_PHYSICAL_TO_REFERENCE,
+          TRIANGLE_ORDER6_REFERENCE_TO_PHYSICAL;
+        </li>
+        <li>
+          <a href = "triangulation_test11.m">triangulation_test11.m</a>,
+          tests TRIANGULATION_NODE_ORDER;
+        </li>
+        <li>
+          <a href = "triangulation_test12.m">triangulation_test12.m</a>,
+          tests TRIANGULATION_ORDER3_ADJ_COUNT and TRIANGULATION_ORDER3_ADJ_SET;
+        </li>
+        <li>
+          <a href = "triangulation_test125.m">triangulation_test125.m</a>,
+          tests TRIANGULATION_ORDER3_ADJ_COUNT and TRIANGULATION_ORDER3_ADJ_SET2;
+        </li>
+        <li>
+          <a href = "triangulation_test13.m">triangulation_test13.m</a>,
+          tests TRIANGULATION_ORDER3_BOUNDARY_EDGE_COUNT and
+          TRIANGULATION_ORDER3_PLOT.
+        </li>
+        <li>
+          <a href = "triangulation_test14.m">triangulation_test14.m</a>,
+          tests TRIANGULATION_ORDER3_BOUNDARY_EDGE_COUNT_EULER;
+        </li>
+        <li>
+          <a href = "triangulation_test15.m">triangulation_test15.m</a>,
+          tests TRIANGULATION_ORDER3_BOUNDARY_NODE;
+        </li>
+        <li>
+          <a href = "triangulation_test16.m">triangulation_test16.m</a>,
+          tests TRIANGULATION_ORDER3_CHECK;
+        </li>
+        <li>
+          <a href = "triangulation_test17.m">triangulation_test17.m</a>,
+          tests TRIANGULATION_ORDER3_EXAMPLE1 and TRIANGULATION_ORDER3_EXAMPLE1_SIZE;
+        </li>
+        <li>
+          <a href = "triangulation_test18.m">triangulation_test18.m</a>,
+          tests TRIANGULATION_ORDER3_NEIGHBOR;
+        </li>
+        <li>
+          <a href = "triangulation_test19.m">triangulation_test19.m</a>,
+          tests TRIANGULATION_NEIGHBOR_ELEMENTS.
+        </li>
+        <li>
+          <a href = "triangulation_test20.m">triangulation_test20.m</a>,
+          tests TRIANGULATION_ORDER3_PLOT;
+        </li>
+        <li>
+          <a href = "triangulation_test21.m">triangulation_test21.m</a>,
+          tests TRIANGULATION_ORDER3_PRINT;
+        </li>
+        <li>
+          <a href = "triangulation_test213.m">triangulation_test213.m</a>,
+          tests TRIANGULATION_ORDER3_QUAD;
+        </li>
+        <li>
+          <a href = "triangulation_test215.m">triangulation_test215.m</a>,
+          tests TRIANGULATION_ORDER3_REFINE_COMPUTE and
+          TRIANGULATION_ORDER3_REFINE_SIZE;
+        </li>
+        <li>
+          <a href = "triangulation_test217.m">triangulation_test217.m</a>,
+          tests TRIANGULATION_SEARCH_DELAUNAY.
+        </li>
+        <li>
+          <a href = "triangulation_test219.m">triangulation_test219.m</a>,
+          tests TRIANGULATION_SEARCH_DELAUNAY and TRIANGULATION_SEARCH_NAIVE.
+        </li>
+        <li>
+          <a href = "triangulation_test22.m">triangulation_test22.m</a>,
+          tests TRIANGULATION_ORDER6_ADJ_COUNT and TRIANGULATION_ORDER6_ADJ_SET;
+        </li>
+        <li>
+          <a href = "triangulation_test23.m">triangulation_test23.m</a>,
+          tests TRIANGULATION_ORDER6_BOUNDARY_EDGE_COUNT..
+        </li>
+        <li>
+          <a href = "triangulation_test24.m">triangulation_test24.m</a>,
+          tests TRIANGULATION_ORDER6_BOUNDARY_EDGE_COUNT_EULER;
+        </li>
+        <li>
+          <a href = "triangulation_test25.m">triangulation_test25.m</a>,
+          tests TRIANGULATION_ORDER6_BOUNDARY_NODE and TRIANGULATION_ORDER6_PLOT.
+        </li>
+        <li>
+          <a href = "triangulation_test26.m">triangulation_test26.m</a>,
+          tests TRIANGULATION_ORDER6_PRINT;
+        </li>
+        <li>
+          <a href = "triangulation_test265.m">triangulation_test265.m</a>,
+          tests TRIANGULATION_ORDER3_REFINE_COMPUTE and
+          TRIANGULATION_ORDER3_REFINE_SIZE;
+        </li>
+        <li>
+          <a href = "triangulation_test27.m">triangulation_test27.m</a>,
+          tests TRIANGULATION_ORDER6_VERTEX_COUNT;
+        </li>
+        <li>
+          <a href = "quad_fun.m">quad_fun.m</a>,
+          a sample integrand function for TRIANGULATION_QUAD;
+        </li>
+        <li>
+          <a href = "triangulation_test31.m">triangulation_test31.m</a>,
+          tests VORONOI_POLYGON_AREA;
+        </li>
+        <li>
+          <a href = "triangulation_test32.m">triangulation_test32.m</a>,
+          tests VORONOI_POLYGON_CENTROID;
+        </li>
+        <li>
+          <a href = "triangulation_test33.m">triangulation_test33.m</a>,
+          tests VORONOI_POLYGON_VERTICES;
+        </li>
+        <li>
+          <a href = "ns_triangulation.png">
+          ns_triangulation.png</a>,
+          a PNG image of
+          a "tiny" triangulation used for the Navier-Stokes examples.
+        </li>
+        <li>
+          <a href = "triangulation_order3_plot.png">
+          triangulation_order3_plot.png</a>,
+          a PNG image of a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order3_plot2.png">
+          triangulation_order3_plot2.png</a>,
+          a PNG image of
+          a triangulation.
+        </li>
+        <li>
+          <a href = "triangulation_order6_plot.png">
+          triangulation_order6_plot.png</a>,
+          a PNG image of
+          a triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised 29 August 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

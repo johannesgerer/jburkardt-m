@@ -1,0 +1,114 @@
+>> besselj_test
+
+BESSELJ_TEST:
+  Demonstrate Mercer's theorem and the KL expansion
+  for the besselj kernel.
+  Using interval [0,10]
+  Requested 10 eigenmodes, computed 10
+
+   I       Lambda(I)
+
+   1     3.17066
+   2     2.88271
+   3     2.07275
+   4     1.56348
+   5    0.289208
+   6   0.0202783
+   7  0.000885653
+   8  2.81715e-05
+   9  6.86275e-07
+  10  1.3217e-08
+
+  Frobenius norm of I - Psi' * Psi = 1.20173e-10
+
+  Truncated estimate of K(s,s) = 1 for S in the interval.
+
+        S        K(s,s) estimate
+
+           0               1
+         0.5               1
+           1               1
+         1.5               1
+           2               1
+         2.5               1
+           3               1
+         3.5               1
+           4               1
+         4.5               1
+           5               1
+         5.5               1
+           6               1
+         6.5               1
+           7               1
+         7.5               1
+           8               1
+         8.5               1
+           9               1
+         9.5               1
+          10               1
+
+  Index    Cumulative Eigenvalue sum
+
+      1    0.317066
+      2    0.605336
+      3    0.812612
+      4     0.96896
+      5    0.997881
+      6    0.999909
+      7    0.999997
+      8           1
+      9           1
+     10           1
+
+  Use a fixed number of eigenfunctions = 10
+  but vary the correlation length RHOBAR.
+  (We used RHOBAR = 1 above.)
+
+  The sum of the eigenvalues, divided by (B-A),
+  discloses the relative amount of the total variation
+  that is captured by the truncated expansion.
+
+      RHOBAR      VARSUM
+
+           1           1
+         0.5    0.999978
+        0.25    0.805957
+       0.125    0.546661
+      0.0625    0.379695
+     0.03125    0.266238
+    0.015625    0.187491
+   0.0078125    0.132309
+??? Error using ==> linop.eigs>value at 237
+No convergence with 1025 points. Check sigma, or ask for fewer modes.
+
+Error in ==> linop.eigs>@(x)value(x) at 155
+    chebfun( @(x) value(x), dom, settings);
+
+Error in ==> getfun>@(x)op(x) at 31
+g = fun(@(x) op(x), interval, pref, scl);
+
+Error in ==> growfun at 250
+                g = set(g,'vals',op(xvals));
+
+Error in ==> fun.fun at 228
+    [g,ish] = growfun(op,g,pref);
+
+Error in ==> getfun at 31
+g = fun(@(x) op(x), interval, pref, scl);
+
+Error in ==> auto at 32
+     [funs,hpy,scl] = getfun(op,ends,pref,scl);
+
+Error in ==> ctor_adapt at 128
+            [fs,es,scl] = auto(op,es,scl,pref);
+
+Error in ==> chebfun.chebfun at 243
+    f = ctor_adapt(f,argin{:},pref);        % adaptive call
+
+Error in ==> linop.eigs at 155
+    chebfun( @(x) value(x), dom, settings);
+
+Error in ==> besselj_test at 215
+    lambda_vec = eigs ( F, eigen_use, 'lm' );
+ 
+>> 

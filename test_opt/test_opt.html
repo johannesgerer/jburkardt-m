@@ -1,0 +1,1798 @@
+<html>
+
+  <head>
+    <title>
+      TEST_OPT - Scalar Function Optimization Test Problems
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_OPT <br> Optimization of a Scalar Function <br> Test Problems
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_OPT</b>
+      is a MATLAB library which 
+      defines test problems for the scalar function optimization problem. 
+    </p>
+
+    <p>
+      The scalar function optimization problem is to find a value
+      for the N-dimensional vector <b>X</b> which minimizes the value of
+      the given scalar function <b>F(X)</b>.  The function <b>F(X)</b> is 
+      not usually defined as the sum of squares of other functions.  
+      The minimum function value is not guaranteed to be zero.  
+    </p>
+
+    <p>
+      Any system of M nonlinear functions in N unknowns can be turned into
+      a scalar optimization problem.  One way to do this is to define the functional
+      <b>F(X)</b> to be the sum of the squares of the original nonlinear functions.
+      The minimizer of <b>F</b> will then minimize the sum of the squares of the
+      residuals.  Since this process involves squaring, it can be less accurate
+      than dealing directly with the original nonlinear functions: that is to say,
+      the derived optimization problem may be more convenient to solve, but might
+      provide less accurate results than applying a nonlinear solver to the original
+      system.
+    </p>
+
+    <p>
+      If a function <b>F(X)</b> is differentiable, then at an optimum, the
+      gradient vector must vanish.  Thus, it is also possible to start with an
+      optimization problem involving <b>F(X)</b> and turn it into a problem in
+      which we seek a zero of the nonlinear functions represented by the gradient
+      of <b>F</b>.  Of course, the gradient must be zero at a mininum, but 
+      the converse does not hold; thus unless we know more about <b>F</b>, it is not
+      safe to try to replace the optimization problem by a nonlinear function
+      solution.
+    </p>
+
+    <p>
+      For each test problem, routines are provided to evaluate the function,
+      gradient vector, and hessian matrix.  Routines are also provided to
+      indicate the number of variables, the problem title, a suitable starting 
+      point, and a minimizing solution, if known.
+    </p>
+
+    <p>
+      The functions defined include:
+      <ol>
+        <li>
+          The Fletcher-Powell helical valley function,<br>
+          N = 3.
+        </li>
+        <li>
+          The Biggs EXP6 function,<br>
+          N = 6.
+        </li>
+        <li>
+          The Gaussian function,<br>
+          N = 3.
+        </li>
+        <li>
+          The Powell badly scaled function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Box 3-dimensional function,<br>
+          N = 3.
+        </li>
+        <li>
+          The variably dimensioned function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The Watson function,<br>
+          2 &lt;= N.
+        </li>
+        <li>
+          The penalty function #1,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The penalty function #2,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The Brown badly scaled function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Brown and Dennis function,<br>
+          N = 4.
+        </li>
+        <li>
+          The Gulf R&D function,<br>
+          N = 3.
+        </li>
+        <li>
+          The trigonometric function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The extended Rosenbrock parabolic valley function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The extended Powell singular quartic function,<br>
+          4 &lt;= N.
+        </li>
+        <li>
+          The Beale function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Wood function,<br>
+          N = 4.
+        </li>
+        <li>
+          The Chebyquad function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          Leon's cubic valley function,<br>
+          N = 2.
+        </li>
+        <li>
+          Gregory and Karney's Tridiagonal Matrix Function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The Hilbert function,<br>
+          1 &lt;= N.
+        </li>
+        <li>
+          The De Jong Function F1,<br>
+          N = 3.
+        </li>
+        <li>
+          The De Jong Function F2,<br>
+          N = 2.
+        </li>
+        <li>
+          The De Jong Function F3 (discontinuous),<br>
+          N = 5.
+        </li>
+        <li>
+          The De Jong Function F4 (Gaussian noise),<br>
+          N = 30.
+        </li>
+        <li>
+          The De Jong Function F5,<br>
+          N = 2.
+        </li>
+        <li>
+          The Schaffer Function F6,<br>
+          N = 2.
+        </li>
+        <li>
+          The Schaffer Function F7,<br>
+          N = 2.
+        </li>
+        <li>
+          The Goldstein Price Polynomial,<br>
+          N = 2.
+        </li>
+        <li>
+          The Branin RCOS Function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Shekel SQRN5 Function,<br>
+          N = 4.
+        </li>
+        <li>
+          The Shekel SQRN7 Function,<br>
+          N = 4.
+        </li>
+        <li>
+          The Shekel SQRN10 Function,<br>
+          N = 4.
+        </li>
+        <li>
+          The Six-Hump Camel-Back Polynomial,<br>
+          N = 2.
+        </li>
+        <li>
+          The Shubert Function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Stuckman Function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Easom Function,<br>
+          N = 2.
+        </li>
+        <li>
+          The Bohachevsky Function #1,<br>
+          N = 2.
+        </li>
+        <li>
+          The Bohachevsky Function #2,<br>
+          N = 2.
+        </li>
+        <li>
+          The Bohachevsky Function #3,<br>
+          N = 2.
+        </li>
+        <li>
+          The Colville Polynomial,<br>
+          N = 4.
+        </li>
+        <li>
+          The Powell 3D function,<br>
+          N = 3.
+        </li>
+        <li>
+          The Himmelblau function,<br>
+          N = 2.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_OPT</b> is available in
+      <a href = "../../f_src/test_opt/test_opt.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_opt/test_opt.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/brent/brent.html">
+      BRENT</a>,
+      a MATLAB library which
+      contains Richard Brent's routines for finding the zero, local minimizer,
+      or global minimizer of a scalar function of a scalar argument, without
+      the use of derivative information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/compass_search/compass_search.html">
+      COMPASS_SEARCH</a>,
+      a MATLAB library which 
+      seeks the minimizer of a scalar function of several variables
+      using compass search, a direct search algorithm that does not use derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust region methods.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt_con/test_opt_con.html">
+      TEST_OPT_CON</a>,
+      a MATLAB library which
+      defines test problems for the minimization of a scalar function
+      of several variables, with the search constrained to lie within a specified hyper-rectangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_optimization/test_optimization.html">
+      TEST_OPTIMIZATION</a>,
+      a MATLAB library which
+      defines test problems for the minimization of a scalar function
+      of several variables, as described by Molga and Smutnicki.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>   
+        <li>
+          Evelyn Beale,<br>
+          On an Iterative Method for Finding a Local Minimum of a Function
+          of More than One Variable,<br>
+          Technical Report 25, <br>
+          Statistical Techniques Research Group,<br>
+          Princeton University, 1958.
+        </li>
+        <li>
+          Richard Brent,<br>
+          Algorithms for Minimization without Derivatives,<br>
+          Dover, 2002,<br>
+          ISBN: 0-486-41998-3,<br>
+          LC: QA402.5.B74.
+        </li>   
+        <li>
+          John Dennis, David Gay, Phuong Vu,<br>
+          A new nonlinear equations test problem,<br>
+          Technical Report 83-16,<br>
+          Mathematical Sciences Department,<br>
+          Rice University, 1983.
+        </li>
+        <li>
+          John Dennis, Robert Schnabel,<br>
+          Numerical Methods for Unconstrained Optimization 
+          and Nonlinear Equations,<br>
+          SIAM, 1996,<br>
+          ISBN13: 978-0-898713-64-0,<br>
+          LC: QA402.5.D44.
+        </li>
+        <li>
+          Noel deVilliers, David Glasser,<br>
+          A continuation method for nonlinear regression,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 18, 1981, pages 1139-1154.
+        </li>  
+        <li>
+          Chris Fraley,<br>
+          Solution of nonlinear least-squares problems,<br>
+          Technical Report STAN-CS-1165,<br>
+          Computer Science Department,<br>
+          Stanford University, 1987.
+        </li>  
+        <li>
+          Chris Fraley,<br>
+          Software performance on nonlinear least-squares problems,<br>
+          Technical Report SOL 88-17,<br>
+          Systems Optimization Laboratory,<br>
+          Department of Operations Research,<br>
+          Stanford University, 1988.
+        </li>
+        <li>
+          David Himmelblau,<br>
+          Applied Nonlinear Programming,<br>
+          McGraw Hill, 1972,<br>
+          ISBN13: 978-0070289215,<br>
+          LC: T57.8.H55.
+        </li>
+        <li>
+          A Leon,<br>
+          A Comparison of Eight Known Optimizing Procedures,<br>
+          in Recent Advances in Optimization Techniques,<br>
+          edited by Abraham Lavi, Thomas Vogl,<br>
+          Wiley, 1966.
+        </li> 
+        <li>
+          JJ McKeown,<br>
+          Specialized versus general-purpose algorithms for functions 
+          that are sums of squared terms,<br>
+          Mathematical Programming,<br>
+          Volume 9, 1975, pages 57-68.
+        </li>  
+        <li>
+          JJ McKeown,<br>
+          On algorithms for sums of squares problems,<br>
+          in Towards Global Optimization,<br>
+          edited by L Dixon, Gabor Szego,<br>
+          North-Holland, 1975, pages 229-257.
+        </li>    
+        <li>
+          Zbigniew Michalewicz,<br>
+          Genetic Algorithms + Data Structures = Evolution Programs,<br>
+          Third Edition,<br>
+          Springer, 1996,<br>
+          ISBN: 3-540-60676-9,<br>
+          LC: QA76.618.M53.
+        </li> 
+        <li>
+          Jorge More, Burton Garbow, Kenneth Hillstrom,<br>
+          Testing unconstrained optimization software,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 7, Number 1, March 1981, pages 17-41.
+        </li>
+        <li>
+          Jorge More, Burton Garbow, Kenneth Hillstrom,<br>
+          Algorithm 566:
+          FORTRAN Subroutines for Testing unconstrained optimization software,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 7, Number 1, March 1981, pages 136-140.
+        </li>
+        <li>
+          Michael Powell,<br>
+          An Efficient Method for Finding the Minimum of a Function of
+          Several Variables Without Calculating Derivatives,<br>
+          Computer Journal,<br>
+          Volume 7, Number 2, 1964, pages 155-162.
+        </li>  
+        <li>
+          Douglas Salane,<br>
+          A continuation approach for solving large residual nonlinear 
+          least squares problems,<br>
+          SIAM Journal on Scientific and Statistical Computing,<br>
+          Volume 8, 1987, pages 655-671.
+        </li>
+      </ol>
+    </p>
+ 
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>,
+          evaluates the objective function for any problem.
+        </li>
+        <li>
+          <a href = "p00_g.m">p00_g.m</a>,
+          evaluates the gradient for any problem.
+        </li>
+        <li>
+          <a href = "p00_gdif.m">p00_gdif.m</a>,
+          approximates the gradient via finite differences.
+        </li>
+        <li>
+          <a href = "p00_h.m">p00_h.m</a>,
+          evaluates the Hessian for any problem.
+        </li>
+        <li>
+          <a href = "p00_hdif.m">p00_hdif.m</a>,
+          approximates the Hessian via finite differences.
+        </li>
+        <li>
+          <a href = "p00_problem_num.m">p00_problem_num.m</a>,
+          returns the number of problems available.
+        </li>
+        <li>
+          <a href = "p00_n.m">p00_n.m</a>,
+          returns the number of variables for any problem.
+        </li>
+        <li>
+          <a href = "p00_sol.m">p00_sol.m</a>,
+          returns the solution for any problem.
+        </li>
+        <li>
+          <a href = "p00_start.m">p00_start.m</a>,
+          returns a starting point for optimization for any problem.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>,
+          returns a title for any problem.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>,
+          evaluates the objective function for problem 01.
+        </li>
+        <li>
+          <a href = "p01_g.m">p01_g.m</a>,
+          evaluates the gradient for problem 01.
+        </li>
+        <li>
+          <a href = "p01_h.m">p01_h.m</a>,
+          evaluates the Hessian for problem 01.
+        </li>
+        <li>
+          <a href = "p01_n.m">p01_n.m</a>,
+          returns the number of variables for problem 01.
+        </li>
+        <li>
+          <a href = "p01_sol.m">p01_sol.m</a>,
+          returns the solution for problem 01.
+        </li>
+        <li>
+          <a href = "p01_start.m">p01_start.m</a>,
+          returns a starting point for optimization for problem 01.
+        </li>
+        <li>
+          <a href = "p01_th.m">p01_th.m</a>,
+          returns the value of the TH parameter for problem 01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>,
+          returns a title for problem 01.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>,
+          evaluates the objective function for problem 02.
+        </li>
+        <li>
+          <a href = "p02_g.m">p02_g.m</a>,
+          evaluates the gradient for problem 02.
+        </li>
+        <li>
+          <a href = "p02_h.m">p02_h.m</a>,
+          evaluates the Hessian for problem 02.
+        </li>
+        <li>
+          <a href = "p02_n.m">p02_n.m</a>,
+          returns the number of variables for problem 02.
+        </li>
+        <li>
+          <a href = "p02_sol.m">p02_sol.m</a>,
+          returns the solution for problem 02.
+        </li>
+        <li>
+          <a href = "p02_start.m">p02_start.m</a>,
+          returns a starting point for optimization for problem 02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>,
+          returns a title for problem 02.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>,
+          evaluates the objective function for problem 03.
+        </li>
+        <li>
+          <a href = "p03_g.m">p03_g.m</a>,
+          evaluates the gradient for problem 03.
+        </li>
+        <li>
+          <a href = "p03_h.m">p03_h.m</a>,
+          evaluates the Hessian for problem 03.
+        </li>
+        <li>
+          <a href = "p03_n.m">p03_n.m</a>,
+          returns the number of variables for problem 03.
+        </li>
+        <li>
+          <a href = "p03_sol.m">p03_sol.m</a>,
+          returns the solution for problem 03.
+        </li>
+        <li>
+          <a href = "p03_start.m">p03_start.m</a>,
+          returns a starting point for optimization for problem 03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>,
+          returns a title for problem 03.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>,
+          evaluates the objective function for problem 04.
+        </li>
+        <li>
+          <a href = "p04_g.m">p04_g.m</a>,
+          evaluates the gradient for problem 04.
+        </li>
+        <li>
+          <a href = "p04_h.m">p04_h.m</a>,
+          evaluates the Hessian for problem 04.
+        </li>
+        <li>
+          <a href = "p04_n.m">p04_n.m</a>,
+          returns the number of variables for problem 04.
+        </li>
+        <li>
+          <a href = "p04_sol.m">p04_sol.m</a>,
+          returns the solution for problem 04.
+        </li>
+        <li>
+          <a href = "p04_start.m">p04_start.m</a>,
+          returns a starting point for optimization for problem 04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>,
+          returns a title for problem 04.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>,
+          evaluates the objective function for problem 05.
+        </li>
+        <li>
+          <a href = "p05_g.m">p05_g.m</a>,
+          evaluates the gradient for problem 05.
+        </li>
+        <li>
+          <a href = "p05_h.m">p05_h.m</a>,
+          evaluates the Hessian for problem 05.
+        </li>
+        <li>
+          <a href = "p05_n.m">p05_n.m</a>,
+          returns the number of variables for problem 05.
+        </li>
+        <li>
+          <a href = "p05_sol.m">p05_sol.m</a>,
+          returns the solution for problem 05.
+        </li>
+        <li>
+          <a href = "p05_start.m">p05_start.m</a>,
+          returns a starting point for optimization for problem 05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>,
+          returns a title for problem 05.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>,
+          evaluates the objective function for problem 06.
+        </li>
+        <li>
+          <a href = "p06_g.m">p06_g.m</a>,
+          evaluates the gradient for problem 06.
+        </li>
+        <li>
+          <a href = "p06_h.m">p06_h.m</a>,
+          evaluates the Hessian for problem 06.
+        </li>
+        <li>
+          <a href = "p06_n.m">p06_n.m</a>,
+          returns the number of variables for problem 06.
+        </li>
+        <li>
+          <a href = "p06_sol.m">p06_sol.m</a>,
+          returns the solution for problem 06.
+        </li>
+        <li>
+          <a href = "p06_start.m">p06_start.m</a>,
+          returns a starting point for optimization for problem 06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>,
+          returns a title for problem 06.
+        </li>
+        <li>
+          <a href = "p07_f.m">p07_f.m</a>,
+          evaluates the objective function for problem 07.
+        </li>
+        <li>
+          <a href = "p07_g.m">p07_g.m</a>,
+          evaluates the gradient for problem 07.
+        </li>
+        <li>
+          <a href = "p07_h.m">p07_h.m</a>,
+          evaluates the Hessian for problem 07.
+        </li>
+        <li>
+          <a href = "p07_n.m">p07_n.m</a>,
+          returns the number of variables for problem 07.
+        </li>
+        <li>
+          <a href = "p07_sol.m">p07_sol.m</a>,
+          returns the solution for problem 07.
+        </li>
+        <li>
+          <a href = "p07_start.m">p07_start.m</a>,
+          returns a starting point for optimization for problem 07.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>,
+          returns a title for problem 07.
+        </li>
+        <li>
+          <a href = "p08_f.m">p08_f.m</a>,
+          evaluates the objective function for problem 08.
+        </li>
+        <li>
+          <a href = "p08_g.m">p08_g.m</a>,
+          evaluates the gradient for problem 08.
+        </li>
+        <li>
+          <a href = "p08_h.m">p08_h.m</a>,
+          evaluates the Hessian for problem 08.
+        </li>
+        <li>
+          <a href = "p08_n.m">p08_n.m</a>,
+          returns the number of variables for problem 08.
+        </li>
+        <li>
+          <a href = "p08_sol.m">p08_sol.m</a>,
+          returns the solution for problem 08.
+        </li>
+        <li>
+          <a href = "p08_start.m">p08_start.m</a>,
+          returns a starting point for optimization for problem 08.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>,
+          returns a title for problem 08.
+        </li>
+        <li>
+          <a href = "p09_f.m">p09_f.m</a>,
+          evaluates the objective function for problem 09.
+        </li>
+        <li>
+          <a href = "p09_g.m">p09_g.m</a>,
+          evaluates the gradient for problem 09.
+        </li>
+        <li>
+          <a href = "p09_h.m">p09_h.m</a>,
+          evaluates the Hessian for problem 09.
+        </li>
+        <li>
+          <a href = "p09_n.m">p09_n.m</a>,
+          returns the number of variables for problem 09.
+        </li>
+        <li>
+          <a href = "p09_sol.m">p09_sol.m</a>,
+          returns the solution for problem 09.
+        </li>
+        <li>
+          <a href = "p09_start.m">p09_start.m</a>,
+          returns a starting point for optimization for problem 09.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>,
+          returns a title for problem 09.
+        </li>
+        <li>
+          <a href = "p10_f.m">p10_f.m</a>,
+          evaluates the objective function for problem 10.
+        </li>
+        <li>
+          <a href = "p10_g.m">p10_g.m</a>,
+          evaluates the gradient for problem 10.
+        </li>
+        <li>
+          <a href = "p10_h.m">p10_h.m</a>,
+          evaluates the Hessian for problem 10.
+        </li>
+        <li>
+          <a href = "p10_n.m">p10_n.m</a>,
+          returns the number of variables for problem 10.
+        </li>
+        <li>
+          <a href = "p10_sol.m">p10_sol.m</a>,
+          returns the solution for problem 10.
+        </li>
+        <li>
+          <a href = "p10_start.m">p10_start.m</a>,
+          returns a starting point for optimization for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>,
+          returns a title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_f.m">p11_f.m</a>,
+          evaluates the objective function for problem 11.
+        </li>
+        <li>
+          <a href = "p11_g.m">p11_g.m</a>,
+          evaluates the gradient for problem 11.
+        </li>
+        <li>
+          <a href = "p11_h.m">p11_h.m</a>,
+          evaluates the Hessian for problem 11.
+        </li>
+        <li>
+          <a href = "p11_n.m">p11_n.m</a>,
+          returns the number of variables for problem 11.
+        </li>
+        <li>
+          <a href = "p11_sol.m">p11_sol.m</a>,
+          returns the solution for problem 11.
+        </li>
+        <li>
+          <a href = "p11_start.m">p11_start.m</a>,
+          returns a starting point for optimization for problem 11.
+        </li>
+        <li>
+          <a href = "p11_th.m">p11_th.m</a>,
+          returns the value of the TH parameter for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>,
+          returns a title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_f.m">p12_f.m</a>,
+          evaluates the objective function for problem 12.
+        </li>
+        <li>
+          <a href = "p12_g.m">p12_g.m</a>,
+          evaluates the gradient for problem 12.
+        </li>
+        <li>
+          <a href = "p12_h.m">p12_h.m</a>,
+          evaluates the Hessian for problem 12.
+        </li>
+        <li>
+          <a href = "p12_n.m">p12_n.m</a>,
+          returns the number of variables for problem 12.
+        </li>
+        <li>
+          <a href = "p12_sol.m">p12_sol.m</a>,
+          returns the solution for problem 12.
+        </li>
+        <li>
+          <a href = "p12_start.m">p12_start.m</a>,
+          returns a starting point for optimization for problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>,
+          returns a title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_f.m">p13_f.m</a>,
+          evaluates the objective function for problem 13.
+        </li>
+        <li>
+          <a href = "p13_g.m">p13_g.m</a>,
+          evaluates the gradient for problem 13.
+        </li>
+        <li>
+          <a href = "p13_h.m">p13_h.m</a>,
+          evaluates the Hessian for problem 13.
+        </li>
+        <li>
+          <a href = "p13_n.m">p13_n.m</a>,
+          returns the number of variables for problem 13.
+        </li>
+        <li>
+          <a href = "p13_sol.m">p13_sol.m</a>,
+          returns the solution for problem 13.
+        </li>
+        <li>
+          <a href = "p13_start.m">p13_start.m</a>,
+          returns a starting point for optimization for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>,
+          returns a title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_f.m">p14_f.m</a>,
+          evaluates the objective function for problem 14.
+        </li>
+        <li>
+          <a href = "p14_g.m">p14_g.m</a>,
+          evaluates the gradient for problem 14.
+        </li>
+        <li>
+          <a href = "p14_h.m">p14_h.m</a>,
+          evaluates the Hessian for problem 14.
+        </li>
+        <li>
+          <a href = "p14_n.m">p14_n.m</a>,
+          returns the number of variables for problem 14.
+        </li>
+        <li>
+          <a href = "p14_sol.m">p14_sol.m</a>,
+          returns the solution for problem 14.
+        </li>
+        <li>
+          <a href = "p14_start.m">p14_start.m</a>,
+          returns a starting point for optimization for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>,
+          returns a title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_f.m">p15_f.m</a>,
+          evaluates the objective function for problem 15.
+        </li>
+        <li>
+          <a href = "p15_g.m">p15_g.m</a>,
+          evaluates the gradient for problem 15.
+        </li>
+        <li>
+          <a href = "p15_h.m">p15_h.m</a>,
+          evaluates the Hessian for problem 15.
+        </li>
+        <li>
+          <a href = "p15_n.m">p15_n.m</a>,
+          returns the number of variables for problem 15.
+        </li>
+        <li>
+          <a href = "p15_sol.m">p15_sol.m</a>,
+          returns the solution for problem 15.
+        </li>
+        <li>
+          <a href = "p15_start.m">p15_start.m</a>,
+          returns a starting point for optimization for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>,
+          returns a title for problem 15.
+        </li>
+        <li>
+          <a href = "p16_f.m">p16_f.m</a>,
+          evaluates the objective function for problem 16.
+        </li>
+        <li>
+          <a href = "p16_g.m">p16_g.m</a>,
+          evaluates the gradient for problem 16.
+        </li>
+        <li>
+          <a href = "p16_h.m">p16_h.m</a>,
+          evaluates the Hessian for problem 16.
+        </li>
+        <li>
+          <a href = "p16_n.m">p16_n.m</a>,
+          returns the number of variables for problem 16.
+        </li>
+        <li>
+          <a href = "p16_sol.m">p16_sol.m</a>,
+          returns the solution for problem 16.
+        </li>
+        <li>
+          <a href = "p16_start.m">p16_start.m</a>,
+          returns a starting point for optimization for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>,
+          returns a title for problem 16.
+        </li>
+        <li>
+          <a href = "p17_f.m">p17_f.m</a>,
+          evaluates the objective function for problem 17.
+        </li>
+        <li>
+          <a href = "p17_g.m">p17_g.m</a>,
+          evaluates the gradient for problem 17.
+        </li>
+        <li>
+          <a href = "p17_h.m">p17_h.m</a>,
+          evaluates the Hessian for problem 17.
+        </li>
+        <li>
+          <a href = "p17_n.m">p17_n.m</a>,
+          returns the number of variables for problem 17.
+        </li>
+        <li>
+          <a href = "p17_sol.m">p17_sol.m</a>,
+          returns the solution for problem 17.
+        </li>
+        <li>
+          <a href = "p17_start.m">p17_start.m</a>,
+          returns a starting point for optimization for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>,
+          returns a title for problem 17.
+        </li>
+        <li>
+          <a href = "p18_f.m">p18_f.m</a>,
+          evaluates the objective function for problem 18.
+        </li>
+        <li>
+          <a href = "p18_g.m">p18_g.m</a>,
+          evaluates the gradient for problem 18.
+        </li>
+        <li>
+          <a href = "p18_h.m">p18_h.m</a>,
+          evaluates the Hessian for problem 18.
+        </li>
+        <li>
+          <a href = "p18_n.m">p18_n.m</a>,
+          returns the number of variables for problem 18.
+        </li>
+        <li>
+          <a href = "p18_sol.m">p18_sol.m</a>,
+          returns the solution for problem 18.
+        </li>
+        <li>
+          <a href = "p18_start.m">p18_start.m</a>,
+          returns a starting point for optimization for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>,
+          returns a title for problem 18.
+        </li>
+        <li>
+          <a href = "p19_f.m">p19_f.m</a>,
+          evaluates the objective function for problem 19.
+        </li>
+        <li>
+          <a href = "p19_g.m">p19_g.m</a>,
+          evaluates the gradient for problem 19.
+        </li>
+        <li>
+          <a href = "p19_h.m">p19_h.m</a>,
+          evaluates the Hessian for problem 19.
+        </li>
+        <li>
+          <a href = "p19_n.m">p19_n.m</a>,
+          returns the number of variables for problem 19.
+        </li>
+        <li>
+          <a href = "p19_sol.m">p19_sol.m</a>,
+          returns the solution for problem 19.
+        </li>
+        <li>
+          <a href = "p19_start.m">p19_start.m</a>,
+          returns a starting point for optimization for problem 19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>,
+          returns a title for problem 19.
+        </li>
+        <li>
+          <a href = "p20_f.m">p20_f.m</a>,
+          evaluates the objective function for problem 20.
+        </li>
+        <li>
+          <a href = "p20_g.m">p20_g.m</a>,
+          evaluates the gradient for problem 20.
+        </li>
+        <li>
+          <a href = "p20_h.m">p20_h.m</a>,
+          evaluates the Hessian for problem 20.
+        </li>
+        <li>
+          <a href = "p20_n.m">p20_n.m</a>,
+          returns the number of variables for problem 20.
+        </li>
+        <li>
+          <a href = "p20_sol.m">p20_sol.m</a>,
+          returns the solution for problem 20.
+        </li>
+        <li>
+          <a href = "p20_start.m">p20_start.m</a>,
+          returns a starting point for optimization for problem 20.
+        </li>
+        <li>
+          <a href = "p20_title.m">p20_title.m</a>,
+          returns a title for problem 20.
+        </li>
+        <li>
+          <a href = "p21_f.m">p21_f.m</a>,
+          evaluates the objective function for problem 21.
+        </li>
+        <li>
+          <a href = "p21_g.m">p21_g.m</a>,
+          evaluates the gradient for problem 21.
+        </li>
+        <li>
+          <a href = "p21_h.m">p21_h.m</a>,
+          evaluates the Hessian for problem 21.
+        </li>
+        <li>
+          <a href = "p21_n.m">p21_n.m</a>,
+          returns the number of variables for problem 21.
+        </li>
+        <li>
+          <a href = "p21_sol.m">p21_sol.m</a>,
+          returns the solution for problem 21.
+        </li>
+        <li>
+          <a href = "p21_start.m">p21_start.m</a>,
+          returns a starting point for optimization for problem 21.
+        </li>
+        <li>
+          <a href = "p21_title.m">p21_title.m</a>,
+          returns a title for problem 21.
+        </li>
+        <li>
+          <a href = "p22_f.m">p22_f.m</a>,
+          evaluates the objective function for problem 22.
+        </li>
+        <li>
+          <a href = "p22_g.m">p22_g.m</a>,
+          evaluates the gradient for problem 22.
+        </li>
+        <li>
+          <a href = "p22_h.m">p22_h.m</a>,
+          evaluates the Hessian for problem 22.
+        </li>
+        <li>
+          <a href = "p22_n.m">p22_n.m</a>,
+          returns the number of variables for problem 22.
+        </li>
+        <li>
+          <a href = "p22_sol.m">p22_sol.m</a>,
+          returns the solution for problem 22.
+        </li>
+        <li>
+          <a href = "p22_start.m">p22_start.m</a>,
+          returns a starting point for optimization for problem 22.
+        </li>
+        <li>
+          <a href = "p22_title.m">p22_title.m</a>,
+          returns a title for problem 22.
+        </li>
+        <li>
+          <a href = "p23_f.m">p23_f.m</a>,
+          evaluates the objective function for problem 23.
+        </li>
+        <li>
+          <a href = "p23_g.m">p23_g.m</a>,
+          evaluates the gradient for problem 23.
+        </li>
+        <li>
+          <a href = "p23_h.m">p23_h.m</a>,
+          evaluates the Hessian for problem 23.
+        </li>
+        <li>
+          <a href = "p23_n.m">p23_n.m</a>,
+          returns the number of variables for problem 23.
+        </li>
+        <li>
+          <a href = "p23_sol.m">p23_sol.m</a>,
+          returns the solution for problem 23.
+        </li>
+        <li>
+          <a href = "p23_start.m">p23_start.m</a>,
+          returns a starting point for optimization for problem 23.
+        </li>
+        <li>
+          <a href = "p23_title.m">p23_title.m</a>,
+          returns a title for problem 23.
+        </li>
+        <li>
+          <a href = "p24_f.m">p24_f.m</a>,
+          evaluates the objective function for problem 24.
+        </li>
+        <li>
+          <a href = "p24_g.m">p24_g.m</a>,
+          evaluates the gradient for problem 24.
+        </li>
+        <li>
+          <a href = "p24_h.m">p24_h.m</a>,
+          evaluates the Hessian for problem 24.
+        </li>
+        <li>
+          <a href = "p24_n.m">p24_n.m</a>,
+          returns the number of variables for problem 24.
+        </li>
+        <li>
+          <a href = "p24_sol.m">p24_sol.m</a>,
+          returns the solution for problem 24.
+        </li>
+        <li>
+          <a href = "p24_start.m">p24_start.m</a>,
+          returns a starting point for optimization for problem 24.
+        </li>
+        <li>
+          <a href = "p24_title.m">p24_title.m</a>,
+          returns a title for problem 24.
+        </li>
+        <li>
+          <a href = "p25_f.m">p25_f.m</a>,
+          evaluates the objective function for problem 25.
+        </li>
+        <li>
+          <a href = "p25_g.m">p25_g.m</a>,
+          evaluates the gradient for problem 25.
+        </li>
+        <li>
+          <a href = "p25_h.m">p25_h.m</a>,
+          evaluates the Hessian for problem 25.
+        </li>
+        <li>
+          <a href = "p25_n.m">p25_n.m</a>,
+          returns the number of variables for problem 25.
+        </li>
+        <li>
+          <a href = "p25_p_get.m">p25_p_get.m</a>,
+          get parameters for problem 25.
+        </li>
+        <li>
+          <a href = "p25_p_set.m">p25_p_set.m</a>,
+          set parameters for problem 25.
+        </li>
+        <li>
+          <a href = "p25_p_val.m">p25_p_val.m</a>,
+          sets or gets parameters for problem 25.
+        </li>
+        <li>
+          <a href = "p25_sol.m">p25_sol.m</a>,
+          returns the solution for problem 25.
+        </li>
+        <li>
+          <a href = "p25_start.m">p25_start.m</a>,
+          returns a starting point for optimization for problem 25.
+        </li>
+        <li>
+          <a href = "p25_title.m">p25_title.m</a>,
+          returns a title for problem 25.
+        </li>
+        <li>
+          <a href = "p26_f.m">p26_f.m</a>,
+          evaluates the objective function for problem 26.
+        </li>
+        <li>
+          <a href = "p26_g.m">p26_g.m</a>,
+          evaluates the gradient for problem 26.
+        </li>
+        <li>
+          <a href = "p26_h.m">p26_h.m</a>,
+          evaluates the Hessian for problem 26.
+        </li>
+        <li>
+          <a href = "p26_n.m">p26_n.m</a>,
+          returns the number of variables for problem 26.
+        </li>
+        <li>
+          <a href = "p26_sol.m">p26_sol.m</a>,
+          returns the solution for problem 26.
+        </li>
+        <li>
+          <a href = "p26_start.m">p26_start.m</a>,
+          returns a starting point for optimization for problem 26.
+        </li>
+        <li>
+          <a href = "p26_title.m">p26_title.m</a>,
+          returns a title for problem 26.
+        </li>
+        <li>
+          <a href = "p27_f.m">p27_f.m</a>,
+          evaluates the objective function for problem 27.
+        </li>
+        <li>
+          <a href = "p27_g.m">p27_g.m</a>,
+          evaluates the gradient for problem 27.
+        </li>
+        <li>
+          <a href = "p27_h.m">p27_h.m</a>,
+          evaluates the Hessian for problem 27.
+        </li>
+        <li>
+          <a href = "p27_n.m">p27_n.m</a>,
+          returns the number of variables for problem 27.
+        </li>
+        <li>
+          <a href = "p27_sol.m">p27_sol.m</a>,
+          returns the solution for problem 27.
+        </li>
+        <li>
+          <a href = "p27_start.m">p27_start.m</a>,
+          returns a starting point for optimization for problem 27.
+        </li>
+        <li>
+          <a href = "p27_title.m">p27_title.m</a>,
+          returns a title for problem 27.
+        </li>
+        <li>
+          <a href = "p28_f.m">p28_f.m</a>,
+          evaluates the objective function for problem 28.
+        </li>
+        <li>
+          <a href = "p28_g.m">p28_g.m</a>,
+          evaluates the gradient for problem 28.
+        </li>
+        <li>
+          <a href = "p28_h.m">p28_h.m</a>,
+          evaluates the Hessian for problem 28.
+        </li>
+        <li>
+          <a href = "p28_n.m">p28_n.m</a>,
+          returns the number of variables for problem 28.
+        </li>
+        <li>
+          <a href = "p28_sol.m">p28_sol.m</a>,
+          returns the solution for problem 28.
+        </li>
+        <li>
+          <a href = "p28_start.m">p28_start.m</a>,
+          returns a starting point for optimization for problem 28.
+        </li>
+        <li>
+          <a href = "p28_title.m">p28_title.m</a>,
+          returns a title for problem 28.
+        </li>
+        <li>
+          <a href = "p29_f.m">p29_f.m</a>,
+          evaluates the objective function for problem 29.
+        </li>
+        <li>
+          <a href = "p29_g.m">p29_g.m</a>,
+          evaluates the gradient for problem 29.
+        </li>
+        <li>
+          <a href = "p29_h.m">p29_h.m</a>,
+          evaluates the Hessian for problem 29.
+        </li>
+        <li>
+          <a href = "p29_n.m">p29_n.m</a>,
+          returns the number of variables for problem 29.
+        </li>
+        <li>
+          <a href = "p29_sol.m">p29_sol.m</a>,
+          returns the solution for problem 29.
+        </li>
+        <li>
+          <a href = "p29_start.m">p29_start.m</a>,
+          returns a starting point for optimization for problem 29.
+        </li>
+        <li>
+          <a href = "p29_title.m">p29_title.m</a>,
+          returns a title for problem 29.
+        </li>
+        <li>
+          <a href = "p30_f.m">p30_f.m</a>,
+          evaluates the objective function for problem 30.
+        </li>
+        <li>
+          <a href = "p30_g.m">p30_g.m</a>,
+          evaluates the gradient for problem 30.
+        </li>
+        <li>
+          <a href = "p30_h.m">p30_h.m</a>,
+          evaluates the Hessian for problem 30.
+        </li>
+        <li>
+          <a href = "p30_n.m">p30_n.m</a>,
+          returns the number of variables for problem 30.
+        </li>
+        <li>
+          <a href = "p30_sol.m">p30_sol.m</a>,
+          returns the solution for problem 30.
+        </li>
+        <li>
+          <a href = "p30_start.m">p30_start.m</a>,
+          returns a starting point for optimization for problem 30.
+        </li>
+        <li>
+          <a href = "p30_title.m">p30_title.m</a>,
+          returns a title for problem 30.
+        </li>
+        <li>
+          <a href = "p31_f.m">p31_f.m</a>,
+          evaluates the objective function for problem 31.
+        </li>
+        <li>
+          <a href = "p31_g.m">p31_g.m</a>,
+          evaluates the gradient for problem 31.
+        </li>
+        <li>
+          <a href = "p31_h.m">p31_h.m</a>,
+          evaluates the Hessian for problem 31.
+        </li>
+        <li>
+          <a href = "p31_n.m">p31_n.m</a>,
+          returns the number of variables for problem 31.
+        </li>
+        <li>
+          <a href = "p31_sol.m">p31_sol.m</a>,
+          returns the solution for problem 31.
+        </li>
+        <li>
+          <a href = "p31_start.m">p31_start.m</a>,
+          returns a starting point for optimization for problem 31.
+        </li>
+        <li>
+          <a href = "p31_title.m">p31_title.m</a>,
+          returns a title for problem 31.
+        </li>
+        <li>
+          <a href = "p32_f.m">p32_f.m</a>,
+          evaluates the objective function for problem 32.
+        </li>
+        <li>
+          <a href = "p32_g.m">p32_g.m</a>,
+          evaluates the gradient for problem 32.
+        </li>
+        <li>
+          <a href = "p32_h.m">p32_h.m</a>,
+          evaluates the Hessian for problem 32.
+        </li>
+        <li>
+          <a href = "p32_n.m">p32_n.m</a>,
+          returns the number of variables for problem 32.
+        </li>
+        <li>
+          <a href = "p32_sol.m">p32_sol.m</a>,
+          returns the solution for problem 32.
+        </li>
+        <li>
+          <a href = "p32_start.m">p32_start.m</a>,
+          returns a starting point for optimization for problem 32.
+        </li>
+        <li>
+          <a href = "p32_title.m">p32_title.m</a>,
+          returns a title for problem 32.
+        </li>
+        <li>
+          <a href = "p33_f.m">p33_f.m</a>,
+          evaluates the objective function for problem 33.
+        </li>
+        <li>
+          <a href = "p33_g.m">p33_g.m</a>,
+          evaluates the gradient for problem 33.
+        </li>
+        <li>
+          <a href = "p33_h.m">p33_h.m</a>,
+          evaluates the Hessian for problem 33.
+        </li>
+        <li>
+          <a href = "p33_n.m">p33_n.m</a>,
+          returns the number of variables for problem 33.
+        </li>
+        <li>
+          <a href = "p33_sol.m">p33_sol.m</a>,
+          returns the solution for problem 33.
+        </li>
+        <li>
+          <a href = "p33_start.m">p33_start.m</a>,
+          returns a starting point for optimization for problem 33.
+        </li>
+        <li>
+          <a href = "p33_title.m">p33_title.m</a>,
+          returns a title for problem 33.
+        </li>
+        <li>
+          <a href = "p34_f.m">p34_f.m</a>,
+          evaluates the objective function for problem 34.
+        </li>
+        <li>
+          <a href = "p34_g.m">p34_g.m</a>,
+          evaluates the gradient for problem 34.
+        </li>
+        <li>
+          <a href = "p34_h.m">p34_h.m</a>,
+          evaluates the Hessian for problem 34.
+        </li>
+        <li>
+          <a href = "p34_n.m">p34_n.m</a>,
+          returns the number of variables for problem 34.
+        </li>
+        <li>
+          <a href = "p34_sol.m">p34_sol.m</a>,
+          returns the solution for problem 34.
+        </li>
+        <li>
+          <a href = "p34_start.m">p34_start.m</a>,
+          returns a starting point for optimization for problem 34.
+        </li>
+        <li>
+          <a href = "p34_title.m">p34_title.m</a>,
+          returns a title for problem 34.
+        </li>
+        <li>
+          <a href = "p35_f.m">p35_f.m</a>,
+          evaluates the objective function for problem 35.
+        </li>
+        <li>
+          <a href = "p35_g.m">p35_g.m</a>,
+          evaluates the gradient for problem 35.
+        </li>
+        <li>
+          <a href = "p35_h.m">p35_h.m</a>,
+          evaluates the Hessian for problem 35.
+        </li>
+        <li>
+          <a href = "p35_n.m">p35_n.m</a>,
+          returns the number of variables for problem 35.
+        </li>
+        <li>
+          <a href = "p35_sol.m">p35_sol.m</a>,
+          returns the solution for problem 35.
+        </li>
+        <li>
+          <a href = "p35_start.m">p35_start.m</a>,
+          returns a starting point for optimization for problem 35.
+        </li>
+        <li>
+          <a href = "p35_title.m">p35_title.m</a>,
+          returns a title for problem 35.
+        </li>
+        <li>
+          <a href = "p36_f.m">p36_f.m</a>,
+          evaluates the objective function for problem 36.
+        </li>
+        <li>
+          <a href = "p36_g.m">p36_g.m</a>,
+          evaluates the gradient for problem 36.
+        </li>
+        <li>
+          <a href = "p36_h.m">p36_h.m</a>,
+          evaluates the Hessian for problem 36.
+        </li>
+        <li>
+          <a href = "p36_n.m">p36_n.m</a>,
+          returns the number of variables for problem 36.
+        </li>
+        <li>
+          <a href = "p36_p_get.m">p36_p_get.m</a>,
+          get parameters for problem 36.
+        </li>
+        <li>
+          <a href = "p36_p_init.m">p36_p_init.m</a>,
+          initializes parameters for problem 36.
+        </li>
+        <li>
+          <a href = "p36_p_set.m">p36_p_set.m</a>,
+          set parameters for problem 36.
+        </li>
+        <li>
+          <a href = "p36_p_val.m">p36_p_val.m</a>,
+          sets or gets parameters for problem 36.
+        </li>
+        <li>
+          <a href = "p36_sol.m">p36_sol.m</a>,
+          returns the solution for problem 36.
+        </li>
+        <li>
+          <a href = "p36_start.m">p36_start.m</a>,
+          returns a starting point for optimization for problem 36.
+        </li>
+        <li>
+          <a href = "p36_title.m">p36_title.m</a>,
+          returns a title for problem 36.
+        </li>
+        <li>
+          <a href = "p37_f.m">p37_f.m</a>,
+          evaluates the objective function for problem 37.
+        </li>
+        <li>
+          <a href = "p37_g.m">p37_g.m</a>,
+          evaluates the gradient for problem 37.
+        </li>
+        <li>
+          <a href = "p37_h.m">p37_h.m</a>,
+          evaluates the Hessian for problem 37.
+        </li>
+        <li>
+          <a href = "p37_n.m">p37_n.m</a>,
+          returns the number of variables for problem 37.
+        </li>
+        <li>
+          <a href = "p37_sol.m">p37_sol.m</a>,
+          returns the solution for problem 37.
+        </li>
+        <li>
+          <a href = "p37_start.m">p37_start.m</a>,
+          returns a starting point for optimization for problem 37.
+        </li>
+        <li>
+          <a href = "p37_title.m">p37_title.m</a>,
+          returns a title for problem 37.
+        </li>
+        <li>
+          <a href = "p38_f.m">p38_f.m</a>,
+          evaluates the objective function for problem 38.
+        </li>
+        <li>
+          <a href = "p38_g.m">p38_g.m</a>,
+          evaluates the gradient for problem 38.
+        </li>
+        <li>
+          <a href = "p38_h.m">p38_h.m</a>,
+          evaluates the Hessian for problem 38.
+        </li>
+        <li>
+          <a href = "p38_n.m">p38_n.m</a>,
+          returns the number of variables for problem 38.
+        </li>
+        <li>
+          <a href = "p38_sol.m">p38_sol.m</a>,
+          returns the solution for problem 38.
+        </li>
+        <li>
+          <a href = "p38_start.m">p38_start.m</a>,
+          returns a starting point for optimization for problem 38.
+        </li>
+        <li>
+          <a href = "p38_title.m">p38_title.m</a>,
+          returns a title for problem 38.
+        </li>
+        <li>
+          <a href = "p39_f.m">p39_f.m</a>,
+          evaluates the objective function for problem 39.
+        </li>
+        <li>
+          <a href = "p39_g.m">p39_g.m</a>,
+          evaluates the gradient for problem 39.
+        </li>
+        <li>
+          <a href = "p39_h.m">p39_h.m</a>,
+          evaluates the Hessian for problem 39.
+        </li>
+        <li>
+          <a href = "p39_n.m">p39_n.m</a>,
+          returns the number of variables for problem 39.
+        </li>
+        <li>
+          <a href = "p39_sol.m">p39_sol.m</a>,
+          returns the solution for problem 39.
+        </li>
+        <li>
+          <a href = "p39_start.m">p39_start.m</a>,
+          returns a starting point for optimization for problem 39.
+        </li>
+        <li>
+          <a href = "p39_title.m">p39_title.m</a>,
+          returns a title for problem 39.
+        </li>
+        <li>
+          <a href = "p40_f.m">p40_f.m</a>,
+          evaluates the objective function for problem 40.
+        </li>
+        <li>
+          <a href = "p40_g.m">p40_g.m</a>,
+          evaluates the gradient for problem 40.
+        </li>
+        <li>
+          <a href = "p40_h.m">p40_h.m</a>,
+          evaluates the Hessian for problem 40.
+        </li>
+        <li>
+          <a href = "p40_n.m">p40_n.m</a>,
+          returns the number of variables for problem 40.
+        </li>
+        <li>
+          <a href = "p40_sol.m">p40_sol.m</a>,
+          returns the solution for problem 40.
+        </li>
+        <li>
+          <a href = "p40_start.m">p40_start.m</a>,
+          returns a starting point for optimization for problem 40.
+        </li>
+        <li>
+          <a href = "p40_title.m">p40_title.m</a>,
+          returns a title for problem 40.
+        </li>
+        <li>
+          <a href = "p41_f.m">p41_f.m</a>,
+          evaluates the objective function for problem 41.
+        </li>
+        <li>
+          <a href = "p41_g.m">p41_g.m</a>,
+          evaluates the gradient for problem 41.
+        </li>
+        <li>
+          <a href = "p41_h.m">p41_h.m</a>,
+          evaluates the Hessian for problem 41.
+        </li>
+        <li>
+          <a href = "p41_n.m">p41_n.m</a>,
+          returns the number of variables for problem 41.
+        </li>
+        <li>
+          <a href = "p41_sol.m">p41_sol.m</a>,
+          returns the solution for problem 41.
+        </li>
+        <li>
+          <a href = "p41_start.m">p41_start.m</a>,
+          returns a starting point for optimization for problem 41.
+        </li>
+        <li>
+          <a href = "p41_title.m">p41_title.m</a>,
+          returns a title for problem 41.
+        </li>
+        <li>
+          <a href = "p42_f.m">p42_f.m</a>,
+          evaluates the objective function for problem 42.
+        </li>
+        <li>
+          <a href = "p42_g.m">p42_g.m</a>,
+          evaluates the gradient for problem 42.
+        </li>
+        <li>
+          <a href = "p42_h.m">p42_h.m</a>,
+          evaluates the Hessian for problem 42.
+        </li>
+        <li>
+          <a href = "p42_n.m">p42_n.m</a>,
+          returns the number of variables for problem 42.
+        </li>
+        <li>
+          <a href = "p42_sol.m">p42_sol.m</a>,
+          returns the solution for problem 42.
+        </li>
+        <li>
+          <a href = "p42_start.m">p42_start.m</a>,
+          returns a starting point for optimization for problem 42.
+        </li>
+        <li>
+          <a href = "p42_title.m">p42_title.m</a>,
+          returns a title for problem 42.
+        </li>
+        <li>
+          <a href = "p43_f.m">p43_f.m</a>,
+          evaluates the objective function for problem 43.
+        </li>
+        <li>
+          <a href = "p43_g.m">p43_g.m</a>,
+          evaluates the gradient for problem 43.
+        </li>
+        <li>
+          <a href = "p43_h.m">p43_h.m</a>,
+          evaluates the Hessian for problem 43.
+        </li>
+        <li>
+          <a href = "p43_n.m">p43_n.m</a>,
+          returns the number of variables for problem 43.
+        </li>
+        <li>
+          <a href = "p43_sol.m">p43_sol.m</a>,
+          returns the solution for problem 43.
+        </li>
+        <li>
+          <a href = "p43_start.m">p43_start.m</a>,
+          returns a starting point for optimization for problem 43.
+        </li>
+        <li>
+          <a href = "p43_title.m">p43_title.m</a>,
+          returns a title for problem 43.
+        </li>
+
+        <li>
+          <a href = "r8_uniform.m">r8_uniform.m</a>,
+          returns a scaled pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_opt_test.m">test_opt_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "test_opt_test01.m">test_opt_test01.m</a>,
+          prints the title of each test.
+        </li>
+        <li>
+          <a href = "test_opt_test02.m">test_opt_test02.m</a>,
+          evaluates the objective function at each starting point.
+        </li>
+        <li>
+          <a href = "test_opt_test03.m">test_opt_test03.m</a>,
+          compares the exact and approximate gradient vectors.
+        </li>
+        <li>
+          <a href = "test_opt_test04.m">test_opt_test04.m</a>,
+          compares the exact and approximate Hessian matrices.
+        </li>
+        <li>
+          <a href = "test_opt_test05.m">test_opt_test05.m</a>,
+          carries out a simple gradient method.
+        </li>
+        <li>
+          <a href = "test_opt_test_output.txt">test_opt_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 December 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

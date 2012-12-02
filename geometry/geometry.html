@@ -1,0 +1,4119 @@
+<html>
+
+  <head>
+    <title>
+      GEOMETRY - Geometric Calculations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      GEOMETRY <br> Geometric Calculations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>GEOMETRY</b>
+      is a MATLAB library which
+      carries out geometric calculations in 2, 3 and N space.
+    </p>
+
+    <p>
+      These calculations include angles, areas, containment, distances,
+      intersections, lengths, and volumes.
+    </p>
+
+    <p>
+      Some geometric objects can be described in a variety of ways.
+      For instance, a line has implicit, explicit and parametric
+      representations.  The names of routines often will specify
+      the representation used, and there are routines to convert
+      from one representation to another.
+    </p>
+
+    <p>
+      Another useful task is the delineation of a standard geometric
+      object.  For instance, there is a routine that will return
+      the location of the vertices of an octahedron, and others to
+      produce a series of "equally spaced" points on a circle, ellipse,
+      sphere, or within the interior of a triangle.
+    </p>
+
+    <p>
+      Note that I much prefer vectors to be expressed as column vectors;
+      MATLAB, on the other hand, seems to make it easier to work with row
+      vectors.  In my original codes, I primarily used row vectors, but
+      I have determined to convert to column vectors; the code is in the
+      middle of this transition, so in some cases there may be be some
+      inconsistencies in style, and accidental inconsistencies in use.
+      On the other hand, I am willing to put up with the practice of
+      declaring a column vector's entries as though they were in a matrix
+      of dimension n by 1, since this guarantees me that, for instance,
+      a dot product is written as (u' * v), and everything finally makes
+      sense to me.
+    </p>
+
+    <p>
+      An open source directory of computational geometry routines is available
+      at <a href = "http://www.cgal.org/">http://www.cgal.org</a>,
+      the Computational Geometry Algorithms Library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>GEOMETRY</b> is available in
+      <a href = "../../c_src/geometry/geometry.html">a C version</a> and
+      <a href = "../../cpp_src/geometry/geometry.html">a C++ version</a> and
+      <a href = "../../f77_src/geometry/geometry.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/geometry/geometry.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/geometry/geometry.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/dutch/dutch.html">
+      DUTCH</a>,
+      a FORTRAN90 library which
+      carries out various computational geometry tasks.
+    </p>
+
+    <p>
+      <a href = "../../m_src/geompack/geompack.html">
+      GEOMPACK</a>,
+      a MATLAB library which
+      computes the Delaunay triangulation and Voronoi diagram of 2D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_moments/polygon_moments.html">
+      POLYGON_MOMENTS</a>,
+      a MATLAB library which
+      computes arbitrary moments of a polygon.
+    </p>
+
+    <p>
+      <a href = "../../m_src/simplex_coordinates/simplex_coordinates.html">
+      SIMPLEX_COORDINATES</a>,
+      a MATLAB library which
+      computes the Cartesian coordinates of the vertices of a regular
+      simplex in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>,
+      a MATLAB library which
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_stereograph/sphere_stereograph.html">
+      SPHERE_STEREOGRAPH</a>,
+      a MATLAB library which
+      computes the stereographic mapping between points on the unit sphere
+      and points on the plane Z = 1.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_properties/tetrahedron_properties.html">
+      TETRAHEDRON_PROPERTIES</a>,
+      a MATLAB program which
+      computes properties of a given tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../datasets/tetrahedrons/tetrahedrons.html">
+      TETRAHEDRONS</a>,
+      a dataset directory which
+      contains examples of tetrahedrons;
+    </p>
+
+    <p>
+      <a href = "../../datasets/triangles/triangles.html">
+      TRIANGLES</a>,
+      a dataset directory which
+      contains examples of triangles;
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangulate/triangulate.html">
+      TRIANGULATE</a>,
+      a C program which
+      triangulates a (possibly nonconvex)
+      polygon.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      defines and analyzes triangulations.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Gerard Bashein, Paul Detmer,<br>
+          Centroid of a Polygon,<br>
+          in Graphics Gems IV,<br>
+          edited by Paul Heckbert,<br>
+          AP Professional, 1994,<br>
+          ISBN: 0123361559,<br>
+          LC: T385.G6974.
+        </li>
+        <li>
+          SF Bockman,<br>
+          Generalizing the Formula for Areas of Polygons to Moments,<br>
+          American Mathematical Society Monthly,<br>
+          Volume 96, Number 2, February 1989, pages 131-132.
+        </li>
+        <li>
+          Adrian Bowyer, John Woodwark,<br>
+          A Programmer's Geometry,<br>
+          Butterworths, 1983,<br>
+          ISBN: 0408012420.
+        </li>
+        <li>
+          Paulo Cezar Pinto Carvalho, Paulo Roma Cavalcanti,<br>
+          Point in Polyhedron Testing Using Spherical Polygons,<br>
+          in Graphics Gems V,<br>
+          edited by Alan Paeth,<br>
+          Academic Press, 1995,<br>
+          ISBN: 0125434553,<br>
+          LC: T385.G6975.
+        </li>
+        <li>
+          Daniel Cohen,<br>
+          Voxel Traversal along a 3D Line,<br>
+          in Graphics Gems IV,<br>
+          edited by Paul Heckbert,<br>
+          AP Professional, 1994,<br>
+          ISBN: 0123361559,<br>
+          LC: T385.G6974.
+        </li>
+        <li>
+          Thomas Cormen, Charles Leiserson, Ronald Rivest,<br>
+          Introduction to Algorithms,<br>
+          MIT Press, 2001,<br>
+          ISBN: 0262032937,<br>
+          LC: QA76.C662.
+        </li>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars,
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0,<br>
+          LC: QA448.D38.C65.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          James Foley, Andries vanDam, Steven Feiner, John Hughes,<br>
+          Computer Graphics, Principles and Practice,<br>
+          Second Edition,<br>
+          Addison Wesley, 1995,<br>
+          ISBN: 0201848406,<br>
+          LC: T385.C5735.
+        </li>
+        <li>
+          Martin Gardner,<br>
+          The Mathematical Carnival,<br>
+          Knopf, 1975,<br>
+          ISBN: 0394494067,<br>
+          LC: QA95.G286.
+        </li>
+        <li>
+          Priamos Georgiades,<br>
+          Signed Distance From Point To Plane,<br>
+          in Graphics Gems III,<br>
+          edited by David Kirk,<br>
+          Academic Press, 1992,<br>
+          ISBN: 0124096735,<br>
+          LC: T385.G6973.
+        </li>
+        <li>
+          Branko Gruenbaum, Geoffrey Shephard,<br>
+          Pick's Theorem,<br>
+          The American Mathematical Monthly,<br>
+          Volume 100, Number 2, February 1993, pages 150-161.
+        </li>
+        <li>
+          John Harris, Horst Stocker,<br>
+          Handbook of Mathematics and Computational Science,<br>
+          Springer, 1998,<br>
+          ISBN: 0-387-94746-9,<br>
+          LC: QA40.S76.
+        </li>
+        <li>
+          Barry Joe,<br>
+          GEOMPACK - a software package for the generation of meshes
+          using geometric algorithms,<br>
+          Advances in Engineering Software,<br>
+          Volume 13, 1991, pages 325-331.
+        </li>
+        <li>
+          Anwei Liu, Barry Joe,<br>
+          Quality Local Refinement of Tetrahedral Meshes Based
+          on 8-Subtetrahedron Subdivision,<br>
+          Mathematics of Computation,<br>
+          Volume 65, Number 215, July 1996, pages 1183-1200.
+        </li>
+        <li>
+          Jack Kuipers,<br>
+          Quaternions and Rotation Sequences,<br>
+          Princeton, 1998,<br>
+          ISBN: 0691102988,<br>
+          LC: QA196.K85.
+        </li>
+        <li>
+          Robert Miller,<br>
+          Computing the Area of a Spherical Polygon,<br>
+          in Graphics Gems IV,<br>
+          edited by Paul Heckbert,<br>
+          Academic Press, 1994,<br>
+          ISBN: 0123361559,<br>
+          LC: T385.G6974.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Atsuyuki Okabe, Barry Boots, Kokichi Sugihara, Sung Nok Chiu,<br>
+          Spatial Tesselations:
+          Concepts and Applications of Voronoi Diagrams,<br>
+          Second Edition,<br>
+          Wiley, 2000,<br>,
+          ISBN: 0-471-98635-6,<br>
+          LC: QA278.2.O36.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+        <li>
+          Edward Saff, Arno Kuijlaars,<br>
+          Distributing Many Points on a Sphere,<br>
+          The Mathematical Intelligencer,<br>
+          Volume 19, Number 1, 1997, pages 5-11.
+        </li>
+        <li>
+          Philip Schneider, David Eberly,<br>
+          Geometric Tools for Computer Graphics,<br>
+          Elsevier, 2002,<br>
+          ISBN: 1558605940,<br>
+          LC: T385.S334.
+        </li>
+        <li>
+          Peter Schorn, Frederick Fisher,<br>
+          Testing the Convexity of a Polygon,<br>
+          in Graphics Gems IV,<br>
+          edited by Paul Heckbert,<br>
+          AP Professional, 1994,<br>
+          ISBN: 0123361559,<br>
+          LC: T385.G6974.
+        </li>
+        <li>
+          Moshe Shimrat,<br>
+          Algorithm 112:
+          Position of Point Relative to Polygon,<br>
+          Communications of the ACM,<br>
+          Volume 5, Number 8, August 1962, page 434.
+        </li>
+        <li>
+          Kenneth Stephenson,<br>
+          Introduction to Circle Packing,
+          The Theory of Discrete Analytic Functions,<br>
+          Cambridge, 2005,<br>
+          ISBN: 0521823560,<br>
+          LC: QA640.7S74.
+        </li>
+        <li>
+          Allen VanGelder,<br>
+          Efficient Computation of Polygon Area and Polyhedron Volume,<br>
+          in Graphics Gems V, <br>
+          edited by Alan Paeth,<br>
+          AP Professional, 1995,<br>
+          ISBN: 0125434553,<br>
+          LC: T385.G6975.
+        </li>
+        <li>
+          Daniel Zwillinger, Steven Kokoska,<br>
+          Standard Probability and Statistical Tables,<br>
+          CRC Press, 2000,<br>
+          ISBN: 1-58488-059-7,<br>
+          LC: QA273.3.Z95.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "angle_box_2d.m">
+          angle_box_2d.m</a>,
+          "boxes" an angle defined by three points in 2D;
+        </li>
+        <li>
+          <a href = "angle_contains_point_2d.m">
+          angle_contains_point_2d.m</a>,
+          determines if an angle contains a point in 2D;
+        </li>
+        <li>
+          <a href = "angle_deg_2d.m">
+          angle_deg_2d.m</a>,
+          returns the angle between two rays in 2D, in degrees;
+        </li>
+        <li>
+          <a href = "angle_half_2d.m">
+          angle_half_2d.m</a>,
+          returns a ray defining half the angle between two rays in 2D;
+        </li>
+        <li>
+          <a href = "angle_rad_2d.m">
+          angle_rad_2d.m</a>,
+          returns the angle between two rays in 2D, in radians;
+        </li>
+        <li>
+          <a href = "angle_rad_3d.m">
+          angle_rad_3d.m</a>,
+          returns the angle between two rays in 3D, in radians;
+        </li>
+        <li>
+          <a href = "angle_rad_nd.m">
+          angle_rad_nd.m</a>,
+          returns the angle between two rays in ND, in radians;
+        </li>
+        <li>
+          <a href = "angle_turn_2d.m">
+          angle_turn_2d.m</a>,
+          returns the turning defined by an angle in 2D;
+        </li>
+        <li>
+          <a href = "annulus_area_2d.m">
+          annulus_area_2d.m</a>,
+          computes the area of a circular annulus;
+        </li>
+        <li>
+          <a href = "annulus_sector_area_2d.m">
+          annulus_sector_area_2d.m</a>,
+          computes the area of an annulus sector;
+        </li>
+        <li>
+          <a href = "annulus_sector_centroid_2d.m">
+          annulus_sector_centroid_2d.m</a>,
+          computes the centroid of an annulus sector;
+        </li>
+        <li>
+          <a href = "ball_unit_sample_2d.m">
+          ball_unit_sample_2d.m</a>,
+          picks a random point in the unit ball in 2D;
+        </li>
+        <li>
+          <a href = "ball_unit_sample_3d.m">
+          ball_unit_sample_3d.m</a>,
+          picks a random point in the unit ball in 3D;
+        </li>
+        <li>
+          <a href = "ball_unit_sample_nd.m">
+          ball_unit_sample_nd.m</a>,
+          picks a random point in the unit ball in ND;
+        </li>
+        <li>
+          <a href = "basis_map_3d.m">
+          basis_map_3d.m</a>,
+          computes the matrix which maps one basis to another in 3D;
+        </li>
+        <li>
+          <a href = "box_01_contains_point_2d.m">
+          box_01_contains_point_2d.m</a>,
+          is TRUE if a point is contained in a unit box in 2D;
+        </li>
+        <li>
+          <a href = "box_01_contains_point_nd.m">
+          box_01_contains_point_nd.m</a>,
+          is TRUE if a point is contained in a unit box in ND;
+        </li>
+        <li>
+          <a href = "box_contains_point_2d.m">
+          box_contains_point_2d.m</a>,
+          is TRUE if a point is contained in a box in 2D;
+        </li>
+        <li>
+          <a href = "box_contains_point_nd.m">
+          box_contains_point_nd.m</a>,
+          is TRUE if a point is contained in a box in ND;
+        </li>
+        <li>
+          <a href = "box_contains_segment_nd.m">
+          box_contains_segment_nd.m</a>,
+          is TRUE if a line segment is contained in a box in ND;
+        </li>
+        <li>
+          <a href = "box_ray_int_2dd.m">
+          box_ray_int_2d.m</a>,
+          determines where a ray inside a box intersects the box boundary in 2D;
+        </li>
+        <li>
+          <a href = "box_segment_clip_2d.m">
+          box_segment_clip_2d.m</a>,
+          uses a box to clip a line in 2D;
+        </li>
+        <li>
+          <a href = "circle_arc_point_near_2d.m">
+          circle_arc_point_near_2d.m</a>,
+          returns the nearest circle arc point to a point in 2D;
+        </li>
+        <li>
+          <a href = "circle_area_2d.m">
+          circle_area_2d.m</a>,
+          returns the area of a circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_dia2imp_2d.m">
+          circle_dia2imp_2d.m</a>,
+          converts a diameter to an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_exp_contains_point_2d.m">
+          circle_exp_contains_point_2d.m</a>,
+          finds if an explicit circle contains a point in 2D;
+        </li>
+        <li>
+          <a href = "circle_exp2imp_2d.m">
+          circle_exp2imp_2d.m</a>,
+          converts an explicit circle to an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_contains_point_2d.m">
+          circle_imp_contains_point_2d.m</a>,
+          finds if an implicit circle contains a point in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_line_par_int_2d.m">
+          circle_imp_line_par_int_2d.m</a>,
+          finds intersections of an implicit circle and a parametric line in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_point_dist_2d.m">
+          circle_imp_point_dist_2d.m</a>,
+          finds the distance from a point to an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_point_dist_signed_2d.m">
+          circle_imp_point_dist_signed_2d.m</a>,
+          finds the signed distance from a point to an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_point_near_2d.m">
+          circle_imp_point_near_2d.m</a>,
+          finds the nearest implicit circle point to a point in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_points_2d.m">
+          circle_imp_points_2d.m</a>,
+          returns points on an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_points_3d.m">
+          circle_imp_points_3d.m</a>,
+          returns points on an implicit circle in 3D;
+        </li>
+        <li>
+          <a href = "circle_imp_points_arc_2d.m">
+          circle_imp_points_arc_2d.m</a>,
+          returns points on an implicit circular arc in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_print_2d.m">
+          circle_imp_print_2d.m</a>,
+          prints information about an implicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_imp_print_3d.m">
+          circle_imp_print_3d.m</a>,
+          prints information about an implicit circle in 3D;
+        </li>
+        <li>
+          <a href = "circle_imp2exp_2d.m">
+          circle_imp2exp_2d.m</a>,
+          converts an implicit circle to an explicit circle in 2D;
+        </li>
+        <li>
+          <a href = "circle_llr2imp_2d.m">
+          circle_llr2imp_2d.m</a>,
+          converts a circle in LLR format to an implicit circle in 2D.
+        </li>
+        <li>
+          <a href = "circle_lune_area_2d.m">
+          circle_lune_area_2d.m</a>,
+          returns the area of a circular lune in 2D;
+        </li>
+        <li>
+          <a href = "circle_lune_centroid_2d.m">
+          circle_lune_centroid_2d.m</a>,
+          returns the centroid of a circular lune in 2D;
+        </li>
+        <li>
+          <a href = "circle_pppr2imp_3d.m">
+          circle_pppr2imp_3d</a>
+          converts a circle from PPPR to implicit form in 3D.
+        </li>
+        <li>
+          <a href = "circle_ppr2imp_2d.m">
+          circle_ppr2imp_2d.m</a>,
+          converts a circle from PPR form into implicit form in 2D;
+        </li>
+        <li>
+          <a href = "circle_sector_area_2d.m">
+          circle_sector_area_2d.m</a>,
+          returns the area of a circle sector in 2D;
+        </li>
+        <li>
+          <a href = "circle_sector_centroid_2d.m">
+          circle_sector_centroid_2d.m</a>,
+          returns the centroid of a circle sector in 2D;
+        </li>
+        <li>
+          <a href = "circle_sector_contains_point_2d.m">
+          circle_sector_contains_point_2d.m</a>,
+          reports if a circle sector contains a point in 2D.
+        </li>
+        <li>
+          <a href = "circle_sector_print_2d.m">
+          circle_sector_print_2d.m</a>,
+          prints information about a circle sector in 2D.
+        </li>
+        <li>
+          <a href = "circle_triangle_area_2d.m">
+          circle_triangle_area_2d.m</a>,
+          returns the area of a circle triangle in 2D;
+        </li>
+        <li>
+          <a href = "circles_imp_int_2d.m">
+          circles_imp_int_2d.m</a>,
+          finds intersections of two implicit circles in 2D;
+        </li>
+        <li>
+          <a href = "cone_area_3d.m">
+          cone_area_3d.m</a>,
+          returns the surface area of a cone in 3D;
+        </li>
+        <li>
+          <a href = "cone_centroid_3d.m">
+          cone_centroid_3d.m</a>,
+          returns the centroid of a cone in 3D;
+        </li>
+        <li>
+          <a href = "cone_volume_3d.m">
+          cone_volume_3d.m</a>,
+          returns the volume of a cone in 3D;
+        </li>
+        <li>
+          <a href = "conv3d.m">
+          conv3d.m</a>,
+          uses a simple project to map 3D data to 2D;
+        </li>
+        <li>
+          <a href = "cos_deg.m">
+          cos_deg.m</a>,
+          returns the cosine of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "cot_deg.m">
+          cot_deg.m</a>,
+          returns the cotangent of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "cot_rad.m">
+          cot_rad.m</a>,
+          returns the cotangent of an angle given in radians;
+        </li>
+        <li>
+          <a href = "csc_deg.m">
+          csc_deg.m</a>,
+          returns the cosecant of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "cube_shape_3d.m">
+          cube_shape_3d.m</a>,
+          returns shape information for a cube in 3D;
+        </li>
+        <li>
+          <a href = "cube_size_3d.m">
+          cube_size_3d.m</a>,
+          returns "sizes" for a cube in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_point_dist_3d.m">
+          cylinder_point_dist_3d.m</a>,
+          returns the distance from a point to a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_point_dist_signed_3d.m">
+          cylinder_point_dist_signed_3d.m</a>,
+          returns the signed distance from a point to a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_point_inside_3d.m">
+          cylinder_point_inside_3d.m</a>,
+          reports whether a point is inside a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_point_near_3d.m">
+          cylinder_point_near_3d.m</a>,
+          returns the nearest point on a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_sample_3d.m">
+          cylinder_sample_3d.m</a>,
+          returns sample points from a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "cylinder_volume_3d.m">
+          cylinder_volume_3d.m</a>,
+          returns the volume of a cylinder in 3D;
+        </li>
+        <li>
+          <a href = "degrees_to_radians.m">
+          degrees_to_radians.m</a>,
+          converts an angle in degrees to one in radians;
+        </li>
+        <li>
+          <a href = "dge_det.m">
+          dge_det.m</a>,
+          computes the determinant of a DGE matrix;
+        </li>
+        <li>
+          <a href = "dge_fa.m">
+          dge_fa.m</a>,
+          factors a DGE matrix;
+        </li>
+        <li>
+          <a href = "dge_sl.m">
+          dge_sl.m</a>,
+          solves a linear system associated with a DGE matrix;
+        </li>
+        <li>
+          <a href = "direction_pert_2d.m">
+          direction_pert_2d.m</a>,
+          randomly perturbs a direction vector in 2D;
+        </li>
+        <li>
+          <a href = "direction_uniform_2d.m">
+          direction_uniform_2d.m</a>,
+          generates a random direction vector in 2D;
+        </li>
+        <li>
+          <a href = "direction_uniform_3d.m">
+          direction_uniform_3d.m</a>,
+          generates a random direction vector in 3D;
+        </li>
+        <li>
+          <a href = "direction_uniform_nd.m">
+          direction_uniform_nd.m</a>,
+          generates a random direction vector in ND;
+        </li>
+        <li>
+          <a href = "disk_point_dist_3d.m">
+          disk_point_dist_3d.m</a>,
+          finds the distance from a point to a disk in 3D;
+        </li>
+        <li>
+          <a href = "dms_to_radians.m">
+          dms_to_radians.m</a>,
+          converts from degrees/minutes/seconds to radians;
+        </li>
+        <li>
+          <a href = "dodec_size_3d.m">
+          dodec_size_3d.m</a>,
+          returns "sizes" for a dodecahedron in 3D;
+        </li>
+        <li>
+          <a href = "dodec_shape_3d.m">
+          dodec_shape_3d.m</a>,
+          returns shape information for a dodecahedron in 3D;
+        </li>
+        <li>
+          <a href = "dual_shape_3d.m">
+          dual_shape_3d.m</a>,
+          returns information for the dual of a shape in 3D;
+        </li>
+        <li>
+          <a href = "dual_size_3d.m">
+          dual_size_3d.m</a>,
+          returns "sizes" for the dual of a shape in 3D;
+        </li>
+        <li>
+          <a href = "ellipse_area_2d.m">
+          ellipse_area_2d.m</a>,
+          returns the area of an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_point_dist_2d.m">
+          ellipse_point_dist_2d.m</a>,
+          returns the distance to an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_point_near_2d.m">
+          ellipse_point_near_2d.m</a>,
+          returns the nearest point on an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_points_2d.m">
+          ellipse_points_2d.m</a>,
+          returns points on an ellipse in 2D;
+        </li>
+        <li>
+          <a href = "ellipse_points_arc_2d.m">
+          ellipse_points_arc_2d.m</a>,
+          returns points on an elliptical arc;
+        </li>
+        <li>
+          <a href = "enorm0_2d.m">
+          enorm0_2d.m</a>,
+          returns the Euclidean norm of P1 - P2 in 2D;
+        </li>
+        <li>
+          <a href = "enormsq0_2d.m">
+          enormsq0_2d.m</a>,
+          returns the square of the Euclidean norm of P1 - P2 in 2D;
+        </li>
+        <li>
+          <a href = "get_seed.m">
+          get_seed.m</a>,
+          gets a seed for the random number generator;
+        </li>
+        <li>
+          <a href = "glob2loc_3d.m">
+          glob2loc_3d.m</a>,
+          converts from a global to local coordinate system in 3D;
+        </li>
+        <li>
+          <a href = "halfplane_contains_point_2d.m">
+          halfplane_contains_point_2d.m</a>,
+          reports if a half-plane contains a point in 2D;
+        </li>
+        <li>
+          <a href = "halfspace_imp_triangle_int_3d.m">
+          halfspace_imp_triangle_int_3d.m</a>,
+          finds the intersection of an implicit halfspace with a triangle in 3D;
+        </li>
+        <li>
+          <a href = "halfspace_normal_triangle_int_3d.m">
+          halfspace_normal_triangle_int_3d.m</a>,
+          finds the intersection of a normal halfspace with a triangle in 3D;
+        </li>
+        <li>
+          <a href = "halfspace_triangle_int_3d.m">
+          halfspace_triangle_int_3d.m</a>,
+          finds the intersection of a halfspace with a triangle in 3D;
+        </li>
+        <li>
+          <a href = "haversine.m">
+          haversine.m</a>,
+          returns the haversine of an angle;
+        </li>
+        <li>
+          <a href = "helix_shape_3d.m">
+          helix_shape_3d.m</a>,
+          computes point on a helix in 3D;
+        </li>
+        <li>
+          <a href = "hexagon_area_2d.m">
+          hexagon_area_2d.m</a>,
+          returns the area of a hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_contains_point_2d.m">
+          hexagon_contains_point_2d.m</a>,
+          reports whether a hexagon contains a point;
+        </li>
+        <li>
+          <a href = "hexagon_shape_2d.m">
+          hexagon_shape_2d.m</a>,
+          returns a point on the unit hexagon in 2D, specified by angle;
+        </li>
+        <li>
+          <a href = "hexagon_unit_area_2d.m">
+          hexagon_unit_area_2d.m</a>,
+          returns the area of a unit hexagon in 2D;
+        </li>
+        <li>
+          <a href = "hexagon_vertices_2d.m">
+          hexagon_vertices_2d.m</a>,
+          returns the vertices of a unit hexagon in 2D;
+        </li>
+        <li>
+          <a href = "i4_dedekind_factor.m">
+          i4_dedekind_factor.m</a>,
+          computes a function needed for a Dedekind sum;
+        </li>
+        <li>
+          <a href = "i4_dedekind_sum.m">
+          i4_dedekind_sum.m</a>,
+          computes the Dedekind sum of two I4's.
+        </li>
+        <li>
+          <a href = "i4_factorial2.m">
+          i4_factorial2.m</a>,
+          evaluates the double factorial function;
+        </li>
+        <li>
+          <a href = "i4_gcd.m">
+          i4_gcd.m</a>,
+          returns the greatest common divisor of two I4's;
+        </li>
+        <li>
+          <a href = "i4_lcm.m">
+          i4_lcm.m</a>,
+          returns the lowest common multiple of two I4's;
+        </li>
+        <li>
+          <a href = "i4_modp.m">
+          i4_modp.m</a>,
+          returns the nonnegative remainder of integer division;
+        </li>
+        <li>
+          <a href = "i4_swap.m">
+          i4_swap.m</a>,
+          swaps two integer values;
+        </li>
+        <li>
+          <a href = "i4_uniform.m">
+          i4_uniform.m</a>,
+          returns a random I4 in a given range;
+        </li>
+        <li>
+          <a href = "i4_wrap.m">
+          i4_wrap.m</a>,
+          forces an integer to lie in a given range;
+        </li>
+        <li>
+          <a href = "i4col_compare.m">
+          i4col_compare.m</a>,
+          compares two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_find_item.m">
+          i4col_find_item.m</a>,
+          searches for a given value in an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_find_pair_wrap.m">
+          i4col_find_pair_wrap.m</a>,
+          wrap-searches a table by columns for a pair of values;
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">
+          i4col_sort_a.m</a>,
+          ascending sorts the columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_sorted_unique_count.m">
+          i4col_sorted_unique_count.m</a>,
+          counts the unique columns in a sorted I4COL;
+        </li>
+        <li>
+          <a href = "i4col_swap.m">
+          i4col_swap.m</a>,
+          swaps two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "icos_size.m">
+          icos_size.m</a>,
+          gives "sizes" for an icosahedron;
+        </li>
+        <li>
+          <a href = "icos_shape.m">
+          icos_shape.m</a>,
+          describes an icosahedron;
+        </li>
+        <li>
+          <a href = "i4mat_print.m">
+          i4mat_print.m</a>,
+          prints an integer matrix;
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">
+          i4mat_print_some.m</a>,
+          prints some of an integer matrix;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">
+          i4mat_transpose_print.m</a>,
+          prints an integer matrix, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an integer matrix, transposed;
+        </li>
+        <li>
+          <a href = "i4row_compare.m">
+          i4row_compare.m</a>,
+          compares two rows of an integer array;
+        </li>
+        <li>
+          <a href = "i4row_sort_a.m">
+          i4row_sort_a.m</a>,
+          ascending sorts the rows of an integer array;
+        </li>
+        <li>
+          <a href = "i4row_swap.m">
+          i4row_swap.m</a>,
+          swaps two rows of an integer array;
+        </li>
+        <li>
+          <a href = "i4vec_heap_d.m">
+          i4vec_heap_d.m</a>,
+          reorders an I4VEC into a descending heap;
+        </li>
+        <li>
+          <a href = "i4vec_indicator.m">
+          i4vec_indicator.m</a>,
+          sets an I4VEC to the indicator vector;
+        </li>
+        <li>
+          <a href = "i4vec_lcm.m">
+          i4vec_lcm.m</a>,
+          returns the least common multiple of an I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_print.m">
+          i4vec_print.m</a>,
+          prints an I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_print_some.m">
+          i4vec_print_some.m</a>,
+          prints some of an I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_sort_heap_a.m">
+          i4vec_sort_heap_a.m</a>,
+          ascending sorts an I4VEC using heap sort;
+        </li>
+        <li>
+          <a href = "i4vec_sorted_unique.m">
+          i4vec_sorted_unique.m</a>,
+          returns the unique elements in a sorted I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec_uniform.m">
+          i4vec_uniform.m</a>,
+          returns a random I4VEC;
+        </li>
+        <li>
+          <a href = "i4vec2_compare.m">
+          i4vec2_compare.m</a>,
+          compares pairs of integers stored in two vectors;
+        </li>
+        <li>
+          <a href = "i4vec2_sort_a.m">
+          i4vec2_sort_a.m</a>,
+          ascending sorts a pair of I4VEC's;
+        </li>
+        <li>
+          <a href = "i4vec2_sorted_unique.m">
+          i4vec2_sorted_unique.m</a>,
+          finds unique elements in a sorted IVEC2.
+        </li>
+        <li>
+          <a href = "line_exp_is_degenerate_nd.m">
+          line_exp_is_degenerate_nd.m</a>,
+          determines if an explicit line is degenerate in ND;
+        </li>
+        <li>
+          <a href = "line_exp_normal_2d.m">
+          line_exp_normal_2d.m</a>,
+          computes the unit normal to an explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp_perp_2d.m">
+          line_exp_perp_2d.m</a>,
+          returns a line perpendicular to an explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp_point_dist_2d.m">
+          line_exp_point_dist_2d.m</a>,
+          returns the distance from a point to an explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp_point_dist_3d.m">
+          line_exp_point_dist_3d.m</a>,
+          returns the distance from a point to an explicit line in 3D;
+        </li>
+        <li>
+          <a href = "line_exp_point_dist_signed_2d.m">
+          line_exp_point_dist_signed_2d.m</a>,
+          returns the signed distance from a point to an explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp_point_near_2d.m">
+          line_exp_point_near_2d.m</a>,
+          returns the nearest point on an explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp_point_near_3d.m">
+          line_exp_point_near_3d.m</a>,
+          returns the nearest point on an explicit line in 3D;
+        </li>
+        <li>
+          <a href = "line_exp2imp_2d.m">
+          line_exp2imp_2d.m</a>,
+          converts an explicit line to an implicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp2par_2d.m">
+          line_exp2par_2d.m</a>,
+          converts an explicit line to a parametric line in 2D;
+        </li>
+        <li>
+          <a href = "line_exp2par_3d.m">
+          line_exp2par_3d.m</a>,
+          converts an explicit line to a parametric line in 3D;
+        </li>
+        <li>
+          <a href = "line_imp_is_degenerate_2d.m">
+          line_imp_is_degenerate_2d.m</a>,
+          determines if an implicit line is degenerate in 2D;
+        </li>
+        <li>
+          <a href = "line_imp_point_dist_2d.m">
+          line_imp_point_dist_2d.m</a>,
+          returns the distance from a point to an implicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_imp_point_dist_signed_2d.m">
+          line_imp_point_dist_signed_2d.m</a>,
+          returns the signed distance from a point to an implicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_imp2exp_2d.m">
+          line_imp2exp_2d.m</a>,
+          converts an implicit to explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_imp2par_2d.m">
+          line_imp2par_2d.m</a>,
+          converts an implicit to parametric line in 2D;
+        </li>
+        <li>
+          <a href = "line_par_point_dist_2d.m">
+          line_par_point_dist_2d.m</a>,
+          returns the distance from a point to a parametric line in 2D;
+        </li>
+        <li>
+          <a href = "line_par_point_dist_3d.m">
+          line_par_point_dist_3d.m</a>,
+          returns the distance from a point to a parametric line in 3D;
+        </li>
+        <li>
+          <a href = "line_par2exp_2d.m">
+          line_par2exp_2d.m</a>,
+          converts a parametric to explicit line in 2D;
+        </li>
+        <li>
+          <a href = "line_par2imp_2d.m">
+          line_par2imp_2d.m</a>,
+          converts a parametric to implicit line in 2D;
+        </li>
+        <li>
+          <a href = "lines_exp_angle_3d.m">
+          lines_exp_angle_3d.m</a>,
+          finds the angle between explicit lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_exp_angle_nd.m">
+          lines_exp_angle_nd.m</a>,
+          finds the angle between explicit lines in ND;
+        </li>
+        <li>
+          <a href = "lines_exp_dist_3d.m">
+          lines_exp_dist_3d.m</a>,
+          finds the distance between explicit lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_exp_dist_3d_2.m">
+          lines_exp_dist_3d_2.m</a>,
+          finds the distance between explicit lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_exp_equal_2d.m">
+          lines_exp_equal_2d.m</a>,
+          determines if two explicit lines are equal in 2D.
+        </li>
+        <li>
+          <a href = "lines_exp_int_2d.m">
+          lines_exp_int_2d.m</a>,
+          finds the intersection of two explicit lines in 2D;
+        </li>
+        <li>
+          <a href = "lines_exp_near_3d.m">
+          lines_exp_near_3d.m</a>,
+          finds the nearest points on two explicit lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_exp_parallel_2d.m">
+          lines_exp_parallel_2d.m</a>,
+          finds if two explicit lines in 2D are parallel;
+        </li>
+        <li>
+          <a href = "lines_exp_parallel_3d.m">
+          lines_exp_parallel_3d.m</a>,
+          finds if two explicit lines in 3D are parallel;
+        </li>
+        <li>
+          <a href = "lines_imp_angle_2d.m">
+          lines_imp_angle_2d.m</a>,
+          finds the angle between two implicit lines in 2D;
+        </li>
+        <li>
+          <a href = "lines_imp_dist_2d.m">
+          lines_imp_dist_2d.m</a>,
+          finds the distance between two implicit lines in 2D;
+        </li>
+        <li>
+          <a href = "lines_imp_int_2d.m">
+          lines_imp_int_2d.m</a>,
+          finds the intersection of two implicit lines in 2D;
+        </li>
+        <li>
+          <a href = "lines_par_angle_2d.m">
+          lines_par_angle_2d.m</a>,
+          finds the angle between parametric lines in 2D;
+        </li>
+        <li>
+          <a href = "lines_par_angle_3d.m">
+          lines_par_angle_3d.m</a>,
+          finds the angle between parametric lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_par_dist_3d.m">
+          lines_par_dist_3d.m</a>,
+          finds the distance between parametric lines in 3D;
+        </li>
+        <li>
+          <a href = "lines_par_int_2d.m">
+          lines_par_int_2d.m</a>,
+          finds the intersection of two parametric lines in 2D;
+        </li>
+        <li>
+          <a href = "loc2glob_3d.m">
+          loc2glob_3d.m</a>,
+          converts from a local to global coordinate system in 3D;
+        </li>
+        <li>
+          <a href = "minabs.m">
+          minabs.m</a>,
+          minimizes Y = A * |X| + B in an interval;
+        </li>
+        <li>
+          <a href = "minquad.m">
+          minquad.m</a>,
+          minimizes Y = A * X * X + B * X + C in an interval;
+        </li>
+        <li>
+          <a href = "normal_01_sample.m">
+          normal_01_sample.m</a>,
+          samples the standard normal probability density function;
+        </li>
+        <li>
+          <a href = "octahedron_shape_3d.m">
+          octahedron_shape_3d.m</a>,
+          returns shape information for an octahedron in 3D;
+        </li>
+        <li>
+          <a href = "octahedron_size_3d.m">
+          octahedron_size_3d.m</a>,
+          returns size information for an octahedron in 3D;
+        </li>
+        <li>
+          <a href = "parabola_ex.m">
+          parabola_ex.m</a>,
+          finds the extremal point of a parabola determined by three values;
+        </li>
+        <li>
+          <a href = "parabola_ex2.m">
+          parabola_ex2.m</a>,
+          finds the extremal point of a parabola determined by three values;
+        </li>
+        <li>
+          <a href = "parallelogram_area_2d.m">
+          parallelogram_area_2d.m</a>,
+          computes the area of a parallelogram in 2D;
+        </li>
+        <li>
+          <a href = "parallelogram_area_3d.m">
+          parallelogram_area_3d.m</a>,
+          computes the area of a parallelogram in 3D;
+        </li>
+        <li>
+          <a href = "parallelogram_contains_point_2d.m">
+          parallelogram_contains_point_2d.m</a>,
+          checks whether a point is contained in a parallelogram in 2D;
+        </li>
+        <li>
+          <a href = "parallelogram_contains_point_3d.m">
+          parallelogram_contains_point_3d.m</a>,
+          checks whether a point is contained in a parallelogram in 3D;
+        </li>
+        <li>
+          <a href = "parallelogram_point_dist_3d.m">
+          parallelogram_point_dist_3d.m</a>,
+          finds the distance to a parallelogram in 3D;
+        </li>
+        <li>
+          <a href = "parallelepiped_contains_point_3d.m">
+          parallelepiped_contains_point_3d.m</a>,
+          reports if a point is inside a parallelepiped in 3D;
+        </li>
+        <li>
+          <a href = "parallelepiped_point_dist_3d.m">
+          parallelepiped_point_dist_3d.m</a>,
+          finds the distance to a parallelepiped in 3D;
+        </li>
+        <li>
+          <a href = "perm_check.m">
+          perm_check.m</a>,
+          checks a permutation;
+        </li>
+        <li>
+          <a href = "perm_inv.m">
+          perm_inv.m</a>,
+          computes the inverse of a permutation;
+        </li>
+        <li>
+          <a href = "plane_exp_grid_3d.m">
+          plane_exp_grid_3d.m</a>,
+          computes points and lines making a grid on an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp_normal_3d.m">
+          plane_exp_normal_3d.m</a>,
+          finds the normal to an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp_point_dist_3d.m">
+          plane_exp_point_dist_3d.m</a>,
+          finds the distance between a point and an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp_pro2.m">
+          plane_exp_pro2.m</a>,
+          produces the in-plane coordinates of points on an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp_pro3.m">
+          plane_exp_pro3.m</a>,
+          projects points orthographically onto an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp_project_3d.m">
+          plane_exp_project_3d.m</a>,
+          projects points through a point and onto an explicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp2imp_3d.m">
+          plane_exp2imp_3d.m</a>,
+          converts a plane from explicit to implicit form in 3D;
+        </li>
+        <li>
+          <a href = "plane_exp2normal_3d.m">
+          plane_exp2normal_3d.m</a>,
+          converts a plane from explicit to normal form in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_is_degenerate_3d.m">
+          plane_imp_is_degenerate_3d.m</a>,
+          is true if an implicit plane in 3D is degenerate;
+        </li>
+        <li>
+          <a href = "plane_imp_line_par_int_3d.m">
+          plane_imp_line_par_int_3d.m</a>,
+          determines if an implicit plane and a parametric line intersect in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_point_dist_3d.m">
+          plane_imp_point_dist_3d.m</a>,
+          determines the distance to an implicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_point_dist_signed_3d.m">
+          plane_imp_point_dist_signed_3d.m</a>,
+          determines the signed distance to an implicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_point_near_3d.m">
+          plane_imp_point_near_3d.m</a>,
+          determines the nearest point on an implicit plane in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_segment_near_3d.m">
+          plane_imp_segment_near_3d.m</a>,
+          finds the nearest points on an implicit plane and a line segment in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_triangle_int_3d.m">
+          plane_imp_triangle_int_3d.m</a>,
+          finds intersections of an implicit plane and a triangle in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_triangle_int_add_3d.m">
+          plane_imp_triangle_int_add_3d.m</a>,
+          a utility for triangle/plane intersections in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp_triangle_near_3d.m">
+          plane_imp_triangle_near_3d.m</a>,
+          finds nearest points on an implicit plane and a triangle in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp2exp_3d.m">
+          plane_imp2exp_3d.m</a>,
+          converts a plane from implicit to explicit form in 3D;
+        </li>
+        <li>
+          <a href = "plane_imp2normal_3d.m">
+          plane_imp2normal_3d.m</a>,
+          converts a plane from implicit to normal form in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_basis_3d.m">
+          plane_normal_basis_3d.m</a>,
+          finds two perpendicular vectors in a plane in normal form in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_line_exp_int_3d.m">
+          plane_normal_line_exp_3d.m</a>,
+          determines where an explicit line intersects a plane in
+          normal form in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_qr_to_xyz.m">
+          plane_normal_qr_to_xyz.m</a>,
+          converts from QR to XYZ coordinates in a normal plane;
+        </li>
+        <li>
+          <a href = "plane_normal_tetrahedron_intersect.m">
+          plane_normal_tetrahedron_intersect.m</a>,
+          finds intersections of a normal plane and a tetrahedron;
+        </li>
+        <li>
+          <a href = "plane_normal_triangle_int_3d.m">
+          plane_normal_triangle_int_3d.m</a>,
+          finds intersections of a normal plane and a triangle in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_uniform_3d.m">
+          plane_normal_uniform_3d.m</a>,
+          chooses a normal plane at random in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal_uniform_nd.m">
+          plane_normal_uniform_nd.m</a>,
+          chooses a normal plane at random in ND;
+        </li>
+        <li>
+          <a href = "plane_normal_xyz_to_qr.m">
+          plane_normal_xyz_to_qr.m</a>,
+          converts from XYZ_TO_QR coordinates in a normal plane;
+        </li>
+        <li>
+          <a href = "plane_normal2exp_3d.m">
+          plane_normal2exp_3d.m</a>,
+          converts a plane from normal to explicit form in 3D;
+        </li>
+        <li>
+          <a href = "plane_normal2imp_3d.m">
+          plane_normal2imp_3d.m</a>,
+          converts a plane from normal to implicit form in 3D;
+        </li>
+        <li>
+          <a href = "planes_imp_angle_3d.m">
+          planes_imp_angle_3d.m</a>,
+          finds the dihedral angle between implicit planes in 3D;
+        </li>
+        <li>
+          <a href = "points_avoid_point_naive_2d.m">
+          points_avoid_point_naive_2d.m</a>,
+          is a point "far enough" from a set of points in 2D?;
+        </li>
+        <li>
+          <a href = "points_bisect_line_imp_2d.m">
+          points_bisect_line_imp_2d.m</a>,
+          implicit bisector line between two points in 2D;
+        </li>
+        <li>
+          <a href = "points_bisect_line_par_2d.m">
+          points_bisect_line_par_2d.m</a>,
+          parametric bisector line between two points in 2D;
+        </li>
+        <li>
+          <a href = "points_centroid_2d.m">
+          points_centroid_2d.m</a>,
+          computes the discrete centroid of a point set in 2D;
+        </li>
+        <li>
+          <a href = "points_colin_2d.m">
+          points_colin_2d.m</a>,
+          estimates the colinearity of 3 points in 2D;
+        </li>
+        <li>
+          <a href = "points_colin_3d.m">
+          points_colin_3d.m</a>,
+          estimates the colinearity of 3 points in 3D;
+        </li>
+        <li>
+          <a href = "points_dist_nd.m">
+          points_dist_nd.m</a>,
+          returns the distance between two points in ND;
+        </li>
+        <li>
+          <a href = "points_hull_2d.m">
+          points_hull_2d.m</a>,
+          computes the convex hull of a set of points in 2D;
+        </li>
+        <li>
+          <a href = "points_plot.m">
+          points_plot.m</a>,
+          makes an EPS plot of a set of points;
+        </li>
+        <li>
+          <a href = "points_point_near_naive_nd.m">
+          points_point_near_naive_nd.m</a>,
+          finds the nearest of a set of points to a point in ND;
+        </li>
+        <li>
+          <a href = "polar_to_xy.m">
+          polar_to_xy.m</a>,
+          converts polar coordinates to XY coordinates;
+        </li>
+        <li>
+          <a href = "polygon_1_2d.m">
+          polygon_1_2d.m</a>,
+          integrates the function 1 over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_angles_2d.m">
+          polygon_angles_2d.m</a>,
+          computes the angles of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_area_2d.m">
+          polygon_area_2d.m</a>,
+          computes the area of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_area_2d_2.m">
+          polygon_area_2d_2.m</a>,
+          computes the area of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_area_3d.m">
+          polygon_area_3d.m</a>,
+          computes the area of a polygon in 3D;
+        </li>
+        <li>
+          <a href = "polygon_area_3d_2.m">
+          polygon_area_3d_2.m</a>,
+          computes the area of a polygon in 3D;
+        </li>
+        <li>
+          <a href = "polygon_centroid_2d.m">
+          polygon_centroid_2d.m</a>,
+          computes the centroid of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_centroid_2d_2.m">
+          polygon_centroid_2d_2.m</a>,
+          computes the centroid of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_centroid_3d.m">
+          polygon_centroid_3d.m</a>,
+          computes the centroid of a polygon in 3D;
+        </li>
+        <li>
+          <a href = "polygon_contains_point_2d.m">
+          polygon_contains_point_2d.m</a>,
+          finds if a point is inside a simple polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_contains_point_2d_2.m">
+          polygon_contains_point_2d_2.m</a>,
+          finds if a point is inside a simple polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_diameter_2d.m">
+          polygon_diameter_2d.m</a>,
+          computes the diameter of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_expand_2d.m">
+          polygon_expand_2d.m</a>,
+          "expands" a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_inrad_data_2d.m">
+          polygon_inrad_data_2d.m</a>,
+          uses the inradius to compute other data for a regular polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_is_convex_2d.m">
+          polygon_is_convex_2d.m</a>,
+          determines the convexity of a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_lattice_area_2d.m">
+          polygon_lattice_area_2d.m</a>,
+          finds the area of a lattice polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_normal_3d.m">
+          polygon_normal_3d.m</a>,
+          finds the normal vector for a (planar) polygon in 3D;
+        </li>
+        <li>
+          <a href = "polygon_outrad_data_2d.m">
+          polygon_outrad_data_2d.m</a>,
+          uses the outradius to compute other data for a regular polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_point_dist_2d.m">
+          polygon_point_dist_2d.m</a>,
+          finds the distance to a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_point_near_2d.m">
+          polygon_point_near_2d.m</a>,
+          finds the nearest point on a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_side_data_2d.m">
+          polygon_side_data_2d.m</a>,
+          uses the side length to compute other data for a regular polygon
+          in 2D;
+        </li>
+        <li>
+          <a href = "polygon_solid_angle_3d.m">
+          polygon_solid_angle_3d.m</a>,
+          determines the solid angle subtended by a polygon with respect
+          to a unit sphere around a given point in 3D;
+        </li>
+        <li>
+          <a href = "polygon_x_2d.m">
+          polygon_x_2d.m</a>,
+          integrates the function x over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_xx_2d.m">
+          polygon_xx_2d.m</a>,
+          integrates the function x^2 over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_xy_2d.m">
+          polygon_xy_2d.m</a>,
+          integrates the function x*y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_y_2d.m">
+          polygon_y_2d.m</a>,
+          integrates the function y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polygon_yy_2d.m">
+          polygon_yy_2d.m</a>,
+          integrates the function y*y over a polygon in 2D;
+        </li>
+        <li>
+          <a href = "polyhedron_area_3d.m">
+          polyhedron_area_3d.m</a>,
+          computes the surface area of a polyhedron in 3D;
+        </li>
+        <li>
+          <a href = "polyhedron_centroid_3d.m">
+          polyhedron_centroid_3d.m</a>,
+          computes the centroid of a polyhedron in 3D;
+        </li>
+        <li>
+          <a href = "polyhedron_contains_point_3d.m">
+          polyhedron_contains_point_3d.m</a>,
+          determines if a point is inside a polyhedron in 3D;
+        </li>
+        <li>
+          <a href = "polyhedron_volume_3d.m">
+          polyhedron_volume_3d.m</a>,
+          computes the volume of a polyhedron in 3D;
+        </li>
+        <li>
+          <a href = "polyhedron_volume_3d_2.m">
+          polyhedron_volume_3d_2.m</a>,
+          computes the volume of a polyhedron in 3D;
+        </li>
+        <li>
+          <a href = "polyline_arclength_nd.m">
+          polyline_arclength_nd.m</a>,
+          returns the arclength of points on a polyline in ND;
+        </li>
+        <li>
+          <a href = "polyline_index_point_nd.m">
+          polyline_index_point_nd.m</a>,
+          returns the point with given arclength on a polyline in ND;
+        </li>
+        <li>
+          <a href = "polyline_length_nd.m">
+          polyline_length_nd.m</a>,
+          returns the length of a polyline in ND;
+        </li>
+        <li>
+          <a href = "polyline_points_nd.m">
+          polyline_points_nd.m</a>,
+          returns equally spaced points on a polyline in ND;
+        </li>
+        <li>
+          <a href = "polyloop_arclength_nd.m">
+          polyloop_arclength_nd.m</a>,
+          returns the arclength of points on a polyloop in ND;
+        </li>
+        <li>
+          <a href = "polyloop_length_nd.m">
+          polyloop_length_nd.m</a>,
+          returns the length of a polyloop in ND;
+        </li>
+        <li>
+          <a href = "polyloop_points_nd.m">
+          polyloop_points_nd.m</a>,
+          returns equally spaced points on a polyloop in ND;
+        </li>
+        <li>
+          <a href = "provec.m">
+          provec.m</a>,
+          projects a vector from an M dimensional space to an N dimensional space;
+        </li>
+        <li>
+          <a href = "pyramid_volume_3d.m">
+          pyramid_volume_3d.m</a>,
+          returns the volume of a pyramid in 3D;
+        </li>
+        <li>
+          <a href = "quad_area_2d.m">
+          quad_area_2d.m</a>,
+          returns the area of a quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quad_area2_2d.m">
+          quad_area2_2d.m</a>,
+          returns the area of a quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quad_area_3d.m">
+          quad_area_3d.m</a>,
+          returns the area of a quadrilateral in 3D;
+        </li>
+        <li>
+          <a href = "quad_contains_point_2d.m">
+          quad_contains_point_2d.m</a>,
+          finds if a point is inside a convex quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quad_convex_random.m">
+          quad_convex_random.m</a>,
+          returns a random convex quadrilateral in the unit square.
+        </li>
+        <li>
+          <a href = "quad_point_dist_2d.m">
+          quad_point_dist_2d.m</a>,
+          finds the distance from a point to a quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quad_point_dist_signed_2d.m">
+          quad_point_dist_signed_2d.m</a>,
+          finds the signed distance from a point to a quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quad_point_near_2d.m">
+          quad_point_near_2d.m</a>,
+          finds the nearest point on a quadrilateral in 2D;
+        </li>
+        <li>
+          <a href = "quat_conj.m">
+          quat_conj.m</a>,
+          conjugates a quaternion;
+        </li>
+        <li>
+          <a href = "quat_inv.m">
+          quat_inv.m</a>,
+          inverts a quaternion;
+        </li>
+        <li>
+          <a href = "quat_mul.m">
+          quat_mul.m</a>,
+          multiplies two quaternions;
+        </li>
+        <li>
+          <a href = "quat_norm.m">
+          quat_norm.m</a>,
+          computes the norm of a quaternion;
+        </li>
+        <li>
+          <a href = "r4_uniform_01.m">
+          r4_uniform_01.m</a>,
+          returns a unit pseudorandom R4;
+        </li>
+        <li>
+          <a href = "r8_acos.m">
+          r8_acos.m</a>,
+          computes the inverse cosine of C;
+        </li>
+        <li>
+          <a href = "r8_asin.m">
+          r8_asin.m</a>,
+          computes the inverse sine of S;
+        </li>
+        <li>
+          <a href = "r8_atan.m">
+          r8_atan.m</a>,
+          computes the inverse tangent of Y / X;
+        </li>
+        <li>
+          <a href = "r8_epsilon.m">
+          r8_epsilon.m</a>,
+          returns the R8 machine accuracy;
+        </li>
+        <li>
+          <a href = "r8_huge.m">
+          r8_huge.m</a>,
+          returns a "huge" R8;
+        </li>
+        <li>
+          <a href = "r8_modp.m">
+          r8_modp.m</a>,
+          returns the positive remainder of R8 division;
+        </li>
+        <li>
+          <a href = "r8_normal_01.m">
+          r8_normal_01.m</a>,
+          returns a unit normally distributed R8;
+        </li>
+        <li>
+          <a href = "r8_sign.m">
+          r8_sign.m</a>,
+          returns the sign of an R8;
+        </li>
+        <li>
+          <a href = "r8_sign_opposite_strict.m">r8_sign_opposite_strict.m</a>,
+          is TRUE if two R8's have strictly opposite signs.
+        </li>
+        <li>
+          <a href = "r8_swap.m">
+          r8_swap.m</a>,
+          swaps two R8's;
+        </li>
+        <li>
+          <a href = "r8_uniform.m">
+          r8_uniform.m</a>,
+          returns a scaled pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">
+          r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r82vec_part_quick_a.m">
+          r82vec_part_quick_a.m</a>,
+          ascending partitions an R82VEC as part of a quicksort;
+        </li>
+        <li>
+          <a href = "r82vec_permute.m">
+          r82vec_permute.m</a>,
+          permutes an R82VEC in place;
+        </li>
+        <li>
+          <a href = "r82vec_sort_heap_index_a.m">
+          r82vec_sort_heap_index_a.m</a>,
+          does an indexed heap ascending sort of an R82VEC;
+        </li>
+        <li>
+          <a href = "r82vec_sort_quick_a.m">
+          r82vec_sort_quick_a.m</a>,
+          ascending quicksorts an R82VEC;
+        </li>
+        <li>
+          <a href = "r8mat_det_2d.m">
+          r8mat_det_2d.m</a>,
+          computes the determinant of a 2 by 2 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_det_3d.m">
+          r8mat_det_3d.m</a>,
+          computes the determinant of a 3 by 3 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_det_4d.m">
+          r8mat_det_4d.m</a>,
+          computes the determinant of a 4 by 4 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_det_5d.m">
+          r8mat_det_5d.m</a>,
+          computes the determinant of a 5 by 5 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_inverse_2d.m">
+          r8mat_inverse_2d.m</a>,
+          computes the inverse of a 2 by 2 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_inverse_3d.m">
+          r8mat_inverse_3d.m</a>,
+          computes the inverse of a 3 by 3 matrix;
+        </li>
+        <li>
+          <a href = "r8mat_print.m">
+          r8mat_print.m</a>,
+          prints an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">
+          r8mat_print_some.m</a>,
+          prints some of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_solve.m">
+          r8mat_solve.m</a>,
+          solves an N by N linear system with multiple right hand sides.
+        </li>
+        <li>
+          <a href = "r8mat_solve_2d.m">
+          r8mat_solve_2d.m</a>,
+          solves a 2 by 2 system using Cramer's rule.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">
+          r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_uniform.m">
+          r8mat_uniform.m</a>,
+          returns a scaled pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">
+          r8mat_uniform_01.m</a>,
+          returns a unit pseudorandom R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_angle_3d.m">
+          r8vec_angle_3d.m</a>,
+          computes the angle between two vectors in 3D;
+        </li>
+        <li>
+          <a href = "r8vec_any_normal.m">
+          r8vec_any_normal.m</a>,
+          returns a unit normal vector to a given vector;
+        </li>
+        <li>
+          <a href = "r8vec_bracket.m">
+          r8vec_bracket.m</a>,
+          searches a sorted R8VEC for brackets of a value;
+        </li>
+        <li>
+          <a href = "r8vec_cross_product_2d.m">r8vec_cross_product_2d.m</a>,
+          computes the cross product of two R8VEC's in 2D;
+        </li>
+        <li>
+          <a href = "r8vec_cross_product_affine_2d.m">r8vec_cross_product_affine_2d.m</a>,
+          computes the affine cross product of two R8VEC's in 2D;
+        </li>
+        <li>
+          <a href = "r8vec_cross_product_3d.m">r8vec_cross_product_3d.m</a>,
+          computes the cross product of two R8VEC's in 3D;
+        </li>
+        <li>
+          <a href = "r8vec_cross_product_affine_3d.m">r8vec_cross_product_affine_3d.m</a>,
+          computes the affine cross product of two R8VEC's in 3D;
+        </li>
+        <li>
+          <a href = "r8vec_distance.m">
+          r8vec_distance.m</a>,
+          returns the distance between two R8VEC's;
+        </li>
+        <li>
+          <a href = "r8vec_dot_product.m">r8vec_dot_product.m</a>,
+          computes the dot product of two R8VEC's;
+        </li>
+        <li>
+          <a href = "r8vec_dot_product_affine.m">r8vec_dot_product_affine.m</a>,
+          computes the affine dot product of two R8VEC's;
+        </li>
+        <li>
+          <a href = "r8vec_eq.m">
+          r8vec_eq.m</a>,
+          is true if two R8VEC's are equal;
+        </li>
+        <li>
+          <a href = "r8vec_gt.m">
+          r8vec_gt.m</a>,
+          is true if one R8VEC is greater than another;
+        </li>
+        <li>
+          <a href = "r8vec_lt.m">
+          r8vec_lt.m</a>,
+          is true if one R8VEC is less than another;
+        </li>
+        <li>
+          <a href = "r8vec_norm.m">
+          r8vec_norm.m</a>,
+          returns the L2 norm of an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_norm_affine.m">r8vec_norm_affine.m</a>,
+          returns the affine L2 norm of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">
+          r8vec_normal_01.m</a>,
+          returns a unit pseudonormal R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_normsq.m">r8vec_normsq.m</a>,
+          returns the squared L2 norm of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_normsq_affine.m">r8vec_normsq_affine.m</a>,
+          returns the squared affine L2 norm of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">
+          r8vec_print.m</a>,
+          prints an R8VEC;
+        </li>
+        <li>
+          <a href = "r8vec_scalar_triple_product.m">
+          r8vec_scalar_triple_product.m</a>,
+          computes the scalar triple product;
+        </li>
+        <li>
+          <a href = "r8vec_swap.m">
+          r8vec_swap.m</a>,
+          swaps two R8VEC's;
+        </li>
+        <li>
+          <a href = "r8vec_uniform.m">
+          r8vec_uniform.m</a>,
+          returns a scaled pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">
+          r8vec_uniform_01.m</a>,
+          returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_unit.m">r8vec_uniform_unit.m</a>, 
+          returns a random unit vector.
+        </li>
+        <li>
+          <a href = "radec_distance_3d.m">
+          radec_distance_3d.m</a>,
+          angular distance, astronomical units, sphere in 3D;
+        </li>
+        <li>
+          <a href = "radec_to_xyz.m">
+          radec_to_xyz.m</a>,
+          converts right ascension/declination to XYZ coordinates;
+        </li>
+        <li>
+          <a href = "radians_to_degrees.m">
+          radians_to_degrees.m</a>,
+          converts an angle in radians to one in degrees;
+        </li>
+        <li>
+          <a href = "radians_to_dms.m">
+          radians_to_dms.m</a>,
+          converts an angle in radians to one in degrees/minutes/seconds;
+        </li>
+        <li>
+          <a href = "random_initialize.m">
+          random_initialize.m</a>,
+          initializes the random number generator;
+        </li>
+        <li>
+          <a href = "rotation_axis_vector_3d.m">
+          rotation_axis_vector_3d.m</a>,
+          rotates a vector about an axis vector in 3D;
+        </li>
+        <li>
+          <a href = "rotation_axis2mat_3d.m">
+          rotation_axis2mat_3d.m</a>,
+          converts a rotation from axis to matrix format in 3D;
+        </li>
+        <li>
+          <a href = "rotation_axis2quat_3d.m">
+          rotation_axis2quat_3d.m</a>,
+          converts a rotation from axis to quaternion format in 3D;
+        </li>
+        <li>
+          <a href = "rotation_mat_vector_3d.m">
+          rotation_mat_vector_3d.m</a>,
+          applies a matrix rotation to a vector in 3D;
+        </li>
+        <li>
+          <a href = "rotation_mat2axis_3d.m">
+          rotation_mat2axis_3d.m</a>,
+          converts a rotation from matrix to axis format in 3D;
+        </li>
+        <li>
+          <a href = "rotation_mat2quat_3d.m">
+          rotation_mat2quat_3d.m</a>,
+          converts a rotation from matrix to quaternion format in 3D;
+        </li>
+        <li>
+          <a href = "rotation_quat_vector_3d.m">
+          rotation_quat_vector_3d.m</a>,
+          applies a quaternion rotation to a vector in 3D;
+        </li>
+        <li>
+          <a href = "rotation_quat2axis_3d.m">
+          rotation_quat2axis_3d.m</a>,
+          converts a rotation from quaternion to axis format in 3D;
+        </li>
+        <li>
+          <a href = "rotation_quat2mat_3d.m">
+          rotation_quat2mat_3d.m</a>,
+          converts a rotation from quaternion to matrix format in 3D;
+        </li>
+        <li>
+          <a href = "rtp_to_xyz.m">
+          rtp_to_xyz.m</a>,
+          converts (R,Theta,Phi) coordinates to XYZ coordinates;
+        </li>
+        <li>
+          <a href = "s_len_trim.m">
+          s_len_trim.m</a>,
+          returns the length of a string to the last nonblank;
+        </li>
+        <li>
+          <a href = "sec_deg.m">
+          sec_deg.m</a>,
+          returns the secant of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "segment_contains_point_1d.m">
+          segment_contains_point_1d.m</a>,
+          determines if a point is contained in a line segment in 1D;
+        </li>
+        <li>
+          <a href = "segment_contains_point_2d.m">
+          segment_contains_point_2d.m</a>,
+          determines if a point is contained in a line segment in 2D;
+        </li>
+        <li>
+          <a href = "segment_point_coords_2d.m">
+          segment_point_coords_2d.m</a>,
+          computes the "coordinates" of a point relative to a line
+          segment in 2D;
+        </li>
+        <li>
+          <a href = "segment_point_coords_3d.m">
+          segment_point_coords_3d.m</a>,
+          computes the "coordinates" of a point relative to a line
+          segment in 3D;
+        </li>
+        <li>
+          <a href = "segment_point_dist_2d.m">
+          segment_point_dist_2d.m</a>,
+          computes the distance between a point and a line segment in 2D;
+        </li>
+        <li>
+          <a href = "segment_point_dist_3d.m">
+          segment_point_dist_3d.m</a>,
+          computes the distance between a point and a line segment in 3D;
+        </li>
+        <li>
+          <a href = "segment_point_near_2d.m">
+          segment_point_near_2d.m</a>,
+          returns the nearest line segment point to a point in 2D;
+        </li>
+        <li>
+          <a href = "segment_point_near_3d.m">
+          segment_point_near_3d.m</a>,
+          returns the nearest line segment point to a point in 3D;
+        </li>
+        <li>
+          <a href = "segments_curvature_2d.m">
+          segments_curvature_2d.m</a>,
+          returns the curvature between two line segments in 2D;
+        </li>
+        <li>
+          <a href = "segments_dist_2d.m">
+          segments_dist_2d.m</a>,
+          returns the distance between two line segments in 2D;
+        </li>
+        <li>
+          <a href = "segments_dist_3d.m">
+          segments_dist_3d.m</a>,
+          returns the distance between two line segments in 3D;
+        </li>
+        <li>
+          <a href = "segments_int_1d.m">
+          segments_int_1d.m</a>,
+          returns the intersection of two line segments in 1D;
+        </li>
+        <li>
+          <a href = "segments_int_2d.m">
+          segments_int_2d.m</a>,
+          returns the intersection of two line segments in 2D;
+        </li>
+        <li>
+          <a href = "shape_point_dist_2d.m">
+          shape_point_dist_2d.m</a>,
+          computes the distance between a regular shape and a point in 2D;
+        </li>
+        <li>
+          <a href = "shape_point_near_2d.m">
+          shape_point_near_2d.m</a>,
+          computes the nearest point on a regular shape in 2D;
+        </li>
+        <li>
+          <a href = "shape_print_3d.m">
+          shape_print_3d.m</a>,
+          prints information about a shape in 3D;
+        </li>
+        <li>
+          <a href = "shape_ray_int_2d.m">
+          shape_ray_int_2d.m</a>,
+          finds the intersection of a regular shape and an internal ray in 2D;
+        </li>
+        <li>
+          <a href = "simplex_lattice_layer_point_next.m">
+          simplex_lattice_layer_point_next.m</a>,
+          returns the next simplex lattice layer point;
+        </li>
+        <li>
+          <a href = "simplex_lattice_point_next.m">
+          simplex_lattice_point_next.m</a>,
+          returns the next simplex lattice point;
+        </li>
+        <li>
+          <a href = "simplex_unit_lattice_point_num_nd.m">
+          simplex_unit_lattice_point_num_nd.m</a>,
+          counts lattice points;
+        </li>
+        <li>
+          <a href = "simplex_unit_volume_nd.m">
+          simplex_unit_volume_nd.m</a>,
+          returns the volume of the unit simplex in ND;
+        </li>
+        <li>
+          <a href = "simplex_volume_nd.m">
+          simplex_volume_nd.m</a>,
+          returns the volume of a simplex in ND;
+        </li>
+        <li>
+          <a href = "sin_deg.m">
+          sin_deg.m</a>,
+          returns the sine of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "sin_power_int.m">
+          sin_power_int.m</a>,
+          evaluates the sine power integral;
+        </li>
+        <li>
+          <a href = "soccer_shape_3d.m">
+          soccer_shape_3d.m</a>,
+          gives information for a soccer ball (truncated icosahedron) in 3D;
+        </li>
+        <li>
+          <a href = "soccer_size_3d.m">
+          soccer_size_3d.m</a>,
+          gives "sizes" for a soccer ball (truncated icosahedron) in 3D;
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">
+          sort_heap_external.m</a>,
+          externally sorts a list of values into ascending order;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_2d.m">
+          sphere_cap_area_2d.m</a>,
+          computes the area of a sphere cap in 2D;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_3d.m">
+          sphere_cap_area_3d.m</a>,
+          computes the area of a sphere cap in 3D;
+        </li>
+        <li>
+          <a href = "sphere_cap_area_nd.m">
+          sphere_cap_area_nd.m</a>,
+          computes the area of a sphere cap in ND;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_2d.m">
+          sphere_cap_volume_2d.m</a>,
+          computes the volume of a sphere cap in 2D;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_3d.m">
+          sphere_cap_volume_3d.m</a>,
+          computes the volume of a sphere cap in 3D;
+        </li>
+        <li>
+          <a href = "sphere_cap_volume_nd.m">
+          sphere_cap_volume_nd.m</a>,
+          computes the volume of a sphere cap in ND;
+        </li>
+        <li>
+          <a href = "sphere_dia2imp_3d.m">
+          sphere_dia2imp_3d.m</a>,
+          converts a diameter to an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_distance_xyz.m">sphere_distance_xyz.m</a>,
+          computes great circle distances on a sphere.
+        </li>
+        <li>
+          <a href = "sphere_distance1.m">
+          sphere_distance1.m</a>,
+          computes the distance between two points on a sphere;
+        </li>
+        <li>
+          <a href = "sphere_distance2.m">
+          sphere_distance2.m</a>,
+          computes the distance between two points on a sphere;
+        </li>
+        <li>
+          <a href = "sphere_distance3.m">
+          sphere_distance3.m</a>,
+          computes the distance between two points on a sphere;
+        </li>
+        <li>
+          <a href = "sphere_exp_contains_point_3d.m">
+          sphere_exp_contains_point_3d.m</a>,
+          reports if a point is inside an explicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_exp_point_near_3d.m">
+          sphere_exp_point_near_3d.m</a>,
+          finds the nearest point on an explicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_exp2imp_3d.m">
+          sphere_exp2imp_3d.m</a>,
+          converts an explicit to implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_exp2imp_nd.m">
+          sphere_exp2imp_nd.m</a>,
+          converts an explicit to implicit sphere in ND,
+          that is, it finds an N-dimensional sphere through N+1 points.
+        </li>
+        <li>
+          <a href = "sphere_imp_area_3d.m">
+          sphere_imp_area_3d.m</a>,
+          computes the area of an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_area_nd.m">
+          sphere_imp_area_nd.m</a>,
+          computes the area of an implicit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_imp_contains_point_3d.m">
+          sphere_imp_contains_point_3d.m</a>,
+          determines if a point is inside an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_gridfaces_3d.m">
+          sphere_imp_gridfaces_3d.m</a>,
+          produces a grid of triangles on an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_line_project_3d.m">
+          sphere_imp_line_project_3d.m</a>,
+          projects a line onto an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_local2xyz_3d.m">
+          sphere_imp_local2xyz_3d.m</a>,
+          converts local to XYZ coordinates on an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_point_near_3d.m">
+          sphere_imp_point_near_3d.m</a>,
+          given a point, finds the nearest point on an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_point_project_3d.m">
+          sphere_imp_point_project_3d.m</a>,
+          projects a point onto an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_volume_3d.m">
+          sphere_imp_volume_3d.m</a>,
+          computes the volume of an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_volume_nd.m">
+          sphere_imp_volume_nd.m</a>,
+          computes the volume of an implicit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_imp_zone_area_3d.m">
+          sphere_imp_zone_area_3d.m</a>,
+          computes the area of zone of an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp_zone_volume_3d.m">
+          sphere_imp_zone_volume_3d.m</a>,
+          computes the volume of zone of an implicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_imp2exp_3d.m">
+          sphere_imp2exp_3d.m</a>,
+          converts an implicit to explicit sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_k.m">
+          sphere_k.m</a>,
+          computes a factor useful for certain spherical calculations;
+        </li>
+        <li>
+          <a href = "sphere_polygon_area_3d.m">
+          sphere_polygon_area_3d.m</a>,
+          computes the area of a spherical polygon;
+        </li>
+        <li>
+          <a href = "sphere_unit_area_nd.m">
+          sphere_unit_area_nd.m</a>,
+          returns the area of a unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_area_values.m">
+          sphere_unit_area_values.m</a>,
+          returns some areas of a unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample_2d.m">
+          sphere_unit_sample_2d.m</a>,
+          returns a random point in a sphere in 2D;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample_3d.m">
+          sphere_unit_sample_3d.m</a>,
+          returns a random point in a sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample_3d_2.m">
+          sphere_unit_sample_3d_2.m</a>,
+          a BAD method for returning a random point in a sphere in 3D;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample_nd.m">
+          sphere_unit_sample_nd.m</a>,
+          returns a random point in a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample2_nd.m">
+          sphere_unit_sample2_nd.m</a>,
+          returns a random point in a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_sample3_nd.m">
+          sphere_unit_sample3_nd.m</a>,
+          returns a random point in a sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_volume_nd.m">
+          sphere_unit_volume_nd.m</a>,
+          computes the volume of a unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere_unit_volume_values.m">
+          sphere_unit_volume_values.m</a>,
+          returns some volumes of a unit sphere in ND;
+        </li>
+        <li>
+          <a href = "sphere01_distance_xyz.m">sphere01_distance_xyz.m</a>,
+          computes great circle distances on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere_triangle_angles_to_area.m">
+          sphere_triangle_angles_to_area.m</a>,
+          computes the area of a spherical triangle;
+        </li>
+        <li>
+          <a href = "sphere_triangle_contains_point.m">
+          sphere_triangle_contains_point.m</a>,
+          determines if a spherical triangle contains a point;
+        </li>
+        <li>
+          <a href = "sphere_triangle_sides_to_angles.m">
+          sphere_triangle_sides_to_angles.m</a>,
+          computes the angles of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "sphere_triangle_vertices_to_angles.m">
+          sphere_triangle_vertices_to_angles.m</a>,
+          computes the angles of a spherical triangle from its vertices;
+        </li>
+        <li>
+          <a href = "sphere_triangle_vertices_to_area.m">
+          sphere_triangle_vertices_to_area.m</a>,
+          computes the area of a spherical triangle from its vertices;
+        </li>
+        <li>
+          <a href = "sphere_triangle_vertices_to_centroid.m">
+          sphere_triangle_vertices_to_centroid.m</a>,
+          computes the centroid of a spherical triangle from its vertices;
+        </li>
+        <li>
+          <a href = "sphere_triangle_vertices_to_orientation.m">
+          sphere_triangle_vertices_to_orientation.m</a>,
+          attempts to define an orientation for a spherical triangle from its vertices;
+        </li>
+        <li>
+          <a href = "sphere_triangle_vertices_to_sides.m">
+          sphere_triangle_vertices_to_sides.m</a>,
+          computes the sides of a spherical triangle from its sides;
+        </li>
+        <li>
+          <a href = "sphere01_triangle_angles_to_area.m">
+          sphere01_triangle_angles_to_area.m</a>,
+          computes the area of a spherical triangle on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_sides_to_angles.m">
+          sphere01_triangle_sides_to_angles.m</a>,
+          computes the angles of a spherical triangle from its sides
+          on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_angles.m">
+          sphere01_triangle_vertices_to_angles.m</a>,
+          computes the angles of a spherical triangle from its vertices
+          on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_area.m">
+          sphere01_triangle_vertices_to_area.m</a>,
+          computes the area of a spherical triangle from its vertices
+          on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_centroid.m">
+          sphere01_triangle_vertices_to_centroid.m</a>,
+          computes the centroid of a spherical triangle from its vertices
+          on a unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_sides.m">
+          sphere01_triangle_vertices_to_sides.m</a>,
+          computes the sides of a spherical triangle from its sides
+          on a unit sphere.
+        </li>
+        <li>
+          <a href = "string_2d.m">
+          string_2d.m</a>,
+          groups line segments into connected lines in 2D;
+        </li>
+        <li>
+          <a href = "super_ellipse_points_2d.m">
+          super_ellipse_points_2d.m</a>,
+          returns points on a superellipse in 2D;
+        </li>
+        <li>
+          <a href = "tan_deg.m">
+          tan_deg.m</a>,
+          returns the tangent of an angle given in degrees;
+        </li>
+        <li>
+          <a href = "tetrahedron_barycentric_3d.m">
+          tetrahedron_barycentric_3d.m</a>,
+          returns the barycentric coordinates of a point in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_centroid_3d.m">
+          tetrahedron_centroid_3d.m</a>,
+          returns the centroid of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_circumsphere_3d.m">
+          tetrahedron_circumsphere_3d.m</a>,
+          returns the circumsphere of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_contains_point_3d.m">
+          tetrahedron_contains_point_3d.m</a>,
+          is TRUE if a tetrahedron contains a point in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_dihedral_angles_3d.m">
+          tetrahedron_dihedral_angles_3d.m</a>,
+          returns the 6 dihedral angles of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_edge_length_3d.m">
+          tetrahedron_edge_length_3d.m</a>,
+          returns the edge lengths of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_face_angles_3d.m">
+          tetrahedron_face_angles_3d.m</a>,
+          returns the 12 face angles of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_face_areas_3d.m">
+          tetrahedron_face_areas_3d.m</a>,
+          returns the 4 face areas of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_insphere_3d.m">
+          tetrahedron_insphere_3d.m</a>,
+          returns the insphere of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_lattice_layer_point_next.m">
+          tetrahedron_lattice_layer_point_next.m</a>,
+          next tetrahedron lattice layer point;
+        </li>
+        <li>
+          <a href = "tetrahedron_lattice_point_next.m">
+          tetrahedron_lattice_point_next.m</a>,
+          returns the next tetrahedron lattice point;
+        </li>
+        <li>
+          <a href = "tetrahedron_quality1_3d.m">
+          tetrahedron_quality1_3d.m</a>,
+          returns the quality of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_quality2_3d.m">
+          tetrahedron_quality2_3d.m</a>,
+          returns the quality of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_quality3_3d.m">
+          tetrahedron_quality3_3d.m</a>,
+          returns the quality of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_quality4_3d.m">
+          tetrahedron_quality4_3d.m</a>,
+          returns the quality of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_rhombic_shape_3d.m">
+          tetrahedron_rhombic_shape_3d.m</a>,
+          describes the shape of a rhombic tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_rhombic_size_3d.m">
+          tetrahedron_rhombic_size_3d.m</a>,
+          gives "sizes" for a rhombic tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_sample_3d.m">
+          tetrahedron_sample_3d.m</a>,
+          returns a random point from a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_shape_3d.m">
+          tetrahedron_shape_3d.m</a>,
+          describes the shape of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_size_3d.m">
+          tetrahedron_size_3d.m</a>,
+          gives "sizes" for a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_solid_angles_3d.m">
+          tetrahedron_solid_angles_3d.m</a>,
+          returns the 4 solid angles of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "tetrahedron_unit_lattice_point_num_3d.m">
+          tetrahedron_unit_lattice_point_num_3d.m</a>,
+          counts lattice points;
+        </li>
+        <li>
+          <a href = "tetrahedron_volume_3d.m">
+          tetrahedron_volume_3d.m</a>,
+          computes the volume of a tetrahedron in 3D;
+        </li>
+        <li>
+          <a href = "timestamp.m">
+          timestamp.m</a>,
+          prints the current YMDHMS date as a timestamp;
+        </li>
+        <li>
+          <a href = "tmat_init.m">
+          tmat_init.m</a>,
+          initializes a transformation matrix to the identity;
+        </li>
+        <li>
+          <a href = "tmat_mxm.m">
+          tmat_mxm.m</a>,
+          multiplies two transformation matrices;
+        </li>
+        <li>
+          <a href = "tmat_mxp.m">
+          tmat_mxp.m</a>,
+          multiplies a transformation matrix times a physical point;
+        </li>
+        <li>
+          <a href = "tmat_mxp2.m">
+          tmat_mxp2.m</a>,
+          multiplies a transformation matrix times a number of physical points;
+        </li>
+        <li>
+          <a href = "tmat_mxv.m">
+          tmat_mxv.m</a>,
+          multiplies a transformation matrix times a vector;
+        </li>
+        <li>
+          <a href = "tmat_rot_axis.m">
+          tmat_rot_axis.m</a>,
+          applies a coordinate axis rotatition to a transformation matrix;
+        </li>
+        <li>
+          <a href = "tmat_rot_vector.m">
+          tmat_rot_vector.m</a>,
+          applies an arbitrary rotation to a transformation matrix;
+        </li>
+        <li>
+          <a href = "tmat_scale.m">
+          tmat_scale.m</a>,
+          applies a scaling to a transformation matrix;
+        </li>
+        <li>
+          <a href = "tmat_shear.m">
+          tmat_shear.m</a>,
+          applies a shear to a transformation matrix;
+        </li>
+        <li>
+          <a href = "tmat_trans.m">
+          tmat_trans.m</a>,
+          applies a translation to a transformation matrix;
+        </li>
+        <li>
+          <a href = "torus_area_3d.m">
+          torus_area_3d.m</a>,
+          returns the area of a torus in 3D;
+        </li>
+        <li>
+          <a href = "torus_volume_3d.m">
+          torus_volume_3d.m</a>,
+          returns the volume of a torus in 3D;
+        </li>
+        <li>
+          <a href = "tp_to_xyz.m">
+          tp_to_xyz.m</a>,
+          converts unit spherical coordinates to XYZ coordinates;
+        </li>
+        <li>
+          <a href = "triangle_angles_2d.m">
+          triangle_angles_2d.m</a>,
+          returns the angles of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_angles_3d.m">
+          triangle_angles_3d.m</a>,
+          returns the angles of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_area_2d.m">
+          triangle_area_2d.m</a>,
+          returns the area of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_area_3d.m">
+          triangle_area_3d.m</a>,
+          returns the area of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_area_3d_2.m">
+          triangle_area_3d_2.m</a>,
+          returns the area of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_area_3d_3.m">
+          triangle_area_3d_3.m</a>,
+          returns the area of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_area_heron.m">
+          triangle_area_heron.m</a>,
+          returns the area of a triangle in any dimension;
+        </li>
+        <li>
+          <a href = "triangle_area_vector_3d.m">
+          triangle_area_vector_3d.m</a>,
+          returns the area vector of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_barycentric_2d.m">
+          triangle_barycentric_2d.m</a>,
+          returns the barycentric coordinates of a point in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_centroid_2d.m">
+          triangle_centroid_2d.m</a>,
+          returns the centroid of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_centroid_3d.m">
+          triangle_centroid_3d.m</a>,
+          returns the centroid of a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_circumcenter_2d.m">
+          triangle_circumcenter_2d.m</a>,
+          returns the circumcenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_circumcenter_2d_2.m">
+          triangle_circumcenter_2d_2.m</a>,
+          returns the circumcenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_circumcenter.m">
+          triangle_circumcenter.m</a>,
+          returns the circumcenter of a triangle in ND;
+        </li>
+        <li>
+          <a href = "triangle_circumcircle_2d.m">
+          triangle_circumcircle_2d.m</a>,
+          returns the circumcenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_circumcircle_2d_2.m">
+          triangle_circumcircle_2d_2.m</a>,
+          returns the circumcenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_circumradius_2d.m">
+          triangle_circumradius_2d.m</a>,
+          returns the circumradius of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_contains_line_exp_3d.m">
+          triangle_contains_line_exp_3d.m</a>,
+          determines if an explicit line passes through a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_contains_line_par_3d.m">
+          triangle_contains_line_par_3d.m</a>,
+          determines if a parametric line passes through a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_contains_point_2d_1.m">
+          triangle_contains_point_2d_1.m</a>,
+          determines if a point is in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_contains_point_2d_2.m">
+          triangle_contains_point_2d_2.m</a>,
+          determines if a point is in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_contains_point_2d_3.m">
+          triangle_contains_point_2d_3.m</a>,
+          determines if a point is in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_edge_length_2d.m">
+          triangle_edge_length_2d.m</a>,
+          returns the edge lengths of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_gridpoints_2d.m">
+          triangle_gridpoints_2d.m</a>,
+          computes gridpoints within a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_incenter_2d.m">
+          triangle_incenter_2d.m</a>,
+          returns the incenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_incircle_2d.m">
+          triangle_incircle_2d.m</a>,
+          returns the incircle of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_inradius_2d.m">
+          triangle_inradius_2d.m</a>,
+          returns the inradius of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_is_degenerate_nd.m">
+          triangle_is_degenerate_nd.m</a>,
+          determines if a triangle is degenerate in ND;
+        </li>
+        <li>
+          <a href = "triangle_lattice_layer_point_next.m">
+          triangle_lattice_layer_point_next.m</a>,
+          next triangle lattice layer point;
+        </li>
+        <li>
+          <a href = "triangle_lattice_point_next.m">
+          triangle_lattice_point_next.m</a>,
+          returns the next triangle lattice point;
+        </li>
+        <li>
+          <a href = "triangle_line_imp_int_2d.m">
+          triangle_line_imp_int_2d.m</a>,
+          finds intersections of an implicit line with a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_orientation_2d.m">
+          triangle_orientation_2d.m</a>,
+          returns the orientation of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_orthocenter_2d.m">
+          triangle_orthocenter_2d.m</a>,
+          returns the orthocenter of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_point_dist_2d.m">
+          triangle_point_dist_2d.m</a>,
+          returns the distance of point to a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_point_dist_3d.m">
+          triangle_point_dist_3d.m</a>,
+          returns the distance of point to a triangle in 3D;
+        </li>
+        <li>
+          <a href = "triangle_point_dist_signed_2d.m">
+          triangle_point_dist_signed_2d.m</a>,
+          returns the signed distance of point to a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_point_near_2d.m">
+          triangle_point_near_2d.m</a>,
+          returns the nearest point on a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_quality_2d.m">
+          triangle_quality_2d.m</a>,
+          returns the shape quality of a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_right_lattice_point_num_2d.m">
+          triangle_right_lattice_point_num_2d.m</a>,
+          counts lattice points;
+        </li>
+        <li>
+          <a href = "triangle_sample.m">
+          triangle_sample.m</a>,
+          randomly samples a point from a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_unit_lattice_point_num_2d.m">
+          triangle_unit_lattice_point_num_2d.m</a>,
+          counts lattice points;
+        </li>
+        <li>
+          <a href = "triangle_xsi_to_xy_2d.m">
+          triangle_xsi_to_xy_2d.m</a>,
+          converts barycentric to cartesian coordinates in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "triangle_xy_to_xsi_2d.m">
+          triangle_xy_to_xsi_2d.m</a>,
+          converts cartesian to barycentric coordinates in a triangle in 2D;
+        </li>
+        <li>
+          <a href = "truncated_octahedron_shape_3d.m">
+          truncated_octahedron_shape_3d.m</a>,
+          returns shape information for a truncated octahedron in 3D;
+        </li>
+        <li>
+          <a href = "truncated_octahedron_size_3d.m">
+          truncated_octahedron_size_3d.m</a>,
+          gives "sizes" for a truncated octahedron in 3D;
+        </li>
+        <li>
+          <a href = "tube_2d.m">
+          tube_2d.m</a>,
+          constructs a "tube" of given width around a path in 2D;
+        </li>
+        <li>
+          <a href = "tuple_next2.m">
+          tuple_next2.m</a>,
+          returns the next element of an integer tuple sequence;
+        </li>
+        <li>
+          <a href = "vector_directions_nd.m">
+          vector_directions_nd.m</a>,
+          returns the direction angles of a vector in ND;
+        </li>
+        <li>
+          <a href = "vector_rotate_2d.m">
+          vector_rotate_2d.m</a>,
+          rotates a vector in 2D;
+        </li>
+        <li>
+          <a href = "vector_rotate_3d.m">
+          vector_rotate_3d.m</a>,
+          rotates a vector in 3D;
+        </li>
+        <li>
+          <a href = "vector_rotate_base_2d.m">
+          vector_rotate_base_2d.m</a>,
+          rotates a vector around a base point in 2D;
+        </li>
+        <li>
+          <a href = "vector_separation_nd.m">
+          vector_separation_nd.m</a>,
+          finds the angular separation between two vectors in ND;
+        </li>
+        <li>
+          <a href = "vector_unit_nd.m">
+          vector_unit_nd.m</a>,
+          normalizes a vector in ND;
+        </li>
+        <li>
+          <a href = "voxels_dist_l1_nd.m">
+          voxels_dist_l1_nd.m</a>,
+          finds the L1 distance between voxels in ND;
+        </li>
+        <li>
+          <a href = "voxels_line_3d.m">
+          voxels_line_3d.m</a>,
+          produces voxels along a line in 3D;
+        </li>
+        <li>
+          <a href = "voxels_region_3d.m">
+          voxels_region_3d.m</a>,
+          arranges contiguous voxels into regions in 3D;
+        </li>
+        <li>
+          <a href = "voxels_step_3d.m">
+          voxels_step_3d.m</a>,
+          produces voxels along a line from a given point in 3D;
+        </li>
+        <li>
+          <a href = "xy_to_polar.m">
+          xy_to_polar.m</a>,
+          converts XY coordinates to polar coordinates;
+        </li>
+        <li>
+          <a href = "xyz_to_radec.m">
+          xyz_to_radec.m</a>,
+          converts XYZ coordinates to right ascension and declension;
+        </li>
+        <li>
+          <a href = "xyz_to_rtp.m">
+          xyz_to_rtp.m</a>,
+          converts XYZ coordinates to (R,Theta,Phi) coordinates;
+        </li>
+        <li>
+          <a href = "xyz_to_tp.m">
+          xyz_to_tp.m</a>,
+          converts XYZ coordinates to (Theta,Phi) coordinates;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "geometry_test.m">geometry_test.m</a>,
+          calls all the other test routines;
+        </li>
+        <li>
+          <a href = "geometry_test_output.txt">geometry_test_output.txt</a>,
+          the output file;
+        </li>
+        <li>
+          <a href = "geometry_test0005.m">geometry_test0005.m</a>,
+          tests ANGLE_BOX_2D;
+        </li>
+        <li>
+          <a href = "geometry_test001.m">geometry_test001.m</a>,
+          tests ANGLE_CONTAINS_POINT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test002.m">geometry_test002.m</a>,
+          tests ANGLE_DEG_2D and ANGLE_RAD_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0023.m">geometry_test0023.m</a>,
+          tests ANGLE_HALF_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0025.m">geometry_test0025.m</a>,
+          tests ANGLE_RAD_2D;
+        </li>
+        <li>
+          <a href = "geometry_test003.m">geometry_test003.m</a>,
+          tests ANGLE_RAD_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0032.m">geometry_test0032.m</a>,
+          tests ANGLE_TURN_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0035.m">geometry_test0035.m</a>,
+          tests ANNULUS_SECTOR_CENTROID_2D;
+        </li>
+        <li>
+          <a href = "geometry_test004.m">geometry_test004.m</a>,
+          tests R8_ACOS;
+        </li>
+        <li>
+          <a href = "geometry_test005.m">geometry_test005.m</a>,
+          tests R8_ATAN;
+        </li>
+        <li>
+          <a href = "geometry_test006.m">geometry_test006.m</a>,
+          tests BALL_UNIT_SAMPLE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test007.m">geometry_test007.m</a>,
+          tests BALL_UNIT_SAMPLE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0075.m">geometry_test0075.m</a>,
+          tests BALL_UNIT_SAMPLE_ND;
+        </li>
+        <li>
+          <a href = "geometry_test008.m">geometry_test008.m</a>,
+          tests BASIS_MAP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test009.m">geometry_test009.m</a>,
+          tests BOX_SEGMENT_CLIP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test010.m">geometry_test010.m</a>,
+          tests BOX_RAY_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test011.m">geometry_test011.m</a>,
+          tests CIRCLE_DIA2IMP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test012.m">geometry_test012.m</a>,
+          tests CIRCLE_LUNE_AREA_2D, CIRCLE_SECTOR_AREA_2D, and
+          CIRCLE_TRIANGLE_AREA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0125.m">geometry_test0125.m</a>,
+          tests CIRCLE_LUNE_AREA_2D, SPHERE_CAP_VOLUME_2D, and
+          SPHERE_CAP_VOLUME_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0126.m">geometry_test0126.m</a>,
+          tests SPHERE_CAP_VOLUME_3D and SPHERE_CAP_VOLUME_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0127.m">geometry_test0127.m</a>,
+          tests SPHERE_CAP_AREA_3D and SPHERE_CAP_AREA_ND;
+        </li>
+        <li>
+          <a href = "geometry_test013.m">geometry_test013.m</a>,
+          tests CIRCLE_LUNE_CENTROID_2D and CIRCLE_SECTOR_CENTROID_2D;
+        </li>
+        <li>
+          <a href = "geometry_test014.m">geometry_test014.m</a>,
+          tests CIRCLE_CONTAINS_POINT_2D and CIRCLE_CONTAINS_POINT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test015.m">geometry_test015.m</a>,
+          tests CIRCLE_EXP2IMP_2D and TRIANGLE_CIRCUMCIRCLE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0155.m">geometry_test0155.m</a>,
+          tests CIRCLE_EXP2IMP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0156.m">geometry_test0156.m</a>,
+          tests CIRCLE_EXP2IMP_2D and CIRCLE_IMP2EXP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test016.m">geometry_test016.m</a>,
+          tests CIRCLE_IMP_POINTS_2D and POLYGON_AREA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0165.m">geometry_test0165.m</a>,
+          tests CIRCLE_IMP_POINTS_3D;
+        </li>
+        <li>
+          <a href = "geometry_test017.m">geometry_test017.m</a>,
+          tests CIRCLE_IMP_POINTS_ARC_2D;
+        </li>
+        <li>
+          <a href = "geometry_test018.m">geometry_test018.m</a>,
+          tests CIRCLE_IMP_POINT_DIST_2D and CIRCLES_IMP_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0183.m">geometry_test0183.m</a>,
+          tests CIRCLE_LLR2IMP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0185.m">geometry_test0185.m</a>,
+          tests CIRCLE_PPPR2IMP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test019.m">geometry_test019.m</a>,
+          tests CIRCLE_PPR2IMP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test020.m">geometry_test020.m</a>,
+          tests CUBE_SIZE_3D, CUBE_SHAPE_3D, and SHAPE_PRINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0201.m">geometry_test0201.m</a>,
+          tests CYLINDER_POINT_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test02015.m">geometry_test02015.m</a>,
+          tests CYLINDER_POINT_DIST_SIGNED_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0202.m">geometry_test0202.m</a>,
+          tests CYLINDER_POINT_INSIDE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0203.m">geometry_test0203.m</a>,
+          tests CYLINDER_POINT_NEAREST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test02035.m">geometry_test02035.m</a>,
+          tests CYLINDER_SAMPLE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0204.m">geometry_test0204.m</a>,
+          tests CYLINDER_VOLUME_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0205.m">geometry_test0205.m</a>,
+          tests DEGREES_TO_RADIANS and RADIANS_TO_DEGREES;
+        </li>
+        <li>
+          <a href = "geometry_test021.m">geometry_test021.m</a>,
+          tests DIRECTION_PERT_3D and GET_SEED;
+        </li>
+        <li>
+          <a href = "geometry_test022.m">geometry_test022.m</a>,
+          tests DIRECTION_UNIFORM_3D and GET_SEED;
+        </li>
+        <li>
+          <a href = "geometry_test023.m">geometry_test023.m</a>,
+          tests DIRECTION_UNIFORM_ND and GET_SEED;
+        </li>
+        <li>
+          <a href = "geometry_test0232.m">geometry_test0232.m</a>,
+          tests DISK_POINT_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0234.m">geometry_test0234.m</a>,
+          tests R8MAT_SOLVE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0235.m">geometry_test0235.m</a>,
+          tests DMS_TO_RADIANS and RADIANS_TO_DMS;
+        </li>
+        <li>
+          <a href = "geometry_test0236.m">geometry_test0236.m</a>,
+          tests DODEC_SIZE_3D, DODEC_SHAPE_3D, and SHAPE_PRINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0238.m">geometry_test0238.m</a>,
+          tests DUAL_SIZE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test024.m">geometry_test024.m</a>,
+          tests DUAL_SHAPE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0243.m">geometry_test0243.m</a>,
+          tests R8VEC_ANY_NORMAL;
+        </li>
+        <li>
+          <a href = "geometry_test0245.m">geometry_test0245.m</a>,
+          tests R8VEC_NORMAL_01;
+        </li>
+        <li>
+          <a href = "geometry_test025.m">geometry_test025.m</a>,
+          tests ELLIPSE_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0255.m">geometry_test0255.m</a>,
+          tests ELLIPSE_POINT_NEAR_2D;
+        </li>
+        <li>
+          <a href = "geometry_test026.m">geometry_test026.m</a>,
+          tests ELLIPSE_POINTS_2D, ELLIPSE_AREA_2D, and POLYGON_AREA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test027.m">geometry_test027.m</a>,
+          tests ELLIPSE_POINTS_ARC_2D;
+        </li>
+        <li>
+          <a href = "geometry_test028.m">geometry_test028.m</a>,
+          tests HALFPLANE_CONTAINS_POINT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test029.m">geometry_test029.m</a>,
+          tests HALFSPACE_IMP_TRIANGLE_INT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test030.m">geometry_test030.m</a>,
+          tests HALFSPACE_NORMAL_TRIANGLE_INT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test031.m">geometry_test031.m</a>,
+          tests HAVERSINE;
+        </li>
+        <li>
+          <a href = "geometry_test0315.m">geometry_test0315.m</a>,
+          tests HEXAGON_CONTAINS_POINT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test032.m">geometry_test032.m</a>,
+          tests HEXAGON_SHAPE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0321.m">geometry_test0321.m</a>,
+          tests HEXAGON_VERTICES_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0322.m">geometry_test0322.m</a>,
+          tests I4COL_FIND_ITEM;
+        </li>
+        <li>
+          <a href = "geometry_test0323.m">geometry_test0323.m</a>,
+          tests I4COL_FIND_PAIR_WRAP;
+        </li>
+        <li>
+          <a href = "geometry_test0325.m">geometry_test0325.m</a>,
+          tests ICOS_SIZE, ICOS_SHAPE, and SHAPE_PRINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0327.m">geometry_test0327.m</a>,
+          tests LINE_EXP_NORMAL_2D;
+        </li>
+        <li>
+          <a href = "geometry_test033.m">geometry_test033.m</a>,
+          tests LINE_EXP_PERP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0335.m">geometry_test0335.m</a>,
+          tests LINE_EXP_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0336.m">geometry_test0336.m</a>,
+          tests LINE_EXP_POINT_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0337.m">geometry_test0337.m</a>,
+          tests LINE_EXP_POINT_DIST_SIGNED_2D;
+        </li>
+        <li>
+          <a href = "geometry_test034.m">geometry_test034.m</a>,
+          tests LINE_EXP_POINT_NEAR_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0345.m">geometry_test0345.m</a>,
+          tests LINE_EXP2IMP_2D and LINE_IMP2EXP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0346.m">geometry_test0346.m</a>,
+          tests LINE_EXP2PAR_2D and LINE_PAR2EXP_2D;
+        </li>
+        <li>
+          <a href = "geometry_test035.m">geometry_test035.m</a>,
+          tests LINE_IMP_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test038.m">geometry_test038.m</a>,
+          tests LINES_EXP_ANGLE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0385.m">geometry_test0385.m</a>,
+          tests LINES_EXP_DIST_3D and LINES_EXP_DIST_3D_2;
+        </li>
+        <li>
+          <a href = "geometry_test03855.m">geometry_test03855.m</a>,
+          tests LINES_EXP_NEAR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0386.m">geometry_test0386.m</a>,
+          tests LINES_EXP_EQUAL_2D;
+        </li>
+        <li>
+          <a href = "geometry_test039.m">geometry_test039.m</a>,
+          tests LINES_EXP_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test040.m">geometry_test040.m</a>,
+          tests LINES_IMP_ANGLE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test041.m">geometry_test041.m</a>,
+          tests LINES_IMP_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0415.m">geometry_test0415.m</a>,
+          tests LINES_IMP_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0416.m">geometry_test0416.m</a>,
+          tests LINES_PAR_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0418.m">geometry_test0418.m</a>,
+          tests SEGMENTS_CURVATURE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test042.m">geometry_test042.m</a>,
+          tests SEGMENTS_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test043.m">geometry_test043.m</a>,
+          tests SEGMENTS_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test044.m">geometry_test044.m</a>,
+          tests SEGMENTS_INT_1D;
+        </li>
+        <li>
+          <a href = "geometry_test045.m">geometry_test045.m</a>,
+          tests SEGMENTS_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test046.m">geometry_test046.m</a>,
+          tests MINABS;
+        </li>
+        <li>
+          <a href = "geometry_test047.m">geometry_test047.m</a>,
+          tests MINQUAD;
+        </li>
+        <li>
+          <a href = "geometry_test0475.m">geometry_test0475.m</a>,
+          tests OCTAHEDRON_SIZE_3D and OCTAHEDRON_SHAPE_3D.
+        </li>
+        <li>
+          <a href = "geometry_test0477.m">geometry_test0477.m</a>,
+          tests PARALLELOGRAM_AREA_2D.
+        </li>
+        <li>
+          <a href = "geometry_test0478.m">geometry_test0478.m</a>,
+          tests PARALLELOGRAM_AREA_3D.
+        </li>
+        <li>
+          <a href = "geometry_test048.m">geometry_test048.m</a>,
+          tests PARALLELOGRAM_CONTAINS_POINT_2D.
+        </li>
+        <li>
+          <a href = "geometry_test0485.m">geometry_test0485.m</a>,
+          tests PARALLELOGRAM_CONTAINS_POINT_2D.
+        </li>
+        <li>
+          <a href = "geometry_test049.m">geometry_test049.m</a>,
+          tests PARALLELOGRAM_CONTAINS_POINT_3D.
+        </li>
+        <li>
+          <a href = "geometry_test0493.m">geometry_test0493.m</a>,
+          tests PARABOLA_EX and PARABOLA_EX2.
+        </li>
+        <li>
+          <a href = "geometry_test0495.m">geometry_test0495.m</a>,
+          tests PARALLELEPIPED_POINT_DIST_3D.
+        </li>
+        <li>
+          <a href = "geometry_test050.m">geometry_test050.m</a>,
+          tests PLANE_EXP_NORMAL_3D.
+        </li>
+        <li>
+          <a href = "geometry_test051.m">geometry_test051.m</a>,
+          tests PLANE_EXP2IMP_3D.
+        </li>
+        <li>
+          <a href = "geometry_test052.m">geometry_test052.m</a>,
+          tests PLANE_EXP2NORMAL_3D.
+        </li>
+        <li>
+          <a href = "geometry_test053.m">geometry_test053.m</a>,
+          tests PLANE_EXP_PROJECT_3D.
+        </li>
+        <li>
+          <a href = "geometry_test054.m">geometry_test054.m</a>,
+          tests PLANE_IMP2EXP_3D.
+        </li>
+        <li>
+          <a href = "geometry_test055.m">geometry_test055.m</a>,
+          tests PLANE_IMP2NORMAL_3D.
+        </li>
+        <li>
+          <a href = "geometry_test056.m">geometry_test056.m</a>,
+          tests PLANE_IMP_LINE_PAR_INT_3D.
+        </li>
+        <li>
+          <a href = "geometry_test057.m">geometry_test057.m</a>,
+          tests PLANE_IMP_SEGMENT_NEAR_3D.
+        </li>
+        <li>
+          <a href = "geometry_test058.m">geometry_test058.m</a>,
+          tests PLANE_IMP_POINT_DIST_3D and PLANE_IMP_POINT_DIST_SIGNED_3D.
+        </li>
+        <li>
+          <a href = "geometry_test059.m">geometry_test059.m</a>,
+          tests PLANE_IMP_TRIANGLE_NEAR_3D.
+        </li>
+        <li>
+          <a href = "geometry_test060.m">geometry_test060.m</a>,
+          tests PLANE_IMP_TRIANGLE_INT_3D.
+        </li>
+        <li>
+          <a href = "geometry_test061.m">geometry_test061.m</a>,
+          tests PLANE_NORMAL_BASIS_3D.
+        </li>
+        <li>
+          <a href = "geometry_test0615.m">geometry_test0615.m</a>,
+          tests PLANE_NORMAL_LINE_EXP_INT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0616.m">geometry_test0616.m</a>,
+          tests PLANE_NORMAL_QR_TO_XYZ and PLANE_NORMAL_XYZ_TO_QR;
+        </li>
+        <li>
+          <a href = "geometry_test0617.m">geometry_test0617.m</a>,
+          tests PLANE_NORMAL_TETRAHEDRON_INTERSECT;
+        </li>
+        <li>
+          <a href = "geometry_test062.m">geometry_test062.m</a>,
+          tests PLANE_NORMAL_TRIANGLE_INT_3D.
+        </li>
+        <li>
+          <a href = "geometry_test063.m">geometry_test063.m</a>,
+          tests PLANE_NORMAL2EXP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test064.m">geometry_test064.m</a>,
+          tests PLANE_NORMAL2IMP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test065.m">geometry_test065.m</a>,
+          tests POINTS_CENTROID_2D;
+        </li>
+        <li>
+          <a href = "geometry_test066.m">geometry_test066.m</a>,
+          tests POINTS_COLIN_2D;
+        </li>
+        <li>
+          <a href = "geometry_test068.m">geometry_test068.m</a>,
+          tests the SPHERE_DISTANCE routines;
+        </li>
+        <li>
+          <a href = "geometry_test0685.m">geometry_test0685.m</a>,
+          tests POLAR_TO_XY and XY_TO_POLAR;
+        </li>
+        <li>
+          <a href = "geometry_test0755.m">geometry_test0755.m</a>,
+          tests POLYGON_1_2D, POLYGON_X_2D, POLYGON_Y_2D, POLYGON_XX_2D,
+          POLYGON_XY_2D, and POLYGON_YY_2D,;
+        </li>
+        <li>
+          <a href = "geometry_test0757.m">geometry_test0757.m</a>,
+          tests POLYGON_ANGLES_2D;
+        </li>
+        <li>
+          <a href = "geometry_test076.m">geometry_test076.m</a>,
+          tests POLYGON_AREA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0765.m">geometry_test0765.m</a>,
+          tests POLYGON_AREA_2D_2;
+        </li>
+        <li>
+          <a href = "geometry_test078.m">geometry_test078.m</a>,
+          tests POLYGON_AREA_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0782.m">geometry_test0782.m</a>,
+          tests POLYGON_AREA_3D_2;
+        </li>
+        <li>
+          <a href = "geometry_test0784.m">geometry_test0784.m</a>,
+          tests POLYGON_CENTROID_2D and POLYGON_CENTROID_2D_2;
+        </li>
+        <li>
+          <a href = "geometry_test0786.m">geometry_test0786.m</a>,
+          tests POLYGON_CENTROID_3D;
+        </li>
+        <li>
+          <a href = "geometry_test079.m">geometry_test079.m</a>,
+          tests POLYGON_CONTAINS_POINT_2D and POLYGON_CONTAIN_POINT_2D_2;
+        </li>
+        <li>
+          <a href = "geometry_test080.m">geometry_test080.m</a>,
+          tests POLYGON_DIAMETER_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0801.m">geometry_test0801.m</a>,
+          tests POLYGON_EXPAND_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0803.m">geometry_test0803.m</a>,
+          tests POLYGON_INRAD_DATA_2D, POLYGON_OUTRAD_DATA_2D, and
+          POLYGON_SIDE_DATA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0805.m">geometry_test0805.m</a>,
+          tests POLYGON_IS_CONVEX;
+        </li>
+        <li>
+          <a href = "geometry_test0807.m">geometry_test0807.m</a>,
+          tests POLYGON_SOLID_ANGLE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test081.m">geometry_test081.m</a>,
+          tests POLYHEDRON_AREA_3D;
+        </li>
+        <li>
+          <a href = "geometry_test082.m">geometry_test082.m</a>,
+          tests POLYHEDRON_CENTROID_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0825.m">geometry_test0825.m</a>,
+          tests POLYHEDRON_CONTAINS_POINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test083.m">geometry_test083.m</a>,
+          tests POLYHEDRON_VOLUME_3D and POLYHEDRON_VOLUME_3D_2;
+        </li>
+        <li>
+          <a href = "geometry_test084.m">geometry_test084.m</a>,
+          tests POLYLINE_INDEX_POINT_ND and POLYLINE_ARCLENGTH_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0844.m">geometry_test0844.m</a>,
+          tests POLYLINE_POINTS_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0845.m">geometry_test0845.m</a>,
+          tests POLYLOOP_ARCLENGTH_ND;
+        </li>
+        <li>
+          <a href = "geometry_test0846.m">geometry_test0846.m</a>,
+          tests POLYLOOP_POINTS_ND;
+        </li>
+        <li>
+          <a href = "geometry_test085.m">geometry_test085.m</a>,
+          tests PLANE_EXP_PRO;
+        </li>
+        <li>
+          <a href = "geometry_test170.m">geometry_test170.m</a>,
+          tests PROVEC;
+        </li>
+        <li>
+          <a href = "geometry_test171.m">geometry_test171.m</a>,
+          tests QUAD_AREA_2D and QUAD_AREA2_2D;
+        </li>
+        <li>
+          <a href = "geometry_test1712.m">geometry_test1712.m</a>,
+          tests QUAD_AREA_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1715.m">geometry_test1715.m</a>,
+          tests QUAD_CONTAINS_POINT_2D, QUAD_POINT_DIST_2D,
+          QUAD_POINT_DIST_SIGNED_2D;
+        </li>
+        <li>
+          <a href = "geometry_test172.m">geometry_test172.m</a>,
+          tests QUAT_CONJ, QUAT_INV, QUAT_MUL, QUAT_NORM;
+        </li>
+        <li>
+          <a href = "geometry_test173.m">geometry_test173.m</a>,
+          tests RADEC_DISTANCE_3D and RADEC_TO_XYZ;
+        </li>
+        <li>
+          <a href = "geometry_test174.m">geometry_test174.m</a>,
+          tests RADEC_TO_XYZ and XYZ_TO_RADEC;
+        </li>
+        <li>
+          <a href = "geometry_test1745.m">geometry_test1745.m</a>,
+          tests R8MAT_SOLVE;
+        </li>
+        <li>
+          <a href = "geometry_test1746.m">geometry_test1746.m</a>,
+          tests R8MAT_INVERSE;
+        </li>
+        <li>
+          <a href = "geometry_test175.m">geometry_test175.m</a>,
+          tests ROTATION_AXIS_VECTOR_3D, ROTATION_MAT_VECTOR_3D and
+          ROTATION_QUAT_VECTOR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test176.m">geometry_test176.m</a>,
+          tests ROTATION_AXIS2MAT_3D and ROTATION_MAT2AXIS_3D;
+        </li>
+        <li>
+          <a href = "geometry_test177.m">geometry_test177.m</a>,
+          tests ROTATION_AXIS2QUAT_3D and ROTATION_QUAT2AXIS_3D;
+        </li>
+        <li>
+          <a href = "geometry_test178.m">geometry_test178.m</a>,
+          tests ROTATION_MAT2QUAT_3D and ROTATION_QUAT2MAT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1787.m">geometry_test1787.m</a>,
+          tests DGE_FA and DGE_SL;
+        </li>
+        <li>
+          <a href = "geometry_test036.m">geometry_test036.m</a>,
+          tests SEGMENT_CONTAINS_POINT_1D;
+        </li>
+        <li>
+          <a href = "geometry_test0365.m">geometry_test0365.m</a>,
+          tests SEGMENT_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0366.m">geometry_test0366.m</a>,
+          tests SEGMENT_POINT_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test0367.m">geometry_test0367.m</a>,
+          tests SEGMENT_POINT_NEAR_2D;
+        </li>
+        <li>
+          <a href = "geometry_test0368.m">geometry_test0368.m</a>,
+          tests SEGMENT_POINT_NEAR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test037.m">geometry_test037.m</a>,
+          tests SEGMENT_POINT_NEAR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1788.m">geometry_test1788.m</a>,
+          tests SIMPLEX_LATTICE_LAYER_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test1789.m">geometry_test1789.m</a>,
+          tests SIMPLEX_LATTICE_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test179.m">geometry_test179.m</a>,
+          tests SOCCER_SIZE_3D and SOCCER_SHAPE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test180.m">geometry_test180.m</a>,
+          tests SORT_HEAP_EXTERNAL;
+        </li>
+        <li>
+          <a href = "geometry_test1805.m">geometry_test1805.m</a>,
+          tests SIMPLEX_VOLUME_ND and TETRAHEDRON_VOLUME_3D;
+        </li>
+        <li>
+          <a href = "geometry_test181.m">geometry_test181.m</a>,
+          tests SPHERE_DIA2IMP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test182.m">geometry_test182.m</a>,
+          tests SPHERE_EXP_CONTAINS_POINT_3D and SPHERE_IMP_CONTAINS_POINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test183.m">geometry_test183.m</a>,
+          tests SPHERE_EXP_POINT_NEAR_3D and SPHERE_IMP_POINT_NEAR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1835.m">geometry_test1835.m</a>,
+          tests SPHERE_EXP2IMP_3D and SPHERE_IMP2EXP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1836.m">geometry_test1836.m</a>,
+          tests SPHERE_EXP2IMP_ND;
+        </li>
+        <li>
+          <a href = "geometry_test187.m">geometry_test187.m</a>,
+          tests SPHERE_IMP_GRIDFACES_3D;
+        </li>
+        <li>
+          <a href = "geometry_test188.m">geometry_test188.m</a>,
+          tests SPHERE_IMP_POINT_PROJECT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test1893.m">geometry_test1893.m</a>,
+          tests RTP_TO_XYZ and XYZ_TO_RTP;
+        </li>
+        <li>
+          <a href = "geometry_test189.m">geometry_test189.m</a>,
+          tests SPHERE_IMP_VOLUME_ND;
+        </li>
+        <li>
+          <a href = "geometry_test1895.m">geometry_test1895.m</a>,
+          tests SPHERE_UNIT_AREA_ND and SPHERE_AREA_VALUES_ND;
+        </li>
+        <li>
+          <a href = "geometry_test190.m">geometry_test190.m</a>,
+          tests SPHERE_UNIT_SAMPLE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test191.m">geometry_test191.m</a>,
+          tests SPHERE_UNIT_SAMPLE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test192.m">geometry_test192.m</a>,
+          tests SPHERE_UNIT_SAMPLE_3D_2;
+        </li>
+        <li>
+          <a href = "geometry_test193.m">geometry_test193.m</a>,
+          tests SPHERE_UNIT_SAMPLE_ND;
+        </li>
+        <li>
+          <a href = "geometry_test194.m">geometry_test194.m</a>,
+          tests SPHERE_UNIT_SAMPLE2_ND;
+        </li>
+        <li>
+          <a href = "geometry_test195.m">geometry_test195.m</a>,
+          tests SPHERE_UNIT_SAMPLE3_ND;
+        </li>
+        <li>
+          <a href = "geometry_test1955.m">geometry_test1955.m</a>,
+          tests SPHERE_UNIT_VOLUME_ND and SPHERE_UNIT_VOLUME_VALUES;
+        </li>
+        <li>
+          <a href = "geometry_test196.m">geometry_test196.m</a>,
+          tests SHAPE_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test197.m">geometry_test197.m</a>,
+          tests SHAPE_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test198.m">geometry_test198.m</a>,
+          tests SHAPE_POINT_NEAR_2D;
+        </li>
+        <li>
+          <a href = "geometry_test199.m">geometry_test199.m</a>,
+          tests SHAPE_RAY_INT_2D;
+        </li>
+        <li>
+          <a href = "geometry_test200.m">geometry_test200.m</a>,
+          tests SPHERE_TRIANGLE_SIDES_TO_ANGLES;
+        </li>
+        <li>
+          <a href = "geometry_test201.m">geometry_test201.m</a>,
+          tests STRING_2D;
+        </li>
+        <li>
+          <a href = "geometry_test202.m">geometry_test202.m</a>,
+          tests SUPER_ELLIPSE_POINTS_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203.m">geometry_test203.m</a>,
+          tests TETRAHEDRON_CENTROID_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2031.m">geometry_test2031.m</a>,
+          tests TETRAHEDRON_CONTAINS_POINT_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2032.m">geometry_test2032.m</a>,
+          tests TETRAHEDRON_CIRCUMSPHERE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test20321.m">geometry_test20321.m</a>,
+          tests TETRAHEDRON_EDGE_LENGTH_3D;
+        </li>
+        <li>
+          <a href = "geometry_test20322.m">geometry_test20322.m</a>,
+          tests TETRAHEDRON_INSPHERE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203224.m">geometry_test203224.m</a>,
+          tests TETRAHEDRON_LATTIC_LAYER_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test203225.m">geometry_test203225.m</a>,
+          tests TETRAHEDRON_LATTICE_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test20323.m">geometry_test20323.m</a>,
+          tests TETRAHEDRON_QUALITY1_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203232.m">geometry_test203232.m</a>,
+          tests TETRAHEDRON_QUALITY2_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203233.m">geometry_test203233.m</a>,
+          tests TETRAHEDRON_QUALITY3_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203234.m">geometry_test203234.m</a>,
+          tests TETRAHEDRON_QUALITY4_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203235.m">geometry_test203235.m</a>,
+          tests TETRAHEDRON_RHOMBIC_SHAPE_3D and TETRAHEDRON_RHOMBIC_SIZE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test20324.m">geometry_test20324.m</a>,
+          tests TETRAHEDRON_SAMPLE_3D and TETRAHEDRON_BARYCENTRIC_3D;
+        </li>
+        <li>
+          <a href = "geometry_test20325.m">geometry_test20325.m</a>,
+          tests TETRAHEDRON_SIZE_3D and TETRAHEDRON_SHAPE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test203.m">geometry_test203.m</a>,
+          tests TETRAHEDRON_VOLUME_3D;
+        </li>
+        <li>
+          <a href = "geometry_test204.m">geometry_test204.m</a>,
+          tests TMAT_INIT, TMAT_ROT_AXIS, TMAT_ROT_VECTOR, TMAT_SCALE,
+          TMAT_SHEAR and TMAT_TRANS;
+        </li>
+        <li>
+          <a href = "geometry_test205.m">geometry_test205.m</a>,
+          tests TMAT_MXP2;
+        </li>
+        <li>
+          <a href = "geometry_test206.m">geometry_test206.m</a>,
+          tests TRIANGLE_ANGLES_2D;
+        </li>
+        <li>
+          <a href = "geometry_test20605.m">geometry_test20605.m</a>,
+          tests TRIANGLE_ANGLES_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2061.m">geometry_test2061.m</a>,
+          tests TRIANGLE_AREA_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2062.m">geometry_test2062.m</a>,
+          tests TRIANGLE_AREA_HERON;
+        </li>
+        <li>
+          <a href = "geometry_test209.m">geometry_test209.m</a>,
+          tests TRIANGLE_AREA_3D, TRIANGLE_AREA_3D_2, and TRIANGLE_AREA_3D_3;
+        </li>
+        <li>
+          <a href = "geometry_test20655.m">geometry_test20655.m</a>,
+          tests TRIANGLE_BARYCENTRIC_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2066.m">geometry_test2066.m</a>,
+          tests TRIANGLE_CENTROID_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2094.m">geometry_test2094.m</a>,
+          tests TRIANGLE_CENTROID_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2101.m">geometry_test2101.m</a>,
+          tests TRIANGLE_CIRCUMCENTER_2D and TRIANGLE_CIRCUMCENTER_2D_2;
+        </li>
+        <li>
+          <a href = "geometry_test2067.m">geometry_test2067.m</a>,
+          tests TRIANGLE_CIRCUMCIRCLE_2D and TRIANGLE_CIRCUMCIRCLE_2D_2;
+        </li>
+        <li>
+          <a href = "geometry_test21015.m">geometry_test21015.m</a>,
+          tests TRIANGLE_CIRCUMRADIUS_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2068.m">geometry_test2068.m</a>,
+          tests TRIANGLE_CONTAINS_LINE_EXP_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2069.m">geometry_test2069.m</a>,
+          tests TRIANGLE_CONTAINS_LINE_PAR_3D;
+        </li>
+        <li>
+          <a href = "geometry_test207.m">geometry_test207.m</a>,
+          tests TRIANGLE_CONTAINS_POINT_2D_1, TRIANGLE_CONTAINS_POINT_2D_2,
+          TRIANGLE_CONTAINS_POINT_2D_3;
+        </li>
+        <li>
+          <a href = "geometry_test2075.m">geometry_test2075.m</a>,
+          tests TRIANGLE_DIAMETER_2D;
+        </li>
+        <li>
+          <a href = "geometry_test208.m">geometry_test208.m</a>,
+          tests TRIANGLE_GRIDPOINTS_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2102.m">geometry_test2102.m</a>,
+          tests TRIANGLE_INCENTER_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2070.m">geometry_test2070.m</a>,
+          tests TRIANGLE_INCIRCLE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test20701.m">geometry_test20701.m</a>,
+          tests TRIANGLE_INRADIUS_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2104.m">geometry_test2104.m</a>,
+          tests TRIANGLE_LATTICE_LAYER_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test2105.m">geometry_test2105.m</a>,
+          tests TRIANGLE_LATTICE_POINT_NEXT;
+        </li>
+        <li>
+          <a href = "geometry_test214.m">geometry_test214.m</a>,
+          tests TRIANGLE_ORIENTATION_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2103.m">geometry_test2103.m</a>,
+          tests TRIANGLE_ORTHOCENTER_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2071.m">geometry_test2071.m</a>,
+          tests TRIANGLE_POINT_DIST_2D;
+        </li>
+        <li>
+          <a href = "geometry_test20715.m">geometry_test20715.m</a>,
+          tests TRIANGLE_POINT_DIST_SIGNED_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2095.m">geometry_test2095.m</a>,
+          tests TRIANGLE_POINT_DIST_3D;
+        </li>
+        <li>
+          <a href = "geometry_test2072.m">geometry_test2072.m</a>,
+          tests TRIANGLE_POINT_NEAR_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2115.m">geometry_test2115.m</a>,
+          tests TRIANGLE_QUALITY_2D;
+        </li>
+        <li>
+          <a href = "geometry_test212.m">geometry_test212.m</a>,
+          tests TRIANGLE_SAMPLE and TRIANGLE_XY_TO_XSI_2D;
+        </li>
+        <li>
+          <a href = "geometry_test213.m">geometry_test213.m</a>,
+          tests TRIANGLE_SAMPLE, TRIANGLE_XSI_TO_XY_2D,
+          and TRIANGLE_XY_TO_XSI_2D;
+        </li>
+        <li>
+          <a href = "geometry_test219.m">geometry_test219.m</a>,
+          tests TUBE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test220.m">geometry_test220.m</a>,
+          tests VECTOR_DIRECTIONS_ND;
+        </li>
+        <li>
+          <a href = "geometry_test221.m">geometry_test221.m</a>,
+          tests VECTOR_DIRECTIONS_ND;
+        </li>
+        <li>
+          <a href = "geometry_test222.m">geometry_test222.m</a>,
+          tests VECTOR_ROTATE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test2225.m">geometry_test2225.m</a>,
+          tests VECTOR_ROTATE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test223.m">geometry_test223.m</a>,
+          tests VECTOR_ROTATE_BASE_2D;
+        </li>
+        <li>
+          <a href = "geometry_test224.m">geometry_test224.m</a>,
+          tests VECTOR_SEPARATION_ND;
+        </li>
+        <li>
+          <a href = "geometry_test2245.m">geometry_test2245.m</a>,
+          tests VOXELS_DIST_L1_ND;
+        </li>
+        <li>
+          <a href = "geometry_test225.m">geometry_test225.m</a>,
+          tests VOXELS_LINE_3D;
+        </li>
+        <li>
+          <a href = "geometry_test226.m">geometry_test226.m</a>,
+          tests VOXELS_REGION_3D;
+        </li>
+        <li>
+          <a href = "geometry_test227.m">geometry_test227.m</a>,
+          tests VOXELS_STEP_3D;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 July 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

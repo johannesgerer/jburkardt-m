@@ -1,0 +1,230 @@
+<html>
+
+  <head>
+    <title>
+      INOUT_FLOW_DISPLAY - Display an INOUT Flow Solution
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      INOUT_FLOW_DISPLAY <br> Display an INOUT Flow Solution
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>INOUT_FLOW_DISPLAY</b> 
+      is a MATLAB program which 
+      displays a snapshot of the velocity field from a dataset of solutions of a
+      time-dependent incompressible parameterized flow problem in a 
+      cell with inflow and outflow.
+    </p>
+
+    <p>
+      The "INOUT" region is contained in the unit square, [0,1] x [0,1].
+      There is an inlet on the left side, from [0,0] to [0,0.2], and an
+      outlet on the right side, from [1,0.8] to [1.0,1.0]. 
+      <pre>
+       +-----------------------+
+       |+----------------------+
+       ||                     --->
+       ||                  OUT----->
+       ||                     --->
+       ||                     ++
+       ||                     ||
+       ||                     ||
+       ||                     ||
+       ||                     ||
+       ++                     ||
+      --->                    ||
+    IN----->                  ||
+      --->                    ||
+       +----------------------+|
+       +-----------------------+
+      </pre>
+      There are 1,681 nodes in a 41 by 41 evenly spaced grid.  The nodes
+      are organized into 800 6-node triangular elements
+      which are quadratic in velocity and linear in pressure. 
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cavity_flow_display/cavity_flow_display.html">
+      CAVITY_FLOW_DISPLAY</a>, 
+      a MATLAB program which 
+      can plot the data
+      produced by the CAVITY fluid flow program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hcell_flow_display/hcell_flow_display.html">
+      HCELL_FLOW_DISPLAY</a>, 
+      a MATLAB program which 
+      can plot the data produced by the <b>HCELL</b> fluid flow program.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/inout/inout.html">
+      INOUT</a>, 
+      a FORTRAN77 program which 
+      computes flow solutions in the INOUT region.
+    </p>
+
+    <p>
+      <a href = "../../datasets/inout_flow/inout_flow.html">
+      INOUT_FLOW</a>,
+      a dataset directory which 
+      stores a sequence of solutions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/inout_flow_movie/inout_flow_movie.html">
+      INOUT_FLOW_MOVIE</a>,
+      a MATLAB program which 
+      creates an animation from a sequence of 
+      solutions.
+    </p>
+
+    <p>
+      <a href = "../../datasets/inout_flow2/inout_flow2.html">
+      INOUT_FLOW2</a>,
+      a dataset directory which 
+      stores a second sequence of solutions
+      computed more recently.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tcell_flow_display/tcell_flow_display.html">
+      TCELL_FLOW_DISPLAY</a>,
+      a MATLAB program which 
+      can plot the data
+      produced by the TCELL fluid flow program.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "inout_flow_display.m">inout_flow_display.m</a>, 
+          is a MATLAB M function file which can plot the region, the
+          elements, the velocity direction field, or velocity direction
+          vectors.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      Input data files:
+      <ul>
+        <li>
+          <a href = "inout_flow_xy.txt">inout_flow_xy.txt</a>, 
+          the XY coordinates associated with the nodes.
+        </li>
+        <li>
+          <a href = "inout_flow_elements.txt">inout_flow_elements.txt</a>, 
+          the node indices that
+          make up each element.
+        </li>
+        <li>
+          <a href = "inout_flow_step001.txt">inout_flow_step001.txt</a>, 
+          the data for the solution at time step 1.
+        </li>
+        <li>
+          <a href = "inout_flow_step100.txt">inout_flow_step100.txt</a>, 
+          the data for the solution at time step 100.
+        </li>
+        <li>
+          <a href = "inout_flow_steady.txt">inout_flow_steady.txt</a>, 
+          the data for the steady state solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Output graphic files:
+      <ul>
+        <li>
+          <a href = "inout_flow_region.png">inout_flow_region.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the region.
+        </li>
+        <li>
+          <a href = "inout_flow_elements.png">inout_flow_elements.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the elements.
+        </li>
+        <li>
+          <a href = "inout_flow_step001_dir.png">inout_flow_step001_dir.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the normalized velocity or direction field
+          at time step 1.
+        </li>
+        <li>
+          <a href = "inout_flow_step001_vec.png">inout_flow_step001_vec.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the unnormalized velocity field
+          at time step 1.
+        </li>
+        <li>
+          <a href = "inout_flow_step100_dir.png">inout_flow_step100_dir.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the normalized velocity or direction field
+          at time step 100.
+        </li>
+        <li>
+          <a href = "inout_flow_step100_vec.png">inout_flow_step100_vec.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the unnormalized velocity field
+          at time step 100.
+        </li>
+        <li>
+          <a href = "inout_flow_steady_dir.png">inout_flow_steady_dir.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the normalized velocity or direction field for the steady state.
+        </li>
+        <li>
+          <a href = "inout_flow_steady_vec.png">inout_flow_steady_vec.png</a>, 
+          a <a href = "../../data/png/png.html">PNG</a> image of
+          the unnormalized velocity field for the steady state.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source code directory</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 August 2006.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

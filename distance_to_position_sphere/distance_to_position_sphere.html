@@ -1,0 +1,225 @@
+<html>
+
+  <head>
+    <title>
+      DISTANCE_TO_POSITION_SPHERE - Estimate city positions from distances on a sphere.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DISTANCE_TO_POSITION_SPHERE <br> Estimate city positions from distances on a sphere.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DISTANCE_TO_POSITION_SPHERE</b>
+      is a MATLAB program which
+      estimates the positions of cities given a city-to-city distance table.
+      The cities are presumed to lie on a sphere, and to be sufficiently
+      separated that the curvature of the sphere must be accounted for.
+    </p>
+
+    <p>
+      The problem is singular.  In particular, the position of one
+      city is completely arbitrary, and one component of a second city is
+      completely arbitrary (and a third city's position can be "flipped"
+      about the line connecting cities one and two).  To remove some of this
+      singularity, the program assigns city #1 to have latitude and longitude 0,
+      and city #2 is given a longitude of 0.
+    </p>
+
+    <p>
+      Once the nonlinear least squares problem is set up, MATLAB's
+      LSQNONLIN function is called to seek a solution.
+    </p>
+
+    <p>
+      Note that if the cities are all in a relatively small area, it may
+      be reasonable to treat the problem as though it were posed on a plane.
+    </p>
+
+    <p>
+      If your data is on the earth, note that the average radius of the earth
+      is 3,959 miles or 6,371 kilometers.
+    </p>
+
+    <h3 align = "center">
+      Acknowledgement:
+    </h3>
+
+    <p>
+      The selection of MATLAB's LSQNONLIN function for use as the solver,
+      the construction of the appropriate anonymous function, and the setting
+      of the options for LSQNONLIN were devised by Gene Cliff, to whom grateful
+      acknowledgement is made.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>distance_to_position_sphere</b> ( <i>'distance.txt'</i>, <i>radius</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'distance.txt'</i> contains the distance table
+        </li>
+        <li>
+          <i>'radius'</i> is the radius of the sphere
+        </li>
+      </ul>
+      reads the distance information in <i>'distance.txt'</i>, and the radius of the
+      sphere, estimates the positions of the cities, and writes out a table of
+      XYZ coordinates in <i>distance.xyz.txt</i> and Latitude/Longitude in
+      <i>distance.latlon.txt</i>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/cities/cities.html">
+      CITIES</a>,
+      a dataset directory which
+      contains sets of information about cities and the distances
+      between them;
+    </p>
+
+    <p>
+      <a href = "../../f_src/cities/cities.html">
+      CITIES</a>,
+      a FORTRAN90 library which
+      handles various problems associated with a set of "cities" on a map.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distance_to_position/distance_to_position.html">
+      DISTANCE_TO_POSITION</a>,
+      a MATLAB program which
+      estimates the positions of a number of cities based on a table of city-to-city
+      distances, assuming Euclidean geometry.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lau_np/lau_np.html">
+      LAU_NP</a>,
+      a FORTRAN90 library which
+      implements heuristic algorithms for various NP-hard combinatorial problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/nms/nms.html">
+      NMS</a>,
+      a FORTRAN90 library
+      which includes a wide variety of numerical software.
+    </p>
+
+    <p>
+      <a href = "../../f_src/partial_digest/partial_digest.html">
+      PARTIAL_DIGEST</a>,
+      a FORTRAN90 library which
+      solves the partial digest problem.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          John Hartigan,<br>
+          Clustering Algorithms,<br>
+          Wiley, 1975,<br>
+          LC: QA278.H36,<br>
+          ISBN: 0-471-35645-X.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "distance_to_position_sphere.m">distance_to_position_sphere.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>HA30</b> is a dataset of spherical distances for 30
+      cities, as selected by Hartigan from the World Almanac, 1966.  
+      <ul>
+        <li>
+          <a href = "ha30_name.txt">ha30_name.txt</a>,
+          the names of the cities.  
+        </li>
+        <li>
+          <a href = "ha30_dist.txt">ha30_dist.txt</a>,
+          the distance table for the cities.  Distances are measured in hundreds of miles.
+        </li>
+        <li>
+          <a href = "ha30_output.txt">ha30_output.txt</a>,
+          printed output in response to the command
+          <blockquote>
+            distance_to_position_sphere ( 'ha30_dist.txt', 39.59 )
+          </blockquote>
+        </li>
+        <li>
+          <a href = "ha30_dist.latlon.txt">ha30_dist.latlon.txt</a>,
+          the latitudes and longitudes (in degrees) that best fit the distance table.
+        </li>
+        <li>
+          <a href = "ha30_dist.xyz.txt">ha30_dist.xyz.txt</a>,
+          the XYZ coordinates corresponding to the latitudes and longitudes.
+        </li>
+        <li>
+          <a href = "ha30_dist.dist2.txt">ha30_dist.dist2.txt</a>,
+          the distance table, as recomputed from the latitudes and longitudes.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 July 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

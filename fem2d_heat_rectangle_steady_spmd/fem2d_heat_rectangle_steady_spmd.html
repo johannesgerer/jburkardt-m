@@ -1,0 +1,488 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_HEAT_RECTANGLE_STEADY_SPMD - Codistributed Array Example for Parallel Computing Toolbox
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_HEAT_RECTANGLE_STEADY_SPMD <br> Codistributed Array Example for Parallel Computing Toolbox
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_HEAT_RECTANGLE_STEADY_SPMD</b>
+      is a MATLAB program which
+      demonstrates how the linear system associated with a finite element problem
+      can be treated as a codistributed array whose entries are assigned to different
+      MATLAB workers, so that the matrix is assembled in parallel,
+      by Gene Cliff.
+    </p>
+
+    <p>
+      The program produces an approximate (steady-state) solution to a heat equation
+      on a rectangular domain.  The code uses
+      the MATLAB Parallel Computing Toolbox's Single Program Multiple Data (spmd) mode.
+      A matrix assembly step is carried out by the <i>assemb_co.m</i> code.  It contains
+      a line that invokes the spmd mode.
+    </p>
+
+    <p>
+      Problem data are given in  <i>p_data.m</i>.  In particular, the grid parameters are given by:
+      <pre>
+        param.nodesx =   51; % (=nx)
+        param.nodesy =   51; % (=ny)
+      </pre>
+      There will be nx*ny unknowns, and (nx-1)*(ny-1)/2 triangular elements.
+    </p>
+
+    <p>
+      This code uses the ILU preconditioner and the GMRES solver to solve the linear system.
+      These routines are currently not 'overloaded' for codistributed arrays, so we 'gather'
+      the required arrays on lab #1.  We expect that GMRES (at least) will be overloaded
+      to handle codistributed arrays in upcoming releases of the software.
+    </p>
+
+    <p>
+      The code produces a collection of ASCII text files (outj, one for each lab).
+      These files contain brief information about the columns of an FEM matrix assembled
+      on that lab, and on what fraction of the elements were evaluated.
+    </p>
+
+    <p>
+      This code uses the 'backslash' operator \ (mldivide or matrix-left-divide) on
+      codistributed array(s).  Unfortunately, while mldivide has been overloaded for
+      codistributed arrays, it is not (yet ?) available for arrays with the 'sparse'
+      attribute.  Thus, the arrays are converted to 'full' before the solve step(s).
+    <p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        function zz_ss = fem2d_fun ( param )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          param is a structure containing problem parameters;
+        </li>
+        <li>
+          zz_ss is a vector containing the solution; it must be reshaped
+          to a 2D array before plotting.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the Ithaca cluster, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the FSU HPC cluster, using the <b>fsuClusterMatlab</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>,
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fmincon_parallel/fmincon_parallel.html">
+      FMINCON_PARALLEL</a>,
+      a MATLAB program which
+      demonstrates the use of MATLAB's FMINCON constrained minimization
+      function, taking advantage of MATLAB's Parallel Computing Toolbox
+      for faster execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/knapsack_tasks/knapsack_tasks.html">
+      KNAPSACK_TASKS</a>,
+      a MATLAB program which
+      solves a knapsack problem by subdividing it into tasks, each of
+      which is carried out as a separate program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/oned/oned.html">
+      ONED</a>,
+      a MATLAB library which
+      contains functions useful for 1D finite element calculations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod/twod.html">
+      TWOD</a>,
+      a MATLAB library which
+      contains functions useful for 2D finite element calculations.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Gene Cliff<br>
+      Aerospace and Ocean Engineering / Interdisciplinary Center for Applied Mathematics,<br>
+      Virginia Tech.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ol>
+        <li>
+          Gene Cliff,<br>
+          Notes on a 2D Thermal Model: an Example for MATLAB's Parallel Computing Toolbox.,<br>
+          <a href = "../../presentations/fem2d_heat_steady_spmd.pdf">fem2d_heat_steady_spmd.pdf</a>.
+        </li>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_fun.m">fem2d_fun.m</a>,
+          a function which sets up the problem and returns the solution.
+        </li>
+        <li>
+          <a href = "fem2d_script.m">fem2d_script.m</a>,
+          a script which runs fem2d_fun.
+        </li>
+        <li>
+          <a href = "fem2d_pool.m">fem2d_pool.m</a>
+          runs fem2d_script interactively and locally.
+        </li>
+        <li>
+          <a href = "fem2d_batch_local.m">fem2d_batch_local.m</a>
+          runs fem2d_script indirectly and locally.
+        </li>
+        <li>
+          <a href = "fem2d_batch_ithaca.m">fem2d_batch_ithaca.m</a>
+          runs fem2d_script indirectly and on the Ithaca cluster
+        </li>
+        <li>
+          <a href = "fem2d_fsu.m">fem2d_fsu.m</a>
+          runs fem2d_fun on the FSU cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      MATLAB codes:
+      <ul>
+        <li>
+          <a href = "assemb_co.m">assemb_co.m</a>
+          assemble the finite element system matrix as a codistributed array.
+        </li>
+        <li>
+          <a href = "boundary.m">boundary.m</a>
+          compute values of 2d quadratic basis functions at 1D Gauss points
+          along the boundary.
+        </li>
+        <li>
+          <a href = "extract.m">extract.m</a>
+          a routine for locating the nodes in node_local that correspond to
+          columns on the lab.
+        </li>
+        <li>
+          <a href = "oned_f_int.m">oned_f_int.m</a>
+          computes the integral of f(x) times a test function.
+        </li>
+        <li>
+          <a href = "oned_gauss.m">oned_gauss.m</a>
+          Gauss quadrature rules for 1D intervals.
+        </li>
+        <li>
+          <a href = "p_data.m">p_data.m</a>
+          sets problem parameters.
+        </li>
+        <li>
+          <a href = "source.m">source.m</a>
+          evaluates source terms.
+        </li>
+        <li>
+          <a href = "steps.m">steps.m</a>
+          evaluates a step function.
+        </li>
+        <li>
+          <a href = "twod_bilinear.m">twod_bilinear.m</a>
+          evaluates the 2D finite element integral.
+        </li>
+        <li>
+          <a href = "twod_f_int.m">twod_f_int.m</a>
+          computes the integral of f(x,y) times a test function.
+        </li>
+        <li>
+          <a href = "twod_gauss.m">twod_gauss.m</a>
+          Gauss quadrature rules for 2D regions.
+        </li>
+        <li>
+          <a href = "twod_shape.m">twod_shape.m</a>
+          evaluates test functions in 2D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Other files:
+      <ul>
+        <li>
+          <a href = "fig_ss.png">fig_ss.png</a>, an image of the steady-state solution;
+        </li>
+        <li>
+          <a href = "fig_1.png">fig_1.png</a>, an image of transient step 1;
+        </li>
+        <li>
+          <a href = "fig_2.png">fig_2.png</a>, an image of transient step 2;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

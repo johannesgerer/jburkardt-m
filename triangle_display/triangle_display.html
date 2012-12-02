@@ -1,0 +1,330 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGLE_DISPLAY - Plot a Triangulation from TRIANGLE Files
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGLE_DISPLAY <br> Plot a Triangulation from TRIANGLE Files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGLE_DISPLAY</b>
+      is a MATLAB program which
+      plots a triangulation using files associated with the TRIANGLE program.
+    </p>
+
+    <p>
+      <b>TRIANGLE_DISPLAY</b> reads the node and element files created by
+      the TRIANGLE program, and displays the information.  The user controls
+      how "visible" the nodes and elements are; in particular, nodes can be
+      suppressed, or displayed, or displayed and numbered, and the same is
+      true for elements.
+    </p>
+
+    <p>
+      <b>TRIANGLE_DISPLAY</b> is essentially a version of
+      <b>TRIANGULATION_DISPLAY</b> modified to read input files that use
+      the TRIANGLE format.
+    </p>
+
+    <p>
+      Jonathan Shewchuk provides a program called <b>showme</b>, which
+      is able to show the same information, and to perform other interesting
+      operations.  However, there are at least three reasons why the
+      <b>TRIANGLE_DISPLAY</b> program is useful:
+      <ul>
+        <li>
+          the user is free to zoom interactively into any part of the mesh
+          displayed by <b>TRIANGLE_DISPLAY</b>;
+        </li>
+        <li>
+          the user can save the image (or the portion that has been zoomed)
+          into a wide variety of graphic formats, include JPEG, PNG and TIFF,
+          while <b>showme</b> is restriced to PS and EPS formats;
+          moreover if <b>showme</b> tries to save a snapshot of a large file
+          (such as "greenland"), it can take 20 minutes (after which I gave up)
+          and a huge amount of space.  The same image was generated in
+          20 seconds with this program, and a zoomed image saved to a
+          small 50K file very quickly.
+        </li>
+        <li>
+          it is fairly easy to modify the text of <b>TRIANGLE_DISPLAY</b>
+          to better suit the user's needs; in particular, it is easy
+          to read in node-based data and produce contour plots (although
+          I don't have any data to work with yet.)
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangle_display</b> ( <i>'prefix'</i>, <i>node_vis</i>, <i>element_vis</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common prefix for the node and element files.
+      <ul>
+        <li>
+          <i>'prefix'</i><b>.node</b>,    the node coordinates.
+        </li>
+        <li>
+          <i>'prefix'</i><b>.ele</b>,    the elements
+        </li>
+      </ul>
+      and <i>node_vis</i> is an integer defining the node visibility:
+      <ul>
+        <li>
+          <b>0</b>, do not show the nodes;
+        </li>
+        <li>
+          <b>1</b>, show the nodes;
+        </li>
+        <li>
+          <b>2</b>, show the nodes and label them.
+        </li>
+      </ul>
+      and <i>element_vis</i> is an integer defining the element visibility:
+      <ul>
+        <li>
+          <b>0</b>, do not show the elements;
+        </li>
+        <li>
+          <b>1</b>, show the elements;
+        </li>
+        <li>
+          <b>2</b>, show the elements and color them.
+        </li>
+        <li>
+          <b>3</b>, show the elements and color them, and label them.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t3_display/fem_basis_t3_display.html">
+      FEM_BASIS_T3_DISPLAY</a>,
+      a MATLAB program which
+      displays a basis function associated with a linear triangle ("T3") mesh.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_basis_t6_display/fem_basis_t6_display.html">
+      FEM_BASIS_T6_DISPLAY</a>,
+      a MATLAB program which
+      reads a quadratic triangle mesh and displays any associated basis function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gridlines/gridlines.html">
+      GRIDLINES</a>,
+      a MATLAB library which
+      gives the user more control over drawing gridlines on a graph
+      than the builtin "grid on" command.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_display/mesh_display.html">
+      MESH_DISPLAY</a>,
+      a MATLAB program which
+      reads data defining a polygonal mesh and displays it, with optional numbering.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mpas_grid_display/mpas_grid_display.html">
+      MPAS_GRID_DISPLAY</a>,
+      MATLAB programs which
+      can read an MPAS NETCDF grid file and display the primary polygonal
+      mesh or the dual triangular mesh.
+    </p>
+
+    <p>
+      <a href = "../../c_src/showme/showme.html">
+      SHOWME</a>,
+      a C program which
+      uses the X Window library to display triangulatons,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tri_surface_display/tri_surface_display.html">
+      TRI_SURFACE_DISPLAY</a>,
+      a MATLAB program which
+      reads data defining a triangular mesh
+      of a 3D surface and displays it.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../data/triangle_files/triangle_files.html">
+      TRIANGLE_FILES</a>,
+      a data directory of examples of files used by the
+      <b>triangle</b> and
+      showme programs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which
+      reads files defining a triangulation and displays an image.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a>,
+      a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_plot/triangulation_plot.html">
+      TRIANGULATION_PLOT</a>,
+      a MATLAB program which
+      plots a triangulation as a PostScript file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars,
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0,<br>
+          LC: QA448.D38.C65.
+        </li>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangle_display.m">triangle_display.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>GREENLAND</b> is a triangulation of Greenland, using
+      a graded (varying-size) mesh of 33,343 nodes and 64,125 nodes.
+      The resulting image is essentially a red blob the shape of Greenland.
+      However, using the ZOOM tool, it is possible to see interesting
+      details of the mesh.
+      <ul>
+        <li>
+          <a href = "greenland.node">
+          greenland.node</a>,
+          the nodes;
+        </li>
+        <li>
+          <a href = "greenland.ele">
+          greenland.ele</a>, the elements;
+        </li>
+        <li>
+          <a href = "greenland_zoom.png">
+          greenland_zoom.png</a>,
+          a zoomed image of the upper right margin of the triangulation.
+        </li>
+        <li>
+          <a href = "greenland.output.txt">
+          greenland.output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SQUARE_CIRCLE_HOLE.1</b> is a square region with a circular hole.
+      826 nodes and 1517 elements are used.
+      <ul>
+        <li>
+          <a href = "square_circle_hole.1.node">
+          square_circle_hole.1.node</a>,
+          the nodes;
+        </li>
+        <li>
+          <a href = "square_circle_hole.1.ele">
+          square_circle_hole.1.ele</a>, the elements;
+        </li>
+        <li>
+          <a href = "square_circle_hole.1.png">
+          square_circle_hole.1.png</a>,
+          an image of the triangulation.
+        </li>
+        <li>
+          <a href = "square_circle_hole.1.output.txt">
+          square_circle_hole.1.output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 November 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

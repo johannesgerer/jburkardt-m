@@ -1,0 +1,198 @@
+<html>
+
+  <head>
+    <title>
+      CVT_MOVIE5 - Animated CVT Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_MOVIE5 <br> Animated CVT Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_MOVIE5</b> 
+      is a MATLAB program which 
+      animates the generation of a Centroidal Voronoi Tessellation (CVT) dataset.
+    </p>
+
+    <p>
+      This particular computation occurs in the same region of interesting
+      shape that was used for
+      <a href = "../cvt_movie3/cvt_movie3.html">CVT_MOVIE3</a>.  However, in
+      this case, there are three important differences:
+      <ul>
+        <li>
+          the points were initialized by a hexagonal grid.
+        </li>
+        <li>
+          a few points at corners were fixed in position.
+        </li>
+        <li>
+          the CVT sampling procedure used a "fat" region; but when
+          centroids were lured out of the true region, they were projected
+          back to the boundary.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The goal of the calculation was to modify the CVT iteration so
+      that generators would be produced on the boundary of the region,
+      and in a fairly natural way.  The calculation was done by
+      <a href = "../../f_src/cvt_movie5_data/cvt_movie5_data.html">
+      CVT_MOVIE5_DATA</a>, and the results stored in 101 text files.
+    </p>
+
+    <p>
+      The <b>CVT_MOVIE5</b> program illustrates the result of the
+      calculation by reading in the data files, drawing the Voronoi
+      diagram and the region boundary, and creating a series of 
+      <a href = "../../data/jpg/jpg.html">JPG files</a>, each
+      containing one frame of the animation.  It is possible to
+      create an animation by using software such as Apple QuickTime.
+    </p>
+
+    <h3 align = "center">
+      Animation:
+    </h3>
+
+    <p>
+      One version of a sample animation file is stored in the
+      <a href = "../../data/mpg/mpg.html">MPEG-4 format</a>.
+      You can <a href = "show_cvt_movie5_mp4.html">
+      see the MP4 animation</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/file_name_sequence/file_name_sequence.html">
+      FILE_NAME_SEQUENCE</a>,
+      a MATLAB program which
+      demonstrates four ways to generate a sequence of filenames.
+    </p>
+
+    <p>
+      <a href = "../../m_src/peak_movie/peak_movie.html">
+      PEAK_MOVIE</a>,
+      a MATLAB program which
+      creates the pieces of an animation, one frame at a time.
+      Each frame is independently created and saved as a JPEG file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          Qiang Du, Vance Faber and Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review, Volume 41, 1999, pages 637-676.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ch_is_digit.m">ch_is_digit.m</a> 
+          is TRUE if a character represents a digit.
+        </li>
+        <li>
+          <a href = "cvt_movie5.m">cvt_movie5.m</a> 
+          the main program for the creation of the movie.
+        </li>
+        <li>
+          <a href = "digit_inc.m">digit_inc.m</a> 
+          increments a character that represents a digit.
+        </li>
+        <li>
+          <a href = "file_name_inc.m">file_name_inc.m</a> 
+          "increments" a file name that has numeric characters in it.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment_length.m">
+          p08_boundary_segment_length.m</a> 
+          returns the number of points necessary to draw a boundary
+          segment of the P08 region.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment.m">
+          p08_boundary_segment.m</a> 
+          returns points on a boundary segment of the P08 region.
+        </li>
+        <li>
+          <a href = "p08_boundary_segment_num.m">
+          p08_boundary_segment_num.m</a> 
+          returns the number of boundary segments for the P08 region.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a> 
+          returns the length of a string to the last nonblank.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Data and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cvt_movie5_output.txt">cvt_movie5_output.txt</a> 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 August 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

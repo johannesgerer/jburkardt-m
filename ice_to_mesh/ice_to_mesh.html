@@ -1,0 +1,212 @@
+<html>
+
+  <head>
+    <title>
+      ICE_TO_MESH - Transfer ICE dataset from NETCDF format to MESH format
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ICE_TO_MESH <br> Transfer ICE dataset from NECDF format to MESH format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ICE_TO_MESH</b>
+      is a MATLAB program which
+      reads a NETCDF file containing an ICE dataset and rewrites the
+      information as a MESH file.
+    </p>
+
+    <h3 align = "center">
+      Usage
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>ice_to_mesh</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i> is the filename prefix,
+        </li>
+      </ul>
+      reads <i>prefix.nc</i> and creates <i>prefix.mesh</i>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>ICE_TO_MESH</b> is available in
+      <a href = "../../c_src/ice_to_mesh/ice_to_mesh.html">a C version</a> and
+      <a href = "../../cpp_src/ice_to_mesh/ice_to_mesh.html">a C++ version</a> and
+      <a href = "../../f77_src/ice_to_mesh/ice_to_mesh.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/ice_to_mesh/ice_to_mesh.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/ice_to_mesh/ice_to_mesh.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_to_mesh/fem_to_mesh.html">
+      FEM_TO_MESH</a>,
+      a MATLAB program which
+      reads a pair of FEM files defining node coordinates and elements,
+      and creates a corresponding MESH file.
+    </p>
+
+    <p>
+      <a href = "../../data/ice/ice.html">
+      ICE</a>,
+      a data directory which
+      contains examples of ICE files,
+      which store icesheet grid datasets in the NETCDF format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ice_io/ice_io.html">
+      ICE_IO</a>,
+      a MATLAB library which
+      reads or writes ICE datasets, using the NETCDF format.
+    </p>
+
+    <p>
+      <a href = "../../data/mesh/mesh.html">
+      MESH</a>,
+      a data directory which
+      contains examples of MESH files, which can be used to define the geometry
+      of a finite element mesh in 2D or 3D, using triangles, quadrilaterals,
+      tetrahedrons or hexahedrons.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_io/mesh_io.html">
+      MESH_IO</a>,
+      a MATLAB library which
+      can read or write MESH files, which can be used to define the geometry
+      of a finite element mesh in 2D or 3D, using triangles, quadrilaterals,
+      tetrahedrons or hexahedrons.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_to_ice/mesh_to_ice.html">
+      MESH_TO_ICE</a>,
+      a MATLAB program which
+      reads a MESH file containing an ICE dataset and rewrites the
+      information as a NETCDF file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/netcdf_glimmer/netcdf_glimmer.html">
+      NETCDF_GLIMMER</a>,
+      MATLAB programs which
+      read and write GLIMMER grid and solution data stored as a NETCDF file.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Pascal Frey,<br>
+          MEDIT: An interactive mesh visualization software,<br>
+          Technical Report RT-0253,<br>
+          Institut National de Recherche en Informatique et en Automatique,<br>
+          03 December 2001,<br>
+          <a href = "../../pdf/medit.pdf">medit.pdf</a>.
+        </li>
+        <li>
+          Russ Rew, Glenn Davis, Steve Emmerson, Harvey Davies, Ed Hartne,<br>
+          The NetCDF User's Guide,<br>
+          Unidata Program Center, March 2009,<br>
+          <a href = "../../pdf/netcdf.pdf">netcdf.pdf</a>,
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ice_to_mesh.m">ice_to_mesh.m</a>
+          the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>HEXAHEXA_2x2x2</b> subdivides the unit cube into a 2x2x2 mesh
+      of 8 subcubes or "hexahedra", using 27 vertices, and 24 boundary
+      quadrilaterals.
+      <ul>
+        <li>
+          <a href = "hexahexa_2x2x2.nc">hexahexa_2x2x2.nc</a>,
+          the NETCDF file.
+        </li>
+        <li>
+          <a href = "hexahexa_2x2x2.mesh">hexahexa_2x2x2.mesh</a>,
+          the MESH file created by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PART</b> is a large 3D object including 28,694 vertices, 14,890 triangles,
+      150,779 tetrahedrons, 50 corners, 1905 edges and 1905 ridges.
+      <ul>
+        <li>
+          <a href = "part.nc">part.nc</a>,
+          the NETCDF file.
+        </li>
+        <li>
+          <a href = "part.mesh">part.mesh</a>,
+          the MESH file created by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 October 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

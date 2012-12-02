@@ -1,0 +1,187 @@
+<html>
+
+  <head>
+    <title>
+      DISTANCE_TO_POSITION - Estimate city positions from distance tables.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DISTANCE_TO_POSITION <br> Estimate city positions from distance tables.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DISTANCE_TO_POSITION</b> 
+      is a MATLAB program which
+      estimates the positions of cities given a city-to-city distance table.
+    </p>
+
+    <p>
+      In 2D, the problem is singular.  In particular, the position of one
+      city is completely arbitrary, and one component of a second city is
+      completely arbitrary (and a third city's position can be "flipped"
+      about the line connecting cities one and two).  To remove some of this
+      singularity, the program assigns city #1 the position (0,0) and city #2
+      is given a zero Y coordinate.  
+    </p>
+
+    <p>
+      In N-dimensional space, a similar set of constraints must be placed
+      on the first N cities, or the least squares solver is likely to fail.
+      (That is, we specify all N components of the first city to be 0, 
+      N-1 components of the second one, and so on, up to the N-th city
+      which has a single zero component).
+    </p>
+
+    <p>
+      The computations carried out by this program assume that the cities
+      lie on a plane.  If the distance data is for international cities,
+      the effect of spherical geometry may make the planar approximation
+      very bad.
+    </p>
+
+    <p>
+      Once the nonlinear least squares problem is set up, MATLAB's
+      LSQNONLIN function is called to seek a solution.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>distance_to_position</b> ( <i>'distance.txt'</i> )
+      </blockquote>
+      reads the distance information in <i>'distance.txt'</i>, estimates the
+      positions of the cities, and writes out a position table in <i>distance.coord.txt</i>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+    
+    <p>
+      <b>DISTANCE_TO_POSITION</b> is available in
+      <a href = "../../f_src/distance_to_position/distance_to_position.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/distance_to_position/distance_to_position.html">a MATLAB version</a>.
+    </p>
+    
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/cities/cities.html">
+      CITIES</a>,
+      a dataset directory which
+      contains sets of information about cities and the distances
+      between them; 
+    </p>
+
+    <p>
+      <a href = "../../m_src/cities/cities.html">
+      CITIES</a>,
+      a MATLAB library which
+      handles various problems associated with a set of "cities" on a map.
+    </p>
+
+    <p>
+      <a href = "../../m_src/distance_to_position_sphere/distance_to_position_sphere.html">
+      DISTANCE_TO_POSITION_SPHERE</a>, 
+      a MATLAB program which
+      estimates the positions of cities on a sphere (such as the earth) 
+      based on a city-to-city distance table.
+    </p>
+
+    <p>
+      <a href = "../../f_src/lau_np/lau_np.html">
+      LAU_NP</a>,
+      a FORTRAN90 library which
+      implements heuristic algorithms for various NP-hard combinatorial problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/nms/nms.html">
+      NMS</a>,
+      a FORTRAN90 library
+      which includes a wide variety of numerical software.
+    </p>
+
+    <p>
+      <a href = "../../f_src/partial_digest/partial_digest.html">
+      PARTIAL_DIGEST</a>,
+      a FORTRAN90 library which
+      solves the partial digest problem.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "distance_to_position.m">distance_to_position.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "grid04_xy.txt">grid04_xy.txt</a>,
+          positions of 4 points on a grid.
+        </li>
+        <li>
+          <a href = "grid04_xy.png">grid04_xy.png</a>,
+          an image of the 4 points on a grid.
+        </li>
+        <li>
+          <a href = "grid04_dist.txt">grid04_dist.txt</a>,
+          the distance table for the points.
+        </li>
+        <li>
+          <a href = "grid04_dist.coord.txt">grid04_dist.coord.txt</a>,
+          the estimated positions of the points, based on the distance table.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 15 February 2009.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

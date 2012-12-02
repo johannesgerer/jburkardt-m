@@ -1,0 +1,157 @@
+<html>
+
+  <head>
+    <title>
+      INOUT_FLOW_MOVIE - Flow Animation for the INOUT Cell
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      INOUT_FLOW_MOVIE <br> Flow Animation for the INOUT Cell
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>INOUT_FLOW_MOVIE</b> 
+      is a MATLAB program which 
+      creates an animation of the velocity solutions to a time-dependent
+      incompressible parameterized flow problem in a cell with
+      inflow and outflow.
+    </p>
+
+    <p>
+      The "INOUT" region is contained in the unit square, [0,1] x [0,1].
+      There is an inlet on the left side, from [0,0] to [0,0.2], and an
+      outlet on the right side, from [1,0.8] to [1.0,1.0]. 
+      <pre>
+       +-----------------------+
+       |+----------------------+
+       ||                    --->
+       ||                    ----->
+       ||                    --->
+       ||                     ++
+       ||                     ||
+       ||                     ||
+       ||                     ||
+       ||                     ||
+       ++                     ||
+      --->                    ||
+      ----->                  ||
+      --->                    ||
+       +----------------------+|
+       +-----------------------+
+      </pre>
+      There are 1,681 nodes in a 41 by 41 evenly spaced grid.  The nodes
+      are organized into 800 6-node triangular elements
+      which are quadratic in velocity and linear in pressure. 
+    </p>
+
+    <p>
+      The INOUT animation created by this program is stored in
+      <a href = "../../data/mp4/mp4.html">
+      the MP4 directory.</a>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/file_name_sequence/file_name_sequence.html">
+      FILE_NAME_SEQUENCE</a>,
+      a MATLAB program which
+      demonstrates four ways to generate a sequence of filenames.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/inout/inout.html">
+      INOUT</a>, 
+      a FORTRAN77 program which 
+      computes flow solutions in the INOUT region.
+    </p>
+
+    <p>
+      <a href = "../../datasets/inout_flow/inout_flow.html">
+      INOUT_FLOW</a>,
+      a dataset directory which 
+      includes the raw solution data
+      that is animated by <b>INOUT_FLOW_MOVIE</b>.
+    </p>
+
+    <p>
+      <a href = "../../m_src/inout_flow_display/inout_flow_display.html">
+      INOUT_FLOW_DISPLAY</a>,
+      a MATLAB program which 
+      can display a single flow field solution
+      in the INOUT region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/peak_movie/peak_movie.html">
+      PEAK_MOVIE</a>,
+      a MATLAB program which
+      creates the pieces of an animation, one frame at a time.
+      Each frame is independently created and saved as a JPEG file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/velocity_arrows_grid/velocity_arrows_grid.html">
+      VELOCITY_ARROWS_GRID</a>, 
+      a MATLAB program which 
+      reads files of
+      node and velocity data, and, using interpolation, creates a 
+      vector plot with arrows
+      place on a uniform grid of the user's specification.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "inout_flow_movie.m">inout_flow_movie.m</a>, 
+          is a MATLAB M script file which can read the XY coordinate file and
+          all the time dependent velocity files, and create an animation.
+          It displays either the velocity or direction field, depending on 
+          the internal value of the logical parameter <b>normalized</b>.
+          To keep this script happy, the "#" comment lines were removed
+          from the XY file.
+        </li>
+        <li>
+          <a href = "inout_flow_png.m">inout_flow_png.m</a>, 
+          saves the individual frames as PNG files.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source code directory</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 November 2005.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

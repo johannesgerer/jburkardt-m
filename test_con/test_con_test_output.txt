@@ -1,0 +1,2305 @@
+>> cd test_con
+>> test_con_test
+21-Oct-2008 08:33:42
+
+TEST_CON_TEST
+  MATLAB version
+
+  Sample problems for TEST_CON, a collection
+  of nonlinear test functions for continuation.
+
+  There are 20 test functions.
+
+P00_OPTION_NUM_TEST
+  List the number of options for each problem.
+
+   Problem   Options
+
+         1         6
+         2         3
+         3         4
+         4         1
+         5         3
+         6         5
+         7         1
+         8         1
+         9        13
+        10         2
+        11         2
+        12         6
+        13         6
+        14         1
+        15         1
+        16         1
+        17         2
+        18         1
+        19         1
+        20         1
+
+P00_TITLE_TEST
+  List the problem titles
+
+   Problem   Options  Title
+
+
+         1         1  Freudenstein-Roth function, (15,-2,0).
+         1         2  Freudenstein-Roth function, (15,-2,0), x1 limits.
+         1         3  Freudenstein-Roth function, (15,-2,0), x3 limits.
+         1         4  Freudenstein-Roth function, (4,3,0).
+         1         5  Freudenstein-Roth function, (4,3,0), x1 limits.
+         1         6  Freudenstein-Roth function, (4,3,0), x3 limits.
+
+         2         1  Boggs function, (1,0,0).
+         2         2  Boggs function, (1,-1,0).
+         2         3  Boggs function, (10,10,0).
+
+         3         1  Powell function, (3,6,0).
+         3         2  Powell function, (4,5,0).
+         3         3  Powell function, (6,3,0).
+         3         4  Powell function, (1,1,0).
+
+         4         1  Broyden function
+
+         5         1  Wacker function, A = 0.1.
+         5         2  Wacker function, A = 0.5.
+         5         3  Wacker function, A = 1.0.
+
+         6         1  Aircraft function, x(6) = - 0.050.
+         6         2  Aircraft function, x(6) = - 0.008.
+         6         3  Aircraft function, x(6) =   0.000.
+         6         4  Aircraft function, x(6) = + 0.050.
+         6         5  Aircraft function, x(6) = + 0.100.
+
+         7         1  Cell kinetics problem, seeking limit points.
+
+         8         1  Riks mechanical problem, seeking limit points.
+
+         9         1  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(1).
+         9         2  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(1).
+         9         3  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(1).
+         9         4  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(1).
+         9         5  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(2).
+         9         6  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(2).
+         9         7  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(2).
+         9         8  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(2).
+         9         9  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(3).
+         9        10  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(3).
+         9        11  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(3).
+         9        12  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(3).
+         9        13  Oden problem, VAL=0.00, no targets, no limits.
+
+        10         1  Torsion of a square rod, finite difference, PHI(S)=EXP(5*S).
+        10         2  Torsion of a square rod, finite difference, PHI(S)=two levels.
+
+        11         1  Torsion of a square rod, finite element solution.
+        11         2  Torsion of a square rod, finite element solution.
+
+        12         1  Materially nonlinear problem, NPOLYS = 2, NDERIV = 1.
+        12         2  Materially nonlinear problem, NPOLYS = 4, NDERIV = 1.
+        12         3  Materially nonlinear problem, NPOLYS = 4, NDERIV = 2.
+        12         4  Materially nonlinear problem, NPOLYS = 6, NDERIV = 1.
+        12         5  Materially nonlinear problem, NPOLYS = 6, NDERIV = 2.
+        12         6  Materially nonlinear problem, NPOLYS = 6, NDERIV = 3.
+
+        13         1  Simpson's BVP, F(U) = EXP(U), M = 8.
+        13         2  Simpson's BVP, F(U) = function 2, M = 8.
+        13         3  Simpson's BVP, F(U) = EXP(U), M = 12.
+        13         4  Simpson's BVP, F(U) = function 2, M = 12.
+        13         5  Simpson's BVP, F(U) = EXP(U), M = 16.
+        13         6  Simpson's BVP, F(U) = function 2, M = 16.
+
+        14         1  Keller's BVP.
+
+        15         1  The Trigger Circuit.
+
+        16         1  The Moore Spence Chemical Reaction Integral Equation.
+
+        17         1  Bremermann Propane Combustion System, fixed pressure.
+        17         2  Bremermann Propane Combustion System, fixed concentration.
+
+        18         1  The Semiconductor Problem.
+
+        19         1  Nitric Acid Absorption Flash.
+
+        20         1  The Buckling Spring, F(L,Theta,Lambda,Mu).
+
+P00_NVAR_TEST
+  List the problem size.
+
+   Problem    Option      Size
+
+
+         1         1         3
+         1         2         3
+         1         3         3
+         1         4         3
+         1         5         3
+         1         6         3
+
+         2         1         3
+         2         2         3
+         2         3         3
+
+         3         1         3
+         3         2         3
+         3         3         3
+         3         4         3
+
+         4         1         3
+
+         5         1         4
+         5         2         4
+         5         3         4
+
+         6         1         8
+         6         2         8
+         6         3         8
+         6         4         8
+         6         5         8
+
+         7         1         6
+
+         8         1         6
+
+         9         1         4
+         9         2         4
+         9         3         4
+         9         4         4
+         9         5         4
+         9         6         4
+         9         7         4
+         9         8         4
+         9         9         4
+         9        10         4
+         9        11         4
+         9        12         4
+         9        13         4
+
+        10         1        37
+        10         2        37
+
+        11         1        26
+        11         2        26
+
+        12         1        26
+        12         2        42
+        12         3        49
+        12         4        58
+        12         5        65
+        12         6        72
+
+        13         1        65
+        13         2        65
+        13         3       145
+        13         4       145
+        13         5       257
+        13         6       257
+
+        14         1        13
+
+        15         1         7
+
+        16         1        17
+
+        17         1        12
+        17         2        12
+
+        18         1        12
+
+        19         1        13
+
+        20         1         4
+
+P00_START_TEST
+  Get norms of starting point X0 and F(X0)
+
+   Problem    Option        ||X0||          ||F(X0)||
+
+
+         1         1       15.132746        0.000000
+         1         2       15.132746        0.000000
+         1         3       15.132746        0.000000
+         1         4        5.000000        0.000000
+         1         5        5.000000        0.000000
+         1         6        5.000000        0.000000
+
+         2         1        1.000000        0.000000
+         2         2        1.414214        0.000000
+         2         3       14.142136        0.000000
+
+         3         1        6.708204        0.000000
+         3         2        6.403124        0.000000
+         3         3        6.708204        0.000000
+         3         4        1.414214        0.000000
+
+         4         1        3.026549        0.000000
+
+         5         1        0.000000        0.000000
+         5         2        0.000000        0.000000
+         5         3        0.000000        0.000000
+
+         6         1        0.093139        0.000000
+         6         2        0.014902        0.000000
+         6         3        0.000000        0.000000
+         6         4        0.093139        0.000000
+         6         5        0.186279        0.000000
+
+         7         1        0.000000        0.000000
+
+         8         1        0.000000        0.000000
+
+         9         1        0.000000        0.000000
+         9         2        0.250000        0.000000
+         9         3        0.500000        0.000000
+         9         4        1.000000        0.000000
+         9         5        0.000000        0.000000
+         9         6        0.250000        0.000000
+         9         7        0.500000        0.000000
+         9         8        1.000000        0.000000
+         9         9        0.000000        0.000000
+         9        10        0.250000        0.000000
+         9        11        0.500000        0.000000
+         9        12        1.000000        0.000000
+         9        13        0.000000        0.000000
+
+        10         1        0.000000        0.000000
+        10         2        0.000000        0.000000
+
+        11         1        0.000000        0.000000
+        11         2        0.000000        0.000000
+
+        12         1        0.000000        0.000000
+        12         2        0.000000        0.000000
+        12         3        0.000000        0.000000
+        12         4        0.000000        0.000000
+        12         5        0.000000        0.000000
+        12         6        0.000000        0.000000
+
+        13         1        0.000000        0.000000
+        13         2        0.000000        0.000000
+        13         3        0.000000        0.000000
+        13         4        0.000000        0.000000
+        13         5        0.000000        0.000000
+        13         6        0.000000        0.000000
+
+        14         1        1.463410        0.000000
+
+        15         1        0.000000        0.000000
+
+        16         1        4.000000        0.000000
+
+        17         1       11.885894        0.000001
+        17         2       11.885894        0.000001
+
+        18         1        0.000000        0.000000
+
+        19         1      208.298089        0.000006
+
+        20         1        0.975018        0.000000
+
+P00_JAC_TEST
+  Find the maximum relative difference between the
+  jacobian and a finite difference estimate.
+
+   Problem    Option      Diff               I         J
+
+         1         1    1.467106e-08         2         2
+         1         2    1.485479e-08         2         2
+         1         3    1.495927e-08         2         2
+         1         4    1.608469e-07         1         2
+         1         5    1.709564e-07         1         2
+         1         6    1.731983e-07         1         2
+
+         2         1    3.319298e-09         2         2
+         2         2    1.642866e-08         2         2
+         2         3    4.984156e-07         2         2
+
+         3         1    8.185788e-08         2         2
+         3         2    6.013434e-08         2         1
+         3         3    8.177522e-08         2         1
+         3         4    6.717205e-09         2         2
+
+         4         1    4.067645e-08         2         1
+
+         5         1    1.686421e-09         3         1
+         5         2    1.677654e-09         1         2
+         5         3    1.689288e-09         1         2
+
+         6         1    4.388669e-11         2         5
+         6         2    9.680809e-10         2         3
+         6         3    4.088229e-11         3         1
+         6         4    3.170363e-11         2         3
+         6         5    6.367863e-11         2         5
+
+         7         1    3.796921e-10         2         2
+
+         8         1    3.526671e-08         3         3
+
+         9         1    5.091977e-09         2         2
+         9         2    5.169706e-09         2         2
+         9         3    5.089048e-09         2         2
+         9         4    6.668430e-09         2         4
+         9         5    5.109334e-09         2         2
+         9         6    5.162729e-09         2         2
+         9         7    5.062997e-09         2         2
+         9         8    6.724936e-09         2         4
+         9         9    5.081365e-09         2         2
+         9        10    5.064138e-09         2         2
+         9        11    5.083699e-09         2         2
+         9        12    6.693938e-09         1         4
+         9        13    5.111062e-09         2         2
+
+        10         1    3.926594e-06        32        33
+        10         2    5.096687e-13        36        37
+
+        11         1    9.607774e-07        14        15
+        11         2    4.762857e-14         7         6
+
+        12         1    8.321143e-09         5         5
+        12         2    1.660245e-08        20        42
+        12         3    8.319481e-09        13        13
+        12         4    1.235307e-08        41        58
+        12         5    1.606389e-08        47        65
+        12         6    2.518692e-08        15        72
+
+        13         1    1.584178e-12        57        65
+        13         2    1.439534e-12         8        65
+        13         3    2.082520e-12        15       145
+        13         4    2.109447e-12       144       145
+        13         5    4.175045e-12       241       257
+        13         6    3.659043e-12       253       257
+
+        14         1    1.086423e-07         3         3
+
+        15         1    6.917926e-04         6         3
+
+        16         1    1.904557e-07         1         5
+
+        17         1    1.499195e-09        10         1
+        17         2    1.478297e-09        10         1
+
+        18         1    3.253565e-05         7        12
+
+        19         1    9.546502e-03         9         5
+
+        20         1    1.095154e-08         2         2
+
+P00_TAN_TEST
+  Compute the tangent vector TAN(X) at the starting point.
+
+  Verify that JAC(X) * TAN(X) = 0.
+
+  Verify that det ( JAC ) > 0
+                  ( TAN )    
+
+   Problem    Option    ||Jac*Tan||     det(Jac|Tan)
+
+         1         1    3.136621e-14    1.409113e+02
+         1         2    3.136621e-14    1.409113e+02
+         1         3    3.136621e-14    1.409113e+02
+         1         4    4.710277e-16    9.604166e+01
+         1         5    4.710277e-16    9.604166e+01
+         1         6    4.710277e-16    9.604166e+01
+
+         2         1    1.129758e-16    2.236068e+00
+         2         2    3.935748e-16    4.400938e+00
+         2         3    3.633821e-16    1.294720e+02
+
+         3         1    2.034717e-11    5.550137e+04
+         3         2    2.757517e-11    5.874554e+04
+         3         3    2.092708e-12    5.550137e+04
+         3         4    5.883523e-13    1.463733e+03
+
+         4         1    3.626493e-16    1.584821e+00
+
+         5         1    1.803278e-16    2.363598e+00
+         5         2    7.618813e-17    1.814134e+00
+         5         3    7.672477e-17    1.331048e+00
+
+         6         1    1.876801e-14    6.839861e+03
+         6         2    9.262520e-15    6.571612e+03
+         6         3    3.447798e-15    6.514078e+03
+         6         4    4.135588e-15    6.106593e+03
+         6         5    4.854661e-14    5.636897e+03
+
+         7         1    4.440892e-16    1.136721e+10
+
+         8         1    4.234332e-16    2.029327e-01
+
+         9         1    1.110223e-16    1.612452e+01
+         9         2    7.432403e-17    1.623800e+01
+         9         3    1.099421e-16    1.654663e+01
+         9         4    4.518453e-17    1.739208e+01
+         9         5    1.110223e-16    1.612452e+01
+         9         6    7.432403e-17    1.623800e+01
+         9         7    1.099421e-16    1.654663e+01
+         9         8    4.518453e-17    1.739208e+01
+         9         9    1.110223e-16    1.612452e+01
+         9        10    7.432403e-17    1.623800e+01
+         9        11    1.099421e-16    1.654663e+01
+         9        12    4.518453e-17    1.739208e+01
+         9        13    1.110223e-16    1.612452e+01
+
+        10         1    3.182257e-16    2.065715e+19
+        10         2    3.182257e-16    2.065715e+19
+
+        11         1    5.186278e-16    5.781339e+03
+        11         2    7.742647e-16    8.734052e+03
+
+        12         1    0.000000e+00    1.099512e+12
+        12         2    0.000000e+00    3.406666e+45
+        12         3    0.000000e+00    3.678275e+60
+        12         4    0.000000e+00    1.022006e+84
+        12         5    0.000000e+00   1.575656e+102
+        12         6    0.000000e+00   4.134043e+148
+
+        13         1    3.092544e-14   1.387521e+152
+        13         2    3.092544e-14   1.387521e+152
+        13         3    1.354252e-13             Inf
+        13         4    1.354252e-13             Inf
+        13         5    3.782171e-13             Inf
+        13         6    3.782171e-13             Inf
+
+        14         1    3.695071e-17    3.041679e-07
+
+        15         1    1.093190e-12    1.762369e+01
+
+        16         1    2.730593e-16    1.767766e+00
+
+        17         1    3.893103e-16    3.264941e-03
+        17         2    5.817466e-17    1.306797e-03
+
+        18         1    2.163007e-11    1.127574e+14
+
+        19         1    5.346992e-16    2.231141e+14
+
+        20         1    1.124871e-16    1.404702e+00
+
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 1
+  Freudenstein-Roth function, (15,-2,0).
+  Number of variables is 3
+  Fixing variable X(1) = 15.349469
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+       15.000000       15.349469       15.349469
+       -2.000000       -2.286895       -2.055316
+        0.000000        0.082951       -0.066590
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       13.853252        0.000000
+        0.000000        2.465192       -0.000000
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 2
+  Freudenstein-Roth function, (15,-2,0), x1 limits.
+  Number of variables is 3
+  Fixing variable X(1) = 15.349469
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+       15.000000       15.349469       15.349469
+       -2.000000       -2.286895       -2.055316
+        0.000000        0.082951       -0.066590
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       13.853252        0.000000
+        0.000000        2.465192       -0.000000
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 3
+  Freudenstein-Roth function, (15,-2,0), x3 limits.
+  Number of variables is 3
+  Fixing variable X(1) = 15.349469
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+       15.000000       15.349469       15.349469
+       -2.000000       -2.286895       -2.055316
+        0.000000        0.082951       -0.066590
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       13.853252        0.000000
+        0.000000        2.465192       -0.000000
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 4
+  Freudenstein-Roth function, (4,3,0).
+  Number of variables is 3
+  Fixing variable X(2) = 3.382527
+  Convergence was achieved in 1 steps.
+
+        X0               X1=X0+dX          X2
+
+        4.000000        4.109209        3.460577
+        3.000000        3.382527        3.382527
+        0.000000        0.082951        0.266059
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.099307        0.000000
+        0.000000        6.324987        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 5
+  Freudenstein-Roth function, (4,3,0), x1 limits.
+  Number of variables is 3
+  Fixing variable X(2) = 3.382527
+  Convergence was achieved in 1 steps.
+
+        X0               X1=X0+dX          X2
+
+        4.000000        4.109209        3.460577
+        3.000000        3.382527        3.382527
+        0.000000        0.082951        0.266059
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.099307        0.000000
+        0.000000        6.324987        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 1
+  Using option OPTION = 6
+  Freudenstein-Roth function, (4,3,0), x3 limits.
+  Number of variables is 3
+  Fixing variable X(2) = 3.382527
+  Convergence was achieved in 1 steps.
+
+        X0               X1=X0+dX          X2
+
+        4.000000        4.109209        3.460577
+        3.000000        3.382527        3.382527
+        0.000000        0.082951        0.266059
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.099307        0.000000
+        0.000000        6.324987        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 2
+  Using option OPTION = 1
+  Boggs function, (1,0,0).
+  Number of variables is 3
+  Fixing variable X(2) = 0.095632
+  Convergence was achieved in 2 steps.
+
+        X0               X1=X0+dX          X2
+
+        1.000000        1.043684        0.988738
+        0.000000        0.095632        0.095632
+        0.000000        0.082951        0.059014
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.159546        0.000000
+        0.000000        0.054945        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 2
+  Using option OPTION = 2
+  Boggs function, (1,-1,0).
+  Number of variables is 3
+  Fixing variable X(1) = 1.043684
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        1.000000        1.043684        1.043684
+       -1.000000       -1.191264       -0.988746
+        0.000000        0.082951       -0.026007
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.529392       -0.000000
+        0.000000        0.422571        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 2
+  Using option OPTION = 3
+  Boggs function, (10,10,0).
+  Number of variables is 3
+  Fixing variable X(2) = 11.051949
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+       10.000000       10.240260        9.282929
+       10.000000       11.051949       11.051949
+        0.000000        0.082951        0.163507
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       11.359512        0.000000
+        0.000000        0.071209        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 3
+  Using option OPTION = 1
+  Powell function, (3,6,0).
+  Number of variables is 3
+  Fixing variable X(2) = 6.669422
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        3.000000        3.087367        2.641127
+        6.000000        6.669422        6.669422
+        0.000000        0.082951        0.021401
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000    40840.647812        0.000000
+        0.000000       -0.083999        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 3
+  Using option OPTION = 2
+  Powell function, (4,5,0).
+  Number of variables is 3
+  Fixing variable X(1) = 5.131051
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        5.000000        5.131051        5.131051
+        4.000000        4.478159        3.892866
+        0.000000        0.082951        0.001275
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000    46366.712037        0.000000
+        0.000000       -0.088670        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 3
+  Using option OPTION = 3
+  Powell function, (6,3,0).
+  Number of variables is 3
+  Fixing variable X(1) = 6.152893
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        6.000000        6.152893        6.152893
+        3.000000        3.382527        2.912484
+        0.000000        0.082951        0.004433
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000    43054.345651       -0.000000
+        0.000000       -0.094801        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 3
+  Using option OPTION = 4
+  Powell function, (1,1,0).
+  Number of variables is 3
+  Fixing variable X(2) = 1.191264
+  Convergence was achieved in 5 steps.
+
+        X0               X1=X0+dX          X2
+
+        1.000000        1.043684        0.839688
+        1.000000        1.191264        1.191264
+        0.000000        0.082951       -0.000290
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000     3262.448933       -0.000000
+        0.000000       -0.101694        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 4
+  Using option OPTION = 1
+  Broyden function
+  Number of variables is 3
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.400000        0.430579        0.292098
+        3.000000        3.382527        2.784673
+        0.000000        0.082951        0.082951
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -0.195362       -0.000000
+        0.000000        0.291242        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 5
+  Using option OPTION = 1
+  Wacker function, A = 0.1.
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 2 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.034165
+        0.000000        0.095632        0.050353
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.048183
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -0.018706       -0.000000
+        0.000000        0.036678       -0.000000
+        0.000000       -0.014328       -0.000000
+
+P00_NEWTON_TEST
+  Problem number = 5
+  Using option OPTION = 2
+  Wacker function, A = 0.5.
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 2 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.018732
+        0.000000        0.095632        0.039663
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.060110
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.003271       -0.000000
+        0.000000        0.056997       -0.000000
+        0.000000        0.005387        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 5
+  Using option OPTION = 3
+  Wacker function, A = 1.0.
+  Number of variables is 4
+  Fixing variable X(4) = 0.056170
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842       -0.012376
+        0.000000        0.095632        0.008280
+        0.000000        0.082951        0.050512
+        0.000000        0.056170        0.056170
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.030743        0.000000
+        0.000000        0.082396       -0.000000
+        0.000000        0.030032       -0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 6
+  Using option OPTION = 1
+  Aircraft function, x(6) = - 0.050.
+  Number of variables is 8
+  Fixing variable X(1) = 0.021851
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000009        0.021851        0.021851
+        0.051206        0.151735        0.051212
+       -0.000003       -0.082955        0.001274
+        0.059606        0.119124        0.059607
+        0.000017        0.041548        0.000223
+       -0.050000       -0.056942       -0.050000
+        0.000109        0.025870       -0.002165
+        0.000000        0.010996        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -5.030250        0.000000
+       -0.000000       -1.269756       -0.000000
+        0.000000        0.156714       -0.000000
+       -0.000000        0.041270       -0.000000
+        0.000000        0.077231        0.000000
+        0.000000       -0.006942        0.000000
+        0.000000        0.010996        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 6
+  Using option OPTION = 2
+  Aircraft function, x(6) = - 0.008.
+  Number of variables is 8
+  Fixing variable X(1) = 0.021843
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000002        0.021843        0.021843
+        0.008193        0.104608        0.008189
+       -0.000001       -0.082952        0.000261
+        0.009537        0.066242        0.009537
+        0.000003        0.041534       -0.000206
+       -0.008000       -0.014665       -0.008000
+        0.000018        0.025776       -0.001804
+        0.000000        0.010996        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -3.579780        0.000000
+        0.000000       -1.209030       -0.000000
+       -0.000000        0.157725       -0.000000
+        0.000000        0.039922        0.000000
+        0.000000        0.076075        0.000000
+        0.000000       -0.006665        0.000000
+        0.000000        0.010996        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 6
+  Using option OPTION = 3
+  Aircraft function, x(6) =   0.000.
+  Number of variables is 8
+  Fixing variable X(1) = 0.021842
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.021842
+        0.000000        0.095632       -0.000006
+        0.000000        0.082951        0.000071
+        0.000000        0.056170        0.000000
+        0.000000        0.041531       -0.000299
+        0.000000        0.006612        0.000000
+        0.000000        0.025758       -0.001809
+        0.000000        0.010996        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -3.215942        0.000000
+        0.000000       -1.569182        0.000000
+        0.000000        0.118931       -0.000000
+        0.000000        0.037444       -0.000000
+        0.000000       -0.090047       -0.000000
+        0.000000        0.006612        0.000000
+        0.000000        0.010996        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 6
+  Using option OPTION = 4
+  Aircraft function, x(6) = + 0.050.
+  Number of variables is 8
+  Fixing variable X(1) = -0.021853
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+       -0.000011       -0.021853       -0.021853
+       -0.051206       -0.151735       -0.051227
+        0.000006        0.082957        0.001103
+       -0.059606       -0.119124       -0.059606
+       -0.000021       -0.041552        0.000941
+        0.050000        0.056942        0.050000
+       -0.000123       -0.025884        0.002198
+        0.000000        0.010996        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+       -0.000000       -1.668159       -0.000000
+       -0.000000        1.266629       -0.000000
+        0.000000       -0.305876        0.000000
+       -0.000000       -0.043085       -0.000000
+       -0.000000       -0.072026        0.000000
+        0.000000        0.006942        0.000000
+        0.000000        0.010996        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 6
+  Using option OPTION = 5
+  Aircraft function, x(6) = + 0.100.
+  Number of variables is 8
+  Fixing variable X(1) = -0.021870
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+       -0.000027       -0.021870       -0.021870
+       -0.102412       -0.207838       -0.102452
+        0.000015        0.082967        0.002224
+       -0.119212       -0.182078       -0.119213
+       -0.000048       -0.041581        0.001818
+        0.100000        0.107273        0.100000
+       -0.000268       -0.026032        0.003810
+        0.000000        0.010996        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+       -0.000000       -3.396081       -0.000000
+       -0.000000        1.338920       -0.000000
+        0.000000       -0.307082        0.000000
+       -0.000000       -0.044691       -0.000000
+        0.000000       -0.070650       -0.000000
+        0.000000        0.007273        0.000000
+        0.000000        0.010996        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 7
+  Using option OPTION = 1
+  Cell kinetics problem, seeking limit points.
+  Number of variables is 6
+  Fixing variable X(6) = 0.006612
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.000065
+        0.000000        0.095632        0.000065
+        0.000000        0.082951        0.000065
+        0.000000        0.056170        0.000065
+        0.000000        0.041531        0.000065
+        0.000000        0.006612        0.006612
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        2.077939       -0.000000
+        0.000000        8.831694       -0.000000
+        0.000000        7.701791       -0.000000
+        0.000000        5.339807       -0.000000
+        0.000000        4.001156       -0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 8
+  Using option OPTION = 1
+  Riks mechanical problem, seeking limit points.
+  Number of variables is 6
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.007749
+        0.000000        0.095632        0.024566
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.000000
+        0.000000        0.041531        0.000000
+        0.000000        0.006612       -0.000544
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.059987       -0.000000
+        0.000000        0.061156       -0.000000
+        0.000000        0.000571        0.000000
+        0.000000        0.056170        0.000000
+        0.000000        0.041531        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 1
+  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(1).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010451
+        0.000000        0.095632       -0.000000
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.070971       -0.000000
+        0.000000        0.179172       -0.000000
+        0.000000        0.056170        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 2
+  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(1).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010151
+        0.000000        0.095632        0.010473
+        0.000000        0.082951        0.082951
+        0.250000        0.320212        0.250000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.075057       -0.000000
+        0.000000        0.157718       -0.000000
+        0.000000        0.070212        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 3
+  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(1).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.009266
+        0.000000        0.095632        0.020255
+        0.000000        0.082951        0.082951
+        0.500000        0.584254        0.500000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.084600       -0.000000
+        0.000000        0.138075       -0.000000
+        0.000000        0.084254        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 4
+  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(1).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.005939
+        0.000000        0.095632        0.035297
+        0.000000        0.082951        0.082951
+        1.000000        1.112339        1.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.117080       -0.000000
+        0.000000        0.109444       -0.000000
+        0.000000        0.112339        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 5
+  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(2).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010451
+        0.000000        0.095632       -0.000000
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.070971       -0.000000
+        0.000000        0.179172       -0.000000
+        0.000000        0.056170        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 6
+  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(2).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010151
+        0.000000        0.095632        0.010473
+        0.000000        0.082951        0.082951
+        0.250000        0.320212        0.250000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.075057       -0.000000
+        0.000000        0.157718       -0.000000
+        0.000000        0.070212        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 7
+  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(2).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.009266
+        0.000000        0.095632        0.020255
+        0.000000        0.082951        0.082951
+        0.500000        0.584254        0.500000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.084600       -0.000000
+        0.000000        0.138075       -0.000000
+        0.000000        0.084254        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 8
+  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(2).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.005939
+        0.000000        0.095632        0.035297
+        0.000000        0.082951        0.082951
+        1.000000        1.112339        1.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.117080       -0.000000
+        0.000000        0.109444       -0.000000
+        0.000000        0.112339        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 9
+  Oden problem, VAL=0.00, Target X(1)=4.0, Limits in X(3).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010451
+        0.000000        0.095632       -0.000000
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.070971       -0.000000
+        0.000000        0.179172       -0.000000
+        0.000000        0.056170        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 10
+  Oden problem, VAL=0.25, Target X(1)=4.0, Limits in X(3).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010151
+        0.000000        0.095632        0.010473
+        0.000000        0.082951        0.082951
+        0.250000        0.320212        0.250000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.075057       -0.000000
+        0.000000        0.157718       -0.000000
+        0.000000        0.070212        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 11
+  Oden problem, VAL=0.50, Target X(1)=4.0, Limits in X(3).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.009266
+        0.000000        0.095632        0.020255
+        0.000000        0.082951        0.082951
+        0.500000        0.584254        0.500000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.084600       -0.000000
+        0.000000        0.138075       -0.000000
+        0.000000        0.084254        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 12
+  Oden problem, VAL=1.00, Target X(1)=4.0, Limits in X(3).
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.005939
+        0.000000        0.095632        0.035297
+        0.000000        0.082951        0.082951
+        1.000000        1.112339        1.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.117080       -0.000000
+        0.000000        0.109444       -0.000000
+        0.000000        0.112339        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 9
+  Using option OPTION = 13
+  Oden problem, VAL=0.00, no targets, no limits.
+  Number of variables is 4
+  Fixing variable X(3) = 0.082951
+  Convergence was achieved in 3 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        0.010451
+        0.000000        0.095632       -0.000000
+        0.000000        0.082951        0.082951
+        0.000000        0.056170        0.000000
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.070971       -0.000000
+        0.000000        0.179172       -0.000000
+        0.000000        0.056170        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 10
+  Using option OPTION = 1
+  Torsion of a square rod, finite difference, PHI(S)=EXP(5*S).
+  Number of variables is 37
+  Fixing variable X(37) = 0.018895
+  Convergence was achieved in 8 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.336860        0.019642
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000       14.089236        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 10
+  Using option OPTION = 2
+  Torsion of a square rod, finite difference, PHI(S)=two levels.
+  Number of variables is 37
+  Fixing variable X(37) = 0.018895
+  Convergence was achieved in 4 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.336860        0.019642
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        7.659858        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 11
+  Using option OPTION = 1
+  Torsion of a square rod, finite element solution.
+  Number of variables is 26
+  Fixing variable X(26) = 0.091248
+  Convergence was achieved in 4 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.336860        0.229282
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        0.450766        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 11
+  Using option OPTION = 2
+  Torsion of a square rod, finite element solution.
+  Number of variables is 26
+  Fixing variable X(26) = 0.091248
+  Convergence was achieved in 1 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.336860        0.267787
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        0.395993        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 1
+  Materially nonlinear problem, NPOLYS = 2, NDERIV = 1.
+  Number of variables is 26
+  Fixing variable X(26) = 0.091248
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.336860        0.216440
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        4.785096        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 2
+  Materially nonlinear problem, NPOLYS = 4, NDERIV = 1.
+  Number of variables is 42
+  Fixing variable X(42) = 0.036703
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.354738        0.036703
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000       28.113504        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 3
+  Materially nonlinear problem, NPOLYS = 4, NDERIV = 2.
+  Number of variables is 49
+  Fixing variable X(49) = 0.082500
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.379940        0.082500
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000       29.932890        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 4
+  Materially nonlinear problem, NPOLYS = 6, NDERIV = 1.
+  Number of variables is 58
+  Fixing variable X(58) = 0.076354
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.427553        0.076354
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      116.250793        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 5
+  Materially nonlinear problem, NPOLYS = 6, NDERIV = 2.
+  Number of variables is 65
+  Fixing variable X(65) = 0.004191
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.452509        0.004191
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      120.150191        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 12
+  Using option OPTION = 6
+  Materially nonlinear problem, NPOLYS = 6, NDERIV = 3.
+  Number of variables is 72
+  Fixing variable X(72) = 0.011432
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.463259        0.011432
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000    10676.055139        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 1
+  Simpson's BVP, F(U) = EXP(U), M = 8.
+  Number of variables is 65
+  Fixing variable X(65) = 0.004191
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.463259        0.099321
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000       74.589375        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 2
+  Simpson's BVP, F(U) = function 2, M = 8.
+  Number of variables is 65
+  Fixing variable X(65) = 0.004191
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.463259        0.099321
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000       74.589377        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 3
+  Simpson's BVP, F(U) = EXP(U), M = 12.
+  Number of variables is 145
+  Fixing variable X(145) = 0.089334
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.698945        0.101477
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      235.783512        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 4
+  Simpson's BVP, F(U) = function 2, M = 12.
+  Number of variables is 145
+  Fixing variable X(145) = 0.089334
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.698945        0.101477
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      235.783564        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 5
+  Simpson's BVP, F(U) = EXP(U), M = 16.
+  Number of variables is 257
+  Fixing variable X(257) = 0.042870
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.903193        0.052403
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      487.781920        0.000000
+
+P00_NEWTON_TEST
+  Problem number = 13
+  Using option OPTION = 6
+  Simpson's BVP, F(U) = function 2, M = 16.
+  Number of variables is 257
+  Fixing variable X(257) = 0.042870
+  Convergence was achieved in 2 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        0.903193        0.052403
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000      487.781950        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 14
+  Using option OPTION = 1
+  Keller's BVP.
+  Number of variables is 13
+  Fixing variable X(6) = 0.108418
+  Convergence was achieved in 3 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        1.463410        1.822560        1.714296
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        0.227692        0.000001
+
+
+P00_NEWTON_TEST
+  Problem number = 15
+  Using option OPTION = 1
+  The Trigger Circuit.
+  Number of variables is 7
+  Fixing variable X(7) = 0.025758
+  The iteration seemed to be diverging, and was halted.
+
+        X0               X1=X0+dX          X2
+
+        0.000000        0.021842        9.404546
+        0.000000        0.095632       26.303307
+        0.000000        0.082951        6.910508
+        0.000000        0.056170        0.550712
+        0.000000        0.041531        1.189552
+        0.000000        0.006612        9.494540
+        0.000000        0.025758        0.025758
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000       -0.008080        0.000000
+        0.000000        0.003107  215138544715935199139786674078068080686620993630759393469802038876140121824950918738652572802217188592963219725453889057861317371786795441446276380148092640259139660965501553051029775755176878966613341787791289989155588124870848357477238432534323002792442735327898347053885947904.000000
+        0.000000        0.007161       -0.000000
+        0.000000        0.104185        0.000000
+        0.000000       -0.011953   460877.728996
+        0.000000      -59.445301      105.970747
+
+
+P00_NEWTON_TEST
+  Problem number = 16
+  Using option OPTION = 1
+  The Moore Spence Chemical Reaction Integral Equation.
+  Number of variables is 17
+  Fixing variable X(17) = 0.089750
+  Convergence was achieved in 3 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        4.000000        4.423268        3.932834
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000        0.468133        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 17
+  Using option OPTION = 1
+  Bremermann Propane Combustion System, fixed pressure.
+  Number of variables is 12
+  Fixing variable X(3) = 10.912254
+  Convergence was achieved in 4 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+       11.885894       13.094669       13.037048
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000001        1.315997        0.000001
+
+P00_NEWTON_TEST
+  Problem number = 17
+  Using option OPTION = 2
+  Bremermann Propane Combustion System, fixed concentration.
+  Number of variables is 12
+  Fixing variable X(11) = 1.012345
+  Convergence was achieved in 4 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+       11.885894       13.094669       12.120629
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000001        1.343297        0.000001
+
+
+P00_NEWTON_TEST
+  Problem number = 18
+  Using option OPTION = 1
+  The Semiconductor Problem.
+  Number of variables is 12
+  Fixing variable X(9) = 0.004383
+  Convergence was achieved in 7 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+        0.000000        2.374613        2.368698
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000000   968019.025378        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 19
+  Using option OPTION = 1
+  Nitric Acid Absorption Flash.
+  Number of variables is 13
+  Fixing variable X(11) = 208.306460
+  Convergence was achieved in 3 steps.
+
+      ||X0||           ||X1=X0+dX||        ||X2||
+
+      208.298089      209.706747      209.600641
+
+     ||F(X0)||       ||F(X1=X0+dX)||        ||F(X2)||
+
+        0.000006      342.404049        0.000000
+
+
+P00_NEWTON_TEST
+  Problem number = 20
+  Using option OPTION = 1
+  The Buckling Spring, F(L,Theta,Lambda,Mu).
+  Number of variables is 4
+  Fixing variable X(4) = -0.216272
+  Convergence was achieved in 4 steps.
+
+        X0               X1=X0+dX          X2
+
+        0.250000        0.277302        0.223874
+        0.392699        0.525885        0.392699
+        0.843189        0.996083        0.884865
+       -0.151588       -0.216272       -0.216272
+
+       F(X0)           F(X1=X0+dX)        F(X2)
+
+        0.000000        0.169025       -0.000000
+       -0.000000       -0.066236        0.000000
+        0.000000        0.133186        0.000000
+
+P00_STEPSIZE_TEST
+  Print the stepsizes for each problem.
+
+   Problem    Option      H               HMIN             HMAX
+
+
+         1         1        0.300000        0.031250        4.000000
+         1         2        0.300000        0.031250        4.000000
+         1         3        0.300000        0.031250        4.000000
+         1         4        0.300000        0.031250        4.000000
+         1         5        0.300000        0.031250        4.000000
+         1         6        0.300000        0.031250        4.000000
+
+         2         1        0.250000        0.001000        1.000000
+         2         2        0.250000        0.001000        1.000000
+         2         3        0.250000        0.001000        1.000000
+
+         3         1        0.500000        0.000250        3.000000
+         3         2        0.500000        0.000250        3.000000
+         3         3        0.500000        0.000250        3.000000
+         3         4        0.500000        0.000250        3.000000
+
+         4         1        0.300000        0.001000       25.000000
+
+         5         1        0.300000        0.001000       25.000000
+         5         2        0.300000        0.001000       25.000000
+         5         3        0.300000        0.001000       25.000000
+
+         6         1        0.250000        0.001000        0.500000
+         6         2        0.250000        0.001000        0.500000
+         6         3        0.250000        0.001000        0.500000
+         6         4        0.250000        0.001000        0.500000
+         6         5        0.250000        0.001000        0.500000
+
+         7         1        1.000000        0.001000        1.000000
+
+         8         1        1.000000        0.001000        1.000000
+
+         9         1        0.300000        0.001000        0.600000
+         9         2        0.300000        0.001000        0.600000
+         9         3        0.300000        0.001000        0.600000
+         9         4        0.300000        0.001000        0.600000
+         9         5        0.300000        0.001000        0.600000
+         9         6        0.300000        0.001000        0.600000
+         9         7        0.300000        0.001000        0.600000
+         9         8        0.300000        0.001000        0.600000
+         9         9        0.300000        0.001000        0.600000
+         9        10        0.300000        0.001000        0.600000
+         9        11        0.300000        0.001000        0.600000
+         9        12        0.300000        0.001000        0.600000
+         9        13        0.300000        0.001000        0.600000
+
+        10         1        2.000000        0.001000       10.000000
+        10         2        2.000000        0.001000       10.000000
+
+        11         1        0.125000        0.031250        4.000000
+        11         2        0.125000        0.031250        4.000000
+
+        12         1        2.000000        0.001000       10.000000
+        12         2        2.000000        0.001000       10.000000
+        12         3        2.000000        0.001000       10.000000
+        12         4        2.000000        0.001000       10.000000
+        12         5        2.000000        0.001000       10.000000
+        12         6        2.000000        0.001000       10.000000
+
+        13         1        2.000000        0.001000       10.000000
+        13         2        2.000000        0.001000       10.000000
+        13         3        2.000000        0.001000       10.000000
+        13         4        2.000000        0.001000       10.000000
+        13         5        2.000000        0.001000       10.000000
+        13         6        2.000000        0.001000       10.000000
+
+        14         1        2.000000        0.001000       10.000000
+
+        15         1        0.300000        0.001000        0.600000
+
+        16         1        0.200000        0.001000        2.000000
+
+        17         1        1.000000        0.001000        2.000000
+        17         2        1.000000        0.001000        2.000000
+
+        18         1        2.500000        0.001000        5.000000
+
+        19         1        0.125000        0.015625        4.000000
+
+        20         1        0.002500        0.010000        0.080000
+
+P01_TARGET_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find a solution for which X(3) = 1.0
+
+  The option chosen is 1
+
+  -1  15.000000  -2.000000  0.000000
+  0  15.000000  -2.000000  0.000000
+  1  14.710456  -1.942054  0.065381
+  2  14.426548  -1.858493  0.151978
+  3  14.284485  -1.753030  0.248724
+  4  14.303210  -1.696883  0.294704
+  5  14.346562  -1.662100  0.321314
+  6  14.464590  -1.606637  0.360840
+  7  14.737687  -1.526551  0.411765
+  8  15.315448  -1.414204  0.471409
+  9  16.496302  -1.254914  0.533635
+  10  18.878955  -1.023940  0.581098
+  11  22.864681  -0.730030  0.577102
+  12  26.855800  -0.482764  0.526496
+  13  30.848420  -0.257569  0.449637
+  14  34.841515  -0.043503  0.354763
+  15  38.834640  0.166209  0.246007
+  16  42.827505  0.377071  0.125569
+  17  46.819833  0.594907  -0.005560
+  18  50.811246  0.827770  -0.147486
+  19  54.801050  1.090470  -0.302030
+  20  58.787476  1.424699  -0.476327
+  21  60.774743  1.679907  -0.581898
+  22  61.652866  2.023787  -0.670441
+  23  59.118763  2.462680  -0.664168
+  24  55.135590  2.733690  -0.576602
+  25  51.142669  2.921815  -0.471780
+  26  47.147622  3.072981  -0.358791
+  27  43.151703  3.202024  -0.240654
+  28  39.155329  3.315958  -0.118836
+  29  35.158686  3.418752  0.005806
+  30  31.161871  3.512908  0.132719
+  31  27.164940  3.600121  0.261519
+  32  23.167928  3.681599  0.391925
+  33  19.170858  3.758244  0.523723
+  34  15.173744  3.830743  0.656746
+  35  11.176599  3.899639  0.790861
+  36  7.179431  3.965367  0.925959
+  37  5.000000  4.000000  1.000000
+  38  3.182245  4.028282  1.061947
+
+P01_TARGET_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find a solution for which X(3) = 1.0
+
+  The option chosen is 4
+
+  -1  4.000000  3.000000  0.000000
+  0  4.000000  3.000000  0.000000
+  1  3.725119  3.122940  0.071419
+  2  3.459788  3.393933  0.276048
+  3  3.505288  3.506450  0.381376
+  4  3.582515  3.575077  0.451817
+  5  3.790947  3.685813  0.575721
+  6  4.293357  3.847453  0.780173
+  7  5.000000  4.000000  1.000000
+  8  5.393861  4.068227  1.107104
+
+P01_LIMIT_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find limit points X such that
+  TAN(1) = 0.
+
+  The option chosen is 2
+
+         #    Tan(LIM)           X(1)           X(2)            X(3)
+
+        -1   -9.651460e-01       15.000000       -2.000000        0.000000
+         0   -9.651460e-01       15.000000       -2.000000        0.000000
+         1   -9.463618e-01       14.710456       -1.942054        0.065381
+         2   -9.250432e-01       14.568502       -1.905888        0.103962
+         3   -8.722497e-01       14.429745       -1.859778        0.150714
+         4   -2.116174e-01       14.285062       -1.755231        0.246844
+  (limit)    -3.190151e-09       14.283091       -1.741377        0.258578
+         5    5.541607e-01       14.300900       -1.699526        0.292624
+         6    7.764063e-01       14.342462       -1.664721        0.319358
+         7    9.077019e-01       14.458923       -1.608783        0.359376
+         8    9.623993e-01       14.731233       -1.528113        0.410840
+         9    9.839350e-01       15.308673       -1.415314        0.470885
+        10    9.927490e-01       16.489395       -1.255711        0.533386
+        11    9.964267e-01       18.871992       -1.024527        0.581038
+        12    9.977787e-01       22.857699       -0.730492        0.577159
+        13    9.981545e-01       26.848814       -0.483173        0.526611
+        14    9.982738e-01       30.841432       -0.257951        0.449789
+        15    9.982812e-01       34.834527       -0.043873        0.354942
+        16    9.982164e-01       38.827652        0.165843        0.246208
+        17    9.980823e-01       42.820518        0.376697        0.125789
+        18    9.978538e-01       46.812847        0.594515       -0.005321
+        19    9.974519e-01       50.804262        0.827342       -0.147228
+        20    9.966089e-01       54.794070        1.089968       -0.301746
+        21    9.936456e-01       58.780505        1.423983       -0.475992
+        22    9.911007e-01       59.774151        1.535306       -0.525600
+        23    9.833731e-01       60.765252        1.678251       -0.581310
+  (limit)     6.216922e-09       61.669363        1.983801       -0.663880
+        24   -6.001584e-01       61.655485        2.020487       -0.669940
+        25   -9.955584e-01       59.254852        2.450210       -0.666534
+        26   -9.981991e-01       55.272618        2.726223       -0.579987
+        27   -9.987508e-01       51.279821        2.916093       -0.475539
+        28   -9.989746e-01       47.284818        3.068211       -0.362768
+        29   -9.990905e-01       43.288920        3.197872       -0.244777
+        30   -9.991588e-01       39.292558        3.312248       -0.123070
+        31   -9.992025e-01       35.295922        3.415377        0.001486
+        32   -9.992319e-01       31.299112        3.509798        0.128328
+        33   -9.992525e-01       27.302185        3.597227        0.257068
+        34   -9.992672e-01       23.305175        3.678886        0.387423
+        35   -9.992780e-01       19.308106        3.755684        0.519176
+        36   -9.992860e-01       15.310994        3.828316        0.652160
+        37   -9.992919e-01       11.313850        3.897329        0.786240
+        38   -9.992963e-01        7.316682        3.963159        0.921305
+        39   -9.992996e-01        3.319497        4.026165        1.057264
+        40   -9.993019e-01       -0.677701        4.086644        1.194040
+
+  Number of limit points found was 2
+
+P01_LIMIT_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find limit points X such that
+  TAN(3) = 0.
+
+  The option chosen is 3
+
+         #    Tan(LIM)           X(1)           X(2)            X(3)
+
+        -1    1.987065e-01       15.000000       -2.000000        0.000000
+         0    1.987065e-01       15.000000       -2.000000        0.000000
+         1    2.381148e-01       14.710456       -1.942054        0.065381
+         2    2.742458e-01       14.568502       -1.905888        0.103962
+         3    3.431278e-01       14.429745       -1.859778        0.150714
+         4    6.352574e-01       14.285062       -1.755231        0.246844
+         5    5.154483e-01       14.300900       -1.699526        0.292624
+         6    3.774063e-01       14.342462       -1.664721        0.319358
+         7    2.367368e-01       14.458923       -1.608783        0.359376
+         8    1.385790e-01       14.731233       -1.528113        0.410840
+         9    7.627537e-02       15.308673       -1.415314        0.470885
+        10    3.588303e-02       16.489395       -1.255711        0.533386
+        11    8.730521e-03       18.871992       -1.024527        0.581038
+  (limit)    -1.538970e-11       20.485858       -0.896805        0.587587
+        12   -8.138855e-03       22.857699       -0.730492        0.577159
+        13   -1.640489e-02       26.848814       -0.483173        0.526611
+        14   -2.168910e-02       30.841432       -0.257951        0.449789
+        15   -2.556988e-02       34.834527       -0.043873        0.354942
+        16   -2.870640e-02       38.827652        0.165843        0.246208
+        17   -3.145844e-02       42.820518        0.376697        0.125789
+        18   -3.409213e-02       46.812847        0.594515       -0.005321
+        19   -3.691403e-02       50.804262        0.827342       -0.147228
+        20   -4.054815e-02       54.794070        1.089968       -0.301746
+        21   -4.768625e-02       58.780505        1.423983       -0.475992
+        22   -5.180441e-02       59.774151        1.535306       -0.525600
+        23   -6.079556e-02       60.765252        1.678251       -0.581310
+        24   -1.208999e-01       61.655485        2.020487       -0.669940
+  (limit)     5.708655e-12       61.020315        2.230139       -0.686353
+        25    1.704981e-02       59.254852        2.450210       -0.666534
+        26    2.458650e-02       55.272618        2.726223       -0.579987
+        27    2.734531e-02       51.279821        2.916093       -0.475539
+        28    2.893057e-02       47.284818        3.068211       -0.362768
+        29    3.000908e-02       43.288920        3.197872       -0.244777
+        30    3.081202e-02       39.292558        3.312248       -0.123070
+        31    3.144437e-02       35.295922        3.415377        0.001486
+        32    3.196185e-02       31.299112        3.509798        0.128328
+        33    3.239729e-02       27.302185        3.597227        0.257068
+        34    3.277152e-02       23.305175        3.678886        0.387423
+        35    3.309852e-02       19.308106        3.755684        0.519176
+        36    3.338810e-02       15.310994        3.828316        0.652160
+        37    3.364735e-02       11.313850        3.897329        0.786240
+        38    3.388158e-02        7.316682        3.963159        0.921305
+        39    3.409487e-02        3.319497        4.026165        1.057264
+        40    3.429039e-02       -0.677701        4.086644        1.194040
+
+  Number of limit points found was 2
+
+P01_LIMIT_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find limit points X such that
+  TAN(1) = 0.
+
+  The option chosen is 5
+
+         #    Tan(LIM)           X(1)           X(2)            X(3)
+
+        -1   -9.162691e-01        4.000000        3.000000        0.000000
+         0   -9.162691e-01        4.000000        3.000000        0.000000
+         1   -8.450957e-01        3.725119        3.122940        0.071419
+         2   -1.997169e-02        3.459788        3.393933        0.276048
+  (limit)     1.325069e-11        3.459741        3.397490        0.279188
+         3    5.148460e-01        3.505288        3.506450        0.381376
+         4    6.947721e-01        3.582515        3.575077        0.451817
+         5    8.373498e-01        3.790947        3.685813        0.575721
+         6    9.170867e-01        4.293357        3.847453        0.780173
+         7    9.554633e-01        5.393861        4.068227        1.107104
+         8    9.739861e-01        7.686973        4.362293        1.634102
+         9    9.825454e-01       11.582917        4.696188        2.369711
+        10    9.859208e-01       15.513099        4.946640        3.024838
+        11    9.877792e-01       19.456782        5.152752        3.634810
+        12    9.889770e-01       23.407899        5.330509        4.214772
+        13    9.898236e-01       27.363807        5.488233        4.772861
+        14    9.904594e-01       31.323101        5.630887        5.314048
+        15    9.909579e-01       35.284939        5.761704        5.841643
+        16    9.913613e-01       39.248770        5.882922        6.357980
+        17    9.916961e-01       43.214216        5.996167        6.864782
+        18    9.919793e-01       47.181000        6.102660        7.363364
+        19    9.922228e-01       51.148917        6.203345        7.854759
+        20    9.924349e-01       55.117808        6.298970        8.339794
+        21    9.926218e-01       59.087548        6.390138        8.819145
+        22    9.927880e-01       63.058035        6.477345        9.293376
+        23    9.929370e-01       67.029187        6.561002        9.762958
+        24    9.930716e-01       71.000935        6.641456       10.228294
+        25    9.931940e-01       74.973222        6.719003       10.689729
+        26    9.933058e-01       78.945998        6.793896       11.147564
+        27    9.934085e-01       82.919221        6.866355       11.602062
+        28    9.935033e-01       86.892855        6.936571       12.053452
+        29    9.935911e-01       90.866868        7.004713       12.501942
+        30    9.936728e-01       94.841233        7.070931       12.947712
+        31    9.937489e-01       98.815924        7.135356       13.390927
+        32    9.938202e-01      102.790920        7.198106       13.831734
+        33    9.938871e-01      106.766200        7.259290       14.270267
+        34    9.939500e-01      110.741749        7.319001       14.706647
+        35    9.940093e-01      114.717549        7.377326       15.140983
+        36    9.940654e-01      118.693586        7.434345       15.573378
+        37    9.941185e-01      122.669847        7.490130       16.003924
+        38    9.941689e-01      126.646321        7.544745       16.432706
+        39    9.942168e-01      130.622997        7.598251       16.859803
+        40    9.942624e-01      134.599864        7.650703       17.285287
+
+  Number of limit points found was 1
+
+P01_LIMIT_TEST
+  Compute a series of solutions for problem 1.
+  We are trying to find limit points X such that
+  TAN(3) = 0.
+
+  The option chosen is 6
+
+         #    Tan(LIM)           X(1)           X(2)            X(3)
+
+        -1    1.874187e-01        4.000000        3.000000        0.000000
+         0    1.874187e-01        4.000000        3.000000        0.000000
+         1    2.860437e-01        3.725119        3.122940        0.071419
+         2    6.610085e-01        3.459788        3.393933        0.276048
+         3    6.036747e-01        3.505288        3.506450        0.381376
+         4    5.234805e-01        3.582515        3.575077        0.451817
+         5    4.166357e-01        3.790947        3.685813        0.575721
+         6    3.207082e-01        4.293357        3.847453        0.780173
+         7    2.507109e-01        5.393861        4.068227        1.107104
+         8    2.022490e-01        7.686973        4.362293        1.634102
+         9    1.720667e-01       11.582917        4.696188        2.369711
+        10    1.574791e-01       15.513099        4.946640        3.024838
+        11    1.484226e-01       19.456782        5.152752        3.634810
+        12    1.420762e-01       23.407899        5.330509        4.214772
+        13    1.372975e-01       27.363807        5.488233        4.772861
+        14    1.335233e-01       31.323101        5.630887        5.314048
+        15    1.304394e-01       35.284939        5.761704        5.841643
+        16    1.278547e-01       39.248770        5.882922        6.357980
+        17    1.256449e-01       43.214216        5.996167        6.864782
+        18    1.237256e-01       47.181000        6.102660        7.363364
+        19    1.220369e-01       51.148917        6.203345        7.854759
+        20    1.205351e-01       55.117808        6.298970        8.339794
+        21    1.191872e-01       59.087548        6.390138        8.819145
+        22    1.179680e-01       63.058035        6.477345        9.293376
+        23    1.168577e-01       67.029187        6.561002        9.762958
+        24    1.158406e-01       71.000935        6.641456       10.228294
+        25    1.149040e-01       74.973222        6.719003       10.689729
+        26    1.140376e-01       78.945998        6.793896       11.147564
+        27    1.132327e-01       82.919221        6.866355       11.602062
+        28    1.124822e-01       86.892855        6.936571       12.053452
+        29    1.117801e-01       90.866868        7.004713       12.501942
+        30    1.111212e-01       94.841233        7.070931       12.947712
+        31    1.105011e-01       98.815924        7.135356       13.390927
+        32    1.099161e-01      102.790920        7.198106       13.831734
+        33    1.093629e-01      106.766200        7.259290       14.270267
+        34    1.088385e-01      110.741749        7.319001       14.706647
+        35    1.083406e-01      114.717549        7.377326       15.140983
+        36    1.078669e-01      118.693586        7.434345       15.573378
+        37    1.074154e-01      122.669847        7.490130       16.003924
+        38    1.069844e-01      126.646321        7.544745       16.432706
+        39    1.065723e-01      130.622997        7.598251       16.859803
+        40    1.061777e-01      134.599864        7.650703       17.285287
+
+  Number of limit points found was 0
+
+P06_LIMIT_TEST
+  Compute a series of solutions for problem 6.
+  We are trying to find limit points X such that
+  TAN(7) = 0.
+
+  The option chosen is 1
+
+   #   Tan(7)     X1       X2       X3       X4       X5       X6       X7      X8
+                Roll     Pitch    Yaw      Attack   Sideslip Elevator Aileron Rudder
+
+  -1  1.0e-01   0.0000   0.0512  -0.0000   0.0596   0.0000  -0.0500   0.0001   0.0000
+   0  1.0e-01   0.0000   0.0512  -0.0000   0.0596   0.0000  -0.0500   0.0001   0.0000
+   1  1.0e-01  -0.2482   0.0519  -0.0145   0.0597  -0.0024  -0.0500   0.0260   0.0000
+   2  1.1e-01  -0.7446   0.0581  -0.0442   0.0607  -0.0078  -0.0500   0.0788   0.0000
+   3  1.2e-01  -1.2406   0.0736  -0.0757   0.0627  -0.0156  -0.0500   0.1354   0.0000
+   4  1.4e-01  -1.7354   0.1075  -0.1092   0.0654  -0.0291  -0.0500   0.2007   0.0000
+   5  2.0e-01  -2.2262   0.1856  -0.1420   0.0678  -0.0567  -0.0500   0.2864   0.0000
+   6  2.6e-01  -2.6996   0.3977  -0.1514   0.0642  -0.1267  -0.0500   0.4175   0.0000
+   7  1.1e-01  -2.9224   0.6929  -0.1047   0.0496  -0.2230  -0.0500   0.5004   0.0000
+   L -1.2e-13  -2.9691   0.8307  -0.0727   0.0410  -0.2688  -0.0500   0.5092   0.0000
+   8 -2.2e-01  -3.0104   1.1218   0.0045   0.0214  -0.3683  -0.0500   0.4727   0.0000
+   9 -4.5e-01  -2.9929   1.5659   0.1310  -0.0098  -0.5293  -0.0500   0.2912   0.0000
+  10 -5.8e-01  -2.9370   1.9670   0.2434  -0.0372  -0.6853  -0.0500   0.0162   0.0000
+  11 -6.6e-01  -2.8783   2.2915   0.3303  -0.0583  -0.8193  -0.0500  -0.2745   0.0000
+  12 -7.1e-01  -2.8170   2.5986   0.4089  -0.0773  -0.9529  -0.0500  -0.6021   0.0000
+  13 -7.5e-01  -2.7562   2.8880   0.4801  -0.0946  -1.0852  -0.0500  -0.9564   0.0000
+  14 -7.8e-01  -2.6974   3.1609   0.5450  -0.1102  -1.2158  -0.0500  -1.3306   0.0000
+  15 -8.0e-01  -2.6409   3.4189   0.6045  -0.1245  -1.3449  -0.0500  -1.7203   0.0000
+  16 -8.2e-01  -2.5870   3.6633   0.6596  -0.1376  -1.4724  -0.0500  -2.1223   0.0000
+  17 -8.4e-01  -2.5356   3.8953   0.7109  -0.1497  -1.5986  -0.0500  -2.5342   0.0000
+  18 -8.5e-01  -2.4864   4.1160   0.7589  -0.1609  -1.7235  -0.0500  -2.9545   0.0000
+  19 -8.7e-01  -2.4395   4.3265   0.8042  -0.1714  -1.8473  -0.0500  -3.3817   0.0000
+  20 -8.8e-01  -2.3945   4.5275   0.8472  -0.1812  -1.9700  -0.0500  -3.8148   0.0000
+  21 -8.9e-01  -2.3515   4.7199   0.8880  -0.1904  -2.0918  -0.0500  -4.2529   0.0000
+  22 -8.9e-01  -2.3101   4.9041   0.9270  -0.1991  -2.2127  -0.0500  -4.6955   0.0000
+  23 -9.0e-01  -2.2703   5.0808   0.9644  -0.2073  -2.3329  -0.0500  -5.1420   0.0000
+  24 -9.1e-01  -2.2320   5.2505   1.0004  -0.2151  -2.4525  -0.0500  -5.5919   0.0000
+  25 -9.1e-01  -2.1951   5.4136   1.0352  -0.2224  -2.5714  -0.0500  -6.0448   0.0000
+  26 -9.2e-01  -2.1595   5.5706   1.0688  -0.2294  -2.6897  -0.0500  -6.5004   0.0000
+  27 -9.2e-01  -2.1250   5.7217   1.1013  -0.2361  -2.8076  -0.0500  -6.9584   0.0000
+  28 -9.2e-01  -2.0917   5.8674   1.1330  -0.2424  -2.9250  -0.0500  -7.4185   0.0000
+  29 -9.3e-01  -2.0594   6.0079   1.1639  -0.2485  -3.0420  -0.0500  -7.8807   0.0000
+  30 -9.3e-01  -2.0281   6.1434   1.1940  -0.2542  -3.1587  -0.0500  -8.3446   0.0000
+
+  Number of limit points found was 1
+
+P06_LIMIT_TEST
+  Compute a series of solutions for problem 6.
+  We are trying to find limit points X such that
+  TAN(7) = 0.
+
+  The option chosen is 2
+
+   #   Tan(7)     X1       X2       X3       X4       X5       X6       X7      X8
+                Roll     Pitch    Yaw      Attack   Sideslip Elevator Aileron Rudder
+
+  -1  8.3e-02   0.0000   0.0082  -0.0000   0.0095   0.0000  -0.0080   0.0000   0.0000
+   0  8.3e-02   0.0000   0.0082  -0.0000   0.0095   0.0000  -0.0080   0.0000   0.0000
+   1  8.3e-02  -0.2491   0.0076  -0.0030   0.0096   0.0024  -0.0080   0.0208   0.0000
+   2  8.2e-02  -0.7473   0.0031  -0.0094   0.0100   0.0075  -0.0080   0.0622   0.0000
+   3  8.1e-02  -1.2455  -0.0074  -0.0170   0.0110   0.0136  -0.0080   0.1032   0.0000
+   4  7.7e-02  -1.7435  -0.0271  -0.0276   0.0128   0.0221  -0.0080   0.1429   0.0000
+   5  6.6e-02  -2.2410  -0.0656  -0.0447   0.0162   0.0359  -0.0080   0.1794   0.0000
+   6  1.8e-02  -2.7361  -0.1516  -0.0800   0.0241   0.0637  -0.0080   0.2036   0.0000
+   L  4.5e-13  -2.8159  -0.1748  -0.0895   0.0263   0.0710  -0.0080   0.2044   0.0000
+   7 -1.8e-01  -3.2146  -0.3680  -0.1729   0.0456   0.1282  -0.0080   0.1674   0.0000
+   8 -2.9e-01  -3.6051  -0.6227  -0.3274   0.0802   0.1946  -0.0080   0.0265   0.0000
+   L -3.6e-09  -3.7571  -0.6491  -0.3835   0.0918   0.1968  -0.0080  -0.0038   0.0000
+   9  5.1e-01  -4.0169  -0.4614  -0.3924   0.0908   0.1371  -0.0080   0.1343   0.0000
+  10  3.0e-01  -4.1644  -0.1226  -0.2414   0.0554   0.0424  -0.0080   0.3349   0.0000
+   L -6.7e-10  -4.1637   0.0923  -0.0926   0.0224  -0.0171  -0.0080   0.3782   0.0000
+  11 -1.2e-01  -3.9321   0.2649   0.0247  -0.0035  -0.0686  -0.0080   0.3477   0.0000
+  12 -2.3e-01  -3.4971   0.5463   0.1271  -0.0277  -0.1645  -0.0080   0.2580   0.0000
+  13 -3.8e-01  -3.2607   0.8754   0.2188  -0.0503  -0.2843  -0.0080   0.1177   0.0000
+  14 -5.2e-01  -3.0866   1.2506   0.3129  -0.0738  -0.4295  -0.0080  -0.1104   0.0000
+  15 -6.1e-01  -2.9529   1.6149   0.3976  -0.0952  -0.5796  -0.0080  -0.4034   0.0000
+  16 -6.8e-01  -2.8522   1.9267   0.4664  -0.1126  -0.7154  -0.0080  -0.7097   0.0000
+  17 -7.2e-01  -2.7640   2.2225   0.5293  -0.1285  -0.8511  -0.0080  -1.0478   0.0000
+  18 -7.6e-01  -2.6851   2.5018   0.5869  -0.1429  -0.9855  -0.0080  -1.4101   0.0000
+  19 -7.9e-01  -2.6135   2.7653   0.6401  -0.1562  -1.1183  -0.0080  -1.7909   0.0000
+  20 -8.1e-01  -2.5480   3.0142   0.6895  -0.1684  -1.2496  -0.0080  -2.1864   0.0000
+  21 -8.3e-01  -2.4873   3.2497   0.7357  -0.1797  -1.3793  -0.0080  -2.5936   0.0000
+  22 -8.5e-01  -2.4308   3.4730   0.7791  -0.1902  -1.5075  -0.0080  -3.0103   0.0000
+  23 -8.6e-01  -2.3778   3.6850   0.8201  -0.1999  -1.6344  -0.0080  -3.4350   0.0000
+  24 -8.7e-01  -2.3278   3.8867   0.8591  -0.2091  -1.7601  -0.0080  -3.8664   0.0000
+  25 -8.8e-01  -2.2806   4.0790   0.8963  -0.2177  -1.8846  -0.0080  -4.3034   0.0000
+  26 -8.9e-01  -2.2357   4.2626   0.9320  -0.2257  -2.0082  -0.0080  -4.7452   0.0000
+  27 -9.0e-01  -2.1929   4.4381   0.9663  -0.2334  -2.1309  -0.0080  -5.1913   0.0000
+  28 -9.1e-01  -2.1521   4.6061   0.9994  -0.2406  -2.2527  -0.0080  -5.6411   0.0000
+  29 -9.1e-01  -2.1129   4.7671   1.0313  -0.2474  -2.3739  -0.0080  -6.0941   0.0000
+  30 -9.2e-01  -2.0754   4.9215   1.0624  -0.2539  -2.4944  -0.0080  -6.5499   0.0000
+
+  Number of limit points found was 3
+
+P06_LIMIT_TEST
+  Compute a series of solutions for problem 6.
+  We are trying to find limit points X such that
+  TAN(7) = 0.
+
+  The option chosen is 3
+
+   #   Tan(7)     X1       X2       X3       X4       X5       X6       X7      X8
+                Roll     Pitch    Yaw      Attack   Sideslip Elevator Aileron Rudder
+
+  -1  8.3e-02   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+   0  8.3e-02   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000   0.0000
+   1  8.2e-02  -0.2491  -0.0008  -0.0008   0.0000   0.0034   0.0000   0.0206   0.0000
+   2  8.2e-02  -0.7474  -0.0077  -0.0028   0.0004   0.0108   0.0000   0.0617   0.0000
+   3  8.0e-02  -1.2455  -0.0239  -0.0061   0.0012   0.0201   0.0000   0.1022   0.0000
+   4  7.4e-02  -1.7432  -0.0562  -0.0127   0.0029   0.0339   0.0000   0.1411   0.0000
+   5  5.4e-02  -2.2394  -0.1239  -0.0283   0.0070   0.0584  -0.0000   0.1746   0.0000
+   L  7.5e-10  -2.5839  -0.2213  -0.0541   0.0135   0.0909  -0.0000   0.1861   0.0000
+   6 -4.9e-02  -2.7272  -0.2863  -0.0729   0.0182   0.1117   0.0000   0.1825   0.0000
+   7 -2.4e-01  -3.0412  -0.5135  -0.1472   0.0364   0.1808  -0.0000   0.1257   0.0000
+   8 -4.8e-01  -3.3358  -0.8297  -0.2756   0.0669   0.2688  -0.0000  -0.0559   0.0000
+   9 -5.9e-01  -3.5741  -1.0625  -0.4103   0.0976   0.3246   0.0000  -0.2948   0.0000
+  10 -1.8e-01  -3.8621  -1.1529  -0.5628   0.1298   0.3321   0.0000  -0.5030   0.0000
+   L -8.3e-10  -3.9007  -1.1421  -0.5786   0.1328   0.3269   0.0000  -0.5070   0.0000
+  11  3.1e-01  -3.9722  -1.1061  -0.6030   0.1372   0.3130   0.0000  -0.4925   0.0000
+  12  5.2e-01  -4.0484  -1.0442  -0.6201   0.1398   0.2925   0.0000  -0.4429   0.0000
+  13  6.5e-01  -4.1576  -0.9147  -0.6240   0.1387   0.2534   0.0000  -0.3118   0.0000
+  14  6.3e-01  -4.3415  -0.6118  -0.5595   0.1212   0.1689   0.0000   0.0112   0.0000
+  15  4.5e-01  -4.5270  -0.2962  -0.4143   0.0874   0.0847   0.0000   0.2833   0.0000
+  16  2.0e-01  -4.7491  -0.0661  -0.2529   0.0516   0.0248   0.0000   0.4088   0.0000
+  17  8.1e-02  -5.1161   0.0631  -0.1289   0.0249  -0.0075  -0.0000   0.4586   0.0000
+  18  7.7e-02  -5.5980   0.1060  -0.0721   0.0128  -0.0166   0.0000   0.4960   0.0000
+  19  8.0e-02  -6.0948   0.1184  -0.0480   0.0078  -0.0181  -0.0000   0.5351   0.0000
+  20  8.2e-02  -6.5929   0.1223  -0.0354   0.0053  -0.0177   0.0000   0.5755   0.0000
+  21  8.3e-02  -7.0911   0.1233  -0.0279   0.0038  -0.0169  -0.0000   0.6166   0.0000
+  22  8.4e-02  -7.5894   0.1233  -0.0230   0.0028  -0.0159   0.0000   0.6583   0.0000
+  23  8.4e-02  -8.0876   0.1229  -0.0196   0.0022  -0.0149  -0.0000   0.7002   0.0000
+  24  8.4e-02  -8.5858   0.1224  -0.0170   0.0017  -0.0141   0.0000   0.7422   0.0000
+  25  8.5e-02  -9.0840   0.1218  -0.0151   0.0013  -0.0133  -0.0000   0.7844   0.0000
+  26  8.5e-02  -9.5822   0.1212  -0.0135   0.0011  -0.0125   0.0000   0.8267   0.0000
+  27  8.5e-02 -10.0804   0.1207  -0.0123   0.0008  -0.0119   0.0000   0.8691   0.0000
+  28  8.5e-02 -10.5786   0.1202  -0.0113   0.0007  -0.0113   0.0000   0.9115   0.0000
+  29  8.5e-02 -11.0768   0.1197  -0.0104   0.0005  -0.0108  -0.0000   0.9540   0.0000
+  30  8.5e-02 -11.5750   0.1193  -0.0097   0.0004  -0.0103   0.0000   0.9965   0.0000
+
+  Number of limit points found was 2
+
+P06_LIMIT_TEST
+  Compute a series of solutions for problem 6.
+  We are trying to find limit points X such that
+  TAN(7) = 0.
+
+  The option chosen is 4
+
+   #   Tan(7)     X1       X2       X3       X4       X5       X6       X7      X8
+                Roll     Pitch    Yaw      Attack   Sideslip Elevator Aileron Rudder
+
+  -1  1.1e-01  -0.0000  -0.0512   0.0000  -0.0596  -0.0000   0.0500  -0.0001   0.0000
+   0  1.1e-01  -0.0000  -0.0512   0.0000  -0.0596  -0.0000   0.0500  -0.0001   0.0000
+   1  1.1e-01  -0.2481  -0.0540   0.0125  -0.0596   0.0110   0.0500   0.0263   0.0000
+   2  1.1e-01  -0.7440  -0.0779   0.0369  -0.0598   0.0356   0.0500   0.0807   0.0000
+   3  1.3e-01  -1.2380  -0.1370   0.0592  -0.0596   0.0693   0.0500   0.1406   0.0000
+   4  1.4e-01  -1.7246  -0.2650   0.0726  -0.0572   0.1253   0.0500   0.2102   0.0000
+   5  8.7e-02  -2.1817  -0.5371   0.0572  -0.0476   0.2282   0.0500   0.2802   0.0000
+   L  3.3e-11  -2.3611  -0.7236   0.0327  -0.0391   0.2935   0.0500   0.2927   0.0000
+   6 -7.3e-02  -2.4615  -0.8564   0.0115  -0.0324   0.3381   0.0500   0.2865   0.0000
+   7 -3.0e-01  -2.6928  -1.2471  -0.0639  -0.0105   0.4623   0.0500   0.1954   0.0000
+   8 -5.2e-01  -2.8851  -1.6485  -0.1575   0.0153   0.5796   0.0500  -0.0202   0.0000
+   9 -6.5e-01  -3.0208  -1.9533  -0.2397   0.0371   0.6617   0.0500  -0.2799   0.0000
+  10 -7.5e-01  -3.1456  -2.2333  -0.3253   0.0592   0.7315   0.0500  -0.6073   0.0000
+  11 -8.2e-01  -3.2609  -2.4799  -0.4114   0.0810   0.7879   0.0500  -0.9840   0.0000
+  12 -8.7e-01  -3.3688  -2.6916  -0.4969   0.1020   0.8318   0.0500  -1.3951   0.0000
+  13 -9.0e-01  -3.4716  -2.8698  -0.5817   0.1225   0.8644   0.0500  -1.8300   0.0000
+  14 -9.3e-01  -3.5717  -3.0161  -0.6664   0.1424   0.8867   0.0500  -2.2814   0.0000
+  15 -9.4e-01  -3.6716  -3.1312  -0.7522   0.1622   0.8993   0.0500  -2.7443   0.0000
+  16 -9.5e-01  -3.7749  -3.2135  -0.8410   0.1820   0.9017   0.0500  -3.2150   0.0000
+  17 -9.5e-01  -3.8876  -3.2568  -0.9365   0.2027   0.8920   0.0500  -3.6900   0.0000
+  18 -9.0e-01  -4.0257  -3.2384  -1.0489   0.2259   0.8626   0.0500  -4.1635   0.0000
+  19 -7.2e-01  -4.1296  -3.1703  -1.1275   0.2413   0.8282   0.0500  -4.3976   0.0000
+   L  1.3e-10  -4.2425  -3.0424  -1.2043   0.2554   0.7793   0.0500  -4.4924   0.0000
+  20  3.4e-01  -4.2882  -2.9749  -1.2320   0.2601   0.7564   0.0500  -4.4757   0.0000
+  21  7.3e-01  -4.3938  -2.7862  -1.2866   0.2687   0.6972   0.0500  -4.3052   0.0000
+  22  8.5e-01  -4.5014  -2.5511  -1.3255   0.2733   0.6293   0.0500  -3.9409   0.0000
+  23  8.8e-01  -4.5892  -2.3341  -1.3419   0.2735   0.5700   0.0500  -3.5176   0.0000
+  24  9.0e-01  -4.6663  -2.1307  -1.3432   0.2708   0.5165   0.0500  -3.0760   0.0000
+  25  9.0e-01  -4.7389  -1.9343  -1.3326   0.2659   0.4660   0.0500  -2.6270   0.0000
+  26  9.0e-01  -4.8111  -1.7401  -1.3108   0.2587   0.4172   0.0500  -2.1752   0.0000
+  27  9.0e-01  -4.8864  -1.5443  -1.2770   0.2490   0.3687   0.0500  -1.7238   0.0000
+  28  8.8e-01  -4.9695  -1.3429  -1.2289   0.2365   0.3195   0.0500  -1.2754   0.0000
+  29  8.6e-01  -5.0675  -1.1315  -1.1623   0.2202   0.2684   0.0500  -0.8339   0.0000
+  30  8.1e-01  -5.1939  -0.9040  -1.0696   0.1984   0.2139   0.0500  -0.4052   0.0000
+
+  Number of limit points found was 2
+
+P06_LIMIT_TEST
+  Compute a series of solutions for problem 6.
+  We are trying to find limit points X such that
+  TAN(7) = 0.
+
+  The option chosen is 5
+
+   #   Tan(7)     X1       X2       X3       X4       X5       X6       X7      X8
+                Roll     Pitch    Yaw      Attack   Sideslip Elevator Aileron Rudder
+
+  -1  1.8e-01  -0.0000  -0.1024   0.0000  -0.1192  -0.0000   0.1000  -0.0003   0.0000
+   0  1.8e-01  -0.0000  -0.1024   0.0000  -0.1192  -0.0000   0.1000  -0.0003   0.0000
+   1  1.9e-01  -0.2437  -0.1076   0.0246  -0.1193   0.0210   0.1000   0.0455   0.0000
+   2  2.1e-01  -0.7303  -0.1530   0.0729  -0.1196   0.0687   0.1000   0.1448   0.0000
+   3  2.7e-01  -1.2080  -0.2668   0.1153  -0.1191   0.1361   0.1000   0.2694   0.0000
+   4  3.2e-01  -1.6543  -0.5026   0.1384  -0.1145   0.2447   0.1000   0.4355   0.0000
+   5  2.7e-01  -1.9343  -0.7810   0.1302  -0.1057   0.3578   0.1000   0.5672   0.0000
+   6  1.3e-01  -2.1680  -1.1412   0.0967  -0.0912   0.4920   0.1000   0.6632   0.0000
+   L  1.3e-09  -2.2982  -1.4033   0.0632  -0.0794   0.5834   0.1000   0.6838   0.0000
+   7 -8.0e-02  -2.3648  -1.5544   0.0415  -0.0721   0.6339   0.1000   0.6769   0.0000
+   8 -3.1e-01  -2.5360  -1.9892  -0.0291  -0.0498   0.7714   0.1000   0.5775   0.0000
+   9 -5.1e-01  -2.6863  -2.4122  -0.1081  -0.0260   0.8945   0.1000   0.3602   0.0000
+  10 -6.6e-01  -2.8176  -2.7977  -0.1889  -0.0025   0.9980   0.1000   0.0458   0.0000
+  11 -7.5e-01  -2.9185  -3.0951  -0.2578   0.0170   1.0721   0.1000  -0.2838   0.0000
+  12 -8.1e-01  -3.0112  -3.3638  -0.3256   0.0358   1.1346   0.1000  -0.6571   0.0000
+  13 -8.5e-01  -3.0966  -3.6038  -0.3917   0.0538   1.1866   0.1000  -1.0617   0.0000
+  14 -8.9e-01  -3.1758  -3.8171  -0.4558   0.0710   1.2296   0.1000  -1.4886   0.0000
+  15 -9.1e-01  -3.2499  -4.0065  -0.5179   0.0873   1.2649   0.1000  -1.9316   0.0000
+  16 -9.3e-01  -3.3198  -4.1746  -0.5783   0.1029   1.2936   0.1000  -2.3865   0.0000
+  17 -9.4e-01  -3.3863  -4.3236  -0.6372   0.1179   1.3166   0.1000  -2.8505   0.0000
+  18 -9.5e-01  -3.4501  -4.4553  -0.6948   0.1324   1.3346   0.1000  -3.3214   0.0000
+  19 -9.6e-01  -3.5116  -4.5713  -0.7514   0.1464   1.3482   0.1000  -3.7977   0.0000
+  20 -9.7e-01  -3.5714  -4.6726  -0.8071   0.1600   1.3578   0.1000  -4.2783   0.0000
+  21 -9.7e-01  -3.6299  -4.7603  -0.8622   0.1732   1.3637   0.1000  -4.7622   0.0000
+  22 -9.8e-01  -3.6876  -4.8349  -0.9170   0.1862   1.3662   0.1000  -5.2488   0.0000
+  23 -9.8e-01  -3.7448  -4.8967  -0.9717   0.1989   1.3652   0.1000  -5.7375   0.0000
+  24 -9.8e-01  -3.8020  -4.9460  -1.0266   0.2115   1.3609   0.1000  -6.2279   0.0000
+  25 -9.8e-01  -3.8596  -4.9824  -1.0819   0.2240   1.3533   0.1000  -6.7195   0.0000
+  26 -9.9e-01  -3.9184  -5.0053  -1.1383   0.2364   1.3420   0.1000  -7.2118   0.0000
+  27 -9.8e-01  -3.9791  -5.0134  -1.1962   0.2490   1.3267   0.1000  -7.7043   0.0000
+  28 -9.8e-01  -4.0429  -5.0044  -1.2566   0.2619   1.3067   0.1000  -8.1965   0.0000
+  29 -9.7e-01  -4.1119  -4.9739  -1.3209   0.2752   1.2806   0.1000  -8.6872   0.0000
+  30 -9.6e-01  -4.1900  -4.9127  -1.3920   0.2895   1.2456   0.1000  -9.1744   0.0000
+
+  Number of limit points found was 1
+
+TEST_CON_TEST
+  Normal end of execution.
+
+21-Oct-2008 08:34:41
+>> 

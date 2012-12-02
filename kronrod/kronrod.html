@@ -1,0 +1,195 @@
+<html>
+
+  <head>
+    <title>
+      KRONROD - Gauss-Kronrod Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      KRONROD <br> Gauss-Kronrod Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>KRONROD</b>
+      is a MATLAB library which
+      computes both a Gauss quadrature rule of order N, and the
+      Gauss-Kronrod rule of order 2*N+1.
+    </p>
+
+    <p>
+      A pair of Gauss and Gauss-Kronrod quadrature rules are typically
+      used to provide an error estimate for an integral.  The integral
+      is estimated using the Gauss rule, and then the Gauss-Kronrod
+      rule provides a higher precision estimate.  The difference between
+      the two estimates is taken as an approximation to the level
+      of error.
+    </p>
+
+    <p>
+      The advantage of using a Gauss and Gauss-Kronrod pair is that
+      the second rule, which uses 2*N+1 points, actually includes the
+      N points in the previous Gauss rule.  This means that the function
+      values from that computation can be reused.  This efficiency comes
+      at the cost of a mild reduction in the degree of polynomial precision of the
+      Gauss-Kronrod rule.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>KRONROD</b> is available in
+      <a href = "../../c_src/kronrod/kronrod.html">a C version</a> and
+      <a href = "../../cpp_src/kronrod/kronrod.html">a C++ version</a> and
+      <a href = "../../f77_src/kronrod/kronrod.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/kronrod/kronrod.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/kronrod/kronrod.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/int_exactness/int_exactness.html">
+      INT_EXACTNESS</a>,
+      a MATLAB program which
+      checks the polynomial exactness
+      of a 1-dimensional quadrature rule for a finite interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/patterson_rule/patterson_rule.html">
+      PATTERSON_RULE</a>,
+      a MATLAB program which
+      computes a Gauss-Patterson quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../datasets/quadrature_rules_patterson/quadrature_rules_patterson.html">
+      QUADRATURE_RULES_PATTERSON</a>,
+      a dataset directory which
+      contains Gauss-Patterson quadrature rules for the interval [-1,+1].
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for 1D domains.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int/test_int.html">
+      TEST_INT</a>,
+      a MATLAB library which
+      contains a number of functions that may be used as test integrands for
+      quadrature rules in 1D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Robert Piessens, Maria Branders,<br>
+          A Note on the Optimal Addition of Abscissas to Quadrature Formulas
+          of Gauss and Lobatto,<br>
+          Mathematics of Computation,<br>
+          Volume 28, Number 125, January 1974, pages 135-139.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "abwe1.m">abwe1.m</a>,
+          calculates a Kronrod abscissa and weight.
+        </li>
+        <li>
+          <a href = "abwe2.m">abwe2.m</a>,
+          calculates a Gaussian abscissa and two weights.
+        </li>
+        <li>
+          <a href = "kronrod.m">kronrod.m</a>,
+          adds N+1 points to an N-point Gaussian rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "kronrod_test.m">kronrod_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "kronrod_test01.m">kronrod_test01.m</a>,
+          calls kronrod for a Gauss rule of order 3;
+        </li>
+        <li>
+          <a href = "kronrod_test02.m">kronrod_test02.m</a>,
+          calls kronrod for a Gauss rule of order 4;
+        </li>
+        <li>
+          <a href = "kronrod_test03.m">kronrod_test03.m</a>,
+          shows how to use kronrod to estimate an integral,
+          and to increase the order of the approximation until
+          an error tolerance is satisfied.
+        </li>
+        <li>
+          <a href = "kronrod_prb_output.txt">kronrod_prb_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 April 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

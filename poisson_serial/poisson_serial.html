@@ -1,0 +1,181 @@
+<html>
+
+  <head>
+    <title>
+      POISSON_SERIAL - A Program for the Poisson Equation in a Rectangle
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      POISSON_SERIAL <br> A Program for the Poisson Equation in a Rectangle
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>POISSON_SERIAL</b>
+      is a MATLAB program which
+      computes an approximate solution to the Poisson equation in a rectangular region.
+    </p>
+
+    <p>
+      The version of Poisson's equation being solved here is
+      <pre>
+        - ( d/dx d/dx + d/dy d/dy ) U(x,y) = F(x,y)
+      </pre>
+      over the rectangle 0 <= X <= 1, 0 <= Y <= 1, with exact solution
+      <pre>
+        U(x,y) = sin ( pi * x * y )
+      </pre>
+      so that 
+      <pre>
+        F(x,y) = pi^2 * ( x^2 + y^2 ) * sin ( pi * x * y )
+      </pre>
+      and with Dirichlet boundary conditions along the lines x = 0, x = 1,
+      y = 0 and y = 1.  (The boundary conditions will actually be zero in
+      this case, but we write up the problem as though we didn't know that,
+      which makes it easy to change the problem later.)
+    </p>
+
+    <p>
+      We compute an approximate solution by discretizing the geometry,
+      assuming that DX = DY, and approximating the Poisson operator by
+      <pre>
+        ( U(i-1,j) + U(i+1,j) + U(i,j-1) + U(i,j+1) - 4*U(i,j) ) / dx /dy
+      </pre>
+      Along with the boundary conditions at the boundary nodes, we have
+      a linear system for U.  We can apply the Jacobi iteration to estimate
+      the solution to the linear system.
+    </p>
+
+    <p>
+      <b>POISSON_SERIAL</b> is intended as a starting point for the implementation of a
+      parallel version, using, for instance, MPI.  
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>POISSON_SERIAL</b> is available in
+      <a href = "../../c_src/poisson_serial/poisson_serial.html">a C version</a> and
+      <a href = "../../cpp_src/poisson_serial/poisson_serial.html">a C++ version</a> and
+      <a href = "../../f77_src/poisson_serial/poisson_serial.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/poisson_serial/poisson_serial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/poisson_serial/poisson_serial.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_rectangle/fem2d_poisson_rectangle.html">
+      FEM2D_POISSON_RECTANGLE</a>,
+      a MATLAB program which
+      solves the 2D Poisson equation on a rectangle,
+      using the finite element method,
+      and piecewise quadratic triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fft_serial/fft_serial.html">
+      FFT_SERIAL</a>,
+      a MATLAB program which
+      demonstrates the computation of a Fast Fourier Transform,
+      and is intended as a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate/heated_plate.html">
+      HEATED_PLATE</a>,
+      a MATLAB program which
+      solves the steady (time independent) heat equation in a 2D
+      rectangular region, and is intended as
+      a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      examples which illustrate parallel programming using MATLAB's
+      Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md/md.html">
+      MD</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation, and is intended as
+      a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_serial/quad_serial.html">
+      QUAD_SERIAL</a>,
+      a MATLAB program which
+      approximates an integral using a quadrature rule,
+      and is intended as a starting point for parallelization exercises.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "poisson_serial.m">poisson_serial.m</a>, the source code.
+        </li>
+
+        <li>
+          <a href = "poisson_serial_output.txt">poisson_serial_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "poisson_serial_output.txt">poisson_serial_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 October 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

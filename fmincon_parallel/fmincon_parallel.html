@@ -1,0 +1,432 @@
+<html>
+
+  <head>
+    <title>
+      FMINCON_PARALLEL - Minimization via FMINCON and the Parallel Computing Toolbox
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FMINCON_PARALLEL <br> Minimization via FMINCON and the Parallel Computing Toolbox
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FMINCON_PARALLEL</b>
+      is a MATLAB program which
+      demonstrates how the FMINCON function, which is used to find the
+      constrained minimizer of a function, can use
+      MATLAB's Parallel Computing Toolbox to perform some calculations in parallel.
+    </p>
+
+    <p>
+      The program transcribes a (class of) optimal control problem(s) to finite-dimensional
+      nonlinear programming problems and then invokes the Matlab solver fmincon.
+      The problem has a fixed initial state, a fixed terminal time, a Mayer cost
+      functional and a scalar-valued control function.  Data for a specific problem
+      are supplied by the user; <i>zermelo.m</i> is an example based on efficient
+      navigation of a boat in a spatially varying current.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>run_opt</b> ( <i>'function_file'</i>, <i>intervals</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'function_file'</i> is a string that identifies a user supplied
+          function that returns a data structure with the problem specification
+          (see the example <i>zermelo.m</i>).
+        </li>
+        <li>
+          <i>intervals</i> is a positive integer that specifies a number of
+          uniform intervals of the time axis interval [ 0, PAR.tf].
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The user must supply certain routines:
+      <ul>
+        <li>
+          PAR.rhs, for evaluating the dynamics;
+        </li>
+        <li>
+          PAR.cost, for the Mayer cost functional;
+        </li>
+        <li>
+          PAR.eq, PAR.ineq, for any terminal constraints;
+        </li>
+      </ul>
+      as well as PAR.x0, the initial condition for the state.
+    </p>
+
+    <p>
+      The user may also supply optional routines:
+      <ul>
+        <li>
+          PAR.plot, for plotting;
+        </li>
+        <li>
+          PAR.initial_guess, an initial estimate for the control values;
+        </li>
+        <li>
+          PAR.ub, PAR.lb, bounds for the controls.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      No error checking is done to ensure that the specified problem data are consistent.
+      Strange error messages may result from such inconsistency (e.g. the dimension of the
+      state - the 'size' of the returned output from PAR.rhs  - must be same as the 'size'
+      of PAR.x0, and the same as the 'size' of the input arguments to PAR.cost, PAR.eq,
+      and PAR.ineq).
+    </p>
+
+    <p>
+      To run the code with the sample problem, the command might be
+      <blockquote>
+        <b>run_opt</b> ( 'zermelo.m', 16 )
+      </blockquote>
+    </p>
+
+    <p>
+      To run the code with the sample problem and the Parallel Computing Toolbox,
+      the command might be
+      <blockquote>
+        matlabpool open local 4<br>
+        <b>run_opt</b> ( 'zermelo.m', 16 )<br>
+        matlabpool close
+      </blockquote>
+      where, in this case, we have only asked for 4 MATLAB workers.
+      Assuming successful convergence, plots showing the path of the boat in the plane
+      and a time history of the piecewise constant controlm will be displayed.
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cell_detection_tasks/cell_detection_tasks.html">
+      CELL_DETECTION_TASKS</a>,
+      a MATLAB program which
+      creates modified versions of a sequence of gray-scale TIF files containing
+      images of cells; the process of each file is carried out independently,
+      using the "task" feature of MATLAB's parallel computing toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_distributed/cg_distributed.html">
+      CG_DISTRIBUTED</a>,
+      a MATLAB program which
+      implements a version of the NAS CG conjugate gradient benchmark,
+      using distributed memory.
+    </p>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/contrast2_spmd/contrast2_spmd.html">
+      CONTRAST2_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      this improves the contrast_spmd program by allowing the workers to share some
+      data; this makes it possible to eliminate artificial "seams" in the processed
+      image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linear_solve_distributed/linear_solve_distributed.html">
+      LINEAR_SOLVE_DISTRIBUTED</a>,
+      a MATLAB program which
+      solves a linear system <b>A*x=b</b> using MATLAB's <b>spmd</b> facility,
+      so that the matrix <b>A</b> is "distributed" across multiple MATLAB workers.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB programs which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_tasks/quad_tasks.html">
+      QUAD_TASKS</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "TASK" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in 2D by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset_sum_tasks/subset_sum_tasks.html">
+      SUBSET_SUM_TASKS</a>,
+      a MATLAB program which
+      solves a subset sum problem by exhaustive search,
+      subdividing the search range among separate tasks.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Gene Cliff, <br>
+      Aerospace and Ocean Engineering / Interdisciplinary Center for Applied Mathematics,<br>
+      Virginia Tech.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "opt_fun.m">opt_fun.m</a>,
+          a MATLAB function which accepts the name of a parameter setting function
+          F_NAME and a discretization parameter N, and calls FMINCON.
+        </li>
+        <li>
+          <a href = "opt_script.m">opt_script.m</a>,
+          a MATLAB script which runs OPT_FUN with particular arguments.
+        </li>
+        <li>
+          <a href = "opt_pool.m">opt_pool.m</a>,
+          a script which runs OPT_FUN interactively with 4 MATLAB workers.
+        </li>
+        <li>
+          <a href = "opt_batch_local.m">opt_batch_local.m</a>,
+          runs OPT_SCRIPT locally using 4 MATLAB workers.
+        </li>
+        <li>
+          <a href = "opt_batch_ithaca.m">opt_batch_ithaca.m</a>,
+          runs OPT_SCRIPT on the Ithaca cluster using 4 MATLAB workers.
+        </li>
+        <li>
+          <a href = "general_constraint.m">general_constraint.m</a>
+          evaluates a general constraint.
+        </li>
+        <li>
+          <a href = "general_cost.m">general_cost.m</a>
+          evaluates a general cost.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ZERMELO</b> is an example problem describing the efficient navigation
+      of a boat in a spatially varying current.  The name "zermelo" is to be used
+      for the F_NAME parameter of RUN_OPT.
+      <ul>
+        <li>
+          <a href = "zermelo.m">zermelo.m</a>
+          defines initial data for the problem.
+        </li>
+        <li>
+          <a href = "zermelo_cost.m">zermelo_cost.m</a>
+          evaluates the cost function.
+        </li>
+        <li>
+          <a href = "zermelo_ineq.m">zermelo_ineq.m</a>
+          evaluates terminal constraints.
+        </li>
+        <li>
+          <a href = "zermelo_plot.m">zermelo_plot.m</a>
+          a plotting function.
+        </li>
+        <li>
+          <a href = "zermelo_rhs.m">zermelo_rhs.m</a>
+          evaluates the dynamics.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "control.png">control.png</a>, a plot of the control;
+        </li>
+        <li>
+          <a href = "opt_output.txt">opt_output.txt</a>
+          is the output from a run in which the local matlabpool is used
+          with 4 workers to execute the command "run_opt ( 'zermelo', 16 )".
+        </li>
+        <li>
+          <a href = "path.png">path.png</a>, a plot of the boat's path;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

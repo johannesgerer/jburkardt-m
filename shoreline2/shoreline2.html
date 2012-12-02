@@ -1,0 +1,227 @@
+<html>
+
+  <head>
+    <title>
+      SHORELINE2 - Identify and Triangulate the Domain where F(X,Y) = C
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SHORELINE2 <br> Identify and Triangulate the Domain where F(X,Y) = C
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SHORELINE2</b>
+      is a MATLAB library which
+      tries to identify and triangulate the approximate 2D domain over which 
+      F(X,Y) = C for some user specified function F.
+    </p>
+
+    <p>
+      The program begins with a given rectangular domain, within which all 
+      the investigation is confined.  A set of points is generated within the
+      domain and triangulated.  Then the function is evaluated at the points. 
+      Triangles are dropped from the triangulation if all 3 vertices 
+      have the same sign for F(X,Y)-C.  Triangles whose vertices have conflicting sign
+      are saved for further study.
+    </p>
+
+    <p>
+      Each triangle is now divided into four subtriangles, using the natural
+      splitting involving the midpoints.  The function is evalluated at these
+      midpoints, and all subtriangles with vertices of matching sign are again
+      discarded.
+    </p>
+
+    <p>
+      This process may be repeated several times.  In general, each step of the
+      process is expected to produce a refined estimate of the region where f(x,y)=0,
+      using about twice as many triangles, each of 1/4 the area of the previous 
+      triangulation.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contour_gradient/contour_gradient.html">
+      CONTOUR_GRADIENT</a>,
+      a MATLAB program which
+      displays contours and gradient vectors for a function f(x,y).
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>,
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shoreline/shoreline.html">
+      SHORELINE</a>,
+      a MATLAB program which
+      tries to identify and triangulate the 2D domain over which some 
+      function f(x,y) is nonnegative.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms626/toms626.html">
+      TOMS626</a>,
+      a FORTRAN77 library which
+      creates a contour plot of data associated with a triangulated set of points;
+      this is ACM TOMS algorithm 626.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes contour plot of scattered data, or of data defined on an order 3 triangulation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_plotc/twod_plotc.html">
+      TWOD_PLOTC</a>,
+      a MATLAB program which
+      makes a color contour plot of scalar data defined on a 2D finite element mesh,
+      by Jeff Borggaard.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cull_pure_triangles.m">cull_pure_triangles.m</a>,
+          removes from the triangulation those triangles for which all vertices
+          have the same sign.
+        </li>
+        <li>
+          <a href = "i4col_compare.m">i4col_compare.m</a>,
+          compares two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_sort_a.m">i4col_sort_a.m</a>,
+          ascending sorts the columns of an I4COL;
+        </li>
+        <li>
+          <a href = "i4col_swap.m">
+          i4col_swap.m</a>,
+          swaps two columns of an I4COL;
+        </li>
+        <li>
+          <a href = "product_grid.m">product_grid.m</a>,
+          samples a rectangle with a product grid.
+        </li>
+        <li>
+          <a href = "refine_size.m">refine_size.m</a>,
+          determines the "size" of the refinement of a triangulation.
+        </li>
+        <li>
+          <a href = "refine_triangles.m">refine_triangles.m</a>,
+          computes the refinement of a triangulation.
+        </li>
+        <li>
+          <a href = "shoreline2.m">shoreline2.m</a>,
+          identifies and triangulates a region for which F(X,Y) is approximately zero.
+        </li>
+        <li>
+          <a href = "sort_heap_external.m">sort_heap_external.m</a>,
+          external sorts a list of values into ascending order;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangulation_area.m">triangulation_area.m</a>,
+          returns the area of a triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>MYLINE_TEST</b> applies the program to a case in which the function
+      is a straight line.
+      <ul>
+        <li>
+          <a href = "myline.m">myline.m</a>, 
+          defines the function f(x,y) = x-3y-2.1.
+        </li>
+        <li>
+          <a href = "myline_test.m">myline_test.m</a>, 
+          the test code.
+        </li>
+        <li>
+          <a href = "myline_test_output.txt">myline_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "myline.png">myline.png</a>, 
+          a PNG image.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CAMEL_TEST</b> applies the program to a case in which the function
+      defines a blobby closed curve.
+      <ul>
+        <li>
+          <a href = "camel.m">camel.m</a>, 
+          defines the "camel" function.
+        </li>
+        <li>
+          <a href = "camel_test.m">camel_test.m</a>, 
+          the test code.
+        </li>
+        <li>
+          <a href = "camel_test_output.txt">camel_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "camel.png">camel.png</a>, 
+          a PNG image.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 06 July 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

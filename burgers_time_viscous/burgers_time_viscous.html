@@ -1,0 +1,280 @@
+<html>
+
+  <head>
+    <title>
+      BURGERS_TIME_VISCOUS - Time-Dependent Viscous Burgers Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BURGERS_TIME_VISCOUS <br> 
+      Time-Dependent Viscous Burgers Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BURGERS_TIME_VISCOUS</b> is a MATLAB library which
+      solves the time-dependent viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation, and then carrying out a simple parabolic integration scheme.
+    </p>
+
+    <p>
+      The function u(x,t) is to be solved for in the equation:
+      <blockquote>
+        du/dt + u * du/dx = nu * d^2u/dx^2
+      </blockquote>
+      for 0 &lt; nu, a &lt;= x &lt;= b, tmin <= t <= tmax
+      with initial condition
+      <blockquote>
+        u(x,tmin) = uinit(x);
+      </blockquote>
+      and fixed Dirichlet conditions
+      <blockquote>
+        u(a,t) = alpha, u(b,t) = beta
+      </blockquote>
+    </p>
+
+    <p>
+      Problem data includes the spatial endpoints a and b, the Dirichlet boundary values
+      u(a,t) = alpha, u(b,t) = beta, the time limits
+      tmin and tmax, and the (positive) value of the viscosity nu.  
+    </p>
+
+    <p>
+      The conservative form of the equation is
+      <blockquote>
+        du/dt + 1/2 * d(u^2)/dx = nu * d^2u/dx^2
+      </blockquote>
+      and this is the version we discretize. 
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../datasets/burgers/burgers.html">
+      BURGERS</a>,
+      a dataset directory which
+      contains some solutions to the viscous Burgers equation.
+    </p>
+
+    <p>
+      <a href = "../../math_src/burgers_characteristics/burgers_characteristics.html">
+      BURGERS_CHARACTERISTICS</a>, 
+      a MATHEMATICA program which
+      solves the time dependent inviscid Burgers equation using the method of characteristics,
+      by Mikel Landajuela.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_solution/burgers_solution.html">
+      BURGERS_SOLUTION</a>,
+      a MATLAB library which
+      evaluates an exact solution of the time-dependent 1D viscous Burgers equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/burgers_steady_viscous/burgers_steady_viscous.html">
+      BURGERS_STEADY_VISCOUS</a>,
+      a MATLAB library which
+      solves the steady (time-independent) viscous Burgers equation
+      using a finite difference discretization of the conservative form 
+      of the equation, and then applying Newton's method to solve the
+      resulting nonlinear system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous Burgers equation
+      in one spatial dimension and time.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pce_burgers/pce_burgers.html">
+      PCE_BURGERS</a>,
+      a MATLAB program which
+      defines and solves a version of the time-dependent viscous Burgers equation,
+      with uncertain viscosity, using a polynomial chaos expansion in terms
+      of Hermite polynomials,
+      by Gianluca Iaccarino.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Daniel Zwillinger,<br>
+          Handbook of Differential Equations,<br>
+          Academic Press, 1997,<br>
+          ISBN: 0127843965,<br>
+          LC: QA371.Z88.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "burgers_time_viscous.m">burgers_time_viscous.m</a>,
+          integrates a discretized form of the time dependent viscous Burgers equation.
+        </li>
+        <li>
+          <a href = "ic_expansion.m">ic_expansion.m</a>,
+          an initial condition function for an expansion wave.
+        </li>
+        <li>
+          <a href = "ic_gaussian.m">ic_gaussian.m</a>,
+          an initial condition function for a Gaussian.
+        </li>
+        <li>
+          <a href = "ic_shock.m">ic_shock.m</a>,
+          an initial condition function for a shock wave.
+        </li>
+        <li>
+          <a href = "ic_spike.m">ic_spike.m</a>,
+          an initial condition function for a spike.
+        </li>
+        <li>
+          <a href = "ic_spline.m">ic_spline.m</a>,
+          an initial condition function for a spline through data.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "btv_test.m">btv_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "btv_test01.m">btv_test01.m</a>, 
+          gaussian initial condition, periodic boundary conditions.
+        </li>
+        <li>
+          <a href = "btv_test01.png">btv_test01.png</a>, 
+          a plot of several successive solutions.
+        </li>
+        <li>
+          <a href = "btv_test02.m">btv_test02.m</a>, 
+          gaussian initial condition, Dirichlet left and right.
+        </li>
+        <li>
+          <a href = "btv_test02.png">btv_test02.png</a>
+        </li>
+        <li>
+          <a href = "btv_test03.m">btv_test03.m</a>, 
+          gaussian initial condition, Dirichlet left, Neumann right.
+        </li>
+        <li>
+          <a href = "btv_test03.png">btv_test03.png</a>, 
+          a plot of several successive solutions.
+        </li>
+        <li>
+          <a href = "btv_test04.m">btv_test04.m</a>, 
+          shock initial condition, periodic boundary condition.
+        </li>
+        <li>
+          <a href = "btv_test04.png">btv_test04.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_test05.m">btv_test05.m</a>, 
+          expansion initial condition, periodic boundary condition.
+        </li>
+        <li>
+          <a href = "btv_test05.png">btv_test05.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_test06.m">btv_test06.m</a>, 
+          spline initial condition, periodic boundary condition.
+        </li>
+        <li>
+          <a href = "btv_test06.png">btv_test06.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_test07.m">btv_test07.m</a>, 
+          gaussian initial condition, plot solutions as a 3D surface.
+        </li>
+        <li>
+          <a href = "btv_test07.png">btv_test07.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_test08.m">btv_test08.m</a>, 
+          spline initial condition, draw profile at final time.
+        </li>
+        <li>
+          <a href = "btv_test08.png">btv_test08.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_test09.m">btv_test09.m</a>, 
+          spike initial condition, periodic boundary conditions.
+        </li>
+        <li>
+          <a href = "btv_test09.png">btv_test09.png</a>, 
+        </li>
+        <li>
+          <a href = "btv_output.txt">btv_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 April 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

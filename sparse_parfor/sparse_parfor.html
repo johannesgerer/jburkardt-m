@@ -1,0 +1,300 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_PARFOR - Sample Construction of Sparse Matrix in Parallel
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_PARFOR <br> Sample Construction of Sparse Matrix in Parallel
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_PARFOR</b>
+      is a MATLAB library which
+      demonstrates how a sparse matrix can be constructed by
+      evaluating individual blocks in parallel with the <b>parfor</b>
+      command, and then assembled (on a single processor) using the 
+      <b>sparse()</b> command.
+    </p>
+
+    <p>
+      This script is a demonstration of how one can take advantage of
+      MATLAB's parallel programming features when constructing a sparse
+      matrix.
+    </p>
+
+    <p>
+      We construct a rectangular sparse matrix.  This matrix can be 
+      thought of as a diagonal block matrix, with each diagonal block
+      being of arbitrary size and shape.
+    </p>
+
+    <p>
+      In this example, it is assumed that the computation of the individual
+      matrix elements is expensive, and worth doing in parallel.
+      </p>
+
+    <p>
+      On the other hand, once the elements have been computed, the
+      "sparse()" command is called on a single processor to "assemble"
+      the computed matrix elements into a single MATLAB sparse matrix
+      data structure.
+    </p>
+
+    <p>
+      This problem was posed by Vitor Nunes, 18 August 2011.
+    </p>
+
+    <p>
+      Notice that there are many ways to set up a matrix, which
+      seem reasonable, but which MATLAB's <b>parfor</b> command
+      will not accept, because the matrix is not properly ``sliced''.
+      By using cell arrays, this example is able to divide the problem
+      into indexed segments (blocks) that the <b>parfor</b> and
+      <b>sparse</b> commands can usefully process.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/collatz_parfor/collatz_parfor.html">
+      COLLATZ_PARFOR</a>,
+      a MATLAB program which
+      seeks the maximum Collatz sequence between 1 and N,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate_parfor/heated_plate_parfor.html">
+      HEATED_PLATE_PARFOR</a>,
+      a MATLAB program which
+      solves the steady (time independent) heat equation in a 2D
+      rectangular region, using MATLAB's parfor facility to run in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hello_parfor/hello_parfor.html">
+      HELLO_PARFOR</a>,
+      a MATLAB program which
+      prints out "Hello, world!" multiple times, using MATLAB's PARFOR command
+      for parallel execution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/high_card_parfor/high_card_parfor.html">
+      HIGH_CARD_PARFOR</a>,
+      a MATLAB program which
+      uses the parfor statement to compute in parallel the statistics for
+      a card game in which you are required to guess the location of the
+      highest card.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_parallel/matlab_parallel.html">
+      MATLAB_PARALLEL</a>,
+      MATLAB program which
+      illustrate "local" parallel programming on a single computer
+      with MATLAB's Parallel Computing Toolbox.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_parfor/matrix_assemble_parfor.html">
+      MATRIX_ASSEMBLE_PARFOR</a>,
+      a MATLAB program which
+      demonstrates the parfor parallel programming 
+      feature by assembling the Hilbert matrix in a parallel loop.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_parfor/md_parfor.html">
+      MD_PARFOR</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_sweep_parfor/ode_sweep_parfor.html">
+      ODE_SWEEP_PARFOR</a>,
+      a MATLAB program which
+      demonstrates how the PARFOR command can be used to parallelize the computation
+      of a grid of solutions to a parameterized system of ODE's.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_parfor/prime_parfor.html">
+      PRIME_PARFOR</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_parfor/quad_parfor.html">
+      QUAD_PARFOR</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/satisfy_parfor/satisfy_parfor.html">
+      SATISFY_PARFOR</a>,
+      a MATLAB program which
+      demonstrates, for a particular circuit, an exhaustive search
+      for solutions of the circuit satisfiability problem,
+      running in parallel using MATLAB's "PARFOR" feature.
+    </p>
+
+    <p>
+      <a href="../../data/st/st.html">
+      ST</a>, 
+      a data directory which
+      contains examples of the Sparse Triplet format for storing sparse matrices.  This
+      format is equivalent to the form in which sparse matrix data is
+      passed into MATLAB's sparse command (although the sparse compressed
+      column format is used internally).
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Gene Cliff, Virginia Tech
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          John Gilbert, Cleve Moler, Robert Schreiber,<br>
+          Sparse Matrices in MATLAB: Design and Implementation,<br>
+          SIAM Journal on Matrix Analysis and Applications,<br>
+          Volume 13, Number 1, 1992, pages 333-356.
+        </li>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009. 
+        </li>
+        <li>
+          The MathWorks,<br>
+          User's Guide for the Parallel Computing Toolbox,<br>
+          <a href="http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                   http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_fun.m">sparse_fun.m</a>
+          illustrates how to build a sparse matrix by
+          evaluating blocks in parallel, and then calling "sparse()".
+        </li>
+        <li>
+          <a href = "create_block.m">create_block.m</a>
+          evaluates the entries in a particular block.
+        </li>
+        <li>
+          <a href = "matrix_spy.png">matrix_spy.png</a>
+          a PNG image of the matrix using the <b>spy()</b> command.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>SPARSE_POOL</b> executes the function locally and interactively.
+      <ul>
+        <li>
+          <a href = "sparse_pool.m">sparse_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "sparse_pool_output.txt">sparse_pool_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPARSE_BATCH</b> executes the function locally and noninteractively.
+      <ul>
+        <li>
+          <a href = "sparse_script.m">sparse_script.m</a>
+          a script which calls the function, necessary for the BATCH command.
+        </li>
+        <li>
+          <a href = "sparse_batch_local.m">sparse_batch_local.m</a>
+          a script which uses the BATCH command to run the function indirectly
+          and locally.
+        </li>
+        <li>
+          <a href = "sparse_batch_local_output.txt">sparse_batch_local_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    <p>
+
+    <p>
+      <b>SPARSE_FSU</b> executes the function on the FSU HPC cluster, noninteractively.
+      <ul>
+        <li>
+          <a href = "sparse_fsu.m">sparse_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 August 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

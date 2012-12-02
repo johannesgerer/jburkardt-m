@@ -1,0 +1,848 @@
+<html>
+
+  <head>
+    <title>
+      CORRELATION_CHEBFUN - Investigate KL Expansions for Given Correlation Functions
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      CORRELATION_CHEBFUN <br> Investigate KL Expansions for Given Correlation Functions
+    </h1>
+
+    <hr>
+
+    <p>
+      CORRELATION_CHEBFUN
+      is a MATLAB library which
+      uses the chebfun library to compute truncated Karhunen-Loeve expansions
+      of stochastic processes with a given correlation function.
+    </p>
+
+    <p>
+      To run these examples, you must get a copy of the chebfun library and
+      make it available, either by the "addpath()" command, or else by going to
+      the FILE menu in MATLAB, then "Set Path...", selecting the folder where
+      chebun resides and adding it to your path.
+    </p>
+
+    <p>
+      Alas, the "fred()" function in chebfun conflicts with a function of the
+      same name, but totally different utility, in the MATLAB "datafeed" toolbox.
+      I was only able to access the fred() I wanted by issuing the command
+      "rmpath ( '/usr/local/matlab/toolbox/datafeed/datafeed' )".  Truly, it's
+      a wonder anyone can ever get anything done on a computer!
+    </p>
+
+    <p>
+      Correlation functions available include:
+      <ul>
+        <li>
+          <i>besselj</i>
+        </li>
+        <li>
+          <i>besselk</i>
+        </li>
+        <li>
+          <i>brownian</i>
+        </li>
+        <li>
+          <i>circular</i>
+        </li>
+        <li>
+          <i>constant</i>
+        </li>
+        <li>
+          <i>cubic</i>
+        </li>
+        <li>
+          <i>damped_cosine</i>
+        </li>
+        <li>
+          <i>damped_sine</i>
+        </li>
+        <li>
+          <i>exponential</i>
+        </li>
+        <li>
+          <i>gaussian</i>
+        </li>
+        <li>
+          <i>hole</i>
+        </li>
+        <li>
+          <i>linear</i>
+        </li>
+        <li>
+          <i>matern (nu = 2.5 )</i>
+        </li>
+        <li>
+          <i>pentaspherical</i>
+        </li>
+        <li>
+          <i>power (e = 2 )</i>
+        </li>
+        <li>
+          <i>rational_quadratic</i>
+        </li>
+        <li>
+          <i>spherical</i>
+        </li>
+        <li>
+          <i>white_noise</i>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Information about the chebfun library is available at
+      <a href = "http://www2.maths.ox.ac.uk/chebfun/">
+                 http://www2.maths.ox.ac.uk/chebfun/ </a>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/correlation/correlation.html">
+      CORRELATION</a>,
+      a MATLAB library which
+      contains examples of statistical correlation functions.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Toby Driscoll,<br>
+          Mercer's theorem and the Karhunen-Loeve expansion,<br>
+          Oxford University Mathematical Institute.
+        </li>
+        <li>
+          Dongbin Xiu,<br>
+          Numerical Methods for Stochastic Computations: A Spectral Method Approach,<br>
+          Princeton, 2010,<br>
+          ISBN13: 978-0-691-14212-8,<br>
+          LC: QA274.23.X58.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>BESSELJ</b> considers the besselj correlation function.
+      The domain used is [0.0, 10.0].  We were able to compute 10 eigenmodes.
+      <ul>
+        <li>
+          <a href = "besselj_correlation.m">besselj_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "besselj_test.m">besselj_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "besselj_test_output.txt">besselj_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "besselj_figure1.png">besselj_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "besselj_figure2.png">besselj_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "besselj_figure3.png">besselj_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "besselj_figure4.png">besselj_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "besselj_figure5.png">besselj_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BESSELK</b> considers the besselk correlation function.
+      The domain used is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "besselk_correlation.m">besselk_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "besselk_test.m">besselk_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "besselk_test_output.txt">besselk_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "besselk_figure1.png">besselk_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "besselk_figure2.png">besselk_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "besselk_figure3.png">besselk_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "besselk_figure4.png">besselk_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "besselk_figure5.png">besselk_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BROWNIAN</b> considers the brownian correlation function.
+      This correlation function is not isotropic.  The domain should
+      begin at 0, but the correlation function rises sharply there, so
+      the domain used here is [0.1, 5.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "brownian_correlation.m">brownian_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "brownian_test.m">brownian_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "brownian_test_output.txt">brownian_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "brownian_figure1.png">brownian_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "brownian_figure2.png">brownian_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "brownian_figure3.png">brownian_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "brownian_figure4.png">brownian_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "brownian_figure5.png">brownian_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CIRCULAR</b> considers the circular correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 5 eigenmodes.
+      <ul>
+        <li>
+          <a href = "circular_correlation.m">circular_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "circular_test.m">circular_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "circular_test_output.txt">circular_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "circular_figure1.png">circular_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "circular_figure2.png">circular_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "circular_figure3.png">circular_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "circular_figure4.png">circular_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "circular_figure5.png">circular_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CONSTANT</b> considers the constant correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 1 eigenmode.
+      <ul>
+        <li>
+          <a href = "constant_correlation.m">constant_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "constant_test.m">constant_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "constant_test_output.txt">constant_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "constant_figure1.png">constant_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "constant_figure2.png">constant_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "constant_figure3.png">constant_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "constant_figure4.png">constant_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "constant_figure5.png">constant_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CUBIC</b> considers the cubic correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "cubic_correlation.m">cubic_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "cubic_test.m">cubic_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "cubic_test_output.txt">cubic_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "cubic_figure1.png">cubic_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "cubic_figure2.png">cubic_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "cubic_figure3.png">cubic_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "cubic_figure4.png">cubic_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "cubic_figure5.png">cubic_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>DAMPED_COSINE</b> considers the damped_cosine correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "damped_cosine_correlation.m">damped_cosine_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "damped_cosine_test.m">damped_cosine_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "damped_cosine_test_output.txt">damped_cosine_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "damped_cosine_figure1.png">damped_cosine_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "damped_cosine_figure2.png">damped_cosine_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "damped_cosine_figure3.png">damped_cosine_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "damped_cosine_figure4.png">damped_cosine_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "damped_cosine_figure5.png">damped_cosine_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>DAMPED_SINE</b> considers the damped_sine correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 10 eigenmodes.
+      <ul>
+        <li>
+          <a href = "damped_sine_correlation.m">damped_sine_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "damped_sine_test.m">damped_sine_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "damped_sine_test_output.txt">damped_sine_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "damped_sine_figure1.png">damped_sine_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "damped_sine_figure2.png">damped_sine_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "damped_sine_figure3.png">damped_sine_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "damped_sine_figure4.png">damped_sine_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "damped_sine_figure5.png">damped_sine_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>EXPONENTIAL</b> considers the exponential correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "exponential_correlation.m">exponential_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "exponential_test.m">exponential_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "exponential_test_output.txt">exponential_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "exponential_figure1.png">exponential_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "exponential_figure2.png">exponential_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "exponential_figure3.png">exponential_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "exponential_figure4.png">exponential_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "exponential_figure5.png">exponential_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GAUSSIAN</b> considers the gaussian correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "gaussian_correlation.m">gaussian_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "gaussian_test.m">gaussian_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "gaussian_test_output.txt">gaussian_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "gaussian_figure1.png">gaussian_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "gaussian_figure2.png">gaussian_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "gaussian_figure3.png">gaussian_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "gaussian_figure4.png">gaussian_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "gaussian_figure5.png">gaussian_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HOLE</b> considers the hole correlation function.
+      The domain used here is [0.0, 1.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "hole_correlation.m">hole_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "hole_test.m">hole_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "hole_test_output.txt">hole_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "hole_figure1.png">hole_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "hole_figure2.png">hole_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "hole_figure3.png">hole_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "hole_figure4.png">hole_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "hole_figure5.png">hole_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LINEAR</b> considers the linear correlation function.
+      The domain used here is [0.0, 1.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "linear_correlation.m">linear_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "linear_test.m">linear_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "linear_test_output.txt">linear_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "linear_figure1.png">linear_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "linear_figure2.png">linear_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "linear_figure3.png">linear_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "linear_figure4.png">linear_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "linear_figure5.png">linear_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MATERN</b> considers the matern correlation function.
+      The domain used is [0.0, 10.0].  We were able to compute 10 eigenmodes.
+      <ul>
+        <li>
+          <a href = "matern_correlation.m">matern_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "matern_test.m">matern_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "matern_test_output.txt">matern_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "matern_figure1.png">matern_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "matern_figure2.png">matern_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "matern_figure3.png">matern_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "matern_figure4.png">matern_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "matern_figure5.png">matern_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PENTASPHERICAL</b> considers the pentaspherical correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "pentaspherical_correlation.m">pentaspherical_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "pentaspherical_test.m">pentaspherical_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "pentaspherical_test_output.txt">pentaspherical_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "pentaspherical_figure1.png">pentaspherical_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "pentaspherical_figure2.png">pentaspherical_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "pentaspherical_figure3.png">pentaspherical_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "pentaspherical_figure4.png">pentaspherical_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "pentaspherical_figure5.png">pentaspherical_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>POWER</b> considers the power correlation function.  The exponent E is set to 2.
+      The domain used here is [0.0, 1.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "power_correlation.m">power_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "power_test.m">power_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "power_test_output.txt">power_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "power_figure1.png">power_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "power_figure2.png">power_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "power_figure3.png">power_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "power_figure4.png">power_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "power_figure5.png">power_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>RATIONAL_QUADRATIC</b> considers the rational_quadratic correlation function.
+      The domain used here is [0.0, 10.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "rational_quadratic_correlation.m">rational_quadratic_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "rational_quadratic_test.m">rational_quadratic_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "rational_quadratic_test_output.txt">rational_quadratic_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "rational_quadratic_figure1.png">rational_quadratic_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "rational_quadratic_figure2.png">rational_quadratic_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "rational_quadratic_figure3.png">rational_quadratic_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "rational_quadratic_figure4.png">rational_quadratic_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "rational_quadratic_figure5.png">rational_quadratic_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPHERICAL</b> considers the spherical correlation function.
+      The domain used here is [0.0, 1.0].  We were able to compute 20 eigenmodes.
+      <ul>
+        <li>
+          <a href = "spherical_correlation.m">spherical_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "spherical_test.m">spherical_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "spherical_test_output.txt">spherical_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "spherical_figure1.png">spherical_figure1.png</a>,
+          figure 1, a plot of the eigenvalues.
+        </li>
+        <li>
+          <a href = "spherical_figure2.png">spherical_figure2.png</a>,
+          figure 2, four sample eigenfunctions.
+        </li>
+        <li>
+          <a href = "spherical_figure3.png">spherical_figure3.png</a>,
+          figure 3, the eigenvalue decay rate.
+        </li>
+        <li>
+          <a href = "spherical_figure4.png">spherical_figure4.png</a>,
+          figure 4, 40 sample realizations.
+        </li>
+        <li>
+          <a href = "spherical_figure5.png">spherical_figure5.png</a>,
+          figure 5, the correlation function estimated from realizations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>WHITE_NOISE</b> considers the white_noise correlation function.
+      The domain used here is [0.0, 1.0 ].  We were able to compute 0 eigenmodes,
+      which is consistent with the behavior of the white_noise correlation function.
+      <ul>
+        <li>
+          <a href = "white_noise_correlation.m">white_noise_correlation.m</a>,
+          evaluates the correlation function.
+        </li>
+        <li>
+          <a href = "white_noise_test.m">white_noise_test.m</a>,
+          runs the tests.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 04 November 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!--
+  Sparse Grid Interpolation Toolbox
+  Copyright (c) 2006 W. Andreas Klimke, Universitaet Stuttgart 
+  Copyright (c) 2007-2008 W. A. Klimke. All Rights Reserved.
+  See LICENSE.txt for license. 
+  email: klimkeas@ians.uni-stuttgart.de
+  web  : http://www.ians.uni-stuttgart.de/spinterp
+-->
+<html>
+	<head>
+		<link rel=stylesheet href="help.css" type="text/css" media=screen>
+		<title>A first example (Sparse Grid Interpolation Toolbox)</title>
+	</head>
+	<body>
+		<!-- NAVBARTOP -->
+		<table class="header">
+			<tr>
+				<td>
+					<b>Sparse Grid Interpolation Toolbox</b>
+				</td>
+				<td align=right><a href="initialization.html"><img src="images/b_prev.gif" alt="Previous page"></a><img width="10" src="images/pixelclear.gif"><a href="linear.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+		<div class="content">
+		<h1><a name="ex1">A first example</a></h1>
+         <p>Let us interpolate a simple two-variate function</p>
+         <p><img vspace="5" hspace="5" src="images/ex_firstexample_eq14118.png"> </p>
+         <p>with the default settings of the sparse grid interpolation package. Here, we interpolate the function for the domain <tt>[0,pi]x[0,pi]</tt>.
+         </p>
+         <h2>Constructing the interpolant<a name="2"></a></h2>    <p>First, we compute the hierarchical surpluses (i.e. the coefficients) of the interpolant.</p><pre class="codeinput">
+f = @(x,y) sin(x) + cos(y);
+z = spvals(f,2,[0 pi; 0 pi])
+</pre><pre class="codeoutput">z = 
+               vals: {[65x1 double]}
+           gridType: 'Clenshaw-Curtis'
+                  d: 2
+              range: [2x2 double]
+           maxLevel: 4
+        estRelError: 0.0063
+        estAbsError: 0.0188
+         fevalRange: [-1 2]
+         minGridVal: [0 1]
+         maxGridVal: [0.5000 0]
+            nPoints: 65
+          fevalTime: 0.0502
+    surplusCompTime: 0.0024
+            indices: [1x1 struct]
+</pre><p>The function <tt><a href="spvals.html">spvals</a></tt> returns these hierarchical surpluses, and also includes some additional information collected during the construction process
+            of the interpolant. For instance, We obtain information on the estimated relative and absolute error. The number of sparse
+            grid support nodes is provided, as well as the computing time for evaluating the function and computing the hierarchical surpluses.
+            The surpluses themselves are stored under the field <tt>vals</tt>.
+         </p>
+         <h2>Computing interpolated values<a name="4"></a></h2>
+         <p>To compute interpolated values, we can now use the <tt><a href="spinterp.html">spinterp</a></tt> function. To increase efficiency, multiple interpolated values can be computed at once. Below, we compute the interpolated
+            values for five randomly chosen points and compare them to the exact function value by computing the maximum absolute error.
+         </p><pre class="codeinput">x1 = pi*rand(1,5); x2 = pi*rand(1,5);
+y = spinterp(z,x1,x2)
+error = max(abs(y - f(x1,x2)))
+</pre><pre class="codeoutput">y =
+    1.7173    0.7210    0.2675    0.7701    0.5510
+error =
+    0.0076
+</pre><h2>Visualizing the sparse grid<a name="5"></a></h2>
+         <p>Let us now visualize the sparse grid. From the information returned by <tt>spvals</tt>, we see that the used sparse grid is of the type Clenshaw-Curtis, and the maximum level was 4. In two and three dimensions,
+            we can easily plot the sparse grid with the <tt><a href="plotgrid.html">plotgrid</a></tt> function. It takes the level and the dimension as input arguments. Optional is an options structure containing the sparse
+            grid type, created with <tt><a href="spset.html">spset</a></tt>. The default grid type is the Clenshaw-Curtis grid, we thus do not have to specify the grid type here.
+         </p><pre class="codeinput">plotgrid(4,2)
+</pre><img src="images/ex_firstexample_01.png"> <h2>Visualizing the interpolant<a name="6"></a></h2>
+         <p>To visualize the original function and compare it to the interpolant, we can plot both functions, for instance, by using <tt>ezmesh</tt>.
+         </p><pre class="codeinput">subplot(1,2,1);
+ezmesh(f,[0 pi]);
+title(<span class="string">'f(x,y) = sin(x) + cos(y)'</span>);
+subplot(1,2,2);
+ezmesh(@(x,y) spinterp(z,x,y),[0 pi]);
+title(<span class="string">'Sparse grid interpolant, n = 4'</span>);
+</pre><img src="images/ex_firstexample_02.png">		</div>
+		<table class="footer">
+			<tr>
+				<td width="20" align="left"><a href="initialization.html"><img align=bottom src="images/b_prev.gif" alt="Previous page"></a></td>
+				<td align="left">Initialization of the toolbox</td>
+				<td width="10">&nbsp;</td>
+				<td align="right">Linear basis functions</td>
+        <td width="20" align="right"><a href="linear.html"><img src="images/b_next.gif" alt="Next page"></a></td>
+			</tr>
+		</table>
+	</body>
+</html>

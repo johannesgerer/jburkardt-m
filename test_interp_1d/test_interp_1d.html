@@ -1,0 +1,324 @@
+<html>
+
+  <head>
+    <title>
+      TEST_INTERP_1D - Test Functions Y(X) for Interpolation of a 1D Argument
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TEST_INTERP_1D <br> Test Functions Y(X) for Interpolation of a 1D Argument
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TEST_INTERP_1D</b>
+      is a MATLAB library which
+      defines test functions y(x) that may be used to test interpolation algorithms
+      involving a 1D argument x.
+    </p>
+
+    <p>
+      <b>TEST_INTERP_1D</b> requires access to a compiled copy of the R8LIB library.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TEST_INTERP_1D</b> is available in
+      <a href = "../../c_src/test_interp_1d/test_interp_1d.html">a C version</a> and
+      <a href = "../../cpp_src/test_interp_1d/test_interp_1d.html">a C++ version</a> and
+      <a href = "../../f77_src/test_interp_1d/test_interp_1d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/test_interp_1d/test_interp_1d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/test_interp_1d/test_interp_1d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/barycentric_interp_1d/barycentric_interp_1d.html">
+      BARYCENTRIC_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the barycentric Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+      The barycentric approach means that very high degree polynomials can
+      safely be used.
+    </p>
+
+    <p>
+      <a href = "../../m_src/chebyshev_interp_1d/chebyshev_interp_1d.html">
+      CHEBYSHEV_INTERP_1D</a>,
+      a MATLAB library which
+      determines the combination of Chebyshev polynomials which 
+      interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <p>
+      <a href = "../../m_src/nearest_interp_1d/nearest_interp_1d.html">
+      NEAREST_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise constant interpolant
+      defined by the nearest neighbor criterion.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_interp_1d/pwl_interp_1d.html">
+      PWL_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise linear interpolant.
+    </p>
+
+    <p>
+      <a href = "../../m_src/r8lib/r8lib.html">
+      R8LIB</a>,
+      a MATLAB library which
+      contains many utility routines using double precision real (R8) arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rbf_interp_1d/rbf_interp_1d.html">
+      RBF_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates radial basis function (RBF) interpolants to 1D data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shepard_interp_1d/shepard_interp_1d.html">
+      SHEPARD_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates Shepard interpolants to 1D data,
+      based on inverse distance weighting.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_2d/test_interp_2d.html">
+      TEST_INTERP_2D</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x,y),
+      depending on a 2D argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_interp_nd/test_interp_nd.html">
+      TEST_INTERP_ND</a>,
+      a MATLAB library which
+      defines test problems for interpolation of data z(x),
+      depending on an M-dimensional argument.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to data y(x) of a 1D argument,
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis,<br>
+          Interpolation and Approximation,<br>
+          Dover, 1975,<br>
+          ISBN: 0-486-62495-1,<br>
+          LC: QA221.D33
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "p00_f.m">p00_f.m</a>,
+          evaluates the function for any problem.
+        </li>
+        <li>
+          <a href = "p00_plot.m">p00_plot.m</a>,
+          creates a plot of any problem.
+        </li>
+        <li>
+          <a href = "p00_prob_num.m">p00_prob_num.m</a>,
+          returns the number of test problems.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>,
+          prints the title for any problem.
+        </li>
+        <li>
+          <a href = "p01_f.m">p01_f.m</a>,
+          returns the function for problem p01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>,
+          returns the title for problem p01.
+        </li>
+        <li>
+          <a href = "p02_f.m">p02_f.m</a>,
+          returns the function for problem p02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>,
+          returns the title for problem p02.
+        </li>
+        <li>
+          <a href = "p03_f.m">p03_f.m</a>,
+          returns the function for problem p03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>,
+          returns the title for problem p03.
+        </li>
+        <li>
+          <a href = "p04_f.m">p04_f.m</a>,
+          returns the function for problem p04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>,
+          returns the title for problem p04.
+        </li>
+        <li>
+          <a href = "p05_f.m">p05_f.m</a>,
+          returns the function for problem p05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>,
+          returns the title for problem p05.
+        </li>
+        <li>
+          <a href = "p06_f.m">p06_f.m</a>,
+          returns the function for problem p06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>,
+          returns the title for problem p06.
+        </li>
+        <li>
+          <a href = "p07_f.m">p07_f.m</a>,
+          returns the function for problem p07.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>,
+          returns the title for problem p07.
+        </li>
+        <li>
+          <a href = "p08_f.m">p08_f.m</a>,
+          returns the function for problem p08.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>,
+          returns the title for problem p08.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "test_interp_1d_test.m">test_interp_1d_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "test_interp_1d_test01.m">test_interp_1d_test01.m</a>,
+          calls P00_TITLE to print the title of each function.
+        </li>
+        <li>
+          <a href = "test_interp_1d_test02.m">test_interp_1d_test02.m</a>,
+          calls P00_F to evaluate each function at sample points.
+        </li>
+        <li>
+          <a href = "test_interp_1d_test03.m">test_interp_1d_test03.m</a>,
+          calls P00_PLOT to plot each function.
+        </li>
+        <li>
+          <a href = "test_interp_1d_test_output.txt">test_interp_1d_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>test_interp_1d_test03</b> plots each function:
+      <ul>
+        <li>
+          <a href = "p01_plot.png">p01_plot.png</a>
+        </li>
+        <li>
+          <a href = "p02_plot.png">p02_plot.png</a>
+        </li>
+        <li>
+          <a href = "p03_plot.png">p03_plot.png</a>
+        </li>
+        <li>
+          <a href = "p04_plot.png">p04_plot.png</a>
+        </li>
+        <li>
+          <a href = "p05_plot.png">p05_plot.png</a>
+        </li>
+        <li>
+          <a href = "p06_plot.png">p06_plot.png</a>
+        </li>
+        <li>
+          <a href = "p07_plot.png">p07_plot.png</a>
+        </li>
+        <li>
+          <a href = "p08_plot.png">p08_plot.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 07 August 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

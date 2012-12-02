@@ -1,0 +1,218 @@
+<html>
+
+  <head>
+    <title>
+      TOEPLITZ_CHOLESKY - Cholesky Factor of Nonnegative Definite Toeplitz Matrix
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TOEPLITZ_CHOLESKY <br> Cholesky Factor of Nonnegative Definite Toeplitz Matrix
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TOEPLITZ_CHOLESKY</b>
+      is a MATLAB library which
+      computes the Cholesky factorization of a nonnegative definite symmetric
+      Toeplitz matrix.
+    </p>
+
+    <p>
+      A Toeplitz matrix is a matrix which is constant along all diagonals.  A schematic
+      of a 3x4 Toeplitz matrix would be
+      <pre>
+        a  b  c  d
+        e  a  b  c
+        f  e  a  b
+      </pre>
+    </p>
+
+    <p>
+      A symmetric matrix is a matrix with N rows and N columns, such that
+      A(I,J) = A(J,I) for all indices I and J.  All the eigenvalues of a symmetric
+      matrix are real.
+    </p>
+
+    <p>
+      A symmetric Toeplitz matrix is a matrix which is symmetric and Toeplitz.  A schematic
+      of a 4x4 symmetric Toeplitz matrix would be
+      <pre>
+        a  b  c  d
+        b  a  b  c
+        c  b  a  b
+        d  c  b  a
+      </pre>
+    </p>
+
+    <p>
+      A nonnegative definite symmetric matrix A is a symmetric matrix whose eigenvalues
+      are all nonnegative.
+    </p>
+
+    <p>
+      Given a nonnegative definite symmetric matrix A, the upper Cholesky factor R 
+      is an upper triangular matrix such that A = R' * R; the lower Cholesky factor 
+      L is a lower triangular matrix such that A = L L'.  Obviously, L = R'.
+    </p>
+
+    <p>
+      A Toeplitz matrix can be represented in a compressed format that stores
+      the first row and the first column (omitting the first entry).  One
+      convenient format would be to create the 2xN array G as follows:
+      <pre>
+       G(1,1:N) = A(1,1:N)
+       G(2,1)   = 0.0
+       G(2,2:N) = A(2:N,1)
+      </pre>
+    </p>
+
+    <p>
+      A symmetric Toeplitz matrix can be represented in a compressed format that stores
+      just the first row.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TOEPLITZ_CHOLESKY</b> is available in
+      <a href = "../../c_src/toeplitz_cholesky/toeplitz_cholesky.html">a C version</a> and
+      <a href = "../../cpp_src/toeplitz_cholesky/toeplitz_cholesky.html">a C++ version</a> and
+      <a href = "../../f77_src/toeplitz_cholesky/toeplitz_cholesky.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/toeplitz_cholesky/toeplitz_cholesky.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/toeplitz_cholesky/toeplitz_cholesky.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa006/asa006.html">
+      ASA006</a>,
+      a MATLAB library which
+      computes the Cholesky factorization of a symmetric positive definite
+      matrix, by Michael Healy.
+      This is a MATLAB version of Applied Statistics Algorithm 6;
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      factors and solves linear systems using double precision real arithmetic,
+      by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out simple manipulations of matrices in a variety of formats,
+      including matrices stored in banded, border-banded, circulant, 
+      lower triangular, pentadiagonal, sparse, symmetric, 
+      toeplitz, tridiagonal, upper triangular and vandermonde formats.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Michael Stewart,<br>
+          Cholesky factorization of semi-definite Toeplitz matrices.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8mat_print.m">r8mat.m</a>,
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "toep_cholesky_lower.m">toep_cholesky_lower.m</a>,
+          given a compressed Toeplitz matrix, computes the lower Cholesky factor.
+        </li>
+        <li>
+          <a href = "toep_cholesky_upper.m">toep_cholesky_upper.m</a>,
+          given a compressed Toeplitz matrix, computes the upper Cholesky factor.
+        </li>
+        <li>
+          <a href = "toeplitz_cholesky_lower.m">toeplitz_cholesky_lower.m</a>,
+          given a Toeplitz matrix, computes the lower Cholesky factor.
+        </li>
+        <li>
+          <a href = "toeplitz_cholesky_upper.m">toeplitz_cholesky_upper.m</a>,
+          given a Toeplitz matrix, computes the upper Cholesky factor.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "toeplitz_cholesky_test.m">toeplitz_cholesky_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "toeplitz_cholesky_test01.m">toeplitz_cholesky_test021.m</a>, 
+          calls all the codes for a simple 3x3 case.
+        </li>
+        <li>
+          <a href = "toeplitz_cholesky_test_output.txt">toeplitz_cholesky_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 05 November 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

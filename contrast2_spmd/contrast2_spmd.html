@@ -1,0 +1,291 @@
+<html>
+
+  <head>
+    <title>
+      CONTRAST2_SPMD - SPMD Workers Cooperate on Image Processing
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CONTRAST2_SPMD <br> SPMD Workers Cooperate on Image Processing
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CONTRAST2_SPMD</b>
+      is a MATLAB program which
+      uses the <b>SPMD</b> (single program, multiple data) command
+      so that multiple MATLAB workers can cooperate in an
+      image processing task.
+    </p>
+
+    <p>
+      This program is an improvement on the contrast_spmd code.  That code
+      left white bars on the processed image, because each worker had to treat its
+      first and last columns as boundaries.  This improved code demonstrates how
+      workers can communicate with MPI-style messages.  In this way, two workers
+      can exchange image columns needed to avoid the artificial boundary effect.
+    </p>
+
+    <p>
+      The function has the form:
+      <blockquote>
+        function y = contrast2_fun ( x )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          x is a 2 dimensional array containing a black and white image;
+        </li>
+        <li>
+          y is a 2 dimensional array containing a version of the image in which
+          the contrast has been enhanced.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Depending on the situation, the function could be executed in parallel:
+      <ul>
+        <li>
+          interactively, and locally, using the <b>matlabpool</b> command;
+        </li>
+        <li>
+          indirectly, and locally, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the Ithaca cluster, using the <b>batch</b> command;
+        </li>
+        <li>
+          indirectly, and on the FSU HPC cluster, using the <b>fsuClusterMatlab</b> command;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/contrast_spmd/contrast_spmd.html">
+      CONTRAST_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers increase contrast over separate portions, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/dijkstra_spmd/dijkstra_spmd.html">
+      DIJKSTRA_SPMD</a>,
+      a MATLAB program which
+      uses the SPMD feature to parallelize a simple example of Dijkstra's
+      minimum distance algorithm for graphs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/face_spmd/face_spmd.html">
+      FACE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature;
+      the client has a 3D box that has been dissected into tetrahedrons.
+      Multiple workers cooperate to construct a list of the triangular faces
+      that lie on the boundaries of the box.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_explicit_spmd/fd2d_heat_explicit_spmd.html">
+      FD2D_HEAT_EXPLICIT_SPMD</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 2D.  A black and white image
+      is used as the "initial condition".  MATLAB's SPMD facility is used to
+      carry out the computation in parallel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise_spmd/image_denoise_spmd.html">
+      IMAGE_DENOISE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature for image operations;
+      the client reads an image, the workers process portions of it, and
+      the client assembles and displays the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matrix_assemble_spmd/matrix_assemble_spmd.html">
+      MATRIX_ASSEMBLE_SPMD</a>,
+      a MATLAB program which
+      demonstrates the SPMD parallel programming feature by having each worker
+      assemble part of the Hilbert matrix, which is then combined into one
+      array by the client program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/plot_spmd/plot_spmd.html">
+      PLOT_SPMD</a>,
+      a MATLAB library which
+      demonstrates the SPMD parallel programming feature, by having a number
+      of labs compute parts of a sine plot, which is then displayed by the
+      client process.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prime_spmd/prime_spmd.html">
+      PRIME_SPMD</a>,
+      a MATLAB program which
+      counts the number of primes between 1 and N;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_spmd/quad_spmd.html">
+      QUAD_SPMD</a>,
+      a MATLAB program which
+      estimates an integral using quadrature;
+      running in parallel using MATLAB's "SPMD" feature.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      The User's Guide for the Parallel Computing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/distcomp/distcomp.pdf</a>
+    </p>
+
+    <p>
+      MathWorks documentation for the Image Processing Toolbox is available at
+      <a href = "http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf">
+                 http://www.mathworks.com/access/helpdesk/help/pdf_doc/images/images_tb.pdf</a>.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          Gaurav Sharma, Jos Martin,<br>
+          MATLAB: A Language for Parallel Computing,<br>
+          International Journal of Parallel Programming,<br>
+          Volume 37, Number 1, pages 3-36, February 2009.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "contrast_enhance.m">contrast_enhance.m</a>,
+          a MATLAB function which defines the contrast enhancement procedure.
+        </li>
+        <li>
+          <a href = "contrast2_fun.m">contrast2_fun.m</a>,
+          a MATLAB function which carries out the contrast enhancement.
+        </li>
+        <li>
+          <a href = "contrast2_pool.m">contrast2_pool.m</a>
+          a script which uses the MATLABPOOL command to run the function locally and
+          interactively.
+        </li>
+        <li>
+          <a href = "contrast2_script.m">contrast_2script.m</a>,
+          a MATLAB script file which simply invokes the function.
+        </li>
+        <li>
+          <a href = "contrast2_batch_local.m">contrast2_batch_local.m</a>,
+          a batch command to run the job indirectly on the local system,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "contrast2_batch_ithaca.m">contrast2_batch_ithaca.m</a>,
+          a batch command to run the job indirectly on the Ithaca cluster,
+          plus a few more commands
+          to monitor its progress, print the diary, and destroy the job at the end.
+        </li>
+        <li>
+          <a href = "contrast2_fsu.m">contrast2_fsu.m</a>
+          a script which uses the fsuClusterMatlab command to run the function
+          indirectly on the FSU HPC cluster.
+        </li>
+        <li>
+          <a href = "surfsup.tif">surfsup.tif</a>,
+          the original image.
+        </li>
+        <li>
+          <a href = "surfsup.png">surfsup.png</a>,
+          a PNG version.
+        </li>
+        <li>
+          <a href = "surfsup_filtered.tif">surfsup_filtered.tif</a>,
+          the image, filtered on the client.
+        </li>
+        <li>
+          <a href = "surfsup_filtered.png">surfsup_filtered.png</a>,
+          a PNG version.
+        </li>
+        <li>
+          <a href = "surfsup_filtered_spmd.tif">surfsup_filtered_spmd.tif</a>,
+          the image, filtered on the client.
+        </li>
+        <li>
+          <a href = "surfsup_filtered_spmd.png">surfsup_filtered_spmd.png</a>,
+          a PNG version.
+        </li>
+        <li>
+          <a href = "surfsup_summary.png">surfsup_summary.png</a>,
+          the original image, the client-filtered and SPMD-filtered versions.
+          This image should show no difference between the client and SPMD-filtered versions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 March 2010.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+
