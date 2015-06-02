@@ -1,0 +1,413 @@
+<html>
+
+  <head>
+    <title>
+      CVT_CORN - Model Cell Growth in a Corn Kernel
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CVT_CORN <br> Model Cell Growth in a Corn Kernel
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CVT_CORN</b> 
+      is a MATLAB program which 
+      studies a 2D model of the growth of a corn kernel.
+    </p>
+
+    <p>
+      The program treats the surface and interior biological cells as points to be 
+      organized by a Centroidal Voronoi Tessellation (CVT)
+      with a nonuniform density; during a sequence of growth steps,
+      new biological cells are randomly added to the surface and interior.
+    </p>
+
+    <p>
+      Here are two photomicrographs of <a href = "corn_radial.png">a radial slice</a>
+      and <a href = "corn_transverse.png">a transverse slice</a> through a corn kernel.
+      These pictures were an inspiration for the study done here.
+    </p>
+
+    <p>
+      The program models the corn kernel as a circle.  There is a layer of surface
+      cells on the circumference of the circle, and a collection of interior cells
+      within the circle.  Each cell is marked, that is, it knows what kind of cell
+      it is, and this marker is never changed.  Each cell is modeled by a single
+      geometric point.  The extent of a surface cell is the set of circumference
+      points closer to it than to any other circumference cell.  The extent of an
+      interior cell is the set of interior points closer to it than to any
+      other interior cell.
+    </p>
+
+    <p>
+      Cells may move.  Surface cells may move along the circumference.  Interior
+      cells may move within the interior.
+    </p>
+
+    <p>
+      We presume that the cells adjust their positions in accordance with the
+      energy minimization principle.  Briefly, this means that each cell's
+      preferred location is the centroid of its extent.   Surface cells may
+      only move to the projection of their centroid on the circumference. 
+    </p>
+
+    <p>
+      If we move each cell to its centroid, the extent of the cell changes,
+      and hence the centroid changes.  An iteration can be carried out in
+      which we compute centroids and move cells to their centroids.  This 
+      iteration will in general approach what is known as a
+      Centroidal Voronoi Tessellation (CVT).
+    </p>
+
+    <p>
+      By the specification of a nonuniform density function, the calculation
+      of the centroid can be influenced in such a way that cells tend to
+      cluster preferentially in certain regions.  For the corn kernel, we
+      can apply such a density function which will tend to push cells
+      away from the circle center.
+    </p>
+
+    <p>
+      As a rough model of growth, once we have completed a CVT iteration,
+      we may begin a new step by allowing cells to "bud".  Surface and 
+      cells are each given a probability of budding.  We then compute
+      which cells have budded.  Surface cells can give birth to another surface
+      cell, or to an interior cell.  Once the new cells have been created, and positioned
+      very close to their parents, another CVT iteration is carried out.
+    </p>
+
+    <p>
+      The program uses some parameters which the user can monitor or set:
+      <ul>
+        <li>
+          <b>ALG</b>, the CVT update algorithm:
+          <ul>
+            <li>
+              1 = update circle + disk together.
+            </li>
+            <li>
+              2 = update circle only, then update disk only.
+            </li>
+            <li>
+              3 = update circle only, then update circle + disk together.
+            </li>
+          </ul>
+        </li>
+        <li>
+          <b>NB</b>, the number of points on boundary;
+        </li>
+        <li>
+          <b>NI</b>, number of point in interior;
+        </li>
+        <li>
+          <b>NP</b>, total number of points;
+        </li>
+        <li>
+          <b>NS</b>, number of sample points for Lloyd's algorithm;
+        </li>
+        <li>
+          <b>PR_BUD</b>, probability that a boundary point will create a bud;
+        </li>
+        <li>
+          <b>PR_BUD_ANGULAR</b>, probability that boundary bud is constrained to the boundary;
+        </li>
+        <li>
+          <b>R</b>, the radius of the circle;
+        </li>
+        <li>
+          <b>SEED</b>, the initial random number seed;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages
+    </h3>
+
+    <p>
+      <b>CVT_CORN</b> is available in
+      <a href = "../../m_src/cvt_corn/cvt_corn.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      can compute a CVT.
+    </p>
+
+    <p>
+      <a href = "../../datasets/cvt/cvt.html">
+      CVT</a>,
+      a dataset directory which
+      contains a variety of examples of CVT datasets.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_lloyd/cvt_1d_lloyd.html">
+      CVT_1D_LLOYD</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_nonuniform/cvt_1d_nonuniform.html">
+      CVT_1D_NONUNIFORM</a>,
+      a MATLAB program which
+      constructs a CVT in one dimension, under a nonuniform density function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_1d_sampling/cvt_1d_sampling.html">
+      CVT_1D_SAMPLING</a>,
+      a MATLAB program which 
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the interval [0,1], under a uniform density, 
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_2d_sampling/cvt_2d_sampling.html">
+      CVT_2D_SAMPLING</a>,
+      a MATLAB program which
+      computes an N-point Centroidal Voronoi Tessellation (CVT)
+      within the unit square [0,1]x[0,1], under a uniform density,
+      using sampling to estimate the Voronoi regions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cvt_demo/cvt_demo.html">
+      CVT_DEMO</a>,
+      a MATLAB program which
+      is an interactive graphic demonstration of a CVT calculation.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Franz Aurenhammer,<br>
+          Voronoi diagrams - 
+          a study of a fundamental geometric data structure,<br>
+          ACM Computing Surveys,<br>
+          Volume 23, Number 3, pages 345-405, September 1991.
+        </li>
+        <li>
+          John Burkardt, Max Gunzburger, Janet Peterson, Rebecca Brannon,<br>
+          User Manual and Supporting Information for Library of Codes
+          for Centroidal Voronoi Placement and Associated Zeroth,
+          First, and Second Moment Determination,<br>
+          Sandia National Laboratories Technical Report SAND2002-0099,<br>
+          February 2002.
+        </li>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review,<br>
+          Volume 41, 1999, pages 637-676.
+        </li>
+        <li>
+          Lili Ju, Qiang Du, Max Gunzburger,<br>
+          Probabilistic methods for centroidal Voronoi tessellations
+          and their parallel implementations,<br>
+          Parallel Computing,<br>
+          Volume 28, 2002, pages 1477-1500.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bud.m">bud.m</a>, 
+          carries out the budding process.
+        </li>
+        <li>
+          <a href = "bud_angular.m">bud_angular.m</a>, 
+          sets the coordinates for an "angular" bud.
+        </li>
+        <li>
+          <a href = "bud_radial.m">bud_radial.m</a>, 
+          sets the coordinates for a "radial" bud.
+        </li>
+        <li>
+          <a href = "cvt_circle.m">cvt_circle.m</a>, 
+          applies the CVT algorithm to points on a circle.
+        </li>
+        <li>
+          <a href = "cvt_circle_step.m">cvt_circle_step.m</a>, 
+          applies one step of the CVT algorithm to points on a circle.
+        </li>
+        <li>
+          <a href = "cvt_corn.m">cvt_corn.m</a>, 
+          the main program, which carries out the simulation of the growth of a kernel of corn.
+        </li>
+        <li>
+          <a href = "cvt_disk.m">cvt_disk.m</a>, 
+          computes a CVT in the disk.
+        </li>
+        <li>
+          <a href = "cvt_disk_interior.m">cvt_disk_interior.m</a>, 
+          computes a CVT in the disk interior.
+        </li>
+        <li>
+          <a href = "cvt_display.m">cvt_display.m</a>, 
+          displays the estimated CVT diagram.
+        </li>
+        <li>
+          <a href = "disk_sample_nonuniform.m">disk_sample_nonuniform.m</a>, 
+          nonuniformly samples the disk of radius R.
+        </li>
+        <li>
+          <a href = "disk_sample_uniform.m">disk_sample_uniform.m</a>, 
+          uniformly samples the disk of radius R.
+        </li>
+        <li>
+          <a href = "find_closest.m">find_closest.m</a>, 
+          finds the nearest G point to each S point.
+        </li>
+        <li>
+          <a href = "goodbye.m">goodbye.m</a>, 
+          issues a final message to the user.
+        </li>
+        <li>
+          <a href = "hello.m">hello.m</a>, 
+          issues an initial message to the user.
+        </li>
+        <li>
+          <a href = "parameter_initialize.m">parameter_initialize.m</a>, 
+          sets the initial values of parameters.
+        </li>
+        <li>
+          <a href = "parameter_print.m">parameter_print.m</a>, 
+          prints the current values of parameters
+        </li>
+        <li>
+          <a href = "parameter_set.m">parameter_set.m</a>, 
+          allows the user to reset parameter values.
+        </li>
+        <li>
+          <a href = "r8_atan.m">r8_atan.m</a>, 
+          computes the inverse tangent of the ratio Y / X.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>, 
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>, 
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "radial_growth.m">radial_growth.m</a>, 
+          simulates the radial expansion of the region.
+        </li>
+        <li>
+          <a href = "state_display.m">state_display.m</a>, 
+          displays the current state.
+        </li>
+        <li>
+          <a href = "state_initialize.m">state_initialize.m</a>, 
+          initializes the state.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      The following images are snapshots from a run of the program
+      with the default parameter settings:
+      <ul>
+        <li>
+          <a href = "initial.png">initial.png</a>, 
+          the initial random state, with 40 boundary points and 60 interior points.
+        </li>
+        <li>
+          <a href = "step00.png">step00.png</a>, 
+          the CVT at step 0.
+        </li>
+        <li>
+          <a href = "step01.png">step01.png</a>, 
+          the CVT at step 1.
+        </li>
+        <li>
+          <a href = "step02.png">step02.png</a>, 
+          the CVT at step 2.
+        </li>
+        <li>
+          <a href = "step03.png">step03.png</a>, 
+          the CVT at step 3.
+        </li>
+        <li>
+          <a href = "step04.png">step04.png</a>, 
+          the CVT at step 4
+        </li>
+        <li>
+          <a href = "step05.png">step05.png</a>, 
+          the CVT at step 5.
+        </li>
+        <li>
+          <a href = "step10.png">step10.png</a>, 
+          the CVT at step 10.
+        </li>
+        <li>
+          <a href = "step20.png">step20.png</a>, 
+          the CVT at step 20.
+        </li>
+        <li>
+          <a href = "step30.png">step30.png</a>, 
+          the CVT at step 30.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 January 2013
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

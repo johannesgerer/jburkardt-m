@@ -32,7 +32,7 @@ function k = i4_xor ( i, j )
   i = floor ( i );
   j = floor ( j );
 
-  while ( i ~= 0 | j ~= 0 )
+  while ( i ~= 0 || j ~= 0 )
 %
 %  Check the current right-hand bits of I and J.
 %  If they differ, set the appropriate bit of K.
@@ -41,8 +41,8 @@ function k = i4_xor ( i, j )
     j2 = floor ( j / 2 );
 
     if ( ...
-      ( ( i == 2 * i2 ) & ( j ~= 2 * j2 ) ) | ...
-      ( ( i ~= 2 * i2 ) & ( j == 2 * j2 ) ) )
+      ( ( i == 2 * i2 ) && ( j ~= 2 * j2 ) ) || ...
+      ( ( i ~= 2 * i2 ) && ( j == 2 * j2 ) ) )
       k = k + l;
     end
 

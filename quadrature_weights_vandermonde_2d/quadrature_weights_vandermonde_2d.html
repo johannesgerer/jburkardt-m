@@ -1,0 +1,274 @@
+<html>
+
+  <head>
+    <title>
+      QUADRATURE_WEIGHTS_VANDERMONDE_2D - 2D Quadrature Weights by Vandermonde Matrix
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      QUADRATURE_WEIGHTS_VANDERMONDE_2D <br> 
+      2D Quadrature Weights by Vandermonde Matrix
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>QUADRATURE_WEIGHTS_VANDERMONDE_2D</b>
+      is a FORTRAN90 library which
+      illustrates a method for computing the weights W of a 
+      2D interpolatory quadrature rule, assuming that the points (X,Y) have been 
+      specified, by setting up a linear system involving the Vandermonde matrix.
+    </p>   
+
+    <p>
+      We assume that the abscissas (quadrature points) have been chosen, 
+      that the interval [A,B]x[C,D] is known, and that the integrals of polynomials 
+      of total degree 0 through T can be computed.  
+    </p>
+
+    <h3 align="center">
+      The Vandermonde Matrix
+    </h3>
+
+    <p>
+      We assume that the quadrature formula approximates integrals of the form:
+      <pre>
+        I(F) = Integral ( C <= Y <= D ) Integral ( A <= X <= B ) F(X,Y) dX dY
+      </pre>
+      by specifying N=(T+1)*(T+2)/2 points (X,Y) and weights W such that
+      <pre>
+        Q(F) = Sum ( 1 <= I <= N ) W(I) * F(X(I),Y(I))
+      </pre>
+    </p>
+
+    <p>
+      Now let us assume that the points (X,Y) have been specified, but that the
+      corresponding values W remain to be determined.
+    </p>
+
+    <p>
+      If we require that the quadrature rule with N points integrates the first
+      N=(T+1)*(T+2)/2 monomials exactly, then we have N conditions 
+      on the weights W.  (This means that we are assuming that N only takes
+      on appropriate values, namely 1, 3, 6, 10, 15, 21, 28, ...)
+    </p>
+
+    <p>
+      The K-th condition, for the monomial X^I*Y^J, J = 0 to T, I = 0 to T - J,
+      has the form:
+      <pre>
+        W(1)*X(1)^I*Y(1)^J + W(2)*X(2)^I*Y(2)^j+...+W(N)*X(N)^I*Y(N)^J = (B^(I+1)-A^(I+1))*(D^(J+1)-C(J+1))/(I+1)/(J+1)
+      </pre>
+    </p>
+
+    <p>
+      The corresponding matrix is known as a two-dimensional Vandermonde matrix.
+      It is theoretically guaranteed to be nonsingular as long as the points 
+      (X,Y) are distinct and in "general position".  The condition number of
+      the matrix grows quickly with increasing T.  
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>QUADRATURE_WEIGHTS_VANDERMONDE_2D</b> is available in
+      <a href = "../../c_src/quadrature_weights_vandermonde_2d/quadrature_weights_vandermonde_2d.html">a C version</a> and
+      <a href = "../../cpp_src/quadrature_weights_vandermonde_2d/quadrature_weights_vandermonde_2d.html">a C++ version</a> and
+      <a href = "../../f77_src/quadrature_weights_vandermonde_2d/quadrature_weights_vandermonde_2d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/quadrature_weights_vandermonde_2d/quadrature_weights_vandermonde_2d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/quadrature_weights_vandermonde_2d/quadrature_weights_vandermonde_2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/exactness_2d/exactness_2d.html">
+      EXACTNESS_2D</a>,
+      a MATLAB library which
+      investigates the exactness of 2D quadrature rules that estimate the
+      integral of a function f(x,y) over a 2D domain.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_least_squares/quadrature_least_squares.html">
+      QUADRATURE_LEAST_SQUARES</a>,
+      a MATLAB library which
+      computes weights for "sub-interpolatory" quadrature rules,
+      that is, it estimates integrals by integrating a polynomial that
+      approximates the function data in a least squares sense.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_golub_welsch/quadrature_golub_welsch.html">
+      QUADRATURE_GOLUB_WELSCH</a>,
+      a MATLAB library which
+      computes the points and weights of a Gaussian quadrature rule using the 
+      Golub-Welsch procedure, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_weights_vandermonde/quadrature_weights_vandermonde.html">
+      QUADRATURE_WEIGHTS_VANDERMONDE</a>,
+      a MATLAB library which
+      computes the weights of a 1D quadrature rule using the Vandermonde
+      matrix, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for 1-dimensional domains.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms655/toms655.html">
+      TOMS655</a>,
+      a MATLAB library which
+      computes the weights for interpolatory quadrature rule;<br>
+      this library is commonly called <b>IQPACK</b>;<br>
+      this is a MATLAB version of ACM TOMS algorithm 655.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde/vandermonde.html">
+      VANDERMONDE</a>,
+      a MATLAB library which carries out certain operations associated
+      with the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Sylvan Elhay, Jaroslav Kautsky,<br>
+          Algorithm 655: IQPACK, FORTRAN Subroutines for the Weights of
+          Interpolatory Quadrature,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 13, Number 4, December 1987, pages 399-415.
+        </li>
+        <li>
+          Jaroslav Kautsky, Sylvan Elhay,<br>
+          Calculation of the Weights of Interpolatory Quadratures,<br>
+          Numerische Mathematik,<br>
+          Volume 40, 1982, pages 407-422.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "qwv_2d.m">qwv_2d.m</a>,
+          computes 2D quadrature weights using the Vandermonde matrix.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_even.m">r8vec_even.m</a>,
+          returns an R8VEC of evenly spaced values.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print_16.m">r8vec_print_16.m</a>,
+          prints an R8VEC to 16 decimal places.
+        </li>
+        <li>
+          <a href = "r8vec2_print.m">r8vec2_print.m</a>,
+          prints a pair of R8VEC's.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "qwv_2d_test.m">qwv_2d_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "qwv_2d_test01.m">qwv_2d_test01.m</a>,
+          tests QWV_2D for a trio of points.
+        </li>
+        <li>
+          <a href = "qwv_2d_test02.m">qwv_2d_test02.m</a>,
+          tests QWV_2D for Padua points.
+        </li>
+        <li>
+          <a href = "padua_point_set.m">padua_point_set.m</a>,
+          sets a 2D Padua point set.
+        </li>
+        <li>
+          <a href = "qwv_2d_test_output.txt">qwv_2d_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

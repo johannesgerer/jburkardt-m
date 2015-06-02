@@ -59,7 +59,7 @@ function [ v, seed ] = vibonacci ( n, seed )
 
   for i = 3 : n
     
-    [ j, seed ] = i4_uniform ( 0, 1, seed );
+    [ j, seed ] = i4_uniform_ab ( 0, 1, seed );
 
     if ( j == 0 )
       s1 = -1;
@@ -67,7 +67,7 @@ function [ v, seed ] = vibonacci ( n, seed )
       s1 = +1;
     end
 
-    [ j, seed ] = i4_uniform ( 0, 1, seed );
+    [ j, seed ] = i4_uniform_ab ( 0, 1, seed );
 
     if ( j == 0 )
       s2 = -1;

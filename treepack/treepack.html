@@ -1,0 +1,471 @@
+<html>
+
+  <head>
+    <title>
+      TREEPACK - Computations using Tree Graphs
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TREEPACK <br> Computations using Tree Graphs
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TREEPACK</b>
+      is a MATLAB library which
+      performs common calculations involving a special kind of graph
+      known as a tree.
+    </p>
+
+    <p>
+      A graph is a collection of objects or "nodes", such that any (unordered) pair of
+      nodes is connected or not connected.  If a pair of nodes <b>i</b> and <b>j</b>
+      are connected, we say there is an "edge" between them, and we may describe
+      the edge as <b>(i,j)</b>.  A graph can be represented by a drawing
+      of dots with lines connecting some of the dots.
+    </p>
+
+    <p>
+      A tree is a minimally connected graph; more precisely, it is a graph
+      with two additional properties:
+      <ul>
+        <li>
+          it is <i>connected</i>, that is, given any two pair of nodes <b>i</b>
+          and <b>j</b>, there is a sequence of edges <b>(na,nb),(nb,nc),...(nx,ny),(ny,nz)</b>
+          such that <b>na=i</b> and <b>nz=j</b>;
+        </li>
+        <li>
+          if any edge is removed from the graph, it is no longer connected.
+        </li>
+      </ul>
+      Note that a tree using <b>N</b> nodes will have exactly <b>N-1</b> edges.
+    </p>
+
+    <p>
+      There are several ways to represent a graph on the computer.
+    </p>
+
+    <p>
+      For the <b>TREE_ARC</b> representation, we simply store a list of the edges
+      of the tree, that is, pairs of nodes.
+    </p>
+
+    <p>
+      For the <b>TREE_PRUEFER</b> representation, a tree of <b>N</b> nodes 
+      is represented by a sequence of <b>N-2</b> integers known as the
+      Pruefer code.
+    </p>
+
+    <p>
+      For the <b>TREE_PARENT</b> representation, a tree of <b>N</b> nodes 
+      is represented by a list of nodes PARENT, such that, for I = 1 to N - 1,
+      the I-th edge of the tree connects node I to node PARENT(I).
+    </p>
+
+    <p>
+      For the <b>TREE_ROOTED</b> representation, a tree is assumed to have the additional
+      property that one node has been designated as the "root".
+    </p>
+
+    <p>
+      For the <b>TREE_RB</b> representation, a tree is assumed to have the additional
+      properties that one node has been designated as the "root", and that every node 
+      has exactly 1 or 2 edges.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TREEPACK</b> is available in
+      <a href = "../../c_src/treepack/treepack.html">a C version</a> and
+      <a href = "../../cpp_src/treepack/treepack.html">a C++ version</a> and
+      <a href = "../../f77_src/treepack/treepack.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/treepack/treepack.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/treepack/treepack.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes routines for ranking, unranking, enumerating and 
+      randomly selecting balanced sequences, cycles, graphs, Gray codes, 
+      subsets, partitions, permutations, restricted growth functions, 
+      Pruefer codes and trees.
+    </p>
+
+    <p>
+      <a href = "../../data/graph_representation/graph_representation.html">
+      GRAPH_REPRESENTATION</a>,
+      a data directory which
+      contains examples of ways of representing abstract
+      mathematical graphs
+    </p>
+
+    <p>
+      <a href = "../../data/grf/grf.html">
+      GRF</a>,
+      a data directory which
+      contains a description of the GRF format and some examples.
+    </p>
+
+    <p>
+      <a href = "../../m_src/grf_io/grf_io.html">
+      GRF_IO</a>,
+      a MATLAB library which
+      reads and writes GRF files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset/subset.html">
+      SUBSET</a>,
+      a MATLAB library which
+      generates, ranks and unranks various combinatorial objects.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Alan Gibbons,<br>
+          Algorithmic Graph Theory,<br>
+          Cambridge University Press, 1985,<br>
+          ISBN: 0-5212-8881-9,<br>
+          LC: QA166.G53.
+        </li>
+        <li>
+          Hang Tong Lau,<br>
+          Combinatorial Heuristic Algorithms with FORTRAN,<br>
+          Springer, 1986,<br>
+          ISBN: 3540171614,<br>
+          LC: QA402.5.L37.
+        </li>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+        <li>
+          Robert Sedgewick,<br>
+          Algorithms in C,<br>
+          Addison-Wesley, 1990,<br>
+          ISBN: 0-201-51425-7,<br>
+          LC: QA76.73.C15S43.
+        </li>
+        <li>
+          Dennis Stanton, Dennis White,<br>
+          Constructive Combinatorics,<br>
+          Springer, 1986,<br>
+          ISBN: 0387963472,<br>
+          LC: QA164.S79.
+        </li>
+        <li>
+          Krishnaiyan Thulasiraman, M Swamy,<br>
+          Graphs: Theory and Algorithms,<br>
+          John Wiley, 1992,<br>
+          ISBN: 0471513563,<br>
+          LC: QA166.T58.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "catalan.m">catalan.m</a>, 
+          computes the Catalan numbers, from C(0) to C(N).
+        </li>
+        <li>
+          <a href = "graph_adj_edge_count.m">graph_adj_edge_count.m</a>, 
+          counts the number of edges in a graph.
+        </li>
+        <li>
+          <a href = "graph_adj_is_node_connected.m">graph_adj_is_node_connected.m</a>, 
+          determines if a graph is nodewise connected.
+        </li>
+        <li>
+          <a href = "graph_adj_is_tree.m">graph_adj_is_tree.m</a>, 
+          determines whether a graph is a tree.
+        </li>
+        <li>
+          <a href = "graph_arc_degree.m">graph_arc_degree.m</a>, 
+          determines the degree of the nodes of a graph.
+        </li>
+        <li>
+          <a href = "graph_arc_is_tree.m">graph_arc_is_tree.m</a>, 
+          determines whether a graph is a tree.
+        </li>
+        <li>
+          <a href = "graph_arc_node_count.m">graph_arc_node_count.m</a>, 
+          counts the number of nodes in a graph.
+        </li>
+        <li>
+          <a href = "graph_arc_print.m">graph_arc_print.m</a>, 
+          prints out a graph from an edge list.
+        </li>
+        <li>
+          <a href = "graph_arc_to_graph_adj.m">graph_arc_to_graph_adj.m</a>, 
+          converts an arc list graph to an adjacency graph.
+        </li>
+        <li>
+          <a href = "i4_uniform_ab.m">i4_uniform_ab.m</a>, 
+          returns a scaled pseudorandom I4 between A and B.
+        </li>
+        <li>
+          <a href = "i4vec_heap_d.m">i4vec_heap_d.m</a>, 
+          reorders an I4VEC into an descending heap.
+        </li>
+        <li>
+          <a href = "i4vec_indicator.m">i4vec_indicator.m</a>, 
+          sets an I4VEC to the indicator vector.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>, 
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_sort_heap_a.m">i4vec_sort_heap_a.m</a>, 
+          ascending sorts an I4VEC using heap sort.
+        </li>
+        <li>
+          <a href = "i4vec_sorted_unique_count.m">i4vec_sorted_unique_count.m</a>, 
+          counts the unique elements in a sorted I4VEC.
+        </li>
+        <li>
+          <a href = "pruefer_to_tree_arc.m">pruefer_to_tree_arc.m</a>, 
+          is given a Pruefer code, and computes the tree.
+        </li>
+        <li>
+          <a href = "pruefer_to_tree_2.m">pruefer_to_tree_2.m</a>, 
+          produces the edge list of a tree from its Pruefer code.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tree_arc_center.m">tree_arc_center.m</a>, 
+          computes the center, eccentricity, and parity of a tree.
+        </li>
+        <li>
+          <a href = "tree_arc_diam.m">tree_arc_diam.m</a>, 
+          computes the "diameter" of a tree.
+        </li>
+        <li>
+          <a href = "tree_arc_random.m">tree_arc_random.m</a>, 
+          selects a random labeled tree and its Pruefer code.
+        </li>
+        <li>
+          <a href = "tree_arc_to_pruefer.m">tree_arc_to_pruefer.m</a>, 
+          is given a labeled tree, and computes its Pruefer code.
+        </li>
+        <li>
+          <a href = "tree_enum.m">tree_enum.m</a>, 
+          enumerates the labeled trees on NNODE nodes.
+        </li>
+        <li>
+          <a href = "tree_parent_next.m">tree_parent_next.m</a>, 
+          generates, one at a time, all labeled trees.
+        </li>
+        <li>
+          <a href = "tree_parent_to_arc.m">tree_parent_to_arc.m</a>, 
+          converts a tree from parent to arc representation.
+        </li>
+        <li>
+          <a href = "tree_rb_enum.m">tree_rb_enum.m</a>, 
+          returns the number of rooted binary trees with N nodes.
+        </li>
+        <li>
+          <a href = "tree_rb_lex_next.m">tree_rb_lex_next.m</a>, 
+          generates rooted binary trees in lexicographic order.
+        </li>
+        <li>
+          <a href = "tree_rb_to_parent.m">tree_rb_to_parent.m</a>, 
+          converts rooted binary tree to parent node representation.
+        </li>
+        <li>
+          <a href = "tree_rb_yule.m">tree_rb_yule.m</a>, 
+          adds two nodes to a rooted binary tree using the Yule model.
+        </li>
+        <li>
+          <a href = "tree_rooted_code.m">tree_rooted_code.m</a>, 
+          returns the code of a rooted tree.
+        </li>
+        <li>
+          <a href = "tree_rooted_code_compare.m">tree_rooted_code_compare.m</a>, 
+          compares a portion of the code for two rooted trees.
+        </li>
+        <li>
+          <a href = "tree_rooted_depth.m">tree_rooted_depth.m</a>, 
+          returns the depth of a rooted tree.
+        </li>
+        <li>
+          <a href = "tree_rooted_enum.m">tree_rooted_enum.m</a>, 
+          counts the number of unlabeled rooted trees.
+        </li>
+        <li>
+          <a href = "tree_rooted_random.m">tree_rooted_random.m</a>, 
+          selects a random unlabeled rooted tree.
+        </li>
+        <li>
+          <a href = "vec_next.m">vec_next.m</a>, 
+          generates all N-vectors of integers modulo a given base.
+        </li>
+        <li>
+          <a href = "vec_random.m">vec_random.m</a>, 
+          selects a random N-vector of integers modulo a given base.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "treepack_test.m">treepack_test.m</a>, 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "treepack_test_output.txt">treepack_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "treepack_test005.m">treepack_test005.m</a>, 
+          tests CATALAN and CATALAN_VALUES.
+        </li>
+        <li>
+          <a href = "treepack_test006.m">treepack_test006.m</a>, 
+          tests CBT_TRAVERSE.
+        </li>
+        <li>
+          <a href = "treepack_test01.m">treepack_test01.m</a>, 
+          tests PRUEFER_TO_TREE_ARC.
+        </li>
+        <li>
+          <a href = "treepack_test025.m">treepack_test025.m</a>, 
+          tests PRUEFER_TO_TREE_2.
+        </li>
+        <li>
+          <a href = "treepack_test02.m">treepack_test02.m</a>, 
+          tests PRUEFER_TO_TREE_2.
+        </li>
+        <li>
+          <a href = "treepack_test03.m">treepack_test03.m</a>, 
+          tests TREE_ARC_TO_PRUEFER.
+        </li>
+        <li>
+          <a href = "treepack_test04.m">treepack_test04.m</a>, 
+          tests TREE_ARC_CENTER.
+        </li>
+        <li>
+          <a href = "treepack_test05.m">treepack_test05.m</a>, 
+          tests TREE_ARC_CENTER.
+        </li>
+        <li>
+          <a href = "treepack_test06.m">treepack_test06.m</a>, 
+          tests TREE_ARC_CENTER.
+        </li>
+        <li>
+          <a href = "treepack_test07.m">treepack_test07.m</a>, 
+          tests TREE_ARC_DIAM.
+        </li>
+        <li>
+          <a href = "treepack_test08.m">treepack_test08.m</a>, 
+          tests TREE_ARC_RANDOM.
+        </li>
+        <li>
+          <a href = "treepack_test09.m">treepack_test09.m</a>, 
+          tests TREE_ENUM.
+        </li>
+        <li>
+          <a href = "treepack_test10.m">treepack_test10.m</a>, 
+          tests TREE_PARENT_NEXT.
+        </li>
+        <li>
+          <a href = "treepack_test11.m">treepack_test11.m</a>, 
+          tests TREE_RB_ENUM.
+        </li>
+        <li>
+          <a href = "treepack_test12.m">treepack_test12.m</a>, 
+          tests TREE_RB_LEX_NEXT.
+        </li>
+        <li>
+          <a href = "treepack_test13">treepack_test13.m</a>, 
+          tests TREE_RB_LEX_NEXT, TREE_RB_TO_PARENT.
+        </li>
+        <li>
+          <a href = "treepack_test14">treepack_test14.m</a>, 
+          tests TREE_RB_YULE.
+        </li>
+        <li>
+          <a href = "treepack_test15.m">treepack_test15.m</a>, 
+          tests TREE_ROOTED_CODE.
+        </li>
+        <li>
+          <a href = "treepack_test16.m">treepack_test16.m</a>, 
+          tests TREE_ROOTED_DEPTH.
+        </li>
+        <li>
+          <a href = "treepack_test17.m">treepack_test17.m</a>, 
+          tests TREE_ROOTED_ENUM.
+        </li>
+        <li>
+          <a href = "treepack_test18.m">treepack_test18.m</a>, 
+          tests TREE_ROOTED_RANDOM.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 June 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

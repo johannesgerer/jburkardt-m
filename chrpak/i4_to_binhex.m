@@ -16,7 +16,7 @@ function binhex = i4_to_binhex ( i )
 %
 %  Modified:
 %
-%    22 February 2010
+%    16 January 2013
 %
 %  Author:
 %
@@ -29,7 +29,7 @@ function binhex = i4_to_binhex ( i )
 %
 %    Output, character BINHEX, the requested character.
 %
-  string = '!"#$%&''()*+,-012345689@ABCDEFGHIJKLMNPQRSTVWXYZ[`abcdefhijklmnpqr';
+  string = '!"#$%&''()*+,-012345689@ABCDEFGHIJKLMNPQRSTVWXYZ[`abcdefhijklmpqr';
 
   if ( 1 <= i && i <= 64 )
     binhex = string(i);

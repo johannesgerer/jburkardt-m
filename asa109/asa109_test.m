@@ -10,7 +10,7 @@ function asa109_test ( )
 %
 %  Modified:
 %
-%    14 February 2003
+%    25 September 2014
 %
 %  Author:
 %
@@ -23,17 +23,16 @@ function asa109_test ( )
   fprintf ( 1, '  Test the ASA109 library.\n' );
 
   asa109_test01 ( );
+  asa109_test02 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA109_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
-
 

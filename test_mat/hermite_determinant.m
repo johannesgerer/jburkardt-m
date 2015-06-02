@@ -2,7 +2,7 @@ function determ = hermite_determinant ( n )
 
 %*****************************************************************************80
 %
-%% HERMITE_DETERMINANT returns the determinant of the Hermite polynomial matrix.
+%% HERMITE_DETERMINANT returns the determinant of the HERMITE matrix.
 %
 %  Licensing:
 %

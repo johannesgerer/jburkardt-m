@@ -2,7 +2,7 @@ function kronrod_test ( )
 
 %*****************************************************************************80
 %
-%% KRONROD_TEST tests the KRONROD functions.
+%% KRONROD_TEST tests the KRONROD library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function kronrod_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KRONROD_TEST\n' );
   fprintf ( 1, '  MATLAB version.\n' );
@@ -32,7 +31,6 @@ function kronrod_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KRONROD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

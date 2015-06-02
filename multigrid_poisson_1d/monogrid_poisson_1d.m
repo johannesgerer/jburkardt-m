@@ -1,4 +1,4 @@
-function [ u, it_num ] = monogrid_poisson_1d ( n, force, exact )
+function [ u, it_num ] = monogrid_poisson_1d ( n, a, b, ua, ub, force, exact )
 
 %*****************************************************************************80
 %                                                    
@@ -23,7 +23,7 @@ function [ u, it_num ] = monogrid_poisson_1d ( n, force, exact )
 %
 %  Modified:
 %
-%    06 December 2011
+%    26 July 2014
 %
 %  Author:
 %
@@ -41,6 +41,10 @@ function [ u, it_num ] = monogrid_poisson_1d ( n, force, exact )
 %
 %    Input, integer N, the number of intervals.
 %
+%    Input, real A, B, the left and right endpoints of the region.
+%
+%    Input, real UA, UB, the left and right boundary values.
+%
 %    Input, function value = FORCE ( x ), the name of the function 
 %    which evaluates the right hand side.
 %
@@ -56,14 +60,18 @@ function [ u, it_num ] = monogrid_poisson_1d ( n, force, exact )
 %  Initialization.
 %
   tol = 0.0001;
-
-  x = ( linspace ( 0.0, 1.0, n + 1 ) )';
-
+%
+%  Set the nodes.
+%
+  x = ( linspace ( a, b, n + 1 ) )';
+%
+%  Set the right hand side.
+%
   r = zeros ( n + 1, 1 );
 
-  r(1) = 0.0;
+  r(1) = ua;
   r(2:n) = force ( x(2:n) ) / n / n;
-  r(n+1) = 0.0;
+  r(n+1) = ub;
 
   u = zeros ( n + 1, 1 );
 

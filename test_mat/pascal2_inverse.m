@@ -7,7 +7,7 @@ function a = pascal2_inverse ( n )
 %  Formula:
 %
 %    A(I,J) = sum ( max(I,J) <= K <= N )
-%      (-1)**(J+I) * COMB(K-1,I-1) * COMB(K-1,J-1)
+%      (-1)^(J+I) * COMB(K-1,I-1) * COMB(K-1,J-1)
 %
 %  Example:
 %
@@ -52,13 +52,15 @@ function a = pascal2_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 0.0;
       klo = max ( i, j );
       for k = klo : n
-        a(i,j) = a(i,j) + ( - 1.0 )^( i + j ) * comb(k-1,i-1) ...
-          * comb(k-1,j-1);
+        a(i,j) = a(i,j) + ( - 1.0 )^( i + j ) * r8_choose ( k - 1, i - 1 ) ...
+          * r8_choose ( k - 1, j - 1 );
       end
     end
   end

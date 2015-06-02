@@ -17,7 +17,7 @@ function [ p, l, u ] = gfpp_plu ( n, alpha )
 %
 %  Modified:
 %
-%    07 November 2007
+%    02 April 2015
 %
 %  Author:
 %
@@ -27,23 +27,24 @@ function [ p, l, u ] = gfpp_plu ( n, alpha )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Input, real ALPHA, the value to assign to all subdiagonal
-%    elements of A.  
+%    Input, real ALPHA, determines subdiagonal elements.
 %
 %    Output, real P(N,N), L(N,N), U(N,N), the P, L, U factors
 %    of the matrix.
 %
-  p(1:n,1:n) = 0.0;
+  p = zeros ( n, n );
   for i = 1 : n
     p(i,i) = 1.0;
   end
 
+  l = zeros ( n, n );
   for i = 1 : n
-    l(i,1:i-1) = - alpha;
+    l(i,1:i-1) = - abs ( alpha );
     l(i,i) = 1.0;
     l(i,i+1:n) = 0.0;
   end
 
+  u = zeros ( n, n );
   u(1:n,1:n) = 0.0;
   for i = 1 : n
     u(i,i) = 1.0;
@@ -51,7 +52,7 @@ function [ p, l, u ] = gfpp_plu ( n, alpha )
   
   u(1,n) = 1.0;
   for i = 2 : n
-    u(i,n) = 1.0 + alpha * sum ( u(1:i-1,n) );
+    u(i,n) = 1.0 + abs ( alpha ) * sum ( u(1:i-1,n) );
   end
 
   return

@@ -2,7 +2,7 @@ function subset_sum_serial_test ( )
 
 %*****************************************************************************80
 %
-%% SUBSET_SUM_SERIAL_TEST tests SUBSET_SUM_SERIAL.
+%% SUBSET_SUM_SERIAL_TEST tests the SUBSET_SUM_SERIAL library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function subset_sum_serial_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SUBSET_SUM_SERIAL_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

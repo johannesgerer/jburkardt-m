@@ -47,6 +47,8 @@ function p = perm_mat_to_vec ( n, a )
     error ( 'PERM_MAT_TO_VEC - Fatal error!' );
   end
 
+  p = zeros ( n, 1 );
+
   for i = 1 : n
     for j = 1 : n
       if ( a(i,j) == 1.0 )

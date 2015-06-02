@@ -10,7 +10,7 @@ function title = p00_title ( test )
 %
 %  Modified:
 %
-%    18 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -23,83 +23,85 @@ function title = p00_title ( test )
 %    Output, string TITLE, the title of the test problem.
 %
   if ( test == 1 )
-    title = 'Problem 1, Enright and Pryce #A1';
+    title = p01_title ( );
   elseif ( test == 2 )
-    title = 'Problem 2, Enright and Pryce #A2';
+    title = p02_title ( );
   elseif ( test == 3 )
-    title = 'Problem 3, Enright and Pryce #A3';
+    title = p03_title ( );
   elseif ( test == 4 )
-    title = 'Problem 4, Enright and Pryce #A4';
+    title = p04_title ( );
   elseif ( test == 5 )
-    title = 'Problem 5, Enright and Pryce #A5';
+    title = p05_title ( );
   elseif ( test == 6 )
-    title = 'Problem 6, Enright and Pryce #B1';
+    title = p06_title ( );
   elseif ( test == 7 )
-    title = 'Problem 7, Enright and Pryce #B2';
+    title = p07_title ( );
   elseif ( test == 8 )
-    title = 'Problem 8, Enright and Pryce #B3';
+    title = p08_title ( );
   elseif ( test == 9 )
-    title = 'Problem 9, Enright and Pryce #B4';
+    title = p09_title ( );
   elseif ( test == 10 )
-    title = 'Problem 10, Enright and Pryce #B5';
+    title = p10_title ( );
   elseif ( test == 11 )
-    title = 'Problem 11, Enright and Pryce #C1';
+    title = p11_title ( );
   elseif ( test == 12 )
-    title = 'Problem 12, Enright and Pryce #C2';
+    title = p12_title ( );
   elseif ( test == 13 )
-    title = 'Problem 13, Enright and Pryce #C3';
+    title = p13_title ( );
   elseif ( test == 14 )
-    title = 'Problem 14, Enright and Pryce #C4';
+    title = p14_title ( );
   elseif ( test == 15 )
-    title = 'Problem 15, Enright and Pryce #C5';
+    title = p15_title ( );
   elseif ( test == 16 )
-    title = 'Problem 16, Enright and Pryce #D1';
+    title = p16_title ( );
   elseif ( test == 17 )
-    title = 'Problem 17, Enright and Pryce #D2';
+    title = p17_title ( );
   elseif ( test == 18 )
-    title = 'Problem 18, Enright and Pryce #D3';
+    title = p18_title ( );
   elseif ( test == 19 )
-    title = 'Problem 19, Enright and Pryce #D4';
+    title = p19_title ( );
   elseif ( test == 20 )
-    title = 'Problem 20, Enright and Pryce #D5';
+    title = p20_title ( );
   elseif ( test == 21 )
-    title = 'Problem 21, Enright and Pryce #E1';
+    title = p21_title ( );
   elseif ( test == 22 )
-    title = 'Problem 22, Enright and Pryce #E2';
+    title = p22_title ( );
   elseif ( test == 23 )
-    title = 'Problem 23, Enright and Pryce #E3';
+    title = p23_title ( );
   elseif ( test == 24 )
-    title = 'Problem 24, Enright and Pryce #E4';
+    title = p24_title ( );
   elseif ( test == 25 )
-    title = 'Problem 25, Enright and Pryce #E5';
+    title = p25_title ( );
   elseif ( test == 26 )
-    title = 'Problem 26, Enright and Pryce #F1';
+    title = p26_title ( );
   elseif ( test == 27 )
-    title = 'Problem 27, Enright and Pryce #F2';
+    title = p27_title ( );
   elseif ( test == 28 )
-    title = 'Problem 28, Enright and Pryce #F3';
+    title = p28_title ( );
   elseif ( test == 29 )
-    title = 'Problem 29, Enright and Pryce #F4';
+    title = p29_title ( );
   elseif ( test == 30 )
-    title = 'Problem 30, Enright and Pryce #F5';
+    title = p30_title ( );
   elseif ( test == 31 )
-    title = 'Problem 31, Lotka-Volterra Predator-Prey Equations.';
+    title = p31_title ( );
   elseif ( test == 32 )
-    title = 'Problem 32, The Lorenz System';
+    title = p32_title ( );
   elseif ( test == 33 )
-    title = 'Problem 33, The Van der Pol equation';
+    title = p33_title ( );
   elseif ( test == 34 )
-    title = 'Problem 34, The Linearized Damped Pendulum';
+    title = p34_title ( );
   elseif ( test == 35 )
-    title = 'Problem 35, The Nonlinear Damped Pendulum';
+    title = p35_title ( );
   elseif ( test == 36 )
-    title = 'Problem 36, Duffing''s Equation';
+    title = p36_title ( );
   elseif ( test == 37 )
-    title = 'Problem 37, Duffing''s Equation with Damping and Forcing';
+    title = p37_title ( );
   elseif ( test == 38 )
-    title = 'Problem 38, Shampine''s Ball of Flame';
+    title = p38_title ( );
   elseif ( test == 39 )
-    title = 'Problem 39, Polking''s First Order System';
+    title = p39_title ( );
+  elseif ( test == 40 )
+    title = p40_title ( );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_TITLE - Fatal error!\n' );

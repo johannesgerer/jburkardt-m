@@ -20,16 +20,16 @@ function asa172_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA172_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Test the ASA172 routines.\n' );
+  fprintf ( 1, '  Test the ASA172 library.\n' );
 
   asa172_test01 ( );
   asa172_test02 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA172_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

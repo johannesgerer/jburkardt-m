@@ -2,7 +2,7 @@ function test_min_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_MIN_TEST is the main program for testing TEST_MIN.
+%% TEST_MIN_TEST tests the TEST_MIN library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function test_min_test ( )
 %    John Burkardt
 %
   timestamp (  );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_MIN_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +34,6 @@ function test_min_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_MIN_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

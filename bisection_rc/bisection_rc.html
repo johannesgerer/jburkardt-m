@@ -1,0 +1,239 @@
+<html>
+
+  <head>
+    <title>
+      BISECTION_RC - Nonlinear Equation Solver Using Bisection, with Reverse Communication
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BISECTION_RC <br> Nonlinear Equation Solver Using Bisection, with Reverse Communication
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BISECTION_RC</b>
+      is a MATLAB library which
+      demonstrates the simple bisection method for solving a scalar nonlinear
+      equation in a change of sign interval, using reverse communication (RC).
+    </p>
+
+    <p>
+      The routine assumes that an interval [a,b] is known, over which
+      the function f(x) is continuous, and for which f(a)
+      and f(b) are of opposite sign.  By repeatedly computing and testing
+      the midpoint, the halving change of sign interval may be reduced,
+      so that either the uncertainty interval or the magnitude of the function value
+      becomes small enough to satisfy the user as an approximation to the
+      location of a root of the function.
+    </p>
+
+    <p>
+      This routine is in part a demonstration of the idea of reverse communication.
+      Many zero finders require that the user define f(x) by writing a function
+      with a very specific set of input and output arguments, and sometimes with
+      a specific name, so that the user can call the zero finder, which in turn
+      can call the function.  This is sometimes an awkward formulation to follow.
+      Reverse communication instead allows the user's calling program to retain
+      control of the function evaluation.
+    </p>
+
+    <p>
+      To use the reverse communication zero finder, the user defines the values
+      of A and B, and sets a parameter JOB to zero to indicate that this is the
+      first call.  From then on, the zero finder repeatedly returns a value X,
+      asking the user to evaluate the function there.  Once the user has evaluated
+      FX = f(X), the user may accept this approximation to the root, or else
+      call the zero finder again, passing the just-computed value of FX so that it
+      can take another bisection step.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BISECTION_RC</b> is available in
+      <a href = "../../c_src/bisection_rc/bisection_rc.html">a C version</a> and
+      <a href = "../../cpp_src/bisection_rc/bisection_rc.html">a C++ version</a> and
+      <a href = "../../f77_src/bisection_rc/bisection_rc.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/bisection_rc/bisection_rc.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/bisection_rc/bisection_rc.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/backtrack_binary_rc/backtrack_binary_rc.html">
+      BACKTRACK_BINARY_RC</a>,
+      a MATLAB library which
+      carries out a backtrack search for a set of binary decisions, using
+      reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../m_src/bisection_integer/bisection_integer.html">
+      BISECTION_INTEGER</a>,
+      a MATLAB library which
+      seeks an integer solution to the equation F(X)=0,
+      using bisection within a user-supplied change of sign interval [A,B].
+    </p>
+
+    <p>
+      <a href = "../../m_src/brent/brent.html">
+      BRENT</a>,
+      a MATLAB library which
+      contains Richard Brent's routines for finding the zero, local minimizer,
+      or global minimizer of a scalar function of a scalar argument, without
+      the use of derivative information.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cg_rc/cg_rc.html">
+      CG_RC</a>,
+      a MATLAB library which
+      implements the conjugate gradient method for solving 
+      a positive definite sparse linear system A*x=b, 
+      using reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../m_src/sort_rc/sort_rc.html">
+      SORT_RC</a>,
+      a MATLAB library which
+      can sort a list of any kind of objects,
+      using reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_zero/test_zero.html">
+      TEST_ZERO</a>,
+      a MATLAB library which
+      implements test problems for the solution
+      of a single nonlinear equation in one variable.
+    </p>
+
+    <p>
+      <a href = "../../m_src/zero_rc/zero_rc.html">
+      ZERO_RC</a>,
+      a MATLAB library which
+      seeks solutions of a scalar nonlinear equation f(x) = 0, 
+      or a system of nonlinear equations,
+      using reverse communication (RC).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Werner Rheinboldt,<br>
+          Algorithms for finding zeros of a function,<br>
+          UMAP Journal,<br>
+          Volume 2, Number 1, 1981, pages 43-72.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Methods for Solving Systems of Nonlinear Equations,<br>
+          SIAM, 1998,<br>
+          ISBN: 089871415X,<br>
+          LC: QA214.R44.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisection_rc.m">bisection_rc.m</a>, 
+          seeks a zero of f(x) in a change of sign interval.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisection_rc_test.m">bisection_rc_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "bisection_rc_test_output.txt">bisection_rc_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "bisection_rc_test01.m">bisection_rc_test01.m</a>,
+          seeks a zero of a function which is defined as a separate MATLAB
+          function.
+        </li>
+        <li>
+          <a href = "bisection_rc_test02.m">bisection_rc_test02.m</a>,
+          seeks a zero of a function defined by a formula.
+        </li>
+        <li>
+          <a href = "bisection_rc_test03.m">bisection_rc_test03.m</a>,
+          is given the CDF function F(X) for the cardiod probability
+          function, and sees the values X for which F(X) = 0.75,
+          that is, the value X such that there is a 75 percent probability
+          that a sample value will be X or less. 
+        </li>
+        <li>
+          <a href = "bisection_rc_test04.m">bisection_rc_test04.m</a>,
+          determines how deeply a water pipe must be buried in order not
+          to freeze during a 60 day cold snap.
+        </li>
+        <li>
+          <a href = "bisection_rc_test05.m">bisection_rc_test05.m</a>,
+          solves a version of Kepler's planetary anomaly equation.
+        </li>
+      </ul>
+    </p>
+
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 January 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

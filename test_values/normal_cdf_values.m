@@ -44,7 +44,7 @@ function [ n_data, mu, sigma, x, fx ] = normal_cdf_values ( n_data )
 %
 %    Output, real MU, the mean of the distribution.
 %
-%    Output, real SIGMA, the variance of the distribution.
+%    Output, real SIGMA, the standard deviation of the distribution.
 %
 %    Output, real X, the argument of the function.
 %

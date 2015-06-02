@@ -2,11 +2,11 @@ function a = ijfact2 ( n )
 
 %*****************************************************************************80
 %
-%% IJFACT2 returns the 1/(I+J) factorial matrix.
+%% IJFACT2 returns the IJFACT2 matrix.
 %
 %  Formula:
 %
-%    A(I,J) = 1 / ( (I+J)% )
+%    A(I,J) = 1 / ( (I+J)! )
 %
 %  Example:
 %
@@ -26,6 +26,8 @@ function a = ijfact2 ( n )
 %    Because A is normal, it is diagonalizable.
 %
 %    A is a Hankel matrix: constant along anti-diagonals.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -51,6 +53,8 @@ function a = ijfact2 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   fact = 1.0;
 
   for k = 2 : 2 * n

@@ -30,16 +30,18 @@ function b = r8vm_to_r8ge ( m, n, a, b )
 %
 %    Input, integer M, N, the number of rows and columns of the matrix.
 %
-%    Input, real A(N), the R8VM matrix.
+%    Input, real A(N,1), the R8VM matrix.
 %
 %    Output, real B(M,N), the R8GE matrix.
 %
+  a = a(:);
+
   for i = 1 : m
     for j = 1 : n
       if ( i == 1 )
         b(i,j) = 1.0;
       else
-        b(i,j) = b(i-1,j) * a(j);
+        b(i,j) = b(i-1,j) * a(j,1);
       end
     end
   end

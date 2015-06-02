@@ -22,11 +22,13 @@ function lambda = bab_eigenvalues ( n, alpha, beta )
 %
 %    Input, real ALPHA, BETA, the parameters.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = i * pi / ( n + 1 );
-    lambda(i) = alpha + 2.0 * beta * cos ( angle );
+    lambda(i,1) = alpha + 2.0 * beta * cos ( angle );
   end
 
   return

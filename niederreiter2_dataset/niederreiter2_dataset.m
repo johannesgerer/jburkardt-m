@@ -46,6 +46,8 @@ function r = niederreiter2_dataset ( m, n, skip )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -81,6 +83,8 @@ function r = niederreiter2_dataset ( m, n, skip )
     fprintf ( 1, '\n' );
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '  Number of points N = %d\n', n );
@@ -110,6 +114,8 @@ function r = niederreiter2_dataset ( m, n, skip )
     fprintf ( 1, '  Numerically, 2^POWER = %d\n', 2^12 );
     fprintf ( 1, '\n' );
     skip = input ( '  Enter SKIP: ' );
+  else
+    skip = str2num ( skip );
   end
 
   fprintf ( 1, '  SKIP = %d\n', skip );

@@ -2,9 +2,11 @@ function a = cheby_van2 ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_VAN2 returns the Chebyshev Vandermonde-like matrix.
+%% CHEBY_VAN2 returns the CHEBY_VAN2 matrix.
 %
 %  Discussion:
+%
+%    CHEBY_VAN2 is the Chebyshev Vandermonde-like matrix.
 %
 %    The formula for this matrix has been slightly modified, by a scaling
 %    factor, in order to make it closer to its inverse.
@@ -51,6 +53,8 @@ function a = cheby_van2 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n == 1 )
     a(1,1) = 1.0;
     return

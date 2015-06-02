@@ -82,6 +82,18 @@ function [ s, turn_average ] = truel_simulation ( p, truel_num )
 %    Output, real TURN_AVERAGE, the average number of turns required to
 %    complete the truel.
 %
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'TRUEL_SIMULATION\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+
+  if ( nargin < 2 )
+    truel_num = input ( 'Enter the number of truels to run: ' );
+  end
+
+  if ( nargin < 1 )
+    p = input ( 'Enter player accuracies between 0 and 1, in a vector [*,*,*]: ' );
+  end
+ 
   player_num = length ( p );
 
   s = zeros(player_num,1);

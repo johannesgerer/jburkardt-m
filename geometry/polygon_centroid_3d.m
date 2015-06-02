@@ -43,28 +43,26 @@ function centroid = polygon_centroid_3d ( n, v )
 %
 %    Output, real CENTROID(3,1), the coordinates of the centroid.
 %
-  dim_num = 3;
-
   area = 0.0;
-  centroid(1:dim_num,1) = 0.0;
+  centroid(1:3,1) = 0.0;
 
   for i = 1 : n - 2
 
-    t(1:dim_num,1:3) = [ v(1:dim_num,i)'; v(1:dim_num,i+1)'; v(1:dim_num,n)' ]';
+    t(1:3,1:3) = [ v(1:3,i)'; v(1:3,i+1)'; v(1:3,n)' ]';
 
     area_triangle = triangle_area_3d ( t );
 
     area = area + area_triangle;
 
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) + area_triangle ...
-      * ( v(1:dim_num,i) + v(1:dim_num,i+1) + v(1:dim_num,n) ) / 3.0;
+    centroid(1:3,1) = centroid(1:3,1) + area_triangle ...
+      * ( v(1:3,i) + v(1:3,i+1) + v(1:3,n) ) / 3.0;
 
   end
 
   if ( area == 0.0 )
-    centroid(1:dim_num,1) = v(1:dim_num,1);
+    centroid(1:3,1) = v(1:3,1);
   else
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) / area;
+    centroid(1:3,1) = centroid(1:3,1) / area;
   end
 
   return

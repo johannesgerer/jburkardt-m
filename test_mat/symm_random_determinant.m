@@ -1,4 +1,4 @@
-function determ = symm_random_determinant ( n, x )
+function determ = symm_random_determinant ( n, d, key )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function determ = symm_random_determinant ( n, x )
 %
 %  Modified:
 %
-%    25 October 2007
+%    10 March 2015
 %
 %  Author:
 %
@@ -20,11 +20,13 @@ function determ = symm_random_determinant ( n, x )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real X(N), the desired eigenvalues for the matrix.
+%    Input, real D(N), the desired eigenvalues for the matrix.
+%
+%    Input, integer KEY, a positive integer that selects the data.
 %
 %    Output, real DETERM, the determinant.
 %
-  determ = prod ( x(1:n) );
+  determ = prod ( d(1:n) );
 
   return
 end

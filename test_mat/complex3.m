@@ -2,7 +2,7 @@ function a = complex3 ( )
 
 %*****************************************************************************80
 %
-%% COMPLEX3 returns a 3 by 3 complex matrix.
+%% COMPLEX3 returns the COMPLEX3 matrix.
 %
 %  Formula:
 %

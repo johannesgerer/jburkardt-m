@@ -25,16 +25,16 @@ function lambda = kms_eigenvalues ( alpha, n )
 %  Parameters:
 %
 %    Input, real ALPHA, the scalar that defines A.
-%    A typical value is 0.5.
+%    Eigenvalue computations require 0 <= ALPHA <= 1.
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  theta = kms_eigenvalues_theta ( alpha, n );
+  theta(1:n,1) = kms_eigenvalues_theta ( alpha, n );
 
-  lambda(1:n) = ( 1.0 + alpha ) * ( 1.0 - alpha ) ...
-    ./ ( 1.0 - 2.0 * alpha * cos ( theta(1:n) ) + alpha * alpha );
+  lambda(1:n,1) = ( 1.0 + alpha ) * ( 1.0 - alpha ) ...
+    ./ ( 1.0 - 2.0 * alpha * cos ( theta(1:n,1) ) + alpha * alpha );
 
   return
 end

@@ -35,83 +35,73 @@ function jacobi_rule ( order, alpha, beta, a, b, filename )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute a Gauss-Jacobi rule for approximating\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    Integral ( A <= x <= B ) (B-x)^alpha (x-A)^beta f(x) dx\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  of order ORDER.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The user specifies ORDER, ALPHA, BETA and FILENAME.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  ORDER is the number of points\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  ALPHA is the exponent of (B-x):\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  BETA is the exponent of (x-A);\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  A is the left endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  B is the right endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  FILENAME is used to generate 3 files:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    filename_w.txt - the weight file\n' );
   fprintf ( 1, '    filename_x.txt - the abscissa file.\n' );
   fprintf ( 1, '    filename_r.txt - the region file.\n' );
 %
 %  Get ORDER.
 %
-  if ( 1 <= nargin )
-
-  else
+  if ( nargin < 1 )
     order = input ( '  Enter the rule order ORDER:  ' );
+  elseif ( ischar ( order ) )
+    order = str2num ( order );
   end
 %
 %  Get ALPHA.
 %
-  if ( 2 <= nargin )
-
-  else
+  if ( nargin < 2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  ALPHA is the exponent of (B-x) in the integral:\n' );
     fprintf ( 1, '  Note that -1.0 < ALPHA is required.\n' );
     alpha = input ( '  Enter the value of ALPHA:  ' );
+  elseif ( ischar ( alpha ) )
+    alpha = str2num ( alpha );
   end
 %
 %  Get BETA.
 %
-  if ( 3 <= nargin )
-
-  else
+  if ( nargin < 3 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  BETA is the exponent of (x-A) in the integral:\n' );
     fprintf ( 1, '  Note that -1.0 < BETA is required.\n' );
     beta = input ( '  Enter the value of BETA:  ' );
+  elseif ( ischar ( beta ) )
+    beta = str2num ( beta );
   end
 %
 %  Get A.
 %
-  if ( 4 <= nargin )
-
-  else
+  if ( nargin < 4 )
     a = input ( '  Enter the left endpoint A:  ' );
+  elseif ( ischar ( a ) )
+    a = str2num ( a );
   end
 %
 %  Get B.
 %
-  if ( 5 <= nargin )
-
-  else
+  if ( nargin < 5 )
     b = input ( '  Enter the right endpoint B:  ' );
+  elseif ( ischar ( b ) )
+    b = str2num ( b );
   end
 %
 %  Get FILENAME.
 %
-  if ( 6 <= nargin )
-
-  else
+  if ( nargin < 6 )
     fprintf ( 1,  '\n' );
     fprintf ( 1,  '  FILENAME is the ''root name'' of the quadrature files).\n' );
-    filename = input ( '  Enter the value of OUTPUT as a quoted string:  ' );
+    filename = input ( '  Enter the value of FILENAME as a quoted string:  ' );
   end
 %
 %  Input summary.

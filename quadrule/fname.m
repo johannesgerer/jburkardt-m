@@ -10,7 +10,7 @@ function value = fname ( ifunc )
 %
 %  Modified:
 %
-%    12 October 2005
+%    08 January 2013
 %
 %  Author:
 %
@@ -27,17 +27,17 @@ function value = fname ( ifunc )
   elseif ( ifunc == 2 )
     value = '         X';
   elseif ( ifunc == 3 )
-    value = '      X**2';
+    value = '       X^2';
   elseif ( ifunc == 4 )
-    value = '      X**3';
+    value = '       X^3';
   elseif ( ifunc == 5 )
-    value = '      X**4';
+    value = '       X^4';
   elseif ( ifunc == 6 )
-    value = '      X**5';
+    value = '       X^5';
   elseif ( ifunc == 7 )
-    value = '      X**6';
+    value = '       X^6';
   elseif ( ifunc == 8 )
-    value = '      X**7';
+    value = '       X^7';
   elseif ( ifunc == 9 )
     value = '    SIN(X)';
   elseif ( ifunc == 10 )

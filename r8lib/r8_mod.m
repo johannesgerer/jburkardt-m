@@ -45,7 +45,7 @@ function value = r8_mod ( x, y )
   if ( y == 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'R8_MOD - Fatal error!\n' );
-    fprintf ( 1, '  R8_MODP ( X, Y ) called with Y = %d\n', y );
+    fprintf ( 1, '  R8_MOD ( X, Y ) called with Y = 0.\n' );
     error ( 'R8_MOD - Fatal error!' );
   end
 
@@ -54,7 +54,7 @@ function value = r8_mod ( x, y )
   if ( x < 0.0 && 0.0 < value )
     value = value - abs ( y );
   elseif ( 0.0 < x && value < 0.0 )
-    value = value+ abs ( y );
+    value = value + abs ( y );
   end
 
   return

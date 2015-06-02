@@ -10,7 +10,7 @@ function u = forward ( e, r, sigma, t1, Nx, Nt, L )
 %
 %  Author:
 %
-%    Desmond Higham
+%    Original MATLAB version by Desmond Higham
 %
 %  Reference:
 %

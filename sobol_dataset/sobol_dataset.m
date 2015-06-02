@@ -43,6 +43,8 @@ function r = sobol_dataset ( m, n, skip )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -53,6 +55,8 @@ function r = sobol_dataset ( m, n, skip )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '  Number of points N = %d\n', n );
@@ -65,6 +69,8 @@ function r = sobol_dataset ( m, n, skip )
     fprintf ( 1, '  0 is a common choice.\n' );
     fprintf ( 1, '  Another is the least power of 2 greater than or equal to N.\n' );
     skip = input ( '  Enter SKIP: ' );
+  else
+    skip = str2num ( skip );
   end
 
   fprintf ( 1, '  SKIP = %d\n', skip );

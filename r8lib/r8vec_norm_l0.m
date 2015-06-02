@@ -18,7 +18,7 @@ function value = r8vec_norm_l0 ( n, a )
 %
 %  Modified:
 %
-%    01 June 2012
+%    02 January 2015
 %
 %  Author:
 %
@@ -30,7 +30,7 @@ function value = r8vec_norm_l0 ( n, a )
 %
 %    Input, real A(N), the vector.
 %
-%    Output, integer R8VEC_NORM_L0, the value of the norm.
+%    Output, real R8VEC_NORM_L0, the value of the norm.
 %
   value = sum ( a(1:n) ~= 0.0 );
 

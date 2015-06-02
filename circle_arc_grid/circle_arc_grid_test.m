@@ -2,7 +2,7 @@ function circle_arc_grid_test ( )
 
 %*****************************************************************************80
 %
-%% CIRCLE_ARC_GRID_TEST tests CIRCLE_ARC_GRID.
+%% CIRCLE_ARC_GRID_TEST tests the CIRCLE_ARC_GRID library.
 %
 %  Licensing:
 %

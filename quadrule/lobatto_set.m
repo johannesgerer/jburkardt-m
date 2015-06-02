@@ -15,7 +15,7 @@ function [ x, w ] = lobatto_set ( n )
 %      Sum ( 1 <= I <= N ) W(I) * F ( X(I) )
 %
 %    The quadrature rule will integrate exactly all polynomials up to
-%    X**(2*N-3).
+%    X^(2*N-3).
 %
 %    The Lobatto rule is distinguished by the fact that both endpoints
 %    (-1 and 1) are always abscissas of the rule.
@@ -26,7 +26,7 @@ function [ x, w ] = lobatto_set ( n )
 %
 %  Modified:
 %
-%    12 October 2005
+%    28 May 2014
 %
 %  Author:
 %
@@ -50,7 +50,7 @@ function [ x, w ] = lobatto_set ( n )
 %  Parameters:
 %
 %    Input, integer N, the order.
-%    N must be between 2 and 20.
+%    N must be between 1 and 20.
 %
 %    Output, real X(N), the abscissas.
 %
@@ -59,7 +59,13 @@ function [ x, w ] = lobatto_set ( n )
   x = zeros ( n, 1 );
   w = zeros ( n, 1 );
 
-  if ( n == 2 )
+  if ( n == 1 )
+
+    x(1) = -1.0;
+
+    w(1) = 2.0;
+
+  elseif ( n == 2 )
 
     x(1) =  - 1.0;
     x(2) =    1.0;
@@ -558,7 +564,7 @@ function [ x, w ] = lobatto_set ( n )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'LOBATTO_SET - Fatal error!\n' );
     fprintf ( 1, '  Illegal value of N = %d\n', n );
-    fprintf ( 1, '  Legal values are between 2 and 20.\n' );
+    fprintf ( 1, '  Legal values are between 1 and 20.\n' );
     error ( 'LOBATTO_SET - Fatal error!' );
 
   end

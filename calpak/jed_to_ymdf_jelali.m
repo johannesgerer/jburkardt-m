@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_jelali ( jed )
 %
 %  Modified:
 %
-%    11 July 2012
+%    13 March 2013
 %
 %  Author:
 %
@@ -25,7 +25,7 @@ function [ y, m, d, f ] = jed_to_ymdf_jelali ( jed )
 %
   jed_epoch = epoch_to_jed_jelali ( );
 
-  j = ( floor ) ( jed - jed_epoch );
+  j = floor ( jed - jed_epoch );
   f = ( jed - jed_epoch ) - j;
 
   d = 1 + j;

@@ -28,20 +28,18 @@ function inside = polygon_contains_point_2d_2 ( n, v, p )
 %    Output, logical INSIDE, is TRUE if the point is inside
 %    the polygon or on its boundary.
 %
-  dim_num = 2;
-
   inside = 0;
 %
 %  A point is inside a convex polygon if and only if it is inside
 %  one of the triangles formed by X(1),Y(1) and any two consecutive
 %  points on the polygon's circumference.
 %
-  t(1:dim_num,1) = v(1:dim_num,1);
+  t(1:2,1) = v(1:2,1);
 
-  for i = 2 : n-1
+  for i = 2 : n - 1
 
-    t(1:dim_num,2) = v(1:dim_num,i);
-    t(1:dim_num,3) = v(1:dim_num,i+1);
+    t(1:2,2) = v(1:2,i);
+    t(1:2,3) = v(1:2,i+1);
 
     inside = triangle_contains_point_2d_1 ( t, p );
 

@@ -24,6 +24,7 @@ function determ = circulant2_determinant ( n )
 %
   w = c8vec_unity ( n );
 
+  lambda = zeros ( n, 1 );
   lambda(1:n) = n;
   for i = n-1 : -1 : 1
     lambda(1:n) = lambda(1:n) .* w(1:n) + i;

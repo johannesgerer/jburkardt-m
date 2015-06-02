@@ -10,7 +10,7 @@ function value = year_is_leap_ethiopian ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    27 March 2013
 %
 %  Author:
 %
@@ -30,14 +30,14 @@ function value = year_is_leap_ethiopian ( y )
 %    FALSE otherwise.
 %
   if ( y <= 0 )
-    year_is_leap_ethiopian = 0;
+    value = 0;
     return
   end
 
   if ( mod ( y, 4 ) == 3 )
-    year_is_leap_ethiopian = 1;
+    value = 1;
   else
-    year_is_leap_ethiopian = 0;
+    value = 0;
   end
 
   return

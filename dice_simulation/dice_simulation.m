@@ -31,9 +31,7 @@ function dice_simulation ( throw_num, die_num )
 %
 %    Input, integer DIE_NUM, the number of dice.
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DICE_SIMULATION:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -44,6 +42,8 @@ function dice_simulation ( throw_num, die_num )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     throw_num = input ( 'Enter number of throws: ' );
+  elseif ( ischar ( throw_num ) )
+    throw_num = str2num ( throw_num );
   end
 %
 %  Get DIE_NUM.
@@ -51,6 +51,8 @@ function dice_simulation ( throw_num, die_num )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     die_num = input ( 'Enter number of dice: ' );
+  elseif ( ischar ( die_num ) )
+    die_num = str2num ( die_num );
   end
 %
 %  Throw all the dice, all the times.
@@ -93,7 +95,8 @@ function dice_simulation ( throw_num, die_num )
 
   xlabel ( 'Score' )
   ylabel ( 'Estimated Probability' )
-  title_string = sprintf ( 'Probability estimates for %d throws of %d dice', throw_num, die_num );
+  title_string = sprintf ( 'Probability estimates for %d throws of %d dice', ...
+    throw_num, die_num );
   title ( title_string );
 %
 %  Statistics.
@@ -113,7 +116,6 @@ function dice_simulation ( throw_num, die_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DICE_SIMULATION:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

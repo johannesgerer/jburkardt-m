@@ -23,9 +23,9 @@
     <p>
       The 1D diffusion equation has the form
       <pre>
-        - d/dx ( A(X) d/dx U(X) ) = F(X).
+        - d/dx ( DC(X) d/dx U(X) ) = F(X).
       </pre>
-      where A(X) is a function called the <i>diffusivity</i> and F(X) is
+      where DC(X) is a function called the <i>diffusivity</i> and F(X) is
       called the <i>source term</i> or <i>forcing term</i>.
     </p>
 
@@ -33,14 +33,14 @@
       In the 1D stochastic version of the problem, the diffusivity function
       includes the influence of stochastic parameters:
       <pre>
-        - d/dx ( A(X;OMEGA) d/dx U(X;OMEGA) ) = F(X).
+        - d/dx ( DC(X;OMEGA) d/dx U(X;OMEGA) ) = F(X).
       </pre>
     </p>
 
     <p>
       The 2D diffusion equation has the form
       <pre>
-        - Del ( A(X,Y) Del U(X,Y) ) = F(X,Y).
+        - Del ( DC(X,Y) Del U(X,Y) ) = F(X,Y).
       </pre>
     </p>
 
@@ -48,13 +48,8 @@
       In the 2D stochastic version of the problem, the diffusivity function
       includes the influence of stochastic parameters:
       <pre>
-        - Del ( A(X,Y;OMEGA) Del U(X,Y;OMEGA) ) = F(X,Y).
+        - Del ( DC(X,Y;OMEGA) Del U(X,Y;OMEGA) ) = F(X,Y).
       </pre>
-    </p>
-
-    <p>
-      The present codes are currently just sketches or untested functions.
-      More work and documentation is needed.
     </p>
 
     <h3 align = "center">
@@ -65,6 +60,19 @@
       The computer code and data files described and made available on this web page 
       are distributed under
       <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>STOCHASTIC_DIFFUSION</b> is available in
+      <a href = "../../c_src/stochastic_diffusion/stochastic_diffusion.html">a C version</a> and
+      <a href = "../../cpp_src/stochastic_diffusion/stochastic_diffusion.html">a C++ version</a> and
+      <a href = "../../f77_src/stochastic_diffusion/stochastic_diffusion.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/stochastic_diffusion/stochastic_diffusion.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/stochastic_diffusion/stochastic_diffusion.html">a MATLAB version</a>.
     </p>
 
     <h3 align = "center">
@@ -85,6 +93,22 @@
       a MATLAB library which
       generates samples of noise obeying a 1/f^alpha power law,
       by Miroslav Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/correlation/correlation.html">
+      CORRELATION</a>,
+      a MATLAB library which
+      contains examples of statistical correlation functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ornstein_uhlenbeck/ornstein_uhlenbeck.html">
+      ORNSTEIN_UHLENBECK</a>,
+      a MATLAB library which 
+      approximates solutions of the Ornstein-Uhlenbeck 
+      stochastic differential equation (SDE) using the Euler method and
+      the Euler-Maruyama method.
     </p>
 
     <p>
@@ -181,37 +205,50 @@
           <a href = "diffusivity_1d_xk.m">diffusivity_1d_xk.m</a>,
           a 1D stochastic diffusivity function from Xiu and Karniadakis.
         </li>
-      </ul>
-    </p>
-
-    <hr>
-
-    <p>
-      The BNT example is used in a rectangle [-1.5,0]x[-0.4,0.8], with
-      zero source term, and somewhat complicated boundary conditions:
-      <ul>
-
-        <li>
-          du/dn = 0 for ( -1.5 <= x <= -1.0 ) and y = 0.8.
-        </li>
-        <li>
-          u = 0 for -1.0 <= x <= -0.5 and y = 0.8.
-        </li>
-        <li>
-          du/dn = 0 for ( -0.5 <= x <= 0.0 ) and y = 0.8.
-        </li>
-        <li>
-          du/dn = 0 for x = -1.5 or for x = 0.
-        </li>
-        <li>
-          - a * du/dn = 1 for -1.5 <= x <= 0, y = -0.4.
-        </li>
-      </ul>
-      The source files include:
-      <ul>
         <li>
           <a href = "diffusivity_2d_bnt.m">diffusivity_2d_bnt.m</a>,
           a 2D stochastic diffusivity function from Babuska, Nobile, and Tempone.
+        </li>
+        <li>
+          <a href = "diffusivity_2d_elman.m">diffusivity_2d_elman.m</a>,
+          a 2D stochastic diffusivity function from Elman.
+        </li>
+        <li>
+          <a href = "diffusivity_2d_ntw.m">diffusivity_2d_ntw.m</a>,
+          a 2D stochastic diffusivity function from Nobile, Tempone, and Webster.
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>,
+          returns a vector of normally distributed values.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a vector of uniformly distributed values.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          returns the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "stochastic_diffusion_test.m">stochastic_diffusion_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "stochastic_diffusion_test_output.txt">stochastic_diffusion_test_output.txt</a>,
+          the output file.
         </li>
         <li>
           <a href = "bnt_contour.m">bnt_contour.m</a>,
@@ -219,38 +256,16 @@
           a uniform PDF, the second using a Gaussian (normal) PDF.
         </li>
         <li>
-          <a href = "bnt_contour_uniform.png">bnt_contour_uniform.png</a>,
-          the contour plot for a diffusivity using a uniform PDF.
+          <a href = "bnt_contour.png">bnt_contour.png</a>,
+          the contour plot for a diffusivity as a function of X and Y.
         </li>
         <li>
-          <a href = "bnt_contour_gaussian.png">bnt_contour_gaussian.png</a>,
-          the contour plot for a diffusivity using a Gaussian PDF.
+          <a href = "elman_contour.m">elman_contour.m</a>,
+          a function which plots a realization of the diffusivity.
         </li>
-      </ul>
-    </p>
-
-    <hr>
-
-    <p>
-      <ul>
         <li>
-          <a href = "diffusivity_2d_elman.m">diffusivity_2d_elman.m</a>,
-          a 2D stochastic diffusivity function from Elman.
-        </li>
-      </ul>
-    </p>
-
-    <hr>
-
-    <p>
-      The NTW example is formally 2D but the diffusivity depends only on X.
-      The full problem is the diffusion equation in a square [0,1]x[0,1] 
-      with zero boundary conditions and a deterministic right hand side
-      f(x,y)=cos(x)*sin(y).
-      <ul>
-        <li>
-          <a href = "diffusivity_2d_ntw.m">diffusivity_2d_ntw.m</a>,
-          a 2D stochastic diffusivity function from Nobile, Tempone, and Webster.
+          <a href = "elman_contour.png">elman_contour.png</a>,
+          the contour plot for a diffusivity as a function of X and Y.
         </li>
         <li>
           <a href = "ntw_contour.m">ntw_contour.m</a>,
@@ -258,12 +273,18 @@
         </li>
         <li>
           <a href = "ntw_contour.png">ntw_contour.png</a>,
-          the contour plot for a diffusivity.
+          the contour plot for a diffusivity as a function of X and Y.
+        </li>
+        <li>
+          <a href = "xk_contour.m">xk_contour.m</a>,
+          a function which plots a realization of the diffusivity.
+        </li>
+        <li>
+          <a href = "xk_contour.png">xk_contour.png</a>,
+          a plot of the diffusivity as a function of X.
         </li>
       </ul>
     </p>
-
-    <hr>
 
     <p>
       You can go up one level to <a href = "../m_src.html">
@@ -273,7 +294,7 @@
     <hr>
 
     <i>
-      Last modified on 06 January 2010.
+      Last modified on 23 July 2013.
     </i>
 
     <!-- John Burkardt -->

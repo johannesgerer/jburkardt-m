@@ -2,7 +2,7 @@ function quadrule_test085 ( )
 
 %*****************************************************************************80
 %
-%% TEST085 tests HERMITE_EK_COMPUTE against HERMITE_INTEGRAL.
+%% QUADRULE_TEST085 tests HERMITE_EK_COMPUTE against HERMITE_INTEGRAL.
 %
 %  Licensing:
 %
@@ -19,7 +19,7 @@ function quadrule_test085 ( )
   n_max = 10;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST085\n' );
+  fprintf ( 1, 'QUADRULE_TEST085\n' );
   fprintf ( 1, '  HERMITE_EK_COMPUTE computes a Gauss-Hermite rule\n' );
   fprintf ( 1, '  which is appropriate for integrands of the form\n' );
   fprintf ( 1, '    f(x) * exp(-x*x) from -oo to +oo.\n' );

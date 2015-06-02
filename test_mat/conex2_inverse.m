@@ -23,6 +23,8 @@ function a = conex2_inverse ( alpha )
 %
 %    Output, real A(3,3), the matrix.
 %
+  a = zeros ( 3, 3 );
+
   if ( alpha == 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'CONEX2_INVERSE - Fatal error!\n' );

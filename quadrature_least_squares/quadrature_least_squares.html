@@ -1,0 +1,235 @@
+<html>
+
+  <head>
+    <title>
+      QUADRATURE_LEAST_SQUARES - Least Squares Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      QUADRATURE_LEAST_SQUARES <br> Least Squares Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>QUADRATURE_LEAST_SQUARES</b>
+      is a MATLAB library which
+      computes weights for "sub-interpolatory" quadrature rules.
+    </p>
+
+    <p>
+      A large class of quadrature rules may be computed by specifying
+      a set of N abscissas, or sample points, X(1:N), determining the
+      Lagrange interpolation basis functions L(1:N), and then setting
+      a weight vector W by
+      <pre>
+        W(i) = I(L(i))
+      </pre>
+      after which, the integral of any function f(x) is estimated by
+      <pre>
+        I(f) \approx Q(f) = sum ( 1 <= i <= N ) W(i) * f(X(i))
+      </pre>
+    </p>
+
+    <p>
+      We call this an interpolatory rule because the function f(x)
+      has first been interpolated by 
+      <pre>
+        f(x) \approx sum ( 1 <= i <= N ) L(i) * f(X(i))
+      </pre>
+      after which, we apply the integration operator:
+      <pre>
+        I(f) \approx I(sum ( 1 <= i <= N )   L(i)  * f(X(i)))
+             =         sum ( 1 <= i <= N ) I(L(i)) * f(X(i))
+             =         sum ( 1 <= i <= N )   W(i)  * f(X(i)).
+      </pre>
+    </p>
+
+    <p>
+      For badly chosen sets of X, or high values of N, or unruly functions f(x),
+      interpolation may be a bad way to approximate the function.  An 
+      alternative is to seek a polynomial interpolant of degree D &lt; N-1,
+      and then integrate that.  We might call this a "sub-interpolatory" rule.
+    </p>
+
+    <p>
+      As it turns out, a natural way to seek such a rule is to write out
+      the N by D+1 Vandermonde matrix and use a least squares solver.
+      Even though the N by N Vandermonde matrix is ill-conditioned for 
+      Gauss elimination, a least squares approach can produce usable solutions
+      from the N by D+1 matrix.
+    </p>
+
+    <p>
+      The outline of this procedure was devised by Professor Mac Hyman
+      of Tulane University.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>QUADRATURE_LEAST_SQUARES</b> is available in
+      <a href = "../../c_src/quadrature_least_squares/quadrature_least_squares.html">a C version</a> and
+      <a href = "../../cpp_src/quadrature_least_squares/quadrature_least_squares.html">a C++ version</a> and
+      <a href = "../../f77_src/quadrature_least_squares/quadrature_least_squares.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/quadrature_least_squares/quadrature_least_squares.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/quadrature_least_squares/quadrature_least_squares.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/clenshaw_curtis_rule/clenshaw_curtis_rule.html">
+      CLENSHAW_CURTIS_RULE</a>,
+      a MATLAB library which
+      defines a multiple dimension Clenshaw Curtis quadrature rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadmom/quadmom.html">
+      QUADMOM</a>,
+      a MATLAB library which
+      computes a Gaussian quadrature rule for a weight function rho(x)
+      based on the Golub-Welsch procedure that only requires knowledge
+      of the moments of rho(x).
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_golub_welsch/quadrature_golub_welsch.html">
+      QUADRATURE_GOLUB_WELSCH</a>,
+      a MATLAB library which
+      computes the points and weights of a Gaussian quadrature rule using the 
+      Golub-Welsch procedure, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_weights_vandermonde/quadrature_weights_vandermonde.html">
+      QUADRATURE_WEIGHTS_VANDERMONDE</a>,
+      a MATLAB library which
+      computes the weights of a quadrature rule using the Vandermonde
+      matrix, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for approximating an integral over a 1D domain.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule_fast/quadrule_fast.html">
+      QUADRULE_FAST</a>,
+      a MATLAB library which
+      defines efficient versions of a few 1D quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int/test_int.html">
+      TEST_INT</a>,
+      a MATLAB library which
+      defines test integrands for 1D quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truncated_normal_rule/truncated_normal_rule.html">
+      TRUNCATED_NORMAL_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a normal probability density function (PDF),
+      also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde/vandermonde.html">
+      VANDERMONDE</a>,
+      a MATLAB library which carries out certain operations associated
+      with the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ncc_set.m">ncc_set.m</a>,
+          sets abscissas and weights for Newton-Cotes Closed quadrature.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>,
+          returns a pseudorandom R8VEC in [A,B].
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "weight_ls.m">weight_ls.m</a>,
+          computes the weights for a quadrature rule, based on N points,
+          and a least squares polynomial approximant of degree D.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "qls_test.m">qls_test.m</a>,
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "qls_test_output.txt">qls_test_output.txt</a>,
+          the output from a rule of all the tests;
+        </li>
+        <li>
+          <a href = "qls_test01.m">qls_test01.m</a>,
+          uses weight_ls() to compute quadrature rules that are comparable
+          to Newton-Cotes rules on [-1,+1].
+        </li>
+        <li>
+          <a href = "qls_test02.m">qls_test02.m</a>,
+          compares Monte Carlo and least squares estimates for the
+          Runge function in [-5,+5].
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 March 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

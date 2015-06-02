@@ -183,10 +183,6 @@
       </ul>
     </p>
 
-    <h3 align = "center">
-      Note:
-    </h3>
-
     <p>
       Note that, in a sense, MATLAB actually uses <i>two</i> formats 
       for sparse matrices.  The user communicates with MATLAB by specifying
@@ -197,8 +193,35 @@
     </p>
 
     <p>
-      For details about the sparse compressed column format, refer to
-      the <b>SPARSE_CC</b> web page listed below.
+      To copy the nonzero entries from a sparse matrix, creating the sparse
+      triplet structure:
+      <pre>
+        [i,j,s] = sparse ( A );
+        [m,n] = size ( A );
+      </pre>
+      Correspondingly, to create the sparse matrix from this data:
+      <pre>
+        A = sparse ( i, j, s, m, n );
+      </pre>
+    </p>
+
+    <p>
+      When using MATLAB's sparse matrix format, it is possible to refer to
+      matrix entries directly, using the usual index notation like A(i,j).
+      However, accessing specific entries in this way, whether to initialize,
+      extract, increment, or zero them, is an expensive process.  The
+      MathWorks suggests extracting the sparse triplet information, working
+      on it in the natural way, and then "repacking" it with the sparse()
+      command.
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE</b> is available in
+      <a href = "../../m_src/sparse/sparse.html">a MATLAB version</a>.
     </p>
 
     <h3 align = "center">
@@ -226,40 +249,6 @@
       solves the time dependent heat equation
       in an arbitrary triangulated 2D region,
       using MATLAB's sparse matrix storage format and solver.
-    </p>
-
-    <p>
-      <a href = "../../m_src/fem2d_navier_stokes_sparse/fem2d_navier_stokes_sparse.html">
-      FEM2D_NAVIER_STOKES_SPARSE</a>,
-      a MATLAB program which
-      solves the steady (time independent) incompressible Navier Stokes equations
-      on an arbitrary triangulated region, using the finite element method
-      and MATLAB's <b>sparse</b> facility.
-    </p>
-
-    <p>
-      <a href = "../../m_src/fem2d_poisson_sparse/fem2d_poisson_sparse.html">
-      FEM2D_POISSON_SPARSE</a>,
-      a MATLAB program which
-      solves the steady (time independent) Poisson equation on an arbitrary
-      2D triangulated region using MATLAB's sparse solver.
-    </p>
-
-    <p>
-      <a href = "../../m_src/fem2d_stokes_sparse/fem2d_stokes_sparse.html">
-      FEM2D_STOKES_SPARSE</a>,
-      a MATLAB program which
-      solves the steady (time independent) incompressible Stokes equations
-      on an arbitrary triangulated region,
-      using the finite element method and MATLAB's <b>sparse</b> facility.
-    </p>
-
-    <p>
-      <a href = "../../m_src/fem2d_stokes_sparse_big_cavity/fem2d_stokes_sparse_big_cavity.html">
-      FEM2D_STOKES_SPARSE_BIG_CAVITY</a>,
-      a MATLAB library which
-      contains the user-supplied routines necessary to run <b>fem2d_stokes_sparse</b>
-      on the "big cavity" problem.
     </p>
 
     <p>
@@ -340,6 +329,16 @@
     </p>
 
     <p>
+      <a href = "../../m_src/sparse_display/sparse_display.html">
+      SPARSE_DISPLAY</a>,
+      a MATLAB library which
+      can read information defining a matrix of numbers and display
+      the sparsity pattern or location of the nonzero elements using
+      gnuplot.  This operation is already available in the built-in 
+      MATLAB "spy" command.
+    </p>
+
+    <p>
       <a href = "../../m_src/sparse_parfor/sparse_parfor.html">
       SPARSE_PARFOR</a>,
       a MATLAB library which
@@ -385,6 +384,16 @@
       matrix.
     </p>
 
+    <p>
+      <a href = "../../m_src/wathen/wathen.html">
+      WATHEN</a>,
+      a MATLAB library which
+      compares storage schemes (full, banded, sparse triplet, sparse) and 
+      solution strategies (A\x, Linpack, conjugate gradient) for linear systems
+      involving the Wathen matrix, which can arise when solving a 
+      problem using the finite element method (FEM).
+    </p>
+
     <h3 align = "center">
       Reference:
     </h3>
@@ -404,12 +413,6 @@
           Volume 13, Number 1, 1992, pages 333-356.
         </li>
         <li>
-          Duane Hanselman, Bruce Littlefield,<br>
-          Mastering MATLAB 7,<br>
-          Pearson Prentice Hall, 2005,<br>
-          ISBN: 0-13-143018-1.
-        </li>
-        <li>
           George Lindfield, John Penny,<br>
           Numerical Methods Using MATLAB,<br>
           Second Edition,<br>
@@ -419,8 +422,7 @@
         </li>
         <li>
           The Mathworks,<br>
-          Using MATLAB, Version 6,<br>
-          The Mathworks, 2002.
+          MATLAB Mathematics.
         </li>
       </ol>
     </p>
@@ -470,6 +472,21 @@
           demonstrates that a sparse matrix can be constructed
           and incremented one element at a time;
         </li>
+        <li>
+          <a href = "sparse_test05.m">sparse_test05.m</a>, 
+          demonstrates how to set up a sparse matrix associated with the
+          Poisson equation on a regular 2D grid;
+        </li>
+        <li>
+          <a href = "sparse_test06.m">sparse_test06.m</a>, 
+          compares the speed of zeroing out many entries of a matrix
+          when it is stored in full or sparse mode;
+        </li>
+        <li>
+          <a href = "sparse_test07.m">sparse_test07.m</a>, 
+          compares the speed of zeroing out many entries of a matrix
+          using full storage, sparse storage, or sparse triplet storage.
+        </li>
       </ul>
     </p>
 
@@ -481,7 +498,7 @@
     <hr>
 
     <i>
-      Last revised on 06 July 2011.
+      Last revised on 13 April 2014.
     </i>
 
     <!-- John Burkardt -->

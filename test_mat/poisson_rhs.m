@@ -1,4 +1,4 @@
-function b = poisson_rhs ( nrow, ncol, n, rhs_num )
+function b = poisson_rhs ( nrow, ncol, rhs_num )
 
 %*****************************************************************************80
 %
@@ -57,13 +57,13 @@ function b = poisson_rhs ( nrow, ncol, n, rhs_num )
 %    Input, integer NROW, NCOL, the number of rows and columns
 %    in the grid.
 %
-%    Input, integer N, the order of the matrix.
-%
 %    Input, integer RHS_NUM, the number of right hand sides.
 %
-%    Output, real B(N,RHS_NUM), the right hand side.
+%    Output, real B(NROW*NCOL,RHS_NUM), the right hand side.
 %
-  b = zeros ( n, 1 );
+  n = nrow * ncol;
+
+  b = zeros ( n, rhs_num );
 
   k = 0;
   for j = 1 : nrow

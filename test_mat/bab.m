@@ -33,6 +33,8 @@ function a = bab ( n, alpha, beta )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -60,7 +62,7 @@ function a = bab ( n, alpha, beta )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : n
     a(i,i) = alpha;

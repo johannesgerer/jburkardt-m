@@ -2,11 +2,7 @@ function test_interp_nd_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for TEST_INTERP_ND_TEST.
-%
-%  Discussion:
-%
-%    TEST_INTERP_ND_TEST calls the TEST_INTERP_ND tests.
+%% TEST_INTERP_ND_TEST tests the TEST_INTERP_ND library.
 %
 %  Licensing:
 %
@@ -21,8 +17,8 @@ function test_interp_nd_test ( )
 %    John Burkardt
 %
   addpath ( '../r8lib' )
-  timestamp (  );
 
+  timestamp (  );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INTERP_ND_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -50,9 +46,9 @@ function test_interp_nd_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INTERP_ND_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
+
   rmpath ( '../r8lib' )
 
   return

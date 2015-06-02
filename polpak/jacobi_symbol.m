@@ -14,11 +14,11 @@ function j = jacobi_symbol ( q, p )
 %
 %      let P have the prime factorization
 %
-%        P = Product ( 1 <= I <= N ) P(I)**E(I)
+%        P = Product ( 1 <= I <= N ) P(I)^E(I)
 %
 %      Jacobi Symbol (Q/P) =
 %
-%        Product ( 1 <= I <= N ) Legendre Symbol (Q/P(I))**E(I)
+%        Product ( 1 <= I <= N ) Legendre Symbol (Q/P(I))^E(I)
 %
 %  Licensing:
 %
@@ -60,7 +60,7 @@ function j = jacobi_symbol ( q, p )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'JACOBI_SYMBOL - Fatal error!\n' );
     fprintf ( 1, '  P must be greater than 1.\n' );
-    l = -2;
+    j = -2;
     return
   end
 %

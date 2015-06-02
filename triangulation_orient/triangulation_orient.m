@@ -211,7 +211,6 @@ function triangulation_orient ( prefix )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_ORIENT\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

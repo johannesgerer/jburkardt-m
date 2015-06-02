@@ -22,7 +22,7 @@ function value = h_04 ( x )
 %
 %    Output, real VALUE, the value of the function at X.
 %
-  value = ( x + sin ( x ) ) * exp ( - x * x );
+  value = ( x + sin ( x ) ) .* exp ( - x .* x );
 
   return
 end

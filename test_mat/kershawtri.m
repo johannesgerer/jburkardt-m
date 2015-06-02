@@ -63,7 +63,7 @@ function a = kershawtri ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   nh = floor ( n / 2 );
 

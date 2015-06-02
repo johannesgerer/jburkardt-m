@@ -37,7 +37,7 @@ function [ y, m, ierror ] = ym_check_alexandrian ( y, m )
 %
 %  Check the year.
 %
-  ierror = y_check_alexandrian ( y );
+  [ y, ierror ] = y_check_alexandrian ( y );
 
   if ( ierror ~= 0 )
     return

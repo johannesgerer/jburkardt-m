@@ -1,0 +1,176 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_POISSON_SPARSE_BAFFLE - A Poisson Problem in a Region with Baffles
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_POISSON_SPARSE_BAFFLE <br> A Poisson Problem in a Region with Baffles
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_POISSON_SPARSE_BAFFLE</b> 
+      is a MATLAB library which
+      defines the geometry and other data for the "baffle" problem,
+      a rectangular region with 13 hexagonal baffles.  
+      The problem is suitable for solution by <b>fem2d_poisson_sparse</b>.
+    </p>
+
+    <p>
+      The region is a rectangle with lower left corner (0.0,1.0) and upper right corner
+      (12.0,7.0).  The mesh was created using MESH2D, with a maximum element size of 0.5.  
+      The mesh comprises 512 nodes and 874 elements.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_POISSON_SPARSE_BAFFLE</b> is available in
+      <a href = "../../cpp_src/fem2d_poisson_sparse_baffle/fem2d_poisson_sparse_baffle.html">a C++ version</a> and
+      <a href = "../../f_src/fem2d_poisson_sparse_baffle/fem2d_poisson_sparse_baffle.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_poisson_sparse_baffle/fem2d_poisson_sparse_baffle.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse/fem2d_poisson_sparse.html">
+      FEM2D_POISSON_SPARSE</a>,
+      a MATLAB program which
+      solves the steady (time independent) Poisson equation on an arbitrary
+      2D triangulated region using MATLAB's sparse solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse_ell/fem2d_poisson_sparse_ell.html">
+      FEM2D_POISSON_SPARSE_ELL</a>,
+      a MATLAB library which
+      defines the geometry of an L-shaped region, as well as boundary
+      conditions for a given Poisson problem, and is called by
+      fem2d_poisson_sparse as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse_lake/fem2d_poisson_sparse_lake.html">
+      FEM2D_POISSON_SPARSE_LAKE</a>,
+      a MATLAB library which
+      defines the geometry of a lake-shaped region, as well as boundary
+      conditions for a given Poisson problem, and is called by
+      fem2d_poisson_sparse as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes a contour plot of scattered data, 
+      or of data defined on an order 3 triangulation.  In particular, it can display
+      contour plots of scalar data output by fem2d_poisson, fem2d_poisson_sparse or fem2d_poisson_cg.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dirichlet_condition.m">dirichlet_condition.m</a>,
+          the user-supplied routine to evaluate the boundary conditions;
+        </li>
+        <li>
+          <a href = "h_coef.m">h_coef.m</a>,
+          the user-supplied routine to evaluate H(X,Y);
+        </li>
+        <li>
+          <a href = "k_coef.m">k_coef.m</a>,
+          the user-supplied routine to evaluate K(X,Y);
+        </li>
+        <li>
+          <a href = "rhs.m">rhs.m</a>,
+          the user-supplied routine the right hand side;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "baffle_output.txt">baffle_output.txt</a>,
+          the output file;
+        </li>
+        <li>
+          <a href = "baffle_nodes.txt">baffle_nodes.txt</a>,
+          a text file containing a list, for each node, of its X and Y
+          coordinates;
+        </li>
+        <li>
+          <a href = "baffle_nodes.png">baffle_nodes.png</a>,
+          a PNG image of the nodes;
+        </li>
+        <li>
+          <a href = "baffle_elements.txt">baffle_elements.txt</a>,
+          a text file containing a list, for each element, of the three
+          nodes that compose it;
+        </li>
+        <li>
+          <a href = "baffle_elements.png">baffle_elements.png</a>,
+          a PNG image of the elements;
+        </li>
+        <li>
+          <a href = "baffle_values.txt">baffle_values.txt</a>,
+          a text file containing the solution at each node;
+        </li>
+        <li>
+          <a href = "baffle_values_pwl.png">baffle_values_pwl.png</a>,
+          a PNG image of the solution, using a piecewise linear interpolant,
+          created by triangulation_order3_contour.
+        </li>
+        <li>
+          <a href = "baffle_values_smooth.png">baffle_values_smooth.png</a>,
+          a PNG image of the solution, using a smooth interpolant,
+          created by triangulation_order3_contour.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source code page</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 13 December 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -10,12 +10,15 @@ function test02 ( )
 %
 %  Modified:
 %
-%    20 May 2008
+%    14 October 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
+  u32_max_half = uint32 ( 2147483648 );
+  u32_max      = uint32 ( 4294967296 );
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST02\n' );
   fprintf ( 1, '  R4_UNI returns pseudorandom uniformly distributed\n' );
@@ -35,7 +38,12 @@ function test02 ( )
 
     for i = 1 : 10
       [ value, seed ] = r4_uni ( seed );
-      fprintf ( 1, '  %6d  %12d  %12u  %f\n', i, seed, seed, value );
+      if ( seed < u32_max_half )
+        sseed = seed;
+      else
+        sseed = - int32 ( u32_max - seed ) + 1;
+      end
+      fprintf ( 1, '  %6d  %12d  %12u  %f\n', i, sseed, seed, value );
     end
 
   end

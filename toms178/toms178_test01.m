@@ -4,6 +4,10 @@ function toms178_test01 ( )
 %
 %% TEST01 tests HOOKE with the Rosenbrock function.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    12 February 2008

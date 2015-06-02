@@ -2,7 +2,7 @@ function subset_sum_test ( )
 
 %*****************************************************************************80
 %
-%% SUBSET_SUM seeks a subset of a set that has a given sum.
+%% SUBSET_SUM_TEST tests the SUBSET_SUM library.
 %
 %  Licensing:
 %

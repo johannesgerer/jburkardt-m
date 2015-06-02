@@ -96,14 +96,12 @@ function r8ncf_print_some ( m, n, nz_num, rowcol, a, ilo, jlo, ihi, jhi, title )
       end
 
       if ( nonzero )
-        fprintf ( 1, '%4d  %12f  %12f  %12f  %12f  %12f\n', i, ctemp(1:inc) );
+        fprintf ( 1, '%4d  %12g  %12g  %12g  %12g  %12g\n', i, ctemp(1:inc) );
       end
 
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

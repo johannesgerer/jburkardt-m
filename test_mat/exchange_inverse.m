@@ -2,7 +2,7 @@ function a = exchange_inverse ( n )
 
 %*****************************************************************************80
 %
-%% EXCHANGE_INVERSE returns the inverse of the exchange matrix.
+%% EXCHANGE_INVERSE returns the inverse of the EXCHANGE matrix.
 %
 %  Licensing:
 %

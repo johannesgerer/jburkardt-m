@@ -71,13 +71,13 @@ function value = r4_atan ( y, x )
 
     theta_0 = atan2 ( abs_y, abs_x );
 
-    if ( 0.0 < x & 0.0 < y )
+    if ( 0.0 < x && 0.0 < y )
       value = theta_0;
-    elseif ( x < 0.0 & 0.0 < y )
+    elseif ( x < 0.0 && 0.0 < y )
       value = pi - theta_0;
-    elseif ( x < 0.0 & y < 0.0 )
+    elseif ( x < 0.0 && y < 0.0 )
       value = pi + theta_0;
-    elseif ( 0.0 < x & y < 0.0 )
+    elseif ( 0.0 < x && y < 0.0 )
       value = 2.0 * pi - theta_0;
     end
 

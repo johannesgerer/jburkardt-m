@@ -2,7 +2,7 @@ function determ = parter_determinant ( n )
 
 %*****************************************************************************80
 %
-%% PARTER_DETERMINANT returns the determinant of the Parter matrix.
+%% PARTER_DETERMINANT returns the determinant of the PARTER matrix.
 %
 %  Licensing:
 %

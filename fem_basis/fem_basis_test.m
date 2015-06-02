@@ -17,7 +17,6 @@ function fem_basis_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM_BASIS_TEST:\n' );
   fprintf ( 1, '  MATLAB version.\n' );

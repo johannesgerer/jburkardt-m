@@ -1,0 +1,175 @@
+bernstein_polynomial_test
+10-Jan-2014 14:18:04
+
+BERNSTEIN_POLYNOMIAL_TEST
+  MATLAB version.
+  Test the BERNSTEIN_POLYNOMIAL library.
+
+BERNSTEIN_POLYNOMIAL_TEST01:
+  BERNSTEIN_POLY_01 evaluates the Bernstein polynomials
+  based on the interval [0,1].
+  BERNSTEIN_POLY_01_VALUES returns some exact values.
+
+     N     K     X       Exact         BP01(N,K)(X)
+
+     0     0   0.2500               1               1
+     1     0   0.2500            0.75            0.75
+     1     1   0.2500            0.25            0.25
+     2     0   0.2500          0.5625          0.5625
+     2     1   0.2500           0.375           0.375
+     2     2   0.2500          0.0625          0.0625
+     3     0   0.2500        0.421875        0.421875
+     3     1   0.2500        0.421875        0.421875
+     3     2   0.2500        0.140625        0.140625
+     3     3   0.2500        0.015625        0.015625
+     4     0   0.2500        0.316406        0.316406
+     4     1   0.2500        0.421875        0.421875
+     4     2   0.2500        0.210938        0.210938
+     4     3   0.2500        0.046875        0.046875
+     4     4   0.2500      0.00390625      0.00390625
+
+BERNSTEIN_POLYNOMIAL_TEST02
+  BERNSTEIN_POLY_AB evaluates Bernstein polynomials over an
+  arbitrary interval [A,B].
+
+  Here, we demonstrate that 
+    BPAB(N,K,A1,B1)(X1) = BPAB(N,K,A2,B2)(X2)
+  provided only that
+    (X1-A1)/(B1-A1) = (X2-A2)/(B2-A2).
+
+     N     K     A        B        X       BPAB(N,K,A,B)(X)
+
+    10     0   0.0000   1.0000   0.3000       0.0282475
+    10     1   0.0000   1.0000   0.3000        0.121061
+    10     2   0.0000   1.0000   0.3000        0.233474
+    10     3   0.0000   1.0000   0.3000        0.266828
+    10     4   0.0000   1.0000   0.3000        0.200121
+    10     5   0.0000   1.0000   0.3000        0.102919
+    10     6   0.0000   1.0000   0.3000       0.0367569
+    10     7   0.0000   1.0000   0.3000      0.00900169
+    10     8   0.0000   1.0000   0.3000       0.0014467
+    10     9   0.0000   1.0000   0.3000     0.000137781
+    10    10   0.0000   1.0000   0.3000      5.9049e-06
+
+     N     K     A        B        X       BPAB(N,K,A,B)(X)
+
+    10     0   1.0000   2.0000   1.3000       0.0282475
+    10     1   1.0000   2.0000   1.3000        0.121061
+    10     2   1.0000   2.0000   1.3000        0.233474
+    10     3   1.0000   2.0000   1.3000        0.266828
+    10     4   1.0000   2.0000   1.3000        0.200121
+    10     5   1.0000   2.0000   1.3000        0.102919
+    10     6   1.0000   2.0000   1.3000       0.0367569
+    10     7   1.0000   2.0000   1.3000      0.00900169
+    10     8   1.0000   2.0000   1.3000       0.0014467
+    10     9   1.0000   2.0000   1.3000     0.000137781
+    10    10   1.0000   2.0000   1.3000      5.9049e-06
+
+     N     K     A        B        X       BPAB(N,K,A,B)(X)
+
+    10     0   2.0000   4.0000   2.6000       0.0282475
+    10     1   2.0000   4.0000   2.6000        0.121061
+    10     2   2.0000   4.0000   2.6000        0.233474
+    10     3   2.0000   4.0000   2.6000        0.266828
+    10     4   2.0000   4.0000   2.6000        0.200121
+    10     5   2.0000   4.0000   2.6000        0.102919
+    10     6   2.0000   4.0000   2.6000       0.0367569
+    10     7   2.0000   4.0000   2.6000      0.00900169
+    10     8   2.0000   4.0000   2.6000       0.0014467
+    10     9   2.0000   4.0000   2.6000     0.000137781
+    10    10   2.0000   4.0000   2.6000      5.9049e-06
+
+BERNSTEIN_POLYNOMIAL_TEST03:
+  BERNSTEIN_POLY_01 evaluates the Bernstein polynomials
+  based on the interval [0,1].
+
+  Here we test the partition of unity property.
+
+     N     X          Sum ( 0 <= K <= N ) BP01(N,K)(X)
+
+     0   0.2184               1
+     1   0.9563               1
+     2   0.8295               1
+     3   0.5617               1
+     4   0.4153               1
+     5   0.0661               1
+     6   0.2576               1
+     7   0.1100               1
+     8   0.0438               1
+     9   0.6340               1
+    10   0.0617               1
+
+BERNSTEIN_POLYNOMIAL_TEST04
+  BERNSTEIN_POLY_AB_APPROX evaluates the Bernstein polynomial
+  approximant to a function F(X).
+
+     N      Max Error
+
+     0        0.768177
+     1         0.42037
+     2        0.213285
+     3        0.145598
+     4        0.110847
+     5       0.0895699
+     6       0.0751733
+     7       0.0647756
+     8       0.0569106
+     9       0.0507517
+    10       0.0457974
+    11       0.0417253
+    12       0.0383189
+    13       0.0354271
+    14       0.0329415
+    15       0.0307819
+    16       0.0288883
+    17       0.0272142
+    18       0.0257236
+    19       0.0243879
+    20       0.0231841
+
+BERNSTEIN_POLYNOMIAL_TEST05
+  BERNSTEIN_MATRIX returns a matrix A which transforms a
+  polynomial coefficient vector from the power basis to
+  the Bernstein basis.
+  BERNSTEIN_MATRIX_INVERSE computes the inverse B.
+
+    N     ||A||            ||B||      ||I-A*B||
+
+     5         25.2784         3.19613               0
+     6         68.2129         3.58748               0
+     7         187.534         3.95127               0
+     8         522.336         4.29298               0
+     9         1468.93         4.61646               0
+    10         4161.71         4.92456               0
+    11         11860.4         5.21942     4.61511e-15
+    12         33962.7         5.50273     4.56662e-13
+    13         97640.4         5.77585     1.48328e-13
+    14          281650         6.03988     1.90921e-12
+    15          814761         6.29574     1.14347e-12
+
+TEST06
+  BERNSTEIN_POLYNOMIAL_TBERNSTEIN_MATRIX returns a matrix which
+  transforms a polynomial coefficient vector
+  from the the Bernstein basis to the power basis.
+  We can use this to get explicit values of the
+  4-th degree Bernstein polynomial coefficients as
+
+    B(4,K)(X) = C4 * x^4
+              + C3 * x^3
+              + C2 * x^2
+              + C1 * x
+              + C0 * 1
+
+     K       C4           C3            C2            C1             C0
+
+     1               1             0             0             0             0
+     2              -4             4             0             0             0
+     3               6           -12             6             0             0
+     4              -4            12           -12             4             0
+     5               1            -4             6            -4             1
+
+BERNSTEIN_POLYNOMIAL_TEST
+  Normal end of execution.
+
+10-Jan-2014 14:18:05
+diary off

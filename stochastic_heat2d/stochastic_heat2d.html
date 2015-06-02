@@ -1,0 +1,258 @@
+<html>
+
+  <head>
+    <title>
+      STOCHASTIC_HEAT2D - 2D Steady Heat Equation with Stochastic Diffusivity
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      STOCHASTIC_HEAT2D <br> 2D Steady Heat Equation with Stochastic Diffusivity
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STOCHASTIC_HEAT2D</b> 
+      is a MATLAB program which 
+      solves the steady state heat equation in a 2D
+      rectangular region with a stochastic heat diffusivity, 
+      using the finite difference method (FDM), and stochastic model
+      from Babuska, Nobile and Tempone.
+    </p>
+
+    <p>
+      The physical region, and the boundary conditions, are suggested
+      by this diagram:
+      <pre>
+                   U = 0, Y = 1.0
+             +-------------------+
+             |          ...      |
+             |         .:*:.     |
+    U = 0    |          :::      | U = 0
+    X = 0.0  |                   | X = 1.0
+             |                   |
+             +-------------------+
+                   U = 0, Y = 0.0
+      </pre>
+    </p>
+
+    <p>
+      A heat source is applied, which is concentrated at the point
+      X = 0.6, Y = 0.8, whose center is suggested by the "*" in the diagram.
+    </p>
+
+    <p>
+      The region is covered with a grid of NX by NY nodes, and an NX by NY
+      array U is used to record the temperature.  The correspondence between
+      array indices and locations in the region is suggested by giving the
+      indices of the four corners:
+      <pre>
+                  I = NY
+             +------------------+
+             |                  |
+      J = 1  |                  |  J = NX
+             |                  |
+             +------------------+
+                  I = 1
+      </pre>
+    </p>
+
+    <p>
+      The form of the steady heat equation is
+      <pre>
+        - d/dx K(x,y) du/dx - d/dy K(x,y) du/dy = F(x,y)
+      </pre>
+      where K(x,y) is the heat conductivity, and F(x,y) is a
+      heat source term.  For this program, the heat conductivity
+      function is assumed to be a function of four stochastic parameters
+      OMEGA(1) through OMEGA(4); the form of the functional dependence
+      is described in a paper by Babusk, Nobile and Tempone.
+    </p>
+
+    <p>
+      By using a simple finite difference approximation, this single equation
+      can be replaced by NX * NY linear equations in NX * NY variables; 
+      each equation is associated with one of the nodes in the mesh.  Nodes
+      long the boundary generate boundary condition equations, while interior
+      nodes generate equations that approximate the steady heat equation.
+    </p>
+
+    <p>
+      The linear system is sparse, and can easily be solved directly in MATLAB.
+    </p>
+
+    <p>
+      Choosing a particular set of values for OMEGA produces a single "realization"
+      of the temperature field.  However, an interesting question is to observe
+      the influence of the OMEGA's on the solution U.  As an example, the program
+      fixes the values of OMEGA(3) and OMEGA(4), evaluates the solution U over
+      a grid of values for OMEGA(1) and OMEGA(2), and plots the mean of the solution.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>STOCHASTIC_HEAT2D</b> is available in
+      <a href = "../../c_src/stochastic_heat2d/stochastic_heat2d.html">a C version</a> and
+      <a href = "../../cpp_src/stochastic_heat2d/stochastic_heat2d.html">a C++ version</a> and
+      <a href = "../../f77_src/stochastic_heat2d/stochastic_heat2d.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/stochastic_heat2d/stochastic_heat2d.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/stochastic_heat2d/stochastic_heat2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd2d_heat_steady/fd2d_heat_steady.html">
+      FD2D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the 2D Time Independent
+      Heat Equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_50_heat/fem_50_heat.html">
+      FEM_50_HEAT</a>,
+      a MATLAB program which
+      implements a finite element calculation specifically for the heat equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_heat_stead/fem1d_heat_stead.html">
+      FEM1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite element method to solve the 1D Time Independent
+      Heat Equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>, 
+      a MATLAB program which
+      solves the 2D time dependent heat equation on the unit square.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate/heated_plate.html">
+      HEATED_PLATE</a>,
+      a MATLAB program which 
+      solves the steady state heat equation in a 2D
+      rectangular region, and is intended as
+      a starting point for a parallel version.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Ivo Babuska, Fabio Nobile, Raul Tempone,<br>
+          A Stochastic Collocation Method for Elliptic Partial Differential Equations 
+          with Random Input Data,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 45, Number 3, 2007, pages 1005-1034.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "boundary.m">boundary.m</a>, 
+          specifies the portion of the system matrix and right hand side associated
+          with boundary nodes.  
+        </li>
+        <li>
+          <a href = "diffusivity_2d_bnt.m">diffusivity_2d_bnt.m</a>, 
+          evaluates the stochastic heat diffusivity function.
+        </li>
+        <li>
+          <a href = "interior.m">interior.m</a>, 
+          specifies the portion of the system matrix and right hand side associated
+          with interior nodes.
+        </li>
+        <li>
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>, 
+          returns a vector of normally distributed random numbers.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns a vector of uniformly distributed random numbers.
+        </li>
+        <li>
+          <a href = "stochastic_heat2d.m">stochastic_heat2d.m</a>, 
+          sets up and solves the linear system for the stochastic 2D steady heat equation.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "stochastic_heat2d_test.m">stochastic_heat2d_test.m</a>,
+          runs the test problem.  
+        </li>
+        <li>
+          <a href = "stochastic_heat2d_test_output.txt">stochastic_heat2d_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "example_solution.png">example_solution.png</a>
+          an image of the solution corresponding to an example selection of OMEGA.
+        </li>
+        <li>
+          <a href = "mean_temperature.png">mean_temperature.png</a>
+          an image of mean temperature as a function of OMEGA(1) and OMEGA(2).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 26 July 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -2,7 +2,7 @@ function linplus_test12 ( )
 
 %*****************************************************************************80
 %
-%% TEST12 tests R85_NP_FS.
+%% LINPLUS_TEST12 tests R85_NP_FS.
 %
 %  Licensing:
 %
@@ -20,9 +20,9 @@ function linplus_test12 ( )
   seed = 123456789;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST12\n' );
+  fprintf ( 1, 'LINPLUS_TEST12\n' );
   fprintf ( 1, '  R85_NP_FS factors and solves a pentadiagonal\n' );
-  fprintf ( 1, '    linear system, with no pivoting.\n' );
+  fprintf ( 1, '  linear system, with no pivoting.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Matrix order N = %d\n', n );
 %

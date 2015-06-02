@@ -18,7 +18,7 @@ function a = i4vec_sort_heap_d ( n, a )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    Albert Nijenhuis, Herbert Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -45,7 +45,9 @@ function a = i4vec_sort_heap_d ( n, a )
 %  The smallest object in the heap is in A(1).
 %  Move it to position A(N).
 %
-  [ a(1), a(n) ] = i4_swap ( a(1), a(n) );
+  t    = a(1);
+  a(1) = a(n);
+  a(n) = t;
 %
 %  Consider the diminished heap of size N1.
 %
@@ -57,7 +59,9 @@ function a = i4vec_sort_heap_d ( n, a )
 %
 %  Take the smallest object from A(1) and move it to A(N1).
 %
-    [ a(1), a(n1) ] = i4_swap ( a(1), a(n1) );
+    t     = a(1);
+    a(1)  = a(n1);
+    a(n1) = t;
 
   end
 

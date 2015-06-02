@@ -1,4 +1,4 @@
-function [ y, m, value ] = ym_check_common ( y, m )
+function [ y, m, ierror ] = ym_check_common ( y, m )
 
 %*****************************************************************************80
 %
@@ -30,16 +30,16 @@ function [ y, m, value ] = ym_check_common ( y, m )
 %
 %    Input/output, integer Y, M, the YM date.
 %
-%    Output, integer VALUE, is 0 if no error was found in the date
+%    Output, integer IERROR, is 0 if no error was found in the date
 %    and 1 otherwise.
 %
 
 %
 %  Check the year.
 %
-  value = y_check_common ( y );
+  [ y, ierror ] = y_check_common ( y );
 
-  if ( value ~= 0 )
+  if ( ierror ~= 0 )
     return
   end
 %

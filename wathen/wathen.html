@@ -1,0 +1,345 @@
+<html>
+
+  <head>
+    <title>
+      WATHEN - Assemble, Factor, Solve a Finite Element System
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      WATHEN <br> Assemble, Factor, Solve a Finite Element System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>WATHEN</b>
+      is a MATLAB library which
+      compares storage schemes (full, banded, sparse triplet, sparse) and 
+      solution strategies (A\x, Linpack, conjugate gradient (CG)) 
+      for linear systems involving the Wathen matrix, 
+      which can arise when solving a problem using the 
+      finite element method (FEM).
+    </p>
+
+    <p>
+      The Wathen matrix is a typical example of a matrix that arises during
+      finite element computations.  The parameters NX and NY specify how many
+      elements are to be set up in the X and Y directions.  The number of
+      variables N is then
+      <pre>
+        N = 3 NX NY + 2 NX + 2 NY + 1
+      </pre>
+      and the full linear system will require N * N storage for the matrix.
+    </p>
+
+    <p>
+      However, the matrix is sparse, and a banded or sparse storage scheme
+      can be used to save storage.  However, even if storage is saved, a
+      revised program may eat up too much time because MATLAB's sparse storage
+      scheme is not efficiently used by inserting nonzero elements one at a time.
+      Moreover, if banded storage is employed, the user must provide a
+      suitable fast solver.  Simply "translating" a banded solver from another
+      language will probably not provide an efficient routine.
+    </p>
+
+    <p>
+      This library looks at how the complexity of the problem grows with
+      increasing NX and NY; how the computing time increases; how the
+      various full, banded and sparse approaches perform.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>WATHEN</b> is available in
+      <a href = "../../c_src/wathen/wathen.html">a C version</a> and
+      <a href = "../../cpp_src/wathen/wathen.html">a C++ version</a> and
+      <a href = "../../f77_src/wathen/wathen.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/wathen/wathen.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/wathen/wathen.html">a MATLAB version</a> and
+      <a href = "../../py_src/wathen/wathen.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cg/cg.html">
+      CG</a>,
+      a MATLAB library which
+      implements a simple version of the conjugate gradient (CG) method
+      for solving a system of linear equations of the form A*x=b, 
+      suitable for situations in which the matrix A is positive definite
+      (only real, positive eigenvalues) and symmetric.
+    </p>
+
+    <p>
+      <a href = "../../m_src/linpack_d/linpack_d.html">
+      LINPACK_D</a>,
+      a MATLAB library which
+      factors and solves linear systems using double precision real arithmetic,
+      by Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse/sparse.html">
+      SPARSE</a>,
+      MATLAB programs which
+      illustrate the use of MATLAB's sparse matrix utilities;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices for which some of the determinant, eigenvalues, 
+      inverse, null vectors, P*L*U factorization or linear system solution 
+      are already known, including the Vandermonde and Wathen matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Nicholas Higham,<br>
+          Algorithm 694: 
+          A Collection of Test Matrices in MATLAB,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 17, Number 3, September 1991, pages 289-305.
+        </li>
+        <li>
+          Andrew Wathen,<br>
+          Realistic eigenvalue bounds for the Galerkin mass matrix,<br>
+          IMA Journal of Numerical Analysis,<br>
+          Volume 7, Number 4, October 1987, pages 449-457.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bandwidth.m">bandwidth.m</a>,
+          returns the lower, diagonal and upper bandwidths of a matrix.
+        </li>
+        <li>
+          <a href = "cg_gb.m">cg_gb.m</a>,
+          solves A*x=b using the conjugate gradient method, with A
+          a positive definite symmetric matrix using General Banded (GB) storage.
+        </li>
+        <li>
+          <a href = "cg_ge.m">cg_ge.m</a>,
+          solves A*x=b using the conjugate gradient method, with A
+          a positive definite symmetric matrix using general (GE) storage.
+        </li>
+        <li>
+          <a href = "cg_sparse.m">cg_sparse.m</a>,
+          solves A*x=b using the conjugate gradient method, with A
+          a positive definite symmetric matrix using sparse storage.
+        </li>
+        <li>
+          <a href = "cg_st.m">cg_st.m</a>,
+          solves A*x=b using the conjugate gradient method, with A
+          a positive definite symmetric matrix using sparse triplet (ST) storage.
+        </li>
+        <li>
+          <a href = "daxpy.m">daxpy.m</a>,
+          adds a multiple of one vector to another.
+        </li>
+        <li>
+          <a href = "dgbfa.m">dgbfa.m</a>,
+          factors a banded matrix.
+        </li>
+        <li>
+          <a href = "dgbsl.m">dgbsl.m</a>,
+          solves a linear system whose matrix has been factored by dgbfa.
+        </li>
+        <li>
+          <a href = "idamax.m">idamax.m</a>,
+          returns the maximum element in an integer vector.
+        </li>
+        <li>
+          <a href = "mv_gb.m">mv_gb.m</a>,
+          multiplies a banded matrix times a vector.
+        </li>
+        <li>
+          <a href = "mv_st.m">mv_st.m</a>,
+          multiplies a sparse triplet matrix times a vector.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit random R8.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns a unit random R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
+          returns a unit random R8VEC.
+        </li>
+        <li>
+          <a href = "st_to_ge.m">st_to_ge.m</a>,
+          converts a sparse triplet (ST) matrix to general (GE) format.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "wathen_bandwidth.m">wathen_bandwidth.m</a>,
+          returns the bandwidth of the Wathen matrix.
+        </li>
+        <li>
+          <a href = "wathen_davis.m">wathen_davis.m</a>,
+          sets up the Wathen matrix using sparse storage,
+          as recommended by Tim Davis.
+        </li>
+        <li>
+          <a href = "wathen_gb.m">wathen_gb.m</a>,
+          sets up the Wathen matrix using General Banded (GB) storage.
+        </li>
+        <li>
+          <a href = "wathen_ge.m">wathen_ge.m</a>,
+          sets up the Wathen matrix using general (GE) storage.
+        </li>
+        <li>
+          <a href = "wathen_order.m">wathen_order.m</a>,
+          returns the number of unknowns associated with a given Wathen matrix.
+        </li>
+        <li>
+          <a href = "wathen_sparse.m">wathen_sparse.m</a>,
+          sets up the Wathen matrix using sparse storage.
+        </li>
+        <li>
+          <a href = "wathen_st.m">wathen_st.m</a>,
+          sets up the Wathen matrix using sparse triplet storage.
+        </li>
+        <li>
+          <a href = "wathen_st_size.m">wathen_st_size.m</a>,
+          returns the size of the Wathen matrix when using sparse triplet storage.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "wathen_test.m">wathen_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "wathen_test_output.txt">wathen_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "wathen_test01.m">wathen_test01.m</a>,
+          sets up and solves a system with wathen_ge();
+        </li>
+        <li>
+          <a href = "wathen_test02.m">wathen_test02.m</a>,
+          sets up and solves a system with wathen_gb();
+        </li>
+        <li>
+          <a href = "wathen_test03.m">wathen_test03.m</a>,
+          sets up and solves a system with wathen_sparse;
+        </li>
+        <li>
+          <a href = "wathen_test04.m">wathen_test04.m</a>,
+          sets up and solves a system with wathen_davis;
+        </li>
+        <li>
+          <a href = "wathen_test05.m">wathen_test05.m</a>,
+          reports the storage needed for the various formats;
+        </li>
+        <li>
+          <a href = "wathen_test06.m">wathen_test06.m</a>,
+          times wathen_ge() for various problem sizes;
+        </li>
+        <li>
+          <a href = "wathen_test07.m">wathen_test07.m</a>,
+          times wathen_banded for various problem sizes.
+        </li>
+        <li>
+          <a href = "wathen_test08.m">wathen_test08.m</a>,
+          compares timings for GB, GE, sparse and davis on small problems;
+        </li>
+        <li>
+          <a href = "wathen_test09.m">wathen_test09.m</a>,
+          compares timings for sparse and davis on larger problems;
+        </li>
+        <li>
+          <a href = "wathen_test10.m">wathen_test10.m</a>,
+          uses wathen_ge() + cg_ge() for an iterative solution;
+        </li>
+        <li>
+          <a href = "wathen_test11.m">wathen_test11.m</a>,
+          uses WATHEN_ST + CG_ST for an iterative solution;
+        </li>
+        <li>
+          <a href = "wathen_test115.m">wathen_test115.m</a>,
+          uses WATHEN_BANDED + CG_BANDED for an iterative solution;
+        </li>
+        <li>
+          <a href = "wathen_test12.m">wathen_test12.m</a>,
+          uses WATHEN_DAVIS + CG_SPARSE for an iterative solution;
+        </li>
+        <li>
+          <a href = "wathen_test13.m">wathen_test13.m</a>,
+          uses spy() to display the sparsity of Wathen matrices 
+          of various sizes;
+        </li>
+        <li>
+          <a href = "wathen_spy.png">wathen_spy.png</a>,
+          spy plots for wathen(1,1) through wathen(6,6).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 05 June 2014
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

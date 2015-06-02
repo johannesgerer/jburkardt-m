@@ -2,7 +2,7 @@ function a = pei_inverse ( alpha, n )
 
 %*****************************************************************************80
 %
-%% PEI_INVERSE returns the inverse of the Pei matrix.
+%% PEI_INVERSE returns the inverse of the PEI matrix.
 %
 %  Formula:
 %
@@ -81,6 +81,8 @@ function a = pei_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   bottom = ( alpha + 1.0 ) * ( alpha + n - 1.0 ) - n + 1.0;
 
   if ( bottom == 0.0 )

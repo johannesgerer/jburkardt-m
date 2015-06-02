@@ -2,7 +2,7 @@ function ply_io_test ( )
 
 %*****************************************************************************80
 %
-%% PLY_IO_TEST tests PLY_IO.
+%% PLY_IO_TEST tests the PLY_IO library.
 %
 %  Licensing:
 %
@@ -30,7 +30,6 @@ function ply_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PLY_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

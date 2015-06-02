@@ -2,7 +2,7 @@ function a = routh ( n, x )
 
 %*****************************************************************************80
 %
-%% ROUTH returns the Routh matrix.
+%% ROUTH returns the ROUTH matrix.
 %
 %  Formula:
 %
@@ -36,6 +36,8 @@ function a = routh ( n, x )
 %
 %    det ( A ) = product ( X(N) * X(N-2) * X(N-4) * ... * X(N+1-2*(N/2)) )
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -56,22 +58,17 @@ function a = routh ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
-  if ( any ( x(2:n) < 0.0 ) )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'ROUTH - Fatal error!\n' );
-    fprintf ( 1, '  At least one of X(2:N) was negative.\n' );
-    error ( 'ROUTH - Fatal error!' );
-  end
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n
 
       if ( i == 1 & j == 1 )
-        a(i,j) = x(1);
+        a(i,j) = abs ( x(1) );
       elseif ( i == j+1 )
-        a(i,j) = sqrt ( x(i) );
+        a(i,j) = sqrt ( abs ( x(i) ) );
       elseif ( i == j-1 )
-        a(i,j) = - sqrt ( x(i+1) );
+        a(i,j) = - sqrt ( abs ( x(i+1) ) );
       else
         a(i,j) = 0.0;
       end

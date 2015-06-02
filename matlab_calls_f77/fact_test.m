@@ -1,10 +1,14 @@
+function fact_test ( )
+
+%*****************************************************************************80
+%
 %% FACT_TEST tests the use of the MEX file FACT.F
 %
 %  Discussion:
 %
-%    The file fact.f is a FORTRAN77 function which computes the factorial.
+%    The file fact.F is a FORTRAN77 function which computes the factorial.
 %
-%    This M file "compiles" fact.f, and then shows how it can be called.
+%    This M file "compiles" fact.F, and then shows how it can be called.
 %
 %  Licensing:
 %
@@ -12,12 +16,13 @@
 %
 %  Modified:
 %
-%    18 July 2006
+%    30 September 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FACT_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -25,15 +30,15 @@
   fprintf ( 1, '  which allows MATLAB to call FORTRAN77 functions.\n' );
   
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Get a directory listing.  The file FACT.F should,\n' );
+  fprintf ( 1, '  Get a directory listing.  The file "fact.F" should,\n' );
   fprintf ( 1, '  show up here.\n' );
 
   ls
   
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Compile the file FACT.F.\n' );
+  fprintf ( 1, '  Compile the file "fact.F".\n' );
 
-  mex fact.f
+  mex fact.F
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Get a directory listing.  A new file should show up,\n' );
@@ -59,4 +64,33 @@
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FACT_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
   
+  return
+end
+function timestamp ( )
+
+%*****************************************************************************80
+%
+%% TIMESTAMP prints the current YMDHMS date as a timestamp.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    14 February 2003
+%
+%  Author:
+%
+%    John Burkardt
+%
+  t = now;
+  c = datevec ( t );
+  s = datestr ( c, 0 );
+  fprintf ( 1, '%s\n', s );
+
+  return
+end

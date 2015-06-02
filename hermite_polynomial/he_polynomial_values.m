@@ -2,9 +2,11 @@ function [ n_data, n, x, fx ] = he_polynomial_values ( n_data )
 
 %*****************************************************************************80
 %
-%% HE_POLYNOMIAL_VALUES: values of the probabilist's Hermite polynomial.
+%% HE_POLYNOMIAL_VALUES: tabulated values of He(i,x).
 %
 %  Discussion:
+%
+%    He(i,x) represents the probabilist's Hermite polynomial.
 %
 %    In Mathematica, the function can be evaluated by:
 %

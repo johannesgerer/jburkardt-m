@@ -2,7 +2,7 @@ function sde_test ( )
 
 %*****************************************************************************80
 %
-%% SDE_TEST test the SDE library.
+%% SDE_TEST tests the SDE library.
 %
 %  Licensing:
 %

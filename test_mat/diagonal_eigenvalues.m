@@ -2,7 +2,7 @@ function lambda = diagonal_eigenvalues ( n, x )
 
 %*****************************************************************************80
 %
-%% DIAGONAL_EIGENVALUES returns the eigenvalues of a diagonal matrix.
+%% DIAGONAL_EIGENVALUES returns the eigenvalues of the DIAGONAL matrix.
 %
 %  Licensing:
 %
@@ -20,11 +20,15 @@ function lambda = diagonal_eigenvalues ( n, x )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real X(N), the diagonal entries of A.
+%    Input, real X(N,1), the diagonal entries.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n) = x(1:n);
+  lambda = zeros ( n, 1 );
+
+  x = x(:);
+
+  lambda(1:n,1) = x(1:n,1);
 
   return
 end

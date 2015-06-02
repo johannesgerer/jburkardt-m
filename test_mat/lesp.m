@@ -2,7 +2,7 @@ function a = lesp ( m, n )
 
 %*****************************************************************************80
 %
-%% LESP returns the Lesp matrix.
+%% LESP returns the LESP matrix.
 %
 %  Formula:
 %
@@ -41,7 +41,9 @@ function a = lesp ( m, n )
 %    The matrix is similar to the symmetric tridiagonal matrix with
 %    the same diagonal entries and with off-diagonal entries 1,
 %    via a similarity transformation using the diagonal matrix
-%    D = diagonal ( 1%, 2%, ..., N% ).
+%    D = diagonal ( 1!, 2!, ..., N! ).
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -77,6 +79,8 @@ function a = lesp ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

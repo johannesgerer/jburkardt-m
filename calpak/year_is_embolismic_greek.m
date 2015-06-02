@@ -24,7 +24,7 @@ function value = year_is_embolismic_greek ( y )
 %
 %  Parameters:
 %
-%    Input, integer ( kind = 4 ) Y, the year to be checked.
+%    Input, integer Y, the year to be checked.
 %
 %    Output, logical VALUE, TRUE if the year was embolismic.
 %

@@ -26,7 +26,7 @@ function obj_display ( input_file_name )
   fprintf ( 1, 'OBJ_DISPLAY\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Reads an object in an ASCII OBJ file.\n' );
+  fprintf ( 1, '  Read a 3D surface stored an ASCII OBJ file.\n' );
   fprintf ( 1, '  Display it as a MATLAB shape.\n' );
 %
 %  If at least one command line argument, it's the input file name.

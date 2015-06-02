@@ -2,7 +2,7 @@ function stroud_test ( )
 
 %*****************************************************************************80
 %
-%% STROUD_TEST tests STROUD.
+%% STROUD_TEST tests the STROUD library.
 %
 %  Licensing:
 %
@@ -99,7 +99,6 @@ function stroud_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STROUD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

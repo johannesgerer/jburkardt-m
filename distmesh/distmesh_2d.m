@@ -138,11 +138,12 @@ function [ p, t ] = distmesh_2d ( fd, fh, h0, box, iteration_max, pfix, ...
 
   while ( iteration < iteration_max )
       
-  iteration = iteration + 1;
+    iteration = iteration + 1;
 
-  if ( mod ( iteration, 10 ) == 0 )
-    fprintf ( 1, '  %d iterations, %d triangulations\n', iteration, triangulation_count );
-  end
+    if ( mod ( iteration, 10 ) == 0 )
+      fprintf ( 1, '  %d iterations, %d triangulations\n', ...
+        iteration, triangulation_count );
+    end
 %
 %  3. Retriangulation by the Delaunay algorithm.
 %

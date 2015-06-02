@@ -38,12 +38,16 @@ function combination_lock ( m, n, c )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  The program is choosing the value of M.\n' );
     m = 3;
+  else
+    m = str2num ( m );
   end
 
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  The program is choosing the value of N.\n' );
     n = 10;
+  else
+    n = str2num ( n );
   end
 
   if ( nargin < 3 )

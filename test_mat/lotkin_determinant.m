@@ -2,7 +2,7 @@ function determ = lotkin_determinant ( n )
 
 %*****************************************************************************80
 %
-%% LOTKIN_DETERMINANT returns the determinant of the Lotkin matrix.
+%% LOTKIN_DETERMINANT returns the determinant of the LOTKIN matrix.
 %
 %  Licensing:
 %
@@ -25,7 +25,7 @@ function determ = lotkin_determinant ( n )
   delta = 1.0;
 
   for i = 2 : n
-    delta = - comb ( 2 * i - 2, i - 2 ) * comb ( 2 * i - 2, i - 1 ) ...
+    delta = - r8_choose ( 2 * i - 2, i - 2 ) * r8_choose ( 2 * i - 2, i - 1 ) ...
       * ( 2 * i - 1 ) * delta;
   end
 

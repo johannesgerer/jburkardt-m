@@ -2,7 +2,7 @@ function threed_to_vtk_test ( )
 
 %*****************************************************************************80
 %
-%% THREED_TO_VTK_TEST tests THREED_TO_VTK.
+%% THREED_TO_VTK_TEST tests the THREED_TO_VTK library.
 %
 %  Discussion:
 %
@@ -48,7 +48,6 @@ function threed_to_vtk_test ( )
   fprintf ( '\n' );
   fprintf ( 1, 'THREED_TO_VTK_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( '\n' );
   timestamp ( );
 

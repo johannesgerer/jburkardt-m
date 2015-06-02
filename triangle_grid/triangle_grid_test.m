@@ -2,7 +2,7 @@ function triangle_grid_test ( )
 
 %*****************************************************************************80
 %
-%% TRIANGLE_GRID_TEST tests TRIANGLE_GRID.
+%% TRIANGLE_GRID_TEST tests the TRIANGLE_GRID library.
 %
 %  Licensing:
 %
@@ -23,6 +23,7 @@ function triangle_grid_test ( )
   fprintf ( 1, '  Test the TRIANGLE_GRID library.\n' );
 
   triangle_grid_test01 ( );
+  triangle_grid_test02 ( );
 %
 %  Terminate.
 %

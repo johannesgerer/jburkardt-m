@@ -2,7 +2,7 @@ function lambda = pei_eigenvalues ( alpha, n )
 
 %*****************************************************************************80
 %
-%% PEI_EIGENVALUES returns the eigenvalues of the Pei matrix.
+%% PEI_EIGENVALUES returns the eigenvalues of the PEI matrix.
 %
 %  Licensing:
 %
@@ -23,10 +23,12 @@ function lambda = pei_eigenvalues ( alpha, n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n-1) = alpha;
-  lambda(n) = alpha + n;
+  lambda = zeros ( n, 1 );
+
+  lambda(1:n-1,1) = alpha;
+  lambda(n,1) = alpha + n;
 
   return
 end

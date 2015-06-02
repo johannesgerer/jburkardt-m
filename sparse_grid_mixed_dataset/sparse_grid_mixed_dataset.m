@@ -30,7 +30,7 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
 %
 %  Modified:
 %
-%    25 December 2009
+%    21 April 2013
 %
 %  Author:
 %
@@ -44,8 +44,8 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
 %    SIAM Journal on Numerical Analysis,
 %    Volume 46, Number 5, 2008, pages 2309-2345.
 %
-  addpath ( '../sparse_grid_mixed' );
-  addpath ( '../sandia_rules' );
+  addpath ( '../sparse_grid_mixed' )
+  addpath ( '../sandia_rules' )
 
   timestamp ( );
   fprintf ( 1, '\n' );
@@ -64,27 +64,32 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
   fprintf ( 1, '    LEVEL_MAX, the "level" of the sparse grid.\n' );
   fprintf ( 1, '    (typically in the range of 0, 1, 2, 3, ...\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '   Then the user must define 1D quadrature rules to be used.\n' );
-  fprintf ( 1, '   Each rule is used for at least the "next" dimension, but can be\n' );
-  fprintf ( 1, '   used for several or all the remaining consecutive dimensions.\n' );
+  fprintf ( 1, '   Then the user defines 1D quadrature rules to be used.\n' );
+  fprintf ( 1, ...
+    '   Each rule is used for at least the "next" dimension, but can be\n' );
+  fprintf ( 1, '   used for several or all remaining consecutive dimensions.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Rule definition requires:\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  * Rule identifier:\n' );
   fprintf ( 1, '    CC, F2, GP, GL, GH, GGH, LG, GLG, GJ, GW, CCS, F2S, GPS.\n' );
-  fprintf ( 1, '  * Repetition factor (consecutive dimensions with same rule):\n' );
+  fprintf ( 1, ...
+    '  * Repetition factor (consecutive dimensions with same rule):\n' );
   fprintf ( 1, '  * ALPHA, (only for GGH, GLG, GJ rules)\n' );
   fprintf ( 1, '  * BETA, (only for GJ rule.)\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Output from the program includes:\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '    * Files that define the alphas, betas, ranges, weights, abscissas.\n' );
+  fprintf ( 1, ...
+    '    * Files defining alphas, betas, ranges, weights, abscissas.\n' );
 %
 %  Get the spatial dimension.
 %
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
-    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater)' );
+    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater): ' );
+  elseif ( ischar ( dim_num ) )
+    dim_num = str2num ( dim_num );
   end
 
   fprintf ( 1, '\n' );
@@ -94,7 +99,9 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
 %
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
-    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater)' );
+    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater): ' );
+  elseif ( ischar ( level_max ) )
+    level_max = str2num ( level_max );
   end
 
   fprintf ( 1, '\n' );
@@ -112,14 +119,19 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
 
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Rule identifiers include:\n' );
-    fprintf ( 1, '  ''CC'', ''F2'', ''GP'', ''GL'', ''GH'', ''GGH'', ''LG'', ''GLG'', ''GJ'', ''GW'', ''CCS'', ''F2S'', ''GPS''\n' );
-    prompt = sprintf ( '  Enter the rule identifier for dimension %d:  ', dim_index + 1 );
+    fprintf ( 1, '  ''CC'', ''F2'', ''GP'', ''GL'', ''GH'', ''GGH'' ,'  );
+    fprintf ( 1, '  ''LG'', ''GLG'', ''GJ'', ''GW'', ''CCS'', ''F2S'' ,' );
+    fprintf ( 1, '  ''GPS''\n' );
+    fprintf ( 1, '  Use QUOTES around the rule identifier.\n' );
+    prompt = sprintf ( ...
+      '  Enter the rule identifier for dimension %d:  ', dim_index + 1 );
     rule_string = input ( prompt );
 
     rule_1d = rule_string_to_index ( rule_string );
 
     fprintf ( 1, '\n' );
-    dim_inc = input ( '  How many consecutive dimensions will this same rule be used?  ' );
+    dim_inc = input ( ...
+      '  How many consecutive dimensions will this same rule be used?  ' );
 
     if ( dim_num < dim_index + dim_inc )
       fprintf ( 1, '\n' );
@@ -151,7 +163,8 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
 %  Get the filename.
 %
   fprintf ( 1, '\n' );
-  file_name = input ( '  Enter an identifier to use for the filenames (in QUOTES):  ' );
+  file_name = input ( ...
+    '  Enter an identifier to use for the filenames (in QUOTES):  ' );
 %
 %  Create the dataset.
 %
@@ -165,12 +178,13 @@ function sparse_grid_mixed_dataset ( dim_num, level_max )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_MIXED_DATASET:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
-
-  rmpath ( '../sparse_grid_mixed' );
-  rmpath ( '../sandia_rules' );
+%
+%  Remove libraries from the path.
+%
+  rmpath ( '../sparse_grid_mixed' )
+  rmpath ( '../sandia_rules' )
 
   return
 end
@@ -387,7 +401,8 @@ function sparse_grid_mixed_dataset_handle ( dim_num, level_max, rule, alpha, ...
 %    13, "GPS", Gauss Patterson Slow, Closed Fully Nested rule.
 %
 %    Input, real ALPHA(DIM_NUM), BETA(DIM_NUM), parameters used for
-%    Generalized Gauss Hermite, Generalized Gauss Laguerre, and Gauss Jacobi rules.
+%    Generalized Gauss Hermite, Generalized Gauss Laguerre, and 
+%    Gauss Jacobi rules.
 %
 %    Input, real TOL, the tolerance for point equality.
 %
@@ -399,7 +414,8 @@ function sparse_grid_mixed_dataset_handle ( dim_num, level_max, rule, alpha, ...
 %
   point_total_num = sparse_grid_mixed_size_total ( dim_num, level_max, rule );
 
-  point_num = sparse_grid_mixed_size ( dim_num, level_max, rule, alpha, beta, tol );
+  point_num = sparse_grid_mixed_size ( dim_num, level_max, rule, alpha, ...
+    beta, tol );
 
   sparse_unique_index = sparse_grid_mixed_unique_index ( ...
     dim_num, level_max, rule, alpha, beta, tol, point_num, point_total_num );

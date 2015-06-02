@@ -9,6 +9,10 @@ function a = daub4 ( n )
 %    The DAUB4 matrix is the Daubechies wavelet transformation matrix
 %    with 4 coefficients.
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.

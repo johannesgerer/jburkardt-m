@@ -35,6 +35,8 @@ function a = line_loop_adj ( n )
 %    The row and column sums are all 3, except for the first and last
 %    rows and columns which have a sum of 2.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -53,6 +55,8 @@ function a = line_loop_adj ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( j == i - 1 )

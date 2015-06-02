@@ -2,7 +2,7 @@ function a = fibonacci2_inverse ( n )
 
 %*****************************************************************************80
 %
-%% FIBONACCI2_INVERSE returns the inverse of the Fibonacci2 matrix.
+%% FIBONACCI2_INVERSE returns the inverse of the FIBONACCI2 matrix.
 %
 %  Licensing:
 %
@@ -22,6 +22,8 @@ function a = fibonacci2_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n == 1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'FIBONACCI2_INVERSE - Fatal error!\n' );

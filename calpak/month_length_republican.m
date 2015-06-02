@@ -34,7 +34,7 @@ function days = month_length_republican ( y, m )
 %
 %  Check the input.
 %
-  [ y2, m2, ierror ] = ym_check_republican ( y2, m2, ierror );
+  [ y2, m2, ierror ] = ym_check_republican ( y2, m2 );
 
   if ( ierror ~= 0 )
     days = 0;

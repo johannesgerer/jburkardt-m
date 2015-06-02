@@ -2,15 +2,15 @@ function jed = now_to_jed ( )
 
 %*****************************************************************************80
 %
-%% NOW_TO_JED expresses the current date as JED.
+%% NOW_TO_JED expresses the current date as a JED.
 %
 %  Licensing:
 %
-%    This code is distributed under the GNU LGPL license. 
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    09 June 2012
+%    18 April 2013
 %
 %  Author:
 %
@@ -18,7 +18,7 @@ function jed = now_to_jed ( )
 %
 %  Parameters:
 %
-%    Output, real JED, the Julian Ephemeris Date.
+%    Output, real JED, the JED for the current date.
 %
   c = clock ( );
 
@@ -29,9 +29,7 @@ function jed = now_to_jed ( )
   n = c(5);
   s = c(6);
 
-  f = ( h + ( n + s / 60.0D+00 ) / 60.00 ) / 24.00;
-
-  jed = ymdf_to_jed_common ( y, m, d, f );
+  jed = ymdhms_to_jed_common ( y, m, d, h, n, s );
 
   return
 end

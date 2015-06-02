@@ -2,7 +2,7 @@ function wavelet_test ( )
 
 %*****************************************************************************80
 %
-%% WAVELET_TEST tests WAVELET.
+%% WAVELET_TEST tests the WAVELET library.
 %
 %  Licensing:
 %
@@ -41,7 +41,6 @@ function wavelet_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WAVELET_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

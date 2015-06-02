@@ -2,7 +2,7 @@ function a = milnes ( m, n, x )
 
 %*****************************************************************************80
 %
-%% MILNES returns the Milnes matrix.
+%% MILNES returns the MILNES matrix.
 %
 %  Formula:
 %
@@ -42,6 +42,8 @@ function a = milnes ( m, n, x )
 %    det ( A ) = ( 1 - X(1) ) * ( 1 - X(2) ) * ... * ( 1 - X(N-1) ).
 %
 %    A is singular if and only if X(I) = 1 for any I.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

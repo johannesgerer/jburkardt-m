@@ -115,8 +115,8 @@ function [ a, b, arg, status ] = fmin_rc ( a, b, status, value )
 
     c = 0.5 * ( 3.0 - sqrt ( 5.0 ) );
 
-    epsi = sqrt ( r8_epsilon ( ) );
-    tol = r8_epsilon ( );
+    epsi = sqrt ( eps );
+    tol = eps;
 
     v = a + c * ( b - a );
     w = v;

@@ -188,7 +188,9 @@ function int_exactness_chebyshev1 ( quad_filename, degree_max )
     fprintf ( 1, '  %24.16f   %2d\n', quad_error, degree );
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INT_EXACTNESS_CHEBYSHEV1:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

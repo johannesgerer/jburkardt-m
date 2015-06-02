@@ -69,6 +69,8 @@ function [ r, seed ] = r8_uniform_01 ( seed )
 %    Output, integer SEED, the updated seed.  This would
 %    normally be used as the input seed on the next call.
 %
+  i4_huge = 2147483647;
+
   if ( seed == 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'R8_UNIFORM_01 - Fatal error!\n' );
@@ -78,10 +80,10 @@ function [ r, seed ] = r8_uniform_01 ( seed )
 
   seed = floor ( seed );
 
-  seed = mod ( seed, 2147483647 );
+  seed = mod ( seed, i4_huge );
 
   if ( seed < 0 ) 
-    seed = seed + 2147483647;
+    seed = seed + i4_huge;
   end 
 
   k = floor ( seed / 127773 );
@@ -89,7 +91,7 @@ function [ r, seed ] = r8_uniform_01 ( seed )
   seed = 16807 * ( seed - k * 127773 ) - k * 2836;
 
   if ( seed < 0 )
-    seed = seed + 2147483647;
+    seed = seed + i4_huge;
   end
 
   r = seed * 4.656612875E-10;

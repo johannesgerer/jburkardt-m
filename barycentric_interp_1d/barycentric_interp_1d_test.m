@@ -2,7 +2,7 @@ function barycentric_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% BARYCENTRIC_INTERP_1D_TEST tests BARYCENTRIC_INTERP_1D.
+%% BARYCENTRIC_INTERP_1D_TEST tests the BARYCENTRIC_INTERP_1D library.
 %
 %  Licensing:
 %

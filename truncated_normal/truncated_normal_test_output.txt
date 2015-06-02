@@ -1,0 +1,1288 @@
+truncated_normal_test
+08-Mar-2015 11:02:39
+
+TRUNCATED_NORMAL_TEST
+  MATLAB version
+  Test the TRUNCATED_NORMAL library.
+
+I4_UNIFORM_AB_TEST
+  I4_UNIFORM_AB computes pseudorandom values
+  in an interval [A,B].
+
+  The lower endpoint A = -100.000000
+  The upper endpoint B = 200.000000
+  The initial seed is 123456789
+
+         1       -35
+         2       187
+         3       149
+         4        69
+         5        25
+         6       -81
+         7       -23
+         8       -67
+         9       -87
+        10        90
+        11       -82
+        12        35
+        13        20
+        14       127
+        15       139
+        16      -100
+        17       170
+        18         5
+        19       -72
+        20       -96
+
+R8_CHOOSE_TEST
+  R8_CHOOSE evaluates C(N,K).
+
+         N         K       CNK
+
+         0         0               1
+
+         1         0               1
+         1         1               1
+
+         2         0               1
+         2         1               2
+         2         2               1
+
+         3         0               1
+         3         1               3
+         3         2               3
+         3         3               1
+
+         4         0               1
+         4         1               4
+         4         2               6
+         4         3               4
+         4         4               1
+
+         5         0               1
+         5         1               5
+         5         2              10
+         5         3              10
+         5         4               5
+         5         5               1
+
+R8_FACTORIAL2_TEST
+  R8_FACTORIAL2 evaluates the double factorial function.
+
+      N                     Exact                  Computed
+
+     0                         1                         1
+     1                         1                         1
+     2                         2                         2
+     3                         3                         3
+     4                         8                         8
+     5                        15                        15
+     6                        48                        48
+     7                       105                       105
+     8                       384                       384
+     9                       945                       945
+    10                      3840                      3840
+    11                     10395                     10395
+    12                     46080                     46080
+    13                    135135                    135135
+    14                    645120                    645120
+    15                   2027025                   2027025
+
+R8_MOP_TEST
+  R8_MOP evaluates (-1.0)^I4 as an R8.
+
+    I4  R8_MOP(I4)
+
+   -57  -1.0
+    92   1.0
+    66   1.0
+    12   1.0
+   -17  -1.0
+   -87  -1.0
+   -49  -1.0
+   -78   1.0
+   -92   1.0
+    27  -1.0
+
+R8_UNIFORM_01_TEST
+  R8_UNIFORM_01 produces a sequence of random values.
+
+  Using random seed 123456789
+
+  SEED  R8_UNIFORM_01(SEED)
+
+     469049721        0.218418
+    2053676357        0.956318
+    1781357515        0.829509
+    1206231778        0.561695
+     891865166        0.415307
+     141988902        0.066119
+     553144097        0.257578
+     236130416        0.109957
+      94122056        0.043829
+    1361431000        0.633966
+
+  Verify that the sequence can be restarted.
+  Set the seed back to its original value, and see that
+  we generate the same sequence.
+
+  SEED  R8_UNIFORM_01(SEED)
+
+     469049721        0.218418
+    2053676357        0.956318
+    1781357515        0.829509
+    1206231778        0.561695
+     891865166        0.415307
+     141988902        0.066119
+     553144097        0.257578
+     236130416        0.109957
+      94122056        0.043829
+    1361431000        0.633966
+
+R8POLY_PRINT_TEST
+  R8POLY_PRINT prints an R8POLY.
+
+  The R8POLY:
+
+  p(x) =               9 * x^5
+         +          0.78 * x^4
+         +            56 * x^2
+         -           3.4 * x
+         +            12
+
+R8POLY_VALUE_HORNER_TEST
+  R8POLY_VALUE_HORNER evaluates a polynomial at
+  one point, using Horner's method.
+
+  The polynomial coefficients:
+
+  p(x) =               1 * x^4
+         -            10 * x^3
+         +            35 * x^2
+         -            50 * x
+         +            24
+
+   I    X    P(X)
+
+   1    0.0000              24
+   2    0.3333         10.8642
+   3    0.6667         3.45679
+   4    1.0000               0
+   5    1.3333       -0.987654
+   6    1.6667       -0.691358
+   7    2.0000               0
+   8    2.3333        0.493827
+   9    2.6667        0.493827
+  10    3.0000               0
+  11    3.3333       -0.691358
+  12    3.6667       -0.987654
+  13    4.0000               0
+  14    4.3333         3.45679
+  15    4.6667         10.8642
+  16    5.0000              24
+
+R8VEC_LINSPACE_TEST
+  For a R8VEC:
+  R8VEC_LINSPACE: evenly spaced points between A and B;
+
+  r8vec_linspace ( 5, 10, 20 )
+
+     1:           10
+     2:         12.5
+     3:           15
+     4:         17.5
+     5:           20
+
+R8VEC_PRINT_TEST
+  R8VEC_PRINT prints an R8VEC.
+
+  The R8VEC:
+
+     1:      123.456
+     2:        5e-06
+     3:       -1e+06
+     4:      3.14159
+
+NORMAL_01_CDF_TEST
+  NORMAL_01_CDF evaluates the Normal 01 CDF;
+
+       X              CDF                       CDF
+                     (exact)                   (computed)
+
+               0                       0.5                       0.5
+             0.1         0.539827837277029        0.5398278372805048
+             0.2         0.579259709439103        0.5792597094424672
+             0.3        0.6179114221889526        0.6179114221891665
+             0.4        0.6554217416103242        0.6554217416083834
+             0.5        0.6914624612740131        0.6914624612735877
+             0.6         0.725746882249927        0.7257468822526401
+             0.7         0.758036347776927        0.7580363477802913
+             0.8        0.7881446014166033        0.7881446014178579
+             0.9        0.8159398746532405        0.8159398746539517
+               1        0.8413447460685429        0.8413447460717163
+             1.5        0.9331927987311419        0.9331927987330156
+               2        0.9772498680518208        0.9772498680509744
+             2.5         0.993790334674224        0.9937903346744605
+               3        0.9986501019683699        0.9986501019683744
+             3.5        0.9997673709209645        0.9997673709209559
+               4        0.9999683287581669        0.9999683287581664
+
+NORMAL_01_CDF_INV_TEST
+  NORMAL_01_CDF_INV inverts the Normal 01 CDF;
+
+      CDF             X                         X
+                     (exact)                   (computed)
+
+             0.5                         0                         0
+        0.539828                       0.1       0.09999999999999999
+         0.57926                       0.2        0.1999999999999999
+        0.617911                       0.3        0.2999999999999998
+        0.655422                       0.4                       0.4
+        0.691462                       0.5        0.4999999999999998
+        0.725747                       0.6        0.6000000000000016
+        0.758036                       0.7        0.6999999999999998
+        0.788145                       0.8        0.7999999999999998
+         0.81594                       0.9                       0.9
+        0.841345                         1                         1
+        0.933193                       1.5                       1.5
+         0.97725                         2                         2
+         0.99379                       2.5         2.500000000000004
+         0.99865                         3         2.999999999999997
+        0.999767                       3.5         3.499999999999983
+        0.999968                         4                         4
+
+NORMAL_01_MEAN_TEST
+  NORMAL_01_MEAN computes the Normal 01 mean;
+
+  PDF mean =            0.000000
+
+  Sample size =       1000
+  Sample mean =           0.005819
+  Sample maximum =        3.328581
+  Sample minimum =       -3.029754
+
+NORMAL_01_MOMENT_TEST
+  NORMAL_01_MOMENT evaluates moments of the Normal 01 PDF;
+
+   Order          Moment
+
+       0               1
+       1               0
+       2               1
+       3               0
+       4               3
+       5               0
+       6              15
+       7               0
+       8             105
+       9               0
+      10             945
+
+NORMAL_01_PDF_TEST
+  NORMAL_01_PDF evaluates the Normal 01 PDF;
+
+       X              PDF
+
+              -2        0.053991
+            -1.9       0.0656158
+            -1.8       0.0789502
+            -1.7       0.0940491
+            -1.6        0.110921
+            -1.5        0.129518
+            -1.4        0.149727
+            -1.3        0.171369
+            -1.2        0.194186
+            -1.1        0.217852
+              -1        0.241971
+            -0.9        0.266085
+            -0.8        0.289692
+            -0.7        0.312254
+            -0.6        0.333225
+            -0.5        0.352065
+            -0.4         0.36827
+            -0.3        0.381388
+            -0.2        0.391043
+            -0.1        0.396953
+               0        0.398942
+             0.1        0.396953
+             0.2        0.391043
+             0.3        0.381388
+             0.4         0.36827
+             0.5        0.352065
+             0.6        0.333225
+             0.7        0.312254
+             0.8        0.289692
+             0.9        0.266085
+               1        0.241971
+             1.1        0.217852
+             1.2        0.194186
+             1.3        0.171369
+             1.4        0.149727
+             1.5        0.129518
+             1.6        0.110921
+             1.7       0.0940491
+             1.8       0.0789502
+             1.9       0.0656158
+               2        0.053991
+
+NORMAL_01_SAMPLE_TEST
+  NORMAL_01_SAMPLE returns samples from the normal
+  distribution with mean 0 and standard deviation 1.
+
+     1         1.67904
+     2        -0.56606
+     3         1.21293
+     4         1.26938
+     5        -1.66609
+     6        -2.24246
+     7       0.0396749
+     8        0.673068
+     9       -0.275127
+    10           2.164
+
+NORMAL_01_VARIANCE_TEST
+  NORMAL_01_VARIANCE returns the Normal 01 variance.
+
+  PDF variance =        1.000000
+
+  Sample size =       1000
+  Sample variance =       0.998375
+
+NORMAL_MS_CDF_TEST
+  NORMAL_MS_CDF evaluates the CDF
+  for the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+
+       X            CDF
+
+              70       0.0227501
+            71.5       0.0287166
+              73       0.0359303
+            74.5       0.0445655
+              76       0.0547993
+            77.5       0.0668072
+              79       0.0807567
+            80.5       0.0968005
+              82         0.11507
+            83.5        0.135666
+              85        0.158655
+            86.5         0.18406
+              88        0.211855
+            89.5        0.241964
+              91        0.274253
+            92.5        0.308538
+              94        0.344578
+            95.5        0.382089
+              97         0.42074
+            98.5        0.460172
+             100             0.5
+           101.5        0.539828
+             103         0.57926
+           104.5        0.617911
+             106        0.655422
+           107.5        0.691462
+             109        0.725747
+           110.5        0.758036
+             112        0.788145
+           113.5         0.81594
+             115        0.841345
+           116.5        0.864334
+             118         0.88493
+           119.5          0.9032
+             121        0.919243
+           122.5        0.933193
+             124        0.945201
+           125.5        0.955435
+             127         0.96407
+           128.5        0.971283
+             130         0.97725
+
+NORMAL_MS_CDF_TEST
+  NORMAL_MS_CDF evaluates the CDF
+  for the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+
+       X            CDF      CDF_INV
+
+              70       0.0227501              70
+            71.5       0.0287166            71.5
+              73       0.0359303              73
+            74.5       0.0445655            74.5
+              76       0.0547993              76
+            77.5       0.0668072            77.5
+              79       0.0807567              79
+            80.5       0.0968005            80.5
+              82         0.11507              82
+            83.5        0.135666            83.5
+              85        0.158655              85
+            86.5         0.18406            86.5
+              88        0.211855              88
+            89.5        0.241964            89.5
+              91        0.274253              91
+            92.5        0.308538            92.5
+              94        0.344578              94
+            95.5        0.382089            95.5
+              97         0.42074              97
+            98.5        0.460172            98.5
+             100             0.5             100
+           101.5        0.539828           101.5
+             103         0.57926             103
+           104.5        0.617911           104.5
+             106        0.655422             106
+           107.5        0.691462           107.5
+             109        0.725747             109
+           110.5        0.758036           110.5
+             112        0.788145             112
+           113.5         0.81594           113.5
+             115        0.841345             115
+           116.5        0.864334           116.5
+             118         0.88493             118
+           119.5          0.9032           119.5
+             121        0.919243             121
+           122.5        0.933193           122.5
+             124        0.945201             124
+           125.5        0.955435           125.5
+             127         0.96407             127
+           128.5        0.971283           128.5
+             130         0.97725             130
+
+NORMAL_MS_MEAN_TEST
+  NORMAL_MS_MEAN computes the mean
+  of the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+  PDF mean =                100.000000
+
+  Sample size =       1000
+  Sample mean =         100.087281
+  Sample maximum =      149.928717
+  Sample minimum =       54.553685
+
+NORMAL_MS_MOMENT_TEST
+  NORMAL_MS_MOMENT evaluates the moments
+  of the Normal MS distribution.
+
+  Mu = 0, Sigma = 1
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             1             1
+   3             0             0
+   4             3             3
+   5             0             0
+   6            15            15
+   7             0             0
+   8           105           105
+
+  Mu = 2, Sigma = 1
+ Order  Moment
+
+   0             1             1
+   1             2             2
+   2             5             5
+   3            14            14
+   4            43            43
+   5           142           142
+   6           499           499
+   7          1850          1850
+   8          7193          7193
+
+  Mu = 10, Sigma = 2
+ Order  Moment
+
+   0             1             1
+   1            10            10
+   2           104           104
+   3          1120          1120
+   4         12448         12448
+   5        142400        142400
+   6   1.67296e+06   1.67296e+06
+   7   2.01472e+07   2.01472e+07
+   8   2.48315e+08   2.48315e+08
+
+  Mu = 0, Sigma = 2
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             4             4
+   3             0             0
+   4            48            48
+   5             0             0
+   6           960           960
+   7             0             0
+   8         26880         26880
+
+NORMAL_MS_MOMENT_CENTRAL_TEST
+  NORMAL_MS_MOMENT_CENTRAL evaluates the central moments
+  of the Normal MS distribution.
+
+  Mu = 0, Sigma = 1
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             1             1
+   3             0             0
+   4             3             3
+   5             0             0
+   6            15            15
+   7             0             0
+   8           105           105
+
+  Mu = 2, Sigma = 1
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             1             1
+   3             0             0
+   4             3             3
+   5             0             0
+   6            15            15
+   7             0             0
+   8           105           105
+
+  Mu = 10, Sigma = 2
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             4             4
+   3             0             0
+   4            48            48
+   5             0             0
+   6           960           960
+   7             0             0
+   8         26880         26880
+
+  Mu = 0, Sigma = 2
+ Order  Moment
+
+   0             1             1
+   1             0             0
+   2             4             4
+   3             0             0
+   4            48            48
+   5             0             0
+   6           960           960
+   7             0             0
+   8         26880         26880
+
+NORMAL_MS_PDF_TEST
+  NORMAL_MS_PDF evaluates the PDF
+  for the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+
+       X            PDF
+
+              70       0.0035994
+            71.5      0.00437439
+              73      0.00526334
+            74.5      0.00626994
+              76      0.00739472
+            77.5      0.00863451
+              79      0.00998183
+            80.5       0.0114246
+              82       0.0129457
+            83.5       0.0145235
+              85       0.0161314
+            86.5        0.017739
+              88       0.0193128
+            89.5       0.0208169
+              91        0.022215
+            92.5        0.023471
+              94       0.0245513
+            95.5       0.0254259
+              97       0.0260695
+            98.5       0.0264635
+             100       0.0265962
+           101.5       0.0264635
+             103       0.0260695
+           104.5       0.0254259
+             106       0.0245513
+           107.5        0.023471
+             109        0.022215
+           110.5       0.0208169
+             112       0.0193128
+           113.5        0.017739
+             115       0.0161314
+           116.5       0.0145235
+             118       0.0129457
+           119.5       0.0114246
+             121      0.00998183
+           122.5      0.00863451
+             124      0.00739472
+           125.5      0.00626994
+             127      0.00526334
+           128.5      0.00437439
+             130       0.0035994
+
+NORMAL_MS_SAMPLE_TEST:
+  NORMAL_MS_SAMPLE samples the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+
+    1         125.186
+    2         91.5091
+    3         118.194
+    4         119.041
+    5         75.0087
+    6          66.363
+    7         100.595
+    8         110.096
+    9         95.8731
+   10          132.46
+
+NORMAL_MS_VARIANCE_TEST
+  NORMAL_MS_VARIANCE returns the variance
+  of the Normal MS distribution.
+
+  PDF parameter MU =        100.000000
+  PDF parameter SIGMA =      15.000000
+  PDF variance =            225.000000
+
+  Sample size =       1000
+  Sample variance =     224.634324
+
+TRUNCATED_NORMAL_A_CDF_TEST
+  TRUNCATED_NORMAL_A_CDF evaluates the lower Truncated Normal CDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval [a,+oo)
+
+                                                  Stored         Computed
+       X        Mu         S         A             CDF             CDF
+
+      90.0     100.0      25.0      50.0         0.32932         0.32932
+      92.0     100.0      25.0      50.0        0.359922        0.359922
+      94.0     100.0      25.0      50.0        0.391318        0.391318
+      96.0     100.0      25.0      50.0        0.423321        0.423321
+      98.0     100.0      25.0      50.0        0.455737        0.455737
+     100.0     100.0      25.0      50.0         0.48836         0.48836
+     102.0     100.0      25.0      50.0        0.520984        0.520984
+     104.0     100.0      25.0      50.0        0.553399        0.553399
+     106.0     100.0      25.0      50.0        0.585403        0.585403
+     108.0     100.0      25.0      50.0        0.616798        0.616798
+     110.0     100.0      25.0      50.0          0.6474          0.6474
+
+TRUNCATED_NORMAL_A_CDF_INV_TEST
+  TRUNCATED_NORMAL_A_CDF_INV inverts the CDF
+  for the lower Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,+00)
+
+       X            CDF           CDF_INV
+
+
+TRUNCATED_NORMAL_A_MEAN_TEST
+  TRUNCATED_NORMAL_A_MEAN computes the mean
+  of the lower Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,+oo)
+
+  PDF mean = 101.381
+
+  Sample size =     1000
+  Sample mean =     101.504
+  Sample maximum =  171.782
+  Sample minimum =  50.8055
+
+TRUNCATED_NORMAL_A_MOMENT_TEST
+  TRUNCATED_NORMAL_A_MOMENT evaluates the moments
+  of the Lower Truncated Normal PDF:
+
+  Test = 1, Mu = 0, Sigma = 1, A = 0
+ Order  Moment
+
+   0             1
+   1      0.797885
+   2             1
+   3       1.59577
+   4             3
+   5       6.38308
+   6            15
+   7       38.2985
+   8           105
+
+  Test = 2, Mu = 0, Sigma = 1, A = -10
+ Order  Moment
+
+   0             1
+   1    7.6946e-23
+   2             1
+   3   7.84849e-21
+   4             3
+   5   8.00854e-19
+   6            15
+   7   8.17511e-17
+   8           105
+
+  Test = 3, Mu = 0, Sigma = 1, A = 10
+ Order  Moment
+
+   0             1
+   1       10.0981
+   2       101.981
+   3       1030.01
+   4         10404
+   5        105101
+   6   1.06183e+06
+   7   1.07287e+07
+   8   1.08414e+08
+
+  Test = 4, Mu = 0, Sigma = 2, A = -10
+ Order  Moment
+
+   0             1
+   1   2.97344e-06
+   2       3.99997
+   3   0.000321132
+   4       47.9967
+   5     0.0348725
+   6       959.636
+   7       3.81038
+   8       26840.1
+
+  Test = 5, Mu = 0, Sigma = 2, A = 10
+ Order  Moment
+
+   0             1
+   1        10.373
+   2        107.73
+   3       1120.28
+   4       11665.8
+   5        121655
+   6   1.27062e+06
+   7   1.32927e+07
+   8   1.39307e+08
+
+  Test = 6, Mu = -5, Sigma = 1, A = -10
+ Order  Moment
+
+   0             1
+   1            -5
+   2            26
+   3          -140
+   4       777.997
+   5      -4449.97
+   6       26139.7
+   7       -157397
+   8        969947
+
+TRUNCATED_NORMAL_A_PDF_TEST
+  TRUNCATED_NORMAL_A_PDF evaluates the lower Truncated Normal PDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval [a,+oo)
+
+                                                 Stored         Computed
+       X        Mu         S         A             PDF             PDF
+
+      90.0     100.0      25.0      50.0       0.0150737       0.0150737
+      92.0     100.0      25.0      50.0       0.0155142       0.0155142
+      94.0     100.0      25.0      50.0       0.0158656       0.0158656
+      96.0     100.0      25.0      50.0       0.0161215       0.0161215
+      98.0     100.0      25.0      50.0        0.016277        0.016277
+     100.0     100.0      25.0      50.0       0.0163292       0.0163292
+     102.0     100.0      25.0      50.0        0.016277        0.016277
+     104.0     100.0      25.0      50.0       0.0161215       0.0161215
+     106.0     100.0      25.0      50.0       0.0158656       0.0158656
+     108.0     100.0      25.0      50.0       0.0155142       0.0155142
+     110.0     100.0      25.0      50.0       0.0150737       0.0150737
+
+TRUNCATED_NORMAL_A_SAMPLE_TEST
+  TRUNCATED_NORMAL_A_SAMPLE samples
+  the lower Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,+oo)
+
+   1         82.0355
+   2         143.008
+   3         124.191
+   4         104.515
+   5         95.5021
+   6         66.0709
+   7         85.0161
+   8         71.8645
+   9         62.2618
+  10         109.115
+
+TRUNCATED_NORMAL_A_VARIANCE_TEST
+  TRUNCATED_NORMAL_A_VARIANCE computes the variance.
+  of the lower Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,+oo)
+
+  PDF variance = 554.032
+
+  Sample size =     1000
+  Sample variance = 555.665
+
+TRUNCATED_NORMAL_AB_CDF_TEST
+  TRUNCATED_NORMAL_AB_CDF evaluates the Truncated Normal CDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval [a,b]
+
+                                                           Stored         Computed
+       X        Mu         S         A         B             CDF             CDF
+
+      90.0     100.0      25.0      50.0     150.0        0.337169        0.337169
+      92.0     100.0      25.0      50.0     150.0        0.368501        0.368501
+      94.0     100.0      25.0      50.0     150.0        0.400644        0.400644
+      96.0     100.0      25.0      50.0     150.0        0.433411        0.433411
+      98.0     100.0      25.0      50.0     150.0        0.466599        0.466599
+     100.0     100.0      25.0      50.0     150.0             0.5             0.5
+     102.0     100.0      25.0      50.0     150.0        0.533401        0.533401
+     104.0     100.0      25.0      50.0     150.0        0.566589        0.566589
+     106.0     100.0      25.0      50.0     150.0        0.599356        0.599356
+     108.0     100.0      25.0      50.0     150.0        0.631499        0.631499
+     110.0     100.0      25.0      50.0     150.0        0.662831        0.662831
+
+TRUNCATED_NORMAL_AB_CDF_INV_TEST
+  TRUNCATED_NORMAL_AB_CDF_INV inverts the CDF
+  for the Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,150]
+
+       X            CDF           CDF_INV
+
+
+TRUNCATED_NORMAL_AB_MEAN_TEST
+  TRUNCATED_NORMAL_AB_MEAN computes the mean
+  of the Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,150]
+
+  PDF mean = 100
+
+  Sample size =     1000
+  Sample mean =     100.123
+  Sample maximum =  149.108
+  Sample minimum =  50.7873
+
+TRUNCATED_NORMAL_AB_MOMENT_TEST
+  TRUNCATED_NORMAL_AB_MOMENT evaluates the moments
+  of the Truncated Normal PDF:
+
+  Test = 1, Mu = 0, Sigma = 1, A = -1, B = 1
+ Order  Moment
+
+   0             1
+   1             0
+   2      0.291125
+   3             0
+   4        0.1645
+   5             0
+   6      0.113627
+   7             0
+   8      0.086514
+
+  Test = 2, Mu = 0, Sigma = 1, A = 0, B = 1
+ Order  Moment
+
+   0             1
+   1      0.459862
+   2      0.291125
+   3       0.21085
+   4        0.1645
+   5      0.134523
+   6      0.113627
+   7     0.0982649
+   8      0.086514
+
+  Test = 3, Mu = 0, Sigma = 1, A = -1, B = 0
+ Order  Moment
+
+   0             1
+   1     -0.459862
+   2      0.291125
+   3      -0.21085
+   4        0.1645
+   5     -0.134523
+   6      0.113627
+   7    -0.0982649
+   8      0.086514
+
+  Test = 4, Mu = 0, Sigma = 2, A = -1, B = 1
+ Order  Moment
+
+   0             1
+   1             0
+   2      0.322357
+   3             0
+   4      0.190636
+   5             0
+   6      0.135077
+   7             0
+   8      0.104524
+
+  Test = 5, Mu = 1, Sigma = 1, A = 0, B = 2
+ Order  Moment
+
+   0             1
+   1             1
+   2       1.29113
+   3       1.87338
+   4       2.91125
+   5       4.73375
+   6       7.94801
+   7       13.6665
+   8       23.9346
+
+  Test = 6, Mu = 0, Sigma = 1, A = 0.5, B = 2
+ Order  Moment
+
+   0             1
+   1       1.04299
+   2       1.23812
+   3       1.63828
+   4       2.35698
+   5       3.60741
+   6       5.77795
+   7       9.57285
+   8       16.2735
+
+  Test = 7, Mu = 0, Sigma = 1, A = -2, B = 2
+ Order  Moment
+
+   0             1
+   1             0
+   2      0.773741
+   3             0
+   4       1.41619
+   5             0
+   6       3.46081
+   7             0
+   8       9.74509
+
+  Test = 8, Mu = 0, Sigma = 1, A = -4, B = 4
+ Order  Moment
+
+   0             1
+   1             0
+   2      0.998929
+   3             0
+   4       2.97966
+   5             0
+   6       14.6242
+   7             0
+   8       97.9836
+
+  Test = 9, Mu = 5, Sigma = 0.5, A = 4, B = 7
+ Order  Moment
+
+   0             1
+   1       5.02756
+   2       25.4978
+   3       130.441
+   4       673.075
+   5       3502.72
+   6       18382.1
+   7       97269.7
+   8        518913
+
+TRUNCATED_NORMAL_AB_PDF_TEST
+  TRUNCATED_NORMAL_AB_PDF evaluates the Truncated Normal PDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval [a,b]
+
+                                                           Stored         Computed
+       X        Mu         S         A         B             PDF             PDF
+
+      90.0     100.0      25.0      50.0     150.0        0.015433        0.015433
+      92.0     100.0      25.0      50.0     150.0       0.0158839       0.0158839
+      94.0     100.0      25.0      50.0     150.0       0.0162438       0.0162438
+      96.0     100.0      25.0      50.0     150.0       0.0165058       0.0165058
+      98.0     100.0      25.0      50.0     150.0        0.016665        0.016665
+     100.0     100.0      25.0      50.0     150.0       0.0167184       0.0167184
+     102.0     100.0      25.0      50.0     150.0        0.016665        0.016665
+     104.0     100.0      25.0      50.0     150.0       0.0165058       0.0165058
+     106.0     100.0      25.0      50.0     150.0       0.0162438       0.0162438
+     108.0     100.0      25.0      50.0     150.0       0.0158839       0.0158839
+     110.0     100.0      25.0      50.0     150.0        0.015433        0.015433
+
+TRUNCATED_NORMAL_AB_SAMPLE_TEST
+  TRUNCATED_NORMAL_AB_SAMPLE samples
+  the Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,150]
+
+   1           81.63
+   2         137.962
+   3         122.367
+   4         103.704
+   5          94.899
+   6         65.8326
+   7         84.5743
+   8         71.5672
+   9         62.0654
+  10         108.155
+
+TRUNCATED_NORMAL_AB_VARIANCE_TEST
+  TRUNCATED_NORMAL_AB_VARIANCE computes the variance.
+  of the Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval [50,150]
+
+  PDF variance = 483.588
+
+  Sample size =     1000
+  Sample variance = 486.064
+
+TRUNCATED_NORMAL_B_CDF_TEST
+  TRUNCATED_NORMAL_B_CDF evaluates the upper Truncated Normal CDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval (-oo,b]
+
+                                                  Stored         Computed
+       X        Mu         S         B             CDF             CDF
+
+      90.0     100.0      25.0     150.0          0.3526          0.3526
+      92.0     100.0      25.0     150.0        0.383202        0.383202
+      94.0     100.0      25.0     150.0        0.414597        0.414597
+      96.0     100.0      25.0     150.0        0.446601        0.446601
+      98.0     100.0      25.0     150.0        0.479016        0.479016
+     100.0     100.0      25.0     150.0         0.51164         0.51164
+     102.0     100.0      25.0     150.0        0.544263        0.544263
+     104.0     100.0      25.0     150.0        0.576679        0.576679
+     106.0     100.0      25.0     150.0        0.608682        0.608682
+     108.0     100.0      25.0     150.0        0.640078        0.640078
+     110.0     100.0      25.0     150.0         0.67068         0.67068
+
+TRUNCATED_NORMAL_B_CDF_INV_TEST
+  TRUNCATED_NORMAL_B_CDF_INV inverts the CDF
+  for the upper Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval (-oo,150]
+
+       X            CDF           CDF_INV
+
+
+TRUNCATED_NORMAL_B_MEAN_TEST
+  TRUNCATED_NORMAL_B_MEAN computes the mean
+  of the upper Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval (-oo,150]
+
+  PDF mean = 98.6188
+
+  Sample size =     1000
+  Sample mean =     98.7101
+  Sample maximum =  149.087
+  Sample minimum =  27.2041
+
+TRUNCATED_NORMAL_B_MOMENT_TEST
+  TRUNCATED_NORMAL_B_MOMENT evaluates the moments
+  of the Upper Truncated Normal PDF:
+
+  Test = 1, Mu = 0, Sigma = 1, B = 0
+ Order  Moment
+
+   0                 1
+   1     -0.7978845608
+   2                 1
+   3      -1.595769122
+   4                 3
+   5      -6.383076486
+   6                15
+   7      -38.29845892
+   8               105
+
+  Test = 2, Mu = 0, Sigma = 1, B = 10
+ Order  Moment
+
+   0                 1
+   1  -7.694598627e-23
+   2                 1
+   3  -7.848490599e-21
+   4                 3
+   5  -8.008538251e-19
+   6                15
+   7  -8.175110922e-17
+   8               105
+
+  Test = 3, Mu = 0, Sigma = 1, B = -10
+ Order  Moment
+
+   0                 1
+   1      -10.09809323
+   2       101.9809323
+   3       -1030.00551
+   4       10404.03603
+   5      -105100.9544
+   6       1061829.504
+   7      -10728698.96
+   8       108413738.9
+
+  Test = 4, Mu = 0, Sigma = 2, B = 10
+ Order  Moment
+
+   0                 1
+   1  -2.973439882e-06
+   2       3.999970266
+   3  -0.0003211315072
+   4       47.99666975
+   5    -0.03487250293
+   6        959.636051
+   7      -3.810379952
+   8       26840.07503
+
+  Test = 5, Mu = 0, Sigma = 2, B = -10
+ Order  Moment
+
+   0                 1
+   1      -10.37300793
+   2       107.7300793
+   3      -1120.284857
+   4       11665.76889
+   5      -121654.6371
+   6       1270616.171
+   7      -13292719.22
+   8       139307332.1
+
+  Test = 6, Mu = 5, Sigma = 1, B = 10
+ Order  Moment
+
+   0                 1
+   1       4.999998513
+   2        25.9999777
+   3       139.9997369
+   4       777.9971306
+   5       4449.969733
+   6       26139.68565
+   7       157396.7599
+   8       969946.7319
+
+TRUNCATED_NORMAL_B_PDF_TEST
+  TRUNCATED_NORMAL_B_PDF evaluates the Upper Truncated Normal PDF.
+
+  The "parent" normal distribution has
+    mean = mu
+    standard deviation = sigma
+  The parent distribution is truncated to
+  the interval (-oo,b]
+
+                                                  Stored         Computed
+       X        Mu         S         B             PDF             PDF
+
+      90.0     100.0      25.0     150.0       0.0150737       0.0150737
+      92.0     100.0      25.0     150.0       0.0155142       0.0155142
+      94.0     100.0      25.0     150.0       0.0158656       0.0158656
+      96.0     100.0      25.0     150.0       0.0161215       0.0161215
+      98.0     100.0      25.0     150.0        0.016277        0.016277
+     100.0     100.0      25.0     150.0       0.0163292       0.0163292
+     102.0     100.0      25.0     150.0        0.016277        0.016277
+     104.0     100.0      25.0     150.0       0.0161215       0.0161215
+     106.0     100.0      25.0     150.0       0.0158656       0.0158656
+     108.0     100.0      25.0     150.0       0.0155142       0.0155142
+     110.0     100.0      25.0     150.0       0.0150737       0.0150737
+
+TRUNCATED_NORMAL_B_SAMPLE_TEST
+  TRUNCATED_NORMAL_B_SAMPLE samples
+  the upper Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval (-oo,150]
+
+   1         80.1372
+   2         137.766
+   3         122.006
+   4         103.073
+   5         94.0447
+   6         62.0713
+   7         83.2727
+   8         68.9956
+   9         57.0318
+  10         107.607
+
+TRUNCATED_NORMAL_B_VARIANCE_TEST
+  TRUNCATED_NORMAL_B_VARIANCE computes the variance.
+  of the upper Truncated Normal Distribution.
+
+  The "parent" normal distribution has
+    mean =               100
+    standard deviation = 25
+  The parent distribution is truncated to
+  the interval (-oo,150]
+
+  PDF variance = 554.032
+
+  Sample size =     1000
+  Sample variance = 560.281
+
+TRUNCATED_NORMAL_TEST
+  Normal end of execution.
+
+08-Mar-2015 11:02:39
+diary off

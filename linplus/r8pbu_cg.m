@@ -38,9 +38,13 @@ function x_new = r8pbu_cg ( n, mu, a, b, x )
 %
 %  Reference:
 %
-%    F S Beckman,
+%    Frank Beckman,
 %    The Solution of Linear Equations by the Conjugate Gradient Method,
-%    Mathematical Methods for Digital Computers, pages 62-72.
+%    in Mathematical Methods for Digital Computers,
+%    edited by John Ralston, Herbert Wilf,
+%    Wiley, 1967,
+%    ISBN: 0471706892,
+%    LC: QA76.5.R3.
 %
 %  Parameters:
 %

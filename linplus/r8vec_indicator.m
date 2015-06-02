@@ -20,9 +20,9 @@ function a = r8vec_indicator ( n )
 %
 %    Input, integer N, the number of entries in the vector.
 %
-%    Output, real A(N), the vector with entries (1, 2, ..., N ).
+%    Output, real A(N,1), the vector with entries (1, 2, ..., N ).
 %
-  a = ( 1 : n );
+  a = ( 1 : n )';
 
   return
 end

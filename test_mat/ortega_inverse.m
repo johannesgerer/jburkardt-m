@@ -37,14 +37,14 @@ function a = ortega_inverse ( n, u, v, d )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   u = u(:);
   v = v(:);
   
   vtu = v' * u;
 
   beta = 1.0 / ( 1.0 + vtu );
-
-  a = zeros(n,n);
 
   for j = 1 : n
     for i = 1 : n

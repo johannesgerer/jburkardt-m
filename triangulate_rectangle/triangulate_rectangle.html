@@ -1,0 +1,224 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATE_RECTANGLE - Triangulate a Rectangular Region
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATE_RECTANGLE <br> Triangulate a Rectangular Region
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATE_RECTANGLE</b>
+      is a MATLAB library which
+      computes a simple triangulation of a rectangular region.
+    </p>
+
+    <p>
+      The triangulation will be represented by two sets of data:
+      <ul>
+        <li>
+          <i>node coordinates</i>, a set of NN pairs (X(I),Y(I)) that are
+          the coordinates of points used to define the triangulation,
+          stored as a 2xNN real array.
+        </li>
+        <li>
+          <i>elements</i>, a set of NE triples (I1(J),I2(J),I3(J)) 
+          that are the indices of the nodes forming the vertex of triangle J,
+          stored as a 3xNE integer array.  For each triangle, the nodes
+          are listed in counterclockwise order.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulate_rectangle</b> ( <i>xl</i>, <i>xr</i>, <i>xn</i>,
+          <i>yb</i>, <i>yt</i>, <i>yn</i>, <i>base</i> )
+      </blockquote>
+      <ul>
+        <li>
+          <i>xl, xr</i> are the left and rightmost X coordinates.
+        </li>
+        <li>
+          <i>xn</i> is the number of elements along the X direction.
+        </li>
+        <li>
+          <i>yb, yt</i> are the bottom and topmost Y coordinates.
+        </li>
+        <li>
+          <i>yn</i> is the number of elements along the Y direction.
+        </li>
+        <li>
+          <i>base</i> is an optional input that is 1 for 1-based element
+          indexing (default), or 0 for 0-based indexing.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATE_RECTANGLE</b> is available in
+      <a href = "../../m_src/triangulate_rectangle/triangulate_rectangle.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_rectangle_linear/fem2d_poisson_rectangle_linear.html">
+      FEM2D_POISSON_RECTANGLE_LINEAR</a>,
+      a MATLAB program which
+      solves the 2D Poisson equation on a rectangle, 
+      using the finite element method (FEM),
+      and piecewise linear triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 (linear) or order 6 (quadratic) 
+      triangulations, including searching a Delaunay triangulation to find
+      which triangle contains a given point.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_display/triangulation_display.html">
+      TRIANGULATION_DISPLAY</a>,
+      a MATLAB program which
+      displays the nodes and elements of a triangulation 
+      on the MATLAB graphics screen;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">
+          i4mat_transpose_print_some.m</a>,
+          prints some of an I4MAT, transposed;
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>,
+          writes an I4MAT out to a file.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">
+          r8mat_transpose_print_some.m</a>,
+          prints some of the transpose of an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_write.m">
+          r8mat_write.m</a>,
+          writes an R8MAT out to a file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "triangulate_rectangle.m">
+          triangulate_rectangle.m</a>,
+          decomposes a rectangle into a grid of triangles, creating
+          a set of nodes, and a set of elements.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulate_rectangle_test.m">
+          triangulate_rectangle_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "triangulate_rectangle_test_output.txt">
+          triangulate_rectangle_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "triangulate_rectangle_test01.m">
+          triangulate_rectangle_test01.m</a>,
+          create a grid using 0-based indexing.
+        </li>
+        <li>
+          <a href = "triangulate_rectangle_test02.m">
+          triangulate_rectangle_test02.m</a>,
+          create a grid using 1-based indexing, and write
+          the nodes and elements to files.
+        </li>
+        <li>
+          <a href = "test02_nodes.txt">
+          test02_nodes.txt</a>,
+          the node data.
+        </li>
+        <li>
+          <a href = "test02_elements.txt">
+          test02_elements.txt</a>,
+          the element data.
+        </li>
+        <li>
+          <a href = "test02.png">
+          test02.png</a>,
+          a PNG image of the mesh, created by triangulation_display().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 31 March 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

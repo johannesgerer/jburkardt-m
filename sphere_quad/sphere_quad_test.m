@@ -2,7 +2,7 @@ function sphere_quad_test ( )
 
 %*****************************************************************************80
 %
-%% SPHERE_QUAD_TEST tests SPHERE_QUAD.
+%% SPHERE_QUAD_TEST tests the SPHERE_QUAD library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function sphere_quad_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_QUAD_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,7 +33,6 @@ function sphere_quad_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_QUAD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

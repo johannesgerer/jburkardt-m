@@ -24,7 +24,7 @@ function value = r8_add ( x, y )
 %
 %    Input, real X, Y, the numbers to be added.
 %
-%    Output, real R8_ADD, the sum of X and Y.
+%    Output, real VALUE, the sum of X and Y.
 %
   value = x + y;
 

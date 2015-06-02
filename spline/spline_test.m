@@ -2,7 +2,7 @@ function spline_test ( )
 
 %*****************************************************************************80
 %
-%% SPLINE_TEST tests SPLINE.
+%% SPLINE_TEST tests the SPLINE library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function spline_test ( )
 %
 %  Modified:
 %
-%    01 February 2009
+%    06 June 2013
 %
 %  Author
 %
@@ -55,6 +55,7 @@ function spline_test ( )
   spline_test17 ( );
   spline_test18 ( );
   spline_test19 ( );
+  spline_test195 ( );
 
   spline_test20 ( );
   spline_test205 ( );
@@ -71,11 +72,9 @@ function spline_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPLINE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
-
 

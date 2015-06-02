@@ -2,7 +2,7 @@ function gauss_seidel_test ( )
 
 %*****************************************************************************80
 %
-%% GAUSS_SEIDEL_TEST tests GAUSS_SEIDEL.
+%% GAUSS_SEIDEL_TEST tests the GAUSS_SEIDEL library.
 %
 %  Licensing:
 %
@@ -30,7 +30,6 @@ function gauss_seidel_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GAUSS_SEIDEL_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

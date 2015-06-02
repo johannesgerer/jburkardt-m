@@ -1,6 +1,12 @@
 function [ prob, ier ] = mdbeta ( x, p, q )
 
+%*****************************************************************************80
+%
 %% MDBETA evaluates the incomplete beta function.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

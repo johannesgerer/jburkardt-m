@@ -1,8 +1,12 @@
-function [ a, seed ] = bimarkov_random ( n, seed )
+function a = bimarkov_random ( n, key )
 
 %*****************************************************************************80
 %
-%% BIMARKOV returns a random biMarkov or doubly stochastic matrix.
+%% BIMARKOV_RANDOM returns the BIMARKOV_RANDOM matrix.
+%
+%  Discussion:
+%
+%    This is a random biMarkov or doubly stochastic matrix.
 %
 %  Example:
 %
@@ -18,7 +22,7 @@ function [ a, seed ] = bimarkov_random ( n, seed )
 %
 %    A is generally not symmetric: A' /= A.
 %
-%    0 <= A(I,J) <= 1.0D+00 for every I and J.
+%    0 <= A(I,J) <= 1.0 for every I and J.
 %
 %    A has constant row sum 1.
 %
@@ -46,7 +50,7 @@ function [ a, seed ] = bimarkov_random ( n, seed )
 %
 %  Modified:
 %
-%    27 September 2007
+%    25 January 2015
 %
 %  Author:
 %
@@ -62,8 +66,7 @@ function [ a, seed ] = bimarkov_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
@@ -71,8 +74,11 @@ function [ a, seed ] = bimarkov_random ( n, seed )
 %
 %  Get a random orthogonal matrix.
 %
-  [ a, seed ] = orth_random ( n, seed );
+  a = orth_random ( n, key );
 %
 %  Square each entry.
 %
   a(1:n,1:n) = a(1:n,1:n).^2;
+
+  return
+end

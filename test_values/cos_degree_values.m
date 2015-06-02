@@ -2,7 +2,7 @@ function [ n_data, x, fx ] = cos_degree_values ( n_data )
 
 %*****************************************************************************80
 %
-%c COS_DEGREE_VALUES: the cosine function with argument in degrees.
+%% COS_DEGREE_VALUES: the cosine function with argument in degrees.
 %
 %  Discussion:
 %

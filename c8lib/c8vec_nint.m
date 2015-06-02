@@ -10,7 +10,7 @@ function a = c8vec_nint ( n, a )
 %
 %  Modified:
 %
-%    13 September 2006
+%    02 March 2013
 %
 %  Author:
 %
@@ -24,7 +24,9 @@ function a = c8vec_nint ( n, a )
 %
 %    Output, complex A(N), the rounded vector.
 %
-  a(1:n) = round ( a(1:n) );
+  for i = 1 : n
+    a(i) = c8_nint ( a(i) );
+  end
 
   return
 end

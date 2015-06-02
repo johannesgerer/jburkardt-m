@@ -10,7 +10,7 @@ function test_num = p00_test_num ( )
 %
 %  Modified:
 %
-%    18 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -20,7 +20,7 @@ function test_num = p00_test_num ( )
 %
 %    Output, integer TEST_NUM, the number of test problems.
 %
-  test_num = 39;
+  test_num = 40;
 
   return
 end

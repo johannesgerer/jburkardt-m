@@ -2,7 +2,11 @@ function z = he_polynomial_zeros ( nt )
 
 %*****************************************************************************80
 %
-%% HE_POLYNOMIAL_ZEROS computes the zeros of the probabilist's Hermite polynomial.
+%% HE_POLYNOMIAL_ZEROS zeros of He(i,x).
+%
+%  Discussion:
+%
+%    He(i,x) represents the probabilist's Hermite polynomial.
 %
 %  Licensing:
 %

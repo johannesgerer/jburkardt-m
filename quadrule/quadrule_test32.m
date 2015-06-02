@@ -2,7 +2,7 @@ function quadrule_test32 ( )
 
 %*****************************************************************************80
 %
-%% TEST32 tests LEGENDRE_SET_X2 and SUM_SUB
+%% QUADRULE_TEST32 tests LEGENDRE_SET_X2 and SUM_SUB
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test32 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST32\n' );
+  fprintf ( 1, 'QUADRULE_TEST32\n' );
   fprintf ( 1, '  LEGENDRE_SET_X2 sets up Gauss-Legendre quadrature\n' );
   fprintf ( 1, '    for integrating (1+X)**2 * F(X) over [-1,1];\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );

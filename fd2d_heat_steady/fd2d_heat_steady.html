@@ -1,0 +1,211 @@
+<html>
+
+  <head>
+    <title>
+      FD2D_HEAT_STEADY - 2D Steady State Heat Equation in a Rectangle
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD2D_HEAT_STEADY <br> 2D Steady State Heat Equation in a Rectangle
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD2D_HEAT_STEADY</b> 
+      is a MATLAB program which 
+      solves the steady state (time independent) heat equation in a 2D
+      rectangular region.
+    </p>
+
+    <p>
+      The physical region, and the boundary conditions, are suggested
+      by this diagram:
+      <pre>
+                   U = 0, Y = 1.0
+             +------------------+
+             |                  |
+    U = 10   |                  | U = 100
+    X = 0.0  |                  | X = 2.0
+             +------------------+
+                   U = 0, Y = 0.0
+      </pre>
+    </p>
+
+    <p>
+      The region is covered with a grid of NX by NY nodes, and an NX by NY
+      array U is used to record the temperature.  The correspondence between
+      array indices and locations in the region is suggested by giving the
+      indices of the four corners:
+      <pre>
+                  I = NY
+             +------------------+
+             |                  |
+      J = 1  |                  |  J = NX
+             |                  |
+             +------------------+
+                  I = 1
+      </pre>
+    </p>
+
+    <p>
+      The form of the steady heat equation is
+      <pre>
+        - d/dx K(x,y) du/dx - d/dy K(x,y) du/dy = F(x,y)
+      </pre>
+      where K(x,y) is the heat conductivity, and F(x,y) is a
+      heat source term.
+    </p>
+
+    <p>
+      By using a simple finite difference approximation, this single equation
+      can be replaced by NX * NY linear equations in NX * NY variables; 
+      each equation is associated with one of the nodes in the mesh.  Nodes
+      long the boundary generate boundary condition equations, while interior
+      nodes generate equations that approximate the steady heat equation.
+    </p>
+
+    <p>
+      The linear system is sparse, and can easily be solved directly in MATLAB.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD2D_HEAT_STEADY</b> is available in
+      <a href = "../../c_src/fd2d_heat_steady/fd2d_heat_steady.html">a C version</a> and
+      <a href = "../../cpp_src/fd2d_heat_steady/fd2d_heat_steady.html">a C++ version</a> and
+      <a href = "../../f77_src/fd2d_heat_steady/fd2d_heat_steady.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd2d_heat_steady/fd2d_heat_steady.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd2d_heat_steady/fd2d_heat_steady.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the 1D Time Independent
+      Heat Equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_50_heat/fem_50_heat.html">
+      FEM_50_HEAT</a>,
+      a MATLAB program which
+      implements a finite element calculation specifically for the heat equation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_heat_steady/fem1d_heat_steady.html">
+      FEM1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite element method to solve the 1D Time Independent
+      Heat Equations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_heat/fem2d_heat.html">
+      FEM2D_HEAT</a>, 
+      a MATLAB program which
+      solves the 2D time dependent heat equation on the unit square.
+    </p>
+
+    <p>
+      <a href = "../../m_src/heated_plate/heated_plate.html">
+      HEATED_PLATE</a>,
+      a MATLAB program which 
+      solves the steady state heat equation in a 2D
+      rectangular region, and is intended as
+      a starting point for a parallel version.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "boundary.m">boundary.m</a>, 
+          specifies the portion of the system matrix and right hand side associated
+          with boundary nodes.  This function implements the user's boundary conditions,
+          and so must be changed for each problem.
+        </li>
+        <li>
+          <a href = "fd2d_heat_steady.m">fd2d_heat_steady.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "interior.m">interior.m</a>, 
+          specifies the portion of the system matrix and right hand side associated
+          with interior nodes.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd2d_heat_steady_test.m">fd2d_heat_steady_test.m</a>,
+          runs the test problems.
+        </li>
+        <li>
+          <a href = "fd2d_heat_steady_test01.m">fd2d_heat_steady_test01.m</a>,
+          This test includes trivial implementations
+          of the F(X,Y) and K(X,Y) functions.
+        </li>
+        <li>
+          <a href = "fd2d_heat_steady_test_output.txt">fd2d_heat_steady_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "fd2d_heat_steady_test01.png">fd2d_heat_steady_test01.png</a>
+          an image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 July 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

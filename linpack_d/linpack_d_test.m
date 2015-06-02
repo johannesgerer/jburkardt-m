@@ -2,7 +2,7 @@ function linpack_d_test ( )
 
 %*****************************************************************************80
 %
-%% LINPACK_D_TEST tests the double precision real LINPACK routines.
+%% LINPACK_D_TEST tests the LINPACK_D library.
 %
 %  Licensing:
 %
@@ -62,7 +62,6 @@ function linpack_d_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LINPACK_D_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp;
 

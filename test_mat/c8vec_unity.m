@@ -6,9 +6,9 @@ function a = c8vec_unity ( n )
 %
 %  Discussion:
 %
-%    X(1:N) = exp ( 2 * PI * (0:N-1) / N )
+%    A(1:N) = exp ( 2 * PI * (0:N-1) / N )
 %
-%    X(1:N)**N = ( (1,0), (1,0), ..., (1,0) ).
+%    A(1:N)^N = ( (1,0), (1,0), ..., (1,0) ).
 %
 %  Licensing:
 %
@@ -26,10 +26,11 @@ function a = c8vec_unity ( n )
 %
 %    Input, integer N, the number of elements of A.
 %
-%    Output, complex A(N), the N roots of unity.
+%    Output, complex A(N,1), the N roots of unity.
 %
-  theta = pi * ( 0 : 2 : 2 * n - 2 ) / n;
-  a(1:n) = cos ( theta ) + i * sin ( theta );
+  x = 0 : 2 : 2 * n - 2;
+  theta = pi * ( x' ) / n;
+  a(1:n,1) = cos ( theta ) + i * sin ( theta );
 
   return
 end

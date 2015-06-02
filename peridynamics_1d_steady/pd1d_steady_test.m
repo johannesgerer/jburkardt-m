@@ -23,8 +23,11 @@ function pd1d_steady_test ( )
 %
 %    Marta D'Elia
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PD1D_STEADY_TEST\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the PERIDYNAMICS_1D_STEADY library.\n' );
   fprintf ( 1, '  Run all the peridynamics test cases.\n' );
 %
 %  Test 1 decreases EPSILON and H in a fixed ratio.
@@ -50,6 +53,8 @@ function pd1d_steady_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PD1D_STEADY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

@@ -6,7 +6,7 @@ function [ nfactor, factor, power, nleft ] = i4_factor ( n )
 %
 %  Formula:
 %
-%    N = NLEFT * Product ( 1 <= I <= NFACTOR ) FACTOR(I)**POWER(I).
+%    N = NLEFT * Product ( 1 <= I <= NFACTOR ) FACTOR(I)^POWER(I).
 %
 %  Licensing:
 %

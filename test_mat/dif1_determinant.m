@@ -2,7 +2,7 @@ function determ = dif1_determinant ( n )
 
 %*****************************************************************************80
 %
-%% DIF1_DETERMINANT: determinant of the first difference matrix.
+%% DIF1_DETERMINANT returns the determinant of the DIF1 matrix.
 %
 %  Licensing:
 %

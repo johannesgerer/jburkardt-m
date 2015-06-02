@@ -1,4 +1,4 @@
-function [ a, seed ] = idem_random ( n, rank, seed )
+function a = idem_random ( n, rank, key )
 
 %*****************************************************************************80
 %
@@ -47,8 +47,7 @@ function [ a, seed ] = idem_random ( n, rank, seed )
 %    Input, integer RANK, the rank of A.
 %    0 <= RANK <= N.
 %
-%    Input/output, integer SEED, a seed for the random number
-%    generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
@@ -62,11 +61,13 @@ function [ a, seed ] = idem_random ( n, rank, seed )
 %
 %  Get a random orthogonal matrix Q.
 %
-  [ q, seed ] = orth_random ( n, seed );
+  q = orth_random ( n, key );
 %
 %  Compute Q' * D * Q, where D is the diagonal eigenvalue matrix
 %  of RANK 1's followed by N-RANK 0's.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) =  q(1:rank,i)' * q(1:rank,j);

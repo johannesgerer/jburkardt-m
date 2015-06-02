@@ -2,7 +2,7 @@ function a = laguerre ( n )
 
 %*****************************************************************************80
 %
-%% LAGUERRE returns the Laguerre polynomial matrix.
+%% LAGUERRE returns the LAGUERRE matrix.
 %
 %  Example:
 %
@@ -26,14 +26,16 @@ function a = laguerre ( n )
 %    The columns of A alternate in sign.
 %
 %    A(I,1) = 1
-%    A(I,I) = (-1)**(I-1) / (I-1)!.
+%    A(I,I) = (-1)^(I-1) / (I-1)!.
 %
-%    LAMBDA(I) = (-1)**(I-1) / (I-1)!.
+%    LAMBDA(I) = (-1)^(I-1) / (I-1)!.
 %
-%    det ( A ) = product ( 1 <= I <= N ) (-1)**(I-1) / (I-1)!
+%    det ( A ) = product ( 1 <= I <= N ) (-1)^(I-1) / (I-1)!
 %
 %    The I-th row contains the coefficients of the Laguerre
 %    polynomial of degree I-1.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -59,12 +61,12 @@ function a = laguerre ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     a = [];
     return
   end
-
-  a(1:n,1:n) = 0.0;
 
   a(1,1) = 1.0;
 

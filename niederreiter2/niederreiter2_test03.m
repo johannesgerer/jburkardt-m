@@ -10,7 +10,7 @@ function niederreiter2_test03 ( )
 %
 %  Modified:
 %
-%    17 November 2008
+%    27 February 2014
 %
 %  Author:
 %
@@ -24,7 +24,7 @@ function niederreiter2_test03 ( )
   fprintf ( 1, '     I     J     EXOR(I,J)\n' );
   fprintf ( 1, '\n' );
 
-  seed = get_seed ( 0 );
+  seed = get_seed ( );
 
   for test = 1 : 10
 

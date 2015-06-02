@@ -10,7 +10,7 @@ function conf = mc ( s0, e, r, sigma, t1, m )
 %
 %  Author:
 %
-%    Desmond Higham
+%    Original MATLAB version by Desmond Higham
 %
 %  Reference:
 %

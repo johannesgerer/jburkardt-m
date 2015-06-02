@@ -2,7 +2,7 @@ function divdif_test06 ( )
 
 %*****************************************************************************80
 %
-%% DIVDIF_TEST06 tests DIF_TO_R8POLY and DIF_SHIFT_ZERO.
+%% DIVDIF_TEST06 tests R8POLY*.
 %
 %  Licensing:
 %
@@ -16,53 +16,56 @@ function divdif_test06 ( )
 %
 %    John Burkardt
 %
-  maxtab = 10;
+  n = 5;
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIVDIF_TEST06\n' );
-  fprintf ( 1, '  DIF_TO_R8POLY converts a difference table to a\n' );
-  fprintf ( 1, '  polynomial;\n' );
-  fprintf ( 1, '  DIF_SHIFT_ZERO shifts a divided difference\n' );
-  fprintf ( 1, '  table to all zero abscissas;\n' );
+  fprintf ( 1, '  R8POLY_ANT_COF computes the coefficients of the\n' );
+  fprintf ( 1, '  antiderivative of a polynomial;\n' );
+  fprintf ( 1, '  R8POLY_ANT_VAL evaluates the antiderivative of\n' );
+  fprintf ( 1, '  a polynomial;\n' );
+  fprintf ( 1, '  R8POLY_DER_COF computes the coefficients of the\n' );
+  fprintf ( 1, '  derivative of a polynomial;\n' );
+  fprintf ( 1, '  R8POLY_DER_VAL evaluates the derivative of\n' );
+  fprintf ( 1, '  a polynomial;\n' );
+  fprintf ( 1, '  R8POLY_PRINT prints a polynomial;\n' );
+  fprintf ( 1, '  R8POLY_VAL evaluates a polynomial.\n' );
+
+  for i = 1 : n
+    poly_cof(i) = i;
+  end
+
+  r8poly_print ( n, poly_cof, '  Our initial polynomial:' );
+
+  poly_cof2 = r8poly_ant_cof ( n, poly_cof );
+
+  r8poly_print ( n+1, poly_cof2, '  The antiderivative polynomial:' );
+
+  poly_cof3 = r8poly_der_cof ( n, poly_cof );
+
+  r8poly_print ( n-1, poly_cof3, '  The derivative polynomial:' );
+
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  These are equivalent operations!\n' );
+  fprintf ( 1, '  Evaluate the polynomial, antiderivative and\n' );
+  fprintf ( 1, '  derivative, using only the original polynomial\n' );
+  fprintf ( 1, '  coefficients:\n' );
   fprintf ( 1, '\n' );
-%
-%  Set XTAB, YTAB to X, F(X)
-%
-  ntab = 4;
+  fprintf ( 1, '     X             P(X)         Anti_P(X)     P''(X)\n' );
+  fprintf ( 1, '\n' );
 
-  xtab1 = r8vec_indicator ( ntab );
+  for i = 0 : 2
 
-  ytab1(1:ntab) = xtab1(1:ntab).^3 - 2.0 * xtab1(1:ntab).^2 ...
-    + 3.0 * xtab1(1:ntab) - 4.0;
+    xval = i;
 
-  xtab2 = r8vec_indicator ( ntab );
+    yval = r8poly_val_horner ( n, poly_cof, xval );
 
-  ytab2(1:ntab) = xtab2(1:ntab).^3 - 2.0 * xtab2(1:ntab).^2 ...
-    + 3.0 * xtab2(1:ntab) - 4.0;
-%
-%  Compute and display the finite difference table.
-%
-  diftab1 = data_to_dif_display ( ntab, xtab1, ytab1 );
+    yval2 = r8poly_ant_val ( n, poly_cof, xval );
 
-  diftab2 = data_to_dif_display ( ntab, xtab2, ytab2 );
-%
-%  Examine corresponding polynomial.
-%
-  dif_print ( ntab, xtab1, diftab1, '  The divided difference polynomial:' );
-%
-%  Shift to zero.
-%
-  [ xtab1, diftab1 ] = dif_shift_zero ( ntab, xtab1, diftab1 );
+    yval3 = r8poly_der_val ( n, poly_cof, xval );
 
-  r8poly_print ( ntab, diftab1, '  Using DIF_SHIFT_ZERO' );
-%
-%  Shift to zero.
-%
-  c = dif_to_r8poly ( ntab, xtab2, diftab2 );
+    fprintf ( 1, '  %14f  %14f  %14f  %14f\n', xval, yval, yval2, yval3 );
 
-  r8poly_print ( ntab, c, '  Using DIF_TO_R8POLY' );
+  end
 
   return
 end

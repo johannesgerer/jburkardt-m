@@ -2,7 +2,7 @@ function a = drmac ( scale, permute )
 
 %*****************************************************************************80
 %
-%% DRMAC returns the Drmac matrix.
+%% DRMAC returns the DRMAC matrix.
 %
 %  Discussion:
 %

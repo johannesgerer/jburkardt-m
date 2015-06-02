@@ -2,7 +2,7 @@ function fem2d_pack_test ( )
 
 %*****************************************************************************80
 %
-%% FEM2D_PACK_TEST tests FEM2D_PACK.
+%% FEM2D_PACK_TEST tests the FEM2D_PACK library.
 %
 %  Licensing:
 %
@@ -10,14 +10,13 @@ function fem2d_pack_test ( )
 %
 %  Modified:
 %
-%    02 March 2011
+%    11 January 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM2D_PACK_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -38,6 +37,7 @@ function fem2d_pack_test ( )
   fem2d_pack_test11 ( );
   fem2d_pack_test12 ( );
   fem2d_pack_test13 ( );
+  fem2d_pack_test135 ( );
   fem2d_pack_test14 ( );
   fem2d_pack_test15 ( );
   fem2d_pack_test16 ( );
@@ -56,7 +56,6 @@ function fem2d_pack_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM2D_PACK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -19,7 +19,7 @@ function value = i4_choose ( n, k )
 %
 %  Modified:
 %
-%    02 June 2007
+%    30 October 2014
 %
 %  Author:
 %
@@ -41,6 +41,7 @@ function value = i4_choose ( n, k )
 %    things taken K at a time.
 %
   mn = min ( k, n - k );
+  mx = max ( k, n - k );
 
   if ( mn < 0 )
 
@@ -52,7 +53,6 @@ function value = i4_choose ( n, k )
 
   else
 
-    mx = max ( k, n - k );
     value = mx + 1;
 
     for i = 2 : mn

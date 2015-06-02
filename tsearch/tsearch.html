@@ -1,0 +1,196 @@
+<html>
+
+  <head>
+    <title>
+      TSEARCH - Replacing MATLAB's TSEARCH() Function
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      TSEARCH <br> Replacing MATLAB's TSEARCH() Function
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TSEARCH</b>
+      is a MATLAB library which
+      compares several replacements for MATLAB's obsolete tsearch() function,
+      which searched a Delaunay triangulation to find the triangle
+      that encloses a given point.
+    </p>
+
+    <p>
+      Given a set of points P, it is possible to compute the Delaunay
+      triangulation D(P), and then to very efficiently answer the question,
+      what triangle T in D(P) contains a query point Q?
+    </p>
+
+    <p>
+      In earlier versions of MATLAB, this could be done by the following calls:
+      <pre>
+        d = delaunay ( px, py );
+        t = tsearch ( px, py, d, qx, qy ); 
+      </pre>
+    </p>
+
+    <p>
+      A MATLAB function mytsearch() was written, which allows the user to
+      supply an initial guess for the triangle; if the guess is incorrect,
+      then tsearch() is called to find the correct answer.
+      <pre>
+        d = delaunay ( px, py );
+        t = guess values;
+        t = tsearch_mex ( px, py, d, qx, qy, t ); 
+      </pre>
+    </p>
+
+    <p>
+      A C function has been made available, which follows MATLAB's MEX
+      interface standards, and which can also be used for this computation:
+      <pre>
+        d = delaunay ( px, py );
+        t = tsearch_mex ( px, py, d, qx, qy ); 
+      </pre>
+    </p>
+
+    <p>
+      But now tsearch() has been deleted, and the recommended calls are:
+      <pre>
+        d = DelaunayTri ( p );
+        t = PointLocation ( d, q); 
+      </pre>
+    </p>
+
+    <p>
+      The main purpose of the files in this directory is to examine the
+      behavior of these various options.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TSEARCH</b> is available in
+      <a href = "../../m_src/divdif/divdif.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 (linear) or order 6 (quadratic) 
+      triangulations, including searching a Delaunay triangulation to find
+      which triangle contains a given point.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "mytsearch.m">mytsearch.m</a>,
+          a "front end" to MATLAB's tsearch(), intended to improve its
+          performance.  If the user supplies a valid initial guess for
+          each query point, then mytsearch() can execute without calling
+          tsearch().  This function was written by Darren Engwirda.
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns an array of random values; does not rely on MATLAB's
+          random number generator, and is easy to run on different machines.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tsearch_stub.m">tsearch_stub.m</a>,
+          the "stub" file that was MATLAB's tsearch() function.  It simply
+          calls a compiled MEX file named "tsrchmx".
+        </li>
+        <li>
+          <a href = "tsearch_mex.c">tsearch_mex.c</a>,
+          a C function which follows MATLAB's MEX interface requirements,
+          and so can be compiled with MATLAB's MEX utility and used
+          as a substitute for tsearch().
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tsearch_test.m">tsearch_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "tsearch_test0_output.txt">tsearch_test0_output.txt</a>,
+          the output file for option 0.
+        </li>
+        <li>
+          <a href = "tsearch_test1_output.txt">tsearch_test1_output.txt</a>,
+          the output file for option 1.
+        </li>
+        <li>
+          <a href = "tsearch_test2_output.txt">tsearch_test2_output.txt</a>,
+          the output file for option 2.
+        </li>
+        <li>
+          <a href = "tsearch_test3_output.txt">tsearch_test3_output.txt</a>,
+          the output file for option 3.
+        </li>
+        <li>
+          <a href = "tsearch_test01.m">tsearch_test01.m</a>,
+          tests tsearch(), mytsearch(), tsearch_mex, and pointLocation().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 19 October 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

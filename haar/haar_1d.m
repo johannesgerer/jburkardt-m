@@ -4,13 +4,19 @@ function v = haar_1d ( n, u )
 %
 %% HAAR_1D computes the Haar transform of a vector.
 %
+%  Discussion:
+%
+%    Thanks to Stephen Becker for pointing out that a previous version of
+%    the haar_1d code was not inverted by haar_1d_inverse in cases where
+%    M and N were not powers of 2, 05 March 2014.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    15 March 2011
+%    05 March 2014
 %
 %  Author:
 %
@@ -29,17 +35,22 @@ function v = haar_1d ( n, u )
   s = sqrt ( 2.0 );
 
   w = zeros ( n, 1 );
+%
+%  Determine K, the largest power of 2 such that K <= N.
+%
+  k = 1;
+  while ( k * 2 <= n )
+    k = k * 2;
+  end
 
-  m = n;
-
-  while ( 1 < m )
+  while ( 1 < k )
   
-    m = floor ( m / 2 );
+    k = floor ( k / 2 );
 
-    w(  1:  m) = ( v(1:2:2*m-1) + v(2:2:2*m) ) / s;
-    w(m+1:m+m) = ( v(1:2:2*m-1) - v(2:2:2*m) ) / s;
+    w(  1:  k) = ( v(1:2:2*k-1) + v(2:2:2*k) ) / s;
+    w(k+1:k+k) = ( v(1:2:2*k-1) - v(2:2:2*k) ) / s;
 
-    v(1:2*m) = w(1:2*m);
+    v(1:2*k) = w(1:2*k);
 
   end
 

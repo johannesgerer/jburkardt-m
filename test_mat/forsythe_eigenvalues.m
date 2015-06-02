@@ -2,7 +2,7 @@ function lambda = forsythe_eigenvalues ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% FORSYTHE_EIGENVALUES returns the eigenvalues of the Forsythe matrix.
+%% FORSYTHE_EIGENVALUES returns the eigenvalues of the FORSYTHE matrix.
 %
 %  Licensing:
 %
@@ -24,12 +24,14 @@ function lambda = forsythe_eigenvalues ( alpha, beta, n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = 2 * i * pi /n;
     w = exp ( c8_i ( ) * angle );
-    lambda(i) = beta + ( abs ( alpha ) )^( 1.0 / n ) * w;
+    lambda(i,1) = beta + ( abs ( alpha ) )^( 1.0 / n ) * w;
   end
 
   return

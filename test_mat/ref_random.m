@@ -1,4 +1,4 @@
-function [ a, seed ] = ref_random ( m, n, prob, seed )
+function a = ref_random ( m, n, prob, key )
 
 %*****************************************************************************80
 %
@@ -51,13 +51,15 @@ function [ a, seed ] = ref_random ( m, n, prob, seed )
 %    PROB = 0 forces the entire matrix to be zero.  A more reasonable
 %    value might be PROB = 0.8 or 0.9.
 %
-%    Input, integer SEED, a seed for the random number generator.
+%    Input, integer KEY, a positive value that selects the data..
 %
 %    Output, real A(M,N), the matrix.
 %
-%    Output, integer SEED, a seed for the random number generator.
-%
+  a = zeros ( m, n );
+
   jprev = 0;
+
+  seed = key;
 
   for i = 1 : m
 

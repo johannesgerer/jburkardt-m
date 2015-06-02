@@ -2,7 +2,7 @@ function asa063_test01 ( )
 
 %*****************************************************************************80
 %
-%% TEST01 demonstrates the use of BETAIN.
+%% ASA063_TEST01 demonstrates the use of BETAIN.
 %
 %  Licensing:
 %
@@ -17,7 +17,7 @@ function asa063_test01 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01:\n' );
+  fprintf ( 1, 'ASA063_TEST01:\n' );
   fprintf ( 1, '  BETAIN computes the incomplete beta function.\n' );
   fprintf ( 1, '  Compare to tabulated values.\n' );
   fprintf ( 1, '\n' );
@@ -37,9 +37,9 @@ function asa063_test01 ( )
       break
     end
 
-    beta_log = alogam ( a ) ...
-             + alogam ( b ) ...
-             - alogam ( a + b );
+    beta_log = gammaln ( a ) ...
+             + gammaln ( b ) ...
+             - gammaln ( a + b );
 
     [ fx2, ifault ] = betain ( x, a, b, beta_log );
 

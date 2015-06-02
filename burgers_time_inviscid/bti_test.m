@@ -2,7 +2,7 @@ function bti_test ( )
 
 %*****************************************************************************80
 %
-%% BTI_TEST tests BURGERS_TIME_INVISCID.
+%% BTI_TEST tests the BURGERS_TIME_INVISCID (BTI) library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function bti_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BTI_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the BURGERS_TIME_INVISCID library.\n' );
+  fprintf ( 1, '  Test the BURGERS_TIME_INVISCID (BTI) library.\n' );
 
   bti_test01 ( );
   bti_test02 ( );

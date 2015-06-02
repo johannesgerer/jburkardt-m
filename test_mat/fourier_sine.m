@@ -2,9 +2,11 @@ function a = fourier_sine ( n )
 
 %*****************************************************************************80
 %
-%% FOURIER_SINE returns the discrete Fourier Sine Transform matrix.
+%% FOURIER_SINE returns the FOURIER_SINE matrix.
 %
 %  Discussion:
+%
+%    This is the discrete Fourier Sine Transform matrix.
 %
 %    This matrix is occasionally known as the "Newman" matrix.
 %
@@ -81,6 +83,8 @@ function a = fourier_sine ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       angle = ( i * j ) * pi / ( n + 1 );

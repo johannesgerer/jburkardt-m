@@ -20,9 +20,9 @@ function value = g_03 ( x )
 %
 %    Input, real X, the point at which F is to be evaluated.
 %
-%    Output, real G_03, the value of the function at X.
+%    Output, real VALUE, the value of the function at X.
 %
-  value = ( ( x * x + 2.0 ) * x + 1.0 ) * x + 3.0;
+  value = ( ( x .* x + 2.0 ) .* x + 1.0 ) .* x + 3.0;
 
   return
 end

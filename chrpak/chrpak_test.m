@@ -2,7 +2,7 @@ function chrpak_test ( )
 
 %*****************************************************************************80
 %
-%% CHRPAK_TEST tests CHRPAK.
+%% CHRPAK_TEST tests the CHRPAK library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function chrpak_test ( )
 %
 %  Modified:
 %
-%    22 April 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -58,6 +58,7 @@ function chrpak_test ( )
   chrpak_test1155 ( );
 
   chrpak_test1225 ( );
+  chrpak_test1227 ( );
   chrpak_test1255 ( );
   chrpak_test129 ( );
 
@@ -69,7 +70,6 @@ function chrpak_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CHRPAK_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

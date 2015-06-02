@@ -17,7 +17,6 @@ function timer_etime_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_ETIME\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,11 +33,12 @@ function timer_etime_test ( )
   timer_etime_test02 ( );
   timer_etime_test03 ( );
   timer_etime_test04 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_ETIME\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

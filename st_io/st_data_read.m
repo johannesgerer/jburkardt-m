@@ -1,4 +1,4 @@
-function [ row, col, a ] = st_data_read ( input_filename, nrow, ncol, nnzero )
+function [ ist, jst, ast ] = st_data_read ( input_filename, m, n, nst )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function [ row, col, a ] = st_data_read ( input_filename, nrow, ncol, nnzero )
 %
 %  Modified:
 %
-%    01 November 2008
+%    23 July 2014
 %
 %  Author:
 %
@@ -20,16 +20,15 @@ function [ row, col, a ] = st_data_read ( input_filename, nrow, ncol, nnzero )
 %
 %    Input, string INPUT_FILENAME, the name of the ST file.
 %
-%    Input, integer NROW, the assumed number of rows in the matrix.
+%    Input, integer M, the number of rows.
 %
-%    Input, integer NCOL, the assumed number of columns in the matrix.
+%    Input, integer N, the number of columns.
 %
-%    Input, integer NNZERO, the assumed number of nonzeros in the matrix.
+%    Input, integer NST, the number of nonzeros.
 %
-%    Output, integer ROW(NNZERO), COL(NNZERO), the 0-based row and column
-%    index of a nonzero matrix entry.
+%    Output, integer IST(NST), JST(NST), the row and column indices.
 %
-%    Output, real A(NNZERO), the value of a nonzero matrix entry.
+%    Output, real AST(NST), the nonzero values.
 %
   input_unit = fopen ( input_filename );
 
@@ -43,7 +42,7 @@ function [ row, col, a ] = st_data_read ( input_filename, nrow, ncol, nnzero )
 
   string = '  %d  %d  %f';
 
-  for k = 1 : nnzero
+  for k = 1 : nst
 
     line = fgets ( input_unit );
 
@@ -57,9 +56,9 @@ function [ row, col, a ] = st_data_read ( input_filename, nrow, ncol, nnzero )
 
     [ x, count ] = sscanf ( line, string );
 
-    row(k) = x(1);
-    col(k) = x(2);
-    a(k) = x(3);
+    ist(k) = x(1);
+    jst(k) = x(2);
+    ast(k) = x(3);
 
   end
 

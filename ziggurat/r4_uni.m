@@ -10,7 +10,7 @@ function [ value, jsr ] = r4_uni ( jsr )
 %
 %  Modified:
 %
-%    06 May 2008
+%    14 October 2013
 %
 %  Author:
 %
@@ -26,12 +26,12 @@ function [ value, jsr ] = r4_uni ( jsr )
 %
 %  Parameters:
 %
-%    Input, integer JSR, the seed.
+%    Input, uint32 JSR, the seed.
 %
 %    Output, real VALUE, a uniformly distributed random value in
 %    the range [0,1].
 %
-%    Output, integer JSR, the updated seed.
+%    Output, uint32 JSR, the updated seed.
 %
   [ jz, jsr ] = shr3 ( jsr );
 

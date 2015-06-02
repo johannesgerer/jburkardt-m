@@ -1,4 +1,4 @@
-function [ cvec, seed ] = c4vec_uniform_01 ( n, seed )
+function [ c, seed ] = c4vec_uniform_01 ( n, seed )
 
 %*****************************************************************************80
 %
@@ -58,11 +58,11 @@ function [ cvec, seed ] = c4vec_uniform_01 ( n, seed )
 %
 %    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, complex CVEC(N), the pseudorandom complex vector.
+%    Output, complex C(N), the pseudorandom complex vector.
 %
 %    Output, integer SEED, a seed for the random number generator.
 %
-  cvec = zeros ( n, 1 );
+  c = zeros ( n, 1 );
 
   i4_huge = 2147483647;
 
@@ -95,7 +95,7 @@ function [ cvec, seed ] = c4vec_uniform_01 ( n, seed )
 
     theta = 2.0 * pi * seed * 4.656612875E-10;
 
-    cvec(j) = r * ( cos ( theta ) + sin ( theta ) * i );
+    c(j) = r * ( cos ( theta ) + sin ( theta ) * i );
 
   end
 

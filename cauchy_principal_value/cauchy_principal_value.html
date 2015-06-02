@@ -1,0 +1,162 @@
+<html>
+
+  <head>
+    <title>
+      CAUCHY_PRINCIPAL_VALUE - Estimate Singular Integrals
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      CAUCHY_PRINCIPAL_VALUE <br> Estimate Singular Integrals
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CAUCHY_PRINCIPAL_VALUE</b>
+      is a MATLAB library which
+      uses Gauss-Legendre quadrature to estimate the Cauchy Principal Value
+      of certain singular integrals.
+    </p>
+
+    <p>
+      The singular integrals to be considered will have the form:
+      <pre>
+        Integral ( a <= t <= b ) f(t) / ( t - x ) dt
+      </pre>
+      The Cauchy Principal Value is defined as
+      <pre>
+        CPV = limit ( s --&gt; x ) Integral ( a <= t <= s ) f(t) / ( t - x ) dt
+            + limit ( x &lt;-- s ) Integral ( s <= t <= b ) f(t) / ( t - x ) dt
+      </pre>
+    </p>
+
+    <p>
+      We suppose that our singular integral is posed on an interval that is
+      symmetric with respect to the location of the singularity:
+      <pre>
+        Integral ( x-d <= t <= x+d ) f(t) / ( t - x ) dt
+      </pre>
+      and we propose to estimate the integral using a Gauss-Legendre rule of
+      even order N:
+      <pre>
+        CPV approx sum ( 1 &lt;= i &lt;= N ) w(i) * f(xi(i)*d+x) / xi(i)
+      </pre>
+      where xi(i) and w(i) are the points and weights, respectively, of
+      the Gauss-Legendre rule.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CAUCHY_PRINCIPAL_VALUE</b> is available in
+      <a href = "../../c_src/cauchy_principal_value/cauchy_principal_value.html">a C version</a> and
+      <a href = "../../cpp_src/cauchy_principal_value/cauchy_principal_value.html">a C++ version</a> and
+      <a href = "../../f77_src/cauchy_principal_value/cauchy_principal_value.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/cauchy_principal_value/cauchy_principal_value.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/cauchy_principal_value/cauchy_principal_value.html">a MATLAB version</a> and
+      <a href = "../../py_src/cauchy_principal_value/cauchy_principal_value.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for approximating an integral over a 1D domain.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Julian Noble,<br>
+          Gauss-Legendre Principal Value Integration,<br>
+          Computing in Science and Engineering,<br>
+          Volume 2, Number 1, January-February 2000, pages 92-95.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cpv.m">cpv.m</a>,
+          estimates the Cauchy Principal Value using Gauss-Legendre quadrature.
+        </li>
+        <li>
+          <a href = "legendre_set.m">legendre_set.m</a>,
+          returns the points and weights for a Gauss-Legendre quadrature rule.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cpv_test.m">cpv_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "cpv_test_output.txt">cpv_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "cpv_test01.m">cpv_test01.m</a>,
+          tests CPV on integral ( -1 <= t <= + 1 ) exp(t)/t dt.
+        </li>
+        <li>
+          <a href = "cpv_test02.m">cpv_test02.m</a>,
+          tests CPV on integral ( 1-d <= t <= 1+d ) 1/(1-t^3) dt.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 31 March 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

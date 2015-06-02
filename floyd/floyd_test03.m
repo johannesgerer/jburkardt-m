@@ -1,64 +1,35 @@
-function wtime = floyd_test03 ( n )
+function floyd_test03 ( )
 
 %*****************************************************************************80
 %
-%% FLOYD_TEST03 tests I4MAT_FLOYD.
+%% FLOYD_TEST03 applies Floyd's algorithm to matrices of increasing size.
 %
-%  Discussion:
-%
-%    The matrix size is input by the user.
-%
-%    The matrix A has the property that
-%
-%      A(I,J) = 1 if I is divisible by J.
-%
-%  Example:
-%
-%    N = 6
-%
-%    1 0 0 0 0 0
-%    1 1 0 0 0 0
-%    1 0 1 0 0 0
-%    1 1 0 1 0 0
-%    1 0 0 0 1 0
-%    1 1 1 0 0 1
-%    
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    17 May 2009
+%    02 March 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-%  Parameters:
-%
-%    Input, integer N, the size of the matrix.
-%
-%    Output, real WTIME, the wall clock time required by I4MAT_FLOYD.
-%
-  v = 1 : n;
+  fprintf ( 1, '\n' );
+  fprintf ( 1,'FLOYD_TEST03\n' );
+  fprintf ( 1, '  Test I4MAT_FLOYD on the MOD(I,J) matrix.\n' );
+  fprintf ( 1, '  The work is roughly N^3.\n' );
+  fprintf ( 1, '\n');
+  fprintf ( 1, '         N   Time (seconds)  Time/N^3\n' );
+  fprintf ( 1, '\n' );
 
-  a = repmat ( v, n, 1 );
-
-  a = mod ( a', a );
- 
-  a = ( a == 0 );
-%
-%  Replace "0" by "Inf".
-%
-  index = find ( a(1:n,1:n) == 0 );
-  a(index) = Inf;
-
-  tic;
-
-  a = i4mat_floyd ( n, a );
-
-  wtime = toc;
+  n = 1;
+  while ( n <= 512 )
+    wtime = floyd_test03_sub ( n );
+    fprintf ( 1, '  %8d  %12f  %12f\n', n, wtime, 1000000 * wtime / n^3 );
+    n = n * 2;
+  end
 
   return
 end

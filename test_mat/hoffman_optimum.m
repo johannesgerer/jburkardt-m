@@ -25,7 +25,8 @@ function x = hoffman_optimum ( )
 %
 %    Output, real X(2), the optimum solution.
 %
-  x(1:2) = [ 1.0, 0.0 ];
+  x = [ 1.0; ...
+        0.0 ];
 
   return
 end

@@ -99,7 +99,6 @@ function fd_predator_prey ( p0, tspan, step_num )
 %    Input, integer STEP_NUM, the number of steps.
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FD_PREDATOR_PREY\n' );
   fprintf ( 1, '  MATLAB version\n' );

@@ -2,7 +2,7 @@ function vandermonde_approx_1d_test ( )
 
 %*****************************************************************************80
 %
-%% VANDERMONDE_APPROX_1D_TEST tests VANDERMONDE_APPROX_1D.
+%% VANDERMONDE_APPROX_1D_TEST tests the VANDERMONDE_APPROX_1D library.
 %
 %  Licensing:
 %

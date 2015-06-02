@@ -1,4 +1,4 @@
-function [ lambda, seed ] = pds_random_eigenvalues ( n, seed )
+function lambda = pds_random_eigenvalues ( n, key )
 
 %*****************************************************************************80
 %
@@ -25,14 +25,11 @@ function [ lambda, seed ] = pds_random_eigenvalues ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-%    Output, integer SEED, a seed for the random 
-%    number generator.
-%
+  seed = key;
   [ lambda, seed ] = r8vec_uniform_01 ( n, seed );
 
   return

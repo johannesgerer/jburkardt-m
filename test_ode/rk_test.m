@@ -10,7 +10,7 @@ function rk_test ( test, step_num, order )
 %
 %  Modified:
 %
-%    24 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -61,11 +61,11 @@ function rk_test ( test, step_num, order )
 %
 %  Get the starting point.
 %
-  [ t_start, y_start ] = p00_start ( test );
+  [ t_start, y_start ] = p00_start ( test, neqn );
 %
 %  Get the stopping point.
 %
-  [ t_stop, y_stop ] = p00_stop ( test );
+  [ t_stop, y_stop ] = p00_stop ( test, neqn );
 %
 %  Print the stepsize;
 %
@@ -97,7 +97,7 @@ function rk_test ( test, step_num, order )
       t_start, y_min, y_ave, y_max, y_norm );
   end
 
-  y0(1:neqn) = y_start(1:neqn);
+  y0(1:neqn,1) = y_start(1:neqn,1);
 
   for step = 1 : step_num
 
@@ -139,7 +139,7 @@ function rk_test ( test, step_num, order )
       end
     end
 
-    y0(1:neqn) = y1(1:neqn);
+    y0(1:neqn,1) = y1(1:neqn,1);
 
   end
 

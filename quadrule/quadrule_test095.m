@@ -2,7 +2,7 @@ function quadrule_test095 ( )
 
 %*****************************************************************************80
 %
-%% QUADRULE_TEST095 tests HERMITE_GK16_SET and SUMMER.
+%% QUADRULE_TEST095 tests HERMITE_GK16_SET.
 %
 %  Licensing:
 %

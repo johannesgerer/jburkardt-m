@@ -26,10 +26,10 @@ function quadrule_test22 ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST22\n' );
   fprintf ( 1, '  LEGENDRE_SET sets up Gauss-Legendre quadrature\n' );
-  fprintf ( 1, '    for integrating F(X) over [-1,1];\n' );
+  fprintf ( 1, '  for integrating F(X) over [-1,1];\n' );
   fprintf ( 1, '  RULE_ADJUST adjusts a rule for a new interval.\n' );
   fprintf ( 1, '  LEGENDRE_SET_X0_01 sets up Gauss-Legendre quadrature\n' );
-  fprintf ( 1, '    for integrating F(X) over [0,1];\n' );
+  fprintf ( 1, '  for integrating F(X) over [0,1];\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  We will use LEGENDRE_SET to get a rule for [-1,1],\n' );
   fprintf ( 1, '  adjust it to [0,1] using RULE_ADJUST,\n' );

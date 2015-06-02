@@ -2,7 +2,7 @@ function a = helmert ( n )
 
 %*****************************************************************************80
 %
-%% HELMERT returns the classic Helmert matrix.
+%% HELMERT returns the HELMERT matrix.
 %
 %  Formula:
 %
@@ -61,7 +61,7 @@ function a = helmert ( n )
 %
 %    A is not symmetric: A' ~= A.
 %
-%    det ( A ) = (-1)**(N+1)
+%    det ( A ) = (-1)^(N+1)
 %
 %  Licensing:
 %
@@ -88,7 +88,7 @@ function a = helmert ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  A begins with the first row, diagonal, and lower triangle set to 1.
 %

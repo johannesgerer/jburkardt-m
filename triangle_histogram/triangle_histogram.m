@@ -2,7 +2,7 @@ function triangle_histogram ( data_filename, n )
 
 %*****************************************************************************80
 %
-%% MAIN iis the main program for TRIANGLE_HISTOGRAM.
+%% MAIN is the main program for TRIANGLE_HISTOGRAM.
 %
 %  Discussion:
 %
@@ -42,9 +42,7 @@ function triangle_histogram ( data_filename, n )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGLE_HISTOGRAM\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -171,7 +169,6 @@ function triangle_histogram ( data_filename, n )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGLE_HISTOGRAM\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

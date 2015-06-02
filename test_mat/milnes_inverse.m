@@ -2,7 +2,7 @@ function a = milnes_inverse ( n, x )
 
 %*****************************************************************************80
 %
-%% MILNES_INVERSE returns the inverse of the Milnes matrix.
+%% MILNES_INVERSE returns the inverse of the MILNES matrix.
 %
 %  Licensing:
 %
@@ -32,6 +32,8 @@ function a = milnes_inverse ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( i == j & i ~= n )

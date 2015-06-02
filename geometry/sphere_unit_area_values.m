@@ -8,7 +8,7 @@ function [ n_data, n, area ] = sphere_unit_area_values ( n_data )
 %
 %    The formula for the surface area of the unit sphere in N dimensions is:
 %
-%      Sphere_Unit_Area ( N ) = 2 * PI**(N/2) / Gamma ( N / 2 )
+%      Sphere_Unit_Area ( N ) = 2 * PI^(N/2) / Gamma ( N / 2 )
 %
 %    Some values of the function include:
 %
@@ -16,13 +16,13 @@ function [ n_data, n, area ] = sphere_unit_area_values ( n_data )
 %
 %       2    2        * PI
 %       3  ( 4 /    ) * PI
-%       4  ( 2 /   1) * PI**2
-%       5  ( 8 /   3) * PI**2
-%       6  ( 1 /   1) * PI**3
-%       7  (16 /  15) * PI**3
-%       8  ( 1 /   3) * PI**4
-%       9  (32 / 105) * PI**4
-%      10  ( 1 /  12) * PI**5
+%       4  ( 2 /   1) * PI^2
+%       5  ( 8 /   3) * PI^2
+%       6  ( 1 /   1) * PI^3
+%       7  (16 /  15) * PI^3
+%       8  ( 1 /   3) * PI^4
+%       9  (32 / 105) * PI^4
+%      10  ( 1 /  12) * PI^5
 %
 %    For the unit sphere, Area(N) = N * Volume(N)
 %
@@ -83,8 +83,8 @@ function [ n_data, n, area ] = sphere_unit_area_values ( n_data )
      0.3765290085742291E+01, ...
      0.2396678817591364E+01, ...
      0.1478625959000308E+01, ...
-     0.8858104195716824, ...
-     0.5161378278002812 ];
+     0.8858104195716824E+00, ...
+     0.5161378278002812E+00 ];
 
   n_vec = [ ...
      1, ...

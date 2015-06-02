@@ -2,7 +2,7 @@ function a = cheby_u_inverse ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_U_INVERSE returns the inverse of the Chebyshev U matrix.
+%% CHEBY_U_INVERSE returns the inverse of the CHEBY_U matrix.
 %
 %  Example:
 %
@@ -38,12 +38,7 @@ function a = cheby_u_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  if ( n <= 0 )
-    a = [];
-    return
-  end
-
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   a(1,1) = 1.0;
 

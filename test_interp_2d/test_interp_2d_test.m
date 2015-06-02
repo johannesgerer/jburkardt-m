@@ -19,7 +19,6 @@ function test_interp_2d_test ( )
   addpath ( '../r8lib' );
 
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INTERP_2D_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +34,6 @@ function test_interp_2d_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INTERP_2D_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

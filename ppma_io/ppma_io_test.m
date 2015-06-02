@@ -2,7 +2,7 @@ function ppma_io_test ( )
 
 %*****************************************************************************80
 %
-%% PPMA_IO_TEST tests the PPMA_IO routines.
+%% PPMA_IO_TEST tests the PPMA_IO library.
 %
 %  Purpose:
 %
@@ -21,7 +21,6 @@ function ppma_io_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PPMA_IO_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +34,6 @@ function ppma_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PPMA_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

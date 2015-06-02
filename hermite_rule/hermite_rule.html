@@ -27,14 +27,34 @@
     </p>
 
     <p>
-      The <i>Gauss Hermite quadrature rule </i> is used as follows:
+      The <i>Gauss-Hermite quadrature rule</i> is used as follows:
       <pre>
-        Integral ( -oo < x < +oo ) f(x) exp ( - b * ( x - a )^2 ) dx
+        c * Integral ( -oo < x < +oo ) f(x) exp ( - b * ( x - a )^2 ) dx
       </pre>
       is to be approximated by
       <pre>
         Sum ( 1 &lt;= i &lt;= order ) w(i) * f(x(i))
       </pre>
+      Generally, a Gauss-Hermite quadrature rule of <i>n</i> points will
+      produce the exact integral when f(x) is a polynomial of degree
+      <i>2n-1</i> or less.
+    </p>
+
+    <p>
+      The value of C in front of the integral depends on the user's
+      choice of the SCALE parameter:
+      <ul>
+        <li>
+          <i>scale=0</i>, then C = 1; this is the standard choice for
+          Gauss-Hermite quadrature.
+        </li>
+        <li>
+          <i>scale=1</i>, then C is a normalization factor so that
+          f(x)=1 will integrate to 1.  This implies in turn that the
+          weights will sum to 1.  This choice is appropriate when
+          using the rule to compute probabilities.
+        </li>
+      </ul>
     </p>
 
     <h3 align = "center">
@@ -43,7 +63,8 @@
 
     <p>
       <blockquote>
-        <b>hermite_rule</b> ( <i>order</i>, <i>a</i>, <i>b</i>, <i>'filename'</i> )
+        <b>hermite_rule</b> ( <i>order</i>, <i>a</i>, <i>b</i>, <i>scale</i>
+          <i>'filename'</i> )
       </blockquote>
       where
       <ul>
@@ -55,6 +76,10 @@
         </li>
         <li>
           <i>b</i> is the scale factor (default 1);
+        </li>
+        <li>
+          <i>scale</i> is the normalization option (0/1).  If 1,
+          then the weights are normalized to have unit sum;
         </li>
         <li>
           <i>'filename'</i> specifies the output filenames:
@@ -81,7 +106,9 @@
 
     <p>
       <b>HERMITE_RULE</b> is available in
+      <a href = "../../c_src/hermite_rule/hermite_rule.html">a C version</a> and
       <a href = "../../cpp_src/hermite_rule/hermite_rule.html">a C++ version</a> and
+      <a href = "../../f77_src/hermite_rule/hermite_rule.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/hermite_rule/hermite_rule.html">a FORTRAN90 version</a> and
       <a href = "../../m_src/hermite_rule/hermite_rule.html">a MATLAB version.</a>
     </p>
@@ -140,6 +167,13 @@
     </p>
 
     <p>
+      <a href = "../../m_src/hermite_exactness/hermite_exactness.html">
+      HERMITE_EXACTNESS</a>,
+      a MATLAB program which
+      tests the polynomial exactness of Gauss-Hermite quadrature rules.
+    </p>
+
+    <p>
       <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">
       HERMITE_POLYNOMIAL</a>,
       a MATLAB library which
@@ -148,10 +182,11 @@
     </p>
 
     <p>
-      <a href = "../../m_src/int_exactness_hermite/int_exactness_hermite.html">
-      INT_EXACTNESS_HERMITE</a>,
-      a MATLAB program which
-      checks the polynomial exactness of a Gauss-Hermite quadrature rule.
+      <a href = "../../m_src/hermite_test_int/hermite_test_int.html">
+      HERMITE_TEST_INT</a>,
+      a MATLAB library which
+      defines test integrands for Hermite integrals with 
+      interval (-oo,+oo) and density exp(-x^2).
     </p>
 
     <p>
@@ -176,26 +211,18 @@
     </p>
 
     <p>
+      <a href = "../../m_src/line_felippa_rule/line_felippa_rule.html">
+      LINE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
       <a href = "../../m_src/patterson_rule/patterson_rule.html">
       PATTERSON_RULE</a>,
       a MATLAB program which
       computes a Gauss-Patterson quadrature rule.
-    </p>
-
-    <p>
-      <a href = "../../m_src/power_rule/power_rule.html">
-      POWER_RULE</a>,
-      a MATLAB program which
-      constructs a power rule, that is, a product quadrature rule 
-      from identical 1D factor rules.
-    </p>
-
-    <p>
-      <a href = "../../f_src/quadpack/quadpack.html">
-      QUADPACK</a>,
-      a FORTRAN90 library which
-      contains routines for
-      numerical estimation of integrals in 1D.
     </p>
 
     <p>
@@ -231,17 +258,12 @@
     </p>
 
     <p>
-      <a href = "../../m_src/tanh_sinh_rule/tanh_sinh_rule.html">
-      TANH_SINH_RULE</a>,
-      a MATLAB library which
-      sets up a tanh-sinh quadrature rule;
-    </p>
-
-    <p>
-      <a href = "../../m_src/test_int_hermite/test_int_hermite.html">
-      TEST_INT_HERMITE</a>,
-      a MATLAB library which
-      defines test integrands for integration over (-oo,+oo).
+      <a href = "../../m_src/truncated_normal_rule/truncated_normal_rule.html">
+      TRUNCATED_NORMAL_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a normal probability density function (PDF),
+      also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
     </p>
 
     <h3 align = "center">
@@ -312,27 +334,22 @@
     </h3>
 
     <p>
+      HERM_O4 is a Hermite rule of order 4, created by the command
+      <pre>
+        hermite_rule ( 4, 0.0, 1.0, 0, 'herm_o4' )
+      </pre>
       <ul>
         <li>
           <a href = "herm_o4_r.txt">herm_o4_r.txt</a>,
-          the region file created by the command
-          <pre><b>
-            hermite_rule ( 4, 0.0, 1.0, 'herm_o4' )
-          </b></pre>
+          the region file;
         </li>
         <li>
           <a href = "herm_o4_w.txt">herm_o4_w.txt</a>,
-          the weight file created by the command
-          <pre><b>
-            hermite_rule ( 4, 0.0, 1.0, 'herm_o4' )
-          </b></pre>
+          the weight file;
         </li>
         <li>
           <a href = "herm_o4_x.txt">herm_o4_x.txt</a>,
-          the abscissa file created by the command
-          <pre><b>
-            hermite_rule ( 4, 0.0, 1.0, 'herm_o4' )
-          </b></pre>
+          the abscissa file;
         </li>
       </ul>
     </p>
@@ -345,7 +362,7 @@
     <hr>
 
     <i>
-      Last revised on 24 February 2010.
+      Last revised on 06 February 2014.
     </i>
 
     <!-- John Burkardt -->

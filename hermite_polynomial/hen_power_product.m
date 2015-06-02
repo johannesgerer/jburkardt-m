@@ -2,12 +2,11 @@ function table = hen_power_product ( p, e )
 
 %*****************************************************************************80
 %
-%% HEN_POWER_PRODUCT: normalized probabilist's Hermite power products.
+%% HEN_POWER_PRODUCT: power products, x^e*Hen(i,x)*Hen(j,x).
 %
 %  Discussion:
 %
-%    Let Hen(I,X) represent the normalized probabilist's Hermite  polynomial 
-%    of degree I.  
+%    Hen(i,x) is the normalized probabilist's Hermite polynomial of degree I.
 %
 %    For polynomial chaos applications, it is of interest to know the
 %    value of the integrals of products of X with every possible pair
@@ -51,7 +50,7 @@ function table = hen_power_product ( p, e )
   for k = 1 : order
 
     x = x_table(k);
-    h_table = hen_polynomial ( 1, p, x );
+    h_table = hen_polynomial_value ( 1, p, x );
 %
 %  The following formula is an outer product in H_TABLE.
 %

@@ -2,7 +2,7 @@ function lambda = herndon_eigenvalues ( n )
 
 %*****************************************************************************80
 %
-%% HERNDON_EIGENVALUES returns the eigenvalues of the Herndon matrix.
+%% HERNDON_EIGENVALUES returns the eigenvalues of the HERNDON matrix.
 %
 %  Licensing:
 %
@@ -20,13 +20,15 @@ function lambda = herndon_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   p = 3.0 + sqrt ( ( 4 * n - 3 ) * ( n - 1 ) * 3 ) / ( n + 1 ) );
 
-  lambda(1:n-2) = 1.0;
-  lambda(n-1) = 6.0 / ( p * ( n + 1 ) );
-  lambda(n) = p / ( n * ( 5 - 2 * n ) );
+  lambda(1:n-2,1) = 1.0;
+  lambda(n-1,1) = 6.0 / ( p * ( n + 1 ) );
+  lambda(n,1) = p / ( n * ( 5 - 2 * n ) );
 
   return
 end

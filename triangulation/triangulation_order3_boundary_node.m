@@ -64,7 +64,7 @@ function node_boundary = triangulation_order3_boundary_node ( node_num, ...
 %
 %  Ascending sort the column array.
 %
-  edge = i4col_sort_a ( m, n, edge );
+  edge = ( sortrows ( edge' ) )';
 %
 %  Records which appear twice are internal edges and can be ignored.
 %

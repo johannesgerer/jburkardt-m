@@ -17,7 +17,7 @@
     <p>
       <b>TRIANGULATE</b>
       is a MATLAB program which
-      triangulates a polygonal region.  The region need not be convex.
+      triangulates a polygonal region.
     </p>
 
     <p>
@@ -26,8 +26,31 @@
     </p>
 
     <p>
-      Note that no two successive vertices can be equal, nor can the first
-      and last vertices be equal.
+      No consecutive pair of vertices should be equal; when describing a
+      polygon, sometimes the first and last vertices are equal.  For this
+      program, that is not the case.  To describe a square, your input
+      file should contain four pairs of coordinates, for instance.
+    </p>
+
+    <p>
+      The vertices should be listed in counterclockwise order.  If you list
+      them in clockwise order, then the area will probably come out negative.
+      The program will retry the calculation by reversing the order of the
+      vertices.
+    </p>
+
+    <p>
+      It is possible to create a "polygon" that has zero area.  The program
+      will refuse to process such an object.
+    </p>
+
+    <p>
+      The polygon does not need to be convex.  However, you should be careful
+      not to specify a polygon which crosses itself, since this means the
+      interior of the polygon is not well defined, and hence a triangulation
+      is not well defined.  As a simple example of such a problem, consider
+      the four vertices of a square in counterclockwise order: V1, V2, V3, V4,
+      and list them instead as V1, V3, V2, V4.  This shape cannot be triangulated.
     </p>
 
     <p>
@@ -76,6 +99,16 @@
           form the triangles of the triangulation.
         </li>
       </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
     </p>
 
     <h3 align = "center">
@@ -160,7 +193,7 @@
       <ul>
         <li>
           <a href = "comb_nodes.txt">comb_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "comb.png">comb.png</a>,
@@ -176,11 +209,11 @@
         </li>
         <li>
           <a href = "comb_diagonals.txt">comb_diagonals.txt</a>,
-          the output file of internal diagonal edges.
+          the internal diagonal edges.
         </li>
         <li>
           <a href = "comb_elements.txt">comb_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
@@ -190,7 +223,7 @@
       <ul>
         <li>
           <a href = "hand_nodes.txt">hand_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "hand.png">hand.png</a>,
@@ -206,21 +239,21 @@
         </li>
         <li>
           <a href = "hand_diagonals.txt">hand_diagonals.txt</a>,
-          the output file of internal diagonal edges.
+          the internal diagonal edges.
         </li>
         <li>
           <a href = "hand_elements.txt">hand_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
 
     <p>
-      <b>I18</b> is an example of a complicated nonconvex polygon.
+      <b>I18</b> is an example of a complicated nonconvex polygon, using 18 vertices.
       <ul>
         <li>
           <a href = "i18_nodes.txt">i18_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "i18.png">i18.png</a>,
@@ -236,21 +269,21 @@
         </li>
         <li>
           <a href = "i18_diagonals.txt">i18_diagonals.txt</a>,
-          the output file of diagonal edges.
+          the diagonal edges.
         </li>
         <li>
           <a href = "i18_elements.txt">i18_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
 
     <p>
-      <b>SNAKE</b> is an example defining a "snake" polygon.
+      <b>SNAKE</b> is an example defining a "snake" polygon using 12 vertices.
       <ul>
         <li>
           <a href = "snake_nodes.txt">snake_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "snake.png">snake.png</a>,
@@ -266,21 +299,21 @@
         </li>
         <li>
           <a href = "snake_diagonals.txt">snake_diagonals.txt</a>,
-          the output file of diagonal edges.
+          the diagonal edges.
         </li>
         <li>
           <a href = "snake_elements.txt">snake_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
 
     <p>
-      <b>SQUARE</b> is an example defining a square.
+      <b>SQUARE</b> is an example defining a square, using 4 vertices.
       <ul>
         <li>
           <a href = "square_nodes.txt">square_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "square.png">square.png</a>,
@@ -296,21 +329,53 @@
         </li>
         <li>
           <a href = "square_diagonals.txt">square_diagonals.txt</a>,
-          the output file of diagonal edges.
+          the diagonal edges.
         </li>
         <li>
           <a href = "square_elements.txt">square_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
 
     <p>
-      <b>TRIANGLE</b> is an example defining a triangle.
+      <b>TE53</b> is an example in which the vertices have been (incorrectly)
+      listed in clockwise order.  The program detects this problem and reverses
+      the ordering before proceeding.  The example uses 26 vertices.
+      <ul>
+        <li>
+          <a href = "te53_nodes.txt">te53_nodes.txt</a>,
+          the vertex coordinates.
+        </li>
+        <li>
+          <a href = "te53.png">te53.png</a>,
+          a PNG image of the polygon.
+        </li>
+        <li>
+          <a href = "te53_triangulated.png">te53_triangulated.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+        <li>
+          <a href = "te53_output.txt">te53_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "te53_diagonals.txt">te53_diagonals.txt</a>,
+          the diagonal edges.
+        </li>
+        <li>
+          <a href = "te53_elements.txt">te53_elements.txt</a>,
+          the triangles that make up the polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TRIANGLE</b> is an example defining a triangle, using 3 vertices.
       <ul>
         <li>
           <a href = "triangle_nodes.txt">triangle_nodes.txt</a>,
-          the input file of vertex coordinates.
+          the vertex coordinates.
         </li>
         <li>
           <a href = "triangle.png">triangle.png</a>,
@@ -326,11 +391,11 @@
         </li>
         <li>
           <a href = "triangle_diagonals.txt">triangle_diagonals.txt</a>,
-          the output file of diagonal edges.
+          the diagonal edges.
         </li>
         <li>
           <a href = "triangle_elements.txt">triangle_elements.txt</a>,
-          the output file of triangles that make up the polygon.
+          the triangles that make up the polygon.
         </li>
       </ul>
     </p>
@@ -343,7 +408,7 @@
     <hr>
 
     <i>
-      Last revised on 11 April 2011.
+      Last revised on 03 January 2013.
     </i>
 
     <!-- John Burkardt -->

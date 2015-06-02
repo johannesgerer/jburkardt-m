@@ -110,7 +110,7 @@ function [ x, seed ] = gamma_sample ( a, b, c, seed )
     s = sqrt ( c - 0.5 );
     d = sqrt ( 32.0 ) - 12.0 * sqrt ( c - 0.5 );
 
-    [ t, seed ] = normal_01_sample ( seed );
+    [ t, seed ] = r8_normal_01 ( seed );
     x = ( sqrt ( c - 0.5 ) + 0.5 * t )^2;
 
     if ( 0.0 <= t )

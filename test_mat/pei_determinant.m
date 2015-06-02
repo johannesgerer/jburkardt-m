@@ -2,7 +2,7 @@ function determ = pei_determinant ( alpha, n )
 
 %*****************************************************************************80
 %
-%% PEI_DETERMINANT returns the determinant of the Pei matrix.
+%% PEI_DETERMINANT returns the determinant of the PEI matrix.
 %
 %  Licensing:
 %

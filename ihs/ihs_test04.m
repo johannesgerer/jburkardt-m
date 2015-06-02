@@ -10,7 +10,7 @@ function ihs_test04 ( )
 %
 %  Modified:
 %
-%    28 March 2004
+%    27 February 2014
 %
 %  Author:
 %
@@ -26,10 +26,9 @@ function ihs_test04 ( )
   fprintf ( 1, '  (Improved Distributed Hypercube Sampling)\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Demonstrate the code for a fixed number of points\n' );
-  fprintf ( 1, '  dimension, and duplication factor, but with a\n' );
-  fprintf ( 1, '  varying random number seed.\n' );
+  fprintf ( 1, '  dimension, and duplication factor.\n' );
 
-  opt = point_num / point_num^( 1.0E+00 / dim_num );
+  opt = point_num / point_num^( 1.0 / dim_num );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Spatial dimension =        %d\n', dim_num );
@@ -37,16 +36,11 @@ function ihs_test04 ( )
   fprintf ( 1, '  Duplication factor =       %d\n', duplication );
   fprintf ( 1, '  Desired minimum distance = %f\n', opt );
 
-  seed = 17;
-
   for i = 1 : 4
-
-    fprintf ( 1, '\n' );
-    fprintf ( 1, '  Random number seed =       %d\n', seed );
 %
 %  Get the points.
 %
-    [ x, seed ] = ihs ( dim_num, point_num, duplication, seed );
+    x = ihs ( dim_num, point_num, duplication );
 %
 %  Compute the covariance.
 %

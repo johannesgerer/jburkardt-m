@@ -27,7 +27,10 @@ function b = wilk04_rhs ( )
 %
 %    Output, real B(4,1), the right hand side of the system.
 %
-  b(1:4,1) = [ 0.6524, 0.3127, 0.4186, 0.7853 ];
+  b(1:4,1) = [ 0.6524; ...
+               0.3127; ...
+               0.4186; ...
+               0.7853 ];
 
   return
 end

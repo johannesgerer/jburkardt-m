@@ -20,20 +20,20 @@ function filum_test06 ( )
   fprintf ( 1, 'TEST06\n' );
   fprintf ( 1, '  FILE_EXIST is true if a file exists.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Exist?    FILE_NAME\n' );
+  fprintf ( 1, '  Exist?    FILENAME\n' );
   fprintf ( 1, '\n' );
 
-  file_name = 'filum_test.m';
-  fprintf ( 1, '  %d  %s\n', file_exist ( file_name ), file_name );
+  filename = 'filum_test.m';
+  fprintf ( 1, '  %d  %s\n', file_exist ( filename ), filename );
 
-  file_name = 'filum.html';
-  fprintf ( 1, '  %d  %s\n', file_exist ( file_name ), file_name );
+  filename = 'filum.html';
+  fprintf ( 1, '  %d  %s\n', file_exist ( filename ), filename );
 
-  file_name = 'rabbit.txt';
-  fprintf ( 1, '  %d  %s\n', file_exist ( file_name ), file_name );
+  filename = 'rabbit.txt';
+  fprintf ( 1, '  %d  %s\n', file_exist ( filename ), filename );
 
-  file_name = 'make.money.fast';
-  fprintf ( 1, '  %d  %s\n', file_exist ( file_name ), file_name );
+  filename = 'make.money.fast';
+  fprintf ( 1, '  %d  %s\n', file_exist ( filename ), filename );
 
   return
 end

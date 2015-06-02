@@ -20,10 +20,12 @@ function lambda = one_eigenvalues ( n )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n-1) = 0.0;
-  lambda(n) = n;
+  lambda = zeros ( n, 1 );
+
+  lambda(1:n-1,1) = 0.0;
+  lambda(n,1) = n;
 
   return
 end

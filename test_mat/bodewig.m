@@ -2,7 +2,7 @@ function a = bodewig ( )
 
 %*****************************************************************************80
 %
-%% BODEWIG returns the Bodewig matrix.
+%% BODEWIG returns the BODEWIG matrix.
 %
 %  Example:
 %
@@ -38,11 +38,15 @@ function a = bodewig ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
     2.0,  1.0,  3.0,  4.0; ...
     1.0, -3.0,  1.0,  5.0; ...
     3.0,  1.0,  6.0, -2.0; ...
-    4.0,  5.0, -2.0, -1.0 ]';
+    4.0,  5.0, -2.0, -1.0 ];
 
   return
 end

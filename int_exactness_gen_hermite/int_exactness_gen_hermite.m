@@ -33,7 +33,7 @@ function int_exactness_gen_hermite ( quad_filename, degree_max, alpha, option )
   fprintf ( 1, 'INT_EXACTNESS_GEN_HERMITE\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Investigate the polynomial exactness of a generalized Gauss-Laguerre\n' );
+  fprintf ( 1, '  Investigate the polynomial exactness of a generalized Gauss-Hermite\n' );
   fprintf ( 1, '  quadrature rule by integrating exponentially weighted\n' );
   fprintf ( 1, '  monomials up to a given degree over the (-oo,+oo) interval.\n' );
 %
@@ -240,7 +240,9 @@ function int_exactness_gen_hermite ( quad_filename, degree_max, alpha, option )
     fprintf ( 1, '  %24.16f   %2d\n', quad_error, degree );
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INT_EXACTNESS_GEN_HERMITE:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

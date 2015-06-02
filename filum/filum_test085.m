@@ -20,14 +20,14 @@ function filum_test085 ( )
   fprintf ( 1, 'TEST085\n' );
   fprintf ( 1, '  FILE_LINE_WIDTH counts the longest line in a file.\n' );
 
-  file_name = 'story.txt';
+  filename = 'story.txt';
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Examining file:\n' );
-  fprintf ( 1, '    "%s".', file_name );
+  fprintf ( 1, '    "%s".', filename );
   fprintf ( 1, '\n' );
 
-  line_width = file_line_width ( file_name );
+  line_width = file_line_width ( filename );
   fprintf ( 1, '  Longest line length: %d\n', line_width );
 
   return

@@ -31,40 +31,200 @@
 
     <p>
       CONDOR has many features, and its proper use varies from site to site.
-      The information in this document focuses on the task of getting a MATLAB
-      job to run under the CONDOR system installed on a collection of computers
-      under the management of the FSU Department of Scientific Computing.
+      The information in this document was inspired by the CONDOR system 
+      supported by the FSU Research Computing Center (RCC).  Some of the
+      information therefore is peculiar to this local installation.
     </p>
 
     <p>
-      MATLAB users who invoke CONDOR must note a particular restriction.
-      CONDOR will only run MATLAB on one of the machines in the departmental 
-      classroom.  The department has just 15 MATLAB licenses available for
-      classroom use.  That means that, during typical class times, you should
-      be aware that each MATLAB job you run subtracts from this fixed limit.
-      That means CONDOR jobs requiring many copies of MATLAB should be run
-      at night, on the weekends, or holidays!
+      The first thing to note is that executing MATLAB is done indirectly.
+      The user has a MATLAB program or script to run, of course.  Let's
+      say the main user script is called "program.m".  In order for this
+      script to be run through CONDOR, we need to write a BASH shell script
+      that "knows" where MATLAB is stored, knows how to invoke MATLAB
+      for a noninteractive job, and knows the name of the user
+      script.  Such a shell script might be called "program_run.sh", and
+      look like this:
+      <pre>
+        #!/bin/bash
+        /opt/matlab/current/bin/matlab -nosplash -nodesktop -nojvm -r "run('./program.m'); quit"
+      </pre>
     </p>
 
     <p>
-      MATLAB is typically used interactively, but it is possible for it to
-      do everything in a batch mode.  For this purpose, the user must prepare
-      a script containing the commands that might ordinarily be given 
-      interactively.  For more information on this requirement, see the
-      information on <b>MATLAB_COMMANDLINE</b> listed below.
+      Finally, the user must write a CONDOR script that copies necessary files
+      to an unknown machine, executes the shell script, which executes MATLAB,
+      which executes the user's MATLAB commands, and then copies the output
+      files back.  The script might be called "program.condor".
     </p>
 
     <p>
-      Note that, in a typical use of CONDOR, a user would have files on 
-      the <b>pamd</b> system, then log into the submission system with the command
+      The user must then log into the CONDOR submit node interactively:
       <blockquote>
-        ssh submit.sc.fsu.edu
+        ssh condor-login.rcc.fsu.edu
       </blockquote>
-      and move to the directory containing the submission file.  To submit the job
-      described by the <i>simple.condor</i> file, for instance, the next command would be:
+      and, if necessary, transfer the CONDOR script, the BASH script, and 
+      the MATLAB files to this node using SFTP, and then submit the CONDOR
+      script with a command like:
       <blockquote>
-        condor_submit simple.condor
+        condor_submit program.condor
       </blockquote>
+      The user can check on the status of the job with the command
+      <pre>
+        condor_q
+      </pre>
+      If all goes well, the job output will be returned to the CONDOR
+      submit node.
+      However, if things do not go well, or the job is taking too much
+      time, user "username" can delete all jobs in the condor queue with 
+      the command
+      <pre>
+        condor_rm username
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Using Files:
+    </h3>
+
+    <p>
+      On the FSU RCC Condor cluster, you must first copy your files to the 
+      CONDOR login machine.  When you submit your job to the CONDOR queue,
+      however, the program execution will take place on some unknown machine,
+      which initially does not have any of your files - and may not even
+      have the executable program you want to use, unless it is MATLAB, 
+      for instance.  Therefore, an important part of using CONDOR is 
+      making sure that you copy to the remote machine all the files needed
+      for input, make sure the remote machine already has the executable,
+      or send a copy, and then copy all your output files back.
+    </p>
+
+    <p>
+      Because the file system is not shared, the following commands should
+      appear in your CONDOR script:
+      <pre>
+        should_transfer_files = yes
+        when_to_transfer_output = on_exit
+      </pre>
+      that allows you to specify the name of this file.
+    </p>
+
+    <p>
+      If your executable reads from "standard input", then your CONDOR
+      job will need a file containing that information.  CONDOR includes a
+      command of the form
+      <pre>
+        input = filename
+      </pre>
+      that allows you to specify the name of this file.  Similarly, if
+      your program writes to "standard output", CONDOR allows you to
+      specify the name of a file where this information will go:
+      <pre>
+        output = filename
+      </pre>
+      and if your program writes to the "standard error" device,
+      you can specify this with
+      <pre>
+        error = filename
+      </pre>
+      The input file must exist on your CONDOR login node before you submit
+      the job.  The output and error files are created during the run, and
+      will automatically be copied back to your CONDOR login node when the
+      job is completed.
+    </p>
+
+    <p>
+      Your job may require many more files to run than simply the standard
+      input file.  In particular, a MATLAB job will usually need one or more
+      M files.  You need to tell CONDOR the names of these files, in a 
+      comma-separated list:
+      <pre>
+        transfer_input_files = file1, file2, ..., file99
+      </pre>
+    </p>
+
+    <p>
+      Your job may create many files aside from simply standard output.
+      Luckily, all files created by the run will be automatically copied back.
+    </p>
+
+    <p>
+      We happen to know that MATLAB is installed on certain CONDOR nodes.
+      To guarantee that CONDOR sends our job to such a node, we use a
+      command like the following:
+      <pre>
+        requirements = ( OpSYS="LINUX" &amp;&amp; Arch=="X86_64 &amp;&amp; Matlab=="true" )
+      </pre>
+    </p>
+
+    <p>
+      To run a MATLAB job on the remote machine, we have to use a special
+      form of the MATLAB command that specifies where the program is,
+      how it is to be run, and what M file it is to execute.  This is done
+      by writing a short BASH shell script.  If our M file is called
+      "my_prog.m", then the script could be called "run_my_prog.sh",
+      and could look like this:
+      <pre>
+        #!/bin/bash
+        /opt/matlab/current/bin/matlab -nosplash -nodesktop -nojvm -r "run('./myprog.m') quit"
+      </pre>
+      Essentially, CONDOR will treat this shell script as your "executable",
+      so your CONDOR script must include the statement:
+      <pre>
+        executable = run_my_prog.sh
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      A Sample CONDOR Script for MATLAB
+    </h3>
+
+    <p>
+      Here is a file called "my_prog.condor":
+      <pre>
+        universe = vanilla
+        executable = run_my_prog.sh
+        arguments =
+        input =
+        requirements = ( OpSYS="LINUX" &amp;&amp; Arch=="X86_64 &amp;&amp; Matlab=="true" )
+        should_transfer_files = yes
+        transfer_input_files = my_prog.m
+        when_to_transfer_files = on_exit
+        notification = never
+        output = output.txt
+        log = log.txt
+        error = error.txt
+        queue
+      </pre>
+    </p>
+
+    <p>
+      A few comments are in order.  
+      <ul>
+        <li>
+          The "universe" command is required,
+          and on the FSU CONDOR system, we only have the "vanilla" universe.
+        </li>
+        <li>
+          The "arguments" command allows you to pass commandline arguments to
+          the executable program.
+        </li>
+        <li>
+          Setting "notification" to "yes" will cause CONDOR to send you
+          email when the job completes, and perhaps at some other stages as well.
+        </li>
+        <li>
+          The "log" command species a name to use for the file in which CONDOR
+          records the progress of the job.
+        </li>
+        <li>
+          The "error" command allows you to capture output to standard error.
+        </li>
+        <li>
+          The "queue" command is necessary, and tells CONDOR to actually
+          begin running your job.
+        </li>
+      </ul>
     </p>
 
     <h3 align = "center">
@@ -72,14 +232,43 @@
     </h3>
 
     <p>
-      The computer code and data files described and made available on this web page
+      The computer code and data files made available on this web page
       are distributed under
       <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
     </p>
 
     <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MATLAB_CONDOR</b> is available in
+      <a href = "../../c_src/c_condor/c_condor.html">a C version</a> and
+      <a href = "../../cpp_src/c++_condor/c++_condor.html">a C++ version</a> and
+      <a href = "../../f77_src/f77_condor/f77_condor.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/f90_condor/f90_condor.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/matlab_condor/matlab_condor.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
       Related Data and Programs:
     </h3>
+
+    <p>
+      <a href = "../../c_src/c_condor/c_condor.html">
+      C_CONDOR</a>,
+      C programs which
+      illustrate how a C program can be run in batch mode using the condor
+      queueing system.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/c++_condor/c++_condor.html">
+      C++_CONDOR</a>,
+      C++ programs which
+      illustrate how a C++ program can be run in batch mode using the condor
+      queueing system.
+    </p>
 
     <p>
       <a href = "../../examples/condor/condor.html">
@@ -90,11 +279,35 @@
     </p>
 
     <p>
+      <a href = "../../f77_src/f77_condor/f77_condor.html">
+      F77_CONDOR</a>,
+      FORTRAN77 programs which
+      illustrate how a FORTRAN77 program can be run in batch mode using the condor
+      queueing system.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_condor/f90_condor.html">
+      F90_CONDOR</a>,
+      FORTRAN90 programs which
+      illustrate how a FORTRAN90 program can be run in batch mode using the condor
+      queueing system.
+    </p>
+
+    <p>
       <a href = "../../m_src/matlab_commandline/matlab_commandline.html">
       MATLAB_COMMANDLINE</a>,
       programs which
       illustrate how MATLAB can be run from the UNIX command line, that is,
       not with the usual MATLAB command window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_compiler/matlab_compiler.html">
+      MATLAB_COMPILER</a>,
+      MATLAB programs which
+      illustrate the use of the Matlab compiler, which allows you
+      to run a Matlab application outside the Matlab environment.
     </p>
 
     <h3 align = "center">
@@ -107,18 +320,12 @@
           <a href = "../../pdf/condor.pdf">condor.pdf</a>,<br>
           Condor Team,<br>
           University of Wisconsin, Madison,<br>
-          Condor Version 7.4.4 Manual;
+          Condor Version 8.0.2 Manual;
         </li>
         <li>
-          <a href = "http://www.cs.wisc.edu/condor/">
-                     http://www.cs.wisc.edu/condor/</a>,<br>
-          The Condor home page;
-        </li>
-        <li>
-          <a href =
-          "http://www.sc.fsu.edu/computing/general-access/batch">
-           http://www.sc.fsu.edu/computing/general-access/batch</a>,<br>
-          The FSU Department of Scientific Computing's Condor page;
+          <a href = "http://www.cs.wisc.edu/htcondor/">
+                     http://www.cs.wisc.edu/htcondor/</a>,<br>
+          The HTCondor home page;
         </li>
       </ol>
     </p>
@@ -129,7 +336,7 @@
 
     <p>
       <b>SIMPLE</b> is a simple example, in which a MATLAB function is to
-      be called with certain output.
+      be called with certain input.
       <ul>
         <li>
           <a href = "simple.condor">simple.condor</a>,
@@ -137,34 +344,67 @@
           "condor_submit simple.condor".
         </li>
         <li>
+          <a href = "simple_run.sh">simple_run.sh</a>,
+          the BASH script which invokes MATLAB to run the user's main
+          MATLAB function.
+        </li>
+        <li>
           <a href = "simple_script.m">simple_script.m</a>,
-          the MATLAB script which sets up some data and calls a function.
+          the user's main MATLAB function.
         </li>
         <li>
           <a href = "simple_function.m">simple_function.m</a>,
-          the MATLAB function, which simply adds the two input arguments.
+          a lower-level MATLAB function, which simply adds the 
+          two input arguments, returning the sum.
         </li>
         <li>
           <a href = "simple.mat">simple.mat</a>,
           the MATLAB MAT file which contains the workspace at the end of
-          the computation.
+          the computation.  Because we use a "save" command to create
+          this file during the run, it is automatically copied back to
+          the login node when the job is completed.
         </li>
         <li>
           <a href = "simple_output.txt">simple_output.txt</a>,
           the output printed by MATLAB.
         </li>
         <li>
-          <a href = "simple.error">simple.error</a>,
-          CONDOR's error file (empty, because for once we didn't make a mistake).
-        </li>
-        <li>
-          <a href = "simple.log">simple.log</a>,
+          <a href = "simple_log.txt">simple_log.txt</a>,
           CONDOR's log file (records the job submission, execution, and completion).
         </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>PRIMES</b> is an example which tries to count the prime numbers
+      from 1 to some power of 10.
+      <ul>
         <li>
-          <a href = "simple.out">simple.out</a>,
-          CONDOR's output file (empty, because we grabbed the output 
-          into simple_output.txt).
+          <a href = "primes.condor">primes.condor</a>,
+          the CONDOR submission file.  This is used by issuing the command
+          "condor_submit primes.condor".
+        </li>
+        <li>
+          <a href = "primes_run.sh">primes_run.sh</a>,
+          the BASH script which invokes MATLAB to run the user's main
+          MATLAB function.
+        </li>
+        <li>
+          <a href = "primes_script.m">primes_script.m</a>,
+          the user's main MATLAB function.
+        </li>
+        <li>
+          <a href = "primes_report.txt">primes_report.txt</a>,
+          a report file created by the user's MATLAB function,
+          and automatically copied back to the CONDOR login node.
+        </li>
+        <li>
+          <a href = "primes_output.txt">primes_output.txt</a>,
+          the output printed by MATLAB.
+        </li>
+        <li>
+          <a href = "primes_log.txt">primes_log.txt</a>,
+          CONDOR's log file (records the job submission, execution, and completion).
         </li>
       </ul>
     </p>
@@ -177,7 +417,7 @@
     <hr>
 
     <i>
-      Last modified on 31 March 2011.
+      Last modified on 28 August 2013.
     </i>
 
     <!-- John Burkardt -->

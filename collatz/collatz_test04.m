@@ -10,7 +10,7 @@ function collatz_test04 ( )
 %
 %  Modified:
 %
-%    21 May 2012.
+%    22 October 2013
 %
 %  Author:
 %
@@ -24,11 +24,13 @@ function collatz_test04 ( )
   s = collatz ( seed );
   n = length ( s );
 
-  plot ( s, 'Linewidth', 2 )
+  plot ( s, 'b.-', 'Linewidth', 3 )
+  set ( gca, 'Color', [ 250/255, 250/255, 210/255 ] );
   grid on
   xlabel ( 'Sequence Index' )
   ylabel ( 'Sequence Value' )
-  title ( sprintf ( 'Collatz sequence starting at 27, with %d elements', n ) );
+  title ( sprintf ( ...
+    'Collatz sequence starting at 27, takes %d steps!', n ), 'Fontsize', 16 );
 
   filename = 'collatz_sequence_27.png';
   print ( '-dpng', filename );

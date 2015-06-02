@@ -2,7 +2,7 @@ function set_theory_test ( )
 
 %*****************************************************************************80
 %
-%% SET_THEORY_TEST demonstrates some set theory operations in MATLAB.
+%% SET_THEORY_TEST tests the SET_THEORY library.
 %
 %  Licensing:
 %
@@ -16,12 +16,12 @@ function set_theory_test ( )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SET_THEORY_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the SET_THEORY library.\n' );
+  fprintf ( 1, '\n' );
   fprintf ( 1, '  Demonstrate some set theory operations that\n' );
   fprintf ( 1, '  can be implemented in MATLAB.\n' );
 

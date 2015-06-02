@@ -2,11 +2,7 @@ function test_con_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for TEST_CON_TEST.
-%
-%  Discussion:
-%
-%    TEST_CON_TEST demonstrates the TEST_CON continuation test problems.
+%% TEST_CON_TEST tests the TEST_CON library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_con_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_CON_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );

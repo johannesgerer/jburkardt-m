@@ -39,12 +39,12 @@ function area = circle_cap_area_2d ( r, h )
 
   elseif ( h <= r )
 
-    theta = 2.0 * arc_sine ( sqrt ( h * ( 2.0 * r - h ) ) / r );
+    theta = 2.0 * r8_asin ( sqrt ( h * ( 2.0 * r - h ) ) / r );
     area = r * r * ( theta - sin ( theta ) ) / 2.0;
 
   elseif ( h <= 2.0 * r )
 
-    theta = 2.0 * arc_sine ( sqrt ( h * ( 2.0 * r - h ) ) / r );
+    theta = 2.0 * r8_asin ( sqrt ( h * ( 2.0 * r - h ) ) / r );
     area = r * r * ( pi - ( theta - sin ( theta ) ) / 2.0 );
 
   elseif ( 2.0 * r <= h )

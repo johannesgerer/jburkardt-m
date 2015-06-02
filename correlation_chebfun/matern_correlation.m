@@ -23,7 +23,6 @@ function c = matern_correlation ( s, t )
 %
 %    As nu goes to infinity, the correlation converges to exp ( - (rho/rho0)^2 ).
 %
-%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -46,6 +45,9 @@ function c = matern_correlation ( s, t )
 %
 %    Output, real C(N,1), the correlations.
 %
+  n = length ( s );
+  c = zeros ( n, 1 );
+
   if ( nargin < 3 )
     nu = 2.5;
   end
@@ -60,6 +62,4 @@ function c = matern_correlation ( s, t )
 
   return
 end
-
-
   

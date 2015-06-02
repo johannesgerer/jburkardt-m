@@ -83,7 +83,7 @@ function r8to_print_some ( n, a, ilo, jlo, ihi, jhi, title )
           aij = a(n+i-j);
         end
 
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -92,8 +92,6 @@ function r8to_print_some ( n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

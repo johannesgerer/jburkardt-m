@@ -1,8 +1,12 @@
-function [ a, seed ] = orth_random ( n, seed )
+function a = orth_random ( n, key )
 
 %*****************************************************************************80
 %
-%% ORTH_RANDOM returns a random orthogonal matrix.
+%% ORTH_RANDOM returns the ORTH_RANDOM matrix.
+%
+%  Description:
+%
+%    ORTH_RANDOM is a randomly chosen orthogonal matrix.
 %
 %  Properties:
 %
@@ -76,11 +80,11 @@ function [ a, seed ] = orth_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  Start with A = the identity matrix.
 %
@@ -108,7 +112,9 @@ function [ a, seed ] = orth_random ( n, seed )
 %  and set A := A * H(N-1)' = A * H(N-1) = H1 * H2 * ... * H(N-1).
 %  This is our random orthogonal matrix.
 %
-  for j = 1 : n-1
+  seed = key;
+
+  for j = 1 : n - 1
 %
 %  Set the vector that represents the J-th column to be annihilated.
 %

@@ -2,7 +2,7 @@ function quality_test ( )
 
 %*****************************************************************************80
 %
-%% QUALITY_TEST calls the QUALITY routines.
+%% QUALITY_TEST tests the QUALITY library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function quality_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUALITY_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -32,7 +31,6 @@ function quality_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUALITY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

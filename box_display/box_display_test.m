@@ -2,7 +2,7 @@ function box_display_test ( )
 
 %*****************************************************************************80
 %
-%% BOX_DISPLAY_TEST tests BOX_DISPLAY.
+%% BOX_DISPLAY_TEST tests the BOX_DISPLAY library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function box_display_test ( )
 %
 %  Modified:
 %
-%    27 March 2012
+%    10 January 2014
 %
 %  Author:
 %
@@ -26,13 +26,13 @@ function box_display_test ( )
   box_display_test02 ( );
   box_display_test03 ( );
   box_display_test04 ( );
+  box_display_test05 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BOX_DISPLAY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

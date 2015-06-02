@@ -2,7 +2,7 @@ function hb_io ( )
 
 %*****************************************************************************80
 %
-%% HB_IO_TEST runs the HB_IO tests.
+%% HB_IO_TEST tests the HB_IO library.
 %
 %  Licensing:
 %
@@ -43,7 +43,6 @@ function hb_io ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HB_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

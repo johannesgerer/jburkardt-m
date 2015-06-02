@@ -2,7 +2,7 @@ function a = chow_inverse ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% CHOW_INVERSE returns the inverse of the Chow matrix.
+%% CHOW_INVERSE returns the inverse of the CHOW matrix.
 %
 %  Licensing:
 %
@@ -26,7 +26,7 @@ function a = chow_inverse ( alpha, beta, n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   if ( 0.0 == alpha & beta == 0.0 )
 

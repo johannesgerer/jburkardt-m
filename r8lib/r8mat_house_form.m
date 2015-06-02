@@ -14,7 +14,7 @@ function h = r8mat_house_form ( n, v )
 %
 %  Modified:
 %
-%    28 October 2005
+%    27 April 2013
 %
 %  Author:
 %
@@ -24,25 +24,13 @@ function h = r8mat_house_form ( n, v )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Input, real V(N), the vector defining the Householder matrix.
+%    Input, real V(N,1), the vector defining the Householder matrix.
 %
 %    Output, real H(N,N), the Householder matrix.
 %
+  v = v(:);
 
-%
-%  Compute the L2 norm of V.
-%
-  beta = sum ( v(1:n).^2 );
-%
-%  Form the matrix H.
-%
-  h = r8mat_identity ( n );
-
-  for i = 1 : n
-    for j = 1 : n
-      h(i,j) = h(i,j) - 2.0 * v(i) * v(j) / beta;
-    end
-  end
+  h = eye ( n ) - 2.0 * v * v' / ( v' * v );
 
   return
 end

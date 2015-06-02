@@ -15,7 +15,7 @@ function [ a, seed ] = i4mat_perm_uniform ( n, a, seed )
 %
 %  Modified:
 %
-%    01 May 2005
+%    12 November 2014
 %
 %  Author:
 %
@@ -23,7 +23,7 @@ function [ a, seed ] = i4mat_perm_uniform ( n, a, seed )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, Herbert Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -44,9 +44,9 @@ function [ a, seed ] = i4mat_perm_uniform ( n, a, seed )
 %
 %  Permute the rows and columns together.
 %
-  for i = 1 : n
+  for i = 1 : n - 1
 
-    [ i2, seed ] = i4_uniform ( i, n, seed );
+    [ i2, seed ] = i4_uniform_ab ( i, n, seed );
 
     temp(1,1:n) = a(i2,1:n);
     a(i2,1:n) = a(i,1:n);

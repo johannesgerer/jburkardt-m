@@ -1,4 +1,4 @@
-function a = poisson ( nrow, ncol, n )
+function a = poisson ( nrow, ncol )
 
 %*****************************************************************************80
 %
@@ -56,7 +56,7 @@ function a = poisson ( nrow, ncol, n )
 %
 %  Modified:
 %
-%    26 September 2008
+%    05 March 2015
 %
 %  Author:
 %
@@ -74,12 +74,11 @@ function a = poisson ( nrow, ncol, n )
 %    Input, integer NROW, NCOL, the number of rows and columns 
 %    in the grid.
 %
-%    Input, integer N, the order of the matrix.  It must be the case
-%    that N = NROW * NCOL.
-%
 %    Output, real A(NROW*NCOL,NROW*NCOL), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  n = nrow * ncol;
+
+  a = zeros ( n, n );
 
   i = 0;
 

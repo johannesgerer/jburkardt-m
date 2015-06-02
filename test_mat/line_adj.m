@@ -2,7 +2,11 @@ function a = line_adj ( n )
 
 %*****************************************************************************80
 %
-%% LINE_ADJ returns the line adjacency matrix.
+%% LINE_ADJ returns the LINE_ADJ matrix.
+%
+%  Discussion:
+%
+%    LINE_ADJ is the adjacency matrix of N points on a line.
 %
 %  Example:
 %
@@ -37,6 +41,8 @@ function a = line_adj ( n )
 %    The row and column sums are all 2, except for the first and last
 %    rows and columns which have a sum of 1.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -55,6 +61,8 @@ function a = line_adj ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( j == i - 1 )

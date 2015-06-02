@@ -57,14 +57,14 @@ function value = charlier ( n, a, x )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'CHARLIER - Fatal error!\n' );
     fprintf ( 1, '  Parameter A cannot be zero.\n' );
-    error ( 'CHARLIER - Fatal error!\n');
+    error ( 'CHARLIER - Fatal error!\n' );
   end
 
   if ( n < 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'CHARLIER - Fatal error!\n' );
     fprintf ( 1, '  Parameter N must be nonnegative.\n' );
-    error ( 'CHARLIER - Fatal error!\n');
+    error ( 'CHARLIER - Fatal error!\n' );
   end
 
   value = zeros ( n + 1, 1 );

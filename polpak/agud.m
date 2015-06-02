@@ -1,19 +1,19 @@
-function value = agud ( gamma )
+function value = agud ( g )
 
 %*****************************************************************************80
 %
 %% AGUD evaluates the inverse Gudermannian function.
 %
-%  Definition:
+%  Discussion:
 %
 %    The Gudermannian function relates the hyperbolic and trigonomentric
 %    functions.  For any argument X, there is a corresponding value
-%    GAMMA so that
+%    G so that
 %
-%      SINH(X) = TAN(GAMMA).
+%      SINH(X) = TAN(G).
 %
-%    This value GAMMA(X) is called the Gudermannian of X.  The inverse
-%    Gudermannian function is given as input a value GAMMA and computes
+%    This value G(X) is called the Gudermannian of X.  The inverse
+%    Gudermannian function is given as input a value G and computes
 %    the corresponding value X.
 %
 %  Licensing:
@@ -30,11 +30,11 @@ function value = agud ( gamma )
 %
 %  Parameters:
 %
-%    Input, real GAMMA, the value of the Gudermannian.
+%    Input, real G, the value of the Gudermannian.
 %
 %    Output, real VALUE, the argument of the Gudermannian.
 %
-  value = log ( tan ( 0.25 * pi + 0.5 * gamma ) );
+  value = log ( tan ( 0.25 * pi + 0.5 * g ) );
 
   return
 end

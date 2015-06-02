@@ -2,11 +2,7 @@ function collatz_recursive_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for COLLATZ_RECURSIVE_TEST.
-%
-%  Discussion:
-%
-%    COLLATZ_RECURSIVE_TEST tests the COLLATZ_RECURSIVE library.
+%% COLLATZ_RECURSIVE_TEST tests the COLLATZ_RECURSIVE library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function collatz_recursive_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COLLATZ_RECURSIVE_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,7 +29,6 @@ function collatz_recursive_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COLLATZ_RECURSIVE_TEST\n' );
   fprintf ( 1,'  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

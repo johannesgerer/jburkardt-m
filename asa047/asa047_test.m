@@ -24,7 +24,7 @@ function asa047_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA047_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test routines in the ASA047 library.\n' );
+  fprintf ( 1, '  Test the ASA047 library.\n' );
 
   asa047_test01 ( );
   asa047_test02 ( );

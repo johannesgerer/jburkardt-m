@@ -97,7 +97,7 @@ function r8pbu_print_some ( n, mu, a, ilo, jlo, ihi, jhi, title )
         if ( mu < i-j | mu < j-i )
           fprintf ( 1, '              ' );
         else
-          fprintf ( 1, '%12f  ', aij );
+          fprintf ( 1, '%12g  ', aij );
         end
 
       end
@@ -107,8 +107,6 @@ function r8pbu_print_some ( n, mu, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

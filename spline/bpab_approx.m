@@ -29,7 +29,7 @@ function yval = bpab_approx ( n, a, b, ydata, xval )
 %
 %  Modified:
 %
-%    23 February 2004
+%    06 June 2013
 %
 %  Author:
 %
@@ -60,6 +60,10 @@ function yval = bpab_approx ( n, a, b, ydata, xval )
 %    for F, based in [A,B], evaluated at XVAL.
 %
 
+%
+%  Destroy all row vectors!
+%
+  ydata = ydata ( : );
 %
 %  Evaluate the Bernstein basis polynomials at XVAL.
 %

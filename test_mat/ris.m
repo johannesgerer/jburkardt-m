@@ -2,7 +2,11 @@ function a = ris ( n )
 
 %*****************************************************************************80
 %
-%% RIS returns the Ris or "dingdong" matrix, invented by F N Ris.
+%% RIS returns the RIS matrix.
+%
+%  Discussion:
+%
+%    This is sometimes called the "dingdong" matrix, invented by F N Ris.
 %
 %  Formula:
 %
@@ -57,6 +61,8 @@ function a = ris ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 1.0 / ( 3 + 2 * n - 2 * i - 2 * j );

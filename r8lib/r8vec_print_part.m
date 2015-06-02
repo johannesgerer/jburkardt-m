@@ -21,7 +21,7 @@ function r8vec_print_part ( n, a, max_print, title )
 %
 %  Modified:
 %
-%    19 December 2001
+%    25 September 2013
 %
 %  Author:
 %
@@ -53,25 +53,25 @@ function r8vec_print_part ( n, a, max_print, title )
   if ( n <= max_print )
 
     for i = 1 : n
-      fprintf ( 1, '  %4d  %14f\n', i, a(i) );
+      fprintf ( 1, '  %4d  %14g\n', i, a(i) );
     end
 
   elseif ( 3 <= max_print )
 
     for i = 1 : max_print-2
-      fprintf ( 1, '  %4d  %14f\n', i, a(i) );
+      fprintf ( 1, '  %4d  %14g\n', i, a(i) );
     end
     fprintf ( 1, '  ......  ..............\n' );
     i = n;
-    fprintf ( 1, '  %4d  %14f\n', i, a(i) );
+    fprintf ( 1, '  %4d  %14g\n', i, a(i) );
 
   else
 
     for i = 1 : max_print - 1
-      fprintf ( 1, '  %4d  %14f\n', i, a(i) );
+      fprintf ( 1, '  %4d  %14g\n', i, a(i) );
     end
     i = max_print;
-    fprintf ( 1, '  %4d  %14f  ...more entries...\n', i, a(i) );
+    fprintf ( 1, '  %4d  %14g  ...more entries...\n', i, a(i) );
 
   end
 

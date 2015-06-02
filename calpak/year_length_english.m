@@ -1,15 +1,8 @@
-function year_length_english ( y )
+function value = year_length_english ( y )
 
 %*****************************************************************************80
 %
 %% YEAR_LENGTH_ENGLISH returns the number of days in an English year.
-%
-%  Discussion:
-%
-%    The "English" calendar is meant to be the calendar which is Julian before
-%    the transition date, and Gregorian afterwards.
-%
-%    1752 was a special year with only 355 days instead of 366.
 %
 %  Licensing:
 %
@@ -17,7 +10,7 @@ function year_length_english ( y )
 %
 %  Modified:
 %
-%    24 September 2012
+%    24 December 2013
 %
 %  Author:
 %

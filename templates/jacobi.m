@@ -1,5 +1,7 @@
 function [ x, error_norm, iter, flag ]  = jacobi ( A, x, b, max_it, tol )
 
+%*****************************************************************************80
+%
 %% JACOBI solves a linear system using the Jacobi method.
 %
 %  Modified:

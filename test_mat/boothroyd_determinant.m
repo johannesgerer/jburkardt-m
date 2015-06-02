@@ -1,4 +1,4 @@
-function determ = boothroyd_determinant ( n )
+function value = boothroyd_determinant ( n )
 
 %*****************************************************************************80
 %
@@ -20,9 +20,9 @@ function determ = boothroyd_determinant ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real DETERM, the determinant.
+%    Output, real VALUE, the determinant.
 %
-  determ = 1.0;
+  value = 1.0;
 
   return
 end

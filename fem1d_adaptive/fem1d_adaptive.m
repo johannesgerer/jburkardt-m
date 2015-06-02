@@ -262,7 +262,6 @@ function fem1d_adaptive ( )
   nquad = 2;
 
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D_ADAPTIVE\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -418,13 +417,11 @@ function fem1d_adaptive ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D_ADAPTIVE:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
-
 function [ adiag, aleft, arite, f ] = assemble ( h, n, indx, node, nu, nl, ...
   nquad, nmax, ul, ur, wquad, xn, xquad )
 
@@ -897,7 +894,7 @@ function alpha = get_alpha ( )
 
   return
 end
-subroutine beta = get_beta ( )
+function beta = get_beta ( )
 
 %*****************************************************************************80
 %
@@ -909,7 +906,7 @@ subroutine beta = get_beta ( )
 %
 %  Modified:
 %
-%    05 November 2006
+%    22 February 2014
 %
 %  Author:
 %

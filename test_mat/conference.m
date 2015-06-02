@@ -2,7 +2,7 @@ function a = conference ( n )
 
 %*****************************************************************************80
 %
-%% CONFERENCE returns a conference matrix.
+%% CONFERENCE returns the CONFERENCE matrix.
 %
 %  Discussion:
 %

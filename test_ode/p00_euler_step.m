@@ -31,9 +31,9 @@ function y1 = p00_euler_step ( test, neqn, t0, y0, t1 )
 %
   dt = t1 - t0;
 
-  yp0 = p00_fun ( test, t0, y0 );
+  yp0 = p00_fun ( test, neqn, t0, y0 );
 
-  y1(1:neqn) = y0(1:neqn) + dt * yp0(1:neqn);
+  y1(1:neqn,1) = y0(1:neqn,1) + dt * yp0(1:neqn,1);
 
   return
 end

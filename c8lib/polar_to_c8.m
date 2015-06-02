@@ -6,7 +6,7 @@ function z = polar_to_c8 ( r, theta )
 %
 %  Discussion:
 %
-%    A C8 is a complex ( kind = 8 ) value.
+%    A C8 is a complex value.
 %
 %  Licensing:
 %
@@ -26,7 +26,7 @@ function z = polar_to_c8 ( r, theta )
 %
 %    Output, complex Z, the complex number.
 %
-  z = r * ( cos ( theta ) + i sin ( theta ) );
+  z = r * ( cos ( theta ) + i * sin ( theta ) );
 
   return
 end

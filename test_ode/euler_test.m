@@ -10,7 +10,7 @@ function euler_test ( test, step_num )
 %
 %  Modified:
 %
-%    24 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -22,6 +22,20 @@ function euler_test ( test, step_num )
 %
 %    Input, integer STEP_NUM, the number of steps to take.
 %
+  if ( nargin < 1 )
+    test = 1;
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  Since the user did not choose a test,\n' );
+    fprintf ( 1, '  the default test %d was chosen.\n', test );
+  end
+
+  if ( nargin < 2 )
+    step_num = 25;
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  Since the user did not choose a number of steps,\n' );
+    fprintf ( 1, '  the default value %d was chosen.\n', step_num );
+  end
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'EULER_TEST\n' );
   fprintf ( 1, '  Problem number = %d\n', test );
@@ -58,11 +72,11 @@ function euler_test ( test, step_num )
 %
 %  Get the starting point.
 %
-  [ t_start, y_start ] = p00_start ( test );
+  [ t_start, y_start ] = p00_start ( test, neqn );
 %
 %  Get the stopping point.
 %
-  [ t_stop, y_stop ] = p00_stop ( test );
+  [ t_stop, y_stop ] = p00_stop ( test, neqn );
 %
 %  Print the stepsize;
 %
@@ -95,7 +109,7 @@ function euler_test ( test, step_num )
       t_start, y_min, y_ave, y_max, y_norm );
   end
 
-  y0(1:neqn) = y_start(1:neqn);
+  y0(1:neqn,1) = y_start(1:neqn,1);
 
 
   for step = 1 : step_num
@@ -138,7 +152,7 @@ function euler_test ( test, step_num )
       end
     end
 
-    y0(1:neqn) = y1(1:neqn);
+    y0(1:neqn,1) = y1(1:neqn,1);
 
   end
 

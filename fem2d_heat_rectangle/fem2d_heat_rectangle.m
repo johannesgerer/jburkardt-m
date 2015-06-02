@@ -2794,25 +2794,17 @@ function triangulation_order6_plot ( file_name, node_num, node_xy, tri_num, ...
 %  Draw the nodes.
 %
   if ( node_num <= 200 )
-  {
     circle_size = 5;
-  }
   elseif ( node_num <= 500 )
-  {
     circle_size = 4;
-  }
   elseif ( node_num <= 1000 )
-  {
     circle_size = 3;
-  }
   elseif ( node_num <= 5000 )
-  {
     circle_size = 2;
-  }
   else
-  {
     circle_size = 1;
-  }
+  end
+
   if ( 1 <= node_show )
 
     fprintf ( file_unit, '%%\n' );

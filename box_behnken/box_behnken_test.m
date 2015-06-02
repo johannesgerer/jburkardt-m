@@ -2,7 +2,7 @@ function box_behnken_test ( )
 
 %*****************************************************************************80
 %
-%% BOX_BEHNKEN_TEST calls a set of problems for BOX_BEHNKEN.
+%% BOX_BEHNKEN_TEST tests the BOX_BEHNKEN library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function box_behnken_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BOX_BEHNKEN_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -31,7 +30,6 @@ function box_behnken_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BOX_BEHNKEN_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

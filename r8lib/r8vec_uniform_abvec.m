@@ -50,7 +50,9 @@ function [ x, seed ] = r8vec_uniform_abvec ( n, a, b, seed )
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %
-  r = zeros ( n, 1 );
+  i4_huge = 2147483647;
+
+  x = zeros ( n, 1 );
 
   if ( seed == 0 )
     fprintf ( 1, '\n' );
@@ -66,7 +68,7 @@ function [ x, seed ] = r8vec_uniform_abvec ( n, a, b, seed )
     seed = 16807 * ( seed - k * 127773 ) - k * 2836;
 
     if ( seed < 0 )
-      seed = seed + 2147483647;
+      seed = seed + i4_huge;
     end
 
     x(i) = a(i) + ( b(i) - a(i) ) * seed * 4.656612875E-10;

@@ -2,7 +2,7 @@ function test_nint_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_NINT_TEST tests TEST_NINT.
+%% TEST_NINT_TEST tests the TEST_NINT library.
 %
 %  Licensing:
 %
@@ -34,7 +34,6 @@ function test_nint_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_NINT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function quadrule_test38 ( )
 
 %*****************************************************************************80
 %
-%% TEST38 tests NCC_COMPUTE and SUM_SUB.
+%% QUADRULE_TEST38 tests NCC_COMPUTE and SUM_SUB.
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test38 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST38\n' );
+  fprintf ( 1, 'QUADRULE_TEST38\n' );
   fprintf ( 1, '  NCC_COMPUTE computes a closed Newton Cotes rule;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

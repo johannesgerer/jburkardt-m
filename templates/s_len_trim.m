@@ -1,5 +1,7 @@
 function len = s_len_trim ( s )
 
+%*****************************************************************************80
+%
 %% S_LEN_TRIM returns the length of a character string to the last nonblank.
 %
 %  Licensing:

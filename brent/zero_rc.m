@@ -17,13 +17,16 @@ function [ arg, status ] = zero_rc ( a, b, t, value, status )
 %    The routine is a revised version of the Brent zero finder
 %    algorithm, using reverse communication.
 %
+%    Thanks to Thomas Secretin for pointing out a transcription error in the
+%    setting of the value of P, 11 February 2013.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    14 October 2008
+%    11 February 2013
 %
 %  Author:
 %
@@ -167,7 +170,7 @@ function [ arg, status ] = zero_rc ( a, b, t, value, status )
 
       q = fa / fc;
       r = fb / fc;
-      p = s * ( 2.0 * m * a * ( q - r ) - ( sb - sa ) * ( r - 1.0 ) );
+      p = s * ( 2.0 * m * q * ( q - r ) - ( sb - sa ) * ( r - 1.0 ) );
       q = ( q - 1.0 ) * ( r - 1.0 ) * ( s - 1.0 );
 
     end

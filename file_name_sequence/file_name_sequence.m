@@ -173,7 +173,7 @@ function test04 ( filename, filename_num )
 
 %*****************************************************************************80
 %
-%% TEST04 uses FILE_NAME_INC.
+%% TEST04 uses FILENAME_INC.
 %
 %  Licensing:
 %
@@ -189,7 +189,7 @@ function test04 ( filename, filename_num )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST04:\n' );
-  fprintf ( 1, '  FILENAME(I+1) = FILE_NAME_INC ( FILENAME(I) )\n' );
+  fprintf ( 1, '  FILENAME(I+1) = FILENAME_INC ( FILENAME(I) )\n' );
   fprintf ( 1, '  First FILENAME = "%s"\n', filename );
   fprintf ( 1, '  Number of filenames = %d\n', filename_num );
   fprintf ( 1, '  Numbers may include leading zeros.\n' );
@@ -197,7 +197,7 @@ function test04 ( filename, filename_num )
 
   for i = 1 : filename_num
     fprintf ( 1, '  %4d:  "%s"\n', i, filename );
-    filename = file_name_inc ( filename );
+    filename = filename_inc ( filename );
   end
 
   return

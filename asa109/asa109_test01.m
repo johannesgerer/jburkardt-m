@@ -2,7 +2,7 @@ function asa109_test01 ( )
 
 %*****************************************************************************80
 %
-%% TEST01 demonstrates the use of XINBTA.
+%% ASA109_TEST01 demonstrates the use of XINBTA.
 %
 %  Licensing:
 %
@@ -10,14 +10,14 @@ function asa109_test01 ( )
 %
 %  Modified:
 %
-%    14 February 2003
+%    25 September 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01:\n' );
+  fprintf ( 1, 'ASA109_TEST01:\n' );
   fprintf ( 1, '  XINBTA inverts the incomplete beta function.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '      A        B         CDF     ' );
@@ -36,14 +36,14 @@ function asa109_test01 ( )
       break
     end
 
-    beta_log = alngam ( a ) ...
-             + alngam ( b ) ...
-             - alngam ( a + b );
+    beta_log = gammaln ( a ) ...
+             + gammaln ( b ) ...
+             - gammaln ( a + b );
 
     [ x2, ifault ] = xinbta ( a, b, beta_log, fx );
 
     fprintf ( 1, '  %6.2f  %6.2f  %10.4f  %24.16e  %24.16e  %10.4e\n', ...
-    a, b, fx, x, x2, abs ( x - x2 ) );
+      a, b, fx, x, x2, abs ( x - x2 ) );
 
   end
 

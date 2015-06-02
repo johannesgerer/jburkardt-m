@@ -2,7 +2,7 @@ function sparse_grid_hermite_test ( )
 
 %*****************************************************************************80
 %
-%% SPARSE_GRID_HERMITE_TEST tests SPARSE_GRID_HERMITE.
+%% SPARSE_GRID_HERMITE_TEST tests the SPARSE_GRID_HERMITE library.
 %
 %  Licensing:
 %
@@ -184,7 +184,6 @@ function sparse_grid_hermite_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_HERMITE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

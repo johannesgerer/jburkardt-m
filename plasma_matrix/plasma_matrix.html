@@ -1,0 +1,230 @@
+<html>
+
+  <head>
+    <title>
+      PLASMA_MATRIX - Demonstrate Use of Harwell-Boeing Sparse Matrix Format
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PLASMA_MATRIX <br> Demonstrate Use of Harwell-Boeing Sparse Matrix Format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PLASMA_MATRIX</b> 
+      is a MATLAB library which 
+      demonstrates how a MATLAB sparse matrix can be written to a
+      Harwell-Boeing sparse matrix file for storage or transfer,
+      and then later retrieved.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PLASMA_MATRIX</b> is available in
+      <a href = "../../m_src/plasma_matrix/plasma_matrix.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/hb_io/hb_io.html">
+      HB_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Harwell-Boeing Sparse Matrix format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hb_to_msm/hb_to_msm.html">
+      HB_TO_MSM</a>,
+      a MATLAB program which
+      converts a Harwell Boeing sparse matrix to
+      MATLAB sparse matrix format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_to_hb/mm_to_hb.html">
+      MM_TO_HB</a>,
+      a MATLAB program which
+      reads the sparse matrix information from an MM Matrix Market file 
+      and writes a corresponding HB Harwell Boeing file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_to_msm/mm_to_msm.html">
+      MM_TO_MSM</a>,
+      a MATLAB program which
+      reads a Matrix Market file defining a sparse matrix, and creates
+      a corresponding MATLAB sparse matrix data structure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/msm_to_hb/msm_to_hb.html">
+      MSM_TO_HB</a>,
+      a MATLAB program which
+      writes a MATLAB sparse matrix to a Harwell Boeing (HB) file,
+      by Xiaoye Li.
+    </p>
+
+    <p>
+      <a href = "../../m_src/msm_to_mm/msm_to_mm.html">
+      MSM_TO_MM</a>, 
+      a MATLAB program which
+      writes a MATLAB sparse matrix to a Matrix Market (MM) file;
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_to_hb/st_to_hb.html">
+      ST_TO_HB</a>,
+      a MATLAB program which 
+      converts a sparse matrix file from ST format to 
+      Harwell Boeing (HB) format;
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices with known inverses,
+      determinants, eigenvalues and so on.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      James Cheung wrote the code that defines the plasma matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Iain Duff, Roger Grimes, John Lewis,<br>
+          User's Guide for the Harwell-Boeing Sparse Matrix Collection,<br>
+          October 1992.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hb_to_msm.m">hb_to_msm.m</a>, 
+          creates a MATLAB Sparse matrix from data in a 
+          Harwell Boeing Sparse Matrix file.
+        </li>
+        <li>
+          <a href = "msm_to_hb.m">msm_to_hb.m</a>, 
+          writes a MATLAB Sparse matrix to a Harwell Boeing Sparse Matrix
+          file.
+        </li>
+        <li>
+          <a href = "plasma_matrix.m">plasma_matrix.m</a>, 
+          computes a jacobian matrix J and residual function F associated
+          with a plasma simulation on an N by N grid.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "plasma_matrix_test.m">plasma_matrix_test.m</a>,
+          runs the tests.
+        </li>
+        <li>
+          <a href = "plasma_matrix_test_output.txt">plasma_matrix_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "plasma_matrix_test01.m">plasma_matrix_test01.m</a>,
+          computes a plasma matrix, writes it to a file, and retrieves it.
+        </li>
+        <li>
+          <a href = "msm_to_hb_test01.hb">msm_to_hb_test01.hb</a>,
+          the HB file created by the test.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The first test uses N = 5.
+      <ul>
+        <li>
+          <a href = "plasma_5_sparsity.png">plasma_5_sparsity.png</a>,
+          the matrix sparsity graph from MATLAB's spy() command.
+        </li>
+        <li>
+          <a href = "plasma_5_rua.txt">plasma_5_rua.txt</a>,
+          the Harwell-Boeing sparse matrix file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The second test uses N = 100.
+      <ul>
+        <li>
+          <a href = "plasma_100_sparsity.png">plasma_100_sparsity.png</a>,
+          the matrix sparsity graph from MATLAB's spy() command.
+        </li>
+        <li>
+          <a href = "plasma_100_rua.txt">plasma_100_rua.txt</a>,
+          the Harwell-Boeing sparse matrix file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 January 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -10,7 +10,7 @@ function next = next_boundary_node ( node, code )
 %
 %  Modified:
 %
-%    14 February 2003
+%    14 January 2013
 %
 %  Author:
 %
@@ -21,6 +21,10 @@ function next = next_boundary_node ( node, code )
 %    Input, integer NODE, the index of the current node.  An input
 %    value of 0 (or any "unusual" value") indicates that the
 %    first edge node is desired.
+%
+%    Input, character ( len = * ) CODE, identifies the element desired.
+%    Legal values include 'Q4', 'Q8', 'Q9', 'Q12', 'Q16', 'QL', 
+%    'T3', 'T4', 'T6' and 'T10'.
 %
 %    Output, integer NEXT, the index of the next edge node.
 %

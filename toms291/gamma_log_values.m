@@ -1,5 +1,7 @@
 function [ n_data, x, fx ] = gamma_log_values ( n_data )
 
+%*****************************************************************************80
+%
 %% GAMMA_LOG_VALUES returns some values of the Log Gamma function.
 %
 %  Discussion:
@@ -7,6 +9,10 @@ function [ n_data, x, fx ] = gamma_log_values ( n_data )
 %    In Mathematica, the function can be evaluated by:
 %
 %      Log[Gamma[x]]
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

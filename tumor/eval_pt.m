@@ -1,6 +1,12 @@
 function [ soln, solnx ] = eval_pt ( x, it, f )
 
+%*****************************************************************************80
+%
 %% EVAL_PT evaluates the solution and its derivative at a point X.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

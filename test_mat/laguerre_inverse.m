@@ -2,7 +2,7 @@ function a = laguerre_inverse ( n )
 
 %*****************************************************************************80
 %
-%% LAGUERRE_INVERSE returns the inverse of the Laguerre polynomial matrix.
+%% LAGUERRE_INVERSE returns the inverse of the LAGUERRE matrix.
 %
 %  Example:
 %
@@ -27,7 +27,7 @@ function a = laguerre_inverse ( n )
 %    The columns of A alternate in sign.
 %
 %    A(I,1) = (I-1)!
-%    A(I,I) = (I-1)! * ( -1 )**(N+1)
+%    A(I,I) = (I-1)! * ( -1 )^(N+1)
 %
 %  Licensing:
 %
@@ -47,12 +47,7 @@ function a = laguerre_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  if ( n <= 0 )
-    a = [];
-    return
-  end
-
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   a(1,1) = 1.0;
 

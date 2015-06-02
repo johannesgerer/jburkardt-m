@@ -37,7 +37,7 @@ function taun = tau ( n, taun )
 %
 %    If the prime factorization of N is
 %
-%      N = P1**E1 * P2**E2 * ... * PM**EM,
+%      N = P1^E1 * P2^E2 * ... * PM^EM,
 %
 %    then
 %

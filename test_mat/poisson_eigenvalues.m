@@ -1,4 +1,4 @@
-function lambda = poisson_eigenvalues ( nrow, ncol, n )
+function lambda = poisson_eigenvalues ( nrow, ncol )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function lambda = poisson_eigenvalues ( nrow, ncol, n )
 %
 %  Modified:
 %
-%    19 October 2007
+%    05 March 2015
 %
 %  Author:
 %
@@ -21,16 +21,17 @@ function lambda = poisson_eigenvalues ( nrow, ncol, n )
 %    Input, integer NROW, NCOL, the number of rows and columns 
 %    in the grid.
 %
-%    Input, integer ( kind = 4 ) N, the order of the matrix.  It must be the case
-%    that N = NROW * NCOL.
+%    Output, real LAMBDA(NROW*NCOL,1), the eigenvalues.
 %
-%    Output, real LAMBDA(NROW*NCOL), the eigenvalues.
-%
+  lambda = zeros ( nrow * ncol, 1 );
+
+  cr = zeros ( nrow, 1 );
   for i = 1 : nrow
     angle = i * pi / ( nrow + 1 );
     cr(i) = cos ( angle );
   end
 
+  cc = zeros ( ncol, 1 );
   for i = 1 : ncol
     angle = i * pi / ( ncol + 1 );
     cc(i) = cos ( angle );
@@ -40,7 +41,7 @@ function lambda = poisson_eigenvalues ( nrow, ncol, n )
   for i = 1 : nrow
     for j = 1 : ncol
       k = k + 1;
-      lambda(k) = 4.0 - 2.0 * cr(i) - 2.0 * cc(j);
+      lambda(k,1) = 4.0 - 2.0 * cr(i,1) - 2.0 * cc(j,1);
     end
   end
 

@@ -8,7 +8,7 @@ function area = sphere_cap_area_nd ( ndim, r, h )
 %
 %    The spherical cap is a portion of the surface of the sphere:
 %
-%      sum ( X(1:N)**2 ) = R**2
+%      sum ( X(1:N)^2 ) = R^2
 %
 %    which is no more than H units from the uppermost point on the sphere.
 %
@@ -56,7 +56,7 @@ function area = sphere_cap_area_nd ( ndim, r, h )
 %
   haver_sine = sqrt ( ( 2.0 * r - h ) * h );
 
-  theta = arc_sine ( haver_sine / r );
+  theta = r8_asin ( haver_sine / r );
 
   if ( ndim < 1 )
 

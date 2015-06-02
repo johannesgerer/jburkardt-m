@@ -9,6 +9,10 @@ function a = daub8 ( n )
 %    The DAUB8 matrix is the Daubechies wavelet transformation matrix
 %    with 8 coefficients.
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.

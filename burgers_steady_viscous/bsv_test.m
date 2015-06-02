@@ -2,7 +2,7 @@ function bsv_test ( )
 
 %*****************************************************************************80
 %
-%% BSV_TEST tests BSV.
+%% BSV_TEST tests the BURGERS_STEADY_VISCOUS (BSV) library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function bsv_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BSV_TEST\n' );
   fprintf ( 1, '  MATLAB version.\n' );
-  fprintf ( 1, '  Test the BSV library.\n' );
+  fprintf ( 1, '  Test the BURGERS_STEADY_VISCOUS (BSV) library.\n' );
 
   bsv_test01 ( );
   bsv_test02 ( );

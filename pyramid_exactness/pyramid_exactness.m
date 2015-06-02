@@ -1,4 +1,4 @@
-function nint_exactness_pyramid ( quad_filename, degree_max )
+function pyramid_exactness ( quad_filename, degree_max )
 
 %*****************************************************************************80
 %

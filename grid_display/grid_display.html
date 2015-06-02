@@ -2,14 +2,14 @@
 
   <head>
     <title>
-      GRID_DISPLAY - Plot Points in a Grid or Sparse Grid
+      GRID_DISPLAY - Plot 1D, 2D and 3D Point Grids
     </title>
   </head>
 
   <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
 
     <h1 align = "center">
-      GRID_DISPLAY <br> Plot Points in a Grid or Sparse Grid
+      GRID_DISPLAY <br> Plot 1D, 2D and 3D Point Grids
     </h1>
 
     <hr>
@@ -17,8 +17,9 @@
     <p>
       <b>GRID_DISPLAY</b> 
       is a MATLAB program which 
-      can read an ASCII file defining a set of points on a 2D or 3D grid or sparse grid, 
-      and display a plot of those points, inside a plot frame of user-specified range
+      can read an ASCII file defining a set of points on a 1D, 2D or 3D grid 
+      or sparse grid, and display a plot of those points,
+      inside a plot frame of user-specified range
       <b>[Rmin,Rmax]</b>.
     </p>
 
@@ -58,6 +59,15 @@
     </p>
 
     <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>GRID_DISPLAY</b> is available in
+      <a href = "../../m_src/grid_display/grid_display.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
       Related Data and Programs:
     </h3>
 
@@ -73,6 +83,13 @@
       CC_DISPLAY</a>,
       a MATLAB program which 
       displays points on various grids derived from the Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/circle_grid_display/circle_grid_display.html">
+      CIRCLE_GRID_DISPLAY</a>,
+      a MATLAB program which reads a matrix of integers, and draws a corresponding
+      grid of circles filled with color.
     </p>
 
     <p>
@@ -106,55 +123,18 @@
     </p>
 
     <p>
+      <a href = "../../m_src/ply_display/ply_display.html">
+      PLY_DISPLAY</a>,
+      a MATLAB program which
+      displays an image of a 3D graphics file in PLY format;
+    </p>
+
+    <p>
       <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
       QUADRATURE_RULES</a>,
       a dataset directory which
       defines quadrature rules;  
       a number of examples of sparse grid quadrature rules are included.
-    </p>
-
-    <p>
-      <a href = "../../datasets/sparse_grid_cc/sparse_grid_cc.html">
-      SPARSE_GRID_CC</a>,
-      a datatset directory which
-      contains some sample sparse grids from the Clenshaw Curtis rule.
-    </p>
-
-    <p>
-      <a href = "../../datasets/sparse_grid_f2/sparse_grid_f2.html">
-      SPARSE_GRID_F2</a>,
-      a datatset directory which
-      contains some sample sparse grids from the Fejer Type 2 rule.
-    </p>
-
-    <p>
-      <a href = "../../datasets/sparse_grid_gp/sparse_grid_gp.html">
-      SPARSE_GRID_GP</a>,
-      a datatset directory which
-      contains some sample sparse grids from the Gauss Patterson rule.
-    </p>
-
-    <p>
-      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
-      SPARSE_GRID_HW</a>, 
-      a MATLAB library which
-      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
-      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
-      by Florian Heiss and Viktor Winschel.
-    </p>
-
-    <p>
-      <a href = "../../datasets/sparse_grid_ncc/sparse_grid_ncc.html">
-      SPARSE_GRID_NCC</a>,
-      a datatset directory which
-      contains some sample sparse grids from the Newton Cotes Closed rule.
-    </p>
-
-    <p>
-      <a href = "../../datasets/sparse_grid_nco/sparse_grid_nco.html">
-      SPARSE_GRID_NCO</a>,
-      a datatset directory which
-      contains some sample sparse grids from the Newton Cotes Open rule.
     </p>
 
     <p>
@@ -207,36 +187,71 @@
     </h3>
 
     <p>
-      A 2D example:
+      A 1D example:
+      <pre>
+        grid_display ( 'hermite_o7_x.txt', -5, +5 )
+      </pre>
       <ul>
         <li>
-          <a href = "../../datasets/sparse_grid_f2/f2_d2_level5.txt">
-                     ../../datasets/sparse_grid_f2/f2_d2_level5.txt</a>, 
-          a sample input file, containing 145 points in the 
-          region [-1,1]x[-1,1], associated with a Fejer Type 2 rule.
+          <a href = "hermite_o7_x.txt">hermite_o7_x.txt</a>, 
+          7 points of a Hermite quadrature rule.
         </li>
         <li>
-          <a href = "../../datasets/sparse_grid_f2/f2_d2_level5.png">
-                     ../../datasets/sparse_grid_f2/f2_d2_level5.png</a>,
-          the 
-          <a href = "../../data/png/png.html">PNG</a> image of the points.
+          <a href = "hermite_o7.png">hermite_o7.png</a>,
+          the PNG image of the points.
         </li>
       </ul>
     </p>
 
     <p>
-      A 3D example:
+      A 2D example:
+      <pre>
+        grid_display ( 'f2_d2_level5_x.txt', -1, +1 )
+      </pre>
       <ul>
         <li>
-          <a href = "../../datasets/sparse_grid_ncc/ncc_d3_level3.txt">
-                     ../../datasets/sparse_grid_ncc/ncc_d3_level3.txt</a>, 
+          <a href = "f2_d2_level5_x.txt">f2_d2_level5_x.txt</a>, 
+          a sample input file, containing 145 points in the 
+          region [-1,1]x[-1,1], associated with a Fejer Type 2 rule.
+        </li>
+        <li>
+          <a href = "f2_d2_level5.png">f2_d2_level5.png</a>,
+          the PNG image of the points.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A 3D example of a sparse grid using Newton Cotes Closed points,
+      <pre>
+        grid_display ( 'ncc_d3_level3_x.txt', 0, +1 )
+      </pre>
+      <ul>
+        <li>
+          <a href = "ncc_d3_level3_x.txt">ncc_d3_level3_x.txt</a>, 
           a sample input file, containing 69 points in the 
           region [0,1]x[0,1]x[0,1], associated with a Newton Cotes Closed rule.
         </li>
         <li>
-          <a href = "../../datasets/sparse_grid_ncc/ncc_d3_level3.png">
-                     ../../datasets/sparse_grid_ncc/ncc_d3_level3.png</a>,
-          <a href = "../../data/png/png.html">PNG</a> image of the points.
+          <a href = "ncc_d3_level3.png">ncc_d3_level3.png</a>,
+          a PNG image of the points.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A 3D example of a sparse grid using Clenshaw Curtis points:
+      <pre>
+        grid_display ( 'cc_d3_level2_x.txt', -1, +1 )
+      </pre>
+      <ul>
+        <li>
+          <a href = "cc_d3_level2_x.txt">cc_d3_level2_x.txt</a>, 
+          the point coordinates.
+        </li>
+        <li>
+          <a href = "cc_d3_level2.png">cc_d3_level2.png</a>,
+          a PNG image of the points.
         </li>
       </ul>
     </p>
@@ -249,7 +264,7 @@
     <hr>
 
     <i>
-      Last revised on 09 October 2011.
+      Last revised on 04 February 2014.
     </i>
 
     <!-- John Burkardt -->

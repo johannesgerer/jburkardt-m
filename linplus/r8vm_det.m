@@ -20,7 +20,7 @@ function det = r8vm_det ( n, a )
 %
 %  Modified:
 %
-%    05 February 2004
+%    03 November 2013
 %
 %  Author:
 %
@@ -30,14 +30,16 @@ function det = r8vm_det ( n, a )
 %
 %    Input, integer N, the number of rows and columns of the matrix.
 %
-%    Input, real A(N), the R8VM matrix.
+%    Input, real A(N,1), the R8VM matrix.
 %
 %    Output, real DET, the determinant of the matrix.
 %
+  a = a(:);
+
   det = 1.0;
   for j = 1 : n
-    for i = j+1 : n
-      det = det * ( a(i) - a(j) );
+    for i = j + 1 : n
+      det = det * ( a(i,1) - a(j,1) );
     end
   end
 

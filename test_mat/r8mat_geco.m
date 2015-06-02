@@ -11,7 +11,7 @@ function [ a, ipvt, rcond ] = r8mat_geco ( a, n )
 %    EPSILON/RCOND.
 %
 %    If RCOND is so small that the logical expression
-%      1.0D+00 + RCOND == 1.0D+00
+%      1.0 + RCOND == 1.0
 %    is true, then A may be singular to working precision.  In particular,
 %    RCOND is zero if exact singularity is detected or the estimate
 %    underflows.

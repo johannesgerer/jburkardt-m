@@ -1,0 +1,321 @@
+<html>
+
+  <head>
+    <title>
+      GPL_DISPLAY - Display Data from Gnuplot GPL Files
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      GPL_DISPLAY <br> Display Data from Gnuplot GPL Files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>GPL_DISPLAY</b>
+      is a MATLAB library which
+      tries to read the data in a typical gnuplot GPL file,
+      describing a 1D, 2D or 3D curve, or a surface Z(X,Y) defined
+      on a regular grid, a triangular grid, or an irregular quadrilateral grid,
+      displays it in a more attractive way than gnuplot is capable of.
+    </p>
+
+    <p>
+      GNUPLOT does not do a very good job of displaying 3D surfaces.
+      It sketches them out with lines, or some simple solid surfaces.
+      In some cases, MATLAB can take the same data and make a much
+      more attractive image.  This set of programs tries to read a few
+      typical GPL data files, and display them appropriately.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>GPL_DISPLAY</b> is available in
+      <a href = "../../m_src/gpl_display/gpl_display.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../examples/dealii/dealii.html">
+      DEALII</a>, 
+      examples which
+      illustrate the use of DEAL.II,
+      a finite element method (FEM) 
+      Differential Equations Analysis Library (DEAL),
+      by Wolfgang Bangerth and others.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_plot_gpl/fem2d_plot_gpl.html">
+      FEM2D_PLOT_GPL</a>,
+      a MATLAB program which
+      reads information about nodes, elements and nodal values for a
+      2D finite element method (FEM) and creates a GPL file describing
+      a surface plot of U(X,Y), which can be displayed by GNUPLOT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gnuplot/gnuplot.html">
+      GNUPLOT</a>,
+      MATLAB programs which
+      illustrate how a program can write data and command files
+      so that gnuplot can create plots of the program results.
+    </p>
+
+    <p>
+      <a href = "../../data/gpl/gpl.html">
+      GPL</a>,
+      a data directory which
+      contains examples of GPL files,
+      a graphics file format used by gnuplot;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philipp Janert,<br>
+          Gnuplot in Action: Understanding Data with Graphs,<br>
+          Manning, 2010,<br>
+          ISBN13: 978-1-933988-39-8,<br>
+          LC: QA276.4.J37.
+        </li>
+        <li>
+          Thomas Williams, Colin Kelley,<br>
+          gnuplot 4.4, An Interactive Plotting Program,<br>
+          The Free Software Foundation, 2010.
+        </li>
+        <li>
+          <a href = "http://www.gnuplot.info/">The GNUPLOT Website</a>.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gpl_classify.m">gpl_classify.m</a>,
+          NOT WORKING YET, but intending to read a GPL file and figure out
+          which kind of GPL file it is (curve, grid, patches).
+        </li>
+        <li>
+          <a href = "gpl_curve.m">gpl_curve.m</a>,
+          reads a GPL file that describes a single curve with 1D, 2D or 3D data,
+          and displays it with the Matlab plot() or plot3() command.
+        </li>
+        <li>
+          <a href = "gpl_dimension.m">gpl_dimension.m</a>,
+          reads a GPL file and tries to determine the "dimension" of the data.
+        </li>
+        <li>
+          <a href = "gpl_grid.m">gpl_grid.m</a>,
+          reads a GPL file of (X,Y,Z(X,Y)) data for an M by N product grid,
+          and calls Matlab's surf() command to display the data.
+        </li>
+        <li>
+          <a href = "gpl_squares.m">gpl_squares.m</a>,
+          reads a GPL file of (X,Y,Z(X,Y)) data for an irregular grid
+          of rectangles, such as used by deal.ii, and calls Matlab's patch() 
+          command to display the data as a surface.
+        </li>
+        <li>
+          <a href = "gpl_triangles.m">gpl_triangles.m</a>,
+          reads a GPL file of (X,Y,Z(X,Y)) data for an irregular grid
+          of triangles, and calls Matlab's patch() command to display the data.
+        </li>
+        <li>
+          <a href = "s_word_count.m">s_word_count.m</a>,
+          counts the number of words in a string.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>5by3</b> is a set of (X,Y,Z(X,Y)) data on a rectangular grid 
+      of 5 X by 3 Y values.  The GPL file stores this as 3 sets of
+      data, separated by blank lines.  Gnuplot can display this data
+      as a 3D surface using the command "splot '5by3.gpl' using lines".
+      However, MATLAB can make a nice 3D surface using surf();
+      <ul>
+        <li>
+          <a href = "5by3.gpl">5by3.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "5by3_test.m">5by3_test.m</a>, calls gpl_grid
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "5by3.png">5by3.png</a>, a PNG snapshot of the
+          3D plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ell</b> is a set of (X,Y,Z(X,Y)) data on a grid of triangles. 
+      The GPL file stores this as many sets of 4 lines of data, 
+      separated by two blank lines.  Each set of 4 lines lists the
+      X, Y and Z values for one vertex of a triangle, with the first
+      line repeated as the fourth line.  Gnuplot can display this data
+      as a 3D surface using the command "splot 'ell.gpl' using lines".
+      However, MATLAB can make a nice 3D surface using patch();
+      <ul>
+        <li>
+          <a href = "ell.gpl">ell.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "ell_test.m">ell_test.m</a>, calls gpl_triangles
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "ell.png">ell.png</a>, a PNG snapshot of the
+          plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>helix</b> is a set of (X,Y,Z) data that defines a
+      helix. 
+      The GPL file stores this as 201 triples of X, Y, Z values. 
+      Gnuplot can display this data using the command 
+      "splot 'helix.gpl' using lines".
+      MATLAB can also make a nice curve with the plot3() command.
+      <ul>
+        <li>
+          <a href = "helix.gpl">helix.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "helix_test.m">helix_test.m</a>, calls gpl_curve
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "helix.png">helix.png</a>, a PNG snapshot of the
+          plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>lynx</b> is a set of X data, tabulating the lynx "harvest". 
+      The GPL file stores this as 114 sets of X values. 
+      Gnuplot can display this data using the command 
+      "plot 'lynx.gpl' using lines".
+      MATLAB can also make a nice curve with the plot() command.
+      <ul>
+        <li>
+          <a href = "lynx.gpl">lynx.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "lynx_test.m">lynx_test.m</a>, calls gpl_curve
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "lynx.png">lynx.png</a>, a PNG snapshot of the
+          plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>sine</b> is a set of (X,Y(X)) data over [0,pi],
+      tabulating the sine function. 
+      The GPL file stores this as 101 pairs of X, Y values. 
+      Gnuplot can display this data using the command 
+      "plot 'sine.gpl' using lines".
+      MATLAB can also make a nice curve with the plot() command.
+      <ul>
+        <li>
+          <a href = "sine.gpl">sine.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "sine_test.m">sine_test.m</a>, 
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "sine.png">sine.png</a>, a PNG snapshot of the
+          plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>solution</b> is a set of (X,Y,Z(X)) data over the unit square,
+      representing a solution to the Poisson equation as computed by
+      the deal.ii program.  In 2D, the deal.ii program uses a mesh of
+      rectangular elements, which need not be of the same size.  Therefore,
+      the solution is not stored as a regular grid, but rather as a collection
+      of values on little rectangular patches.
+      The GPL file stores this as 1024 such patches.  Each patch is recorded
+      as the X,Y,Z values at nodes A and B, followed by one blank line,
+      and then the X,Y,Z values at nodes C and D, followed by two blank lines.
+      The rectangle can be traced by connecting A, B, D and C (in that order).
+      Gnuplot can display this data using the command 
+      "splot 'solution.gpl' using lines".
+      MATLAB can also make a nice surface with the patch() command.
+      <ul>
+        <li>
+          <a href = "solution.gpl">solution.gpl</a>, the GPL file.
+        </li>
+        <li>
+          <a href = "solution_test.m">solution_test.m</a>, 
+          reads the GPL file and displays the data.
+        </li>
+        <li>
+          <a href = "solution.png">solution.png</a>, a PNG snapshot of the
+          plot created by MATLAB.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 12 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

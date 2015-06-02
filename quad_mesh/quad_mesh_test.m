@@ -2,7 +2,7 @@ function quad_mesh_test ( )
 
 %*****************************************************************************80
 %
-%% QUAD_MESH_TEST is the main program for testing QUAD_MESH.
+%% QUAD_MESH_TEST tests the QUAD_MESH library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function quad_mesh_test ( )
 %    John Burkardt
 %
   timestamp (  );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUAD_MESH_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -43,7 +42,6 @@ function quad_mesh_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUAD_MESH_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

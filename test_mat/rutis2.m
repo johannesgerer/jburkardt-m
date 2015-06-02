@@ -2,7 +2,7 @@ function a = rutis2 ( )
 
 %*****************************************************************************80
 %
-%% RUTIS2 returns the Rutishauser2 matrix.
+%% RUTIS2 returns the RUTIS2 matrix.
 %
 %  Example:
 %
@@ -45,11 +45,15 @@ function a = rutis2 ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
     5.0,  4.0,  1.0,  1.0; ...
     4.0,  5.0,  1.0,  1.0; ...
     1.0,  1.0,  4.0,  2.0; ...
-    1.0,  1.0,  2.0,  4.0 ]';
+    1.0,  1.0,  2.0,  4.0 ];
 
   return
 end

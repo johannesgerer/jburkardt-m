@@ -48,6 +48,8 @@ function a = trench ( alpha, m, n )
 %    If ALPHA = 0, then every third leading principal submatrix
 %    is exactly singular.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -83,6 +85,8 @@ function a = trench ( alpha, m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

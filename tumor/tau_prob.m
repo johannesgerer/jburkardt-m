@@ -1,10 +1,18 @@
 function tauxovertau = tau_prob ( fh, fhx, ch, chx )
 
+%*****************************************************************************80
+%
 %% TAUPROB evaluates the derivative of TAU with respect to (X/TAU).
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
 %    10 November 2005
+%
+%  Parameters:
 %
   global alpha1 
   global alpha2

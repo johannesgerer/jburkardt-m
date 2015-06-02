@@ -2,7 +2,7 @@ function determ = rutis4_determinant ( n )
 
 %*****************************************************************************80
 %
-%% RUTIS4_DETERMINANT returns the eigenvalues of the RUTIS4 matrix.
+%% RUTIS4_DETERMINANT returns the determinant of the RUTIS4 matrix.
 %
 %  Licensing:
 %

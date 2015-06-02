@@ -16,7 +16,7 @@ function value = year_is_leap_islamic ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    13 April 2013
 %
 %  Author:
 %
@@ -26,7 +26,7 @@ function value = year_is_leap_islamic ( y )
 %
 %    Input, integer Y, the year to be checked.
 %
-%    Output, logical VALUE, TRUE if the year was a leap year,
+%    Output, logical YEAR_IS_LEAP_ISLAMIC, TRUE if the year was a leap year,
 %    FALSE otherwise.
 %
   if ( i4_modp ( 11 * y + 14, 30 ) < 11 )

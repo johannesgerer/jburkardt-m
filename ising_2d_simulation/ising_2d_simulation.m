@@ -32,22 +32,32 @@ function ising_2d_simulation ( m, n, iterations, thresh, seed )
 %
   if ( nargin < 1 )
     m = 10;
+  else
+    m = str2num ( m );
   end
 
   if ( nargin < 2 )
     n = 10;
+  else
+    n = str2num ( n );
   end
 
   if ( nargin < 3 )
     iterations = 15;
+  else
+    iterations = str2num ( iterations );
   end
 
   if ( nargin < 4 )
     thresh = 0.50;
+  else
+    thresh = str2num ( thresh );
   end
 
   if ( nargin < 5 )
     seed = 123456789;
+  else
+    seed = str2num ( seed );
   end
 %
 %  Define the probability of flipping if you are in a neighborhood of

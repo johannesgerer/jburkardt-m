@@ -6,7 +6,7 @@ function f = fibonacci_direct ( n )
 %
 %  Formula:
 %
-%      F(N) = ( PHIP**N - PHIM**N ) / sqrt(5)
+%      F(N) = ( PHIP^N - PHIM^N ) / sqrt(5)
 %
 %    where 
 %

@@ -18,7 +18,7 @@ function v = r8vec_house_column ( n, a, k )
 %
 %  Modified:
 %
-%    23 April 2005
+%    12 January 2015
 %
 %  Author:
 %
@@ -28,30 +28,41 @@ function v = r8vec_house_column ( n, a, k )
 %
 %    Input, integer N, the order of the matrix A.
 %
-%    Input, real A(N), column K of the matrix A.
+%    Input, real A(N,1), column K of the matrix A.
 %
 %    Input, integer K, the column of the matrix to be modified.
 %
-%    Output, real V(N), a vector of unit L2 norm which defines an
+%    Output, real V(N,1), a vector of unit L2 norm which defines an
 %    orthogonal Householder premultiplier matrix H with the property
 %    that the K-th column of H*A is zero below the diagonal.
 %
-  v(1:n) = 0.0;
 
-  if ( k < 1 | n <= k )
+%
+%  Destroy all row vectors!
+%
+  a = a(:);
+
+  v(1:n,1) = 0.0;
+
+  if ( k < 1 || n <= k )
     return
   end
 
-  s = sqrt ( sum ( a(k:n).^2 ) );
+  s = sqrt ( sum ( a(k:n,1).^2 ) );
 
   if ( s == 0.0 )
     return
   end
 
-  v(k) = a(k) + abs ( s ) * r8_sign ( a(k) );
-  v(k+1:n) = a(k+1:n);
+  if ( a(k,1) < 0.0 )
+    v(k,1) = a(k,1) - abs ( s ) ;
+  else
+    v(k,1) = a(k,1) + abs ( s );
+  end
+  v(k+1:n,1) = a(k+1:n,1);
 
-  v(k:n) = v(k:n) / sqrt ( v(k:n).^2 );
+  s = sqrt ( sum ( v(k:n,1).^2 ) );
+  v(k:n,1) = v(k:n,1) / s;
 
   return
 end

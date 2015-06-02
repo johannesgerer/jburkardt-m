@@ -2,11 +2,7 @@ function test_opt_con_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_OPT_CON_TEST tests TEST_OPT_CON.
-%
-%  Discussion:
-%
-%    TEST_OPT_CON_PRB calls the TEST_OPT_CON tests.
+%% TEST_OPT_CON_TEST tests the TEST_OPT_CON library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_opt_con_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPT_CON_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +30,6 @@ function test_opt_con_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPT_CON_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

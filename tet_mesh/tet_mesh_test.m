@@ -1,8 +1,8 @@
-function test_mesh_test ( )
+function tet_mesh_test ( )
 
 %*****************************************************************************80
 %
-%% TET_MESH_TEST tests the routines in TET_MESH.
+%% TET_MESH_TEST tests the TET_MESH library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function test_mesh_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TET_MESH_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -36,7 +35,6 @@ function test_mesh_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TET_MESH_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

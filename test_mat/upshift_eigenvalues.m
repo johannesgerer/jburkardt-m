@@ -20,9 +20,11 @@ function lambda = upshift_eigenvalues ( n )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
-  lambda = c8vec_unity ( n );
+  lambda = zeros ( n, 1 );
+
+  lambda(1:n,1) = c8vec_unity ( n );
 
   return
 end

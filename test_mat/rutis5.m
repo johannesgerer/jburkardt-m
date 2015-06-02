@@ -2,7 +2,7 @@ function a = rutis5 ( )
 
 %*****************************************************************************80
 %
-%% RUTIS5 returns the Rutishauser5 matrix.
+%% RUTIS5 returns the RUTIS5 matrix.
 %
 %  Example:
 %
@@ -40,11 +40,15 @@ function a = rutis5 ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
    10.0,  1.0,  4.0,  0.0; ...
     1.0, 10.0,  5.0, -1.0; ...
     4.0,  5.0, 10.0,  7.0; ...
-    0.0, -1.0,  7.0,  9.0 ]';
+    0.0, -1.0,  7.0,  9.0 ];
 
   return
 end

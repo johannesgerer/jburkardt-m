@@ -2,7 +2,7 @@ function determ = diagonal_determinant ( n, x )
 
 %*****************************************************************************80
 %
-%% DIAGONAL_DETERMINANT returns the determinant of a diagonal matrix.
+%% DIAGONAL_DETERMINANT returns the determinant of the DIAGONAL matrix.
 %
 %  Licensing:
 %

@@ -1,6 +1,12 @@
 function [ bb, bx ] = quadbf ( x, it, in, xc, node )
 
+%*****************************************************************************80
+%
 %% QUADBF evaluates the quadratic basis functions and derivatives.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

@@ -2,7 +2,11 @@ function z = h_polynomial_zeros ( nt )
 
 %*****************************************************************************80
 %
-%% H_POLYNOMIAL_ZEROS: zeros of physicist's Hermite polynomial H(n,x).
+%% H_POLYNOMIAL_ZEROS: zeros of H(i,x).
+%
+%  Discussion:
+%
+%    H(i,x) is the physicist's Hermite polynomial of degree I.
 %
 %  Licensing:
 %

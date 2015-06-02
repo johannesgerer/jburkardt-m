@@ -1,0 +1,257 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_ADVECTION_FTCS - Finite Difference Method, 1D Advection Equation, Forward Time, Centered Space
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_ADVECTION_FTCS <br> 
+      Finite Difference Method<br> 
+      1D Advection Equation<br>
+      Forward Time Difference, Centered Space Difference
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_ADVECTION_FTCS</b> 
+      is a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the FTCS method, forward time difference,
+      centered space difference.
+    </p>
+
+    <p>
+      We solve the constant-velocity advection equation in 1D,
+      <pre>
+        du/dt = - c du/dx
+      </pre>
+      over the interval:
+      <pre>
+        0.0 <= x <= 1.0
+      </pre>
+      with periodic boundary conditions, and
+      with a given initial condition
+      <pre>
+        u(0,x) = (10x-4)^2 (6-10x)^2 for 0.4 <= x <= 0.6
+               = 0 elsewhere.
+      </pre>
+    </p>
+
+    <p>
+      We use a method known as FTCS:
+      <ul>
+        <li>
+          FT: Forward Time  : du/dt = (u(t+dt,x)-u(t,x))/dt
+        </li>
+        <li>
+          CS: Centered Space: du/dx = (u(t,x+dx)-u(t,x-dx))/2/dx
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The FTCS method is <i>unstable</i> for the advection problem.
+      One purpose of this example is to demonstrate that fact.
+    </p>
+
+    <p>
+      For our simple case, the advection velocity is constant
+      in time and space.  Therefore, (given our periodic boundary conditions),
+      the solution should simply move smoothly from left to right, returning
+      on the left again.  Instead, because of the instabilities, we see
+      that the solution quickly becomes dominated by erroneous oscillations.
+    </p>
+
+    <p>
+      There are more sophisticated methods for the advection problem,
+      which do not exhibit this behavior.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_ADVECTION_FTCS</b> is available in
+      <a href = "../../c_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">a C version</a> and
+      <a href = "../../cpp_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">a C++ version</a> and
+      <a href = "../../f77_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">
+      FD1D_ADVECTION_DIFFUSION_STEADY</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the
+      steady advection diffusion equation v*ux-k*uxx=0 in 
+      one spatial dimension, with constant velocity v and diffusivity k.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_lax/fd1d_advection_lax.html">
+      FD1D_ADVECTION_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the Lax method to treat the time derivative.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_lax_wendroff/fd1d_advection_lax_wendroff.html">
+      FD1D_ADVECTION_LAX_WENDROFF</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the Lax-Wendroff method to treat the time derivative.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_lax/fd1d_burgers_lax.html">
+      FD1D_BURGERS_LAX</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the Lax-Wendroff method
+      to solve the non-viscous time-dependent Burgers equation 
+      in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_burgers_leap/fd1d_burgers_leap.html">
+      FD1D_BURGERS_LEAP</a>, 
+      a MATLAB program which 
+      applies the finite difference method and the leapfrog approach
+      to solve the non-viscous time-dependent Burgers equation in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
+      FD1D_BVP</a>,
+      a MATLAB program which
+      applies the finite difference method
+      to a two point boundary value problem in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and explicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite difference method and implicit time stepping 
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for predator-prey system
+      with spatial variation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_wave/fd1d_wave.html">
+      FD1D_WAVE</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      wave equation utt = c * uxx in one spatial dimension.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_advection_ftcs.m">fd1d_advection_ftcs.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_advection_ftcs_output.txt">fd1d_advection_ftcs_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "fd1d_advection_ftcs.png">fd1d_advection_ftcs.png</a>, 
+          an image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 December 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

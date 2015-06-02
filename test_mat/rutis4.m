@@ -2,7 +2,7 @@ function a = rutis4 ( n )
 
 %*****************************************************************************80
 %
-%% RUTIS4 returns the Rutishauser4 matrix.
+%% RUTIS4 returns the RUTIS4 matrix.
 %
 %  Example:
 %
@@ -29,7 +29,7 @@ function a = rutis4 ( n )
 %    A is the cube of the scalar tridiagonal matrix whose diagonals
 %    are ( 1, 2, 1 ).
 %
-%    LAMBDA(I) = 64 * ( cos ( i * pi / ( 2 * ( n + 1 ) ) ) )**6
+%    LAMBDA(I) = 64 * ( cos ( i * pi / ( 2 * ( n + 1 ) ) ) )^6
 %
 %  Licensing:
 %
@@ -58,7 +58,7 @@ function a = rutis4 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : n
 

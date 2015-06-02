@@ -2,12 +2,12 @@ function a = hilbert_inverse ( n )
 
 %*****************************************************************************80
 %
-%% HILBERT_INVERSE returns the inverse of the Hilbert matrix.
+%% HILBERT_INVERSE returns the inverse of the HILBERT matrix.
 %
 %  Formula:
 %
-%    A(I,J) =  (-1)**(I+J) * (N+I-1)% * (N+J-1)% /
-%           [ (I+J-1) * ((I-1)%*(J-1)%)**2 * (N-I)% * (N-J)% ]
+%    A(I,J) =  (-1)^(I+J) * (N+I-1)! * (N+J-1)! /
+%           [ (I+J-1) * ((I-1)!*(J-1)!)^2 * (N-I)! * (N-J)! ]
 %
 %  Example:
 %
@@ -40,7 +40,7 @@ function a = hilbert_inverse ( n )
 %
 %    All entries of A are integers.
 %
-%    The sum of the entries of A is N**2.
+%    The sum of the entries of A is N^2.
 %
 %  Licensing:
 %
@@ -60,7 +60,7 @@ function a = hilbert_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  Set the (1,1) entry.
 %

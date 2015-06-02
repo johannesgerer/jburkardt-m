@@ -1,17 +1,15 @@
-function [ p, t, fnum, stats ] = meshfaces ( node, edge, face, hdata, options )
+function [p,t,fnum,stats] = meshfaces(node,edge,face,hdata,options)
 
-%*****************************************************************************80
-%
 %  MESHFACES: 2D unstructured mesh generation for polygonal geometry.
 %
-%  Discussion:
+% A 2D unstructured triangular mesh is generated based on a piecewise-
+% linear geometry input. An arbitrary number of polygonal faces can be 
+% specified, and each face can contain an arbitrary number of cavities. An 
+% iterative method is implemented to optimise mesh quality. 
 %
-%    A 2D unstructured triangular mesh is generated based on a piecewise-
-%    linear geometry input. An arbitrary number of polygonal faces can be 
-%    specified, and each face can contain an arbitrary number of cavities. An 
-%    iterative method is implemented to optimise mesh quality. 
+% If you wish to mesh a single face, use MESH2D instead!
 %
-%    If you wish to mesh a single face, use MESH2D instead!
+%  [p,t,fnum] = meshfaces(node,edge,face,hdata,options);
 %
 % OUTPUTS
 %
@@ -80,11 +78,13 @@ function [ p, t, fnum, stats ] = meshfaces ( node, edge, face, hdata, options )
 
 % STATS is an undocumented output used in debugging. Returns the algorithm 
 % statistics usually printed to screen as a structure.
+
+%   Darren Engwirda : 2005-09
+%   Email           : d_engwirda@hotmail.com
+%   Last updated    : 10/10/2009 with MATLAB 7.0 (Mesh2d v2.4)
 %
-%  Author:
-%
-%    Darren Engwirda
-%
+% Please email me any un-meshable geometries, meshing benchmarks or
+% suggestions!
 
 ts = cputime;
 
@@ -124,7 +124,7 @@ try
    
 catch
    % Close waitbar on error
-   close(wbar);
+%  close(wbar);
    rethrow(lasterror);
 end
 
@@ -135,15 +135,12 @@ end
 tic
 [qtree.p,qtree.t,qtree.h] = quadtree(node,edge,hdata,options.dhmax,options.output);
 t_quad = toc;
-%
-% Discretise edges
-%
-pbnd = boundarynodes(qtree.p,qtree.t,qtree.h,node,edge,options.output);
-%
-% Mesh each face separately
-%
-p = []; t = []; fnum = [];
 
+% Discretise edges
+pbnd = boundarynodes(qtree.p,qtree.t,qtree.h,node,edge,options.output);
+
+% Mesh each face separately
+p = []; t = []; fnum = [];
 for k = 1:length(face)
    
    % Mesh kth polygon
@@ -155,65 +152,85 @@ for k = 1:length(face)
    fnum = [fnum; k*ones(size(tnew,1),1)];
    
 end
-%
+
 % Ensure consistent, CCW ordered triangulation
-%
 [p,t,fnum,fnum] = fixmesh(p,t,[],fnum);   
 
 % Element quality
 q = quality(p,t);
-
+%
 % Method statistics
+%
 stats = struct('Time',cputime-ts,'Triangles',size(t,1), ...
                   'Nodes',size(p,1),'Mean_quality',mean(q),'Min_quality',min(q));
                
 if options.output
-   clf
-   hold on
-   plot ( node ( :,1 ), node(:,2), 'r.', 'MarkerSize', 8 );
-   axis equal
-   pause
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( node ( :,1 ), node(:,2), 'r.', 'MarkerSize', 8 );
-   pause ( )
+   figure('Name','Mesh')
+   plot(p(:,1),p(:,2),'b.','markersize',1)
+   hold on;
    % Colour mesh for each face
-   col = ['b','r','g','o','m'];
+   col = ['b','r','g','y','m'];
    for k = 1:length(face)
       colk = mod(k,length(col));
       if (colk==0)
          colk = length(col);
       end
-      patch('faces',t(fnum==k,:),'vertices',p,'facecolor','w','edgecolor',col(colk));
+
+      patch ( 'faces', t(fnum==k,:), ...
+              'vertices', p, ...
+              'facecolor', 'w', ...
+              'edgecolor', col(colk), ...
+              'LineWidth', 2 );
    end
-   patch('faces',edge,'vertices',node,'facecolor','none','edgecolor','k')
-   % Highlisght low q triangles in debug mode
+
+   patch ( 'faces', edge, ...
+           'vertices', node, ...
+           'facecolor', 'none', ...
+           'edgecolor', 'k' )
+
+   % Highlight low q triangles in debug mode
+
    if options.debug
       pc = (p(t(:,1),:)+p(t(:,2),:)+p(t(:,3),:))/3.0;
       plot(pc(q<0.5,1),pc(q<0.5,2),'r.')
    end
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( node ( :,1 ), node(:,2), 'r.', 'MarkerSize', 8 );
    axis equal off;
-   hold off
    disp(stats);
 end
 
-end
+end      % meshfaces()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function p = boundarynodes(ph,th,hh,node,edge,output)
 
-%*****************************************************************************80
-%
 % Discretise the geometry based on the edge size requirements interpolated 
 % from the background mesh.
 
-p = node;
-e = edge;
-i = tsearch_mex(ph(:,1),ph(:,2),th,p(:,1),p(:,2));               
-h = tinterp(ph,th,hh,p,i);
+  p = node;
+  e = edge;
 
-if output
-   fprintf('Placing Boundary Nodes\n');
-end
+  opt = 4;
+
+  if ( opt == 0 )
+    i = [];
+    i = mytsearch ( ph(:,1), ph(:,2), th, p(:,1), p(:,2), i );     
+  elseif ( opt == 1 )
+    i = tsearch ( ph(:,1), ph(:,2), th, p(:,1), p(:,2) );               
+  elseif ( opt == 2 )
+    i = tsearch_mex ( ph(:,1), ph(:,2), th, p(:,1), p(:,2) );    
+  elseif ( opt == 3 )
+    dtri = DelaunayTri ( ph );
+    i = pointLocation ( dtri, p );
+  elseif ( opt == 4 )
+    i = tsearchn ( ph, th, p );
+  end
+
+  h = tinterp(ph,th,hh,p,i);
+
+  if output
+    fprintf('Placing Boundary Nodes\n');
+  end
+
 iter = 1;
 while true
    
@@ -236,8 +253,23 @@ while true
       e = [e; n3,n2];
       p = [p; pm];
       % Size function at new nodes
-      i = mytsearch(ph(:,1),ph(:,2),th,pm(:,1),pm(:,2));               
+
+      opt = 4;
+      if ( opt == 0 )
+        i = mytsearch ( ph(:,1), ph(:,2), th, pm(:,1), pm(:,2), i ); 
+      elseif ( opt == 1 )
+        i = tsearch ( ph(:,1), ph(:,2), th, pm(:,1), pm(:,2) );               
+      elseif ( opt == 2 )
+        i = tsearch_mex ( ph(:,1), ph(:,2), th, pm(:,1), pm(:,2) );    
+      elseif ( opt == 3 )
+        dt = DelaunayTri ( ph );
+        i = pointLocation ( dt, pm );
+      elseif ( opt == 4 )
+        i = tsearchn ( ph, th, pm );       
+      end
+         
       h = [h; tinterp(ph,th,hh,pm,i)];
+
    else
       break
    end
@@ -281,7 +313,21 @@ for iter = 1:maxit
    
    if (del>delold)
       % Interpolate required size at new P
-      i = mytsearch(ph(:,1),ph(:,2),th,p(:,1),p(:,2),i);
+
+      opt = 4;
+      if ( opt == 0 )
+        i = mytsearch ( ph(:,1), ph(:,2), th, p(:,1), p(:,2), i );
+      elseif ( opt == 1 )
+        i = tsearch ( ph(:,1), ph(:,2), th, p(:,1), p(:,2) );               
+      elseif ( opt == 2 )
+        i = tsearch_mex ( ph(:,1), ph(:,2), th, p(:,1), p(:,2) );    
+      elseif ( opt == 3 )
+        dtri = DelaunayTri ( ph );
+        i = pointLocation ( dtri, p );
+      elseif ( opt == 4 )
+        i = tsearchn ( ph, th, p ); 
+      end
+
       h = tinterp(ph,th,hh,p,i);
       he = 0.5*(h(e(:,1))+h(e(:,2)));
    end
@@ -289,10 +335,10 @@ for iter = 1:maxit
 end
 
 end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function options = getoptions(options)
 
-%*****************************************************************************80
-%
 % Extract the user defined options
 
 % Defaults
@@ -343,11 +389,11 @@ else                                                                       % Def
 end
 options.debug = false;
 
-end
+end      % getoptions()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function var = checkposscalar(var,name)
 
-%*****************************************************************************80
-%
 % Helper function to check if var is a positive scalar.
 
 if var<0 || any(size(var)>1)
@@ -356,10 +402,9 @@ end
 
 end      % checkposscalar()
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function var = checklogicalscalar(var,name)
 
-%*****************************************************************************80
-%
 % Helper function to check if var is a logical scalar.
 
 if ~islogical(var) || any(size(var)>1)

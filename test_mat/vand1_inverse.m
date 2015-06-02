@@ -2,11 +2,11 @@ function a = vand1_inverse ( n, x )
 
 %*****************************************************************************80
 %
-%% VAND1_INVERSE returns the inverse of the Vandermonde1 matrix.
+%% VAND1_INVERSE returns the inverse of the VAND1 matrix.
 %
 %  Formula:
 %
-%    A(I,J) = coefficient of X**(J-1) in I-th Lagrange basis polynomial.
+%    A(I,J) = coefficient of X^(J-1) in I-th Lagrange basis polynomial.
 %
 %  Example:
 %
@@ -39,12 +39,14 @@ function a = vand1_inverse ( n, x )
 %
 %  Parameters:
 %
-%    Input, integer N, the order of the matrix desired.
+%    Input, integer N, the order of the matrix.
 %
 %    Input, real X(N), the values that define A.
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( j == 1 )

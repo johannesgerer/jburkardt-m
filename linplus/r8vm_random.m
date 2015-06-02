@@ -34,7 +34,7 @@ function [ a, seed ] = r8vm_random ( m, n, seed )
 %
 %    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, real A(N), the R8VM matrix.
+%    Output, real A(N,1), the R8VM matrix.
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %

@@ -29,7 +29,6 @@ function distance_to_position ( input_filename )
 %    distance_to_position ( 'input_filename' )
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DISTANCE_TO_POSITION\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -39,15 +38,10 @@ function distance_to_position ( input_filename )
   fprintf ( 1, '  reproduce the distance table with the lowest\n' );
   fprintf ( 1, '  discrepancy, in the least squares sense.\n' );
 
-  if ( 1 <= nargin )
-
-  else
-
+  if ( nargin < 1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'DISTANCE_TO_POSITION:\n' );
-
-    input_filename = input ( '  Enter the name of the input file:  ' );
-
+    input_filename = input ( '  Enter the name of the input file, in quotes:  ' );
   end
 %
 %  For now, we will assume the spatial dimension is 2.
@@ -103,18 +97,35 @@ function distance_to_position ( input_filename )
 %  Output the position data.
 %
   output_filename = file_name_ext_swap ( input_filename, 'coord.txt' );
-
   r8mat_write ( output_filename, city_dim, city_num, position );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Wrote the position data to "%s".\n', output_filename );
+%
+%  Plot the data.
+%
+  plot ( position(1,1:city_num), position(2,1:city_num), 'b.', 'MarkerSize', 30 );
+  t = max ( max ( position(1,1:city_num) ) - min ( position(1,1:city_num) ), ...
+            max ( position(2,1:city_num) ) - min ( position(2,1:city_num) ) );
+  for city = 1 : city_num
+    txt = sprintf ( '%d', city );
+    x = position(1,city) + 0.025 * t;
+    y = position(2,city) + 0.025 * t;
+    text ( x, y, txt, 'FontSize', 16 );
+  end
+  grid on
+  xlabel ( '<---X--->' );
+  ylabel ( '<---Y--->' );
+  title ( 'Estimated Positions from Distance Matrix', 'FontSize', 16 );
+  png_filename = file_name_ext_swap ( input_filename, 'png' );
+  print ( '-dpng', png_filename );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Saved the coordinate plot in "%s"\n', png_filename );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DISTANCE_TO_POSITION\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

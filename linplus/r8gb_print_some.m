@@ -95,7 +95,7 @@ function r8gb_print_some ( m, n, ml, mu, a, ilo, jlo, ihi, jhi, title )
         if ( i < j - mu - ml | j + ml < i )
           fprintf ( 1, '              ' );
         else
-          fprintf ( 1, '%14f', a(i-j+ml+mu+1,j) );
+          fprintf ( 1, '%14g', a(i-j+ml+mu+1,j) );
         end
 
       end
@@ -105,8 +105,6 @@ function r8gb_print_some ( m, n, ml, mu, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

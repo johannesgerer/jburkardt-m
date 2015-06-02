@@ -2,7 +2,7 @@ function a = hermite_inverse ( n )
 
 %*****************************************************************************80
 %
-%% HERMITE_INVERSE returns the inverse of the Hermite polynomial matrix.
+%% HERMITE_INVERSE returns the inverse of the HERMITE matrix.
 %
 %  Example:
 %
@@ -28,9 +28,9 @@ function a = hermite_inverse ( n )
 %
 %    A is lower triangular.
 %
-%    det ( A ) = 1 / 2**((N*(N-1))/2)
+%    det ( A ) = 1 / 2^((N*(N-1))/2)
 %
-%    LAMBDA(I) = 1 / 2**(I-1)
+%    LAMBDA(I) = 1 / 2^(I-1)
 %
 %    A is reducible.
 %
@@ -52,11 +52,7 @@ function a = hermite_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  if ( n <= 0 )
-    return
-  end
-
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   a(1,1) = 1.0;
 

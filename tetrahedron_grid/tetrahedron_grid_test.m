@@ -2,7 +2,7 @@ function tetrahedron_grid_test ( )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_GRID_TEST tests TETRAHEDRON_GRID.
+%% TETRAHEDRON_GRID_TEST tests the TETRAHEDRON_GRID library.
 %
 %  Licensing:
 %

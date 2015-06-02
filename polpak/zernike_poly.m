@@ -10,18 +10,18 @@ function z = zernike_poly ( m, n, rho )
 %
 %    *) R^M_N = 0 if M < 0, or N < 0, or N < M.
 %    *) R^M_M = RHO^M
-%    *) R^M_N = 0 if mod ( N - M ) = 1.
+%    *) R^M_N = 0 if mod ( N - M, 2 ) = 1.
 %
 %    and the recursion:
 %
-%    R^M_(N+2) = A * [ ( B * RHO**2 - C ) * R^M_N - D * R^M_(N-2) ]
+%    R^M_(N+2) = A * [ ( B * RHO^2 - C ) * R^M_N - D * R^M_(N-2) ]
 %
 %    where
 %
-%    A = ( N + 2 ) / ( ( N + 2 )**2 - M**2 )
+%    A = ( N + 2 ) / ( ( N + 2 )^2 - M^2 )
 %    B = 4 * ( N + 1 )
-%    C = ( N + M )**2 / N + ( N - M + 2 )**2 / ( N + 2 )
-%    D = ( N**2 - M**2 ) / N
+%    C = ( N + M )^2 / N + ( N - M + 2 )^2 / ( N + 2 )
+%    D = ( N^2 - M^2 ) / N
 %
 %    I wish I could clean up the recursion in the code, but for
 %    now, I have to treat the case M = 0 specially.
@@ -93,7 +93,7 @@ function z = zernike_poly ( m, n, rho )
     zm2 = z;
     z = 2.0 * rho * rho - 1.0;
 
-    for nn = m+2 : 2 : n-2
+    for nn = m + 2 : 2 : n-2
 
       a = ( nn + 2 ) / ( ( nn + 2 ) * ( nn + 2 ) - m * m );
 
@@ -112,7 +112,7 @@ function z = zernike_poly ( m, n, rho )
 
   else
 
-    for nn = m : 2 : n-2
+    for nn = m : 2 : n - 2
 
       a = ( nn + 2 ) / ( ( nn + 2 ) * ( nn + 2 ) - m * m );
 

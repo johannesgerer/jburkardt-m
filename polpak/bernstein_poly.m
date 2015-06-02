@@ -10,7 +10,7 @@ function bern = bernstein_poly ( n, x )
 %
 %  Formula:
 %
-%    B(N,I)(X) = [N!/(I!*(N-I)!)] * (1-X)**(N-I) * X**I
+%    B(N,I)(X) = [N!/(I!*(N-I)!)] * (1-X)^(N-I) * X^I
 %
 %  First values:
 %
@@ -19,20 +19,20 @@ function bern = bernstein_poly ( n, x )
 %    B(1,0)(X) =      1-X
 %    B(1,1)(X) =                X
 %
-%    B(2,0)(X) =     (1-X)**2
+%    B(2,0)(X) =     (1-X)^2
 %    B(2,1)(X) = 2 * (1-X)    * X
-%    B(2,2)(X) =                X**2
+%    B(2,2)(X) =                X^2
 %
-%    B(3,0)(X) =     (1-X)**3
-%    B(3,1)(X) = 3 * (1-X)**2 * X
-%    B(3,2)(X) = 3 * (1-X)    * X**2
-%    B(3,3)(X) =                X**3
+%    B(3,0)(X) =     (1-X)^3
+%    B(3,1)(X) = 3 * (1-X)^2  * X
+%    B(3,2)(X) = 3 * (1-X)    * X^2
+%    B(3,3)(X) =                X^3
 %
-%    B(4,0)(X) =     (1-X)**4
-%    B(4,1)(X) = 4 * (1-X)**3 * X
-%    B(4,2)(X) = 6 * (1-X)**2 * X**2
-%    B(4,3)(X) = 4 * (1-X)    * X**3
-%    B(4,4)(X) =                X**4
+%    B(4,0)(X) =     (1-X)^4
+%    B(4,1)(X) = 4 * (1-X)^3  * X
+%    B(4,2)(X) = 6 * (1-X)^2  * X^2
+%    B(4,3)(X) = 4 * (1-X)    * X^3
+%    B(4,4)(X) =                X^4
 %
 %  Special values:
 %
@@ -40,7 +40,7 @@ function bern = bernstein_poly ( n, x )
 %
 %    B(N,I)(X) has an I-fold zero at 0 and and N-I fold zero at 1.
 %
-%    B(N,I)(1/2) = C(N,K) / 2**N
+%    B(N,I)(1/2) = C(N,K) / 2^N
 %
 %    For a fixed X and N, the polynomials add up to 1:
 %

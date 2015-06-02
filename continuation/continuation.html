@@ -1,0 +1,227 @@
+<html>
+
+  <head>
+    <title>
+      CONTINUATION - A Sample 2D Continuation Code
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      CONTINUATION <br> A Sample 2D Continuation Code
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CONTINUATION</b>
+      is a MATLAB library which
+      implements the continuation method for a simple 2D problem,
+      which involves finding a point on the unit circle, and then
+      finding a sequence of nearby points which trace out the full
+      curve, using only the information available in the implicit
+      definition of the curve from the function f(x,y)=x^2+y^2-1.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CONTINUATION</b> is available in
+      <a href = "../../m_src/continuation/continuation.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f77_src/pitcon66/pitcon66.html">
+      PITCON66</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this is version 6.6 of ACM TOMS algorithm 596.
+    </p>
+
+    <p>
+      <a href = "../../f_src/pitcon7/pitcon7.html">
+      PITCON7</a>,
+      a FORTRAN90 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this is version 7.0 of ACM TOMS algorithm 596.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_con/test_con.html">
+      TEST_CON</a>,
+      a MATLAB library which
+      implements test problems for numerical continuation.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms502/toms502.html">
+      TOMS502</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this library is commonly called <b>DERPAR</b>;<br>
+      this is ACM TOMS algorithm 502.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/toms596/toms596.html">
+      TOMS596</a>,
+      a FORTRAN77 library which
+      seeks to produce a sequence of points that satisfy a set of nonlinear
+      equations with one degree of freedom;
+      this library is commonly called <b>PITCON</b>;<br>
+      this is ACM TOMS algorithm 596.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Cor den Heijer, Werner Rheinboldt,<br>
+          On Steplength Algorithms for a Class of Continuation Methods,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 18, Number 5, October 1981, pages 925-947.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Solution Field of Nonlinear Equations and Continuation Methods,<br>
+          SIAM Journal on Numerical Analysis,<br>
+          Volume 17, Number 2, April 1980, pages 221-237.
+        </li>
+        <li>
+          Werner Rheinboldt,<br>
+          Numerical Analysis of Continuation Methods for Nonlinear
+          Structural Problems,<br>
+          Computers and Structures,<br>
+          Volume 13, 1981, pages 103-114.
+        </li>
+        <li>
+          Werner Rheinboldt, John Burkardt,<br>
+          A Locally Parameterized Continuation Process,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 9, Number 2, June 1983, pages 215-235.
+        </li>
+        <li>
+          Werner Rheinboldt, John Burkardt,<br>
+          Algorithm 596:
+          A Program for a Locally Parameterized
+          Continuation Process,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 9, Number 2, June 1983, pages 236-241.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "newton.m">newton.m</a>,
+          uses Newton's method to solve the augmented nonlinear system.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "step.m">step.m</a>,
+          takes one continuation step.
+        </li>
+        <li>
+          <a href = "tangent.m">tangent.m</a>,
+          computes the tangent vector.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "continuation_test.m">continuation_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "continuation_test_output.txt">continuation_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "circle_test.m">circle_test.m</a>,
+          demonstrates the continuation method for finding points on a circle.
+        </li>
+        <li>
+          <a href = "circle_test.png">circle_test.png</a>,
+          a PNG image of the points computed on the circle.
+        </li>
+        <li>
+          <a href = "f_circle.m">f_circle.m</a>,
+          evaluates the function that implicitly defines a circle.
+        </li>
+        <li>
+          <a href = "fp_circle.m">fp_circle.m</a>,
+          evaluates the jacobian of the function that implicitly defines a circle.
+        <li>
+          <a href = "newton_test.m">newton_test.m</a>,
+          demonstrates the Newton code.
+        </li>
+        <li>
+          <a href = "step_test.m">step_test.m</a>,
+          demonstrates the continuation step code.
+        </li>
+        <li>
+          <a href = "tangent_test.m">tangent_test.m</a>,
+          demonstrates the tangent code.
+        </li>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 08 April 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

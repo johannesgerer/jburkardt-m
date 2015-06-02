@@ -2,7 +2,7 @@ function halton_test ( )
 
 %*****************************************************************************80
 %
-%% HALTON_TEST runs the Halton tests.
+%% HALTON_TEST tests the HALTON library.
 %
 %  Licensing:
 %
@@ -46,7 +46,6 @@ function halton_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HALTON_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

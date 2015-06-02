@@ -2,7 +2,7 @@ function doomsday_test ( )
 
 %*****************************************************************************80
 %
-%% DOOMSDAY_TEST tests DOOMSDAY.
+%% DOOMSDAY_TEST tests the DOOMSDAY library.
 %
 %  Licensing:
 %

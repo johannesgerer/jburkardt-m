@@ -2,9 +2,9 @@ function a = harman ( )
 
 %*****************************************************************************80
 %
-%% HARMAN returns the Harman matrix.
+%% HARMAN returns the HARMAN matrix.
 %
-%  Formula:
+%  Example:
 %
 %   1.00  0.85  0.81  0.86  0.47  0.40  0.30  0.38
 %   0.85  1.00  0.88  0.83  0.38  0.33  0.28  0.41
@@ -78,6 +78,10 @@ function a = harman ( )
 %  Parameters:
 %
 %    Output, real A(8,8), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a = [ ...
     1.00, 0.85, 0.81, 0.86, 0.47, 0.40, 0.30, 0.38; ...

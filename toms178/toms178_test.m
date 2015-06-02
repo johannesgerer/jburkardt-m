@@ -2,7 +2,11 @@ function toms178_test ( )
 
 %*****************************************************************************80
 %
-%% TOMS178_TEST tests TOMS178.
+%% TOMS178_TEST tests the TOMS178 library.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -26,7 +30,6 @@ function toms178_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TOMS178_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

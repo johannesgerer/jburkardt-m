@@ -26,6 +26,10 @@ function a = ill3_inverse ( )
 %
 %    Output, real A(3,3), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [   69.0,         68.0 / 3.0,   70.0; ...
         -439.0 / 2.0, -433.0 / 6.0, -224.0; ...
            4.5,          1.5,          5.0 ];

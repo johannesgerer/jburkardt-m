@@ -2,7 +2,7 @@ function determ = fibonacci1_determinant ( n, f1, f2 )
 
 %*****************************************************************************80
 %
-%% FIBONACCI1_DETERMINANT returns the determinant of the Fibonacci1 matrix.
+%% FIBONACCI1_DETERMINANT returns the determinant of the FIBONACCI1 matrix.
 %
 %  Licensing:
 %

@@ -10,15 +10,13 @@ function ha = r8mat_house_hxa ( n, a, v )
 %
 %      H(V) = I - 2 * v * v' / ( v' * v )
 %
-%    This routine is not particularly efficient.
-%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    23 April 2005
+%    27 April 2013
 %
 %  Author:
 %
@@ -34,18 +32,7 @@ function ha = r8mat_house_hxa ( n, a, v )
 %
 %    Output, real HA(N,N), the product H*A.
 %
-  v_normsq = sum ( v(1:n).^2 );
-%
-%  Compute A*H' = A*H
-%
-  for i = 1 : n
-    for j = 1 : n
-      ha(i,j) = a(i,j);
-      for k = 1 : n
-        ha(i,j) = ha(i,j) - 2.0 * v(i) * v(k) * a(k,j) / v_normsq;
-      end
-    end
-  end
+  ha = a - 2.0 * v * v' * a / ( v' * v );
 
   return
 end

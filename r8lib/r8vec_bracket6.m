@@ -32,14 +32,16 @@ function b = r8vec_bracket6 ( nd, xd, ni, xi )
 %
 %    Input, integer ND, the number of data values.
 %
-%    Input, real XD(N), the sorted data.
+%    Input, real XD(N,1), the sorted data.
 %
 %    Input, integer NI, the number of inquiry values.
 %
-%    Input, real XD(NI), the query values.
+%    Input, real XI(NI,1), the query values.
 %
-%    Output, integer B(NI), the bracket information.
+%    Output, integer B(NI,1), the bracket information.
 %
+  xd = xd(:);
+  xi = xi(:);
   b = zeros ( ni, 1 );
 
   for i = 1 : ni

@@ -16,7 +16,7 @@ function value = simplex_unit_volume_nd ( n )
 %
 %  Modified:
 %
-%    26 May 2004
+%    23 April 2013
 %
 %  Author:
 %
@@ -29,7 +29,7 @@ function value = simplex_unit_volume_nd ( n )
 %    Output, real SIMPLEX_UNIT_VOLUME_ND, the volume of the
 %    unit simplex.
 %
-  value = 1.0 / i4_factorial ( n );
+  value = 1.0 / r8_factorial ( n );
 
   return
 end

@@ -2,7 +2,7 @@ function subpak_test ( )
 
 %*****************************************************************************80
 %
-%% SUBPAK_TEST tests SUBPAK.
+%% SUBPAK_TEST tests the SUBPAK library.
 %
 %  Licensing:
 %
@@ -65,7 +65,6 @@ function subpak_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SUBPAK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

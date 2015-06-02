@@ -1,4 +1,4 @@
-function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
+function x = ihs ( dim_num, point_num, duplication )
 
 %*****************************************************************************80
 %
@@ -25,11 +25,12 @@ function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
 %
 %  Modified:
 %
-%    16 February 2005
+%    27 February 2014
 %
 %  Author:
 %
 %    John Burkardt
+%    Improvements by Jeremy Dewar, Tulane University.
 %
 %  Reference:
 %
@@ -46,11 +47,7 @@ function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
 %    Input, integer DUPLICATION, the duplication factor.  This must
 %    be at least 1.  A value of 5 is reasonable.
 %
-%    Input, integer SEED, a seed for the random number generator.
-%
 %    Output, integer X(DIM_NUM,POINT_NUM), the points.
-%
-%    Output, integer SEED, the updated seed for the random number generator.
 %
   opt = point_num / point_num^( 1.0 / dim_num );
 %
@@ -58,13 +55,12 @@ function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
 %
   x = zeros ( dim_num, point_num );
 
-  for i = 1 : dim_num
-    [ x(i,point_num), seed ] = i4_uniform ( 1, point_num, seed );
-  end
+  x(:,point_num) = randi ( point_num, [dim_num,1] );
 %
 %  Initialize AVAIL,
 %  and set an entry in a random row of each column of AVAIL to POINT_NUM.
 %
+  avail = zeros(dim_num, point_num);
   for j = 1 : point_num
     avail(1:dim_num,j) = j;
   end
@@ -86,10 +82,11 @@ function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
         list(count*(k-1)+1:k*count) = avail(i,1:count);
       end
 
+      point_idxs = randi ( k, [1,count*duplication] );
       for k = count*duplication : -1 : 1
-        [ point_index, seed ] = i4_uniform ( 1, k, seed );
-        point(i,k) = list(point_index);
-        list(point_index) = list(k);
+        pk = point_idxs(k);
+        point(i,k) = list(pk);
+        list(pk) = list(k);
       end
 
     end
@@ -105,22 +102,7 @@ function [ x, seed ] = ihs ( dim_num, point_num, duplication, seed )
       min_can = realmax;
 
       for j = count+1 : point_num
-        vec(1:dim_num) = point(1:dim_num,k) - x(1:dim_num,j);
-%
-%  Why not replace these 5 lines by a 1 line dot product?  
-%  Because that's what I had, but because MATLAB's mind works one way,
-%  and mine another, my inner product was actually an outer product,
-%  and I wasted two days finding out why.  
-%
-%  Since MATLAB plays sloppy with the distinctions between scalars,
-%  vectors, and matrices, let's just be plain and obvious here, rather
-%  than elegant and wrong!
-%
-        dist = 0.0;
-        for i = 1 : dim_num
-          dist = dist + ( point(i,k) - x(i,j) )^2;
-        end
-        dist = sqrt ( dist );
+        dist = norm(point(:,k) - x(:,j));
         min_can = min ( min_can, dist );
       end
 

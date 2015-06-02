@@ -1,4 +1,4 @@
-function [ determ, seed ] = pds_random_determinant ( n, seed )
+function determ = pds_random_determinant ( n, key )
 
 %*****************************************************************************80
 %
@@ -25,14 +25,11 @@ function [ determ, seed ] = pds_random_determinant ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real DETERM, the determinant.
 %
-%    Output, integer SEED, a seed for the random 
-%    number generator.
-%
+  seed = key;
   [ lambda, seed ] = r8vec_uniform_01 ( n, seed );
 
   determ = prod ( lambda(1:n) );

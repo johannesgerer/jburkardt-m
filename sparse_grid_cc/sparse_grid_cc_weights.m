@@ -87,21 +87,31 @@ function grid_weight = sparse_grid_cc_weights ( dim_num, level_max, point_num, .
 %
 %  Now determine the coefficient.
 %
-      coeff = (-1)^( level_max - level ) ...
+      coeff = i4_mop ( level_max - level ) ...
         * i4_choose ( dim_num - 1, level_max - level );
 
       for point2 = 1 : order_nd
+
+        found = 0;
 
         for point = 1 : point_num
 
           if ( all ( ...
             grid_index2(1:dim_num,point2) == grid_index(1:dim_num,point) ...
           ) )
+            found = 1;
             grid_weight(point) = grid_weight(point) ...
               + coeff * grid_weight2(point2);
             break
           end
 
+        end
+
+        if ( ~found )
+          fprintf ( 1, '\n' );
+          fprintf ( 1, 'SPARSE_GRID_CC_WEIGHTS - Fatal error!\n' );
+          fprintf ( 1, '  Could not find a match for a point.\n' );
+          error ( 'SPARSE_GRID_CC_WEIGHTS - Fatal error!' );
         end
 
       end

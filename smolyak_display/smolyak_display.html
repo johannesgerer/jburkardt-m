@@ -1,0 +1,420 @@
+<html>
+
+  <head>
+    <title>
+      SMOLYAK_DISPLAY - Display Smolyak Sparse Grid Construction
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SMOLYAK_DISPLAY <br>
+      Display Smolyak Sparse Grid Construction
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SMOLYAK_DISPLAY</b>
+      is a MATLAB program which
+      displays the exactness diagram for a 2D Smolyak sparse grid,
+      by displaying and summing the exactness diagrams for the
+      component product rules.
+    </p>
+
+    <p>
+      The exactness diagram is a plot of the monomials <b>x^i y^j</b>
+      which are exactly integrated by the sparse grid.  The sparse grid
+      "inherits" its exactness from the product rules that compose it,
+      and the program shows how this is done.
+    </p>
+
+    <p>
+      In 1D, a quadrature rule Q() is a list of N points X and weights W
+      which approximates an integral I(f) over some region by
+      <pre>
+        I(f) is approximated by Q(f) = sum ( 1 <= i <= n ) w(i) * f(x(i))
+      </pre>
+    </p>
+
+    <p>
+      In 2D (or higher), a product quadrature rule is the most common method 
+      for estimating integrals in this way.
+      A product rule in 2D is formed by taking two rules for 1D
+      quadrature, say Q1 and Q2, and forming the rule Q = Q1 x Q2.
+      Here, the points of the rule Q are formed by taking all possible
+      pairs (x1,x2), with weights w1*w2.
+    </p>
+
+    <p>
+      A Smolyak sparse grid is generally used to form a quadrature
+      rule Q(f) to approximate the integral I(f) of a multivariate 
+      function f(x) over a domain that is a product region.  Although
+      Smolyak grids are related to product rules, they generally are
+      able to produce accurate estimates at a much lower "cost",
+      that is, with a much smaller number of points N.
+    </p>
+
+    <p>
+      Typically, for a given spatial dimension D, Smolyak sparse grids
+      are available in a sequence of sizes called "levels".  Level 0
+      is a single point rule, and subsequent levels add more points and
+      more accurate integral estimates.  
+    </p>
+
+    <p>
+      In 2D, a Smolyak grid is a combination created by adding together
+      product rules of a given product level, and subtracting product
+      rules of the previous level.
+    </p>
+
+    <p>
+      One way to analyze the behavior of a sequence of sparse grids is to 
+      investigate their exactness.
+    </p>
+
+    <p>
+      A quadrature rule is exact for an integrand <b>f(x)</b>
+      if it is true that <b>Q(f)=I(f)</b>.  Typically, for a 1D quadrature
+      rule, we are interested in the exactness for monomials of the
+      form <b>x^j</b>, and a quadrature rule has exactness up to degree
+      <b>k</b> if it is exact for all monomials from <b>x^0</b> through
+      <b>x^k</b>.  This immediately implies that the quadrature rule
+      will be exact for any polynomial of degree <b>k</b> or less, and
+      hence is strong information about the approximation ability of the rule.  
+    </p>
+
+    <p>
+      An exactness diagram for a quadrature rule can be made, which displays
+      all the monomials which the rule can integrate exactly.  Since we
+      are considering a Smolyak sparse grid, we can display the evolution
+      of the exactness diagram, as we add or subtract each component
+      product grid to the sparse grid.  The program draws a black diagonal
+      line to mark the total degree exactness of the sparse grid.  It shows
+      in dark blue the monomials which can be exactly integrated by the rule,
+      and which lie below the exactness line.  Light blue is used for monomials
+      that can be integrated exactly, but which lie above the exactness line;
+      these represent, in some sense, superfluous accuracy.  Until the sparse
+      grid is completely constructed, some monomials under the exactness line
+      may actually be incorrectly estimated at double, or triple, or minus
+      their true value.  This is suggested by using other colors for such
+      monomials.  However, once the sparse grid is complete, the entire
+      field of monomials below the diagonal line should be dark blue.
+    </p>
+
+    <p>
+      Two "families" of quadrature rules are available:
+    </p>
+
+    <p>
+      The Clenshaw-Curtis
+      family is defined on [-1,+1].  Roughly speaking, the rule with N points
+      has exactness N-1.  Actually, because of symmetric, if N is odd, then
+      the rule with N points will actually have exactness N.  In particular,
+      the rule with 1 point has exactness 1, and can integrate both constants
+      (degree 0) and linear functions (degree 1) exactly.
+    </p>
+
+    <p>
+      The Legendre family is defined on [-1,+1].  The rule with N points
+      has exactness 2*N-1.
+    </p>
+
+    <p>
+      While the families can produce rules of any size, we wish to select
+      a subsequence of these rules, which increase in size to satisfy
+      some pattern we specify.  This pattern is called the "growth rate".
+      A common growth rate is "exponential", in which the number of points
+      roughly doubles on each step.  For technical reasons, the Clenshaw-Curtis
+      and Legendre families differ in how they grow exponentially.  Other
+      simple growth rules include "slow exponential", "linear", and "linear odd".
+    </p>
+
+    <p>
+      The "hyperbolic cross" growth rule is quite different from the others.
+      Essentially, when we specify a level L, the 2D product rules that we will
+      be combining for the hyperbolic cross involve sizes L1 and L2 whose
+      product is L (or close to it).  Thus, the hyperbolic cross grid of
+      level 5 adds: +Q(1)xQ(6) + Q(2)xQ(3) + Q(3)xQ(2) + Q(6)xQ(1)
+      and subtracts: -Q(1)xQ(3)-Q(2)xQ(2)-Q(3)xQ(1).  This growth rule is
+      appropriate for integrand functions which are biases towards pure
+      powers of a single variable (x or y in our case) and against powers
+      that involve both x and y.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>smolyak_display</b> ( <i>'family'</i>, <i>'growth'</i>, <i>level</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'family'</i> is the name of the family of rules, in quotes.
+        </li>
+        <li>
+          <i>'growth'</i> is the growth rate, in quotes.
+        </li>
+        <li>
+          <i>level</i> is the level, between 0 and 5.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Choices for <i>'family'</i> include:
+      <ul>
+        <li>
+          <i>'CC'</i>, the Clenshaw Curtis family of rules in [-1,+1];
+        </li>
+        <li>
+          <i>'L'</i>, the Gauss-Legendre family of rules in [-1,+1];
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Choices for <i>'growth'</i> include:
+      <ul>
+        <li>
+          <i>'E'</i> exponential growth; for 'CC', this selects rules
+          of order 1, 3, 5, 9, 17, 33, 65, ...; for 'L', this selects
+          rules of order 1, 3, 7, 15, 31, 63, ...;
+        </li>
+        <li>
+          <i>'HC'</i> hyperbolic cross; for both 'CC' and 'L', we have
+          available all the rules of order 1, 2, 3, 4, ... and combine
+          them as necessary.
+        </li>
+        <li>
+          <i>'L'</i> linear growth; for 'CC', this selects rules of order
+          1, 3, 5, 7, 9, ...; for 'L, this selects rules of order 1, 2, 3, 4, 5, ...;
+        </li>
+        <li>
+          <i>'LO'</i> linear odd growth; for 'CC', this is the same as the
+          linear growth; for 'L, this selects rules of order 1, 3, 3, 5, 5, 7, 7, ...;
+        </li>
+        <li>
+          <i>'SE'</i>, slow exponential growth, chooses a rule from the
+          exponential growth rate that is the smallest order that still
+          is "exact enough" for the sparse grid constraint;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SMOLYAK_DISPLAY</b> is available in
+      <a href = "../../m_src/smolyak_display/smolyak_display.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>,
+      a C library which
+      estimates the integral of a function
+      over a M-dimensional hypercube using a sparse grid,
+      by Knut Petras;
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear
+      hierarchical sparse grid interpolation, quadrature and optimization,
+      by Andreas Klimke;
+      an earlier version of this software is ACM TOMS Algorithm 847.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tsg/tsg.html">
+      TSG</a>,
+      a MATLAB library which
+      demonstrate the use of the TasmanianSparseGrid package,
+      which implements routines for working with sparse grids,
+      to efficiently estimate integrals or compute interpolants of
+      scalar functions of multidimensional arguments.  The MATLAB
+      version is an interface to the C++ library,
+      by Miroslav Stoyanov.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Volker Barthelmann, Erich Novak, Klaus Ritter,<br>
+          High Dimensional Polynomial Interpolation on Sparse Grids,<br>
+          Advances in Computational Mathematics,<br>
+          Volume 12, Number 4, 2000, pages 273-288.
+        </li>
+        <li>
+          Sergey Smolyak,<br>
+          Quadrature and Interpolation Formulas for Tensor Products of
+          Certain Classes of Functions,<br>
+          Doklady Akademii Nauk SSSR,<br>
+          Volume 4, 1963, pages 240-243.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "exactness_1d.m">exactness_1d.m</a>
+          returns the exactness of a 1D quadrature rule,
+          given the family, growth, and level.
+        </li>
+        <li>
+          <a href = "order_1d.m">order_1d.m</a>
+          returns the order (number of points) in a 1D quadrature rule,
+          given the family, growth, and level.
+        </li>
+        <li>
+          <a href = "smolyak_display.m">smolyak_display.m</a>
+          displays the exactness diagram for a Smolyak grid of
+          given family, growth and level, by adding or subtracting
+          the exactness diagrams of the component product rules.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>CC_E_3</b> displays the exactness diagrams for a sparse
+      grid of the CC family, with exponential growth, at sparse grid level 3.
+      <ul>
+        <li>
+          <a href = "cc_e_3_-0x2.png">cc_e_3_-0x2.png</a>
+          subtract Q0xQ2.
+        </li>
+        <li>
+          <a href = "cc_e_3_-1x1.png">cc_e_3_-1x1.png</a>
+          subtract Q1xQ1.
+        </li>
+        <li>
+          <a href = "cc_e_3_-2x0.png">cc_e_3_-2x0.png</a>
+          subtract Q2xQ0.
+        </li>
+        <li>
+          <a href = "cc_e_3_+0x3.png">cc_e_3_+0x3.png</a>
+          add Q0xQ3.
+        </li>
+        <li>
+          <a href = "cc_e_3_+1x2.png">cc_e_3_+1x2.png</a>
+          add Q1xQ2.
+        </li>
+        <li>
+          <a href = "cc_e_3_+2x1.png">cc_e_3_+2x1.png</a>
+          add Q2xQ1.
+        </li>
+        <li>
+          <a href = "cc_e_3_+3x0.png">cc_e_3_+3x0.png</a>
+          add Q3xQ0.  This produces the final exactness diagram for the
+          full sparse grid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CC_E_4</b> displays the exactness diagrams for a sparse
+      grid of the CC family, with exponential growth, at sparse grid level 4.
+      <ul>
+        <li>
+          <a href = "cc_e_4_-0x3.png">cc_e_4_-0x3.png</a>
+          subtract Q0xQ3.
+        </li>
+        <li>
+          <a href = "cc_e_4_-1x2.png">cc_e_4_-1x2.png</a>
+          subtract Q1xQ2.
+        </li>
+        <li>
+          <a href = "cc_e_4_-2x1.png">cc_e_4_-2x1.png</a>
+          subtract Q2xQ1.
+        </li>
+        <li>
+          <a href = "cc_e_4_-3x0.png">cc_e_4_-3x0.png</a>
+          subtract Q3xQ0.
+        </li>
+        <li>
+          <a href = "cc_e_4_+0x4.png">cc_e_4_+0x4.png</a>
+          add Q0xQ4.
+        </li>
+        <li>
+          <a href = "cc_e_4_+1x3.png">cc_e_4_+1x3.png</a>
+          add Q1xQ3.
+        </li>
+        <li>
+          <a href = "cc_e_4_+2x2.png">cc_e_4_+2x2.png</a>
+          add Q2xQ2.
+        </li>
+        <li>
+          <a href = "cc_e_4_+3x1.png">cc_e_4_+3x1.png</a>
+          add Q3xQ1.
+        </li>
+        <li>
+          <a href = "cc_e_4_+4x0.png">cc_e_4_+4x0.png</a>
+          add Q4xQ0.  This produces the final exactness diagram for the
+          full sparse grid.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 March 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

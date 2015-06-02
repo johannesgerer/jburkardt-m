@@ -1,4 +1,4 @@
-function a = sweet1 ( perturb )
+function a = sweet1 ( )
 
 %*****************************************************************************80
 %
@@ -12,10 +12,6 @@ function a = sweet1 ( perturb )
 %     6.0   2.5  15.0  20.0  15.0   2.5
 %     1.0   6.0   2.5  15.0  20.0  15.0
 %    -2.0   1.0   6.0   2.5  15.0  20.0
-%
-%    However, all the entries with value 2.5 are to be perturbed by
-%    the same value PERTURB, which should be a small multiple of the
-%    machine precision.
 %
 %  Properties:
 %
@@ -57,23 +53,18 @@ function a = sweet1 ( perturb )
 %
 %  Parameters:
 %
-%    Input, real PERTURB, the perturbation value to be added to the
-%    second super and subdiagonal entries.
-%
 %    Output, real A(6,6), the matrix.
 %
   n = 6;
 
   value = [ 20.0, 15.0, 2.5, 6.0, 1.0, -2.0 ];
 
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 
       a(i,j) = value ( abs ( j - i ) + 1 );
-
-      if ( abs ( j - i ) == 2 )
-        a(i,j) = a(i,j) + perturb;
-      end
 
     end
   end

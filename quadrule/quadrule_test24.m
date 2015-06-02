@@ -63,9 +63,12 @@ function quadrule_test24 ( )
 
         [ xtab, weight ] = legendre_set_sqrtx_01 ( norder );
 
-        result(i) = summer ( @func, norder, xtab, weight );
+        result = 0.0;
+        for j = 1 : norder
+          result = result + weight(j) * func ( xtab(j) );
+        end
 
-        fprintf ( 1, '  %12f', result(i) );
+        fprintf ( 1, '  %12f', result );
 
       end
 

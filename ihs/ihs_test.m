@@ -2,7 +2,7 @@ function ihs_test ( )
 
 %*****************************************************************************80
 %
-%% IHS_TEST runs the IHS tests.
+%% IHS_TEST tests the IHS library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function ihs_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'IHS_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -28,7 +28,7 @@ function [ generator_new, change_l2, seed ] = cvt_iteration ( m, n, ...
 %
 %  Modified:
 %
-%    05 May 2003
+%    10 February 2015
 %
 %  Author:
 %
@@ -69,6 +69,10 @@ function [ generator_new, change_l2, seed ] = cvt_iteration ( m, n, ...
 %
     [ x(1:m), seed ] = region_sampler ( m, 1, sample_num_cvt, ...
        sample_function_cvt, reset, seed );
+%
+%  Ensure that X is a column vector.
+%
+    x = x(:)
 
     reset = 0;
 %

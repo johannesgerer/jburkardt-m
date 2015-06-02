@@ -2,11 +2,7 @@ function st_io_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for ST_IO_TEST.
-%
-%  Discussion:
-%
-%    ST_IO_TEST is the main program for the ST_IO tests.
+%% ST_IO_TEST tests the ST_IO library.
 %
 %  Licensing:
 %
@@ -20,9 +16,7 @@ function st_io_test ( )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ST_IO_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -37,7 +31,6 @@ function st_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ST_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

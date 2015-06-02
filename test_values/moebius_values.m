@@ -10,7 +10,7 @@ function [ n_data, n, c ] = moebius_values ( n_data )
 %
 %      MU(N) = 1 if N = 1;
 %              0 if N is divisible by the square of a prime;
-%              (-1)**K, if N is the product of K distinct primes.
+%              (-1)^K, if N is the product of K distinct primes.
 %
 %    In Mathematica, the function can be evaluated by:
 %

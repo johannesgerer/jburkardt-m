@@ -2,7 +2,7 @@ function task_division_test ( )
 
 %*****************************************************************************80
 %
-%% TASK_DIVISION_TEST tests TASK_DIVISION.
+%% TASK_DIVISION_TEST tests the TASK_DIVISION library.
 %
 %  Discussion:
 %
@@ -30,10 +30,11 @@ function task_division_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TASK_DIVISION_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the TASK_DIVISION library.\n' );
+  fprintf ( 1, '\n' );
   fprintf ( 1, '  Demonstrate how to automate the division of\n' );
   fprintf ( 1, '  T tasks among a range of P processors\n' );
   fprintf ( 1, '  indexed from PROC_FIRST to PROC_LAST.\n' );
@@ -78,7 +79,6 @@ function task_division_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TASK_DIVISION_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

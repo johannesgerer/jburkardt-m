@@ -78,6 +78,8 @@ function a = ring_adj ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( j == i + 1 | j == i - 1 | j == i + 1 - n | j == i - 1 + n )

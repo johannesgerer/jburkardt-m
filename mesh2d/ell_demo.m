@@ -10,7 +10,7 @@ function ell_demo ( )
 %
 %  Modified:
 %
-%    27 October 2011
+%    11 April 2014
 %
 %  Author:
 %
@@ -18,6 +18,7 @@ function ell_demo ( )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ELL_DEMO:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Demonstrate MESH2D on the L-shaped region.\n' );
 
   clf
@@ -55,7 +56,9 @@ function ell_demo ( )
   [ nv, ~ ] = size ( v );
   [ np, ~ ] = size ( p );
   [ nt, ~ ] = size ( t );
-  fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+  fprintf ( 1, ...
+    '  %d boundary vertices input, %d nodes and %d triangles created\n', ...
+    nv, np, nt );
   pause
 %
 %  #3) = Example #1, but now I specify a maximum element size of 0.2.
@@ -118,18 +121,20 @@ function ell_demo ( )
 %
    clf
    hold on
-   plot ( v(:,1 ), v(:,2), 'r.', 'MarkerSize', 8 );
+   plot ( v(:,1 ), v(:,2), 'r.', 'MarkerSize', 32 );
    axis equal
    pause
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 8 );
+   plot(p(:,1),p(:,2),'b.', 'Markersize', 16 )
+   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 32 );
    pause ( )
    patch('faces',t(:,:),'vertices',p,'facecolor','w','edgecolor','b');
 %  patch('faces',edge,'vertices',v,'facecolor','none','edgecolor','k')
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 8 );
+   plot ( p(:,1), p(:,2), 'b.', 'Markersize', 16 )
+   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 32 );
    axis equal off;
    hold off
+
+   print ( '-dpng', 'ell_mesh5.png' );
 
   [ nv, ~ ] = size ( v );
   [ np, ~ ] = size ( p );
@@ -155,28 +160,13 @@ function ell_demo ( )
   pause
 
   [ p, t ] = smoothmesh ( p, t );
-%
-%  Since SMOOTHMESH doesn't redraw the mesh, I had to guess how to do it here.
-%
-   clf
-   hold on
-   plot ( v(:,1 ), v(:,2), 'r.', 'MarkerSize', 8 );
-   axis equal
-   pause
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 8 );
-   pause ( )
-   patch('faces',t(:,:),'vertices',p,'facecolor','w','edgecolor','b');
-%  patch('faces',edge,'vertices',v,'facecolor','none','edgecolor','k')
-   plot(p(:,1),p(:,2),'b.','markersize',8)
-   plot ( v(:,1), v(:,2), 'r.', 'MarkerSize', 8 );
-   axis equal off;
-   hold off
 
   [ nv, ~ ] = size ( v );
   [ np, ~ ] = size ( p );
   [ nt, ~ ] = size ( t );
   fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+
+  redisplay ( v, p, t );
 
   pause
 %

@@ -10,7 +10,7 @@ function svd_snowfall_test04 ( x )
 %
 %  Modified:
 %
-%    08 April 2012
+%    05 May 2013
 %
 %  Author:
 %
@@ -18,7 +18,7 @@ function svd_snowfall_test04 ( x )
 %
 %  Parameters:
 %
-%    Input, real X(8,121), the snowfall data.
+%    Input, real X(8,123), the snowfall data.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST04\n' );
@@ -36,7 +36,7 @@ function svd_snowfall_test04 ( x )
 %
 %  Plot the modes.
 %
-  t = 1:8;
+  t = 1 : 8;
 
   figure ( 4 )
 

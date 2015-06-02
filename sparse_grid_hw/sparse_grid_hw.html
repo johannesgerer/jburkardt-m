@@ -2,14 +2,16 @@
 
   <head>
     <title>
-      SPARSE_GRID_HW - Sparse Grids for Uniform and Normal Weights - Heiss and Winschel
+      SPARSE_GRID_HW - Sparse Grids for Uniform and Normal Weights 
+      - Heiss and Winschel
     </title>
   </head>
 
   <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
 
     <h1 align = "center">
-      SPARSE_GRID_HW <br> Sparse Grids for Uniform and Normal Weights <br> Heiss and Winschel
+      SPARSE_GRID_HW <br> 
+      Sparse Grids for Uniform and Normal Weights <br> Heiss and Winschel
     </h1>
 
     <hr>
@@ -80,6 +82,11 @@
           if K is 1, and otherwise a rule whose order N has the
           form 2^E+1 and is the lowest such order with precision at least 2*K-1.
         </li>
+        <li>
+          <b>glo</b>, Gauss-Legendre odd quadrature rules, for
+          the unit interval [0,1], with weight function w(x) = 1.
+          The K-th call returns the rule of order 2*(K/2)+1.
+        </li>
       </ul>
     </p>
 
@@ -99,6 +106,9 @@
 
     <p>
       <b>SPARSE_GRID_HW</b> is available in
+      <a href = "../../c_src/sparse_grid_hw/sparse_grid_hw.html">a C version</a> and
+      <a href = "../../cpp_src/sparse_grid_hw/sparse_grid_hw.html">a C++ version</a> and
+      <a href = "../../f77_src/sparse_grid_hw/sparse_grid_hw.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/sparse_grid_hw/sparse_grid_hw.html">a FORTRAN90 version</a> and
       <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">a MATLAB version</a>
     </p>
@@ -169,10 +179,19 @@
     </p>
 
     <p>
+      <a href = "../../py_src/sparse_grid/sparse_grid.html">
+      SPARSE_GRID</a>,
+      a PYTHON library which
+      contains classes and functions defining sparse grids,
+      by Jochen Garcke.
+    </p>
+
+    <p>
       <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
       SPARSE_GRID_CC</a>, 
       a MATLAB library which
-      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+      can define a multidimensional sparse grid based on a 
+      1D Clenshaw Curtis rule.
     </p>
 
     <p>
@@ -212,6 +231,15 @@
       by Andreas Klimke;
     </p>
 
+    <p>
+      <a href = "../../m_src/spquad/spquad.html">
+      SPQUAD</a>,
+      a MATLAB library which
+      computes the points and weights of a sparse grid quadrature rule
+      for a multidimensional integral, based on the Clenshaw-Curtis quadrature rule,
+      by Greg von Winckel.
+    </p>
+
     <h3 align = "center">
       Author:
     </h3>
@@ -237,7 +265,7 @@
           Florian Heiss, Viktor Winschel,<br>
           Likelihood approximation by numerical integration on sparse grids,<br>
           Journal of Econometrics,<br>
-          Volume 144, 2008, pages 62-80.
+          Volume 144, Number 1, May 2008, pages 62-80.
         </li>
         <li>
           Thomas Patterson,<br>
@@ -262,12 +290,40 @@
     <p>
       <ul>
         <li>
-          <a href = "ccu.m">ccu.m</a> 
-          returns one rule from the CCU family defined on [-1,+1] with unit weight.
+          <a href = "cc.m">cc.m</a> 
+          returns one rule from the CCU family defined on [-1,+1] 
+          with unit weight, indexed by order.
         </li>
         <li>
-          <a href = "ccu_order.m">ccu_order.m</a> 
-          computes the order of a CCU rule from the level.
+          <a href = "cce.m">cce.m</a> 
+          returns one rule from the CCU (Clenshaw-Curtis Exponential growth)
+          family defined on [-1,+1] with unit weight,
+          indexed by level.
+        </li>
+        <li>
+          <a href = "cce_order.m">cce_order.m</a> 
+          computes the order of a Clenshaw-Curtis Exponential (CCE) 
+          rule from the level.
+        </li>
+        <li>
+          <a href = "ccl.m">ccl.m</a> 
+          returns one rule from the CCL (Clenshaw-Curtis Linear growth) family 
+          defined on [-1,+1] with unit weight, indexed by level.
+        </li>
+        <li>
+          <a href = "ccl_order.m">ccl_order.m</a> 
+          computes the order of a CCL (Clenshaw-Curtis Linear growth)
+          rule from the level.
+        </li>
+        <li>
+          <a href = "ccs.m">ccs.m</a> 
+          returns one rule from the CCS (Clenshaw-Curtis Slow growth) family 
+          defined on [-1,+1] with unit weight, indexed by level.
+        </li>
+        <li>
+          <a href = "ccs_order.m">ccs_order.m</a> 
+          computes the order of a CCS (Clenshaw Curtis Slow growth)
+          rule from the level.
         </li>
         <li>
           <a href = "get_seq.m">get_seq.m</a> 
@@ -279,7 +335,11 @@
         </li>
         <li>
           <a href = "gqn_order.m">gqn_order.m</a> 
-          computes the order of a GQN rule from the level.
+          computes the order of a GQN rule from the level, N = L.
+        </li>
+        <li>
+          <a href = "gqn2_order.m">gqn2_order.m</a> 
+          computes the order of a GQN rule from the level, N = 2*L-1.
         </li>
         <li>
           <a href = "gqu.m">gqu.m</a> 
@@ -327,16 +387,8 @@
           prints a multidimensional quadrature rule.
         </li>
         <li>
-          <a href = "r8vecs_print.m">r8vecs_print.m</a>,
-          prints a packed R8VEC.
-        </li>
-        <li>
-          <a href = "rules_1d_set.m">rules_1d_set.m</a> 
-          sets the packed vectors of 1D nodes and weights.
-        </li>
-        <li>
-          <a href = "rules_1d_size.m">rules_1d_size.m</a> 
-          determines the size of the packed RULES_1D array.
+          <a href = "rule_adjust.m">rule_adjust.m</a> 
+          adjusts a 1D quadrature rule from [A,B] to [C,D].
         </li>
         <li>
           <a href = "symmetric_sparse_size.m">symmetric_sparse_size.m</a> 
@@ -368,32 +420,28 @@
           the output file;
         </li>
         <li>
+          <a href = "cce_sparse_test.m">cce_sparse_test.m</a> 
+          uses CCE_ORDER + CCE to build a sparse grid.
+        </li>
+        <li>
+          <a href = "cce_test.m">cce_test.m</a> 
+          uses CCE_ORDER + CC for 1D quadrature.
+        </li>
+        <li>
+          <a href = "ccl_sparse_test.m">ccl_sparse_test.m</a> 
+          uses CCL_ORDER + CCL to build a sparse grid.
+        </li>
+        <li>
+          <a href = "ccl_test.m">ccl_test.m</a> 
+          uses CCL_ORDER + CC for 1D quadrature.
+        </li>
+        <li>
+          <a href = "ccs_sparse_test.m">ccs_sparse_test.m</a> 
+          uses CCS_ORDER + CCS to build a sparse grid.
+        </li>
+        <li>
           <a href = "ccs_test.m">ccs_test.m</a> 
-          uses the CCS function for 1D quadrature.
-        </li>
-        <li>
-          <a href = "ccu_sparse_test.m">ccu_sparse_test.m</a> 
-          uses the CCU function to build a sparse grid.
-        </li>
-        <li>
-          <a href = "ccu_test.m">ccu_test.m</a> 
-          uses the CCU function for 1D quadrature.
-        </li>
-        <li>
-          <a href = "fn_integral.m">fn_integral.m</a> 
-          evaluates the exact integral of the Hermite test function.
-        </li>
-        <li>
-          <a href = "fn_value.m">fn_value.m</a> 
-          is a Hermite test function.
-        </li>
-        <li>
-          <a href = "fu_integral.m">fu_integral.m</a> 
-          evaluates the exact integral of a test function over [0,1]^D.
-        </li>
-        <li>
-          <a href = "fu_value.m">fu_value.m</a> 
-          is a test function over [0,1]^D.
+          uses CCS_ORDER + CC for 1D quadrature.
         </li>
         <li>
           <a href = "get_seq_test.m">get_seq_test.m</a> 
@@ -402,6 +450,10 @@
         <li>
           <a href = "gqn_sparse_test.m">gqn_sparse_test.m</a> 
           uses the GQN function to build a sparse grid.
+        </li>
+        <li>
+          <a href = "gqn2_sparse_test.m">gqn2_sparse_test.m</a> 
+          uses the GQN function with the GQN2_ORDER to build a sparse grid.
         </li>
         <li>
           <a href = "gqn_test.m">gqn_test.m</a> 
@@ -414,6 +466,14 @@
         <li>
           <a href = "gqu_test.m">gqu_test.m</a> 
           uses the GQU function for 1D quadrature.
+        </li>
+        <li>
+          <a href = "hermite_integral.m">hermite_integral.m</a> 
+          returns the exact value of the Hermite integral of the test function.
+        </li>
+        <li>
+          <a href = "hermite_integrand.m">hermite_integrand.m</a> 
+          evaluates an integrand for the Hermite integral.
         </li>
         <li>
           <a href = "kpn_sparse_test.m">kpn_sparse_test.m</a> 
@@ -432,6 +492,22 @@
           uses the KPU function for 1D quadrature.
         </li>
         <li>
+          <a href = "laguerre_integral.m">laguerre_integral.m</a> 
+          returns the exact value of the Laguerre integral of the test function.
+        </li>
+        <li>
+          <a href = "laguerre_integrand.m">laguerre_integrand.m</a> 
+          evalutes an integrand for the Laguerre integral.
+        </li>
+        <li>
+          <a href = "legendre_integral.m">legendre_integral.m</a> 
+          returns the exact value of a Legendre integral.
+        </li>
+        <li>
+          <a href = "legendre_integrand.m">legendre_integrand.m</a> 
+          evaluates an integand for the Legendre integral.
+        </li>
+        <li>
           <a href = "nwspgr_size_test.m">nwspgr_size_test.m</a> 
           tests NWSPGR_SIZE.
         </li>
@@ -442,10 +518,6 @@
         <li>
           <a href = "order_report.m">order_report.m</a> 
           reports on the precision and order of all rules.
-        </li>
-        <li>
-          <a href = "pack_rules_test.m">pack_rules_test.m</a> 
-          tests RULES_1D_SIZE and RULES_1D_SET.
         </li>
         <li>
           <a href = "symmetric_sparse_size_test.m">symmetric_sparse_size_test.m</a> 
@@ -466,7 +538,7 @@
     <hr>
 
     <i>
-      Last revised on 30 November 2012.
+      Last revised on 24 May 2014.
     </i>
 
     <!-- John Burkardt -->

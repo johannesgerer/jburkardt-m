@@ -1,0 +1,269 @@
+<html>
+
+  <head>
+    <title>
+      WISHART - Sample the Wishart Distribution for Random Covariance Matrices
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      WISHART <br> Sample the Wishart Distribution for Random Covariance Matrices
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>WISHART</b> 
+      is a MATLAB library which 
+      produces sample matrices from the Wishart or Bartlett distributions,
+      useful for sampling random covariance matrices.
+    </p>
+
+    <p>
+      The Wishart distribution is a probability distribution for random
+      nonnegative-definite NxN matrices that can be used to select random
+      covariance matrices.
+    </p>
+
+    <p>
+      The objects of the distribution are NxN matrices which are the sum of
+      DF rank-one matrices X*X' constructed from N-vectors X, where the vectors
+      X have zero mean and covariance SIGMA.  This implies that the expected
+      value of a Wishart matrix is DF * SIGMA.
+    </p>
+
+    <p>
+      A simplified version of the Wishart distribution assumes that SIGMA is
+      the identity matrix.  We will call this the "unit Wishart distribution".
+    </p>
+
+    <p>
+      Because any Wishart matrix W is symmetric nonnegative definite,
+      there is an upper triangular factor T so that W = T' * T.
+      There is a corresponding Bartlett distribution of the matrices T,
+      so that one can alternatively sample the Bartlett distribution by
+      sampling the Bartlett distribution for T, and then forming W.
+    </p>
+
+    <p>
+      In order to generate the necessary random values, the library relies
+      on the PDFLIB and RNGLIB libraries.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>WISHART</b> is available in
+      <a href = "../../c_src/wishart/wishart.html">a C version</a> and
+      <a href = "../../cpp_src/wishart/wishart.html">a C++ version</a> and
+      <a href = "../../f77_src/wishart/wishart.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/wishart/wishart.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/wishart/wishart.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa053/asa053.html">
+      ASA053</a>,
+      a MATLAB library which
+      produces sample matrices from the Wishart distribution,
+      by William Smith and Ronald Hocking.
+      This is a version of Applied Statistics Algorithm 53.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pdflib/pdflib.html">
+      PDFLIB</a>,
+      a MATLAB library which
+      evaluates Probability Density Functions (PDF's)
+      and produces random samples from them,
+      including beta, binomial, chi, exponential, gamma, inverse chi,
+      inverse gamma, multinomial, normal, scaled inverse chi, and uniform.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ranlib/ranlib.html">
+      RANLIB</a>,
+      a MATLAB library which
+      produces random samples from Probability Density Functions (PDF's), 
+      including Beta, Chi-square Exponential, F, Gamma, Multivariate normal,
+      Noncentral chi-square, Noncentral F, Univariate normal, random permutations,
+      Real uniform, Binomial, Negative Binomial, Multinomial, Poisson
+      and Integer uniform,
+      by Barry Brown and James Lovato.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rnglib/rnglib.html">
+      RNGLIB</a>,
+      a MATLAB library which
+      implements a random number generator (RNG) with splitting facilities,
+      allowing multiple independent streams to be computed,
+      by L'Ecuyer and Cote.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Patrick Odell, Alan Feiveson,<br>
+          A numerical procedure to generate a sample covariance matrix,<br>
+          Journal of the American Statistical Association,<br>
+          Volume 61, Number 313, March 1966, pages 199-203.
+        </li>
+        <li>
+          Stanley Sawyer,<br>
+          Wishart Distributions and Inverse-Wishart Sampling,<br>
+          Washington University,<br>
+          30 April 2007, 12 pages.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bartlett_sample.m">bartlett_sample.m</a>, 
+          returns a sample matrix from the Bartlett distribution.
+        </li>
+        <li>
+          <a href = "bartlett_unit_sample.m">bartlett_unit_sample.m</a>, 
+          returns a sample matrix from the unit Bartlett distribution.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>, 
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>, 
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8ut_inverse.m">r8ut_inverse.m</a>, 
+          returns the inverse of an upper triangular matrix.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "wishart_sample.m">wishart_sample.m</a>, 
+          returns a sample matrix from the Wishart distribution.
+        </li>
+        <li>
+          <a href = "wishart_sample_inverse.m">wishart_sample_inverse.m</a>, 
+          returns the inverse of a sample matrix from the Wishart distribution.
+        </li>
+        <li>
+          <a href = "wishart_unit_sample.m">wishart_unit_sample.m</a>, 
+          returns a sample matrix from the unit Wishart distribution.
+        </li>
+        <li>
+          <a href = "wishart_unit_sample_inverse.m">wishart_unit_sample_inverse.m</a>, 
+          returns the inverse of a sample matrix from the unit Wishart distribution.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "wishart_test.m">wishart_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "wishart_test_output.txt">wishart_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "wishart_test01.m">wishart_test01.m</a>
+          demonstrates the use of wishart_unit_sample();
+        </li>
+        <li>
+          <a href = "wishart_test02.m">wishart_test02.m</a>
+          demonstrates the use of bartlett_unit_sample();
+        </li>
+        <li>
+          <a href = "wishart_test03.m">wishart_test03.m</a>
+          checks a relationship between the unit Wishart and Bartlett distributions.
+        </li>
+        <li>
+          <a href = "wishart_test04.m">wishart_test04.m</a>
+          demonstrates the use of wishart_sample();
+        </li>
+        <li>
+          <a href = "wishart_test05.m">wishart_test05.m</a>
+          demonstrates the use of bartlett_sample();
+        </li>
+        <li>
+          <a href = "wishart_test06.m">wishart_test06.m</a>
+          checks a relationship between the Wishart and Bartlett distributions.
+        </li>
+        <li>
+          <a href = "wishart_test07.m">wishart_test07.m</a>
+          checks that the expected value of a Wishart matrix is the product
+          of the degrees of freedom times the distribution covariance matrix.
+        </li>
+        <li>
+          <a href = "wishart_test08.m">wishart_test08.m</a>
+          verifies that the inverse of a unit Wishart sample matrix has been
+          correctly computed.
+        </li>
+        <li>
+          <a href = "wishart_test09.m">wishart_test09.m</a>
+          verifies that the inverse of a Wishart sample matrix has been
+          correctly computed.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 October 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

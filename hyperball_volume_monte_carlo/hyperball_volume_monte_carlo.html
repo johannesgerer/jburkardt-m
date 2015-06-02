@@ -1,0 +1,297 @@
+<html>
+
+  <head>
+    <title>
+      HYPERBALL_VOLUME_MONTE_CARLO - Monte Carlo Estimate of Hyperball Volume
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HYPERBALL_VOLUME_MONTE_CARLO <br> Monte Carlo Estimate of Hyperball Volume
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HYPERBALL_VOLUME_MONTE_CARLO</b>
+      is a MATLAB program which 
+      investigates the behavior of a Monte Carlo procedure when it is applied
+      to compute the integral of a discontinuous function.  In particular, 
+      our integration region is the M-dimensional unit hypercube and our function 
+      f(x) is 1 if the point x is inside the unit hyperball of radius 1, 
+      and 0 otherwise.
+    </p>
+
+    <p>
+      The program uses the Monte Carlo method to estimate the volume.
+      Estimates are made starting with 2^0 (=1) points and doubling
+      repeatedly up to 2^25 points.
+   </p>
+
+    <p>
+      Because the integrand is discontinuous, any quadrature rule based on
+      the idea of interpolation will probably be unable to do a good job.
+      A family of quadrature rules, which rely on increasing the order of
+      interpolation to improve accuracy, will probably get increasingly
+      bad answers.
+    </p>
+
+    <p>
+      By contrast, a basic Monte Carlo rule, which assumes nothing about
+      the function, integrates this function just as well as it integrates
+      most any other square-integrable function.  (That's both the strength
+      and weakness of the blunt instrument we call Monte Carlo integration.)
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>hyperball_volume_monte_carlo</b> ( <i>dim_num</i>, <i>seed</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>dim_num</i> is the spatial dimension.
+        </li>
+        <li>
+          <i>seed</i> is an optional seed for the random number generator.
+          If it is not specified on the command line, a default value is used.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HYPERBALL_VOLUME_MONTE_CARLO</b> is available in
+      <a href = "../../c_src/hyperball_volume_monte_carlo/hyperball_volume_monte_carlo.html">a C version</a> and
+      <a href = "../../cpp_src/hyperball_volume_monte_carlo/hyperball_volume_monte_carlo.html">a C++ version</a> and
+      <a href = "../../f77_src/hyperball_volume_monte_carlo/hyperball_volume_monte_carlo.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/hyperball_volume_monte_carlo/hyperball_volume_monte_carlo.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/hyperball_volume_monte_carlo/hyperball_volume_monte_carlo.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ball_monte_carlo/ball_monte_carlo.html">
+      BALL_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate integrals of a function
+      over the interior of the unit ball in 3D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/circle_monte_carlo/circle_monte_carlo.html">
+      CIRCLE_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      on the circumference of the unit circle in 2D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/cube_monte_carlo/cube_monte_carlo.html">
+      CUBE_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of the unit cube in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/disk_monte_carlo/disk_monte_carlo.html">
+      DISK_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of the unit disk in 2D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/ellipse_monte_carlo/ellipse_monte_carlo.html">
+      ELLIPSE_MONTE_CARLO</a>
+      a MATLAB library which
+      uses the Monte Carlo method to estimate the value of integrals
+      over the interior of an ellipse in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ellipsoid_monte_carlo/ellipsoid_monte_carlo.html">
+      ELLIPSOID_MONTE_CARLO</a>
+      a MATLAB library which
+      uses the Monte Carlo method to estimate the value of integrals
+      over the interior of an ellipsoid in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hyperball_integrals/hyperball_integrals.html">
+      HYPERBALL_INTEGRALS</a>,
+      a MATLAB library which
+      defines test functions for integration 
+      over the interior of the unit hyperball in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hyperball_monte_carlo/hyperball_monte_carlo.html">
+      HYPERBALL_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of the unit hyperball in M dimensions;
+    </p>
+
+    <p>
+      <a href = "../../m_src/hypersphere_monte_carlo/hypersphere_monte_carlo.html">
+      HYPERSPHERE_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      on the surface of the unit sphere in M dimensions;
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_monte_carlo/line_monte_carlo.html">
+      LINE_MONTE_CARLO</a>,
+      a MATLAB library which
+      uses the Monte Carlo method to estimate integrals 
+      over the length of the unit line in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_monte_carlo/polygon_monte_carlo.html">
+      POLYGON_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of a polygon in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_monte_carlo/pyramid_monte_carlo.html">
+      PYRAMID_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate integrals of a function
+      over the interior of the unit pyramid in 3D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/simplex_monte_carlo/simplex_monte_carlo.html">
+      SIMPLEX_MONTE_CARLO</a>,
+      a MATLAB library which
+      uses the Monte Carlo method to estimate integrals 
+      over the interior of the unit simplex in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_monte_carlo/sphere_monte_carlo.html">
+      SPHERE_MONTE_CARLO</a>, 
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the surface of the unit sphere in 3D;
+    </p>
+
+    <p>
+      <a href = "../../m_src/square_monte_carlo/square_monte_carlo.html">
+      SQUARE_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of the unit square in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_monte_carlo/tetrahedron_monte_carlo.html">
+      TETRAHEDRON_MONTE_CARLO</a>, 
+      a MATLAB library which 
+      uses the Monte Carlo method to estimate integrals over a tetrahedron.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_monte_carlo/triangle_monte_carlo.html">
+      TRIANGLE_MONTE_CARLO</a>, 
+      a MATLAB library which 
+      uses the Monte Carlo method to estimate integrals
+      over the interior of a triangle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wedge_monte_carlo/wedge_monte_carlo.html">
+      WEDGE_MONTE_CARLO</a>,
+      a MATLAB library which
+      uses the Monte Carlo method to estimate integrals 
+      over the interior of the unit wedge in 3D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hyperball_volume_monte_carlo.m">hyperball_volume_monte_carlo.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hyperball_volume_monte_carlo_output.txt">hyperball_volume_monte_carlo_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 January 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

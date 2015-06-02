@@ -1,8 +1,8 @@
-function [ n, a ] = wathen ( nx, ny, n )
+function a = wathen ( nx, ny, n )
 
 %*****************************************************************************80
 %
-%% WATHEN returns a finite element matrix.
+%% WATHEN returns the WATHEN matrix.
 %
 %  Discussion:
 %
@@ -14,7 +14,7 @@ function [ n, a ] = wathen ( nx, ny, n )
 %
 %    The matrix order N is determined by the input quantities NX and NY,
 %    which would usually be the number of elements in the X and Y directions.
-%    The value of Nn is
+%    The value of N is
 %
 %      N = 3*NX*NY + 2*NX + 2*NY + 1,
 %
@@ -24,7 +24,15 @@ function [ n, a ] = wathen ( nx, ny, n )
 %    A is the consistent mass matrix for a regular NX by NY grid
 %    of 8 node serendipity elements.
 %
-%    Here is an illustration for NX = 3, NX = 2:
+%    The local element numbering is
+%
+%      3--2--1
+%      |     |
+%      4     8
+%      |     |
+%      5--6--7
+%
+%    Here is an illustration for NX = 3, NY = 2:
 %
 %     23-24-25-26-27-28-29
 %      |     |     |     |
@@ -43,7 +51,10 @@ function [ n, a ] = wathen ( nx, ny, n )
 %  Properties:
 %
 %    A is symmetric positive definite for any positive values of the
-%    density RHO(NX,NY), which is here given the value 1.
+%    density RHO(X,Y), which is here given the value 1.
+%
+%    The problem could be reprogrammed so that RHO is nonconstant,
+%    but positive.
 %
 %  Licensing:
 %
@@ -51,7 +62,7 @@ function [ n, a ] = wathen ( nx, ny, n )
 %
 %  Modified:
 %
-%    22 October 2007
+%    02 July 2014
 %
 %  Author:
 %
@@ -67,16 +78,18 @@ function [ n, a ] = wathen ( nx, ny, n )
 %    Andrew Wathen,
 %    Realistic eigenvalue bounds for the Galerkin mass matrix,
 %    IMA Journal of Numerical Analysis,
-%    Volume 7, 1987, pages 449-457.
+%    Volume 7, Number 4, October 1987, pages 449-457.
 %
 %  Parameters:
 %
 %    Input, integer NX, NY, values which determine the size of A.
 %
-%    Output, integer N, the order of N, as determined by NX and NY.
+%    Input, integer N, the order of N, as determined by NX and NY.
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   em =  [ ...
      6.0, -6.0,  2.0, -8.0,  3.0, -8.0,  2.0, -6.0; ...
     -6.0, 32.0, -6.0, 20.0, -8.0, 16.0, -8.0, 20.0; ...
@@ -86,12 +99,6 @@ function [ n, a ] = wathen ( nx, ny, n )
     -8.0, 16.0, -8.0, 20.0, -6.0, 32.0, -6.0, 20.0; ...
      2.0, -8.0,  3.0, -8.0,  2.0, -6.0,  6.0, -6.0; ...
     -6.0, 20.0, -8.0, 16.0, -8.0, 20.0, -6.0, 32.0 ];
-%
-%  Set the value of N, the number of nodes.
-%
-  n = 3 * nx * ny + 2 * nx + 2 * ny + 1;
-
-  a(1:n,1:n) = 0.0;
 
   for j = 1 : ny
 
@@ -109,36 +116,16 @@ function [ n, a ] = wathen ( nx, ny, n )
       node(5) = ( 3 * j - 3 ) * nx + 2 * j + 2 * i - 3;
       node(6) = node(5) + 1;
       node(7) = node(5) + 2;
-%
-%  The density RHO can also be set to a random positive value.
-%
+
+      rho = 0.5;
+%     [ rho, seed ] = r8_uniform_01 ( seed );
+      rho = 100.0 * rho;
+
       for krow = 1 : 8
         for kcol = 1 : 8
 
-          if ( node(krow) < 1 || n < node(krow) )
-            fprintf ( 1, '\n' );
-            fprintf ( 1, 'WATHEN - Fatal error!\n' );
-            fprintf ( 1, '  Index NODE(KROW) out of bounds.\n' );
-            fprintf ( 1, '  I = %d\n', i );
-            fprintf ( 1, '  J = %d\n', j );
-            fprintf ( 1, '  KROW = %d\n', krow );
-            fprintf ( 1, '  NODE(KROW) = %d\n', node(krow) );
-            error ( 'WATHEN - Fatal error!' );
-          elseif ( node(kcol) < 1 || n < node(kcol) )
-            fprintf ( 1, '\n' );
-            fprintf ( 1, 'WATHEN - Fatal error!\n' );
-            fprintf ( 1, '  Index NODE(KCOL) out of bounds.\n' );
-            fprintf ( 1, '  I = %d\n', i );
-            fprintf ( 1, '  J = %d\n', j );
-            fprintf ( 1, '  KCOL = %d\n', kcol );
-            fprintf ( 1, '  NODE(KCOL) = %d\n', node(kcol) );
-            error ( 'WATHEN - Fatal error!' );
-          end
-
-          rho = 1.0;
-
           a(node(krow),node(kcol)) = a(node(krow),node(kcol)) ...
-            + 20.0 * rho * em(krow,kcol) / 9.0;
+            + rho * em(krow,kcol);
 
         end
       end

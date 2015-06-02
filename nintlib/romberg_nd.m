@@ -107,7 +107,7 @@ function [ result, ind, eval_num ] = romberg_nd ( func, a, b, dim_num, sub_num, 
   end
  
   ind = 0;
-  rnderr = r8_epsilon ( );
+  rnderr = eps;
   iwork2(1) = 1;
   sub_num2(1:dim_num) = sub_num(1:dim_num);
  

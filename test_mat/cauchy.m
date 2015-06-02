@@ -2,11 +2,11 @@ function a = cauchy ( n, x, y )
 
 %*****************************************************************************80
 %
-%% CAUCHY returns the Cauchy matrix.
+%% CAUCHY returns the CAUCHY matrix.
 %
 %  Formula:
 %
-%    A(I,J) = 1.0D+00 / ( X(I) + Y(J) )
+%    A(I,J) = 1.0 / ( X(I) + Y(J) )
 %
 %  Example:
 %
@@ -52,13 +52,15 @@ function a = cauchy ( n, x, y )
 %            [ (X(J)+Y(I)) * product ( 1 <= K <= N, K /= J ) (X(J)-X(K))
 %                          * product ( 1 <= K <= N, K /= I ) (Y(I)-Y(K)) ]
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    28 September 2007
+%    25 January 2015
 %
 %  Author:
 %
@@ -109,9 +111,9 @@ function a = cauchy ( n, x, y )
         fprintf ( 1, 'CAUCHY - Fatal error!\n' );
         fprintf ( 1, '  The denominator X(I)+Y(J) was zero\n' );
         fprintf ( 1, '  for I = %d\n', i );
-        fprintf ( 1, '  X(I)  = %f\n', x(i) );
+        fprintf ( 1, '  X(I)  = %g\n', x(i) );
         fprintf ( 1, '  and J = %d\n', j );
-        fprintf ( 1, '  Y(J)  = %d\n', y(j) );
+        fprintf ( 1, '  Y(J)  = %g\n', y(j) );
         error ( 'CAUCHY - Fatal error!' );
       end
 

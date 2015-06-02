@@ -1,8 +1,8 @@
-function a = tris_inverse ( n, alpha, beta, gamma )
+function a = tris_inverse ( n, alpha, beta, gam )
 
 %*****************************************************************************80
 %
-%% TRIS_INVERSE returns the inverse of the scalar tridiagonal matrix.
+%% TRIS_INVERSE returns the inverse of the TRIS matrix.
 %
 %  Licensing:
 %
@@ -27,17 +27,17 @@ function a = tris_inverse ( n, alpha, beta, gamma )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Input, real ALPHA, BETA, GAMMA, the constant values associated with the 
+%    Input, real ALPHA, BETA, GAM, the constant values associated with the 
 %    subdiagonal, diagonal and superdiagonal of the matrix.
 %
 %    Output, real A(N,N), the inverse of the matrix.
 %
   a = zeros ( n, n );
 
-  d(1:n) = 0.0;
+  d = zeros ( n, 1 );
   d(n) = beta;
   for i = n - 1 : -1 : 1
-    d(i) = beta - alpha * gamma / d(i+1);
+    d(i) = beta - alpha * gam / d(i+1);
   end
 
   for i = 1 : n
@@ -45,7 +45,7 @@ function a = tris_inverse ( n, alpha, beta, gamma )
       a(i,j) = r8_mop ( i + j ) * alpha^(i-j) * prod ( d(i+1:n) ) / prod ( d(1:n+1-j) );
     end
     for j = i + 1 : n
-      a(i,j) = r8_mop ( i + j ) * gamma^(j-i) * prod ( d(j+1:n) ) / prod ( d(1:n+1-i) );
+      a(i,j) = r8_mop ( i + j ) * gam^(j-i) * prod ( d(j+1:n) ) / prod ( d(1:n+1-i) );
     end
   end
 

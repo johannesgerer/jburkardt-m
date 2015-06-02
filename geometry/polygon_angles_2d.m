@@ -29,8 +29,6 @@ function angle = polygon_angles_2d ( n, v )
 %    Output, real ANGLE(N,1), the angles of the polygon,
 %    in radians.
 %
-  dim_num = 2;
-
   if ( n <= 2 )
     angle(1:n,1) = 0.0
     return
@@ -41,8 +39,7 @@ function angle = polygon_angles_2d ( n, v )
     im1 = i4_wrap ( i - 1, 1, n );
     ip1 = i4_wrap ( i + 1, 1, n );
 
-    angle(i,1) = angle_rad_2d ( v(1:dim_num,im1), v(1:dim_num,i), ...
-      v(1:dim_num,ip1) );
+    angle(i,1) = angle_rad_2d ( v(1:2,im1), v(1:2,i), v(1:2,ip1) );
 
   end
 

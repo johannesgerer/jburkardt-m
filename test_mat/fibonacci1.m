@@ -42,16 +42,13 @@ function a = fibonacci1 ( n, f1, f2 )
 %      rank ( A ) = 2
 %
 %    If N = 1, then
-%
 %      det ( A ) = 1
-%
 %    else if N = 2 then
-%
 %      det ( A ) = -1
-%
 %    else if 1 < N then
-%
 %      det ( A ) = 0
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

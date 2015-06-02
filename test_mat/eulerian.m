@@ -2,7 +2,7 @@ function a = eulerian ( m, n )
 
 %*****************************************************************************80
 %
-%% EULERIAN returns the Eulerian matrix.
+%% EULERIAN returns the EULERIAN matrix.
 %
 %  Definition:
 %
@@ -11,7 +11,7 @@ function a = eulerian ( m, n )
 %    E(I,J) is the number of permutations of I objects which contain
 %    exactly J runs.
 %
-%  Examples:
+%  Example:
 %
 %     N = 7
 %
@@ -43,6 +43,8 @@ function a = eulerian ( m, n )
 %
 %    LAMBDA(1:N) = 1.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -67,6 +69,8 @@ function a = eulerian ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   a(1,1) = 1.0;
   a(1,2:n) = 0.0;
 

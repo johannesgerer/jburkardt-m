@@ -41,7 +41,7 @@ function table2 = i4mat_border_cut ( m, n, table )
 %
 %    Output, integer TABLE2(M-2,N-2), the new table data.
 %
-  if ( m <= 2 | n <= 2 )
+  if ( m <= 2 || n <= 2 )
     table2 = [];
     return
   end

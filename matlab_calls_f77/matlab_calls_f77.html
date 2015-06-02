@@ -40,34 +40,46 @@
     </p>
 
     <p>
+      The user's FORTRAN file must have an INCLUDE statement at the very
+      beginning of the file of the following form:
+      <pre>
+      # include <fintrf.h>
+      </pre>
+      This statement is handled by the FORTRAN preprocessor, and so the 
+      FORTRAN file will probably need to have an extension of ".F" (that is, 
+      CAPITAL F) to indicate that it requires preprocessing.  One of the
+      things this include file does is to define a datatype called
+      "mwpointer", which must be used to declare the arrays <b>plhs</b>
+      and <b>prhs</b>.
+    </p>
+
+    <p>
       The MATLAB Mex library includes a number of operators to extract
       information from the MATLAB input arguments, and to store the
       computed results into the output arguments.
     </p>
 
     <p>
-      Once the F&& file is written, it must be "compiled" with the MATLAB
+      Once the F77 file is written, it must be "compiled" with the MATLAB
       MEX compiler, which will, as part of its work, also invoke some
       C compiler on your machine.  The first time you use the MEX compiler,
       you may need to tell it where the appropriate compiler is, or
       which compiler to use.  You can also, at any time, request that
-      MEX switch to a different compiler, if there is a choice.  (For instance,
-      you may be able to choose between your computer's default
-      "f77" compiler and the GNU "g77" compiler.)  To
+      MEX switch to a different compiler, if there is a choice.  To
       choose or change your compiler, type (inside of MATLAB)
       <blockquote><b>
-        mex -seteup
+        mex -setup
       </b></blockquote>
     </p>
 
     <p>
-      Assuming your F77 file is called <i>fact.f</i>, for example, you
+      Assuming your F77 file is called <i>fact.F</i>, for example, you
       can process it through the MEX compiler.  You can always issue
       this command inside of MATLAB, and on some systems, the MEX
       compiler may be availabe directly as an external command.
       In either case, you issue the command:
       <blockquote><b>
-        mex fact.f
+        mex fact.F
       </b></blockquote>
       which creates a compiled file whose name is system-dependent.  On
       a Windows PC, it might be called <b>fact.dll</b>, and on a UNIX
@@ -82,7 +94,7 @@
       or using it from MATLAB, you may want to request the verbose
       compilation, with symbolic information added for debugging:
       <blockquote><b>
-        mex -v -g fact.f
+        mex -v -g fact.F
       </b></blockquote>
     </p>
 
@@ -97,6 +109,18 @@
     </p>
 
     <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MATLAB_CALLS_F77</b> is available in
+      <a href = "../../m_src/matlab_calls_c/matlab_calls_c.html">a C version</a> and
+      <a href = "../../m_src/matlab_calls_c++/matlab_calls_c++.html">a C++ version</a> and
+      <a href = "../../m_src/matlab_calls_f77/matlab_calls_f77.html">a FORTRAN77 version</a> and
+      <a href = "../../m_src/matlab_calls_f90/matlab_calls_f90.html">a FORTRAN90 version.</a>
+    </p>
+
+    <h3 align = "center">
       Related Data and Programs:
     </h1>
 
@@ -108,24 +132,10 @@
     </p>
 
     <p>
-      <a href = "../../c_src/c_calls_f90/c_calls_f90.html">
-      C_CALLS_F90</a>,
-      C programs which
-      illustrate a C program calling a FORTRAN90 subroutine.
-    </p>
-
-    <p>
       <a href = "../../cpp_src/c++_calls_f77/c++_calls_f77.html">
       C++_CALLS_F77</a>,
       C++ programs which
       illustrate how a C++ main program can call a FORTRAN77 subroutine.
-    </p>
-
-    <p>
-      <a href = "../../cpp_src/c++_calls_f90/c++_calls_f90.html">
-      C++_CALLS_F90</a>,
-      C++ programs which
-      illustrate how a C++ main program can call a FORTRAN90 subroutine.
     </p>
 
     <p>
@@ -140,20 +150,6 @@
       F77_CALLS_C++</a>,
       FORTRAN77 programs which
       illustrates how a FORTRAN77 program can call a C++ function.
-    </p>
-
-    <p>
-      <a href = "../../f_src/f90_calls_c/f90_calls_c.html">
-      F90_CALLS_C</a>,
-      FORTRAN90 programs which
-      illustrates how a FORTRAN90 program can call a C function.
-    </p>
-
-    <p>
-      <a href = "../../f_src/f90_calls_c++/f90_calls_c++.html">
-      F90_CALLS_C++</a>,
-      FORTRAN90 programs which
-      illustrates how a FORTRAN90 program can call a C++ function.
     </p>
 
     <p>
@@ -177,13 +173,6 @@
       call lower-level functions written in traditional languages such
       as C, C++, FORTRAN77 or FORTRAN90, compiled with MATLAB's
       <b>mex</b> compiler.
-    </p>
-
-    <p>
-      <a href = "../../f77_src/mixed/mixed.html">
-      MIXED</a>,
-      FORTRAN77 programs which
-      call routines in other programming languages, and vice versa.
     </p>
 
     <h3 align = "center">
@@ -217,16 +206,16 @@
       and the computation of the result.
       <ul>
         <li>
-          <a href = "fact.f">fact.f</a>, the source code of the FORTRAN77
-          function.
+          <a href = "fact.F">fact.F</a>, the source code of the FORTRAN77
+          function.  
         </li>
         <li>
           <a href = "fact_test.m">fact_test.m</a>, a MATLAB M file which
           compiles FORTRAN77 code and uses it.
         </li>
         <li>
-          <a href = "fact_test_output.txt">fact_test_output.txt</a>, the output from
-          a run of the test script.
+          <a href = "fact_test_output.txt">fact_test_output.txt</a>, 
+          the output file.
         </li>
       </ul>
     </p>
@@ -238,16 +227,16 @@
       mexFunction is only used to "translate" between MATLAB and C.
       <ul>
         <li>
-          <a href = "cheby_u.f">cheby_u.f</a>, the source code of the
-          FORTRAN77 function.
+          <a href = "cheby_u.F">cheby_u.F</a>, the source code of the
+          FORTRAN77 function.  
         </li>
         <li>
           <a href = "cheby_u_test.m">cheby_u_test.m</a>, a MATLAB M file which
           compiles the FORTRAN77 code and uses it.
         </li>
         <li>
-          <a href = "cheby_u_test_output.txt">cheby_u_test_output.txt</a>, the output from
-          a run of the test script.
+          <a href = "cheby_u_test_output.txt">cheby_u_test_output.txt</a>, 
+          the output file.
         </li>
       </ul>
     </p>
@@ -260,7 +249,7 @@
     <hr>
 
     <i>
-      Last revised on 01 September 2006.
+      Last revised on 30 September 2013.
     </i>
 
     <!-- John Burkardt -->

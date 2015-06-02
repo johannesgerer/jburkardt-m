@@ -2,7 +2,7 @@ function sudoku_test ( )
 
 %*****************************************************************************80
 %
-%% SUDOKU_TEST runs the tests of the SUDOKU routines.
+%% SUDOKU_TEST tests the SUDOKU library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function sudoku_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SUDOKU_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -39,7 +38,6 @@ function sudoku_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SUDOKU_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

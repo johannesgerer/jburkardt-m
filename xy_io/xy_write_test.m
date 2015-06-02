@@ -2,7 +2,7 @@ function xy_write_test ( output_filename )
 
 %*****************************************************************************80
 %
-%% XY_WRITE_TEST tests the XY write routines.
+%% XY_WRITE_TEST tests the XY_WRITE routine.
 %
 %  Licensing:
 %

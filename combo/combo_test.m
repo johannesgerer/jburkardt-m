@@ -2,7 +2,7 @@ function combo_test ( )
 
 %*****************************************************************************80
 %
-%% COMBO_TEST tests COMBO.
+%% COMBO_TEST tests the COMBO library.
 %
 %  Licensing:
 %
@@ -74,7 +74,6 @@ function combo_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COMBO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

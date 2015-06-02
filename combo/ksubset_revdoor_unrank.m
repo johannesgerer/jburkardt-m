@@ -69,12 +69,12 @@ function t = ksubset_revdoor_unrank ( rank, k, n )
 
   for i = k : -1 : 1
 
-    while ( rank < binomial ( x, i ) )
+    while ( rank < i4_choose ( x, i ) )
       x = x - 1;
     end
 
     t(i) = x + 1;
-    rank = binomial ( x + 1, i ) - rank - 1;
+    rank = i4_choose ( x + 1, i ) - rank - 1;
 
   end
 

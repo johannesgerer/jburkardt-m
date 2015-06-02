@@ -2,7 +2,7 @@ function quadrule_test ( )
 
 %*****************************************************************************80
 %
-%% QUADRULE_TEST tests QUADRULE.
+%% QUADRULE_TEST tests the QUADRULE library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function quadrule_test ( )
 %
 %  Modified:
 %
-%    02 May 2011
+%    18 April 2015
 %
 %  Author:
 %
@@ -22,29 +22,34 @@ function quadrule_test ( )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the QUADRULE library.\n' );
 
-  quadrule_test01 ( );
+  bashforth_set_test ( );
   quadrule_test02 ( );
   quadrule_test03 ( );
   quadrule_test04 ( );
-  quadrule_test05 ( );
+  chebyshev1_compute_test ( );
   quadrule_test06 ( );
-  quadrule_test07 ( );
-  quadrule_test0725 ( );
-  quadrule_test075 ( );
-  quadrule_test076 ( );
-  quadrule_test078 ( );
+  n = 10;
+  quadrule_test065 ( n );
+  chebyshev3_compute_test ( );
+  clenshaw_curtis_compute_test ( );
+  clenshaw_curtis_set_test ( );
+  fejer1_compute_test ( );
+  fejer1_set_test ( );
+  fejer2_compute_test ( );
+  fejer2_set_test ( );
 
   order = 5;
   alpha = 0.5;
-  quadrule_test079 ( order, alpha );
+  gegenbauer_compute_test ( order, alpha );
 
   order = 10;
   alpha = - 0.5;
-  quadrule_test079 ( order, alpha );
+  gegenbauer_compute_test ( order, alpha );
 
   quadrule_test08 ( );
   quadrule_test085 ( );
   quadrule_test087 ( );
+  quadrule_test089 ( );
   quadrule_test09 ( );
   quadrule_test095 ( );
   quadrule_test096 ( );
@@ -103,10 +108,10 @@ function quadrule_test ( )
   quadrule_test32 ( );
   quadrule_test33 ( );
   quadrule_test34 ( );
-  quadrule_test345 ( );
-  quadrule_test35 ( );
-  quadrule_test36 ( );
-  quadrule_test37 ( );
+  lobatto_compute_test ( );
+  lobatto_set_test ( );
+  moulton_set_test ( );
+  ncc_set_test ( );
   quadrule_test38 ( );
   quadrule_test39 ( );
 
@@ -122,7 +127,6 @@ function quadrule_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUADRULE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

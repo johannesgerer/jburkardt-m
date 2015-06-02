@@ -2,7 +2,7 @@ function lambda = tris_eigenvalues ( n, x, y, z )
 
 %*****************************************************************************80
 %
-%% TRIS_EIGENVALUES returns the eigenvalues of the tridiagonal scalar matrix.
+%% TRIS_EIGENVALUES returns the eigenvalues of the TRIS matrix.
 %
 %  Discussion:
 %
@@ -26,11 +26,13 @@ function lambda = tris_eigenvalues ( n, x, y, z )
 %
 %    Input, real X, Y, Z, the scalars that define A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = i * pi / ( n + 1 );
-    lambda(i) = y + 2.0 * sqrt ( x * z ) * cos ( angle );
+    lambda(i,1) = y + 2.0 * sqrt ( x * z ) * cos ( angle );
   end
 
   return

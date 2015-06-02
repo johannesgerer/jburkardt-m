@@ -6,7 +6,7 @@ function z = cheby_u_poly_zero ( n )
 %
 %  Discussion:
 %
-%    The I-th zero of U(n,x) is cos((I-1)*PI/(N-1)), I = 1 to N
+%    The I-th zero of U(n,x) is cos(I*PI/(N+1)), I = 1 to N
 %
 %  Licensing:
 %

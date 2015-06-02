@@ -31,9 +31,9 @@ function volume = sphere_cap_volume_nd ( dim_num, r, h )
 %      T_MAX = arc_sine ( sqrt ( ( 2.0 * r - h ) * h / r ) ),
 %    the "interesting part" of our integral becomes
 %
-%      constants * R**N * Integral ( T = 0 to T_MAX ) sin**N ( T ) dT
+%      constants * R^N * Integral ( T = 0 to T_MAX ) sin^N ( T ) dT
 %
-%    The integral of sin**N ( T ) dT can be handled by recursion.
+%    The integral of sin^N ( T ) dT can be handled by recursion.
 %
 %  Licensing:
 %
@@ -80,7 +80,7 @@ function volume = sphere_cap_volume_nd ( dim_num, r, h )
 
     factor1 = sphere_unit_volume_nd ( dim_num - 1 );
 
-    angle = arc_sine ( sqrt ( ( 2.0 * r - h ) * h / r ) );
+    angle = r8_asin ( sqrt ( ( 2.0 * r - h ) * h / r ) );
 
     factor2 = sin_power_int ( 0.0, angle, dim_num );
 

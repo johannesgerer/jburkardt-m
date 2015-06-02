@@ -1,82 +1,59 @@
-function meshdemo ( )
+function meshdemo
 
-%*****************************************************************************80
+% Demo function for mesh2d.
 %
-%% MESHDEMO demonstrates MESH2D on some example problems.
+% Feel free to "borrow" any of the geometries for your own use.
 %
-%  Modified:
+% Example:
 %
-%    27 October 2011
+%   meshdemo;       % Runs the demos
 %
-%  Author:
-%
-%    Darren Engwirda
-%
-  clc
-%
-%  I have wasted considerable time reading inadequate MATLAB diagnostics
-%  and unhelpful QHULL documentation, just to try to suppress warnings
-%  about TSEARCH being retired (and I can't figure out how to use MATLAB's
-%  suggested DelaunayTri/pointLocation replacement properly!) and the
-%  warnings about duplicate points being fed into DelaunayN, which are
-%  NOT helped by trying the UNIQUE function.  So...TURN THE WARNINGS OFF,
-%  THEY JUST MAKE ME ANGRY.  (JVB, 27 October 2011.)
-%
-  warning off
+% Darren Engwirda - 2006
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'MESHDEMO:\n' );
-  fprintf ( 1, '  Demonstrate the MESH2D program for creating meshes.\n' );
+clc
 
-%*****************************************************************************80
-%  #1) Circle, with 24 points on the circumference.
-%*****************************************************************************80
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  EXAMPLE 1: The Circle\n' );
-  fprintf ( 1, '  We start with 24 points on the circumference.\n' );
-  fprintf ( 1, '  The element size function is generated automatically to try\n' );
-  fprintf ( 1, '  to adequately resolve the geometry.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  This means that the mesh size is related to the length of \n' );
-  fprintf ( 1, '  the line segments used to define the geometry.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '\n' );
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                           Circle
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-  dtheta = pi/12;
-  theta  = (-pi:dtheta:(pi-dtheta))';
-  node   = [cos(theta) sin(theta)];
+answer = input(['This is a demo function for mesh2d. \n'                                                     ...
+                '\n'                                                                                         ...
+                'Several example meshes are shown, starting with some simple examples and progressing to \n' ...
+                'the CFD-like applications for which the function was designed. \n'                          ...
+                '\n'                                                                                         ...
+                'The following is a simple mesh in a circle. Continue?? [y/n] \n'],'s');
 
-  [p,t] = mesh2d ( node );
+if ~strcmp(answer,'y')
+    return
+end
 
-  [ nv, ~ ] = size ( node );
-  [ np, ~ ] = size ( p );
-  [ nt, ~ ] = size ( t );
-  fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+% Geometry
+dtheta = pi/12;
+theta  = (-pi:dtheta:(pi-dtheta))';
+node   = [cos(theta) sin(theta)];
 
-answer = input(['The following example is the same as the last, but with more lines used to represent the \n' ...
+% Make mesh
+[p,t] = mesh2d(node);
+
+
+answer = input(['The element size function is generated automatically to try to adequately resolve the geometry. \n'    ...
+                '\n'                                                                                                    ...
+                'This means that the mesh size is related to the length of the line segments used to define the \n'     ...
+                'geometry. The following example is the same as the last, but with more lines used to represent the \n' ...
                 'circle. Continue?? [y/n] \n'],'s');
 
 if ~strcmp(answer,'y')
     return
 end
-%*****************************************************************************80
-%  #2) Circle, with 150 points on the circumference.
-%*****************************************************************************80
-  dtheta = pi/75;
-  theta  = (-pi:dtheta:(pi-dtheta))';
-  node   = [cos(theta) sin(theta)];
 
-  plot ( node(:,1), node(:,2), 'r.', 'MarkerSize', 20 )
-  axis equal
-  grid on
-  title ( '#1: 150 Boundary vertices' )
+% Geometry
+dtheta = pi/75;
+theta  = (-pi:dtheta:(pi-dtheta))';
+node   = [cos(theta) sin(theta)];
 
-  [p,t] = mesh2d(node);
+% Make mesh
+[p,t] = mesh2d(node);
 
-  [ nv, ~ ] = size ( node );
-  [ np, ~ ] = size ( p );
-  [ nt, ~ ] = size ( t );
-  fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                           Square
@@ -104,10 +81,7 @@ hdata.fun = @hfun1;
 
 [p,t] = mesh2d(node,[],hdata);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                       Sliver regions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -145,10 +119,7 @@ close all
 
         [p,t] = mesh2d(node,cnect);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                    Cylinder in crossflow
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -191,10 +162,7 @@ hdata.fun = @hfun2;
 
 [p,t] = mesh2d(node,cnect,hdata);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                         Airfoil + flap
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -308,10 +276,7 @@ options.dhmax = 0.25;
 
 [p,t] = mesh2d(node,cnect,hdata,options);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %                        Lake Superior
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -693,11 +658,6 @@ cnect = [
 % Make mesh
 [p,t] = mesh2d(node,cnect);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
-
 
 answer = input(['The following shows the influence of gradient limiting on the size function. \n' ...
                 'The value dhmax is reduced to 0.1 \n'                                            ...
@@ -716,10 +676,6 @@ options.dhmax = 0.1;
 % Make mesh
 [p,t] = mesh2d(node,cnect,[],options);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
 
 % User defined size functions
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -764,11 +720,6 @@ hdata.edgeh = [1,0.05];                   % Boundary layer on bottom edge
 
 [p,t] = mesh2d(node,[],hdata,options);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
-
 figure
 subplot(2,2,2)
 patch('faces',t,'vertices',p,'facecolor','none','edgecolor','b');
@@ -808,11 +759,6 @@ node = [0 0; 1 0; 1 1; 0 1];              % Simple square example
 
 [p,t] = mesh2d(node,[],hdata,options);    % Auto size fun only
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
-
 figure
 subplot(2,2,1)
 patch('faces',t,'vertices',p,'facecolor','none','edgecolor','b');
@@ -825,11 +771,6 @@ in = inpoly(p,node);
 ti = sum(in(t),2)>0;
 [p,t] = refine(p,t,ti);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
-
 subplot(2,2,2)
 patch('faces',t,'vertices',p,'facecolor','none','edgecolor','b');
 axis equal off; hold on;
@@ -837,26 +778,17 @@ title('Mesh refined in centre region using REFINE')
 
 [p,t] = smoothmesh(p,t);
 
-[ nv, ~ ] = size ( node );
-[ np, ~ ] = size ( p );
-[ nt, ~ ] = size ( t );
-fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
-
 subplot(2,2,3)
 patch('faces',t,'vertices',p,'facecolor','none','edgecolor','b');
 axis equal off; hold on;
 title('Smoothed mesh using SMOOTHMESH')
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'MESHDEMO:\n' );
-  fprintf ( 1, '  Normal end of execution.\n' );
+end      % meshdemo()
 
-  return
-end
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function p = move(p,xm,ym)
 
-%*****************************************************************************80
-%
 % Move a node set p by [xm,ym]
 
 n = size(p,1);
@@ -864,10 +796,9 @@ p = p + [xm*ones(n,1), ym*ones(n,1)];
 
 end      % move()
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function p = rotate(p,A)
 
-%*****************************************************************************80
-%
 % Rotate a node set p by A degrees.
 
 A = A*pi/180;
@@ -876,20 +807,19 @@ T = [ cos(A), sin(A)
 p = (T*p')';
 
 end      % rotate()
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function h = hfun1(x,y)
 
-%*****************************************************************************80
-%
 % User defined size function for square
 
 h = 0.01 + 0.1*sqrt( (x-0.25).^2+(y-0.75).^2 );
 
 end      % hfun1()
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 function h = hfun2(x,y)
 
-%*****************************************************************************80
-%
 % User defined size function for cylinder
 
 h1 = inf*ones(size(x));

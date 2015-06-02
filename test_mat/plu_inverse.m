@@ -1,15 +1,8 @@
-function a = plu_inverse ( n, p, l, u )
+function a = plu_inverse ( n, pivot )
 
 %*****************************************************************************80
 %
 %% PLU_INVERSE returns the inverse of a PLU matrix.
-%
-%  Discussion:
-%
-%    The inverse matrix is represented by its PLU factors.  The output matrix
-%    is given as a single matrix, the product
-%
-%      inverse(A) = inverse(U) * inverse(L) * inverse(P)
 %
 %  Licensing:
 %
@@ -17,7 +10,7 @@ function a = plu_inverse ( n, p, l, u )
 %
 %  Modified:
 %
-%    31 October 2007
+%    25 March 2015
 %
 %  Author:
 %
@@ -27,12 +20,15 @@ function a = plu_inverse ( n, p, l, u )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real P(N,N), L(N,N), U(N,N), the P, L and U factors
-%    of the matrix.
+%    Input, integer PIVOT(N), the list of pivot rows.  PIVOT(I)
+%    must be a value between I and N, reflecting the choice of
+%    pivot row on the I-th step.  For no pivoting, set PIVOT(I) = I.
 %
 %    Output, real A(N,N), the inverse matrix.
 %
-  p_inverse = permutation_inverse ( n, p );
+  [ p, l, u ] = plu_plu ( n, pivot );
+
+  p_inverse = p';
 
   l_inverse = tri_l1_inverse ( n, l );
 

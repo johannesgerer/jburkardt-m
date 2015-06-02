@@ -10,7 +10,7 @@ function x = p00_start ( prob, i )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -60,6 +60,8 @@ function x = p00_start ( prob, i )
     x = p17_start ( i );
   elseif ( prob == 18 )
     x = p18_start ( i );
+  elseif ( prob == 19 )
+    x = p19_start ( i );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_START - Fatal error!\n' );

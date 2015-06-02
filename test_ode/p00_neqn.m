@@ -2,7 +2,7 @@ function neqn = p00_neqn ( test )
 
 %*****************************************************************************80
 %
-%% P00_NEQN returns the dimension of any test problem.
+%% P00_NEQN returns the number of equations for any test problem.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function neqn = p00_neqn ( test )
 %
 %  Modified:
 %
-%    18 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -23,83 +23,85 @@ function neqn = p00_neqn ( test )
 %    Output, integer NEQN, the dimension of the test problem.
 %
   if ( test == 1 )
-    neqn = 1;
+    neqn = p01_neqn ( );
   elseif ( test == 2 )
-    neqn = 1;
+    neqn = p02_neqn ( );
   elseif ( test == 3 )
-    neqn = 1;
+    neqn = p03_neqn ( );
   elseif ( test == 4 )
-    neqn = 1;
+    neqn = p04_neqn ( );
   elseif ( test == 5 )
-    neqn = 1;
+    neqn = p05_neqn ( );
   elseif ( test == 6 )
-    neqn = 2;
+    neqn = p06_neqn ( );
   elseif ( test == 7 )
-    neqn = 3;
+    neqn = p07_neqn ( );
   elseif ( test == 8 )
-    neqn = 3;
+    neqn = p08_neqn ( );
   elseif ( test == 9 )
-    neqn = 3;
+    neqn = p09_neqn ( );
   elseif ( test == 10 )
-    neqn = 3;
+    neqn = p10_neqn ( );
   elseif ( test == 11 )
-    neqn = 10;
+    neqn = p11_neqn ( );
   elseif ( test == 12 )
-    neqn = 10;
+    neqn = p12_neqn ( );
   elseif ( test == 13 )
-    neqn = 10;
+    neqn = p13_neqn ( );
   elseif ( test == 14 )
-    neqn = 51;
+    neqn = p14_neqn ( );
   elseif ( test == 15 )
-    neqn = 30;
+    neqn = p15_neqn ( );
   elseif ( test == 16 )
-    neqn = 4;
+    neqn = p16_neqn ( );
   elseif ( test == 17 )
-    neqn = 4;
+    neqn = p17_neqn ( );
   elseif ( test == 18 )
-    neqn = 4;
+    neqn = p18_neqn ( );
   elseif ( test == 19 )
-    neqn = 4;
+    neqn = p19_neqn ( );
   elseif ( test == 20 )
-    neqn = 4;
+    neqn = p20_neqn ( );
   elseif ( test == 21 )
-    neqn = 2;
+    neqn = p21_neqn ( );
   elseif ( test == 22 )
-    neqn = 2;
+    neqn = p22_neqn ( );
   elseif ( test == 23 )
-    neqn = 2;
+    neqn = p23_neqn ( );
   elseif ( test == 24 )
-    neqn = 2;
+    neqn = p24_neqn ( );
   elseif ( test == 25 )
-    neqn = 2;
+    neqn = p25_neqn ( );
   elseif ( test == 26 )
-    neqn = 2;
+    neqn = p26_neqn ( );
   elseif ( test == 27 )
-    neqn = 1;
+    neqn = p27_neqn ( );
   elseif ( test == 28 )
-    neqn = 2;
+    neqn = p28_neqn ( );
   elseif ( test == 29 )
-    neqn = 1;
+    neqn = p29_neqn ( );
   elseif ( test == 30 )
-    neqn = 1;
+    neqn = p30_neqn ( );
   elseif ( test == 31 )
-    neqn = 2;
+    neqn = p31_neqn ( );
   elseif ( test == 32 )
-    neqn = 3;
+    neqn = p32_neqn ( );
   elseif ( test == 33 )
-    neqn = 2;
+    neqn = p33_neqn ( );
   elseif ( test == 34 )
-    neqn = 2;
+    neqn = p34_neqn ( );
   elseif ( test == 35 )
-    neqn = 2;
+    neqn = p35_neqn ( );
   elseif ( test == 36 )
-    neqn = 2;
+    neqn = p36_neqn ( );
   elseif ( test == 37 )
-    neqn = 2;
+    neqn = p37_neqn ( );
   elseif ( test == 38 )
-    neqn = 1;
+    neqn = p38_neqn ( );
   elseif ( test == 39 )
-    neqn = 1;
+    neqn = p39_neqn ( );
+  elseif ( test == 40 )
+    neqn = p40_neqn ( );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_NEQN - Fatal error!\n' );

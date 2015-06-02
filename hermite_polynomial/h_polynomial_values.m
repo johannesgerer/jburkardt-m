@@ -2,9 +2,11 @@ function [ n_data, n, x, fx ] = h_polynomial_values ( n_data )
 
 %*****************************************************************************80
 %
-%% H_POLYNOMIAL_VALUES: values of the physicist's Hermite polynomial H(n,x).
+%% H_POLYNOMIAL_VALUES: tabulated values of H(i,x).
 %
 %  Discussion:
+%
+%    H(i,x) is the physicist's Hermite polynomial of degree I.
 %
 %    In Mathematica, the function can be evaluated by:
 %

@@ -10,7 +10,7 @@ function xyzf_display ( prefix )
 %
 %  Modified:
 %
-%    06 February 2010
+%    28 January 2013
 %
 %  Author:
 %
@@ -106,6 +106,11 @@ function xyzf_display ( prefix )
   y_max = xyz_max(2) + margin;
   z_min = xyz_min(3) - margin;
   z_max = xyz_max(3) + margin;
+%
+%  Before we begin plotting, create a figure.
+%
+  figure ( 1 )
+  clf
 %
 %  Display the faces and edges.
 %
@@ -472,6 +477,10 @@ function node_num = xyz_header_read ( input_filename )
 
     if ( text == -1 )
       break;
+    end
+
+    if ( length ( text ) < 1 )
+      continue
     end
     
     if ( text(1) == '#' )

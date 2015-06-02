@@ -2,7 +2,7 @@ function determ = upshift_determinant ( n )
 
 %*****************************************************************************80
 %
-%% UPSHIFT_DETERMINANT returns the determinant of the upshift matrix.
+%% UPSHIFT_DETERMINANT returns the determinant of the UPSHIFT matrix.
 %
 %  Licensing:
 %

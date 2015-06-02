@@ -2,7 +2,7 @@ function a = hanowa ( alpha, n )
 
 %*****************************************************************************80
 %
-%% HANOWA returns the Hanowa matrix.
+%% HANOWA returns the HANOWA matrix.
 %
 %  Formula:
 %
@@ -70,6 +70,8 @@ function a = hanowa ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( mod ( n, 2 ) ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'HANOWA - Fatal error!\n' );

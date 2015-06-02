@@ -36,6 +36,8 @@ function a = oto ( m, n )
 %
 %    A is weakly diagonally dominant, but not strictly diagonally dominant.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -54,6 +56,8 @@ function a = oto ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

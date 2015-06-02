@@ -50,7 +50,7 @@ function [ x, seed ] = r8vec_uniform_ab ( n, a, b, seed )
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %
-  r = zeros ( n, 1 );
+  x = zeros ( n, 1 );
 
   if ( seed == 0 )
     fprintf ( 1, '\n' );

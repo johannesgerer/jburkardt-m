@@ -2,7 +2,7 @@ function high_card_simulation_test ( )
 
 %*****************************************************************************80
 %
-%% HIGH_CARD_SIMULATION_TEST tests HIGH_CARD_SIMULATION.
+%% HIGH_CARD_SIMULATION_TEST tests the HIGH_CARD_SIMULATION library.
 %
 %  Licensing:
 %
@@ -31,7 +31,6 @@ function high_card_simulation_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HIGH_CARD_SIMULATION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

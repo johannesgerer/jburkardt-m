@@ -1,4 +1,4 @@
-function [ n_data, a, b, fx ] = arithmetic_geometric_mean_values ( n_data )
+function [ n_data, a, b, fx ] = agm_values ( n_data )
 
 %*****************************************************************************80
 %

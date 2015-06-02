@@ -1,4 +1,4 @@
-function cx = cheby_u_poly ( n, x )
+ function cx = cheby_u_poly ( m, n, x )
 
 %*****************************************************************************80
 %
@@ -35,7 +35,7 @@ function cx = cheby_u_poly ( n, x )
 %
 %  Modified:
 %
-%    23 July 2004
+%    10 January 2015
 %
 %  Author:
 %
@@ -43,27 +43,34 @@ function cx = cheby_u_poly ( n, x )
 %
 %  Parameters:
 %
+%    Input, integer M, the number of evaluation points.
+%
 %    Input, integer N, the highest polynomial to compute.
 %
-%    Input, real X, the point at which the polynomials are to be computed.
+%    Input, real X(M,1), the evaluation points.
 %
-%    Output, real CX(1:N+1), the values of the N+1 Chebyshev polynomials.
+%    Output, real V(M,N+1), the values of the Chebyshev polynomials 
+%    0 through N at X(1:M).
 %
   if ( n < 0 )
-    cx = [];
+    v = [];
     return
   end
 
-  cx(1) = 1.0;
+  v = zeros ( m, n + 1 );
+
+  v(1:m,1) = 1.0;
 
   if ( n < 1 )
     return
   end
 
-  cx(2) = 2.0 * x;
+  x = x(:);
 
-  for i = 2 : n
-    cx(i+1) = 2.0 * x * cx(i) - cx(i-1);
+  v(1:m,2) = 2.0 * x(1:m,1);
+
+  for j = 2 : n
+    v(1:m,j+1) = 2.0 * x(1:m,1) .* v(1:m,j) - v(1:m,j-1);
   end
 
   return

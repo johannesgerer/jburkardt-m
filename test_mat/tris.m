@@ -2,7 +2,7 @@ function a = tris ( m, n, x, y, z )
 
 %*****************************************************************************80
 %
-%% TRIS returns the tridiagonal scalar matrix.
+%% TRIS returns the TRIS matrix.
 %
 %  Formula:
 %
@@ -62,6 +62,8 @@ function a = tris ( m, n, x, y, z )
 %    If X = Z = -1, and Y = 2, the matrix is a symmetric, positive
 %    definite M matrix, the negative of the second difference matrix.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -89,6 +91,8 @@ function a = tris ( m, n, x, y, z )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

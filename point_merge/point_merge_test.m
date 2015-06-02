@@ -2,7 +2,7 @@ function point_merge_test ( )
 
 %*****************************************************************************80
 %
-%% POINT_MERGE_TEST calls the POINT_MERGE tests.
+%% POINT_MERGE_TEST tests the POINT_MERGE library.
 %
 %  Discussion:
 %
@@ -22,8 +22,7 @@ function point_merge_test ( )
 %
 %    John Burkardt
 %
-  timestamp ( )
-
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POINT_MERGE_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -155,7 +154,6 @@ function point_merge_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POINT_MERGE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-   
   fprintf ( 1, '\n' );
   timestamp ( );
 

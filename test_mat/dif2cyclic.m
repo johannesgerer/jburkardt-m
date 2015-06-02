@@ -2,7 +2,7 @@ function a = dif2cyclic ( n )
 
 %*****************************************************************************80
 %
-%% DIF2CYCLIC returns the cyclic second difference matrix.
+%% DIF2CYCLIC returns the DIF2CYCLIC matrix.
 %
 %  Example:
 %
@@ -64,6 +64,8 @@ function a = dif2cyclic ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

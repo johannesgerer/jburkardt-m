@@ -17,7 +17,6 @@ function timer_tictoc_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_TICTOC\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -41,7 +40,9 @@ function timer_tictoc_test ( )
   timer_tictoc_test02 ( );
   timer_tictoc_test03 ( );
   timer_tictoc_test04 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_TICTOC\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

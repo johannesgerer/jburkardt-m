@@ -2,7 +2,7 @@ function index_test ( )
 
 %*****************************************************************************80
 %
-%% INDEX_TEST tests INDEX.
+%% INDEX_TEST tests the INDEX library.
 %
 %  Licensing:
 %

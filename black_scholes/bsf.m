@@ -10,7 +10,7 @@ function c = bsf ( s0, t0, e, r, sigma, t1 )
 %
 %  Author:
 %
-%    Desmond Higham
+%    Original MATLAB version by Desmond Higham
 %
 %  Reference:
 %

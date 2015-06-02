@@ -8,7 +8,7 @@ function value = r8vec_norm_l2 ( n, a )
 %
 %    The vector L2 norm is defined as:
 %
-%      value = sqrt ( sum ( 1 <= I <= N ) A(I)**2 ).
+%      value = sqrt ( sum ( 1 <= I <= N ) A(I)^2 ).
 %
 %  Licensing:
 %

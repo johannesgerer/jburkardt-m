@@ -12,7 +12,7 @@ function [ n_data, x, fx ] = elliptic_ka_values ( n_data )
 %    The function is defined by the formula:
 %
 %      K(ALPHA) = integral ( 0 <= T <= PI/2 ) 
-%        dT / sqrt ( 1 - sin ( ALPHA )**2 * sin ( T )**2 )
+%        dT / sqrt ( 1 - sin ( ALPHA )^2 * sin ( T )^2 )
 %
 %    In Mathematica, the function can be evaluated by:
 %

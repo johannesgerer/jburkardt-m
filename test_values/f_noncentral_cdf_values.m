@@ -2,7 +2,7 @@ function [ n_data, n1, n2, lambda, x, fx ] = f_noncentral_cdf_values ( n_data )
 
 %*****************************************************************************80
 %
-%% F_NONCENTRAL_CDF_VALUES returns some values of the F CDF test function.
+%% F_NONCENTRAL_CDF_VALUES: values of the noncentral F CDF.
 %
 %  Discussion:
 %

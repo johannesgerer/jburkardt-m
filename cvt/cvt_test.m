@@ -2,7 +2,7 @@ function cvt_test ( )
 
 %*****************************************************************************80
 %
-%% CVT_TEST tests CVT.
+%% CVT_TEST tests the CVT library.
 %
 %  Licensing:
 %
@@ -43,7 +43,6 @@ function cvt_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CVT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

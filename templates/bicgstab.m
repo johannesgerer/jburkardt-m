@@ -1,5 +1,7 @@
 function [ x, error_norm, iter, flag ] = bicgstab ( A, x, b, M, max_it, tol )
 
+%*****************************************************************************80
+%
 %% BICGSTAB solves a linear system using the biconjugate gradient stabilized method.
 %
 %  Discussion:

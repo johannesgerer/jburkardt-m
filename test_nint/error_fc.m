@@ -121,15 +121,15 @@ function value = error_fc ( x )
 
   if ( size ( nterf ) == 0 )
 
-    eta = 0.1 * r8_epsilon ( );
+    eta = 0.1 * eps;
     nterf = inits ( erfcs, 13, eta );
     nterfc = inits ( erfccs, 24, eta );
     nterc2 = inits ( erc2cs, 23, eta );
 
-    xsml = -sqrt ( - log ( sqrtpi * r8_epsilon ( ) ) );
+    xsml = -sqrt ( - log ( sqrtpi * eps ) );
     xmax = sqrt ( - log ( sqrtpi * r8_tiny ( ) ) );
     xmax = xmax - 0.5 * log ( xmax ) / xmax - 0.01;
-    sqeps = sqrt ( 2.0 * r8_epsilon ( ) );
+    sqeps = sqrt ( 2.0 * eps );
 
   end
 

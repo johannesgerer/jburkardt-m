@@ -1,4 +1,4 @@
-function x = lauchli_null_left ( alpha, m, n, x )
+function x = lauchli_null_left ( alpha, m, n )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function x = lauchli_null_left ( alpha, m, n, x )
 %
 %  Modified:
 %
-%    03 November 2007
+%    08 March 2015
 %
 %  Author:
 %
@@ -23,10 +23,12 @@ function x = lauchli_null_left ( alpha, m, n, x )
 %    Input, integer M, N, the order of A.
 %    It should be the case that M = N + 1.
 %
-%    Output, real X(M), the vector.
+%    Output, real X(M,1), the vector.
 %
-  x(1) = - alpha;
-  x(2:m) = 1.0;
+  x = zeros ( m, 1 );
+
+  x(1,1) = - alpha;
+  x(2:m,1) = 1.0;
 
   return
 end

@@ -1,8 +1,8 @@
-function determ = givens_determinant ( n )
+function value = givens_determinant ( n )
 
 %*****************************************************************************80
 %
-%% GIVENS_DETERMINANT returns the determinant of the Givens matrix.
+%% GIVENS_DETERMINANT returns the determinant of the GIVENS matrix.
 %
 %  Discussion:
 %
@@ -25,13 +25,13 @@ function determ = givens_determinant ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real DETERM, the determinant.
+%    Output, real VALUE, the determinant.
 %
-  determ = 1.0;
+  value = 1.0;
 
   for i = 1 : n
     angle = ( 2 * i - 1 ) * pi / ( 4 * n );
-    determ = determ * 0.5 / ( cos ( angle ) )^2;
+    value = value * 0.5 / ( cos ( angle ) )^2;
   end
 
   return

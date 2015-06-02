@@ -2,7 +2,7 @@ function ball_grid_test ( )
 
 %*****************************************************************************80
 %
-%% BALL_GRID_TEST tests BALL_GRID.
+%% BALL_GRID_TEST tests the BALL_GRID library.
 %
 %  Licensing:
 %

@@ -2,11 +2,7 @@ function test_optimization_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for TEST_OPTIMIZATION_PRB.
-%
-%  Discussion:
-%
-%    TEST_OPTIMIZATION_PRB calls the TEST_OPTIMIZATION tests.
+%% TEST_OPTIMIZATION_TEST tests the TEST_OPTIMIZATION library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_optimization_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPTIMIZATION_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -36,7 +31,6 @@ function test_optimization_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPTIMIZATION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

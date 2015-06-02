@@ -1,8 +1,8 @@
-function test08 ( )
+function sphere_grid_test08 ( )
 
 %*****************************************************************************80
 %
-%% TEST08 tests SPHERE_GRID_T3.
+%% SPHERE_GRID_TEST08 tests SPHERE_GRID_T3.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function test08 ( )
   long_num = 4;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST08\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST08\n' );
   fprintf ( 1, '  SPHERE_GRID_T3 computes a grid\n' );
   fprintf ( 1, '  of T3 triangular elements on a sphere in 3D.\n' );
   fprintf ( 1, '\n' );

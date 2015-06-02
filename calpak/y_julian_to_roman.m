@@ -22,7 +22,7 @@ function y2 = y_julian_to_roman ( y )
 %
 %    Output, integer Y2, the corresponding Roman year.
 %
-  ierror = y_check_julian ( y );
+  [ y, ierror ] = y_check_julian ( y );
 
   if ( ierror ~= 0 )
     y2 = -1;

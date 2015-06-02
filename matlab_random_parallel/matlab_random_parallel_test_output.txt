@@ -1,0 +1,85 @@
+edit random_parfor_test
+random_parfor_test
+25-Apr-2014 14:20:13
+
+RANDOM_PARFOR
+  MATLAB version.
+  Look at random number generation in parallel Matlab.
+
+RANDOM_PARFOR_TEST01
+  Demonstrate some features of RAND.
+  Compute 10 random values several times.
+
+  #1: use default settings
+  #2: use rng('shuffle'), setting seed based on time.
+  #3: use rng(123456789), setting seed explicitly.
+  #4, save state.
+  #5: use rng('shuffle'), setting seed based on time.
+  #6: use rng(123456789), setting seed explicitly.
+  #7, restore state.
+
+        #1          #2          #3          #4          #5          #6          #7
+
+      0.5328      0.3146      0.5328      0.7236      0.6044      0.5328      0.7236
+      0.5341      0.1484      0.5341      0.7487      0.7447      0.5341      0.7487
+      0.5096      0.3880      0.5096      0.8185      0.8492      0.5096      0.8185
+      0.7136      0.5422      0.7136      0.0979      0.7441      0.7136      0.0979
+      0.2570      0.7082      0.2570      0.0036      0.1581      0.2570      0.0036
+      0.7527      0.4829      0.7527      0.2308      0.5533      0.7527      0.2308
+      0.8839      0.5864      0.8839      0.0123      0.0575      0.8839      0.0123
+      0.1549      0.3486      0.1549      0.3535      0.7369      0.1549      0.3535
+      0.6705      0.5373      0.6705      0.1853      0.4205      0.6705      0.1853
+      0.6434      0.9667      0.6434      0.7928      0.2940      0.6434      0.7928
+
+RANDOM_PARFOR_TEST02
+  Demonstrate that, by default, each Matlab worker
+  gets a unique random number stream.
+
+  Begin by opening a pool of 2, and use SPMD.
+Starting matlabpool using the 'local' profile ... connected to 2 workers.
+
+  Have each worker generate a row of 4 random values.
+
+  Worker 1:     0.3246      0.6618      0.6349      0.6497
+  Worker 2:     0.2646      0.0968      0.5052      0.4866
+
+  If desired, all workers can use the same stream.
+  Simply have each worker call rng() with the same seed.
+
+  Worker 1:     0.6137      0.0818      0.1958      0.3957
+  Worker 2:     0.6137      0.0818      0.1958      0.3957
+Sending a stop signal to all the workers ... stopped.
+
+RANDOM_PARFOR_TEST03
+  Show that it seems safe to call RAND inside a PARFOR loop.
+  Presumably, the workers have distinct random number streams.
+
+  However, apparently, you cannot control the worker streams
+  by calling RNG(seed).
+
+  Initialize the generator to 123456789.
+  Generate 12 random values in a FOR loop:
+  Do this TWICE.
+x =
+    0.5328    0.5341    0.5096    0.7136    0.2570    0.7527    0.8839    0.1549    0.6705    0.6434    0.7236    0.7487
+x =
+    0.5328    0.5341    0.5096    0.7136    0.2570    0.7527    0.8839    0.1549    0.6705    0.6434    0.7236    0.7487
+
+  Reinitialize the generator to 123456789.
+  Generate 12 random values in a PARFOR loop with 2 workers:
+  Do this TWICE.
+  Apparently, restoring the seed on the client
+  does NOT restore it on the workers.
+  We get different results the second time.
+Starting matlabpool using the 'local' profile ... connected to 2 workers.
+x =
+    0.6497    0.6349    0.6618    0.3246    0.4866    0.5052    0.0968    0.2646    0.8523    0.0349    0.0404    0.6907
+x =
+    0.2843    0.8691    0.1767    0.1471    0.8173    0.1233    0.5871    0.6492    0.7901    0.1985    0.8364    0.1068
+Sending a stop signal to all the workers ... stopped.
+
+RANDOM_PARFOR
+  Normal end of execution.
+
+25-Apr-2014 14:20:38
+diary off

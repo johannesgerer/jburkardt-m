@@ -2,7 +2,7 @@ function van_der_corput_test ( )
 
 %*****************************************************************************80
 %
-%% VAN_DER_CORPUT_TEST runs the van_der_corput tests.
+%% VAN_DER_CORPUT_TEST tests the VAN_DER_CORPUT library.
 %
 %  Licensing:
 %
@@ -36,7 +36,6 @@ function van_der_corput_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'VAN_DER_CORPUT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

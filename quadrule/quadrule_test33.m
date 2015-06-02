@@ -2,7 +2,7 @@ function quadrule_test33 ( )
 
 %*****************************************************************************80
 %
-%% TEST33 tests LEGENDRE_SET_X2, LEGENDRE_SET_X2_01 and RULE_ADJUST.
+%% QUADRULE_TEST33 tests LEGENDRE_SET_X2, LEGENDRE_SET_X2_01 and RULE_ADJUST.
 %
 %  Licensing:
 %
@@ -24,7 +24,7 @@ function quadrule_test33 ( )
   d =  1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST33\n' );
+  fprintf ( 1, 'QUADRULE_TEST33\n' );
   fprintf ( 1, '  LEGENDRE_SET_X2 sets up Gauss-Legendre quadrature\n' );
   fprintf ( 1, '    for integrating ( 1 + X )^2 * F(X) over [-1,1];\n' );
   fprintf ( 1, '  RULE_ADJUST adjusts a rule for a new interval.\n' );

@@ -2,7 +2,7 @@ function svd_snowfall_test03 ( x )
 
 %*****************************************************************************80
 %
-%% SVD_SNOWFALL_TEST03 looks at the singular values.
+%% SVD_SNOWFALL_TEST03 computes low rank approximations to the matrix.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function svd_snowfall_test03 ( x )
 %
 %  Modified:
 %
-%    08 April 2012
+%    05 May 2013
 %
 %  Author:
 %
@@ -18,12 +18,12 @@ function svd_snowfall_test03 ( x )
 %
 %  Parameters:
 %
-%    Input, real X(8,121), the snowfall data.
+%    Input, real X(8,123), the snowfall data.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST03\n' );
   fprintf ( 1, '  Compute the rank 1 through rank 5 approximations to the data.\n' );
-  fprintf ( 1, '  Compare each of these to the 2010 snowfall data.\n' );
+  fprintf ( 1, '  Compare each of these to the 2012 snowfall data.\n' );
 %
 %  Compute the SVD.
 %
@@ -37,8 +37,8 @@ function svd_snowfall_test03 ( x )
   a4 = a3 + s(4,4) * u(:,4) * v(:,4)';
   a5 = a4 + s(5,5) * u(:,5) * v(:,5)';
 %
-%  Column 1 of X is the 2010 snowfall.
-%  Column 1 of A1 is the rank 1 approximant to 2010 snowfall.
+%  Column 1 of X is the 2012 snowfall.
+%  Column 1 of A1 is the rank 1 approximant to 2012 snowfall.
 %
   figure ( 3 )
 
@@ -47,7 +47,7 @@ function svd_snowfall_test03 ( x )
   subplot ( 2, 3, 1 )
   plot ( t, x(:,1), 'r-', 'Linewidth', 3 )
   grid on
-  title ( '2010 Snowfall' )
+  title ( '2012 Snowfall' )
 
   subplot ( 2, 3, 2 )
   hold on

@@ -2,7 +2,7 @@ function lambda = eberlein_eigenvalues ( alpha, n )
 
 %*****************************************************************************80
 %
-%% EBERLEIN_EIGENVALUES returns the eigenvalues of the Eberlein matrix.
+%% EBERLEIN_EIGENVALUES returns the eigenvalues of the EBERLEIN matrix.
 %
 %  Licensing:
 %
@@ -22,9 +22,13 @@ function lambda = eberlein_eigenvalues ( alpha, n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n) = - ( 1:n - 1 ) *. ( alpha + 1:n );
+  lambda = zeros ( n, 1 );
+
+  for i = 1 : n
+    lambda(1:n,1) = - ( i - 1 ) *. ( alpha + i );
+  end
 
   return
 end

@@ -20,6 +20,10 @@ function a = bodewig_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
     -139.0,  165.0,  79.0,  111.0; ...
      165.0, -155.0, -57.0,   -1.0; ...

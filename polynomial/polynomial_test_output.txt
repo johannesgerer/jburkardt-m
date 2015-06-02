@@ -1,0 +1,190 @@
+polynomial_test
+28-Oct-2014 08:49:04
+
+POLYNOMIAL_TEST
+  MATLAB version.
+  Test the POLYNOMIAL library.
+
+POLYNOMIAL_ADD_TEST
+  POLYNOMIAL_ADD adds two polynomials.
+
+  P1(X) =
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+
+  P2(X) =
+    + 2 * x^(0,0,0)
+    + 3 * x^(0,1,0)
+    - 8 * x^(1,0,0)
+    + 4 * x^(2,0,2)
+    + 9 * x^(3,0,1).
+/bin/bash: Clear: command not found
+
+  P1(X) + P2(X) =
+    + 9 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 3 * x^(0,1,0)
+    + 1 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 4 * x^(2,0,2)
+    - 4 * x^(3,0,1).
+
+POLYNOMIAL_AXPY_TEST
+  POLYNOMIAL_AXPY adds a multiple of one polynomial
+  to another.
+
+  P1(X) =
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+
+  P2(X) =
+    + 2 * x^(0,0,0)
+    + 3 * x^(0,1,0)
+    - 8 * x^(1,0,0)
+    + 4 * x^(2,0,2)
+    + 9 * x^(3,0,1).
+/bin/bash: Clear: command not found
+
+  10 * P1(X) + P2(X) = 
+    + 72 * x^(0,0,0)
+    - 50 * x^(0,0,1)
+    + 3 * x^(0,1,0)
+    + 82 * x^(1,0,0)
+    + 110 * x^(0,0,2)
+    + 4 * x^(2,0,2)
+    - 121 * x^(3,0,1).
+
+POLYNOMIAL_PRINT_TEST
+  POLYNOMIAL_PRINT prints a polynomial.
+
+  Uncompressed P(X) =
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 3 * x^(0,0,2)
+    + 6 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1)
+    + 1e-20 * x^(4,0,0).
+/bin/bash: Clear: command not found
+
+  Compressed P(X) =
+    + 7 * x^(0,0,0)
+    + 9 * x^(1,0,0)
+    + 20 * x^(0,0,2)
+    - 13 * x^(3,0,1).
+
+POLYNOMIAL_DIF_TEST
+  POLYNOMIAL_DIF computes derivatives of a polynomial.
+
+  P(X) =
+    + 2 * x^(0,0)
+    + 3 * x^(3,0)
+    + 4 * x^(1,3)
+    + 5 * x^(3,4).
+/bin/bash: Clear: command not found
+
+  d3 P(X) dx1 dx1 dx2 =
+    + 120 * x^(1,3).
+
+POLYNOMIAL_MUL_TEST
+  POLYNOMIAL_MUL multiplies two polynomials.
+
+  P1(X) =
+    + 2 * x^(0,0)
+    + 3 * x^(1,0)
+    + 4 * x^(0,2)
+    + 5 * x^(2,0).
+
+  P2(X) =
+    + 6 * x^(0,1)
+    + 7 * x^(1,1).
+/bin/bash: Clear: command not found
+
+  P1(X) * P2(X) =
+    + 12 * x^(0,1)
+    + 32 * x^(1,1)
+    + 24 * x^(0,3)
+    + 51 * x^(2,1)
+    + 28 * x^(1,3)
+    + 35 * x^(3,1).
+
+POLYNOMIAL_PRINT_TEST
+  POLYNOMIAL_PRINT prints a polynomial.
+
+  P1(X) =
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+
+POLYNOMIAL_SCALE_TEST
+  POLYNOMIAL_SCALE scales a polynomial by a multiplier S.
+
+  P(X) = 
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+
+  Apply scale factor S = -0.5
+
+  S * P(X) = 
+    - 3.5 * x^(0,0,0)
+    + 2.5 * x^(0,0,1)
+    - 4.5 * x^(1,0,0)
+    - 5.5 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    + 6.5 * x^(3,0,1).
+
+POLYNOMIAL_SORT_TEST
+  POLYNOMIAL_SORT sorts a polynomial by exponent index.
+
+  Unsorted polynomial:
+    + 0 * x^(0,1,2)
+    + 9 * x^(1,0,0)
+    - 5 * x^(0,0,1)
+    - 13 * x^(3,0,1)
+    + 7 * x^(0,0,0)
+    + 11 * x^(0,0,2).
+
+  Sorted polynomial:
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+
+POLYNOMIAL_VALUE_TEST
+  POLYNOMIAL_VALUE evaluates a polynomial.
+
+  P(X) =
+    + 7 * x^(0,0,0)
+    - 5 * x^(0,0,1)
+    + 9 * x^(1,0,0)
+    + 11 * x^(0,0,2)
+    + 0 * x^(0,1,2)
+    - 13 * x^(3,0,1).
+  P(1,2,3) = 61
+  P(-2,4,1) = 99
+
+POLYNOMIAL_TEST
+  Normal end of execution.
+
+28-Oct-2014 08:49:04
+diary off

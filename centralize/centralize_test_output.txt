@@ -1,0 +1,339 @@
+>> centralize_test
+21-May-2013 11:03:11
+
+CENTRALIZE_TEST:
+  Test the CENTRALIZE library.
+
+CUBE_GRID_CENTRALIZE_TEST
+  Centralize hypersphere grid projected data from a cube surface.
+  The cube is aligned with coordinate axes.
+  The spatial dimension is M.
+  The grid has an index NG.
+  The number of sample points is N=(2*NG+1)*(NG+1)^(M-2).
+  The cube center CC is at the origin.
+  The cube radius CR is 1.
+
+  The observation point OC may be:
+  * CENTERED: coinciding with CC, or
+  * OFFCENTERED: chosen at random within the cube
+
+  Estimate CC, and report R_MIN and R_MAX, the minimum
+  and maximum distances between OC and a data point.
+  Compute R_MIN and R_MAX for both centered and offcentered
+  observation points.
+
+  TEST #1: Use a centered observation point:
+
+     M    NG       N         CC error          R_MIN         R_MAX
+
+     2     2       4     3.31734e-17             1             1
+     2     3       6     3.70074e-17             1         1.155
+     2     4       8     8.77708e-17             1         1.414
+     2     5      10     5.55112e-17             1         1.236
+
+     4     2       4     3.31734e-17             1             1
+     4     3      24     4.76269e-17             1          1.54
+     4     4      72     7.41433e-17             1         1.414
+     4     5     160     1.32113e-17             1         1.367
+
+     6     2       4     3.31734e-17             1             1
+     6     3      96     1.10956e-07             1             2
+     6     4     648      7.1302e-17             1         1.414
+     6     5    2560     1.63129e-17             1         1.511
+
+     8     2       4     3.31734e-17             1             1
+     8     3     384     9.84288e-08             1             2
+     8     4    5832     6.71425e-17             1         1.414
+     8     5   40960     2.09346e-17             1          1.67
+
+  TEST #2: Use an offcentered observation point:
+
+     M    NG       N         CC error          R_MIN         R_MAX
+
+     2     2       4        0.410222        0.1916         1.808
+     2     3       6        0.328625        0.2212         2.088
+     2     4       8        0.410222        0.1916         1.808
+     2     5      10        0.387272        0.2014         1.901
+
+     4     2       4        0.861092        0.1104          1.89
+     4     3      24        0.926641        0.1104         2.543
+     4     4      72           0.899        0.1104         2.672
+     4     5     160        0.948428        0.1104         2.336
+
+     6     2       4         1.36046        0.3552         1.645
+     6     3      96         1.35994       0.03086         2.159
+     6     4     648         1.34318       0.01637         2.812
+     6     5    2560         1.33953       0.01582         2.717
+
+     8     2       4         1.45301        0.4693         1.531
+     8     3     384         1.40638        0.4059         2.726
+     8     4    5832         1.39626        0.1864         2.642
+     8     5   40960         1.40314        0.1894         2.882
+
+CUBE_RANDOM_CENTRALIZE_TEST
+  Centralize random data from a cube surface.
+  The cube is aligned with coordinate axes.
+  The spatial dimension is M.
+  The number of sample points is N.
+  The cube center CC is at the origin.
+  The cube radius CR is 1.
+
+  The observation point OC may be:
+  * CENTERED: coinciding with CC, or
+  * OFFCENTERED: chosen at random within the cube
+
+  Estimate CC, and report R_MIN and R_MAX, the minimum
+  and maximum distances between OC and a data point.
+  Compute R_MIN and R_MAX for both centered and offcentered
+  observation points.
+
+     M       N         CC error          R_MIN         R_MAX        R_MIN         R_MAX
+                                           (Centered)               (Offcentered)
+
+     2       1         1.26074         1.087         1.087        0.5217        0.5217
+     2       4        0.562027         1.117         1.409        0.5151         1.858
+     2      16        0.216692             1         1.411         0.475          1.68
+     2      64        0.115422             1         1.397        0.4661         2.152
+     2     256       0.0552563             1         1.414        0.4669         2.168
+     2    1024       0.0595599             1         1.414        0.4659         2.167
+
+     4       1         1.51828          1.27          1.27         2.027         2.027
+     4       4        0.707964         1.248         1.725         1.576         1.912
+     4      16        0.316639         1.073         1.592        0.8287         2.294
+     4      64       0.0739536          1.05         1.868        0.9674         2.348
+     4     256       0.0841881         1.013         1.874        0.3168         2.533
+     4    1024        0.029292         1.001         1.935        0.2317           2.6
+
+     8       1         2.06925         1.591         1.591         3.267         3.267
+     8       4        0.944893         1.803         2.179         2.738         3.013
+     8      16        0.465878         1.522         2.137         1.486         3.062
+     8      64        0.346006         1.302         2.213        0.7536          3.12
+     8     256       0.0673311         1.283         2.268        0.7526         3.224
+     8    1024        0.054559          1.14         2.435        0.7203         3.453
+
+    16       1         2.44151         2.096         2.096         3.242         3.242
+    16       4         1.17178         2.146         2.675         2.931         3.904
+    16      16        0.557834         2.065         2.775         2.424         3.792
+    16      64        0.301479         2.093         3.059         2.034         4.194
+    16     256        0.102676         1.796         3.046         2.237         4.141
+    16    1024        0.087981         1.653         3.264         1.768         4.517
+
+    32       1         3.81774         3.707         3.707         5.632         5.632
+    32       4         1.64437         2.984         3.166         4.268         5.096
+    32      16        0.825338          2.43         3.977         4.013         5.639
+    32      64        0.441982         2.816         3.897         3.688         5.895
+    32     256        0.211594         2.578         3.994         3.557         5.878
+    32    1024       0.0943732         2.391         4.168         2.938         6.198
+
+    64       1          4.7341         4.389         4.389           6.5           6.5
+    64       4          2.6523         4.329         4.946         6.768         6.997
+    64      16         1.10579         4.175         5.145         5.573         7.526
+    64      64        0.645525         3.991         5.263         5.327         7.252
+    64     256        0.243289         3.876         5.353         5.424         7.678
+    64    1024        0.141514         3.944         5.617         4.867          7.85
+
+   128       1         6.88233         6.643         6.643         9.409         9.409
+   128       4         3.22481         6.464         6.912         8.287         9.852
+   128      16          1.7783         5.984         6.776         8.397         10.03
+   128      64        0.807419         6.035         7.092         7.822         9.862
+   128     256        0.417585         5.938         7.165         7.728         10.21
+   128    1024        0.217949         5.827         7.404         7.786         10.62
+
+CUBE3D_GRID_CENTRALIZE_TEST
+  Centralize projected hypersphere data from a cube surface.
+  The cube is aligned with coordinate axes.
+  The spatial dimension is M=3.
+  The hypersphere grid has 1D index NG,
+  and number of points N=(2*NG+1)*(NG+1).
+  The cube center CC is at the origin.
+  The cube radius CR is 1.
+
+  The observation point OC may be:
+  * CENTERED: coinciding with CC, or
+  * OFFCENTERED: chosen at random within the cube
+
+  Estimate CC, and report R_MIN and R_MAX, the minimum
+  and maximum distances between OC and a data point.
+  Compute R_MIN and R_MAX for both centered and offcentered
+  observation points.
+
+     M      N          CC error          R_MIN         R_MAX        R_MIN         R_MAX
+                                           (Centered)               (Offcentered)
+
+     3      28        0.349511             1         1.333          1.22         3.847
+     3      66        0.318885             1           1.3         1.218         3.863
+     3     190         0.31811             1         1.507         1.185         4.289
+     3     630        0.326204             1         1.659         1.179           4.4
+     3    2278        0.332194             1         1.696         1.171         4.517
+     3    8646        0.334051             1         1.698         1.166         4.582
+
+CUBE3D_GRID_PLOT_TEST:
+  Use CUBE3D_GRID to project hypersphere points onto
+  the surface of a 3D cube.
+  Use CUBE3D_GRID_PLOT to plot the sampled cube surface,
+  and the surface plus projected grid points.
+
+  1D Grid index N = 16
+  2D Grid = 2N+1 * N+1 = 561
+  Do this for a centered, and an offcentered observation point.
+
+  Plot with centered observation [0,0,0]
+
+  Created plotfile "cube_centered_surface.png".
+  Created plotfile "cube_centered_points.png".
+
+  Plot with offcentered observation [0.8,0.4,0]
+
+  Created plotfile "cube_offcentered_surface.png".
+  Created plotfile "cube_offcentered_points.png".
+
+SPHERE_RANDOM_CENTRALIZE_TEST
+  Estimate sphere parameters from random samples.
+  The spatial dimension is M.
+  The number of sample points is N.
+  The center is at the origin.
+  The radius is 1.
+
+  Perhaps surprisingly, for a fixed R, the error behavior
+  seems roughly the same in all dimensions!
+
+   M       N         C error         R error
+
+
+   2       1               1               1
+   2       2        0.975954        0.782024
+   2       4       0.0399617     0.000972354
+   2       8        0.296532       0.0669249
+   2      16        0.209858       0.0317468
+   2      32        0.038103      0.00108469
+
+   4       1               1               1
+   4       2        0.798366        0.397828
+   4       4        0.562504        0.205742
+   4       8        0.362011       0.0868502
+   4      16        0.233152       0.0323305
+   4      32       0.0925185      0.00544393
+
+   8       1               1               1
+   8       2        0.654616        0.244039
+   8       4        0.531028         0.16551
+   8       8        0.327472       0.0603542
+   8      16        0.283251       0.0439943
+   8      32        0.203871       0.0242494
+
+  16       1               1               1
+  16       2        0.686821        0.273174
+  16       4        0.535811         0.16769
+  16       8        0.237816       0.0292744
+  16      16        0.296526       0.0486541
+  16      32        0.186922       0.0184336
+
+  32       1               1               1
+  32       2        0.696125         0.28208
+  32       4        0.396225       0.0827484
+  32       8        0.387725       0.0791691
+  32      16        0.209273       0.0225234
+  32      32        0.210271       0.0228063
+
+  64       1               1               1
+  64       2        0.714263        0.300123
+  64       4        0.590015        0.192712
+  64       8         0.37839        0.075039
+  64      16        0.229931       0.0270182
+  64      32        0.147763       0.0111182
+
+  128       1               1               1
+  128       2        0.691046        0.277189
+  128       4        0.477486        0.121393
+  128       8        0.352619       0.0646952
+  128      16        0.248515       0.0316304
+  128      32        0.163468       0.0135491
+
+ELLIPSOID_RANDOM_CENTRALIZE_TEST
+  Estimate ellipsoid parameters from random samples.
+  The spatial dimension is M.
+  The number of sample points is N.
+  The center is at the origin.
+  The radiuses vary.
+
+   M       N         C error         R estimate
+
+
+   2       1         1.92795               0
+   2       2         1.24093        0.276941
+   2       4        0.689784         2.07784
+   2       8       0.0780031         1.10711
+   2      16       0.0565527          1.5746
+   2      32        0.184442         1.15558
+
+   4       1         2.04497               0
+   4       2        0.822356         1.67422
+   4       4        0.772415         1.13438
+   4       8        0.386876         1.44791
+   4      16         3.28833         5.52371
+   4      32        0.363437         3.55537
+
+   8       1          2.8518               0
+   8       2         1.84416         1.92117
+   8       4         1.61171         2.61007
+   8       8        0.984223         2.16932
+   8      16        0.163064         1.38995
+   8      32        0.144729         1.35346
+
+  16       1         1.84481               0
+  16       2         1.24811         1.26133
+  16       4         1.75994         2.59277
+  16       8        0.763929         2.42933
+  16      16        0.270503         1.48739
+  16      32        0.322613         1.47596
+
+  32       1         3.51853               0
+  32       2         3.65681         2.41265
+  32       4        0.983564         1.47252
+  32       8        0.649204         1.80178
+  32      16        0.508668         2.75212
+  32      32        0.364816         1.49824
+
+  64       1         3.87265               0
+  64       2         1.65928         1.49941
+  64       4          0.9385         1.83085
+  64       8        0.989898         2.57278
+  64      16        0.891659         2.27014
+  64      32        0.307872         1.67634
+
+  128       1         2.40065               0
+  128       2         1.23962         1.51966
+  128       4          1.1347         2.43158
+  128       8         0.91787         1.89474
+  128      16        0.504075         2.04501
+  128      32        0.519414           2.907
+
+TRIANGLE_RANDOM_CENTRALIZE_TEST
+  Take N random samples of triangle boundary and average.
+  Compare result to area and boundary centroids.
+
+   M       N         Area Centroid   Boundary Centroid
+                     Difference      Difference
+
+   2       1         1.42593         1.64104
+   2       2        0.873824        0.893381
+   2       4        0.390489        0.177629
+   2       8        0.401383        0.237887
+   2      16        0.540553        0.698366
+   2      32        0.643081        0.429188
+   2      64        0.211338         0.18393
+   2     128         0.56912        0.373338
+   2     256        0.355066        0.148468
+   2     512        0.157658       0.0597672
+   2    1024        0.234239       0.0314224
+   2    2048         0.24785       0.0329708
+   2    4096         0.21235      0.00954169
+   2    8192        0.203134       0.0170742
+   2   16384        0.232537       0.0173905
+   2   32768        0.216499      0.00320271
+
+CENTRALIZE_TEST:
+  Normal end of execution.
+
+21-May-2013 11:05:48
+>> 

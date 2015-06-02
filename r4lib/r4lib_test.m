@@ -2,7 +2,7 @@ function r4lib_test ( )
 
 %*****************************************************************************80
 %
-%% R4LIB_TEST tests R4LIB.
+%% R4LIB_TEST tests the R4LIB library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function r4lib_test ( )
 %
 %  Modified:
 %
-%    08 August 2010
+%    28 September 2014
 %
 %  Author:
 %
@@ -20,14 +20,16 @@ function r4lib_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'R4LIB_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the routines in the R4LIB library.\n' );
+  fprintf ( 1, '  Test the R4LIB library.\n' );
 
   r4lib_test001 ( );
-
+  r4lib_test023 ( );
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'R4LIB_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -1,0 +1,243 @@
+<html>
+
+  <head>
+    <title>
+      CC_IO - Read and Write Compressed Column (CC) Sparse Matrix Files
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CC_IO <br> Read and Write Compressed Column (CC) Sparse Matrix Files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CC_IO</b>
+      is a MATLAB library which
+      reads and writes compressed column (CC) sparse matrix files.
+    </p>
+
+    <p>
+      An MxN sparse matrix of NCC nonzero entries in compressed column format
+      is described by three items:
+      <ul>
+        <li>
+          <i>ccc()</i>, a list of N+1 compressed column indices.
+        </li>
+        <li>
+          <i>icc()</i>, a list of NCC row indices.
+        </li>
+        <li>
+          <i>acc()</i>, a list of NCC values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The nonzero entries of column J are stored in locations CCC(J) through
+      CCC(J+1)-1 of ICC and ACC.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CC_IO</b> is available in
+      <a href = "../../c_src/cc_io/cc_io.html">a C version</a> and
+      <a href = "../../cpp_src/cc_io/cc_io.html">a C++ version</a> and
+      <a href = "../../f77_src/cc_io/cc_io.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/cc_io/cc_io.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/cc_io/cc_io.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../data/cc/cc.html">
+      CC</a>,
+      a data directory which
+      contains examples of the Compressed Column (CC)
+      sparse matrix file format;
+    </p>
+
+    <p>
+      <a href = "../../matlab_src/cc_to_st/cc_to_st.html">
+      CC_TO_ST</a>,
+      a MATLAB library which
+      converts a sparse matrix from compressed column (CC)
+      to sparse triple (ST) format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hb_io/hb_io.html">
+      HB_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Harwell Boeing (HB)
+      format for sparse matrices.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_io/mm_io.html">
+      MM_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Matrix Market (MM)
+      format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_io/st_io.html">
+      ST_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Sparse Triplet (ST)
+      format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/st_to_cc/st_to_cc.html">
+      ST_TO_CC</a>,
+      a MATLAB library which
+      converts sparse matrix data from Sparse Triplet (ST) format 
+      to Compressed Column (CC) format.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cc_data_read.m">cc_data_read.m</a>,
+          reads data about a sparse matrix in CC format.
+        </li>
+        <li>
+          <a href = "cc_header_read.m">cc_header_read.m</a>,
+          reads header information about a sparse matrix in CC format.
+        </li>
+        <li>
+          <a href = "cc_mv.m">cc_mv.m</a>,
+          multiplies a CC matrix times a vector.
+        </li>
+        <li>
+          <a href = "cc_print.m">cc_print.m</a>,
+          prints a sparse matrix in CC format.
+        </li>
+        <li>
+          <a href = "cc_print_some.m">cc_print_some.m</a>,
+          prints some of a sparse matrix in CC format.
+        </li>
+        <li>
+          <a href = "cc_write.m">cc_write.m</a>,
+          writes a sparse matrix in CC format to 3 files.
+        </li>
+        <li>
+          <a href = "file_row_count.m">file_row_count.m</a>,
+          counts the number of row records in a file.
+        </li>
+        <li>
+          <a href = "i4vec_data_read.m">i4vec_data_read.m</a>,
+          reads data from an I4VEC file.
+        </li>
+        <li>
+          <a href = "i4vec_dec.m">i4vec_dec.m</a>,
+          decrements an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_inc.m">i4vec_inc.m</a>,
+          increments an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_write.m">i4vec_write.m</a>,
+          writes an I4VEC file.
+        </li>
+        <li>
+          <a href = "r8vec_data_read.m">r8vec_data_read.m</a>,
+          reads data from an R8VEC file.
+        </li>
+        <li>
+          <a href = "r8vec_write.m">r8vec_write.m</a>,
+          writes an R8VEC file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cc_io_test.m">cc_io_test.m</a>
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "cc_io_test01.m">cc_io_test01.m</a>
+          writes a CC matrix to 3 files.
+        </li>
+        <li>
+          <a href = "cc_io_test02.m">cc_io_test02.m</a>
+          reads a CC matrix from 3 files.
+        </li>
+        <li>
+          <a href = "cc_io_test_output.txt">cc_io_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test #1 and #2 write and read back the information for the "simple"
+      5x5 matrix with 12 nonzero entries.  There are files associated with this.
+      <ul>
+        <li>
+          <a href = "simple_acc.txt">simple_acc.txt</a>, the values.
+        </li>
+        <li>
+          <a href = "simple_ccc.txt">simple_ccc.txt</a>, the (0-based) compressed
+          column indices.
+        </li>
+        <li>
+          <a href = "simple_icc.txt">simple_icc.txt</a>, the (0-based) row indices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 19 July 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

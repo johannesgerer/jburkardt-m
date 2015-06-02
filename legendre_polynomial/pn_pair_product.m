@@ -44,7 +44,7 @@ function table = pn_pair_product ( p )
   for k = 1 : order
 
     x = x_table(k);
-    h_table = pn_polynomial ( 1, p, x );
+    h_table = pn_polynomial_value ( 1, p, x );
 
     for i = 1 : p + 1
       for j = 1 : p + 1

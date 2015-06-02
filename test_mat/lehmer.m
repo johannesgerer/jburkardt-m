@@ -2,7 +2,7 @@ function a = lehmer ( m, n )
 
 %*****************************************************************************80
 %
-%% LEHMER returns the Lehmer matrix.
+%% LEHMER returns the LEHMER matrix.
 %
 %  Discussion:
 %
@@ -38,6 +38,8 @@ function a = lehmer ( m, n )
 %
 %    The condition number of A lies between N and 4*N*N.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -72,6 +74,8 @@ function a = lehmer ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = ( min ( i, j ) ) / ( max ( i, j ) );

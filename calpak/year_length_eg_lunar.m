@@ -10,7 +10,7 @@ function value = year_length_eg_lunar ( y )
 %
 %  Modified:
 %
-%    24 September 2012
+%    09 March 2013
 %
 %  Author:
 %
@@ -23,7 +23,7 @@ function value = year_length_eg_lunar ( y )
 %    Output, integer VALUE, the number of
 %    days in the year.
 %
-  if ( .not. year_is_embolismic_eg_lunar ( y ) )
+  if ( ~year_is_embolismic_eg_lunar ( y ) )
     value = 354;
   else
     value = 384;

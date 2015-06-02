@@ -32,6 +32,10 @@ void mexFunction ( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[] )
     The routine carries out the computation of the factorial of X,
     whose value is returned in Y.
 
+  Licensing:
+
+    This code is distributed under the GNU LGPL license.
+
   Modified:
 
     17 July 2006

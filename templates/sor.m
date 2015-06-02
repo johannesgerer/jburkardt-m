@@ -1,11 +1,12 @@
 function [ x, error_norm, iter, flag ]  = sor ( A, x, b, w, max_it, tol )
 
-% [ x, error_norm, iter, flag ]  = sor ( A, x, b, w, max_it, tol )
+%*****************************************************************************80
+%
+%% SOR solves the linear system Ax=b using the Successive Over-Relaxation Method.  
 %
 %  Discussion:
 %
-%    This routine solves the linear system Ax=b using the
-%    Successive Over-Relaxation Method.  When the parameter W
+%    When the parameter W
 %    is set to 1, this is equivalent to the Gauss-Seidel iteration.
 %
 %  Reference:

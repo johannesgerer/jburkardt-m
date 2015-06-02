@@ -13,11 +13,9 @@ function r8vec_transpose_print ( n, a, title )
 %    A = (/ 1.0, 2.1, 3.2, 4.3, 5.4, 6.5, 7.6, 8.7, 9.8, 10.9, 11.0 /)
 %    TITLE = 'My vector:  '
 %
-%    My vector:
-%
-%        1.0    2.1    3.2    4.3    5.4
-%        6.5    7.6    8.7    9.8   10.9
-%       11.0
+%    My vector:   1.0    2.1    3.2    4.3    5.4
+%                 6.5    7.6    8.7    9.8   10.9
+%                11.0
 %
 %  Licensing:
 %
@@ -25,7 +23,7 @@ function r8vec_transpose_print ( n, a, title )
 %
 %  Modified:
 %
-%    12 November 2010
+%    11 May 2014
 %
 %  Author:
 %
@@ -39,10 +37,17 @@ function r8vec_transpose_print ( n, a, title )
 %
 %    Input, string TITLE, a title.
 %
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '%s\n', title );
-  fprintf ( 1, '\n' );
+  title_length = length ( title );
+
   for ilo = 1 : 5 : n
+    if ( ilo == 1 )
+      fprintf ( 1, '%s', title );
+    else
+      for i = 1 : title_length
+        fprintf ( 1, ' ' );
+      end
+    end
+    fprintf ( 1, '  ' );
     ihi = min ( ilo + 5 - 1, n );
     for i = ilo : ihi
       fprintf ( 1, '  %12g', a(i) );

@@ -46,7 +46,7 @@ function [ n_data, n, c ] = euler_number_values ( n_data )
 %
 %  Modified:
 %
-%    16 September 2004
+%    04 February 2015
 %
 %  Author:
 %
@@ -77,7 +77,7 @@ function [ n_data, n, c ] = euler_number_values ( n_data )
   n_max = 8;
 
   c_vec = [ ...
-    1, 0, -1, 5, 61, 1385, -50521, 2702765 ];
+    1, 0, -1, 5, -61, 1385, -50521, 2702765 ];
 
   n_vec = [ ...
      0, 1, 2, 4, 6, 8, 10, 12 ];

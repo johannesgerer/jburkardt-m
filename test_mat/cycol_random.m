@@ -1,4 +1,4 @@
-function [ a, seed ] = cycol_random ( m, n, k, seed )
+function a = cycol_random ( m, n, k, key )
 
 %*****************************************************************************80
 %
@@ -52,12 +52,12 @@ function [ a, seed ] = cycol_random ( m, n, k, seed )
 %
 %    Input, integer K, the number of distinct columns to form.
 %
-%    Input, integer SEED, a seed for the random number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(M,N), the matrix.
 %
-%    Output, integer SEED, a seed for the random number generator.
-%
+  seed = key
+
   [ a, seed ] = r8mat_uniform_01 ( m, k, seed );
 
   for j = k+1 : n

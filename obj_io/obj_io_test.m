@@ -2,11 +2,7 @@ function obj_io_test ( )
 
 %*****************************************************************************80
 %
-%% OBJ_IO_TEST is the test program for OBJ_IO.
-%
-%  Discussion:
-%
-%    OBJ_IO_PRB runs the tests of the OBJ_IO routines.
+%% OBJ_IO_TEST tests the OBJ_IO library.
 %
 %  Licensing:
 %
@@ -20,11 +16,9 @@ function obj_io_test ( )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'OBJ_IO_PRB:\n' );
+  fprintf ( 1, 'OBJ_IO_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the OBJ_IO library.\n' );
 
@@ -36,9 +30,8 @@ function obj_io_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'OBJ_IO_PRB:\n' );
+  fprintf ( 1, 'OBJ_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

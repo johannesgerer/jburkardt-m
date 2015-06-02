@@ -2,7 +2,7 @@ function a = hadamard ( m, n )
 
 %*****************************************************************************80
 %
-%% HADAMARD returns a Hadamard matrix.
+%% HADAMARD returns a HADAMARD matrix.
 %
 %  Definition:
 %
@@ -100,6 +100,8 @@ function a = hadamard ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   if ( m <= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'HADAMARD - Fatal error!\n' );

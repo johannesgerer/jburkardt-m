@@ -2,7 +2,7 @@ function a = rectangle_adj ( row_num, col_num, n )
 
 %*****************************************************************************80
 %
-%% RECTANGLE_ADJ returns the rectangle_adjacency matrix.
+%% RECTANGLE_ADJ returns the RECTANGLE_ADJ matrix.
 %
 %  Discussion:
 %

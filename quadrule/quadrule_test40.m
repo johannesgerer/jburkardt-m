@@ -2,7 +2,7 @@ function quadrule_test40 ( )
 
 %*****************************************************************************80
 %
-%% TEST40 tests NCO_COMPUTE and SUM_SUB.
+%% QUADRULE_TEST40 tests NCO_COMPUTE and SUM_SUB.
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test40 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST40\n' );
+  fprintf ( 1, 'QUADRULE_TEST40\n' );
   fprintf ( 1, '  NCO_COMPUTE sets up an open Newton-Cotes rule;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

@@ -76,7 +76,7 @@ function value = f_hofstadter ( n )
   if ( n <= 0 )
     value = 0;
   else
-    value = n - f_hofstadter ( n-1 );
+    value = n - f_hofstadter ( n - 1 );
   end
 
   return

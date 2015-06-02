@@ -10,7 +10,7 @@ function [ value, ifault ] = digamma ( x )
 %
 %  Modified:
 %
-%    18 January 2008
+%    03 June 2013
 %
 %  Author:
 %
@@ -36,12 +36,7 @@ function [ value, ifault ] = digamma ( x )
 %    0, no error.
 %    1, X <= 0.
 %
-  c = 8.5;
-  d1 = -0.5772156649;
-  s = 0.00001;
-  s3 = 0.08333333333;
-  s4 = 0.0083333333333;
-  s5 = 0.003968253968;
+
 %
 %  Check the input.
 %
@@ -54,29 +49,32 @@ function [ value, ifault ] = digamma ( x )
 %  Initialize.
 %
   ifault = 0;
-  y = x;
   value = 0.0;
 %
-%  Use approximation if argument <= S.
+%  Use approximation for small argument.
 %
-  if ( y <= s )
-    value = d1 - 1.0 / y;
+  if ( x <= 0.00001 )
+    euler_mascheroni = 0.57721566490153286060;
+    value = - euler_mascheroni - 1.0 / x;
     return
   end
 %
-%  Reduce to DIGAMA(X + N) where (X + N) >= C.
+%  Reduce to DIGAMA(X + N).
 %
-  while ( y < c )
-    value = value - 1.0 / y;
-    y = y + 1.0;
+  while ( x < 8.5 )
+    value = value - 1.0 / x;
+    x = x + 1.0;
   end
 %
-%  Use Stirling's (actually de Moivre's) expansion if argument > C.
+%  Use Stirling's (actually de Moivre's) expansion.
 %
-  r = 1.0 / y;
-  value = value + log ( y ) - 0.5 * r;
+  r = 1.0 / x;
+  value = value + log ( x ) - 0.5 * r;
   r = r * r;
-  value = value - r * ( s3 - r * ( s4 - r * s5 ) );
+  value = value ...
+    - r * ( 1.0 / 12.0 ...
+    - r * ( 1.0 / 120.0 ...
+    - r *   1.0 / 252.0 ) );
 
   return
 end

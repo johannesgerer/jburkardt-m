@@ -47,7 +47,7 @@ function a = pascal1 ( n )
 %    The inverse of A is the same as A, except that entries in "odd"
 %    positions have changed sign:
 %
-%      B(I,J) = (-1)**(I+J) * A(I,J)
+%      B(I,J) = (-1)^(I+J) * A(I,J)
 %
 %    The product A*A' is a Pascal matrix
 %    of the sort created by subroutine PASCAL2.
@@ -55,6 +55,8 @@ function a = pascal1 ( n )
 %    Let the matrix C have the same entries as A, except that
 %    the even columns are negated.  Then Inverse(C) = C, and
 %    C' * C = the Pascal matrix created by PASCAL2.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -82,6 +84,8 @@ function a = pascal1 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

@@ -26,7 +26,7 @@ function gamblers_ruin_simulation ( a_stakes, b_stakes, game_num )
 %
 %  Modified:
 %
-%    07 November 2009
+%    08 April 2013
 %
 %  Author:
 %
@@ -42,6 +42,24 @@ function gamblers_ruin_simulation ( a_stakes, b_stakes, game_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GAMBLERS_RUIN_SIMULATION\n' );
   fprintf ( 1, '  MATLAB version\n' );
+
+  if ( nargin < 1 )
+    a_stakes = input ( 'Enter A_STAKES: ' );
+  else
+    a_stakes = str2num ( a_stakes );
+  end
+
+  if ( nargin < 2 )
+    b_stakes = input ( 'Enter B_STAKES: ' );
+  else
+    b_stakes = str2num ( b_stakes );
+  end
+
+  if ( nargin < 3 )
+    game_num = input ( 'Enter GAME_NUM, the number of games to play: ' );
+  else
+    game_num = str2num ( game_num );
+  end
 
   a_wins = 0;
   b_wins = 0;

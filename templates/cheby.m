@@ -1,8 +1,8 @@
 function [ x, error_norm, iter, flag ] = cheby ( A, x, b, M, max_it, tol )
 
-% [ x, error_norm, iter, flag ] = cheby ( A, x, b, M, max_it, tol )
+%*****************************************************************************80
 %
-%  CHEBY applies the Chebyshev iteration to the SPD system A*x=b.
+%% CHEBY applies the Chebyshev iteration to the SPD system A*x=b.
 %
 %  Discussion:
 %

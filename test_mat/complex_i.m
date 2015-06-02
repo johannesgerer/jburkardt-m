@@ -2,7 +2,7 @@ function a = complex_i ( )
 
 %*****************************************************************************80
 %
-%% COMPLEX_I returns a 2 by 2 matrix that behaves like the imaginary unit.
+%% COMPLEX_I returns the COMPLEX_I matrix.
 %
 %  Formula:
 %

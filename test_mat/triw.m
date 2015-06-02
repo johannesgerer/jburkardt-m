@@ -2,7 +2,7 @@ function a = triw ( alpha, k, n )
 
 %*****************************************************************************80
 %
-%% TRIW returns the Wilkinson banded upper triangular matrix.
+%% TRIW returns the TRIW matrix.
 %
 %  Formula:
 %
@@ -41,7 +41,9 @@ function a = triw ( alpha, k, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
-%    Adding -2**(2-N) to the (N,1) element makes the matrix singular.
+%    Adding -2^(2-N) to the (N,1) element makes the matrix singular.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -91,6 +93,8 @@ function a = triw ( alpha, k, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

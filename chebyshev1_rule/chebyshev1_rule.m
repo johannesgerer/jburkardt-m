@@ -33,21 +33,15 @@ function chebyshev1_rule ( order, a, b, filename )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute a Gauss-Chebyshev type 1 rule for approximating\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    Integral ( A <= x <= B ) f(x) / sqrt ( ( x - A ) * ( B - x ) ) dx\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  of order ORDER.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The user specifies ORDER, A, B, and FILENAME.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  ORDER is the number of points;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  A is the left endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  B is the right endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  FILENAME is used to generate 3 files:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    filename_w.txt - the weight file\n' );
   fprintf ( 1, '    filename_x.txt - the abscissa file.\n' );
   fprintf ( 1, '    filename_r.txt - the region file.\n' );
@@ -59,33 +53,31 @@ function chebyshev1_rule ( order, a, b, filename )
 %
 %  Get ORDER.
 %
-  if ( 1 <= nargin )
-
-  else
+  if ( nargin < 1 )
     order = input ( '  Enter the rule order ORDER:  ' );
+  elseif ( ischar ( order ) )
+    order = str2num ( order );
   end
 %
 %  Get A.
 %
-  if ( 2 <= nargin )
-
-  else
+  if ( nargin < 2 )
     a = input ( '  Enter the left endpoint A:  ' );
+  elseif ( ischar ( a ) )
+    a = str2num ( a );
   end
 %
 %  Get B.
 %
-  if ( 3 <= nargin )
-
-  else
+  if ( nargin < 3 )
     b = input ( '  Enter the right endpoint B:  ' );
+  elseif ( ischar ( b ) )
+    b = str2num ( b );
   end
 %
 %  Get FILENAME.
 %
-  if ( 4 <= nargin )
-
-  else
+  if ( nargin < 4 )
     fprintf ( 1,  '\n' );
     fprintf ( 1,  '  FILENAME specifies the ''root name'' of the quadrature files).\n' );
     filename = input ( '  Enter the value of FILENAME as a quoted string:  ' );

@@ -29,6 +29,8 @@ function a = fibonacci3_inverse ( n )
 %
 %    Output, real A(N,N), the inverse of the matrix.
 %
+  a = zeros ( n, n );
+
   d(n) = 1.0;
   for i = n - 1 : -1 : 1
     d(i) = 1.0 + 1.0 / d(i+1);

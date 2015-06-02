@@ -24,7 +24,7 @@ function test_local_min_one ( a, b, eps, t, f, title )
 %
 %    Input, real T, a positive absolute error tolerance.
 %
-%    Input, real value F ( x ), the name of a user-supplied
+%    Input, real value = F ( x ), the name of a user-supplied
 %    function whose local minimum is being sought.
 %
 %    Input, string TITLE, a title for the problem.

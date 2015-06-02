@@ -22,7 +22,7 @@ function c8_print ( a, title )
 %
 %    Input, string TITLE, a title.
 %
-  fprintf ( 1, '%s  ( %14f, %14f )\n', title, real ( a ), imag ( a ) );
+  fprintf ( 1, '%s  ( %g, %g )\n', title, real ( a ), imag ( a ) );
 
   return
 end

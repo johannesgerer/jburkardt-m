@@ -1,7 +1,13 @@
 function a_mass = assemble_mass ( area, indx, nel, neqn, nnodes, node, ...
   nq, nunk, xc )
 
+%*****************************************************************************80
+%
 %% ASSEMBLE_MASS assembles the mass matrix.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -45,7 +51,7 @@ function a_mass = assemble_mass ( area, indx, nel, neqn, nnodes, node, ...
   xq = zeros(3);
   wq = zeros(3);
 
-  [ xq, wq ] = gauss3pt;
+  [ xq, wq ] = gauss3pt ( );
 
   for it = 1 : nel
 

@@ -24,6 +24,8 @@ function x = frank_solution ( n, k )
 %
 %    Output, real X(N,K), the solution matrix.
 %
+  x = zeros ( n, k );
+
   x(1:n-1,1) = 0.0;
   x(  n  ,1) = 1.0;
 

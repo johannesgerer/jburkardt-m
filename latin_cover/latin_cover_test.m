@@ -31,7 +31,6 @@ function latin_cover_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATIN_COVER_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

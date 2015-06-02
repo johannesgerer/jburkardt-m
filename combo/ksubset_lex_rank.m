@@ -63,7 +63,7 @@ function rank = ksubset_lex_rank ( k, n, t )
 
     if ( tim1 + 1 <= t(i) - 1 )
       for j = tim1 + 1 : t(i) - 1
-        rank = rank + binomial ( n - j, k - i );
+        rank = rank + i4_choose ( n - j, k - i );
       end
     end
 

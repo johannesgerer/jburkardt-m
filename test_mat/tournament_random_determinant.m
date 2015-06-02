@@ -1,4 +1,4 @@
-function [ determ, seed ] = symm_random_determinant ( n, seed )
+function determ = symm_random_determinant ( n, key )
 
 %*****************************************************************************80
 %
@@ -20,7 +20,7 @@ function [ determ, seed ] = symm_random_determinant ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real DETERM, the determinant.
 %

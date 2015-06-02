@@ -2,7 +2,7 @@ function piecewise_linear_product_integral_test ( )
 
 %*****************************************************************************80
 %
-%% PIECEWISE_LINEAR_PRODUCT_INTEGRAL_TEST is the main program for PIECEWISE_LINEAR_PRODUCT_INTEGRAL_PRB.
+%% PIECEWISE_LINEAR_PRODUCT_INTEGRAL_TEST tests the PIECEWISE_LINEAR_PRODUCT_INTEGRAL library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function piecewise_linear_product_integral_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PIECEWISE_LINEAR_PRODUCT_INTEGRAL_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -33,7 +32,6 @@ function piecewise_linear_product_integral_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PIECEWISE_LINEAR_PRODUCT_INTEGRAL_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

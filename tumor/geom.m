@@ -1,6 +1,12 @@
 function geom ( )
 
+%*****************************************************************************80
+%
 %% GEOM sets up geometric information using piecewise quadratic elements.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

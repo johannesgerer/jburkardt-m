@@ -22,6 +22,12 @@ function K = spherical_correlation ( s, t )
 %    A Review of Gaussian Random Fields and Correlation Functions,
 %    Norwegian Computing Center, 1997.
 %
+%  Parameters:
+%
+%    Input, real S(*), T(*), pairs of argument values.
+%
+%    Output, real K(*), the correlation function values
+%
   K = zeros ( size ( s ) );
 
   i = find ( abs ( s - t ) < 1.0 );
@@ -31,5 +37,3 @@ function K = spherical_correlation ( s, t )
   return
 end
 
-
-  

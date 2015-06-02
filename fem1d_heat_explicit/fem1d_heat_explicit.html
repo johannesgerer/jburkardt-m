@@ -1,0 +1,337 @@
+<html>
+
+  <head>
+    <title>
+      FEM1D_HEAT_EXPLICIT - Time Dependent 1D Heat Equation, Finite Element, Explicit Time Stepping
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM1D_HEAT_EXPLICIT <br> 
+      Finite Element Solution of the<br> 
+      Time Dependent 1D Heat Equation<br>
+      using Explicit Time Stepping
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM1D_HEAT_EXPLICIT</b> 
+      is a MATLAB library which
+      solves the time-dependent 1D heat equation, using the finite element
+      method in space, and an explicit version of the method of lines to handle
+      integration in time.
+    </p>
+
+    <p>
+      This program solves
+      <pre>
+        dUdT - k * d2UdX2 = F(X,T)
+      </pre>
+      over the interval [A,B] with boundary conditions
+      <pre>
+        U(A,T) = UA(T),
+        U(B,T) = UB(T),
+      </pre>
+      over the time interval [T0,T1] with initial conditions
+      <pre>
+        U(X,T0) = U0(X)
+      </pre>
+    </p>
+
+    <p>
+      The spatial derivatives are approximated using the finite element method,
+      with piecewise linear elements.
+    </p>
+
+    <p>
+      The solver applies an
+      explicit forward Euler approximation to the first derivative in time.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM1D_HEAT_EXPLICIT</b> is available in
+      <a href = "../../m_src/fem1d_heat_explicit/fem1d_heat_explicit.html">a MATLAB version</a> and
+      <a href = "../../py_src/fem1d_heat_explicit/fem1d_heat_explicit.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_explicit/fd1d_heat_explicit.html">
+      FD1D_HEAT_EXPLICIT</a>,
+      a MATLAB library which
+      uses the finite difference method and explicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_heat_implicit/fem1d_heat_implicit.html">
+      FEM1D_HEAT_IMPLICIT</a>,
+      a MATLAB program which
+      uses the finite element method and implicit time stepping with
+      the backward Euler method to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_heat_steady/fem1d_heat_steady.html">
+      FEM1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite element method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          George Lindfield, John Penny,<br>
+          Numerical Methods Using MATLAB,<br>
+          Second Edition,<br>
+          Prentice Hall, 1999,<br>
+          ISBN: 0-13-012641-1,<br>
+          LC: QA297.P45.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "assemble_fem.m">assemble_fem.m</a>, 
+          assembles the finite element stiffness matrix and right hand side.
+        </li>
+        <li>
+          <a href = "assemble_mass.m">assemble_mass.m</a>, 
+          assembles the finite element mass matrix.
+        </li>
+        <li>
+          <a href = "basis_function.m">basis_function.m</a>, 
+          evaluates the linear basis functions.
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit.m">fem1d_heat_explicit.m</a>, 
+          takes one explicit time step.
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit_cfl.m">fem1d_heat_explicit_cfl.m</a>, 
+          computes the Courant-Friedrichs-Loewy coefficient;
+        </li>
+        <li>
+          <a href = "quadrature_set.m">quadrature_set.m</a>, 
+          sets the quadrature rule;
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>, 
+          writes an R8MAT to a file.
+        </li>
+        <li>
+          <a href = "r8vec_write.m">r8vec_write.m</a>, 
+          writes an R8VEC to a file.
+        </li>
+        <li>
+          <a href = "reference_to_physical.m">reference_to_physical.m</a>, 
+          maps reference data to a subinterval;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem1d_heat_explicit_test.m">fem1d_heat_explicit_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit_test01.m">fem1d_heat_explicit_test01.m</a>, 
+          runs test 1;
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit_test02.m">fem1d_heat_explicit_test02.m</a>, 
+          runs test 2;
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit_test03.m">fem1d_heat_explicit_test03.m</a>, 
+          runs test 3;
+        </li>
+        <li>
+          <a href = "fem1d_heat_explicit_test_output.txt">fem1d_heat_explicit_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST01</b> runs with initial condition 50 everywhere, boundary conditions
+      of 90 on the left and 70 on the right, and no right hand side source term.
+      <ul>
+        <li>
+          <a href = "bc_test01.m">bc_test01.m</a>, 
+          enforces the boundary conditions.
+        </li>
+        <li>
+          <a href = "h_test01.txt">h_test01.txt</a>, 
+          the computed H data.
+        </li>
+        <li>
+          <a href = "ic_test01.m">ic_test01.m</a>, 
+          enforces the initial condition.
+        </li>
+        <li>
+          <a href = "k_test01.m">k_test01.m</a>, 
+          sets the conductivity.
+        </li>
+        <li>
+          <a href = "plot_test01.png">plot_test01.png</a>, 
+          a PNG image of the solution.
+        </li>
+        <li>
+          <a href = "rhs_test01.m">rhs_test01.m</a>, 
+          supplies the right hand side source term.
+        </li>
+        <li>
+          <a href = "t_test01.txt">t_test01.txt</a>, 
+          the T data.
+        </li>
+        <li>
+          <a href = "x_test01.txt">x_test01.txt</a>, 
+          the X data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST02</b> uses an exact solution of g(x,t) = exp ( - t ) .* sin ( sqrt ( k ) * x ).
+      <ul>
+        <li>
+          <a href = "bc_test02.m">bc_test02.m</a>, 
+          enforces the boundary conditions.
+        </li>
+        <li>
+          <a href = "exact_test02.m">exact_test02.m</a>, 
+          evaluates the exact solution.
+        </li>
+        <li>
+          <a href = "g_test02.txt">g_test02.txt</a>, 
+          the exact data.
+        </li>
+        <li>
+          <a href = "h_test02.txt">h_test02.txt</a>, 
+          the computed H data.
+        </li>
+        <li>
+          <a href = "ic_test02.m">ic_test02.m</a>, 
+          enforces the initial condition.
+        </li>
+        <li>
+          <a href = "k_test02.m">k_test02.m</a>, 
+          sets the conductivity.
+        </li>
+        <li>
+          <a href = "plot_test02.png">plot_test02.png</a>, 
+          a PNG image of the solution.
+        </li>
+        <li>
+          <a href = "rhs_test02.m">rhs_test02.m</a>, 
+          supplies the right hand side source term.
+        </li>
+        <li>
+          <a href = "t_test02.txt">t_test02.txt</a>, 
+          the T data.
+        </li>
+        <li>
+          <a href = "x_test02.txt">x_test02.txt</a>, 
+          the X data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST03</b> runs on the interval -5 <= X <= 5, with initial condition 15 on the
+      entire left and 25 on the entire right.  The solution should settle down to a
+      straight line from the left boundary to the right.
+      <ul>
+        <li>
+          <a href = "bc_test03.m">bc_test03.m</a>, 
+          enforces the boundary conditions.
+        </li>
+        <li>
+          <a href = "h_test03.txt">h_test03.txt</a>, 
+          the computed H data.
+        </li>
+        <li>
+          <a href = "ic_test03.m">ic_test03.m</a>, 
+          enforces the initial condition.
+        </li>
+        <li>
+          <a href = "k_test03.m">k_test03.m</a>, 
+          sets the conductivity.
+        </li>
+        <li>
+          <a href = "plot_test03.png">plot_test03.png</a>, 
+          a PNG image of the solution.
+        </li>
+        <li>
+          <a href = "rhs_test03.m">rhs_test03.m</a>, 
+          supplies the right hand side source term.
+        </li>
+        <li>
+          <a href = "t_test03.txt">t_test03.txt</a>, 
+          the T data.
+        </li>
+        <li>
+          <a href = "x_test03.txt">x_test03.txt</a>, 
+          the X data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

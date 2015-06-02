@@ -2,7 +2,7 @@ function st_io_test01 ( )
 
 %*****************************************************************************80
 %
-%% ST_IO_TEST01 tests ST_HEADER_WRITE and ST_DATA_WRITE.
+%% ST_IO_TEST01 tests ST_WRITE.
 %
 %  Discussion:
 %
@@ -23,41 +23,39 @@ function st_io_test01 ( )
 %
 %  Modified:
 %
-%    01 November 2008
+%    23 July 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-  nrow = 5;
-  ncol = 5;
-  nnzero = 11;
-  a = [ 51.0, 12.0, 11.0, 33.0, 15.0, 53.0, 55.0, 22.0, 35.0, 44.0, 21.0 ]';
-  col = [ 1, 2, 1, 3, 5, 3, 5, 2, 5, 4, 1 ];
-  row = [ 5, 1, 1, 3, 1, 5, 5, 2, 3, 4, 2 ];
+  m = 5;
+  n = 5;
+  nst = 11;
+  ast = [ 51.0, 12.0, 11.0, 33.0, 15.0, 53.0, 55.0, 22.0, 35.0, 44.0, 21.0 ]';
+  ist = [ 5, 1, 1, 3, 1, 5, 5, 2, 3, 4, 2 ];
+  jst = [ 1, 2, 1, 3, 5, 3, 5, 2, 5, 4, 1 ];
   output_filename = 'a5by5.st';
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ST_IO_TEST01\n' );
-  fprintf ( 1, '  ST_HEADER_WRITE writes the header of an ST file;\n' );
-  fprintf ( 1, '  ST_DATA_WRITE writes the data of an ST file.\n' );
+  fprintf ( 1, '  ST_WRITE writes an ST file.\n' );
 
-  base1 = 1;
-  base0 = 0;
-  row = st_rebase ( base1, base0, nnzero, row );
-  col = st_rebase ( base1, base0, nnzero, col );
+  ist(1:nst) = ist(1:nst) - 1;
+  jst(1:nst) = jst(1:nst) - 1;
 
-  st_header_print ( nrow, ncol, nnzero )
+  i_min = min ( ist );
+  i_max = max ( ist );
+  j_min = min ( jst );
+  j_max = max ( jst );
 
-  st_data_print ( nrow, ncol, nnzero, row, col, a, ...
-    '  TEST01 matrix data to be written to a file:' );
+  st_header_print ( i_min, i_max, j_min, j_max, m, n, nst );
 
-  st_header_write ( output_filename, nrow, ncol, nnzero );
+  st_print ( m, n, nst, ist, jst, ast, '  Sparse Triplet (ST) data:' );
 
-  st_data_write ( output_filename, nrow, ncol, nnzero, row, col, a );
+  st_write ( output_filename, m, n, nst, ist, jst, ast );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'ST_IO_TEST01\n' );
   fprintf ( 1, '  Wrote the matrix data to "%s".\n', output_filename );
 
   return

@@ -11,7 +11,7 @@ function a = tri_upper_inverse ( alpha, n )
 %    elseif ( I = J - 1 )
 %      A(I,J) = -ALPHA
 %    elseif ( I < J )
-%      A(I,J) = - ALPHA * ( 1-ALPHA)**(J-I-1)
+%      A(I,J) = - ALPHA * ( 1-ALPHA)^(J-I-1)
 %    else
 %      A(I,J) = 0
 %
@@ -63,6 +63,8 @@ function a = tri_upper_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

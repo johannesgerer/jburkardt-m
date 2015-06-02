@@ -10,7 +10,7 @@ function value = year_is_leap_persian ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    30 March 2013
 %
 %  Author:
 %
@@ -35,7 +35,7 @@ function value = year_is_leap_persian ( y )
     y2 = y - 474;
   end
 
-  y3 = 474 + mod ( y2, 2820 )
+  y3 = 474 + mod ( y2, 2820 );
 
   if ( mod ( 682 * ( y3 + 38 ), 2816 ) < 682 )
     value = 1;

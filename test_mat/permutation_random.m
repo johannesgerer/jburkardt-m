@@ -1,4 +1,4 @@
-function [ a, seed ] = permutation_random ( n, seed )
+function a = permutation_random ( n, key )
 
 %*****************************************************************************80
 %
@@ -27,18 +27,16 @@ function [ a, seed ] = permutation_random ( n, seed )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Input, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
-%    Output, integer SEED, a seed for the random 
-%    number generator.
-%
   p = i4vec_indicator ( n );
 
+  seed = key;
+
   for i = 1 : n
-    [ j, seed ] = i4_uniform ( i, n, seed );
+    [ j, seed ] = i4_uniform_ab ( i, n, seed );
     temp = p(j);
     p(j) = p(i);
     p(i) = temp;

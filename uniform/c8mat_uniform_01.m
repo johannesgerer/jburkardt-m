@@ -1,4 +1,4 @@
-function [ zmat, seed ] = c8mat_uniform_01 ( m, n, seed )
+function [ c, seed ] = c8mat_uniform_01 ( m, n, seed )
 
 %*****************************************************************************80
 %
@@ -58,11 +58,11 @@ function [ zmat, seed ] = c8mat_uniform_01 ( m, n, seed )
 %
 %    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, complex ZMAT(M,N), the pseudorandom complex matrix.
+%    Output, complex C(M,N), the pseudorandom complex matrix.
 %
 %    Output, integer SEED, a seed for the random number generator.
 %
-  zmat = zeros ( m, n );
+  c = zeros ( m, n );
 
   i4_huge = 2147483647;
 
@@ -96,7 +96,7 @@ function [ zmat, seed ] = c8mat_uniform_01 ( m, n, seed )
 
       theta = 2.0 * pi * seed * 4.656612875E-10;
 
-      zmat(i1,i2) = r * ( cos ( theta ) + i * sin ( theta ) );
+      c(i1,i2) = r * ( cos ( theta ) + i * sin ( theta ) );
 
     end
 

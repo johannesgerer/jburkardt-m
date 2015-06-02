@@ -31,11 +31,7 @@ function w = ncc_compute_weights ( n )
 
   else
 
-    for i = 1 : n
-      x(i) = ( ( n - i     ) * x_min   ...
-             + (     i - 1 ) * x_max ) ...
-             / ( n     - 1 );
-    end
+    x = linspace ( x_min, x_max, n );
 
     w = nc_compute ( n, x_min, x_max, x );
 

@@ -2,11 +2,7 @@ function sandia_sgmgg_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for SANDIA_SGMGG_TEST.
-%
-%  Discussion:
-%
-%    SANDIA_SGMGG_TEST tests generalized sparse grid routines.
+%% SANDIA_SGMGG_TEST tests the SANDIA_SGMGG library.
 %
 %  Licensing:
 %

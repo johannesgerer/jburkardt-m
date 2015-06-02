@@ -2,7 +2,7 @@ function a = zero ( m, n )
 
 %*****************************************************************************80
 %
-%% ZERO returns the zero matrix.
+%% ZERO returns the ZERO matrix.
 %
 %  Formula:
 %
@@ -49,6 +49,8 @@ function a = zero ( m, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -67,7 +69,7 @@ function a = zero ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
-  a(1:m,1:n) = 0.0;
+  a = zeros ( m, n );
 
   return
 end

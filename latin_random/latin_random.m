@@ -18,7 +18,7 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
 %  Modified:
 %
-%    08 April 2003
+%    12 November 2014
 %
 %  Author:
 %
@@ -30,19 +30,13 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
 %    Input, integer POINT_NUM, the number of points.
 %
-%    Input, integer SEED, a seed for UNIFORM, the random number generator.
+%    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, real X(dim_num,point_num), the points.
+%    Output, real X(DIM_NUM,POINT_NUM), the points.
 %
 %    Output, integer SEED, the updated random number seed.
 %
-  base = 1;
-
-  for i = 1: dim_num
-    for j = 1: point_num
-      [ x(i,j), seed ] = r8_uniform_01 ( seed );
-    end
-  end
+  [ x, seed ] = r8mat_uniform_01 ( dim_num, point_num, seed );
 %
 %  For spatial dimension I,
 %    pick a random permutation of 1 to POINT_NUM,
@@ -51,7 +45,7 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
   for i = 1: dim_num
 
-    [ perm, seed ] = perm_uniform ( point_num, base, seed );
+    [ perm, seed ] = perm_uniform ( point_num, seed );
 
     for j = 1: point_num
       x(i,j) = ( ( perm(j) - 1 ) + x(i,j) ) / ( point_num );

@@ -2,11 +2,21 @@ function a = hartley ( n )
 
 %*****************************************************************************80
 %
-%% HARTLEY returns the Hartley matrix.
+%% HARTLEY returns the HARTLEY matrix.
 %
 %  Formula:
 %
 %    A(I,J) = SIN ( 2*PI*(i-1)*(j-1)/N ) + COS( 2*PI*(i-1)*(j-1)/N )
+%
+%  Example:
+%
+%    N = 5
+%
+%    1.0000    1.0000    1.0000    1.0000    1.0000
+%    1.0000    1.2601   -0.2212   -1.3968   -0.6420
+%    1.0000   -0.2212   -0.6420    1.2601   -1.3968
+%    1.0000   -1.3968    1.2601   -0.6420   -0.2212
+%    1.0000   -0.6420   -1.3968   -0.2212    1.2601
 %
 %  Properties:
 %
@@ -46,6 +56,8 @@ function a = hartley ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

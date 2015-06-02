@@ -27,18 +27,63 @@
       has a variable number of input arguments.
     </p>
 
+    <p>
+      If a MATLAB function takes input arguments, such as
+      <pre>
+        function value = summer ( alpha, beta )
+      </pre>
+      then there are two ways of supplying some or all the argument 
+      values when invoking the function.  
+    </p>
+
+    <p>
+      We can call with commandline arguments:
+      <pre>
+        value = summer
+        or
+        value = summer 2
+        or
+        value = summer 2 4
+      </pre>
+      or with functional arguments:
+      <pre>
+        value = summer ( )
+        or
+        value = summer ( 2 )
+        or
+        value = summer ( 2, 4 )
+      </pre>
+      as long as the arguments are processed correctly.
+    </p>
+
+    <p>
+      In the commandline form, the arguments
+      will be given to the function as character strings, which must
+      be re-interpreted as numbers.  A convenient way to allow the user
+      to use either way of invoking the function requires that the
+      function include a check as to the type of value it has
+      been given.  For example, to handle ALPHA, we might write
+      <pre>
+        if ( nargin < 1 )
+          alpha = input ( 'Enter value of alpha: ' );
+        elseif ( ischar ( alpha ) )
+          alpha = str2num ( alpha );
+        end
+      </pre>
+    </p>
+
     <h3 align = "center">
       Licensing:
     </h3>
  
     <p>
-      The computer code and data files described and made available on this web page 
+      The computer code and data files made available on this web page 
       are distributed under
       <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
     </p>
 
     <h3 align = "center">
-      Related Data and Programs:
+      Languages:
     </h3>
 
     <p>
@@ -59,6 +104,13 @@
       <ul>
         <li>
           <a href = "args.m">args.m</a>, the source code;
+        </li>
+        <li>
+          <a href = "summer.m">summer.m</a>, a function which
+          will compute the sum of its two arguments.  The function
+          can be invoked using the commandline or functional form;
+          some or all of the arguments may be omitted, in which case
+          the function will request them.
         </li>
         <li>
           <a href = "timestamp.m">timestamp.m</a>, 
@@ -89,7 +141,7 @@
     <hr>
 
     <i>
-      Last revised on 04 January 2006.
+      Last revised on 21 April 2013.
     </i>
 
     <!-- John Burkardt -->

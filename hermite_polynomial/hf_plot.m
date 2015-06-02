@@ -2,7 +2,11 @@ function hf_plot ( a, b, index, filename )
 
 %*****************************************************************************80
 %
-%% HF_PLOT plots Hermite functions.
+%% HF_PLOT plots Hermite functions Hf(i,x).
+%
+%  Discussion:
+%
+%    Hf(I,X) represents the Hermite function of "degree" I.  
 %
 %  Licensing:
 %
@@ -10,7 +14,7 @@ function hf_plot ( a, b, index, filename )
 %
 %  Modified:
 %
-%    10 March 2012
+%    02 February 2014
 %
 %  Author:
 %
@@ -35,13 +39,13 @@ function hf_plot ( a, b, index, filename )
   hold on
   for i = 1 : index_num
     n = index(i);
-    y = hf_function ( m, n, x );
+    y = hf_function_value ( m, n, x );
     plot ( x, y(:,n+1), 'LineWidth', 2 );
   end
   grid on
-  xlabel ( '<--- X --->' )
-  ylabel ( '<--- Hf(n,x) --->' )
-  title ( 'Hermite functions Hf(n,x)' )
+  xlabel ( '<--- X --->', 'Fontsize', 16 )
+  ylabel ( '<--- Hf(n,x) --->', 'Fontsize', 16 )
+  title ( 'Hermite functions Hf(n,x)', 'Fontsize', 24 )
   hold off
   print ( '-dpng', filename )
 

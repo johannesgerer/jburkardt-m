@@ -2,7 +2,7 @@ function legendre_polynomial_test09 ( )
 
 %*****************************************************************************80
 %
-%% LEGENDRE_POLYNOMIAL_TEST09 tests PMNS_POLYNOMIAL.
+%% LEGENDRE_POLYNOMIAL_TEST09 tests PMNS_POLYNOMIAL_VALUE.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function legendre_polynomial_test09 ( )
   fprintf ( 1, 'LEGENDRE_POLYNOMIAL_TEST09:\n' );
   fprintf ( 1, '  PMNS_POLYNOMIAL_VALUES stores values of\n' );
   fprintf ( 1, '  the Legendre polynomial Pmns(n,m,x).\n' );
-  fprintf ( 1, '  PMNS_POLYNOMIAL evaluates the polynomial.\n' );
+  fprintf ( 1, '  PMNS_POLYNOMIAL_VALUE evaluates the polynomial.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '                                Tabulated                 Computed\n' );
   fprintf ( 1, '     N     M        X           Pmns(N,M,X)                Pmns(N,M,X)             Error\n' );
@@ -38,7 +38,7 @@ function legendre_polynomial_test09 ( )
       break
     end
 
-    v = pmns_polynomial ( mm, n, m, x );
+    v = pmns_polynomial_value ( mm, n, m, x );
     fx2 = v(1,n+1);
 
     e = fx1 - fx2;

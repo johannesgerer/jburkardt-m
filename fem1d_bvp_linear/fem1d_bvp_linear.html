@@ -29,7 +29,7 @@
         - d/dx ( a(x) * du/dx ) + c(x) * u(x) = f(x)
       </pre>
       in the interval 0 &lt; x &lt; 1.  The functions a(x), c(x), and f(x) are
-      given functions, and a formula for a'(x) is also available.
+      given.
     </p>
 
     <p>
@@ -108,12 +108,21 @@
       <a href = "../../cpp_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a C++ version</a> and
       <a href = "../../f77_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a FORTRAN90 version</a> and
-      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a MATLAB version</a>.
+      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a MATLAB version</a> and
+      <a href = "../../py_src/fem1d_bvp_linear/fem1d_bvp_linear.html">a Python version</a>.
     </p>
 
     <h3 align = "center">
       Related Data and Programs:
     </h3>
+
+    <p>
+      <a href = "../../m_src/bvp4c/bvp4c.html">
+      BVP4C</a>,
+      MATLAB programs which
+      illustrate how to use the MATLAB command <b>bvp4c()</b>, which can solve
+      boundary value problems (BVP's) in one spatial dimension.
+    </p>
 
     <p>
       <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
@@ -130,14 +139,6 @@
       sets up a time-dependent reaction-diffusion equation in 1D,
       with Neumann boundary conditions, 
       discretized using the finite element method.
-    </p>
-
-    <p>
-      <a href = "../../data/fem1d/fem1d.html">
-      FEM1D</a>,
-      a data directory which
-      contains examples of 1D FEM files,
-      three text files that describe a 1D finite element model;
     </p>
 
     <p>
@@ -158,6 +159,16 @@
     </p>
 
     <p>
+      <a href = "../../m_src/fem1d_bvp_quadratic/fem1d_bvp_quadratic.html">
+      FEM1D_BVP_QUADRATIC</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise quadratic
+      elements, to a two point boundary value problem (BVP) in one 
+      spatial dimension, and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
       <a href = "../../m_src/fem1d_display/fem1d_display.html">
       FEM1D_DISPLAY</a>,
       a MATLAB program which
@@ -175,6 +186,15 @@
     </p>
 
     <p>
+      <a href = "../../m_src/fem1d_lagrange/fem1d_lagrange.html">
+      FEM1D_LAGRANGE</a>,
+      a MATLAB library which
+      sets up the matrices and vectors associated with the finite element
+      method (FEM) solution of a boundary value problem (BVP) -u''+u=f(x), 
+      using Lagrange basis polynomials.
+    </p>
+
+    <p>
       <a href = "../../m_src/fem1d_nonlinear/fem1d_nonlinear.html">
       FEM1D_NONLINEAR</a>,
       a MATLAB program which
@@ -188,6 +208,16 @@
       a MATLAB program which
       applies the p-method version of the finite element method to a linear
       two point boundary value problem in a 1D region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_bvp_linear/fem2d_bvp_linear.html">
+      FEM2D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise linear elements,
+      to a 2D boundary value problem (BVP) in a rectangle,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
     </p>
 
     <h3 align = "center">
@@ -241,14 +271,22 @@
     <p>
       <ul>
         <li>
-          <a href = "compute_l2_error.m">compute_l2_error.m</a>,
-          estimates the L2 norm of the error, given the solution of
+          <a href = "l1_error.m">l1_error.m</a>,
+          estimates the little l1 norm of the error, given the solution of
           the finite element problem, and a function that evaluates
           the exact solution.
         </li>
         <li>
-          <a href = "compute_seminorm_error.m">compute_seminorm_error.m</a>,
-          estimates the seminorm of the error, given the solution of
+          <a href = "l2_error_linear.m">l2_error_linear.m</a>,
+          estimates the L2 norm of the error, given the 
+          piecewise linear solution of
+          the finite element problem, and a function that evaluates
+          the exact solution.
+        </li>
+        <li>
+          <a href = "h1s_error_linear.m">h1s_error_linear.m</a>,
+          estimates the seminorm of the error, given the 
+          piecewise linear solution of
           the finite element problem, and a function that evaluates
           the derivative of the exact solution.
         </li>
@@ -264,8 +302,8 @@
     </h3>
 
     <p>
-      <b>FEM1D_BVP_TEST</b> runs the first five example problems described
-      by Dianne O'Leary.
+      <b>FEM1D_BVP_TEST</b> runs example problems described
+      by Dianne O'Leary, and several others.
       <ul>
         <li>
           <a href = "fem1d_bvp_linear_test.m">fem1d_bvp_linear_test.m</a>,
@@ -274,6 +312,33 @@
         <li>
           <a href = "fem1d_bvp_linear_test_output.txt">fem1d_bvp_linear_test_output.txt</a>,
           the output file.
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test01.m">fem1d_bvp_linear_test01.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test02.m">fem1d_bvp_linear_test02.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test03.m">fem1d_bvp_linear_test03.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test04.m">fem1d_bvp_linear_test04.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test05.m">fem1d_bvp_linear_test05.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test06.m">fem1d_bvp_linear_test06.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test07.m">fem1d_bvp_linear_test07.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test08.m">fem1d_bvp_linear_test08.m</a>
+        </li>
+        <li>
+          <a href = "fem1d_bvp_linear_test09.m">fem1d_bvp_linear_test09.m</a>
         </li>
       </ul>
     </p>
@@ -286,7 +351,7 @@
     <hr>
 
     <i>
-      Last revised on 17 February 2012.
+      Last revised on 16 June 2014.
     </i>
 
     <!-- John Burkardt -->

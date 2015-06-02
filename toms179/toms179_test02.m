@@ -1,6 +1,12 @@
 function toms179_test02 ( )
 
+%*****************************************************************************80
+%
 %% TOMS179_TEST02 demonstrates the use of MDBETA.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

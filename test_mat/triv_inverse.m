@@ -29,9 +29,19 @@ function a = triv_inverse ( n, x, y, z )
 %
 %    Input, real X(N-1), Y(N), Z(N-1), the vectors that define
 %    the subdiagonal, diagonal, and superdiagonal of A.
+%    No entry of Y can be zero.
 %
 %    Output, real A(N,N), the inverse of the matrix.
 %
+  if ( any ( y(1:n) == 0.0 ) )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'TRIV_INVERSE - Fatal error!\n' );
+    fprintf ( 1, '  No entry of Y can be zero!\n' );
+    exit ( 1 );
+  end
+
+  a = zeros ( n, n );
+
   d(n) = y(n);
   for i = n - 1 : -1 : 1
     d(i) = y(i) - x(i) * z(i) / d(i+1);

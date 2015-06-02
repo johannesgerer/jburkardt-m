@@ -37,8 +37,10 @@ function orbital_decay ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ORBITAL_DECAY\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  This simulation follows a small body for 20 orbits\n' );
   fprintf ( 1, '  around a relatively massive body - such as Mercury around\n' );
   fprintf ( 1, '  the sun.\n' );
@@ -67,6 +69,14 @@ function orbital_decay ( )
   title ( 'After twenty orbits, we are almost elliptical' )
   axis equal
   hold off
+%
+%  Terminate.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'ORBITAL_DECAY:\n' );
+  fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

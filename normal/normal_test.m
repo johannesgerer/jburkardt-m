@@ -2,7 +2,7 @@ function normal_test ( )
 
 %*****************************************************************************80
 %
-%% NORMAL_TEST tests NORMAL.
+%% NORMAL_TEST tests the NORMAL library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function normal_test ( )
 %
 %  Modified:
 %
-%    08 January 2007
+%    03 March 2015
 %
 %  Author:
 %
@@ -22,26 +22,26 @@ function normal_test ( )
   fprintf ( 1, '  MATLAB version.\n' );
   fprintf ( 1, '  Test the NORMAL library.\n' );
 
-  normal_test01 ( );
-  normal_test02 ( );
-  normal_test03 ( );
-  normal_test04 ( );
-  normal_test05 ( );
-  normal_test06 ( );
-  normal_test07 ( );
-  normal_test08 ( );
-  normal_test09 ( );
-
-  normal_test10 ( );
-  normal_test11 ( );
-  normal_test12 ( );
+  c4_normal_01_test ( );
+  c8_normal_01_test ( );
+  i4_normal_ab_test ( );
+  r4_normal_01_test ( );
+  r4_normal_ab_test ( );
+  r4_uniform_01_test ( );
+  r8_normal_01_test ( );
+  r8_normal_ab_test ( );
+  r8_uniform_01_test ( );
+  r8mat_normal_01_test ( );
+  r8mat_normal_ab_test ( );
+  r8vec_normal_01_test ( );
+  r8vec_normal_ab_test ( );
+  r8vec_uniform_01_test ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NORMAL_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

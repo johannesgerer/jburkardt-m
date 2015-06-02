@@ -20,9 +20,9 @@ function value = g_04 ( x )
 %
 %    Input, real X, the point at which F is to be evaluated.
 %
-%    Output, real G_04, the value of the function at X.
+%    Output, real VALUE, the value of the function at X.
 %
-  value = exp ( x ) + 0.01 / x;
+  value = exp ( x ) + 0.01 ./ x;
 
   return
 end

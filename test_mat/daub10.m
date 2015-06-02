@@ -12,6 +12,10 @@ function a = daub10 ( n )
 %    Note that in the reference, the coefficient 0.0775714938400459
 %    is given incorrectly, with the "8" misrepresented as a "0".
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.

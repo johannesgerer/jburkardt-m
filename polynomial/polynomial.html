@@ -1,0 +1,278 @@
+<html>
+
+  <head>
+    <title>
+      POLYNOMIAL - Multivariate Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      POLYNOMIAL <br> Multivariate Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>POLYNOMIAL</b>,
+      a MATLAB library which
+      adds, multiplies, differentiates, evaluates and prints multivariate 
+      polynomials in a space of M dimensions.
+    </p>
+
+    <p>
+      Any polynomial in M variables can be written as a linear
+      combination of monomials in M variables.  The "total degree" of the
+      polynomial is the maximum of the degrees of the monomials that it
+      comprises.  For instance, a polynomial in M = 2 variables of total
+      degree 3 might have the form:
+      <pre>
+        p(x,y) = c(0,0) x^0 y^0
+               + c(1,0) x^1 y^0 + c(0,1) x^0 y^1 
+               + c(2,0) x^2 y^0 + c(1,1) x^1 y^1 + c(0,2) x^0 y^2
+               + c(3,0) x^3 y^0 + c(2,1) x^2 y^1 + c(1,2) x^1 y^2 + c(0,3) x^0 y^3
+      </pre>
+      The monomials in M variables can be regarded as 
+      a natural basis for the polynomials in M variables.
+    </p>
+
+    <p>
+      When listing the monomials that form a polynomial, it is useful to have 
+      an ordering that organizes them.  One natural ordering can be illustrated
+      for the 3-dimensional case:
+      <pre>
+        1
+        x, y, z
+        x^2, xy, xz, y^2, yz, z^2
+        x^3, x^2y, x^2z, xy^2, xyz, xz^2, y^3, y^2z, yz^2, z^3
+        x^4, x^3y, ...
+      </pre>
+      Here, a monomial precedes another if it has a lower degree.
+      If the monomials have the same degree, then a monomial precedes another
+      if its exponent vector lexically precedes that of the other.  In other
+      words, we compare the two exponent vectors, reading from left to right,
+      looking for the first location where the exponents differ.  The monomial
+      with the higher exponent at this point precedes the other.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>POLYNOMIAL</b> is available in
+      <a href = "../../c_src/polynomial/polynomial.html">a C version</a> and
+      <a href = "../../cpp_src/polynomial/polynomial.html">a C++ version</a> and
+      <a href = "../../f77_src/polynomial/polynomial.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/polynomial/polynomial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/polynomial/polynomial.html">a MATLAB version</a> and
+      <a href = "../../py_src/polynomial/polynomial.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes routines for ranking, unranking, enumerating and 
+      randomly selecting balanced sequences, cycles, graphs, Gray codes, 
+      subsets, partitions, permutations, restricted growth functions, 
+      Pruefer codes and trees.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_product_polynomial/legendre_product_polynomial.html">
+      LEGENDRE_PRODUCT_POLYNOMIAL</a>,
+      a MATLAB library which
+      defines Legendre product polynomials, creating a multivariate 
+      polynomial as the product of univariate Legendre polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/monomial/monomial.html">
+      MONOMIAL</a>,
+      a MATLAB library which enumerates, lists, ranks, unranks and randomizes 
+      multivariate monomials in a space of M dimensions, with total degree 
+      less than N, equal to N, or lying within a given range.
+    </p>
+
+    <p>
+      <a href = "../../m_src/set_theory/set_theory.html">
+      SET_THEORY</a>,
+      a MATLAB library which
+      demonstrates MATLAB commands that implement various 
+      set theoretic operations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset/subset.html">
+      SUBSET</a>,
+      a MATLAB library which
+      enumerates, generates, ranks and unranks combinatorial objects
+      including combinations, compositions, Gray codes, index sets, partitions, 
+      permutations, subsets, and Young tables.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_choose.m">i4_choose.m</a>,
+          computes the binomial coefficient C(N,K) as an I4.
+        </li>
+        <li>
+          <a href = "i4_fall.m">i4_fall.m</a>,
+          computes the falling factorial function.
+        </li>
+        <li>
+          <a href = "mono_next_grlex.m">mono_next_grlex.m</a>,
+          computes, one by one in grlex order, the monomials of D variables of successively
+          higher degrees.
+        </li>
+        <li>
+          <a href = "mono_rank_grlex.m">mono_rank_grlex.m</a>,
+          returns the grlex rank of a monomial in the sequence of all monomials
+          in D dimensions of degree N or less.
+        </li>
+        <li>
+          <a href = "mono_total_next_grlex.m">mono_total_next_grlex.m</a>,
+          computes, one by one in grlex order, the monomials of D variables 
+          of total degree N.
+        </li>
+        <li>
+          <a href = "mono_unrank_grlex.m">mono_unrank_grlex.m</a>,
+          given the grlex rank, returns the corresponding monomial in the
+          sequence of all monomials in D dimensions.
+        </li>
+        <li>
+          <a href = "mono_upto_enum.m">mono_upto_enum.m</a>,
+          enumerates the monomials of D variables of total degree 
+          up to N.
+        </li>
+        <li>
+          <a href = "mono_value.m">mono_value.m</a>,
+          evaluates a monomial.
+        </li>
+        <li>
+          <a href = "polynomial_add.m">polynomial_add.m</a>,
+          adds two polynomials.
+        </li>
+        <li>
+          <a href = "polynomial_axpy.m">polynomial_axpy.m</a>,
+          adds a multiple of one polynomial to another.
+        </li>
+        <li>
+          <a href = "polynomial_compress.m">polynomial_compress.m</a>,
+          "compresses" a polynomial by merging coefficients associated with
+          the same monomial.
+        </li>
+        <li>
+          <a href = "polynomial_dif.m">polynomial_dif.m</a>,
+          differentiates a polynomial several times with respect 
+          to several variables.
+        </li>
+        <li>
+          <a href = "polynomial_mul.m">polynomial_mul.m</a>,
+          multiplies two polynomials.
+        </li>
+        <li>
+          <a href = "polynomial_print.m">polynomial_print.m</a>,
+          prints a polynomial.
+        </li>
+        <li>
+          <a href = "polynomial_scale.m">polynomial_scale.m</a>,
+          multiplies a polynomial by a scale factor.
+        </li>
+        <li>
+          <a href = "polynomial_sort.m">polynomial_sort.m</a>,
+          sorts the terms in a polynomial.
+        </li>
+        <li>
+          <a href = "polynomial_value.m">polynomial_value.m</a>,
+          evaluates a polynomial.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "polynomial_test.m">polynomial_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "polynomial_test_output.txt">polynomial_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "polynomial_add_test.m">polynomial_add_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_axpy_test.m">polynomial_axpy_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_compress_test.m">polynomial_compress_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_dif_test.m">polynomial_dif_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_mul_test.m">polynomial_mul_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_print_test.m">polynomial_print_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_scale_test.m">polynomial_scale_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_sort_test.m">polynomial_sort_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_value_test.m">polynomial_value_test.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 28 October 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

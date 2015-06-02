@@ -68,9 +68,9 @@ function c8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
         if ( a(i,j) == 0.0 )
           fprintf ( 1, '       0.0          ' );
         elseif ( imag ( a(i,j) ) == 0.0 )
-          fprintf ( 1, ' %9f          ', real ( a(i,j) ) );
+          fprintf ( 1, ' %9g          ', real ( a(i,j) ) );
         else
-          fprintf ( 1, ' %9f %9f', real ( a(i,j) ), imag ( a(i,j) ) );
+          fprintf ( 1, ' %9g %9g', real ( a(i,j) ), imag ( a(i,j) ) );
        end
 
       end

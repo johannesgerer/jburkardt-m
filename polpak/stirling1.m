@@ -44,7 +44,7 @@ function s1 = stirling1 ( n, m )
 %
 %  Recursion:
 %
-%    S1(N,1) = (-1)**(N-1) * (N-1)! for all N.
+%    S1(N,1) = (-1)^(N-1) * (N-1)! for all N.
 %    S1(I,I) = 1 for all I.
 %    S1(I,J) = 0 if I < J.
 %
@@ -54,7 +54,7 @@ function s1 = stirling1 ( n, m )
 %
 %    sum ( 1 <= K <= M ) S2(I,K) * S1(K,J) = Delta(I,J)
 %
-%    X_N = sum ( 0 <= K <= N ) S1(N,K) X**K
+%    X_N = sum ( 0 <= K <= N ) S1(N,K) X^K
 %    where X_N is the falling factorial function.
 %
 %  Licensing:

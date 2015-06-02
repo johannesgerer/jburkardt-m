@@ -21,7 +21,7 @@ function i4vec_transpose_print ( n, a, title )
 %
 %  Modified:
 %
-%    16 April 2005
+%    02 June 2015
 %
 %  Author:
 %
@@ -35,16 +35,21 @@ function i4vec_transpose_print ( n, a, title )
 %
 %    Input, string TITLE, a title.
 %
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '%s\n', title );
-  fprintf ( 1, '\n' );
-
-  for ilo = 1 : 5 : n
-    ihi = min ( ilo + 5 - 1, n );
-    for i = ilo : ihi
-      fprintf ( 1, '%12d', a(i) );
-    end
+  if ( 0 < s_len_trim ( title ) )
     fprintf ( 1, '\n' );
+    fprintf ( 1, '%s\n', title );
+  end
+
+  if ( 0 < n )
+    for ilo = 1 : 5 : n
+      ihi = min ( ilo + 5 - 1, n );
+      for i = ilo : ihi
+        fprintf ( 1, '%12d', a(i) );
+      end
+      fprintf ( 1, '\n' );
+    end
+  else
+    fprintf ( 1, '  (empty vector)\n' );
   end
 
   return

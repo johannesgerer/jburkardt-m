@@ -21,7 +21,6 @@ function asa183_test
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA183_PRB\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -30,15 +29,15 @@ function asa183_test
   asa183_test01 ( );
   asa183_test02 ( );
   asa183_test03 ( );
-
   asa183_test04 ( );
   asa183_test05 ( );
   asa183_test06 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA183_PRB\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

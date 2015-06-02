@@ -1,8 +1,8 @@
-function determ = carry_determinant ( alpha, n )
+function determ = carry_determinant ( n, alpha )
 
 %*****************************************************************************80
 %
-%% CARRY_DETERMINANT returns the determinant of the Carry matrix.
+%% CARRY_DETERMINANT returns the determinant of the CARRY matrix.
 %
 %  Licensing:
 %
@@ -18,10 +18,9 @@ function determ = carry_determinant ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, integer ALPHA, the numeric base being used 
-%    in the addition.
-%
 %    Input, integer N, the order of the matrix.
+%
+%    Input, integer ALPHA, the numeric base being used in the addition.
 %
 %    Output, real DETERM, the determinant.
 %

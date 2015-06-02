@@ -150,7 +150,7 @@ function heated_plate_fun ( epsilon, output_filename )
 %
   w(2:m-1,2:n-1) = mean;
 %
-%  iterate until the  new solution W differs from the old solution U
+%  Iterate until the  new solution W differs from the old solution U
 %  by no more than EPSILON.
 %
   iterations = 0;
@@ -165,22 +165,21 @@ function heated_plate_fun ( epsilon, output_filename )
 
   while ( epsilon <= diff )
 
-    parfor j = 1 : n
-      u(:,j) = w(:,j);
-    end
+    u = w;
+%
+%  Can't classify W here.
+%
+    k = 2 : m-1;
 
     parfor j = 2 : n - 1
-      w(2:m-1,j) = 0.25 * ( ...
+      w(k,j) = 0.25 * ( ...
           u(1:m-2,j) ...
         + u(3:m,j) ...
         + u(2:m-1,j-1) ...
         + u(2:m-1,j+1) );
     end
 
-    diff = 0.0;
-    parfor j = 1 : m
-      diff = max ( diff, max ( abs ( u(1:m,j) - w(1:m,j) ) ) );
-    end
+    diff = max ( max ( abs ( u - w ) ) );
 
     iterations = iterations + 1;
 

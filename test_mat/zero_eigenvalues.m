@@ -20,9 +20,9 @@ function lambda = zero_eigenvalues ( n )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n) = 0.0;
+  lambda(1:n,1) = 0.0;
 
   return
 end

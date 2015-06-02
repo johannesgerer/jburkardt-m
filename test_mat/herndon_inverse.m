@@ -2,7 +2,7 @@ function a = herndon_inverse ( n )
 
 %*****************************************************************************80
 %
-%% HERNDON_INVERSE returns the inverse of the Herndon matrix.
+%% HERNDON_INVERSE returns the inverse of the HERNDON matrix.
 %
 %  Formula:
 %
@@ -56,7 +56,7 @@ function a = herndon_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : n - 1
     a(i,i) = 1.0;

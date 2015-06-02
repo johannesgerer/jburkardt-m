@@ -20,16 +20,18 @@ function lambda = skew_circulant_eigenvalues ( n, x )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real X(N), the values in the first row of A.
+%    Input, real X(N,1), the values in the first row of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n) = 0.0;
+  lambda = zeros ( n, 1 );
+
+  x = x(:);
 
   for j = 1 : n
     for k = 1 : n
       angle = ( 2 * j - 1 ) * pi * ( k - 1 ) / n;
-      lambda(j) = lambda(j) + x(k) * complex ( cos ( angle ), sin ( angle ) );
+      lambda(j,1) = lambda(j,1) + x(k,1) * complex ( cos ( angle ), sin ( angle ) );
     end
   end
 

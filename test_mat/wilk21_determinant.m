@@ -22,6 +22,8 @@ function determ = wilk21_determinant ( n )
 %
 %    Output, real DETERM, the determinant.
 %
+  d = zeros ( n, 1 );
+
   for i = 1 : n
     d(i) = round ( abs ( i - ( n + 1 ) / 2 ) );
   end

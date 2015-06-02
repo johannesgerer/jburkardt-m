@@ -2,7 +2,7 @@ function bezier_surface_test ( )
 
 %*****************************************************************************80
 %
-%% BEZIER_SURFACE_PRB tests routines from the BEZIER_SURFACE library.
+%% BEZIER_SURFACE_PRB tests the BEZIER_SURFACE library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function bezier_surface_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BEZIER_SURFACE_PRB\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -32,7 +31,6 @@ function bezier_surface_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BEZIER_SURFACE_PRB\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

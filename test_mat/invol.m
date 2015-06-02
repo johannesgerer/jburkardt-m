@@ -2,7 +2,7 @@ function a = invol ( n )
 
 %*****************************************************************************80
 %
-%% INVOL returns an involutional matrix.
+%% INVOL returns the INVOL matrix.
 %
 %  Formula:
 %
@@ -72,6 +72,8 @@ function a = invol ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 1.0 / ( i + j - 1 );

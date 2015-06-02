@@ -1,8 +1,8 @@
-function determ = tridiagonal_determinant ( n )
+function determ = lesp_determinant ( n )
 
 %*****************************************************************************80
 %
-%% TRIDIAGONAL_DETERMINANT computes the determinant of a tridiagonal matrix.
+%% LESP_DETERMINANT computes the determinant of the LESP matrix.
 %
 %  Licensing:
 %
@@ -19,8 +19,6 @@ function determ = tridiagonal_determinant ( n )
 %  Parameters:
 %
 %    Input, integer N, the order of the matrix.
-%
-%    Input, real A(N,N), the matrix.
 %
 %    Output, real DETERM, the determinant.
 %

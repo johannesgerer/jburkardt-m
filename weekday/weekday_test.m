@@ -2,7 +2,7 @@ function weekday_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for WEEKDAY_TEST.
+%% WEEKDAY_TEST tests the WEEKDAY library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function weekday_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WEEKDAY_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -29,8 +28,7 @@ function weekday_test ( )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WEEKDAY_TEST:\n' );
-  fprintf ( 1, '  Noraml end of execution.\n' );
-
+  fprintf ( 1, '  Normal end of execution.\n' );
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -40,7 +38,7 @@ function weekday_test01 ( )
 
 %*****************************************************************************80
 %
-%% TEST01 tests YMD_TO_WEEKDAY_COMMON.
+%% WEEKDAY_TEST01 tests YMD_TO_WEEKDAY_COMMON.
 %
 %  Licensing:
 %
@@ -55,7 +53,7 @@ function weekday_test01 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01\n' );
+  fprintf ( 1, 'WEEKDAY_TEST01\n' );
   fprintf ( 1, '  For dates in the Common calendar:\n' );
   fprintf ( 1, '  YMD_TO_WEEKDAY_COMMON returns the day of the week.\n' );
   fprintf ( 1, '\n' );

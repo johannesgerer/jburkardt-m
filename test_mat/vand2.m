@@ -2,11 +2,11 @@ function a = vand2 ( n, x )
 
 %*****************************************************************************80
 %
-%% VAND2 returns the Vandermonde2 matrix.
+%% VAND2 returns the VAND2 matrix.
 %
 %  Formula:
 %
-%    A(I,J) = X(I)**(J-1)
+%    A(I,J) = X(I)^(J-1)
 %
 %  Example:
 %
@@ -36,6 +36,8 @@ function a = vand2 ( n, x )
 %
 %      1 - product ( 1 <= I <= N ) ( 1 - 1 / X(I) ).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -64,6 +66,8 @@ function a = vand2 ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

@@ -10,7 +10,7 @@ function prob_num = p00_prob_num ( )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -20,7 +20,7 @@ function prob_num = p00_prob_num ( )
 %
 %    Output, integer PROB_NUM, the number of problems available.
 %
-  prob_num = 18;
+  prob_num = 19;
 
   return
 end

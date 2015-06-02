@@ -2,9 +2,9 @@ function a = stirling ( m, n )
 
 %*****************************************************************************80
 %
-%% STIRLING returns a matrix of the Stirling numbers of the first kind.
+%% STIRLING returns the STIRLING matrix.
 %
-%  Comments:
+%  Discussion:
 %
 %    The absolute value of the Stirling number S1(I,J) gives the number
 %    of permutations on I objects having exactly J cycles, while the
@@ -24,10 +24,10 @@ function a = stirling ( m, n )
 %      3 permutations with 2 cycles, and S1(3,2) = -3,
 %      1 permutation with 3 cycles, and S1(3,3) = 1.
 %
-%    Since there are N% permutations of N objects, the sum of the absolute
+%    Since there are N! permutations of N objects, the sum of the absolute
 %    values of the Stirling numbers in a given row,
 %
-%      sum ( 1 <= J <= I ) abs ( S1(I,J) ) = N%
+%      sum ( 1 <= J <= I ) abs ( S1(I,J) ) = N!
 %
 %  First terms:
 %
@@ -44,7 +44,7 @@ function a = stirling ( m, n )
 %
 %  Recursion:
 %
-%    S1(I,1) = (-1)**(I-1) * (I-1)% for all I.
+%    S1(I,1) = (-1)^(I-1) * (I-1)! for all I.
 %    S1(I,I) = 1 for all I.
 %    S1(I,J) = 0 if I < J.
 %
@@ -65,6 +65,8 @@ function a = stirling ( m, n )
 %    LAMBDA(1:N) = 1.
 %
 %    After row 1, each row sums to 0.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

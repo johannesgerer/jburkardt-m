@@ -1,0 +1,322 @@
+<html>
+
+  <head>
+    <title>
+      SPHERE_TRIANGLE_QUAD - Estimate Integrals over Spherical Triangles
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPHERE_TRIANGLE_QUAD <br> Estimate Integrals over Spherical Triangles
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPHERE_TRIANGLE_QUAD</b> 
+      is a MATLAB library which 
+      estimates the integral of a scalar function 
+      F(X,Y,Z) over a spherical triangle on the unit sphere.
+    </p>
+
+    <p>
+      Three methods of estimation are very crude and cannot be improved:
+      <ul>
+        <li>
+          the centroid rule, based on a single function value.
+        </li>
+        <li>
+          the vertex rule, which averages the vertex values.
+        </li>
+        <li>
+          the midside rule, which averages the midside values.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      One method of estimation uses random sampling, the Monte Carlo method, 
+      whose accuracy can be improved by increasing the number of sample points.
+    </p>
+
+    <p>
+      Another method is based on the centroid rule, but allows the
+      user to decompose the original spherical triangle into collection
+      of smaller triangles.  The accuracy of the estimate should improve
+      as the size of these triangles decreases.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPHERE_TRIANGLE_QUAD</b> is available in
+      <a href = "../../c_src/sphere_triangle_quad/sphere_triangle_quad.html">a C version</a> and
+      <a href = "../../cpp_src/sphere_triangle_quad/sphere_triangle_quad.html">a C++ version</a> and
+      <a href = "../../f77_src/sphere_triangle_quad/sphere_triangle_quad.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sphere_triangle_quad/sphere_triangle_quad.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sphere_triangle_quad/sphere_triangle_quad.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/random_data/random_data.html">
+      RANDOM_DATA</a>,
+      a MATLAB library which
+      generates sample points for 
+      various probability distributions, spatial dimensions, and geometries;
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_grid/sphere_grid.html">
+      SPHERE_GRID</a>, 
+      a MATLAB library which 
+      provides a number of ways of generating grids of points, or of
+      points and lines, or of points and lines and faces, over the unit sphere.
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_quad/sphere_quad.html">
+      SPHERE_QUAD</a>,
+      a MATLAB library which 
+      approximates an integral over the surface of the unit sphere 
+      by applying a triangulation to the surface;
+    </p>
+
+    <p>
+      <a href = "../../f_src/sphere_triangle_monte_carlo/sphere_triangle_monte_carlo.html">
+      SPHERE_TRIANGLE_MONTE_CARLO</a>,
+      a MATLAB library which
+      estimates the integral of a function over a spherical triangle 
+      using the Monte Carlo method.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which 
+      approximates the integral of a function on the surface or in the interior
+      of a variety of geometric shapes.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Jacob Goodman, Joseph ORourke, editors,<br>
+          Handbook of Discrete and Computational Geometry,<br>
+          Second Edition,<br>
+          CRC/Chapman and Hall, 2004,<br>
+          ISBN: 1-58488-301-4,<br>
+          LC: QA167.H36.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8_acos.m">r8_acos.m</a>,
+          computes the arc cosine function, with argument truncation.
+        </li>
+        <li>
+          <a href = "r8_asin.m">r8_asin.m</a>,
+          computes the arc sine function, with argument truncation.
+        </li>
+        <li>
+          <a href = "r8_atan.m">r8_atan.m</a>,
+          computes the arc tangent function.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8vec_norm.m">r8vec_norm.m</a>,
+          returns the L2 norm of an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_normalize.m">r8vec_normalize.m</a>,
+          normalizes an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_polarize.m">r8vec_polarize.m</a>,
+          polarizes an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_transpose_print.m">r8vec_transpose_print.m</a>,
+          prints an R8VEC, "transposed".
+        </li>
+        <li>
+          <a href = "sphere01_sample.m">sphere01_sample.m</a>,
+          picks random points on the unit sphere in 3D.
+        </li>
+        <li>
+          <a href = "sphere01_angles_to_area.m">sphere01_angles_to_area.m</a>,
+          area of a triangle on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_distance_xyz.m">sphere01_distance_xyz.m</a>,
+          computes great-circle distance on a sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_project.m">sphere01_triangle_project.m</a>,
+          projects from plane to spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_project2.m">sphere01_triangle_project2.m</a>,
+          projects from plane to spherical triangle.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_00.m">sphere01_triangle_quad_00.m</a>,
+          quadrature over a triangle on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_01.m">sphere01_triangle_quad_01.m</a>,
+          quadrature over a triangle on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_02.m">sphere01_triangle_quad_02.m</a>,
+          quadrature over a triangle on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_03.m">sphere01_triangle_quad_03.m</a>,
+          quadrature over a triangle on the unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_icos1c.m">sphere01_triangle_quad_icos1c.m</a>,
+          centroid rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_icos1m.m">sphere01_triangle_quad_icos1m.m</a>,
+          midpoint rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_icos1v.m">sphere01_triangle_quad_icos1v.m</a>,
+          vertex rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_quad_icos2v.m">sphere01_triangle_quad_icos2v.m</a>,
+          vertex rule, subdivide then project.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_sample.m">sphere01_triangle_sample.m</a>,
+          sample spherical triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_sides_to_angles.m">sphere01_triangle_quad_sides_to_angles.m</a>,
+          angles of triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_area.m">sphere01_triangle_vertices_to_area.m</a>,
+          area of triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_centroid.m">sphere01_triangle_vertices_to_centroid.m</a>,
+          centroid of triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_midpoint.m">sphere01_triangle_vertices_to_midpoint.m</a>,
+          midsides of triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "sphere01_triangle_vertices_to_sides.m">sphere01_triangle_vertices_to_sides.m</a>,
+          sides of triangle on unit sphere.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sphere_triangle_quad_test.m">sphere_triangle_quad_test.m</a>,
+          a sample problem.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test_output.txt">sphere_triangle_quad_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test01.m">sphere_triangle_quad_test01.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_01, 02, 03.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test02.m">sphere_triangle_quad_test02.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_00.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test03.m">sphere_triangle_quad_test03.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_ICOS1C.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test04.m">sphere_triangle_quad_test04.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_ICOS1M.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test05.m">sphere_triangle_quad_test05.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_ICOS1V.
+        </li>
+        <li>
+          <a href = "sphere_triangle_quad_test06.m">sphere_triangle_quad_test06.m</a>,
+          tests SPHERE01_TRIANGLE_QUAD_ICOS2V.
+        </li>
+        <li>
+          <a href = "polyterm_exponent.m">polyterm_exponent.m</a>,
+          gets or sets the exponents for the polynomial term.
+        </li>
+        <li>
+          <a href = "polyterm_value_3d.m">polyterm_value_3d.m</a>,
+          evaluates a single polynomial term in 3D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 April 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial html skeleton created by HTMLINDEX. -->
+
+</html>

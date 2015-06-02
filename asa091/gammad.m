@@ -85,12 +85,10 @@ function [ value, ifault ] = gammad ( x, p )
   end
 %
 %  Use Pearson's series expansion.
-%  (Note that P is not large enough to force overflow in ALOGAM).
-%  No need to test IFAULT on exit since P > 0.
 %
   if ( x <= 1.0 || x < p )
 
-    arg = p * log ( x ) - x - alngam ( p + 1.0 );
+    arg = p * log ( x ) - x - gammaln ( p + 1.0 );
     c = 1.0;
     value = 1.0;
     a = p;
@@ -119,7 +117,7 @@ function [ value, ifault ] = gammad ( x, p )
 %
   else
 
-    arg = p * log ( x ) - x - alngam ( p );
+    arg = p * log ( x ) - x - gammaln ( p );
     a = 1.0 - p;
     b = a + x + 1.0;
     c = 0.0;

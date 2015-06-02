@@ -1,0 +1,359 @@
+<html>
+
+  <head>
+    <title>
+      NAVIER_STOKES_2D_EXACT - Exact solutions to the 2D Incompressible Time-Dependent Navier Stokes Equations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NAVIER_STOKES_2D_EXACT<br> 
+      Exact solutions to the <br>
+      2D Incompressible Time-Dependent Navier Stokes Equations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NAVIER_STOKES_2D_EXACT</b>,
+      a MATLAB library which
+      evaluates exact solutions to the incompressible time-dependent
+      Navier-Stokes equations over an arbitrary domain in 2D.
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <b>Lucas</b>: steady flow, pressure is zero everywhere;
+        </li>
+        <li>
+          <b>Spiral</b>: velocity is zero on the boundary of the unit square;
+        </li>
+        <li>
+          <b>Taylor</b>: source term is zero everywhere.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NAVIER_STOKES_2D_EXACT</b> is available in
+      <a href = "../../c_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a C version</a> and
+      <a href = "../../cpp_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a C++ version</a> and
+      <a href = "../../f77_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a MATLAB version</a> and
+      <a href = "../../py_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_3d_exact/navier_stokes_3d_exact.html">
+      NAVIER_STOKES_3D_EXACT</a>,
+      a MATLAB library which
+      evaluates exact solutions to the incompressible time-dependent
+      Navier-Stokes equations over an arbitrary domain in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_mesh2d/navier_stokes_mesh2d.html">
+      NAVIER_STOKES_MESH2D</a>,
+      MATLAB data files defining meshes for several
+      2D test problems involving the Navier Stokes equations
+      for fluid flow, provided by Leo Rebholz.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spiral_data/spiral_data.html">
+      SPIRAL_DATA</a>,
+      a MATLAB library which
+      computes a velocity vector field that satisfies the continuity 
+      equation, writing the data to a file that can be plotted
+      by gnuplot.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stokes_2d_exact/stokes_2d_exact.html">
+      STOKES_2D_EXACT</a>,
+      a MATLAB library which
+      evaluates exact solutions to the incompressible steady
+      Stokes equations over the unit square in 2D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Maxim Olshanskii, Leo Rebholz,<br>
+          Application of barycenter refined meshes in linear elasticity
+          and incompressible fluid dynamics,<br>
+          ETNA: Electronic Transactions in Numerical Analysis,<br>
+          Volume 38, pages 258-274, 2011.
+        </li>
+        <li>
+          Geoffrey Taylor,<br>
+          On the decay of vortices in a viscous fluid,<br>
+          Philosophical Magazine,<br>
+          Volume 46, 1923, pages 671-674.
+        </li>
+        <li>
+          Geoffrey Taylor, A E Green,<br>
+          Mechanism for the production of small eddies from large ones,<br>
+          Proceedings of the Royal Society of London, <br>
+          Series A, Volume 158, 1937, pages 499-521.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "grid_2d.m">grid_2d.m</a>, 
+          returns a regular 2D grid.
+        </li>
+        <li>
+          <a href = "ns2de_gnuplot.m">ns2de_gnuplot.m</a>, 
+          writes the velocity vector field to files for GNUPLOT.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>, 
+          returns a scaled pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "resid_lucas.m">resid_lucas.m</a>,
+          evaluates the residuals at any point (x,y) and
+          time t.
+        </li>
+        <li>
+          <a href = "resid_taylor.m">resid_taylor.m</a>,
+          evaluates the residuals at any point (x,y) and
+          time t.
+        </li>
+        <li>
+          <a href = "rhs_lucas.m">rhs_lucas.m</a>,
+          evaluates the right  hand sides of the Lucas Bystricky problem
+          at any point (x,y) and time t.
+        </li>
+        <li>
+          <a href = "rhs_taylor.m">rhs_taylor.m</a>,
+          evaluates the right  hand sides of the Taylor vortex equations 
+          at any point (x,y) and time t.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "uvp_lucas.m">uvp_lucas.m</a>,
+          evaluates the Lucas Bystricky flow field at any point (x,y) and
+          time t.
+        </li>
+        <li>
+          <a href = "uvp_spiral.m">uvp_spiral.m</a>,
+          evaluates the spiral flow field at any point (x,y) and
+          time t.
+        </li>
+        <li>
+          <a href = "uvp_taylor.m">uvp_taylor.m</a>,
+          evaluates the Taylor vortex flow field at any point (x,y) and
+          time t.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ns2de_test.m">ns2de_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "ns2de_test_output.txt">ns2de_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "gnuplot_taylor_test.m">gnuplot_taylor_test.m</a>,
+          samples the solution at the initial time on a regular grid,
+          and stores GNUPLOT graphics files of the velocity field.
+        </li>
+        <li>
+          <a href = "gnuplot_taylor_test.m">gnuplot_taylor_test.m</a>,
+          samples the Spiral Flow solution at the initial time on a regular grid,
+          and stores GNUPLOT graphics files of the velocity field.
+        </li>
+        <li>
+          <a href = "parameter_spiral_test.m">parameter_spiral_test.m</a>,
+          samples the Spiral Flow solution to show the effect 
+          of the parameters NU and RHO.
+        </li>
+        <li>
+          <a href = "parameter_taylor_test.m">parameter_taylor_test.m</a>,
+          samples the solution to show the effect of the parameters NU and RHO.
+        </li>
+        <li>
+          <a href = "resid_lucas_test.m">resid_lucas_test.m</a>,
+          samples the Lucas Bystricky residual at the initial time, 
+          to estimate the range.
+        </li>
+        <li>
+          <a href = "resid_spiral_test.m">resid_spiral_test.m</a>,
+          samples the Spiral Flow residual at the initial time, to estimate the 
+          range.
+        </li>
+        <li>
+          <a href = "resid_taylor_test.m">resid_taylor_test.m</a>,
+          samples the residual at the initial time, to estimate the 
+          range.
+        </li>
+        <li>
+          <a href = "rhs_lucas_test.m">rhs_lucas_test.m</a>,
+          samples the Lucas Bystricky right hand side at the initial time, 
+          to estimate the range.
+        </li>
+        <li>
+          <a href = "rhs_spiral_test.m">rhs_spiral_test.m</a>,
+          samples the Spiral Flow right hand side at the initial time, to estimate the 
+          range.
+        </li>
+        <li>
+          <a href = "rhs_taylor_test.m">rhs_taylor_test.m</a>,
+          samples the right hand side at the initial time, to estimate the 
+          range.
+        </li>
+        <li>
+          <a href = "uvp_lucas_test.m">uvp_lucas_test.m</a>,
+          samples the Lucas Bystricky flow field at the initial time, to estimate the 
+          data range.
+        </li>
+        <li>
+          <a href = "uvp_lucas_test2.m">uvp_lucas_test2.m</a>,
+          samples the Lucas Bystricky flow field on the boundary 
+          at the initial time, to estimate the 
+          data range.
+        </li>
+        <li>
+          <a href = "uvp_spiral_test.m">uvp_spiral_test.m</a>,
+          samples the Spiral Flow solution at the initial time, to estimate the 
+          data range.
+        </li>
+        <li>
+          <a href = "uvp_spiral_test2.m">uvp_spiral_test2.m</a>,
+          samples the Spiral Flow solution on the boundary 
+          at the initial time, to estimate the 
+          data range.
+        </li>
+        <li>
+          <a href = "uvp_taylor_test.m">uvp_taylor_test.m</a>,
+          samples the solution at the initial time, to estimate the 
+          data range.
+        </li>
+        <li>
+          <a href = "uvp_taylor_test2.m">uvp_taylor_test2.m</a>,
+          samples the solution on the boundary at the initial time, to estimate the 
+          data range.
+        </li>
+
+      </ul>
+    </p>
+
+    <p>
+      Lucas Bystricky flow:
+      <ul>
+        <li>
+          <a href = "lucas_commands.txt">lucas_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "lucas_data.txt">lucas_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "lucas.png">lucas.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Spiral flow:
+      <ul>
+        <li>
+          <a href = "spiral_commands.txt">spiral_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "spiral_data.txt">spiral_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "spiral.png">spiral.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Taylor flow:
+      <ul>
+        <li>
+          <a href = "taylor_commands.txt">taylor_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "taylor_data.txt">taylor_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "taylor.png">taylor.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 31 January 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

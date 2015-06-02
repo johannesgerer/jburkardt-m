@@ -2,7 +2,7 @@ function a = diagonal ( m, n, x )
 
 %*****************************************************************************80
 %
-%% DIAGONAL returns a diagonal matrix.
+%% DIAGONAL returns the DIAGONAL matrix.
 %
 %  Formula:
 %
@@ -43,6 +43,8 @@ function a = diagonal ( m, n, x )
 %
 %    Because A is diagonal, it has property A (bipartite).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -63,6 +65,8 @@ function a = diagonal ( m, n, x )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

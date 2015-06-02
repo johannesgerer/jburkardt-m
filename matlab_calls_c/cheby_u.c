@@ -34,6 +34,10 @@ void mexFunction ( int nlhs, mxArray *plhs[], int nrhs, const mxArray *prhs[] )
     of order 0 through N at the point X, returning the values in CX[1]
     through CX[N+1].
 
+  Licensing:
+
+    This code is distributed under the GNU LGPL license.
+
   Modified:
 
     18 July 2006
@@ -108,12 +112,16 @@ void cheby_u ( int n, double x, double cx[] )
 
     U(0)(X) =   1
     U(1)(X) =   2 X
-    U(2)(X) =   4 X**2 -   1
-    U(3)(X) =   8 X**3 -   4 X
-    U(4)(X) =  16 X**4 -  12 X**2 +  1
-    U(5)(X) =  32 X**5 -  32 X**3 +  6 X
-    U(6)(X) =  64 X**6 -  80 X**4 + 24 X**2 - 1
-    U(7)(X) = 128 X**7 - 192 X**5 + 80 X**3 - 8X
+    U(2)(X) =   4 X^2 -   1
+    U(3)(X) =   8 X^3 -   4 X
+    U(4)(X) =  16 X^4 -  12 X^2 +  1
+    U(5)(X) =  32 X^5 -  32 X^3 +  6 X
+    U(6)(X) =  64 X^6 -  80 X^4 + 24 X^2 - 1
+    U(7)(X) = 128 X^7 - 192 X^5 + 80 X^3 - 8X
+
+  Licensing:
+
+    This code is distributed under the GNU LGPL license.
 
   Modified:
 

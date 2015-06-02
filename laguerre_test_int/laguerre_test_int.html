@@ -1,0 +1,691 @@
+<html>
+
+  <head>
+    <title>
+      LAGUERRE_TEST_INT - Quadrature Tests for Semi-Infinite Intervals
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LAGUERRE_TEST_INT <br> Quadrature Tests for Semi-Infinite Intervals
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LAGUERRE_TEST_INT</b> 
+      is a MATLAB library which 
+      defines integration problems over 
+      semi-infinite intervals of the form [ALPHA,+oo).
+    </p>
+
+    <p>
+      The test integrands would normally be used to testing one 
+      dimensional quadrature software.  It is possible to invoke a 
+      particular function by index, or to try out all available functions, 
+      as demonstrated in the sample calling program.
+    </p>
+
+    <p>
+      The test integrands include:
+      <ol>
+        <li>
+          1 / ( x * log(x)^2 );
+        </li>
+        <li>
+          1 / ( x * log(x)^(3/2) );
+        </li>
+        <li>
+          1 / ( x^1.01 );
+        </li>
+        <li>
+          Sine integral;
+        </li>
+        <li>
+          Fresnel integral;
+        </li>
+        <li>
+          Complementary error function;
+        </li>
+        <li>
+          Bessel function;
+        </li>
+        <li>
+          Debye function;
+        </li>
+        <li>
+          Gamma(Z=4) function;
+        </li>
+        <li>
+          1/(1+x*x); (Stroud)
+        </li>
+        <li>
+          1 / ( (1+x) * sqrt(x) ); (Stroud)
+        </li>
+        <li>
+          exp ( - x ) * cos ( x ); (Stroud)
+        </li>
+        <li>
+          sin(x) / x; (Stroud)
+        </li>
+        <li>
+          sin ( exp(-x) + exp(-4x) ); (Stroud)
+        </li>
+        <li>
+          log(x) / ( 1+100*x*x); (QUADPACK)
+        </li>
+        <li>
+          cos(0.5*pi*x) / sqrt(x); (QUADPACK)
+        </li>
+        <li>
+          exp ( - x / 2^beta ) * cos ( x ) / sqrt ( x )
+        </li>
+        <li>
+          x^2 * exp ( - x / 2^beta )
+        </li>
+        <li>
+          x^(beta-1) / ( 1 + 10 x )^2
+        </li>
+        <li>
+          1 / ( 2^beta * ( ( x - 1 )^2 + (1/4)^beta ) * ( x - 2 ) )
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      The library includes not just the integrand, but also the value of
+      ALPHA which defines the interval of integration, and the exact value 
+      of the integral (or, typically, an estimate of this value).  
+      Thus, for each integrand function, three subroutines are supplied.  For
+      instance, for function #1, we have the routines:
+      <ul>
+        <li>
+          <b>P01_FUN</b> evaluates the integrand for problem 1.
+        </li>
+        <li>
+          <b>P01_ALPHA</b> returns the value of ALPHA for problem 1.
+        </li>
+        <li>
+          <b>P01_EXACT</b> returns the estimated integral for problem 1.
+        </li>
+        <li>
+          <b>P01_TITLE</b> returns a title for problem 1.
+        </li>
+      </ul>
+      So once you have the calling sequences for these routines, you
+      can easily evaluate the function, or integrate it on the 
+      appropriate interval, or compare your estimate of the integral
+      to the exact value.
+    </p>
+
+    <p>
+      Moreover, since the same interface is used for each function,
+      if you wish to work with problem 5 instead, you simply change
+      the "01" to "05" in your routine calls.
+    </p>
+
+    <p>
+      If you wish to call <i>all</i> of the functions, then you
+      simply use the generic interface, which again has three
+      subroutines, but which requires you to specify the problem
+      number as an extra input argument:
+      <ul>
+        <li>
+          <b>P00_FUN</b> evaluates the integrand for any problem.
+        </li>
+        <li>
+          <b>P00_ALPHA</b> returns the value of ALPHA for any problem.
+        </li>
+        <li>
+          <b>P00_EXACT</b> returns the exact integral for any problem.
+        </li>
+        <li>
+          <b>P00_TITLE</b> returns a title for any problem.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Finally, some demonstration routines are built in for
+      simple quadrature methods.  These routines include
+      <ul>
+        <li>
+          <b>P00_EXP_TRANSFORM</b> applies an exponential change of
+          variables, and then uses a Gauss-Legendre quadrature formula
+          to estimate the integral for any problem.
+        </li>
+        <li>
+          <b>P00_GAUSS_LAGUERRE</b> uses a Gauss-Laguerre quadrature formula
+          to estimate the integral for any problem.
+        </li>
+        <li>
+          <b>P00_RAT_TRANSFORM</b> applies a rational change of
+          variables, and then uses a Gauss-Legendre quadrature formula
+          to estimate the integral for any problem.
+        </li>
+      </ul>
+      and can be used with any of the sample integrands.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LAGUERRE_TEST_INT</b> is available in
+      <a href = "../../c_src/laguerre_test_int/laguerre_test_int.html">a C version</a> and
+      <a href = "../../cpp_src/laguerre_test_int/laguerre_test_int.html">a C++ version</a> and
+      <a href = "../../f77_src/laguerre_test_int/laguerre_test_int.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/laguerre_test_int/laguerre_test_int.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/laguerre_test_int/laguerre_test_int.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/quadpack/quadpack.html">
+      QUADPACK</a>,
+      a FORTRAN90 library for estimating integrals of 
+      functions in one dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which 
+      defines various quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int/test_int.html">
+      TEST_INT</a>,
+      a MATLAB library which
+      defines some test integration problems over finite intervals.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_int_2d/test_int_2d.html">
+      TEST_INT_2D</a>,
+      a MATLAB library which
+      defines test integrands for 2D quadrature rules.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Robert Piessens, Elise deDoncker-Kapenga, 
+          Christian Ueberhuber, David Kahaner,<br>
+          QUADPACK: A Subroutine Package for Automatic Integration,<br>
+          Springer, 1983,<br>
+          ISBN: 3540125531,<br>
+          LC: QA299.3.Q36.
+        </li>
+        <li>
+          Arthur Stroud, Don Secrest,<br>
+          Gaussian Quadrature Formulas,<br>
+          Prentice Hall, 1966,<br>
+          LC: QA299.4G3S7.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "laguerre_compute.m">laguerre_compute.m</a>
+          computes a Gauss-Laguerre quadrature rule.
+        </li>
+        <li>
+          <a href = "laguerre_recur.m">laguerre_recur.m</a>
+          finds the value and derivative of a Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "laguerre_root.m">laguerre_root.m</a>
+          improves an approximate root of a Laguerre polynomial.
+        </li>
+        <li>
+          <a href = "legendre_compute.m">legendre_compute.m</a>
+          computes a Gauss-Legendre quadrature rule.
+        </li>
+        <li>
+          <a href = "p00_alpha.m">p00_alpha.m</a>
+          returns the value of ALPHA for any problem.
+        </li>
+        <li>
+          <a href = "p00_exact.m">p00_exact.m</a>
+          returns the exact integral for any problem.
+        </li>
+        <li>
+          <a href = "p00_exp_transform.m">p00_exp_transform.m</a>
+          applies an exponential transform and Gauss-Legendre rule.
+        </li>
+        <li>
+          <a href = "p00_fun.m">p00_fun.m</a>
+          evaluates the integrand for any problem.
+        </li>
+        <li>
+          <a href = "p00_gauss_laguerre.m">p00_gauss_laguerre.m</a>
+          applies a Gauss-Laguerre rule.
+        </li>
+        <li>
+          <a href = "p00_problem_num.m">p00_problem_num.m</a>
+          returns the number of test integration problems.
+        </li>
+        <li>
+          <a href = "p00_rat_transform.m">p00_rat_transform.m</a>
+          applies an exponential transform and Gauss-Legendre rule.
+        </li>
+        <li>
+          <a href = "p00_title.m">p00_title.m</a>
+          returns the title for any problem.
+        </li>
+        <li>
+          <a href = "p01_alpha.m">p01_alpha.m</a>
+          returns ALPHA for problem 1.
+        </li>
+        <li>
+          <a href = "p01_exact.m">p01_exact.m</a>
+          returns the exact integral for problem 1.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>
+          evaluates the integrand for problem 1.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>
+          returns the title for problem 1.
+        </li>
+        <li>
+          <a href = "p02_alpha.m">p02_alpha.m</a>
+          returns ALPHA for problem 2.
+        </li>
+        <li>
+          <a href = "p02_exact.m">p02_exact.m</a>
+          returns the exact integral for problem 2.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>
+          evaluates the integrand for problem 2.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>
+          returns the title for problem 2.
+        </li>
+        <li>
+          <a href = "p03_alpha.m">p03_alpha.m</a>
+          returns ALPHA for problem 3.
+        </li>
+        <li>
+          <a href = "p03_exact.m">p03_exact.m</a>
+          returns the exact integral for problem 3.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>
+          evaluates the integrand for problem 3.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>
+          returns the title for problem 3.
+        </li>
+        <li>
+          <a href = "p04_alpha.m">p04_alpha.m</a>
+          returns ALPHA for problem 4.
+        </li>
+        <li>
+          <a href = "p04_exact.m">p04_exact.m</a>
+          returns the estimated integral for problem 4.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>
+          evaluates the integrand for problem 4.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>
+          returns the title for problem 4.
+        </li>
+        <li>
+          <a href = "p05_alpha.m">p05_alpha.m</a>
+          returns ALPHA for problem 5.
+        </li>
+        <li>
+	  <a href = "p05_exact.m">p05_exact.m</a>
+          returns the estimated integral for problem 5.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>
+          evaluates the integrand for problem 5.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>
+          returns the title for problem 5.
+        </li>
+        <li>
+          <a href = "p06_alpha.m">p06_alpha.m</a>
+          returns ALPHA for problem 6.
+        </li>
+        <li>
+          <a href = "p06_exact.m">p06_exact.m</a>
+          returns the exact integral for problem 6.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>
+          evaluates the integrand for problem 6.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>
+          returns the title for problem 6.
+        </li>
+        <li>
+          <a href = "p07_alpha.m">p07_alpha.m</a>
+          returns ALPHA for problem 7.
+        </li>
+        <li>
+          <a href = "p07_exact.m">p07_exact.m</a>
+          returns the exact integral for problem 7.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>
+          evaluates the integrand for problem 7.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>
+          returns the title for problem 7.
+        </li>
+        <li>
+          <a href = "p08_alpha.m">p08_alpha.m</a>
+          returns ALPHA for problem 8.
+        </li>
+        <li>
+          <a href = "p08_exact.m">p08_exact.m</a>
+          returns the estimated integral for problem 8.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>
+          evaluates the integrand for problem 8.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>
+          returns the title for problem 8.
+        </li>
+        <li>
+          <a href = "p09_alpha.m">p09_alpha.m</a>
+          returns ALPHA for problem 9.
+        </li>
+        <li>
+          <a href = "p09_exact.m">p09_exact.m</a>
+          returns the estimated integral for problem 9.
+        </li>
+        <li>
+          <a href = "p09_fun.m">p09_fun.m</a>
+          evaluates the integrand for problem 9.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>
+          returns the title for problem 9.
+        </li>
+        <li>
+          <a href = "p10_alpha.m">p10_alpha.m</a>
+          returns ALPHA for problem 10.
+        </li>
+        <li>
+          <a href = "p10_exact.m">p10_exact.m</a>
+          returns the estimated integral for problem 10.
+        </li>
+        <li>
+          <a href = "p10_fun.m">p10_fun.m</a>
+          evaluates the integrand for problem 10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>
+          returns the title for problem 10.
+        </li>
+        <li>
+          <a href = "p11_alpha.m">p11_alpha.m</a>
+          returns ALPHA for problem 11.
+        </li>
+        <li>
+          <a href = "p11_exact.m">p11_exact.m</a>
+          returns the exact integral for problem 11.
+        </li>
+        <li>
+          <a href = "p11_fun.m">p11_fun.m</a>
+          evaluates the integrand for problem 11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>
+          returns the title for problem 11.
+        </li>
+        <li>
+          <a href = "p12_alpha.m">p12_alpha.m</a>
+          returns ALPHA for problem 12.
+        </li>
+        <li>
+          <a href = "p12_exact.m">p12_exact.m</a>
+          returns the exact integral for problem 12.
+        </li>
+        <li>
+          <a href = "p12_fun.m">p12_fun.m</a>
+          evaluates the integrand for problem 12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>
+          returns the title for problem 12.
+        </li>
+        <li>
+          <a href = "p13_alpha.m">p13_alpha.m</a>
+          returns ALPHA for problem 13.
+        </li>
+        <li>
+          <a href = "p13_exact.m">p13_exact.m</a>
+          returns the exact integral for problem 13.
+        </li>
+        <li>
+          <a href = "p13_fun.m">p13_fun.m</a>
+          evaluates the integrand for problem 13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>
+          returns the title for problem 13.
+        </li>
+        <li>
+          <a href = "p14_alpha.m">p14_alpha.m</a>
+          returns ALPHA for problem 14.
+        </li>
+        <li>
+          <a href = "p14_exact.m">p14_exact.m</a>
+          returns the estimated integral for problem 14.
+        </li>
+        <li>
+          <a href = "p14_fun.m">p14_fun.m</a>
+          evaluates the integrand for problem 14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>
+          returns the title for problem 14.
+        </li>
+        <li>
+          <a href = "p15_alpha.m">p15_alpha.m</a>
+          returns ALPHA for problem 15.
+        </li>
+        <li>
+          <a href = "p15_exact.m">p15_exact.m</a>
+          returns the estimated integral for problem 15.
+        </li>
+        <li>
+          <a href = "p15_fun.m">p15_fun.m</a>
+          evaluates the integrand for problem 15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>
+          returns the title for problem 15.
+        </li>
+        <li>
+          <a href = "p16_alpha.m">p16_alpha.m</a>
+          returns ALPHA for problem 16.
+        </li>
+        <li>
+          <a href = "p16_exact.m">p16_exact.m</a>
+          returns the estimated integral for problem 16.
+        </li>
+        <li>
+          <a href = "p16_fun.m">p16_fun.m</a>
+          evaluates the integrand for problem 16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>
+          returns the title for problem 16.
+        </li>
+        <li>
+          <a href = "p17_alpha.m">p17_alpha.m</a>
+          returns ALPHA for problem 17.
+        </li>
+        <li>
+          <a href = "p17_exact.m">p17_exact.m</a>
+          returns the estimated integral for problem 17.
+        </li>
+        <li>
+          <a href = "p17_fun.m">p17_fun.m</a>
+          evaluates the integrand for problem 17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>
+          returns the title for problem 17.
+        </li>
+        <li>
+          <a href = "p18_alpha.m">p18_alpha.m</a>
+          returns ALPHA for problem 18.
+        </li>
+        <li>
+          <a href = "p18_exact.m">p18_exact.m</a>
+          returns the estimated integral for problem 18.
+        </li>
+        <li>
+          <a href = "p18_fun.m">p18_fun.m</a>
+          evaluates the integrand for problem 18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>
+          returns the title for problem 18.
+        </li>
+        <li>
+          <a href = "p19_alpha.m">p19_alpha.m</a>
+          returns ALPHA for problem 19.
+        </li>
+        <li>
+          <a href = "p19_exact.m">p19_exact.m</a>
+          returns the estimated integral for problem 19.
+        </li>
+        <li>
+          <a href = "p19_fun.m">p19_fun.m</a>
+          evaluates the integrand for problem 19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>
+          returns the title for problem 19.
+        </li>
+        <li>
+          <a href = "p20_alpha.m">p20_alpha.m</a>
+          returns ALPHA for problem 20.
+        </li>
+        <li>
+          <a href = "p20_exact.m">p20_exact.m</a>
+          returns the estimated integral for problem 20.
+        </li>
+        <li>
+          <a href = "p20_fun.m">p20_fun.m</a>
+          evaluates the integrand for problem 20.
+        </li>
+        <li>
+          <a href = "p20_title.m">p20_title.m</a>
+          returns the title for problem 20.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "laguerre_test_int_test.m">laguerre_test_int_test.m</a>,
+          calls all the tests
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test01.m">laguerre_test_int_test01.m</a>,
+          demonstrates P00_PROBLEM_NUM and P00_TITLE.
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test02.m">laguerre_test_int_test02.m</a>,
+          demonstrates P00_ALPHA and P00_EXACT.
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test03.m">laguerre_test_int_test03.m</a>,
+          demonstrates P00_GAUSS_LAGUERRE.
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test04.m">laguerre_test_int_test04.m</a>,
+          demonstrates P00_EXP_TRANSFORM.
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test05.m">laguerre_test_int_test05.m</a>,
+          demonstrates P00_RAT_TRANSFORM.
+        </li>
+        <li>
+          <a href = "laguerre_test_int_test_output.txt">laguerre_test_int_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 December 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,6 +1,12 @@
 function residual ( )
 
+%*****************************************************************************80
+%
 %% RESIDUAL assembles the residual vector.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

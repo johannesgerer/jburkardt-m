@@ -26,7 +26,7 @@ function b = i4mat_u1_inverse ( n, a )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    Albert Nijenhuis, Herbert Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.

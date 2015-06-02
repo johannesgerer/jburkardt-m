@@ -22,44 +22,44 @@
     </p>
 
     <p>
-      The physicist's Hermite polynomial H(n,x) can be defined by:
+      The physicist's Hermite polynomial H(i,x) can be defined by:
       <pre>
-        H(n,x) = (-1)^n exp(x^2/2) * d^n/dx^n ( exp(-x^2/2) )
+        H(i,x) = (-1)^i exp(x^2/2) * d^i/dx^i ( exp(-x^2/2) )
       </pre>
     </p>
 
     <p>
-      The normalized physicist's Hermite polynomial Hn(n,x) is scaled so that
+      The normalized physicist's Hermite polynomial Hn(i,x) is scaled so that
       <pre>
-        Integral ( -oo < X < +oo ) exp ( - X^2 ) * Hn(M,X) Hn(N,X) dX = delta ( N, M )
+        Integral ( -oo < x < +oo ) exp ( - x^2 ) * Hn(i,x) Hn(j,x) dx = delta ( i, j )
       </pre>
     </p>
 
     <p>
-      The probabilist's Hermite polynomial He(n,x) is related to H(n,x) by:
+      The probabilist's Hermite polynomial He(i,x) is related to H(i,x) by:
       <pre>
-        He(n,x) = H(n,x/sqrt(2)) / sqrt ( 2^n )
+        He(i,x) = H(i,x/sqrt(2)) / sqrt ( 2^in )
       </pre>
     </p>
 
     <p>
-      The normalized probabilist's Hermite polynomial Hen(n,x) is scaled so that
+      The normalized probabilist's Hermite polynomial Hen(i,x) is scaled so that
       <pre>
-        Integral ( -oo < X < +oo ) exp ( - 0.5*X^2 ) * Hen(M,X) Hen(N,X) dX = delta ( N, M )
+        Integral ( -oo < x < +oo ) exp ( - 0.5*x^2 ) * Hen(i,x) Hen(j,x) dx = delta ( i, j )
       </pre>
     </p>
 
     <p>
-      The Hermite function Hf(n,x) is related to H(n,x) by:
+      The Hermite function Hf(i,x) is related to H(i,x) by:
       <pre>
-        Hf(n,x) = H(n,x) * exp(-x^2/2) / sqrt ( 2^n * n! * sqrt ( pi ) )
+        Hf(i,x) = H(i,x) * exp(-x^2/2) / sqrt ( 2^i * i! * sqrt ( pi ) )
       </pre>
     </p>
 
     <p>
-      The Hermite function Hf(n,x) is scaled so that:
+      The Hermite function Hf(i,x) is scaled so that:
       <pre>
-        Integral ( -oo < X < +oo ) Hf(M,X) Hf(N,X) dX = delta ( N, M )
+        Integral ( -oo < x < +oo ) Hf(i,x) Hf(j,x) dx = delta ( i, j )
       </pre>
     </p>
 
@@ -79,7 +79,9 @@
 
     <p>
       <b>HERMITE_POLYNOMIAL</b> is available in
+      <a href = "../../c_src/hermite_polynomial/hermite_polynomial.html">a C version</a> and
       <a href = "../../cpp_src/hermite_polynomial/hermite_polynomial.html">a C++ version</a> and
+      <a href = "../../f77_src/hermite_polynomial/hermite_polynomial.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/hermite_polynomial/hermite_polynomial.html">a FORTRAN90 version</a> and
       <a href = "../../m_src/hermite_polynomial/hermite_polynomial.html">a MATLAB version</a>.
     </p>
@@ -89,10 +91,22 @@
     </h3>
 
     <p>
+      <a href = "../../m_src/bernstein_polynomial/bernstein_polynomial.html">
+      BERNSTEIN_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Bernstein polynomials, 
+      useful for uniform approximation of functions;
+    </p>
+
+    <p>
       <a href = "../../m_src/chebyshev_polynomial/chebyshev_polynomial.html">
       CHEBYSHEV_POLYNOMIAL</a>,
       a MATLAB library which
-      evaluates the Chebyshev polynomial and associated functions.
+      considers the Chebyshev polynomials T(i,x), U(i,x), V(i,x) and W(i,x).
+      Functions are provided to evaluate the polynomials, determine their zeros, 
+      produce their polynomial coefficients, produce related quadrature rules,
+      project other functions onto these polynomial bases, and integrate
+      double and triple products of the polynomials.
     </p>
 
     <p>
@@ -108,6 +122,14 @@
       a MATLAB program which
       displays an image of a function created by the Cartesian product of two Hermite polynomials,
       such as f(x,y) = h(3,x) * h(1,y).
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_product_polynomial/hermite_product_polynomial.html">
+      HERMITE_PRODUCT_POLYNOMIAL</a>,
+      a MATLAB library which
+      defines Hermite product polynomials, creating a multivariate 
+      polynomial as the product of univariate Hermite polynomials.
     </p>
 
     <p>
@@ -137,6 +159,14 @@
       LEGENDRE_POLYNOMIAL</a>,
       a MATLAB library which
       evaluates the Legendre polynomial and associated functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lobatto_polynomial/lobatto_polynomial.html">
+      LOBATTO_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates Lobatto polynomials, similar to Legendre polynomials
+      except that they are zero at both endpoints.
     </p>
 
     <p>
@@ -216,103 +246,125 @@
       <ul>
         <li>
           <a href = "h_integral.m">h_integral.m</a>,
-          evaluates a monomial physicist's Hermite integral for H(n,x).
-        </li>
-        <li>
-          <a href = "h_polynomial.m">h_polynomial.m</a>,
-          evaluates the physicist's Hermite polynomial H(n,x).
+          evaluates the integral of H(i,x).
         </li>
         <li>
           <a href = "h_polynomial_coefficients.m">h_polynomial_coefficients.m</a>,
-          evaluates the coefficients of the physicist's Hermite polynomial H(n,x).
+          coefficients of H(i,x).
+        </li>
+        <li>
+          <a href = "h_polynomial_value.m">h_polynomial_value.m</a>,
+          evaluates H(i,x).
         </li>
         <li>
           <a href = "h_polynomial_values.m">h_polynomial_values.m</a>,
-          a few tabulated values of the physicist's Hermite polynomial H(n,x).
+          tabulated values of H(i,x).
         </li>
         <li>
           <a href = "h_polynomial_zeros.m">h_polynomial_zeros.m</a>,
-          returns zeros of the physicist's Hermite polynomial H(n,x).
+          zeros of H(i,x).
         </li>
         <li>
           <a href = "h_quadrature_rule.m">h_quadrature_rule.m</a>,
-          returns quadrature rules associated with the physicist's Hermite polynomial H(n,x).
+          quadrature for H(i,x).
         </li>
         <li>
           <a href = "he_double_product_integral.m">he_double_product_integral.m</a>,
-          integral of He(i,x)*He(j,x)*e^(-0.5*x^2).
+          integral of He(i,x)*He(j,x)*e^(-x^2/2).
         </li>
         <li>
           <a href = "he_integral.m">he_integral.m</a>,
-          evaluates a monomial probabilist's Hermite integral for He(n,x).
+          evaluates the integral of He(i,x).
         </li>
         <li>
-          <a href = "he_polynomial.m">he_polynomial.m</a>,
-          evaluates the probabilist's Hermite polynomial He(n,x).
+          <a href = "he_plot.m">he_plot.m</a>,
+          plots one or more Hermite polynomials He(i,x).
+        </li>
+        <li>
+          <a href = "he_polynomial_coefficients.m">he_polynomial_coefficients.m</a>,
+          coefficients of He(i,x).
+        </li>
+        <li>
+          <a href = "he_polynomial_value.m">he_polynomial_value.m</a>,
+          evaluates He(i,x).
         </li>
         <li>
           <a href = "he_polynomial_values.m">he_polynomial_values.m</a>,
-          a few tabulated values of the probabilist's Hermite polynomial He(n,x).
+          tabulated values of He(i,x).
         </li>
         <li>
           <a href = "he_polynomial_zeros.m">he_polynomial_zeros.m</a>,
-          returns zeros of the probabilist's Hermite polynomial He(n,x).
+          zeros of He(i,x).
         </li>
         <li>
           <a href = "he_quadrature_rule.m">he_quadrature_rule.m</a>,
-          returns quadrature rules associated with the probabilist's Hermite polynomial He(n,x).
+          quadrature for He(i,x).
         </li>
         <li>
           <a href = "he_triple_product_integral.m">he_triple_product_integral.m</a>,
-          integral of He(i,x)*He(j,x)*He(k,x)*e^(-0.5*x^2).
+          integral of He(i,x)*He(j,x)*He(k,x)*e^(-x^2/2).
         </li>
         <li>
           <a href = "hen_exponential_product.m">hen_exponential_product.m</a>,
-          tabulates integrals of e^(b*x) Hen(i,x) Hen(j,x) e^(-0.5*x^2).
+          exponential product of exp(b*x)*Hen(i,x)*Hen(j,x).
         </li>
         <li>
-          <a href = "hen_polynomial.m">hen_polynomial.m</a>,
-          evaluates the normalized probabilist's Hermite polynomial Hen(n,x).
+          <a href = "hen_polynomial_value.m">hen_polynomial_value.m</a>,
+          evaluates Hen(i,x).
         </li>
         <li>
           <a href = "hen_power_product.m">hen_power_product.m</a>,
-          tabulates integrals of x^e Hen(i,x) Hen(j,x) e^(-0.5*x^2).
+          power products, x^e*Hen(i,x)*Hen(j,x).
+        </li>
+        <li>
+          <a href = "hen_projection.m">hen_projection.m</a>,
+          determines the projection coefficients for a function f(x) against
+          Hen(0:n,x).
+        </li>
+        <li>
+          <a href = "hen_projection_data.m">hen_projection_data.m</a>,
+          determines the least squares projection coefficients for a function f(x) which
+          is only supplied as M data values (x,fx), against Hen(0:n,x).
+        </li>
+        <li>
+          <a href = "hen_projection_value.m">hen_projection_value.m</a>,
+          evaluates the projection of a function against Hen(0:n,x).
         </li>
         <li>
           <a href = "hf_exponential_product.m">hf_exponential_product.m</a>,
-          tabulates integrals of e^(b*x) Hf(i,x) Hf(j,x).
+          exponential products, exp(b*x)*Hf(i,x)*Hf(j,x).
         </li>
         <li>
-          <a href = "hf_function.m">hf_function.m</a>,
-          evaluates the Hermite function Hf(n,x);
+          <a href = "hf_function_value.m">hf_function_value.m</a>,
+          evaluates the Hermite function Hf(i,x).
         </li>
         <li>
           <a href = "hf_function_values.m">hf_function_values.m</a>,
-          a few tabulated values of the Hermite function Hf(n,x);
+          values of the Hermite function Hf(i,x).
         </li>
         <li>
           <a href = "hf_plot.m">hf_plot.m</a>,
-          plots one or more Hermite functions Hf(n,x).
+          plots one or more Hermite functions Hf(i,x).
         </li>
         <li>
           <a href = "hf_power_product.m">hf_power_product.m</a>,
-          tabulates integrals of x^e Hf(i,x) Hf(j,x).
+          power products x^e*Hf(i,x)*Hf(j,x).
         </li>
         <li>
           <a href = "hf_quadrature_rule.m">hf_quadrature_rule.m</a>,
-          returns quadrature rules associated with the Hermite function Hf(n,x).
+          quadrature for Hf(i,x).
         </li>
         <li>
           <a href = "hn_exponential_product.m">hn_exponential_product.m</a>,
-          tabulates integrals of e^(b*x) Hn(i,x) Hn(j,x) e^(-x^2).
+          exponential products exp(b*x)*Hn(i,x)*Hn(j,x).
         </li>
         <li>
-          <a href = "hn_polynomial.m">hn_polynomial.m</a>,
-          evaluates the normalized physicist's Hermite polynomial Hn(n,x).
+          <a href = "hn_polynomial_value.m">hn_polynomial_value.m</a>,
+          evaluates Hn(i,x).
         </li>
         <li>
           <a href = "hen_power_product.m">hen_power_product.m</a>,
-          tabulates integrals of x^e Hn(i,x) Hn(j,x) e^(-x^2).
+          power products x^e*Hn(i,x)*Hn(j,x).
         </li>
         <li>
           <a href = "imtqlx.m">imtqlx.m</a>,
@@ -368,15 +420,15 @@
         </li>
         <li>
           <a href = "hermite_polynomial_test01.m">hermite_polynomial_test01.m</a>,
-          tests h_polynomial;
+          tests h_polynomial_value;
         </li>
         <li>
           <a href = "hermite_polynomial_test02.m">hermite_polynomial_test02.m</a>,
-          tests he_polynomial;
+          tests he_polynomial_value;
         </li>
         <li>
           <a href = "hermite_polynomial_test03.m">hermite_polynomial_test03.m</a>,
-          tests hf_function;
+          tests hf_function_value;
         </li>
         <li>
           <a href = "hermite_polynomial_test04.m">hermite_polynomial_test04.m</a>,
@@ -423,12 +475,40 @@
           tests h_polynomial_coefficients;
         </li>
         <li>
+          <a href = "hermite_polynomial_test15.m">hermite_polynomial_test15.m</a>,
+          tests hf_polynomial_coefficients;
+        </li>
+        <li>
+          <a href = "hermite_polynomial_test16.m">hermite_polynomial_test16.m</a>,
+          tests Hermite projection using he_quadrature_rule and hen_polynomial;
+        </li>
+        <li>
+          <a href = "hermite_polynomial_test17.m">hermite_polynomial_test17.m</a>,
+          tests hen_projection and hen_projection_value;
+        </li>
+        <li>
+          <a href = "hermite_polynomial_test18.m">hermite_polynomial_test18.m</a>,
+          tests hen_projection_data;
+        </li>
+        <li>
           <a href = "hermite_polynomial_plot01.m">hermite_polynomial_plot01.m</a>,
           tests hf_plot;
         </li>
         <li>
+          <a href = "he_plot.png">he_plot.png</a>,
+          a plot of Hermite polynomials 0 through 4 over [-2,+2];
+        </li>
+        <li>
           <a href = "hf_plot.png">hf_plot.png</a>,
           a plot of Hermite functions 0 through 5 over [-5,+5];
+        </li>
+        <li>
+          <a href = "exp_fun.m">exp_fun.m</a>,
+          evaluates a function, to be projected; in this case, simply exp(x).
+        </li>
+        <li>
+          <a href = "poly1.m">poly1.m</a>,
+          evaluates the polynomial 1+2x+3x^2+4x^3+5x^5.
         </li>
       </ul>
     </p>
@@ -441,7 +521,7 @@
     <hr>
 
     <i>
-      Last modified on 25 February 2012.
+      Last modified on 19 October 2014.
     </i>
 
     <!-- John Burkardt -->

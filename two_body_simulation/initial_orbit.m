@@ -32,8 +32,10 @@ function initial_orbit ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INITIAL_ORBIT:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  This simulation follows a small body for two orbits\n' );
   fprintf ( 1, '  around a relatively massive body - such as Mercury around\n' );
   fprintf ( 1, '  the sun.\n' );
@@ -45,7 +47,9 @@ function initial_orbit ( )
   tmin = 0.0;
   tmax = 2.0 * 3.895;
   sol = ode45 ( @kepler, [ tmin, tmax ], x0 );
-
+%
+%  Plot the solution.
+%
   clf
 
   hold on
@@ -65,6 +69,14 @@ function initial_orbit ( )
   title ( 'Two complete orbits' )
   axis equal
   hold off
+%
+%  Terminate.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'INITIAL_ORBIT:\n' );
+  fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

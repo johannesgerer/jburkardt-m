@@ -68,11 +68,11 @@ function pn = ellipse_point_near_2d ( a, b, p )
   else
 
     if ( y == 0.0 )
-      y = sqrt ( r8_epsilon ( ) ) * abs ( b );
+      y = sqrt ( eps ) * abs ( b );
     end
 
     if ( x == 0.0 )
-      x = sqrt ( r8_epsilon ( ) ) * abs ( a );
+      x = sqrt ( eps ) * abs ( a );
     end
 %
 %  Initial parameter T:
@@ -89,7 +89,7 @@ function pn = ellipse_point_near_2d ( a, b, p )
       f = ( x - abs ( a ) * ct ) * abs ( a ) * st ...
         - ( y - abs ( b ) * st ) * abs ( b ) * ct;
 
-      if ( abs ( f ) <= 100.0 * r8_epsilon ( ) )
+      if ( abs ( f ) <= 100.0 * eps )
         break
       end
 

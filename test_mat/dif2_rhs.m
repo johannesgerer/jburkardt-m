@@ -24,6 +24,8 @@ function b = dif2_rhs ( m, k )
 %
 %    Output, real B(M,K), the right hand side matrix.
 %
+  b = zeros ( m, k );
+
   b(1    ,1) = 1.0;
   b(2:m-1,1) = 0.0;
   b(  m,  1) = 1.0;

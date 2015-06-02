@@ -45,6 +45,8 @@ function a = toeplitz_5diag ( n, d1, d2, d3, d4, d5 )
 %    The matrix has eigenvalues lying approximately on the complex line
 %    segment 2 * cos ( 2 * t ) + 20 * I * sin ( t ).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -79,6 +81,8 @@ function a = toeplitz_5diag ( n, d1, d2, d3, d4, d5 )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

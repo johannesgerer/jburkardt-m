@@ -44,7 +44,7 @@ function table = p_power_product ( p, e )
   for k = 1 : order
 
     x = x_table(k);
-    l_table = p_polynomial ( 1, p, x );
+    l_table = p_polynomial_value ( 1, p, x );
 %
 %  The following formula is an outer product in L_TABLE.
 %

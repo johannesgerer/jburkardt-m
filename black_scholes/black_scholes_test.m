@@ -2,7 +2,7 @@ function black_scholes_test ( )
 
 %*****************************************************************************80
 %
-%% BLACK_SCHOLES_TEST tests BLACK_SCHOLES.
+%% BLACK_SCHOLES_TEST tests the BLACK_SCHOLES library.
 %
 %  Licensing:
 %
@@ -37,7 +37,6 @@ function black_scholes_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLACK_SCHOLES_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

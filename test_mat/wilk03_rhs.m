@@ -20,7 +20,9 @@ function b = wilk03_rhs ( )
 %
 %    Output, real B(3,1), the right hand side of the system.
 %
-  b(1:3,1) = [ 0.0, 0.0, 1.0 ];
+  b(1:3,1) = [ 0.0; ...
+               0.0; ...
+               1.0 ];
 
   return
 end

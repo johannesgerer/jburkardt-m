@@ -2,7 +2,7 @@ function pce_ode_hermite_test ( )
 
 %*****************************************************************************80
 %
-%% PCE_ODE_HERMITE_TEST tests PCE_ODE_HERMITE.
+%% PCE_ODE_HERMITE_TEST tests the PCE_ODE_HERMITE library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function pce_ode_hermite_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PCE_ODE_HERMITE_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test PCE_ODE_HERMITE.\n' );
+  fprintf ( 1, '  Test the PCE_ODE_HERMITE library.\n' );
 
   pce_ode_hermite_test01 ( );
   pce_ode_hermite_test02 ( );

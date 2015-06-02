@@ -42,29 +42,30 @@ function [ x, info ] = r8vm_sl ( n, a, b, job )
 %
 %    Input, integer N, the number of rows and columns of the matrix.
 %
-%    Input, real A(N), the R8VM matrix.
+%    Input, real A(N,1), the R8VM matrix.
 %
-%    Input, real B(N), the right hand side.
+%    Input, real B(N,1), the right hand side.
 %
 %    Input, integer JOB, specifies the system to solve.
 %    0, solve A * x = b.
 %    nonzero, solve A' * x = b.
 %
-%    Output, real X(N), the solution of the linear system.
+%    Output, real X(N,1), the solution of the linear system.
 %
 %    Output, integer INFO.
 %    0, no error.
 %    nonzero, at least two of the values in A are equal.
 %
-
+  a = a(:);
+  b = b(:);
 %
 %  Check for explicit singularity.
 %
   info = 0;
 
   for j = 1 : n - 1
-    for i = j+1 : n
-      if ( a(i) == a(j) )
+    for i = j + 1 : n
+      if ( a(i,1) == a(j,1) )
         x = [];
         info = 1;
         return;
@@ -72,39 +73,39 @@ function [ x, info ] = r8vm_sl ( n, a, b, job )
     end
   end
 
-  x(1:n) = b(1:n);
+  x(1:n,1) = b(1:n,1);
 
   if ( job == 0 )
 
-    for j = 1 : n-1
-      for i = n : -1 : j+1
-        x(i) = x(i) - a(j) * x(i-1);
+    for j = 1 : n - 1
+      for i = n : -1 : j + 1
+        x(i,1) = x(i,1) - a(j,1) * x(i-1,1);
       end
     end
 
-    for j = n-1 : -1 : 1
+    for j = n - 1 : -1 : 1
 
-      for i = j+1 : n
-        x(i) = x(i) / ( a(i) - a(i-j) );
+      for i = j + 1 : n
+        x(i,1) = x(i,1) / ( a(i,1) - a(i-j,1) );
       end
 
-      for i = j : n-1
-        x(i) = x(i) - x(i+1);
+      for i = j : n - 1
+        x(i,1) = x(i,1) - x(i+1,1);
       end
 
     end
 
   else
 
-    for j = 1 : n-1
-      for i = n : -1 : j+1
-        x(i) = ( x(i) - x(i-1) ) / ( a(i) - a(i-j) );
+    for j = 1 : n - 1
+      for i = n : -1 : j + 1
+        x(i,1) = ( x(i,1) - x(i-1,1) ) / ( a(i,1) - a(i-j,1) );
       end
     end
 
-    for j = n-1 : -1 : 1
-      for i = j : n-1
-        x(i) = x(i) - x(i+1) * a(j);
+    for j = n - 1 : -1 : 1
+      for i = j : n - 1
+        x(i,1) = x(i,1) - x(i+1,1) * a(j,1);
       end
     end
 

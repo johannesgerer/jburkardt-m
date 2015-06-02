@@ -22,7 +22,10 @@
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HEATED_PLATE_SCRIPT\n' );
-  fprintf ( 1, '  Solve heated plate problem with tolerance %f\n', tol );
+  fprintf ( 1, '  Call HEATED_PLATE_FUN to solve the heated plate problem\n' );
+  fprintf ( 1, '  Use a tolerance %f\n', tol );
   fprintf ( 1, '  Write solution to file "%s".\n', filename );
 
+  tic
   heated_plate_fun ( tol, filename );
+  toc

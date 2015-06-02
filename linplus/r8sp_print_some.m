@@ -91,7 +91,7 @@ function r8sp_print_some ( m, n, nz_num, row, col, a, ilo, jlo, ihi, jhi, title 
 
       for k = 1 : nz_num
 
-        if ( i == row(k) & j2lo <= col(k) & col(k) <= j2hi )
+        if ( i == row(k) && j2lo <= col(k) && col(k) <= j2hi )
 
           j2 = col(k) - j2lo + 1;
 
@@ -107,7 +107,7 @@ function r8sp_print_some ( m, n, nz_num, row, col, a, ilo, jlo, ihi, jhi, title 
       if ( nonzero )
         fprintf ( 1, '%4d', i );
         for j = 1 : inc
-          fprintf ( 1, '  %12f', aij(j) );
+          fprintf ( 1, '  %12g', aij(j) );
         end
         fprintf ( 1, '\n' );
       end
@@ -115,8 +115,6 @@ function r8sp_print_some ( m, n, nz_num, row, col, a, ilo, jlo, ihi, jhi, title 
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

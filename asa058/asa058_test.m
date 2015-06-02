@@ -20,15 +20,15 @@ function asa058_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA058_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Test the ASA058 routines.\n' );
+  fprintf ( 1, '  Test the ASA058 library.\n' );
 
   asa058_test01 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA058_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

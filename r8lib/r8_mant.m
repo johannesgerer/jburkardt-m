@@ -6,7 +6,7 @@ function [ s, r, l ] = r8_mant ( x )
 %
 %  Formula:
 %
-%    X = S * R * 2**L
+%    X = S * R * 2^L
 %
 %    S is +1 or -1,
 %    R is a real value between 1.0 and 2.0,

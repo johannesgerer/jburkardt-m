@@ -53,7 +53,7 @@ function angle = i4_to_angle ( i )
 %    Output, real ANGLE, an angle, measured in degrees, 
 %    between 0 and 360.
 %
-  if ( 0 <= abs ( i ) & abs ( i ) <= 2 )
+  if ( 0 <= abs ( i ) && abs ( i ) <= 2 )
 
     angle = 120.0 * abs ( i );
 

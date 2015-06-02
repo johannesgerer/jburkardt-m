@@ -2,7 +2,7 @@ function lattice_rule_test ( )
 
 %*****************************************************************************80
 %
-%% LATTICE_RULE_TEST tests the routines in LATTICE_RULE.
+%% LATTICE_RULE_TEST tests the LATTICE_RULE library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function lattice_rule_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATTICE_RULE_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -45,7 +44,6 @@ function lattice_rule_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATTICE_RULE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

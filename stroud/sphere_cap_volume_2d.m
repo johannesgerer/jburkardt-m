@@ -43,7 +43,7 @@ function volume = sphere_cap_volume_2d ( r, h )
 
   else
 
-    theta = 2.0 * arc_sine ( sqrt ( r * r - ( r - h ) * ( r - h ) ) / r );
+    theta = 2.0 * r8_asin ( sqrt ( r * r - ( r - h ) * ( r - h ) ) / r );
     volume = r * r * ( theta - sin ( theta ) ) / 2.0;
 
     if ( r < h )

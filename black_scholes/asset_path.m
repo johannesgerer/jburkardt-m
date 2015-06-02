@@ -10,7 +10,7 @@ function s = asset_path ( s0, mu, sigma, t1, n )
 %
 %  Author:
 %
-%    Desmond Higham
+%    Original MATLAB version by Desmond Higham
 %
 %  Reference:
 %

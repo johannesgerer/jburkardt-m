@@ -1,0 +1,281 @@
+<html>
+
+  <head>
+    <title>
+      VANDERMONDE - Accurate Solution of Vandermonde Systems
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      VANDERMONDE <br> Accurate Solution of Vandermonde Systems
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>VANDERMONDE</b>
+      is a MATLAB library which
+      implements the Bjork-Pereyra algorithm for accurate solution of
+      linear systems involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      A univariate NxN Vandermonde matrix is defined by a parameter vector
+      ALPHA of N distinct real values, and has the form:
+      <pre>
+        1             1            ... 1
+        alpha1        alpha2       ... alphan
+        alpha1^2      alpha2^2     ... alphan^2
+        ...           ...          ... ...
+        alpha1^(n-1)  alpha2^(n-1) ... alphan^(n-1)
+      </pre>
+    </p>
+
+    <p>
+      If p(x) is a polynomial of degree N-1, which is required to interpolate
+      a function f(x) at N distinct points ALPHA, then the coefficients
+      C of the polynomial can be found from the interpolation equations,
+      which can be written as a linear system involving a transposed
+      Vandermonde matrix:
+      <pre>
+        1    alpha1  alpha1^2  ... alpha1^(n-1)    c0           f(alpha1)
+        1    alpha2  alpha2^2  ... alpha2^(n-1)    c1           f(alpha2)
+        ...  ...     ...       ... ...             ...       =  ...
+        1    alphan  alphan^2  ... alphan^(n-1)    c(n-1)       f(alphan)
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>VANDERMONDE</b> is available in
+      <a href = "../../c_src/vandermonde/vandermonde.html">a C version</a> and
+      <a href = "../../cpp_src/vandermonde/vandermonde.html">a C++ version</a> and
+      <a href = "../../f77_src/vandermonde/vandermonde.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/vandermonde/vandermonde.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/vandermonde/vandermonde.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/linplus/linplus.html">
+      LINPLUS</a>,
+      a MATLAB library which
+      carries out operations such as matrix-vector products, 
+      matrix factorization, direct and iterative linear solvers 
+      for matrices in a variety of formats, including banded, border-banded, 
+      circulant, lower triangular, pentadiagonal, sparse, symmetric,
+      toeplitz, tridiagonal, upper triangular and vandermonde formats.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_weights_vandermonde/quadrature_weights_vandermonde.html">
+      QUADRATURE_WEIGHTS_VANDERMONDE</a>,
+      a MATLAB library which
+      computes the weights of a quadrature rule using the Vandermonde
+      matrix, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices for which some of the determinant, eigenvalues, 
+      inverse, null vectors, P*L*U factorization or linear system solution 
+      are already known, including the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to data of a 1D argument
+      by setting up and solving 
+      an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_2d/vandermonde_approx_2d.html">
+      VANDERMONDE_APPROX_2D</a>,
+      a MATLAB library which
+      finds a polynomial approximant p(x,y) to data z(x,y) of a 2D argument by 
+      setting up and solving an overdetermined linear system for the polynomial 
+      coefficients involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_1d/vandermonde_interp_1d.html">
+      VANDERMONDE_INTERP_1D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to a function of 1D data
+      by setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_interp_2d/vandermonde_interp_2d.html">
+      VANDERMONDE_INTERP_2D</a>,
+      a MATLAB library which
+      finds a polynomial interpolant to data z(x,y) of a 2D argument by
+      setting up and solving a linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Ake Bjorck, Victor Pereyra,<br>
+          Solution of Vandermonde Systems of Equations,<br>
+          Mathematics of Computation,<br>
+          Volume 24, Number 112, October 1970, pages 893-903.
+        </li>
+        <li>
+          Gustavo Galimberti, Victor Pereyra,<br>
+          Numerical Differentiation and the Solution of Multidimensional Vandermonde
+          Systems,<br>
+          Mathematics of Computation,<br>
+          Volume 24, Number 110, April 1970, pages 357-364.
+        </li>
+        <li>
+          Nicholas Higham,<br>
+          Stability analysis of algorithms for solving confluent
+          Vandermonde-like systems,<br>
+          SIAM Journal on Matrix Analysis and Applications,<br>
+          Volume 11, 1990, pages 23-41.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bivand1.m">bivand1.m</a>,
+          defines a bivariate Vandermonde matrix associated with polynomials
+          of total degree less than N.
+        </li>
+        <li>
+          <a href = "bivand2.m">bivand2.m</a>,
+          defines a bivariate Vandermonde matrix associated with polynomials
+          of maximum degree less than N.
+        </li>
+        <li>
+          <a href = "dvand.m">dvand.m</a>,
+          solves a transposed Vandermonde linear system.
+        </li>
+        <li>
+          <a href = "dvandprg.m">dvandprg.m</a>,
+          solves a transposed Vandermonde linear system "progressively",
+          that is, using N successive calls, adding one more ALPHA each time.
+        </li>
+        <li>
+          <a href = "pvand.m">pvand.m</a>,
+          solves a Vandermonde linear system.
+        </li>
+        <li>
+          <a href = "pvandprg.m">pvandprg.m</a>,
+          solves a Vandermonde linear system "progressively",
+          that is, using N successive calls, adding one more ALPHA each time.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">
+          r8mat_print_some.m</a>,
+          prints some of an R8MAT;
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "vand1.m">vand1.m</a>,
+          defines a univariate Vandermonde matrix.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "vandermonde_test.m">vandermonde_test.m</a>, calls all the tests;
+        </li>
+        <li>
+          <a href = "vandermonde_test_output.txt">vandermonde_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "bivand1_test.m">bivand1_test.m</a>,
+          tests bivand1();
+        </li>
+        <li>
+          <a href = "bivand2_test.m">bivand2_test.m</a>,
+          tests bivand2();
+        </li>
+        <li>
+          <a href = "dvand_test.m">dvand_test.m</a>,
+          tests dvand();
+        </li>
+        <li>
+          <a href = "dvandprg_test.m">dvandprg_test.m</a>,
+          tests dvandprg();
+        </li>
+        <li>
+          <a href = "pvand_test.m">pvand_test.m</a>,
+          tests pvand();
+        </li>
+        <li>
+          <a href = "pvandprg_test.m">pvandprg_test.m</a>,
+          tests pvandprg();
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 01 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

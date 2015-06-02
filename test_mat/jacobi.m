@@ -2,14 +2,14 @@ function a = jacobi ( m, n )
 
 %*****************************************************************************80
 %
-%% JACOBI returns the Jacobi matrix.
+%% JACOBI returns the JACOBI matrix.
 %
 %  Formula:
 %
 %    if ( J = I - 1 )
-%      A(I,J) = 0.5 * sqrt ( ( 4 * J**2 ) / ( 4 * J**2 - 1 ) )
+%      A(I,J) = 0.5 * sqrt ( ( 4 * J^2 ) / ( 4 * J^2 - 1 ) )
 %    else if ( J = I + 1 )
-%      A(I,J) = 0.5 * sqrt ( ( 4 * (J-1)**2 ) / ( 4 * (J-1)**2 - 1 ) )
+%      A(I,J) = 0.5 * sqrt ( ( 4 * (J-1)^2 ) / ( 4 * (J-1)^2 - 1 ) )
 %    else
 %      A(I,J) = 0
 %
@@ -54,6 +54,8 @@ function a = jacobi ( m, n )
 %
 %      [ 0.347854845, 0.652145155, 0.652145155, 0.347854845 ]
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -78,6 +80,8 @@ function a = jacobi ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

@@ -18,8 +18,11 @@ function lambda = rutis1_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(4), the eigenvalues.
+%    Output, real LAMBDA(4,1), the eigenvalues.
 %
+  n = 4;
+  lambda = zeros ( n, 1 );
+
   lambda(1:4) = [ ...
     15.0, ...
      5.0, ...

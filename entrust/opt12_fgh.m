@@ -1,5 +1,7 @@
 function [ f, g, H ] = opt12_fgh ( x, flag )
 
+%*****************************************************************************80
+%
 %% OPT12_FGH evaluates F, G and H for test case #2.
 %
 %  Discussion:

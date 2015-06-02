@@ -2,7 +2,7 @@ function quadrule_test ( )
 
 %*****************************************************************************80
 %
-%% QUADRULE_FAST_TEST tests QUADRULE_FAST.
+%% QUADRULE_FAST_TEST tests the QUADRULE_FAST library.
 %
 %  Licensing:
 %
@@ -43,7 +43,6 @@ function quadrule_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUADRULE_FAST_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

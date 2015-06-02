@@ -10,7 +10,7 @@ function sparse_grid_hw_test ( )
 %
 %  Modified:
 %
-%    30 November 2012
+%    26 February 2014
 %
 %  Author:
 %
@@ -22,24 +22,40 @@ function sparse_grid_hw_test ( )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the SPARSE_GRID_HW library.\n' );
 
-  ccs_sparse_test ( );
+  cce_test ( );
+  cce_sparse_test ( );
+
+  ccl_test ( );
+  ccl_sparse_test ( );
+
   ccs_test ( );
-  ccu_sparse_test ( );
-  ccu_test ( );
+  ccs_sparse_test ( );
+
   get_seq_test ( );
-  gqn_sparse_test ( );
+
+  glo_test ( );
+  glo_sparse_test ( );
+
   gqn_test ( );
-  gqu_sparse_test ( );
+  gqn_sparse_test ( );
+
   gqu_test ( );
-  kpn_sparse_test ( );
+  gqu_sparse_test ( );
+
   kpn_test ( );
-  kpu_sparse_test ( );
+  kpn_sparse_test ( );
+
   kpu_test ( );
+  kpu_sparse_test ( );
+
   nwspgr_size_test ( );
+  nwspgr_time_test ( );
   nwspgr_test ( );
+
   order_report ( );
-  pack_rules_test ( );
+
   symmetric_sparse_size_test ( );
+
   tensor_product_test ( );
 %
 %  Terminate.

@@ -120,7 +120,7 @@ function value = bessel_i1 ( arg )
 %
 %  ABS(ARG) < EPSILON ( ARG )
 %
-  if ( x < r8_epsilon ( ) ) 
+  if ( x < eps ) 
 
     value = half * x;
 %

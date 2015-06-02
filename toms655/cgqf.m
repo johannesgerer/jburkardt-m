@@ -1,4 +1,4 @@
-function [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b )
+function [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b, lo )
 
 %*****************************************************************************80
 %
@@ -21,7 +21,7 @@ function [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b )
 %
 %  Modified:
 %
-%    16 February 2010
+%    19 September 2013
 %
 %  Author:
 %
@@ -57,11 +57,24 @@ function [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b )
 %
 %    Input, real A, B, the interval endpoints.
 %
+%    Input, integer LO, defines the actions:
+%    < 0, compute knots and weights, and print.
+%    = 0, compute knots and weights.
+%    > 0, compute knots and weights, print, and do moment check.
+%
 %    Output, real T(NT), the knots.
 %
 %    Output, real WTS(NT), the weights.
 %
+  key = 1;
+  mop = 2 * nt;
+  m = mop + 1;
+  mex = m + 2;
+  mmex = max ( mex, 1 );
 
+  if ( lo <= 0 )
+    mex = 0;
+  end
 %
 %  Compute the Gauss quadrature formula for default values of A and B.
 %
@@ -79,6 +92,11 @@ function [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b )
 %  Scale the quadrature rule.
 %
   [ t, wts ] = scqf ( nt, t, mlt, wts, nt, ndx, kind, alpha, beta, a, b );
+
+  if ( lo ~= 0 )
+    chkqf ( t, wts, mlt, nt, nt, ndx, key, mop, mmex, ...
+      kind, alpha, beta, lo, a, b );
+  end
 
   return
 end

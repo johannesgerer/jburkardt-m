@@ -2,7 +2,7 @@ function mm_to_st_test ( )
 
 %*****************************************************************************80
 %
-%% MM_TO_ST_TEST tests MM_TO_ST.
+%% MM_TO_ST_TEST tests the MM_TO_ST library.
 %
 %  Licensing:
 %

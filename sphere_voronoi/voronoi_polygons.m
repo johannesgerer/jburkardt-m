@@ -18,7 +18,7 @@ function [ first, list ] = voronoi_polygons ( n, face_num, face )
 %
 %  Modified:
 %
-%    02 May 2010
+%    03 December 2014
 %
 %  Author:
 %
@@ -76,6 +76,10 @@ function [ first, list ] = voronoi_polygons ( n, face_num, face )
 %  No such triangle?
 %
     if ( p1 == 0 )
+      fprintf ( 1, '\n' );
+      fprintf ( 1, 'VORONOI_POLYGON - Fatal error!' );
+      fprintf ( 1, '  For the point P0 = %d\n', p0 );
+      fprintf ( 1, '  there is no triangle of the form (P0,P1,P2).\n' );
       error ( 'VORONOI_POLYGON - Fatal error!' )
     end
 %
@@ -112,6 +116,10 @@ function [ first, list ] = voronoi_polygons ( n, face_num, face )
       end
 
       if ( p2 == 0 )
+      fprintf ( 1, '\n' );
+      fprintf ( 1, 'VORONOI_POLYGON - Fatal error!' );
+      fprintf ( 1, '  For the points P0 = %d, P1 = %d\n', p0, p1 );
+      fprintf ( 1, '  there is no triangle of the form (P0,P1,P2).\n' );
         error ( 'VORONOI_POLYGON - Fatal error!' )
       end
 

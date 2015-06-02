@@ -1,12 +1,12 @@
 >> sphere_grid_test
-27-Sep-2012 15:07:39
+20-Oct-2013 21:58:47
 
 SPHERE_GRID_TEST
   MATLAB version
   Test the SPHERE_GRID library.
 
-TEST01
-  SPHERE_GRID_ICOS_SIZE determines the size
+SPHERE_GRID_TEST01
+  SPHERE_ICOS_POINT_NUM determines the size
   (number of vertices, edges and faces) in a grid
   on a sphere, made by subdividing an initial
   projected icosahedron.
@@ -55,16 +55,14 @@ TEST01
        512   2621442   7864320   5242880
       1024  10485762  31457280  20971520
 
-TEST02
-  SPHERE_GRID_ICOS_SIZE "sizes" a grid generated
+SPHERE_GRID_TEST02
+  SPHERE_ICOS_POINT_NUM "sizes" a grid generated
   on an icosahedron and projected to a sphere.
-  SPHERE_GRIDPOINTS_ICOS1 creates the grid points.
+  SPHERE_ICOS1_POINTS creates the grid points.
 
-  Sizing factor =       3.000000
+  Sizing factor =       7.000000
 
-  Number of nodes =     92
-  Number of edges =     270
-  Number of triangles = 180
+  Number of points = 492
 
   Initial part of NODE_XYZ array:
 
@@ -82,28 +80,26 @@ TEST02
    10:   -0.525731    0.000000   -0.850651
    11:   -0.850651    0.525731    0.000000
    12:   -0.850651   -0.525731    0.000000
-   13:    0.979432    0.201774    0.000000
-   14:    0.979432   -0.201774    0.000000
-   15:    0.854729    0.403548    0.326477
-   16:    0.730026    0.201774    0.652955
-   17:    0.854729    0.403548   -0.326477
-   18:    0.730026    0.201774   -0.652955
-   19:    0.652955    0.730026    0.201774
-   20:    0.326477    0.854729    0.403548
+   13:    0.914824    0.403852    0.000000
+   14:    0.966666    0.256042    0.000000
+   15:    0.996125    0.087948    0.000000
+   16:    0.996125   -0.087948    0.000000
+   17:    0.966666   -0.256042    0.000000
+   18:    0.914824   -0.403852    0.000000
+   19:    0.864906    0.484622    0.130689
+   20:    0.861170    0.426737    0.276190
 
-  Plot file saved to "sphere_grid_icos1_f3.png".
-  Wrote grid nodes to "sphere_grid_icos1_f3.xyz".
+  Plot file saved to "sphere_icos1_points_f7.png".
+  Wrote grid nodes to "sphere_icos1_points_f7.xyz".
 
-TEST03
-  SPHERE_GRID_ICOS_SIZE "sizes" a grid generated
+SPHERE_GRID_TEST03
+  SPHERE_ICOS_POINT_NUM "sizes" a grid generated
   on an icosahedron and projected to a sphere.
-  SPHERE_GRIDPOINTS_ICOS2 creates the grid.
+  SPHERE_ICOS2_POINTS creates the grid.
 
-  Sizing factor FACTOR = 3
+  Sizing factor FACTOR = 5
 
-  Number of nodes =     92
-  Number of edges =     270
-  Number of triangles = 180
+  Number of points =  252
 
   Initial part of NODE_XYZ array:
 
@@ -121,25 +117,22 @@ TEST03
    10:   -0.525731    0.000000   -0.850651
    11:   -0.850651    0.525731    0.000000
    12:   -0.850651   -0.525731    0.000000
-   13:    0.983024    0.183479    0.000000
-   14:    0.983024   -0.183479    0.000000
-   15:    0.851981    0.395511    0.343074
-   16:    0.738585    0.212031    0.639950
-   17:    0.851981    0.395511   -0.343074
-   18:    0.738585    0.212031   -0.639950
-   19:    0.639950    0.738585    0.212031
-   20:    0.343074    0.851981    0.395511
+   13:    0.945345    0.326071    0.000000
+   14:    0.993877    0.110489    0.000000
+   15:    0.993877   -0.110489    0.000000
+   16:    0.945345   -0.326071    0.000000
+   17:    0.865562    0.455163    0.208875
+   18:    0.838207    0.362369    0.407551
+   19:    0.769921    0.251881    0.586326
+   20:    0.664039    0.129092    0.736470
 
-ans =
+  Plot file saved to "sphere_icos2_points_f5.png".
 
-     0
+  Wrote grid nodes to "sphere_icos2_points_f5.xyz".
 
-
-  Wrote grid nodes to "sphere_grid_icos2_f3.xyz".
-
-TEST04
-  SPHERE_GRIDPOINTS produces a grid of
-  points on an implicit sphere in 3D.
+SPHERE_GRID_TEST04
+  SPHERE_LL_POINTS produces latitude/longitude
+  points on a sphere in 3D.
 
   Radius = 10.000000
 
@@ -172,7 +165,7 @@ TEST04
         13     -0.000000     -7.071068     -7.071068
         14      0.000000      0.000000    -10.000000
 
-TEST05
+SPHERE_GRID_TEST05
   SPHERE_SPIRALPOINTS produces a spiral of
   points on an implicit sphere in 3D.
 
@@ -229,8 +222,8 @@ TEST05
   Wrote grid nodes to "121".
   Wrote grid nodes to "122".
 
-TEST06
-  SPHERE_GRIDLINES computes gridlines
+SPHERE_GRID_TEST06
+  SPHERE_LL_LINES computes gridlines
   on a sphere in 3D.
 
   Number of latitudes is  3
@@ -280,7 +273,7 @@ TEST06
    35:       5        6  
    36:       6       11  
 
-TEST07
+SPHERE_GRID_TEST07
   SPHERE_GRID_Q4 computes a grid
   of Q4 rectangular elements on a sphere in 3D.
 
@@ -306,7 +299,7 @@ TEST07
    11:       9        8       10       10  
    12:       6        9       10       10  
 
-TEST08
+SPHERE_GRID_TEST08
   SPHERE_GRID_T3 computes a grid
   of T3 triangular elements on a sphere in 3D.
 
@@ -353,7 +346,7 @@ TEST08
    31:      17       16       18  
    32:      14       17       18  
 
-TEST09
+SPHERE_GRID_TEST09
   For the unit sphere in 3 dimensions:
   SPHERE_UNIT_SAMPLE does a random sampling.
 
@@ -374,42 +367,119 @@ TEST09
 
   Wrote grid nodes to "sphere_sample_n1000.xyz".
 
-TEST10
+SPHERE_GRID_TEST10
   SPHERE_CUBED_POINTS computes points on a cubed sphere grid.
 
   Number of divisions on each face = 10
-  Total number of points = 488
+  Total number of points = 602
 
   Initial part of XYZ array:
 
   Row:       1             2             3       
   Col
     1:   -0.577350   -0.577350   -0.577350
-    2:   -0.615457   -0.492366   -0.615457
-    3:   -0.650945   -0.390567   -0.650945
-    4:   -0.680414   -0.272166   -0.680414
-    5:   -0.700140   -0.140028   -0.700140
+    2:   -0.628960   -0.456966   -0.628960
+    3:   -0.665247   -0.338960   -0.665247
+    4:   -0.689152   -0.223919   -0.689152
+    5:   -0.702714   -0.111299   -0.702714
     6:   -0.707107    0.000000   -0.707107
-    7:   -0.700140    0.140028   -0.700140
-    8:   -0.680414    0.272166   -0.680414
-    9:   -0.650945    0.390567   -0.650945
-   10:   -0.615457    0.492366   -0.615457
+    7:   -0.702714    0.111299   -0.702714
+    8:   -0.689152    0.223919   -0.689152
+    9:   -0.665247    0.338960   -0.665247
+   10:   -0.628960    0.456966   -0.628960
    11:   -0.577350    0.577350   -0.577350
-   12:   -0.492366   -0.615457   -0.615457
-   13:   -0.529813   -0.529813   -0.662266
-   14:   -0.565685   -0.424264   -0.707107
-   15:   -0.596285   -0.298142   -0.745356
-   16:   -0.617213   -0.154303   -0.771517
-   17:   -0.624695    0.000000   -0.780869
-   18:   -0.617213    0.154303   -0.771517
-   19:   -0.596285    0.298142   -0.745356
-   20:   -0.565685    0.424264   -0.707107
+   12:   -0.456966   -0.628960   -0.628960
+   13:   -0.506732   -0.506732   -0.697457
+   14:   -0.543426   -0.381106   -0.747962
+   15:   -0.568473   -0.254229   -0.782436
+   16:   -0.583019   -0.127097   -0.802456
+   17:   -0.587785    0.000000   -0.809017
+   18:   -0.583019    0.127097   -0.802456
+   19:   -0.568473    0.254229   -0.782436
+   20:   -0.543426    0.381106   -0.747962
 
-  Plot file saved to "sphere_cubed_grid_10.png".
-  Wrote grid nodes to "sphere_cubed_grid_10.xyz".
+  Plot file saved to "sphere_cubed_points_f10.png".
+  Wrote grid nodes to "sphere_cubed_grid_f10.xyz".
+
+SPHERE_GRID_TEST11
+  SPHERE_LL_POINTS computes points on a
+  latitude/longitude grid
+  SPHERE_LL_LINES computes lines on a
+  latitude/longitude grid
+  Use this information to draw a globe with a grid.
+
+  Number of latitudes is  22
+  Number of longitudes is 24
+
+  The number of grid points is 530
+
+  Number of line segments is 1584
+
+  Saving plot as "sphere_ll_points.png".
+
+  Saving plot as "sphere_ll_grid.png".
+
+SPHERE_GRID_TEST12
+  SPHERE_LL_POINTS computes points on a
+  latitude/longitude grid
+  SPHERE_LLQ_LINES computes lines on a
+  latitude/longitude quadrilateral grid
+  Use this information to draw a globe with a grid.
+
+  Number of latitudes is  10
+  Number of longitudes is 12
+
+  The number of grid points is 122
+
+  Number of line segments is 252
+
+  Saving plot as "sphere_llq_grid.png".
+
+SPHERE_GRID_TEST13
+  SPHERE_CUBED_LINES produces cubed sphere grid lines.
+  Each cube face is divided into 5x5 subfaces
+
+  The number of points is 152
+  The number of grid lines is 300
+
+  Saving plot as "sphere_cubed_grid.png".
+
+SPHERE_GRID_TEST14
+  SPHERE_FIBONACCI_POINTS computes points on a sphere
+  that lie on a Fibonacci spiral.
+
+  Number of points N = 1000
+
+  Initial part of XYZ array:
+
+  Row:       1             2             3       
+  Col
+    1:   -0.022528   -0.038620   -0.999000
+    2:   -0.070012    0.033006   -0.997000
+    3:    0.034528    0.093717   -0.995000
+    4:    0.113977   -0.030988   -0.993000
+    5:   -0.023691   -0.131749   -0.991000
+    6:   -0.147312    0.013351   -0.989000
+    7:    0.000458    0.160720   -0.987000
+    8:    0.171936    0.014596   -0.985000
+    9:    0.031466   -0.180889   -0.983000
+   10:   -0.187499   -0.049832   -0.981000
+   11:   -0.069386    0.191689   -0.979000
+   12:    0.193395    0.089830   -0.977000
+   13:    0.110867   -0.192571   -0.975000
+   14:   -0.189190   -0.132205   -0.973000
+   15:   -0.153553    0.183250   -0.971000
+   16:    0.174770    0.174627   -0.969000
+   17:    0.195148   -0.163794   -0.967000
+   18:   -0.150392   -0.214843   -0.965000
+   19:   -0.233450    0.134656   -0.963000
+   20:    0.116705    0.250717   -0.961000
+
+  Plot file saved to "sphere_fibonacci_points_n1000.png".
+  Wrote grid nodes to "sphere_fibonacci_grid_n1000.xyz".
 
 SPHERE_GRID_TEST
   Normal end of execution.
 
-27-Sep-2012 15:07:41
+20-Oct-2013 21:58:53
 >> 

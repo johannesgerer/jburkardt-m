@@ -2,7 +2,7 @@ function fn_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for FN_TEST.
+%% FN_TEST tests the FN library.
 %
 %  Licensing:
 %
@@ -90,7 +90,6 @@ function fn_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FN_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -31,7 +31,7 @@ function ntab = tableau_enum ( n )
 %
 %    Output, integer NTAB, the number of 2 by N standard tableaus.
 %
-  ntab = binomial ( 2*n, n ) / ( n + 1 );
+  ntab = i4_choose ( 2*n, n ) / ( n + 1 );
 
   return
 end

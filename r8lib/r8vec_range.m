@@ -36,8 +36,8 @@ function [ ymin, ymax ] = r8vec_range ( n, x, xmin, xmax, y )
 %    Output, real YMIN, YMAX, the range of Y values for which the corresponding
 %    X value is in the X range.
 %
-  ymin =  r8_huge ( );
-  ymax = -r8_huge ( );
+  ymin =   realmax ( );
+  ymax = - realmax ( );
 
   for i = 1 : n
 

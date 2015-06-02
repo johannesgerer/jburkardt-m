@@ -2,7 +2,7 @@ function stla_io_test ( )
 
 %*****************************************************************************80
 %
-%% STLA_IO_TEST tests STLA_IO.
+%% STLA_IO_TEST tests the STLA_IO library.
 %
 %  Licensing:
 %
@@ -40,7 +40,6 @@ function stla_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STLA_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

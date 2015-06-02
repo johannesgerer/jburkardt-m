@@ -2,7 +2,7 @@ function determ = vand2_determinant ( n, x )
 
 %*****************************************************************************80
 %
-%% VAND2_DETERMINANT returns the determinant of the Vandermonde2 matrix.
+%% VAND2_DETERMINANT returns the determinant of the VAND2 matrix.
 %
 %  Licensing:
 %

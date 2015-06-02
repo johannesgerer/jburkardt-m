@@ -2,7 +2,7 @@ function geometry_test ( )
 
 %*****************************************************************************80
 %
-%% GEOMETRY_TEST tests GEOMETRY.
+%% GEOMETRY_TEST tests the GEOMETRY library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function geometry_test ( )
 %
 %  Modified:
 %
-%    25 July 2011
+%    28 May 2015
 %
 %  Author:
 %
@@ -22,7 +22,7 @@ function geometry_test ( )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the GEOMETRY library.\n' );
 
-  geometry_test0005 ( );
+  angle_box_2d_test ( );
   geometry_test001 ( );
   geometry_test002 ( );
   geometry_test0023 ( );
@@ -100,6 +100,8 @@ function geometry_test ( )
   geometry_test0345 ( );
   geometry_test0346 ( );
   geometry_test035 ( );
+  geometry_test0351 ( );
+  geometry_test0352 ( );
   geometry_test038 ( );
   geometry_test0385 ( );
   geometry_test03855 ( );
@@ -164,7 +166,7 @@ function geometry_test ( )
   geometry_test0801 ( );
   geometry_test0803 ( );
   geometry_test0805 ( );
-  geometry_test0807 ( );
+  polygon_solid_angle_3d_test ( );
   geometry_test081 ( );
   geometry_test082 ( );
   geometry_test0825 ( );
@@ -241,6 +243,7 @@ function geometry_test ( )
   geometry_test203235 ( );
   geometry_test20324 ( );
   geometry_test20325 ( );
+  tetrahedron_solid_angles_3d_test ( );
   geometry_test2033 ( );
   geometry_test203 ( );
   geometry_test203 ( );
@@ -296,7 +299,6 @@ function geometry_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GEOMETRY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -93,7 +93,7 @@ function adj = tet_mesh_order4_adj_set ( node_num, tetra_num, tetra_node, ...
   for k = 1 : pair_num
 
     if ( 1 < k )
-      if ( pair(1,k-1) == pair(1,k) & pair(2,k-1) == pair(2,k) )
+      if ( pair(1,k-1) == pair(1,k) && pair(2,k-1) == pair(2,k) )
         continue
       end
     end

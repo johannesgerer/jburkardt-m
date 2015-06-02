@@ -20,11 +20,13 @@ function lambda = dif1_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = i * pi / ( n + 1 );
-    lambda(i) = complex ( 0.0, 2.0 * cos ( angle ) );
+    lambda(i,1) = complex ( 0.0, 2.0 * cos ( angle ) );
   end
 
   return

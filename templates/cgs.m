@@ -1,5 +1,7 @@
 function [ x, error_norm, iter, flag ] = cgs ( A, x, b, M, max_it, tol )
 
+%*****************************************************************************80
+%
 %% CGS solves a linear system using the conjugate gradient squared method.
 %
 %  Discussion:

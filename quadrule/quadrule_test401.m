@@ -2,7 +2,7 @@ function quadrule_test401 ( )
 
 %*****************************************************************************80
 %
-%% TEST401 tests NCOH_SET and SUM_SUB.
+%% QUADRULE_TEST401 tests NCOH_SET and SUM_SUB.
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test401 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST401\n' );
+  fprintf ( 1, 'QUADRULE_TEST401\n' );
   fprintf ( 1, '  NCOH_SET sets up an open half Newton-Cotes rule;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

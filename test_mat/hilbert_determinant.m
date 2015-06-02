@@ -2,7 +2,7 @@ function determ = hilbert_determinant ( n )
 
 %*****************************************************************************80
 %
-%% HILBERT_DETERMINANT returns the determinant of the Hilbert matrix.
+%% HILBERT_DETERMINANT returns the determinant of the HILBERT matrix.
 %
 %  Licensing:
 %

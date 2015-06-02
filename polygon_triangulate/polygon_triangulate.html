@@ -1,0 +1,285 @@
+<html>
+
+  <head>
+    <title>
+      POLYGON_TRIANGULATE - Triangulate a Polygon
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      POLYGON_TRIANGULATE <br> Triangulate a Polygon
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>POLYGON_TRIANGULATE</b>
+      is a MATLAB library which
+      triangulates a polygon in 2D.
+    </p>
+
+    <p>
+      The polygon is defined by an input file which gives the coordinates
+      of the vertices of the polygon, in counterclockwise order.
+    </p>
+
+    <p>
+      No consecutive pair of vertices should be equal; when describing a
+      polygon, sometimes the first and last vertices are equal.  For this
+      program, that is not the case.  To describe a square, your input
+      file should contain four pairs of coordinates, for instance.
+    </p>
+
+    <p>
+      The vertices should be listed in counterclockwise order.  If you list
+      them in clockwise order, then the function will refuse to operate
+      on the data.
+    </p>
+
+    <p>
+      It is possible to create a polygon that has zero area.  The function
+      will refuse to process such an object.
+    </p>
+
+    <p>
+      The polygon does not need to be convex.  However, you should be careful
+      not to specify a polygon which crosses itself, since this means the
+      interior of the polygon is not well defined, and hence a triangulation
+      is not well defined.  As a simple example of such a problem, consider
+      the four vertices of a square in counterclockwise order: V1, V2, V3, V4,
+      and list them instead as V1, V3, V2, V4.  This shape cannot be 
+      triangulated in the usual sense.  However, the function may not
+      realize this, in which case it will return what it thinks is a
+      reasonable triangulation of the (unreasonable) data.
+    </p>
+
+    <p>
+      The output of the program is a list of the N-3 triples of nodes that 
+      form the triangles of the triangulation.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>triangles</i> = <b>polygon_triangulate</b> ( <i>n</i>, <i>x</i>, <i>y</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>n</i> is the number of vertices,
+        </li>
+        <li>
+          <i>x</i> is the X coordinates of the vertices,
+        </li>
+        <li>
+          <i>y</i> is the Y coordinates of the vertices,
+        </li>
+      </ul>
+      returning
+      <ul>
+        <li>
+          <i>triangles</i>, which are <i>n-2</i> triples of vertex indices that
+          form the triangles of the triangulation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>POLYGON_TRIANGULATE</b> is available in
+      <a href = "../../c_src/polygon_triangulate/polygon_triangulate.html">a C version</a> and
+      <a href = "../../cpp_src/polygon_triangulate/polygon_triangulate.html">a C++ version</a> and
+      <a href = "../../f77_src/polygon_triangulate/polygon_triangulate.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/polygon_triangulate/polygon_triangulate.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/polygon_triangulate/polygon_triangulate.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/convex_hull/convex_hull.html">
+      CONVEX_HULL</a>,
+      a MATLAB program which
+      demonstrates the computation of the convex hull of a set of 2D points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hand_data/hand_data.html">
+      HAND_DATA</a>,
+      MATLAB programs which
+      carry out some numerical exercises based on data that came from
+      tracing several points on a person's hand.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_integrals/polygon_integrals.html">
+      POLYGON_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of a polygon in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_monte_carlo/polygon_monte_carlo.html">
+      POLYGON_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of a polygon in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_properties/polygon_properties.html">
+      POLYGON_PROPERTIES</a>,
+      a MATLAB library which
+      computes properties of an arbitrary polygon in the plane, defined
+      by a sequence of vertices, including interior angles, area, centroid,
+      containment of a point, convexity, diameter, distance to a point, 
+      inradius, lattice area, nearest point in set, outradius, uniform sampling.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Based on a C function by Joseph ORourke;
+      MATLAB version by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Joseph ORourke,<br>
+          Computational Geometry in C,<br>
+          Second Edition,<br>
+          Cambridge, 1998,<br>
+          ISBN: 0521649765,<br>
+          LC: QA448.D38.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "polygon_triangulate.m">polygon_triangulate.m</a>
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "polygon_triangulate_test.m">polygon_triangulate_test.m</a>
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "polygon_triangulate_test_output.txt">polygon_triangulate_test_output.txt</a>
+          the output file.
+        </li>
+      </ul>
+    </p>
+    
+    <p>
+      <b>COMB</b> is an example of a "comb" polygon of 10 vertices
+      <ul>
+        <li>
+          <a href = "comb_nodes.txt">comb_nodes.txt</a>,
+          the vertex coordinates.
+        </li>
+        <li>
+          <a href = "comb_elements.txt">comb_elements.txt</a>,
+          the triangles that make up the polygon.
+        </li>
+        <li>
+          <a href = "comb.png">comb.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HAND</b> outlines a hand using 59 vertices.
+      <ul>
+        <li>
+          <a href = "hand_nodes.txt">hand_nodes.txt</a>,
+          the vertex coordinates.
+        </li>
+        <li>
+          <a href = "hand_elements.txt">hand_elements.txt</a>,
+          the triangles that make up the polygon.
+        </li>
+        <li>
+          <a href = "hand.png">hand.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>I18</b> is an example of a complicated nonconvex polygon, using 18 vertices.
+      <ul>
+        <li>
+          <a href = "i18_nodes.txt">i18_nodes.txt</a>,
+          the vertex coordinates.
+        </li>
+        <li>
+          <a href = "i18_elements.txt">i18_elements.txt</a>,
+          the triangles that make up the polygon.
+        </li>
+        <li>
+          <a href = "i18.png">i18.png</a>,
+          a PNG image of the triangulated polygon.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

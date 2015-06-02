@@ -2,7 +2,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
 
 %*****************************************************************************80
 %
-%% GEAR_EIGENVALUES returns the eigenvalues of the Gear matrix.
+%% GEAR_EIGENVALUES returns the eigenvalues of the GEAR matrix.
 %
 %  Licensing:
 %
@@ -22,12 +22,14 @@ function lambda = gear_eigenvalues ( ii, jj, n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-
+  lambda = zeros ( n, 1 );
 %
 %  Separate the sign and value.
 %
+  alpha = zeros ( n, 1 );
+
   j = abs ( ii );
   js = i4_sign ( ii );
 
@@ -59,7 +61,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
     w = w + 1;
     alpha(w) = 0.0;
 
-    if ( i4_even ( j ) & i4_even ( k ) )
+    if ( i4_is_even ( j ) & i4_is_even ( k ) )
       w = w + 1;
       alpha(w) = pi;
     end
@@ -86,7 +88,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
       alpha(w) = ( 2 * p - 1 ) * pi / k;
     end
 
-    if ( i4_even ( j ) & i4_odd ( k ) )
+    if ( i4_is_even ( j ) & i4_is_odd ( k ) )
       w = w + 1;
       alpha(w) = pi;
     end
@@ -113,7 +115,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
       alpha(w) = 2 * p * pi / k;
     end
 
-    if ( i4_odd ( j ) & i4_even ( k ) )
+    if ( i4_is_odd ( j ) & i4_is_even ( k ) )
       w = w + 1;
       alpha(w) = pi;
     end
@@ -140,7 +142,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
       alpha(w) = ( 2 * p - 1 ) * pi / k;
     end
 
-    if ( i4_odd ( j ) & i4_odd ( k ) )
+    if ( i4_is_odd ( j ) & i4_is_odd ( k ) )
       w = w + 1;
       alpha(w) = pi;
     end
@@ -148,7 +150,7 @@ function lambda = gear_eigenvalues ( ii, jj, n )
   end
 
   for w = 1 : n
-    lambda(w) = 2.0 * cos ( alpha(w) );
+    lambda(w,1) = 2.0 * cos ( alpha(w) );
   end
 
   return

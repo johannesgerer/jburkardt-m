@@ -10,7 +10,7 @@ function range = p00_range ( prob )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -59,6 +59,8 @@ function range = p00_range ( prob )
     range = p17_range ( );
   elseif ( prob == 18 )
     range = p18_range ( );
+  elseif ( prob == 19 )
+    range = p19_range ( );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_RANGE - Fatal error%\n' );

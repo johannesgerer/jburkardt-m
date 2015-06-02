@@ -34,6 +34,10 @@ function a = quaternion_j ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [   0.0,   0.0,   1.0,   0.0; ...
           0.0,   0.0,   0.0,   1.0; ...
          -1.0,   0.0,   0.0,   0.0; ...

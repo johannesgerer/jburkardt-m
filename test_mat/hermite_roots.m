@@ -29,6 +29,8 @@ function xtab = hermite_roots ( order )
 %
 %    Output, real XTAB(ORDER), the roots.
 %
+  xtab = zeros ( order, 1 );
+
   step_max = 10;
 
   s = ( 2.0 *  order + 1.0 )^( 1.0 / 6.0 );

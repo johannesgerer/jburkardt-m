@@ -1,4 +1,4 @@
-function ncomb = commul ( iarray, n, nfact )
+function ncomb = commul ( n, nfactor, iarray )
 
 %*****************************************************************************80
 %
@@ -21,7 +21,7 @@ function ncomb = commul ( iarray, n, nfact )
 %
 %  Modified:
 %
-%    23 July 2004
+%    04 November 2013
 %
 %  Author:
 %
@@ -29,18 +29,18 @@ function ncomb = commul ( iarray, n, nfact )
 %
 %  Parameters:
 %
-%    Input, integer IARRAY(NFACT).
+%    Input, integer N, determines the numerator.
+%
+%    Input, integer NFACTOR, the number of factors in the numerator.
+%
+%    Input, integer IARRAY(NFACTOR).
 %    IARRAY contains the NFACT values used in the denominator.
 %    Note that the sum of these entries should be N,
 %    and that all entries should be nonnegative.
 %
-%    Input, integer N, determines the numerator.
-%
-%    Input, integer NFACT, the number of factors in the numerator.
-%
 %    Output, integer NCOMB, the value of the multinomial coefficient.
 %
-  for i = 1 : nfact
+  for i = 1 : nfactor
 
     if ( iarray(i) < 0 )
       fprintf ( 1, '\n' );
@@ -52,7 +52,7 @@ function ncomb = commul ( iarray, n, nfact )
 
   end
  
-  isum = sum ( iarray(1:nfact) );
+  isum = sum ( iarray(1:nfactor) );
 
   if ( isum ~= n )
     fprintf ( 1, '\n' );
@@ -64,14 +64,14 @@ function ncomb = commul ( iarray, n, nfact )
  
   facn = gammaln ( n + 1 );
  
-  for i = 1 : nfact
+  for i = 1 : nfactor
  
     fack = gammaln ( iarray(i) + 1 );
     facn = facn - fack;
  
   end
  
-  ncomb = exp ( facn ) );
+  ncomb = round ( exp ( facn ) );
  
   return
 end

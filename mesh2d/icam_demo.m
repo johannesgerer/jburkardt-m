@@ -18,6 +18,7 @@ function icam_demo ( )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ICAM_DEMO:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Demonstrate MESH2D on the first floor of the Wright House.\n' );
 
   clf
@@ -132,7 +133,9 @@ function icam_demo ( )
   [ nv, ~ ] = size ( v );
   [ np, ~ ] = size ( p );
   [ nt, ~ ] = size ( t );
-  fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
+  fprintf ( 1, ...
+    '  %d boundary vertices input, %d nodes and %d triangles created\n', ...
+    nv, np, nt );
   pause
 %
 %  Close the figure.
@@ -158,7 +161,7 @@ function h = hfun1 ( x, y )
 %    The smallest size is at (1.0,1.0), and sizes increase as their distance
 %    from that point increases.
 %
-  h = 0.5
+  h = 0.5;
 
   return
 end

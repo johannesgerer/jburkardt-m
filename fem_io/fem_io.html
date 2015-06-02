@@ -17,7 +17,9 @@
     <p>
       <b>FEM_IO</b>
       is a MATLAB library which
-      reads or writes the data that defines a finite element model.
+      reads or writes FEM files,
+      which describe the nodes, elements, and function values
+      associated with a finite element method (FEM) model;
     </p>
 
     <p>
@@ -51,7 +53,9 @@
 
     <p>
       <b>FEM_IO</b> is available in
+      <a href = "../../c_src/fem_io/fem_io.html">a C version</a> and
       <a href = "../../cpp_src/fem_io/fem_io.html">a C++ version</a> and
+      <a href = "../../f77_src/fem_io/fem_io.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/fem_io/fem_io.html">a FORTRAN90 version</a> and
       <a href = "../../m_src/fem_io/fem_io.html">a MATLAB version.</a>
     </p>
@@ -61,19 +65,49 @@
     </h3>
 
     <p>
-      <a href = "../../m_src/fem_to_mesh/fem_to_mesh.html">
-      FEM_TO_MESH</a>,
+      <a href = "../../m_src/fem_display/fem_display.html">
+      FEM_DISPLAY</a>,
       a MATLAB program which
-      reads a pair of FEM files defining node coordinates and elements,
-      and creates a corresponding MESH file.
+      reads the FEM model of a 2D mesh, consisting of polygonal elements of
+      any uniform order, and displays an image of the elements and nodes,
+      with optional numbering.
     </p>
 
     <p>
-      <a href = "../../m_src/fem_to_tec/fem_to_tec.html">
-      FEM_TO_TEC</a>,
+      <a href = "../../m_src/fem_to_gmsh/fem_to_gmsh.html">
+      FEM_TO_GMSH</a>,
       a MATLAB program which
-      converts an FEM model
-      into a TEC graphics file.
+      reads FEM files definining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a Gmsh mesh file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_medit/fem_to_medit.html">
+      FEM_TO_MEDIT</a>,
+      a MATLAB program which
+      reads a pair of FEM files defining node coordinates and elements,
+      and creates a corresponding MEDIT mesh file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_triangle/fem_to_triangle.html">
+      FEM_TO_TRIANGLE</a>,
+      a MATLAB program which
+      reads FEM files defining a 2D mesh of triangles, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding pair of node
+      and element files for use by Jonathan Shewchuk's triangle program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_xml/fem_to_xml.html">
+      FEM_TO_XML</a>,
+      a MATLAB program which
+      reads FEM files defining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding XML file for input
+      to DOLFIN or FENICS.
     </p>
 
     <p>
@@ -108,12 +142,30 @@
     </p>
 
     <p>
-      <a href = "../../m_src/mesh_io/mesh_io.html">
-      MESH_IO</a>,
+      <a href = "../../m_src/gmsh_to_fem/gmsh_to_fem.html">
+      GMSH_TO_FEM</a>,
+      a MATLAB program which
+      reads a mesh data file created by the GMSH program
+      and writes a pair of node and element files that correspond
+      to the FEM format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/medit_io/medit_io.html">
+      MEDIT_IO</a>,
       a MATLAB library which
-      can read or write MESH files, which can be used to define the geometry
+      can read or write MEDIT mesh files, which can be used to define the geometry
       of a finite element mesh in 2D or 3D, using triangles, quadrilaterals,
       tetrahedrons or hexahedrons.
+    </p>
+
+    <p>
+      <a href = "../../m_src/medit_to_fem/medit_to_fem.html">
+      MEDIT_TO_FEM</a>,
+      a MATLAB program which
+      reads a mesh file created by the MEDIT program
+      and writes a corresponding pair of node and element files that correspond
+      to the FEM format.
     </p>
 
     <p>
@@ -121,6 +173,14 @@
       TABLE_IO</a>,
       a MATLAB library which
       can read and write TABLE files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_to_fem/triangle_to_fem.html">
+      TRIANGLE_TO_FEM</a>,
+      a MATLAB program which reads the NODE and ELE files created by triangle() to
+      describe a triangular mesh, and writes two simple "mesh" format files,
+      listing node coordinates and element connectivity.
     </p>
 
     <h3 align = "center">
@@ -216,11 +276,6 @@
           <a href = "i4mat_write.m">
           i4mat_write.m</a>
           writes an I4MAT file.
-        </li>
-        <li>
-          <a href = "r8_epsilon.m">
-          r8_epsilon.m</a>
-          returns the machine roundoff for an R8.
         </li>
         <li>
           <a href = "r8mat_data_read.m">

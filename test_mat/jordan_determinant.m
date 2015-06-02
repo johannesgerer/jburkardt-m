@@ -1,8 +1,8 @@
-function determ = jordan_determinant ( alpha, n )
+function determ = jordan_determinant ( n, alpha )
 
 %*****************************************************************************80
 %
-%% JORDAN_DETERMINANT returns the determinant of a Jordan block matrix.
+%% JORDAN_DETERMINANT returns the determinant of the JORDAN matrix.
 %
 %  Licensing:
 %
@@ -18,9 +18,9 @@ function determ = jordan_determinant ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the eigenvalue of A.
-%
 %    Input, integer N, the order of A.
+%
+%    Input, real ALPHA, the eigenvalue of the Jordan matrix.
 %
 %    Output, real DETERM, the determinant.
 %

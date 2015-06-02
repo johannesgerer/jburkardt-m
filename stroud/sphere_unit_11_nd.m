@@ -2,15 +2,15 @@ function result = sphere_unit_11_nd ( func, n )
 
 %*****************************************************************************80
 %
-%% SPHERE_UNIT_11_ND approximates an integral on the surface of the unit sphere in ND.
-%
-%  Integration region:
-%
-%    sum ( X(1:N)**2 ) = 1
+%% SPHERE_UNIT_11_ND: integral on the surface of the unit sphere in ND.
 %
 %  Discussion:
 %
-%    An 2**N * ( N^2 + N + 1 ) point formula of degree 5 is used.
+%    The integration region:
+%
+%      sum ( X(1:N)^2 ) = 1
+%
+%    An 2^N * ( N^2 + N + 1 ) point formula of degree 5 is used.
 %
 %    (For N = 3, the number of points is actually only 56, and
 %     for N = 4, the number of points is actually only 240.)
@@ -21,13 +21,17 @@ function result = sphere_unit_11_nd ( func, n )
 %    by Stroud, when going from his paper to his later textbook.
 %    This correction was pointed out by David Wright, 16 February 2010.
 %
+%    One element of COEF21 was incorrectly transcribed.  The correct
+%    value of COEF21(7) is 0.0337329118818D+00, as pointed out by
+%    John Nolan, 23 April 2013.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license. 
 %
 %  Modified:
 %
-%    15 February 2010
+%    23 April 2013
 %
 %  Author:
 %
@@ -71,7 +75,7 @@ function result = sphere_unit_11_nd ( func, n )
     0.0,              0.0, ...
     0.163795782462,   0.0967270533860, ...
     0.0638253880175,  0.0452340041459, ...
-    0.0336329118818,  0.0261275095270, ...
+    0.0337329118818,  0.0261275095270, ...
     0.0208331595340,  0.0169937111647, ...
     0.0141147212492,  0.0118949128383, ...
     0.0101424250926,  0.00873046796644, ...
@@ -135,7 +139,8 @@ function result = sphere_unit_11_nd ( func, n )
   r1 = ( ( n + 6 ) - 4.0 * sqrt ( 3.0 ) ) / ( n^2 + 12 * n - 12 );
   r1 = sqrt ( r1 );
 
-  s1 = ( ( 7 * n - 6 ) + ( 4 * ( n - 1 ) ) * sqrt ( 3.0 ) ) / ( n^2 + 12 * n - 12 );
+  s1 = ( ( 7 * n - 6 ) + ( 4 * ( n - 1 ) ) * sqrt ( 3.0 ) ) ...
+    / ( n^2 + 12 * n - 12 );
   s1 = sqrt ( s1 );
 
   for i = 1 : n
@@ -162,7 +167,8 @@ function result = sphere_unit_11_nd ( func, n )
   r2 = ( ( n + 6 ) + 4.0 * sqrt ( 3.0 ) ) / ( n^2 + 12 * n - 12 );
   r2 = sqrt ( r2 );
 
-  s2 = ( ( 7 * n - 6 ) - ( 4 * ( n - 1 ) ) * sqrt ( 3.0 ) ) / ( n^2 + 12 * n - 12 );
+  s2 = ( ( 7 * n - 6 ) - ( 4 * ( n - 1 ) ) * sqrt ( 3.0 ) ) ...
+    / ( n^2 + 12 * n - 12 );
   s2 = sqrt ( s2 );
 
   for i = 1 : n
@@ -192,9 +198,9 @@ function result = sphere_unit_11_nd ( func, n )
   v1 = ( ( 7 * n - 12 ) - ( 4 * n - 8 ) * sqrt ( 3.0 ) ) / ( n^2 + 24 * n - 48 );
   v1 = sqrt ( v1 );
 
-  for i = 1 : n
+  for i = 1 : n - 1
 
-    for j = i+1 : n
+    for j = i + 1 : n
 
       x(1:n) = u1;
       x(i) = v1;
@@ -224,9 +230,9 @@ function result = sphere_unit_11_nd ( func, n )
   v2 = ( ( 7 * n - 12 ) + ( 4 * n - 8 ) * sqrt ( 3.0 ) ) / ( n^2 + 24 * n - 48 );
   v2 = sqrt ( v2 );
 
-  for i = 1 : n
+  for i = 1 : n - 1
 
-    for j = i+1 : n
+    for j = i + 1 : n
 
       x(1:n) = u2;
       x(i) = v2;

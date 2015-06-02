@@ -53,8 +53,12 @@ function [ a1, a2 ] = i4vec2_sort_d ( n, a1, a2 )
 %
     if ( 0 < indx )
 
-      [ a1(i), a1(j) ] = i4_swap ( a1(i), a1(j) );
-      [ a2(i), a2(j) ] = i4_swap ( a2(i), a2(j) );
+      t     = a1(i);
+      a1(i) = a1(j);
+      a1(j) = t;
+      t     = a2(i);
+      a2(i) = a2(j);
+      a2(j) = t;
 %
 %  Compare the I and J objects.
 %

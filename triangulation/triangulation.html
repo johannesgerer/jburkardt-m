@@ -74,7 +74,7 @@
     </h3>
 
     <p>
-      The computer code and data files described and made available on this web page
+      The computer code and data files made available on this web page
       are distributed under
       <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
     </p>
@@ -117,27 +117,21 @@
     </p>
 
     <p>
-      <a href = "../../m_src/fem2d_sample/fem2d_sample.html">
-      FEM2D_SAMPLE</a>,
-      a MATLAB library which
-      evaluates a finite element function defined on an order 3
-      or order 6 triangulation.
-    </p>
-
-    <p>
-      <a href = "../../f_src/hex_grid_triangulate/hex_grid_triangulate.html">
-      HEX_GRID_TRIANGULATE</a>,
-      a FORTRAN90 program which
-      uses this library of test regions and computes points on a hexagonal grid
-      inside each region.
-    </p>
-
-    <p>
       <a href = "../../m_src/mesh_bandwidth/mesh_bandwidth.html">
       MESH_BANDWIDTH</a>,
       a MATLAB program which
       returns the geometric bandwidth associated with a mesh of
       elements of any order and in a space of arbitrary dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh_to_xml/mesh_to_xml.html">
+      MESH_TO_XML</a>,
+      a MATLAB program which
+      reads information defining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding XML file for input
+      to DOLFIN or FENICS.
     </p>
 
     <p>
@@ -169,6 +163,15 @@
       a C program which
       computes a triangulation of a geometric region,
       by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_boundary_edges/triangulation_boundary_edges.html">
+      TRIANGULATION_BOUNDARY_EDGES</a>,
+      a MATLAB program which
+      reads data defining a triangulation, determines which edges
+      lie on the boundary, organizes them into connected components,
+      and writes this information to a file.
     </p>
 
     <p>
@@ -306,11 +309,28 @@
     </p>
 
     <p>
+      <a href = "../../m_src/triangulation_to_gmsh/triangulation_to_gmsh.html">
+      TRIANGULATION_TO_GMSH</a>,
+      a MATLAB program which
+      reads a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding Gmsh mesh file.
+    </p>
+
+    <p>
       <a href = "../../m_src/triangulation_triangle_neighbors/triangulation_triangle_neighbors.html">
       TRIANGULATION_TRIANGLE_NEIGHBORS</a>,
       a MATLAB program which
       reads data defining a triangulation, determines the neighboring
       triangles of each triangle, and writes that information to a file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tsearch/tsearch.html">
+      TSEARCH</a>,
+      a MATLAB library which
+      compares several replacements for MATLAB's obsolete tsearch() function,
+      which searched a Delaunay triangulation to find the triangle
+      that encloses a given point.
     </p>
 
     <h3 align = "center">
@@ -438,11 +458,6 @@
           swaps two I4's;
         </li>
         <li>
-          <a href = "i4_uniform.m">
-          i4_uniform.m</a>,
-          returns a random I4 in a given range;
-        </li>
-        <li>
           <a href = "i4_wrap.m">
           i4_wrap.m</a>,
           forces an I4 to lie in a given range;
@@ -534,7 +549,11 @@
         </li>
         <li>
           <a href = "mesh_base_one.m">mesh_base_one.m</a>
-          detects and corrects 0-based indexing.
+          adjusts a mesh to use 1-based indexing.
+        </li>
+        <li>
+          <a href = "mesh_base_zero.m">mesh_base_zero.m</a>
+          adjusts a mesh to use 0-based indexing.
         </li>
         <li>
           <a href = "node_merge.m">
@@ -614,11 +633,6 @@
           <a href = "r8_acos.m">
           r8_acos.m</a>,
           computes the inverse cosine;
-        </li>
-        <li>
-          <a href = "r8_epsilon.m">
-          r8_epsilon.m</a>,
-          returns the machine precision for R8's;
         </li>
         <li>
           <a href = "r8_huge.m">
@@ -760,6 +774,11 @@
           records adjacencies in an order 3 triangulation;
         </li>
         <li>
+          <a href = "triangulation_order3_adjacency.m">
+          triangulation_order3_adjacency.m</a>,
+          sets the full adjacency matrix for an order 3 triangulation.
+        </li>
+        <li>
           <a href = "triangulation_order3_boundary_edge_count.m">
           triangulation_order3_boundary_edge_count.m</a>,
           determines the number of boundary edges in an order 3 triangulation;
@@ -791,18 +810,18 @@
           returns an example order 3 triangulation;
         </li>
         <li>
-          <a href = "triangulation_order3_example2_size.m">
-          triangulation_order3_example_size.m</a>,
+          <a href = "triangulation_order3_example1_size.m">
+          triangulation_order3_example1_size.m</a>,
           returns the sizes of arrays in an example order 3 triangulation;
         </li>
         <li>
           <a href = "triangulation_order3_example2.m">
-          triangulation_order3_example.m</a>,
+          triangulation_order3_example2.m</a>,
           returns an example order 3 triangulation;
         </li>
         <li>
-          <a href = "triangulation_order3_example_size.m">
-          triangulation_order3_example_size.m</a>,
+          <a href = "triangulation_order3_example2_size.m">
+          triangulation_order3_example2_size.m</a>,
           returns the sizes of arrays in an example order 3 triangulation;
         </li>
         <li>
@@ -1180,7 +1199,7 @@
     <hr>
 
     <i>
-      Last revised 29 August 2011.
+      Last revised 01 March 2014.
     </i>
 
     <!-- John Burkardt -->

@@ -2,7 +2,7 @@ function a = redheffer ( n )
 
 %*****************************************************************************80
 %
-%% REDHEFFER returns the Redheffer matrix.
+%% REDHEFFER returns the REDHEFFER matrix.
 %
 %  Formula:
 %
@@ -44,6 +44,8 @@ function a = redheffer ( n )
 %
 %    The determinant is equal to the Mertens function M(N).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -69,6 +71,8 @@ function a = redheffer ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
 
     for j = 1 : n

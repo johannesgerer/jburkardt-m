@@ -56,9 +56,7 @@ function tet_mesh_display ( prefix, solid )
 %    Input, integer SOLID[], a vector of indices of elements to be displayed
 %    as solids.  This can be an empty vector, a single index, or a vector.
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TET_MESH_DISPLAY:\n' );
   fprintf ( 1, '  MATLAB version:\n' );
@@ -70,7 +68,7 @@ function tet_mesh_display ( prefix, solid )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'TET_MESH_DISPLAY:\n' );
     prefix = input ( ...
-      '  Enter the common prefix of the node and element files.' );
+      '  Enter the common prefix of the node and element files:  ' );
   end
 %
 %  Form the file names.
@@ -216,7 +214,6 @@ function tet_mesh_display ( prefix, solid )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TET_MESH_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

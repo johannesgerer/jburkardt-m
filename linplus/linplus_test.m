@@ -2,7 +2,7 @@ function linplus_test ( )
 
 %*****************************************************************************80
 %
-%% LINPLUS_TEST tests LINPLUS.
+%% LINPLUS_TEST tests the LINPLUS library.
 %
 %  Licensing:
 %
@@ -155,11 +155,9 @@ function linplus_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LINPLUS_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
 
-  

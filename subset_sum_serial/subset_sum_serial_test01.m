@@ -28,37 +28,40 @@ function subset_sum_serial_test01 ( )
   fprintf ( 1, '  Target value:\n' );
   fprintf ( 1, '      %8d\n', target );
 
-  weights = [ ...
+  weight = [ ...
     518533, 1037066, 2074132, 1648264, 796528, ...
    1593056,  686112, 1372224,  244448, 488896, ...
     977792, 1955584, 1411168,  322336, 644672, ...
    1289344,   78688,  157376,  314752, 629504, ...
    1259008 ];
 
-  n = length ( weights );
+  n = length ( weight );
   
   fprintf ( 1, '\n' );
   fprintf ( 1, '   I      W(I)\n' );
   fprintf ( 1, '\n' );
   for i = 1 : n
-    fprintf ( 1, '  %2d  %8d\n', i, weights(i) );
+    fprintf ( 1, '  %2d  %8d\n', i, weight(i) );
   end
 
-  [ combination, weightvalue ] = subset_sum_serial ( weights, target );
+  choose = subset_sum_serial ( n, weight, target );
 
-  if ( isempty ( combination ) )
+  if ( choose(1) == -1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  No solution was found.\n' );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '   I*     W*\n' );
     fprintf ( 1, '\n' );
-    k = length ( combination );
-    for i = 1 : k
-      fprintf ( 1, '  %2d  %8d\n', combination(i), weightvalue(i) );
+    w_sum = 0;
+    for i = 1 : n
+      if ( choose(i) == 1 )
+        fprintf ( 1, '  %2d  %8d\n', i, weight(i) );
+        w_sum = w_sum + weight(i);
+      end
     end
     fprintf ( 1, '\n' );
-    fprintf ( 1, ' Sum  %8d\n', sum ( weightvalue(1:k) ) );
+    fprintf ( 1, ' Sum  %8d\n', w_sum );
   end
 
   return

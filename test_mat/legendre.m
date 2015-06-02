@@ -2,7 +2,7 @@ function a = legendre ( n )
 
 %*****************************************************************************80
 %
-%% LEGENDRE returns the Legendre polynomial matrix.
+%% LEGENDRE returns the LEGENDRE matrix.
 %
 %  Example:
 %
@@ -36,6 +36,8 @@ function a = legendre ( n )
 %
 %    The diagonals form a pattern of zero, positive, zero, negative.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -54,12 +56,12 @@ function a = legendre ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     a = [];
     return
   end
-
-  a(1:n,1:n) = 0.0;
 
   a(1,1) = 1.0;
 

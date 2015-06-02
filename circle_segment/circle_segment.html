@@ -1,0 +1,495 @@
+<html>
+
+  <head>
+    <title>
+      CIRCLE_SEGMENT - Area, Height, Angle, Sampling and Quadrature
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      CIRCLE_SEGMENT <br> Area, Height, Angle, Sampling and Quadrature
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CIRCLE_SEGMENT</b>
+      is a MATLAB library which
+      carries out computations associated with a circle segment, including
+      height, width, angle, area, centroid, sampling, and quadrature.
+    </p>
+
+    <p>
+      Begin with a circle of radius R.  Choose two points P1 and P2 on the
+      circle, and draw the chord P1:P2.  This chord divides the circle
+      into two pieces, each of which is called a circle segment.
+      Consider one of the pieces.  The "angle" THETA of this segment is the 
+      angle P1:C:P2, where C is the center of the circle.  Let Q be the point 
+      on the chord P1:P2 which is closest to C.  The "height" H of the segment
+      is the distance from Q to the perimeter of the circle.  The "width" W 
+      of the segment is the length of P1:P2.
+    </p>
+
+    <p>
+      This library considers various computations, including:
+      <ul>
+        <p>
+          Determine the angle THETA, given R and H.
+        </p>
+        <p>
+          Determine the height H, given R and THETA.
+        </p>
+        <p>
+          Determine the height H, given R and AREA.
+        </p>
+        <p>
+          Determine the width W, given R and H.
+        </p>
+        <p>
+          Determine the area, given R and H.
+        </p>
+        <p>
+          Determine the centroid, given R and H.
+        </p>
+        <p>
+          Select points uniformly at random from a segment, given R and H.
+        </p>
+        <p>
+          Determine a cumulative density function (CDF) for the height H2
+          of a circle segment defined by a point selected at random from
+          a circle segment of height H.
+        </p>
+        <p>
+          Determine a quadrature rule that can be used to estimate integrals
+          of functions f(x,y) over the segment.
+        </p>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CIRCLE_SEGMENT</b> is available in
+      <a href = "../../c_src/circle_segment/circle_segment.html">a C version</a> and
+      <a href = "../../cpp_src/circle_segment/circle_segment.html">a C++ version</a> and
+      <a href = "../../f77_src/circle_segment/circle_segment.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/circle_segment/circle_segment.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/circle_segment/circle_segment.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/circle_rule/circle_rule.html">
+      CIRCLE_RULE</a>,
+      a MATLAB library which
+      computes quadrature rules for the unit circle in 2D, that is, 
+      the circumference of the circle of radius 1 and center (0,0).
+    </p>
+
+    <p>
+      <a href = "../../m_src/geometry/geometry.html">
+      GEOMETRY</a>,
+      a MATLAB library which
+      performs geometric calculations in 2, 3 and M dimensional space,
+      including the computation of angles, areas, containment, distances,
+      intersections, lengths, and volumes.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      defines quadrature rules for a variety of M-dimensional regions, 
+      including the interior of the square, cube and hypercube, the pyramid,
+      cone and ellipse, the hexagon, the M-dimensional octahedron,
+      the circle, sphere and hypersphere, the triangle, tetrahedron and simplex,
+      and the surface of the circle, sphere and hypersphere.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Gaspare da Fies, Marco Vianello,<br>
+          Trigonometric gaussian quadrature on subintervals of the period,<br>
+          Electronic Transactions on Numerical Analysis,<br>
+          Volume 39, pages 102-112, 2012.
+        </li>
+        <li>
+          Walter Gautschi,<br>
+          Orthogonal Polynomials: Computation and Approximation,<br>
+          Oxford, 2004,<br>
+          ISBN: 0-19-850672-4,<br>
+          LC: QA404.5 G3555.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "circle_segment_angle_from_chord.m">circle_segment_angle_from_chord.m</a>, 
+          computes the angle of a circle segment from the chord endpoints.
+        </li>
+        <li>
+          <a href = "circle_segment_angle_from_chord_angles.m">circle_segment_angle_from_chord_angles.m</a>, 
+          computes the angle of a circle segment from the chord angles.
+        </li>
+        <li>
+          <a href = "circle_segment_angle_from_height.m">circle_segment_angle_from_height.m</a>, 
+          computes the angle of a circle segment from its height.
+        </li>
+        <li>
+          <a href = "circle_segment_area_from_angle.m">circle_segment_area_from_angle.m</a>, 
+          computes the area of a circle segment from the angle.
+        </li>
+        <li>
+          <a href = "circle_segment_area_from_chord.m">circle_segment_area_from_chord.m</a>, 
+          computes the area of a circle segment from the coordinates of the endpoints
+          of the chord.
+        </li>
+        <li>
+          <a href = "circle_segment_area_from_height.m">circle_segment_area_from_height.m</a>, 
+          computes the area of a circle segment from the height.
+        </li>
+        <li>
+          <a href = "circle_segment_area_from_sample.m">circle_segment_area_from_sample.m</a>, 
+          estimates the area of a circle segment, described by the coordinates of the 
+          endpoints of the chords, using Monte Carlo sampling over the entire circle.
+        </li>
+        <li>
+          <a href = "circle_segment_cdf.m">circle_segment_cdf.m</a>, 
+          computes a cumulative density function (CDF) for heights H2 of
+          circle segments formed by choosing a point at random in 
+          a circle segment of height H.
+        </li>
+        <li>
+          <a href = "circle_segment_centroid_from_chord.m">circle_segment_centroid_from_chord.m</a>, 
+          computes the centroid of a circle segment from the coordinates of the endpoints
+          of the chord.
+        </li>
+        <li>
+          <a href = "circle_segment_centroid_from_height.m">circle_segment_centroid_from_height.m</a>, 
+          computes the centroid of a circle segment from its height.
+        </li>
+        <li>
+          <a href = "circle_segment_centroid_from_sample.m">circle_segment_centroid_from_sample.m</a>, 
+          computes the centroid of a circle segment from a Monte Carlo sample.
+        </li>
+        <li>
+          <a href = "circle_segment_contains_point.m">circle_segment_contains_point.m</a>, 
+          determines whether a circle segment contains a point.
+        </li>
+        <li>
+          <a href = "circle_segment_height_from_angle.m">circle_segment_height_from_angle.m</a>, 
+          computes the height of a circle segment from its angle.
+        </li>
+        <li>
+          <a href = "circle_segment_height_from_angle.m">circle_segment_height_from_angle.m</a>, 
+          computes the height of a circle segment from its angle.
+        </li>
+        <li>
+          <a href = "circle_segment_height_from_area.m">circle_segment_height_from_area.m</a>, 
+          computes the height of a circle segment from its area.
+        </li>
+        <li>
+          <a href = "circle_segment_height_from_chord.m">circle_segment_height_from_chord.m</a>, 
+          computes the height of a circle segment from its chord endpoints.
+        </li>
+        <li>
+          <a href = "circle_segment_sample_from_chord.m">circle_segment_sample_from_chord.m</a>, 
+          computes random sample points from a circle segment based on 
+          the chord endpoints.
+        </li>
+        <li>
+          <a href = "circle_segment_sample_from_height.m">circle_segment_sample_from_height.m</a>, 
+          computes random sample points from a circle segment based on the height.
+        </li>
+        <li>
+          <a href = "circle_segment_width_from_height.m">circle_segment_width_from_height.m</a>, 
+          computes the width of a circle segment from its height.
+        </li>
+        <li>
+          <a href = "circle01_to_circle.m">circle01_to_circle.m</a>, 
+          maps points from the unit circle to a general one.
+        </li>
+        <li>
+          <a href = "gauss.m">gauss.m</a>, 
+          computes a Gauss quadrature rule, by Walter Gautschi.
+        </li>
+        <li>
+          <a href = "gqcircsect.m">gqcircsect.m</a>, 
+          computes a Gauss quadrature rule for a circle sector
+          in the unit circle.
+        </li>
+        <li>
+          <a href = "gqcircsegm.m">gqcircsegm.m</a>, 
+          computes a Gauss quadrature rule for a circle segment 
+          in the unit circle.
+        </li>
+        <li>
+          <a href = "r_jacobi.m">r_jacobi.m</a>, 
+          computes recurrence coefficients for monic Jacobi polynomials,
+          by Dirk Laurie and Walter Gautschi.
+        </li>
+        <li>
+          <a href = "r8_acos.m">r8_acos.m</a>, 
+          computes the arc cosine.
+        </li>
+        <li>
+          <a href = "r8_asin.m">r8_asin.m</a>, 
+          computes the arc sine.
+        </li>
+        <li>
+          <a href = "r8_atan.m">r8_atan.m</a>, 
+          computes the arc tangent.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a random R8 in [0,1].
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>, 
+          returns a random R8MAT with values in [0,1].
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns a random R8VEC with values in [0,1].
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "tridisolve.m">tridisolve.m</a>, 
+          solves a tridiagonal system of linear equations.
+        </li>
+        <li>
+          <a href = "trigauss.m">trigauss.m</a>, 
+          computes a trigonometric gaussian quadrature rule,
+          by Gaspare Da Fies, Alvise Sommariva, Marco Vianello.
+        </li>
+        <li>
+          <a href = "trigauss_conversion.m">trigauss_conversion.m</a>, 
+          converts Gauss to trigonometric Gauss quadrature,
+          by Gaspare Da Fies, Alvise Sommariva, Marco Vianello.
+        </li>
+        <li>
+          <a href = "weights_3t.m">weights_3t.m</a>, 
+          Gauss quadrature weights from 3 term recurrence coefficients,
+          by Gaspare Da Fies, Alvise Sommariva, Marco Vianello.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "circle_segment_test.m">circle_segment_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "circle_segment_test_output.txt">
+          circle_segment_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "circle_segment_test01.m">circle_segment_test01.m</a>,
+          tests circle_segment_area_from_height().
+        </li>
+        <li>
+          <a href = "circle_segment_test02.m">circle_segment_test02.m</a>,
+          tabulates a few quadrature rules with gqcircsegm().
+        </li>
+        <li>
+          <a href = "circle_segment_test03.m">circle_segment_test03.m</a>,
+          plots a few quadrature rules computed by gqcircsegm().
+        </li>
+        <li>
+          <a href = "circle_segment_test04.m">circle_segment_test04.m</a>,
+          approximates integrals with gqcircsegm().
+        </li>
+        <li>
+          <a href = "circle_segment_test05.m">circle_segment_test05.m</a>,
+          tests circle_segment_area_from_height() and 
+          circle_segment_height_from_area().
+        </li>
+        <li>
+          <a href = "circle_segment_test06.m">circle_segment_test06.m</a>,
+          tests circle_segment_sample_from_height().
+        </li>
+        <li>
+          <a href = "circle_segment_test07.m">circle_segment_test07.m</a>,
+          tests circle_segment_angle_from_height() and circle_segment_height_from_angle().
+        </li>
+        <li>
+          <a href = "circle_segment_test08.m">circle_segment_test08.m</a>,
+          tests circle_segment_contains_point().
+        </li>
+        <li>
+          <a href = "circle_segment_test09.m">circle_segment_test09.m</a>,
+          looks at the area and centroid calculations.
+        </li>
+        <li>
+          <a href = "circle_segment_test10.m">circle_segment_test10.m</a>,
+          checks circle_segment_test04 by calling MATLAB's QUAD2D().
+        </li>
+        <li>
+          <a href = "circle_segment_test11.m">circle_segment_test11.m</a>,
+          demonstrates circle_segment_rotation_from_chord();
+        </li>
+        <li>
+          <a href = "circle_segment_test12.m">circle_segment_test12.m</a>,
+          plots some rotated rules from circle_segment_rule_from_chord().
+        </li>
+        <li>
+          <a href = "circle_segment_test13.m">circle_segment_test13.m</a>,
+          demonstrates the use of gauss() to compute some quadrature rules.
+        </li>
+        <li>
+          <a href = "circle_segment_test14.m">circle_segment_test14.m</a>,
+          demonstrates the use of r_jacobi() to compute recursion coefficients
+          for a quadrature rule associated with a Jacobi weight function.
+        </li>
+        <li>
+          <a href = "circle_segment_test15.m">circle_segment_test15.m</a>,
+          demonstrates weights_t3() (and this test is NOT WORKING).
+        </li>
+        <li>
+          <a href = "circle_segment_test16.m">circle_segment_test16.m</a>,
+          demonstrates gqcircsect().
+        </li>
+        <li>
+          <a href = "circle_segment_test17.m">circle_segment_test17.m</a>,
+          demonstrates gqcircsegm().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test 3 plots quadrature points for circle segments of various angles THETA:
+      <ul>
+        <li>
+          <a href = "rule_p9_t0.392699.png">rule_p9_t0.392699.png</a>,
+          points for rule of precision 9 and THETA = pi/8.
+        </li>
+        <li>
+          <a href = "rule_p9_t0.785398.png">rule_p9_t0.785398.png</a>,
+          points for rule of precision 9 and THETA = pi/4.
+        </li>
+        <li>
+          <a href = "rule_p9_t1.5708.png">rule_p9_t1.5708.png</a>,
+          points for rule of precision 9 and THETA = pi/2.
+        </li>
+        <li>
+          <a href = "rule_p9_t3.14159.png">rule_p9_t3.14159.png</a>,
+          points for rule of precision 9 and THETA = pi.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test 6 samples points from circle segments of various angles THETA:
+      <ul>
+        <li>
+          <a href = "sample_t0.392699.png">sample_t0.392699.png</a>,
+          sample for THETA = pi/8.
+        </li>
+        <li>
+          <a href = "sample_t0.785398.png">sample_t0.785398.png</a>,
+          sample for THETA = pi/4.
+        </li>
+        <li>
+          <a href = "sample_t1.5708.png">sample_t1.5708.png</a>,
+          sample for THETA = pi/2.
+        </li>
+        <li>
+          <a href = "sample_t3.14159.png">sample_t3.14159.png</a>,
+          sample for THETA = pi.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test 12 plots the quadrature points for several rules, defined on
+      circle segments that are specified by R (circle radius), C (circle center),
+      and P1, P2 (the points that define the chord.)
+      <ul>
+        <li>
+          <a href = "test12_rule1.png">test12_rule1.png</a>,
+          points for rule of radius 2, center (1,0), p1 at pi/4, p2 at 5pi/4.
+        </li>
+        <li>
+          <a href = "test12_rule2.png">test12_rule2.png</a>,
+          points for rule of radius 1.5, center (-1,2), p1 at 5pi/6, p2 at 10pi/6.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test 16 plots points for circle sectors.
+      <ul>
+        <li>
+          <a href = "test16_acute.png">test16_acute.png</a>,
+        </li>
+        <li>
+          <a href = "test16_obtuse.png">test16_obtuse.png</a>,
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Test 17 plots points for a circle segment.
+      <ul>
+        <li>
+          <a href = "test17.png">test17.png</a>,
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 May 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

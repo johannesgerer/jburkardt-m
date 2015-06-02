@@ -1,8 +1,12 @@
-function a = jordan ( alpha, m, n )
+function a = jordan ( m, n, alpha )
 
 %*****************************************************************************80
 %
-%% JORDAN returns the Jordan block matrix for a single eigenvalue ALPHA.
+%% JORDAN returns the JORDAN matrix.
+%
+%  Discussion:
+%
+%    This is the Jordan block matrix for a single eigenvalue ALPHA.
 %
 %  Formula:
 %
@@ -41,11 +45,13 @@ function a = jordan ( alpha, m, n )
 %
 %    A is nonsingular if and only if ALPHA is nonzero.
 %
-%    det ( A ) = ALPHA**N.
+%    det ( A ) = ALPHA^N.
 %
 %    LAMBDA(I) = ALPHA.
 %
 %    A is defective, having only one eigenvector, namely (1,0,0,...,0).
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -61,12 +67,14 @@ function a = jordan ( alpha, m, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the eigenvalue of A.
-%
 %    Input, integer M, N, the number of rows and columns of A.
+%
+%    Input, real ALPHA, the eigenvalue of the Jordan matrix.
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

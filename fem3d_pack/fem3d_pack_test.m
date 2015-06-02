@@ -2,11 +2,7 @@ function fem3d_pack_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for FEM3D_PACK_TEST.
-%
-%  Discussion:
-%
-%    FEM3D_PACK_TEST calls the various FEM3D_PACK tests.
+%% FEM3D_PACK_TEST tests the FEM3D_PACK library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function fem3d_pack_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM3D_PACK_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -39,7 +34,6 @@ function fem3d_pack_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM3D_PACK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

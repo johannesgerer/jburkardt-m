@@ -25,11 +25,10 @@ function error_frobenius = r8mat_is_symmetric ( m, n, a )
 %    Output, real ERROR_FROBENIUS, measures the Frobenius norm of ( A - A' ).
 %
   if ( m ~= n )
-    error_frobenius = r8_huge ( );
-    return
+    error_frobenius = realmax ( );
+  else
+    error_frobenius = sqrt ( sum ( sum ( ( abs ( a - a' ) ).^2 ) ) );
   end
-
-  error_frobenius = sqrt ( sum ( sum ( ( abs ( a - a' ) ).^2 ) ) );
 
   return
 end

@@ -1,4 +1,4 @@
-function degree = r8poly_degree ( na, a )
+function degree = r8poly_degree ( m, a )
 
 %*****************************************************************************80
 %
@@ -27,13 +27,13 @@ function degree = r8poly_degree ( na, a )
 %
 %  Parameters:
 %
-%    Input, integer NA, the dimension of A.
+%    Input, integer M, the nominal degree of A.
 %
-%    Input, real A(NA+1), the coefficients of the polynomials.
+%    Input, real A(M+1), the coefficients of the polynomials.
 %
 %    Output, integer DEGREE, the degree of A.
 %
-  degree = na;
+  degree = m;
 
   while ( 0 < degree )
 

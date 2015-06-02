@@ -15,7 +15,7 @@ function [ y, m, d, f ] = jed_to_ymdf_gregorian ( jed )
 %
 %  Modified:
 %
-%    09 July 2012
+%    24 February 2013
 %
 %  Author:
 %
@@ -45,7 +45,7 @@ function [ y, m, d, f ] = jed_to_ymdf_gregorian ( jed )
   g = floor ( ( 3 * g ) / 4 ) - 38;
   j_prime = j + 1401 + g;
 
-  y_prime = floor ( 4 * j_prime + 3 ) / 1461 );
+  y_prime = floor ( ( 4 * j_prime + 3 ) / 1461 );
   t_prime = floor ( mod ( 4 * j_prime + 3, 1461 ) / 4 );
   m_prime = floor ( ( 5 * t_prime + 2 ) / 153 );
   d_prime = floor ( mod ( 5 * t_prime + 2, 153 ) / 5 );

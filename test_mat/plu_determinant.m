@@ -1,4 +1,4 @@
-function determ = plu_determinant ( n, p, l, u )
+function value = plu_determinant ( n, pivot )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function determ = plu_determinant ( n, p, l, u )
 %
 %  Modified:
 %
-%    23 October 2007
+%    25 March 2015
 %
 %  Author:
 %
@@ -20,28 +20,44 @@ function determ = plu_determinant ( n, p, l, u )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real P(N,N), L(N,N), U(N,N), the P, L and U factors
-%    of A, as defined by Gaussian elimination with partial pivoting.
-%    P is a permutation matrix, L is unit lower triangular, and U
-%    is upper trianguler.
+%    Input, integer PIVOT(N), the list of pivot rows.  PIVOT(I)
+%    must be a value between I and N, reflecting the choice of
+%    pivot row on the I-th step.  For no pivoting, set PIVOT(I) = I.
 %
-%    Output, real DETERM, the determinant.
+%    Output, real VALUE, the determinant.
 %
-  determ = 1.0;
+  [ p, l, u ] = plu_plu ( n, pivot );
+
+  value = 1.0;
 
   for i = 1 : n
-    determ = determ * u(i,i);
+    value = value * u(i,i);
   end
 
-  for i = 1 : n
-    for j = 1 : n
-      if ( p(i,j) == 1.0 )
-        if ( i ~= j )
-          determ = - determ;
+  for i = 1: n
+
+    found = 0;
+    for i2 = i : n
+      if ( p(i2,i) == 1.0 )
+        found = 1;
+        if ( i2 ~= i )
+          prow(1,1:n) = p(i2,1:n);
+          p(i2,1:n) = p(i,1:n);
+          p(i,1:n)  = prow(1,1:n);
+          value = - value;
         end
       end
     end
+
+    if ( found == 0 )
+      fprintf ( 1, '\n' );
+      fprintf ( 1, 'PLU_DETERMINANT - Fatal error!\n' );
+      fprintf ( 1, '  Permutation matrix is illegal.\n' );
+      error ( 'PLU_DETERMINANT - Fatal error!' )
+    end
+
   end
+
 
   return
 end

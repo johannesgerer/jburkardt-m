@@ -2,29 +2,29 @@ function a = dorr ( alpha, n )
 
 %*****************************************************************************80
 %
-%% DORR returns the Dorr matrix.
+%% DORR returns the DORR matrix.
 %
 %  Formula:
 %
 %    if ( I <= (N+1) / 2 )
 %
 %      if ( J = I - 1 )
-%        A(I,J) = - ALPHA * (N+1)**2
+%        A(I,J) = - ALPHA * (N+1)^2
 %      else if ( J = I )
-%        A(I,J) = 2 * ALPHA * (N+1)**2 + 0.5 * (N+1) - I
+%        A(I,J) = 2 * ALPHA * (N+1)^2 + 0.5 * (N+1) - I
 %      else if ( J = I + 1 )
-%        A(I,J) = - ALPHA * (N+1)**2 - 0.5 * (N+1) + I
+%        A(I,J) = - ALPHA * (N+1)^2 - 0.5 * (N+1) + I
 %      else
 %        A(I,J) = 0
 %
 %    else
 %
 %      if ( J = I - 1 )
-%        A(I,J) = - ALPHA * (N+1)**2 + 0.5 * (N+1) - I
+%        A(I,J) = - ALPHA * (N+1)^2 + 0.5 * (N+1) - I
 %      else if ( J = I )
-%        A(I,J) = 2 * ALPHA * (N+1)**2 - 0.5 * (N+1) + I
+%        A(I,J) = 2 * ALPHA * (N+1)^2 - 0.5 * (N+1) + I
 %      else if ( J = I + 1 )
-%        A(I,J) = - ALPHA * (N+1)**2
+%        A(I,J) = - ALPHA * (N+1)^2
 %      else
 %        A(I,J) = 0
 %
@@ -70,7 +70,7 @@ function a = dorr ( alpha, n )
 %    A*x = b both converge.  Furthermore, if RHO(GS) is the
 %    spectral radius of the Gauss-Seidel iteration matrix, and
 %    RHO(J) the spectral radius of the Jacobi iteration matrix,
-%    then RHO(GS) = RHO(J)**2 < 1.
+%    then RHO(GS) = RHO(J)^2 < 1.
 %
 %    A is ill-conditioned for small values of ALPHA.  The
 %    test case used N = 100, and ALPHA=0.01, 0.003, 0.001 and
@@ -109,13 +109,15 @@ function a = dorr ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 
-      if ( i <= floor ( (n+1)/2 ) )
+      if ( i <= floor ( ( n + 1 ) / 2 ) )
 
-        if ( j == i-1 )
-          a(i,j) = - alpha * (n+1)^2;
+        if ( j == i - 1 )
+          a(i,j) = - alpha * ( n + 1 )^2;
         elseif ( j == i )
           a(i,j) = 2.0 * alpha * ( n + 1 )^2 + 0.5 * ( n + 1 ) - i;
         elseif ( j == i + 1 )
@@ -130,7 +132,7 @@ function a = dorr ( alpha, n )
           a(i,j) = - alpha * ( n + 1 )^2 + 0.5 * ( n + 1 ) - i;
         elseif ( j == i )
           a(i,j) = 2.0 * alpha * ( n + 1 )^2 - 0.5 * ( n + 1 ) + i;
-        elseif ( j == i+1 )
+        elseif ( j == i + 1 )
           a(i,j) = - alpha * ( n + 1 )^2;
         else
           a(i,j) = 0.0;

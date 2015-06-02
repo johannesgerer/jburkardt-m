@@ -2,7 +2,7 @@ function triangle_monte_carlo_test ( )
 
 %*****************************************************************************80
 %
-%% TRIANGLE_MONTE_CARLO_TEST calls the tests.
+%% TRIANGLE_MONTE_CARLO_TEST tests the TRIANGLE_MONTE_CARLO library.
 %
 %  Licensing:
 %
@@ -10,32 +10,19 @@ function triangle_monte_carlo_test ( )
 %
 %  Modified:
 %
-%    15 August 2009
+%    13 January 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGLE_MONTE_CARLO_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the TRIANGLE_MONTE_CARLO library.\n' );
-%
-%  Try each sampler on the unit triangle, integrating X^2, X*Y, Y^2.
-%
+
   triangle_monte_carlo_test01 ( );
-  triangle_monte_carlo_test02 ( );
-  triangle_monte_carlo_test03 ( );
-  triangle_monte_carlo_test04 ( );
-%
-%  Try each sampler on a general triangle, integrating a selection of functions.
-%
-  triangle_monte_carlo_test05 ( );
-  triangle_monte_carlo_test06 ( );
-  triangle_monte_carlo_test07 ( );
-  triangle_monte_carlo_test08 ( );
 %
 %  Terminate.
 %

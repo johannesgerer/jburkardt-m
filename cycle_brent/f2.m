@@ -24,6 +24,10 @@ function value = f2 ( i )
 %
 %  Parameters:
 %
+%    Input, integer I, the argument of the function.
+%
+%    Output, integer VALUE, the value of the function.
+%
   value = mod ( 22 * i + 1, 72 );
 
   return

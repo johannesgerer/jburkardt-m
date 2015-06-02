@@ -2,7 +2,7 @@ function hermite_polynomial_test ( )
 
 %*****************************************************************************80
 %
-%% HERMITE_POLYNOMIAL_TEST tests HERMITE_POLYNOMIAL.
+%% HERMITE_POLYNOMIAL_TEST tests the HERMITE_POLYNOMIAL library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function hermite_polynomial_test ( )
 %
 %  Modified:
 %
-%    25 February 2012
+%    18 December 2012
 %
 %  Author:
 %
@@ -82,14 +82,18 @@ function hermite_polynomial_test ( )
 
   hermite_polynomial_test15 ( );
 
+  hermite_polynomial_test16 ( );
+  hermite_polynomial_test17 ( );
+  hermite_polynomial_test18 ( );
+
   hermite_polynomial_plot01 ( );
+  hermite_polynomial_plot02 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HERMITE_POLYNOMIAL_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -1,0 +1,448 @@
+<html>
+
+  <head>
+    <title>
+      COORDINATE_SEARCH - The Coordinate Search Optimization Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      COORDINATE_SEARCH <br> The Coordinate Search Optimization Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>COORDINATE_SEARCH</b> 
+      is a MATLAB program which 
+      seeks the minimizer of a scalar function of several variables,
+      by Jeff Borggaard.
+    </p>
+
+    <p>
+      The algorithm, which goes back to Fermi and Metropolis, is easy to describe.  
+      As originally designed, the algorithm begins with a central point, as well
+      as 2*<b>M</b> "test" points, where <b>M</b> is the number of spatial dimensions.
+      The <b>I</b>-th pair of test points differs from the central point only
+      in the <b>I</b>-th coordinate.  One test point increases, and one decreases,
+      this coordinate by a fixed amount <b>H</b>.
+    </p>
+
+    <p>
+      The function value of all 2*<b>M</b>+1 points is computed; if the lowest
+      value occurs at the center point, then <b>H</b> is decreased.  If the lowest
+      value occurs at a test point, then that test point becomes the new center point.
+    </p>
+
+    <p>
+      On the next step, using the current center point and size <b>H</b>, a new
+      set of 2*<b>M</b> test points is computed, and the process is repeated.
+    </p>
+
+    <p>
+      Under certain simple conditions, the process will converge to a local minimizer
+      of the function.
+    </p> 
+
+    <p>
+      Note that <b>fminsearch</b> is a MATLAB built in command
+      which minimizes a scalar function of several variables using the
+      Nelder-Mead algorithm.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <i>x_opt</i> = <b>coordinate_search</b> ( <i>x_center</i>, <i>f</i>, <i>flag</i> )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>x_center</i>, is a vector containing a starting point for the iteration.
+        </li>
+        <li>
+          <i>f</i> is the "function handle"; that is, either a quoted expression for the function,
+          or the name of an M-file that defines the function, preceded by an "@" sign;
+        </li>
+        <li>
+          <i>flag</i>: if <i>flag</i> is nonzero, then the program assumes that a 2D problem is
+          being solved, and it will display a plot of the iterative procedure.  
+          If <i>flag</i> is 3, then a special variation of the algorithm
+          is to be used in which 3 test points are employed in a triangular pattern
+          around the center point.
+        </li>
+        <li>
+          <i>x_opt</i>  is the program's estimate for the minimizer of the
+          function;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Very simple functions can be input as a quoted string.  Thus, one could
+      specify the <i>f</i> argument as '(x(1)-2*x(2)+7)^2';  However, for more
+      complicated functions it makes sense to prepare an M-file that defines the
+      function.  For this same example, a suitable M-file would be:
+      <pre><code>
+        function f = example ( x )
+        f = ( x(1) - 2 * x(2) + 7 )^2;
+      </code></pre>
+    </p>
+
+    <p>
+      If this information was stored in an M-file called <i>example.m</i>, then
+      one might invoke the optimization program with a command like
+      <pre><code>
+        x_opt = coordinate_search ( x_init, @example, 0 )
+      </code></pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>COORDINATE_SEARCH</b> is available in
+      <a href = "../../m_src/coordinate_search/coordinate_search.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/asa047/asa047.html">
+      ASA047</a>,
+      a MATLAB library which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../m_src/compass_search/compass_search.html">
+      COMPASS_SEARCH</a>,
+      is a MATLAB library which 
+      seeks the minimizer of a scalar function of several variables
+      using compass search, a direct search algorithm that does not use derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/entrust/entrust.html">
+      ENTRUST</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using trust-region methods.
+    </p>
+
+    <p>
+      <a href = "../../m_src/nelder_mead/nelder_mead.html">
+      NELDER_MEAD</a>,
+      a MATLAB program which
+      minimizes a scalar function of several variables using the Nelder-Mead algorithm.
+    </p>
+
+    <p>
+      <a href = "../../f_src/praxis/praxis.html">
+      PRAXIS</a>,
+      a FORTRAN90 library which 
+      implements the principal axis method of Richard Brent for minimization of
+      a function without the use of derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_opt/test_opt.html">
+      TEST_OPT</a>,
+      a MATLAB library which 
+      defines test problems
+      requiring the minimization of a scalar function of several variables.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms178/toms178.html">
+      TOMS178</a>,
+      a MATLAB library which
+      optimizes a scalar functional of multiple variables using the Hooke-Jeeves method.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Jeff Borggaard,<br>
+      Mathematics Department,<br>
+      Virginia Tech.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Evelyn Beale,<br>
+          On an Iterative Method for Finding a Local Minimum of a Function
+          of More than One Variable,<br>
+          Technical Report 25, <br>
+          Statistical Techniques Research Group,<br>
+          Princeton University, 1958.
+        </li>
+        <li>
+          Richard Brent,<br>
+          Algorithms for Minimization without Derivatives,<br>
+          Dover, 2002,<br>
+          ISBN: 0-486-41998-3,<br>
+          LC: QA402.5.B74.
+        </li>
+        <li>
+          David Himmelblau,<br>
+          Applied Nonlinear Programming,<br>
+          McGraw Hill, 1972,<br>
+          ISBN13: 978-0070289215,<br>
+          LC: T57.8.H55.
+        </li>
+        <li>
+          Ken McKinnon,<br>
+          Convergence of the Nelder-Mead simplex method to a nonstationary point,<br>
+          SIAM Journal on Optimization,<br>
+          Volume 9, Number 1, 1998, pages 148-158.
+        </li>
+        <li>
+          Zbigniew Michalewicz,<br>
+          Genetic Algorithms + Data Structures = Evolution Programs,<br>
+          Third Edition,<br>
+          Springer, 1996,<br>
+          ISBN: 3-540-60676-9,<br>
+          LC: QA76.618.M53.
+        </li>
+        <li>
+          Michael Powell,<br>
+          An Iterative Method for Finding Stationary Values of a Function
+          of Several Variables,<br>
+          Computer Journal,<br>
+          Volume 5, 1962, pages 147-151.
+        </li> 
+        <li>
+          Howard Rosenbrock,<br>
+          An Automatic Method for Finding the Greatest or Least Value of a Function,<br>
+          Computer Journal,<br>
+          Volume 3, 1960, pages 175-184.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "coordinate_search.m">coordinate_search.m</a>,
+          the coordinate search optimization algorithm.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>COORDINATE_SEARCH_TEST</b> calls all the tests.
+      <ul>
+        <li>
+          <a href = "coordinate_search_test.m">coordinate_search_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "coordinate_search_test_output.txt">coordinate_search_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BEALE</b> is the Beale function, for which N=2.
+      <ul>
+        <li>
+          <a href = "beale.m">beale.m</a>,
+          defines Beale's function.
+        </li>
+        <li>
+          <a href = "beale_test.m">beale_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH1</b> is the Bohachevsky function #1, for which N=2.
+      <ul>
+        <li>
+          <a href = "bohach1.m">bohach1.m</a>,
+          defines the Bohachevsky function #1.
+        </li>
+        <li>
+          <a href = "bohach1_test.m">bohach1_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BOHACH2</b> is the Bohachevsky function #2, for which N=2.
+      <ul>
+        <li>
+          <a href = "bohach2.m">bohach2.m</a>,
+          defines the Bohachevsky function #2.
+        </li>
+        <li>
+          <a href = "bohach2_test.m">bohach2_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>EXTENDED_ROSENBROCK</b> is the "extended" Rosenbrock function.  This version
+      of the Rosenbrock function allows the spatial dimension N to be arbitrary, except
+      that it must be even. 
+      <ul>
+        <li>
+          <a href = "extended_rosenbrock.m">extended_rosenbrock.m</a>,
+          defines the extended Rosenbrock function.
+        </li>
+        <li>
+          <a href = "extended_rosenbrock_test.m">extended_rosenbrock_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>GOLDSTEIN_PRICE</b> is the Goldstein-Price polynomial, for which N=2.
+      <ul>
+        <li>
+          <a href = "goldstein_price.m">goldstein_price.m</a>,
+          defines the Goldstein-Price polynomial.
+        </li>
+        <li>
+          <a href = "goldstein_price_test.m">goldstein_price_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>HIMMELBLAU</b> is the Himmelblau function, for which N = 2, 
+      and which has four global minima.
+      <ul>
+        <li>
+          <a href = "himmelblau.m">himmelblau.m</a>,
+          defines the Himmelblau function.
+        </li>
+        <li>
+          <a href = "himmelblau_test.m">himmelblau_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>LOCAL</b> is a badly scaled function with a local minimum, for which N=2.
+      <ul>
+        <li>
+          <a href = "local.m">local.m</a>,
+          defines the "local" function.
+        </li>
+        <li>
+          <a href = "local_test.m">local_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MCKINNON</b> is the McKinnon function, for which N=2.
+      This function can cause problems for the Nelder-Mead optimization algorithm.
+      <ul>
+        <li>
+          <a href = "mckinnon.m">mckinnon.m</a>,
+          defines the McKinnon function.
+        </li>
+        <li>
+          <a href = "mckinnon_test.m">mckinnon_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>POWELL</b> is the Powell singular quartic function, for which N = 4.
+      <ul>
+        <li>
+          <a href = "powell.m">powell.m</a>,
+          defines the Powell function.
+        </li>
+        <li>
+          <a href = "powell_test.m">powell_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>ROSENBROCK</b> is the Rosenbrock "banana" function.
+      <ul>
+        <li>
+          <a href = "rosenbrock.m">rosenbrock.m</a>,
+          defines the Rosenbrock function.
+        </li>
+        <li>
+          <a href = "rosenbrock_test.m">rosenbrock_test.m</a>,
+          tests COORDINATE_SEARCH with the function.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 01 January 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

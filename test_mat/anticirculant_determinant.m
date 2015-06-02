@@ -25,7 +25,9 @@ function determ = anticirculant_determinant ( n, x )
 %    Output, real DETERM, the determinant.
 %
   w = c8vec_unity ( n );
+  w = w(:);
 
+  lambda = zeros ( n, 1 );
   lambda(1:n) = x(n);
   for i = n-1 : -1 : 1
     lambda(1:n) = lambda(1:n) .* w(1:n) + x(i);

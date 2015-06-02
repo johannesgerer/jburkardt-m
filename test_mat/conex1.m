@@ -2,7 +2,7 @@ function a = conex1 ( alpha )
 
 %*****************************************************************************80
 %
-%% CONEX1 returns a 4 by 4 LINPACK counterexample matrix.
+%% CONEX1 returns the CONEX1 matrix.
 %
 %  Discussion:
 %

@@ -85,7 +85,7 @@ function r8po_print_some ( n, a, ilo, jlo, ihi, jhi, title )
           aij = a(j,i);
         end
 
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -94,8 +94,6 @@ function r8po_print_some ( n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

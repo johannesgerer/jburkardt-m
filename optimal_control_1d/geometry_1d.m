@@ -39,6 +39,7 @@ function [ x, e_conn ] = geometry_1d ( x_l, x_r, elements_mesh )
 %    master element.
 %
 %    Local, string VARIABLE.ELEMENT, indicates the kind of element being used.
+%    This currently defaults to 'continuous_quadratic'.
 %    'continuous_linear'
 %    'continuous_quadratic'
 %    'continuous_cubic'

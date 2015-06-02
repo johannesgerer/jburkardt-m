@@ -10,12 +10,13 @@ function [ quasi, seed_new ] = niederreiter2 ( dim, seed )
 %
 %  Modified:
 %
-%    31 March 2003
+%    27 February 2014
 %
 %  Author:
 %
 %    Original FORTRAN77 version by Paul Bratley, Bennett Fox, Harald Niederreiter.
-%    MATLAB version by John Burkardt
+%    MATLAB version by John Burkardt;
+%    Performance enhancements by Jeremy Dewar, Tulane University.
 %
 %  Reference:
 %
@@ -62,13 +63,13 @@ function [ quasi, seed_new ] = niederreiter2 ( dim, seed )
 
   maxdim = 20;
   nbits = 31;
-  recip = 2.0E+00^(-nbits);
+  recip = 2.0^(-nbits);
 %
 %  Initialization.
 %
-  if ( isempty ( NR_dim ) | dim ~= NR_dim | seed <= 0 )
+  if ( isempty ( NR_dim ) || dim ~= NR_dim || seed <= 0 )
 
-    if ( dim <= 0 | maxdim < dim )
+    if ( dim <= 0 || maxdim < dim )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'NIEDERREITER2 - Fatal error!\n' );
       fprintf ( 1, '  Bad spatial dimension.\n' );
@@ -97,7 +98,7 @@ function [ quasi, seed_new ] = niederreiter2 ( dim, seed )
 %
   if ( seed ~= NR_seed + 1 )
 
-    gray = exor ( seed, seed / 2 );
+    gray = bitxor ( floor ( seed ), floor ( seed / 2 ) );
 
     NR_nextq(1:dim) = 0;
 
@@ -107,7 +108,7 @@ function [ quasi, seed_new ] = niederreiter2 ( dim, seed )
 
       if ( rem ( gray, 2 ) ~= 0 )
         for i = 1 : dim
-          NR_nextq(i) = exor ( NR_nextq(i), NR_cj(i,r+1) );
+          NR_nextq(i) = bitxor ( floor ( NR_nextq(i) ), floor ( NR_cj(i,r+1) ) );
         end
       end
 
@@ -147,7 +148,7 @@ function [ quasi, seed_new ] = niederreiter2 ( dim, seed )
 %  Compute the new numerators in vector NEXTQ.
 %
   for i = 1 : dim
-    NR_nextq(i) = exor ( NR_nextq(i), NR_cj(i,r+1) );
+    NR_nextq(i) = bitxor ( floor ( NR_nextq(i) ), floor ( NR_cj(i,r+1) ) );
   end
 
   NR_seed = seed;

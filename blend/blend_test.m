@@ -2,11 +2,7 @@ function blend_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for BLEND_TEST.
-%
-%  Discussion:
-%
-%    BLEND_TEST tests routines from BLEND.
+%% BLEND_TEST tests the BLEND library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function blend_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLEND_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -46,7 +41,6 @@ function blend_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLEND_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

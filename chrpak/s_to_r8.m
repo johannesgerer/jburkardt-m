@@ -45,7 +45,7 @@ function [ r, lchar, ierror ] = s_to_r8 ( s )
 %    '17d2'            1700.0
 %    '-14e-2'         -0.14
 %    'e2'              100.0
-%    '-12.73e-9.23'   -12.73 * 10.0**(-9.23)
+%    '-12.73e-9.23'   -12.73 * 10.0^(-9.23)
 %
 %  Licensing:
 %
@@ -70,12 +70,20 @@ function [ r, lchar, ierror ] = s_to_r8 ( s )
 %
 %    Output, real R, the value that was read from the string.
 %
-%    Output, integer LCHAR, the number of characters of S that were used to form R.
+%    Output, integer LCHAR, the number of characters of S used to form R.
 %
 %    Output, integer IERROR, is 0 if no error occurred.
 %
-  s_length = s_len_trim ( s );
+  r = 0.0;
+  lchar = 0;
   ierror = 0;
+
+  s_length = s_len_trim ( s );
+
+  if ( s_length <= 0 )
+    return
+  end
+
   lchar = -1;
   isgn = 1;
   rtop = 0.0;

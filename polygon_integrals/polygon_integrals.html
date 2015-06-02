@@ -1,0 +1,346 @@
+<html>
+
+  <head>
+    <title>
+      POLYGON_INTEGRALS - Arbitrary Moments of a Polygon
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      POLYGON_INTEGRALS <br> Arbitrary Moments of a Polygon
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>POLYGON_INTEGRALS</b>
+      is a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of a polygon in 2D.
+    </p>
+
+    <p>
+      We suppose that POLY is a planar polygon with N vertices X, Y, listed
+      in counterclockwise order.
+    </p>
+
+    <p>
+      For nonnegative integers P and Q, the (unnormalized) moment of order (P,Q) 
+      for POLY is defined by:
+      <pre>
+        Nu(P,Q) = Integral ( x, y in POLY ) x^p y^q dx dy
+      </pre>
+      In particular, Nu(0,0) is the area of POLY.
+    </p>
+
+    <p>
+      Simple formulas are available for low orders:
+      <pre>
+        Nu(0,0) = 1/2 (1<=i<=N) X(i-1)Y(i)-X(i)Y(i-1)
+        Nu(1,0) = 1/6 (1<=i<=N) ( X(i-1)Y(i)-X(i)Y(i-1) ) * (X(i-1)+X(i))
+        Nu(0,1) = 1/6 (1<=i<=N) ( X(i-1)Y(i)-X(i)Y(i-1) ) * (Y(i-1)+Y(i))
+        Nu(2,0) = 1/12 (1<=i<=N) ( X(i-1)Y(i)-X(i)Y(i-1) ) * (X(i-1)^2+X(i-1)X(i)+X(i)^2)
+        Nu(1,1) = 1/24 (1<=i<=N) ( X(i-1)Y(i)-X(i)Y(i-1) ) * (2X(i-1)Y(i-1)+X(i-1)Y(i)+X(i)Y(i-1)+2X(i)Y(i))
+        Nu(0,2) = 1/12 (1<=i<=N) ( X(i-1)Y(i)-X(i)Y(i-1) ) * (Y(i-1)^2+Y(i-1)Y(i)+Y(i)^2)
+      </pre>
+    </p>
+
+    <p>
+      The normalized moment of order (P,Q) for POLY is defined by:
+      <pre>
+        Alpha(P,Q) = Integral ( x, y in POLY ) x^p y^q dx dy / Area ( Poly )
+                   = Nu(P,Q) / Nu(0,0)
+      </pre>
+      In particular, Alpha(0,0) is 1.
+    </p>
+
+    <p>
+      The central moment of order (P,Q) for POLY is defined by:
+      <pre>
+        x* = Alpha(1,0)
+        y* = Alpha(0,1)
+        Mu(P,Q) = Integral ( x, y in POLY ) (x-x*)^p (y-y*)^q dx dy / Area ( Poly )
+      </pre>
+    </p>
+
+    <p>
+      Simple formulas are available for low orders:
+      <pre>
+        Mu(0,0) = 1
+        Mu(1,0) = 0
+        Mu(0,1) = 0
+        Mu(2,0) = Alpha(2,0) - Alpha(1,0)^2
+        Mu(1,1) = Alpha(1,1) - Alpha(1,0) * Alpha(0,1)
+        Mu(0,2) = Alpha(0,2) - Alpha(0,1)^2
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>POLYGON_INTEGRALS</b> is available in
+      <a href = "../../c_src/polygon_integrals/polygon_integrals.html">a C version</a> and
+      <a href = "../../cpp_src/polygon_integrals/polygon_integrals.html">a C++ version</a> and
+      <a href = "../../f77_src/polygon_integrals/polygon_integrals.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/polygon_integrals/polygon_integrals.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/polygon_integrals/polygon_integrals.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/ball_integrals/ball_integrals.html">
+      BALL_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit ball in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/circle_integrals/circle_integrals.html">
+      CIRCLE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the surface of the unit circle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cube_integrals/cube_integrals.html">
+      CUBE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit cube in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/disk_integrals/disk_integrals.html">
+      DISK_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit disk in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hyperball_integrals/hyperball_integrals.html">
+      HYPERBALL_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit hyperball in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hypercube_integrals/hypercube_integrals.html">
+      HYPERCUBE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit hypercube in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hypersphere_integrals/hypersphere_integrals.html">
+      HYPERSPHERE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the surface of the unit hypersphere in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_integrals/line_integrals.html">
+      LINE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the length of the unit line in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_monte_carlo/polygon_monte_carlo.html">
+      POLYGON_MONTE_CARLO</a>,
+      a MATLAB library which
+      applies a Monte Carlo method to estimate the integral of a function
+      over the interior of a polygon in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_properties/polygon_properties.html">
+      POLYGON_PROPERTIES</a>,
+      a MATLAB library which
+      computes properties of an arbitrary polygon in the plane, defined
+      by a sequence of vertices, including interior angles, area, centroid,
+      containment of a point, convexity, diameter, distance to a point, 
+      inradius, lattice area, nearest point in set, outradius, uniform sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polygon_triangulate/polygon_triangulate.html">
+      POLYGON_TRIANGULATE</a>,
+      a MATLAB library which
+      triangulates a (possibly nonconvex) polygon,
+      based on a C function by Joseph ORourke.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_integrals/pyramid_integrals.html">
+      PYRAMID_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit pyramid in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/simplex_integrals/simplex_integrals.html">
+      SIMPLEX_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit simplex in M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_integrals/sphere_integrals.html">
+      SPHERE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the surface of the unit sphere in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/square_integrals/square_integrals.html">
+      SQUARE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit square in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_integrals/tetrahedron_integrals.html">
+      TETRAHEDRON_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit tetrahedron in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_integrals/triangle_integrals.html">
+      TRIANGLE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit triangle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wedge_integrals/wedge_integrals.html">
+      WEDGE_INTEGRALS</a>,
+      a MATLAB library which
+      returns the exact value of the integral of any monomial
+      over the interior of the unit wedge in 3D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          SF Bockman,<br>
+          Generalizing the Formula for Areas of Polygons to Moments,<br>
+          American Mathematical Society Monthly,<br>
+          Volume 96, Number 2, February 1989, pages 131-132.
+        </li>
+        <li>
+          Carsten Steger,<br>
+          On the calculation of arbitrary moments of polygons,<br>
+          Technical Report FGBV-96-05,<br>
+          Forschungsgruppe Bildverstehen, Informatik IX,<br>
+          Technische Universitaet Muenchen, October 1996.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "moment.m">moment.m</a>
+          computes an unnormalized moment of a polygon.
+        </li>
+        <li>
+          <a href = "moment_central.m">moment_central.m</a>
+          computes central moments of a polygon.
+        </li>
+        <li>
+          <a href = "moment_normalized.m">moment_normalized.m</a>
+          computes a normalized moment of a polygon.
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>
+          computes the binomial coefficient C(N,K) as an R8.
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a>
+          returns the I-th power of -1 as an R8.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "polygon_integrals_test.m">polygon_integrals_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "polygon_integrals_test01.m">polygon_integrals_test01.m</a>,
+          tests the functions on a rectangle.
+        </li>
+        <li>
+          <a href = "polygon_integrals_test_output.txt">polygon_integrals_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 03 October 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

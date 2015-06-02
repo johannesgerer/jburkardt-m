@@ -2,7 +2,7 @@ function test_ode_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_ODE_TEST tests TEST_ODE.
+%% TEST_ODE_TEST tests the TEST_ODE library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function test_ode_test ( )
 %
 %  Modified:
 %
-%    21 March 2006
+%    23 February 2013
 %
 %  Author:
 %
@@ -25,13 +25,14 @@ function test_ode_test ( )
   test_ode_test01 ( );
   test_ode_test02 ( );
   test_ode_test03 ( );
+  test_ode_test04 ( );
+  test_ode_test05 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_ODE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

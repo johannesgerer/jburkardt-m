@@ -2,9 +2,11 @@ function [ n_data, n, x, fx ] = hf_function_values ( n_data )
 
 %*****************************************************************************80
 %
-%% HF_FUNCTION_VALUES: values of the Hermite function.
+%% HF_FUNCTION_VALUES: tabulated values of Hf(i,x).
 %
 %  Discussion:
+%
+%    Hf(I,X) represents the Hermite function of "degree" I.  
 %
 %    In Mathematica, the function can be evaluated by:
 %

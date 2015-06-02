@@ -7,13 +7,13 @@ function a = moler1 ( alpha, m, n )
 %  Formula:
 %
 %    If ( I = J )
-%      A(I,J) = min ( I-1, J-1 ) * ALPHA**2 + 1
+%      A(I,J) = min ( I-1, J-1 ) * ALPHA^2 + 1
 %    else
-%      A(I,J) = min ( I-1, J-1 ) * ALPHA**2 + ALPHA
+%      A(I,J) = min ( I-1, J-1 ) * ALPHA^2 + ALPHA
 %
 %  Example:
 %
-%    ALPHA = 2, N = 5
+%    ALPHA = 2, M = N = 5
 %
 %    1 2  2  2  2
 %    2 5  6  6  6
@@ -23,9 +23,10 @@ function a = moler1 ( alpha, m, n )
 %
 %  Properties:
 %
-%    Successive elements of each diagonal increase by an increment of ALPHA**2.
+%    Successive elements of each diagonal increase by an increment of ALPHA^2.
 %
-%    A is the product of B' * B, where B is the matrix returned by
+%    A is the product of B' * B, where B is the upper triangular matrix 
+%    returned by
 %
 %      B = TRIW ( ALPHA, N-1, N ).
 %
@@ -44,6 +45,8 @@ function a = moler1 ( alpha, m, n )
 %    If ALPHA is integral, then A is integral.
 %    If A is integral, then det ( A ) is integral, and 
 %    det ( A ) * inverse ( A ) is integral.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

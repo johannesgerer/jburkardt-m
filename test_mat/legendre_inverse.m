@@ -2,7 +2,7 @@ function a = legendre_inverse ( n )
 
 %*****************************************************************************80
 %
-%% LEGENDRE_INVERSE returns the inverse of the Legendre polynomial matrix.
+%% LEGENDRE_INVERSE returns the inverse of the LEGENDRE matrix.
 %
 %  Example:
 %
@@ -52,12 +52,7 @@ function a = legendre_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  if ( n <= 0 )
-    a = [];
-    return
-  end
-
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   a(1,1) = 1.0;
 

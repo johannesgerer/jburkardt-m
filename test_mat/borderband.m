@@ -2,16 +2,16 @@ function a = borderband ( n )
 
 %*****************************************************************************80
 %
-%% BORDERBAND returns a border-banded matrix.
+%% BORDERBAND returns the BORDERBAND matrix.
 %
 %  Formula:
 %
 %    If ( I = J )
 %      A(I,I) = 1
 %    else if ( I = N )
-%      A(N,J) = 2**(1-J)
+%      A(N,J) = 2^(1-J)
 %    else if ( J = N )
-%      A(I,N) = 2**(1-I)
+%      A(I,N) = 2^(1-I)
 %    else
 %      A(I,J) = 0
 %
@@ -51,6 +51,8 @@ function a = borderband ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
 
     for j = 1 : n

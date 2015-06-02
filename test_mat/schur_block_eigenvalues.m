@@ -20,25 +20,30 @@ function lambda = schur_block_eigenvalues ( n, x, y )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real X( (N+1)/2 ), specifies the diagonal 
+%    Input, real X( (N+1)/2, 1 ), specifies the diagonal 
 %    elements of A.
 %
-%    Input, real Y( N/2 ), specifies the off-diagonal 
+%    Input, real Y( N/2, 1 ), specifies the off-diagonal 
 %    elements of the Schur blocks.
 %
-%    Output, complex LAMBDA(N), the eigenvalues of A.
+%    Output, complex LAMBDA(N,1), the eigenvalues of A.
 %
+  lambda = zeros ( n, 1 );
+
+  x = x(:);
+  y = y(:);
+
   k = 0;
   for i = 1 : floor ( n / 2 )
     k = k + 1
-    lambda(k) = complex ( x(i),   y(i) );
+    lambda(k,1) = complex ( x(i,1),   y(i,1) );
     k = k + 1
-    lambda(k) = complex ( x(i), - y(i) );
+    lambda(k,1) = complex ( x(i,1), - y(i,1) );
   end
 
   if ( k < n )
     k = k + 1;
-    lambda(k) = x(floor ( (n+1)/2 ) );
+    lambda(k,1) = x(floor ( (n+1)/2 ),1 );
   end
 
   return

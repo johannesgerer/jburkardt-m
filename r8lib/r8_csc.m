@@ -14,7 +14,7 @@ function value = r8_csc ( theta )
 %
 %  Modified:
 %
-%    08 October 2004
+%    24 July 2014
 %
 %  Author:
 %
@@ -30,7 +30,7 @@ function value = r8_csc ( theta )
   value = sin ( theta );
 
   if ( value == 0.0 )
-    fprinf ( 1, '\n' );
+    fprintf ( 1, '\n' );
     fprintf ( 1, 'R8_CSC - Fatal error!\n' );
     fprintf ( 1, '  Cosecant undefined for THETA = %f\n', theta );
     error ( 'R8_CSC - Fatal error!' );

@@ -10,7 +10,7 @@ function mu = moebius ( n )
 %
 %      MU(N) = 1 if N = 1;
 %              0 if N is divisible by the square of a prime;
-%              (-1)**K, if N is the product of K distinct primes.
+%              (-1)^K, if N is the product of K distinct primes.
 %
 %  First values:
 %
@@ -91,7 +91,7 @@ function mu = moebius ( n )
 
   for i = 1 : nfactor
 
-    mu = -mu;
+    mu = - mu;
 
     if ( 1 < power(i) )
       mu = 0;

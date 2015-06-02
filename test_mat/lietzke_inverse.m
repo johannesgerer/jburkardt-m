@@ -4,6 +4,16 @@ function a = lietzke_inverse ( n )
 %
 %% LIETZKE_INVERSE returns the inverse of the LIETZKE matrix.
 %
+%  Example:
+%
+%    N = 5
+%
+%   0.5833   -0.5000         0         0    0.0833
+%  -0.5000    1.0000   -0.5000         0         0
+%        0   -0.5000    1.0000   -0.5000         0
+%        0         0   -0.5000    1.0000   -0.5000
+%   0.0833         0         0   -0.5000    0.5833
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -23,7 +33,7 @@ function a = lietzke_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   a(1,1) = ( n + 2 ) / ( 2 * n + 2 );
   for i = 2 : n - 1

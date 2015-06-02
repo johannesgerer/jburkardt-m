@@ -2,7 +2,7 @@ function lambda = hanowa_eigenvalues ( alpha, n )
 
 %*****************************************************************************80
 %
-%% HANOWA_EIGENVALUES returns the eigenvalues of the Hanowa matrix.
+%% HANOWA_EIGENVALUES returns the eigenvalues of the HANOWA matrix.
 %
 %  Licensing:
 %
@@ -23,8 +23,10 @@ function lambda = hanowa_eigenvalues ( alpha, n )
 %
 %    Input, integer N, the order of A.  N must be even.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   if ( mod ( n, 2 ) ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'HANOWA_EIGENVALUES - Fatal error!\n' );
@@ -34,8 +36,8 @@ function lambda = hanowa_eigenvalues ( alpha, n )
   end
 
   for i = 1 : floor ( n / 2 )
-    lambda(2*i-1) = complex ( alpha,   i );
-    lambda(2*i  ) = complex ( alpha, - i );
+    lambda(2*i-1,1) = complex ( alpha,   i );
+    lambda(2*i,1  ) = complex ( alpha, - i );
   end
 
   return

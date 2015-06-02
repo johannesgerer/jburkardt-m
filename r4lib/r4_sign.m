@@ -14,7 +14,7 @@ function value = r4_sign ( x )
 %
 %  Modified:
 %
-%    21 March 2004
+%    28 September 2014
 %
 %  Author:
 %
@@ -26,10 +26,10 @@ function value = r4_sign ( x )
 %
 %    Output, real VALUE, the sign of X.
 %
-  if ( 0 <= x )
-    value = +1.0;
-  else
+  if ( x < 0.0 )
     value = -1.0;
+  else
+    value = +1.0;
   end
 
   return

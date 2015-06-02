@@ -2,7 +2,7 @@ function cell_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN tests CELL.
+%% CELL_TEST tests the CELL library.
 %
 %  Discussion:
 %
@@ -14,7 +14,7 @@ function cell_test ( )
 %
 %  Modified:
 %
-%    27 November 2012
+%    04 December 2012
 %
 %  Author:
 %
@@ -27,6 +27,7 @@ function cell_test ( )
   fprintf ( 1, '  Test the CELL library.\n' );
 
   cell_test01 ( );
+  cell_test02 ( );
 %
 %  Terminate.
 %

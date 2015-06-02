@@ -1,5 +1,7 @@
 function tumor1d ( )
 
+%*****************************************************************************80
+%
 %% TUMOR1D solves -u''+u=f on an interval 0<x<1.
 % 
 %  Discussion:
@@ -11,38 +13,60 @@ function tumor1d ( )
 %
 %    A banded Cholesky solver should be used for this problem; however
 %    for simplicity we have used the built-in solver A\b
-% 
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    23 February 2014
+%
 %  Parameters:
 %
-%    real AREA(NEL), the area (length) of each element.
+%    Local, real AREA(NEL), the area (length) of each element.
 %
-%    integer INDX(NP), gives the index of the finite element variable
+%    Local, real CZERO, the initial condition for C.
+%
+%    Local, real ETAZERO, the initial condition for ETA.
+%
+%    Local, real FZERO, the initial condition for F.
+%
+%    Local, integer INDX(NP), gives the index of the finite element variable
 %    associated with each node, or 0 if none.
 %
-%    Input, integer NEL, the number of elements.
+%    Local, integer NEL, the number of elements.
 %
-%    Input, integer NEQN, the number of equations.
+%    Local, integer NEQN, the number of equations.
 %
-%    Input, integer NNODES, the number of nodes per element.
+%    Local, integer NNODES, the number of nodes per element.
 %
-%    Input, integer NODE(NEL,NNODES), the indices of the nodes making up each element.
+%    Local, integer NODE(NEL,NNODES), the indices of the nodes making 
+%    up each element.
+%
+%    Local, integer NP, the total number of nodes.
 %
 %    Input, integer NQ, the number of quadrature points per element used in the
 %    assembly process.
 %
 %    Input, integer NUNK, the number of unknowns.
 %
+%    Input, integer NX, the number of points in the X direction.
+%
 %    Input, real XC(NP), the X coordinate of each node.
 %
-%    nx    -  number of points in the x-direction 
-%    xl,xr -  left and right x-coordinates of domain (given interval)
+%    Input, real XL, the left endpoint of the interval.
+%
+%    Input, real XR, the right endpoint of the interval.
+%
 %    nqe   -  number of quadrature points per element used in the error routine
 %
 %    xq(it,i)    - x-coordinate of quadrature point j for element it 
-%    np          - number of global nodes (or points)
 %
 %    a   -     main diagonal of the coefficient matrix 
+%
 %    c   -     subdiagonal of coefficient matrix (matrix is symmetric)  
+%
 %    f(i)    - right hand side array which is overwritten by solver with
 %              solution
 %
@@ -76,6 +100,7 @@ function tumor1d ( )
   global xl
   global xr
 
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TUMOR1D:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -100,7 +125,7 @@ function tumor1d ( )
 %
 %  Set up the geometry arrays.
 %
-  geom
+  geom ( )
 %
 %  Assemble the mass matrix.
 %
@@ -166,7 +191,7 @@ function tumor1d ( )
 %
       disp ( 'Assemble the stiffness matrix.' )
       nuk = 4; 
-      assemble_stiff  
+      assemble_stiff ( );
       disp ( 'Factor the stiffness matrix.' )
       a_stiff = chol ( a_stiff );
       disp ( 'Solve eta' )
@@ -176,7 +201,7 @@ function tumor1d ( )
 %  Calculate the residual.
 %
       disp ( 'Compute residual' )
-      residual   
+      residual ( );
       if ( resid_norm <= tolerance )
         break;
       end 
@@ -203,10 +228,14 @@ function tumor1d ( )
     etaold = etacur;
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TUMOR1D:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

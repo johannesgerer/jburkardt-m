@@ -1,4 +1,4 @@
-function dc = diffusivity_2d_elman ( a, b, dc0, omega, x )
+function dc = diffusivity_2d_elman ( a, cl, dc0, m_1d, omega, n1, n2, x, y )
 
 %*****************************************************************************80
 %
@@ -51,66 +51,86 @@ function dc = diffusivity_2d_elman ( a, b, dc0, omega, x )
 %    is assumed to be [-A,+A]x[-A,+A].
 %    0 < A.
 %
-%    Input, real B, the correlation length.
-%    0 < B.
+%    Input, real CL, the correlation length.
+%    0 < CL.
 %
 %    Input, real DC0, the constant term in the expansion of the 
 %    diffusion coefficient.  Take DC0 = 10.
 %
-%    Input, real OMEGA(M), the stochastic parameters.
+%    Input, integr M_1D, the first and second dimensions of the stochastic
+%    parameter array.
 %
-%    Input, real X(2), the point where the diffusion coefficient is to 
+%    Input, real OMEGA(M_1D*M_1D), the stochastic parameters.
+%
+%    Input, integer N1, N2, the dimensions of the X and Y arrays.
+%
+%    Input, real X(N1,N2), Y(N1,N2), the points where the diffusion coefficient is to 
 %    be evaluated.
 %
-%    Output, real DC, the value of the diffusion coefficient at X.
+%    Output, real DC(N1,N2), the value of the diffusion coefficient at X.
 %
-  m = length ( omega );
+
 %
 %  Compute THETA.
 %
-  theta = theta_solve ( a, b, m );
+  theta_1d = theta_solve ( a, cl, m_1d );
+%
+% m = m_1d * m_1d;
+% theta_1d = theta_solve ( a, cl, m );
 %
 %  Compute LAMBDA_1D.
 %
-  for k = 1 : m_1d
-    lambda_1d(k) = 2.0 * b / ( 1.0 + b^2 * theta(k)^2 );
+  lambda_1d(1:m_1d) = 2.0 * cl ./ ( 1.0 + cl^2 * theta_1d(1:m_1d).^2 );
+%
+%  Compute C_1DX(1:M1D)  and C_1DY(1:M1D) at (X,Y).
+%
+  c_1dx = zeros ( m_1d, n1, n2 );
+  c_1dy = zeros ( m_1d, n1, n2 );
+
+  k = 0;
+
+  while ( 1 )
+
+    if ( m_1d <= k )
+      break
+    end
+
+    k = k + 1;
+    c_1dx(k,1:n1,1:n2) = cos ( theta_1d(k) * a * x(1:n1,1:n2) ) ...
+      / sqrt ( a + sin ( 2.0 * theta_1d(k) * a ) / ( 2.0 * theta_1d(k) ) );
+    c_1dy(k,1:n1,1:n2) = cos ( theta_1d(k) * a * y(1:n1,1:n2) ) ...
+      / sqrt ( a + sin ( 2.0 * theta_1d(k) * a ) / ( 2.0 * theta_1d(k) ) );
+
+    if ( m_1d <= k )
+      break
+    end
+
+    k = k + 1;
+    c_1dx(k,1:n1,1:n2) = sin ( theta_1d(k) * a * x(1:n1,1:n2) ) ...
+      / sqrt ( a - sin ( 2.0 * theta_1d(k) * a ) / ( 2.0 * theta_1d(k) ) );
+    c_1dy(k,1:n1,1:n2) = sin ( theta_1d(k) * a * y(1:n1,1:n2) ) ...
+      / sqrt ( a - sin ( 2.0 * theta_1d(k) * a ) / ( 2.0 * theta_1d(k) ) );
+
   end
 %
-%  Compute C_1D.
+%  Evaluate the diffusion coefficient DC at (X,Y).
+%  This nonsense of fussy array shapes really frustrates me!
 %
   k = 0;
-  while ( 1 )
-    if ( m_1d <= k )
-      break
-    end
-    k = k + 1;
-    c_1d(k,1) = cos ( theta_1d(k) * a * x(1) ) ...
-      / sqrt ( a + sin ( 2 * theta(k) * a ) / ( 2 * theta(k) ) );
-    c_1d(k,2) = cos ( theta_1d(k) * a * x(2) ) ...
-      / sqrt ( a + sin ( 2 * theta(k) * a ) / ( 2 * theta(k) ) );
-    if ( m_1d <= k )
-      break
-    end
-    k = k + 1;
-    c_1d(k,1) = sin ( theta_1d(k) * a * x(1) ) ...
-      / sqrt ( a - sin ( 2 * theta(k) * a ) / ( 2 * theta(k) ) );
-    c_1d(k,2) = sin ( theta_1d(k) * a * x(2) ) ...
-      / sqrt ( a - sin ( 2 * theta(k) * a ) / ( 2 * theta(k) ) );
-  end
-%
-%  Evaluate the diffusion coefficient at (X,Y):
-%
-  dc = dc0;
-  for i = 1 : m_1d
-    for j = 1 : m_1d
+  dc = dc0 * ones ( 1, n1, n2 );
+  for j = 1 : m_1d
+    for i = 1 : m_1d
       k = k + 1;
-      dc = dc + sqrt ( lambda_1d(i) * lambda_1d(j) ) * c_1d(i,1) * c_1d(j,2) * omega(k);
+      dc(1,1:n1,1:n2) = dc(1,1:n1,1:n2) + sqrt ( lambda_1d(i) * lambda_1d(j) ) ...
+        * c_1dx(i,1:n1,1:n2) .* c_1dy(j,1:n1,1:n2) * omega(k);
     end
   end
 
+  dc = reshape ( dc, n1, n2 );
+
   return
 end
-function theta = theta_solve ( a, b, m )
+function theta = theta_solve ( a, cl, m )
 
 %*****************************************************************************80
 %
@@ -123,19 +143,19 @@ function theta = theta_solve ( a, b, m )
 %
 %    The two equations are:
 %
-%      1/B - THETA * TAN ( A * THETA ) = 0
-%      THETA - 1/B * TAN ( A * THETA ) = 0
+%      1/CL - THETA * TAN ( A * THETA ) = 0
+%      THETA - 1/CL * TAN ( A * THETA ) = 0
 %
-%    A and B are taken to be positive.  Over each open interval 
+%    A and CL are taken to be positive.  Over each open interval 
 %
-%      ( n - 1/2 pi, n + 1/2 pi ) / A, 
+%      ( n - 1/2 pi, n + 1/2 pi ) / A, for N = 0, 1, ...
 %
 %    the function TAN ( A * THETA ) monotonically rises from -oo to +00; 
 %    therefore, it can be shown that there is one root of each equation 
 %    in every interval of this form.  Moreover, because of the positivity
-%    of A and B, we can restrict our search to the interval 
+%    of A and CL, we can restrict our search to the interval 
 %
-%      [ n pi, n + 1/2 pi ) / A.
+%      [ n pi, n + 1/2 pi ) / A, for N = 0, 1, ...
 %
 %    This function computes K such roots, starting in the first interval,
 %    finding those two roots, moving to the next interval, and so on, until
@@ -148,7 +168,7 @@ function theta = theta_solve ( a, b, m )
 %
 %  Modified:
 %
-%    19 December 2009
+%    20 July 2013
 %
 %  Author:
 %
@@ -166,8 +186,8 @@ function theta = theta_solve ( a, b, m )
 %    Input, real A, the "radius" of the domain, D = (-A,A)x(-A,A).
 %    0 < A.
 %
-%    Input, real B, the correlation length.
-%    0 < B.
+%    Input, real CL, the correlation length.
+%    0 < CL.
 %
 %    Input, integer M, the number of values to compute.
 %
@@ -178,7 +198,7 @@ function theta = theta_solve ( a, b, m )
 %
 %  [ XA_INIT, XB_INIT] = [ n * pi, n+1/2 pi ] / a, n = 0, 1, 2, ...
 %
-  xa_init = 0;
+  xa_init = 0.0;
   xb_init = ( pi / 2 ) / a;
 
   while ( 1 )
@@ -191,17 +211,17 @@ function theta = theta_solve ( a, b, m )
 
     k = k + 1;
     xa = xa_init;
-    fa = 1 / b - xa * tan ( a * xa );
+    fa = 1.0 / cl - xa * tan ( a * xa );
     ftol = eps * ( abs ( fa ) + 1.0 );
     xb = xb_init;
     fb = - fa;
     fc = fa;
-    bmatol = 100.0 * eps * ( xb );
+    bmatol = 100.0 * eps * ( abs ( xa ) + abs ( xb ) );
 
     while ( bmatol < xb - xa )
 
       xc = ( xa + xb ) / 2;
-      fc = 1 / b - xc * tan ( a * xc );
+      fc = 1.0 / cl - xc * tan ( a * xc );
 
       if ( abs ( fc ) <= ftol )
         break
@@ -214,8 +234,6 @@ function theta = theta_solve ( a, b, m )
     end
 
     theta(k) = xc;
-
-    fprintf ( 1, '  xc = %f, fc = %e\n', xc, fc );
 %
 %  Seek root of equation 2 in interval.
 %
@@ -225,14 +243,16 @@ function theta = theta_solve ( a, b, m )
 
     k = k + 1;
 %
-%  Special case in first interval.
+%  In the first interval, we need to skip the zero root of equation 2.
 %
     if ( k == 2 )
-      xc = 0.0;
-      fc = 0.0;
+
+      k = k - 1;
+
     else
+
       xa = xa_init;
-      fa = xa - tan ( a * xa ) / b;
+      fa = xa - tan ( a * xa ) / cl;
       ftol = eps * ( abs ( fa ) + 1.0 );
       xb = xb_init;
       fb = - fa;
@@ -240,7 +260,7 @@ function theta = theta_solve ( a, b, m )
       while ( bmatol < xb - xa )
 
         xc = ( xa + xb ) / 2;
-        fc = xc - tan ( a * xc ) / b;
+        fc = xc - tan ( a * xc ) / cl;
 
         if ( abs ( fc ) <= ftol )
           break
@@ -252,15 +272,14 @@ function theta = theta_solve ( a, b, m )
 
       end
 
-    end
+      theta(k) = xc;
 
-    theta(k) = xc;
-    fprintf ( 1, '  xc = %f, fc = %e\n', xc, fc );
+    end
 %
 %  Advance the interval.
 %
-    xa_init = xa_init + pi/a;
-    xb_init = xb_init + pi/a;
+    xa_init = xa_init + pi / a;
+    xb_init = xb_init + pi / a;
 
   end
 

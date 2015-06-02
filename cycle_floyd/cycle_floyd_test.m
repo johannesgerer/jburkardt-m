@@ -17,9 +17,8 @@ function cycle_floyd_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'CYCLE_FLOYD_PRB\n' );
+  fprintf ( 1, 'CYCLE_FLOYD_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the CYCLE_FLOYD library.\n' );
 
@@ -32,9 +31,8 @@ function cycle_floyd_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'CYCLE_FLOYD_PRB\n' );
+  fprintf ( 1, 'CYCLE_FLOYD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

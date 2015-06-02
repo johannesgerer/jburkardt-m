@@ -1,4 +1,4 @@
-function [ ndp, xdp, ydp ] = dif_deriv_table ( nd, xd, yd )
+function [ xdp, ydp ] = dif_deriv_table ( nd, xd, yd )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function [ ndp, xdp, ydp ] = dif_deriv_table ( nd, xd, yd )
 %
 %  Modified:
 %
-%    23 June 2011
+%    01 June 2013
 %
 %  Author:
 %
@@ -33,12 +33,10 @@ function [ ndp, xdp, ydp ] = dif_deriv_table ( nd, xd, yd )
 %
 %    Input, real YD(ND), the divided difference table.
 %
-%    Output, integer NDP, the size of the output table, which is ND-1.
-%
-%    Input, real XDP(NDP), the abscissas for the divided
+%    Output, real XDP(ND-1), the abscissas for the divided
 %    difference table for the derivative.
 %
-%    Output, real YDP(NDP), the divided difference
+%    Output, real YDP(ND-1), the divided difference
 %    table for the derivative.
 %
 
@@ -52,11 +50,9 @@ function [ ndp, xdp, ydp ] = dif_deriv_table ( nd, xd, yd )
 %
 %  Construct the derivative.
 %
-  ndp = nd - 1;
+  xdp(1:nd-1) = 0.0;
 
-  xdp(1:ndp) = 0.0;
-
-  for i = 1 : ndp
+  for i = 1 : nd - 1
     ydp(i) = i * yd_temp(i+1);
   end
 

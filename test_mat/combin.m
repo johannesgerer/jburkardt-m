@@ -2,7 +2,7 @@ function a = combin ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% COMBIN returns the combinatorial matrix.
+%% COMBIN returns the COMBIN matrix.
 %
 %  Formula:
 %
@@ -31,7 +31,7 @@ function a = combin ( alpha, beta, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
-%    det ( A ) = ALPHA**(N-1) * ( ALPHA + N * BETA ).
+%    det ( A ) = ALPHA^(N-1) * ( ALPHA + N * BETA ).
 %
 %    LAMBDA(1:N-1) = ALPHA,
 %    LAMBDA(N) = ALPHA + N * BETA.
@@ -41,7 +41,9 @@ function a = combin ( alpha, beta, n )
 %    The other N-1 eigenvectors are simply any (orthonormal) basis
 %    for the space perpendicular to (1,1,1,...,1).
 %
-%    A is nonsingular if ALPHA /= 0D+00 and ALPHA + N * BETA /= 0.
+%    A is nonsingular if ALPHA /= 0.0 and ALPHA + N * BETA /= 0.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -49,7 +51,7 @@ function a = combin ( alpha, beta, n )
 %
 %  Modified:
 %
-%    22 October 2007
+%    25 January 2015
 %
 %  Author:
 %

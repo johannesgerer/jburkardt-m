@@ -6,7 +6,9 @@ function value = he_double_product_integral ( i, j )
 %
 %  Discussion:
 %
-%    VALUE = integral ( -oo < x < +oo ) He(i,x)*He(j,x) exp(-x^2/2) dx
+%    He(i,x) represents the probabilist's Hermite polynomial.
+%
+%    VALUE = integral ( -oo < x < +oo ) H(i,x)*H(j,x) exp(-x^2/2) dx
 %
 %  Licensing:
 %

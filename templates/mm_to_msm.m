@@ -1,5 +1,7 @@
 function [ A, rows, cols, entries, rep, field, symm ] = mm_to_msm ( filename )
 
+%*****************************************************************************80
+%
 %% MM_TO_MSM converts a Matrix Market file to a MATLAB sparse matrix.
 %
 %  Discussion:

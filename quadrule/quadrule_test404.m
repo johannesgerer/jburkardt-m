@@ -2,7 +2,7 @@ function quadrule_test404 ( )
 
 %*****************************************************************************80
 %
-%% TEST404 tests RADAU_COMPUTE and RADAU_SET.
+%% QUADRULE_TEST404 tests RADAU_COMPUTE and RADAU_SET.
 %
 %  Licensing:
 %
@@ -17,7 +17,7 @@ function quadrule_test404 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST404\n' );
+  fprintf ( 1, 'QUADRULE_TEST404\n' );
   fprintf ( 1, '  RADAU_COMPUTE computes a Radau rule;\n' );
   fprintf ( 1, '  RADAU_SET sets a rule from a table.\n' );
   fprintf ( 1, '\n' );

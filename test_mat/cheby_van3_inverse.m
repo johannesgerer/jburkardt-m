@@ -2,7 +2,7 @@ function a = cheby_van3_inverse ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_VAN3_INVERSE inverts the Chebyshev Vandermonde-like matrix.
+%% CHEBY_VAN3_INVERSE computes the inverse of the CHEBY_VAN3 matrix.
 %
 %  Formula:
 %
@@ -38,6 +38,8 @@ function a = cheby_van3_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

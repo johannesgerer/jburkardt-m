@@ -31,7 +31,7 @@ function nseq = bal_seq_enum ( n )
 %
 %    Output, integer NSEQ, the number of balanced sequences.
 %
-  nseq = binomial ( 2*n, n ) / ( n + 1 );
+  nseq = i4_choose ( 2*n, n ) / ( n + 1 );
 
   return
 end

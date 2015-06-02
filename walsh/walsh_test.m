@@ -2,7 +2,7 @@ function walsh_test ( )
 
 %*****************************************************************************80
 %
-%% WALSH_TEST tests WALSH.
+%% WALSH_TEST tests the WALSH library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function walsh_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WALSH_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

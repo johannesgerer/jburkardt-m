@@ -62,8 +62,6 @@ function solid_angle = polygon_solid_angle_3d ( n, v, p )
 %    Output, real SOLID_ANGLE, the solid angle subtended
 %    by the polygon, as projected onto the unit sphere around the point P.
 %
-  dim_num = 3;
-
   if ( n < 3 )
     solid_angle = 0.0;
     return
@@ -77,22 +75,21 @@ function solid_angle = polygon_solid_angle_3d ( n, v, p )
 
   for j = 1 : n
 
-    r1(1:dim_num,1) = v(1:dim_num,j) - p(1:dim_num,1);
+    r1(1:3,1) = v(1:3,j) - p(1:3,1);
 
     jp1 = i4_wrap ( j + 1, 1, n );
 
-    b(1:dim_num,1) = v(1:dim_num,jp1) - v(1:dim_num,j);
+    b(1:3,1) = v(1:3,jp1) - v(1:3,j);
 
     normal1 = r8vec_cross_product_3d ( a, r1 );
 
-    normal1_norm = r8vec_norm ( dim_num, normal1 );
+    normal1_norm = r8vec_norm ( 3, normal1 );
 
     normal2 = r8vec_cross_product_3d ( r1, b );
 
-    normal2_norm = r8vec_norm ( dim_num, normal2 );
+    normal2_norm = r8vec_norm ( 3, normal2 );
 
-    s = ( normal1(1:3,1)' * normal2(1:3,1) ) ...
-      / ( normal1_norm * normal2_norm );
+    s = ( normal1(1:3,1)' * normal2(1:3,1) ) / ( normal1_norm * normal2_norm );
 
     angle = r8_acos ( s );
 
@@ -104,13 +101,13 @@ function solid_angle = polygon_solid_angle_3d ( n, v, p )
       area = area + pi + angle;
     end
 
-    a(1:dim_num,1) = - b(1:dim_num,1);
+    a(1:3,1) = - b(1:3,1);
 
   end
 
   area = area - pi * ( n - 2 );
 
-  if ( 0.0 < plane(1:dim_num,1)' * r1(1:dim_num,1) )
+  if ( 0.0 < plane(1:3,1)' * r1(1:3,1) )
     solid_angle = -area;
   else
     solid_angle = area;

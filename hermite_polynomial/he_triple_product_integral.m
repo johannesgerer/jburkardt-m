@@ -2,11 +2,13 @@ function value = he_triple_product_integral ( i, j, k )
 
 %*****************************************************************************80
 %
-%% HE_TRIPLE_PRODUCT_INTEGRAL: integral of He(i,x)*He(j,x)*He(k,x)*e^(-x^2/2).
+%% HE_TRIPLE_PRODUCT_INTEGRAL: integral of H(i,x)*H(j,x)*H(k,x)*e^(-x^2/2).
 %
 %  Discussion:
 %
-%    VALUE = integral ( -oo < x < +oo ) He(i,x)*He(j,x)*He(k,x) exp(-x^2/2) dx
+%    He(i,x) represents the probabilist's Hermite polynomial.
+%
+%    VALUE = integral ( -oo < x < +oo ) H(i,x)*H(j,x)*H(k,x) exp(-x^2/2) dx
 %
 %  Licensing:
 %
@@ -14,7 +16,7 @@ function value = he_triple_product_integral ( i, j, k )
 %
 %  Modified:
 %
-%    18 March 2012
+%    16 March 2012
 %
 %  Author:
 %
@@ -36,7 +38,7 @@ function value = he_triple_product_integral ( i, j, k )
 %
   s = floor ( ( i + j + k ) / 2 );
 
-  if ( s < i || s < j || s < k )
+  if ( s < i || s < j || s < k ) )
     value = 0.0;
   elseif ( mod ( i + j + k, 2 ) ~= 0 )
     value = 0.0;

@@ -2,7 +2,7 @@ function a = krylov ( n, b, x )
 
 %*****************************************************************************80
 %
-%% KRYLOV returns a Krylov matrix.
+%% KRYLOV returns the KRYLOV matrix.
 %
 %  Formula:
 %
@@ -10,7 +10,7 @@ function a = krylov ( n, b, x )
 %    Column 2 of A is B*X.
 %    Column 3 of A is B*B*X.
 %    ..
-%    Column N of A is B**(N-1)*X.
+%    Column N of A is B^(N-1)*X.
 %
 %  Example:
 %
@@ -35,6 +35,8 @@ function a = krylov ( n, b, x )
 %  Properties:
 %
 %    A is generally not symmetric: A' /= A.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -64,6 +66,8 @@ function a = krylov ( n, b, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   a(1:n,1) = x(1:n);
 
   for j = 2 : n

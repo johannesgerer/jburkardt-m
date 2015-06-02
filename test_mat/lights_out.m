@@ -2,7 +2,7 @@ function [ n, a ] = lights_out ( row_num, col_num )
 
 %*****************************************************************************80
 %
-%% LIGHTS_OUT returns the "Lights Out" matrix.
+%% LIGHTS_OUT returns the LIGHTS_OUT matrix.
 %
 %  Discussion:
 %
@@ -158,7 +158,7 @@ function [ n, a ] = lights_out ( row_num, col_num )
 %
   n = row_num * col_num;
 
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for j_block = 1 : col_num
 

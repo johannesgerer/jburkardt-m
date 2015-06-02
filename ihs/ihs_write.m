@@ -1,4 +1,4 @@
-function ihs_write ( m, n, d, seed_init, seed, r, file_out_name )
+function ihs_write ( m, n, d, r, file_out_name )
 
 %*****************************************************************************80
 %
@@ -38,10 +38,6 @@ function ihs_write ( m, n, d, seed_init, seed, r, file_out_name )
 %
 %    Input, integer D, the duplication factor.
 %
-%    Input, integer SEED_INIT, the initial seed for the random number generator.
-%
-%    Input, integer SEED, the current seed for the random number generator.
-%
 %    Input, real R(M,N), the points.
 %
 %    Input, string FILE_OUT_NAME, the name of the output file.
@@ -61,11 +57,7 @@ function ihs_write ( m, n, d, seed_init, seed, r, file_out_name )
   fprintf ( file_out_unit, '#\n' );
   fprintf ( file_out_unit, '#  Spatial dimension M =     %d\n', m );
   fprintf ( file_out_unit, '#  Number of points N =      %d\n', n );
-  fprintf ( file_out_unit, '#  EPSILON (unit roundoff ) = %e\n', ...
-    r8_epsilon ( 'DUMMY' ) );
   fprintf ( file_out_unit, '#  Duplication factor D =    %d\n', d );
-  fprintf ( file_out_unit, '#  Initial SEED_INIT =       %d\n', seed_init );
-  fprintf ( file_out_unit, '#  Current SEED      =       %d\n', seed );
   fprintf ( file_out_unit, '#\n' );
 
   for j = 1 : n

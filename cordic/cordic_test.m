@@ -2,7 +2,7 @@ function cordic_test ( )
 
 %*****************************************************************************80
 %
-%% CORDIC_TEST tests CORDIC.
+%% CORDIC_TEST tests the CORDIC library.
 %
 %  Licensing:
 %
@@ -38,7 +38,6 @@ function cordic_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CORDIC_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

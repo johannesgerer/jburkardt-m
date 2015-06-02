@@ -1,11 +1,27 @@
->> i4lib_test
-04-Aug-2010 15:51:13
+i4lib_test
+24-May-2015 09:00:00
 
 I4LIB_TEST
   MATLAB version
-  Test the routines in the I4LIB library.
+  Test the I4LIB library.
 
-I4LIB_TEST01
+I4_ABS_TEST
+  I4_ABS returns the absolute value of an I4.
+
+      A         B=I4_ABS(A)
+
+         -57          57
+          92          92
+          66          66
+          12          12
+         -17          17
+         -87          87
+         -49          49
+         -78          78
+         -92          92
+          27          27
+
+I4_BIT_HI1_TEST
   I4_BIT_HI1 returns the location of the high 1 bit.
 
      I     I4_BIT_HI1(I)
@@ -21,7 +37,7 @@ I4LIB_TEST01
      4      3
     64      7
 
-I4LIB_TEST02
+I4_BIT_LO0_TEST
   I4_BIT_LO0 returns the location of the low 0 bit.
 
      I     I4_BIT_LO0(I)
@@ -37,7 +53,7 @@ I4LIB_TEST02
      4      1
     64      1
 
-I4LIB_TEST03
+I4_BIT_LO1_TEST
   I4_BIT_LO1 returns the location of the low 1 bit.
 
        I  I4_BIT_LO1(I)
@@ -53,7 +69,7 @@ I4LIB_TEST03
        4       3
       64       7
 
-I4LIB_TEST04
+I4_BIT_REVERSE_TEST
   I4_BIT_REVERSE bit reverses I with respect to 2^J
 
          I         J  I4_BIT_REVERSE(I,J)
@@ -90,7 +106,23 @@ I4LIB_TEST04
         14         4         7
         15         4        15
 
-TEST171
+I4_CEILING_TEST
+  I4_CEILING evaluates the "ceiling" of an R8.
+
+      R8    I4_CEILING(R8)
+
+  -56.3163             -56
+   91.2635              92
+   65.9018              66
+   12.3391              13
+  -16.9386             -16
+  -86.7763             -86
+  -48.4844             -48
+  -78.0086             -78
+  -91.2342             -91
+   26.7931              27
+
+I4_CHARACTERISTIC_TEST
   I4_CHARACTERISTIC computes the characteristic
   of an integer Q, which is
     Q if Q is prime;
@@ -151,7 +183,28 @@ TEST171
   49     7
   50     0
 
-I4LIB_TEST06
+I4_CHOOSE_TEST
+  I4_CHOOSE evaluates C(N,K).
+
+     N     K    CNK
+
+     0     0     1
+     1     0     1
+     1     1     1
+     2     0     1
+     2     1     2
+     2     2     1
+     3     0     1
+     3     1     3
+     3     2     3
+     3     3     1
+     4     0     1
+     4     1     4
+     4     2     6
+     4     3     4
+     4     4     1
+
+I4_DIV_ROUNDED_TEST
   I4_DIV_ROUNDED performs rounded integer division.
 
   C0 = int ( a / b )
@@ -181,7 +234,7 @@ I4LIB_TEST06
    -63     5   -13   -13   -13
    -21    -7     3     3     3
 
-I4LIB_TEST07
+I4_DIVP_TEST
   I4_DIVP(A,B) returns the smallest multiplier of J
   that is less than I
 
@@ -208,7 +261,64 @@ I4LIB_TEST07
    -63     5   -12   -60
    -21    -7     4   -28
 
-TEST08
+I4_FACTORIAL2_TEST
+  I4_FACTORIAL2 evaluates the double factorial function.
+
+         N      Exact         I4_FACTORIAL2(N)
+         0             1             1
+         1             1             1
+         2             2             2
+         3             3             3
+         4             8             8
+         5            15            15
+         6            48            48
+         7           105           105
+         8           384           384
+         9           945           945
+        10          3840          3840
+        11         10395         10395
+        12         46080         46080
+        13        135135        135135
+        14        645120        645120
+        15       2027025       2027025
+
+I4_FALL_TEST
+  I4_FALL evaluates the falling factorial function.
+
+         M         N      Exact         I4_FALL(M,N)
+         5         0             1             1
+         5         1             5             5
+         5         2            20            20
+         5         3            60            60
+         5         4           120           120
+         5         5           120           120
+         5         6             0             0
+        50         0             1             1
+        10         1            10            10
+      4000         1          4000          4000
+        10         2            90            90
+        18         3          4896          4896
+         4         4            24            24
+        98         3        912576        912576
+         1         7             0             0
+
+I4_FLOOR_TEST
+  I4_FLOOR evaluates the "floor" of an R8.
+
+      R8    I4_FLOOR(R8)
+
+  -56.3163          -57
+   91.2635           91
+   65.9018           65
+   12.3391           12
+  -16.9386          -17
+  -86.7763          -87
+  -48.4844          -49
+  -78.0086          -79
+  -91.2342          -92
+   26.7931           26
+
+I4_GCD_TEST
   I4_GCD computes the greatest common factor
 
      I     J   I4_GCD
@@ -221,12 +331,12 @@ TEST08
        1      42       1
       91      28       7
 
-TEST09
+I4_HUGE_TEST
   I4_HUGE returns a huge integer.
 
   I4_HUGE() = 2147483647
 
-TEST10
+I4_HUGE_NORMALIZER_TEST
   I4_HUGE_NORMALIZER returns 1/(I4_HUGE+1).
 
   I4_HUGE() = 2147483647
@@ -234,7 +344,187 @@ TEST10
 
   I4_HUGE * I4_HUGE_NORMALIZER = 1.000000e+00
 
-TEST11
+I4_IS_EVEN_TEST
+  I4_IS_EVEN reports whether an I4 is even.
+
+  I     I4_IS_EVEN(I)
+
+value =
+     1
+      -2  1
+value =
+     0
+      -1  0
+value =
+     1
+       0  1
+value =
+     0
+       1  0
+value =
+     1
+       2  1
+value =
+     0
+       3  0
+value =
+     1
+       4  1
+value =
+     0
+       5  0
+value =
+     1
+       6  1
+value =
+     0
+       7  0
+value =
+     1
+       8  1
+value =
+     0
+       9  0
+value =
+     1
+      10  1
+value =
+     0
+      11  0
+value =
+     1
+      12  1
+value =
+     0
+      13  0
+value =
+     1
+      14  1
+value =
+     0
+      15  0
+value =
+     1
+      16  1
+value =
+     0
+      17  0
+value =
+     1
+      18  1
+value =
+     0
+      19  0
+value =
+     1
+      20  1
+value =
+     0
+      21  0
+value =
+     1
+      22  1
+value =
+     0
+      23  0
+value =
+     1
+      24  1
+value =
+     0
+      25  0
+
+I4_IS_ODD_TEST
+  I4_IS_ODD reports whether an I4 is odd.
+
+  I     I4_IS_ODD(I)
+
+value =
+     0
+      -2  0
+value =
+     1
+      -1  1
+value =
+     0
+       0  0
+value =
+     1
+       1  1
+value =
+     0
+       2  0
+value =
+     1
+       3  1
+value =
+     0
+       4  0
+value =
+     1
+       5  1
+value =
+     0
+       6  0
+value =
+     1
+       7  1
+value =
+     0
+       8  0
+value =
+     1
+       9  1
+value =
+     0
+      10  0
+value =
+     1
+      11  1
+value =
+     0
+      12  0
+value =
+     1
+      13  1
+value =
+     0
+      14  0
+value =
+     1
+      15  1
+value =
+     0
+      16  0
+value =
+     1
+      17  1
+value =
+     0
+      18  0
+value =
+     1
+      19  1
+value =
+     0
+      20  0
+value =
+     1
+      21  1
+value =
+     0
+      22  0
+value =
+     1
+      23  1
+value =
+     0
+      24  0
+value =
+     1
+      25  1
+
+I4_IS_PRIME_TEST
   I4_IS_PRIME reports whether an integer is prime.
 
   I     I4_IS_PRIME(I)
@@ -268,7 +558,7 @@ TEST11
       24  0
       25  0
 
-TEST12
+I4_LCM_TEST
   I4_LCM computes the least common multiple.
 
      I     J   I4_LCM
@@ -281,7 +571,7 @@ TEST12
        1      42      42
       91      28     364
 
-TEST13
+I4_LOG_10_TEST
   I4_LOG_10: whole part of log base 10,
 
   X, I4_LOG_10
@@ -300,7 +590,7 @@ TEST13
     -3             0
     -9             0
 
-TEST14
+I4_LOG_2_TEST
   I4_LOG_2: whole part of log base 2.
 
        X     I4_LOG_2
@@ -323,7 +613,7 @@ TEST14
     1024            10
     1025            10
 
-TEST15
+I4_LOG_I4_TEST
   I4_LOG_I4: logarith of I4 base J4,
 
         I4        J4 I4_LOG_I4
@@ -377,7 +667,7 @@ TEST15
         10         5         1
 
 
-TEST16
+I4_LOG_R8_TEST
   I4_LOG_R8: whole part of log base B,
 
   X    B   I4_LOG_R8
@@ -393,16 +683,48 @@ TEST16
       16     32.000000             0
       16    256.000000             0
 
-TEST17
+I4_MANT_TEST
   I4_MANT decomposes an integer.
 
   Number to be decomposed is X = -314.159000
 
-  X = -1 * ( 2.763372e+15 / 2.251800e+15 ) * 2 ^ (8)
+  X = -1 * ( 2763371787763843 / 2251799813685248 ) * 2 ^ (8)
 
-TEST18
+I4_MAX_TEST
+  I4_MAX returns the maximum of two I4's.
+
+       A       B      C=I4_MAX(A,B)
+
+       -57        92        92
+        66        12        66
+       -17       -87       -17
+       -49       -78       -49
+       -92        27        27
+       -88       -10       -10
+       -20        51        51
+        60      -100        60
+        80       -30        80
+       -81       -98       -81
+
+I4_MIN_TEST
+  I4_MIN returns the minimum of two I4's.
+
+       A       B      C=I4_MIN(A,B)
+
+       -57        92       -57
+        66        12        12
+       -17       -87       -87
+       -49       -78       -78
+       -92        27       -92
+       -88       -10       -88
+       -20        51       -20
+        60      -100      -100
+        80       -30       -30
+       -81       -98       -98
+
+I4_MODDIV_TEST
   I4_MODDIV factors a number
-    into a multiple and a remainder.
+  into a multiple and a remainder.
 
     Number   Divisor  Multiple Remainder
 
@@ -418,9 +740,9 @@ TEST18
       -107        50        -3        43
       -107       -50         2        -7
 
-TEST19
+I4_MODP_TEST
   I4_MODP factors a number
-    into a multiple and a remainder.
+  into a multiple and a remainder.
 
     Number   Divisor  Multiple Remainder
 
@@ -436,16 +758,42 @@ TEST19
       -107        50        -3        43
       -107       -50         2        -7
 
-TEST20
+I4_RISE_TEST
+  I4_RISE evaluates the rising factorial function.
+
+         M         N      Exact         I4_RISE(M,N)
+         5         0             1             1
+         5         1             5             5
+         5         2            30            30
+         5         3           210           210
+         5         4          1680          1680
+         5         5         15120         15120
+         5         6        151200        151200
+        50         0             1             1
+
+I4_SIGN_TEST
   I4_SIGN returns the sign of a number.
 
-     -10      -1
-      -7      -1
-       0       1
-       5       1
-       9       1
+    I4  I4_SIGN(I4)
 
-TEST21
+  -10           -1
+   -7           -1
+    0            1
+    5            1
+    9            1
+
+I4_SIGN3_TEST
+  I4_SIGN3 returns the three-way sign of a number.
+
+    I4  I4_SIGN3(I4)
+
+  -10           -1
+   -7           -1
+    0            0
+    5            1
+    9            1
+
+I4_SWAP_TEST
   I4_SWAP swaps two integers.
 
   Before swapping:
@@ -458,7 +806,138 @@ TEST21
   I = 202
   J = 1
 
-TEST22
+I4_TO_HALTON_TEST
+  I4_TO_HALTON computes a Halton sequence.
+  The user specifies all data explicitly.
+
+  In this test, we call I4_TO_HALTON repeatedly.
+  We use distinct primes as bases.
+
+   I    R(0)      R(1)      R(2)
+
+   0  0.000000  0.000000  0.000000
+   1  0.500000  0.333333  0.200000
+   2  0.250000  0.666667  0.400000
+   3  0.750000  0.111111  0.600000
+   4  0.125000  0.444444  0.800000
+   5  0.625000  0.777778  0.040000
+   6  0.375000  0.222222  0.240000
+   7  0.875000  0.555556  0.440000
+   8  0.062500  0.888889  0.640000
+   9  0.562500  0.037037  0.840000
+  10  0.312500  0.370370  0.080000
+
+I4_TO_PASCAL_TEST
+  I4_TO_PASCAL converts a linear index to
+  Pascal triangle indices.
+
+     K  =>   I     J
+
+     1       0     0
+     2       1     0
+     3       0     1
+     4       2     0
+     5       1     1
+     6       0     2
+     7       3     0
+     8       2     1
+     9       1     2
+    10       0     3
+    11       4     0
+    12       3     1
+    13       2     2
+    14       1     3
+    15       0     4
+    16       5     0
+    17       4     1
+    18       3     2
+    19       2     3
+    20       1     4
+
+I4_TO_PASCAL_DEGREE_TEST
+  I4_TO_PASCAL_DEGREE converts a linear index to
+  the degree of the corresponding Pascal triangle indices.
+
+     K  =>   D
+
+     1       0
+     2       1
+     3       1
+     4       2
+     5       2
+     6       2
+     7       3
+     8       3
+     9       3
+    10       3
+    11       4
+    12       4
+    13       4
+    14       4
+    15       4
+    16       5
+    17       5
+    18       5
+    19       5
+    20       5
+
+I4_TO_TRIANGLE_TEST
+  I4_TO_TRIANGLE converts a linear index to a
+  triangular one.
+
+     K  =>   I     J
+
+     1       1     1
+     2       2     1
+     3       2     2
+     4       3     1
+     5       3     2
+     6       3     3
+     7       4     1
+     8       4     2
+     9       4     3
+    10       4     4
+    11       5     1
+    12       5     2
+    13       5     3
+    14       5     4
+    15       5     5
+    16       6     1
+    17       6     2
+    18       6     3
+    19       6     4
+    20       6     5
+
+I4_UNIFORM_AB_TEST
+  I4_UNIFORM_AB computes pseudorandom values
+  in an interval [A,B].
+
+  The lower endpoint A = -100.000000
+  The upper endpoint B = 200.000000
+  The initial seed is 123456789
+
+         1       -35
+         2       187
+         3       149
+         4        69
+         5        25
+         6       -81
+         7       -23
+         8       -67
+         9       -87
+        10        90
+        11       -82
+        12        35
+        13        20
+        14       127
+        15       139
+        16      -100
+        17       170
+        18         5
+        19       -72
+        20       -96
+
+I4_WALSH_1D_TEST
   I4_WALSH_1D evaluates 1D Walsh functions:
 
 X  W(+2) W(+1) W(0) W(-1) W(-2) W(-3)
@@ -497,7 +976,7 @@ X  W(+2) W(+1) W(0) W(-1) W(-2) W(-3)
    7.750000   1   1   1   1   1   0
    8.000000   0   0   0   0   0   0
 
-TEST23
+I4_WRAP_TEST
   I4_WRAP forces an integer to lie within given limits.
 
   ILO = 4
@@ -537,7 +1016,7 @@ TEST23
       19       4
       20       5
 
-I4LIB_TEST24
+I4_XOR_TEST
   I4_XOR returns the bitwise exclusive OR of two integers.
   MATLAB provides a BITXOR operator which should be used instead!
 
@@ -554,7 +1033,30 @@ I4LIB_TEST24
       90      35     121     121
        9       1       8       8
 
-TEST25
+I4BLOCK_PRINT_TEST
+  I4BLOCK_PRINT prints an I4BLOCK.
+
+  The 3D array:
+
+  K = 1
+
+        J:       1       2       3
+
+       1:        1       1       1
+       2:        2       4       8
+       3:        3       9      27
+       4:        4      16      64
+
+  K = 2
+
+        J:       1       2       3
+
+       1:        2       2       2
+       2:        4       8      16
+       3:        6      18      54
+       4:        8      32     128
+
+I4COL_FIND_ITEM_TEST
   I4COL_FIND_ITEM finds the first occurrence of
   an item in an integer array of columns.
 
@@ -572,7 +1074,7 @@ TEST25
   Item 12  occurs in row 1 and column 2.
   Item 90  occurs in row -1 and column -1.
 
-TEST26
+I4COL_FIND_PAIR_WRAP_TEST
   I4COL_FIND_PAIR_WRAP finds the first occurrence of
   a pair of item in an integer array of columns.
   Items in the array are ordered by column, and
@@ -594,11 +1096,9 @@ TEST26
   Item 54 followed by item 14 occurs in row 5 and column 4
   Item 54 followed by item 11 occurs in row -1 and column -1
 
-TEST27
+I4COL_SORT_A_TEST
   I4COL_SORT_A ascending sorts an integer array
-    as a table of columns.
-  I4COL_SORT_D descending sorts an integer array
-    as a table of columns.
+  as a table of columns.
 
   The original matrix:
 
@@ -622,6 +1122,21 @@ TEST27
     4:       1        8        1        6  
     5:       7        8        1        5  
 
+I4COL_SORT_D_TEST
+  I4COL_SORT_D descending sorts an integer array
+  as a table of columns.
+
+  The original matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:       3        1        1        1  
+    2:      10        3        5        9  
+    3:       9        2        5        4  
+    4:       6        1        8        1  
+    5:       5        7        8        1  
+
   Descending sorted:
 
   Col:       1        2        3        4  
@@ -633,7 +1148,7 @@ TEST27
     4:       6        1        8        1  
     5:       5        1        8        7  
 
-TEST28
+I4COL_SORT2_A_TEST
   For a rectangular integer matrix:
   I4COL_SORT2_D sorts the elements of the columns.
 
@@ -661,9 +1176,9 @@ TEST28
     5:      17        9       16       17  
     6:      20       13       18       18  
 
-TEST29
+I4COL_SORTED_SINGLETON_COUNT_TEST
   I4COL_SORTED_SINGLETON_COUNT counts singletons
-    in a sorted I4COL;
+  in a sorted I4COL;
 
   Ascending sorted I4COL:
 
@@ -674,7 +1189,7 @@ TEST29
     2:       0        3        3        0        3        3        3        0        1        0  
     3:       3        1        3        0        0        1        3        1        0        0  
 
-  Number of singletons = 0
+  Number of singletons = 10
 
   Ascending sorted I4COL:
 
@@ -685,11 +1200,11 @@ TEST29
     2:       2        3        3        0        0        1        1        2        3        3  
     3:       1        1        2        1        3        0        3        3        0        1  
 
-  Number of singletons = 0
+  Number of singletons = 10
 
-TEST30
+I4COL_SORTED_UNIQUE_COUNT_TEST
   I4COL_SORTED_UNIQUE_COUNT counts the unique entries
-    of a sorted I4COL;
+  of a sorted I4COL;
 
   Ascending sorted I4COL:
 
@@ -713,9 +1228,8 @@ TEST30
 
   Number of unique entries = 10
 
-TEST31
+I4MAT_ELIM_TEST
   I4MAT_ELIM does exact Gauss elimination.
-  I4MAT_RED divides common factors in a matrix;
 
   The original matrix:
 
@@ -813,25 +1327,21 @@ TEST31
     4:       0        0        0        0        0  
     5:       0        0        0        0        0  
 
-TEST32
-  I4MAT_MAX_INDEX locates the maximum;
-  I4MAT_MIN_INDEX locates the minimum;
+I4MAT_INDICATOR_TEST
+  I4MAT_INDICATOR returns an indicator matrix;
 
-  Random array:
+  Indicator matrix:
 
-  Col:       1        2        3        4        5        6        7  
+  Col:       1        2        3        4  
   Row
 
-    1:       2        0        0        0        9       10        7  
-    2:      10        2        4        9        9        1        6  
-    3:       9        1        4        3        1        3        9  
-    4:       6        0        8        1        0        9        4  
-    5:       4        6        8        0        2        2       10  
+    1:      11       12       13       14  
+    2:      21       22       23       24  
+    3:      31       32       33       34  
+    4:      41       42       43       44  
+    5:      51       52       53       54  
 
-  Maximum I,J indices =      2       1
-  Minimum I,J indices =      1       2
-
-TEST33
+I4MAT_L1_INVERSE_TEST
   I4MAT_L1_INVERSE inverts a unit lower triangular matrix.
 
   The original matrix:
@@ -870,7 +1380,69 @@ TEST33
     5:       0        0        0        0        1        0  
     6:       0        0        0        0        0        1  
 
-TEST34
+I4MAT_MAX_TEST
+  I4MAT_MAX returns the maximum;
+
+  Random array:
+
+  Col:       1        2        3        4        5        6        7  
+  Row
+
+    1:       2        0        0        0        9       10        7  
+    2:      10        2        4        9        9        1        6  
+    3:       9        1        4        3        1        3        9  
+    4:       6        0        8        1        0        9        4  
+    5:       4        6        8        0        2        2       10  
+
+  Maximum entry = 10
+I4MAT_MAX_INDEX_TEST
+  I4MAT_MAX_INDEX locates the maximum;
+
+  Random array:
+
+  Col:       1        2        3        4        5        6        7  
+  Row
+
+    1:       2        0        0        0        9       10        7  
+    2:      10        2        4        9        9        1        6  
+    3:       9        1        4        3        1        3        9  
+    4:       6        0        8        1        0        9        4  
+    5:       4        6        8        0        2        2       10  
+
+  Maximum I,J indices =      2       1
+
+I4MAT_MIN_TEST
+  I4MAT_MIN returns the minimum;
+
+  Random array:
+
+  Col:       1        2        3        4        5        6        7  
+  Row
+
+    1:       2        0        0        0        9       10        7  
+    2:      10        2        4        9        9        1        6  
+    3:       9        1        4        3        1        3        9  
+    4:       6        0        8        1        0        9        4  
+    5:       4        6        8        0        2        2       10  
+
+  Minimum entry = 0
+I4MAT_MIN_INDEX_TEST
+  I4MAT_MIN_INDEX locates the minimum;
+
+  Random array:
+
+  Col:       1        2        3        4        5        6        7  
+  Row
+
+    1:       2        0        0        0        9       10        7  
+    2:      10        2        4        9        9        1        6  
+    3:       9        1        4        3        1        3        9  
+    4:       6        0        8        1        0        9        4  
+    5:       4        6        8        0        2        2       10  
+
+  Minimum I,J indices =      1       2
+
+I4MAT_PERM_UNIFORM_TEST
   I4MAT_PERM_UNIFORM applies a random permutation
   to a square integer matrix.
 
@@ -896,7 +1468,73 @@ TEST34
     4:      32       35       31       33       34  
     5:      42       45       41       43       44  
 
-TEST35
+I4MAT_RED_TEST
+  I4MAT_RED divides common factors in a matrix;
+
+  The original matrix:
+
+  Col:       1        2        3        4        5  
+  Row
+
+    1:       1        2        3        4        5  
+    2:       6        7        8        9       10  
+    3:      11       12       13       14       15  
+    4:      16       17       18       19       20  
+    5:      21       22       23       24       25  
+
+  The matrix, as returned by I4MAT_RED:
+  (Factors are displayed in an extra row and column.
+
+       1       2       3       4       1       1
+       6       7       8       9       2       1
+      11      12      13      14       3       1
+      16      17      18      19       4       1
+      21      22      23      24       5       1
+       1       1       1       1       5
+
+  The original matrix:
+
+  Col:       1        2        3        4        5  
+  Row
+
+    1:   40320    20160    13440    10080     8064  
+    2:   20160    13440    10080     8064     6720  
+    3:   13440    10080     8064     6720     5760  
+    4:   10080     8064     6720     5760     5040  
+    5:    8064     6720     5760     5040     4480  
+
+  The matrix, as returned by I4MAT_RED:
+  (Factors are displayed in an extra row and column.
+
+      30      15      70     105     252       2
+      30      20     105     168     420       1
+      20      15      84     140     360       1
+      15      12      70     120     315       1
+      12      10      60     105     280       1
+     672     672      96      48      16
+
+  The original matrix:
+
+  Col:       1        2        3        4        5  
+  Row
+
+    1:       1        2        3        4        5  
+    2:       2        4        6        8       10  
+    3:       3        6        9       12       15  
+    4:       4        8       12       16       20  
+    5:       5       10       15       20       25  
+
+  The matrix, as returned by I4MAT_RED:
+  (Factors are displayed in an extra row and column.
+
+       1       1       1       1       1       1
+       1       1       1       1       1       2
+       1       1       1       1       1       3
+       1       1       1       1       1       4
+       1       1       1       1       1       5
+       1       2       3       4       5
+
+I4MAT_U1_INVERSE_TEST
   I4MAT_U1_INVERSE inverts a unit upper triangular matrix.
 
   The original matrix:
@@ -935,9 +1573,8 @@ TEST35
     5:       0        0        0        0        1        0  
     6:       0        0        0        0        0        1  
 
-TEST36
+I4ROW_MAX_TEST
   I4ROW_MAX computes row maximums;
-  I4ROW_MIN computes row minimums;
 
   The matrix:
 
@@ -948,15 +1585,14 @@ TEST36
     2:       5        6        7        8  
     3:       9       10       11       12  
 
-  Maximum, minimum:
+  Row maximums:
 
-    1       4       1
-    2       8       5
-    3      12       9
+     1:      4
+     2:      8
+     3:     12
 
-TEST37
+I4ROW_MEAN_TEST:
   I4ROW_MEAN computes row means;
-  I4ROW_SUM computes row sums;
 
   The matrix:
 
@@ -973,7 +1609,25 @@ TEST37
        2      26   6.500000
        3      42  10.500000
 
-TEST38
+I4ROW_MIN_TEST
+  I4ROW_MIN computes row minimums;
+
+  The matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:       1        2        3        4  
+    2:       5        6        7        8  
+    3:       9       10       11       12  
+
+  Row minimums:
+
+     1:      1
+     2:      5
+     3:      9
+
+I4ROW_SORT_A_TEST
   For a rectangular integer matrix:
   I4ROW_SORT_A sorts the rows;
 
@@ -1009,9 +1663,60 @@ TEST38
     9:       9        4        1        9  
    10:      10        4        9        6  
 
-TEST39
+I4ROW_SORT_D_TEST
   For a rectangular integer matrix:
   I4ROW_SORT_D sorts the rows;
+
+  The original matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:      11       12       13       14  
+    2:      21       22       23       24  
+    3:      31       32       33       34  
+    4:      41       42       43       44  
+    5:      51       52       53       54  
+    6:      61       62       63       64  
+
+  The matrix, permuted by I4MAT_PERM2_UNIFORM:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:      22       21       23       24  
+    2:      62       61       63       64  
+    3:      12       11       13       14  
+    4:      52       51       53       54  
+    5:      42       41       43       44  
+    6:      32       31       33       34  
+
+  The row-sorted matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:      62       61       63       64  
+    2:      52       51       53       54  
+    3:      42       41       43       44  
+    4:      32       31       33       34  
+    5:      22       21       23       24  
+    6:      12       11       13       14  
+
+  The element-sorted row-sorted matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:      64       63       62       61  
+    2:      54       53       52       51  
+    3:      44       43       42       41  
+    4:      34       33       32       31  
+    5:      24       23       22       21  
+    6:      14       13       12       11  
+
+I4ROW_SORT2_D_TEST
+  For a rectangular integer matrix:
   I4ROW_SORT2_D sorts the elements of the rows.
 
   The original matrix:
@@ -1062,7 +1767,25 @@ TEST39
     5:      24       23       22       21  
     6:      14       13       12       11  
 
-TEST40
+I4ROW_SUM_TEST
+  I4ROW_SUM computes row sums;
+
+  The matrix:
+
+  Col:       1        2        3        4  
+  Row
+
+    1:       1        2        3        4  
+    2:       5        6        7        8  
+    3:       9       10       11       12  
+
+  Sum, mean:
+
+       1      10   2.500000
+       2      26   6.500000
+       3      42  10.500000
+
+I4ROW_SWAP_TEST
   For an integer matrix of rows,
   I4ROW_SWAP swaps two rows;
 
@@ -1087,7 +1810,7 @@ TEST40
     2:       5        6        7        8  
     3:       1        2        3        4  
 
-TEST41
+I4ROW_VARIANCE_TEST
   I4ROW_VARIANCE computes row variances;
 
   The matrix:
@@ -1105,7 +1828,23 @@ TEST41
        2   1.666667
        3   1.666667
 
-TEST42
+I4VEC_ADD_TEST
+  I4VEC_ADD adds two I4VEC's;
+
+     I     A     B     C
+
+     1    -6    -9   -15
+     2    10    -1     9
+     3     7    -2     5
+     4     1     5     6
+     5    -2     6     4
+     6    -9   -10   -19
+     7    -5     8     3
+     8    -8    -3   -11
+     9   -10    -9   -19
+    10     3   -10    -7
+
+I4VEC_AMAX_TEST
   For an integer vector:
   I4VEC_AMAX:   maximum absolute entry;
 
@@ -1124,7 +1863,26 @@ TEST42
 
   Maximum absolute value: 10.000000
 
-TEST43
+I4VEC_AMAX_INDEX_TEST
+  For an integer vector:
+  I4VEC_AMAX_INDEX:  index of maximum absolute entry;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+  Maximum abs index: 2
+
+I4VEC_AMIN_TEST
   For an integer vector:
   I4VEC_AMIN:   minimum absolute entry;
 
@@ -1144,30 +1902,8 @@ TEST43
 
   Minimum absolute value: 1.000000
 
-TEST44
+I4VEC_AMIN_INDEX_TEST
   For an integer vector:
-  I4VEC_AMINZ:  minimum nonzero absolute entry;
-  I4VEC_AMINZ_INDEX: index of minimum nonzero absolute entry;
-
-  Input vector:
-
-     1:     -6
-     2:     10
-     3:      7
-     4:      1
-     5:     -2
-     6:     -9
-     7:     -5
-     8:     -8
-     9:    -10
-    10:      3
-
-  Minimum abs nonzero:       1.000000
-  Minimum abs nonzero index: 4
-
-TEST45
-  For an integer vector:
-  I4VEC_AMAX_INDEX:  index of maximum absolute entry;
   I4VEC_AMIN_INDEX:  index minimum absolute entry;
 
   Input vector:
@@ -1183,14 +1919,11 @@ TEST45
      9:    -10
     10:      3
 
-  Maximum abs index: 2
   Minimum abs index: 1
 
-TEST46
+I4VEC_AMINZ_TEST
   For an integer vector:
-  I4VEC_MAX_INDEX:          a maximal index;
-  I4VEC_MAX_INDEX_LAST:     last maximal index;
-  I4VEC_INDEX:              first index of given value;
+  I4VEC_AMINZ:  minimum nonzero absolute entry;
 
   Input vector:
 
@@ -1205,14 +1938,28 @@ TEST46
      9:    -10
     10:      3
 
-  Maximum index: 2
-  Last maximum index: 2
-  Minimum index: 9
+  Minimum abs nonzero:       1.000000
 
-  Index of first occurrence of -2 is 5
-  Index of first occurrence of -1 is -1
+I4VEC_AMINZ_INDEX_TEST
+  For an integer vector:
+  I4VEC_AMINZ_INDEX: index of minimum nonzero absolute entry;
 
-TEST47
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+  Minimum abs nonzero index: 4
+
+I4VEC_ASCEND_SUB_TEST
   I4VEC_ASCEND_SUB computes a longest ascending
   subsequence of an integer vector.
   Using initial random number seed = 123456789
@@ -1360,7 +2107,7 @@ TEST47
      4:      8
      5:      9
 
-TEST48
+I4VEC_ASCENDS_TEST
   I4VEC_ASCENDS determines if an integer vector ascends.
 
 
@@ -1412,13 +2159,9 @@ TEST48
      4:      0
   I4VEC_ASCENDS =  0
 
-TEST49
+I4VEC_BRACKET_TEST
   I4VEC_BRACKET finds a pair of entries in a
   sorted integer array which bracket a value.
-  I4VEC_INSERT inserts a value into a vector.
-
-  We use these two routines to bracket a value,
-  and then insert it.
 
   Sorted array:
 
@@ -1568,39 +2311,115 @@ TEST49
     15:     24
     16:     20
 
-TEST50
+I4VEC_CONCATENATE_TEST
+  I4VEC_CONCATENATE concatenates two I4VECs
+
+  Array 1:
+
+     1:     91
+     2:     31
+     3:     71
+     4:     51
+     5:     31
+
+  Array 2:
+
+     1:     42
+     2:     22
+     3:     12
+
+  Array 3 = Array 1 + Array 2:
+
+     1:     91
+     2:     31
+     3:     71
+     4:     51
+     5:     31
+     6:     42
+     7:     22
+     8:     12
+
+I4VEC_CUM_TEST
   For an integer vector:
-  I4VEC_CUM:	    cumulative sum;
+  I4VEC_CUM:  cumulative sum;
 
   Input vector:
 
-     1:     -6
+     1:      2
      2:     10
-     3:      7
-     4:      1
-     5:     -2
-     6:     -9
-     7:     -5
-     8:     -8
-     9:    -10
-    10:      3
+     3:      9
+     4:      6
+     5:      4
+     6:      0
+     7:      2
+     8:      1
+     9:      0
+    10:      6
 
 
   Cumulative sums:
 
-     1:      0
-     2:     -6
-     3:      4
-     4:     11
-     5:     12
-     6:     10
-     7:      1
-     8:     -4
-     9:    -12
-    10:    -22
-    11:    -19
+     1:      2
+     2:     12
+     3:     21
+     4:     27
+     5:     31
+     6:     31
+     7:     33
+     8:     34
+     9:     34
+    10:     40
 
-TEST51
+I4VEC_CUM0_TEST
+  For an integer vector:
+  I4VEC_CUM0: cumulative sum (zero based);
+
+  Input vector:
+
+     1:      2
+     2:     10
+     3:      9
+     4:      6
+     5:      4
+     6:      0
+     7:      2
+     8:      1
+     9:      0
+    10:      6
+
+
+  0-based cumulative sums:
+
+     1:      0
+     2:      2
+     3:     12
+     4:     21
+     5:     27
+     6:     31
+     7:     31
+     8:     33
+     9:     34
+    10:     34
+    11:     40
+
+I4VEC_DECREMENT_TEST
+  I4VEC_DECREMENT decrements an I4VEC.
+
+  The I4VEC:
+
+     1:     -2
+     2:     10
+     3:      8
+     4:      3
+
+  The I4VEC after decrementing:
+
+     1:     -3
+     2:      9
+     3:      7
+     4:      2
+
+I4VEC_DESCENDS_TEST
   I4VEC_DESCENDS determines if an integer vector descends.
 
   Test vector:
@@ -1651,7 +2470,7 @@ TEST51
      4:      0
   I4VEC_DESCENDS = 1
 
-TEST52
+I4VEC_DIRECT_PRODUCT_TEST
   I4VEC_DIRECT_PRODUCT forms the entries of a
   direct product of a given number of I4VEC factors.
 
@@ -1682,7 +2501,7 @@ TEST52
     23       3    70   900
     24       4    70   900
 
-TEST53
+I4VEC_DIRECT_PRODUCT2_TEST
   I4VEC_DIRECT_PRODUCT2 forms the entries of a
   direct product of a given number of I4VEC factors.
 
@@ -1713,7 +2532,7 @@ TEST53
     23        189000
     24        252000
 
-TEST54
+I4VEC_FRAC_TEST
   I4VEC_FRAC: K-th smallest integer vector entry.
   Using initial random number seed = 123456789
 
@@ -1735,11 +2554,9 @@ TEST54
        1       1
        6       9
 
-TEST55
+I4VEC_HEAP_A_TEST
   For an integer vector,
   I4VEC_HEAP_A puts into ascending heap form.
-  I4VEC_HEAP_D puts into descending heap form.
-  Using initial random number seed = 123456789
 
   Unsorted array:
 
@@ -1767,6 +2584,23 @@ TEST55
      9:      6
     10:      6
 
+I4VEC_HEAP_D_TEST
+  For an integer vector,
+  I4VEC_HEAP_D puts into descending heap form.
+
+  Unsorted array:
+
+     1:      2
+     2:     10
+     3:      9
+     4:      6
+     5:      4
+     6:      0
+     7:      2
+     8:      1
+     9:      0
+    10:      6
+
   Descending heap form:
 
      1:     10
@@ -1776,17 +2610,13 @@ TEST55
      5:      6
      6:      0
      7:      2
-     8:      0
-     9:      1
+     8:      1
+     9:      0
     10:      4
 
-TEST56
+I4VEC_HEAP_D_EXTRACT_TEST
   For a descending heap of integers,
-  I4VEC_HEAP_D_INSERT inserts a value into the heap.
   I4VEC_HEAP_D_EXTRACT extracts the maximum value;
-  I4VEC_HEAP_D_MAX reports the maximum value.
-
-  These 3 operations are enough to model a priority queue.
 
   Inserting value 2
   Current maximum value is 2
@@ -1847,7 +2677,101 @@ TEST56
      4:      0
      5:      0
 
-TEST57
+I4VEC_HEAP_D_INSERT_TEST
+  For a descending heap of integers,
+  I4VEC_HEAP_D_INSERT inserts a value into the heap.
+
+  Inserting value 2
+  Current maximum value is 2
+
+  Inserting value 10
+  Current maximum value is 10
+
+  Inserting value 9
+  Current maximum value is 10
+
+  Inserting value 6
+  Current maximum value is 10
+
+  Inserting value 4
+  Current maximum value is 10
+
+  Inserting value 0
+  Current maximum value is 10
+
+  Inserting value 2
+  Current maximum value is 10
+
+  Inserting value 1
+  Current maximum value is 10
+
+  Inserting value 0
+  Current maximum value is 10
+
+  Inserting value 6
+  Current maximum value is 10
+
+  Current heap as a vector:
+
+     1:     10
+     2:      6
+     3:      9
+     4:      2
+     5:      6
+     6:      0
+     7:      2
+     8:      1
+     9:      0
+    10:      4
+
+I4VEC_HEAP_D_MAX_TEST
+  For a descending heap of integers,
+  I4VEC_HEAP_D_MAX reports the maximum value.
+
+  Inserting value 2
+  Current maximum value is 2
+
+  Inserting value 10
+  Current maximum value is 10
+
+  Inserting value 9
+  Current maximum value is 10
+
+  Inserting value 6
+  Current maximum value is 10
+
+  Inserting value 4
+  Current maximum value is 10
+
+  Inserting value 0
+  Current maximum value is 10
+
+  Inserting value 2
+  Current maximum value is 10
+
+  Inserting value 1
+  Current maximum value is 10
+
+  Inserting value 0
+  Current maximum value is 10
+
+  Inserting value 6
+  Current maximum value is 10
+
+  Current heap as a vector:
+
+     1:     10
+     2:      6
+     3:      9
+     4:      2
+     5:      6
+     6:      0
+     7:      2
+     8:      1
+     9:      0
+    10:      4
+
+I4VEC_HISTOGRAM_TEST
   I4VEC_HISTOGRAM histograms an integer vector.
 
   Histogram of data from 0 to 20
@@ -1874,71 +2798,127 @@ TEST57
       19      33
       20      32
 
-TEST58
-  I4VEC_INDEX_INSERT_UNIQUE inserts unique values into an
-  index sorted array.
-  I4VEC_INDEX_SEARCH searches for an entry with
-  a given value.
+I4VEC_INCREMENT_TEST
+  I4VEC_INCREMENT increments an I4VEC.
 
-  Generate some random values:
+  The I4VEC:
+
+     1:     -2
+     2:     10
+     3:      8
+     4:      3
+
+  The I4VEC after incrementing:
+
+     1:     -1
+     2:     11
+     3:      9
+     4:      4
+
+I4VEC_INDEX_TEST
+  For an integer vector:
+  I4VEC_INDEX:              first index of given value;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+
+  Index of first occurrence of -2 is 5
+  Index of first occurrence of -1 is -1
+
+I4VEC_INDEX_DELETE_ALL_TEST
+  I4VEC_INDEX_DELETE_ALL deletes all copies of a
+  particular value.
+       4
+      20
+      17
+      11
+       8
+       1
+       5
+       2
+       0
+      13
+       1
+       9
+       8
+      15
+      16
+       0
+      18
+       7
+       1
+       0
 
   Indexed list of entries:
 
   I  INDX(I)  X(I)  X(INDX(I))
 
-       1       9       4       0
-       2       6      20       1
-       3       8      17       2
-       4       1      11       4
-       5       7       8       5
-       6      15       1       7
-       7       5       5       8
-       8      11       2       9
-       9       4       0      11
-      10      10      13      13
-      11      12       9      15
-      12      13      15      16
-      13       3      16      17
-      14      14      18      18
-      15       2       7      20
+       1      11       8       0
+       2      22       7       0
+       3      18       4       0
+       4       8      20       1
+       5      21      17       1
+       6      13      11       1
+       7      10       8       2
+       8       3       1       4
+       9       9       5       5
+      10       2       2       7
+      11      20       0       7
+      12      23      13       7
+      13       1       1       8
+      14      15       9       8
+      15      24       8       8
+      16       7      15       8
+      17      14      16       9
+      18       6       0      11
+      19      12      18      13
+      20      16       7      15
+      21      17       1      16
+      22       5       0      17
+      23      19       7      18
+      24       4       8      20
 
-  Results of search for given XVAL:
+  Call I4VEC_INDEX_DELETE_ALL to delete values of 7:
 
-  XVAL  Less Equal More
+  Indexed list of entries:
 
-       0       0       1       2
-       1       1       2       3
-       2       2       3       4
-       3       3       0       4
-       4       3       4       5
-       5       4       5       6
-       6       5       0       6
-       7       5       6       7
-       8       6       7       8
-       9       7       8       9
-      10       8       0       9
-      11       8       9      10
-      12       9       0      10
-      13       9      10      11
-      14      10       0      11
-      15      10      11      12
-      16      11      12      13
-      17      12      13      14
-      18      13      14      15
-      19      14       0      15
-      20      14      15      16
+  I  INDX(I)  X(I)  X(INDX(I))
 
-TEST59
-  I4VEC_INDEX_INSERT inserts values into an
-  index sorted array of integers.
-  I4VEC_INDEX_DELETE_ALL deletes all copies of a
-  particular value.
-  I4VEC_INDEX_DELETE_ONE deletes one copies of a
-  particular value.
+       1      10       8       0
+       2      20       4       0
+       3      17      20       0
+       4       7      17       1
+       5      19      11       1
+       6      12       8       1
+       7       9       1       2
+       8       2       5       4
+       9       8       2       5
+      10       1       0       8
+      11      14      13       8
+      12      21       1       8
+      13       6       9       8
+      14      13       8       9
+      15       5      15      11
+      16      11      16      13
+      17      15       0      15
+      18      16      18      16
+      19       4       1      17
+      20      18       0      18
+      21       3       8      20
+
+I4VEC_INDEX_DELETE_DUPES_TEST
   I4VEC_INDEX_DELETE_DUPES deletes duplicates.
-
-  Generate some random values:
-
        4
       20
       17
@@ -2039,9 +3019,190 @@ TEST59
       13      13      18
       14      14      20
 
-TEST60
+I4VEC_INDEX_DELETE_ONE_TEST
+  I4VEC_INDEX_DELETE_ONE deletes one copies of a
+  particular value.
+       4
+      20
+      17
+      11
+       8
+       1
+       5
+       2
+       0
+      13
+       1
+       9
+       8
+      15
+      16
+       0
+      18
+       7
+       1
+       0
+
+  Indexed list of entries:
+
+  I  INDX(I)  X(I)  X(INDX(I))
+
+       1      11       8       0
+       2      22       7       0
+       3      18       4       0
+       4       8      20       1
+       5      21      17       1
+       6      13      11       1
+       7      10       8       2
+       8       3       1       4
+       9       9       5       5
+      10       2       2       7
+      11      20       0       7
+      12      23      13       7
+      13       1       1       8
+      14      15       9       8
+      15      24       8       8
+      16       7      15       8
+      17      14      16       9
+      18       6       0      11
+      19      12      18      13
+      20      16       7      15
+      21      17       1      16
+      22       5       0      17
+      23      19       7      18
+      24       4       8      20
+
+  Call I4VEC_INDEX_DELETE_ONE to delete a value of 8:
+
+  Indexed list of entries:
+
+  I  INDX(I)  X(I)  X(INDX(I))
+
+       1      11       8       0
+       2      22       7       0
+       3      18       4       0
+       4       8      20       1
+       5      21      17       1
+       6      13      11       1
+       7      10       8       2
+       8       3       1       4
+       9       9       5       5
+      10       2       2       7
+      11      20       0       7
+      12      23      13       7
+      13       1       1       8
+      14      15       9       8
+      15       7       8       8
+      16      14      15       9
+      17       6      16      11
+      18      12       0      13
+      19      16      18      15
+      20      17       7      16
+      21       5       1      17
+      22      19       0      18
+      23       4       7      20
+
+I4VEC_INDEX_INSERT_TEST
+  I4VEC_INDEX_INSERT inserts values into an
+  index sorted array of integers.
+       4
+      20
+      17
+      11
+       8
+       1
+       5
+       2
+       0
+      13
+       1
+       9
+       8
+      15
+      16
+       0
+      18
+       7
+       1
+       0
+
+  Indexed list of entries:
+
+  I  INDX(I)  X(I)  X(INDX(I))
+
+       1      11       8       0
+       2      22       7       0
+       3      18       4       0
+       4       8      20       1
+       5      21      17       1
+       6      13      11       1
+       7      10       8       2
+       8       3       1       4
+       9       9       5       5
+      10       2       2       7
+      11      20       0       7
+      12      23      13       7
+      13       1       1       8
+      14      15       9       8
+      15      24       8       8
+      16       7      15       8
+      17      14      16       9
+      18       6       0      11
+      19      12      18      13
+      20      16       7      15
+      21      17       1      16
+      22       5       0      17
+      23      19       7      18
+      24       4       8      20
+
+I4VEC_INDEX_INSERT_UNIQUE_TEST
   I4VEC_INDEX_INSERT_UNIQUE inserts unique values into
   an index sorted array.
+
+  Generate some random values:
+
+       4
+      20
+      17
+      11
+       8
+       1
+       5
+       2
+       0
+      13
+       1
+       9
+       8
+      15
+      16
+       0
+      18
+       7
+       1
+       0
+
+  Indexed list of unique entries:
+
+  I  INDX(I)  X(I)  X(INDX(I))
+
+       1       9       4       0
+       2       6      20       1
+       3       8      17       2
+       4       1      11       4
+       5       7       8       5
+       6      15       1       7
+       7       5       5       8
+       8      11       2       9
+       9       4       0      11
+      10      10      13      13
+      11      12       9      15
+      12      13      15      16
+      13       3      16      17
+      14      14      18      18
+      15       2       7      20
+
+I4VEC_INDEX_ORDER_TEST
   I4VEC_INDEX_ORDER sorts an index sorted array.
 
   Generate some random values:
@@ -2107,10 +3268,165 @@ TEST60
     14:     18
     15:     20
 
-TEST61
-  I4VEC_INDICATOR sets A = (1,2,3...,N)
+I4VEC_INDEX_SEARCH_TEST
+  I4VEC_INDEX_SEARCH searches for an entry with
+  a given value.
 
-  The "indicator" vector:
+  Generate some random values:
+
+  Indexed list of entries:
+
+  I  INDX(I)  X(I)  X(INDX(I))
+
+       1       9       4       0
+       2       6      20       1
+       3       8      17       2
+       4       1      11       4
+       5       7       8       5
+       6      15       1       7
+       7       5       5       8
+       8      11       2       9
+       9       4       0      11
+      10      10      13      13
+      11      12       9      15
+      12      13      15      16
+      13       3      16      17
+      14      14      18      18
+      15       2       7      20
+
+  Results of search for given XVAL:
+
+  XVAL  Less Equal More
+
+       0       0       1       2
+       1       1       2       3
+       2       2       3       4
+       3       3       0       4
+       4       3       4       5
+       5       4       5       6
+       6       5       0       6
+       7       5       6       7
+       8       6       7       8
+       9       7       8       9
+      10       8       0       9
+      11       8       9      10
+      12       9       0      10
+      13       9      10      11
+      14      10       0      11
+      15      10      11      12
+      16      11      12      13
+      17      12      13      14
+      18      13      14      15
+      19      14       0      15
+      20      14      15      16
+
+I4VEC_INDEXED_HEAP_D_TEST
+  I4VEC_INDEXED_HEAP_D creates a descending heap
+  from an indexed vector.
+
+  The data vector:
+
+     1:    101
+     2:    102
+     3:    103
+     4:    104
+     5:    105
+     6:    106
+     7:    107
+     8:    108
+     9:    109
+    10:    110
+    11:    111
+    12:    112
+    13:    113
+    14:    114
+    15:    115
+    16:    116
+    17:    117
+    18:    118
+    19:    119
+    20:    120
+
+  The index vector:
+
+     1:      1
+     2:     11
+     3:     17
+     4:      5
+     5:      7
+     6:     13
+     7:     15
+     8:      3
+     9:     19
+    10:      9
+
+  A(INDX):
+
+     1   101
+     2   111
+     3   117
+     4   105
+     5   107
+     6   113
+     7   115
+     8   103
+     9   119
+    10   109
+
+  The data vector (should NOT change):
+
+     1:    101
+     2:    102
+     3:    103
+     4:    104
+     5:    105
+     6:    106
+     7:    107
+     8:    108
+     9:    109
+    10:    110
+    11:    111
+    12:    112
+    13:    113
+    14:    114
+    15:    115
+    16:    116
+    17:    117
+    18:    118
+    19:    119
+    20:    120
+
+  The index vector (may change):
+
+     1:     19
+     2:     11
+     3:     17
+     4:      5
+     5:      9
+     6:     13
+     7:     15
+     8:      3
+     9:      1
+    10:      7
+
+  A(INDX) is now a descending heap:
+
+     1   119
+     2   111
+     3   117
+     4   105
+     5   109
+     6   113
+     7   115
+     8   103
+     9   101
+    10   107
+
+I4VEC_INDEXED_HEAP_D_EXTRACT_TEST
+  For an indexed I4VEC,
+  I4VEC_INDEXED_HEAP_D_EXTRACT extracts the maximum value;
+
+  The data vector:
 
      1:      1
      2:      2
@@ -2122,11 +3438,576 @@ TEST61
      8:      8
      9:      9
     10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
 
-TEST62
+  The index vector:
+
+     1:      9
+     2:      2
+     3:      8
+     4:     14
+     5:      5
+
+  A(INDX):
+
+     1     9
+     2     2
+     3     8
+     4    14
+     5     5
+
+  The index vector after heaping:
+
+     1:     14
+     2:      9
+     3:      8
+     4:      2
+     5:      5
+
+  A(INDX) after heaping:
+
+     1    14
+     2     9
+     3     8
+     4     2
+     5     5
+
+  Inserting value 7
+  Current maximum is 14
+
+  Inserting value 15
+  Current maximum is 15
+
+  Inserting value 1
+  Current maximum is 15
+
+  Inserting value 19
+  Current maximum is 19
+
+  Inserting value 20
+  Current maximum is 20
+
+  The data vector after insertions:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector after insertions:
+
+     1:     20
+     2:     19
+     3:     14
+     4:      9
+     5:     15
+     6:      7
+     7:      8
+     8:      1
+     9:      2
+    10:      5
+
+  A(INDX) after insertions:
+
+     1    20
+     2    19
+     3    14
+     4     9
+     5    15
+     6     7
+     7     8
+     8     1
+     9     2
+    10     5
+
+  Now extract the maximum several times.
+
+  Extracting maximum element A(20) = 20
+  Extracting maximum element A(19) = 19
+  Extracting maximum element A(15) = 15
+  Extracting maximum element A(14) = 14
+  Extracting maximum element A(9) = 9
+
+  The data vector after extractions:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector after extractions:
+
+     1:      8
+     2:      5
+     3:      7
+     4:      2
+     5:      1
+
+  A(INDX) after extractions:
+
+     1     8
+     2     5
+     3     7
+     4     2
+     5     1
+
+I4VEC_INDEXED_HEAP_D_INSERT_TEST
+  For an indexed I4VEC,
+  I4VEC_INDEXED_HEAP_D_INSERT inserts a value into the heap.
+
+  The data vector:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector:
+
+     1:      9
+     2:      2
+     3:      8
+     4:     14
+     5:      5
+
+  A(INDX):
+
+     1     9
+     2     2
+     3     8
+     4    14
+     5     5
+
+  The index vector after heaping:
+
+     1:     14
+     2:      9
+     3:      8
+     4:      2
+     5:      5
+
+  A(INDX) after heaping:
+
+     1    14
+     2     9
+     3     8
+     4     2
+     5     5
+
+  Inserting value 7
+  Current maximum is 14
+
+  Inserting value 15
+  Current maximum is 15
+
+  Inserting value 1
+  Current maximum is 15
+
+  Inserting value 19
+  Current maximum is 19
+
+  Inserting value 20
+  Current maximum is 20
+
+  The data vector after insertions:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector after insertions:
+
+     1:     20
+     2:     19
+     3:     14
+     4:      9
+     5:     15
+     6:      7
+     7:      8
+     8:      1
+     9:      2
+    10:      5
+
+  A(INDX) after insertions:
+
+     1    20
+     2    19
+     3    14
+     4     9
+     5    15
+     6     7
+     7     8
+     8     1
+     9     2
+    10     5
+
+I4VEC_INDEXED_HEAP_D_MAX_TEST
+  For an indexed I4VEC,
+  I4VEC_INDEXED_HEAP_D_MAX reports the maximum value.
+
+  The data vector:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector:
+
+     1:      9
+     2:      2
+     3:      8
+     4:     14
+     5:      5
+
+  A(INDX):
+
+     1     9
+     2     2
+     3     8
+     4    14
+     5     5
+
+  The index vector after heaping:
+
+     1:     14
+     2:      9
+     3:      8
+     4:      2
+     5:      5
+
+  A(INDX) after heaping:
+
+     1    14
+     2     9
+     3     8
+     4     2
+     5     5
+
+  Inserting value 7
+  Current maximum is 14
+
+  Inserting value 15
+  Current maximum is 15
+
+  Inserting value 1
+  Current maximum is 15
+
+  Inserting value 19
+  Current maximum is 19
+
+  Inserting value 20
+  Current maximum is 20
+
+  The data vector after insertions:
+
+     1:      1
+     2:      2
+     3:      3
+     4:      4
+     5:      5
+     6:      6
+     7:      7
+     8:      8
+     9:      9
+    10:     10
+    11:     11
+    12:     12
+    13:     13
+    14:     14
+    15:     15
+    16:     16
+    17:     17
+    18:     18
+    19:     19
+    20:     20
+
+  The index vector after insertions:
+
+     1:     20
+     2:     19
+     3:     14
+     4:      9
+     5:     15
+     6:      7
+     7:      8
+     8:      1
+     9:      2
+    10:      5
+
+  A(INDX) after insertions:
+
+     1    20
+     2    19
+     3    14
+     4     9
+     5    15
+     6     7
+     7     8
+     8     1
+     9     2
+    10     5
+
+I4VEC_INDICATOR0_TEST
+  I4VEC_INDICATOR0 returns an indicator vector.
+
+  The "indicator0" vector:
+
+     1:      0
+     2:      1
+     3:      2
+     4:      3
+     5:      4
+     6:      5
+     7:      6
+     8:      7
+     9:      8
+    10:      9
+
+I4VEC_INSERT_TEST
+  I4VEC_INSERT inserts a value into a vector.
+
+  Sorted array:
+
+     1:      2
+     2:      4
+     3:      6
+     4:      8
+     5:     10
+     6:     10
+     7:     14
+     8:     16
+     9:     18
+    10:     20
+
+  Search for AVAL = -10
+  Left =  1
+  Right = 2
+  A(LEFT) = 2
+  A(RIGHT) = 4
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      4
+     4:      6
+     5:      8
+     6:     10
+     7:     10
+     8:     14
+     9:     16
+    10:     18
+    11:     20
+
+  Search for AVAL = 2
+  Left =  2
+  Right = 3
+  A(LEFT) = -10
+  A(RIGHT) = 4
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      2
+     4:      4
+     5:      6
+     6:      8
+     7:     10
+     8:     10
+     9:     14
+    10:     16
+    11:     18
+    12:     20
+
+  Search for AVAL = 9
+  Left =  6
+  Right = 7
+  A(LEFT) = 8
+  A(RIGHT) = 10
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      2
+     4:      4
+     5:      6
+     6:      8
+     7:      9
+     8:     10
+     9:     10
+    10:     14
+    11:     16
+    12:     18
+    13:     20
+
+  Search for AVAL = 10
+  Left =  9
+  Right = 10
+  A(LEFT) = 10
+  A(RIGHT) = 14
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      2
+     4:      4
+     5:      6
+     6:      8
+     7:      9
+     8:     10
+     9:     10
+    10:     10
+    11:     14
+    12:     16
+    13:     18
+    14:     20
+
+  Search for AVAL = 20
+  Left =  13
+  Right = 14
+  A(LEFT) = 18
+  A(RIGHT) = 20
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      2
+     4:      4
+     5:      6
+     6:      8
+     7:      9
+     8:     10
+     9:     10
+    10:     10
+    11:     14
+    12:     16
+    13:     18
+    14:     20
+    15:     20
+
+  Search for AVAL = 24
+  Left =  14
+  Right = 15
+  A(LEFT) = 20
+  A(RIGHT) = 20
+
+  Sorted, augmented array:
+
+     1:      2
+     2:    -10
+     3:      2
+     4:      4
+     5:      6
+     6:      8
+     7:      9
+     8:     10
+     9:     10
+    10:     10
+    11:     14
+    12:     16
+    13:     18
+    14:     20
+    15:     24
+    16:     20
+
+I4VEC_MAX_TEST
   For an integer vector:
   I4VEC_MAX: maximum entry;
-  I4VEC_MIN: minimum entry;
 
   Input vector:
 
@@ -2142,12 +4023,48 @@ TEST62
     10:     20
 
   Maximum: 29
-  Minimum: 2
 
-TEST63
+I4VEC_MAX_INDEX_TEST
   For an integer vector:
+  I4VEC_MAX_INDEX:          a maximal index;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+  Maximum index: 2
+
+I4VEC_MAX_INDEX_LAST_TEST
+  For an integer vector:
+  I4VEC_MAX_INDEX_LAST:     last maximal index;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+  Last maximum index: 2
+
+I4VEC_MEAN_TEST
+  For an I4VEC:
   I4VEC_MEAN:    mean value;
-  I4VEC_MEDIAN:  median value;
 
   Input vector:
 
@@ -2163,9 +4080,27 @@ TEST63
     10:      3
 
   Mean:   -1.900000
+
+I4VEC_MEDIAN_TEST
+  For an I4VEC:
+  I4VEC_MEDIAN:  median value;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
   Median: -5
 
-TEST64
+I4VEC_MERGE_A_TEST
   For ascending order:
   I4VEC_MERGE_A merges two sorted integer arrays;
 
@@ -2207,7 +4142,45 @@ TEST64
      8:      9
      9:     10
 
-TEST65
+I4VEC_MIN_TEST
+  For an integer vector:
+  I4VEC_MIN: minimum entry;
+
+  Input vector:
+
+     1:      7
+     2:     29
+     3:     25
+     4:     17
+     5:     13
+     6:      2
+     7:      8
+     8:      4
+     9:      2
+    10:     20
+
+  Minimum: 2
+
+I4VEC_MIN_INDEX_TEST
+  For an integer vector:
+  I4VEC_MIN_INDEX:          a minimal index;
+
+  Input vector:
+
+     1:     -6
+     2:     10
+     3:      7
+     4:      1
+     5:     -2
+     6:     -9
+     7:     -5
+     8:     -8
+     9:    -10
+    10:      3
+
+  Minimum index: 9
+
+I4VEC_NONZERO_COUNT_TEST
   For an integer vector:
   I4VEC_NONZERO_COUNT: number of nonzeroes;
 
@@ -2226,7 +4199,7 @@ TEST65
 
   Number of nonzeroes: 10
 
-TEST66
+I4VEC_NONZERO_FIRST_TEST
   For an integer vector:
   I4VEC_NONZERO_FIRST left shifts the nonzero entries
   of an I4VEC so they appear first.
@@ -2257,7 +4230,7 @@ TEST66
 
     1  2  3  4  5  7  8  9  6 10
 
-TEST67
+I4VEC_ORDER_TYPE_TEST
   I4VEC_ORDER_TYPE classifies an integer vector as
   -1: no order
    0: all equal;
@@ -2308,7 +4281,7 @@ TEST67
        3       3
        4       0
 
-TEST68
+I4VEC_PAIRWISE_PRIME_TEST
   I4VEC_PAIRWISE_PRIME determines if a vector of
   integers is pairwise prime.
 
@@ -2322,7 +4295,7 @@ TEST68
     1    4    9   16  0
     6   35   13   77  0
 
-TEST69
+I4VEC_PART_TEST
   I4VEC_PART partitions an integer.
 
   NVAL = 17
@@ -2345,7 +4318,7 @@ TEST69
      4:    -10
      5:     -9
 
-TEST70
+I4VEC_PART_QUICK_A_TEST
   I4VEC_PART_QUICK_A reorders an integer vector
   as part of a quick sort.
   Using initial random number seed = 123456789
@@ -2391,7 +4364,7 @@ TEST70
      6:      5
      7:     12
 
-I4LIB_TEST71
+I4VEC_PERMUTE_TEST
   I4VEC_PERMUTE reorders an integer vector
   according to a given permutation.
   Using initial random number seed = 123456789
@@ -2425,66 +4398,8 @@ I4LIB_TEST71
     10:      9
     11:     11
     12:      3
-
 ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
+     0
 
   A, after rearrangement:
 
@@ -2501,7 +4416,42 @@ ierror =
     11:      0
     12:     10
 
-TEST72
+I4VEC_PERMUTE_UNIFORM_TEST
+  I4VEC_PERMUTE_UNIFORM randomly reorders an I4VEC.
+
+  A, before rearrangement:
+
+     1:    101
+     2:    102
+     3:    103
+     4:    104
+     5:    105
+     6:    106
+     7:    107
+     8:    108
+     9:    109
+    10:    110
+    11:    111
+    12:    112
+ierror =
+     0
+
+  A, after rearrangement:
+
+     1:    103
+     2:    112
+     3:    111
+     4:    109
+     5:    108
+     6:    106
+     7:    105
+     8:    107
+     9:    104
+    10:    101
+    11:    110
+    12:    102
+
+I4VEC_REVERSE_TEST
   I4VEC_REVERSE reverses a list of integers.
 
   Original vector:
@@ -2530,7 +4480,7 @@ TEST72
      9:     29
     10:      6
 
-TEST73
+I4VEC_RUN_COUNT_TEST
   I4VEC_RUN_COUNT counts runs in an I4VEC
 
  Run Count        Sequence
@@ -2546,7 +4496,7 @@ TEST73
         12         1 1 0 1 1 1 0 1 0 1 1 0 0 0 1 0 1 1 1 0
         14         1 1 0 1 1 0 1 0 1 0 1 1 0 0 0 1 1 0 1 0
 
-TEST74
+I4VEC_SEARCH_BINARY_A_TEST
   For ascending order:
   I4VEC_SEARCH_BINARY_A searchs an array for a value;
 
@@ -2578,11 +4528,9 @@ TEST74
   SEARCH RESULT:
     The value occurs in index 8
 
-TEST75
+I4VEC_SORT_BUBBLE_A_TEST
   For a vector of integers,
   I4VEC_SORT_BUBBLE_A ascending sorts,
-  I4VEC_SORTED_UNIQUE_HIST makes a histogram
-  of unique entries.
 
   Unsorted:
 
@@ -2630,31 +4578,7 @@ TEST75
     19:     54
     20:     58
 
-  There are 19 unique entries.
-
-  Value and Multiplicity
-
-     1:        0         2
-     2:        2         1
-     3:        3         1
-     4:        4         1
-     5:        5         1
-     6:        6         1
-     7:       13         1
-     8:       15         1
-     9:       21         1
-    10:       24         1
-    11:       25         1
-    12:       27         1
-    13:       34         1
-    14:       38         1
-    15:       46         1
-    16:       48         1
-    17:       50         1
-    18:       54         1
-    19:       58         1
-
-TEST76
+I4VEC_SORT_HEAP_A_TEST
   For a vector of integers,
   I4VEC_SORT_HEAP_A ascending sorts,
 
@@ -2704,7 +4628,7 @@ TEST76
     19:     54
     20:     58
 
-TEST77
+I4VEC_SORT_HEAP_D_TEST
   For a vector of integers,
   I4VEC_SORT_HEAP_D descending sorts.
 
@@ -2754,212 +4678,80 @@ TEST77
     19:      0
     20:      0
 
-SUBPAK_TEST78
+I4vEC_SORT_HEAP_INDEX_A_TEST
   I4VEC_SORT_HEAP_INDEX_A creates an ascending
   sort index for an I4VEC.
 
   Unsorted array:
 
-     1:     31
+     1:     13
+     2:     58
+     3:     50
+     4:     34
+     5:     25
+     6:      4
+     7:     15
+     8:      6
+     9:      2
+    10:     38
+    11:      3
+    12:     27
+    13:     24
+    14:     46
+    15:     48
+    16:      0
+    17:     54
+    18:     21
+    19:      5
+    20:      0
+
+  Sort vector INDX:
+
+     1:     16
      2:     20
-     3:     38
-     4:     60
-     5:     56
-     6:     24
-     7:     16
-     8:     26
-     9:     37
-    10:     57
-    11:     60
-    12:     42
-    13:      9
-    14:     31
-    15:     17
-    16:     33
-    17:     34
-    18:     41
-    19:     47
-    20:     43
-
-  After indexed ascending sort:
-
-  I, INDX(I), A(I)
-
-       1        13        31
-       2         7        20
-       3        15        38
-       4         2        60
-       5         6        56
-       6         8        24
-       7        14        16
-       8         1        26
-       9        16        37
-      10        17        57
-      11         9        60
-      12         3        42
-      13        18         9
-      14        12        31
-      15        20        17
-      16        19        33
-      17         5        34
-      18        10        41
-      19        11        47
-      20         4        43
-
-  Now use the index array to carry out the
-  permutation implicitly.
+     3:      9
+     4:     11
+     5:      6
+     6:     19
+     7:      8
+     8:      1
+     9:      7
+    10:     18
+    11:     13
+    12:      5
+    13:     12
+    14:      4
+    15:     10
+    16:     14
+    17:     15
+    18:      3
+    19:     17
+    20:      2
 
   I, INDX(I), A(INDX(I))
 
-       1        13         9
-       2         7        16
-       3        15        17
-       4         2        20
-       5         6        24
-       6         8        26
-       7        14        31
-       8         1        31
-       9        16        33
-      10        17        34
-      11         9        37
-      12         3        38
-      13        18        41
-      14        12        42
-      15        20        43
-      16        19        47
-      17         5        56
-      18        10        57
-      19        11        60
-      20         4        60
-
-  Call I4VEC_PERMUTE to carry out the permutation
-  explicitly.
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-  I, A(I)
-
-     1:      9
-     2:     16
-     3:     17
-     4:     20
-     5:     24
-     6:     26
-     7:     31
-     8:     31
-     9:     33
-    10:     34
-    11:     37
-    12:     38
-    13:     41
-    14:     42
-    15:     43
-    16:     47
-    17:     56
-    18:     57
-    19:     60
-    20:     60
-
-TEST79
+       1        16         0
+       2        20         0
+       3         9         2
+       4        11         3
+       5         6         4
+       6        19         5
+       7         8         6
+       8         1        13
+       9         7        15
+      10        18        21
+      11        13        24
+      12         5        25
+      13        12        27
+      14         4        34
+      15        10        38
+      16        14        46
+      17        15        48
+      18         3        50
+      19        17        54
+      20         2        58
+
+I4VEC_SORT_HEAP_INDEX_D_TEST
   I4VEC_SORT_HEAP_INDEX_D creates a descending
   sort index for an integer array.
 
@@ -2986,33 +4778,28 @@ TEST79
     19:      5
     20:      0
 
-  After indexed descending sort:
+  Sort vector INDX:
 
-  I, INDX(I), A(I)
-
-         1         2        13
-         2        17        58
-         3         3        50
-         4        15        34
-         5        14        25
-         6        10         4
-         7         4        15
-         8        12         6
-         9         5         2
-        10        13        38
-        11        18         3
-        12         7        27
-        13         1        24
-        14         8        46
-        15        19        48
-        16         6         0
-        17        11        54
-        18         9        21
-        19        20         5
-        20        16         0
-
-  Now use the index array to carry out the
-  permutation implicitly.
+     1:      2
+     2:     17
+     3:      3
+     4:     15
+     5:     14
+     6:     10
+     7:      4
+     8:     12
+     9:      5
+    10:     13
+    11:     18
+    12:      7
+    13:      1
+    14:      8
+    15:     19
+    16:      6
+    17:     11
+    18:      9
+    19:     20
+    20:     16
 
   I, INDX(I), A(INDX(I))
 
@@ -3037,133 +4824,7 @@ TEST79
         19        20         0
         20        16         0
 
-  Call I4VEC_PERMUTE to carry out the permutation
-  explicitly.
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-ierror =
-
-     1
-
-
-  I, A(I)
-
-     1:     58
-     2:     54
-     3:     50
-     4:     48
-     5:     46
-     6:     38
-     7:     34
-     8:     27
-     9:     25
-    10:     24
-    11:     21
-    12:     15
-    13:     13
-    14:      6
-    15:      5
-    16:      4
-    17:      3
-    18:      2
-    19:      0
-    20:      0
-
-TEST80
+I4VEC_SORT_INSERT_A_TEST
   I4VEC_SORT_INSERT_A sorts an integer array.
 
   Unsorted array:
@@ -3192,7 +4853,7 @@ TEST80
      9:      9
     10:     10
 
-TEST81
+I4VEC_SORT_QUICK_A_TEST
   I4VEC_SORT_QUICK_A sorts an integer vector
   using quick sort.
 
@@ -3242,7 +4903,7 @@ TEST81
     19:     54
     20:     58
 
-TEST82
+I4VEC_SORT_SHELL_A_TEST
   I4VEC_SORT_SHELL_A sorts an integer vector
   using Shell's sort.
 
@@ -3292,7 +4953,7 @@ TEST82
     19:     54
     20:     58
 
-I4LIB_TEST83
+I4VEC_SORTED_UNDEX_TEST
   I4VEC_SORTED_UNDEX produces index vectors which create a sorted
   list of the unique elements of a sorted I4VEC, 
   and a map from the original vector to the (implicit) 
@@ -3347,7 +5008,7 @@ I4LIB_TEST83
      8     4    55            55
      9     4    55            55
 
-TEST84
+I4VEC_SORTED_UNIQUE_TEST
   I4VEC_SORTED_UNIQUE finds unique entries in a sorted array.
 
   Input vector:
@@ -3391,7 +5052,72 @@ TEST84
     14:     18
     15:     20
 
-TEST85
+I4VEC_SORTED_UNIQUE_HIST_TEST
+  For a vector of integers,
+  I4VEC_SORTED_UNIQUE_HIST makes a histogram
+  of unique entries.
+
+  Ascending sorted array:
+
+     1:      0
+     2:      0
+     3:      2
+     4:      3
+     5:      4
+     6:      5
+     7:      6
+     8:     13
+     9:     15
+    10:     21
+    11:     24
+    12:     25
+    13:     27
+    14:     34
+    15:     38
+    16:     46
+    17:     48
+    18:     50
+    19:     54
+    20:     58
+
+  There are 19 unique entries.
+
+  Value and Multiplicity
+
+     1:        0         2
+     2:        2         1
+     3:        3         1
+     4:        4         1
+     5:        5         1
+     6:        6         1
+     7:       13         1
+     8:       15         1
+     9:       21         1
+    10:       24         1
+    11:       25         1
+    12:       27         1
+    13:       34         1
+    14:       38         1
+    15:       46         1
+    16:       48         1
+    17:       50         1
+    18:       54         1
+    19:       58         1
+
+I4VEC_SUM_TEST
+  I4VEC_SUM sums the entries of an I4VEC.
+
+  The vector:
+
+     1:      2
+     2:     10
+     3:      9
+     4:      6
+     5:      4
+
+  The vector entries sum to 31
+
+I4VEC_TRANSPOSE_PRINT_TEST
   I4VEC_TRANSPOSE_PRINT prints an integer vector
   with 5 entries to a row, and a title.
 
@@ -3416,7 +5142,7 @@ TEST85
            6           7           8           9          10
           11          12
 
-I4LIB_TEST86
+I4VEC_UNDEX_TEST
   I4VEC_UNDEX produces index vectors which create a sorted
   list of the unique elements of an (unsorted) I4VEC, 
   and a map from the original vector to the (implicit) 
@@ -3471,7 +5197,39 @@ I4LIB_TEST86
      8     2    22            22
      9     1    11            11
 
-TEST87
+I4VEC_UNIFORM_AB_TEST
+  I4VEC_UNIFORM_AB computes pseudorandom values
+  in an interval [A,B].
+
+  The lower endpoint A = -100.000000
+  The upper endpoint B = 200.000000
+  The initial seed is 123456789
+
+
+  The random vector:
+
+     1:    -35
+     2:    187
+     3:    149
+     4:     69
+     5:     25
+     6:    -81
+     7:    -23
+     8:    -67
+     9:    -87
+    10:     90
+    11:    -82
+    12:     35
+    13:     20
+    14:    127
+    15:    139
+    16:   -100
+    17:    170
+    18:      5
+    19:    -72
+    20:    -96
+
+I4VEC_UNIQUE_INDEX_TEST
   I4VEC_UNIQUE_INDEX, for each entry in an I4VEC
   indexes the unique elements.
 
@@ -3498,7 +5256,7 @@ TEST87
         19         1         4
         20         1         4
 
-TEST88
+I4VEC_VALUE_INDEX_TEST
   I4VEC_VALUE_INDEX indexes entries equal to
   a given value.
 
@@ -3538,7 +5296,7 @@ TEST88
      2:      5
      3:     12
 
-TEST89
+I4VEC_VARIANCE_TEST
   For an integer vector:
   I4VEC_VARIANCE: variance.
 
@@ -3557,10 +5315,68 @@ TEST89
 
   Variance: 48.100000
 
-TEST90
+I4VEC2_SORT_A_TEST
   For a pair of integer vectors:
   I4VEC2_SORT_A ascending sorts;
+
+  The array:
+
+     1:        1         1
+     2:        3         2
+     3:        1         1
+     4:        2         3
+     5:        3         2
+     6:        1         1
+     7:        1         3
+     8:        1         2
+     9:        1         1
+    10:        2         1
+
+  After ascending sort:
+
+     1:        1         1
+     2:        1         1
+     3:        1         1
+     4:        1         1
+     5:        1         2
+     6:        1         3
+     7:        2         1
+     8:        2         3
+     9:        3         2
+    10:        3         2
+
+I4VEC2_SORT_D_TEST
+  For a pair of integer vectors:
   I4VEC2_SORT_D descending sorts;
+
+  The array:
+
+     1:        1         1
+     2:        3         2
+     3:        1         1
+     4:        2         3
+     5:        3         2
+     6:        1         1
+     7:        1         3
+     8:        1         2
+     9:        1         1
+    10:        2         1
+
+  After descending sort:
+
+     1:        3         2
+     2:        3         2
+     3:        2         3
+     4:        2         1
+     5:        1         3
+     6:        1         2
+     7:        1         1
+     8:        1         1
+     9:        1         1
+    10:        1         1
+
+I4VEC2_SORTED_UNIQUE_TEST
+  For a pair of integer vectors:
   I4VEC2_SORTED_UNIQUE counts unique entries.
 
   The array:
@@ -3611,8 +5427,164 @@ TEST90
      5:        1         2
      6:        1         1
 
+PASCAL_TO_I4_TEST
+  PASCAL_TO_I4 converts Pascal triangle indices to a
+  linear index.
+
+     I     J =>    K
+
+     0     0       1
+
+     1     0       2
+     0     1       3
+
+     2     0       4
+     1     1       5
+     0     2       6
+
+     3     0       7
+     2     1       8
+     1     2       9
+     0     3      10
+
+     4     0      11
+     3     1      12
+     2     2      13
+     1     3      14
+     0     4      15
+
+
+PERM0_CHECK_TEST
+  PERM0_CHECK checks a permutation of 0,...,N-1.
+
+  Permutation 1:
+
+           5           2           3           4           1
+ierror =
+     0
+
+PERM0_CHECK - Warning!
+  Permutation is missing the value 0.
+
+  Permutation 2:
+
+           4           1           3           0           2
+ierror =
+     0
+
+  Permutation 3:
+
+           0           2           1           3           2
+ierror =
+     0
+
+PERM0_CHECK - Warning!
+  Permutation is missing the value 4.
+
+PERM0_UNIFORM_TEST
+  PERM0_UNIFORM randomly selects a permutation of 0, ..., N-1.
+
+     2   9   8   6   3   5   7   4   0   1
+     6   1   5   2   8   4   0   9   3   7
+     0   1   8   2   4   5   7   9   3   6
+     3   8   4   7   0   9   2   5   6   1
+     1   7   5   4   0   6   8   2   3   9
+
+PERM1_CHECK_TEST
+  PERM1_CHECK checks a permutation of 1,...,N.
+
+  Permutation 1:
+
+           5           2           3           4           1
+ierror =
+     0
+
+  Permutation 2:
+
+           4           1           3           0           2
+ierror =
+     0
+
+PERM1_CHECK - Warning!
+  Permutation is missing the value 5.
+
+  Permutation 3:
+
+           0           2           1           3           2
+ierror =
+     0
+
+PERM1_CHECK - Warning!
+  Permutation is missing the value 4.
+
+PERM1_UNIFORM_TEST
+  PERM1_UNIFORM randomly selects a permutation of 1, ..., N.
+
+     3  10   9   7   4   6   8   5   1   2
+     7   2   6   3   9   5   1  10   4   8
+     1   2   9   3   5   6   8  10   4   7
+     4   9   5   8   1  10   3   6   7   2
+     2   8   6   5   1   7   9   3   4  10
+
+PRIME_TEST
+  PRIME returns primes from a table.
+
+  Number of primes stored is 1600
+
+     I    Prime(I)
+
+     1       2
+     2       3
+     3       5
+     4       7
+     5      11
+     6      13
+     7      17
+     8      19
+     9      23
+    10      29
+
+  1590   13411
+  1591   13417
+  1592   13421
+  1593   13441
+  1594   13451
+  1595   13457
+  1596   13463
+  1597   13469
+  1598   13477
+  1599   13487
+  1600   13499
+
+TRIANGLE_TO_I4_TEST
+  TRIANGLE_TO_I4 converts a triangular index to a
+  linear one.
+
+     I     J =>    K
+
+     1     1       1
+
+     2     1       2
+     2     2       3
+
+     3     1       4
+     3     2       5
+     3     3       6
+
+     4     1       7
+     4     2       8
+     4     3       9
+     4     4      10
+
+     5     1      11
+     5     2      12
+     5     3      13
+     5     4      14
+     5     5      15
+
+
 I4LIB_TEST
   Normal end of execution.
 
-04-Aug-2010 15:51:14
->> 
+24-May-2015 09:00:01
+diary off

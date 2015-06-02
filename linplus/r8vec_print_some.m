@@ -35,7 +35,7 @@ function r8vec_print_some ( n, a, i_lo, i_hi, title )
   fprintf ( 1, '\n' );
 
   for i = max ( 1, i_lo ) : min ( n, i_hi )
-    fprintf ( 1, '  %8d: %12f\n', i, a(i) );
+    fprintf ( 1, '  %8d: %12g\n', i, a(i) );
   end
 
   return

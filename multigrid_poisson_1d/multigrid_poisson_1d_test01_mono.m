@@ -20,23 +20,29 @@ function monogrid_poisson_1d_test01_mono ( )
   fprintf ( 1, 'MONOGRID_POISSON_1D_TEST01_MONO\n' );
   fprintf ( 1, '  MONOGRID_POISSON_1D solves a 1D Poisson BVP\n' );
   fprintf ( 1, '  using the Gauss-Seidel method.\n' );
+
+  a = 0.0;
+  b = 1.0;
+  ua = 0.0;
+  ub = 0.0;
+
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  -u"(x) = 1, for 0 < x < 1\n' );
-  fprintf ( 1, '  u(0) = u(1) = 0.\n' );
+  fprintf ( 1, '  -u"(x) = 1, for %g < x < %g\n', a, b );
+  fprintf ( 1, '  u(%g) = %g, u(%g) = %g.\n', a, ua, b, ub );
   fprintf ( 1, '  Solution is u(x) = ( -x^2 + x ) / 2\n' );
 
   for k = 5 : 5
 
     n = 2^k;
 
-    x = ( linspace ( 0.0, 1.0, n + 1 ) )';
+    x = ( linspace ( a, b, n + 1 ) )';
 
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Mesh index K = %d\n', k );
     fprintf ( 1, '  Number of intervals N=2^K = %d\n', n );
     fprintf ( 1, '  Number of nodes = 2^K+1 =   %d\n', n + 1 );
 
-    [ u, it_num ] = monogrid_poisson_1d ( n, @force1, @exact1 );
+    [ u, it_num ] = monogrid_poisson_1d ( n, a, b, ua, ub, @force1, @exact1 );
 
     fprintf ( 1, '\n' );
     fprintf ( 1, '     I        X(I)      U(I)         U Exact(X(I))\n' );

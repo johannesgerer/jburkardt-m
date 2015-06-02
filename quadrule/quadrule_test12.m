@@ -31,7 +31,7 @@ function quadrule_test12 ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Integration interval is [%f, %f]\n', a, b );
   fprintf ( 1, '  Number of subintervals is %d\n', nsub );
-  fprintf ( 1, '  Integrand is X**2 / SQRT ( 1.1 - X**2 ).\n' );
+  fprintf ( 1, '  Integrand is X^2 / SQRT ( 1.1 - X^2 ).\n' );
   fprintf ( 1, '\n' );
 
   [ xtabg, weightg ] = legendre_set ( norderg );

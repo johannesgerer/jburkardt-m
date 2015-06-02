@@ -22,20 +22,20 @@ function value = i1mach ( i )
 %
 %    Assume integers are represented in the S digit base A form:
 %
-%      Sign * (X(S-1)*A**(S-1) + ... + X(1)*A + X(0))
+%      Sign * (X(S-1)*A^(S-1) + ... + X(1)*A + X(0))
 %
 %    where 0 <= X(1:S-1) < A.
 %
 %      I1MACH(7) = A, the base.
 %      I1MACH(8) = S, the number of base A digits.
-%      I1MACH(9) = A**S-1, the largest integer.
+%      I1MACH(9) = A^S-1, the largest integer.
 %
 %    Floating point numbers
 %
 %    Assume floating point numbers are represented in the T digit
 %    base B form:
 %
-%      Sign * (B**E) * ((X(1)/B) + ... + (X(T)/B**T) )
+%      Sign * (B^E) * ((X(1)/B) + ... + (X(T)/B^T) )
 %
 %    where 0 <= X(I) < B for I=1 to T, 0 < X(1) and EMIN <= E <= EMAX.
 %

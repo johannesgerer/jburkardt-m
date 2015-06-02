@@ -1,4 +1,4 @@
-function days = month_length_islamic ( y, m )
+function value = month_length_islamic ( y, m )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function days = month_length_islamic ( y, m )
 %
 %  Modified:
 %
-%    21 July 2012
+%    23 April 2013
 %
 %  Author:
 %
@@ -22,7 +22,7 @@ function days = month_length_islamic ( y, m )
 %
 %    Input, integer M, the number of the month.
 %
-%    Output, integer DAYS, the number of days
+%    Output, integer MONTH_LENGTH_ISLAMIC, the number of days
 %    in the month.
 %
   mdays = [ 30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29 ];
@@ -37,18 +37,18 @@ function days = month_length_islamic ( y, m )
   [ y2, m2, ierror ] = ym_check_islamic ( y2, m2 );
 
   if ( ierror ~= 0 )
-    days = 0;
+    month_length_islamic = 0;
     return
   end
 %
 %  Get the number of days in the month.
 %
-  days = mdays(m2);
+  value = mdays(m2);
 %
 %  If necessary, add 1 day for a leap year.
 %
   if ( m2 == 12 && year_is_leap_islamic ( y2 ) )
-    days = days + 1;
+    value = value + 1;
   end
 
   return

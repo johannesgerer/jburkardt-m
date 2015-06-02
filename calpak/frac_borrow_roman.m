@@ -10,7 +10,7 @@ function [ y, m, d, f ] = frac_borrow_roman ( y, m, d, f )
 %
 %  Modified:
 %
-%    20 June 2012
+%    08 March 2013
 %
 %  Author:
 %
@@ -21,7 +21,7 @@ function [ y, m, d, f ] = frac_borrow_roman ( y, m, d, f )
 %    Input/output, integer Y, M, D, real F,
 %    a YMDF date.
 %
-  do ( f < 0.0 )
+  while ( f < 0.0 )
 
     f = f + 1.0;
 

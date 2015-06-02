@@ -1,4 +1,4 @@
-function x = r8mat_cholesky_solve ( n, a, b )
+function x = r8mat_cholesky_solve ( n, l, b )
 
 %*****************************************************************************80
 %
@@ -20,8 +20,8 @@ function x = r8mat_cholesky_solve ( n, a, b )
 %
 %    Input, integer N, the number of rows and columns of the matrix A.
 %
-%    Input, real A(N,N), the N by N Cholesky factor of the
-%    system matrix.
+%    Input, real L(N,N), the N by N Cholesky factor of the
+%    system matrix A.
 %
 %    Input, real B(N), the right hand side of the linear system.
 %
@@ -31,11 +31,11 @@ function x = r8mat_cholesky_solve ( n, a, b )
 %
 %  Solve L * y = b.
 %
-  x = r8mat_l_solve ( n, a, b );
+  x = r8mat_l_solve ( n, l, b );
 %
 %  Solve L' * x = y.
 %
-  x = r8mat_lt_solve ( n, a, x );
+  x = r8mat_lt_solve ( n, l, x );
 
   return
 end

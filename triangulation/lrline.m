@@ -47,7 +47,7 @@ function value = lrline ( xu, yu, xv1, yv1, xv2, yv2, dv )
 %     0, the point is on the directed line;
 %    -1, the point is to the left of the directed line.
 %
-  tol = 100.0 * r8_epsilon ( );
+  tol = 100.0 * eps;
 
   dx = xv2 - xv1;
   dy = yv2 - yv1;

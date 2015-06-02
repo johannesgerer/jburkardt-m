@@ -2,7 +2,7 @@ function randlc_test ( )
 
 %*****************************************************************************80
 %
-%% RANDLC_TEST tests RANDLC.
+%% RANDLC_TEST tests the RANDLC library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function randlc_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'RANDLC_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

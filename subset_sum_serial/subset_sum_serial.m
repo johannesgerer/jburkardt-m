@@ -1,4 +1,4 @@
-function [ combination, weightvalue ] = subset_sum_serial ( weights, target )
+function choose = subset_sum_serial ( n, weight, target )
 
 %*****************************************************************************80
 %
@@ -20,10 +20,9 @@ function [ combination, weightvalue ] = subset_sum_serial ( weights, target )
 %
 %  Example:
 %
-%    [ c, wv ] = subset_sum_serial ( [1 2 4 8 16 32], 22 )
+%    c = subset_sum_serial ( 6, [1 2 4 8 16 32], 22 )
 %
-%    c = 2 3 5
-%    wv = 2 4 16
+%    c = [ 0 1 1 0 1 0 ]
 %
 %  Licensing:
 %
@@ -31,7 +30,7 @@ function [ combination, weightvalue ] = subset_sum_serial ( weights, target )
 %
 %  Modified:
 %
-%    22 March 2011
+%    01 July 2013
 %
 %  Author:
 %
@@ -39,39 +38,103 @@ function [ combination, weightvalue ] = subset_sum_serial ( weights, target )
 %
 %  Parameters:
 %
-%    Input, integer WEIGHTS(N), a set of weights.
+%    Input, integer N, the number of weights.
+%
+%    Input, integer WEIGHT(N), a set of weights.
 %
 %    Input, integer TARGET, the target value.
 %
-%    Output, integer I_CHOOSE(K), the indices of the chosen weights.
+%    Output, integer CHOOSE(N), contains a 1 for each weight that is
+%    chosen, 0 for weights not chosen.  If no solution was found,
+%    all entries are -1.
 %
-%    Output, integer W_CHOOSE(K), the values of the chose weights.
-%
-
-%
-%  Initialize the output to empty matrices.
-%
-  i_choose = [];
-  w_choose = [];
+  weight = weight(:);
 %
 %  Iterate through all possible combinations in the provided range.
 %
-  n = length ( weights );
-
   for i = 0 : 2^n - 1
 %
 %  Find the combination of weights represented by the current attempt.
 %
-    choose = find ( bitget ( i, 1:n ) );
+    choose = i4_to_digits_binary ( i, n );
 %
 %  If the sum of those weights matches the target, return combination.
 %
-    if ( sum ( weights(choose) ) == target )
-      i_choose = choose;
-      w_choose = weights(choose);
+    w_sum = choose(:)' * weight(:);
+
+    if ( w_sum == target )
       return
     end
     
+  end
+
+  choose(1:n) = -1;
+
+  return
+end
+function c = i4_to_digits_binary ( i, n )
+
+%*****************************************************************************80
+%
+%% I4_TO_DIGITS_BINARY produces the binary digits of an I4.
+%
+%  Discussion:
+%
+%    An I4 is an integer.
+%
+%  Example:
+%
+%     I    N     C               Binary
+%    --  ---   ---         ------------
+%     0    1   0                      0
+%     0    2   0, 0                  00
+%     1    3   1, 0, 0              100
+%     2    3   0, 1, 0              010
+%     3    3   1, 1, 0              011
+%     4    3   0, 0, 1              100
+%     8    3   0, 0, 0           (1)000
+%     8    5   0, 0, 0, 1, 0      01000
+%    -8    5   0, 0, 0, 1, 0  (-) 01000
+%
+%     0    3   0, 0, 0
+%     1    3   1, 0, 0
+%     2    3   0, 1, 0
+%     3    3   1, 1, 0
+%     4    3   0, 0, 1
+%     5    3   1, 0, 1
+%     6    3   0, 1, 1
+%     7    3   1, 1, 1
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    19 December 2011
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer I, an integer to be represented.
+%
+%    Input, integer N, the number of binary digits to produce.
+%
+%    Output, integer C(N), the first N binary digits of I,
+%    with C(1) being the units digit.
+%
+  i_copy = floor ( abs ( i ) );
+
+  c = zeros ( n, 1 );
+
+  for j = 1 : n
+
+    c(j) = mod ( i_copy, 2 );
+    i_copy = floor ( i_copy / 2 );
+
   end
 
   return

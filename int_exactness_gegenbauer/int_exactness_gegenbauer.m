@@ -205,7 +205,9 @@ function int_exactness_gegenbauer ( quad_filename, degree_max, alpha )
     fprintf ( 1, '  %24.16f   %2d\n', quad_error, degree );
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INT_EXACTNESS_GEGENBAUER:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

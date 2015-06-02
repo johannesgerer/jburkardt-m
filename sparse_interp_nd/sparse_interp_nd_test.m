@@ -2,7 +2,7 @@ function sparse_interp_nd_test ( )
 
 %*****************************************************************************80
 %
-%% SPARSE_INTERP_ND_TEST tests SPARSE_INTERP_ND.
+%% SPARSE_INTERP_ND_TEST tests the SPARSE_INTERP_ND library.
 %
 %  Licensing:
 %
@@ -46,7 +46,6 @@ function sparse_interp_nd_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_INTERP_ND_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

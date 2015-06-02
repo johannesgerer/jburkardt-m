@@ -130,7 +130,7 @@ function [ x, w1, w2 ] = kronrod ( n, tol )
 %
 %  Coefficient needed for weights.
 %
-%  COEF2 = 2^(2*n+1) * n% * n% / (2n+1)%
+%  COEF2 = 2^(2*n+1) * n! * n! / (2n+1)!
 %
   coef2 = 2.0 / ( 2 * n + 1 );
   for i = 1 : n

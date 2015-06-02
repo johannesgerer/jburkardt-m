@@ -47,7 +47,7 @@ function [ num_int, p ] = circles_imp_int_2d ( r1, center1, r2, center2 )
 %
   dim_num = 2;
 
-  tol = r8_epsilon ( );
+  tol = eps;
 
   p(1:dim_num,1:2) = 0.0;;
 %

@@ -1,8 +1,8 @@
-function a = sweet3 ( perturb )
+function a = sweet3 (  )
 
 %*****************************************************************************80
 %
-%% SWEET3 returns the Sweet3 Toeplitz matrix.
+%% SWEET3 returns the SWEET3 matrix.
 %
 %  Example:
 %
@@ -12,10 +12,6 @@ function a = sweet3 ( perturb )
 %      5  -34    4    8    4    1
 %      3    5  -34    4    8    4
 %      1    3    5  -34    4    8
-%
-%    The entries with the value -34.0 are also to
-%    be uniformly perturbed by a value PERTURB, which should be a
-%    small multiple of the machine precision.
 %
 %  Properties:
 %
@@ -51,24 +47,19 @@ function a = sweet3 ( perturb )
 %
 %  Parameters:
 %
-%    Input, real PERTURB, the perturbation value to be added to the
-%    second subdiagonal entries.
-%
 %    Output, real A(6,6), the matrix.
 %
   n = 6;
 
-  value = [ 1.0, 3.0, 5.0, -34.0, 4.0, 8.0, 4.0, ...
+  v = [ 1.0, 3.0, 5.0, -34.0, 4.0, 8.0, 4.0, ...
     1.0, 6.0, 2.0, 3.0 ];
+
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n
 
-      a(i,j) = value ( j - i + 6 );
-
-      if ( j - i == -2 )
-        a(i,j) = a(i,j) + perturb;
-      end
+      a(i,j) = v ( j - i + 6 );
 
     end
   end

@@ -16,6 +16,12 @@ function K = power_correlation ( s, t, e )
 %
 %    John Burkardt
 %
+%  Parameters:
+%
+%    Input, real S(*), T(*), pairs of argument values.
+%
+%    Output, real K(*), the correlation function values
+%
   if ( nargin < 3 )
     e = 2.0;
   end

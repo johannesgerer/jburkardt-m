@@ -17,7 +17,6 @@ function test_opt_test ( )
 %    John Burkardt
 %
   timestamp (  )
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPT_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,7 +33,6 @@ function test_opt_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_OPT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp (  )
 

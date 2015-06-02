@@ -1,0 +1,206 @@
+<html>
+
+  <head>
+    <title>
+      GMSH_TO_FEM - Convert Mesh Data from GMSH to FEM Format.
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      GMSH_TO_FEM <br> Convert Mesh Data from GMSH to FEM Format.
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>GMSH_TO_FEM</b>
+      is a MATLAB program which
+      reads a mesh data file created by the GMSH program
+      and writes a pair of node and element files that correspond
+      to the FEM format.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>gmsh_to_fem</b> (<i>'prefix'</i>)
+      </blockquote>
+      where <i>prefix</i> is the common filename prefix so that:
+      <ul>
+        <li>
+          <i>prefix</i><b>.msh</b> contains the GMSH mesh data file.
+        </li>
+        <li>
+          <i>prefix</i><b>_nodes.txt</b> will be the FEM node file created by the program.
+        </li>
+        <li>
+          <i>prefix</i><b>_elements.txt</b> will be the FEM element file 
+          created by the program.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>GMSH_TO_FEM</b> is available in
+      <a href = "../../c_src/gmsh_to_fem/triangle_to_fem.html">a C version</a> and
+      <a href = "../../cpp_src/triangle_to_fem/triangle_to_fem.html">a C++ version</a> and
+      <a href = "../../f77_src/triangle_to_fem/triangle_to_fem.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/triangle_to_fem/triangle_to_fem.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangle_to_fem/triangle_to_fem.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../py_src/dolfin-convert/dolfin-convert.html">
+      DOLFIN-CONVERT</a>,
+      a Python program which
+      can convert a mesh file from Gmsh, MEDIT, METIS or SCOTCH format to an
+      XML format suitable for use by DOLFIN or FENICS,
+      by Anders Logg.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_io/fem_io.html">
+      FEM_IO</a>,
+      a MATLAB library which
+      reads or writes node, element and data files defining a model
+      associated with the finite element method (FEM).
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_gmsh/fem_to_gmsh.html">
+      FEM_TO_GMSH</a>,
+      a MATLAB program which
+      reads FEM files definining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a Gmsh mesh file.
+    </p>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which
+      contains examples of 2D FEM files, a pair of files defining the coordinates
+      of nodes, and the nodes that form triangular elements.
+    </p>
+
+    <p>
+      <a href = "../../examples/gmsh/gmsh.html">
+      GMSH</a>,
+      examples which
+      illustrate the use of the Gmsh program,
+      a 1D, 2D or 3D mesh generator that can create meshes
+      suitable for use by the finite element method (FEM).
+    </p>
+
+    <p>
+      <a href = "../../m_src/gmsh_io/gmsh_io.html">
+      GMSH_IO</a>,
+      a MATLAB library which
+      can read or write some of the files created by the Gmsh 
+      program for 1D, 2D or 3D meshes used by the finite element method (FEM).
+    </p>
+
+    <p>
+      <a href = "../../m_src/medit_to_fem/medit_to_fem.html">
+      MEDIT_TO_FEM</a>,
+      a MATLAB program which
+      reads a mesh file created by the MEDIT program
+      and writes a corresponding pair of node and element files that correspond
+      to the FEM format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_to_fem/triangle_to_fem.html">
+      TRIANGLE_TO_FEM</a>,
+      a MATLAB program which reads the NODE and ELE files created by triangle() to
+      describe a triangular mesh, and writes a corresponding pair of
+      node and element files in the 2D FEM format.
+    </p>
+
+    <p>
+      <a href = "../../py_src/xml_to_fem/xml_to_fem.html">
+      XML_TO_FEM</a>,
+      a Python program which
+      reads an XML file created by FENICS or DOLFIN, describing a mesh
+      in 1D, 2D, or 3D, and creates corresponding FEM files, namely,
+      a file of node coordinates, and a file of element connectivities.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "gmsh_to_fem.m">gmsh_to_fem.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "gmsh_to_fem.sh">gmsh_to_fem.sh</a>,
+          BASH commands to compile the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "example_2d.msh">example_2d.msh</a>,
+          a sample 2D GMSH mesh file.
+        </li>
+        <li>
+          <a href = "example_2d_nodes.txt">example_2d_nodes.txt</a>,
+          the FEM node file created by the program.
+        </li>
+        <li>
+          <a href = "example_2d_elements.txt">example_2d_elements.txt</a>,
+          the FEM element file created by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 October 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

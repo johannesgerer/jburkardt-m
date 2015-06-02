@@ -25,10 +25,13 @@ function jacobi_poisson_1d ( k )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'JACOBI_POISSON_1D:\n' );
+  fprintf ( 1, '  MATLAB version.\n' );
   fprintf ( 1, '  Use Jacobi iteration for the 1D Poisson equation.\n' );
 
   if ( nargin < 1 )
     k = input ( '  Enter K >= 0, the grid index, so that NK = 2^K + 1:  ' );
+  elseif ( ischar ( k ) )
+    k = str2num ( k );
   end
 %
 %  Set boundaries.
@@ -115,7 +118,6 @@ function jacobi_poisson_1d ( k )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'JACOBI_POISSON_1D:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

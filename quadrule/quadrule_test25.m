@@ -2,7 +2,7 @@ function quadrule_test25 ( )
 
 %*****************************************************************************80
 %
-%% TEST25 tests LEGENDRE_SET_SQRTX2_01 and SUM_SUB.
+%% TEST25 tests LEGENDRE_SET_SQRTX2_01.
 %
 %  Licensing:
 %
@@ -29,8 +29,7 @@ function quadrule_test25 ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST25\n' );
   fprintf ( 1, '  LEGENDRE_SET_SQRTX2_01 sets up Gauss-Legendre\n' );
-  fprintf ( 1, '    quadrature over [0,1] with weight function 1/SQRT(X);\n' );
-  fprintf ( 1, '  SUM_SUB carries it out.\n' );
+  fprintf ( 1, '  quadrature over [0,1] with weight function 1/SQRT(X);\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The integration interval is [%f, %f]\n', a, b );
   fprintf ( 1, '  Number of subintervals is %d\n', nsub );
@@ -63,9 +62,12 @@ function quadrule_test25 ( )
 
         [ xtab, weight ] = legendre_set_sqrtx2_01 ( norder );
 
-        result(i) = summer ( @func, norder, xtab, weight );
+        result = 0.0;
+        for j = 1 : norder
+          result = result + weight(j) * func ( xtab(j) );
+        end
 
-        fprintf ( 1, '  %12f', result(i) );
+        fprintf ( 1, '  %12f', result );
 
       end
 

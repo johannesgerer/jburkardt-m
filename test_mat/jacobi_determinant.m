@@ -2,7 +2,7 @@ function determ = jacobi_determinant ( n )
 
 %*****************************************************************************80
 %
-%% JACOBI_DETERMINANT returns the determinant of the Jacobi matrix.
+%% JACOBI_DETERMINANT returns the determinant of the JACOBI matrix.
 %
 %  Licensing:
 %

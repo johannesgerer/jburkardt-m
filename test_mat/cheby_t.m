@@ -2,7 +2,7 @@ function a = cheby_t ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_T returns the Chebyshev T matrix.
+%% CHEBY_T returns the CHEBY_T matrix.
 %
 %  Example:
 %
@@ -32,17 +32,16 @@ function a = cheby_t ( n )
 %
 %    Each row of A sums to 1.
 %
-%    det ( A ) = 2**( (N-1) * (N-2) / 2 )
+%    det ( A ) = 2^( (N-1) * (N-2) / 2 )
 %
 %    A is not normal: A' * A /= A * A'.
 %
 %    For I = 1:
-%
 %      LAMBDA(1) = 1
-%
 %    For 1 < I
+%      LAMBDA(I) = 2^(I-2)
 %
-%      LAMBDA(I) = 2**(I-2)
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -62,12 +61,12 @@ function a = cheby_t ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     a = [];
     return
   end
-
-  a(1:n,1:n) = 0.0;
 
   a(1,1) = 1.0;
 

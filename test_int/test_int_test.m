@@ -2,11 +2,7 @@ function test_int_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_INT_TEST is the main program to test TEST_INT.
-%
-%  Discussion:
-%
-%    TEST_INT_TEST tests the TEST_INT library.
+%% TEST_INT_TEST tests the TEST_INT library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_int_test ( )
 %    John Burkardt
 %
   timestamp ( )
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -40,7 +35,6 @@ function test_int_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( )
 

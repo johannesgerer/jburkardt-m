@@ -10,7 +10,7 @@ function t = kms_eigenvalues_theta ( alpha, n )
 %
 %  Modified:
 %
-%    08 June 2011
+%    25 January 2015
 %
 %  Author:
 %
@@ -25,7 +25,7 @@ function t = kms_eigenvalues_theta ( alpha, n )
 %  Parameters:
 %
 %    Input, real ALPHA, the scalar that defines A.
-%    A typical value is 0.5.
+%    Eigenvalue computations require 0 <= ALPHA <= 1.
 %
 %    Input, integer N, the order of the matrix.
 %
@@ -75,7 +75,7 @@ function t = kms_eigenvalues_theta ( alpha, n )
         break
       end
 
-      if ( fxc < 0.0D+00 )
+      if ( fxc < 0.0 )
         xa = xc;
         fxa = fxc;
       else

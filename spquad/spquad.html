@@ -1,0 +1,218 @@
+<html>
+
+  <head>
+    <title>
+      SPQUAD - A Sparse Grid Quadrature Rule
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPQUAD <br> A Sparse Grid Quadrature Rule
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPQUAD</b> 
+      is a MATLAB library which 
+      can compute a sparse grid quadrature rule to estimate a multidimensional integral.
+      The quadrature rules created by the program are based on the Clenshaw-Curtis rule.
+      The code is by Greg von Winckel.
+    </p>
+
+    <p>
+      The original version of this software is available at the Matlab Central File Exchange:
+      <a href = "http://www.mathworks.com/matlabcentral/fileexchange/19063-sparse-grid-quadrature/content/spquad.m">
+                 http://www.mathworks.com/matlabcentral/fileexchange/19063-sparse-grid-quadrature/content/spquad.m</a>.
+    </p>
+
+    <p>
+      Note that the <b>spquad()</b> function, by default, assumes that the integration region
+      is [-1,+1]^d, where <b>d</b> is the spatial dimension.  The function includes an optional
+      argument <b>bpt</b>, which is an array allowing the user to specify the lower and upper 
+      endpoints of integration.  However, in the experience of the installer, this extra argument
+      does not seem to have the correct effect, resulting in quadrature rules that are not
+      correctly shifted to the new domain.  A note has been sent to the author asking for
+      clarification.  In the meantime, the user can compute the rule for [-1,+1]^d and use a
+      simple linear transformation to adjust the points and weights to a nondefault integration region.
+    </p>
+ 
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      No licensing information was given with the text of the file at the Matlab Central
+      File Exchange.
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPQUAD</b> is available in
+      <a href = "../../m_src/spquad/spquad.html">a MATLAB version</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sandia_sparse/sandia_sparse.html">
+      SANDIA_SPARSE</a>, 
+      a MATLAB library which
+      computes the points and weights of a Smolyak sparse
+      grid, based on a variety of 1-dimensional quadrature rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>, 
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules, 
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../c_src/smolpack/smolpack.html">
+      SMOLPACK</a>, 
+      a C library which
+      implements Novak and Ritter's method for estimating the integral
+      of a function over a multidimensional hypercube using sparse grids,
+      by Knut Petras.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>, 
+      a MATLAB library which
+      can define a multidimensional sparse grid based on a 1D Clenshaw Curtis rule.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_gl/sparse_grid_gl.html">
+      SPARSE_GRID_GL</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hermite/sparse_grid_hermite.html">
+      SPARSE_GRID_HERMITE</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Hermite rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_laguerre/sparse_grid_laguerre.html">
+      SPARSE_GRID_LAGUERRE</a>, 
+      a MATLAB library which
+      creates sparse grids based on Gauss-Laguerre rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_mixed/sparse_grid_mixed.html">
+      SPARSE_GRID_MIXED</a>, 
+      a MATLAB library which 
+      creates a sparse grid dataset based on a mixed set of 1D factor rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Greg von Winckel
+    </p>
+
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "spquad.m">spquad.m</a> 
+          returns the points and weights of a sparse grid for dimension D and level K,
+          based on the Clenshaw Curtis rule.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "spquad_test.m">spquad_test.m</a> 
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "spquad_test01.m">spquad_test01.m</a> 
+          compares the sparse grid estimate to a Monte Carlo estimate.
+        </li>
+        <li>
+          <a href = "spquad_test02.m">spquad_test02.m</a> 
+          prints the size (number of points) for sparse grid rules of a variety
+          of spatial dimensions and levels.
+        </li>
+        <li>
+          <a href = "spquad_test_output.txt">spquad_test_output.txt</a> 
+          the output file;
+        </li>
+        <li>
+          <a href = "fu_integral.m">fu_integral.m</a> 
+          evaluates the exact integral of a test function over [0,1]^D.
+        </li>
+        <li>
+          <a href = "fu_value.m">fu_value.m</a> 
+          is a test function over [0,1]^D.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> is a script which prints
+          a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 January 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

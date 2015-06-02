@@ -10,13 +10,16 @@ function U = burgers ( ic_function, nx, nt, t_max, nu, bc )
 %
 %    The time interval is taken to be 0 <= t <= t_max.
 %
+%    A correction to the treatment of the U'' condition was suggested
+%    by Hugo Tadashi, 05 December 2014.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    25 April 2012
+%    14 December 2014
 %
 %  Author:
 %
@@ -78,7 +81,7 @@ function U = burgers ( ic_function, nx, nt, t_max, nu, bc )
       ul = 2.0 * u(1) - u(2);
       unew(1) =                  u(1) + dt * ( ...
         nu    * (   u(2) - 2.0 * u(1) + ul    ) / dx^2 ...
-        - 0.5 * ( f(u(2))           - f(ul)   ) / dx );
+        -       ( f(u(2))           - f(ul)   ) / dx );
     elseif ( bc == 4 )
       unew(1) =                  u(1) + dt * ( ...
         nu    * (   u(2) - 2.0 * u(1) + u(nx)  ) / dx^2 ...
@@ -99,7 +102,7 @@ function U = burgers ( ic_function, nx, nt, t_max, nu, bc )
       ur = 2.0 * u(nx) - u(nx-1);
       unew(nx) =               u(nx) + dt * ( ...
         nu    * (   ur - 2.0 * u(nx) + u(nx-1)  ) / dx^2 ...
-        - 0.5 * ( f(ur)            - f(u(nx-1)) ) / dx );
+        -       ( f(ur)            - f(u(nx-1)) ) / dx );
     elseif ( bc == 4 )
       unew(nx) =                 u(nx) + dt * ( ...
         nu    * (   u(1) - 2.0 * u(nx) + u(nx-1)  ) / dx^2 ...

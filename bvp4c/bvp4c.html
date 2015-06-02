@@ -1,0 +1,408 @@
+<html>
+
+  <head>
+    <title>
+      BVP4C - Automatic Solution of 1D Boundary Value Problems (BVP's)
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BVP4C <br> Automatic Solution of 1D Boundary Value Problems (IBVP's)
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BVP4C</b>
+      is a directory of MATLAB programs which
+      illustrate how to use the MATLAB command <b>bvp4c()</b>, which can solve
+      boundary value problems (BVP's) in one spatial dimension.
+    </p>
+
+    <h3 align = "center">
+      Example of a 1D Boundary Value Problem:
+    </h3>
+
+    <p>
+      A simple two point boundary value problem involves a second degree
+      differential equation 
+      <pre>
+        y"(x) = f(x,y)
+      </pre>
+      which is to hold over some interval 
+      <pre>
+        a < x < b 
+      </pre> 
+      with
+      boundary conditions
+      <pre>
+        y(a) = ya
+        y(b) = yb
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Defining an Initial Guess for the Solution
+    </h3>
+
+    <p>
+      The solution to your boundary value problem begins by specifying
+      an initial guess for the solution.  If the problem is linear, or only mildly
+      nonlinear, then a simple guess may be sufficient.  For difficult problems,
+      it may be necessary to exert some effort to preparing a good initial guess.
+      The guess function is a MATLAB structure, which is typically defined by
+      a call to <b>bvpinit()</b> as follows:
+      <pre>
+        solinit = bvpinit ( xinit, yinit, parameters )
+      </pre>
+      where
+      <ul>
+        <li>
+          <i>xinit</i> is a vector of x values which begin with the left endpoint
+          and conclude with the right endpoint.
+        </li>
+        <li>
+          <i>yinit</i> is a vector of M values.  The initial guess for the solution
+          and its first M-1 derivatives will be constant functions with the values
+          yinit(1) through yinit(M).
+        </li>
+        <li>
+          <i>yinit</i> can instead be a function handle, in which case it must be written
+          in such a way that it accepts a scalar value x, and returns a vector
+          containing the M components of the initial guess at x.
+        </li>
+        <li>
+          <i>parameters</i> is a vector of initial guesses for unknown parameters.
+          This argument is optional, and is usually omitted.  It is useful, however,
+          when solving eigenvalue problems.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Computing a Solution Estimate
+    </h3>
+
+    <p>
+      Once the solution guess has been defined, the simplest call to 
+      <b>bvp4c()</b> has the form
+      <pre>
+        sol = bvp4c ( odefun, bcfun, solinit )
+      </pre>
+      where
+      <ul>
+        <li>
+          <i>odefun</i> is the handle for a function that evaluates the differential
+          equation.
+        </li>
+        <li>
+          <i>bcfun</i> is the handle for a function that evaluates the boundary conditions.
+        </li>
+        <li>
+          <i>solinit</i> is a structure containing the initial guess for
+          the solution, as returned by <b>bvpinit()</b>.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The simplest call to the user-written function <b>odefun()</b> has the form
+      <pre>
+        dydx = odefun ( x, y )
+      </pre>
+      where
+      <ul>
+        <li>
+          <i>x</i> is a scalar value where the ODE is to be evaluated.
+        </li>
+        <li>
+          <i>y</i> contains the M components of the solution estimate at x.
+        </li>
+        <li>
+          <i>dydx</i> is a column M-vector containing the right hand side of
+          the first-order differential equations.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The simplest call to the user-written function <b>bcfun()</b> has the form
+      <pre>
+        res = bcfun ( ya, yb )
+      </pre>
+      where
+      <ul>
+        <li>
+          <i>ya, yb</i> are M component vectors of the solution estimates
+          at the left and right endpoints.
+        </li>
+        <li>
+          <i>res</i> is a column M-vector containing the residual of the
+          boundary conditions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Evaluating the Computed Solution
+    </h3>
+
+    <p>
+      The <b>bvp4c()</b> function returns as output the quantity <i>sol</i>,
+      which contains information that can be used to evaluate the solution
+      components at any point in the domain.  To do this, however, you must
+      invoke the <b>deval()</b> function.  For instance, if the solution has
+      been computed over the interval [0,4], and we wish to evaluate the
+      solution y(x) at 101 evenly spaced points within that interval, then 
+      the sequence of commands might be:
+      <pre>
+        solinit = bvpinit ( xinit, yinit );
+        sol = bvp4c ( odefun, bcfun, solinit );
+        x = linspace ( 0.0, 4.0, 101 );
+        y = deval ( sol, x );
+        plot ( x, y(1,:) );
+      </pre> 
+      Note that <b>deval</b> evaluates all M components of the solution.
+      In the common case of a second order BVP, y(1,:) would contain the
+      solution, and y(2,:) the derivative of the solution, at each point x.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BVP4C</b> is available in
+      <a href = "../../m_src/bvp4c/bvp4c.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_bvp/fd1d_bvp.html">
+      FD1D_BVP</a>,
+      a MATLAB program which
+      applies the finite difference method (FDM)
+      to a two point boundary value problem (BVP) in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d/fem1d.html">
+      FEM1D</a>,
+      a MATLAB program which
+      applies the finite element method (FEM) to a 1D linear two point
+      boundary value problem (BVP).
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">
+      FEM1D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise linear elements,
+      to a two point boundary value problem (BVP) in one spatial dimension,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_spectral_numeric/fem1d_spectral_numeric.html">
+      FEM1D_SPECTRAL_NUMERIC</a>,
+      a MATLAB program which
+      applies the spectral finite element method (FEM) to solve the 
+      two point boundary value problem (BVP_
+      u'' = - pi^2 sin(x) over [-1,+1] with zero boundary conditions,
+      using as basis elements the functions x^n*(x-1)*(x+1),
+      and carrying out the integration numerically, 
+      using MATLAB's quad() function,
+      by Miro Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_spectral_symbolic/fem1d_spectral_symbolic.html">
+      FEM1D_SPECTRAL_SYMBOLIC</a>,
+      a MATLAB program which
+      applies the spectral finite element method (FEM) to solve the 
+      two point boundary value problem (BVP)
+      u'' = - pi^2 sin(x) over [-1,+1] with zero boundary conditions,
+      using as basis elements the functions x^n*(x-1)*(x+1),
+      and carrying out the integration using MATLAB's symbolic toolbox,
+      by Miro Stoyanov.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pdepe/pdepe.html">
+      PDEPE</a>,
+      MATLAB programs which
+      illustrate how MATLAB's pdepe() function can be used to solve
+      initial boundary value problems (IBVP's) in one spatial dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/string_simulation/string_simulation.html">
+      STRING_SIMULATION</a>,
+      a MATLAB program which
+      simulates the behavior of a vibrating string
+      by solving the corresponding initial boundary value problem (IBVP),
+      creating files that can be displayed by gnuplot.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "http://www.mathworks.com/help/matlab/bvp4c.html">
+                     http://www.mathworks.com/help/matlab/bvp4c.html </a>,
+          the MathWorks help page for BVP4C.
+        </li>
+        <li>
+          Lawrence Shampine, Jacek Kierzenka, Mark Reichelt,<br>
+          Solving boundary value problems for ordinary differential equations
+          in MATLAB with bvp4c.
+        </li>
+        <li>
+          Jacek Kierzenka, Lawrence Shampine,,<br>
+          A BVP Solver Based on Residual Control and the Matlab PSE,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 27, Number 3, September 2001, pages 299-316.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      SAMPLE 1 sets up a solution to the problem y'' + abs(y) = 0, y(0) = 0, y(4) = -2.
+      <ul>
+        <li>
+          <a href = "sample1.m">sample1.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "sample1.png">sample1.png</a>,
+          a plot of the solution Y(X) and derivative Y'(X).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      EXAMPLE 1 sets up a solution to a system of five first order ODE's.  This is
+      a sample problem for the MUSN program.
+      <ul>
+        <li>
+          <a href = "example1.m">example1.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example1.png">example1.png</a>,
+          a  plot of the solution Y(X).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      EXAMPLE 2 sets up a solution to a y''+3py/(p+x^2)^2=0, for which an 
+      analytic solution is known.
+      <ul>
+        <li>
+          <a href = "example2.m">example2.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example2.png">example2.png</a>,
+          a  plot of the solution Y(X).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      EXAMPLE 3 sets up a solution to Mathieu's equation, an eigenvalue problem 
+      y'' + (lambda-2*q*cos(2x)y)=0, y'(0) = 0, y'(pi) = 0, y(0) = 1, with q = 5, 
+      and lambda an unknown eigenvalue which we estimate to be 15.  The special 
+      functional form is used to specify the initial guess for the solution.
+      <ul>
+        <li>
+          <a href = "example3.m">example3.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example3.png">example3.png</a>,
+          a  plot of the solution Y(X).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      EXAMPLE 4 sets up problem modeling the propagation of nerve impulses,
+      in which the solution is expected to be periodic, with the period unknown.
+      <ul>
+        <li>
+          <a href = "example4.m">example4.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example4.png">example4.png</a>,
+          a  plot of the solution Y(X) versus the initial guess.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      BRATU sets up the Bratu equation, which includes a parameter lambda.
+      Depending on the value of lambda, the equation may have 2, 1 or 0 solutions.
+      <ul>
+        <li>
+          <a href = "bratu.m">bratu.m</a>,
+          defines the problem, calls bvp4c() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "bratu_0.450000.png">bratu_0.450000.png</a>,
+          a  plot of the solution for lambda = 0.45.
+        </li>
+        <li>
+          <a href = "bratu_1.000000.png">bratu_1.000000.png</a>,
+          a  plot of the solutions for lambda = 1.0.
+        </li>
+        <li>
+          <a href = "bratu_3.500000.png">bratu_3.500000.png</a>,
+          a  plot of the solution for lambda = 3.5.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 07 September 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

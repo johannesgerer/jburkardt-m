@@ -20,7 +20,9 @@ function x = wilk03_solution ( )
 %
 %    Output, real X(3,1), the solution of the linear system.
 %
-  x(1:3,1) = [ 0.0, 4.0E+10 / 9.0, 1.0E+10 ];
+  x(1:3,1) = [ 0.0; ...
+               4.0E+10 / 9.0; ...
+               1.0E+10 ];
 
   return
 end

@@ -6,7 +6,7 @@ function seed = i4_uniform_0i ( seed )
 %
 %  Formula:
 %
-%    SEED = SEED * (7**5) mod (2**31 - 1)
+%    SEED = SEED * (7^5) mod (2^31 - 1)
 %
 %  Licensing:
 %
@@ -55,19 +55,19 @@ function seed = i4_uniform_0i ( seed )
 %    the output value.  SEED should not be 0.
 %
 %    Output, integer SEED, a uniform random value between
-%    1 and 2**31-1.
+%    1 and 2^31-1.
 %
 %  Local parameters:
 %
-%    IA = 7**5
-%    IB = 2**15
-%    IB16 = 2**16
-%    IP = 2**31-1
+%    IA = 7^5
+%    IB = 2^15
+%    IB16 = 2^16
+%    IP = 2^31-1
 %
   ia = 16807;
   ib15 = 32768;
   ib16 = 65536;
-  ip = 2147483647;;
+  ip = 2147483647;
 %
 %  Don't let SEED be 0.
 %

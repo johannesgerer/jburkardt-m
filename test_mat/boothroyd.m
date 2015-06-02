@@ -2,7 +2,7 @@ function a = boothroyd ( n )
 
 %*****************************************************************************80
 %
-%% BOOTHROYD returns the Boothroyd matrix.
+%% BOOTHROYD returns the BOOTHROYD matrix.
 %
 %  Formula:
 %
@@ -46,11 +46,13 @@ function a = boothroyd ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
 
     for j = 1 : n
 
-      a(i,j) = comb ( n+i-1, i-1 ) * comb ( n-1, n-j ) * n ...
+      a(i,j) = r8_choose ( n+i-1, i-1 ) * r8_choose ( n-1, n-j ) * n ...
         / ( i + j - 1 );
 
     end

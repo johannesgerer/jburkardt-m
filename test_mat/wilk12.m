@@ -56,6 +56,7 @@ function a = wilk12 ( )
 %    Output, real A(12,12), the matrix.
 %
   n = 12;
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n

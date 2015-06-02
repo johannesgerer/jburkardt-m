@@ -25,12 +25,12 @@ function filum_test03 ( )
   fprintf ( 1, '  The task is to determine the number of words in a line,\n' );
   fprintf ( 1, '  that is, the number of "columns" of text.\n' );
 
-  file_name = 'filum_prb_4by5.txt';
+  filename = 'filum_prb_4by5.txt';
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Examining the file "%s"\n', file_name );
+  fprintf ( 1, '  Examining the file "%s"\n', filename );
 
-  column_num = file_column_count ( file_name );
+  column_num = file_column_count ( filename );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Number of columns = %d\n', column_num );

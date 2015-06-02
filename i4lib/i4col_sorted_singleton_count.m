@@ -44,12 +44,12 @@ function singleton_num = i4col_sorted_singleton_count ( m, n, a )
     differ_from_previous = differ_from_next;
 
     if ( j < n )
-      differ_from_next = ( a(1:m,j) ~= a(1:m,j+1) );
+      differ_from_next = any ( a(1:m,j) ~= a(1:m,j+1) );
     else
       differ_from_next = 1;
     end
 
-    if ( differ_from_previous & differ_from_next )
+    if ( differ_from_previous && differ_from_next )
       singleton_num = singleton_num + 1;
     end
 

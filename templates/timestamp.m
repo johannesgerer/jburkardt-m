@@ -1,5 +1,7 @@
 function timestamp ( )
 
+%*****************************************************************************80
+%
 %% TIMESTAMP prints the current YMDHMS date as a timestamp.
 %
 %  Licensing:

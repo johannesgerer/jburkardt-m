@@ -42,13 +42,13 @@ function value = i4_gcdb ( i, j, k )
 %    Input, integer K, the possible divisor of I and J.
 %
 %    Output, integer VALUE, the greatest common divisor of
-%    the form K**N shared by I and J.
+%    the form K^N shared by I and J.
 %
   value = 1;
 %
 %  If both I and J are zero, I4_GCDB is 1.
 %
-  if ( i == 0 & j == 0 )
+  if ( i == 0 && j == 0 )
     value = 1;
     return
   end
@@ -73,7 +73,7 @@ function value = i4_gcdb ( i, j, k )
 
   while
 
-    if ( mod ( i, k ) ~= 0 | mod ( j, k ) ~= 0 )
+    if ( mod ( i, k ) ~= 0 || mod ( j, k ) ~= 0 )
       break
     end
 

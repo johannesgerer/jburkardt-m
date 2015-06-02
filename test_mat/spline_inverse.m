@@ -31,6 +31,8 @@ function a = spline_inverse ( n, x )
 %
 %    Output, real A(N,N), the inverse of the matrix.
 %
+  a = zeros ( n, n );
+
   d(n) = 2.0 * x(n-1);
   for i = n - 1 : -1 : 2
     d(i) = 2.0 * ( x(i-1) + x(i) ) - x(i) * x(i) / d(i+1);

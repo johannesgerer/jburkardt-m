@@ -10,7 +10,7 @@ function a = i4mat_perm2 ( m, n, a, p, q )
 %
 %  Modified:
 %
-%    23 April 2005
+%    24 May 2015
 %
 %  Author:
 %
@@ -18,7 +18,7 @@ function a = i4mat_perm2 ( m, n, a, p, q )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, H Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -34,33 +34,27 @@ function a = i4mat_perm2 ( m, n, a, p, q )
 %    Input, integer P(M), the row permutation.  P(I) is the new number of row I.
 %
 %    Input, integer Q(N), the column permutation.  Q(I) is the new number of
-%    column I.  Note that this routine allows you to pass a single array as both
-%    P and Q.
+%    column I.  
 %
 %    Output, integer A(M,N), the permuted matrix.
 %
-  base = 1;
-  ierror = perm_check ( m, p, base );
+  ierror = perm1_check ( m, p );
 
   if ( ierror ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4MAT_PERM2 - Fatal error!\n' );
-    fprintf ( 1, '  The input array P does not represent\n' );
-    fprintf ( 1, '  a proper permutation.  In particular, the\n' );
-    fprintf ( 1, '  array is missing the value %d\n', ierror );
+    fprintf ( 1, '  PERM1_CHECK says permutation is illegal.\n' );
     error ( 'I4MAT_PERM2 - Fatal error!' );
-  end 
+  end
 
   p = perm_cycle ( m, p, is, nc, 1 );
 
-  ierror = perm_check ( n, q, base );
+  ierror = perm1_check ( n, q );
 
-  if ( ierror ~= 0 ) then
+  if ( ierror ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4MAT_PERM2 - Fatal error!\n' );
-    fprintf ( 1, '  The input array Q does not represent\n' );
-    fprintf ( 1, '  a proper permutation.  In particular, the\n' );
-    fprintf ( 1, '  array is missing the value %d\n', ierror );
+    fprintf ( 1, '  PERM1_CHECK says permutation is illegal.\n' );
     error ( 'I4MAT_PERM2 - Fatal error!' );
   end
 

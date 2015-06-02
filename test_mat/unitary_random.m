@@ -1,8 +1,8 @@
-function [ a, seed ] = unitary_random ( n, seed )
+function a = unitary_random ( n, key )
 
 %*****************************************************************************80
 %
-%% UNITARY_RANDOM returns a random unitary matrix.
+%% UNITARY_RANDOM returns the UNITARY_RANDOM matrix.
 %
 %  Properties:
 %
@@ -38,7 +38,7 @@ function [ a, seed ] = unitary_random ( n, seed )
 %
 %  Modified:
 %
-%    21 October 2007
+%    06 February 2015
 %
 %  Author:
 %
@@ -56,12 +56,11 @@ function [ a, seed ] = unitary_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, complex A(N,N), the matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  Start with A = the identity matrix.
 %
@@ -89,14 +88,16 @@ function [ a, seed ] = unitary_random ( n, seed )
 %  and set A := A * conjg ( H(N-1) ) = A * H(N-1) = H1 * H2 * ... * H(N-1).
 %  This is our random unitary matrix.
 %
+  seed = key;
+
   for j = 1 : n - 1
 %
 %  Set the vector that represents the J-th column to be annihilated.
 %
-    x(1:j-1) =  0.0;
+    x = zeros ( n, 1 );
 
     for i = j : n
-      [ x(i), seed ] = c8_normal_01 ( seed );
+      [ x(i,1), seed ] = c8_normal_01 ( seed );
     end
 %
 %  Compute the vector V that defines a Householder transformation matrix

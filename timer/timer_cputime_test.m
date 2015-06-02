@@ -17,7 +17,6 @@ function timer_cputime_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_CPUTIME\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -37,7 +36,6 @@ function timer_cputime_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMER_CPUTIME\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

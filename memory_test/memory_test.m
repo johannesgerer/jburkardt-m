@@ -2,7 +2,7 @@ function memory_test ( n_log_min, n_log_max )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for MEMORY_TEST.
+%% MEMORY_TEST carries out some tests of memory limits in MATLAB.
 %
 %  Licensing:
 %

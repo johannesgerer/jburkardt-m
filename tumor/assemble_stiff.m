@@ -1,7 +1,13 @@
 function assemble_stiff ( )
 
+%*****************************************************************************80
+%
 %% ASSEMBLE_STIFF assembles the stiffness matrix.
-% 
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    26 April 2006

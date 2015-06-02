@@ -2,7 +2,7 @@ function a = gk323 ( m, n )
 
 %*****************************************************************************80
 %
-%% GK323 returns a Gregory and Karney test matrix.
+%% GK323 returns the GK323 matrix.
 %
 %  Discussion:
 %
@@ -36,12 +36,14 @@ function a = gk323 ( m, n )
 %
 %    Because A is normal, it is diagonalizable.
 %
-%    det ( A ) = (-1)**(N-1) * 2**(N-2) * ( N - 1 ).
+%    det ( A ) = (-1)^(N-1) * 2^(N-2) * ( N - 1 ).
 %
 %    A has a dominant positive eigenvalue, and N-1 real negative eigenvalues.
 %
 %    If N = 2 mod 4, then -1 is an eigenvalue, with an eigenvector
 %    of the form ( 1, -1, -1, 1, 1, -1, -1, 1, ... ).
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -70,6 +72,8 @@ function a = gk323 ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = abs ( i - j );

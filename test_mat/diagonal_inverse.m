@@ -2,7 +2,7 @@ function a = diagonal_inverse ( n, x )
 
 %*****************************************************************************80
 %
-%% DIAGONAL_INVERSE returns the inverse of a diagonal matrix.
+%% DIAGONAL_INVERSE returns the inverse of the DIAGONAL matrix.
 %
 %  Discussion:
 %
@@ -39,7 +39,7 @@ function a = diagonal_inverse ( n, x )
 %
 %    Output, real A(M,N), the inverse of the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   if ( any ( x(1:n) == 0.0 ) )
     fprintf ( 1, '\n' );

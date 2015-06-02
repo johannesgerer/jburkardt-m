@@ -2,7 +2,7 @@ function a = ill3 ( )
 
 %*****************************************************************************80
 %
-%% ILL3 returns an ill conditioned 3 by 3 matrix.
+%% ILL3 returns the ILL3 matrix.
 %
 %  Formula:
 %
@@ -42,10 +42,14 @@ function a = ill3 ( )
 %
 %    Output, real A(3,3), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [ ...
-  -149.0,  537.0, -27.0; ...
-   -50.0,  180.0,  -9.0; ...
-  -154.0,  546.0, -25.0 ]';
+    -149.0,  -50.0, -154.0; ...
+     537.0,  180.0,  546.0; ...
+     -27.0,   -9.0,  -25.0 ];
 
   return
 end

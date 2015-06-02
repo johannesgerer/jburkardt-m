@@ -2,7 +2,11 @@ function mm_to_msm_test ( )
 
 %*****************************************************************************80
 %
-%% MM_TO_MSM_TEST tests MM_TO_MSM.
+%% MM_TO_MSM_TEST tests the MM_TO_MSM library.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

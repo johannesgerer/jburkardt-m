@@ -2,7 +2,7 @@ function r = toep_cholesky_upper ( n, g )
 
 %*****************************************************************************80
 %
-%% TOEP_CHOLESKY_UPPER computes the upper Cholesky factor of a Toeplitz matrix.
+%% TOEP_CHOLESKY_UPPER: upper Cholesky factor of a compressed Toeplitz matrix.
 %
 %  Discussion:
 %

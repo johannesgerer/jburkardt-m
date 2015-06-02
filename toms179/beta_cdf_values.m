@@ -1,5 +1,7 @@
 function [ n_data, a, b, x, fx ] = beta_cdf_values ( n_data )
 
+%*****************************************************************************80
+%
 %% BETA_CDF_VALUES returns some values of the Beta CDF.
 %
 %  Discussion:
@@ -27,6 +29,10 @@ function [ n_data, a, b, x, fx ] = beta_cdf_values ( n_data )
 %      Needs["Statistics`ContinuousDistributions`"]
 %      dist = BetaDistribution [ a, b ]
 %      CDF [ dist, x ]
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

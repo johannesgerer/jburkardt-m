@@ -143,17 +143,13 @@ function fem1d ( )
   n = 100;
   nl = 2;
 
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Solve the two-point boundary value problem:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    -d/dx (p(x) du/dx) + q(x)*u  =  f(x)\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  on an interval [xl,xr], with the values of\n' );
   fprintf ( 1, '  u or u'' specified at xl and xr.\n' );
   fprintf ( 1, '\n' );
@@ -184,11 +180,12 @@ function fem1d ( )
 %  Print the current solution.
 %
   output ( u, ibc, indx, n, nu, ul, ur, xn );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

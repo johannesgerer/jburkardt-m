@@ -45,6 +45,8 @@ function a = tri_upper ( alpha, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -65,6 +67,8 @@ function a = tri_upper ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

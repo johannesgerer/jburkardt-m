@@ -27,7 +27,7 @@ function value = r8_fraction ( i, j )
 %
 %  Modified:
 %
-%    05 October 2010
+%    24 July 2014
 %
 %  Author:
 %
@@ -37,9 +37,9 @@ function value = r8_fraction ( i, j )
 %
 %    Input, integer I, J, the arguments.
 %
-%    Output, real R8_FRACTION, the value of the ratio.
+%    Output, real VALUE, the value of the ratio.
 %
-  r8_fraction = i / j;
+  value = i / j;
 
   return
 end

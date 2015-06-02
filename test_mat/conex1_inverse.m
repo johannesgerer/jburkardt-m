@@ -23,6 +23,8 @@ function a = conex1_inverse ( alpha )
 %
 %    Output, real A(4,4), the matrix.
 %
+  a = zeros ( 4, 4 );
+
   a(1,1) =  1.0;
   a(1,2) =  1.0 - alpha;
   a(1,3) =        alpha;

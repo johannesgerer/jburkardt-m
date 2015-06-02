@@ -10,7 +10,7 @@ function indx = r8vec_sort_insert_index_d ( n, a )
 %
 %  Modified:
 %
-%    24 May 2005
+%    27 September 2014
 %
 %  Author:
 %
@@ -37,7 +37,7 @@ function indx = r8vec_sort_insert_index_d ( n, a )
     return
   end
 
-  indx = i4vec_indicator ( n );
+  indx = i4vec_indicator1 ( n );
 
   for i = 2 : n
 

@@ -4,6 +4,10 @@ function [ value, ifault ] = alogam ( x )
 %
 %% ALOGAM computes the logarithm of the Gamma function.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    22 January 2008

@@ -44,12 +44,12 @@ function kronrod_test01 ( )
     0.96049126870802028342 ]';
 
   fprintf ( 1, '\n' );
-  fprintf ( 1,  'KRONROD_TEST01\n' );
-  fprintf ( 1,  '  Request KRONROD to compute the Gauss rule\n' );
-  fprintf ( 1,  '  of order 3, and the Kronrod extension of\n' );
-  fprintf ( 1,  '  order 3+4=7.\n' );
+  fprintf ( 1, 'KRONROD_TEST01\n' );
+  fprintf ( 1, '  Request KRONROD to compute the Gauss rule\n' );
+  fprintf ( 1, '  of order 3, and the Kronrod extension of\n' );
+  fprintf ( 1, '  order 3+4=7.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '  Compare to exact data.\n' );
+  fprintf ( 1, '  Compare to exact data.\n' );
 
   tol = 0.000001;
 
@@ -58,15 +58,15 @@ function kronrod_test01 ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  KRONROD returns 3 vectors of length %d\n', n + 1 );
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '     I      X               WK              WG\n' );
+  fprintf ( 1, '     I      X               WK              WG\n' );
   fprintf ( 1, '\n' );
   for i = 1 : n + 1
     fprintf ( 1, '  %4d  %14f  %14f  %14f\n', i, x(i), w1(i), w2(i) );
   end
 
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '               Gauss Abscissas\n' );
-  fprintf ( 1,  '            Exact           Computed\n' );
+  fprintf ( 1, '               Gauss Abscissas\n' );
+  fprintf ( 1, '            Exact           Computed\n' );
   fprintf ( 1, '\n' );
   for i = 1 : n
     if ( 2 * i <= n + 1 )
@@ -79,8 +79,8 @@ function kronrod_test01 ( )
     fprintf ( 1, '  %4d  %14f  %14f\n', i, xg(i), s * x(i2) );
   end
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '               Gauss Weights\n' );
-  fprintf ( 1,  '            Exact           Computed\n' );
+  fprintf ( 1, '               Gauss Weights\n' );
+  fprintf ( 1, '            Exact           Computed\n' );
   fprintf ( 1, '\n' );
   for i = 1 : n
     if ( 2 * i <= n + 1 )
@@ -92,8 +92,8 @@ function kronrod_test01 ( )
   end
 
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '             Gauss Kronrod Abscissas\n' );
-  fprintf ( 1,  '            Exact           Computed\n' );
+  fprintf ( 1, '             Gauss Kronrod Abscissas\n' );
+  fprintf ( 1, '            Exact           Computed\n' );
   fprintf ( 1, '\n' );
   for i = 1 : 2 * n + 1
     if ( i <= n + 1 )
@@ -106,8 +106,8 @@ function kronrod_test01 ( )
     fprintf ( 1, '  %4d  %14f  %14f\n', i, xk(i), s * x(i2) );
   end
   fprintf ( 1, '\n' );
-  fprintf ( 1,  '             Gauss Kronrod Weights\n' );
-  fprintf ( 1,  '            Exact           Computed\n' );
+  fprintf ( 1, '             Gauss Kronrod Weights\n' );
+  fprintf ( 1, '            Exact           Computed\n' );
   fprintf ( 1, '\n' );
   for i = 1 : 2 * n + 1
     if ( i <= n + 1 )

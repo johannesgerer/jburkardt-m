@@ -12,7 +12,7 @@ function [ n_data, f, s, p, cdf ] = negative_binomial_cdf_values ( n_data )
 %    tails that occur in this process, then the value of F satisfies
 %    a negative binomial PDF:
 %
-%      PDF(F,S,P) = Choose ( F from F+S-1 ) * P**S * (1-P)**F
+%      PDF(F,S,P) = Choose ( F from F+S-1 ) * P^S * (1-P)^F
 %
 %    The negative binomial CDF is the probability that there are F or
 %    fewer failures upon the attainment of the S-th success.  Thus,

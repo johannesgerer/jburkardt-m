@@ -20,11 +20,13 @@ function lambda = oto_eigenvalues ( n )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = i * pi / ( 2 * ( n + 1 ) );
-    lambda(i) = 4.0 * ( sin ( angle ) )^2;
+    lambda(i,1) = 4.0 * ( sin ( angle ) )^2;
   end
 
   return

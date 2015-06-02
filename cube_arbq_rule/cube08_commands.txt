@@ -1,0 +1,18 @@
+# cube08_commands.txt
+#
+# Usage:
+#  gnuplot < cube08_commands.txt
+#
+set term png
+set output "cube08.png"
+set xlabel "<--- X --->"
+set ylabel "<--- Y --->"
+set zlabel "<--- Z --->"
+set title "cube08"
+set grid
+set key off
+set view equal xyz
+set style data lines
+set timestamp
+splot "cube08_cube.txt" with lines lw 3, \
+      "cube08_nodes.txt" with points pt 7 lt 0

@@ -10,7 +10,7 @@ function value = p00_param_default ( test )
 %
 %  Modified:
 %
-%    20 March 2006
+%    17 February 2013
 %
 %  Author:
 %
@@ -100,6 +100,8 @@ function value = p00_param_default ( test )
     value = p38_param ( 'DEFAULT' );
   elseif ( test == 39 )
     value = p39_param ( 'DEFAULT' );
+  elseif ( test == 40 )
+    value = p40_param ( 'DEFAULT' );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_PARAM_DEFAULT - Fatal error!\n' );

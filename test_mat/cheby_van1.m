@@ -1,21 +1,28 @@
-function a = cheby_van1 ( n, x )
+function v = cheby_van1 ( m, a, b, n, x )
 
 %*****************************************************************************80
 %
-%% CHEBY_VAN1 returns the Chebyshev Vandermonde-like matrix.
+%% CHEBY_VAN1 returns the CHEBY_VAN1 matrix.
 %
-%  Formula:
+%  Discussion:
 %
-%    if ( I = 1 ) then
-%      A(1,J) = 1
-%    else if ( I = 2 ) then
-%      A(2,J) = X(J)
+%    Normally, the Chebyshev polynomials are defined on -1 <= XI <= +1.
+%    Here, we assume the Chebyshev polynomials have been defined on the
+%    interval A <= X <= B, using the mapping
+%      XI = ( - ( B - X ) + ( X - A ) ) / ( B - A )
+%    so that
+%      ChebyAB(A,B;X) = Cheby(XI).
+%
+%    if ( I == 1 ) then
+%      V(1,1:N) = 1;
+%    elseif ( I == 2 ) then
+%      V(2,1:N) = XI(1:N);
 %    else
-%      A(I,J) = 2.0D+00 * X(J) * A(I-1,J) - A(I-2,J)
+%      V(I,1:N) = 2.0 * XI(1:N) * V(I-1,1:N) - V(I-2,1:N);
 %
 %  Example:
 %
-%    N = 5, X = ( 1, 2, 3, 4, 5 )
+%    M = 5, A = -1, B = +1, N = 5, X = ( 1, 2, 3, 4, 5 )
 %
 %    1  1   1    1    1
 %    1  2   3    4    5
@@ -23,21 +30,13 @@ function a = cheby_van1 ( n, x )
 %    1 26  99  244  485
 %    1 97 577 1921 4801
 %
-%  Properties:
-%
-%    A is generally not symmetric: A' /= A.
-%
-%    A(I,J) = T(I-1) ( X(J) ) where T(I-1) is a Chebyshev polynomial.
-%
-%    A will be singular if the X values are not distinct.
-%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    28 September 2008
+%    10 April 2014
 %
 %  Author:
 %
@@ -53,24 +52,38 @@ function a = cheby_van1 ( n, x )
 %
 %  Parameters:
 %
-%    Input, integer N, the order of A.
+%    Input, integer M, the number of rows of the matrix.
 %
-%    Input, real X(N), the vector that defines A.
+%    Input, real A, B, the interval.
 %
-%    Output, real A(N,N), the matrix.
+%    Input, integer N, the number of values in X, and the number
+%    of columns in the matrix.
 %
-  for i = 1 : n
-    for j = 1 : n
+%    Input, real X(N), the abscissas.
+%
+%    Output, real V(M,N), the matrix.
+%
 
-      if ( i == 1 )
-        a(i,j) = 1.0;
-      elseif ( i == 2 )
-        a(i,j) = x(j);
-      else
-        a(i,j) = 2.0 * x(j) * a(i-1,j) - a(i-2,j);
-      end
+%
+%  It is convenient to force X to be a row vector.
+%
+  x = ( x ( : ) )';
+%
+%  Compute the normalized abscissas in [-1,+1].
+%
+  xi(1,1:n) = ( - 1.0 * ( b - x(1,1:n)     )   ...
+                + 1.0 * (     x(1,1:n) - a ) ) ...
+              /         ( b            - a );
+%
+%  Compute the matrix.
+%
+  v = zeros ( m, n );
 
-    end
+  v(1,1:n) = 1.0;
+  v(2,1:n) = xi(1,1:n);
+
+  for i = 3 : m
+    v(i,1:n) = 2.0 * xi(1,1:n) .* v(i-1,1:n) - v(i-2,1:n);
   end
 
   return

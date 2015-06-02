@@ -1,4 +1,4 @@
-function h = r8mat_house_pre ( n, a, irow, jcol )
+function h = r8mat_house_pre ( n, a, row, col )
 
 %*****************************************************************************80
 %
@@ -6,11 +6,11 @@ function h = r8mat_house_pre ( n, a, irow, jcol )
 %
 %  Discussion:
 %
-%    H(IROW,JCOL) has the property that the JCOL-th column of
-%    H(IROW,JCOL)*A is zero from entry IROW+1 to the end.
+%    H(ROW,COL) has the property that the COL-th column of
+%    H(ROW,COL)*A is zero from entry ROW+1 to the end.
 %
 %    In the most common case, where a QR factorization is being computed,
-%    IROW = JCOL.
+%    ROW = COL.
 %
 %  Licensing:
 %
@@ -18,7 +18,7 @@ function h = r8mat_house_pre ( n, a, irow, jcol )
 %
 %  Modified:
 %
-%    23 April 2005
+%    17 April 2013
 %
 %  Author:
 %
@@ -31,7 +31,7 @@ function h = r8mat_house_pre ( n, a, irow, jcol )
 %    Input, real A(N,N), the matrix whose Householder matrix
 %    is to be computed.
 %
-%    Input, integer IROW, JCOL, specify the location of the
+%    Input, integer ROW, COL, specify the location of the
 %    entry of the matrix A which is to be preserved.  The entries in
 %    the same column, but higher rows, will be zeroed out if A is
 %    premultiplied by H.
@@ -42,10 +42,10 @@ function h = r8mat_house_pre ( n, a, irow, jcol )
 %
 %  Set up the vector V.
 %
-  w(1:irow-1) = 0.0;
-  w(irow:n) = a(irow:n,jcol);
+  a_col(1:row-1,1) = 0.0;
+  a_col(row:n,1) = a(row:n,col);
 
-  v = r8vec_house_column ( n, w, irow );
+  v = r8vec_house_column ( n, a_col, row );
 %
 %  Form the matrix H(V).
 %

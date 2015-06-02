@@ -33,7 +33,7 @@ function value = cos_power_int ( a, b, n )
 %
 %    Input, integer N, the power of the sine function.
 %
-%    Output, real SIN_POWER_INT, the value of the integral.
+%    Output, real VALUE, the value of the integral.
 %
   if ( n < 0 )
     fprintf ( 1, '\n' );

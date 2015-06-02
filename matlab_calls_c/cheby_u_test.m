@@ -1,3 +1,7 @@
+function cheby_u_test ( )
+
+%*****************************************************************************80
+%
 %% CHEBY_U_TEST tests the use of the MEX file CHEBY_U.C
 %
 %  Discussion:
@@ -13,12 +17,13 @@
 %
 %  Modified:
 %
-%    18 July 2006
+%    28 September 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CHEBY_U_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -77,8 +82,39 @@
     fprintf ( 1, '  %2d  %14f  %14f\n', i-1, cx(i), cx_check(i) );
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CHEBY_U_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-  
+  fprintf ( 1, '\n' );
+  timestamp ( );
+
+  return
+end
+function timestamp ( )
+
+%*****************************************************************************80
+%
+%% TIMESTAMP prints the current YMDHMS date as a timestamp.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    14 February 2003
+%
+%  Author:
+%
+%    John Burkardt
+%
+  t = now;
+  c = datevec ( t );
+  s = datestr ( c, 0 );
+  fprintf ( 1, '%s\n', s );
+
+  return
+end

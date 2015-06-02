@@ -2,7 +2,7 @@ function sphere_stereograph_display_test ( )
 
 %*****************************************************************************80
 %
-%% SPHERE_STEREOGRAPH_DISPLAY_TEST displays stereographic mappings.
+%% SPHERE_STEREOGRAPH_DISPLAY_TEST tests the SPHERE_STEREOGRAPH_DISPLAY library.
 %
 %  Discussion:
 %
@@ -24,6 +24,7 @@ function sphere_stereograph_display_test ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_STEREOGRAPH_DISPLAY_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -37,6 +38,8 @@ function sphere_stereograph_display_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_STEREOGRAPH_DISPLAY_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

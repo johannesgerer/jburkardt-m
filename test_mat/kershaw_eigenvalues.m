@@ -2,7 +2,7 @@ function lambda = kershaw_eigenvalues ( )
 
 %*****************************************************************************80
 %
-%% KERSHAW_EIGENVALUES returns the eigenvalues of the Kershaw matrix.
+%% KERSHAW_EIGENVALUES returns the eigenvalues of the KERSHAW matrix.
 %
 %  Licensing:
 %
@@ -26,9 +26,9 @@ function lambda = kershaw_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(4), the eigenvalues of the matrix.
+%    Output, real LAMBDA(4,1), the eigenvalues of the matrix.
 %
-  lambda(1:4) = [ ...
+  lambda(1:4,1) = [ ...
     5.828427124746192, ...
     5.828427124746188, ...
     0.171572875253810, ...

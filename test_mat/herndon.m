@@ -2,7 +2,7 @@ function a = herndon ( n )
 
 %*****************************************************************************80
 %
-%% HERNDON returns the Herndon matrix.
+%% HERNDON returns the HERNDON matrix.
 %
 %  Formula:
 %
@@ -10,7 +10,7 @@ function a = herndon ( n )
 %    a(n,n) = - 1 / c
 %    for i = 1 : n - 1
 %      a(i,n) = a(n,i) = i / c
-%      a(i,i) = ( c - i**2 ) / c
+%      a(i,i) = ( c - i*i ) / c
 %      for j = 1, i - 1
 %        a(i,j) = a(j,i) = - i * j / c
 %       end
@@ -67,6 +67,8 @@ function a = herndon ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   c = n * ( n + 1 ) * ( 2 * n - 5 ) / 6.0;
 
   a(n,n) = - 1.0 / c;

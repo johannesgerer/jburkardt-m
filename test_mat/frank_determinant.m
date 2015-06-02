@@ -2,7 +2,7 @@ function determ = frank_determinant ( n )
 
 %*****************************************************************************80
 %
-%% FRANK_DETERMINANT returns the determinant of the Frank matrix.
+%% FRANK_DETERMINANT returns the determinant of the FRANK matrix.
 %
 %  Licensing:
 %

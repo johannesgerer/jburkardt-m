@@ -1,0 +1,259 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_CALLS_F90 - Examples of MATLAB calling FORTRAN90 functions
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_CALLS_F90 <br>
+      Examples of MATLAB calling FORTRAN90 functions
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_CALLS_F90</b>
+      is a directory of MATLAB programs which
+      illustrate how a MATLAB program can call a FORTRAN90 function,
+      passing data to the function,
+      and receiving results from the FORTRAN90 function.
+    </p>
+
+    <p>
+      Of course, a MATLAB call normally looks something like
+      <blockquote><b>
+        [ out1, out2 ] = function_name ( in1, in2, in3 )
+      </b></blockquote>
+      so in order to pass the information to and from MATLAB, the
+      FORTRAN90 function is required to have a header like this:
+      <blockquote><b>
+        subroutine mexFunction ( nlhs, plhs, nrhs, prhs )
+      </b></blockquote>
+      where <b>nlhs</b> counts the number of output arguments, and
+      <b>plhs</b> is an integer array of pointers to those arguments,
+      with <b>nrhs</b> and <b>prhs</b> being the analogous quantities
+      for the input arguments.
+    </p>
+
+    <p>
+      The user's FORTRAN file must have an INCLUDE statement at the very
+      beginning of the file of the following form:
+      <pre>
+      # include <fintrf.h>
+      </pre>
+      This statement is handled by the FORTRAN preprocessor, and so the 
+      FORTRAN file will probably need to have an extension of ".F90" (that is, 
+      CAPITAL F90) to indicate that it requires preprocessing.  One of the
+      things this include file does is to define a datatype called
+      "mwpointer", which must be used to declare the arrays <b>plhs</b>
+      and <b>prhs</b>.
+    </p>
+
+    <p>
+      The MATLAB Mex library includes a number of operators to extract
+      information from the MATLAB input arguments, and to store the
+      computed results into the output arguments.
+    </p>
+
+    <p>
+      Once the FORTRAN90 file is written, it must be "compiled" with the MATLAB
+      MEX compiler, which will, as part of its work, also invoke some
+      C compiler on your machine.  The first time you use the MEX compiler,
+      you may need to tell it where the appropriate compiler is, or
+      which compiler to use.  You can also, at any time, request that
+      MEX switch to a different compiler, if there is a choice.  To
+      choose or change your compiler, type (inside of MATLAB)
+      <blockquote><b>
+        mex -setup
+      </b></blockquote>
+    </p>
+
+    <p>
+      Assuming your FORTRAN90 file is called <i>fact.F90</i>, for example, you
+      can process it through the MEX compiler.  You can always issue
+      this command inside of MATLAB, and on some systems, the MEX
+      compiler may be availabe directly as an external command.
+      In either case, you issue the command:
+      <blockquote><b>
+        mex fact.F90
+      </b></blockquote>
+      which creates a compiled file whose name is system-dependent.  On
+      a Windows PC, it might be called <b>fact.dll</b>, and on a UNIX
+      system, it might be something like <b>fact.mexglx</b>.  In any case,
+      the compiled file behaves essentially like a MATLAB M file called
+      <b>fact.m</b> (except that it should, you hope, execute much faster
+      than a MATLAB script).
+    </p>
+
+    <p>
+      In the very likely event that you have problems compiling the code,
+      or using it from MATLAB, you may want to request the verbose
+      compilation, with symbolic information added for debugging:
+      <blockquote><b>
+        mex -v -g fact.F90
+      </b></blockquote>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MATLAB_CALLS_F90</b> is available in
+      <a href = "../../m_src/matlab_calls_c/matlab_calls_c.html">a C version</a> and
+      <a href = "../../m_src/matlab_calls_c++/matlab_calls_c++.html">a C++ version</a> and
+      <a href = "../../m_src/matlab_calls_f77/matlab_calls_f77.html">a FORTRAN77 version</a> and
+      <a href = "../../m_src/matlab_calls_f90/matlab_calls_f90.html">a FORTRAN90 version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h1>
+
+    <p>
+      <a href = "../../c_src/c_calls_f90/c_calls_f90.html">
+      C_CALLS_F90</a>,
+      C programs which
+      illustrate a C program calling a FORTRAN90 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/c++_calls_f90/c++_calls_f90.html">
+      C++_CALLS_F90</a>,
+      C++ programs which
+      illustrate how a C++ main program can call a FORTRAN90 subroutine.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_c/f90_calls_c.html">
+      F90_CALLS_C</a>,
+      FORTRAN90 programs which
+      illustrates how a FORTRAN90 program can call a C function.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_c++/f90_calls_c++.html">
+      F90_CALLS_C++</a>,
+      FORTRAN90 programs which
+      illustrates how a FORTRAN90 program can call a C++ function.
+    </p>
+
+    <p>
+      <a href = "../../f_src/f90_calls_matlab/f90_calls_matlab.html">
+      F90_CALLS_MATLAB</a>,
+      FORTRAN90 programs which
+      call MATLAB to carry out an auxillary calculation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_calls_c/matlab_calls_c.html">
+      MATLAB_CALLS_C</a>,
+      MATLAB programs which
+      call a C function using the MEX facility.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mex/mex.html">
+      MEX</a>,
+      MATLAB programs which
+      call lower-level functions written in traditional languages such
+      as C, C++, FORTRAN77 or FORTRAN90, compiled with MATLAB's
+      <b>mex</b> compiler.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h1>
+
+    <p>
+      <ul>
+        <li>
+          Duane Hanselman, Bruce Littlefield,<br>
+          Mastering MATLAB 7,<br>
+          Pearson Prentice Hall, 2005,<br>
+          ISBN: 0-13-143018-1.
+        </li>
+        <li>
+          The Mathworks,<br>
+          MATLAB External Interfaces,<br>
+          The Mathworks, 2000.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples:
+    </h1>
+
+    <p>
+      <b>FACT</b> is an example in which a FORTRAN90 function is used to
+      compute the factorial function.  A single routine is used,
+      which takes care of the "translation" between MATLAB and FORTRAN90,
+      and the computation of the result.
+      <ul>
+        <li>
+          <a href = "fact.F90">fact.F90</a>, the source code of the FORTRAN90
+          function.
+        </li>
+        <li>
+          <a href = "fact_test.m">fact_test.m</a>, a MATLAB M file which
+          compiles FORTRAN90 code and uses it.
+        </li>
+        <li>
+          <a href = "fact_test_output.txt">fact_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CHEBY_U</b> is an example in which a FORTRAN90 function is used to
+      compute the Chebyshev U polynomial.  The coding is done in such
+      a way that the computation is in a separate FORTRAN90 function; the
+      mexFunction is only used to "translate" between MATLAB and C.
+      <ul>
+        <li>
+          <a href = "cheby_u.F90">cheby_u.F90</a>, the source code of the
+          FORTRAN77 function.
+        </li>
+        <li>
+          <a href = "cheby_u_test.m">cheby_u_test.m</a>, a MATLAB M file which
+          compiles the FORTRAN90 code and uses it.
+        </li>
+        <li>
+          <a href = "cheby_u_test_output.txt">cheby_u_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 September 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

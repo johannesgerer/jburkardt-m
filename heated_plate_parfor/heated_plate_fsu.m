@@ -10,7 +10,7 @@
 %    'w' indicates that the MATLAB session should wait for completion;
 %    4 is the number of processors requested;
 %    @heated_plate_fun indicates the function we want to execute;
-%    {*,*} contains input arguments.
+%    { tol, filename } contains input arguments.
 %
 %    The function "heated_plate_fun" must correspond to a MATLAB M-file
 %    "heated_plate_fun.m" and that file must be in MATLAB's path.
@@ -35,4 +35,4 @@
   tol = 0.001;
   filename = 'solution.txt';
 
-  fsuClusterMatlab ( [], [], 'p', 'w', 4, @heated_plate_fun, { tol, filename } )
+  results = fsuClusterMatlab ( [], [], 'p', 'w', 4, @heated_plate_fun, { tol, filename } )

@@ -2,7 +2,7 @@ function a = helmert_inverse ( n )
 
 %*****************************************************************************80
 %
-%% HELMERT_INVERSE returns the inverse of the Helmert matrix.
+%% HELMERT_INVERSE returns the inverse of the HELMERT matrix.
 %
 %  Licensing:
 %

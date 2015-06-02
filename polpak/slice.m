@@ -40,7 +40,7 @@ function piece_num = slice ( dim_num, slice_num )
 %
 %    Input, integer SLICE_NUM, the number of slices.
 %
-%    Input, real PIECE_NUM, the maximum number of pieces that can
+%    Input, integer PIECE_NUM, the maximum number of pieces that can
 %    be created by the given number of slices applied in the given dimension.
 %
   piece_num = 0;

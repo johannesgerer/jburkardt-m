@@ -102,9 +102,9 @@ function [ x, ierror ] = congruence ( a, b, c )
 %  Step 2: Split A and B into sign and magnitude.
 %
   a_mag = abs ( a_copy );
-  a_sign = i_sign ( a_copy );
+  a_sign = i4_sign ( a_copy );
   b_mag = abs ( b_copy );
-  b_sign = i_sign ( b_copy );
+  b_sign = i4_sign ( b_copy );
 %
 %  Another special case, A_MAG = 1 or B_MAG = 1.
 %

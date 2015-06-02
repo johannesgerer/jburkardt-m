@@ -10,7 +10,7 @@ function value = year_is_leap_coptic ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    25 March 2013
 %
 %  Author:
 %
@@ -32,7 +32,7 @@ function value = year_is_leap_coptic ( y )
   if ( y <= 0 )
     value = 0;
     return
-  end if
+  end
 
   if ( mod ( y, 4 ) == 3 )
     value = 1;

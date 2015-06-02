@@ -2,7 +2,7 @@ function a = ijfact1 ( n )
 
 %*****************************************************************************80
 %
-%% IJFACT1 returns the (I+J) factorial matrix.
+%% IJFACT1 returns the IJFACT1 matrix.
 %
 %  Formula:
 %
@@ -29,6 +29,8 @@ function a = ijfact1 ( n )
 %
 %    A is integral: int ( A ) = A.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -53,6 +55,8 @@ function a = ijfact1 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   fact = 1;
 
   for k = 2 : 2 * n

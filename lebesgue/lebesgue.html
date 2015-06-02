@@ -1,0 +1,263 @@
+<html>
+
+  <head>
+    <title>
+      LEBESGUE - Estimate the Lebesgue Constant
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LEBESGUE <br> Estimate the Lebesgue Constant
+    </h1>
+
+    <hr>
+ 
+    <p>
+      <b>LEBESGUE</b> 
+      is a MATLAB library which
+      is given a set of nodes in 1D, and
+      plots the Lebesgue function, and estimates the Lebesgue constant,
+      which measures the maximum magnitude of the potential error 
+      of Lagrange polynomial interpolation.
+    </p>
+
+    <p>
+      Any set of nodes in the real line X(I), for 1 <= I <= N, defines
+      a corresponding set of Lagrange basis functions:
+      <pre>
+        L(I)(X) = product ( 1 <= J <= N, J /= I ) ( X    - X(J) ) 
+                / product ( 1 <= J <= N, J /= I ) ( X(I) - X(J) )
+      </pre>
+      with the property that 
+      <pre>
+        L(I)(X(J)) = 0 if I /= J
+                     1 if I  = J
+      </pre>
+    </p>
+
+    <p>
+      The Lebesgue function is formed by the sum of the absolute values of
+      these Lagrange basis functions:
+      <pre>
+        LF(X) = sum ( 1 <= I <= N ) | L(I)(X) |
+      </pre>
+      and the Lebesgue constant LC is the maximum value of LF(X) over the
+      interpolation interval, which is typically X(1) to X(N), or
+      min ( X(*) ), max ( X(*) ), or [-1,+1], or some user-defined interval.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LEBESGUE</b> is available in
+      <a href = "../../c_src/lebesgue/lebesgue.html">a C version</a> and
+      <a href = "../../cpp_src/lebesgue/lebesgue.html">a C++ version</a> and
+      <a href = "../../f77_src/lebesgue/lebesgue.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/lebesgue/lebesgue.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lebesgue/lebesgue.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      defines quadrature rules for approximating an integral over a 1D domain.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+    
+    <p>
+      <ol>
+        <li>
+          Jean-Paul Berrut, Lloyd Trefethen,<br>
+          Barycentric Lagrange Interpolation,<br>
+          SIAM Review,<br>
+          Volume 46, Number 3, September 2004, pages 501-517.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebyshev1.m">chebyshev1.m</a>, 
+          evaluates the Chebyshev Type 1 points.
+        </li>
+        <li>
+          <a href = "chebyshev2.m">chebyshev2.m</a>, 
+          evaluates the Chebyshev Type 2 points.
+        </li>
+        <li>
+          <a href = "chebyshev3.m">chebyshev3.m</a>, 
+          evaluates the Chebyshev Type 3 points.
+        </li>
+        <li>
+          <a href = "chebyshev4.m">chebyshev4.m</a>, 
+          evaluates the Chebyshev Type 4 points.
+        </li>
+        <li>
+          <a href = "equidistant1.m">equidistant1.m</a>, 
+          evaluates the Equidistant Type 1 points.
+        </li>
+        <li>
+          <a href = "equidistant2.m">equidistant2.m</a>, 
+          evaluates the Equidistant Type 2 points.
+        </li>
+        <li>
+          <a href = "equidistant3.m">equidistant3.m</a>, 
+          evaluates the Equidistant Type 3 points.
+        </li>
+        <li>
+          <a href = "fejer1.m">fejer1.m</a>, 
+          evaluates the Fejer Type 1 points.
+        </li>
+        <li>
+          <a href = "fejer2.m">fejer2.m</a>, 
+          evaluates the Fejer Type 2 points.
+        </li>
+        <li>
+          <a href = "lebesgue_constant.m">lebesgue_constant.m</a>, 
+          estimates the Lebesgue constant.
+        </li>
+        <li>
+          <a href = "lebesgue_function.m">lebesgue_function.m</a>, 
+          evaluates the Lebesgue function.
+        </li>
+        <li>
+          <a href = "lebesgue_plot.m">lebesgue_plot.m</a>, 
+          plots the Lebesgue function.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lebesgue_test.m">lebesgue_test.m</a>, 
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "lebesgue_test_output.txt">lebesgue_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "lebesgue_test01.m">lebesgue_test01.m</a>, 
+          examines point sets computed by chebyshev1().
+        </li>
+        <li>
+          <a href = "lebesgue_test02.m">lebesgue_test02.m</a>, 
+          examines point sets computed by chebyshev2().
+        </li>
+        <li>
+          <a href = "lebesgue_test03.m">lebesgue_test03.m</a>, 
+          examines point sets computed by chebyshev3().
+        </li>
+        <li>
+          <a href = "lebesgue_test04.m">lebesgue_test04.m</a>, 
+          examines point sets computed by chebyshev4().
+        </li>
+        <li>
+          <a href = "lebesgue_test05.m">lebesgue_test05.m</a>, 
+          examines point sets computed by equidistant1().
+        </li>
+        <li>
+          <a href = "lebesgue_test06.m">lebesgue_test06.m</a>, 
+          examines point sets computed by equidistant2().
+        </li>
+        <li>
+          <a href = "lebesgue_test07.m">lebesgue_test07.m</a>, 
+          examines point sets computed by equidistant3().
+        </li>
+        <li>
+          <a href = "lebesgue_test08.m">lebesgue_test08.m</a>, 
+          examines point sets computed by fejer1().
+        </li>
+        <li>
+          <a href = "lebesgue_test09.m">lebesgue_test09.m</a>, 
+          examines point sets computed by fejer2().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The test programs create plots of the Lebesgue function for
+      specific sizes of the point sets.
+      <ul>
+        <li>
+          <a href = "chebyshev1.png">chebyshev1.png</a>
+        </li>
+        <li>
+          <a href = "chebyshev2.png">chebyshev2.png</a>
+        </li>
+        <li>
+          <a href = "chebyshev3.png">chebyshev3.png</a>
+        </li>
+        <li>
+          <a href = "chebyshev4.png">chebyshev4.png</a>
+        </li>
+        <li>
+          <a href = "equidistant1.png">equidistant1.png</a>
+        </li>
+        <li>
+          <a href = "equidistant2.png">equidistant2.png</a>
+        </li>
+        <li>
+          <a href = "equidistant3.png">equidistant3.png</a>
+        </li>
+        <li>
+          <a href = "fejer1.png">fejer1.png</a>
+        </li>
+        <li>
+          <a href = "fejer2.png">fejer2.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+    
+    <hr>
+
+    <i>
+      Last revised on 17 January 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

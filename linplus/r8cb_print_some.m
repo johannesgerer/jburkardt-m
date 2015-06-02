@@ -87,7 +87,7 @@ function r8cb_print_some ( m, n, ml, mu, a, ilo, jlo, ihi, jhi, title )
         if ( ml < i - j | mu < j - i )
           fprintf ( 1, '              ' )';
         else
-          fprintf ( 1, '%12f  ', a(i-j+mu+1,j) );
+          fprintf ( 1, '%12g  ', a(i-j+mu+1,j) );
         end
 
       end
@@ -97,8 +97,6 @@ function r8cb_print_some ( m, n, ml, mu, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

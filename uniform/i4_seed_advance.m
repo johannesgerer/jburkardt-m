@@ -31,7 +31,7 @@ function seed = i4_seed_advance ( seed )
 %
 %  Modified:
 %
-%    21 May 2008
+%    05 April 2013
 %
 %  Author:
 %
@@ -73,6 +73,14 @@ function seed = i4_seed_advance ( seed )
 %    Output, integer SEED, the "next" seed.
 %
   i4_huge = 2147483647;
+
+  seed = floor ( seed );
+
+  seed = mod ( seed, i4_huge );
+
+  if ( seed < 0 )
+    seed = seed + i4_huge;
+  end
 
   k = floor ( seed / 127773 );
 

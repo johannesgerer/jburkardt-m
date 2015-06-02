@@ -2,7 +2,7 @@ function a = grcar ( m, n, k )
 
 %*****************************************************************************80
 %
-%% GRCAR returns the Grcar matrix.
+%% GRCAR returns the GRCAR matrix.
 %
 %  Formula:
 %
@@ -44,6 +44,8 @@ function a = grcar ( m, n, k )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -78,6 +80,8 @@ function a = grcar ( m, n, k )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
 
     for j = 1 : n

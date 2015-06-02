@@ -10,7 +10,7 @@ function fx2 = p00_fx2 ( prob, x )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -60,6 +60,8 @@ function fx2 = p00_fx2 ( prob, x )
     fx2 = p17_fx2 ( x );
   elseif ( prob == 18 )
     fx2 = p18_fx2 ( x );
+  elseif ( prob == 19 )
+    fx2 = p19_fx2 ( x );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_FX2 - Fatal error!\n' );

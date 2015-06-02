@@ -2,7 +2,7 @@ function uniform_test ( )
 
 %*****************************************************************************80
 %
-%% UNIFORM_TEST tests UNIFORM.
+%% UNIFORM_TEST tests the UNIFORM library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function uniform_test ( )
 %
 %  Modified:
 %
-%    22 May 2008
+%    29 December 2014
 %
 %  Author:
 %
@@ -22,45 +22,54 @@ function uniform_test ( )
   fprintf ( 1, '  MATLAB version:\n' );
   fprintf ( 1, '  Test the UNIFORM library.\n' );
 
-  uniform_test01 ( );
-  uniform_test02 ( );
-  uniform_test03 ( );
-  uniform_test04 ( );
-  uniform_test05 ( );
-  uniform_test06 ( );
-  uniform_test065 ( );
-  uniform_test07 ( );
-  uniform_test08 ( );
-  uniform_test09 ( );
+  bvec_uniform_test ( );
 
-  uniform_test10 ();
-  if ( 0 )
-    uniform_test11 ( );
-  else
-    fprintf ( 1, '\n' );
-    fprintf ( 1, '  Skipping UNIFORM_TEST11.\n' );
-  end
-  uniform_test111 ( );
-  uniform_test112 ( );
-  uniform_test118 ( );
-  uniform_test119 ( );
-  uniform_test12 ( );
-  uniform_test13 ( );
-  uniform_test14 ( );
-  uniform_test15 ( );
-  uniform_test16 ( );
-  uniform_test17 ( );
-  uniform_test18 ( );
-  uniform_test19 ( );
+  c4_uniform_01_test ( );
+  c4mat_uniform_01_test ( );
+  c4vec_uniform_01_test ( );
 
-  uniform_test20 ( );
+  c8_uniform_01_test ( );
+  c8mat_uniform_01_test ( );
+  c8vec_uniform_01_test ( );
+
+  ch_uniform_ab_test ( );
+
+  get_seed_test ( );
+
+  i4_seed_advance_test ( );
+
+  i4_uniform_0i_test ( );
+  i4_uniform_ab_test ( );
+  i4mat_uniform_ab_test ( );
+  i4vec_uniform_ab_test ( );
+
+  l4_uniform_test ( );
+  l4mat_uniform_test ( );
+  l4vec_uniform_test ( );
+
+  lcrg_anbn_test ( );
+  lcrg_seed_test ( );
+
+  r4_uniform_01_test ( );
+  r4_uniform_ab_test ( );
+  r4mat_uniform_ab_test ( );
+  r4vec_uniform_ab_test ( );
+
+  r8_uniform_01_test ( );
+  r8_uniform_ab_test ( );
+  r8mat_uniform_ab_test ( );
+  r8vec_uniform_01_test ( );
+  r8vec_uniform_ab_test ( );
+
+  r8col_uniform_abvec_test ( );
+  r8row_uniform_abvec_test ( );
+  r8vec_uniform_abvec_test ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'UNIFORM_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

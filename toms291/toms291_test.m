@@ -2,7 +2,11 @@ function toms291_test ( )
 
 %*****************************************************************************80
 %
-%% TOMS291_TEST tests TOMS291.
+%% TOMS291_TEST tests the TOMS291 library.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -25,7 +29,6 @@ function toms291_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TOMS291_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

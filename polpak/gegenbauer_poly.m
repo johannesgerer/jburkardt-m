@@ -34,10 +34,10 @@ function cx = gegenbauer_poly ( n, alpha, x )
 %  Norm:
 %
 %    Integral ( -1 <= X <= 1 ) 
-%      ( 1 - X**2 )**( ALPHA - 0.5 ) * C(N,ALPHA,X)**2 dX
+%      ( 1 - X^2 )^( ALPHA - 0.5 ) * C(N,ALPHA,X)^2 dX
 %
-%    = PI * 2**( 1 - 2 * ALPHA ) * Gamma ( N + 2 * ALPHA ) 
-%      / ( N! * ( N + ALPHA ) * ( Gamma ( ALPHA ) )**2 )
+%    = PI * 2^( 1 - 2 * ALPHA ) * Gamma ( N + 2 * ALPHA ) 
+%      / ( N! * ( N + ALPHA ) * ( Gamma ( ALPHA ) )^2 )
 %
 %  Licensing:
 %

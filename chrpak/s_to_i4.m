@@ -10,7 +10,7 @@ function ival = s_to_i4 ( s )
 %
 %  Modified:
 %
-%    09 February 2010
+%    20 January 2014
 %
 %  Author:
 %
@@ -22,13 +22,19 @@ function ival = s_to_i4 ( s )
 %
 %    Output, integer IVAL, the integer value read from the string.
 %
-  sgn = 1;
-  state = 0;
   ival = 0;
 
+  s_len = length ( s );
+
+  if ( s_len <= 0 )
+    return
+  end
+
+  sgn = 1;
+  state = 0;
   i = 0;
 
-  while ( i < s_len_trim ( s ) )
+  while ( i < s_len )
 
     i = i + 1;
     c = s(i);
@@ -49,7 +55,8 @@ function ival = s_to_i4 ( s )
       else
         fprintf ( '\n' );
         fprintf ( 'S_TO_I4 - Fatal error!\n' );
-        fprintf ( '  Illegal character %c while in state %d.\n', c, state );
+        fprintf ( '  Illegal character ''%c'' while in state %d.\n', c, state );
+        fprintf ( '  Input string was "%s"\n', s );
         return;
       end
 %
@@ -65,7 +72,8 @@ function ival = s_to_i4 ( s )
       else
         fprintf ( '\n' );
         fprintf ( 'S_TO_I4 - Fatal error!\n' );
-        fprintf ( '  Illegal character %c while in state %d.\n', c, state );
+        fprintf ( '  Illegal character ''%c'' while in state %d.\n', c, state );
+        fprintf ( '  Input string was "%s"\n', s );
         return
       end
 %

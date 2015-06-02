@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_eg_civil ( jed )
 %
 %  Modified:
 %
-%    09 July 2012
+%    09 March 2013
 %
 %  Author:
 %
@@ -33,7 +33,7 @@ function [ y, m, d, f ] = jed_to_ymdf_eg_civil ( jed )
 %
 %  Determine the computational date (Y'/M'/D').
 %
-  j = int ( jed + 0.5 );
+  j = floor ( jed + 0.5 );
   f = ( jed + 0.5 ) - j;
 
   j_prime = j + 47 - 1;

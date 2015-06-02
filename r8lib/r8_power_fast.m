@@ -68,9 +68,9 @@ function [ rp, mults ] = r8_power_fast ( r, p )
 
     if ( p <= 0 )
       fprintf ( 1, '\n' );
-      fprintf ( 1, 'D_POWER_FAST - Fatal error!\n' );
+      fprintf ( 1, 'R8_POWER_FAST - Fatal error!\n' );
       fprintf ( 1, '  Base is zero, and exponent is negative.\n' );
-      error ( 'D_POWER_FAST - Fatal error!' );
+      error ( 'R8_POWER_FAST - Fatal error!' );
     end
 
     rp = 0.0;
@@ -114,7 +114,7 @@ function [ rp, mults ] = r8_power_fast ( r, p )
   end
 
   if ( p_sign == -1 )
-    rp = 1.0D+00 / rp;
+    rp = 1.0 / rp;
     mults = mults + 1;
   end
 

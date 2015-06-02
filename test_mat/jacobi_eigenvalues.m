@@ -20,9 +20,9 @@ function lambda = jacobi_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda = legendre_zeros ( n );
+  lambda(1:n,1) = legendre_zeros ( n );
 
   return
 end

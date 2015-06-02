@@ -48,6 +48,8 @@ function a = toeplitz ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     a(i,1:n) = x(n-i+1:n-i+n);
   end

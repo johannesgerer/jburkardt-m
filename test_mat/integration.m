@@ -2,7 +2,7 @@ function a = integration ( alpha, n )
 
 %*****************************************************************************80
 %
-%% INTEGRATION returns the integration matrix.
+%% INTEGRATION returns the INTEGRATION matrix.
 %
 %  Formula:
 %
@@ -41,6 +41,8 @@ function a = integration ( alpha, n )
 %
 %    LAMBDA(1:N) = 1.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -62,6 +64,7 @@ function a = integration ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n

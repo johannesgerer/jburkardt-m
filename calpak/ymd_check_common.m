@@ -1,4 +1,4 @@
-function [ y, m, d, value ] = ymd_check_common ( y, m, d )
+function [ y, m, d, ierror ] = ymd_check_common ( y, m, d )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function [ y, m, d, value ] = ymd_check_common ( y, m, d )
 %
 %  Modified:
 %
-%    15 October 2012
+%    24 February 2013
 %
 %  Author:
 %
@@ -20,16 +20,16 @@ function [ y, m, d, value ] = ymd_check_common ( y, m, d )
 %
 %    Input/output, integer Y, M, D, the YMD date.
 %
-%    Output, integer VALUE, is 0 if no error was found in the date
+%    Output, integer IERROR, is 0 if no error was found in the date
 %    and 1 otherwise.
 %
 
 %
 %  Check the year.
 %
-  value = y_check_common ( y );
+  [ y, ierror ] = y_check_common ( y );
 
-  if ( value ~= 0 )
+  if ( ierror ~= 0 )
     return
   end
 %
@@ -43,7 +43,7 @@ function [ y, m, d, value ] = ymd_check_common ( y, m, d )
 %
   [ y, m, d ] = day_borrow_common ( y, m, d );
 
-  [ y, m, d ] = dat_carry_common ( y, m, d );
+  [ y, m, d ] = day_carry_common ( y, m, d );
 
   return
 end

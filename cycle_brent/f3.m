@@ -22,6 +22,10 @@ function value = f3 ( i )
 %
 %  Parameters:
 %
+%    Input, integer I, the argument of the function.
+%
+%    Output, integer VALUE, the value of the function.
+%
   value = mod ( 123 * i + 456, 1000000 );
 
   return

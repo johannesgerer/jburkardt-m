@@ -2,7 +2,7 @@ function quadrature_test ( quad_filename )
 
 %*****************************************************************************80
 %
-%% QUADRATURE_TEST is the main program.
+%% QUADRATURE_TEST investigates quadrature rule accuracy.
 %
 %  Licensing:
 %
@@ -20,7 +20,6 @@ function quadrature_test ( quad_filename )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUADRATURE_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Investigate the accuracy of a multidimensional quadrature\n' );
   fprintf ( 1, '  rule by integrating test functions.\n' );
 %

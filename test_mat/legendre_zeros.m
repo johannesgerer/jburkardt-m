@@ -22,6 +22,8 @@ function x = legendre_zeros ( n )
 %
 %    Output, real X(N), the zeros of the polynomial.
 %
+  x = zeros ( n, 1 );
+
   e1 = ( n * ( n + 1 ) );
 
   m = floor ( ( n + 1 ) / 2 );

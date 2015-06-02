@@ -127,7 +127,6 @@ function feynman_kac_1d ( )
   end
 
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEYNMAN_KAC_1D:\n' );
   fprintf ( 1, '  MATLAB version.\n' );
@@ -292,7 +291,6 @@ function feynman_kac_1d ( )
   fprintf ( 1, 'FEYNMAN_KAC_1D:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
   fprintf ( 1, '\n' );
-
   timestamp ( );
 
 %  return

@@ -18,7 +18,7 @@ function p19_demo ( iteration_max, h )
 %
 %  Reference:
 %
-%    Per-Olof Persson and Gilbert Strang,
+%    Per-Olof Persson, Gilbert Strang,
 %    A Simple Mesh Generator in MATLAB,
 %    SIAM Review,
 %    Volume 46, Number 2, June 2004, pages 329-345.

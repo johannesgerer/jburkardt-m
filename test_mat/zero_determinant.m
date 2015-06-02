@@ -2,7 +2,7 @@ function determ = zero_determinant ( n )
 
 %*****************************************************************************80
 %
-%% ZERO_DETERMINANT returns the determinant of the zero matrix.
+%% ZERO_DETERMINANT returns the determinant of the ZERO matrix.
 %
 %  Licensing:
 %

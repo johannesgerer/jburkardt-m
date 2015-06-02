@@ -2,7 +2,7 @@ function msm_to_st_test ( )
 
 %*****************************************************************************80
 %
-%% MSM_TO_ST_TEST runs the MSM_TO_ST tests.
+%% MSM_TO_ST_TEST tests the MSM_TO_ST library.
 %
 %  Licensing:
 %
@@ -23,11 +23,12 @@ function msm_to_st_test ( )
   fprintf ( 1, '  Test the MSM_TO_ST library.\n' );
 
   msm_to_st_test01 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MSM_TO_ST_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

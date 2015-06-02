@@ -7,9 +7,9 @@ function a = moler1_inverse ( alpha, n )
 %  Formula:
 %
 %    if ( I = J )
-%      A(I,J) =               min ( N-I, N-J )*ALPHA**2 + 1
+%      A(I,J) =              min ( N-I, N-J ) * ALPHA^2 + 1
 %    else
-%      A(I,J) = (-1)**(I+J) * min ( N-I, N-J ) * ALPHA**2 + ALPHA
+%      A(I,J) = (-1)^(I+J) * min ( N-I, N-J ) * ALPHA^2 + ALPHA
 %
 %  Example:
 %
@@ -48,6 +48,9 @@ function a = moler1_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
+  v = zeros ( n, 1 );
   v(1) = 1.0;
   v(2) = - alpha;
   for i = 3 : n
@@ -57,9 +60,9 @@ function a = moler1_inverse ( alpha, n )
   for i = 1 : n
     for j = 1 : n
       if ( i <= j )
-        a(i,j) = v(1+j-i:n+1-i) * v(1    :n+1-j)';
+        a(i,j) = v(1+j-i:n+1-i)' * v(1    :n+1-j);
       else
-        a(i,j) = v(1    :n+1-i) * v(1+i-j:n+1-j)';
+        a(i,j) = v(1    :n+1-i)' * v(1+i-j:n+1-j);
       end
     end
   end

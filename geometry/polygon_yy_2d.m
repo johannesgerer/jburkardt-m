@@ -9,7 +9,7 @@ function result = polygon_yy_2d ( n, v )
 %    The polygon is bounded by the points (X(1:N), Y(1:N)).
 %
 %    INTEGRAL = (1/12) * sum ( 1 <= I <= N )
-%      - ( Y(I)**3 + Y(I)**2 * Y(I-1) + Y(I) * Y(I-1)**2 + Y(I-1)**3 )
+%      - ( Y(I)^3 + Y(I)^2 * Y(I-1) + Y(I) * Y(I-1)^2 + Y(I-1)^3 )
 %      * ( X(I) - X(I-1) )
 %
 %    where X(0) and Y(0) should be replaced by X(N) and Y(N).
@@ -44,7 +44,6 @@ function result = polygon_yy_2d ( n, v )
 %
 %    Output, real RESULT, the value of the integral.
 %
-  dim_num = 2;
   result = 0.0;
 
   if ( n < 3 )

@@ -29,6 +29,8 @@ function a = wilk21_inverse ( n )
 %
 %    Output, real A(N,N), the inverse of the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     y(i) = round ( abs ( i - ( n + 1 ) / 2.0 ) );
   end

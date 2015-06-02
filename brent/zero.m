@@ -14,13 +14,16 @@ function value = zero ( a, b, machep, t, f )
 %    The location of the zero is determined to within an accuracy
 %    of 6 * MACHEPS * abs ( C ) + 2 * T.
 %
+%    Thanks to Thomas Secretin for pointing out a transcription error in the
+%    setting of the value of P, 11 February 2013.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    13 April 2008
+%    11 February 2013
 %
 %  Author:
 %
@@ -102,7 +105,7 @@ function value = zero ( a, b, machep, t, f )
 
         q = fa / fc;
         r = fb / fc;
-        p = s * ( 2.0 * m * a * ( q - r ) - ( sb - sa ) * ( r - 1.0 ) );
+        p = s * ( 2.0 * m * q * ( q - r ) - ( sb - sa ) * ( r - 1.0 ) );
         q = ( q - 1.0 ) * ( r - 1.0 ) * ( s - 1.0 );
 
       end

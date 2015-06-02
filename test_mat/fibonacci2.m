@@ -2,7 +2,7 @@ function a = fibonacci2 ( n )
 
 %*****************************************************************************80
 %
-%% FIBONACCI2 returns the Fibonacci2 matrix.
+%% FIBONACCI2 returns the FIBONACCI2 matrix.
 %
 %  Example:
 %
@@ -31,7 +31,7 @@ function a = fibonacci2 ( n )
 %    If N = 1 then
 %      det ( A ) = 0
 %    else
-%      det ( A ) = (-1)**(N-1)
+%      det ( A ) = (-1)^(N-1)
 %
 %    If 1 < N, then A is unimodular.
 %
@@ -57,6 +57,8 @@ function a = fibonacci2 ( n )
 %    for instance, that the convergence of the eigenvector in the power 
 %    method will be very slow.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -75,6 +77,8 @@ function a = fibonacci2 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

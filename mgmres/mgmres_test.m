@@ -2,7 +2,7 @@ function mgmres_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN tests the MGMRES library.
+%% MGMRES_TEST tests the MGMRES library.
 %
 %  Licensing:
 %
@@ -17,9 +17,8 @@ function mgmres_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'MGMRES_PRB:\n' );
+  fprintf ( 1, 'MGMRES_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the MGMRES library.\n' );
 
@@ -29,9 +28,8 @@ function mgmres_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'MGMRES_PRB:\n' );
+  fprintf ( 1, 'MGMRES_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

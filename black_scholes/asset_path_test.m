@@ -18,7 +18,7 @@ function asset_path_test ( )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASSET_PATH_TEST:\n' );
-  fprintf ( 1, '  Demonstrate the simulated of an asset price path.\n' );
+  fprintf ( 1, '  Demonstrate the simulation of an asset price path.\n' );
 
   s0 = 2.0;
   mu = 0.1;

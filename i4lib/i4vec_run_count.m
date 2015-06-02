@@ -40,7 +40,7 @@ function run_count = i4vec_run_count ( n, a )
 
   for i = 1 : n
 
-    if ( i == 1 | a(i) ~= test )
+    if ( i == 1 || a(i) ~= test )
       run_count = run_count + 1;
       test = a(i);
     end

@@ -2,7 +2,7 @@ function value = i4_sign ( i )
 
 %*****************************************************************************80
 %
-%% I4_SIGN returns the sign of an integer.
+%% I4_SIGN returns the sign of an I4.
 %
 %  Discussion:
 %
@@ -14,7 +14,7 @@ function value = i4_sign ( i )
 %
 %  Modified:
 %
-%    11 June 2005
+%    28 September 2014
 %
 %  Author:
 %
@@ -26,10 +26,10 @@ function value = i4_sign ( i )
 %
 %    Output, integer VALUE, the sign of I.
 %
-  if ( 0 <= i )
-    value = +1;
-  else
+  if ( i < 0 )
     value = -1;
+  else
+    value = +1;
   end
 
   return

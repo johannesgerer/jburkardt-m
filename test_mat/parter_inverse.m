@@ -2,7 +2,7 @@ function a = parter_inverse ( n )
 
 %*****************************************************************************80
 %
-%% PARTER_INVERSE returns the inverse of the Parter matrix.
+%% PARTER_INVERSE returns the inverse of the PARTER matrix.
 %
 %  Licensing:
 %
@@ -22,6 +22,8 @@ function a = parter_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

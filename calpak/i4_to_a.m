@@ -43,9 +43,9 @@ function a = i4_to_a ( i )
   if ( i <= 0 )
     a = ' ';
   elseif ( 1 <= i && i <= 26 )
-    a = 'A' + i - 1;
+    a = char ( 'A' + i - 1 );
   elseif ( 27 <= i && i <= 52 )
-    a = 'a' + i - 27;
+    a = char ( 'a' + i - 27 );
   else
     a = ' ';
   end

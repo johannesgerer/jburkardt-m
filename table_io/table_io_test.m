@@ -2,7 +2,7 @@ function table_io_test ( )
 
 %*****************************************************************************80
 %
-%% TABLE_IO_TEST runs the TABLE_IO tests.
+%% TABLE_IO_TEST tests the TABLE_IO library.
 %
 %  Licensing:
 %
@@ -34,7 +34,6 @@ function table_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TABLE_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

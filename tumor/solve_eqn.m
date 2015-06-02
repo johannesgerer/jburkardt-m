@@ -1,7 +1,13 @@
 function f =  solve_eqn ( nuk, time, dt, a_matrix, vcur, ccur, fcur, ...
   etacur, fold )  
 
+%*****************************************************************************80
+%
 %% SOLVE_EQN sets up and solves the linear system for V, C or F.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -24,7 +30,7 @@ function f =  solve_eqn ( nuk, time, dt, a_matrix, vcur, ccur, fcur, ...
 %
 %  Set up quadrature information on [-1,1]
 %
-  [ xq, wq ] = gauss3pt;
+  [ xq, wq ] = gauss3pt ( );
 
   disp ( 'Setup' )
 

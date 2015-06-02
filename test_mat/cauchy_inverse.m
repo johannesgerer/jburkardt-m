@@ -2,7 +2,7 @@ function a = cauchy_inverse ( n, x, y )
 
 %*****************************************************************************80
 %
-%% CAUCHY_INVERSE returns the inverse of the Cauchy matrix.
+%% CAUCHY_INVERSE returns the inverse of the CAUCHY matrix.
 %
 %  Formula:
 %
@@ -58,7 +58,7 @@ function a = cauchy_inverse ( n, x, y )
 %
 %    Output, real A(N,N), the matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  Check the data.
 %

@@ -2,7 +2,11 @@ function r_size  = nwspgr_size ( type, dim, k, sym, compress )
 
 %*****************************************************************************80
 %
-%% NWSPGR generates nodes and weights for sparse grid integration.
+%% NWSPGR_SIZE determines the size of a sparse grid rule.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -10,7 +14,8 @@ function r_size  = nwspgr_size ( type, dim, k, sym, compress )
 %
 %  Author:
 %
-%    Florian Heiss, Viktor Winschel
+%    Original MATLAB version by Florian Heiss, Viktor Winschel.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -42,11 +47,11 @@ function r_size  = nwspgr_size ( type, dim, k, sym, compress )
 %    Input, integer SYM.  This is only useful when the user has 
 %    chosen to supply the 1D quadrature rule.  In that case, if the rule is 
 %    symmetric, specifying SYM to be 1 will allow the code to run faster.
-%    But this also requires that the user function only return the nonnegative
-%    abscissas and their weights.
+%    But this also requires that the user quadrature rule function only 
+%    return the nonnegative abscissas and their weights.
 %
 %    Input, integer COMPRESS,
-%    0, do not compress the rule (merge duplicate points)
+%    0, do not compress the rule ( = do not merge duplicate points.)
 %    1, compress the rule.
 %
 %    Output, integer R_SIZE, the "size" of the rule.

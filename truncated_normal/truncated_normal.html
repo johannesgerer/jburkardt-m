@@ -1,0 +1,798 @@
+<html>
+
+  <head>
+    <title>
+      TRUNCATED_NORMAL - The Truncated Normal Distribution
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRUNCATED_NORMAL <br> The Truncated Normal Distribution
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRUNCATED_NORMAL</b> 
+      is a MATLAB library which 
+      computes quantities associated with the truncated normal distribution.
+    </p>
+
+    <p>
+      In statistics and probability, many quantities are well modeled by the
+      normal distribution, often called the "bell curve".  The main
+      features of the normal distribution are that it has an average value
+      or mean, whose probability exceeds that of all other values, and that on
+      either side of the mean, the density function smoothly decreases, without
+      every becoming zero.
+    </p>
+
+    <p>
+      For various reasons, it may be preferable to work with a truncated normal
+      distribution.  This may be because the normal distribution is a good fit
+      for our data, but for physical reasons we know our data can never be
+      negative, or we only wish to consider data within a particular range of 
+      interest to us, which we might symbolize as [A,B], or [A,+oo), or (-oo,B),
+      depending on the truncation we apply.
+    </p>
+
+    <p>
+      It is possible to define a truncated normal distribution by first assuming
+      the existence of a "parent" normal distribution, with mean MU and standard
+      deviation SIGMA.  We may then derive a modified distribution which is zero
+      outside the region of interest, and inside the region, has the same 
+      "shape" as the parent normal distribution, although scaled by a constant 
+      so that its integral is 1.
+    </p>
+
+    <p>
+      Note that, although we define the truncated normal distribution function
+      in terms of a parent normal distribution with mean MU and standard 
+      deviation SIGMA, in general, the mean and standard deviation of the 
+      truncated normal distribution are different values entirely; however, 
+      their values can be worked out from the parent values MU and SIGMA, and 
+      the truncation limits.  That is what is done in the "_mean()" and 
+      "_variance()" functions.
+    </p>
+
+    <h3 align = "center">
+      Details
+    </h3>
+
+    <p>
+      Define the unit normal distribution probability density function 
+      (PDF) for any -oo < x < +oo:
+      <pre>
+        N(0,1)(x) = 1/sqrt(2*pi) * exp ( - x^2 / 2 )
+      </pre>
+      This library includes the following functions for N(0,1)(x):
+      <ul>
+        <li>
+          normal_01_cdf(): returns CDF, given X.
+        </li>
+        <li>
+          normal_01_cdf_inv(): returns X, given CDF.
+        </li>
+        <li>
+          normal_01_mean(): returns the mean (which will be 0).
+        </li>
+        <li>
+          normal_01_moment(): returns moments.
+        </li>
+        <li>
+          normal_01_pdf(): returns PDF.
+        </li>
+        <li>
+          normal_01_sample(): randomly samples.
+        </li>
+        <li>
+          normal_01_variance(): returns variance (which will be 1).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      For a normal distribution with mean MU and standard deviation SIGMA,
+      the formula for the PDF is:
+      <pre>
+        N(MU,S)(x) = 1 / sqrt(2*pi) / sigma * exp ( - ( ( x - mu ) / sigma )^2 )
+      </pre>
+      This library includes the following functions for N(MU,SIGMA)(x):
+      <ul>
+        <li>
+          normal_ms_cdf(): returns CDF, given X.
+        </li>
+        <li>
+          normal_ms_cdf_inv(): returns X, given CDF.
+        </li>
+        <li>
+          normal_ms_mean(): returns mean (which will be MU).
+        </li>
+        <li>
+          normal_ms_moment(): returns moments.
+        </li>
+        <li>
+          normal_ms_moment_central(): returns central moments.
+        </li>
+        <li>
+          normal_ms_pdf(): returns PDF.
+        </li>
+        <li>
+          normal_ms_sample(): randomly samples.
+        </li>
+        <li>
+          normal_ms_variance(): returns variance (which will be SIGMA^2).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Define the truncated normal distribution PDF
+      with parent normal N(MU,SIGMA)(x), for a < x < b:
+      <pre>
+        NAB(MU,SIGMA)(x) = N(MU,SIGMA)(x) / ( cdf(N(MU,SIGMA))(b) - cdf(N(MU,SIGMA))(a) )
+      </pre>
+      This library includes the following functions for NAB(MU,SIGMA)(x)
+      <ul>
+        <li>
+          truncated_normal_ab_cdf(): returns CDF, given X.
+        </li>
+        <li>
+          truncated_normal_ab_cdf_inv(): returns X, given CDF.
+        </li>
+        <li>
+          truncated_normal_ab_mean(): returns mean.
+        </li>
+        <li>
+          truncated_normal_ab_moment(): returns moments.
+        </li>
+        <li>
+          truncated_normal_ab_pdf(): returns PDF.
+        </li>
+        <li>
+          truncated_normal_ab_sample(): randomly samples.
+        </li>
+        <li>
+          truncated_normal_ab_variance(): returns variance.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Define the lower truncated normal distribution PDF
+      with parent normal N(MU,SIGMA)(x), for a < x < +oo:
+      <pre>
+        NA(MU,SIGMA)(x) = N(MU,SIGMA)(x) / ( 1 - cdf(N(MU,SIGMA))(a) )
+      </pre>
+      This library includes the following functions for NA(MU,SIGMA)(x):
+      <ul>
+        <li>
+          truncated_normal_a_cdf(): returns CDF, given X.
+        </li>
+        <li>
+          truncated_normal_a_cdf_inv(): returns X, given CDF.
+        </li>
+        <li>
+          truncated_normal_a_mean(): returns mean.
+        </li>
+        <li>
+          truncated_normal_a_moment(): returns moments.
+        </li>
+        <li>
+          truncated_normal_a_pdf(): returns PDF.
+        </li>
+        <li>
+          truncated_normal_a_sample(): randomly samples.
+        </li>
+        <li>
+          truncated_normal_a_variance(): returns variance.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Define the upper truncated normal distribution PDF
+      with parent normal N(MU,SIGMA), for -oo < x < b:
+      <pre>
+        NB(MU,SIGMA)(x) = N(MU,SIGMA)(x) / cdf(N(MU,SIGMA))(b)
+      </pre>
+      This library includes the following functions for NB(MU,SIGMA)(x):
+      <ul>
+        <li>
+          truncated_normal_b_cdf(): returns CDF, given X.
+        </li>
+        <li>
+          truncated_normal_b_cdf_inv(): returns X, given CDF.
+        </li>
+        <li>
+          truncated_normal_b_mean(): returns mean.
+        </li>
+        <li>
+          truncated_normal_b_moment(): returns moments.
+        </li>
+        <li>
+          truncated_normal_b_pdf(): returns PDF.
+        </li>
+        <li>
+          truncated_normal_b_sample(): randomly samples.
+        </li>
+        <li>
+          truncated_normal_b_variance(): returns variance.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Demonstrations
+    </h3>
+
+    <p>
+      The CDF and CDF_INV functions should be inverses 
+      of each other.  A simple test of the truncated AB normal 
+      functions would be
+      <pre>
+        mu = 100.0;
+        sigma = 25.0;
+        a = 50.0;
+        b = 120.0;
+        seed = 123456789;
+
+        [ x, seed ] = truncated_normal_ab_sample ( mu, sigma, a, b, seed );
+        cdf = truncated_normal_ab_cdf ( x, mu, sigma, a, b );
+        x2 = truncated_normal_ab_cdf_inv ( cdf, mu, sigma, a, b );
+      </pre>
+      and compare <b>x</b> and <b>x2</b>, which should be quite close if the
+      inverse function is working correctly.
+    </p>
+
+    <p>
+      A simple test of the mean and variance functions might be to compare the
+      theoretical mean and variance to the sample mean and variance of a sample
+      of 1,000 values:
+      <pre>
+        sample_num = 1000;
+        mu = 100.0;
+        sigma = 25.0;
+        a = 50.0;
+        b = 120.0;
+        seed = 123456789;
+
+        for i = 1 : sample_num
+          [ x(i), seed ] = truncated_normal_ab_sample ( mu, sigma, a, b, seed );
+        end
+
+        m = truncated_normal_ab_mean ( mu, sigma, a, b );
+        v = truncated_normal_ab_variance ( mu, sigma, a, b );
+        ms = mean ( x );
+        vs = var ( x );
+      </pre>
+      Typically, the values of <b>m</b> and <b>ms</b>, of <b>v</b> and <b>vs</b> 
+      should be "reasonably close".
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRUNCATED_NORMAL</b> is available in
+      <a href = "../../c_src/truncated_normal/truncated_normal.html">a C version</a> and
+      <a href = "../../cpp_src/truncated_normal/truncated_normal.html">a C++ version</a> and
+      <a href = "../../f77_src/truncated_normal/truncated_normal.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/truncated_normal/truncated_normal.html">a FORTRAN90 version</a> and
+      <a href = "../../math_src/truncated_normal/truncated_normal.html">a MATHEMATICA version</a> and
+      <a href = "../../m_src/truncated_normal/truncated_normal.html">a MATLAB version</a> and
+      <a href = "../../py_src/truncated_normal/truncated_normal.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/normal/normal.html">
+      NORMAL</a>, 
+      a MATLAB library which
+      samples the normal distribution.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pdflib/pdflib.html">
+      PDFLIB</a>,
+      a MATLAB library which
+      evaluates Probability Density Functions (PDF's)
+      and produces random samples from them,
+      including beta, binomial, chi, exponential, gamma, inverse chi,
+      inverse gamma, multinomial, normal, scaled inverse chi, and uniform.
+    </p>
+
+    <p>
+      <a href = "../../m_src/prob/prob.html">
+      PROB</a>, 
+      a MATLAB library which
+      evaluates Probability Density Functions (PDF's) and
+      Cumulative Density Functions (CDF's), means, variances, and
+      samples for a variety of standard probability distributions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truncated_normal_rule/truncated_normal_rule.html">
+      TRUNCATED_NORMAL_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a normal probability density function (PDF),
+      also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
+    </p>
+
+    <p>
+      <a href = "../../m_src/truncated_normal_sparse_grid/truncated_normal_sparse_grid.html">
+      TRUNCATED_NORMAL_SPARSE_GRID</a>,
+      a MATLAB program which 
+      computes a sparse grid based on a normal probability density function
+      (PDF), also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
+    </p>
+
+    <p>
+      <a href = "../../m_src/uniform/uniform.html">
+      UNIFORM</a>,
+      a MATLAB library which
+      samples the uniform distribution.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          Norman Johnson, Samuel Kotz, Narayanaswamy Balakrishnan,<br>
+          Continuous Univariate Distributions,<br>
+          Second edition,<br>
+          Wiley, 1994,<br>
+          ISBN: 0471584940,<br>
+          LC: QA273.6.J6.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4_uniform_ab.m">i4_uniform_ab.m</a>,
+          returns a pseudorandom I4 between A and B;
+        </li>
+        <li>
+          <a href = "i4_uniform_ab_test.m">i4_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "normal_01_cdf.m">normal_01_cdf.m</a> 
+          evaluates the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_cdf_test.m">normal_01_cdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_cdf_inv.m">normal_01_cdf_inv.m</a> 
+          inverts the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_cdf_inv_test.m">normal_01_cdf_inv_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_cdf_values.m">normal_01_cdf_values.m</a> 
+          returns selected values of the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_mean.m">normal_01_mean.m</a> 
+          returns the mean of the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_mean_test.m">normal_01_mean_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_moment.m">normal_01_moment.m</a> 
+          returns moments of the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_moment_test.m">normal_01_moment_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_pdf.m">normal_01_pdf.m</a> 
+          evaluates the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_pdf_test.m">normal_01_pdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_sample.m">normal_01_sample.m</a> 
+          samples the standard normal probability distribution.
+        </li>
+        <li>
+          <a href = "normal_01_sample_test.m">normal_01_sample_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_01_variance.m">normal_01_variance.m</a> 
+          returns the variance of the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "normal_01_variance_test.m">normal_01_variance_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_cdf.m">normal_ms_cdf.m</a> 
+          evaluates the Normal CDF.
+        </li>
+        <li>
+          <a href = "normal_ms_cdf_test.m">normal_ms_cdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_cdf_inv.m">normal_ms_cdf_inv.m</a> 
+          inverts the Normal CDF.
+        </li>
+        <li>
+          <a href = "normal_ms_cdf_inv_test.m">normal_ms_cdf_inv_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_mean.m">normal_ms_mean.m</a> 
+          returns the mean of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_mean_test.m">normal_ms_mean_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_moment.m">normal_ms_moment.m</a> 
+          returns moments of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_moment_test.m">normal_ms_moment_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_moment_values.m">normal_ms_moment_values.m</a> 
+          returns values of some moments of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_moment_central.m">normal_ms_moment_central.m</a> 
+          returns central moments of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_moment_central_test.m">normal_ms_moment_central_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_moment_central_values.m">normal_ms_moment_central_values.m</a> 
+          returns values of some central moments of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_pdf.m">normal_ms_pdf.m</a> 
+          evaluates the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_pdf_test.m">normal_ms_pdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_sample.m">normal_ms_sample.m</a> 
+          samples the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_sample_test.m">normal_ms_sample_test.m</a> 
+        </li>
+        <li>
+          <a href = "normal_ms_variance.m">normal_ms_variance.m</a> 
+          returns the variance of the Normal PDF.
+        </li>
+        <li>
+          <a href = "normal_ms_variance_test.m">normal_ms_variance_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a> 
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "r8_choose_test.m">r8_choose_test.m</a>
+        </li>
+        <li>
+          <a href = "r8_factorial2.m">r8_factorial2.m</a> 
+          computes the double factorial function.
+        </li>
+        <li>
+          <a href = "r8_factorial2_test.m">r8_factorial2_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8_factorial2_values.m">r8_factorial2_values.m</a> 
+          returns selected values of the double factorial function.
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a> 
+          returns the value of (-1)*K.
+        </li>
+        <li>
+          <a href = "r8_mop_test.m">r8_mop_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a> 
+          is a portable pseudorandom number generator.
+        </li>
+        <li>
+          <a href = "r8_uniform_01_test.m">r8_uniform_01_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8poly_print.m">r8poly_print.m</a> 
+          prints a polynomial.
+        </li>
+        <li>
+          <a href = "r8poly_print_test.m">r8poly_print_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8poly_value_horner.m">r8poly_value_horner.m</a> 
+          evaluates a polynomial.
+        </li>
+        <li>
+          <a href = "r8poly_value_horner_test.m">r8poly_value_horner_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8vec_linspace.m">r8vec_linspace.m</a> 
+          returns an equally spaced set of values as an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_linspace_test.m">r8vec_linspace_test.m</a> 
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a> 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print_test.m">r8vec_print_test.m</a> 
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          returns the current YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_cdf.m">truncated_normal_a_cdf.m</a> 
+          evaluates the lower Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_cdf_test.m">truncated_normal_a_cdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_cdf_values.m">
+          truncated_normal_a_cdf_values.m</a>
+          returns some values of the CDF of the lower truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_cdf_inv.m">truncated_normal_a_cdf_inv.m</a> 
+          inverts the lower Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_cdf_inv_test.m">
+          truncated_normal_a_cdf_inv_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_mean.m">truncated_normal_a_mean.m</a> 
+          returns the mean of the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_mean_test.m">
+          truncated_normal_a_mean_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_moment.m">truncated_normal_a_moment.m</a> 
+          returns moments of the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_moment_test.m">
+          truncated_normal_a_moment_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_pdf.m">truncated_normal_a_pdf.m</a> 
+          evaluates the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_pdf_values.m">
+          truncated_normal_a_pdf_values.m</a>
+          returns some values of the PDF of the lower truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_pdf_test.m">truncated_normal_a_pdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_sample.m">truncated_normal_a_sample.m</a> 
+          samples the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_sample_test.m">
+          truncated_normal_a_sample_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_a_variance.m">truncated_normal_a_variance.m</a> 
+          returns the variance of the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_variance_test.m">
+          truncated_normal_a_variance_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_cdf.m">truncated_normal_ab_cdf.m</a> 
+          evaluates the Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_cdf_test.m">truncated_normal_ab_cdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_cdf_values.m">
+          truncated_normal_ab_cdf_values.m</a>
+          returns some values of the CDF of the truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_cdf_inv.m">truncated_normal_ab_cdf_inv.m</a> 
+          inverts the Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_cdf_inv_test.m">
+          truncated_normal_ab_cdf_inv_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_mean.m">truncated_normal_ab_mean.m</a> 
+          returns the mean of the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_mean_test.m">
+          truncated_normal_ab_mean_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_moment.m">truncated_normal_ab_moment.m</a> 
+          returns moments of the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_moment_test.m">
+          truncated_normal_ab_moment_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_pdf.m">truncated_normal_ab_pdf.m</a> 
+          evaluates the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_pdf_values.m">
+          truncated_normal_ab_pdf_values.m</a>
+          returns some values of the PDF of the truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_pdf_test.m">truncated_normal_ab_pdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_sample.m">truncated_normal_ab_sample.m</a> 
+          samples the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_sample_test.m">
+          truncated_normal_ab_sample_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_variance.m">
+          truncated_normal_ab_variance.m</a> 
+          returns the variance of the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_variance_test.m">
+          truncated_normal_ab_variance_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_cdf.m">truncated_normal_b_cdf.m</a> 
+          evaluates the upper Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_cdf_test.m">truncated_normal_b_cdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_cdf_values.m">
+          truncated_normal_b_cdf_values.m</a>
+          returns some values of the CDF of the upper truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_cdf_inv.m">truncated_normal_b_cdf_inv.m</a> 
+          inverts the upper Truncated Normal CDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_cdf_inv_test.m">
+          truncated_normal_b_cdf_inv_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_mean.m">truncated_normal_b_mean.m</a> 
+          returns the mean of the upper Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_mean_test.m">
+          truncated_normal_b_mean_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_moment.m">truncated_normal_b_moment.m</a> 
+          returns moments of the upper Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_moment_test.m">
+          truncated_normal_b_moment_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_pdf.m">truncated_normal_b_pdf.m</a> 
+          evaluates the upper Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_pdf_values.m">
+          truncated_normal_b_pdf_values.m</a>
+          returns some values of the PDF of the upper truncated normal distribution.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_pdf_test.m">
+          truncated_normal_b_pdf_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_sample.m">
+          truncated_normal_b_sample.m</a> 
+          samples the upper Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_sample_test.m">
+          truncated_normal_a_sample_test.m</a> 
+        </li>
+        <li>
+          <a href = "truncated_normal_b_variance.m">
+          truncated_normal_b_variance.m</a> 
+          returns the variance of the upper Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_variance_test.m">
+          truncated_normal_b_variance_test.m</a> 
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Test Files:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "truncated_normal_test.m">truncated_normal_test.m</a>,
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "truncated_normal_test_output.txt">
+          truncated_normal_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 March 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -1,8 +1,8 @@
-function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
+function grids_display ( input_filename1, input_filename2, rmin, rmax )
 
 %*****************************************************************************80
 %
-%% GRIDS_DISPLAY displays two 2D or 3D grids or sparse grids.
+%% GRIDS_DISPLAY displays a pair of 1D, 2D or 3D grids.
 %
 %  Discussion:
 %
@@ -14,68 +14,62 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
 %
 %  Modified:
 %
-%    09 October 2011
+%    05 February 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRIDS_DISPLAY:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Display a pair of 2D or 3D grids or sparse grids.\n' );
+  fprintf ( 1, '  Display a pair of 1D, 2D or 3D grids.\n' );
 %
 %  First command line argument is file name1.
 %
   if ( nargin < 1 )
-
     fprintf ( 1, '\n' );
     fprintf ( 1, 'GRIDS_DISPLAY:\n' );
-    input_file_name1 = input ( 'Enter the first filename:' );
-
+    input_filename1 = input ( '  Enter the first filename:  ' );
   end
 %
 %  Second command line argument is file name2.
 %
   if ( nargin < 2 )
-
     fprintf ( 1, '\n' );
     fprintf ( 1, 'GRIDS_DISPLAY:\n' );
-    input_file_name2 = input ( 'Enter the second filename:' );
-
+    input_filename2 = input ( '  Enter the second filename:  ' );
   end
 %
 %  Third command line argument is the lower range.
 %
   if ( nargin < 3 )
-
     fprintf ( 1, '\n' );
     fprintf ( 1, 'GRIDS_DISPLAY:\n' );
-    rmin = input ( 'Enter the minimum value of the range:' );
-
+    rmin = input ( '  Enter the minimum value of the range:  ' );
+  elseif ( ischar ( rmin ) )
+    rmin = str2num ( rmin );
   end
 %
 %  Fourth command line argument is the upper range.
 %
   if ( nargin < 4 )
-
     fprintf ( 1, '\n' );
     fprintf ( 1, 'GRIDS_DISPLAY:\n' );
-    rmax = input ( 'Enter the maximum value of the range:' );
-
+    rmax = input ( '  Enter the maximum value of the range:  ' );
+  elseif ( ischar ( rmax ) )
+    rmax = str2num ( rmax );
   end
 %
 %  Load the data.
 %  
-  points1 = load ( input_file_name1 )';
+  points1 = load ( input_filename1 )';
 
   dim_num1 = size ( points1, 1 );
   point_num1 = size ( points1, 2 );
 
-  points2 = load ( input_file_name2 )';
+  points2 = load ( input_filename2 )';
 
   dim_num2 = size ( points2, 1 );
   point_num2 = size ( points2, 2 );
@@ -89,9 +83,9 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
     dim_num = dim_num1;
   end
 %
-%  2D Plot
+%  1D Plot
 %
-  if ( dim_num == 2 )
+  if ( dim_num == 1 )
 %
 %  Clear the graphics frame;
 %
@@ -103,9 +97,78 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
 %
 %  Plot the points.
 %
-    h1 = scatter ( points1(1,:), points1(2,:), 'bo' );
+    points1(2,1:point_num1) = - 0.25 * ones(1,point_num1);
+    h1 = scatter ( points1(1,:), points1(2,:), 80, 'r', 'filled' );
     hold on
-    h2 = scatter ( points2(1,:), points2(2,:), 'r', 'filled' );
+    points2(2,1:point_num2) = 0.25 * ones(1,point_num2);
+    h2 = scatter ( points2(1,:), points2(2,:), 80, 'b', 'filled' );
+%
+%  Request grid lines.
+%
+    grid on
+%
+%  Specify the location of the grid lines, and suppress labeling.
+%
+    rdelt = ( rmax - rmin ) / 10.0;
+    ticks = rmin : rdelt : rmax;
+  
+    set ( axes_handle, 'xtick', ticks );
+%   set ( axes_handle, 'xticklabel', [] );
+    set ( axes_handle, 'ytick', ticks );
+    set ( axes_handle, 'yticklabel', [] );
+%
+%  Make the plotting region slightly bigger than the data.
+%
+    range = rmax - rmin;
+    rmin1 = rmin - 0.05 * range;
+    rmax1 = rmax + 0.05 * range;
+    axis ( [ rmin1, rmax1, rmin1, rmax1 ] )
+
+    xlabel ( '<--- X axis --->', 'Fontsize', 16 )
+%
+%  Title
+%
+    title_string = strcat ( input_filename1, ' + ' );
+    title_string = strcat ( title_string, input_filename2 );
+    title_string = s_escape_tex ( title_string );
+    title ( title_string, 'Fontsize', 24 );
+%
+%  Make an output file name.
+%
+    output_filename = 'grids_1d.png';
+    print ( '-dpng', output_filename );
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  Plot saved in file "%s"\n', output_filename );
+
+    hold off
+%
+%  2D Plot
+%
+  elseif ( dim_num == 2 )
+%
+%  Clear the graphics frame;
+%
+    clf
+%
+%  We have to name the axes in order to control the grid.
+%
+    axes_handle = axes;
+%
+%  Plot the points.
+%  Once again, I have to complain the MATLAB's instructions for
+%  specifying a color are IDIOTIC and INCONSISTENT and INCOMPREHENSIBLE.
+%  Just try a scatter plot where you make the dots gray.  Go ahead.  Try.
+%  TEMPORARY MOD FOR CLAYTON, GRAY + BLACK
+%
+    if ( 1 )
+      h1 = plot ( points2(1,:), points2(2,:), 'k.', 'Markersize', 15 );
+      hold on
+      h2 = plot ( points1(1,:), points1(2,:), 'k.', 'Markersize', 25 );
+    else
+      h1 = scatter ( points2(1,:), points2(2,:), 'r', 'filled' );
+      hold on
+      h2 = scatter ( points1(1,:), points1(2,:), 'b', 'filled' );
+    end
 %
 %  Force the plotting region to be square, not rectangular.
 %
@@ -117,7 +180,7 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
 %
 %  Specify the location of the grid lines, and suppress labeling.
 %
-    rdelt = ( rmax - rmin ) / 8.0;
+    rdelt = ( rmax - rmin ) / 10.0;
     ticks = rmin : rdelt : rmax;
   
     set ( axes_handle, 'xtick', ticks );
@@ -132,32 +195,28 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
     rmax1 = rmax + 0.05 * range;
     axis ( [ rmin1, rmax1, rmin1, rmax1 ] )
 
-    xlabel ( '--X axis--' )
-    ylabel ( '--Y axis--' )
+    if ( 0 )
+      xlabel ( '--X axis--', 'Fontsize', 16 )
+      ylabel ( '--Y axis--', 'Fontsize', 16 )
+    end
 %
 %  Title
 %
-    title_string = strcat ( input_file_name1, ' + ' );
-    title_string = strcat ( title_string, input_file_name2 );
-    title_string = s_escape_tex ( title_string );
-    title ( title_string );
+    if ( 0 )
+      title_string = strcat ( input_filename1, ' + ' );
+      title_string = strcat ( title_string, input_filename2 );
+      title_string = s_escape_tex ( title_string );
+      title ( title_string, 'Fontsize', 24 );
+    end
 %
 %  Make an output file name.
 %
-    output_file_name = 'grids_display.png';
-%
-%  Save the figure and write it out.
-%
-    frame = getframe;
-    [ image, map ] = frame2im ( frame );
-
-    imwrite ( image, output_file_name, 'PNG' );
-
+    output_filename = 'grids_2d.png';
+    print ( '-dpng', output_filename );
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'GRIDS_DISPLAY\n' );
-    fprintf ( 1, '  The input data "%s" and "%s" was read in, and plotted\n', ...
-      input_file_name1, input_file_name2 );
-    fprintf ( 1, '  in the PNG file "%s".\n', output_file_name );
+    fprintf ( 1, '  Plot saved in file "%s"\n', output_filename );
+
+    hold off
 %
 %  3D plot
 %
@@ -174,10 +233,10 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
 %  Plot the points.
 %
     handle1 = scatter3 ( points1(1,:), points1(2,:), points1(3,:), ...
-      'b', 'filled' );
+      'r', 'filled' );
     hold on
     handle2 = scatter3 ( points2(1,:), points2(2,:), points2(3,:), ...
-      'r', 'filled' );
+      'b', 'filled' );
 %
 %  Force the plotting region to be square, not rectangular.
 %
@@ -189,7 +248,7 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
 %
 %  Specify the location of the grid lines, and suppress labeling.
 %
-    rdelt = ( rmax - rmin ) / 8.0;
+    rdelt = ( rmax - rmin ) / 10.0;
     ticks = rmin : rdelt : rmax;
   
     set ( axes_handle, 'xtick', ticks );
@@ -206,35 +265,27 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
     rmax1 = rmax + 0.05 * range;
     axis ( [ rmin1, rmax1, rmin1, rmax1 ] )
 
-    xlabel ( '--X axis--' )
-    ylabel ( '--Y axis--' )
-    zlabel ( '--Z axis--' )
+    xlabel ( '--X axis--', 'Fontsize', 16 )
+    ylabel ( '--Y axis--', 'Fontsize', 16 )
+    zlabel ( '--Z axis--', 'Fontsize', 16 )
 %
 %  Title
 %
-    title_string = strcat ( input_file_name1, ' + ' );
-    title_string = strcat ( title_string, input_file_name2 );
+    title_string = strcat ( input_filename1, ' + ' );
+    title_string = strcat ( title_string, input_filename2 );
     title_string = s_escape_tex ( title_string );
-    title ( title_string );
+    title ( title_string, 'Fontsize', 24 );
     
     view ( -10, 15 )
 %
 %  Make an output file name.
 %
-    output_file_name = 'grids_display.png';
-%
-%  Save the figure and write it out.
-%
-    frame = getframe;
-    [ image, map ] = frame2im ( frame );
-
-    imwrite ( image, output_file_name, 'PNG' );
-
+    output_filename = 'grids_3d.png';
+    print ( '-dpng', output_filename );
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'GRIDS_DISPLAY\n' );
-    fprintf ( 1, '  The input data "%s" and "%s" was read in, and plotted\n', ...
-      input_file_name1, input_file_name2 );
-    fprintf ( 1, '  in the PNG file "%s".\n', output_file_name );
+    fprintf ( 1, '  Plot saved in file "%s"\n', output_filename );
+
+    hold off
 
   end
 %
@@ -243,7 +294,6 @@ function grids_display ( input_file_name1, input_file_name2, rmin, rmax )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRIDS_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

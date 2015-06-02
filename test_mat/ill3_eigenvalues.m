@@ -27,9 +27,9 @@ function lambda = ill3_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(3), the eigenvalues.
+%    Output, real LAMBDA(3,1), the eigenvalues.
 %
-  lambda = [ 3.0, 2.0, 1.0 ];
+  lambda = [ 3.0; 2.0; 1.0 ];
 
   return
 end

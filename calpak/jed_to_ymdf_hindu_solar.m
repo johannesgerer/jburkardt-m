@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_hindu_solar ( jed )
 %
 %  Modified:
 %
-%    10 July 2012
+%    12 March 2013
 %
 %  Author:
 %
@@ -47,12 +47,12 @@ function [ y, m, d, f ] = jed_to_ymdf_hindu_solar ( jed )
 %
 %  Date = JED_EPOCH + Y years + ( M - 1 ) months + JF
 %
-  m = 1 + int ( jf / month_length_hindu_solar ( ) );
+  m = 1 + floor ( jf / month_length_hindu_solar ( ) );
   jf = jf - floor ( ( m - 1 ) * month_length_hindu_solar ( ) );
 %
 %  Date = JED_EPOCH + Y years + ( M - 1 ) months + ( D - 1 ) days + f
 %
-  d = ( floor ) ( jf ) + 1;
+  d = floor ( jf ) + 1;
   f = jf - ( d - 1 );
 
   return

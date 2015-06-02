@@ -18,9 +18,11 @@ function b = hoffman_rhs ( )
 %
 %  Parameters:
 %
-%    Output, real B(3), the right hand side vector.
+%    Output, real B(3,1), the right hand side vector.
 %
-  b(1:3) = [ 1.0, 0.0, 0.0 ];
+  b = [ 1.0; ...
+        0.0; ...
+        0.0 ];
 
   return
 end

@@ -2,7 +2,7 @@ function sparse_grid_gl_dataset ( dim_num, level_max )
 
 %*****************************************************************************80
 %
-%% SPARSE_GRID_GL_DATASET is the main program for SPARSE_GRID_GL_DATASET.
+%% SPARSE_GRID_GL_DATASET is the main program.
 %
 %  Discussion:
 %
@@ -64,7 +64,9 @@ function sparse_grid_gl_dataset ( dim_num, level_max )
 %
   if ( nargin < 1)
     fprintf ( 1, '\n' );
-    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater)' );
+    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater): ' );
+  elseif ( ischar ( dim_num ) )
+    dim_num = str2num ( dim_num );
   end
 
   fprintf ( 1, '\n' );
@@ -74,7 +76,9 @@ function sparse_grid_gl_dataset ( dim_num, level_max )
 %
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
-    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater)' );
+    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater): ' );
+  elseif ( ischar ( level_max ) )
+    level_max = str2num ( level_max );
   end
 
   level_min = max ( 0, level_max + 1 - dim_num );
@@ -131,11 +135,12 @@ function sparse_grid_gl_dataset ( dim_num, level_max )
   fprintf ( 1, '  Creating X file = "%s".\n', x_filename );
 
   r8mat_write ( x_filename, dim_num, point_num, x );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE)GRID_GL_DATASET:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

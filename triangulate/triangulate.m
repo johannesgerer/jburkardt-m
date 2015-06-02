@@ -50,7 +50,7 @@ function triangulate ( prefix, animate )
 %
 %  Modified:
 %
-%    11 April 2011
+%    03 January 2013
 %
 %  Author:
 %
@@ -69,9 +69,10 @@ function triangulate ( prefix, animate )
 %
 %    Input, string PREFIX, the filename prefix.
 %
-  fprintf ( 1, '\n' );
+%    Input, string ANIMATE, is 'y' if the user wants to see the triangulation
+%    process animated.
+%
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATE\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -103,20 +104,43 @@ function triangulate ( prefix, animate )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Processing the vertex coordinate file "%s".\n', node_filename )
-  vertex = read_vertices ( node_filename );
+  direction = +1;
+  vertex = read_vertices ( node_filename, direction );
+
+  vertex = ear_init ( vertex );
+
+  area = area_poly2 ( vertex );
+%
+%  If area is zero, refuse to go on.
+%
+  if ( area == 0.0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'TRIANGULATE - Fatal area!\n' );
+    fprintf ( 1, '  The area is computed to be exactly zero.\n' );
+    return
+  end
+%
+%  If area is NEGATIVE, reverse the ordering.
+%
+  if ( area < 0.0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  Polygon area is negative!\n' );
+    fprintf ( 1, '  Will try reversing vertex ordering.\n' );
+    direction = -1;
+    vertex = read_vertices ( node_filename, direction );
+    vertex = ear_init ( vertex );
+    area = area_poly2 ( vertex );
+  end
 
   n = length ( vertex );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Number of vertices is %d\n', n );
 
-  vertex = ear_init ( vertex );
-
   print_vertices ( vertex );
 
-  area = area_poly2 ( vertex );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Area of polygon is %f\n', area );
+  fprintf ( 1, '  Area of polygon is %g\n', area );
 %
 %  Refuse to triangulate a region in which two successive vertices are equal.
 %
@@ -131,6 +155,21 @@ function triangulate ( prefix, animate )
     end
   end
 %
+%  Determine a reasonable scale for the plot.
+%
+  xmin = vertex(1).x;
+  xmax = vertex(1).x;
+  ymin = vertex(1).y;
+  ymax = vertex(1).y;
+  for i = 2 : n
+    xmin = min ( xmin, vertex(i).x );
+    xmax = max ( xmax, vertex(i).x );
+    ymin = min ( ymin, vertex(i).y );
+    ymax = max ( ymax, vertex(i).y );
+  end
+
+  dx = 0.0125 * max ( xmax - xmin, ymax - ymin );
+%
 %  Draw the (non-triangulated) polygon.
 %
 %  You might think a single PLOT command would suffice to display
@@ -144,9 +183,18 @@ function triangulate ( prefix, animate )
   grid on
 
   hold on
+%
+%  Make the plot a little bigger than the data.
+%
+  plot ( xmin - 2 * dx, ymin - 2 * dx, 'w.' );
+  plot ( xmax + 2 * dx, ymin + 2 * dx, 'w.' );
 
   for i = 1 : n
     plot ( vertex(i).x, vertex(i).y, 'k.', 'MarkerSize', 25 )
+  end
+
+  for i = 1 : n 
+    text ( vertex(i).x + dx, vertex(i).y + dx, num2str ( i ) );
   end
 
   for i = 1 : n
@@ -187,9 +235,18 @@ function triangulate ( prefix, animate )
   grid on
 
   hold on
+%
+%  Make the plot a little bigger than the data.
+%
+  plot ( xmin - 2 * dx, ymin - 2 * dx, 'w.' );
+  plot ( xmax + 2 * dx, ymin + 2 * dx, 'w.' );
 
   for i = 1 : n
     plot ( vertex(i).x, vertex(i).y, 'k.', 'MarkerSize', 25 )
+  end
+
+  for i = 1 : n 
+    text ( vertex(i).x + dx, vertex(i).y + dx, num2str ( i ) );
   end
 
   for i = 1 : n
@@ -224,9 +281,18 @@ function triangulate ( prefix, animate )
     grid on
 
     hold on
+%
+%  Make the plot a little bigger than the data.
+%
+    plot ( xmin - 2 * dx, ymin - 2 * dx, 'w.' );
+    plot ( xmax + 2 * dx, ymin + 2 * dx, 'w.' );
 
     for i = 1 : n
       plot ( vertex(i).x, vertex(i).y, 'k.', 'MarkerSize', 25 )
+    end
+
+    for i = 1 : n 
+      text ( vertex(i).x + dx, vertex(i).y + dx, num2str ( i ) );
     end
 
     for i = 1 : n
@@ -238,6 +304,7 @@ function triangulate ( prefix, animate )
       i1 = triangles(i,1);
       i2 = triangles(i,2);
       i3 = triangles(i,3);
+      axis equal
       pause
 
       patch ( [ vertex(i1).x, vertex(i2).x, vertex(i3).x ], ...
@@ -245,6 +312,8 @@ function triangulate ( prefix, animate )
 
       line ( [ vertex(i1).x, vertex(i2).x ], ...
              [ vertex(i1).y, vertex(i2).y ], 'LineWidth', 3, 'Color', 'b' )
+
+      axis equal
 
     end
 
@@ -262,7 +331,7 @@ function triangulate ( prefix, animate )
     xlabel ( '<-- X -->' )
     ylabel ( '<-- Y -->' )
     title ( sprintf ( 'Triangulation of "%s"', prefix ) );
-    axes equal
+    axis equal
 
   end
 %
@@ -284,7 +353,6 @@ function triangulate ( prefix, animate )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATE\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -491,12 +559,12 @@ function value = diagonal ( im1, ip1, vertex )
 %
 %  Modified:
 %
-%    Original C version by Joseph ORourke.
-%    MATLAB version by John Burkardt.
+%    03 May 2014
 %
 %  Author:
 %
-%    John Burkardt
+%    Original C version by Joseph ORourke.
+%    MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -1191,11 +1259,17 @@ function print_vertices ( vertex )
 
   return
 end
-function vertex = read_vertices ( filename )
+function vertex = read_vertices ( filename, direction )
 
 %*****************************************************************************80
 %
 %% READ_VERTICES reads vertex coordinates and initializes the vertex structure.
+%
+%  Discussion:
+%
+%    If the polygon was found to have negative area on the first pass,
+%    we try again, reversing the vertex ordering, and hoping the user simply
+%    listed the vertices in clockwise order.
 %
 %  Licensing:
 %
@@ -1203,7 +1277,7 @@ function vertex = read_vertices ( filename )
 %
 %  Modified:
 %
-%    06 February 2011
+%    02 January 2013
 %
 %  Author:
 %
@@ -1213,12 +1287,21 @@ function vertex = read_vertices ( filename )
 %
 %    Input, string FILENAME, the name of the file to be read.
 %
+%    Input, integer DIRECTION, the ordering for the vertices.
+%    +1, first vertex is 1, and count up.
+%    -1, first vertex is N, and count down.
+%
 %    Output, vertex array VERTEX(*).
 %
   xy = load ( filename );
 
   [ n, dim ] = size ( xy );
 
+  if ( direction == -1 )
+    xy(1:n,1) = xy(n:-1:1,1);
+    xy(1:n,2) = xy(n:-1:1,2);
+  end
+ 
   for i = 1 : n
     vertex(i).index = i;
     vertex(i).prev = i4_wrap ( i - 1, 1, n );

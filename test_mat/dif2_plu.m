@@ -28,12 +28,12 @@ function [ p, l, u ] = dif2_plu ( n )
 %    matrix, the unit lower triangular matrix, and the upper
 %    triangular matrix that form the PLU factoriztion of A.
 %
-  p(1:n,1:n) = 0.0;
+  p = zeros ( n, n );
   for i = 1 : n
     p(i,i) = 1.0;
   end
 
-  l(1:n,1:n) = 0.0;
+  l = zeros ( n, n );
   for i = 1 : n
     l(i,i) = 1.0;
   end
@@ -41,7 +41,7 @@ function [ p, l, u ] = dif2_plu ( n )
     l(i+1,i) = - i / ( i + 1 );
   end
 
-  u(1:n,1:n) = 0.0;
+  u = zeros ( n, n );
   for i = 1 : n
     u(i,i) = ( i + 1 ) / i;
   end

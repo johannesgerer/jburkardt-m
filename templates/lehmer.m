@@ -1,5 +1,7 @@
 function a = lehmer ( n )
 
+%*****************************************************************************80
+%
 %% LEHMER returns the Lehmer matrix.
 %
 %  Discussion:

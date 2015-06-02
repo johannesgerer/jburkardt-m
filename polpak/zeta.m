@@ -8,7 +8,7 @@ function value = zeta ( p )
 %
 %    For 1 < P, the Riemann Zeta function is defined as:
 %
-%      ZETA ( P ) = Sum ( 1 <= N < Infinity ) 1 / N**P
+%      ZETA ( P ) = Sum ( 1 <= N < Infinity ) 1 / N^P
 %
 %  Licensing:
 %

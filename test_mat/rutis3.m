@@ -2,7 +2,7 @@ function a = rutis3 ( )
 
 %*****************************************************************************80
 %
-%% RUTIS3 returns the Rutishauser3 matrix.
+%% RUTIS3 returns the RUTIS3 matrix.
 %
 %  Example:
 %
@@ -47,11 +47,15 @@ function a = rutis3 ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
-    4.0,  0.0,  5.0,  3.0; ...
-   -5.0,  4.0, -3.0,  0.0; ...
-    0.0, -3.0,  4.0,  5.0; ...
-    3.0, -5.0,  0.0,  4.0  ]';
+    4.0, -5.0,  0.0,  3.0; ...
+    0.0,  4.0, -3.0, -5.0; ...
+    5.0, -3.0,  4.0,  0.0; ...
+    3.0,  0.0,  5.0,  4.0 ];
 
   return
 end

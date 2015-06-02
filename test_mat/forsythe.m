@@ -2,7 +2,7 @@ function a = forsythe ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% FORSYTHE returns the Forsythe matrix.
+%% FORSYTHE returns the FORSYTHE matrix.
 %
 %  Discussion:
 %
@@ -40,16 +40,16 @@ function a = forsythe ( alpha, beta, n )
 %
 %    The characteristic equation of A is
 %
-%      ( BETA - LAMBDA )**N - (-1)**N*ALPHA = 0
+%      ( BETA - LAMBDA )^N - (-1)^N*ALPHA = 0
 %
 %    The eigenvalues of A are
 %
 %      LAMBDA(I) = BETA
-%        + abs ( ALPHA )**1/N * exp ( 2 * I * PI * sqrt ( - 1 ) / N )
+%        + abs ( ALPHA )^1/N * exp ( 2 * I * PI * sqrt ( - 1 ) / N )
 %
 %    Gregory and Karney consider the special case where BETA is 0,
 %    and ALPHA is a "small" value.  In that case, the characteristic
-%    equation is LAMBDA**N - ALPHA = 0, and the eigenvalues are the
+%    equation is LAMBDA^N - ALPHA = 0, and the eigenvalues are the
 %    N-th root of ALPHA times the N roots of unity.
 %
 %  Licensing:
@@ -82,6 +82,8 @@ function a = forsythe ( alpha, beta, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

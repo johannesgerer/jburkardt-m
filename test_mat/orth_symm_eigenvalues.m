@@ -20,11 +20,13 @@ function lambda = orth_symm_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   m = floor ( ( n + 1 ) / 2 );
-  lambda(1:m)   = +1.0;
-  lambda(m+1:n) = -1.0;
+  lambda(1:m,1)   = +1.0;
+  lambda(m+1:n,1) = -1.0;
 
   return
 end

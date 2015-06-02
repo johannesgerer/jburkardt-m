@@ -2,7 +2,7 @@ function determ = eberlein_determinant ( alpha, n )
 
 %*****************************************************************************80
 %
-%% EBERLEIN_DETERMINANT returns the determinant of the Eberlein matrix.
+%% EBERLEIN_DETERMINANT returns the determinant of the EBERLEIN matrix.
 %
 %  Licensing:
 %

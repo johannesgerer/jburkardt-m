@@ -2,7 +2,7 @@ function latin_random_test ( )
 
 %*****************************************************************************80
 %
-%% LATIN_RANDOM_TEST tests LATIN_RANDOM.
+%% LATIN_RANDOM_TEST tests the LATIN_RANDOM library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function latin_random_test ( )
 %
 %  Modified:
 %
-%    03 April 2007
+%    12 November 2014
 %
 %  Author:
 %
@@ -22,31 +22,19 @@ function latin_random_test ( )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the LATIN_RANDOM library.\n' );
 
-  seed = 0;
-  seed = get_seed ( seed );
+  seed = 123456789;
+ 
+  for test = 1 : 3
 
-  seed_save = seed;
-  seed = latin_random_test01 ( seed );
+    seed = latin_random_test01 ( seed );
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
-  fprintf ( 1, '  Repeat test with different seed than run 1.\n' );
-
-  seed = latin_random_test01 ( seed );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
-  fprintf ( 1, '  Repeat test with same seed as run 1.\n' );
-
-  seed = seed_save;
-  seed = latin_random_test01 ( seed );
+  end
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_PRB:\n' );
+  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

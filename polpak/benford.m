@@ -69,7 +69,7 @@ function value = benford ( ival )
     error ( 'BENFORD - Fatal error!' );
   end
 
-  value = log10 ( ( ival + 1 ) /ival );
+  value = log10 ( ( ival + 1 ) / ival );
 
   return
 end

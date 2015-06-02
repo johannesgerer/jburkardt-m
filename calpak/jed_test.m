@@ -488,11 +488,11 @@ function jed = jed_test ( i )
     jed = now_to_jed ( );
 %
 %  End of Current Mayan Great Cycle
-%  23 December 2012 CE/Gregorian
+%  21 December 2012 CE/Gregorian
 %
   elseif ( i == 59 )
 
-    jed = 2456284.5;
+    jed = 2456282.5;
 %
 %  Scaliger cycle repeats.
 %  1 January 3266 CE/Gregorian

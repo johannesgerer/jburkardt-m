@@ -4,13 +4,19 @@ function v = haar_2d ( u )
 %
 %% HAAR_2D computes the Haar transform of an array.
 %
+%  Discussion:
+%
+%    Thanks to Stephen Becker for pointing out that a previous version of
+%    the haar_2d code was not inverted by haar_2d_inverse in cases where
+%    M and N were not powers of 2, 05 March 2014.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    15 March 2011
+%    05 March 2014
 %
 %  Author:
 %
@@ -30,10 +36,15 @@ function v = haar_2d ( u )
 
   w = zeros ( m, n );
 %
+%  Determine K, the largest power of 2 such that K <= M.
+%
+  k = 1;
+  while ( k * 2 <= m )
+    k = k * 2;
+  end
+%
 %  Transform all columns.
 %
-  k = m;
-
   while ( 1 < k )
   
     k = floor ( k / 2 );
@@ -45,10 +56,15 @@ function v = haar_2d ( u )
 
   end
 %
+%  Determine K, the largest power of 2 such that K <= N.
+%
+  k = 1;
+  while ( k * 2 <= n )
+    k = k * 2;
+  end
+%
 %  Transform all rows.
 %
-  k = n;
-
   while ( 1 < k )
   
     k = floor ( k / 2 );

@@ -10,7 +10,7 @@ function jed = epoch_to_jed_hebrew ( )
 %
 %  Modified:
 %
-%    14 June 2012
+%    14 April 2013
 %
 %  Author:
 %

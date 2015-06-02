@@ -1,0 +1,430 @@
+polygon_properties_test
+07-May-2014 09:42:33
+
+POLYGON_PROPERTIES_TEST
+  MATLAB version
+  Test the POLYGON_PROPERTIES library.
+
+POLYGON_PROPERTIES_TEST01
+  For a polygon:
+  POLYGON_ANGLES computes the angles.
+
+  Number of polygonal vertices = 6
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           1           0
+    3:           2           1
+    4:           3           0
+    5:           3           2
+    6:           1           2
+
+  Polygonal angles in degrees:
+
+         1         63.4349
+         2             135
+         3             270
+         4              45
+         5              90
+         6         116.565
+
+POLYGON_PROPERTIES_TEST02
+  For a polygon:
+  POLYGON_AREA computes the area.
+
+  Number of polygonal vertices = 4
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           2           1
+    3:           1           2
+    4:           0           1
+
+  Exact area is        2
+  The computed area is 2
+
+  Number of polygonal vertices = 8
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           3           0
+    3:           3           3
+    4:           2           3
+    5:           2           1
+    6:           1           1
+    7:           1           2
+    8:           0           2
+
+  Exact area is        6
+  The computed area is 6
+
+POLYGON_PROPERTIES_TEST03
+  For a polygon:
+  POLYGON_AREA_2 computes the area.
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           2           1
+    3:           1           2
+    4:           0           1
+
+  Exact area is        2
+  The computed area is 2
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           3           0
+    3:           3           3
+    4:           2           3
+    5:           2           1
+    6:           1           1
+    7:           1           2
+    8:           0           2
+
+  Exact area is        6
+  The computed area is 6
+
+POLYGON_PROPERTIES_TEST04
+  For a polygon:
+  POLYGON_CENTROID computes the centroid.
+  POLYGON_CENTROID_2 computes the centroid.
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           2           1
+    3:           1           2
+    4:           0           1
+
+  POLYGON_CENTROID:
+
+     1:            1
+     2:            1
+
+  POLYGON_CENTROID_2:
+
+     1:            1
+     2:            1
+
+POLYGON_PROPERTIES_TEST05
+  POLYGON_CONTAINS_POINT determines if
+  a point is in a polygon.
+  POLYGON_CONTAINS_POINT_2 determines if
+  a point is in a polygon.
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           1           0
+    3:           2           1
+    4:           1           2
+    5:           0           2
+
+          P          In1  In2
+
+               1             1    1    1
+               3             4    0    0
+               0             2    1    1
+             0.5         -0.25    0    0
+
+POLYGON_PROPERTIES_TEST06
+  For a polygon:
+  POLYGON_DIAMETER computes the diameter;
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           2           1
+    3:           1           2
+    4:           0           1
+
+  Diameter ( computed ) 2
+  Diameter ( exact )    2
+
+POLYGON_PROPERTIES_TEST07
+  For a polygon:
+  POLYGON_EXPAND "expands" it by an amount H.
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           1           1
+    2:           5           1
+    3:           2           4
+    4:           1           3
+
+  The expansion amount H = 0.5
+
+  The expanded polygon:
+
+  Row:       1             2       
+  Col
+    1:         0.5         0.5
+    2:     6.20711         0.5
+    3:           2     4.70711
+    4:         0.5     3.20711
+
+POLYGON_PROPERTIES_TEST08
+  For a REGULAR polygon:
+  the inradius, outradius and side are related.
+  POLYGON_INRAD_DATA uses the inradius;
+  POLYGON_OUTRAD_DATA uses the inradius;
+  POLYGON_SIDE_DATA uses the inradius;
+
+  Number of polygonal sides = 3
+
+  Assuming SIDE = 1
+    AREA =   0.866025
+    RADIN =  0.288675
+    RADOUT = 0.57735
+
+  Assuming RADIN = 0.288675
+    AREA =   0.433013
+    RADOUT = 0.57735
+    SIDE =   1
+
+  Assuming RADOUT = 0.57735
+    AREA =   0.433013
+    RADIN =  0.288675
+    SIDE =   1
+
+  Number of polygonal sides = 4
+
+  Assuming SIDE = 1
+    AREA =   2
+    RADIN =  0.5
+    RADOUT = 0.707107
+
+  Assuming RADIN = 0.5
+    AREA =   1
+    RADOUT = 0.707107
+    SIDE =   1
+
+  Assuming RADOUT = 0.707107
+    AREA =   1
+    RADIN =  0.5
+    SIDE =   1
+
+  Number of polygonal sides = 5
+
+  Assuming SIDE = 1
+    AREA =   3.44095
+    RADIN =  0.688191
+    RADOUT = 0.850651
+
+  Assuming RADIN = 0.688191
+    AREA =   1.72048
+    RADOUT = 0.850651
+    SIDE =   1
+
+  Assuming RADOUT = 0.850651
+    AREA =   1.72048
+    RADIN =  0.688191
+    SIDE =   1
+
+POLYGON_PROPERTIES_TEST09
+  For a polygon:
+  POLYGON_INTEGRAL_1 integrates 1
+  POLYGON_INTEGRAL_X integrates X
+  POLYGON_INTEGRAL_Y integrates Y
+  POLYGON_INTEGRAL_XX integrates X*X
+  POLYGON_INTEGRAL_XY integrates X*Y
+  POLYGON_INTEGRAL_YY integrates Y*Y
+
+  The polygon vertices:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           1           0
+    3:           1           1
+    4:           0           1
+
+  F(X,Y)    Integral
+
+  1                 1
+  X               0.5
+  Y               0.5
+X*X          0.333333
+X*Y              0.25
+Y*Y          0.333333
+
+POLYGON_PROPERTIES_TEST10
+  POLYGON_IS_CONVEX determines if a polygon
+  is convex.
+
+  A point:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+  The polygon is degenerate and convex.
+
+  A line:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           1           2
+  The polygon is degenerate and convex.
+
+  A triangle:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           2           0
+    3:           1           0
+  The polygon is convex and clockwise.
+
+  A CCW triangle:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           1           0
+    3:           0           2
+  The polygon is convex and counterclockwise.
+
+  A CW triangle:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           0           2
+    3:           1           0
+  The polygon is convex and clockwise.
+
+  Polygon with large angle:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           2           0
+    3:           3           1
+    4:           0           1
+  The polygon is convex and counterclockwise.
+
+  Polygon with huge angle:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:         0.5         0.5
+    3:           1           0
+    4:           1           1
+    5:           0           1
+  The polygon is not convex.
+
+  A star:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:   -0.809017    0.587785
+    3:    0.309017   -0.951057
+    4:    0.309017    0.951057
+    5:   -0.809017   -0.587785
+  The polygon is not convex.
+
+  A star:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:         0.5    0.866025
+    3:        -0.5    0.866025
+    4:          -1 1.22465e-16
+    5:        -0.5   -0.866025
+    6:         0.5   -0.866025
+  The polygon is convex and counterclockwise.
+
+  A star:
+
+  Row:       1             2       
+  Col
+    1:           0           0
+    2:           2           0
+    3:           1           1
+    4:           0           0
+    5:           2           0
+    6:           1           1
+  The polygon is not convex.
+
+  Square knot:
+
+  Row:       1             2       
+  Col
+    1:           1           0
+    2:           3           0
+    3:           3           3
+    4:           0           3
+    5:           0           1
+    6:           2           1
+    7:           2           2
+    8:           1           2
+  The polygon is not convex.
+
+POLYGON_PROPERTIES_TEST11
+  POLYGON_LATTICE_AREA returns the "area"
+  of a polygon, measured in lattice points.
+
+  Number of interior lattice points = 5
+  Number of boundary lattice points = 6
+  Area of polygon is 7
+
+POLYGON_PROPERTIES_TEST12
+  POLYGON_SAMPLE samples a polygon.
+
+  Sample points:
+
+  Row:       1             2       
+  Col
+    1:     1.57165   0.0436824
+    2:     1.48143    0.584693
+    3:     1.69243    0.109957
+    4:    0.511266     1.44954
+    5:     1.44804    0.754673
+    6:    0.496513    0.102496
+    7:    0.254573   0.0136169
+    8:     1.86187    0.130616
+    9:   0.0522955   0.0875163
+   10:    0.180039    0.177113
+   11:    0.577122     1.13878
+   12:     1.49011    0.911977
+   13:    0.316961    0.238508
+   14:    0.117215    0.574366
+   15:    0.574459     1.21293
+   16:    0.417036     1.29933
+   17:     1.05162    0.886522
+   18:    0.866277     1.77799
+   19:    0.791952     1.10063
+   20:      0.8313     1.59303
+
+POLYGON_PROPERTIES_PRB
+  Normal end of execution.
+
+07-May-2014 09:42:34
+diary off

@@ -20,14 +20,16 @@ function lambda = fourier_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1) = 1.0;
+  lambda = zeros ( n, 1 );
 
-  lambda(2:4:n) = - 1.0;
-  lambda(3:4:n) =   i;
-  lambda(4:4:n) =   1.0;
-  lambda(5:4:n) = - i;
+  lambda(1,1) = 1.0;
+
+  lambda(2:4:n,1) = - 1.0;
+  lambda(3:4:n,1) =   i;
+  lambda(4:4:n,1) =   1.0;
+  lambda(5:4:n,1) = - i;
 
   return
 end

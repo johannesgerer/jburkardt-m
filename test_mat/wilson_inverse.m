@@ -2,7 +2,7 @@ function a = wilson_inverse ( )
 
 %*****************************************************************************80
 %
-%% WILSON_INVERSE returns the inverse of the Wilson matrix.
+%% WILSON_INVERSE returns the inverse of the WILSON matrix.
 %
 %  Formula:
 %
@@ -46,6 +46,10 @@ function a = wilson_inverse ( )
 %  Parameters:
 %
 %    Output, real A(4,4), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a(1:4,1:4) =  [ 68.0, -41.0, -17.0,  10.0; ...
                  -41.0,  25.0,  10.0,  -6.0; ...

@@ -24,6 +24,8 @@ function b = frank_rhs ( m, k )
 %
 %    Output, real B(M,K), the right hand side matrix.
 %
+  b = zeros ( m, k );
+
   b(1:m,1) = 1.0;
 
   b(1  ,2) = m * ( m + 1 ) / 2;

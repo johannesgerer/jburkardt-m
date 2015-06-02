@@ -10,49 +10,76 @@ function tetrahedron_monte_carlo_test01 ( )
 %
 %  Modified:
 %
-%    16 August 2009
+%    14 January 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-  f_num = 6;
-
-  t(1:3,1:4) = [ ...
-    1.0, 0.0, 0.0; ...
-    0.0, 1.0, 0.0; ...
-    0.0, 0.0, 1.0; ...
-    0.0, 0.0, 0.0 ]';
+  m = 3;
+  e_test = [ ...
+    0, 0, 0; ...
+    1, 0, 0; ...
+    0, 1, 0; ...
+    0, 0, 1; ...
+    2, 0, 0; ...
+    1, 1, 0; ...
+    1, 0, 1; ...
+    0, 2, 0; ...
+    0, 1, 1; ...
+    0, 0, 2 ]';
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TETRAHEDRON_MONTE_CARLO_TEST01\n' );
-  fprintf ( 1, '  Sample using TETRAHEDRON_UNIT_SAMPLE_01\n' );
-  fprintf ( 1, '  Integrate TETRAHEDRON_UNIT_INTEGRAND_03\n' );
-  fprintf ( 1, '  Integration region is the unit tetrahedron.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Use an increasing number of points P_NUM.\n' );
-  fprintf ( 1, '  Note that the sample routine is a "bad" sampler.\n' );
+  fprintf ( 1, 'TEST01\n' );
+  fprintf ( 1, '  Use TETRAHEDRON01_SAMPLE for a Monte Carlo estimate of an\n' );
+  fprintf ( 1, '  integral over the interior of the unit tetrahedron in 3D.\n' );
 
   seed = 123456789;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '     P_NUM      X^2             X*Y             X*Z' );
-  fprintf ( 1, '             Y^2             Y*Z             Z^2\n' );
+  fprintf ( 1, '         N        1               X               Y ' );
+  fprintf ( 1, '              Z               X^2              XY             XZ' );
+  fprintf ( 1, '              Y^2             YZ               Z^2\n' );
   fprintf ( 1, '\n' );
 
-  p_num = 1;
+  n = 1;
 
-  while ( p_num <= 65536 )
+  while ( n <= 65536 )
 
-    [ result, seed ] = tetrahedron_monte_carlo ( t, p_num, f_num, ...
-      @tetrahedron_unit_sample_01, @tetrahedron_integrand_03, seed );
+    fprintf ( 1, '  %8d', n );
 
-    fprintf ( 1, '  %8d  %14f  %14f  %14f  %14f  %14f  %14f\n', ...
-      p_num, result(1:f_num) )
+    [ x, seed ] = tetrahedron01_sample ( n, seed );
 
-    p_num = 2 * p_num;
+    for j = 1 : 10
+
+      e(1:m) = e_test(1:m,j);
+
+      value = monomial_value ( m, n, e, x );
+
+      result = tetrahedron01_volume ( ) * sum ( value(1:n) ) / n;
+      fprintf ( 1, '  %14.6g', result );
+
+    end
+
+    fprintf ( 1, '\n' );
+
+    n = 2 * n;
 
   end
+
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '     Exact' );
+
+  for j = 1 : 10
+
+    e(1:m) = e_test(1:m,j);
+
+    result = tetrahedron01_monomial_integral ( e );
+    fprintf ( 1, '  %14.6g', result );
+
+  end
+
+  fprintf ( 1, '\n' );
 
   return
 end

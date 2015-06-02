@@ -15,7 +15,7 @@ function scrabble = ch_to_scrabble ( ch )
 %
 %  Modified:
 %
-%    22 February 2010
+%    15 January 2013
 %
 %  Author:
 %
@@ -33,7 +33,7 @@ function scrabble = ch_to_scrabble ( ch )
   end
 
   ch = ch_cap ( ch );
-  ic = a_to_i ( ch );
+  ic = a_to_i4 ( ch );
 
   if ( 1 <= ic && ic <= 26 )
     scrabble = ic;

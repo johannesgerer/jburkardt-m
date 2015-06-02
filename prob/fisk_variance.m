@@ -10,7 +10,7 @@ function variance = fisk_variance ( a, b, c )
 %
 %  Modified:
 %
-%    11 September 2004
+%    28 April 2013
 %
 %  Author:
 %
@@ -33,7 +33,7 @@ function variance = fisk_variance ( a, b, c )
 
   g = pi / c;
 
-  variance = b^2 * ( 2.0 * g * csc ( 2.0 * g ) - ( g * csc ( g ) )^2 );
+  variance = b^2 * ( 2.0 * g * r8_csc ( 2.0 * g ) - ( g * r8_csc ( g ) )^2 );
 
   return
 end

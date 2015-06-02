@@ -2,7 +2,7 @@ function determ = milnes_determinant ( n, x )
 
 %*****************************************************************************80
 %
-%% MILNES_DETERMINANT returns the determinant of the Milnes matrix.
+%% MILNES_DETERMINANT returns the determinant of the MILNES matrix.
 %
 %  Licensing:
 %

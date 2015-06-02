@@ -1,4 +1,4 @@
-function [ r, seed ] = r8vec_uniform_01 ( n, seed )
+function [ x, seed ] = r8vec_uniform_01 ( n, seed )
 
 %*****************************************************************************80
 %
@@ -51,11 +51,11 @@ function [ r, seed ] = r8vec_uniform_01 ( n, seed )
 %
 %    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, real R(N), the vector of pseudorandom values.
+%    Output, real X(N), the vector of pseudorandom values.
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %
-  r = zeros(n,1);
+  x = zeros(n,1);
 
   i4_huge = 2147483647;
 
@@ -76,7 +76,7 @@ function [ r, seed ] = r8vec_uniform_01 ( n, seed )
       seed = seed + i4_huge;
     end
 
-    r(i) = seed * 4.656612875E-10;
+    x(i) = seed * 4.656612875E-10;
 
   end
 

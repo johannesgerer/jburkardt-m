@@ -2,7 +2,7 @@ function determ = identity_determinant ( n )
 
 %*****************************************************************************80
 %
-%% IDENTITY_DETERMINANT returns the determinant of the identity.
+%% IDENTITY_DETERMINANT returns the determinant of the IDENTITY matrix.
 %
 %  Licensing:
 %

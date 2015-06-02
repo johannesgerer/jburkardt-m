@@ -7,7 +7,7 @@ function a = pascal1_inverse ( n )
 %  Formula:
 %
 %    if ( J = 1 )
-%      A(I,J) = (-1)**(I+J)
+%      A(I,J) = (-1)^(I+J)
 %    elseif ( I = 1 )
 %      A(I,J) = 0
 %    else
@@ -43,7 +43,7 @@ function a = pascal1_inverse ( n )
 %    The inverse of A is the same as A, except that entries in "odd"
 %    positions have changed sign:
 %
-%      B(I,J) = (-1)**(I+J) * A(I,J)
+%      B(I,J) = (-1)^(I+J) * A(I,J)
 %
 %  Licensing:
 %
@@ -63,6 +63,8 @@ function a = pascal1_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

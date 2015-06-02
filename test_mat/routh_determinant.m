@@ -2,7 +2,7 @@ function determ = routh_determinant ( n, x )
 
 %*****************************************************************************80
 %
-%% ROUTH_DETERMINANT returns the determinant of the Routh matrix.
+%% ROUTH_DETERMINANT returns the determinant of the ROUTH matrix.
 %
 %  Licensing:
 %

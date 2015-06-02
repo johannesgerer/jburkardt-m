@@ -2,7 +2,7 @@ function a = eulerian_inverse ( n )
 
 %*****************************************************************************80
 %
-%% EULERIAN_INVERSE computes the inverse of the Eulerian matrix.
+%% EULERIAN_INVERSE computes the inverse of the EULERIAN matrix.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function a = eulerian_inverse ( n )
 %
 %    Output, real A(N,N), the inverse of the Eulerian matrix.
 %
-
+  a = zeros ( n, n );
 %
 %  Set up the Eulerian matrix.
 %

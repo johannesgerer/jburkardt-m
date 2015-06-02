@@ -2,7 +2,7 @@ function hammersley_test ( )
 
 %*****************************************************************************80
 %
-%% HAMMERSLEY_TEST runs the Hammersley tests.
+%% HAMMERSLEY_TEST tests the HAMMERSLEY library.
 %
 %  Licensing:
 %
@@ -37,7 +37,6 @@ function hammersley_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HAMMERSLEY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

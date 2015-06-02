@@ -2,7 +2,7 @@ function a = hankel ( n, x )
 
 %*****************************************************************************80
 %
-%% HANKEL returns the Hankel matrix defined by X.
+%% HANKEL returns a HANKEL matrix.
 %
 %  Formula:
 %
@@ -28,6 +28,8 @@ function a = hankel ( n, x )
 %
 %    A is a Hankel matrix: constant along anti-diagonals.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -48,6 +50,8 @@ function a = hankel ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for j = 1 : n
     a(1:n,j) = x(j:j+n-1);
   end

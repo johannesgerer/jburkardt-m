@@ -1,5 +1,7 @@
 function dy = tcell_rhs ( t, y )
 
+%*****************************************************************************80
+%
 %% TCELL_RHS evaluates the right hand side for the ODE solver TESTGM.
 %
 %  Discussion:

@@ -29,11 +29,15 @@ function a = rutis1_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
     -2.0,  4.0,  4.0, -5.0; ...
      4.0, -2.0, -5.0,  4.0; ...
      4.0, -5.0, -2.0,  4.0; ...
-    -5.0,  4.0,  4.0, -2.0 ]';
+    -5.0,  4.0,  4.0, -2.0 ];
 
   a(1:4,1:4) = a(1:4,1:4) / 15.0;
 

@@ -92,12 +92,12 @@ function [ n_data, n, x, fx ] = cheby_t_poly_values ( n_data )
 %
 %    T(0)(X) =  1
 %    T(1)(X) =  1 X
-%    T(2)(X) =  2 X**2 -   1
-%    T(3)(X) =  4 X**3 -   3 X
-%    T(4)(X) =  8 X**4 -   8 X**2 +  1
-%    T(5)(X) = 16 X**5 -  20 X**3 +  5 X
-%    T(6)(X) = 32 X**6 -  48 X**4 + 18 X**2 - 1
-%    T(7)(X) = 64 X**7 - 112 X**5 + 56 X**3 - 7 X
+%    T(2)(X) =  2 X^2 -   1
+%    T(3)(X) =  4 X^3 -   3 X
+%    T(4)(X) =  8 X^4 -   8 X^2 +  1
+%    T(5)(X) = 16 X^5 -  20 X^3 +  5 X
+%    T(6)(X) = 32 X^6 -  48 X^4 + 18 X^2 - 1
+%    T(7)(X) = 64 X^7 - 112 X^5 + 56 X^3 - 7 X
 %
 %  Inequality:
 %
@@ -131,7 +131,7 @@ function [ n_data, n, x, fx ] = cheby_t_poly_values ( n_data )
 %    T(1)(X) = X,
 %    T(N)(X) = 2 * X * T(N-1)(X) - T(N-2)(X)
 %
-%    T'(N)(X) = N * ( -X * T(N)(X) + T(N-1)(X) ) / ( 1 - X**2 )
+%    T'(N)(X) = N * ( -X * T(N)(X) + T(N-1)(X) ) / ( 1 - X^2 )
 %
 %  Special values:
 %

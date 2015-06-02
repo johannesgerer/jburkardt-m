@@ -48,7 +48,7 @@ function b = bell_numbers ( m )
   for j = 1 : m
     b(j+offset) = 0;
     for i = 0 : j - 1
-      b(j+offset) = b(j+offset) + binomial ( j - 1, i ) * b(i+offset);
+      b(j+offset) = b(j+offset) + i4_choose ( j - 1, i ) * b(i+offset);
     end
   end
 

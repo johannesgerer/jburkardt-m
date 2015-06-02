@@ -33,7 +33,7 @@
       Gauss-Patterson rules do not have the super-high precision of the
       Gauss-Legendre rules.  They trade this precision in exchange for the
       advantages of nestedness.  This means that Gauss-Patterson rules are
-      only available for orders of 1, 3, 7, 15, 31, 63, 127 or 255.
+      only available for orders of 1, 3, 7, 15, 31, 63, 127, 255 or 511.
     </p>
 
     <p>
@@ -78,6 +78,9 @@
         <tr>
           <td>7</td><td>255</td><td>128 + 127</td><td>2*128+127-1=382</td><td>382 + 1 = 383</td>
         </tr>
+        <tr>
+          <td>8</td><td>511</td><td>256 + 255</td><td>2*256+255-1=766</td><td>766 + 1 = 767</td>
+        </tr>
       </table>
       where the extra 1 degree of precision comes about because the rules are symmetric,
       and can integrate any odd monomial exactly.  Thus, after the first rule, the
@@ -96,7 +99,7 @@
       <ul>
         <li>
           <i>order</i> is the number of points in the quadrature rule.  Acceptable values are
-          1, 3, 7, 15, 31, 63, 127 or 255.
+          1, 3, 7, 15, 31, 63, 127, 255 or 511.
         </li>
         <li>
           <i>a</i> is the left endpoint;
@@ -129,7 +132,9 @@
 
     <p>
       <b>PATTERSON_RULE</b> is available in
+      <a href = "../../c_src/patterson_rule/patterson_rule.html">a C version</a> and
       <a href = "../../cpp_src/patterson_rule/patterson_rule.html">a C++ version</a> and
+      <a href = "../../f77_src/patterson_rule/patterson_rule.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/patterson_rule/patterson_rule.html">a FORTRAN90 version</a> and
       <a href = "../../m_src/patterson_rule/patterson_rule.html">a MATLAB version</a>.
     </p>
@@ -230,6 +235,14 @@
     </p>
 
     <p>
+      <a href = "../../m_src/line_felippa_rule/line_felippa_rule.html">
+      LINE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
       <a href = "../../datasets/quadrature_rules/quadrature_rules.html">
       QUADRATURE_RULES</a>,
       a dataset directory which
@@ -253,18 +266,20 @@
     </p>
 
     <p>
-      <a href = "../../m_src/tanh_quad/tanh_quad.html">
-      TANH_QUAD</a>,
-      a MATLAB library which
-      sets up the tanh quadrature rule;
-    </p>
-
-    <p>
       <a href = "../../f77_src/toms699/toms699.html">
       TOMS699</a>,
       a FORTRAN77 library which
       implements a new representation of Patterson's quadrature formula;<br>
       this is ACM TOMS algorithm 699.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truncated_normal_rule/truncated_normal_rule.html">
+      TRUNCATED_NORMAL_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a normal probability density function (PDF),
+      also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
     </p>
 
     <h3 align = "center">
@@ -309,10 +324,6 @@
         </li>
       </ul>
     </p>
-
-    <h3 align = "center">
-      Examples and Tests:
-    </h3>
 
     <h3 align = "center">
       Examples and Tests:

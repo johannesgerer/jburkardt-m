@@ -29,7 +29,7 @@ function value = align_enum ( m, n )
 %    To compute F(M,N), it is not necessary to keep an M+1 by N+1
 %    array in memory.  A vector of length N will do.
 %
-%    F(N,N) is approximately ( 1 + sqrt(2) )**(2*N+1) / sqrt ( N )
+%    F(N,N) is approximately ( 1 + sqrt(2) )^(2*N+1) / sqrt ( N )
 %
 %  Example:
 %

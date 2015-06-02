@@ -9,7 +9,7 @@ function value = i4_characteristic ( q )
 %    For any positive integer Q, the characteristic is:
 %
 %    Q, if Q is a prime;
-%    P, if Q = P**N for some prime P and some integer N;
+%    P, if Q = P^N for some prime P and some integer N;
 %    0, otherwise, that is, if Q is negative, 0, 1, or the product
 %       of more than one distinct prime.
 %

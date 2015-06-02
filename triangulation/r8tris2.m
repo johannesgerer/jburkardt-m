@@ -53,7 +53,7 @@ function [ triangle_num, triangle_node, triangle_neighbor ] = r8tris2 ( ...
   triangle_node = [];
   triangle_neighbor = [];
 
-  tol = 100.0 * r8_epsilon ( );
+  tol = 100.0 * eps;
 %
 %  Sort the vertices by increasing (x,y).
 %

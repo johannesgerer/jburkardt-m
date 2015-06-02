@@ -2,7 +2,7 @@ function a = lehmer_inverse ( n )
 
 %*****************************************************************************80
 %
-%% LEHMER_INVERSE returns the inverse of the Lehmer matrix.
+%% LEHMER_INVERSE returns the inverse of the LEHMER matrix.
 %
 %  Licensing:
 %
@@ -22,9 +22,9 @@ function a = lehmer_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
-  for i = 1 : n-1
+  for i = 1 : n - 1
     a(i,i) = ( 4 * i * i * i ) / ( 4 * i * i - 1 );
   end
   a(n,n) = ( n * n ) / ( 2 * n - 1 );

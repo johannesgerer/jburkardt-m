@@ -2,7 +2,7 @@ function llsq_test ( )
 
 %*****************************************************************************80
 %
-%% LLSQ_TEST tests LLSQ.
+%% LLSQ_TEST tests the LLSQ library.
 %
 %  Licensing:
 %

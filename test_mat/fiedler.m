@@ -2,7 +2,7 @@ function a = fiedler ( m, n, x )
 
 %*****************************************************************************80
 %
-%% FIEDLER returns the Fiedler matrix.
+%% FIEDLER returns the FIEDLER matrix.
 %
 %  Formula:
 %
@@ -30,7 +30,7 @@ function a = fiedler ( m, n, x )
 %
 %    Because A is normal, it is diagonalizable.
 %
-%    det ( A ) = (-1)**N * 2**(N-2)
+%    det ( A ) = (-1)^N * 2^(N-2)
 %      * ( X(1) - X(N) ) * product ( 2 <= I <= N ) ( X(I) - X(I-1) ).
 %
 %    A is nonsingular if the X(I) are distinct.
@@ -39,6 +39,8 @@ function a = fiedler ( m, n, x )
 %    for nonzero (1,N) and (N,1) entries.
 %
 %    A has a dominant positive eigenvalue, and all others are negative.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -73,6 +75,8 @@ function a = fiedler ( m, n, x )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = abs ( x(i) - x(j) );

@@ -10,7 +10,7 @@ function a = i4mat_perm ( n, a, p )
 %
 %  Modified:
 %
-%    21 April 2009
+%    24 May 2015
 %
 %  Author:
 %
@@ -18,7 +18,7 @@ function a = i4mat_perm ( n, a, p )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, H Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -34,15 +34,12 @@ function a = i4mat_perm ( n, a, p )
 %
 %    Output, integer A(N,N), the permuted matrix.
 %
-  base = 1;
-  ierror = perm_check ( n, p, base );
+  ierror = perm1_check ( n, p );
 
   if ( ierror ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4MAT_PERM - Fatal error!\n' );
-    fprintf ( 1, '  The input array P does not represent\n' );
-    fprintf ( 1, '  a proper permutation.  In particular, the\n' );
-    fprintf ( 1, '  array is missing the value %d\n', ierror );
+    fprintf ( 1, '  PERM1_CHECK says permutation is illegal.\n' );
     error ( 'I4MAT_PERM - Fatal error!' );
   end
 

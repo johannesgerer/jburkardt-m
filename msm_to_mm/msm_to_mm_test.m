@@ -2,7 +2,7 @@ function msm_to_mm_test ( )
 
 %*****************************************************************************80
 %
-%% MSM_TO_MM_TEST runs the MSM_TO_MM tests.
+%% MSM_TO_MM_TEST tests the MSM_TO_MM library.
 %
 %  Licensing:
 %
@@ -56,7 +56,6 @@ function msm_to_mm_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MSM_TO_MM_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

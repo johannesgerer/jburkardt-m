@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_islamic_a ( jed )
 %
 %  Modified:
 %
-%    10 July 2012
+%    12 March 2013
 %
 %  Author:
 %
@@ -33,7 +33,7 @@ function [ y, m, d, f ] = jed_to_ymdf_islamic_a ( jed )
 %
 %  Determine the computational date (Y'/M'/D').
 %
-  j = floor ( jed + 0.5 )
+  j = floor ( jed + 0.5 );
   f = ( jed + 0.5 ) - j;
 
   j_prime = j + 7665;

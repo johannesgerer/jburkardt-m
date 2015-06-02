@@ -16,6 +16,12 @@ function K = hole_correlation ( s, t )
 %
 %    John Burkardt
 %
+%  Parameters:
+%
+%    Input, real S(*), T(*), pairs of argument values.
+%
+%    Output, real K(*), the correlation function values
+%
   d = abs ( s - t );
 
   K = ( 1 - d ) .* exp ( - d );

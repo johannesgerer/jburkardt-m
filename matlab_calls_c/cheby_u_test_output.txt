@@ -1,20 +1,28 @@
-cheby_u_test
+>> cheby_u_test
 
 CHEBY_U_TEST
+  MATLAB version
   Demonstrate a simple use of the MEX compiler,
   which allows MATLAB to call C functions.
 
   Get a directory listing.  The file CHEBY_U.C should be there.
+cheby_u.c	cheby_u_test_output.txt  fact.mexa64  fact_test_output.txt
+cheby_u_test.m	fact.c			 fact_test.m  matlab_calls_c.html
 
-.               ..              cheby_u.c       cheby_u_test.m  
 
   Compile the file CHEBY_U.C.
 
+Warning: You are using gcc version "4.4.7".  The version
+         currently supported with MEX is "4.3.4".
+         For a list of currently supported compilers see: 
+         http://www.mathworks.com/support/compilers/current_release/
+
+
   Get a directory listing.  A new file should show up,
   containing the compiled information.
-
-.               cheby_u.c       cheby_u_test.m  
-..              cheby_u.dll     
+cheby_u.c	cheby_u_test_output.txt  fact_test.m
+cheby_u.mexa64	fact.c			 fact_test_output.txt
+cheby_u_test.m	fact.mexa64		 matlab_calls_c.html
 
 
   Now use CHEBY_U as though it were a MATLAB M-file
@@ -22,8 +30,8 @@ CHEBY_U_TEST
 
   Evaluation point X = 0.200000
 
-   N           U(N,X)         U(N,X)
-           (computed)    (tabulated)
+   N           U(N,X)          U(N,X)
+           (computed)     (tabulated)
 
    0        1.000000        1.000000
    1        0.400000        0.400000
@@ -41,3 +49,6 @@ CHEBY_U_TEST
 
 CHEBY_U_TEST:
   Normal end of execution.
+
+28-Sep-2013 16:09:37
+>> 

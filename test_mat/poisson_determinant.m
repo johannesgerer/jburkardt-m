@@ -1,8 +1,8 @@
-function determ = poisson_determinant ( nrow, ncol, n )
+function determ = poisson_determinant ( nrow, ncol )
 
 %*****************************************************************************80
 %
-%% POISSON_DETERMINANT returns the determinant of the Poisson matrix.
+%% POISSON_DETERMINANT returns the determinant of the POISSON matrix.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function determ = poisson_determinant ( nrow, ncol, n )
 %
 %  Modified:
 %
-%    19 October 2007
+%    05 March 2015
 %
 %  Author:
 %
@@ -21,16 +21,15 @@ function determ = poisson_determinant ( nrow, ncol, n )
 %    Input, integer NROW, NCOL, the number of rows and columns 
 %    in the grid.
 %
-%    Input, integer ( kind = 4 ) N, the order of the matrix.  It must be the case
-%    that N = NROW * NCOL.
-%
 %    Output, real DETERM, the determinant.
 %
+  cr = zeros ( nrow, 1 );
   for i = 1 : nrow
     angle = i * pi / ( nrow + 1 );
     cr(i) = cos ( angle );
   end
 
+  cc = zeros ( ncol, 1 );
   for i = 1 : ncol
     angle = i * pi / ( ncol + 1 );
     cc(i) = cos ( angle );

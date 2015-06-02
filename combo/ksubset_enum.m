@@ -26,7 +26,7 @@ function nksub = ksubset_enum ( k, n )
 %
 %    Output, integer NKSUB, the number of distinct elements.
 %
-  nksub = binomial ( n, k );
+  nksub = i4_choose ( n, k );
 
   return
 end

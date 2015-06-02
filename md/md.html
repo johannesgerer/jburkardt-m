@@ -53,7 +53,7 @@
 
     <p>
       <blockquote>
-        <b>md</b> ( <i>nd</i>, <i>np</i>, <i>step_num</i> )
+        <b>md</b> ( <i>nd</i>, <i>np</i>, <i>step_num</i>, <i>dt</i> )
       </blockquote>
       where
       <ul>
@@ -67,6 +67,9 @@
         <li>
           <i>step_num</i> is the number of time steps, which might be 500
           or 1,000.
+        </li>
+        <li>
+          <i>dt</i> is the timestep size, which might be 0.1.
         </li>
       </ul>
     </p>
@@ -91,7 +94,8 @@
       <a href = "../../cpp_src/md/md.html">a C++ version</a> and
       <a href = "../../f77_src/md/md.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/md/md.html">a FORTRAN90 version</a> and
-      <a href = "../../m_src/md/md.html">a MATLAB version</a>.
+      <a href = "../../m_src/md/md.html">a MATLAB version</a> and
+      <a href = "../../py_src/md/md.html">a Python version</a>.
     </p>
 
     <h3 align = "center">
@@ -113,6 +117,14 @@
       solves the steady (time independent) heat equation in a 2D
       rectangular region, and is intended as
       a starting point for implementing a parallel version.
+    </p>
+
+    <p>
+      <a href = "../../m_src/md_fast/md_fast.html">
+      MD_FAST</a>,
+      a MATLAB program which
+      carries out a molecular dynamics simulation; it is a version of MD
+      that has been revised to take advantage of MATLAB's vector abilities.
     </p>
 
     <p>
@@ -260,13 +272,7 @@
       <ul>
         <li>
           <a href = "md.m">md.m</a>,
-          the program, which includes the functions MD,
-          COMPUTE, INITIALIZE, TIMESTAMP, and UPDATE.
-        </li>
-        <li>
-          <a href = "md_new.m">md_new.m</a>,
-          a revised version of the program; a new compute_new()
-          function is used to try to speed up the computation.
+          the program.
         </li>
       </ul>
     </p>
@@ -278,12 +284,12 @@
     <p>
       <ul>
         <li>
-          <a href = "md_output.txt">md_output.txt</a>, 
-          the output file for md;
+          <a href = "md_run.m">md_run.m</a>, 
+          a script which runs md with prescribed input.
         </li>
         <li>
-          <a href = "md_new_output.txt">md_new_output.txt</a>, 
-          the output file for md_new;
+          <a href = "md_output.txt">md_output.txt</a>, 
+          the output file for md;
         </li>
       </ul>
     </p>
@@ -296,7 +302,7 @@
     <hr>
 
     <i>
-      Last revised on 30 July 2009.
+      Last revised on 14 March 2014.
     </i>
 
     <!-- John Burkardt -->

@@ -2,7 +2,7 @@ function quad_mesh_display_test ( )
 
 %*****************************************************************************80
 %
-%% QUAD_SURFACE_DISPLAY_TEST is a test program for QUAD_SURFACE_DISPLAY.
+%% QUAD_SURFACE_DISPLAY_TEST tests the QUAD_SURFACE_DISPLAY library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function quad_mesh_display_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'QUAD_SURFACE_DISPLAY_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Demonstrate the use of QUAD_SURFACE_DISPLAY,\n' );
+  fprintf ( 1, '  Test the QUAD_SURFACE_DISPLAY library,\n' );
   fprintf ( 1, '  which can plot a 3D surface defined by a quadrilateral mesh.\n' );
 
   node_xy = load ( 'node_xy.txt' )';

@@ -2,7 +2,7 @@ function determ = kershaw_determinant ( )
 
 %*****************************************************************************80
 %
-%% KERSHAW_DETERMINANT returns the determinant of the Kershaw matrix.
+%% KERSHAW_DETERMINANT returns the determinant of the KERSHAW matrix.
 %
 %  Licensing:
 %

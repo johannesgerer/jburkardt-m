@@ -2,7 +2,7 @@ function divdif_test05 ( )
 
 %*****************************************************************************80
 %
-%% DIVDIF_TEST05 tests POLY_BASIS.
+%% DIVDIF_TEST05 tests DIF_TO_R8POLY and DIF_SHIFT_ZERO.
 %
 %  Licensing:
 %
@@ -16,57 +16,53 @@ function divdif_test05 ( )
 %
 %    John Burkardt
 %
-  ntab = 5;
-  nstep = 9;
+  maxtab = 10;
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIVDIF_TEST05\n' );
-  fprintf ( 1, '  POLY_BASIS computes Lagrange basis polynomials\n' );
-  fprintf ( 1, '  in standard form.\n' );
+  fprintf ( 1, '  DIF_TO_R8POLY converts a difference table to a\n' );
+  fprintf ( 1, '  polynomial;\n' );
+  fprintf ( 1, '  DIF_SHIFT_ZERO shifts a divided difference\n' );
+  fprintf ( 1, '  table to all zero abscissas;\n' );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  These are equivalent operations!\n' );
   fprintf ( 1, '\n' );
 %
-%  Set the base points.
+%  Set XTAB, YTAB to X, F(X)
 %
-  xtab = r8vec_indicator ( ntab );
-%
-%  Get the difference tables for the basis polynomials and print them.
-%
-  polcof = r8poly_basis ( ntab, xtab );
+  ntab = 4;
 
-  for i = 1 : ntab
-    fprintf ( 1, '  ' );
-    for j = 1 : ntab
-      fprintf ( 1, '%14f', polcof(i,j) );
-    end
-    fprintf ( 1, '\n' );
-  end
+  xtab1 = r8vec_indicator ( ntab );
+
+  ytab1(1:ntab) = xtab1(1:ntab).^3 - 2.0 * xtab1(1:ntab).^2 ...
+    + 3.0 * xtab1(1:ntab) - 4.0;
+
+  xtab2 = r8vec_indicator ( ntab );
+
+  ytab2(1:ntab) = xtab2(1:ntab).^3 - 2.0 * xtab2(1:ntab).^2 ...
+    + 3.0 * xtab2(1:ntab) - 4.0;
 %
-%  Print basis polynomial 3 in polynomial form.
+%  Compute and display the finite difference table.
 %
-  r8poly_print ( ntab, polcof(1:ntab,3), ...
-    '  Basis polynomial 3 in standard form:' );
+  diftab1 = data_to_dif_display ( ntab, xtab1, ytab1 );
+
+  diftab2 = data_to_dif_display ( ntab, xtab2, ytab2 );
 %
-%  Evaluate basis polynoimial 3 at a set of points.
+%  Examine corresponding polynomial.
 %
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Evaluate basis polynomial 3 at a set of points.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '      X        Y\n' );
-  fprintf ( 1, '\n' );
-  xhi =  ntab;
-  xlo = 1.0;
+  dif_print ( ntab, xtab1, diftab1, '  The divided difference polynomial:' );
+%
+%  Shift to zero.
+%
+  [ xtab1, diftab1 ] = dif_shift_zero ( ntab, xtab1, diftab1 );
 
-  for i = 1 : nstep
+  r8poly_print ( ntab, diftab1, '  Using DIF_SHIFT_ZERO' );
+%
+%  Shift to zero.
+%
+  c = dif_to_r8poly ( ntab, xtab2, diftab2 );
 
-    xval = ( ( nstep - i     ) * xlo   ...
-           + (         i - 1 ) * xhi ) ...
-           / ( nstep     - 1 );
-
-    yval = r8poly_val_horner ( ntab, polcof(1:ntab,3), xval );
-
-    fprintf ( 1, '  %14f  %14f\n', xval, yval );
-
-  end
+  r8poly_print ( ntab, c, '  Using DIF_TO_R8POLY' );
 
   return
 end

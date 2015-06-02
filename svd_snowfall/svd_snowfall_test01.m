@@ -6,14 +6,14 @@ function x = svd_snowfall_test01 ( )
 %
 %  Discussion:
 %
-%    The data file contains monthly snowfall records from 1890 to 2010.
+%    The data file contains monthly snowfall records from 1890 to 2012.
 %    Column 1 is the year, columns 2 through 9 are the snowfall for
 %    October, November, December, January, February, March, April, May,
 %    and column 10 is the total snowfall for that season.
 %
 %    After the LOAD command is executed, the data is stored as
-%    8 rows and 121 columns, with the first column of X the
-%    1890 data, and the last column is 2010!
+%    8 rows and 122 columns, with the first column of X the
+%    1890 data, and the last column is 2012!
 %
 %  Licensing:
 %
@@ -21,7 +21,7 @@ function x = svd_snowfall_test01 ( )
 %
 %  Modified:
 %
-%    20 March 2012
+%    05 May 2013
 %
 %  Author:
 %
@@ -29,13 +29,16 @@ function x = svd_snowfall_test01 ( )
 %
 %  Parameters:
 %
-%    Output, real X(8,121), the snowfall data.
+%    Output, real X(8,123), the snowfall data.
 %
+  filename = 'snowfall.txt';
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST01\n' );
-  fprintf ( 1, '  Read and process the snowfall data.\n' );
+  fprintf ( 1, ...
+    '  Read, process, and return snowfall data in "%s".\n', filename );
 
-  x = load ( 'snowfall.txt' );
+  x = load ( filename );
 
   [ m, n ] = size ( x );
   fprintf ( 1, '\n' );

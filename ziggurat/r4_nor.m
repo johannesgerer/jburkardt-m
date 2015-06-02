@@ -36,15 +36,15 @@ function [ value, jsr ] = r4_nor ( jsr, kn, fn, wn )
 %
 %  Parameters:
 %
-%    Input, integer JSR, the seed.
+%    Input, uint32 JSR, the seed.
 %
-%    Input, integer KN(128), data computed by R4_NOR_SETUP.
+%    Input, uint32 KN(128), data computed by R4_NOR_SETUP.
 %
 %    Input, real FN(128), WN(128), data computed by R4_NOR_SETUP.
 %
 %    Output, real R4_NOR, a normally distributed random value.
 %
-%    Output, integer JSR, the updated seed.
+%    Output, uint32 JSR, the updated seed.
 %
   r = 3.442620;
   i4_huge = uint32 ( 2147483647 );

@@ -1,0 +1,194 @@
+<html>
+
+  <head>
+    <title>
+      HISTOGRAM_DISCRETE - A Histogram of Discrete Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HISTOGRAM_DISCRETE <br> A Histogram of Discrete Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HISTOGRAM_DISCRETE</b> 
+      is a MATLAB program which 
+      creates a histogram of discrete data.
+    </p>
+
+    <p>
+      The motivation of this study was to explore whether a histogram could
+      be made without artificially imposing bins; instead, the original
+      data would be kept and handled directly.
+    </p>
+
+    <p>
+      An attempt was made to come up with a sensible formulation of the
+      probability density function (PDF) for data in the range [X_MIN,X_MAX].
+      Instead of what amounts to a Dirac delta function, or a discrete bin
+      function, a piecewise linear function was devised that tried to emulate
+      the distribution of probability density along the interval.  A 
+      corresponding piecewise quadratic cumulative density function (CDF)
+      was also constructed.
+    </p>
+
+    <p>
+      Because we don't use bins, we can plot the PDF and CDF at any resolution
+      we like.  When we do so, the CDF looks reasonable, but the PDF does
+      not look so good; a particularly unpleasant example occurs for the
+      Gaussian test.  Now we see that binning has the advantage of smoothing
+      out the PDF data, whereas our piecewise linear function is too jumpy.
+      Presumably, one way to cure this would allow us to retain the piecewise
+      linear PDF, while essentially binning the data dynamically, according
+      to the resolution of the requested plot.  This, of course, is work to
+      be pursued in the vague future.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HISTOGRAM_DISCRETE</b> is available in
+      <a href = "../../m_src/histogram_discrete/histogram_discrete.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/histogram_display/histogram_display.html">
+      HISTOGRAM_DISPLAY</a>,
+      a MATLAB program which
+      makes a bar plot of a set of data stored
+      as columns in a file; the first column is the X values, and
+      all the other columns are Y values to be shown as a stack of bars;
+     </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cdf_discrete_value.m">cdf_discrete_value.m</a>, 
+          evaluates the discrete cdf.
+        </li>
+        <li>
+          <a href = "pdf_discrete_value.m">pdf_discrete_value.m</a>, 
+          evaluates the discrete pdf.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>, 
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec2_print.m">r8vec2_print.m</a>, 
+          prints two R8VEC's.
+        </li>
+        <li>
+          <a href = "r8vec3_print.m">r8vec3_print.m</a>, 
+          prints three R8VEC's.
+        </li>
+        <li>
+          <a href = "setup_discrete.m">setup_discrete.m</a>, 
+          takes a vector of sample data and prepares it for use as
+          a discrete histogram.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "histogram_discrete_test.m">histogram_discrete_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "histogram_discrete_test_output.txt">histogram_discrete_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "bigger_test.m">bigger_test.m</a>,
+          tests pdf_discrete_value() on a set of data whose size is input.
+        </li>
+        <li>
+          <a href = "gaussian_test.m">gaussian_test.m</a>,
+          looks at a set of data from a Gaussian distribution.  Here, we see
+          that the PDF plot looks very ragged, although the CDF is just fine.
+          If is clear that the PDF data needs to be smoothed in some way,
+          which is what binning does, for instance.
+        </li>
+        <li>
+          <a href = "gaussian_cdf_discrete_test.png">gaussian_cdf_discrete_test.png</a>,
+          a plot of the CDF.
+        </li>
+        <li>
+          <a href = "gaussian_pdf_discrete_test.png">gaussian_pdf_discrete_test.png</a>,
+          a plot of the PDF.
+        </li>
+        <li>
+          <a href = "cdf_discrete_test.m">cdf_discrete_test.m</a>,
+          tests cdf_discrete_value() on a small set of data.
+        </li>
+        <li>
+          <a href = "cdf_discrete_test.png">cdf_discrete_test.png</a>,
+          a plot of the CDF.
+        </li>
+        <li>
+          <a href = "pdf_discrete_test.m">pdf_discrete_test.m</a>,
+          tests pdf_discrete_value() on a small set of data.
+        </li>
+        <li>
+          <a href = "pdf_discrete_test.png">pdf_discrete_test.png</a>,
+          a plot of the PDF.
+        </li>
+        <li>
+          <a href = "setup_discrete_test.m">setup_discrete_test.m</a>,
+          tests setup_discrete().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 12 May 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -10,7 +10,7 @@ function fx1 = p00_fx1 ( prob, x )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -60,6 +60,8 @@ function fx1 = p00_fx1 ( prob, x )
     fx1 = p17_fx1 ( x );
   elseif ( prob == 18 )
     fx1 = p18_fx1 ( x );
+  elseif ( prob == 19 )
+    fx1 = p19_fx1 ( x );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_FX1 - Fatal error!\n' );

@@ -1,0 +1,141 @@
+blas2_test
+04-Apr-2014 22:25:02
+
+BLAS2_TEST
+  MATLAB version
+  Test the BLAS2 library.
+
+BLAS2_TEST01
+  For a general matrix A,
+  DGEMV computes y := alpha * A * x + beta * y
+  or             y := alpha * A' * x + beta * y.
+
+  Matrix A:
+
+  Col:       1             2             3             4       
+  Row
+      1 :          11            12            13            14  
+      2 :          21            22            23            24  
+      3 :          31            32            33            34  
+      4 :          41            42            43            44  
+      5 :          51            52            53            54  
+
+  Vector X:
+
+     1:            1
+     2:            2
+     3:            3
+     4:            4
+
+  Vector Y:
+
+     1:           10
+     2:           20
+     3:           30
+     4:           40
+     5:           50
+
+  Result Y = alpha * A  * x + beta * y
+
+     1:          290
+     2:          520
+     3:          750
+     4:          980
+     5:         1210
+
+  Matrix A:
+
+  Col:       1             2             3             4       
+  Row
+      1 :          11            21            31            41  
+      2 :          12            22            32            42  
+      3 :          13            23            33            43  
+      4 :          14            24            34            44  
+      5 :          15            25            35            45  
+
+  Vector X:
+
+     1:            1
+     2:            2
+     3:            3
+     4:            4
+     5:            5
+
+  Vector Y:
+
+     1:           10
+     2:           20
+     3:           30
+     4:           40
+
+  Result Y = alpha * A' * x + beta * y
+
+     1:          440
+     2:          770
+     3:         1100
+     4:         1430
+
+BLAS2_TEST05
+  For a general matrix A,
+  DGER computes A := A + alpha * x * y'
+
+  Matrix A:
+
+  Col:       1             2             3             4       
+  Row
+      1 :          11            12            13            14  
+      2 :          21            22            23            24  
+      3 :          31            32            33            34  
+      4 :          41            42            43            44  
+      5 :          51            52            53            54  
+
+  Vector X:
+
+     1:            1
+     2:            2
+     3:            3
+     4:            4
+     5:            5
+
+  Vector Y:
+
+     1:           10
+     2:           20
+     3:           30
+     4:           40
+
+  Result A = A + alpha * x * y
+
+  Col:       1             2             3             4       
+  Row
+      1 :          31            52            73            94  
+      2 :          61           102           143           184  
+      3 :          91           152           213           274  
+      4 :         121           202           283           364  
+      5 :         151           252           353           454  
+
+BLAS2_TEST06
+  For a triangular matrix A,
+  DTRMV computes y := A * x or y := A' * x
+
+  Result y = A * x
+
+     1:           70
+     2:           82
+     3:           86
+     4:           77
+     5:           50
+
+  Result y = A' * x
+
+     1:            2
+     2:           11
+     3:           32
+     4:           70
+     5:          130
+
+BLAS2_TEST
+  Normal end of execution.
+
+04-Apr-2014 22:25:02
+diary off

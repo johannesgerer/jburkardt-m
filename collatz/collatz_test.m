@@ -2,7 +2,7 @@ function collatz_test ( )
 
 %*****************************************************************************80
 %
-%% COLLATZ_TEST tests COLLATZ.
+%% COLLATZ_TEST tests the COLLATZ library.
 %
 %  Licensing:
 %
@@ -34,7 +34,6 @@ function collatz_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COLLATZ_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

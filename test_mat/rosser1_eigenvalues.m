@@ -18,12 +18,15 @@ function lambda = rosser1_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(8), the eigenvalues.
+%    Output, real LAMBDA(8,1), the eigenvalues.
 %
+  n = 8;
+  lambda = zeros ( n, 1 );
+
   a = sqrt ( 10405.0 );
   b = sqrt ( 26.0 );
 
-  lambda(1:8) = [ ...
+  lambda(1:8,1) = [ ...
      -10.0 * a, ...
        0.0, ...
      510.0 - 100.0 * b, ...

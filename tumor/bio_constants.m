@@ -2,11 +2,21 @@ function [ alpha1, alpha2, beta, beta1, beta2, czero, difeta, etazero, fzero, ..
   gamma1, gamma2, kappa, lambda1, lambda2, m, nu1, nu2, vzero, xl, xr ] = ...
   bio_constants ( )
 
+%*****************************************************************************80
+%
 %% BIO_CONSTANTS sets biological constants.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
 %    09 November 2005
+%
+%  Parameters:
+%
+%    Output, real XL, XR, the left and right endpoints of the region.
 %
 
 %

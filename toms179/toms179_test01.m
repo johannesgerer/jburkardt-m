@@ -1,6 +1,12 @@
 function toms179_test01 ( )
 
+%*****************************************************************************80
+%
 %% TEST01 demonstrates the use of ALOGAM.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

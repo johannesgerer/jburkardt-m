@@ -53,7 +53,7 @@ function node_xyz = sphere_icos1_points ( factor, node_num )
 %    be at least 1.
 %
 %    Input, integer NODE_NUM, the number of nodes, as reported
-%    by SPHERE_IMP_GRID_ICOS_NUM.
+%    by SPHERE_GRID_ICOS_SIZE.
 %
 %    Output, real NODE_XYZ(3,NODE_NUM), the node coordinates.
 %

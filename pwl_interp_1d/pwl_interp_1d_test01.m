@@ -58,7 +58,7 @@ function pwl_interp_1d_test01 ( prob )
 
   hold on
   plot ( xi, yi, 'r-', 'Linewidth', 4 );
-  plot ( xd, yd, 'k.', 'Markersize', 20 );
+  plot ( xd, yd, 'k.', 'Markersize', 25 );
   xlabel ( '<--- X --->' );
   ylabel ( '<--- Y --->' );
   title ( 'Piecewise Linear Interpolant' )

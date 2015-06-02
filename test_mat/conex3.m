@@ -2,18 +2,18 @@ function a = conex3 ( n )
 
 %*****************************************************************************80
 %
-%% CONEX3 returns a LINPACK condition number counterexample.
+%% CONEX3 returns the CONEX3 matrix.
 %
 %  Formula:
 %
 %    if ( I = J and I < N )
-%      A(I,J) =  1.0D+00 for 1<=I<N
+%      A(I,J) =  1.0 for 1<=I<N
 %    else if ( I = J = N )
-%      A(I,J) = -1.0D+00
+%      A(I,J) = -1.0
 %    else if ( J < I )
-%      A(I,J) = -1.0D+00
+%      A(I,J) = -1.0
 %    else
-%      A(I,J) =  0.0D+00
+%      A(I,J) =  0.0
 %
 %  Example:
 %
@@ -45,7 +45,7 @@ function a = conex3 ( n )
 %
 %  Modified:
 %
-%    22 October 2007
+%    25 January 2015
 %
 %  Author:
 %

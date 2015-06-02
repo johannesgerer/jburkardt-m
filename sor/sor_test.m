@@ -2,7 +2,7 @@ function sor_test ( )
 
 %*****************************************************************************80
 %
-%% SOR_TEST tests SOR.
+%% SOR_TEST tests the SOR library.
 %
 %  Licensing:
 %
@@ -38,7 +38,6 @@ function sor_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SOR_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

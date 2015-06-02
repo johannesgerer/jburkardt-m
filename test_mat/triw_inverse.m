@@ -52,7 +52,7 @@ function a = triw_inverse ( alpha, k, n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : n
     a(i,i) = 1.0;

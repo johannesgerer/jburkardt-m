@@ -22,9 +22,7 @@ function triangle_properties ( node_filename )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGLE_PROPERTIES:\n' );
   fprintf ( 1, '  MATLAB version:\n' );
@@ -159,7 +157,6 @@ function triangle_properties ( node_filename )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGLE_PROPERTIES:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function colored_noise_test ( )
 
 %*****************************************************************************80
 %
-%% COLORED_NOISE_TEST generates colored noise data for a sequence of values of ALPHA.
+%% COLORED_NOISE_TEST tests the COLORED_NOISE library.
 %
 %  Licensing:
 %
@@ -52,7 +52,6 @@ function colored_noise_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COLORED_NOISE_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

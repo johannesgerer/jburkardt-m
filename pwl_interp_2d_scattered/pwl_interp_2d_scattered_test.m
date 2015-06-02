@@ -2,7 +2,7 @@ function pwl_interp_2d_scattered_test ( )
 
 %*****************************************************************************80
 %
-%% PWL_INTERP_2D_SCATTERED_TEST tests PWL_INTERP_2D_SCATTERED_PRB.
+%% PWL_INTERP_2D_SCATTERED_TEST tests the PWL_INTERP_2D_SCATTERED library.
 %
 %  Licensing:
 %

@@ -22,8 +22,7 @@ function y = i4_mod_inv ( b, n )
 %
 %  Author:
 %
-%    Original MATLAB version by Wade Trappe, Lawrence Washington.
-%    This MATLAB version by John Burkardt.
+%    John Burkardt.
 %
 %  Reference:
 %
@@ -60,7 +59,7 @@ function y = i4_mod_inv ( b, n )
       temp =     mod (   temp, n );
     else
       temp = n - mod ( - temp, n );
-    end;
+    end
 
     n0 = b0;
     b0 = r;

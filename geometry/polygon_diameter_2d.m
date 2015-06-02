@@ -33,13 +33,11 @@ function diameter = polygon_diameter_2d ( n, v )
 %
 %    Output, real DIAMETER, the diameter of the polygon.
 %
-  dim_num = 2;
-
   diameter = 0.0;
 
   for i = 1 : n
 
-    for j = i+1 : n
+    for j = i + 1 : n
       diameter = max ( diameter, ...
         sqrt ( ( v(1,i) - v(1,j) ).^2 + ( v(2,i) - v(2,j) ).^2 ) );
     end

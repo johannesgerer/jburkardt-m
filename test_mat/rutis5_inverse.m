@@ -33,11 +33,15 @@ function a = rutis5_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
     105.0,  167.0, -304.0,  255.0; ...
     167.0,  266.0, -484.0,  406.0; ...
    -304.0, -484.0,  881.0, -739.0; ...
-    255.0,  406.0, -739.0,  620.0  ]';
+    255.0,  406.0, -739.0,  620.0  ];
 
   return
 end

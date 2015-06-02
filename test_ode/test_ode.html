@@ -16,7 +16,7 @@
 
     <p>
       <b>TEST_ODE</b> 
-      is a  MATLAB library which 
+      is a MATLAB library which 
       defines test initial value problems for ordinary 
       differential equations.  
     </p>
@@ -221,6 +221,11 @@
           neqn = 1,<br>
           y' = y^2-a*t+b;
         </li>
+        <li>
+          the Knee problem,<br>
+          neqn = 1,<br>
+          y' = y*(y-t)/eps;
+        </li>
       </ol>
     </p>
 
@@ -257,17 +262,11 @@
     </p>
 
     <p>
-      <a href = "../../f_src/nms/nms.html">
-      NMS</a>,
-      a FORTRAN90 library which
-      includes the <b>DDRIV</b> package of ODE solvers.
-    </p>
-
-    <p>
-      <a href = "../../f_src/ode/ode.html">
-      ODE</a>, 
-      a FORTRAN90 library which
-      implements the Shampine and Allen ODE solver.
+      <a href = "../../m_src/flame_ode/flame_ode.html">
+      FLAME_ODE</a>,
+      a MATLAB library which 
+      considers an ordinary differential equation (ODE) which models
+      the growth of a ball of flame in a combustion process.
     </p>
 
     <p>
@@ -283,22 +282,6 @@
       RKF45</a>, 
       a MATLAB library which
       implements the Runge-Kutta-Fehlberg ODE solver.
-    </p>
-
-    <p>
-      <a href = "../../f77_src/toms648_nsd/toms648_nsd.html">
-      TOMS648_NSD</a>, 
-      a FORTRAN77 library which
-      defines the non-stiff Enright and Pryce test ODE problems,
-      using double precision arithmetic.
-    </p>
-
-    <p>
-      <a href = "../../f77_src/toms648_nss/toms648_nss.html">
-      TOMS648_NSS</a>, 
-      a FORTRAN77 library which
-      defines the non-stiff Enright and Pryce test ODE problems,
-      using single precision arithmetic.
     </p>
 
     <h3 align = "center">
@@ -365,7 +348,7 @@
         </li>
         <li>
           <a href = "p00_autonomous.m">p00_autonomous.m</a>, 
-          returns TRUE if a given problem is autonomous.
+          returns 1 if a given problem is autonomous.
         </li>
         <li>
           <a href = "p00_equil.m">p00_equil.m</a>, 
@@ -378,6 +361,10 @@
         <li>
           <a href = "p00_fun.m">p00_fun.m</a>, 
           returns the right hand side of any problem.
+        </li>
+        <li>
+          <a href = "p00_jac.m">p00_jac.m</a>, 
+          returns the jacobian for any test problem.
         </li>
         <li>
           <a href = "p00_neqn.m">p00_neqn.m</a>, 
@@ -412,68 +399,1536 @@
           returns the title of any problem.
         </li>
         <li>
+          <a href = "p01_autonomous.m">p01_autonomous.m</a>, 
+          returns 1 if problem p01 is autonomous.
+        </li>
+        <li>
+          <a href = "p01_equil.m">p01_equil.m</a>, 
+          returns the equilibrium solutions for problem p01.
+        </li>
+        <li>
+          <a href = "p01_fun.m">p01_fun.m</a>, 
+          returns the right hand side of problem p01.
+        </li>
+        <li>
+          <a href = "p01_jac.m">p01_jac.m</a>, 
+          returns the jacobian for problem p01.
+        </li>
+        <li>
+          <a href = "p01_neqn.m">p01_neqn.m</a>, 
+          returns the number of equations for problem p01.
+        </li>
+        <li>
+          <a href = "p01_scale.m">p01_scale.m</a>, 
+          returns the scale vector for problem p01.
+        </li>
+        <li>
+          <a href = "p01_start.m">p01_start.m</a>, 
+          returns the initial data for problem p01.
+        </li>
+        <li>
+          <a href = "p01_stop.m">p01_stop.m</a>, 
+          returns the end data for problem p01.
+        </li>
+        <li>
+          <a href = "p01_title.m">p01_title.m</a>, 
+          returns the title of problem p01.
+        </li>
+        <li>
+          <a href = "p02_autonomous.m">p02_autonomous.m</a>, 
+          returns 1 if problem p02 is autonomous.
+        </li>
+        <li>
+          <a href = "p02_equil.m">p02_equil.m</a>, 
+          returns the equilibrium solutions for problem p02.
+        </li>
+        <li>
+          <a href = "p02_fun.m">p02_fun.m</a>, 
+          returns the right hand side of problem p02.
+        </li>
+        <li>
+          <a href = "p02_jac.m">p02_jac.m</a>, 
+          returns the jacobian for problem p02.
+        </li>
+        <li>
+          <a href = "p02_neqn.m">p02_neqn.m</a>, 
+          returns the number of equations for problem p02.
+        </li>
+        <li>
+          <a href = "p02_scale.m">p02_scale.m</a>, 
+          returns the scale vector for problem p02.
+        </li>
+        <li>
+          <a href = "p02_start.m">p02_start.m</a>, 
+          returns the initial data for problem p02.
+        </li>
+        <li>
+          <a href = "p02_stop.m">p02_stop.m</a>, 
+          returns the end data for problem p02.
+        </li>
+        <li>
+          <a href = "p02_title.m">p02_title.m</a>, 
+          returns the title of problem p02.
+        </li>
+        <li>
+          <a href = "p03_autonomous.m">p03_autonomous.m</a>, 
+          returns 1 if problem p03 is autonomous.
+        </li>
+        <li>
+          <a href = "p03_equil.m">p03_equil.m</a>, 
+          returns the equilibrium solutions for problem p03.
+        </li>
+        <li>
+          <a href = "p03_fun.m">p03_fun.m</a>, 
+          returns the right hand side of problem p03.
+        </li>
+        <li>
+          <a href = "p03_jac.m">p03_jac.m</a>, 
+          returns the jacobian for problem p03.
+        </li>
+        <li>
+          <a href = "p03_neqn.m">p03_neqn.m</a>, 
+          returns the number of equations for problem p03.
+        </li>
+        <li>
+          <a href = "p03_scale.m">p03_scale.m</a>, 
+          returns the scale vector for problem p03.
+        </li>
+        <li>
+          <a href = "p03_start.m">p03_start.m</a>, 
+          returns the initial data for problem p03.
+        </li>
+        <li>
+          <a href = "p03_stop.m">p03_stop.m</a>, 
+          returns the end data for problem p03.
+        </li>
+        <li>
+          <a href = "p03_title.m">p03_title.m</a>, 
+          returns the title of problem p03.
+        </li>
+        <li>
+          <a href = "p04_autonomous.m">p04_autonomous.m</a>, 
+          returns 1 if problem p04 is autonomous.
+        </li>
+        <li>
+          <a href = "p04_equil.m">p04_equil.m</a>, 
+          returns the equilibrium solutions for problem p04.
+        </li>
+        <li>
+          <a href = "p04_fun.m">p04_fun.m</a>, 
+          returns the right hand side of problem p04.
+        </li>
+        <li>
+          <a href = "p04_jac.m">p04_jac.m</a>, 
+          returns the jacobian for problem p04.
+        </li>
+        <li>
+          <a href = "p04_neqn.m">p04_neqn.m</a>, 
+          returns the number of equations for problem p04.
+        </li>
+        <li>
+          <a href = "p04_scale.m">p04_scale.m</a>, 
+          returns the scale vector for problem p04.
+        </li>
+        <li>
+          <a href = "p04_start.m">p04_start.m</a>, 
+          returns the initial data for problem p04.
+        </li>
+        <li>
+          <a href = "p04_stop.m">p04_stop.m</a>, 
+          returns the end data for problem p04.
+        </li>
+        <li>
+          <a href = "p04_title.m">p04_title.m</a>, 
+          returns the title of problem p04.
+        </li>
+        <li>
+          <a href = "p05_autonomous.m">p05_autonomous.m</a>, 
+          returns 1 if problem p05 is autonomous.
+        </li>
+        <li>
+          <a href = "p05_equil.m">p05_equil.m</a>, 
+          returns the equilibrium solutions for problem p05.
+        </li>
+        <li>
+          <a href = "p05_fun.m">p05_fun.m</a>, 
+          returns the right hand side of problem p05.
+        </li>
+        <li>
+          <a href = "p05_jac.m">p05_jac.m</a>, 
+          returns the jacobian for problem p05.
+        </li>
+        <li>
+          <a href = "p05_neqn.m">p05_neqn.m</a>, 
+          returns the number of equations for problem p05.
+        </li>
+        <li>
+          <a href = "p05_scale.m">p05_scale.m</a>, 
+          returns the scale vector for problem p05.
+        </li>
+        <li>
+          <a href = "p05_start.m">p05_start.m</a>, 
+          returns the initial data for problem p05.
+        </li>
+        <li>
+          <a href = "p05_stop.m">p05_stop.m</a>, 
+          returns the end data for problem p05.
+        </li>
+        <li>
+          <a href = "p05_title.m">p05_title.m</a>, 
+          returns the title of problem p05.
+        </li>
+        <li>
+          <a href = "p06_autonomous.m">p06_autonomous.m</a>, 
+          returns 1 if problem p06 is autonomous.
+        </li>
+        <li>
+          <a href = "p06_equil.m">p06_equil.m</a>, 
+          returns the equilibrium solutions for problem p06.
+        </li>
+        <li>
+          <a href = "p06_fun.m">p06_fun.m</a>, 
+          returns the right hand side of problem p06.
+        </li>
+        <li>
+          <a href = "p06_jac.m">p06_jac.m</a>, 
+          returns the jacobian for problem p06.
+        </li>
+        <li>
+          <a href = "p06_neqn.m">p06_neqn.m</a>, 
+          returns the number of equations for problem p06.
+        </li>
+        <li>
+          <a href = "p06_scale.m">p06_scale.m</a>, 
+          returns the scale vector for problem p06.
+        </li>
+        <li>
+          <a href = "p06_start.m">p06_start.m</a>, 
+          returns the initial data for problem p06.
+        </li>
+        <li>
+          <a href = "p06_stop.m">p06_stop.m</a>, 
+          returns the end data for problem p06.
+        </li>
+        <li>
+          <a href = "p06_title.m">p06_title.m</a>, 
+          returns the title of problem p06.
+        </li>
+        <li>
+          <a href = "p07_autonomous.m">p07_autonomous.m</a>, 
+          returns 1 if problem p07 is autonomous.
+        </li>
+        <li>
+          <a href = "p07_equil.m">p07_equil.m</a>, 
+          returns the equilibrium solutions for problem p07.
+        </li>
+        <li>
+          <a href = "p07_fun.m">p07_fun.m</a>, 
+          returns the right hand side of problem p07.
+        </li>
+        <li>
+          <a href = "p07_jac.m">p07_jac.m</a>, 
+          returns the jacobian for problem p07.
+        </li>
+        <li>
+          <a href = "p07_neqn.m">p07_neqn.m</a>, 
+          returns the number of equations for problem p07.
+        </li>
+        <li>
+          <a href = "p07_scale.m">p07_scale.m</a>, 
+          returns the scale vector for problem p07.
+        </li>
+        <li>
+          <a href = "p07_start.m">p07_start.m</a>, 
+          returns the initial data for problem p07.
+        </li>
+        <li>
+          <a href = "p07_stop.m">p07_stop.m</a>, 
+          returns the end data for problem p07.
+        </li>
+        <li>
+          <a href = "p07_title.m">p07_title.m</a>, 
+          returns the title of problem p07.
+        </li>
+        <li>
+          <a href = "p08_autonomous.m">p08_autonomous.m</a>, 
+          returns 1 if problem p08 is autonomous.
+        </li>
+        <li>
+          <a href = "p08_equil.m">p08_equil.m</a>, 
+          returns the equilibrium solutions for problem p08.
+        </li>
+        <li>
+          <a href = "p08_fun.m">p08_fun.m</a>, 
+          returns the right hand side of problem p08.
+        </li>
+        <li>
+          <a href = "p08_jac.m">p08_jac.m</a>, 
+          returns the jacobian for problem p08.
+        </li>
+        <li>
+          <a href = "p08_neqn.m">p08_neqn.m</a>, 
+          returns the number of equations for problem p08.
+        </li>
+        <li>
+          <a href = "p08_scale.m">p08_scale.m</a>, 
+          returns the scale vector for problem p08.
+        </li>
+        <li>
+          <a href = "p08_start.m">p08_start.m</a>, 
+          returns the initial data for problem p08.
+        </li>
+        <li>
+          <a href = "p08_stop.m">p08_stop.m</a>, 
+          returns the end data for problem p08.
+        </li>
+        <li>
+          <a href = "p08_title.m">p08_title.m</a>, 
+          returns the title of problem p08.
+        </li>
+        <li>
+          <a href = "p09_autonomous.m">p09_autonomous.m</a>, 
+          returns 1 if problem p09 is autonomous.
+        </li>
+        <li>
+          <a href = "p09_equil.m">p09_equil.m</a>, 
+          returns the equilibrium solutions for problem p09.
+        </li>
+        <li>
+          <a href = "p09_fun.m">p09_fun.m</a>, 
+          returns the right hand side of problem p09.
+        </li>
+        <li>
+          <a href = "p09_jac.m">p09_jac.m</a>, 
+          returns the jacobian for problem p09.
+        </li>
+        <li>
+          <a href = "p09_neqn.m">p09_neqn.m</a>, 
+          returns the number of equations for problem p09.
+        </li>
+        <li>
+          <a href = "p09_scale.m">p09_scale.m</a>, 
+          returns the scale vector for problem p09.
+        </li>
+        <li>
+          <a href = "p09_start.m">p09_start.m</a>, 
+          returns the initial data for problem p09.
+        </li>
+        <li>
+          <a href = "p09_stop.m">p09_stop.m</a>, 
+          returns the end data for problem p09.
+        </li>
+        <li>
+          <a href = "p09_title.m">p09_title.m</a>, 
+          returns the title of problem p09.
+        </li>
+        <li>
+          <a href = "p10_autonomous.m">p10_autonomous.m</a>, 
+          returns 1 if problem p10 is autonomous.
+        </li>
+        <li>
+          <a href = "p10_equil.m">p10_equil.m</a>, 
+          returns the equilibrium solutions for problem p10.
+        </li>
+        <li>
+          <a href = "p10_fun.m">p10_fun.m</a>, 
+          returns the right hand side of problem p10.
+        </li>
+        <li>
+          <a href = "p10_jac.m">p10_jac.m</a>, 
+          returns the jacobian for problem p10.
+        </li>
+        <li>
+          <a href = "p10_neqn.m">p10_neqn.m</a>, 
+          returns the number of equations for problem p10.
+        </li>
+        <li>
+          <a href = "p10_scale.m">p10_scale.m</a>, 
+          returns the scale vector for problem p10.
+        </li>
+        <li>
+          <a href = "p10_start.m">p10_start.m</a>, 
+          returns the initial data for problem p10.
+        </li>
+        <li>
+          <a href = "p10_stop.m">p10_stop.m</a>, 
+          returns the end data for problem p10.
+        </li>
+        <li>
+          <a href = "p10_title.m">p10_title.m</a>, 
+          returns the title of problem p10.
+        </li>
+        <li>
+          <a href = "p11_autonomous.m">p11_autonomous.m</a>, 
+          returns 1 if problem p11 is autonomous.
+        </li>
+        <li>
+          <a href = "p11_equil.m">p11_equil.m</a>, 
+          returns the equilibrium solutions for problem p11.
+        </li>
+        <li>
+          <a href = "p11_fun.m">p11_fun.m</a>, 
+          returns the right hand side of problem p11.
+        </li>
+        <li>
+          <a href = "p11_jac.m">p11_jac.m</a>, 
+          returns the jacobian for problem p11.
+        </li>
+        <li>
+          <a href = "p11_neqn.m">p11_neqn.m</a>, 
+          returns the number of equations for problem p11.
+        </li>
+        <li>
+          <a href = "p11_scale.m">p11_scale.m</a>, 
+          returns the scale vector for problem p11.
+        </li>
+        <li>
+          <a href = "p11_start.m">p11_start.m</a>, 
+          returns the initial data for problem p11.
+        </li>
+        <li>
+          <a href = "p11_stop.m">p11_stop.m</a>, 
+          returns the end data for problem p11.
+        </li>
+        <li>
+          <a href = "p11_title.m">p11_title.m</a>, 
+          returns the title of problem p11.
+        </li>
+        <li>
+          <a href = "p12_autonomous.m">p12_autonomous.m</a>, 
+          returns 1 if problem p12 is autonomous.
+        </li>
+        <li>
+          <a href = "p12_equil.m">p12_equil.m</a>, 
+          returns the equilibrium solutions for problem p12.
+        </li>
+        <li>
+          <a href = "p12_fun.m">p12_fun.m</a>, 
+          returns the right hand side of problem p12.
+        </li>
+        <li>
+          <a href = "p12_jac.m">p12_jac.m</a>, 
+          returns the jacobian for problem p12.
+        </li>
+        <li>
+          <a href = "p12_neqn.m">p12_neqn.m</a>, 
+          returns the number of equations for problem p12.
+        </li>
+        <li>
+          <a href = "p12_scale.m">p12_scale.m</a>, 
+          returns the scale vector for problem p12.
+        </li>
+        <li>
+          <a href = "p12_start.m">p12_start.m</a>, 
+          returns the initial data for problem p12.
+        </li>
+        <li>
+          <a href = "p12_stop.m">p12_stop.m</a>, 
+          returns the end data for problem p12.
+        </li>
+        <li>
+          <a href = "p12_title.m">p12_title.m</a>, 
+          returns the title of problem p12.
+        </li>
+        <li>
+          <a href = "p13_autonomous.m">p13_autonomous.m</a>, 
+          returns 1 if problem p13 is autonomous.
+        </li>
+        <li>
+          <a href = "p13_equil.m">p13_equil.m</a>, 
+          returns the equilibrium solutions for problem p13.
+        </li>
+        <li>
+          <a href = "p13_fun.m">p13_fun.m</a>, 
+          returns the right hand side of problem p13.
+        </li>
+        <li>
+          <a href = "p13_jac.m">p13_jac.m</a>, 
+          returns the jacobian for problem p13.
+        </li>
+        <li>
+          <a href = "p13_neqn.m">p13_neqn.m</a>, 
+          returns the number of equations for problem p13.
+        </li>
+        <li>
+          <a href = "p13_scale.m">p13_scale.m</a>, 
+          returns the scale vector for problem p13.
+        </li>
+        <li>
+          <a href = "p13_start.m">p13_start.m</a>, 
+          returns the initial data for problem p13.
+        </li>
+        <li>
+          <a href = "p13_stop.m">p13_stop.m</a>, 
+          returns the end data for problem p13.
+        </li>
+        <li>
+          <a href = "p13_title.m">p13_title.m</a>, 
+          returns the title of problem p13.
+        </li>
+        <li>
+          <a href = "p14_autonomous.m">p14_autonomous.m</a>, 
+          returns 1 if problem p14 is autonomous.
+        </li>
+        <li>
+          <a href = "p14_equil.m">p14_equil.m</a>, 
+          returns the equilibrium solutions for problem p14.
+        </li>
+        <li>
+          <a href = "p14_fun.m">p14_fun.m</a>, 
+          returns the right hand side of problem p14.
+        </li>
+        <li>
+          <a href = "p14_jac.m">p14_jac.m</a>, 
+          returns the jacobian for problem p14.
+        </li>
+        <li>
+          <a href = "p14_neqn.m">p14_neqn.m</a>, 
+          returns the number of equations for problem p14.
+        </li>
+        <li>
+          <a href = "p14_scale.m">p14_scale.m</a>, 
+          returns the scale vector for problem p14.
+        </li>
+        <li>
+          <a href = "p14_start.m">p14_start.m</a>, 
+          returns the initial data for problem p14.
+        </li>
+        <li>
+          <a href = "p14_stop.m">p14_stop.m</a>, 
+          returns the end data for problem p14.
+        </li>
+        <li>
+          <a href = "p14_title.m">p14_title.m</a>, 
+          returns the title of problem p14.
+        </li>
+        <li>
+          <a href = "p15_autonomous.m">p15_autonomous.m</a>, 
+          returns 1 if problem p15 is autonomous.
+        </li>
+        <li>
+          <a href = "p15_equil.m">p15_equil.m</a>, 
+          returns the equilibrium solutions for problem p15.
+        </li>
+        <li>
+          <a href = "p15_fun.m">p15_fun.m</a>, 
+          returns the right hand side of problem p15.
+        </li>
+        <li>
+          <a href = "p15_jac.m">p15_jac.m</a>, 
+          returns the jacobian for problem p15.
+        </li>
+        <li>
+          <a href = "p15_neqn.m">p15_neqn.m</a>, 
+          returns the number of equations for problem p15.
+        </li>
+        <li>
           <a href = "p15_param.m">p15_param.m</a>, 
-          manages parameters for problem 15.
+          manages parameters for problem p15.
+        </li>
+        <li>
+          <a href = "p15_scale.m">p15_scale.m</a>, 
+          returns the scale vector for problem p15.
+        </li>
+        <li>
+          <a href = "p15_start.m">p15_start.m</a>, 
+          returns the initial data for problem p15.
+        </li>
+        <li>
+          <a href = "p15_stop.m">p15_stop.m</a>, 
+          returns the end data for problem p15.
+        </li>
+        <li>
+          <a href = "p15_title.m">p15_title.m</a>, 
+          returns the title of problem p15.
+        </li>
+        <li>
+          <a href = "p16_autonomous.m">p16_autonomous.m</a>, 
+          returns 1 if problem p16 is autonomous.
+        </li>
+        <li>
+          <a href = "p16_equil.m">p16_equil.m</a>, 
+          returns the equilibrium solutions for problem p16.
+        </li>
+        <li>
+          <a href = "p16_fun.m">p16_fun.m</a>, 
+          returns the right hand side of problem p16.
+        </li>
+        <li>
+          <a href = "p16_jac.m">p16_jac.m</a>, 
+          returns the jacobian for problem p16.
+        </li>
+        <li>
+          <a href = "p16_neqn.m">p16_neqn.m</a>, 
+          returns the number of equations for problem p16.
         </li>
         <li>
           <a href = "p16_param.m">p16_param.m</a>, 
-          manages parameters for problem 16.
+          manages parameters for problem p16.
+        </li>
+        <li>
+          <a href = "p16_scale.m">p16_scale.m</a>, 
+          returns the scale vector for problem p16.
+        </li>
+        <li>
+          <a href = "p16_start.m">p16_start.m</a>, 
+          returns the initial data for problem p16.
+        </li>
+        <li>
+          <a href = "p16_stop.m">p16_stop.m</a>, 
+          returns the end data for problem p16.
+        </li>
+        <li>
+          <a href = "p16_title.m">p16_title.m</a>, 
+          returns the title of problem p16.
+        </li>
+        <li>
+          <a href = "p17_autonomous.m">p17_autonomous.m</a>, 
+          returns 1 if problem p17 is autonomous.
+        </li>
+        <li>
+          <a href = "p17_equil.m">p17_equil.m</a>, 
+          returns the equilibrium solutions for problem p17.
+        </li>
+        <li>
+          <a href = "p17_fun.m">p17_fun.m</a>, 
+          returns the right hand side of problem p17.
+        </li>
+        <li>
+          <a href = "p17_jac.m">p17_jac.m</a>, 
+          returns the jacobian for problem p17.
+        </li>
+        <li>
+          <a href = "p17_neqn.m">p17_neqn.m</a>, 
+          returns the number of equations for problem p17.
         </li>
         <li>
           <a href = "p17_param.m">p17_param.m</a>, 
-          manages parameters for problem 17.
+          manages parameters for problem p17.
+        </li>
+        <li>
+          <a href = "p17_scale.m">p17_scale.m</a>, 
+          returns the scale vector for problem p17.
+        </li>
+        <li>
+          <a href = "p17_start.m">p17_start.m</a>, 
+          returns the initial data for problem p17.
+        </li>
+        <li>
+          <a href = "p17_stop.m">p17_stop.m</a>, 
+          returns the end data for problem p17.
+        </li>
+        <li>
+          <a href = "p17_title.m">p17_title.m</a>, 
+          returns the title of problem p17.
+        </li>
+        <li>
+          <a href = "p18_autonomous.m">p18_autonomous.m</a>, 
+          returns 1 if problem p18 is autonomous.
+        </li>
+        <li>
+          <a href = "p18_equil.m">p18_equil.m</a>, 
+          returns the equilibrium solutions for problem p18.
+        </li>
+        <li>
+          <a href = "p18_fun.m">p18_fun.m</a>, 
+          returns the right hand side of problem p18.
+        </li>
+        <li>
+          <a href = "p18_jac.m">p18_jac.m</a>, 
+          returns the jacobian for problem p18.
+        </li>
+        <li>
+          <a href = "p18_neqn.m">p18_neqn.m</a>, 
+          returns the number of equations for problem p18.
         </li>
         <li>
           <a href = "p18_param.m">p18_param.m</a>, 
-          manages parameters for problem 18.
+          manages parameters for problem p18.
+        </li>
+        <li>
+          <a href = "p18_scale.m">p18_scale.m</a>, 
+          returns the scale vector for problem p18.
+        </li>
+        <li>
+          <a href = "p18_start.m">p18_start.m</a>, 
+          returns the initial data for problem p18.
+        </li>
+        <li>
+          <a href = "p18_stop.m">p18_stop.m</a>, 
+          returns the end data for problem p18.
+        </li>
+        <li>
+          <a href = "p18_title.m">p18_title.m</a>, 
+          returns the title of problem p18.
+        </li>
+        <li>
+          <a href = "p19_autonomous.m">p19_autonomous.m</a>, 
+          returns 1 if problem p19 is autonomous.
+        </li>
+        <li>
+          <a href = "p19_equil.m">p19_equil.m</a>, 
+          returns the equilibrium solutions for problem p19.
+        </li>
+        <li>
+          <a href = "p19_fun.m">p19_fun.m</a>, 
+          returns the right hand side of problem p19.
+        </li>
+        <li>
+          <a href = "p19_jac.m">p19_jac.m</a>, 
+          returns the jacobian for problem p19.
+        </li>
+        <li>
+          <a href = "p19_neqn.m">p19_neqn.m</a>, 
+          returns the number of equations for problem p19.
         </li>
         <li>
           <a href = "p19_param.m">p19_param.m</a>, 
-          manages parameters for problem 19.
+          manages parameters for problem p19.
+        </li>
+        <li>
+          <a href = "p19_scale.m">p19_scale.m</a>, 
+          returns the scale vector for problem p19.
+        </li>
+        <li>
+          <a href = "p19_start.m">p19_start.m</a>, 
+          returns the initial data for problem p19.
+        </li>
+        <li>
+          <a href = "p19_stop.m">p19_stop.m</a>, 
+          returns the end data for problem p19.
+        </li>
+        <li>
+          <a href = "p19_title.m">p19_title.m</a>, 
+          returns the title of problem p19.
+        </li>
+        <li>
+          <a href = "p20_autonomous.m">p20_autonomous.m</a>, 
+          returns 1 if problem p20 is autonomous.
+        </li>
+        <li>
+          <a href = "p20_equil.m">p20_equil.m</a>, 
+          returns the equilibrium solutions for problem p20.
+        </li>
+        <li>
+          <a href = "p20_fun.m">p20_fun.m</a>, 
+          returns the right hand side of problem p20.
+        </li>
+        <li>
+          <a href = "p20_jac.m">p20_jac.m</a>, 
+          returns the jacobian for problem p20.
+        </li>
+        <li>
+          <a href = "p20_neqn.m">p20_neqn.m</a>, 
+          returns the number of equations for problem p20.
         </li>
         <li>
           <a href = "p20_param.m">p20_param.m</a>, 
-          manages parameters for problem 20.
+          manages parameters for problem p20.
+        </li>
+        <li>
+          <a href = "p20_scale.m">p20_scale.m</a>, 
+          returns the scale vector for problem p20.
+        </li>
+        <li>
+          <a href = "p20_start.m">p20_start.m</a>, 
+          returns the initial data for problem p20.
+        </li>
+        <li>
+          <a href = "p20_stop.m">p20_stop.m</a>, 
+          returns the end data for problem p20.
+        </li>
+        <li>
+          <a href = "p20_title.m">p20_title.m</a>, 
+          returns the title of problem p20.
+        </li>
+        <li>
+          <a href = "p21_autonomous.m">p21_autonomous.m</a>, 
+          returns 1 if problem p21 is autonomous.
+        </li>
+        <li>
+          <a href = "p21_equil.m">p21_equil.m</a>, 
+          returns the equilibrium solutions for problem p21.
+        </li>
+        <li>
+          <a href = "p21_fun.m">p21_fun.m</a>, 
+          returns the right hand side of problem p21.
+        </li>
+        <li>
+          <a href = "p21_jac.m">p21_jac.m</a>, 
+          returns the jacobian for problem p21.
+        </li>
+        <li>
+          <a href = "p21_neqn.m">p21_neqn.m</a>, 
+          returns the number of equations for problem p21.
+        </li>
+        <li>
+          <a href = "p21_scale.m">p21_scale.m</a>, 
+          returns the scale vector for problem p21.
+        </li>
+        <li>
+          <a href = "p21_start.m">p21_start.m</a>, 
+          returns the initial data for problem p21.
+        </li>
+        <li>
+          <a href = "p21_stop.m">p21_stop.m</a>, 
+          returns the end data for problem p21.
+        </li>
+        <li>
+          <a href = "p21_title.m">p21_title.m</a>, 
+          returns the title of problem p21.
+        </li>
+        <li>
+          <a href = "p22_autonomous.m">p22_autonomous.m</a>, 
+          returns 1 if problem p22 is autonomous.
+        </li>
+        <li>
+          <a href = "p22_equil.m">p22_equil.m</a>, 
+          returns the equilibrium solutions for problem p22.
+        </li>
+        <li>
+          <a href = "p22_fun.m">p22_fun.m</a>, 
+          returns the right hand side of problem p22.
+        </li>
+        <li>
+          <a href = "p22_jac.m">p22_jac.m</a>, 
+          returns the jacobian for problem p22.
+        </li>
+        <li>
+          <a href = "p22_neqn.m">p22_neqn.m</a>, 
+          returns the number of equations for problem p22.
+        </li>
+        <li>
+          <a href = "p22_scale.m">p22_scale.m</a>, 
+          returns the scale vector for problem p22.
+        </li>
+        <li>
+          <a href = "p22_start.m">p22_start.m</a>, 
+          returns the initial data for problem p22.
+        </li>
+        <li>
+          <a href = "p22_stop.m">p22_stop.m</a>, 
+          returns the end data for problem p10.
+        </li>
+        <li>
+          <a href = "p22_title.m">p22_title.m</a>, 
+          returns the title of problem p22.
+        </li>
+        <li>
+          <a href = "p23_autonomous.m">p23_autonomous.m</a>, 
+          returns 1 if problem p23 is autonomous.
+        </li>
+        <li>
+          <a href = "p23_equil.m">p23_equil.m</a>, 
+          returns the equilibrium solutions for problem p23.
+        </li>
+        <li>
+          <a href = "p23_fun.m">p23_fun.m</a>, 
+          returns the right hand side of problem p23.
+        </li>
+        <li>
+          <a href = "p23_jac.m">p23_jac.m</a>, 
+          returns the jacobian for problem p23.
+        </li>
+        <li>
+          <a href = "p23_neqn.m">p23_neqn.m</a>, 
+          returns the number of equations for problem p23.
+        </li>
+        <li>
+          <a href = "p23_scale.m">p23_scale.m</a>, 
+          returns the scale vector for problem p23.
+        </li>
+        <li>
+          <a href = "p23_start.m">p23_start.m</a>, 
+          returns the initial data for problem p23.
+        </li>
+        <li>
+          <a href = "p23_stop.m">p23_stop.m</a>, 
+          returns the end data for problem p10.
+        </li>
+        <li>
+          <a href = "p23_title.m">p23_title.m</a>, 
+          returns the title of problem p23.
+        </li>
+        <li>
+          <a href = "p24_autonomous.m">p24_autonomous.m</a>, 
+          returns 1 if problem p24 is autonomous.
+        </li>
+        <li>
+          <a href = "p24_equil.m">p24_equil.m</a>, 
+          returns the equilibrium solutions for problem p24.
+        </li>
+        <li>
+          <a href = "p24_fun.m">p24_fun.m</a>, 
+          returns the right hand side of problem p24.
+        </li>
+        <li>
+          <a href = "p24_jac.m">p24_jac.m</a>, 
+          returns the jacobian for problem p24.
+        </li>
+        <li>
+          <a href = "p24_neqn.m">p24_neqn.m</a>, 
+          returns the number of equations for problem p24.
+        </li>
+        <li>
+          <a href = "p24_scale.m">p24_scale.m</a>, 
+          returns the scale vector for problem p24.
+        </li>
+        <li>
+          <a href = "p24_start.m">p24_start.m</a>, 
+          returns the initial data for problem p24.
+        </li>
+        <li>
+          <a href = "p24_stop.m">p24_stop.m</a>, 
+          returns the end data for problem p24.
+        </li>
+        <li>
+          <a href = "p24_title.m">p24_title.m</a>, 
+          returns the title of problem p24.
+        </li>
+        <li>
+          <a href = "p25_autonomous.m">p25_autonomous.m</a>, 
+          returns 1 if problem p25 is autonomous.
+        </li>
+        <li>
+          <a href = "p25_equil.m">p25_equil.m</a>, 
+          returns the equilibrium solutions for problem p25.
+        </li>
+        <li>
+          <a href = "p25_fun.m">p25_fun.m</a>, 
+          returns the right hand side of problem p25.
+        </li>
+        <li>
+          <a href = "p25_jac.m">p25_jac.m</a>, 
+          returns the jacobian for problem p25.
+        </li>
+        <li>
+          <a href = "p25_neqn.m">p25_neqn.m</a>, 
+          returns the number of equations for problem p25.
+        </li>
+        <li>
+          <a href = "p25_scale.m">p25_scale.m</a>, 
+          returns the scale vector for problem p25.
+        </li>
+        <li>
+          <a href = "p25_start.m">p25_start.m</a>, 
+          returns the initial data for problem p25.
+        </li>
+        <li>
+          <a href = "p25_stop.m">p25_stop.m</a>, 
+          returns the end data for problem p25.
+        </li>
+        <li>
+          <a href = "p25_title.m">p25_title.m</a>, 
+          returns the title of problem p25.
+        </li>
+        <li>
+          <a href = "p26_autonomous.m">p26_autonomous.m</a>, 
+          returns 1 if problem p26 is autonomous.
+        </li>
+        <li>
+          <a href = "p26_equil.m">p26_equil.m</a>, 
+          returns the equilibrium solutions for problem p26.
+        </li>
+        <li>
+          <a href = "p26_fun.m">p26_fun.m</a>, 
+          returns the right hand side of problem p26.
+        </li>
+        <li>
+          <a href = "p26_jac.m">p26_jac.m</a>, 
+          returns the jacobian for problem p26.
+        </li>
+        <li>
+          <a href = "p26_neqn.m">p26_neqn.m</a>, 
+          returns the number of equations for problem p26.
         </li>
         <li>
           <a href = "p26_param.m">p26_param.m</a>, 
-          manages parameters for problem 26.
+          manages parameters for problem p26.
+        </li>
+        <li>
+          <a href = "p26_scale.m">p26_scale.m</a>, 
+          returns the scale vector for problem p26.
+        </li>
+        <li>
+          <a href = "p26_start.m">p26_start.m</a>, 
+          returns the initial data for problem p26.
+        </li>
+        <li>
+          <a href = "p26_stop.m">p26_stop.m</a>, 
+          returns the end data for problem p26.
+        </li>
+        <li>
+          <a href = "p26_title.m">p26_title.m</a>, 
+          returns the title of problem p26.
+        </li>
+        <li>
+          <a href = "p27_autonomous.m">p27_autonomous.m</a>, 
+          returns 1 if problem p27 is autonomous.
+        </li>
+        <li>
+          <a href = "p27_equil.m">p27_equil.m</a>, 
+          returns the equilibrium solutions for problem p27.
+        </li>
+        <li>
+          <a href = "p27_fun.m">p27_fun.m</a>, 
+          returns the right hand side of problem p27.
+        </li>
+        <li>
+          <a href = "p27_jac.m">p27_jac.m</a>, 
+          returns the jacobian for problem p27.
+        </li>
+        <li>
+          <a href = "p27_neqn.m">p27_neqn.m</a>, 
+          returns the number of equations for problem p27.
+        </li>
+        <li>
+          <a href = "p27_scale.m">p27_scale.m</a>, 
+          returns the scale vector for problem p27.
+        </li>
+        <li>
+          <a href = "p27_start.m">p27_start.m</a>, 
+          returns the initial data for problem p27.
+        </li>
+        <li>
+          <a href = "p27_stop.m">p27_stop.m</a>, 
+          returns the end data for problem p27.
+        </li>
+        <li>
+          <a href = "p27_title.m">p27_title.m</a>, 
+          returns the title of problem p27.
+        </li>
+        <li>
+          <a href = "p28_autonomous.m">p28_autonomous.m</a>, 
+          returns 1 if problem p28 is autonomous.
+        </li>
+        <li>
+          <a href = "p28_equil.m">p28_equil.m</a>, 
+          returns the equilibrium solutions for problem p28.
+        </li>
+        <li>
+          <a href = "p28_fun.m">p28_fun.m</a>, 
+          returns the right hand side of problem p28.
+        </li>
+        <li>
+          <a href = "p28_jac.m">p28_jac.m</a>, 
+          returns the jacobian for problem p28.
+        </li>
+        <li>
+          <a href = "p28_neqn.m">p28_neqn.m</a>, 
+          returns the number of equations for problem p28.
+        </li>
+        <li>
+          <a href = "p28_scale.m">p28_scale.m</a>, 
+          returns the scale vector for problem p28.
+        </li>
+        <li>
+          <a href = "p28_start.m">p28_start.m</a>, 
+          returns the initial data for problem p28.
+        </li>
+        <li>
+          <a href = "p28_stop.m">p28_stop.m</a>, 
+          returns the end data for problem p28.
+        </li>
+        <li>
+          <a href = "p28_title.m">p28_title.m</a>, 
+          returns the title of problem p28.
+        </li>
+        <li>
+          <a href = "p29_autonomous.m">p29_autonomous.m</a>, 
+          returns 1 if problem p29 is autonomous.
+        </li>
+        <li>
+          <a href = "p29_equil.m">p29_equil.m</a>, 
+          returns the equilibrium solutions for problem p29.
+        </li>
+        <li>
+          <a href = "p29_fun.m">p29_fun.m</a>, 
+          returns the right hand side of problem p29.
+        </li>
+        <li>
+          <a href = "p29_jac.m">p29_jac.m</a>, 
+          returns the jacobian for problem p29.
+        </li>
+        <li>
+          <a href = "p29_neqn.m">p29_neqn.m</a>, 
+          returns the number of equations for problem p29.
+        </li>
+        <li>
+          <a href = "p29_scale.m">p29_scale.m</a>, 
+          returns the scale vector for problem p29.
+        </li>
+        <li>
+          <a href = "p29_start.m">p29_start.m</a>, 
+          returns the initial data for problem p29.
+        </li>
+        <li>
+          <a href = "p29_stop.m">p29_stop.m</a>, 
+          returns the end data for problem p29.
+        </li>
+        <li>
+          <a href = "p29_title.m">p29_title.m</a>, 
+          returns the title of problem p29
+        </li>
+        <li>
+          <a href = "p30_autonomous.m">p30_autonomous.m</a>, 
+          returns 1 if problem p30 is autonomous.
+        </li>
+        <li>
+          <a href = "p30_equil.m">p30_equil.m</a>, 
+          returns the equilibrium solutions for problem p30.
+        </li>
+        <li>
+          <a href = "p30_fun.m">p30_fun.m</a>, 
+          returns the right hand side of problem p30.
+        </li>
+        <li>
+          <a href = "p30_jac.m">p30_jac.m</a>, 
+          returns the jacobian for problem p30.
+        </li>
+        <li>
+          <a href = "p30_neqn.m">p30_neqn.m</a>, 
+          returns the number of equations for problem p30.
+        </li>
+        <li>
+          <a href = "p30_scale.m">p30_scale.m</a>, 
+          returns the scale vector for problem p30.
+        </li>
+        <li>
+          <a href = "p30_start.m">p30_start.m</a>, 
+          returns the initial data for problem p30.
+        </li>
+        <li>
+          <a href = "p30_stop.m">p30_stop.m</a>, 
+          returns the end data for problem p30.
+        </li>
+        <li>
+          <a href = "p30_title.m">p30_title.m</a>, 
+          returns the title of problem p30.
+        </li>
+        <li>
+          <a href = "p31_autonomous.m">p31_autonomous.m</a>, 
+          returns 1 if problem p31 is autonomous.
+        </li>
+        <li>
+          <a href = "p31_equil.m">p31_equil.m</a>, 
+          returns the equilibrium solutions for problem p31.
+        </li>
+        <li>
+          <a href = "p31_fun.m">p31_fun.m</a>, 
+          returns the right hand side of problem p31.
+        </li>
+        <li>
+          <a href = "p31_jac.m">p31_jac.m</a>, 
+          returns the jacobian for problem p31.
+        </li>
+        <li>
+          <a href = "p31_neqn.m">p31_neqn.m</a>, 
+          returns the number of equations for problem p31.
         </li>
         <li>
           <a href = "p31_param.m">p31_param.m</a>, 
-          manages parameters for problem 31.
+          manages parameters for problem p31.
+        </li>
+        <li>
+          <a href = "p31_scale.m">p31_scale.m</a>, 
+          returns the scale vector for problem p31.
+        </li>
+        <li>
+          <a href = "p31_start.m">p31_start.m</a>, 
+          returns the initial data for problem p31.
+        </li>
+        <li>
+          <a href = "p31_stop.m">p31_stop.m</a>, 
+          returns the end data for problem p31.
+        </li>
+        <li>
+          <a href = "p31_title.m">p31_title.m</a>, 
+          returns the title of problem p31.
+        </li>
+        <li>
+          <a href = "p32_autonomous.m">p32_autonomous.m</a>, 
+          returns 1 if problem p32 is autonomous.
+        </li>
+        <li>
+          <a href = "p32_equil.m">p32_equil.m</a>, 
+          returns the equilibrium solutions for problem p32.
+        </li>
+        <li>
+          <a href = "p32_fun.m">p32_fun.m</a>, 
+          returns the right hand side of problem p32.
+        </li>
+        <li>
+          <a href = "p32_jac.m">p32_jac.m</a>, 
+          returns the jacobian for problem p32.
+        </li>
+        <li>
+          <a href = "p32_neqn.m">p32_neqn.m</a>, 
+          returns the number of equations for problem p32.
         </li>
         <li>
           <a href = "p32_param.m">p32_param.m</a>, 
-          manages parameters for problem 32.
+          manages parameters for problem p32.
+        </li>
+        <li>
+          <a href = "p32_scale.m">p32_scale.m</a>, 
+          returns the scale vector for problem p32.
+        </li>
+        <li>
+          <a href = "p32_start.m">p32_start.m</a>, 
+          returns the initial data for problem p32.
+        </li>
+        <li>
+          <a href = "p32_stop.m">p32_stop.m</a>, 
+          returns the end data for problem p32.
+        </li>
+        <li>
+          <a href = "p32_title.m">p32_title.m</a>, 
+          returns the title of problem p32.
+        </li>
+        <li>
+          <a href = "p33_autonomous.m">p33_autonomous.m</a>, 
+          returns 1 if problem p33 is autonomous.
+        </li>
+        <li>
+          <a href = "p33_equil.m">p33_equil.m</a>, 
+          returns the equilibrium solutions for problem p33.
+        </li>
+        <li>
+          <a href = "p33_fun.m">p33_fun.m</a>, 
+          returns the right hand side of problem p33.
+        </li>
+        <li>
+          <a href = "p33_jac.m">p33_jac.m</a>, 
+          returns the jacobian for problem p33.
+        </li>
+        <li>
+          <a href = "p33_neqn.m">p33_neqn.m</a>, 
+          returns the number of equations for problem p33.
         </li>
         <li>
           <a href = "p33_param.m">p33_param.m</a>, 
-          manages parameters for problem 33.
+          manages parameters for problem p33.
+        </li>
+        <li>
+          <a href = "p33_scale.m">p33_scale.m</a>, 
+          returns the scale vector for problem p33.
+        </li>
+        <li>
+          <a href = "p33_start.m">p33_start.m</a>, 
+          returns the initial data for problem p33.
+        </li>
+        <li>
+          <a href = "p33_stop.m">p33_stop.m</a>, 
+          returns the end data for problem p33.
+        </li>
+        <li>
+          <a href = "p33_title.m">p33_title.m</a>, 
+          returns the title of problem p33.
+        </li>
+        <li>
+          <a href = "p34_autonomous.m">p34_autonomous.m</a>, 
+          returns 1 if problem p34 is autonomous.
+        </li>
+        <li>
+          <a href = "p34_equil.m">p34_equil.m</a>, 
+          returns the equilibrium solutions for problem p34.
+        </li>
+        <li>
+          <a href = "p34_fun.m">p34_fun.m</a>, 
+          returns the right hand side of problem p34.
+        </li>
+        <li>
+          <a href = "p34_jac.m">p34_jac.m</a>, 
+          returns the jacobian for problem p34.
+        </li>
+        <li>
+          <a href = "p34_neqn.m">p34_neqn.m</a>, 
+          returns the number of equations for problem p34.
         </li>
         <li>
           <a href = "p34_param.m">p34_param.m</a>, 
-          manages parameters for problem 34.
+          manages parameters for problem p34.
+        </li>
+        <li>
+          <a href = "p34_scale.m">p34_scale.m</a>, 
+          returns the scale vector for problem p34.
+        </li>
+        <li>
+          <a href = "p34_start.m">p34_start.m</a>, 
+          returns the initial data for problem p34.
+        </li>
+        <li>
+          <a href = "p34_stop.m">p34_stop.m</a>, 
+          returns the end data for problem p34.
+        </li>
+        <li>
+          <a href = "p34_title.m">p34_title.m</a>, 
+          returns the title of problem p34.
+        </li>
+        <li>
+          <a href = "p35_autonomous.m">p35_autonomous.m</a>, 
+          returns 1 if problem p35 is autonomous.
+        </li>
+        <li>
+          <a href = "p35_equil.m">p35_equil.m</a>, 
+          returns the equilibrium solutions for problem p35.
+        </li>
+        <li>
+          <a href = "p35_fun.m">p35_fun.m</a>, 
+          returns the right hand side of problem p35.
+        </li>
+        <li>
+          <a href = "p35_jac.m">p35_jac.m</a>, 
+          returns the jacobian for problem p35.
+        </li>
+        <li>
+          <a href = "p35_neqn.m">p35_neqn.m</a>, 
+          returns the number of equations for problem p35.
         </li>
         <li>
           <a href = "p35_param.m">p35_param.m</a>, 
-          manages parameters for problem 35.
+          manages parameters for problem p35.
+        </li>
+        <li>
+          <a href = "p35_scale.m">p35_scale.m</a>, 
+          returns the scale vector for problem p35.
+        </li>
+        <li>
+          <a href = "p35_start.m">p35_start.m</a>, 
+          returns the initial data for problem p35.
+        </li>
+        <li>
+          <a href = "p35_stop.m">p35_stop.m</a>, 
+          returns the end data for problem p35.
+        </li>
+        <li>
+          <a href = "p35_title.m">p35_title.m</a>, 
+          returns the title of problem p35.
+        </li>
+        <li>
+          <a href = "p36_autonomous.m">p36_autonomous.m</a>, 
+          returns 1 if problem p36 is autonomous.
+        </li>
+        <li>
+          <a href = "p36_equil.m">p36_equil.m</a>, 
+          returns the equilibrium solutions for problem p36.
+        </li>
+        <li>
+          <a href = "p36_fun.m">p36_fun.m</a>, 
+          returns the right hand side of problem p36.
+        </li>
+        <li>
+          <a href = "p36_jac.m">p36_jac.m</a>, 
+          returns the jacobian for problem p36.
+        </li>
+        <li>
+          <a href = "p36_neqn.m">p36_neqn.m</a>, 
+          returns the number of equations for problem p36.
+        </li>
+        <li>
+          <a href = "p36_scale.m">p36_scale.m</a>, 
+          returns the scale vector for problem p36.
+        </li>
+        <li>
+          <a href = "p36_start.m">p36_start.m</a>, 
+          returns the initial data for problem p36.
+        </li>
+        <li>
+          <a href = "p36_stop.m">p36_stop.m</a>, 
+          returns the end data for problem p36.
+        </li>
+        <li>
+          <a href = "p36_title.m">p36_title.m</a>, 
+          returns the title of problem p36.
+        </li>
+        <li>
+          <a href = "p37_autonomous.m">p37_autonomous.m</a>, 
+          returns 1 if problem p37 is autonomous.
+        </li>
+        <li>
+          <a href = "p37_equil.m">p37_equil.m</a>, 
+          returns the equilibrium solutions for problem p37.
+        </li>
+        <li>
+          <a href = "p37_fun.m">p37_fun.m</a>, 
+          returns the right hand side of problem p37.
+        </li>
+        <li>
+          <a href = "p37_jac.m">p37_jac.m</a>, 
+          returns the jacobian for problem p37.
+        </li>
+        <li>
+          <a href = "p37_neqn.m">p37_neqn.m</a>, 
+          returns the number of equations for problem p37.
         </li>
         <li>
           <a href = "p37_param.m">p37_param.m</a>, 
-          manages parameters for problem 37.
+          manages parameters for problem p37.
+        </li>
+        <li>
+          <a href = "p37_scale.m">p37_scale.m</a>, 
+          returns the scale vector for problem p37.
+        </li>
+        <li>
+          <a href = "p37_start.m">p37_start.m</a>, 
+          returns the initial data for problem p37.
+        </li>
+        <li>
+          <a href = "p37_stop.m">p37_stop.m</a>, 
+          returns the end data for problem p37.
+        </li>
+        <li>
+          <a href = "p37_title.m">p37_title.m</a>, 
+          returns the title of problem p37.
+        </li>
+        <li>
+          <a href = "p38_autonomous.m">p38_autonomous.m</a>, 
+          returns 1 if problem p38 is autonomous.
+        </li>
+        <li>
+          <a href = "p38_equil.m">p38_equil.m</a>, 
+          returns the equilibrium solutions for problem p38.
+        </li>
+        <li>
+          <a href = "p38_fun.m">p38_fun.m</a>, 
+          returns the right hand side of problem p38.
+        </li>
+        <li>
+          <a href = "p38_jac.m">p38_jac.m</a>, 
+          returns the jacobian for problem p38.
+        </li>
+        <li>
+          <a href = "p38_neqn.m">p38_neqn.m</a>, 
+          returns the number of equations for problem p38.
         </li>
         <li>
           <a href = "p38_param.m">p38_param.m</a>, 
-          manages parameters for problem 38.
+          manages parameters for problem p38.
+        </li>
+        <li>
+          <a href = "p38_scale.m">p38_scale.m</a>, 
+          returns the scale vector for problem p38.
+        </li>
+        <li>
+          <a href = "p38_start.m">p38_start.m</a>, 
+          returns the initial data for problem p38.
+        </li>
+        <li>
+          <a href = "p38_stop.m">p38_stop.m</a>, 
+          returns the end data for problem p38.
+        </li>
+        <li>
+          <a href = "p38_title.m">p38_title.m</a>, 
+          returns the title of problem p38.
+        </li>
+        <li>
+          <a href = "p39_autonomous.m">p39_autonomous.m</a>, 
+          returns 1 if problem p39 is autonomous.
+        </li>
+        <li>
+          <a href = "p39_equil.m">p39_equil.m</a>, 
+          returns the equilibrium solutions for problem p39.
+        </li>
+        <li>
+          <a href = "p39_fun.m">p39_fun.m</a>, 
+          returns the right hand side of problem p39.
+        </li>
+        <li>
+          <a href = "p39_jac.m">p39_jac.m</a>, 
+          returns the jacobian for problem p39.
+        </li>
+        <li>
+          <a href = "p39_neqn.m">p39_neqn.m</a>, 
+          returns the number of equations for problem p39.
         </li>
         <li>
           <a href = "p39_param.m">p39_param.m</a>, 
-          manages parameters for problem 39.
+          manages parameters for problem p39.
+        </li>
+        <li>
+          <a href = "p39_scale.m">p39_scale.m</a>, 
+          returns the scale vector for problem p39.
+        </li>
+        <li>
+          <a href = "p39_start.m">p39_start.m</a>, 
+          returns the initial data for problem p39.
+        </li>
+        <li>
+          <a href = "p39_stop.m">p39_stop.m</a>, 
+          returns the end data for problem p39.
+        </li>
+        <li>
+          <a href = "p39_title.m">p39_title.m</a>, 
+          returns the title of problem p39.
+        </li>
+        <li>
+          <a href = "p40_autonomous.m">p40_autonomous.m</a>, 
+          returns 1 if problem p40 is autonomous.
+        </li>
+        <li>
+          <a href = "p40_equil.m">p40_equil.m</a>, 
+          returns the equilibrium solutions for problem p40.
+        </li>
+        <li>
+          <a href = "p40_fun.m">p40_fun.m</a>, 
+          returns the right hand side of problem p40.
+        </li>
+        <li>
+          <a href = "p40_jac.m">p40_jac.m</a>, 
+          returns the jacobian for problem p40.
+        </li>
+        <li>
+          <a href = "p40_neqn.m">p40_neqn.m</a>, 
+          returns the number of equations for problem p40.
+        </li>
+        <li>
+          <a href = "p40_param.m">p40_param.m</a>, 
+          manages parameters for problem p40.
+        </li>
+        <li>
+          <a href = "p40_scale.m">p40_scale.m</a>, 
+          returns the scale vector for problem p40.
+        </li>
+        <li>
+          <a href = "p40_start.m">p40_start.m</a>, 
+          returns the initial data for problem p40.
+        </li>
+        <li>
+          <a href = "p40_stop.m">p40_stop.m</a>, 
+          returns the end data for problem p40.
+        </li>
+        <li>
+          <a href = "p40_title.m">p40_title.m</a>, 
+          returns the title of problem p40.
+        </li>
+        <li>
+          <a href = "r8_cube_root.m">r8_cube_root.m</a>, 
+          returns the cube root of an R8.
         </li>
         <li>
           <a href = "r8_sign.m">r8_sign.m</a>, 
           returns the sign of an R8.
+        </li>
+        <li>
+          <a href = "r8_uniform_ab.m">r8_uniform_ab.m</a>, 
+          returns a random R8 in the interval [A,B].
+        </li>
+        <li>
+          <a href = "r8mat_norm_fro_affine.m">r8mat_norm_fro_affine.m</a>, 
+          returns the Frobenius norm of the difference of two R8MAT's.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
+          returns an R8VEC of random values in [0,1].
+        </li>
+        <li>
+          <a href = "r8vec_uniform_abvec.m">r8vec_uniform_abvec.m</a>, 
+          returns an R8VEC of random values in [A(),B()].
+        </li>
+        <li>
+          <a href = "rk_test.m">rk_test.m</a>, supervises the
+          solution of a test problem by the Runge-Kutta method;
         </li>
         <li>
           <a href = "s_eqi.m">s_eqi.m</a>, 
@@ -505,16 +1960,16 @@
           solves most of the problems using an Euler method.
         </li>
         <li>
-          <a href = "euler_test.m">euler_test.m</a>, supervises the
-          solution of a test problem by the Euler method;
-        </li>
-        <li>
           <a href = "test_ode_test03.m">test_ode_test03.m</a>, 
           solves most of the problems using a Runge Kutta method.
         </li>
         <li>
-          <a href = "rk_test.m">rk_test.m</a>, supervises the
-          solution of a test problem by the Runge-Kutta method;
+          <a href = "test_ode_test04.m">test_ode_test04.m</a>, 
+          makes plots of solutions of the problems.
+        </li>
+        <li>
+          <a href = "test_ode_test05.m">test_ode_test05.m</a>, 
+          compares the jacobian with a finite difference approximation.
         </li>
         <li>
           <a href = "test_ode_test_output.txt">test_ode_test_output.txt</a>, 
@@ -527,10 +1982,6 @@
       <b>TEST_ODE_TEST04()</b> is a function which solves and plots each of
       the test problems.
       <ul>
-        <li>
-          <a href = "test_ode_test04.m">test_ode_test04.m</a>, 
-          the program.
-        </li>
         <li>
           <a href = "p01.png">p01.png</a>
         </li>
@@ -648,6 +2099,9 @@
         <li>
           <a href = "p39.png">p39.png</a>
         </li>
+        <li>
+          <a href = "p40.png">p40.png</a>
+        </li>
       </ul>
     </p>
 
@@ -659,7 +2113,7 @@
     <hr>
 
     <i>
-      Last revised on 06 June 2011.
+      Last revised on 23 February 2013.
     </i>
 
     <!-- John Burkardt -->

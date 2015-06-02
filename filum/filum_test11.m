@@ -2,7 +2,7 @@ function filum_test11 ( )
 
 %*****************************************************************************80
 %
-%% TEST11 tests FILE_NAME_DEC.
+%% TEST11 tests FILENAME_DEC.
 %
 %  Licensing:
 %
@@ -25,19 +25,19 @@ function filum_test11 ( )
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST11\n' );
-  fprintf ( 1, '  FILE_NAME_DEC decrements a string\n' );
+  fprintf ( 1, '  FILENAME_DEC decrements a string\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '     Input             Output\n' );
 
 
   for i = 1 : ntest
     fprintf ( 1, '\n' );
-    file_name = string(i,:);
+    filename = string(i,:);
     for j = 1 : 3
-      file_name_old = file_name;
-      file_name = file_name_dec ( file_name );
-      fprintf ( 1, '  %20s  %20s\n', file_name_old, file_name );
-      if ( s_len_trim ( file_name ) == 0 )
+      filename_old = filename;
+      filename = filename_dec ( filename );
+      fprintf ( 1, '  %20s  %20s\n', filename_old, filename );
+      if ( s_len_trim ( filename ) == 0 )
         fprintf ( 1, '  (Empty output string.  Quit loop!)\n' );
         break
       end

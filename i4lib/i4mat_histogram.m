@@ -38,7 +38,7 @@ function histo_gram = i4mat_histogram ( m, n, a, histo_num )
   for j = 1 : n
     for i = 1 : m
 
-      if ( 0 <= a(i,j) & a(i,j) <= histo_num )
+      if ( 0 <= a(i,j) && a(i,j) <= histo_num )
         histo_gram(a(i,j)+1) = histo_gram(a(i,j)+1) + 1;
       end
 

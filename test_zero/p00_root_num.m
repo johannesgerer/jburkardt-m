@@ -10,7 +10,7 @@ function root_num = p00_root_num ( prob )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -59,6 +59,8 @@ function root_num = p00_root_num ( prob )
     root_num = p17_root_num ( );
   elseif ( prob == 18 )
     root_num = p18_root_num ( );
+  elseif ( prob == 19 )
+    root_num = p19_root_num ( );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_ROOT_NUM - Fatal error!\n' );

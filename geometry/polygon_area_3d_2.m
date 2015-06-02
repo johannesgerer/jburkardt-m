@@ -42,22 +42,19 @@ function area = polygon_area_3d_2 ( n, v, area )
 %
 %    Output, real AREA, the area of the polygon.
 %
-  dim_num = 3;
-
-  area_vector(1:dim_num) = 0.0;
+  area_vector(1:3) = 0.0;
 
   for i = 1 : n - 2
 
-    t(1:dim_num,1:3) = [ v(1:dim_num,i)'; v(1:dim_num,i+1)'; v(1:dim_num,n)' ]';
+    t(1:3,1:3) = [ v(1:3,i)'; v(1:3,i+1)'; v(1:3,n)' ]';
 
     area_vector_triangle = triangle_area_vector_3d ( t );
 
-    area_vector(1:dim_num) = area_vector(1:dim_num) ...
-      + area_vector_triangle(1:dim_num);
+    area_vector(1:3) = area_vector(1:3) + area_vector_triangle(1:3);
 
   end
 
-  area = 0.5 * sqrt ( sum ( area_vector(1:dim_num).^2 ) );
+  area = 0.5 * sqrt ( sum ( area_vector(1:3).^2 ) );
 
   return
 end

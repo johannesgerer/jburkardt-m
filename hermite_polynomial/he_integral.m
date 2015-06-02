@@ -2,7 +2,15 @@ function value = he_integral ( n )
 
 %*****************************************************************************80
 %
-%% HE_INTEGRAL evaluates a monomial probabilist's Hermite integral for He(n,x).
+%% HE_INTEGRAL evaluates the integral of He(i,x).
+%
+%  Discussion:
+%
+%    He(i,x) represents the probabilist's Hermite polynomial.
+%
+%    The integral computed is:
+%
+%      integral ( -oo < x < +oo ) He(i,x) exp(-x^2/2) dx
 %
 %  Licensing:
 %

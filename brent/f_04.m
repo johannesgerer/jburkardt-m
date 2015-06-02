@@ -22,7 +22,7 @@ function value = f_04 ( x )
 %
 %    Output, real VALUE, the value of the function at X.
 %
-  value = exp ( x ) - 1.0 / 100.0 / x / x;
+  value = exp ( x ) - 1.0 / 100.0 ./ x ./ x;
 
   return
 end

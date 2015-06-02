@@ -2,7 +2,7 @@ function a = moler3 ( m, n )
 
 %*****************************************************************************80
 %
-%% MOLER3 returns the Moler3 matrix.
+%% MOLER3 returns the MOLER3 matrix.
 %
 %  Formula:
 %
@@ -37,6 +37,8 @@ function a = moler3 ( m, n )
 %    A has a simple Cholesky factorization.
 %
 %    A has one small eigenvalue.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

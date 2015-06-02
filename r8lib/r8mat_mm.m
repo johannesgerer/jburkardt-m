@@ -18,7 +18,7 @@ function c = r8mat_mm ( n1, n2, n3, a, b )
 %
 %  Parameters:
 %
-%    Input, integer N, the order of the matrices.
+%    Input, integer N1, N2, N3, the order of the matrices.
 %
 %    Input, real A(N1,N2), B(N2,N3), the matrices to multiply.
 %

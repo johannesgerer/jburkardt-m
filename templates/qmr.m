@@ -1,5 +1,7 @@
 function [ x, error_norm, iter, flag ] = qmr ( A, x, b, M, max_it, tol )
 
+%*****************************************************************************80
+%
 %% QMR usess the Quasi Minimal Residual Method with no preconditioning.
 %
 %  Modified:

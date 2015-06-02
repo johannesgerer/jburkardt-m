@@ -1,0 +1,216 @@
+<html>
+
+  <head>
+    <title>
+      LORENZ_ODE - The Lorenz System
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LORENZ_ODE <br> The Lorenz System
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LORENZ_ODE</b>
+      is a MATLAB program which
+      approximates solutions to the Lorenz system,
+      creating output files that can be displayed by Gnuplot.
+    </p>
+
+    <p>
+      The Lorenz system, originally intended as a simplified model of
+      atmospheric convection, has instead become a standard example of
+      sensitive dependence on initial conditions; that is, tiny differences
+      in the starting condition for the system rapidly become magnified.
+      The system also exhibits what is known as the "Lorenz attractor",
+      that is, the collection of trajectories for different starting points
+      tends to approach a peculiar butterfly-shaped region.
+    </p>
+
+    <p>
+      The Lorenz system includes three ordinary differential equations:
+      <pre>
+        dx/dt = sigma ( y - x )
+        dy/dt = x ( rho - z ) - y
+        dz/dt = xy - beta z
+      </pre>
+      where the parameters beta, rho and sigma are usually assumed to be
+      positive.  The classic case uses the parameter values
+      <pre>
+        beta = 8 / 3
+        rho = 28
+        sigma - 10
+      </pre>
+    </p>
+
+    <p>
+      The initial conditions for this system are not often specified; rather,
+      investigators simply note that the trajectories associated with two very
+      close starting points will eventually separate.  However, simply to
+      get started, we can suggest the following starting values at t=0:
+      <pre>
+        x = 8
+        y = 1
+        z = 1
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LORENZ_ODE</b> is available in
+      <a href = "../../c_src/lorenz_ode/lorenz_ode.html">a C version</a> and
+      <a href = "../../cpp_src/lorenz_ode/lorenz_ode.html">a C++ version</a> and
+      <a href = "../../f77_src/lorenz_ode/lorenz_ode.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/lorenz_ode/lorenz_ode.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/lorenz_ode/lorenz_ode.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/gnuplot/gnuplot.html">
+      GNUPLOT</a>,
+      MATLAB programs which
+      illustrate the use of the gnuplot graphics program.
+    </p>
+
+    <p>
+      <a href = "../../examples/graphics_examples_gnuplot/graphics_examples_gnuplot.html">
+      GRAPHICS_EXAMPLES_GNUPLOT</a>,
+      gnuplot scripts which
+      illustrate how various kinds of data can be displayed and analyzed graphically
+      using the interactive executable graphics program GNUPLOT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lorenz_cluster/lorenz_cluster.html">
+      LORENZ_CLUSTER</a>,
+      a MATLAB library which
+      takes a set of N points on a trajectory of solutions to the Lorenz
+      equations, and applies the K-means algorithm to organize the
+      data into K clusters.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spring_ode2/spring_ode2.html">
+      SPRING_ODE2</a>,
+      a MATLAB program which
+      shows how gnuplot graphics can be used to illustrate
+      a solution of the ordinary differential equation (ODE) that describes
+      the motion of a weight attached to a spring.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Edward Lorenz,<br>
+          Deterministic Nonperiodic Flow,<br>
+          Journal of the Atmospheric Sciences,<br>
+          Volume 20, Number 2, 1963, pages 130-141.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lorenz_ode.m">lorenz_ode.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lorenz_ode_output.txt">lorenz_ode_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "lorenz_ode_data.txt">lorenz_ode_data.txt</a>,
+          the graphics data file.
+        </li>
+        <li>
+          <a href = "lorenz_ode_commands.txt">lorenz_ode_commands.txt</a>,
+          the graphics command file.
+        </li>
+        <li>
+          <a href = "xyz_3d.png">xyz_3d.png</a>,
+          a plot, created by gnuplot, of (X(t),Y(t),Z(t)).
+        </li>
+        <li>
+          <a href = "xyz_time.png">xyz_time.png</a>,
+          a plot, created by gnuplot, of (t,X(t)), (t,Y(t), and (t,Z(t)).
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      List of Routines:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <b>MAIN</b> is the main program for LORENZ_ODE.
+        </li>
+        <li>
+          <b>LORENZ_RHS</b> evaluates the right hand side of the Lorenz ODE.
+        </li>
+        <li>
+          <b>RK4VEC</b> takes one Runge-Kutta step for a vector ODE.
+        </li>
+        <li>
+          <b>TIMESTAMP</b> prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 October 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

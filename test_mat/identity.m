@@ -2,7 +2,7 @@ function a = identity ( m, n )
 
 %*****************************************************************************80
 %
-%% IDENTITY returns the identity matrix.
+%% IDENTITY returns the IDENTITY matrix.
 %
 %  Formula:
 %
@@ -60,6 +60,8 @@ function a = identity ( m, n )
 %
 %    A is centrosymmetric: A(I,J) = A(N+1-I,N+1-J).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -79,6 +81,8 @@ function a = identity ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       if ( i == j )

@@ -2,7 +2,7 @@ function lambda = circulant_eigenvalues ( n, x )
 
 %*****************************************************************************80
 %
-%% CIRCULANT_EIGENVALUES returns the eigenvalues of a real circulant matrix.
+%% CIRCULANT_EIGENVALUES returns the eigenvalues of the CIRCULANT matrix.
 %
 %  Licensing:
 %
@@ -20,15 +20,17 @@ function lambda = circulant_eigenvalues ( n, x )
 %
 %    Input, integer N, the number of rows and columns of A.
 %
-%    Input, real X(N), the values in the first row of A.
+%    Input, real X(N,1), the values in the first row of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
-  w = c8vec_unity ( n );
+  x = x(:);
 
-  lambda(1:n) =  x(n);
-  for i = n-1 : -1 : 1
-    lambda(1:n) = lambda(1:n) .* w(1:n) + x(i);
+  w(1:n,1) = c8vec_unity ( n );
+
+  lambda(1:n,1) =  x(n,1);
+  for i = n - 1 : -1 : 1
+    lambda(1:n,1) = lambda(1:n,1) .* w(1:n,1) + x(i,1);
   end
 
   return

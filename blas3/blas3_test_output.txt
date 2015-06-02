@@ -1,0 +1,130 @@
+blas3_test
+06-Apr-2014 10:40:26
+
+BLAS3_TEST
+  MATLAB version
+  Test the BLAS3 library.
+
+BLAS3_TEST01
+  DGEMM carries out matrix multiplications
+  for double precision real matrices.
+
+  1: C = alpha * A  * B  + beta * C;
+  2: C = alpha * A' * B  + beta * C;
+  3: C = alpha * A  * B' + beta * C;
+  4: C = alpha * A' * B' + beta * C;
+
+  We carry out all four calculations, but in each case,
+  we choose our input matrices so that we get the same result.
+
+  C = alpha * A * B + beta * C:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :        1585          1660          1735          1810          1885  
+      2 :        2875          3010          3145          3280          3415  
+      3 :        4165          4360          4555          4750          4945  
+      4 :        5455          5710          5965          6220          6475  
+
+  C = alpha * A' * B + beta * C:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :        1585          1660          1735          1810          1885  
+      2 :        2875          3010          3145          3280          3415  
+      3 :        4165          4360          4555          4750          4945  
+      4 :        5455          5710          5965          6220          6475  
+
+  C = alpha * A * B' + beta * C:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :        1585          1660          1735          1810          1885  
+      2 :        2875          3010          3145          3280          3415  
+      3 :        4165          4360          4555          4750          4945  
+      4 :        5455          5710          5965          6220          6475  
+
+  C = alpha * A' * B' + beta * C:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :        1585          1660          1735          1810          1885  
+      2 :        2875          3010          3145          3280          3415  
+      3 :        4165          4360          4555          4750          4945  
+      4 :        5455          5710          5965          6220          6475  
+
+TEST02
+  DTRMM multiplies a triangular matrix A and a
+  rectangular matrix B
+
+  1: B = alpha * A  * B;
+  2: B = alpha * A' * B;
+
+  B = alpha * A * B:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :         828           856           884           912           940  
+      2 :         970          1000          1030          1060          1090  
+      3 :         946           972           998          1024          1050  
+      4 :         656           672           688           704           720  
+
+  B = alpha * A * B:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :          44            48            52            56            60  
+      2 :         234           248           262           276           290  
+      3 :         670           700           730           760           790  
+      4 :        1452          1504          1556          1608          1660  
+
+BLAS3_TEST03
+  DTRSM solves a linear system involving a triangular
+  matrix A and a rectangular matrix B.
+
+  1: Solve A  * X  = alpha * B;
+  2: Solve A' * X  = alpha * B;
+  3: Solve X  * A  = alpha * B;
+  4: Solve X  * A' = alpha * B;
+
+  X = inv ( A ) * alpha * B:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :    -7.10938      -6.92708      -6.74479       -6.5625      -6.38021  
+      2 :    -2.84375      -2.77083      -2.69792        -2.625      -2.55208  
+      3 :      -1.625      -1.58333      -1.54167          -1.5      -1.45833  
+      4 :       10.25          10.5         10.75            11         11.25  
+
+  X = inv ( A' ) * alpha * B:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :          11            12            13            14            15  
+      2 :        2.25             2          1.75           1.5          1.25  
+      3 :       1.125             1         0.875          0.75         0.625  
+      4 :    0.703125         0.625      0.546875       0.46875      0.390625  
+
+  X = alpha * B * inv ( A ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :          11         -2.25        -1.125     -0.703125     -0.492188  
+      2 :          21         -4.75        -2.375      -1.48438      -1.03906  
+      3 :          31         -7.25        -3.625      -2.26562      -1.58594  
+      4 :          41         -9.75        -4.875      -3.04688      -2.13281  
+
+  X = alpha * B * inv ( A' ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :    0.820312      0.328125        0.1875         0.125             3  
+      2 :     2.46094      0.984375        0.5625         0.375             5  
+      3 :     4.10156       1.64062        0.9375         0.625             7  
+      4 :     5.74219       2.29688        1.3125         0.875             9  
+
+BLAS3_TEST
+  Normal end of execution.
+
+06-Apr-2014 10:40:26
+diary off

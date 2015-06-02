@@ -9,6 +9,10 @@ function a = daub12 ( n )
 %    The DAUB12 matrix is the Daubechies wavelet transformation matrix
 %    with 12 coefficients.
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.

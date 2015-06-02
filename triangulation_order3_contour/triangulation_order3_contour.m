@@ -80,7 +80,7 @@ function triangulation_order3_contour ( prefix )
     fprintf ( 1, 'TRIANGULATION_ORDER6_CONTOUR:\n' );
 
     prefix = input ( ...
-      'Please enter the filename prefix:' );
+      'Please enter the filename prefix in ''QUOTES'':  ' );
 
   end
 %
@@ -189,7 +189,9 @@ function triangulation_order3_contour ( prefix )
     '  First 5 values:' );
 %
 %  Display the mesh.
-%
+% 
+  figure ( 1 )
+
   t = triangle_node(1:3,1:triangle_num)';
 
   trimesh ( t, node_xy(1,:), node_xy(2,:), 'Color', 'blue' );
@@ -216,12 +218,14 @@ function triangulation_order3_contour ( prefix )
   axis ( [ xmin, xmax, ymin, ymax ] )
   axis ( 'equal' )
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'Press return for the piecewise constant contour plot:\n' );
-  pause
+  filename = strcat ( prefix, '_mesh.png' );
+  print ( '-dpng', filename );
+  fprintf ( 1, '  Saved image in file "%s"\n', filename );
 %
 %  Display the solution on the mesh, constant over each triangle.
 %
+  figure ( 2 )
+
   trisurf ( t, node_xy(1,:), node_xy(2,:), value )
   
   xlabel ( 'X', 'FontName', 'Helvetica', 'FontWeight', 'bold', ...
@@ -233,15 +237,17 @@ function triangulation_order3_contour ( prefix )
   zlabel ( 'U', 'FontName', 'Helvetica', 'FontWeight', 'bold', ...
     'FontSize', 16, 'Rotation', 0 );
 
-  title ( 'Scalar U(X,Y)', 'FontName', 'Helvetica', 'FontWeight', ...
+  title ( 'Scalar U(X,Y) (Piecewise constant)', 'FontName', 'Helvetica', 'FontWeight', ...
     'bold', 'FontSize', 16 );
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'Press return for the interpolated contour plot:\n' );
-  pause
+  filename = strcat ( prefix, '_pwc.png' );
+  print ( '-dpng', filename );
+  fprintf ( 1, '  Saved image in file "%s"\n', filename );
 %
 %  Make a nicer plot on the finer mesh by using color interpolation.
 %
+  figure ( 3 )
+
   trisurf ( t, node_xy(1,:), node_xy(2,:), value, 'FaceColor', 'interp', ...
     'EdgeColor', 'interp' )
 
@@ -254,19 +260,18 @@ function triangulation_order3_contour ( prefix )
   zlabel ( 'U', 'FontName', 'Helvetica', 'FontWeight', 'bold', ...
     'FontSize', 16, 'Rotation', 0 );
 
-  title ( 'Scalar U(X,Y)', 'FontName', 'Helvetica', 'FontWeight', ...
+  title ( 'Scalar U(X,Y) (Interpolated)', 'FontName', 'Helvetica', 'FontWeight', ...
     'bold', 'FontSize', 16 );
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'Press return to finish:\n' );
-  pause
+  filename = strcat ( prefix, '_interp.png' );
+  print ( '-dpng', filename );
+  fprintf ( 1, '  Saved image in file "%s"\n', filename );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_ORDER3_CONTOUR:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

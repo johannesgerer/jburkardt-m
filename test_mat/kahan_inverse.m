@@ -2,7 +2,7 @@ function a = kahan_inverse ( alpha, n )
 
 %*****************************************************************************80
 %
-%% KAHAN_INVERSE returns the inverse of the Kahan matrix.
+%% KAHAN_INVERSE returns the inverse of the KAHAN matrix.
 %
 %  Licensing:
 %
@@ -25,6 +25,8 @@ function a = kahan_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   ci = cos ( alpha );
 
   for i = 1 : n

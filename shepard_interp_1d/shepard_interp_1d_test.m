@@ -2,7 +2,7 @@ function shepard_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% SHEPARD_INTERP_1D_TEST tests SHEPARD_INTERP_1D.
+%% SHEPARD_INTERP_1D_TEST tests the SHEPARD_INTERP_1D library.
 %
 %  Licensing:
 %

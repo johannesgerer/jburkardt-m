@@ -1,43 +1,45 @@
-function a = clement2 ( n )
+function a = clement2 ( n, x, y )
 
 %*****************************************************************************80
 %
-%% CLEMENT2 returns the Clement2 matrix.
+%% CLEMENT2 returns the CLEMENT2 matrix.
 %
 %  Formula:
 %
-%    if ( J = I+1 )
-%      A(I,J) = sqrt(I*(N-I))
-%    else if ( I = J+1 )
-%      A(I,J) = sqrt(J*(N-J))
+%    if ( J = I + 1 ) then
+%      A(I,J) = X(I)
+%    else if ( I = J + 1 ) then
+%      A(I,J) = Y(J)
 %    else
 %      A(I,J) = 0
 %
 %  Example:
 %
-%    N = 5
+%    N = 5, X and Y arbitrary:
 %
-%       .    sqrt(4)    .       .       .
-%    sqrt(4)    .    sqrt(6)    .       .
-%       .    sqrt(6)    .    sqrt(6)    .
-%       .       .    sqrt(6)    .    sqrt(4)
-%       .       .       .    sqrt(4)    .
+%       .   X(1)    .     .     .
+%     Y(1)   .    X(2)    .     .
+%       .   Y(2)    .   X(3)    .
+%       .     .   Y(3)    .   X(4)
+%       .     .     .   Y(4)    .
+%
+%    N = 5, X=(1,2,3,4), Y=(5,6,7,8):
+%
+%       .     1     .     .     .
+%       5     .     2     .     .
+%       .     6     .     3     .
+%       .     .     7     .     4
+%       .     .     .     8     .
 %
 %  Properties:
 %
-%    A is tridiagonal.
+%    A is generally not symmetric: A' /= A.
 %
-%    A is banded, with bandwidth 3.
+%    A is tridiagonal.
 %
 %    Because A is tridiagonal, it has property A (bipartite).
 %
-%    A is symmetric: A' = A.
-%
-%    Because A is symmetric, it is normal.
-%
-%    Because A is normal, it is diagonalizable.
-%
-%    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
+%    A is banded, with bandwidth 3.
 %
 %    The diagonal of A is zero.
 %
@@ -45,17 +47,16 @@ function a = clement2 ( n )
 %
 %    About 64 percent of the entries of the inverse of A are zero.
 %
-%    The eigenvalues are plus and minus the numbers
-%
-%      N-1, N-3, N-5, ..., (1 or 0).
-%
 %    If N is even,
 %
-%      det ( A ) = (-1)**(N/2) * (N-1) * (N+1)**(N/2)
+%      det ( A ) = (-1)^(N/2) * product ( 1 <= I <= N/2 )
+%        ( X(2*I-1) * Y(2*I-1) )
 %
 %    and if N is odd,
 %
-%      det ( A ) = 0
+%      det ( A ) = 0.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -76,9 +77,30 @@ function a = clement2 ( n )
 %    SIAM Review,
 %    Volume 1, 1959, pages 50-52.
 %
+%    Alan Edelman, Eric Kostlan,
+%    The road from Kac's matrix to Kac's random polynomials.
+%    In Proceedings of the Fifth SIAM Conference on Applied Linear Algebra,
+%    edited by John Lewis,
+%    SIAM, 1994,
+%    pages 503-507.
+%
+%    Robert Gregory, David Karney,
+%    Example 3.19,
+%    A Collection of Matrices for Testing Computational Algorithms,
+%    Wiley, New York, 1969, page 46, 
+%    LC: QA263.G68.
+%
+%    Olga Taussky, John Todd,
+%    Another look at a matrix of Mark Kac,
+%    Linear Algebra and Applications,
+%    Volume 150, 1991, pages 341-360.
+%
 %  Parameters:
 %
 %    Input, integer N, the order of A.
+%
+%    Input, real X(N-1), Y(N-1), the first super and
+%    subdiagonals of the matrix A.
 %
 %    Output, real A(N,N), the matrix.
 %
@@ -86,9 +108,9 @@ function a = clement2 ( n )
     for j = 1 : n
 
       if ( j == i + 1 )
-        a(i,j) = sqrt ( i * ( n - i ) );
+        a(i,j) = x(i);
       elseif ( i == j + 1 )
-        a(i,j) = sqrt ( j * ( n - j ) );
+        a(i,j) = y(j);
       else
         a(i,j) = 0.0;
       end

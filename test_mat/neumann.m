@@ -1,8 +1,8 @@
-function [ n, a ] = neumann ( nrow, ncol )
+function a = neumann ( nrow, ncol )
 
 %*****************************************************************************80
 %
-%% NEUMANN returns the Neumann matrix.
+%% NEUMANN returns the NEUMANN matrix.
 %
 %  Formula:
 %
@@ -98,7 +98,7 @@ function [ n, a ] = neumann ( nrow, ncol )
 %    by NROW*NCOL matrix.
 %
   n = nrow * ncol;
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   i = 0;
 

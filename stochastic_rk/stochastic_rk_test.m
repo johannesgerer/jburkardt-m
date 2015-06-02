@@ -2,11 +2,7 @@ function stochastic_rk_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for STOCHASTIC_RK_TEST.
-%
-%  Discussion:
-%
-%    STOCHASTIC_RK_TEST calls a set of problems for STOCHASTIC_RK.
+%% STOCHASTIC_RK_TEST tests the STOCHASTIC_RK library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function stochastic_rk_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STOCHASTIC_RK_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,7 +29,6 @@ function stochastic_rk_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STOCHASTIC_RK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-   
   fprintf ( 1, '\n' );
   timestamp ( );
 

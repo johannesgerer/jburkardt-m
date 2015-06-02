@@ -2,7 +2,7 @@ function blas1_z_test ( )
 
 %*****************************************************************************80
 %
-%% BLAS1_Z_TEST tests the BLAS1 double precision complex routines.
+%% BLAS1_Z_TEST tests the BLAS1_Z library.
 %
 %  Licensing:
 %
@@ -16,10 +16,12 @@ function blas1_z_test ( )
 %
 %    John Burkardt
 %
-  timestamp ( );
+  addpath ( '../blas0' );
 
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_Z_PRB:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the BLAS1_Z library.\n' );
 
   blas1_z_test01 ( );
@@ -46,9 +48,10 @@ function blas1_z_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_Z_PRB:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
+
+  rmpath ( '../blas0' );
 
   return
 end

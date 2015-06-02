@@ -9,6 +9,10 @@ function toms178_test02 ( )
 %    The Hooke and Jeeves algorithm works well when RHO = 0.5, but
 %    does poorly when RHO = 0.6, and better when RHO = 0.8
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    12 February 2008

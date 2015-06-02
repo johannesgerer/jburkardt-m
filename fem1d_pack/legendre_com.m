@@ -1,4 +1,4 @@
-function [ xtab, weight ] = legendre_com ( norder )
+function [ xtab, weight ] = legendre_com ( n )
 
 %*****************************************************************************80
 %
@@ -18,7 +18,7 @@ function [ xtab, weight ] = legendre_com ( norder )
 %
 %  Approximate integral:
 %
-%    sum ( 1 <= I <= NORDER ) WEIGHT(I) * F ( XTAB(I) ).
+%    sum ( 1 <= I <= N ) WEIGHT(I) * F ( XTAB(I) ).
 %
 %  Licensing:
 %
@@ -34,41 +34,41 @@ function [ xtab, weight ] = legendre_com ( norder )
 %
 %  Parameters:
 %
-%    Input, integer NORDER, the order of the rule.
-%    NORDER must be greater than 0.
+%    Input, integer N, the order of the rule.
+%    N must be greater than 0.
 %
-%    Output, real XTAB(NORDER), the abscissas of the rule.
+%    Output, real XTAB(N), the abscissas of the rule.
 %
-%    Output, real WEIGHT(NORDER), the weights of the rule.
+%    Output, real WEIGHT(N), the weights of the rule.
 %    The weights are positive, symmetric, and should sum to 2.
 %
-  if ( norder < 1 )
+  if ( n < 1 )
     write ( *, '(a)' ) ' '
     write ( *, '(a)' ) 'LEGENDRE_COM - Fatal error!'
-    write ( *, '(a,i6)' ) '  Illegal value of NORDER = ', norder
+    write ( *, '(a,i6)' ) '  Illegal value of N = ', n
     error ( 'LEGENDRE_COM - Fatal error!' );
   end
 
-  e1 = norder * ( norder + 1 );
+  e1 = n * ( n + 1 );
 
-  m = floor ( ( norder + 1 ) / 2 );
+  m = floor ( ( n + 1 ) / 2 );
 
   for i = 1 : m
 
     mp1mi = m + 1 - i;
-    t = pi * ( 4 * i - 1 ) / ( 4 * norder + 2 );
-    x0 = cos(t) * ( 1.0 - ( 1.0 - 1.0 / norder ) / ( 8 * norder * norder ) );
+    t = pi * ( 4 * i - 1 ) / ( 4 * n + 2 );
+    x0 = cos ( t ) * ( 1.0 - ( 1.0 - 1.0 / n ) / ( 8 * n * n ) );
 
     pkm1 = 1.0;
     pk = x0;
 
-    for k = 2 : norder
+    for k = 2 : n
       pkp1 = 2.0 * x0 * pk - pkm1 - ( x0 * pk - pkm1 ) / k;
       pkm1 = pk;
       pk = pkp1;
     end
 
-    d1 = norder * ( pkm1 - x0 * pk );
+    d1 = n * ( pkm1 - x0 * pk );
 
     dpn = d1 / ( 1.0E+00 - x0 * x0 );
 
@@ -104,26 +104,26 @@ function [ xtab, weight ] = legendre_com ( norder )
 
   end
 
-  if ( mod ( norder, 2 ) == 1 )
+  if ( mod ( n, 2 ) == 1 )
     xtab(1) = 0.0;
   end
 %
 %  Shift the data up.
 %
-  nmove = floor ( ( norder + 1 ) / 2 );
-  ncopy = norder - nmove;
+  nmove = floor ( ( n + 1 ) / 2 );
+  ncopy = n - nmove;
 
   for i = 1 : nmove
-    iback = norder + 1 - i;
+    iback = n+ 1 - i;
     xtab(iback) = xtab(iback-ncopy);
     weight(iback) = weight(iback-ncopy);
   end
 %
 %  Reflect values for the negative abscissas.
 %
-  for i = 1 : norder - nmove
-    xtab(i) = - xtab(norder+1-i);
-    weight(i) = weight(norder+1-i);
+  for i = 1 : n - nmove
+    xtab(i) = - xtab(n+1-i);
+    weight(i) = weight(n+1-i);
   end
 
   return

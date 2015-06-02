@@ -134,7 +134,7 @@ function a = rowcolsum_matrix ( row_num, col_num, m, n )
   m = row_num + col_num;
   n = row_num * col_num;
 
-  a(1:m,1:n) = 0.0;
+  a = zeros ( m, n );
 %
 %  Set the matrix rows that compute a row sum.
 %

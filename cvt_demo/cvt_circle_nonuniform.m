@@ -2,12 +2,15 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
 
 %*****************************************************************************80
 %
-%% CVT_CIRCLE_NONUNIFORM demonstrates how a CVT can be computed and displayed in MATLAB.
+%% CVT_CIRCLE_NONUNIFORM computes a CVT in a circle with nonuniform weight.
 %
 %  Discussion:
 %
 %    This simple example carries out an iterative CVT calculation in a circle
 %    with a nonuniform sampling density. 
+%
+%    This example has been modified to respond to MATLAB's changes in the
+%    Delaunay and Voronoi calculation procedures.
 %
 %  Licensing:
 %
@@ -15,7 +18,7 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
 %
 %  Modified:
 %
-%    23 May 2006
+%    10 December 2012
 %
 %  Author:
 %
@@ -123,17 +126,25 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
   
   it = 0;
   
-  while ( 1 )
+  while ( it <= 50 )
 %
 %  Compute the Delaunay triangle information T for the current nodes.
 %
-    t = delaunay ( p(1,:), p(2,:) );
+    if ( 0 )
+      t = delaunay ( p(1,:), p(2,:) );
+    else
+      t = DelaunayTri ( p(1,:)', p(2,:)' );
+    end
 %
 %  Display the Delaunay triangulation, if requested.
 %
     if ( delaunay_display )
       subplot ( 1, 2, 2 )
-      trimesh ( t, p(1,:), p(2,:), zeros(n,1) )
+      if ( 0 )
+        trimesh ( t, p(1,:), p(2,:), zeros(n,1) )
+      else
+        triplot ( t );
+      end
       axis ( [ -1.1, 1.1, -1.1, 1.1 ] )
       title_string = sprintf ( 'Delaunay, step %d', it );
       title ( title_string );
@@ -153,7 +164,12 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
       y(i) = sin ( theta );
     end
 
-    voronoi ( p(1,:), p(2,:), t );
+    if ( 0 )
+      voronoi ( p(1,:), p(2,:), t );
+    else
+      voronoi ( p(1,:), p(2,:) );
+    end
+
     hold on
     line ( x, y );
     axis ( [ -1.1, 1.1, -1.1, 1.1 ] )
@@ -171,8 +187,12 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
 %  We do this efficiently by using the Delaunay information with
 %  Matlab's DSEARCH command, rather than a brute force nearest neighbor
 %  computation.
-%  
-    k(1:sample_num,1) = dsearch ( p(1,:), p(2,:), t, ps(1,:), ps(2,:) );
+%
+    if ( 0 )
+      k(1:sample_num,1) = dsearch ( p(1,:), p(2,:), t, ps(1,:), ps(2,:) );
+    else
+      k(1:sample_num,1) = nearestNeighbor ( t, ps(1,:)', ps(2,:)' );
+    end
 %
 %  The centroid of the Voronoi region associated with each generator
 %  is approximated by the average of the sample points it was closest to.
@@ -202,12 +222,6 @@ function [ p, t ] = cvt_circle_nonuniform ( n, sample_num, delaunay_display )
 %
     p(1,1:n) = ( centroid(1,1:n) ./ count(1:n) )';
     p(2,1:n) = ( centroid(2,1:n) ./ count(1:n) )';
-
-    string = input ( 'RETURN, or Q to quit: ', 's' );
-
-    if ( string == 'q' | string == 'Q' )
-      break
-    end
 
     it = it + 1;
     

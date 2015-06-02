@@ -2,7 +2,7 @@ function determ = exchange_determinant ( n )
 
 %*****************************************************************************80
 %
-%% EXCHANGE_DETERMINANT returns the determinant of the exchange matrix.
+%% EXCHANGE_DETERMINANT returns the determinant of the EXCHANGE matrix.
 %
 %  Licensing:
 %

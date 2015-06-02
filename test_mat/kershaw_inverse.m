@@ -20,6 +20,10 @@ function a = kershaw_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [ ...
      3.0,  2.0,  0.0, -2.0; ...
      2.0,  3.0,  2.0,  0.0; ...

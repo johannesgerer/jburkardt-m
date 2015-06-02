@@ -2,7 +2,7 @@ function tic_toc_test ( )
 
 %*****************************************************************************80
 %
-%% TIC_TOC_TEST tests TIC and TOC.
+%% TIC_TOC_TEST tests the TIC and TOC library.
 %
 %  Licensing:
 %
@@ -19,7 +19,8 @@ function tic_toc_test ( )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIC_TOC_TEST\n' );
-  fprintf ( 1, '  Test the TIC and TOC functions.\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the TIC and TOC library.\n' );
 
   tic_toc_resolution_test ( );
   tic_toc_printing_test ( );

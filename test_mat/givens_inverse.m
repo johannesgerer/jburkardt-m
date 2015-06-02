@@ -2,7 +2,7 @@ function a = givens_inverse ( n )
 
 %*****************************************************************************80
 %
-%% GIVENS_INVERSE returns the inverse of the Givens matrix.
+%% GIVENS_INVERSE returns the inverse of the GIVENS matrix.
 %
 %  Formula:
 %
@@ -57,6 +57,8 @@ function a = givens_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

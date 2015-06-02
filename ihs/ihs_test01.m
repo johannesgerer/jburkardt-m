@@ -29,12 +29,9 @@ function ihs_test01 ( )
 
   for dim_num = 1 : 4
 
-    seed = 17;
-
-    opt = point_num / point_num^( 1.0E+00 / dim_num );
+    opt = point_num / point_num^( 1.0 / dim_num );
 
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Random number seed =       %d\n', seed );
     fprintf ( 1, '  Spatial dimension =        %d\n', dim_num );
     fprintf ( 1, '  Number of points =         %d\n', point_num );
     fprintf ( 1, '  Duplication factor =       %d\n', duplication );
@@ -42,7 +39,7 @@ function ihs_test01 ( )
 %
 %  Get the points.
 %
-    [ x, seed ] = ihs ( dim_num, point_num, duplication, seed );
+    x = ihs ( dim_num, point_num, duplication );
 %
 %  Compute the covariance.
 %

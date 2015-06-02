@@ -1,4 +1,4 @@
-function md ( np, step_num )
+function md ( nd, np, step_num, dt )
 
 %*****************************************************************************80
 %
@@ -18,7 +18,7 @@ function md ( np, step_num )
 %
 %  Modified:
 %
-%    30 July 2009
+%    11 June 2012
 %
 %  Author:
 %
@@ -27,34 +27,51 @@ function md ( np, step_num )
 %
 %  Parameters:
 %
+%    Input, integer ND, the spatial dimension.  A value of 2 or 3
+%    is usual.
+%
 %    Input, integer NP, the number of particles.  A value of 1000 or 2000
 %    is small but "reasonable".
 %
 %    Input, integer STEP_NUM, the number of time steps.  A value of 500
 %    is a small but reasonable value.
 %
+%    Input, real DT, the time step.
+%    A value of 0.1 is large; the system will begin to move quickly but the
+%    results will be less accurate.
+%    A value of 0.0001 is small, but the results will be more accurate.
+%
   if ( nargin < 1 )
-    np = 1000;
+    nd = 3;
   end
 
   if ( nargin < 2 )
+    np = 1000;
+  end
+
+  if ( nargin < 3 )
     step_num = 500;
   end
 
-  nd = 3;
-  dt = 0.0001;
-%
-%  For less accuracy, but more action, try dt = 0.01;
-%
-  mass = 1.0;
+  if ( nargin < 4 )
+    dt = 0.0001;
+  end
 
+  mass = 1.0;
+%
+%  Set SHOW_PLOTS to 1 if you want to see a plot each time.
+%
+  show_plots = 0;
+%
+%  Report to the user.
+%
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MD\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  A molecular dynamics program.\n' );
   fprintf ( 1, '\n' );
+  fprintf ( 1, '  ND, the spatial dimension, is %d\n', nd );
   fprintf ( 1, '  NP, the number of particles in the simulation is %d.\n', np );
   fprintf ( 1, '  STEP_NUM, the number of time steps, is %d.\n', step_num );
   fprintf ( 1, '  DT, the time step size, is %f seconds.\n', dt );
@@ -64,9 +81,10 @@ function md ( np, step_num )
   box(1:nd) = 10.0;
 %
 %  Initialize the random number generator to a prescribed state.
+%  RNG is the new recommended interface to the MATLAB random number generator.
 %
   seed = 123456789;
-  rand ( 'twister', seed );
+  rng ( seed );
 %
 %  Set initial positions, velocities, and accelerations.
 %
@@ -101,8 +119,8 @@ function md ( np, step_num )
   fprintf ( 1, '\n' );
 
   step_print_index = 0;
-  step_print_num = 10;
-  
+  step_print_num = 1;
+
   step = 0;
   fprintf ( 1, '  %8d  %14f  %14f  %14e\n', ...
     step, potential, kinetic, ( potential + kinetic - e0 ) / e0 );
@@ -113,25 +131,39 @@ function md ( np, step_num )
 
   for step = 1 : step_num
 
-    [ force, potential, kinetic ] = compute_new ( np, nd, pos, vel, mass );
+    if ( 0 )
+      [ force, potential, kinetic ] = compute_old ( np, nd, pos, vel, mass );
+    else
+      [ force, potential, kinetic ] = compute_new ( np, nd, pos, vel, mass );
+    end
 
-    if ( step == step_print ) 
+    if ( step == step_print )
       fprintf ( 1, '  %8d  %14f  %14f  %14e\n', ...
         step, potential, kinetic, ( potential + kinetic - e0 ) / e0 );
       step_print_index = step_print_index + 1;
       step_print = floor ( ( step_print_index * step_num ) / step_print_num );
+    end
 %
-%  If you take a larger time step, and more steps, it might be worth
-%  plotting the successive positions of the particles.
+%  Plot the particles.
 %
-      if ( 0 )
+    if ( show_plots )
+
+      if ( nd == 2 || nd == 3 )
         clf
-        scatter3 ( pos(1,:), pos(2,:), pos(3,:), 10.0, 'r', 'filled' )
-        pause
+        if ( nd == 2 )
+          scatter ( pos(1,:), pos(2,:), 10.0, 'r', 'filled' )
+        elseif ( nd == 3 )
+          scatter3 ( pos(1,:), pos(2,:), pos(3,:), 10.0, 'r', 'filled' )
+        end
+        title ( sprintf ( 'Step %d\n', step ) );
+        pause ( 1 )
+
       end
 
     end
-
+%
+%  Update the data for the next time step.
+%
     [ pos, vel, acc ] = update ( np, nd, pos, vel, force, acc, mass, dt );
 
   end
@@ -141,11 +173,12 @@ function md ( np, step_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Main computation:\n' );
   fprintf ( 1, '    Wall clock time = %f seconds.\n', wtime );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MD\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -203,25 +236,25 @@ function [ f, pot, kin ] = compute_new ( np, nd, pos, vel, mass )
 %    Output, real KIN, the total kinetic energy.
 %
   f = zeros ( nd, np );
- 
+
   pot = 0.0;
- 
+
   pi2 = pi / 2.0;
- 
+
   for i = 1 : np
-     
+
     Ri = pos - repmat ( pos( :, i ), 1, np );    % array of vectors to 'i'
-     
+
     D = sqrt ( sum ( Ri.^2 ) );                  % array of distances
 
-    Ri = Ri( :, ( D > 0.0 ) ); 
-     
+    Ri = Ri( :, ( D > 0.0 ) );
+
     D = D( D > 0.0 );                            % save only pos values
-     
+
     D2 = D .* ( D <= pi2 ) + pi2 * ( D > pi2 );  % truncate the potential.
-     
+
     pot = pot + 0.5 * sum ( sin ( D2 ).^2 );     % accumulate pot. energy
-     
+
     f( :, i) = Ri * ( sin ( 2*D2 ) ./ D )';      % force on particle 'i'
 
   end
@@ -229,7 +262,7 @@ function [ f, pot, kin ] = compute_new ( np, nd, pos, vel, mass )
 %  Compute kinetic energy.
 %
   kin = 0.5 * mass * sum ( diag ( vel' * vel ) );
-     
+
   return
 end
 function [ f, pot, kin ] = compute_old ( np, nd, pos, vel, mass )
@@ -284,7 +317,7 @@ function [ f, pot, kin ] = compute_old ( np, nd, pos, vel, mass )
 %    Output, real KIN, the total kinetic energy.
 %
   f = zeros ( nd, np );
- 
+
   pot = 0.0;
 
   for i = 1 : np
@@ -295,9 +328,15 @@ function [ f, pot, kin ] = compute_old ( np, nd, pos, vel, mass )
 
       if ( i ~= j )
 
-        rij(1:nd) = pos(1:d,i) - pos(1:nd,j);
+        for k = 1 : nd
+          rij(k) = pos(k,i) - pos(k,j);
+        end
 
-        d = sqrt ( sum ( rij(1:nd).^2 ) );
+        d = 0.0;
+        for k = 1 : nd
+          d = d + rij(k)^2;
+        end
+        d = sqrt ( d );
 %
 %  Truncate the distance.
 %
@@ -309,7 +348,9 @@ function [ f, pot, kin ] = compute_old ( np, nd, pos, vel, mass )
 %
 %  Add particle J's contribution to the force on particle I.
 %
-        f(1:nd,i) = f(1:nd,i) - rij(1:nd) * sin ( 2.0 * d2 ) / d;
+        for k = 1 : nd
+          f(k,i) = f(k,i) - rij(k) * sin ( 2.0 * d2 ) / d;
+        end
 
       end
 
@@ -319,8 +360,15 @@ function [ f, pot, kin ] = compute_old ( np, nd, pos, vel, mass )
 %
 %  Compute the total kinetic energy.
 %
-  kin = 0.5 * mass * sum ( vel(1:nd,1:np).^2 );
-     
+  kin = 0.0;
+  for k = 1 : nd
+    for j = 1 : np
+      kin = kin + vel(k,j)^2;
+    end
+  end
+
+  kin = 0.5 * mass * kin;
+
   return
 end
 function [ pos, vel, acc, seed ] = initialize ( np, nd, box, seed )
@@ -340,7 +388,7 @@ function [ pos, vel, acc, seed ] = initialize ( np, nd, box, seed )
 %  Author:
 %
 %    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt
+%    MATLAB version by John Burkardt.
 %
 %  Parameters:
 %
@@ -436,7 +484,7 @@ function [ pos, vel, acc ] = update ( np, nd, pos, vel, f, acc, mass, dt )
 %  Author:
 %
 %    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt
+%    MATLAB version by John Burkardt.
 %
 %  Parameters:
 %

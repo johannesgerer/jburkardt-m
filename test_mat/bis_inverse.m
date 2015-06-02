@@ -2,12 +2,12 @@ function a = bis_inverse ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% BIS_INVERSE returns the inverse of a bidiagonal scalar matrix.
+%% BIS_INVERSE returns the inverse of the BIS matrix.
 %
 %  Formula:
 %
 %    if ( I <= J )
-%      A(I,J) = (-BETA)**(J-I) / ALPHA**(J+1-I)
+%      A(I,J) = (-BETA)^(J-I) / ALPHA^(J+1-I)
 %    else
 %      A(I,J) = 0
 %
@@ -15,10 +15,10 @@ function a = bis_inverse ( alpha, beta, n )
 %
 %    ALPHA = 7.0, BETA = 2.0, N = 4
 %
-%   1/7  -1/2   1/4  -1/8
-%    0    1/7  -1/2   1/4
-%    0     0    1/7  -1/2
-%    0     0     0    1/7
+%    0.1429   -0.0408    0.0117   -0.0033
+%        0     0.1429   -0.0408    0.0117
+%        0          0    0.1429   -0.0408
+%        0          0         0    0.1429
 %
 %  Properties:
 %
@@ -30,9 +30,11 @@ function a = bis_inverse ( alpha, beta, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
-%    det ( A ) = (1/ALPHA)**N.
+%    det ( A ) = (1/ALPHA)^N.
 %
 %    LAMBDA(1:N) = 1 / ALPHA.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -40,7 +42,7 @@ function a = bis_inverse ( alpha, beta, n )
 %
 %  Modified:
 %
-%    15 April 1999
+%    19 January 2015
 %
 %  Author:
 %
@@ -55,6 +57,8 @@ function a = bis_inverse ( alpha, beta, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( alpha == 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'BIS_INVERSE - Fatal error!\n' );

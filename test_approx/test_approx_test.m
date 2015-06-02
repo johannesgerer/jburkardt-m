@@ -2,7 +2,7 @@ function test_approx_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_APPROX_TEST tests TEST_APPROX.
+%% TEST_APPROX_TEST tests the TEST_APPROX library.
 %
 %  Licensing:
 %
@@ -19,7 +19,6 @@ function test_approx_test ( )
   addpath ( '../spline' )
 
   timestamp (  );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_APPROX_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -45,7 +44,6 @@ function test_approx_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_APPROX_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

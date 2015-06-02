@@ -64,7 +64,7 @@ function fem1d_pack_test02 ( )
   fprintf ( 1, '\n' );
 
   for j = 1 : 5
-    [ x, seed ] = r8_uniform ( 1.0, 4.5, seed );
+    [ x, seed ] = r8_uniform_ab ( 1.0, 4.5, seed );
     phi = local_basis_prime_1d ( node_num, node_x, x );
     fprintf ( 1, '  %14.6g  %14.6g\n', x, sum ( phi(1:node_num) ) );
   end

@@ -2,7 +2,7 @@ function a = gk323_inverse ( n )
 
 %*****************************************************************************80
 %
-%% GK323_INVERSE returns the inverse of a Gregory and Karney test matrix.
+%% GK323_INVERSE returns the inverse of the GK323 matrix.
 %
 %  Properties:
 %
@@ -30,6 +30,8 @@ function a = gk323_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

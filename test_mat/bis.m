@@ -2,7 +2,11 @@ function a = bis ( alpha, beta, m, n )
 
 %*****************************************************************************80
 %
-%% BIS returns a bidiagonal scalar matrix.
+%% BIS returns the BIS matrix.
+%
+%  Discussion:
+%
+%    This is a bidiagonal scalar matrix.
 %
 %  Formula:
 %
@@ -41,11 +45,13 @@ function a = bis ( alpha, beta, m, n )
 %
 %    A is nonsingular if and only if ALPHA is nonzero.
 %
-%    det ( A ) = ALPHA**N.
+%    det ( A ) = ALPHA^N.
 %
 %    LAMBDA(1:N) = ALPHA.
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

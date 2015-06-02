@@ -1,5 +1,7 @@
 function [ M, N, b ] = split ( A, b, w, flag )
 
+%*****************************************************************************80
+%
 %% SPLIT splits a matrix.
 %
 %  Discussion:

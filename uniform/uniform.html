@@ -21,7 +21,7 @@
     </p>
 
     <p>
-      The fundamental underlying random number generator in <b>UNIFORM</b>
+      The fundamental underlying random number generator
       is based on a simple, old, and limited linear congruential random
       number generator originally used in the IBM System 360.  If you want
       state of the art random number generation, look elsewhere!
@@ -35,13 +35,16 @@
     <p>
       However, this library makes it possible to compare certain computations
       that use uniform random numbers, written in C, C++, FORTRAN77,
-      FORTRAN90, Mathematica or MATLAB.
+      FORTRAN90, Mathematica, MATLAB or Python.
     </p>
 
     <p>
       Various types of random data can be computed.  The routine names
       are chosen to indicate the corresponding type:
       <ul>
+        <li>
+          <b>B</b>, an integer binary value of 0 or 1.
+        </li>
         <li>
           <b>C4</b>, complex ( single precision )
         </li>
@@ -55,7 +58,7 @@
           <b>I4</b>, integer ( single precision )
         </li>
         <li>
-          <b>I8</b>, integer ( double precision )
+          <b>L4</b>, a logical value.
         </li>
         <li>
           <b>R4</b>, real ( single precision )
@@ -85,12 +88,14 @@
       unit interval or region.  Routines are available which return
       these "unit" values, while other routines allow the user to
       specify limits between which the unit values are rescaled.
-      If a routine returns unit values, its name will include
-      a special indicator:
+      The name of a routine will usually include a tag
+      suggestig which is the case:
       <ul>
         <li>
-          <b>01</b>, the data that is being returned lies in a
-          unit interval or region;
+          <b>01</b>, the data lies in a nit interval or region;
+        </li>
+        <li>
+          <b>AB</b>, the data  lies in a scaled interval or region;
         </li>
       </ul>
     </p>
@@ -127,7 +132,8 @@
       <a href = "../../f77_src/uniform/uniform.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/uniform/uniform.html">a FORTRAN90 version</a> and
       <a href = "../../math_src/uniform/uniform.html">a Mathematica version</a> and
-      <a href = "../../m_src/uniform/uniform.html">a MATLAB version</a>
+      <a href = "../../m_src/uniform/uniform.html">a MATLAB version</a> and
+      <a href = "../../py_src/uniform/uniform.html">a Python version</a>.
     </p>
 
     <h3 align = "center">
@@ -138,14 +144,7 @@
       <a href = "../../m_src/asa183/asa183.html">
       ASA183</a>,
       a MATLAB library which
-      implements the Wichman-Hill pseudorandom number generator.
-    </p>
-
-    <p>
-      <a href = "../../m_src/cvt/cvt.html">
-      CVT</a>,
-      a MATLAB library which
-      computes elements of a Centroidal Voronoi Tessellation.
+      implements the Wichman-Hill random number generator (RNG).
     </p>
 
     <p>
@@ -177,63 +176,6 @@
     </p>
 
     <p>
-      <a href = "../../m_src/hex_grid/hex_grid.html">
-      HEX_GRID</a>,
-      a MATLAB library which
-      computes elements of a hexagonal grid dataset.
-    </p>
-
-    <p>
-      <a href = "../../f_src/hex_grid_angle/hex_grid_angle.html">
-      HEX_GRID_ANGLE</a>,
-      a FORTRAN90 library which
-      computes elements of an angled hexagonal grid dataset.
-    </p>
-
-    <p>
-      <a href = "../../m_src/ihs/ihs.html">
-      IHS</a>,
-      a MATLAB library which
-      computes elements of an improved distributed Latin hypercube dataset.
-    </p>
-
-    <p>
-      <a href = "../../m_src/latin_center/latin_center.html">
-      LATIN_CENTER</a>,
-      a MATLAB library which
-      computes elements of a Latin Hypercube dataset, choosing center points.
-    </p>
-
-    <p>
-      <a href = "../../m_src/latin_edge/latin_edge.html">
-      LATIN_EDGE</a>,
-      a MATLAB library which
-      computes elements of a Latin Hypercube dataset, choosing edge points.
-    </p>
-
-    <p>
-      <a href = "../../m_src/latin_random/latin_random.html">
-      LATIN_RANDOM</a>,
-      a MATLAB library which
-      computes elements of a Latin Hypercube dataset, choosing
-      points at random.
-    </p>
-
-    <p>
-      <a href = "../../m_src/lattice_rule/lattice_rule.html">
-      LATTICE_RULE</a>,
-      a MATLAB library which
-      approximates multidimensional integrals using lattice rules.
-    </p>
-
-    <p>
-      <a href = "../../m_src/lcvt/lcvt.html">
-      LCVT</a>,
-      a MATLAB library which
-      computes a latinized Centroidal Voronoi Tessellation.
-    </p>
-
-    <p>
       <a href = "../../m_src/matlab_random/matlab_random.html">
       MATLAB_RANDOM</a>,
       MATLAB programs which
@@ -261,6 +203,27 @@
       a MATLAB library which
       generates a sequence of pseudorandom numbers,
       used by the NAS Benchmark programs.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ranlib/ranlib.html">
+      RANLIB</a>,
+      a MATLAB library which
+      produces random samples from Probability Density Functions (PDF's), 
+      including Beta, Chi-square Exponential, F, Gamma, Multivariate normal,
+      Noncentral chi-square, Noncentral F, Univariate normal, random permutations,
+      Real uniform, Binomial, Negative Binomial, Multinomial, Poisson
+      and Integer uniform,
+      by Barry Brown and James Lovato.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rnglib/rnglib.html">
+      RNGLIB</a>,
+      a MATLAB library which
+      implements a random number generator (RNG) with splitting facilities,
+      allowing multiple independent streams to be computed,
+      by L'Ecuyer and Cote.
     </p>
 
     <p>
@@ -355,12 +318,32 @@
     <p>
       <ul>
         <li>
+          <a href = "bvec_print.m">bvec_print.m</a>,
+          prints a BVEC.
+        </li>
+        <li>
+          <a href = "bvec_uniform.m">bvec_uniform.m</a>,
+          returns a random BVEC (a binary vector).
+        </li>
+        <li>
           <a href = "c4_uniform_01.m">c4_uniform_01.m</a>,
           returns a unit pseudorandom C4.
         </li>
         <li>
+          <a href = "c4mat_print.m">c4mat_print.m</a>, 
+          prints a C4MAT.
+        </li>
+        <li>
+          <a href = "c4mat_print_some.m">c4mat_print_some.m</a>, 
+          prints some of a C4MAT.
+        </li>
+        <li>
           <a href = "c4mat_uniform_01.m">c4mat_uniform_01.m</a>,
           returns a unit pseudorandom C4MAT.
+        </li>
+        <li>
+          <a href = "c4vec_print.m">c4vec_print.m</a>, 
+          prints a C4VEC.
         </li>
         <li>
           <a href = "c4vec_uniform_01.m">c4vec_uniform_01.m</a>,
@@ -371,9 +354,21 @@
           returns a unit pseudorandom C8.
         </li>
         <li>
+          <a href = "c8mat_print.m">c8mat_print.m</a>, 
+          prints a C8MAT.
+        </li>
+        <li>
+          <a href = "c8mat_print_some.m">c8mat_print_some.m</a>, 
+          prints some of a C8MAT.
+        </li>
+        <li>
           <a href = "c8mat_uniform_01.m">c8mat_uniform_01.m</a>,
           returns an array of unit pseudorandom double precision
           complex numbers.
+        </li>
+        <li>
+          <a href = "c8vec_print.m">c8vec_print.m</a>, 
+          prints a C8VEC.
         </li>
         <li>
           <a href = "c8vec_uniform_01.m">c8vec_uniform_01.m</a>,
@@ -404,6 +399,10 @@
           "advances" the seed.
         </li>
         <li>
+          <a href = "i4_sign.m">i4_sign.m</a>,
+          returns the sign of an I4.
+        </li>
+        <li>
           <a href = "i4_uniform_0i.m">i4_uniform_0i.m</a>,
           returns a pseudorandom I4 between 1 and 2^(31)-1.
         </li>
@@ -412,16 +411,48 @@
           returns a scaled random I4 between A and B.
         </li>
         <li>
+          <a href = "i4mat_print.m">i4mat_print.m</a>,
+          prints an I4MAT;
+        </li>
+        <li>
+          <a href = "i4mat_print_some.m">i4mat_print_some.m</a>,
+          prints some of an I4MAT;
+        </li>
+        <li>
           <a href = "i4mat_uniform_ab.m">i4mat_uniform_ab.m</a>,
           returns a scaled pseudorangom I4MAT.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC.
         </li>
         <li>
           <a href = "i4vec_uniform_ab.m">i4vec_uniform_ab.m</a>,
           returns a scaled pseudorandom I4VEC.
         </li>
         <li>
-          <a href = "l_uniform.m">l_uniform.m</a>,
-          returns a scaled random L (a logical value).
+          <a href = "l4_uniform.m">l4_uniform.m</a>,
+          returns a scaled random L4 (a logical value).
+        </li>
+        <li>
+          <a href = "l4mat_print.m">l4mat_print.m</a>,
+          prints an L4MAT;
+        </li>
+        <li>
+          <a href = "l4mat_print_some.m">l4mat_print_some.m</a>,
+          prints some of an L4MAT;
+        </li>
+        <li>
+          <a href = "l4mat_uniform.m">l4mat_uniform.m</a>,
+          returns a random L4MAT (a logical matrix).
+        </li>
+        <li>
+          <a href = "l4vec_print.m">l4vec_print.m</a>,
+          prints an L4VEC.
+        </li>
+        <li>
+          <a href = "l4vec_uniform.m">l4vec_uniform.m</a>,
+          returns a random L4VEC (a logical vector).
         </li>
         <li>
           <a href = "lcrg_anbn.m">lcrg_anbn.m</a>,
@@ -437,41 +468,65 @@
           number generator.
         </li>
         <li>
-          <a href = "lmat_uniform.m">lmat_uniform.m</a>,
-          returns a random LMAT (a logical matrix).
-        </li>
-        <li>
-          <a href = "lvec_uniform.m">lvec_uniform.m</a>,
-          returns a random LVEC (a logical vector).
-        </li>
-        <li>
           <a href = "power_mod.m">power_mod.m</a>,
           computes mod ( A^N, M ).
-        </li>
-        <li>
-          <a href = "r4_uniform_ab.m">r4_uniform_ab.m</a>,
-          returns a scaled pseudorandom R4.
         </li>
         <li>
           <a href = "r4_uniform_01.m">r4_uniform_01.m</a>,
           returns a unit pseudorandom R4.
         </li>
         <li>
+          <a href = "r4_uniform_ab.m">r4_uniform_ab.m</a>,
+          returns a scaled pseudorandom R4.
+        </li>
+        <li>
+          <a href = "r4mat_print.m">r4mat_print.m</a>,
+          prints an R4MAT;
+        </li>
+        <li>
+          <a href = "r4mat_print_some.m">r4mat_print_some.m</a>,
+          prints some of an R4MAT;
+        </li>
+        <li>
           <a href = "r4mat_uniform_01.m">r4mat_uniform_01.m</a>,
           returns a unit pseudorandom R4MAT.
         </li>
         <li>
-          <a href = "r8_uniform_ab.m">r8_uniform_ab.m</a>,
-          returns a scaled pseudorandom R8.
+          <a href = "r4mat_uniform_ab.m">r4mat_uniform_ab.m</a>,
+          returns a scaled pseudorandom R4MAT.
+        </li>
+        <li>
+          <a href = "r4vec_print.m">r4vec_print.m</a>,
+          prints an R4VEC.
+        </li>
+        <li>
+          <a href = "r4vec_uniform_01.m">r4vec_uniform_01.m</a>,
+          returns a unit pseudorandom R4VEC.
+        </li>
+        <li>
+          <a href = "r4vec_uniform_ab.m">r4vec_uniform_ab.m</a>,
+          returns a scaled pseudorandom R4VEC.
         </li>
         <li>
           <a href = "r8_uniform_01.m">r8_uniform_01.m</a>,
           returns a unit pseudorandom R8.
         </li>
         <li>
-          <a href = "r8col_uniform_ab.m">
-          r8col_uniform_ab.m</a>,
+          <a href = "r8_uniform_ab.m">r8_uniform_ab.m</a>,
+          returns a scaled pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8col_uniform_abvec.m">
+          r8col_uniform_abvec.m</a>,
           fills an R8COL with scaled pseudorandom numbers.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT;
         </li>
         <li>
           <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
@@ -482,13 +537,17 @@
           returns a scaled pseudorandom R8MAT.
         </li>
         <li>
-          <a href = "r8mat_uniform_abvec.m">r8mat_uniform_abvec.m</a>,
-          returns a scaled pseudorandom R8MAT.
+          <a href = "r8row_uniform_abvec.m">
+          r8row_uniform_abvec.m</a>,
+          fills an R8ROW with scaled pseudorandom numbers.
         </li>
         <li>
-          <a href = "r8row_uniform_ab.m">
-          r8row_uniform_ab.m</a>,
-          fills an R8ROW with scaled pseudorandom numbers.
+          <a href = "r8vec_normal_01.m">r8vec_normal_01.m</a>,
+          returns a unit normal random R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
         </li>
         <li>
           <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>,
@@ -505,6 +564,10 @@
         <li>
           <a href = "r8vec_uniform_unit.m">r8vec_uniform_unit.m</a>, 
           returns a random unit vector.
+        </li>
+        <li>
+          <a href = "s_len_trim.m">s_len_trim.m</a>,
+          returns the length of a string to the last nonblank.
         </li>
         <li>
           <a href = "timestamp.m">timestamp.m</a>,
@@ -528,104 +591,97 @@
           the output file.
         </li>
         <li>
-          <a href = "uniform_test01.m">uniform_test01.m</a>,
-          tests C4_UNIFORM_01.
+          <a href = "bvec_uniform_test.m">bvec_uniform_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test02.m">uniform_test02.m</a>,
-          tests C4VEC_UNIFORM_01.
+          <a href = "c4_uniform_01_test.m">c4_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test03.m">uniform_test03.m</a>,
-          tests C8_UNIFORM_01.
+          <a href = "c4mat_uniform_01_test.m">c4mat_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test04.m">uniform_test04.m</a>,
-          tests C8VEC_UNIFORM_01.
+          <a href = "c4vec_uniform_01_test.m">c4vec_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test05.m">uniform_test05.m</a>,
-          tests CH_UNIFORM.
+          <a href = "c8_uniform_01_test.m">c8_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test06.m">uniform_test06.m</a>,
-          tests GET_SEED.
+          <a href = "c8mat_uniform_01_test.m">c8mat_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test065.m">uniform_test065.m</a>,
-          tests I4_SEED_ADVANCE.
+          <a href = "c8vec_uniform_01_test.m">c8vec_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test07.m">uniform_test07.m</a>,
-          tests I4_UNIFORM.
+          <a href = "ch_uniform_ab_test.m">ch_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test08.m">uniform_test08.m</a>,
-          tests I4_UNIFORM.
+          <a href = "get_seed_test.m">get_seed_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test09.m">uniform_test09.m</a>,
-          tests I4_UNIFORM_0I.
+          <a href = "i4_seed_advance_test.m">i4_seed_advance_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test10.m">uniform_test10.m</a>,
-          tests I4VEC_UNIFORM.
+          <a href = "i4_uniform_0i_test.m">i4_uniform_0i_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test11.m">uniform_test11.m</a>,
-          tests I8_UNIFORM.
+          <a href = "i4_uniform_ab_test.m">i4_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test111.m">uniform_test111.m</a>,
-          tests L_UNIFORM.
+          <a href = "i4mat_uniform_ab_test.m">i4mat_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test112.m">uniform_test112.m</a>,
-          tests LVEC_UNIFORM.
+          <a href = "i4vec_uniform_ab_test.m">i4vec_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test118.m">uniform_test118.m</a>,
-          tests LCRG_ANBN.
+          <a href = "l4_uniform_test.m">l4_uniform_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test119.m">uniform_test119.m</a>,
-          tests LCRG_ANBN.
+          <a href = "l4mat_uniform_test.m">l4mat_uniform_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test12.m">uniform_test12.m</a>,
-          demonstrates the use of LCRG_SEED.
+          <a href = "l4vec_uniform_test.m">l4vec_uniform_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test13.m">uniform_test13.m</a>,
-          tests R4_UNIFORM.
+          <a href = "lcrg_anbn_test.m">lcrg_anbn_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test14.m">uniform_test14.m</a>,
-          tests R4_UNIFORM_01.
+          <a href = "lcrg_seed_test.m">lcrg_seed_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test15.m">uniform_test15.m</a>,
-          tests R8_UNIFORM.
+          <a href = "r4_uniform_01_test.m">r4_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test16.m">uniform_test16.m</a>,
-          tests R8_UNIFORM_01.
+          <a href = "r4_uniform_ab_test.m">r4_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test17.m">uniform_test17.m</a>,
-          tests R8_UNIFORM_01.
+          <a href = "r4mat_uniform_ab_test.m">r4mat_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test18.m">uniform_test18.m</a>,
-          tests R8_UNIFORM_01.
+          <a href = "r4vec_uniform_ab_test.m">r4vec_uniform_ab_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test19.m">uniform_test19.m</a>,
-          tests R8_UNIFORM_01 and R8MAT_UNIFORM_01.
+          <a href = "r8_uniform_01_test.m">r8_uniform_01_test.m</a>
         </li>
         <li>
-          <a href = "uniform_test20.m">uniform_test20.m</a>,
-          tests R8_UNIFORM_01 and R8VEC_UNIFORM_01.
+          <a href = "r8_uniform_ab_test.m">r8_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "r8col_uniform_abvec_test.m">r8col_uniform_abvec_test.m</a>
+        </li>
+        <li>
+          <a href = "r8mat_uniform_ab_test.m">r8mat_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "r8row_uniform_abvec_test.m">r8row_uniform_abvec_test.m</a>
+        </li>
+        <li>
+          <a href = "r8vec_uniform_01_test.m">r8vec_uniform_01_test.m</a>
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab_test.m">r8vec_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "r8vec_uniform_abvec_test.m">r8vec_uniform_abvec_test.m</a>
         </li>
       </ul>
     </p>
@@ -638,7 +694,7 @@
     <hr>
 
     <i>
-      Last revised on 15 January 2012.
+      Last revised on 29 December 2014.
     </i>
 
     <!-- John Burkardt -->

@@ -1,0 +1,258 @@
+<html>
+
+  <head>
+    <title>
+      LINE_FEKETE_RULE - Approximate Fekete Points in an Interval
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINE_FEKETE_RULE<br>
+      Approximate Fekete Points in an Interval
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINE_FEKETE_RULE</b>
+      is a MATLAB library which
+      approximates the location of Fekete points in an interval [A,B].
+      A family of sets of Fekete points, indexed by size N, represents
+      an excellent choice for defining a polynomial interpolant.
+    </p>
+
+    <p>
+      Given a desired number of points N, the best choice for abscissas is
+      a set of Lebesgue points, which minimize the Lebesgue constant,
+      which describes the error in polynomial interpolation.  Sets of
+      Lebesgue points are difficult to define mathematically.  Fekete
+      points are a related, computable set, defined as those sets maximizing
+      the magnitude of the determinant of the Vandermonde matrix associated
+      with the points.  Analytic definitions of these points are known for
+      a few cases, but there is a general computational procedure for 
+      approximating them, which is demonstrated here.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINE_FEKETE_RULE</b> is available in
+      <a href = "../../c_src/line_fekete_rule/line_fekete_rule.html">a C version</a> and
+      <a href = "../../cpp_src/line_fekete_rule/line_fekete_rule.html">a C++ version</a> and
+      <a href = "../../f77_src/line_fekete_rule/line_fekete_rule.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/line_fekete_rule/line_fekete_rule.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/line_fekete_rule/line_fekete_rule.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lebesgue/lebesgue.html">
+      LEBESGUE</a>,
+      a MATLAB library which
+      is given a set of nodes in 1D, and
+      plots the Lebesgue function, and estimates the Lebesgue constant,
+      which measures the maximum magnitude of the potential error 
+      of Lagrange polynomial interpolation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_felippa_rule/line_felippa_rule.html">
+      LINE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_grid/line_grid.html">
+      LINE_GRID</a>,
+      a MATLAB library which
+      computes a grid of points
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_ncc_rule/line_ncc_rule.html">
+      LINE_NCC_RULE</a>,
+      a MATLAB library which
+      computes a Newton Cotes Closed (NCC) quadrature rule for the line,
+      that is, for an interval of the form [A,B], using equally spaced points
+      which include the endpoints.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_nco_rule/line_nco_rule.html">
+      LINE_NCO_RULE</a>,
+      a MATLAB library which
+      computes a Newton Cotes Open (NCO) quadrature rule,
+      using equally spaced points,
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_weights_vandermonde/quadrature_weights_vandermonde.html">
+      QUADRATURE_WEIGHTS_VANDERMONDE</a>,
+      a MATLAB library which
+      computes the weights of a quadrature rule using the Vandermonde
+      matrix, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_fekete_rule/triangle_fekete_rule.html">
+      TRIANGLE_FEKETE_RULE</a>,
+      a MATLAB library which
+      defines Fekete rules for quadrature or interpolation over a triangle.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde/vandermonde.html">
+      VANDERMONDE</a>,
+      a MATLAB library which 
+      carries out certain operations associated
+      with the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Len Bos, Norm Levenberg,<br>
+          On the calculation of approximate Fekete points: 
+          the univariate case,<br>
+          Electronic Transactions on Numerical Analysis, <br>
+          Volume 30, pages 377-397, 2008.
+        </li>
+        <li>
+          Alvise Sommariva, Marco Vianello,<br>
+          Computing approximate Fekete points by QR factorizations of Vandermonde 
+          matrices,<br>
+          Computers and Mathematics with Applications,<br>
+          Volume 57, 2009, pages 1324-1336.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebvand.m">chebvand.m</a>
+          returns the Chebyshev Vandermonde matrix,
+          as programmed by Nick Higham.
+        </li>
+        <li>
+          <a href = "cheby_van1.m">cheby_van1.m</a>
+          returns the Chebyshev Vandermonde matrix.
+        </li>
+        <li>
+          <a href = "legendre_van.m">legendre_van.m</a>
+          returns the Legendre Vandermonde matrix.
+        </li>
+        <li>
+          <a href = "line_fekete_chebyshev.m">line_fekete_chebyshev.m</a>
+          approximates Fekete points, using the Chebyshev polynomials
+          and the Chebyshev weight function.
+        </li>
+        <li>
+          <a href = "line_fekete_monomial.m">line_fekete_monomial.m</a>
+          approximates Fekete points, using the monomials
+          and the uniform weight function.
+        </li>
+        <li>
+          <a href = "line_monomial_moments.m">line_monomial_moments.m</a>
+          returns the moments of monomials over [A,B].
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "line_fekete_rule_test.m">line_fekete_rule_test.m</a>
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "line_fekete_rule_test_output.txt">line_fekete_rule_test_output.txt</a>
+          the output file.
+        </li>
+        <li>
+          <a href = "line_fekete_rule_test01.m">line_fekete_rule_test01.m</a>
+          tests line_fekete_monomial().
+        </li>
+        <li>
+          <a href = "line_fekete_rule_test02.m">line_fekete_rule_test02.m</a>
+          tests line_fekete_chebyshev().
+        </li>
+        <li>
+          <a href = "line_fekete_rule_test02.png">line_fekete_rule_test02.png</a>
+          an image of the location of the Fekete points for N = 21.
+        </li>
+        <li>
+          <a href = "line_fekete_rule_bos_levenberg_test.m">line_fekete_rule_bos_levenberg_test.m</a>
+          computes the same items as line_fekete_chebyshev, but using
+          code directly from the Bos-Levenberg paper.
+        </li>
+        <li>
+          <a href = "line_fekete_rule_bos_levenberg_test.png">line_fekete_rule_bos_levenberg_test.pngm</a>
+          an image of the location of the Fekete points for N = 21.
+        </li>
+        <li>
+          <a href = "line_fekete_rule_test03.m">line_fekete_rule_test03.m</a>
+          tests line_fekete_legendre().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 March 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

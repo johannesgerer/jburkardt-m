@@ -2,7 +2,7 @@ function a = prolate ( alpha, n )
 
 %*****************************************************************************80
 %
-%% PROLATE returns the prolate matrix.
+%% PROLATE returns the PROLATE matrix.
 %
 %  Formula:
 %
@@ -41,6 +41,8 @@ function a = prolate ( alpha, n )
 %      the eigenvalues of A are distinct,
 %      the eigenvalues lie in (0,1) and cluster around 0 and 1.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -68,6 +70,8 @@ function a = prolate ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
 
     for j = 1 : n
@@ -77,7 +81,7 @@ function a = prolate ( alpha, n )
       else
         k = abs ( i - j ) + 1;
         angle = 2.0 * pi * alpha * k;
-        a(i,j) = sin (  angle ) / ( pi * k );
+        a(i,j) = sin ( angle ) / ( pi * k );
       end
 
     end

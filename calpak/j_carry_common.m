@@ -10,7 +10,7 @@ function [ y, j ] = j_carry_common ( y, j )
 %
 %  Modified:
 %
-%    16 June 2012
+%    25 February 2013
 %
 %  Author:
 %
@@ -26,7 +26,7 @@ function [ y, j ] = j_carry_common ( y, j )
 
     if ( j < days )
       break
-    end if
+    end
 
     j = j - days;
     y = y + 1;

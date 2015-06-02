@@ -37,7 +37,7 @@ function histo_gram = i4vec_histogram ( n, a, histo_num )
 
   for i = 1 : n
 
-    if ( 0 <= a(i) & a(i) <= histo_num )
+    if ( 0 <= a(i) && a(i) <= histo_num )
       histo_gram(a(i)+1) = histo_gram(a(i)+1) + 1;
     end
 

@@ -29,7 +29,7 @@ function a = i4vec_insert ( n, a, pos, value )
 %
 %    Output, integer A(N+1), the modified array. 
 %
-  if ( pos < 1 | n+1 < pos )
+  if ( pos < 1 || n + 1 < pos )
 
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4VEC_INSERT - Fatal error!\n' );

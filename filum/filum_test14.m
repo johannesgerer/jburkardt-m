@@ -34,7 +34,7 @@ function filum_test14 ( )
     filename = string(i,:);
     for j = 1 : 4
       filename_old = filename;
-      file_name = filename_inc ( filename );
+      filename = filename_inc ( filename );
       fprintf ( 1, '  %20s  %20s\n', filename_old, filename );
       if ( s_len_trim ( filename ) == 0 )
         fprintf ( 1, '  (Empty output string.  Quit loop!)\n' );

@@ -2,7 +2,7 @@ function ellipse_grid_test ( )
 
 %*****************************************************************************80
 %
-%% ELLIPSE_GRID_TEST tests ELLIPSE_GRID.
+%% ELLIPSE_GRID_TEST tests the ELLIPSE_GRID library.
 %
 %  Licensing:
 %

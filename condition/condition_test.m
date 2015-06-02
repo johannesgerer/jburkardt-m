@@ -2,7 +2,7 @@ function condition_test ( )
 
 %*****************************************************************************80
 %
-%% CONDITION_TEST tests CONDITION.
+%% CONDITION_TEST tests the CONDITION library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function condition_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CONDITION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

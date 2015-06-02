@@ -2,7 +2,7 @@ function shepard_interp_nd_test ( )
 
 %*****************************************************************************80
 %
-%% SHEPARD_INTERP_ND_TEST tests SHEPARD_INTERP_ND.
+%% SHEPARD_INTERP_ND_TEST tests the SHEPARD_INTERP_ND library.
 %
 %  Licensing:
 %

@@ -1,0 +1,277 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_SCALAR_DISPLAY_GPL - Surface Plot of FEM2D Data Using GNUPLOT
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_SCALAR_DISPLAY_GPL <br> Surface Plot of FEM2D Data Using GNUPLOT
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_SCALAR_DISPLAY_GPL</b> 
+      is a MATLAB program which 
+      reads datafiles describing a set of nodes, their triangulation, and the
+      value of a scalar quantity at each node, and creates a graphics file
+      of the corresponding surface plot, which can be displayed by GNUPLOT.
+    </p>
+
+    <p>
+      The program reads three data files:
+      <ul>
+        <li>
+          <i>prefix</i>_nodes.txt, a node file, containing 
+          X, Y coordinates of points;
+        </li>
+        <li>
+          <i>prefix</i>_elements.txt, an element file, 
+          containing a list of sets of three points making up each 
+          triangular element;  (if this file does not exist, the
+          program will generate the element data automatically).
+        </li>
+        <li>
+          <i>prefix</i>_values.txt, a values file, 
+          containing the values of a scalar function U(X,Y) evaluated
+          at each node.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem2d_scalar_display_gpl</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>'prefix'</i> is the common prefix for the node, element and value files:
+    </p>
+
+    <p>
+      The program creates two files:
+      <ul>
+        <li>
+          <i>prefix</i>_data.txt, containing data;
+        </li>
+        <li>
+          <i>prefix</i>_commands.txt, containing commands for GNUPLOT.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      To actually create the plot, type
+      <blockquote>
+        gnuplot &lt; <i>prefix</i>_commands.txt
+      </blockquote>
+      which will create the file <i>prefix</i>.png
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_SCALAR_DISPLAY_GPL</b> is available in
+      <a href = "../../m_src/fem2d_scalar_display_gpl/fem2d_scalar_display_gpl.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dist_plot/dist_plot.html">
+      DIST_PLOT</a>,
+      a MATLAB program which 
+      makes contour plots of the distance function,
+      as defined and used in Persson and Strang's distmesh code;
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_mesh_display/fem2d_mesh_display.html">
+      FEM2D_MESH_DISPLAY</a>,
+      a MATLAB program which
+      reads the FEM model of a 2D mesh, consisting of polygonal elements of
+      any uniform order, and displays an image of the elements and nodes,
+      with optional numbering.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_scalar_display/fem2d_scalar_display.html">
+      FEM2D_SCALAR_DISPLAY</a>,
+      a MATLAB program which
+      reads information about nodes, elements and nodal values for a
+      2D finite element method (FEM) and creates a surface plot of U(X,Y), 
+      using the MATLAB graphics system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_scalar_display_brief/fem2d_scalar_display_brief.html">
+      FEM2D_SCALAR_DISPLAY_BRIEF</a>,
+      a MATLAB program which
+      reads information about nodes, elements and nodal values for a
+      2D finite element method (FEM) and creates a surface plot of U(X,Y), 
+      using the MATLAB graphics system, in 5 lines of code.
+    </p>
+
+    <p>
+      <a href = "../../examples/fenics_to_fem/fenics_to_fem.html">
+      FENICS_TO_FEM</a>, 
+      examples which
+      illustrate how a mesh or scalar function computed by the FENICS program
+      can be written to FEM files, which can then be used to create
+      images, or as input to meshing programs or other analysis tools.
+    </p>
+
+    <p>
+      <a href = "../../examples/gnuplot/gnuplot.html">
+      GNUPLOT</a>,
+      examples which
+      illustrate the use of the gnuplot graphics program.
+    </p>
+
+    <p>
+      <a href = "../../data/gpl/gpl.html">
+      GPL</a>,
+      a data directory which
+      contains examples of GPL files,
+      a graphics file format used by gnuplot;
+    </p>
+
+    <p>
+      <a href = "../../m_src/gpl_display/gpl_display.html">
+      GPL_DISPLAY</a>,
+      a MATLAB library which
+      tries to read the data in a typical gnuplot GPL file,
+      and display it in a more attractive way than gnuplot is capable of.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>, 
+      a MATLAB program which 
+      can display a contour plot
+      of scalar data defined on a triangulation of order 3.
+    </p>
+
+    <p>
+      <a href = "../../m_src/twod_plotc/twod_plotc.html">
+      TWOD_PLOTC</a>, 
+      a MATLAB program which 
+      makes a color contour plot of scalar data defined on a 2D finite element mesh.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_scalar_display_gpl.m">
+          fem2d_scalar_display_gpl.m</a>, 
+          the routine for creating the surface plot;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is an L-shaped region on which the function U=X^2+Y^2
+      is defined.  
+      <ul>
+        <li>
+          <a href = "ell_nodes.txt">ell_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "ell_elements.txt">ell_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "ell_values.txt">ell_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "ell_data.txt">ell_data.txt</a>, 
+          the data file that is created by this program.
+        </li>
+        <li>
+          <a href = "ell_commands.txt">ell_commands.txt</a>, 
+          the command file that is created by this program.
+        </li>
+        <li>
+          <a href = "ell.png">ell.png</a>, 
+          a PNG image, created by GNUPLOT;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SPIKE</b> is a circular region on which a solution of the
+      Poisson equation forms an off-centered spike.
+      <ul>
+        <li>
+          <a href = "spike_nodes.txt">spike_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "spike_elements.txt">spike_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "spike_values.txt">spike_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "spike_data.txt">spike_data.txt</a>, 
+          the data file that is created by this program.
+        </li>
+        <li>
+          <a href = "spike_commands.txt">spike_commands.txt</a>, 
+          the command file that is created by this program.
+        </li>
+        <li>
+          <a href = "spike.png">spike.png</a>, 
+          a PNG image, created by GNUPLOT;
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 November 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

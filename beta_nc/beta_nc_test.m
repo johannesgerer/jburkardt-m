@@ -2,7 +2,7 @@ function beta_nc_test ( )
 
 %*****************************************************************************80
 %
-%% BETA_NC_TEST tests BETA_NC.
+%% BETA_NC_TEST tests the BETA_NC library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function beta_nc_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BETA_NC_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

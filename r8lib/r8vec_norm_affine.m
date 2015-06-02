@@ -19,7 +19,7 @@ function value = r8vec_norm_affine ( n, v0, v1 )
 %
 %  Modified:
 %
-%    27 October 2010
+%    30 July 2013
 %
 %  Author:
 %
@@ -35,6 +35,13 @@ function value = r8vec_norm_affine ( n, v0, v1 )
 %
 %    Output, real VALUE, the affine L2 norm.
 %
+
+%
+%  Destroy all row vectors!
+%
+  v0 = v0(:);
+  v1 = v1(:);
+
   value = sqrt ( sum ( ( v0(1:n) - v1(1:n) ).^2 ) );
 
   return

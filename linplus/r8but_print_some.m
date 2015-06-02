@@ -97,7 +97,7 @@ function r8but_print_some ( n, mu, a, ilo, jlo, ihi, jhi,title )
         j = j2lo - 1 + j2;
 
         if ( i <= j & j <= i + mu )
-          fprintf ( 1, '%12f  ', a(i-j+mu+1,j) );
+          fprintf ( 1, '%12g  ', a(i-j+mu+1,j) );
         else
           fprintf ( 1, '              ' );
         end

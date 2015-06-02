@@ -80,7 +80,7 @@ function multst ( nsamp, tstlim, tstfns, tstmax, difclt, expnts, ndiml, ...
 
   seed = 123456;
 
-  small = r8_epsilon ( 'DUMMY' );
+  small = eps;
 
   idfclt(1:tstlim) = difclt(tstfns(1:tstlim));
   expons(1:tstlim) = expnts(tstfns(1:tstlim));

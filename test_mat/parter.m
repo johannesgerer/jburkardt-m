@@ -2,7 +2,7 @@ function a = parter ( m, n )
 
 %*****************************************************************************80
 %
-%% PARTER returns the Parter matrix.
+%% PARTER returns the PARTER matrix.
 %
 %  Formula:
 %
@@ -31,6 +31,8 @@ function a = parter ( m, n )
 %    A is a special case of the Cauchy matrix.
 %
 %    Most of the singular values are very close to Pi.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -62,6 +64,8 @@ function a = parter ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = 1.0 / ( ( i - j ) + 0.5 );

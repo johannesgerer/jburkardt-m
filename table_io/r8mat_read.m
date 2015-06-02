@@ -2,7 +2,7 @@ function table = r8mat_read ( input_filename )
 
 %*****************************************************************************80
 %
-%% R8MAT_READ reads information from an R8MAT file.
+%% R8MAT_READ reads an R8MAT from a text file.
 %
 %  Discussion:
 %

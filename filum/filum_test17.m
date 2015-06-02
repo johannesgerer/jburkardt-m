@@ -20,14 +20,14 @@ function filum_test17 ( )
   fprintf ( 1, 'TEST17\n' );
   fprintf ( 1, '  FILE_PARA_COUNT counts the paragraphs in a file.\n' );
 
-  file_name = 'story.txt';
+  filename = 'story.txt';
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Examining file:\n' );
-  fprintf ( 1, '    "%s".', file_name );
+  fprintf ( 1, '    "%s".', filename );
   fprintf ( 1, '\n' );
 
-  para_num = file_para_count ( file_name );
+  para_num = file_para_count ( filename );
   fprintf ( 1, '  Number of paragraphs: %d\n', para_num );
 
   return

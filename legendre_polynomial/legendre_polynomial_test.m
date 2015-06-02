@@ -10,7 +10,7 @@ function legendre_polynomial_test ( )
 %
 %  Modified:
 %
-%    14 March 2012
+%    18 October 2014
 %
 %  Author:
 %
@@ -23,6 +23,8 @@ function legendre_polynomial_test ( )
   fprintf ( 1, '  Test the LEGENDRE_POLYNOMIAL library.\n' );
 
   legendre_polynomial_test01 ( );
+  legendre_polynomial_test015 ( );
+  legendre_polynomial_test016 ( );
   legendre_polynomial_test02 ( );
   legendre_polynomial_test03 ( );
   legendre_polynomial_test04 ( );
@@ -46,6 +48,7 @@ function legendre_polynomial_test ( )
   legendre_polynomial_test07 ( );
   legendre_polynomial_test08 ( );
   legendre_polynomial_test09 ( );
+  legendre_polynomial_test095 ( );
 
   p = 5;
   legendre_polynomial_test10 ( p );
@@ -57,7 +60,6 @@ function legendre_polynomial_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LEGENDRE_POLYNOMIAL_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

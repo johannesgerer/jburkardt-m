@@ -24,11 +24,12 @@ function asa159_test ( )
   fprintf ( 1, '  Test the ASA159 routines.\n' );
 
   asa159_test01 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA159_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

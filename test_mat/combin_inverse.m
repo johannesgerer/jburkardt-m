@@ -2,7 +2,7 @@ function a = combin_inverse ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% COMBIN_INVERSE returns the inverse of the combinatorial matrix A.
+%% COMBIN_INVERSE returns the inverse of the COMBIN matrix.
 %
 %  Formula:
 %
@@ -33,9 +33,9 @@ function a = combin_inverse ( alpha, beta, n )
 %
 %    A is Toeplitz: constant along diagonals.
 %
-%    det ( A ) = 1 / (ALPHA**(N-1) * (ALPHA+N*BETA)).
+%    det ( A ) = 1 / (ALPHA^(N-1) * (ALPHA+N*BETA)).
 %
-%    A is well defined if ALPHA /= 0D+00 and ALPHA+N*BETA /= 0.
+%    A is well defined if ALPHA /= 0.0 and ALPHA+N*BETA /= 0.
 %
 %    A is also a combinatorial matrix.
 %
@@ -66,6 +66,8 @@ function a = combin_inverse ( alpha, beta, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( alpha == 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'COMBIN_INVERSE - Fatal error!\n' );

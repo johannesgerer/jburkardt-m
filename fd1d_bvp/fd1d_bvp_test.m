@@ -2,7 +2,7 @@ function fd1d_bvp_test ( )
 
 %*****************************************************************************80
 %
-%% FD1D_BVP_TEST tests the routines in FD1D_BVP.
+%% FD1D_BVP_TEST tests the FD1D_BVP library.
 %
 %  Licensing:
 %
@@ -33,7 +33,6 @@ function fd1d_bvp_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FD1D_BVP_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

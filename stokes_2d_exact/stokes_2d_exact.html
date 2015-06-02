@@ -1,0 +1,285 @@
+<html>
+
+  <head>
+    <title>
+      STOKES_2D_EXACT - Exact solutions to the 2D Incompressible Steady Stokes Equations
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      STOKES_2D_EXACT<br> 
+      Exact solutions to the <br>
+      2D Incompressible Steady Stokes Equations
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>STOKES_2D_EXACT</b>,
+      a MATLAB library which
+      evaluates exact solutions to the incompressible steady
+      Stokes equations in 2D.
+    </p>
+
+    <p>
+      The incompressible steady 2D Stokes equations seek functions u(x,y),
+      v(x,y), (the velocity vector) and p(x,y) (the pressure) such that
+      <pre>
+        - uxx - uyy + dpdx = f
+        - vxx - vyy + dpdy = g
+          ux  + vy         = h
+      </pre>
+      while satisfying boundary conditions for u and v, and a normalization
+      condition for p, such as specifying its value at one point, or requiring
+      that the integral of p over the region be 0.
+    </p>
+
+    <p>
+      Three exact solution fields are provided here.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>STOKES_2D_EXACT</b> is available in
+      <a href = "../../c_src/stokes_2d_exact/stokes_2d_exact.html">a C version</a> and
+      <a href = "../../cpp_src/stokes_2d_exact/stokes_2d_exact.html">a C++ version</a> and
+      <a href = "../../f77_src/stokes_2d_exact/stokes_2d_exact.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/stokes_2d_exact/stokes_2d_exact.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/stokes_2d_exact/stokes_2d_exact.html">a MATLAB version</a> and
+      <a href = "../../py_src/stokes_2d_exact/stokes_2d_exact.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">
+      NAVIER_STOKES_2D_EXACT</a>,
+      a MATLAB library which
+      evaluates an exact solution to the incompressible time-dependent
+      Navier-Stokes equations over an arbitrary domain in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_mesh2d/navier_stokes_mesh2d.html">
+      NAVIER_STOKES_MESH2D</a>,
+      MATLAB data files which
+      define triangular meshes for several
+      2D test problems involving the Navier Stokes equations
+      for fluid flow, provided by Leo Rebholz.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spiral_data/spiral_data.html">
+      SPIRAL_DATA</a>,
+      a MATLAB library which
+      computes a velocity vector field that satisfies the continuity 
+      equation, writing the data to a file that can be plotted
+      by gnuplot.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Junping Wang, Yanqiu Wang, Xiu Ye,<br>
+          A robust numerical method for Stokes equations based on divergence-free
+          H(div) finite element methods,<br>
+          SIAM Journal on Scientific Computing,<br>
+          Volume 31, Number 4, 2009, pages 2784-2802.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "grid_2d.m">grid_2d.m</a>, 
+          returns a regular 2D grid.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>, 
+          returns a scaled pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "resid_stokes1.m">resid_stokes1.m</a>,
+          evaluates the residuals at any point (x,y) 
+          for flow #1.
+        </li>
+        <li>
+          <a href = "resid_stokes2.m">resid_stokes2.m</a>,
+          evaluates the residuals at any point (x,y) 
+          for flow #2.
+        </li>
+        <li>
+          <a href = "resid_stokes3.m">resid_stokes3.m</a>,
+          evaluates the residuals at any point (x,y) 
+          for flow #3.
+        </li>
+        <li>
+          <a href = "rhs_stokes1.m">rhs_stokes1.m</a>,
+          evaluates the riht hand side functions at any point (x,y) 
+          for flow #1.
+        </li>
+        <li>
+          <a href = "rhs_stokes2.m">rhs_stokes2.m</a>,
+          evaluates the riht hand side functions at any point (x,y) 
+          for flow #2.
+        </li>
+        <li>
+          <a href = "rhs_stokes3.m">rhs_stokes3.m</a>,
+          evaluates the riht hand side functions at any point (x,y) 
+          for flow #3.
+        </li>
+        <li>
+          <a href = "stokes_gnuplot.m">stokes_gnuplot.m</a>, 
+          writes the velocity vector field to files for GNUPLOT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "uvp_stokes1.m">uvp_stokes1.m</a>,
+          evaluates the velocity and pressure field at any point (x,y)
+          for flow #1.
+        </li>
+        <li>
+          <a href = "uvp_stokes2.m">uvp_stokes2.m</a>,
+          evaluates the velocity and pressure field at any point (x,y)
+          for flow #2.
+        </li>
+        <li>
+          <a href = "uvp_stokes3.m">uvp_stokes3.m</a>,
+          evaluates the velocity and pressure field at any point (x,y)
+          for flow #3.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "s2de_test.m">s2de_test.m</a>,
+          calls all the tests.
+        <li>
+          <a href = "s2de_test_output.txt">s2de_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "uvp_stokes1_test.m">uvp_stokes1_test.m</a>
+        </li>
+        <li>
+          <a href = "resid_stokes1_test.m">resid_stokes1_test.m</a>
+        </li>
+        <li>
+          <a href = "gnuplot_stokes1_test.m">gnuplot_stokes1_test.m</a>
+        </li>
+        <li>
+          <a href = "uvp_stokes2_test.m">uvp_stokes2_test.m</a>
+        </li>
+        <li>
+          <a href = "resid_stokes2_test.m">resid_stokes2_test.m</a>
+        </li>
+        <li>
+          <a href = "gnuplot_stokes2_test.m">gnuplot_stokes2_test.m</a>
+        </li>
+        <li>
+          <a href = "uvp_stokes3_test.m">uvp_stokes3_test.m</a>
+        </li>
+        <li>
+          <a href = "resid_stokes3_test.m">resid_stokes3_test.m</a>
+        </li>
+        <li>
+          <a href = "gnuplot_stokes3_test.m">gnuplot_stokes3_test.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "stokes1_commands.txt">stokes1_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "stokes1_data.txt">stokes1_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "stokes1.png">stokes1.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+        <li>
+          <a href = "stokes2_commands.txt">stokes2_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "stokes2_data.txt">stokes2_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "stokes2.png">stokes2.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+        <li>
+          <a href = "stokes3_commands.txt">stokes3_commands.txt</a>,
+          commands to draw the velocity field.
+        </li>
+        <li>
+          <a href = "stokes3_data.txt">stokes3_data.txt</a>,
+          velocity field data.
+        </li>
+        <li>
+          <a href = "stokes3.png">stokes3.png</a>,
+          a PNG plot of the velocity field.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 February 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>
+

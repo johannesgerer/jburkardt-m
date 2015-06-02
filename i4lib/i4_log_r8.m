@@ -8,15 +8,15 @@ function value = i4_log_r8 ( x, b )
 %
 %    If B is greater than 1, and X is positive:
 %
-%    if 1/B**2 <  X <= 1/B   I4_LOG_R8(X) = -1,
+%    if 1/B^2  <  X <= 1/B   I4_LOG_R8(X) = -1,
 %    if 1/B    <  X <= 1     I4_LOG_R8(X) = 0,
 %    if 1      <= X <  B,    I4_LOG_R8(X) = 0,
-%    if B      <= X <  B**2  I4_LOG_R8(X) = 1,
-%    if B**2   <= X <  B**3  I4_LOG_R8(X) = 2.
+%    if B      <= X <  B^2   I4_LOG_R8(X) = 1,
+%    if B^2    <= X <  B^3   I4_LOG_R8(X) = 2.
 %
 %    For positive I4_LOG_R8(X), it should be true that
 %
-%      ABS(B)**I4_LOG_R8(X) <= ABS(X) < ABS(B)**(I4_LOG_R8(X)+1).
+%      ABS(B)^I4_LOG_R8(X) <= ABS(X) < ABS(B)^(I4_LOG_R8(X)+1).
 %
 %  Licensing:
 %
@@ -70,7 +70,7 @@ function value = i4_log_r8 ( x, b )
     value_sign = +1;
   end
 
-  if ( 1.0 <= x & x < b )
+  if ( 1.0 <= x && x < b )
     value = value_sign * value;
     return
   end 

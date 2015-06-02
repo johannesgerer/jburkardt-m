@@ -1,4 +1,5 @@
-function [ x, seed ] = multivariate_normal_sample ( n, mean, covar_factor, seed )
+function [ x, seed ] = multivariate_normal_sample ( n, mean, covar_factor, ...
+  seed )
 
 %*****************************************************************************80
 %
@@ -6,7 +7,8 @@ function [ x, seed ] = multivariate_normal_sample ( n, mean, covar_factor, seed 
 %
 %  Discussion:
 %
-%    PDF ( Mean(1:N), S(1:N,1:N); X(1:N) ) = 1 / ( 2 * pi * det ( S ) )^(N/2) 
+%    PDF ( Mean(1:N), S(1:N,1:N); X(1:N) ) = 
+%      1 / ( 2 * pi ) ^ ( N / 2 ) * 1 / det ( S )
 %      * exp ( - ( X - Mean )' * inverse ( S ) * ( X - Mean ) / 2 )
 %
 %    Here, 

@@ -1,0 +1,443 @@
+<html>
+
+  <head>
+    <title>
+      LEGENDRE_PRODUCT_POLYNOMIAL - Multivariate Products of Legendre Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      LEGENDRE_PRODUCT_POLYNOMIAL <br> Multivariate Products of Legendre Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LEGENDRE_PRODUCT_POLYNOMIAL</b>,
+      a MATLAB library which
+      can define a Legendre product polynomial (LPP), creating a multivariate 
+      polynomial as the product of univariate Legendre polynomials.
+    </p>
+
+    <p>
+      The Legendre polynomials are a polynomial sequence L(I,X), 
+      with polynomial I having degree I.
+    </p>
+
+    <p>
+      The first few Legendre polynomials are
+      <pre>
+        0: 1
+        1: x
+        2: 3/2 x^2 - 1/2
+        3: 5/2 x^3 - 3/2 x
+        4: 35/8 x^4 - 30/8 x^2 + 3/8
+        5: 63/8 x^5 - 70/8 x^3 + 15/8 x
+      </pre>
+    </p>
+
+    <p>
+      A Legendre product polynomial may be defined in a space of M dimensions
+      by choosing M indices.  To evaluate the polynomial at a point X,
+      compute the product of the corresponding Legendre polynomials, with 
+      each the I-th polynomial evaluated at the I-th coordinate:
+      <pre>
+        L((I1,I2,...IM),X) = L(1,X(1)) * L(2,X(2)) * ... * L(M,X(M)).
+      </pre>
+    </p>
+
+    <p>
+      Families of polynomials which are formed in this way can have useful
+      properties for interpolation, derivable from the properties of the
+      1D family.
+    </p>
+
+    <p>
+      While it is useful to generate a Legendre product polynomial from
+      its index set, and it is easy to evaluate it directly, the sum of
+      two Legendre product polynomials cannot be reduced to a single
+      Legendre product polynomial.  Thus, it may be useful to generate
+      the Legendre product polynomial from its indices, but then to
+      convert it to a standard polynomial form.  
+    </p>
+
+    <p>
+      The representation of arbitrary multivariate polynomials can be
+      complicated.  In this library, we have chosen a representation involving
+      the spatial dimension M, and three pieces of data, O, C and E.
+      <ul>
+        <li>
+          O is the number of terms in the polynomial.
+        </li>
+        <li>
+          C() is a real vector of length O, containing the coefficients of each term.
+        </li>
+        <li>
+          E() is an integer vector of length O, which defines the index (the
+          exponents of X(1) through X(M)) of each term.  
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The exponent indexing is done in a natural way, suggested by the
+      following indexing for the case M = 2:
+      <pre>
+        1: x^0 y^0  
+        2: x^0 y^1
+        3: x^1 y^0
+        4: x^0 y^2
+        5: x^1 y^1
+        6; x^2 y^0
+        7: x^0 y^3
+        8: x^1 y^2
+        9: x^2 y^1
+       10: x^3 y^0
+       ...
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LEGENDRE_PRODUCT_POLYNOMIAL</b> is available in
+      <a href = "../../c_src/legendre_product_polynomial/legendre_product_polynomial.html">a C version</a> and
+      <a href = "../../cpp_src/legendre_product_polynomial/legendre_product_polynomial.html">a C++ version</a> and
+      <a href = "../../f77_src/legendre_product_polynomial/legendre_product_polynomial.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/legendre_product_polynomial/legendre_product_polynomial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/legendre_product_polynomial/legendre_product_polynomial.html">a MATLAB version</a> and
+      <a href = "../../py_src/legendre_product_polynomial/legendre_product_polynomial.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/combo/combo.html">
+      COMBO</a>,
+      a MATLAB library which
+      includes routines for ranking, unranking, enumerating and 
+      randomly selecting balanced sequences, cycles, graphs, Gray codes, 
+      subsets, partitions, permutations, restricted growth functions, 
+      Pruefer codes and trees.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_product_polynomial/hermite_product_polynomial.html">
+      HERMITE_PRODUCT_POLYNOMIAL</a>,
+      a MATLAB library which
+      defines Hermite product polynomials, creating a multivariate 
+      polynomial as the product of univariate Hermite polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_polynomial/legendre_polynomial.html">
+      LEGENDRE_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates the Legendre polynomial and associated functions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/monomial/monomial.html">
+      MONOMIAL</a>,
+      a MATLAB library which 
+      enumerates, lists, ranks, unranks and randomizes 
+      multivariate monomials in a space of M dimensions, with total degree 
+      less than N, equal to N, or lying within a given range.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polpak/polpak.html">
+      POLPAK</a>,
+      a MATLAB library which
+      evaluates a variety of mathematical functions, including
+      Chebyshev, Gegenbauer, Hermite, Jacobi, Laguerre, Legendre polynomials,
+      and the Collatz sequence.
+    </p>
+
+    <p>
+      <a href = "../../m_src/polynomial/polynomial.html">
+      POLYNOMIAL</a>,
+      a MATLAB library which
+      adds, multiplies, differentiates, evaluates and prints multivariate 
+      polynomials in a space of M dimensions.
+    </p>
+
+    <p>
+      <a href = "../../m_src/subset/subset.html">
+      SUBSET</a>,
+      a MATLAB library which
+      enumerates, generates, ranks and unranks combinatorial objects
+      including combinations, compositions, Gray codes, index sets, partitions, 
+      permutations, subsets, and Young tables.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "comp_enum.m">comp_enum.m</a>,
+          enumerates the compositions of an integer into K parts.
+        </li>
+        <li>
+          <a href = "comp_next_grlex.m">comp_next_grlex.m</a>,
+          returns the next composition of an integer into K parts,
+          using grlex order.
+        </li>
+        <li>
+          <a href = "comp_random_grlex.m">comp_random_grlex.m</a>,
+          returns a random composition of an integer into K parts,
+          with the integer between 0 and N.
+        </li>
+        <li>
+          <a href = "comp_rank_grlex.m">comp_rank_grlex.m</a>,
+          ranks a composition of an integer into K parts,
+          using grlex order.
+        </li>
+        <li>
+          <a href = "comp_unrank_grlex.m">comp_unrank_grlex.m</a>,
+          returns the composition of an integer into K parts of
+          a given rank, using grlex order.
+        </li>
+        <li>
+          <a href = "i4_choose.m">i4_choose.m</a>,
+          computes the binomial coefficient C(N,K) as an I4.
+        </li>
+        <li>
+          <a href = "i4_uniform_ab.m">i4_uniform_ab.m</a>,
+          returns a random I4 in a given range.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_uniform_ab.m">i4vec_uniform_ab.m</a>,
+          returns a random I4VEC in a given range.
+        </li>
+        <li>
+          <a href = "lp_coefficients.m">lp_coefficients.m</a>,
+          returns the coefficients of a Legendre polynomial
+        </li>
+        <li>
+          <a href = "lp_value.m">lp_value.m</a>,
+          evaluates a Legendre polynomial at a point.
+        </li>
+        <li>
+          <a href = "lp_values.m">lp_values.m</a>,
+          returns a table of sample values of Legendre polynomials.
+        </li>
+        <li>
+          <a href = "lpp_to_polynomial.m">lpp_to_polynomial.m</a>,
+          converts a Legendre Product Polynomial to standard polynomial form.
+        </li>
+        <li>
+          <a href = "lpp_value.m">lpp_value.m</a>,
+          evaluates a Legendre Product Polynomial at a point.
+        </li>
+        <li>
+          <a href = "mono_next_grlex.m">
+          mono_next_grlex.m</a>,
+          returns the next monomial in D variables, in grlex order.
+        </li>
+        <li>
+          <a href = "mono_print.m">
+          mono_print.m</a>,
+          prints a monomial.
+        </li>
+        <li>
+          <a href = "mono_rank_grlex.m">mono_rank_grlex.m</a>,
+          returns the grlex rank of a monomial in the sequence of all monomials
+          in D dimensions of degree N or less.
+        </li>
+        <li>
+          <a href = "mono_unrank_grlex.m">mono_unrank_grlex.m</a>,
+          given the grlex rank, returns the corresponding monomial in the
+          sequence of all monomials in M dimensions.
+        </li>
+        <li>
+          <a href = "mono_upto_enum.m">mono_upto_enum.m</a>,
+          enumerates the monomials of D variables of total degree 
+          up to N.
+        </li>
+        <li>
+          <a href = "mono_upto_next_grlex.m">mono_upto_next_grlex.m</a>,
+          computes, in grlex order, the monomials of D variables of total
+          degree up to N.
+        </li>
+        <li>
+          <a href = "mono_upto_random.m">mono_upto_random.m</a>,
+          randomly selects a monomial of D variables of total degree 
+          up to N.
+        </li>
+        <li>
+          <a href = "mono_value.m">mono_value.m</a>,
+          evaluates a monomial.
+        </li>
+        <li>
+          <a href = "polynomial_compress.m">polynomial_compress.m</a>,
+          "compresses" a polynomial by merging coefficients associated with
+          the same monomial.
+        </li>
+        <li>
+          <a href = "polynomial_print.m">polynomial_print.m</a>,
+          prints a polynomial.
+        </li>
+        <li>
+          <a href = "polynomial_sort.m">polynomial_sort.m</a>,
+          sorts the terms in a polynomial.
+        </li>
+        <li>
+          <a href = "polynomial_value.m">polynomial_value.m</a>,
+          evaluates a polynomial.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>,
+          returns a random real vector in [A,B].
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "lpp_test.m">lpp_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "lpp_test_output.txt">lpp_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "comp_enum_test.m">comp_enum_test.m</a>
+        </li>
+        <li>
+          <a href = "comp_next_grlex_test.m">comp_next_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "comp_random_grlex_test.m">comp_random_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "comp_rank_grlex_test.m">comp_rank_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "comp_unrank_grlex_test.m">comp_unrank_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "i4_choose_test.m">i4_choose_test.m</a>
+        </li>
+        <li>
+          <a href = "i4_uniform_ab_test.m">i4_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "i4vec_print_test.m">i4vec_print_test.m</a>
+        </li>
+        <li>
+          <a href = "i4vec_uniform_ab_test.m">i4vec_uniform_ab_test.m</a>
+        </li>
+        <li>
+          <a href = "lp_coefficients_test.m">lp_coefficients_test.m</a>
+        </li>
+        <li>
+          <a href = "lp_value_test.m">lp_value_test.m</a>
+        </li>
+        <li>
+          <a href = "lp_values_test.m">lp_values_test.m</a>
+        </li>
+        <li>
+          <a href = "lpp_to_polynomial_test.m">lpp_to_polynomial_test.m</a>
+        </li>
+        <li>
+          <a href = "lpp_value_test.m">lpp_value_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_next_grlex_test.m">mono_next_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_print_test.m">mono_print_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_rank_grlex_test.m">mono_rank_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_unrank_grlex_test.m">mono_unrank_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_upto_enum_test.m">monomial_upto_enum_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_upto_next_grlex_test.m">mono_upto_next_grlex_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_upto_random_test.m">mono_upto_random_test.m</a>
+        </li>
+        <li>
+          <a href = "mono_value_test.m">mono_value_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_add_test.m">polynomial_add_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_compress_test.m">polynomial_compress_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_print_test.m">polynomial_print_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_sort_test.m">polynomial_sort_test.m</a>
+        </li>
+        <li>
+          <a href = "polynomial_value_test.m">polynomial_value_test.m</a>
+        </li>
+        <li>
+          <a href = "r8vec_print_test.m">r8vec_print_test.m</a>
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab_test.m">r8vec_uniform_ab_test.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 08 November 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

@@ -6,20 +6,20 @@ function area = sphere_imp_area_nd ( dim_num, r )
 %
 %  Discussion:
 %
-%    An implicit sphere in 3D satisfies the equation:
+%    An implicit sphere in ND satisfies the equation:
 %
-%      sum ( ( P(1:DIM_NUM) - CENTER(1:DIM_NUM) )**2 ) = R**2
+%      sum ( ( P(1:N) - CENTER(1:N) )^2 ) = R^2
 %
 %    DIM_NUM   Area
 %
-%    2      2       * PI    * R
-%    3      4       * PI    * R**2
-%    4      2       * PI**2 * R**3
-%    5      (8/3)   * PI**2 * R**4
-%    6                PI**3 * R**5
-%    7      (16/15) * PI**3 * R**6
+%    2      2       * PI   * R
+%    3      4       * PI   * R^2
+%    4      2       * PI^2 * R^3
+%    5      (8/3)   * PI^2 * R^4
+%    6                PI^3 * R^5
+%    7      (16/15) * PI^3 * R^6
 %
-%    Sphere_Area ( DIM_NUM, R ) = 2 * PI**(DIM_NUM/2) * R**(DIM_NUM-1) / Gamma ( DIM_NUM / 2 )
+%    Sphere_Area ( DIM_NUM, R ) = 2 * PI^(DIM_NUM/2) * R^(DIM_NUM-1) / Gamma ( DIM_NUM / 2 )
 %
 %  Licensing:
 %

@@ -2,7 +2,7 @@ function divdif_test07 ( )
 
 %*****************************************************************************80
 %
-%% DIVDIF_TEST07 tests NCC_RULE;
+%% DIVDIF_TEST07 tests R8POLY_BASIS.
 %
 %  Licensing:
 %
@@ -10,29 +10,62 @@ function divdif_test07 ( )
 %
 %  Modified:
 %
-%    23 June 2011
+%    07 October 2006
 %
 %  Author:
 %
 %    John Burkardt
 %
-  norder = 8;
+  ntab = 5;
+  nstep = 9;
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIVDIF_TEST07\n' );
-  fprintf ( 1, '  NCC_RULE computes closed Newton Cotes formulas;\n' );
+  fprintf ( 1, '  R8POLY_BASIS computes Lagrange basis polynomials\n' );
+  fprintf ( 1, '  in standard form.\n' );
   fprintf ( 1, '\n' );
+%
+%  Set the base points.
+%
+  xtab = r8vec_indicator ( ntab );
+%
+%  Get the difference tables for the basis polynomials and print them.
+%
+  polcof = r8poly_basis ( ntab, xtab );
 
-  [ xtab, weight ] = ncc_rule ( norder );
+  for i = 1 : ntab
+    fprintf ( 1, '  ' );
+    for j = 1 : ntab
+      fprintf ( 1, '%14f', polcof(i,j) );
+    end
+    fprintf ( 1, '\n' );
+  end
+%
+%  Print basis polynomial 3 in polynomial form.
+%
+  r8poly_print ( ntab, polcof(1:ntab,3), ...
+    '  Basis polynomial 3 in standard form:' );
+%
+%  Evaluate basis polynoimial 3 at a set of points.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Evaluate basis polynomial 3 at a set of points.\n' );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '      X        Y\n' );
+  fprintf ( 1, '\n' );
+  xhi =  ntab;
+  xlo = 1.0;
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Newton-Cotes Closed Quadrature Rule:\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '      Abscissa       Weight\n' );
-  fprintf ( 1, '\n' );
+  for i = 1 : nstep
 
-  for i = 1 : norder
-    fprintf ( 1, '  %3d  %14f  %14f\n', i, xtab(i), weight(i) );
+    xval = ( ( nstep - i     ) * xlo   ...
+           + (         i - 1 ) * xhi ) ...
+           / ( nstep     - 1 );
+
+    yval = r8poly_val_horner ( ntab, polcof(1:ntab,3), xval );
+
+    fprintf ( 1, '  %14f  %14f\n', xval, yval );
+
   end
 
   return

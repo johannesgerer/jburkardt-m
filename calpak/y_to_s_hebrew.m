@@ -26,7 +26,7 @@ function s = y_to_s_hebrew ( y )
 %
 %    Output, string S, a representation of the year.
 %
-  ierror = y_check_hebrew ( y );
+  [ y, ierror ] = y_check_hebrew ( y );
 
   if ( ierror ~= 0 )
     fprintf ( 1, '\n' );

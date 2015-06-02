@@ -93,7 +93,7 @@ function r8s3_print_some ( m, n, nz_num, isym, row, col, a, ilo, jlo, ...
 
       for k = 1 : nz_num
 
-        if ( i == row(k) & j2lo <= col(k) & col(k) <= j2hi )
+        if ( i == row(k) && j2lo <= col(k) && col(k) <= j2hi )
 
           j2 = col(k) - j2lo + 1;
           aij(j2) = a(k);
@@ -102,8 +102,8 @@ function r8s3_print_some ( m, n, nz_num, isym, row, col, a, ilo, jlo, ...
             nonzero = 1;
           end
 
-        elseif ( isym == 1 & m == n & ...
-          i == col(k) & j2lo <= row(k) & row(k) <= j2hi )
+        elseif ( isym == 1 && m == n && ...
+          i == col(k) & j2lo <= row(k) && row(k) <= j2hi )
 
           j2 = row(k) - j2lo + 1;
           aij(j2) = a(k);
@@ -119,7 +119,7 @@ function r8s3_print_some ( m, n, nz_num, isym, row, col, a, ilo, jlo, ...
       if ( nonzero )
         fprintf ( 1, '%5d ', i );
         for j2 = 1 : inc
-          fprintf ( 1, '%14f', aij(j2) );
+          fprintf ( 1, '%14g', aij(j2) );
         end
         fprintf ( 1, '\n' );
       end
@@ -127,8 +127,6 @@ function r8s3_print_some ( m, n, nz_num, isym, row, col, a, ilo, jlo, ...
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

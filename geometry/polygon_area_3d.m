@@ -43,9 +43,7 @@ function [ area, normal ] = polygon_area_3d ( n, v )
 %
 %    Output, real NORMAL(3,1), the unit normal vector to the polygon.
 %
-  dim_num = 3;
-
-  normal(1:dim_num,1) = 0.0;
+  normal(1:3,1) = 0.0;
 
   for i = 1 : n
 
@@ -61,16 +59,16 @@ function [ area, normal ] = polygon_area_3d ( n, v )
     cross(2,1) = v(3,i) * v(1,ip1) - v(1,i) * v(3,ip1);
     cross(3,1) = v(1,i) * v(2,ip1) - v(2,i) * v(1,ip1);
 
-    normal(1:dim_num,1) = normal(1:dim_num,1) + cross(1:dim_num,1);
+    normal(1:3,1) = normal(1:3,1) + cross(1:3,1);
 
   end
 
-  area = sqrt ( sum ( normal(1:dim_num,1).^2 ) );
+  area = sqrt ( sum ( normal(1:3,1).^2 ) );
 
   if ( area ~= 0.0 )
-    normal(1:dim_num,1) = normal(1:dim_num,1) / area;
+    normal(1:3,1) = normal(1:3,1) / area;
   else
-    normal(1:dim_num,1) = 1.0 / sqrt ( dim_num );
+    normal(1:3,1) = 1.0 / sqrt ( 3.0 );
   end
 
   area = 0.5 * area;

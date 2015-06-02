@@ -58,7 +58,7 @@ function r = van_der_corput_dataset ( base, seed, n )
 %  Get BASE.
 %
   if ( 1 <= nargin )
-
+    base = str2num ( base );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Enter BASE, the van der Corput base,\n' );
@@ -73,7 +73,7 @@ function r = van_der_corput_dataset ( base, seed, n )
 %  Get SEED.
 %
   if ( 2 <= nargin )
-
+    seed = str2num ( seed );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '  SEED is the index of the first element.\n' );
@@ -86,13 +86,12 @@ function r = van_der_corput_dataset ( base, seed, n )
 %  Get N.
 %
   if ( 3 <= nargin )
-
+    n = str2num ( n );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '  N is the number of points.\n' );
     fprintf ( 1, '  (Try ''25'' if you have no preference.)\n' );
     n = input ( '  Enter N:  ' );
-
   end
 
   fprintf ( 1, '  User input N = %d\n', n );

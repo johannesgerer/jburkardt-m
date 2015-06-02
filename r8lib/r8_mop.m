@@ -20,7 +20,7 @@ function value = r8_mop ( i )
 %
 %    Input, integer I, the power of -1.
 %
-%    Output, real R8_MOP, the I-th power of -1.
+%    Output, real VALUE, the I-th power of -1.
 %
   if ( mod ( i, 2 ) == 0 )
     value = + 1.0;

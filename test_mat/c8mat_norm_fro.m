@@ -22,7 +22,7 @@ function value = c8mat_norm_fro ( m, n, a )
 %
 %  Modified:
 %
-%    10 October 2007
+%    06 February 2015
 %
 %  Author:
 %
@@ -38,7 +38,7 @@ function value = c8mat_norm_fro ( m, n, a )
 %
 %    Output, real VALUE, the Frobenius norm of A.
 %
-  value = sqrt ( sum ( sum ( abs ( a(1:m,1:n) ) ) ) ) );
+  value = sqrt ( sum ( sum ( abs ( a(1:m,1:n) ) ) ) );
 
   return
 end

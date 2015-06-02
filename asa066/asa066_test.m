@@ -17,21 +17,20 @@ function asa066_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA066_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Test the routines in ASA066.\n' );
+  fprintf ( 1, '  Test the ASA066 library.\n' );
 
   asa066_test01 ( );
   asa066_test02 ( );
   asa066_test03 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA066_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

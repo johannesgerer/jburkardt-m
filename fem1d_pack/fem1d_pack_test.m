@@ -2,7 +2,7 @@ function fem1d_pack_test ( )
 
 %*****************************************************************************80
 %
-%% FEM1D_PACK_TEST tests FEM1D_PACK.
+%% FEM1D_PACK_TEST tests the FEM1D_PACK library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function fem1d_pack_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D_PACK_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -30,7 +29,6 @@ function fem1d_pack_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM1D_PACK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

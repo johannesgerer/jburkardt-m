@@ -5,6 +5,10 @@ function [ newbest, point, funevals ] = best_nearby ( delta, point, ...
 %
 %% BEST_NEARBY looks for a better nearby point, one coordinate at a time.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    12 February 2008

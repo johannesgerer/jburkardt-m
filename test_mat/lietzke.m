@@ -2,7 +2,7 @@ function a = lietzke ( n )
 
 %*****************************************************************************80
 %
-%% LIETZKE returns the Lietzke matrix.
+%% LIETZKE returns the LIETZKE matrix.
 %
 %  Formula:
 %
@@ -44,8 +44,8 @@ function a = lietzke ( n )
 %  Reference:
 %
 %    M Lietzke, R Stoughton, Marjorie Lietzke,
-%    A Comparison of Seeral Method for Inverting Large Symmetric
-%    Positive Definite Matrics,
+%    A Comparison of Several Methods for Inverting Large Symmetric
+%    Positive Definite Matrices,
 %    Mathematics of Computation,
 %    Volume 18, Number 87, pages 449-456.
 %
@@ -56,6 +56,8 @@ function a = lietzke ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = ( n - abs ( i - j ) );

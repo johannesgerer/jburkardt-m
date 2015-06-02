@@ -1,4 +1,4 @@
-function lambda = idem_random_eigenvalues ( n, rank )
+function lambda = idem_random_eigenvalues ( n, rank, key )
 
 %*****************************************************************************80
 %
@@ -22,10 +22,14 @@ function lambda = idem_random_eigenvalues ( n, rank )
 %
 %    Input, integer RANK, the rank of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Input, integer KEY, a positive value that selects the data.
 %
-  lambda(1:rank) = 1.0;
-  lambda(rank+1:n) = 0.0;
+%    Output, real LAMBDA(N,1), the eigenvalues.
+%
+  lambda = zeros ( n, 1 );
+
+  lambda(1:rank,1) = 1.0;
+  lambda(rank+1:n,1) = 0.0;
 
   return
 end

@@ -16,15 +16,16 @@ function kpu_test ( )
 %
 %    John Burkardt
 %
+  d = 1;
+  exact = legendre_integral ( d );
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KPU_TEST:\n' );
   fprintf ( 1, '  Kronrod-Patterson quadrature over [0,1]:\n' );
+  fprintf ( 1, '  Exact integral is %16.8g\n', exact );
   fprintf ( 1, '\n' );
   fprintf ( 1, '   Level   Nodes    Estimate  Error\n' );
   fprintf ( 1, '\n' );
-
-  d = 1;
-  exact = fu_integral ( d );
 
   for l = 1 : 5
 
@@ -33,7 +34,7 @@ function kpu_test ( )
     nh = floor ( ( n + 1 ) / 2 );
 
     [ xh, wh ] = kpu ( l );
-
+ 
     if ( mod ( n, 2 ) == 1 )
       x = [ 1-xh(nh:-1:2); xh ];
       w = [ wh(nh:-1:2); wh ];
@@ -42,7 +43,8 @@ function kpu_test ( )
       w = [ wh(nh:-1:1); wh ];
     end
 
-    fx = fu_value ( d, n, x );
+    fx = legendre_integrand ( d, n, x );
+ 
     q = w' * fx;
     e = sqrt ( ( q - exact ).^2 ) / exact;
 

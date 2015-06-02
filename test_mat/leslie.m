@@ -2,14 +2,18 @@ function a = leslie ( b, di, da )
 
 %*****************************************************************************80
 %
-%% LESLIE returns the Leslie population dynamics matrix.
+%% LESLIE returns the LESLIE matrix.
+%
+%  Discussion:
+%
+%    This matrix is used in a model of population dynamics.
 %
 %  Formula:
 %
 %    5/6 * ( 1.0 - DI )    0      B         0
 %    1/6 * ( 1.0 - DI )  13/14    0         0
-%        0                    1/14  39/40       0
-%        0                     0     1/40  9/10 * ( 1 - DA )
+%        0                1/14  39/40       0
+%        0                 0     1/40  9/10 * ( 1 - DA )
 %
 %  Discussion:
 %
@@ -59,6 +63,8 @@ function a = leslie ( b, di, da )
 %
 %    Output, real A(4,4), the matrix.
 %
+  a = zeros ( 4, 4 );
+
   if ( b < 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'LESLIE - Fatal error!\n' );

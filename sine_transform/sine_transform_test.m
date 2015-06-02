@@ -2,7 +2,7 @@ function sine_transform_test ( )
 
 %*****************************************************************************80
 %
-%% SINE_TRANSFORM_TEST tests SINE_TRANSFORM.
+%% SINE_TRANSFORM_TEST tests the SINE_TRANSFORM library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function sine_transform_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SINE_TRANSFORM_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

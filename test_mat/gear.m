@@ -2,7 +2,7 @@ function a = gear ( ii, jj, n )
 
 %*****************************************************************************80
 %
-%% GEAR returns the Gear matrix.
+%% GEAR returns the GEAR matrix.
 %
 %  Formula:
 %
@@ -74,6 +74,8 @@ function a = gear ( ii, jj, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 
@@ -81,7 +83,7 @@ function a = gear ( ii, jj, n )
         a(i,j) = i4_sign ( ii );
       elseif ( i == n && j == n + 1 - abs ( jj ) )
         a(i,j) = i4_sign ( jj );
-      elseif ( j == i-1 || j == i+1 )
+      elseif ( j == i - 1 || j == i + 1 )
         a(i,j) = 1.0;
       else
         a(i,j) = 0.0;

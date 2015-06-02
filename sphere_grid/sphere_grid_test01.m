@@ -1,8 +1,8 @@
-function test01 ( )
+function sphere_grid_test01 ( )
 
 %*****************************************************************************80
 %
-%% TEST01 tests SPHERE_ICOS_POINT_NUM.
+%% SPHERE_GRID_TEST01 tests SPHERE_ICOS_POINT_NUM.
 %
 %  Licensing:
 %
@@ -17,7 +17,7 @@ function test01 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST01\n' );
   fprintf ( 1, '  SPHERE_ICOS_POINT_NUM determines the size\n' );
   fprintf ( 1, '  (number of vertices, edges and faces) in a grid\n' );
   fprintf ( 1, '  on a sphere, made by subdividing an initial\n' );

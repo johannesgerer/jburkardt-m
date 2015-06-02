@@ -9,6 +9,10 @@ function fft_serial ( )
 %    The complex data in an N vector is stored as pairs of values in a
 %    real ( kind = 8 ) vector of length 2*N.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    16 May 2009
@@ -175,6 +179,10 @@ function y = cfft2 ( n, x, w, sgn )
 %
 %% CFFT2 performs a complex Fast Fourier Transform.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    27 April 2008
@@ -253,6 +261,10 @@ function w = cffti ( n )
 %
 %% CFFTI sets up sine and cosine tables needed for the FFT calculation.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    16 May 2009
@@ -292,6 +304,10 @@ function [ value, seed ] = ggl ( seed )
 %
 %% GGL generates uniformly distributed pseudorandom numbers. 
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    16 May 2009
@@ -330,6 +346,10 @@ function y = step ( n, mj, x, w, sgn, xoff, yoff )
 %*****************************************************************************80
 %
 %% STEP carries out one step of the workspace version of CFFT2.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

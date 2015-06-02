@@ -1,4 +1,4 @@
-function dc = diffusivity_1d_xk ( dc0, omega, x )
+function dc = diffusivity_1d_xk ( dc0, m, omega, n, x )
 
 %*****************************************************************************80
 %
@@ -32,7 +32,7 @@ function dc = diffusivity_1d_xk ( dc0, omega, x )
 %      U(X;OMEGA) = X
 %
 %    In the numerical experiments described in the paper, OMEGA was taken
-%    to be a  random variable with a Beta, or Uniform, or Gaussian or 
+%    to be a random variable with a Beta, or Uniform, or Gaussian or 
 %    Poisson or Binomial distribution.
 %
 %    For the Gaussian and Poisson distributions, the positivity requirement could not
@@ -62,17 +62,49 @@ function dc = diffusivity_1d_xk ( dc0, omega, x )
 %  Parameters:
 %
 %    Input, real DC0, the constant term in the expansion of the 
-%    diffusion coefficient.  Take DC0 = 1.
+%    diffusion coefficient.
 %
-%    Input, real OMEGA, the stochastic parameters.  
-%    0 < DC0 + OMEGA.
+%    Input, integer M, the number of stochastic parameters.
 %
-%    Input, real X, the point where the diffusion coefficient is to 
+%    Input, real OMEGA(M,1), the stochastic parameters.  
+%
+%    Input, integer N, the number of evaluation points.
+%
+%    Input, real X(N,1), the point where the diffusion coefficient is to 
 %    be evaluated.
 %
-%    Output, real DC, the value of the diffusion coefficient at X.
+%    Output, real DC(N,1), the value of the diffusion coefficient at X.
 %
-  dc = dc0 + omega * x;
+
+%
+%  Destroy all row vectors!
+%
+  omega = omega(:);
+  x = x(:);
+
+  k = 0;
+  w = 1.0;
+  arg = zeros(n,1);
+
+  while ( k < m )
+
+    if ( k < m )
+      k = k + 1;
+      arg = arg + omega(k) * sin ( w * pi * x );    
+    end
+
+    if ( k < m )
+      k = k + 1;
+      arg = arg + omega(k) * cos ( w * pi * x );    
+    end
+
+    w = w + 1.0;
+
+  end
+
+  arg = exp ( - 0.125 ) * arg;
+
+  dc = dc0 + exp ( arg );
 
   return
 end

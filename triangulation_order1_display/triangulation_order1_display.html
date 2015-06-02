@@ -17,7 +17,7 @@
     <p>
       <b>TRIANGULATION_ORDER1_DISPLAY</b> 
       is a MATLAB program which 
-      can make a 3D plot of piecewise constant data defined on a triangulation.
+      can make a 3D plot of piecewise constant data defined on a mesh of triangles.
     </p>
 
     <p>
@@ -27,11 +27,11 @@
           <b>NODE_XY(1:2,1:NODE_NUM)</b>, a list of the coordinates of nodes;
         </li>
         <li>
-          <b>TRIANGLE_NODE(1:3,1:TRIANGLE_NUM)</b>, a list of the nodes that
-          make up each triangle in the triangulation;
+          <b>ELEMENT_NODE(1:3,1:ELEMENT_NUM)</b>, a list of the nodes that
+          make up each element in the mesh;
         </li>
         <li>
-          <b>VALUE(1:TRIANGLE_NUM)</b>, the value associated with each triangle;
+          <b>VALUE(1:TRIANGLE_NUM)</b>, the value associated with each element;
         </li>
       </ul>
     </p>
@@ -53,7 +53,7 @@
           <i>'prefix'</i>_elements.txt lists the indices of nodes that form elements.
         </li>
         <li>
-          <i>'prefix'</i>_values.txt lists the value to be assigned each triangle.
+          <i>'prefix'</i>_values.txt lists the value to be assigned each element.
         </li>
       </ul>
       reads the data and makes a plot.
@@ -67,6 +67,15 @@
       The computer code and data files described and made available on this web page 
       are distributed under
       <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_ORDER1_DISPLAY</b> is available in
+      <a href = "../../m_src/triangulation_order1_display/triangulation_order1_display.html">a MATLAB version</a>.
     </p>
 
     <h3 align = "center">
@@ -96,11 +105,25 @@
     </p>
 
     <p>
+      <a href = "../../m_src/ply_display/ply_display.html">
+      PLY_DISPLAY</a>,
+      a MATLAB program which
+      displays an image of a 3D graphics file in PLY format;
+    </p>
+
+    <p>
       <a href = "../../m_src/polygonal_surface_display/polygonal_surface_display.html">
       POLYGONAL_SURFACE_DISPLAY</a>,
       a MATLAB program which
       reads two files defining a polygonal surface and displays it
       within MATLAB.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quad_mesh_order1_display/quad_mesh_order1_display.html">
+      QUAD_MESH_ORDER1_DISPLAY</a>,
+      a MATLAB program which
+      plots piecewise constant data associated with a mesh of quadrilaterals;
     </p>
 
     <p>
@@ -142,32 +165,20 @@
     </p>
 
     <p>
-      <a href = "../../m_src/triangulation_corner/triangulation_corner.html">
-      TRIANGULATION_CORNER</a>,
-      a MATLAB program which 
-      patches triangulations so that no triangle has two sides on the boundary.
+      <a href = "../../cpp_src/triangulation_display_opengl/triangulation_display_opengl.html">
+      TRIANGULATION_DISPLAY_OPENGL</a> 
+      is a C++ program which
+      reads files defining a triangulation and displays an image using Open GL.
     </p>
 
     <p>
-      <a href = "../../m_src/triangulation_delaunay_discrepancy/triangulation_delaunay_discrepancy.html">
-      TRIANGULATION_DELAUNAY_DISCREPANCY</a>, 
+      <a href = "../../m_src/triangulation_node_to_element/triangulation_node_to_element.html">
+      TRIANGULATION_NODE_TO_ELEMENT</a>,
       a MATLAB program which 
-      measures the amount by which a triangulation fails the local Delaunay test;
-    </p>
-
-    <p>
-      <a href = "../../m_src/triangulation_histogram/triangulation_histogram.html">
-      TRIANGULATION_HISTOGRAM</a>, 
-      a MATLAB program which 
-      computes histograms of data over a triangulation.
-    </p>
-
-    <p>
-      <a href = "../../m_src/triangulation_mask/triangulation_mask.html">
-      TRIANGULATION_MASK</a>,
-      a MATLAB program which
-      takes an existing triangulation and deletes triangles and
-      their corresponding nodes as requested by the user.
+      reads files describing a set of nodes, their triangulation, and the
+      value of one or more quantities at each node, and outputs a file
+      that averages the quantities for each element.  This operation 
+      in effect creates an "order1" finite element model of the data.
     </p>
 
     <p>
@@ -228,7 +239,7 @@
         <li>
           <a href = "triangulation_order1_display.m">
           triangulation_order1_display.m</a>, 
-          displays a 3D plot of piecewise data on a triangulation.
+          displays a 3D plot of piecewise data on a mesh of triangles.
         </li>
       </ul>
     </p>
@@ -238,7 +249,7 @@
     </h3>
 
     <p>
-      <b>EXAMPLE1</b> is a set of node, triangle and value data. 
+      <b>EXAMPLE1</b> is a set of node, element and value data. 
       Files you may copy include:
       <ul>
         <li>
@@ -247,23 +258,22 @@
         </li>
         <li>
           <a href = "example1_elements.txt">
-          example1_elements.txt</a>, the indices of nodes that make the triangles.
+          example1_elements.txt</a>, the indices of nodes that make the elements.
         </li>
         <li>
           <a href = "example1_values.txt">
-          example1_values.txt</a>, the value associated with each triangle.
+          example1_values.txt</a>, the value associated with each element.
         </li>
         <li>
           <a href = "example1.png">
           example1.png</a>, 
-          a <a href = "../../data/png/png.html">PNG</a> image of
-          the MATLAB plot.
+          a PNG image of the MATLAB plot.
         </li>
       </ul>
     </p>
 
     <p>
-      <b>EXAMPLE2</b> is a set of node, triangle and value data. 
+      <b>EXAMPLE2</b> is a set of node, element and value data. 
       Files you may copy include:
       <ul>
         <li>
@@ -272,17 +282,16 @@
         </li>
         <li>
           <a href = "example2_elements.txt">
-          example2_elements.txt</a>, the indices of nodes that make the triangles.
+          example2_elements.txt</a>, the indices of nodes that make the elements.
         </li>
         <li>
           <a href = "example2_values.txt">
-          example2_values.txt</a>, the value associated with each triangle.
+          example2_values.txt</a>, the value associated with each element.
         </li>
         <li>
           <a href = "example2.png">
           example2.png</a>, 
-          a <a href = "../../data/png/png.html">PNG</a> image of
-          the MATLAB plot.
+          a PNG image of the MATLAB plot.
         </li>
       </ul>
     </p>

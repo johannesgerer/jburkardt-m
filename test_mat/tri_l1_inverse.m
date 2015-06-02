@@ -27,7 +27,7 @@ function b = tri_l1_inverse ( n, a )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, H Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -40,6 +40,8 @@ function b = tri_l1_inverse ( n, a )
 %
 %    Output, real B(N,N), the inverse matrix.
 %
+ b = zeros ( n, n );
+
   for i = 1 : n
 
     for j = 1 : n

@@ -2,11 +2,7 @@ function sftpack_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for SFTPACK_PRB.
-%
-%  Discussion:
-%
-%    SFTPACK_PRB tests the SFTPACK routines.
+%% SFTPACK_TEST tests the SFTPACK library.
 %
 %  Licensing:
 %
@@ -21,9 +17,8 @@ function sftpack_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'SFTPACK_PRB\n' );
+  fprintf ( 1, 'SFTPACK_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the SFTPACK library.\n' );
 
@@ -41,9 +36,8 @@ function sftpack_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'SFTPACK_PRB\n' );
+  fprintf ( 1, 'SFTPACK_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

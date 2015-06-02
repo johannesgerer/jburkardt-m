@@ -2,11 +2,11 @@ function error_frobenius = r8mat_is_eigen_right ( n, k, a, x, lambda )
 
 %*****************************************************************************80
 %
-%% R8MAT_IS_EIGEN_RIGHT determines the error in a (right) eigensystem.
+%% R8MAT_IS_EIGEN_RIGHT determines the error in a right eigensystem.
 %
 %  Discussion:
 %
-%    An R8MAT is a matrix of real ( kind = 8 ) values.
+%    An R8MAT is a matrix of real values.
 %
 %    This routine computes the Frobenius norm of
 %
@@ -18,7 +18,7 @@ function error_frobenius = r8mat_is_eigen_right ( n, k, a, x, lambda )
 %      X is an N by K matrix (each of K columns is an eigenvector)
 %      LAMBDA is a K by K diagonal matrix of eigenvalues.
 %
-%    This routine assumes that A, X and LAMBDA are all real%
+%    This routine assumes that A, X and LAMBDA are all real.
 %
 %  Licensing:
 %

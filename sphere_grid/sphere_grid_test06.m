@@ -1,8 +1,8 @@
-function test06 ( )
+function sphere_grid_test06 ( )
 
 %*****************************************************************************80
 %
-%% TEST06 tests SPHERE_LL_LINES.
+%% SPHERE_GRID_TEST06 tests SPHERE_LL_LINES.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function test06 ( )
   long_num = 4;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST06\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST06\n' );
   fprintf ( 1, '  SPHERE_LL_LINES computes gridlines\n' );
   fprintf ( 1, '  on a sphere in 3D.\n' );
   fprintf ( 1, '\n' );

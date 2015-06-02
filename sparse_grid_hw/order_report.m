@@ -2,7 +2,7 @@ function order_report ( )
 
 %*****************************************************************************80
 %
-%% ORDER_REPORT reports on the order of each family of rules.
+%% ORDER_REPORT reports on the order of each 1D family of rules.
 %
 %  Licensing:
 %
@@ -23,6 +23,20 @@ function order_report ( )
   fprintf ( 1, '  RP, the required polynomial precision,\n' );
   fprintf ( 1, '  AP, the actual polynomial precision,\n' );
   fprintf ( 1, '  O,  the rule order (number of points).\n' );
+
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  GLO family\n' );
+  fprintf ( 1, '  Gauss-Legendre Odd quadrature, uniform weight, [-1,+1]\n' );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '   L  RP  AP   O\n' );
+  fprintf ( 1, '\n' );
+
+  for l = 1 : 25
+    rp = 2 * l - 1;
+    o = 2 * floor ( l / 2 ) + 1;
+    ap = 2 * o - 1;
+    fprintf ( 1, '  %2d  %2d  %2d  %2d\n', l, rp, ap, o );
+  end
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  GQN family\n' );

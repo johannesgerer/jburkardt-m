@@ -1,4 +1,4 @@
-function ntw_contour ( )
+function figure_num = ntw_contour ( figure_num )
 
 %*****************************************************************************80
 %
@@ -14,7 +14,7 @@ function ntw_contour ( )
 %
 %  Modified:
 %
-%    06 January 2010
+%    25 July 2013
 %
 %  Author:
 %
@@ -28,33 +28,64 @@ function ntw_contour ( )
 %    SIAM Journal on Numerical Analysis,
 %    Volume 46, Number 5, 2008, pages 2309-2345.
 %
+%  Parameters:
+%
+%    Input/output, integer FIGURE_NUM, the current number of figures.
+%
+  if ( nargin < 1 )
+    figure_num = 0;
+  end
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NTW_CONTOUR\n' );
   fprintf ( 1, '  Display contour or surface plots of the stochastic\n' );
   fprintf ( 1, '  diffusivity function defined by DIFFUSIVITY_2D_NTW.\n' );
-
+%
+%  Set the spatial grid.
+%
   d = 1.0;
-  x = linspace ( 0.0, d, 101 );
-  y = linspace ( 0.0, d, 101 );
+  nx = 101;
+  ny = 101;
+  xvec = linspace ( 0.0, d, nx );
+  yvec = linspace ( 0.0, d, ny );
 
-  lc = 0.1;
-
-  [ X, Y ] = meshgrid ( x, y );
+  [ xmat, ymat ] = meshgrid ( xvec, yvec );
 %
-%  Do a realization with uniform OMEGA in [-sqrt(3),sqrt(3)].
+%  Sample OMEGA.
+%  We rescale to  [-sqrt(3),sqrt(3)].
 %
-  n = 21;
-  omega = rand ( n, 1 );
+  m = 21;
+  seed = 123456789;
+  if ( seed == 0 )
+    omega = rand ( m, 1 );
+  else
+    [ omega, seed ] = r8vec_uniform_01 ( m, seed );
+  end
   omega = ( 1.0 - omega ) * ( - sqrt ( 3.0 ) ) ...
         +         omega   *     sqrt ( 3.0 );
+%
+%  Evaluate the diffusivity field.
+%
+  cl = 0.1;
+  dc0 = 0.5;
+  n = nx * ny;
 
-  A = diffusivity_2d_ntw ( n, omega, lc, X, Y );
-
-  surf ( X, Y, A, 'EdgeColor', 'interp' )
-  xlabel ( 'X' )
-  ylabel ( 'Y' )
-  zlabel ( 'A(X,Y)' )
+  dc = diffusivity_2d_ntw ( cl, dc0, m, omega, n, xmat, ymat );
+%
+%  Make a surface plot of the diffusivity coefficient.
+%
+  figure_num = figure_num + 1;
+  figure ( figure_num );
+  surf ( ymat, xmat, dc, 'EdgeColor', 'interp' )
+  xlabel ( 'Y' )
+  ylabel ( 'X' )
+  zlabel ( 'DC(X,Y)' )
   title ( 'NTW Stochastic diffusivity function' )
+
+  filename = 'ntw_contour.png';
+  print ( '-dpng', filename )
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Plot file stored as "%s".\n', filename );
 
   return
 end

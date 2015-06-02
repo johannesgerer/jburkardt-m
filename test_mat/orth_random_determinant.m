@@ -1,4 +1,4 @@
-function determinant = orth_random_determinant ( n, seed )
+function determinant = orth_random_determinant ( n, key )
 
 %*****************************************************************************80
 %
@@ -20,8 +20,7 @@ function determinant = orth_random_determinant ( n, seed )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Input, integer SEED, a seed for the random number
-%    generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real DETERMINANT, the determinant.
 %

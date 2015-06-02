@@ -59,6 +59,8 @@ function r = normal_dataset ( m, n, seed, mu, a )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -69,6 +71,8 @@ function r = normal_dataset ( m, n, seed, mu, a )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '\n' );
@@ -79,6 +83,8 @@ function r = normal_dataset ( m, n, seed, mu, a )
   if ( nargin < 3 )
     fprintf ( 1, '\n' );
     seed = input ( '  Enter the seed: ' );
+  else
+    seed = str2num ( seed );
   end
 
   fprintf ( 1, '\n' );
@@ -89,6 +95,8 @@ function r = normal_dataset ( m, n, seed, mu, a )
   if ( nargin < 4 )
     fprintf ( 1, '\n' );
     mu(1:m) = input ( '  Enter the mean vector MU' );
+  else
+    mu(1:m) = str2num ( mu(1:m) );
   end
 
   r8vec_print ( m, mu, '  The mean vector MU:' )
@@ -98,6 +106,8 @@ function r = normal_dataset ( m, n, seed, mu, a )
   if ( nargin < 5 )
     fprintf ( 1, '\n' );
     a(1:m,1:m) = input ( '  Enter the variance-covariance matrix A' );
+  else
+    a(1:m,1:m) = str2num ( a(1:m,1:m) );
   end
 
   r8mat_print ( m, m, a, '  The variance-covariance matrix A:' )

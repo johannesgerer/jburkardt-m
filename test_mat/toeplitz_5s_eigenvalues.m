@@ -32,8 +32,10 @@ function lambda = toeplitz_5s_eigenvalues ( row_num, col_num, alpha, beta, ...
 %
 %    Input, real ALPHA, BETA, GAMMA the scalars that define A.
 %
-%    Output, real LAMBDA(ROW_NUM*COL_NUM), the eigenvalues.
+%    Output, real LAMBDA(ROW_NUM*COL_NUM,1), the eigenvalues.
 %
+  lambda = zeros ( row_num * col_num, 1 );
+
   k = 0;
 
   for i = 1 : col_num
@@ -46,8 +48,8 @@ function lambda = toeplitz_5s_eigenvalues ( row_num, col_num, alpha, beta, ...
 
       k = k + 1 ;
 
-      lambda(k) = alpha + 2.0 * beta  * cos ( angle_i ) ...
-                        + 2.0 * gamma * cos ( angle_j );
+      lambda(k,1) = alpha + 2.0 * beta  * cos ( angle_i ) ...
+                          + 2.0 * gamma * cos ( angle_j );
 
     end
   end

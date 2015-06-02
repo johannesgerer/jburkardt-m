@@ -10,7 +10,7 @@ function [ x, w1, w2 ] = abwe2 ( n, m, tol, coef2, even, b, x )
 %
 %  Modified:
 %
-%    24 April 2012
+%    30 April 2013
 %
 %  Author:
 %
@@ -66,8 +66,13 @@ function [ x, w1, w2 ] = abwe2 ( n, m, tol, coef2, even, b, x )
 %  When N is 1, we need to initialize P2 and PD2 to avoid problems with DELTA.
 %
     if ( n <= 1 )
-      p2 = ( 3.0 * x * x - 1.0 ) / 2.0;
-      pd2 = 3.0 * x;
+      if ( eps < abs ( x ) )
+        p2 = ( 3.0 * x * x - 1.0 ) / 2.0;
+        pd2 = 3.0 * x;
+      else
+        p2 = 3.0 * x;
+        pd2 = 3.0;
+      end
     end
 
     ai = 0.0;

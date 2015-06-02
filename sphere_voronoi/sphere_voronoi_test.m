@@ -2,7 +2,7 @@ function sphere_voronoi_test ( )
 
 %*****************************************************************************80
 %
-%% SPHERE_VORONOI_TEST tests SPHERE_VORONOI.
+%% SPHERE_VORONOI_TEST tests the SPHERE_VORONOI library.
 %
 %  Licensing:
 %
@@ -31,7 +31,6 @@ function sphere_voronoi_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_VORONOI_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -76,7 +76,7 @@ function b = bernoulli_number ( n )
 %
 %  Modified:
 %
-%    22 July 2004
+%    25 December 2014
 %
 %  Author:
 %
@@ -101,12 +101,15 @@ function b = bernoulli_number ( n )
 
   b(2) = -0.5;
 
-  ido = 0;
+  c = zeros ( n + 2, 1 );
  
+  c(1) = 1;
+  c(2) = 2;
+  c(3) = 1;
+
   for i = 2 : n
 
-    row = comb_row ( ido, i+1 );
-    ido = 1;
+    c = comb_row_next ( i + 1, c );
  
     if ( mod ( i, 2 ) == 1 )
  
@@ -115,11 +118,11 @@ function b = bernoulli_number ( n )
     else
  
       b_sum = 0.0;
-      for j = 0 : i-1
-        b_sum = b_sum + b(j+1) * row(j+1);
+      for j = 0 : i - 1
+        b_sum = b_sum + b(j+1) * c(j+1);
       end
  
-      b(i+1) = -b_sum / row(i+1);
+      b(i+1) = -b_sum / c(i+1);
  
     end
 

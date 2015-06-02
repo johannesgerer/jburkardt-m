@@ -2,7 +2,7 @@ function a = hartley_inverse ( n )
 
 %*****************************************************************************80
 %
-%% HARTLEY_INVERSE returns the inverse of the Hartley matrix.
+%% HARTLEY_INVERSE returns the inverse of the HARTLEY matrix.
 %
 %  Formula:
 %
@@ -41,6 +41,8 @@ function a = hartley_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

@@ -2,7 +2,7 @@ function a = pei ( alpha, n )
 
 %*****************************************************************************80
 %
-%% PEI returns the Pei matrix.
+%% PEI returns the PEI matrix.
 %
 %  Formula:
 %
@@ -70,6 +70,8 @@ function a = pei ( alpha, n )
 %
 %    det ( A ) = ALPHA**(N-1) * ( N + ALPHA ).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -111,6 +113,8 @@ function a = pei ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

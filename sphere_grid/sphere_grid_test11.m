@@ -1,8 +1,8 @@
-function test11 ( )
+function sphere_grid_test11 ( )
 
 %*****************************************************************************80
 %
-%% TEST11 tests SPHERE_LL_LINES and SPHERE_LL_POINTS.
+%% SPHERE_GRID_TEST11 tests SPHERE_LL_LINES and SPHERE_LL_POINTS.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function test11 ( )
   r = 10.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST11\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST11\n' );
   fprintf ( 1, '  SPHERE_LL_POINTS computes points on a\n' );
   fprintf ( 1, '  latitude/longitude grid\n' );
   fprintf ( 1, '  SPHERE_LL_LINES computes lines on a\n' );
@@ -75,6 +75,7 @@ function test11 ( )
 %
 %  Draw just the points.
 %
+  figure ( )
   clf
   hold on
   point_size = 50;

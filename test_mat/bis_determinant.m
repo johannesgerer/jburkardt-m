@@ -2,7 +2,7 @@ function det = bis_determinant ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% BIS_DETERMINANT returns the determinant of the bidiagonal scalar matrix.
+%% BIS_DETERMINANT returns the determinant of the BIS matrix.
 %
 %  Licensing:
 %

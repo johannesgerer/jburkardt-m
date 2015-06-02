@@ -2,7 +2,7 @@ function jacobi_test ( )
 
 %*****************************************************************************80
 %
-%% JACOBI_TEST tests JACOBI.
+%% JACOBI_TEST tests the JACOBI library.
 %
 %  Licensing:
 %
@@ -29,8 +29,8 @@ function jacobi_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'JACOBI_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
+
   return
 end

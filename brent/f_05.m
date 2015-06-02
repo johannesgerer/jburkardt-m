@@ -22,7 +22,7 @@ function value = f_05 ( x )
 %
 %    Output, real VALUE, the value of the function at X.
 %
-  value = ( x + 3.0 ) * ( x - 1.0 ) * ( x - 1.0 );
+  value = ( x + 3.0 ) .* ( x - 1.0 ) .* ( x - 1.0 );
 
   return
 end

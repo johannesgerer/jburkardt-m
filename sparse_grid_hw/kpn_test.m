@@ -16,15 +16,16 @@ function kpn_test ( )
 %
 %    John Burkardt
 %
+  d = 1;
+  exact = hermite_integral ( d );
+
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KPN_TEST:\n' );
   fprintf ( 1, '  Kronrod-Patterson-Hermite quadrature over (-oo,+oo):\n' );
+  fprintf ( 1, '  Exact integral is %g\n', exact );
   fprintf ( 1, '\n' );
   fprintf ( 1, '   Level   Nodes    Estimate  Error\n' );
   fprintf ( 1, '\n' );
-
-  d = 1;
-  exact = fn_integral ( d );
 
   for l = 1 : 5
 
@@ -42,7 +43,7 @@ function kpn_test ( )
       w = [ wh(nh:-1:1); wh ];
     end
 
-    fx = fn_value ( d, n, x );
+    fx = hermite_integrand ( d, n, x );
     q = w' * fx;
     e = sqrt ( ( q - exact ).^2 ) / exact;
 

@@ -2,7 +2,7 @@ function lambda = clement1_eigenvalues ( n )
 
 %*****************************************************************************80
 %
-%% CLEMENT1_EIGENVALUES returns the eigenvalues of the Clement1 matrix.
+%% CLEMENT1_EIGENVALUES returns the eigenvalues of the CLEMENT1 matrix.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function lambda = clement1_eigenvalues ( n )
 %
 %  Modified:
 %
-%    31 May 2008
+%    06 June 2008
 %
 %  Author:
 %
@@ -20,10 +20,12 @@ function lambda = clement1_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
-    lambda(i) = - n - 1 + 2 * i;
+    lambda(i,1) = - n - 1 + 2 * i;
   end
 
   return

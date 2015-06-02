@@ -1,8 +1,8 @@
-function a = carry ( alpha, n )
+function a = carry ( n, alpha )
 
 %*****************************************************************************80
 %
-%% CARRY returns the Carry matrix.
+%% CARRY returns the CARRY matrix.
 %
 %  Discussion:
 %
@@ -19,8 +19,8 @@ function a = carry ( alpha, n )
 %
 %  Formula:
 %
-%    A(I,J) = ( 1 / ALPHA )**N * sum ( 0 <= K <= J-1 - floor ( I-1 / ALPHA ) )
-%      (-1)**K * C(N+1,K) * C(N-I+(J-K)*ALPHA, N )
+%    A(I,J) = ( 1 / ALPHA )^N * sum ( 0 <= K <= J-1 - floor ( I-1 / ALPHA ) )
+%      (-1)^K * C(N+1,K) * C(N-I+(J-K)*ALPHA, N )
 %
 %  Example:
 %
@@ -39,9 +39,9 @@ function a = carry ( alpha, n )
 %
 %    A is centrosymmetric: A(I,J) = A(N+1-I,N+1-J).
 %
-%    LAMBDA(I) = 1 / ALPHA**(I-1)
+%    LAMBDA(I) = 1 / ALPHA^(I-1)
 %
-%    det ( A ) = 1 / ALPHA**((N*(N-1))/2)
+%    det ( A ) = 1 / ALPHA^((N*(N-1))/2)
 %
 %    The eigenvectors do not depend on ALPHA.
 %
@@ -68,9 +68,9 @@ function a = carry ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, integer ALPHA, the numeric base being used in the addition.
-%
 %    Input, integer N, the order of the matrix.
+%
+%    Input, integer ALPHA, the numeric base being used in the addition.
 %
 %    Output, real A(N,N), the matrix.
 %
@@ -84,8 +84,8 @@ function a = carry ( alpha, n )
 
       for k = 0 : j - 1 - floor ( ( i - 1 ) / alpha )
         s = - s;
-        c1 = comb ( n + 1, k );
-        c2 = comb ( n - i + ( j - k ) * alpha, n );
+        c1 = r8_choose ( n + 1, k );
+        c2 = r8_choose ( n - i + ( j - k ) * alpha, n );
         temp = temp + s * c1 * c2;
       end
 

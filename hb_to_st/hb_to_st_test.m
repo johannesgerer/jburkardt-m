@@ -2,11 +2,7 @@ function hb_to_st_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for HB_TO_ST_TEST.
-%
-%  Discussion:
-%
-%    HB_TO_ST_TEST is the main program for the HB_TO_ST tests.
+%% HB_TO_ST_TEST tests the HB_TO_ST library.
 %
 %  Licensing:
 %
@@ -20,16 +16,21 @@ function hb_to_st_test ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HB_TO_ST_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the HB_TO_ST library.\n' );
 
   hb_to_st_test01 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HB_TO_ST_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end
@@ -61,6 +62,31 @@ function hb_to_st_test01 ( )
   fprintf ( 1, '  and have HB_TO_ST convert it to an ST file.\n' );
 
   hb_to_st ( input_file, output_file );
+
+  return
+end
+function timestamp ( )
+
+%*****************************************************************************80
+%
+%% TIMESTAMP prints the current YMDHMS date as a timestamp.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    14 February 2003
+%
+%  Author:
+%
+%    John Burkardt
+%
+  t = now;
+  c = datevec ( t );
+  s = datestr ( c, 0 );
+  fprintf ( 1, '%s\n', s );
 
   return
 end

@@ -2,7 +2,7 @@ function a = forsythe_inverse ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% FORSYTHE_INVERSE returns the inverse of the Forsythe matrix.
+%% FORSYTHE_INVERSE returns the inverse of the FORSYTHE matrix.
 %
 %  Licensing:
 %
@@ -33,6 +33,8 @@ function a = forsythe_inverse ( alpha, beta, n )
 %
 %    Output, real A(N,N), the matrix.
 % 
+  a = zeros ( n, n );
+
   if ( beta == 0.0 & alpha == 0.0 )
 
     fprintf ( 1, '\n' );
@@ -41,7 +43,7 @@ function a = forsythe_inverse ( alpha, beta, n )
     fprintf ( 1, '  both ALPHA and BETA are 0.\n' );
     error ( 'FORSYTHE_INVERSE - Fatal error!' );
 
-  else if ( beta == 0.0 )
+  elseif ( beta == 0.0 )
 
     for j = 1 : n
       for i = 1 : n

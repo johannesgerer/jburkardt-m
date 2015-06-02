@@ -1,8 +1,8 @@
-function test10 ( )
+function sphere_grid_test10 ( )
 
 %*****************************************************************************80
 %
-%% TEST10 tests SPHERE_CUBED_POINTS.
+%% SPHERE_GRID_TEST10 tests SPHERE_CUBED_POINTS.
 %
 %  Licensing:
 %
@@ -17,7 +17,7 @@ function test10 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST10\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST10\n' );
   fprintf ( 1, '  SPHERE_CUBED_POINTS computes points on a cubed sphere grid.\n' );
 
   n = 10;
@@ -34,6 +34,7 @@ function test10 ( )
 %
 %  Display the nodes on a sphere.
 %
+  figure ( )
   clf
   hold on
   [ x, y, z ] = sphere ( 20 );

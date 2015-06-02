@@ -11,6 +11,10 @@ function a = daub2 ( n )
 %
 %    The DAUB2 matrix is also known as the Haar matrix.
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.

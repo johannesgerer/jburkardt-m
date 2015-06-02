@@ -1,0 +1,76 @@
+qls_test
+12-Mar-2014 16:00:12
+
+QLS_TEST
+  MATLAB version
+  Test the QUADRATURE_LEAST_SQUARES library.
+
+QLS_TEST01
+  WEIGHTS_LS computes the weights for a 
+  least squares quadrature rule.
+
+  W1 = classical Newton Cotes weights, N = 5
+  W2 = least squares weights, D = 4, N = 5
+
+   I        X(i)          W1(i)           W2(i)
+
+   1     -1.0000        0.155556        0.155556
+   2     -0.5000        0.711111        0.711111
+   3      0.0000        0.266667        0.266667
+   4      0.5000        0.711111        0.711111
+   5      1.0000        0.155556        0.155556
+
+  W1 = classical Newton Cotes weights, N = 9
+  W2 = least squares weights, D = 4, N = 9
+
+   I        X(i)          W1(i)           W2(i)
+
+   1     -1.0000       0.0697707       0.0960373
+   2     -0.7500        0.415379        0.270085
+   3     -0.5000      -0.0654674        0.280963
+   4     -0.2500        0.740459        0.242113
+   5      0.0000       -0.320282        0.221601
+   6      0.2500        0.740459        0.242113
+   7      0.5000      -0.0654674        0.280963
+   8      0.7500        0.415379        0.270085
+   9      1.0000       0.0697707       0.0960373
+
+QLS_TEST02
+  WEIGHTS_LS computes the weights for a 
+  least squares quadrature rule.
+
+  Pick 50 random values in [-1,+1].
+  Compare Monte Carlo (equal weight) integral estimate
+  to least squares estimates of degree D = 0, 1, 2, 3, 4.
+  For low values of D, the least squares estimate improves.
+
+  As D increases, the estimate can deteriorate.
+
+  Rule         Estimate          Error
+
+  MC             2.2145        0.532304
+
+  LS 0           2.2145        0.532304
+  LS 1           2.2373        0.509502
+  LS 2          2.40531        0.341496
+  LS 3          2.36331        0.383487
+  LS 4          2.60629        0.140513
+  LS 5          2.72216       0.0246414
+  LS 6          2.53962        0.207184
+  LS 7          2.47627        0.270531
+  LS 8          2.62275        0.124049
+  LS 9          2.70048       0.0463255
+  LS10          2.54176        0.205045
+  LS11          2.35485        0.391947
+  LS12          2.73685      0.00995171
+  LS13          3.21145        0.464652
+  LS14          2.65108       0.0957222
+  LS15          1.63399         1.11281
+
+  EXACT         2.7468               0
+
+QLS_TEST
+  Normal end of execution.
+
+12-Mar-2014 16:00:12
+diary off

@@ -91,15 +91,15 @@ function r85_print_some ( n, a, ilo, jlo, ihi, jhi, title )
         if ( 2 < i-j | 2 < j-i )
           fprintf ( 1, '              ' );
         elseif ( j == i+2 )
-          fprintf ( 1, '%12f  ', a(1,j) );
+          fprintf ( 1, '%12g  ', a(1,j) );
         elseif ( j == i+1 )
-          fprintf ( 1, '%12f  ', a(2,j) );
+          fprintf ( 1, '%12g  ', a(2,j) );
         elseif ( j == i )
-          fprintf ( 1, '%12f  ', a(3,j) );
+          fprintf ( 1, '%12g  ', a(3,j) );
         elseif ( j == i-1 )
-          fprintf ( 1, '%12f  ', a(4,j) );
+          fprintf ( 1, '%12g  ', a(4,j) );
         elseif ( j == i-2 )
-          fprintf ( 1, '%12f  ', a(5,j) );
+          fprintf ( 1, '%12g  ', a(5,j) );
         end
 
       end
@@ -109,8 +109,6 @@ function r85_print_some ( n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

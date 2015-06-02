@@ -2,11 +2,11 @@ function a = kms ( alpha, m, n )
 
 %*****************************************************************************80
 %
-%% KMS returns the Kac-Murdock-Szego matrix.
+%% KMS returns the KMS matrix.
 %
 %  Formula:
 %
-%    A(I,J) = ALPHA**abs ( I - J )
+%    A(I,J) = ALPHA^abs ( I - J )
 %
 %  Example:
 %
@@ -43,13 +43,15 @@ function a = kms ( alpha, m, n )
 %    A has an L*D*L' factorization, with L being the inverse
 %    of the transpose of the matrix with 1's on the diagonal and
 %    -ALPHA on the superdiagonal and zero elsewhere, and
-%    D(I,I) = (1-ALPHA**2) except that D(1,1)=1.
+%    D(I,I) = (1-ALPHA^2) except that D(1,1)=1.
 %
-%    det ( A ) = ( 1 - ALPHA**2 )**(N-1).
+%    det ( A ) = ( 1 - ALPHA^2 )^(N-1).
 %
 %    The inverse of A is tridiagonal.
 %
 %    A is positive definite if and only if 0 < abs ( ALPHA ) < 1.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -80,6 +82,8 @@ function a = kms ( alpha, m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

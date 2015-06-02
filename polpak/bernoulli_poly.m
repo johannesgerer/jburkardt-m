@@ -15,25 +15,25 @@ function bx = bernoulli_poly ( n, x )
 %
 %      B'(N,X) = N * B(N-1,X)
 %
-%      B(N,X+1) - B(N,X) = N * X**(N-1)
-%      B(N,X) = (-1)**N * B(N,1-X)
+%      B(N,X+1) - B(N,X) = N * X^(N-1)
+%      B(N,X) = (-1)^N * B(N,1-X)
 %
 %    A formula for the Bernoulli polynomial in terms of the Bernoulli
 %    numbers is:
 %
-%      B(N,X) = sum ( 0 <= K <= N ) B(K) * C(N,K) * X**(N-K)
+%      B(N,X) = sum ( 0 <= K <= N ) B(K) * C(N,K) * X^(N-K)
 %
 %    The first few polynomials include:
 %
 %      B(0,X) = 1
 %      B(1,X) = X    - 1/2
-%      B(2,X) = X**2 -   X      +  1/6
-%      B(3,X) = X**3 - 3/2*X**2 +  1/2*X
-%      B(4,X) = X**4 - 2*X**3   +      X**2 - 1/30
-%      B(5,X) = X**5 - 5/2*X**4 +  5/3*X**3 - 1/6*X
-%      B(6,X) = X**6 - 3*X**5   +  5/2*X**4 - 1/2*X**2 + 1/42
-%      B(7,X) = X**7 - 7/2*X**6 +  7/2*X**5 - 7/6*X**3 + 1/6*X
-%      B(8,X) = X**8 - 4*X**7   + 14/3*X**6 - 7/3*X**4 + 2/3*X**2 - 1/30
+%      B(2,X) = X^2 -   X      +  1/6
+%      B(3,X) = X^3 - 3/2*X^2 +  1/2*X
+%      B(4,X) = X^4 - 2*X^3   +      X^2 - 1/30
+%      B(5,X) = X^5 - 5/2*X^4 +  5/3*X^3 - 1/6*X
+%      B(6,X) = X^6 - 3*X^5   +  5/2*X^4 - 1/2*X^2 + 1/42
+%      B(7,X) = X^7 - 7/2*X^6 +  7/2*X^5 - 7/6*X^3 + 1/6*X
+%      B(8,X) = X^8 - 4*X^7   + 14/3*X^6 - 7/3*X^4 + 2/3*X^2 - 1/30
 %
 %  Licensing:
 %
@@ -58,13 +58,17 @@ function bx = bernoulli_poly ( n, x )
 %    Output, real BX, the value of B(N,X).
 %
   b = bernoulli_number ( n );
- 
-  ido = 0;
-  row = comb_row ( ido, n );
- 
+%
+%  Get row N of Pascal's triangle.
+%
+  c = zeros ( n + 1, 1 );
+  for i = 0 : n
+    c = comb_row_next ( i, c );
+  end
+
   bx = 1.0;
   for i = 1 : n
-    bx = bx * x + b(i+1) * row(i+1);
+    bx = bx * x + b(i+1) * c(i+1);
   end
  
   return

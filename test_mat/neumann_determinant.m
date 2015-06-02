@@ -1,8 +1,8 @@
-function determ = neumann_determinant ( n )
+function determ = neumann_determinant ( row_num, col_num )
 
 %*****************************************************************************80
 %
-%% NEUMANN_DETERMINANT returns the determinant of the Neumann matrix.
+%% NEUMANN_DETERMINANT returns the determinant of the NEUMANN matrix.
 %
 %  Licensing:
 %
@@ -18,7 +18,7 @@ function determ = neumann_determinant ( n )
 %
 %  Parameters:
 %
-%    Input, integer N, the order of A.
+%    Input, integer ROW_NUM, COL_NUM, the number of rows and columns in the grid.
 %
 %    Output, real DETERM, the determinant.
 %

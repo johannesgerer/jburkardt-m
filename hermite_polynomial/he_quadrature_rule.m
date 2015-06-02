@@ -2,7 +2,11 @@ function [ t, wts ] = he_quadrature_rule ( nt )
 
 %*****************************************************************************80
 %
-%% HE_QUADRATURE_RULE: probabilist's Hermite polynomial quadrature rule.
+%% HE_QUADRATURE_RULE: quadrature for He(i,x).
+%
+%  Discussion:
+%
+%    He(i,x) represents the probabilist's Hermite polynomial.
 %
 %  Licensing:
 %

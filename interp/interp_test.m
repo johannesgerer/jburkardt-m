@@ -17,7 +17,6 @@ function interp_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INTERP_TEST\n' );
   fprintf ( 1, '  MATLAB version:\n' );
@@ -44,7 +43,6 @@ function interp_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INTERP_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

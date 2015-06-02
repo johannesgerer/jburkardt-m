@@ -68,7 +68,7 @@ function s2 = stirling2 ( n, m )
 %
 %    sum ( 1 <= K <= M ) S2(I,K) * S1(K,J) = Delta(I,J)
 %
-%    X**N = sum ( 0 <= K <= N ) S2(N,K) X_K
+%    X^N = sum ( 0 <= K <= N ) S2(N,K) X_K
 %    where X_K is the falling factorial function.
 %
 %  Licensing:

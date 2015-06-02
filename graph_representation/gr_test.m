@@ -17,7 +17,6 @@ function gr_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GR_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -40,11 +39,12 @@ function gr_test ( )
   gr_test05 ( node_num, node_coordinates, edge_num, edge_nodes );
   gr_test06 ( node_num, node_coordinates, edge_num, edge_nodes );
   gr_test07 ( node_num, node_coordinates, edge_num, edge_nodes );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GR_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

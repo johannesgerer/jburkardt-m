@@ -1,29 +1,44 @@
-function output = dfield8(action,input1,input2,input3)
+function output = dfield8 ( action, input1, input2, input3 )
 
-% dfield8	is an interactive tool for studying single first order
-%	differential equations.  When dfield8 is executed, a dfield8 Setup
-%	window is opened.  The user may enter the differential
-%	equation and specify a display window using the interactive
-%	controls in the Setup window.
+%*****************************************************************************80
 %
-%	When the Proceed button is pressed on the Setup window, the DF
-%	Display window is opened.  At first this window displays a
-%	direction line field for the differential equation.  When the
-%	mouse button is depressed in the dfield8 Display window, the
-%	solution to the differential equation with that initial
-%	condition is calculated and plotted.
+%% DFIELD8 is an interactive ODE analysis tool.
 %
-%	Other options are available in the Options menu.  These are
-%	fairly self explanatory.  The Settings option allows the user
-%	to change several parameters.  Included here are the
-%	possibilities of using a vector field instead of the default
-%	line field, and of changing the number of field points computed
-%	and displayed.
-
-%  Copywright (c) 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003 
-%                 John C. Polking Rice University
-%  Last modified: April 2, 2003
-
+%  Discussion:
+%
+%    DFIELD8 is an interactive tool for studying single first order
+%    differential equations.  When dfield8 is executed, a dfield8 Setup
+%    window is opened.  The user may enter the differential
+%    equation and specify a display window using the interactive
+%    controls in the Setup window.
+%
+%    When the Proceed button is pressed on the Setup window, the DF
+%    Display window is opened.  At first this window displays a
+%    direction line field for the differential equation.  When the
+%    mouse button is depressed in the dfield8 Display window, the
+%    solution to the differential equation with that initial
+%    condition is calculated and plotted.
+%
+%    Other options are available in the Options menu.  These are
+%    fairly self explanatory.  The Settings option allows the user
+%    to change several parameters.  Included here are the
+%    possibilities of using a vector field instead of the default
+%    line field, and of changing the number of field points computed
+%    and displayed.
+%
+%  Licensing:
+%
+%    Copywright (c) 1995, 1997, 1998, 1999, 2000, 2001, 2002, 2003 
+%    John C. Polking Rice University
+%
+%  Modified: 
+%
+%    22 September 2013
+%
+%  Author:
+%
+%    John Polking
+%
 
   startstr = 'dfield8';
 
@@ -1627,8 +1642,12 @@ function output = dfield8(action,input1,input2,input3)
 	hand = [arr.lines;arr.arrows];  
 	delete(hand);
       end
-      arrh1 = plot(real(aa1),imag(aa1),'color',color.arrows,'visible','off');
-      arrh2 = plot(real(aa2),imag(aa2),'color',color.arrows,'visible','off');
+
+      arrh1 = plot ( real(aa1), imag(aa1),'color',color.arrows, ...
+        'visible','off', 'Linewidth', 3 );
+
+      arrh2 = plot ( real(aa2), imag(aa2),'color',color.arrows, ...
+        'visible','off', 'Linewidth', 3 );
       
       % We plot both the line field and the vector field.  Then we
       % control which is seen by manipulating the visibility.
@@ -1639,6 +1658,7 @@ function output = dfield8(action,input1,input2,input3)
        case 'arrows'
 	set(arrh2,'visible','on');
       end
+
       dud.arr.lines = arrh1;	   % Save the handles for later use.
       dud.arr.arrows = arrh2;	   % Save the handles for later use.
       
@@ -1653,11 +1673,14 @@ function output = dfield8(action,input1,input2,input3)
       if ~isempty(dud.plhand)
 	set(dud.plhand,'xdata',aa);
       end
+
       if (isfield(dud,'plineh') & (~isempty(dud.plineh)))
 	set(dud.plineh,'xdata',[aa,aa],'ydata',Dxint);
       else
-	dud.plineh = plot([aa,aa],Dxint,'color',dud.color.pline);
+	dud.plineh = plot([aa,aa],Dxint,'color',dud.color.pline, ...
+          'LineWidth', 3 );
       end
+
       set([dud.plhand;dud.plineh],'vis',dud.pline);  
       set(disph,'user',dud);
       
@@ -3961,12 +3984,14 @@ DD = ud.cwind(4);
 
 stop = 0;
 ud.stop = 0;
-
-% Set the the line handle.
-
+%
+%  Set the the line handle.
+%
 ph = plot([tspan(1),tspan(1)],[y0,y0],'color',col,...
     'erase','none',...
-    'parent',dispha);
+    'parent',dispha, ...
+    'LineWidth', 3 );
+
 ud.line = ph;
 
 % Set up the phase line
@@ -3975,8 +4000,11 @@ vi = dud.pline;
 figure(disph);
 v = axis;
 aa = v(1)+0.01*(v(2)-v(1));
+
 plh = plot(aa,y0,'.','markersize',20,'color',col,...
-    'erase','xor','parent',dispha,'visible',vi);    
+  'erase','xor','parent',dispha,'visible',vi, ...
+  'LineWidth', 3 );    
+
 ud.pline = plh;
 set(dispha,'UserData',ud);
 
@@ -4196,8 +4224,10 @@ ud.stop = 0;
 % Set the the line handle.
 
 ph = plot([tspan(1),tspan(1)],[y0,y0],'color',col,...
-    'erase','none',...
-    'parent',dispha);
+  'erase','none',...
+  'parent',dispha, ...
+  'LineWidth', 3 );
+
 ud.line = ph;
 
 % Set up the phase line
@@ -4206,8 +4236,11 @@ vi = dud.pline;
 figure(disph);
 v = axis;
 aa = v(1)+0.01*(v(2)-v(1));
+
 plh = plot(aa,y0,'.','markersize',20,'color',col,...
-    'erase','xor','parent',dispha,'visible',vi);    
+  'erase','xor','parent',dispha,'visible',vi, ...
+  'LineWidth', 3 );    
+
 ud.pline = plh;
 set(dispha,'UserData',ud);
 
@@ -4330,8 +4363,10 @@ ud.stop = 0;
 % Set the the line handle.
 
 ph = plot([tspan(1),tspan(1)],[y0,y0],'color',col,...
-    'erase','none',...
-    'parent',dispha);
+  'erase','none',...
+  'parent',dispha, ...
+  'LineWidth', 3 );
+
 ud.line = ph;
 
 % Set up the phase line
@@ -4340,8 +4375,11 @@ vi = dud.pline;
 figure(disph);
 v = axis;
 aa = v(1)+0.01*(v(2)-v(1));
+
 plh = plot(aa,y0,'.','markersize',20,'color',col,...
-    'erase','xor','parent',dispha,'visible',vi);    
+  'erase','xor','parent',dispha,'visible',vi, ...
+  'LineWidth', 3 );    
+
 ud.pline = plh;
 set(dispha,'UserData',ud);
 
@@ -4467,8 +4505,10 @@ ud.stop = 0;
 % Set the the line handle.
 
 ph = plot([tspan(1),tspan(1)],[y0,y0],'color',col,...
-    'erase','none',...
-    'parent',dispha);
+  'erase','none',...
+  'parent',dispha, ...
+  'LineWidth', 3 );
+
 ud.line = ph;
 
 % Set up the phase line
@@ -4477,8 +4517,11 @@ vi = dud.pline;
 figure(disph);
 v = axis;
 aa = v(1)+0.01*(v(2)-v(1));
+
 plh = plot(aa,y0,'.','markersize',20,'color',col,...
-    'erase','xor','parent',dispha,'visible',vi);    
+  'erase','xor','parent',dispha,'visible',vi, ...
+  'LineWidth', 3 );
+    
 ud.pline = plh;
 set(dispha,'UserData',ud);
 

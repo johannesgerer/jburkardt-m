@@ -10,7 +10,7 @@ function ihs_test03 ( )
 %
 %  Modified:
 %
-%    28 March 2004
+%    27 February 2014
 %
 %  Author:
 %
@@ -35,18 +35,15 @@ function ihs_test03 ( )
 
     point_num = 10 * 2^(i-1);
 
-    opt = point_num / point_num^( 1.0E+00 / dim_num );
-
-    seed = 17;
+    opt = point_num / point_num^( 1.0 / dim_num );
 
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Random number seed =       %d\n', seed );
     fprintf ( 1, '  Number of points =         %d\n', point_num );
     fprintf ( 1, '  Desired minimum distance = %f\n', opt );
 %
 %  Get the points.
 %
-    [ x, seed ] = ihs ( dim_num, point_num, duplication, seed );
+    x = ihs ( dim_num, point_num, duplication );
 %
 %  Compute the covariance.
 %

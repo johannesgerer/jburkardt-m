@@ -2,7 +2,7 @@ function a = zielke ( n, x, y, z )
 
 %*****************************************************************************80
 %
-%% ZIELKE returns the modified Zielke matrix.
+%% ZIELKE returns the ZIELKE matrix.
 %
 %  Formula:
 %
@@ -67,6 +67,8 @@ function a = zielke ( n, x, y, z )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

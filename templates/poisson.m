@@ -1,5 +1,7 @@
 function a = poisson ( n );
 
+%*****************************************************************************80
+%
 %% POISSON makes a Poisson matrix.
 %
 %  Discussion:

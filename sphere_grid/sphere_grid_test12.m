@@ -1,8 +1,8 @@
-function test12 ( )
+function sphere_grid_test12 ( )
 
 %*****************************************************************************80
 %
-%% TEST12 tests SPHERE_LLQ_LINES and SPHERE_LLQ_POINTS.
+%% SPHERE_GRID_TEST12 tests SPHERE_LLQ_LINES and SPHERE_LLQ_POINTS.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function test12 ( )
   r = 10.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST12\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST12\n' );
   fprintf ( 1, '  SPHERE_LL_POINTS computes points on a\n' );
   fprintf ( 1, '  latitude/longitude grid\n' );
   fprintf ( 1, '  SPHERE_LLQ_LINES computes lines on a\n' );
@@ -77,6 +77,7 @@ function test12 ( )
 %  As usual, trying to get Matlab's graphics routines to cooperate is
 %  a nightmare.
 %
+  figure ( )
   clf
   hold on
   point_size = 50;

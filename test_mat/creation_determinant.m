@@ -2,7 +2,7 @@ function determ = creation_determinant ( n )
 
 %*****************************************************************************80
 %
-%% CREATION_DETERMINANT returns the determinant of the creation matrix.
+%% CREATION_DETERMINANT returns the determinant of the CREATION matrix.
 %
 %  Licensing:
 %

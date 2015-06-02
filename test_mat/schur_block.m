@@ -2,7 +2,7 @@ function a = schur_block ( n, x, y )
 
 %*****************************************************************************80
 %
-%% SCHUR_BLOCK returns the Schur block matrix.
+%% SCHUR_BLOCK returns the SCHUR_BLOCK matrix.
 %
 %  Formula:
 %
@@ -75,6 +75,8 @@ function a = schur_block ( n, x, y )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

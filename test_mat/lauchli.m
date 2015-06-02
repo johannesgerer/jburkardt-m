@@ -43,6 +43,8 @@ function a = lauchli ( alpha, m, n )
 %    else if ( ALPHA == 0 )
 %      rank ( A ) = 1
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -72,6 +74,8 @@ function a = lauchli ( alpha, m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

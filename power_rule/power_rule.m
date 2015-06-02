@@ -10,7 +10,7 @@ function power_rule ( quad_1d_filename, dim_num )
 %
 %  Modified:
 %
-%    28 May 2007
+%    06 February 2014
 %
 %  Author:
 %
@@ -20,7 +20,6 @@ function power_rule ( quad_1d_filename, dim_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POWER_RULE\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Create a multidimensional power rule\n' );
   fprintf ( 1, '  as a product of identical 1D integration rules.\n' );
 %
@@ -48,11 +47,11 @@ function power_rule ( quad_1d_filename, dim_num )
 %  The second command line argument is the spatial dimension.
 %
   if ( nargin < 2 )
-
     fprintf ( 1, '\n' );
     fprintf ( 1, 'POWER_RULE:\n' );
     dim_num = input ( '  Enter the spatial dimension of the rule.\n' );
-
+  elseif ( ischar ( dim_num ) )
+    dim_num = str2num ( dim_num );
   end
 %
 %  Summarize the input.
@@ -129,7 +128,6 @@ function power_rule ( quad_1d_filename, dim_num )
 %
   point_num = power_rule_size ( point_num_1d, dim_num );
 
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Number of points in rule = %d\n', point_num );
 %
 %  Compute the rule.
@@ -151,13 +149,11 @@ function power_rule ( quad_1d_filename, dim_num )
 
   r8mat_write ( quad_x_filename, dim_num, point_num, x );
 
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Creating power quadrature rule W file = "%s".\n', ...
     quad_w_filename);
 
   r8mat_write ( quad_w_filename, 1, point_num, w );
 
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Creating power quadrature rule R file = "%s".\n', ...
     quad_r_filename);
 

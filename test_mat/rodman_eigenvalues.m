@@ -1,8 +1,8 @@
-function lambda = rodman_eigenvalues ( alpha, n )
+function lambda = rodman_eigenvalues ( n, alpha )
 
 %*****************************************************************************80
 %
-%% RODMAN_EIGENVALUES returns the eigenvalues of the Rodman matrix.
+%% RODMAN_EIGENVALUES returns the eigenvalues of the RODMAN matrix.
 %
 %  Licensing:
 %
@@ -18,15 +18,17 @@ function lambda = rodman_eigenvalues ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the scalar that defines A.
-%
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Input, real ALPHA, the parameter.
 %
-  lambda(1:n-1) = 1.0 - alpha;
+%    Output, real LAMBDA(N,1), the eigenvalues.
+%
+  lambda = zeros ( n, 1 );
 
-  lambda(n) = 1.0 + alpha * ( n - 1 );
+  lambda(1:n-1,1) = 1.0 - alpha;
+
+  lambda(n,1) = 1.0 + alpha * ( n - 1 );
 
   return
 end

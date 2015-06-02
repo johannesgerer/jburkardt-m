@@ -2,7 +2,7 @@ function a = parlett ( )
 
 %*****************************************************************************80
 %
-%% PARLETT returns the Parlett matrix.
+%% PARLETT returns the PARLETT matrix.
 %
 %  Formula:
 %
@@ -18,7 +18,7 @@ function a = parlett ( )
 %    elseif ( I = J )
 %      A(I,J) = 101 - I
 %    elseif ( J < I )
-%      A(I,J) = (-1)**(I+J+1) * 40 / ( I + J - 2 )
+%      A(I,J) = (-1)^(I+J+1) * 40 / ( I + J - 2 )
 %
 %  Example:
 %
@@ -38,7 +38,7 @@ function a = parlett ( )
 %
 %      LAMBDA(I) = I.
 %
-%    det ( A ) = 100%
+%    det ( A ) = 100!
 %
 %  Licensing:
 %
@@ -72,6 +72,7 @@ function a = parlett ( )
 %    Output, real A(100,100), the matrix.
 %
   n = 100;
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n

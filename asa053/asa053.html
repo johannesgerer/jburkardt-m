@@ -1,0 +1,199 @@
+<html>
+
+  <head>
+    <title>
+      ASA053 - Wishart Variate Generator
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      ASA053 <br> Wishart Variate Generator
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>ASA053</b>
+      is a MATLAB library which
+      returns samples from the Wishart distribution.
+    </p>
+
+    <p>
+      As far as I can tell, there are two mistakes in the printed text
+      of the algorithm; one involves incorrectly determining the number
+      of degrees of freedom for the ChiSquared distribution; the
+      other omits an absolute value sign when inverting the Wilson-Hilferty
+      formula, so that square roots of negative values are occasionally
+      requested.  These mistakes have been corrected here.
+    </p>
+
+    <p>
+      Source code for many Applied Statistics Algorithms is available through
+      <a href = "http://lib.stat.cmu.edu/apstat">STATLIB</a>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>ASA053</b> is available in
+      <a href = "../../c_src/asa053/asa053.html">a C version</a> and
+      <a href = "../../cpp_src/asa053/asa053.html">a C++ version</a> and
+      <a href = "../../f77_src/asa053/asa053.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/asa053/asa053.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/asa053/asa053.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/wishart/wishart.html">
+      WISHART</a>,
+      a MATLAB library which
+      produces sample matrices from the Wishart or Bartlett distributions,
+      useful for sampling random covariance matrices.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Stanley Sawyer,<br>
+          Wishart Distributions and Inverse-Wishart Sampling,<br>
+          Washington University,<br>
+          30 April 2007, 12 pages.
+        </li>
+        <li>
+          William Smith, Ronald Hocking,<br>
+          Algorithm AS 53, Wishart Variate Generator,<br>
+          Applied Statistics,<br>
+          Volume 21, Number 3, pages 341-345, 1972.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Original Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "asa053_original.f">asa053_original.f</a>, 
+          the original text of the source code.  Note that the
+          line "DF = N - I + 1" is believed (by me) to be incorrect,
+          and is replaced in the present version by "DF = NP - I + 1".
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a pseudorandom R8 scaled to [0,1].
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>, 
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>, 
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8pp_print.m">r8pp_print.m</a>, 
+          prints an R8PP matrix.
+        </li>
+        <li>
+          <a href = "r8pp_print_some.m">r8pp_print_some.m</a>, 
+          prints some of an R8PP matrix.
+        </li>
+        <li>
+          <a href = "r8utp_print.m">r8utp_print.m</a>, 
+          prints an R8UTP matrix.
+        </li>
+        <li>
+          <a href = "r8utp_print_some.m">r8utp_print_some.m</a>, 
+          prints some of an R8UTP matrix.
+        </li>
+        <li>
+          <a href = "rnorm.m">rnorm.m</a>, 
+          returns two independent standard random normal deviates.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "wshrt.m">wshrt.m</a>, 
+          returns sample deviates from the Wishart distribution.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "asa053_test.m">asa053_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "asa053_test01.m">asa053_test01.m</a>,
+          generates a single Wishart deviate.
+        </li>
+        <li>
+          <a href = "asa053_test02.m">asa053_test02.m</a>,
+          averages many Wishart deviates and compares to an expected result.
+        </li>
+        <li>
+          <a href = "asa053_test_output.txt">asa053_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 16 April 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

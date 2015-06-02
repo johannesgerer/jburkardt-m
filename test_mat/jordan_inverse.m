@@ -1,13 +1,13 @@
-function a = jordan_inverse ( alpha, n )
+function a = jordan_inverse ( n, alpha )
 
 %*****************************************************************************80
 %
-%% JORDAN_INVERSE returns the inverse of the Jordan block matrix.
+%% JORDAN_INVERSE returns the inverse of the JORDAN matrix.
 %
 %  Formula:
 %
 %    if ( I <= J )
-%      A(I,J) =  -1 * (-1/ALPHA)**(J+1-I)
+%      A(I,J) =  -1 * (-1/ALPHA)^(J+1-I)
 %    else
 %      A(I,J) = 0
 %
@@ -34,7 +34,7 @@ function a = jordan_inverse ( alpha, n )
 %    entries are ALPHA, whose first superdiagonal entries are 1,
 %    with all other entries zero.
 %
-%    det ( A ) = (1/ALPHA)**N.
+%    det ( A ) = (1/ALPHA)^N.
 %
 %    LAMBDA(1:N) = 1 / ALPHA.
 %
@@ -52,12 +52,14 @@ function a = jordan_inverse ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the eigenvalue of A.
-%
 %    Input, integer N, the order of A.
+%
+%    Input, real ALPHA, the eigenvalue of the Jordan matrix.
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( alpha == 0.0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'JORDAN_INVERSE - Fatal error!\n' );

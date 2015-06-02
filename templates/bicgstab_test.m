@@ -2,7 +2,7 @@ function bicgstab_test ( )
 
 %*****************************************************************************80
 %
-%% BICGSTAB_TEST tests BICGSTAB.
+%% BICGSTAB_TEST tests the BICGSTAB function.
 % 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BICGSTAB_TEST:\n' );

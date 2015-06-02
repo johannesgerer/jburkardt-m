@@ -1,15 +1,14 @@
 sparse_test
-01-Sep-2006 10:54:20
+13-Apr-2014 10:06:00
 
 SPARSE_TEST
-  Test the MATLAB SPARSE routines.
+  MATLAB version
+  Test MATLAB's sparse matrix features.
 
 SPARSE_TEST01:
   Demonstrate the use of MATLAB's SPARSE facility
   to define a tiny sparse matrix.
-
 a =
-
    (1,1)       11
    (3,1)       31
    (1,2)       12
@@ -20,14 +19,11 @@ a =
    (1,5)       15
    (3,5)       35
 
-
 SPARSE_TEST02:
   Demonstrate the use of MATLAB's SPARSE facility
   to define a sparse matrix, and solve an associated
   linear system.
-
 ans =
-
     1.0000
     2.0000
     3.0000
@@ -129,7 +125,6 @@ ans =
    99.0000
   100.0000
 
-
 SPARSE_TEST03:
   Demonstrate the use of MATLAB's SIZE, NNZ and FIND
   commands to retrieve information about a sparse matrix.
@@ -167,8 +162,178 @@ SPARSE_TEST03:
         20        21        1.000000
         21        21       10.000000
 
+SPARSE_TEST04:
+  Demonstrate the use of MATLAB's SPARSE facility
+  to set or increment a matrix one entry at a time.
+
+     I     J  New A(I,J)
+
+     8     3  1
+     8    10  1
+     9     1  1
+     4     4  1
+     7     6  1
+     8     4  1
+     3     1  1
+     8     3  2
+     4     6  1
+     3     7  1
+     5     2  1
+     8     2  1
+     3     3  1
+     6     1  1
+     5     2  2
+     2     8  1
+     3     7  2
+    10     5  1
+     7     8  1
+     5     7  1
+     2    10  1
+     2     3  1
+     8     5  1
+     8     4  2
+     3     1  2
+     7     5  1
+     5     7  2
+     1     4  1
+     8     7  1
+     2     2  1
+     1     1  1
+     5     7  3
+     8     6  1
+     2     7  1
+     2     2  2
+     1     2  1
+     2     2  3
+     4     4  2
+     3     3  2
+     9     8  1
+     6     2  1
+     3     1  3
+    10     8  1
+     6     4  1
+     2     7  2
+    10     2  1
+     3     4  1
+     1     7  1
+     5    10  1
+     5     7  4
+
+  Number of nonzero entries is 36
+  Sum of entries is 50.000000
+
+  Matrix printed in sparse triplet form:
+
+a =
+   (1,1)        1
+   (3,1)        3
+   (6,1)        1
+   (9,1)        1
+   (1,2)        1
+   (2,2)        3
+   (5,2)        2
+   (6,2)        1
+   (8,2)        1
+  (10,2)        1
+   (2,3)        1
+   (3,3)        2
+   (8,3)        2
+   (1,4)        1
+   (3,4)        1
+   (4,4)        2
+   (6,4)        1
+   (8,4)        2
+   (7,5)        1
+   (8,5)        1
+  (10,5)        1
+   (4,6)        1
+   (7,6)        1
+   (8,6)        1
+   (1,7)        1
+   (2,7)        2
+   (3,7)        2
+   (5,7)        4
+   (8,7)        1
+   (2,8)        1
+   (7,8)        1
+   (9,8)        1
+  (10,8)        1
+   (2,10)       1
+   (5,10)       1
+   (8,10)       1
+
+  Matrix printed in usual full matrix form:
+
+ans =
+     1     1     0     1     0     0     1     0     0     0
+     0     3     1     0     0     0     2     1     0     1
+     3     0     2     1     0     0     2     0     0     0
+     0     0     0     2     0     1     0     0     0     0
+     0     2     0     0     0     0     4     0     0     1
+     1     1     0     1     0     0     0     0     0     0
+     0     0     0     0     1     1     0     1     0     0
+     0     1     2     2     1     1     1     0     0     1
+     1     0     0     0     0     0     0     1     0     0
+     0     1     0     0     1     0     0     1     0     0
+
+SPARSE_TEST05:
+  Create the sparse matrix associated with the Poisson equation
+  on an N by N grid.
+  Number of nonzeros is 460
+
+SPARSE_TEST06:
+  Zero out a portion of a matrix.
+  Compare the time required when using full or sparse storage.
+  The sparse matrix takes longer to modify, and it takes longer
+  when there are more elements to remove.
+
+  Matrix is of size 2000 by 2000
+  Initial number of nonzeros is 4000000
+
+  Zero out all entries greater than 1
+  Full storage matrix required 0.127521 seconds
+  Sparse storage matrix required 0.626385 seconds
+  Number of nonzeros is 1
+
+  Zero out all entries greater than 2000000
+  Full storage matrix required 0.032899 seconds
+  Sparse storage matrix required 0.397375 seconds
+  Number of nonzeros is 2000000
+
+  Zero out all entries greater than 3999999
+  Full storage matrix required 0.014321 seconds
+  Sparse storage matrix required 0.056261 seconds
+  Number of nonzeros is 3999999
+
+SPARSE_TEST07:
+  Zero out some elements of a sparse matrix.
+  Compare the time required when using full storage,
+  sparse storage,
+  sparse storage with the sparse triplet representation.
+
+  Matrix is of size 2000 by 2000
+  Initial number of nonzeros is 4000000
+
+  Zero out all entries greater than 1
+  Full storage matrix required 0.052503 seconds
+  Sparse storage matrix required 0.636401 seconds
+  Using sparse triplet required 0.115079 seconds
+  Number of nonzeros is 1
+
+  Zero out all entries greater than 2000000
+  Full storage matrix required 0.032902 seconds
+  Sparse storage matrix required 0.308767 seconds
+  Using sparse triplet required 0.335824 seconds
+  Number of nonzeros is 2000000
+
+  Zero out all entries greater than 3999999
+  Full storage matrix required 0.014151 seconds
+  Sparse storage matrix required 0.055787 seconds
+  Using sparse triplet required 0.565589 seconds
+  Number of nonzeros is 3999999
+
 SPARSE_TEST
   Normal end of execution.
 
-01-Sep-2006 10:54:21
->> 
+13-Apr-2014 10:06:07
+diary off

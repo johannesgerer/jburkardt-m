@@ -35,28 +35,26 @@ function centroid = polygon_centroid_2d_2 ( n, v )
 %
 %    Output, real CENTROID(2,1), the coordinates of the centroid.
 %
-  dim_num = 2;
-
   area = 0.0;
-  centroid(1:dim_num) = 0.0;
+  centroid(1:2) = 0.0;
 
   for i = 1 : n - 2
 
-    t(1:dim_num,1:3) = [ v(1:dim_num,i)'; v(1:dim_num,i+1)'; v(1:dim_num,n)' ]';
+    t(1:2,1:3) = [ v(1:2,i)'; v(1:2,i+1)'; v(1:2,n)' ]';
 
     area_triangle = triangle_area_2d ( t );
 
     area = area + area_triangle;
 
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) + area_triangle ...
-      * ( v(1:dim_num,i) + v(1:dim_num,i+1) + v(1:dim_num,n) ) / 3.0;
+    centroid(1:2,1) = centroid(1:2,1) + area_triangle ...
+      * ( v(1:2,i) + v(1:2,i+1) + v(1:2,n) ) / 3.0;
 
   end
 
   if ( area == 0.0 )
-    centroid(1:dim_num,1) = v(1:dim_num,1);
+    centroid(1:2,1) = v(1:2,1);
   else
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) / area;
+    centroid(1:2,1) = centroid(1:2,1) / area;
   end
 
   return

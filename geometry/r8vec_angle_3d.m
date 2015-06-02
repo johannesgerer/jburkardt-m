@@ -6,7 +6,7 @@ function angle = r8vec_angle_3d ( u, v )
 %
 %  Modified:
 %
-%    08 July 2009
+%    28 May 2015
 %
 %  Author:
 %
@@ -18,11 +18,11 @@ function angle = r8vec_angle_3d ( u, v )
 %
 %    Output, real ANGLE, the angle between the two vectors.
 %
-  uv_dot = u(1:3) * v(1:3)';
+  uv_dot = u(1) * v(1) + u(2) * v(2) + u(3) * v(3);
 
-  u_norm = sqrt ( u(1:3) * u(1:3)' );
+  u_norm = sqrt ( u(1) * u(1) + u(2) * u(2) + u(3) * u(3) );
 
-  v_norm = sqrt ( v(1:3) * v(1:3)' );
+  v_norm = sqrt ( v(1) * v(1) + v(2) * v(2) + v(3) * v(3) );
 
   angle_cos = uv_dot / u_norm / v_norm;
 

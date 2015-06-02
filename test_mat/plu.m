@@ -1,8 +1,12 @@
-function [ p, l, u, a ] = plu ( n, pivot )
+function a = plu ( n, pivot )
 
 %*****************************************************************************80
 %
-%% PLU returns a matrix with known P, L and U Gauss factors.
+%% PLU returns the PLU matrix.
+%
+%  Discussion:
+%
+%    The PLU matrix has known P, L and U Gauss factors.
 %
 %  Example:
 %
@@ -74,7 +78,7 @@ function [ p, l, u, a ] = plu ( n, pivot )
 %  Method:
 %
 %    The L factor will have unit diagonal, and subdiagonal entries
-%    L(I,J) = ( 2 * J - 1 ) / 2**I, which should result in a unique
+%    L(I,J) = ( 2 * J - 1 ) / 2^I, which should result in a unique
 %    value for every entry.
 %
 %    The U factor of A will have entries
@@ -90,7 +94,7 @@ function [ p, l, u, a ] = plu ( n, pivot )
 %
 %  Modified:
 %
-%    19 October 2007
+%    25 March 2015
 %
 %  Author:
 %
@@ -104,116 +108,11 @@ function [ p, l, u, a ] = plu ( n, pivot )
 %    must be a value between I and N, reflecting the choice of
 %    pivot row on the I-th step.  For no pivoting, set PIVOT(I) = I.
 %
-%    Output, real P(N,N), L(N,N), U(N,N), the P, L and U factors
-%    of A, as defined by Gaussian elimination with partial pivoting.
-%    P is a permutation matrix, L is unit lower triangular, and U
-%    is upper trianguler.
-%
 %    Output, real A(N,N), the matrix.
 %
+  [ p, l, u ] = plu_plu ( n, pivot );
 
-%
-%  Check that the pivot vector is legal.
-%
-  for i = 1 : n
-
-    if ( pivot(i) < i )
-      fprintf ( 1, '\n' );
-      fprintf ( 1, 'PLU - Fatal error!\n' );
-      fprintf ( 1, '  PIVOT(%d) = %d\n', i, pivot(i) );
-      fprintf ( 1, '  but PIVOT(I) must be no less than I!\n' );
-      stop
-    elseif ( n < pivot(i) )
-      fprintf ( 1, '\n' );
-      fprintf ( 1, 'PLU - Fatal error!\n' );
-      fprintf ( 1, '  PIVOT(%d) = %d\n', i, pivot(i) );
-      fprintf ( 1, '  but PIVOT(I) must be no greater than N\n' );
-      fprintf ( 1, '  and N = %d\n', n );
-      stop
-    end
-
-  end
-%
-%  Compute U.
-%
-  for i = 1 : n
-    for j = 1 : n
-
-      if ( i <= j )
-        u(i,j) = 10 * i + j;
-      else
-        u(i,j) = 0.0;
-      end
-
-    end
-  end
-%
-%  Compute L.
-%
-  for i = 1 : n
-    for j = 1 : n
-
-      if ( i < j )
-        l(i,j) = 0.0;
-      elseif ( j == i )
-        l(i,j) = 1.0;
-      else
-        l(i,j) = ( 2 * j - 1 ) / 2^i;
-      end
-
-    end
-  end
-%
-%  Compute P.
-%
-  for i = 1 : n
-    for j = 1 : n
-      if ( i == j )
-        p(i,j) = 1.0;
-      else
-        p(i,j) = 0.0;
-      end
-    end
-  end
-%
-%  Apply the pivot permutations, in reverse order.
-%
-  for i = n : -1 : 1
-
-    if ( pivot(i) ~= i )
-      for j = 1 : n
-        temp          = p(i,j);
-        p(i,j)        = p(pivot(i),j);
-        p(pivot(i),j) = temp;
-      end
-    end
-
-  end
-%
-%  Compute L * U.
-%
-  for i = 1 : n
-    for j = 1 : n
-      a(i,j) = u(i,j);
-      for k = 1 : i - 1
-        a(i,j) = a(i,j) + l(i,k) * u(k,j);
-      end
-    end
-  end
-%
-%  Compute P * ( L * U )
-%
-  for i = n : -1 : 1
-
-    if ( pivot(i) ~= i )
-      for j = 1 : n
-        temp          = a(i,j);
-        a(i,j)        = a(pivot(i),j);
-        a(pivot(i),j) = temp;
-      end
-    end
-
-  end
+  a = p * l * u;
 
   return
 end

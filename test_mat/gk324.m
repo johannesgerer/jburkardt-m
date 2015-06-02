@@ -20,6 +20,10 @@ function a = gk324 ( m, n, x )
 %    11 12 13  1  1
 %    11 12 13 14  1
 %
+%  Properties:
+%
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -52,6 +56,8 @@ function a = gk324 ( m, n, x )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       if ( i <= j )

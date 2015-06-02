@@ -59,6 +59,8 @@ function r = uniform_dataset ( m, n, seed )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -69,6 +71,8 @@ function r = uniform_dataset ( m, n, seed )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '  Number of points N = %d\n', n );
@@ -78,6 +82,8 @@ function r = uniform_dataset ( m, n, seed )
   if ( nargin < 3 )
     fprintf ( 1, '\n' );
     seed = input ( '  Enter the seed: ' );
+  else
+    seed = str2num ( seed );
   end
 
   fprintf ( 1, '  The seed = %d\n', seed );

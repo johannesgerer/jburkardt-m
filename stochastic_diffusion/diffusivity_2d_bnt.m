@@ -1,4 +1,4 @@
-function dc = diffusivity_2d_bnt ( dc0, omega, x, y )
+function dc = diffusivity_2d_bnt ( dc0, omega, n, x, y )
 
 %*****************************************************************************80
 %
@@ -45,7 +45,7 @@ function dc = diffusivity_2d_bnt ( dc0, omega, x, y )
 %    A stochastic collocation method for elliptic partial differential equations
 %    with random input data,
 %    SIAM Journal on Numerical Analysis,
-%    Volum 45, Number 3, 2007, pages 1005-1034.
+%    Volume 45, Number 3, 2007, pages 1005-1034.
 %
 %  Parameters:
 %
@@ -54,10 +54,12 @@ function dc = diffusivity_2d_bnt ( dc0, omega, x, y )
 %
 %    Input, real OMEGA(4), the stochastic parameters.
 %
-%    Input, real X(:), Y(:), the points where the diffusion coefficient is to 
+%    Input, integer N, the number of evaluation points.
+%
+%    Input, real X(N), Y(N), the points where the diffusion coefficient is to 
 %    be evaluated.
 %
-%    Output, real DC(:), the value of the diffusion coefficient at X.
+%    Output, real DC(N), the value of the diffusion coefficient at (X,Y).
 %
   arg = omega(1) * cos ( pi * x ) ...
       + omega(2) * sin ( pi * x ) ...

@@ -10,7 +10,7 @@ function a = borderband_inverse ( n )
 %
 %  Modified:
 %
-%    03 July 2011
+%    25 March 2015
 %
 %  Author:
 %
@@ -24,7 +24,13 @@ function a = borderband_inverse ( n )
 %
   [ p, l, u ] = borderband_plu ( n );
 
-  a = plu_inverse ( n, p, l, u );
+  p_inverse = p';
+
+  l_inverse = tri_l1_inverse ( n, l );
+
+  u_inverse = tri_u_inverse ( n, u );
+
+  a = u_inverse * l_inverse * p_inverse;
 
   return
 end

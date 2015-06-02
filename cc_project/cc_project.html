@@ -1,0 +1,306 @@
+<html>
+
+  <head>
+    <title>
+      CC_PROJECT - Clenshaw-Curtis-Like Quadrature for Semi-Infinite and Infinite Intervals
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      CC_PROJECT <br> Clenshaw-Curtis-Like Quadrature for Semi-Infinite and Infinite Intervals
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>CC_PROJECT</b>
+      is a MATLAB library which
+      investigates the extension of a Clenshaw-Curtis-like quadrature
+      scheme to semi-infinite and infinite intervals, and to integrands
+      with a specified density function.
+    </p>
+
+    <p>
+      The Legendre integral for f(x) is:
+      <pre>
+        I(f) = integral ( -1 <= x <= +1 ) f(x) dx
+      </pre>
+      Quadrature rules for the Legendre integral include:
+      <ul>
+        <li>
+          Clenshaw-Curtis quadrature, a sequence of nested quadrature rules,
+          which include the endpoints; the rule of order N has exactness
+          N-1 (if N is even) or N (if N is odd);
+        </li>
+        <li>
+          Fejer Type 2 quadrature, a sequence of nested quadrature rules,
+          which include the endpoints; the rule of order N has exactness
+          N-1 (if N is even) or N (if N is odd);
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The Laguerre integral for f(x) is:
+      <pre>
+        I(f) = integral ( 0 <= x <= +oo ) f(x) rho(x) dx
+      </pre>
+      Depending on the value of the density function rho(x) we have:
+      <ul>
+        <li>
+          rho(x) = exp(-x): Laguerre 0 integral;
+        </li>
+        <li>
+          rho(x) = 1: Laguerre 1 integral.
+        </li>
+      </ul>
+      Quadrature rules include:
+      <ul>
+        <li>
+          CCFI_0 rules for integral ( 0 <= x <= +oo ) f(x) exp(-x) dx;
+        </li>
+        <li>
+          CCFI_1 rules for integral ( 0 <= x <= +oo ) f(x) dx.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>CC_PROJECT</b> is available in
+      <a href = "../../m_src/cc_project/cc_project.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          John Boyd,<br>
+          Exponentially convergent Fourier-Chebyshev quadrature schemes on
+          bounded and infinite intervals,<br>
+          Journal of Scientific Computing,<br>
+          Volume 2, Number 2, 1987, pages 99-109.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cardinal_cos.m">cardinal_cos.m</a>,
+          evaluates a cardinal cosine interpolation basis function.
+        </li>
+        <li>
+          <a href = "cardinal_sin.m">cardinal_sin.m</a>,
+          evaluates a cardinal sine interpolation basis function.
+        </li>
+        <li>
+          <a href = "ccff.m">ccff.m</a>,
+          defines points and weights for Boyd's quadrature rule
+          for [-1,1] with density 1.
+        </li>
+        <li>
+          <a href = "ccff_asymptotic.m">ccff_asymptotic.m</a>,
+          examines asymptotic error for a given integrand,
+          for Boyd's quadrature rule for [-1,+1]
+          with density 1.
+        </li>
+        <li>
+          <a href = "ccfi_0.m">ccfi_0.m</a>,
+           defines points and weights for Boyd's quadrature rule
+          for [0,+oo) with density exp(-x).
+        </li>
+        <li>
+          <a href = "ccfi_1.m">ccfi_1.m</a>,
+           defines points and weights for Boyd's quadrature rule
+          for [0,+oo) with density 1.
+        </li>
+        <li>
+          <a href = "ccii_0.m">ccii_0.m</a>,
+           defines points and weights for Boyd's quadrature rule
+          for (-oo,+oo) with density exp(-x^2).
+        </li>
+        <li>
+          <a href = "ccii_1.m">ccii_1.m</a>,
+           defines points and weights for Boyd's quadrature rule
+          for (-oo,+oo) with density 1.
+        </li>
+        <li>
+          <a href = "chebyshev1_compute.m">chebyshev1_compute.m</a>
+          computes a Gauss-Chebyshev type 1 quadrature rule.
+        </li>
+        <li>
+          <a href = "chebyshev2_compute.m">chebyshev2_compute.m</a>
+          computes a Gauss-Chebyshev type 2 quadrature rule.
+        </li>
+        <li>
+          <a href = "chebyshev3_compute.m">chebyshev3_compute.m</a>,
+          computes a Gauss-Chebyshev type 3 quadrature rule.
+        </li>
+        <li>
+          <a href = "fejer1_compute.m">fejer1_compute.m</a>,
+          computes a Fejer type 1 quadrature rule.
+        </li>
+        <li>
+          <a href = "fejer2_compute.m">fejer2_compute.m</a>,
+          computes a Fejer type 2 quadrature rule.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>,
+          evaluates the factorial function.
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a>,
+          evaluates an integer power of -1 as an R8.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cc_project_test.m">cc_project_test.m</a>, 
+          calls all the tests;
+        </li>
+        <li>
+          <a href = "cc_project_test_output.txt">
+          cc_project_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "cardinal_cos_test.m">cardinal_cos_test.m</a>, 
+          plots a cardinal cosine interpolant basis function.
+        </li>
+        <li>
+          <a href = "cardinal_cos.png">cardinal_cos.png</a>, 
+          a plot of a cardinal cosine interpolant basis function.
+        </li>
+        <li>
+          <a href = "cardinal_sin_test.m">cardinal_sin_test.m</a>, 
+          plots a cardinal sine interpolant basis function.
+        </li>
+        <li>
+          <a href = "cardinal_sin.png">cardinal_sin.png</a>, 
+          a plot of a cardinal sine interpolant basis function.
+        </li>
+        <li>
+          <a href = "cardinal_test.m">cardinal_test.m</a>, 
+          checks the Lagrange property for the cardinal cosine and sine
+          families.
+        </li>
+        <li>
+          <a href = "ccff_asymptotic_test.m">ccff_asymptotic_test.m</a>, 
+          tests ccff_asymptotic() for a specific integrand.
+        </li>
+        <li>
+          <a href = "ccff_tabulate.m">ccff_tabulate.m</a>, 
+          tabulates CCFF quadrature rules for the Legendre integral.
+        </li>
+        <li>
+          <a href = "ccfi_0_tabulate.m">ccfi_0_tabulate.m</a>, 
+          tabulates CCFI_0 quadrature rules for the Laguerre integral
+          with density exp(-x).
+        </li>
+        <li>
+          <a href = "ccfi_1_tabulate.m">ccfi_1_tabulate.m</a>, 
+          tabulates CCFI_1 quadrature rules for the Laguerre integral
+          with density 1.
+        </li>
+        <li>
+          <a href = "ccii_0_tabulate.m">ccii_0_tabulate.m</a>, 
+          tabulates CCII_0 quadrature rules for the Hermite integral
+          with density exp(-x^2).
+        </li>
+        <li>
+          <a href = "ccii_1_tabulate.m">ccii_1_tabulate.m</a>, 
+          tabulates CCII_1 quadrature rules for the Hermite integral
+          with density 1.
+        </li>
+        <li>
+          <a href = "compare_ff_test.m">
+          compare_ff_test.m</a>,
+          prints out the order 5 version of Boyd's Clenshaw-Curtis type
+          rule for the Legendre integral, comparing it with several other
+          rules.
+        </li>
+        <li>
+          <a href = "legendre_exactness.m">
+          legendre_exactness.m</a>,
+          tests a quadrature rule for exactness on the Legendre integral.
+        </li>
+        <li>
+          <a href = "legendre_integral.m">
+          legendre_integral.m</a>,
+          returns the value of the Legendre integral of a monomial.
+        </li>
+        <li>
+          <a href = "legendre_monomial_quadrature.m">
+          legendre_monomial_quadrature.m</a>,
+          determines the error when a quadrature rule is applied to the
+          Legendre integral of a monomial.
+        </li>
+        <li>
+          <a href = "legendre_test_integral.m">
+          legendre_test_integral.m</a>,
+          returns the exact value of the Legendre integral of the
+          test integrand.
+        </li>
+        <li>
+          <a href = "legendre_test_integrand.m">
+          legendre_test_integrand.m</a>,
+          evaluates a test integrand for the Legendre integral.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 25 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

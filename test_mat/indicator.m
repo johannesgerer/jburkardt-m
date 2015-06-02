@@ -2,7 +2,7 @@ function a = indicator ( m, n )
 
 %*****************************************************************************80
 %
-%% INDICATOR sets the indicator matrix.
+%% INDICATOR sets the INDICATOR matrix.
 %
 %  Discussion:
 %

@@ -2,7 +2,7 @@ function lambda = parlett_eigenvalues ( )
 
 %*****************************************************************************80
 %
-%% PARLETT_EIGENVALUES returns the eigenvalues of the Parlett matrix.
+%% PARLETT_EIGENVALUES returns the eigenvalues of the PARLETT matrix.
 %
 %  Licensing:
 %
@@ -18,10 +18,13 @@ function lambda = parlett_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(100), the eigenvalues.
+%    Output, real LAMBDA(100,1), the eigenvalues.
 %
-  for i = 1 : 100
-    lambda(i) = i;
+  n = 100;
+  lambda = zeros ( n, 1 );
+
+  for i = 1 : n
+    lambda(i,1) = i;
   end
 
   return

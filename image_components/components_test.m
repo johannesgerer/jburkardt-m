@@ -2,7 +2,7 @@ function components_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for COMPONENTS_TEST.
+%% COMPONENTS_TEST tests the COMPONENTS library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function components_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COMPONENTS_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the IMAGE_COMPONENTS library.\n' );
+  fprintf ( 1, '  Test the COMPONENTS library.\n' );
 
   components_test01 ( );
   components_test02 ( );

@@ -1,0 +1,70 @@
+#  primes.condor
+#
+#  Licensing:
+#
+#    This code is distributed under the GNU LGPL license.
+#
+#  Modified:
+#
+#    27 August 2013
+#
+#  Author:
+#
+#    John Burkardt
+#
+
+#
+#  Specify the simplest CONDOR environment.
+#
+universe = vanilla
+#
+#  The "executable" isa script called "primes_run.sh"
+#
+executable = primes_run.sh
+#
+#  There are not commandline arguments.
+#
+arguments = 
+#
+#  The input file to transfer is "primes_script.m"
+#  I REALLY NEED THIS COMMAND.
+#
+input = primes_script.m
+#
+#  The machine must have MATLAB.
+#
+requirements = ( OpSys == "LINUX" && Arch == "X86_64" && Matlab == "true" )
+#
+#  Choose best machine by memory size.
+#
+rank = memory
+#
+#  We do need to transfer the script file.
+#
+should_transfer_files = yes
+#
+#  Files that must be transferred from the condor login node 
+#  to the remote machine:
+#  SO DO I REALLY NEED THIS COMMAND TOO?
+#
+transfer_input_files = primes_script.m
+#
+#  Transfer data back when the job is done.
+#
+when_to_transfer_output = ON_EXIT
+#
+#  We don't want CONDOR to try to email us on completion of the job.
+#
+notification = NEVER
+#
+#  Name the OUTPUT file.
+#
+output = primes_output.txt
+#
+#  Name the LOG file.
+#
+log = primes_log.txt
+#
+#  This command causes CONDOR to submit our job.
+#
+queue 1

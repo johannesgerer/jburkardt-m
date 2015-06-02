@@ -9,7 +9,7 @@ function a = integration_inverse ( alpha, n )
 %    if ( I = J )
 %      A(I,J) = 1
 %    else if ( I < J )
-%      A(I,J) = (-ALPHA)**(J-I) / (I*...*J-1)
+%      A(I,J) = (-ALPHA)^(J-I) / (I*...*J-1)
 %    else
 %      A(I,J) = 0
 %
@@ -58,13 +58,15 @@ function a = integration_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 
       if ( j == i )
         a(i,j) = 1.0;
       elseif ( i < j )
-        a(i,j) = ( -alpha ) ^ ( j - i ) / i4_pochhammer ( i, j - 1 );
+        a(i,j) = ( -alpha ) ^ ( j - i ) / i4_rise ( i, j - i );
       else
         a(i,j) = 0.0;
       end

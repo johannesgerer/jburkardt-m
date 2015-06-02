@@ -1,8 +1,12 @@
-function [ a, seed ] = antisymm_random ( n, seed )
+function a = antisymm_random ( n, key )
 
 %*****************************************************************************80
 %
-%% ANTISYMM_RANDOM returns a random antisymmetric matrix.
+%% ANTISYMM_RANDOM returns the ANTISYMM_RANDOM matrix.
+%
+%  Discussion:
+%
+%    ANTISYMM_RANDOM is a random antisymmetric matrix.
 %
 %  Example:
 %
@@ -46,19 +50,23 @@ function [ a, seed ] = antisymm_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
   a = zeros ( n, n );
-  
-  a = r8mat_diag_set_scalar ( n, a, 0.0 );
 
+  n2 = ( n * ( n - 1 ) ) / 2;
+  
+  seed = key;
+  [ t, seed ] = r8vec_uniform_01 ( n2, seed );
+
+  k = 1;
   for i = 1 : n
-    for j = i+1 : n
-      [ t, seed ] = r8_uniform_01 ( seed );
-      a(i,j) = 2.0 * t - 1.0;
+    for j = i + 1 : n
+      a(i,j) = 2.0 * t(k) - 1.0;
       a(j,i) = - a(i,j);
+      k = k + 1;
     end
   end
 

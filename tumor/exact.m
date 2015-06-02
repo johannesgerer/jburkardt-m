@@ -1,6 +1,12 @@
 function [ u, dudx ] = exact ( x )
 
+%*****************************************************************************80
+%
 %% EXACT is an exact solution used for testing.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

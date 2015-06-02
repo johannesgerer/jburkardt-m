@@ -4,13 +4,18 @@ function traffic ( cycle_num )
 %
 %% TRAFFIC simulates the cars waiting at one traffic light.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    03 November 2009
 %
 %  Author:
 %
-%    Brian Hahn, Dan Valentine.
+%    Original MATLAB version by Brian Hahn, Dan Valentine.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -143,13 +148,18 @@ function [ cars, cars_out, light, green_timer ] = go ( green_cycles, cars, ...
 %
 %% GO simulates traffic when the light is green.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    06 November 2009
 %
 %  Author:
 %
-%    Brian Hahn, Dan Valentine.
+%    Original MATLAB version by Brian Hahn, Dan Valentine.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -216,13 +226,18 @@ function [ cars, light, red_timer ] = stop ( red_cycles, cars, light, ...
 %
 %% STOP simulates the traffic when the light is red.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    03 November 2009
 %
 %  Author:
 %
-%    Brian Hahn, Dan Valentine.
+%    Original MATLAB version by Brian Hahn, Dan Valentine.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -275,13 +290,18 @@ function prq ( cars, light, cycle )
 %
 %% PRQ prints the current traffic waiting at the light.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    03 November 2009
 %
 %  Author:
 %
-%    Brian Hahn, Dan Valentine.
+%    Original MATLAB version by Brian Hahn, Dan Valentine.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %

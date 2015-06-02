@@ -1,0 +1,317 @@
+<html>
+
+  <head>
+    <title>
+      SNAKES_AND_LADDERS - Game Simulation
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SNAKES_AND_LADDERS <br> Game Simulation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SNAKES_AND_LADDERS</b>,
+      MATLAB programs which
+      investigate the game of Snakes and Ladders.
+    </p>
+
+    <p>
+      Snakes and Ladders is a children's game played on a 10x10 numbered
+      board.  A player's turn consists of rolling a single die, and moving
+      the indicated number of squares.  If the final square is the foot of
+      a ladder, the player moves up to a higher numbered square.  If the
+      final square is the mouth of a snake, the player moves downward.
+    </p>
+
+    <p>
+      It is a simple exercise to create a simulation of the game for 
+      several players.
+    </p>
+
+    <p>
+      Since the game is essentially a race, with no other competition between
+      the players, it can be studied in a simplified version in which there
+      is only one player.
+    </p>
+
+    <p>
+      For the one-player version of the game, it is interesting to pose the
+      question of the average length of a game, that is, how many rolls of
+      the die it takes in order to reach the final square.
+    </p>
+
+    <p>
+      By adding a square 0, where the player begins, the game board can
+      be modeled as a vector of length 101, and the transitions from one
+      square to another can be modeled by a transition matrix.  Most commonly,
+      the entries in row I will be zero except that columns I+1 through
+      I+6 will have the value 1/6.  However, rows which correspond to a 
+      snake or ladder, and rows for which I+6 is greater than 100, must
+      be handled specially.
+    </p>
+
+    <p>
+      Given the transition matrix A, the one player game can be modeled as 
+      a Markov Chain Monte Carlo system.  In particular, given an initial
+      starting vector v, the probability distribution after one move is
+      the vector A' * v, and repeated multiplication by A' will display
+      the exact probability distribution at every step.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SNAKES_AND_LADDERS</b> is available in
+      <a href = "../../c_src/snakes_and_ladders/snakes_and_ladders.html">a C version</a> and
+      <a href = "../../f77_src/snakes_and_ladders/snakes_and_ladders.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/snakes_and_ladders/snakes_and_ladders.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/snakes_and_ladders/snakes_and_ladders.html">a MATLAB version</a> and
+      <a href = "../../py_src/snakes_and_ladders/snakes_and_ladders.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dice_simulation/dice_simulation.html">
+      DICE_SIMULATION</a>,
+      a MATLAB program which
+      simulates N tosses of M dice, making a histogram of the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/duel_simulation/duel_simulation.html">
+      DUEL_SIMULATION</a>,
+      a MATLAB program which
+      simulates N repetitions of a duel between two players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fair_dice_simulation/fair_dice_simulation.html">
+      FAIR_DICE_SIMULATION</a>,
+      a MATLAB program which
+      simulates N tosses of 2 dice, making a histogram of the results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gamblers_ruin_simulation/gamblers_ruin_simulation.html">
+      GAMBLERS_RUIN_SIMULATION</a>,
+      a MATLAB program which
+      simulates the game of gambler's ruin.
+    </p>
+
+    <p>
+      <a href = "../../m_src/high_card_simulation/high_card_simulation.html">
+      HIGH_CARD_SIMULATION</a>,
+      a MATLAB program which
+      simulates a situation in which you see the cards in a deck one by one,
+      and must select the one you think is the highest and stop. 
+    </p>
+
+    <p>
+      <a href = "../../m_src/ising_2d_simulation/ising_2d_simulation.html">
+      ISING_2D_SIMULATION</a>,
+      a MATLAB program which
+      carries out a Monte Carlo simulation of an Ising model,
+      a 2D array of positive and negative charges,
+      each of which is likely to flip to be in agreement with neighbors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/poisson_simulation/poisson_simulation.html">
+      POISSON_SIMULATION</a>,
+      a MATLAB library which
+      simulates a Poisson process in which events randomly occur with an
+      average waiting time of Lambda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_1d_simulation/random_walk_1d_simulation.html">
+      RANDOM_WALK_1D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 1-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_simulation/random_walk_2d_avoid_simulation.html">
+      RANDOM_WALK_2D_AVOID_SIMULATION</a>,
+      a MATLAB program which
+      simulates a self-avoiding random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_avoid_tasks/random_walk_2d_avoid_tasks.html">
+      RANDOM_WALK_2D_AVOID_TASKS</a>,
+      a MATLAB program which
+      computes many self avoiding random walks in a 2-dimensional region
+      by creating a job which
+      defines each walk as a task, and then computes these independently
+      using MATLAB's Parallel Computing Toolbox task computing capability.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_2d_simulation/random_walk_2d_simulation.html">
+      RANDOM_WALK_2D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 2-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/random_walk_3d_simulation/random_walk_3d_simulation.html">
+      RANDOM_WALK_3D_SIMULATION</a>,
+      a MATLAB program which
+      simulates a random walk in a 3-dimensional region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/reactor_simulation/reactor_simulation.html">
+      REACTOR_SIMULATION</a>,
+      a MATLAB program which
+      is a simple Monte Carlo simulation of the shielding effect of a slab
+      of a certain thickness in front of a neutron source.  This program was
+      provided as an example with the book "Numerical Methods and Software."
+    </p>
+
+    <p>
+      <a href = "../../m_src/sir_simulation/sir_simulation.html">
+      SIR_SIMULATION</a>,
+      a MATLAB program which
+      simulates the spread of a disease through a hospital room of M by N beds,
+      using the Susceptible/Infected/Recovered (SIR) model.
+    </p>
+
+    <p>
+      <a href = "../../m_src/traffic_simulation/traffic_simulation.html">
+      TRAFFIC_SIMULATION</a>,
+      a MATLAB program which
+      simulates the cars waiting to get through a traffic light.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truel_simulation/truel_simulation.html">
+      TRUEL_SIMULATION</a>,
+      a MATLAB program which
+      simulates N repetitions of a duel between three players, each of
+      whom has a known firing accuracy.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Steve Althoen, Larry King, Kenneth Schilling,<br>
+          How long is a game of Snakes and Ladders?,<br>
+          The Mathematical Gazette,<br>
+          Volume 77, Number 478, March 1993, pages 71-76.
+        </li>
+        <li>
+          Nick Berry,<br>
+          A Mathematical Analysis of Snakes and Ladders,<br>
+          http://www.datagenetics.com/blog/november12011/index.html
+        </li>
+        <li>
+          Desmond Higham, Nicholas Higham,<br>
+          MATLAB Guide,<br>
+          SIAM, 2005,<br>
+          ISBN13: 9780898717891.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>CHUTE</b> is a program by Desmond Higham and Nicholas Higham
+      which uses an exact matrix approach to determine the probability
+      that a one-player game will last a certain number of moves.
+      <ul>
+        <li>
+          <a href = "chute.m">chute.m</a>,
+          the program
+        </li>
+        <li>
+          <a href = "chute_fig1.png">chute_fig1.png</a>,
+          the sparse matrix associated with the computation.
+        </li>
+        <li>
+          <a href = "chute_fig2.png">chute_fig2.png</a>,
+          the probability density function for the game length.
+        </li>
+        <li>
+          <a href = "chute_fig3.png">chute_fig3.png</a>,
+          the cumulative density function for the game length.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SNAKES</b> is a function which returns the full 101 by 101 
+      transition matrix for the game of Snakes and Ladders.
+      <ul>
+        <li>
+          <a href = "snakes.m">snakes.m</a>,
+          returns the Snakes and Ladders matrix.
+        </li>
+        <li>
+          <a href = "snakes.png">snakes.png</a>,
+          a SPY plot of the matrix.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SNAKES_AND_LADDERS</b> is a program by Mina Ayman which
+      simulates a two-player version of the game, with colorful graphics.
+      <ul>
+        <li>
+          <a href = "snakes_and_ladders.m">snakes_and_ladders.m</a>,
+          the program
+        </li>
+        <li>
+          <a href = "board.jpg">board.jpg</a>,
+          an image of the board, which is needed by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last modified on 19 September 2014
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

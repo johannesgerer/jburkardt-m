@@ -2,7 +2,7 @@ function a = sylvester ( n, nx, x, ny, y )
 
 %*****************************************************************************80
 %
-%% SYLVESTER returns the Sylvester matrix with parameters X and Y.
+%% SYLVESTER returns the SYLVESTER matrix.
 %
 %  Formula:
 %
@@ -93,7 +93,7 @@ function a = sylvester ( n, nx, x, ny, y )
     error ( 'SYLVESTER - Fatal error!' );
   end
 
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : nx + ny
 

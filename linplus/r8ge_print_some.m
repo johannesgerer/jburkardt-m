@@ -76,7 +76,7 @@ function r8ge_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 %
       for j = j2lo : j2hi
 
-        fprintf ( 1, '%12f  ', a(i,j) );
+        fprintf ( 1, '%12g  ', a(i,j) );
 
       end
 
@@ -85,8 +85,6 @@ function r8ge_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

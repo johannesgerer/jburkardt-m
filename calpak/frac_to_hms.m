@@ -10,7 +10,7 @@ function [ h, m, s ] = frac_to_hms ( f )
 %
 %  Modified:
 %
-%    21 June 2001
+%    05 April 2013
 %
 %  Author:
 %
@@ -26,7 +26,7 @@ function [ h, m, s ] = frac_to_hms ( f )
   f2 = f;
 
   f2 = 24.0 * f2;
-  h = floor ( f2 )
+  h = floor ( f2 );
   f2 = f2 - h;
 
   f2 = 60.0 * f2;
@@ -34,7 +34,7 @@ function [ h, m, s ] = frac_to_hms ( f )
   f2 = f2 - m;
 
   f2 = 60.0 * f2;
-  s = floor ( f2 )
+  s = floor ( f2 );
   f2 = f2 - s;
 
   return

@@ -16,7 +16,7 @@ function [ energy, seed ] = cluster_energy ( dim_num, n, cell_generator, ...
 %
 %  Modified:
 %
-%    09 August 2005
+%    10 February 2015
 %
 %  Author:
 %
@@ -54,6 +54,10 @@ function [ energy, seed ] = cluster_energy ( dim_num, n, cell_generator, ...
 %
     [ x, seed ] = region_sampler ( dim_num, 1, sample_num_cvt, ...
      sample_function_cvt, reset, seed );
+%
+%  Ensure that X is a column vector.
+%
+    x = x(:);
 
     reset = 0;
 %

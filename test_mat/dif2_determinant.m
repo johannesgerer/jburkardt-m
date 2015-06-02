@@ -2,7 +2,7 @@ function determ = dif2_determinant ( n )
 
 %*****************************************************************************80
 %
-%% DIF2_DETERMINANT returns the determinant of the second difference matrix.
+%% DIF2_DETERMINANT returns the determinant of the DIF2 matrix.
 %
 %  Licensing:
 %

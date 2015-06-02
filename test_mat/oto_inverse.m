@@ -7,9 +7,9 @@ function a = oto_inverse ( n )
 %  Formula:
 %
 %    if ( I <= J )
-%      A(I,J) = (-1)**(I+J) * I * (N-J+1) / (N+1)
+%      A(I,J) = (-1)^(I+J) * I * (N-J+1) / (N+1)
 %    else
-%      A(I,J) = (-1)**(I+J) * J * (N-I+1) / (N+1)
+%      A(I,J) = (-1)^(I+J) * J * (N-I+1) / (N+1)
 %
 %  Example:
 %
@@ -38,6 +38,8 @@ function a = oto_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( i <= j )

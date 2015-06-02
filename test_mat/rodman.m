@@ -1,8 +1,8 @@
-function a = rodman ( alpha, m, n )
+function a = rodman ( m, n, alpha )
 
 %*****************************************************************************80
 %
-%% RODMAN returns the Rodman matrix.
+%% RODMAN returns the RODMAN matrix.
 %
 %  Formula:
 %
@@ -65,11 +65,13 @@ function a = rodman ( alpha, m, n )
 %        LAMBDA(I) = 1 + ALPHA * ( N - 1 )
 %        V(I) = ( 1, 1, 1, ..., 1 )
 %
-%    det ( A ) = ( 1 - ALPHA )**(N-1) * ( 1 + ALPHA * ( N - 1 ) ).
+%    det ( A ) = ( 1 - ALPHA )^(N-1) * ( 1 + ALPHA * ( N - 1 ) ).
 %
 %    A is nonsingular if ALPHA is not 1, and ALPHA is not -1/(N-1).
 %
 %    The inverse of A is known.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -94,12 +96,14 @@ function a = rodman ( alpha, m, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the scalar that defines A.
-%
 %    Input, integer M, N, the order of A.
+%
+%    Input, real ALPHA, the parameter.
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   a(1:m,1:n) = alpha;
 
   for i = 1 : min ( m, n )

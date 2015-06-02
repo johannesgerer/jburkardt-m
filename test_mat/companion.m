@@ -2,13 +2,13 @@ function a = companion ( n, x )
 
 %*****************************************************************************80
 %
-%% COMPANION returns the companion matrix A for a monic polynomial.
+%% COMPANION returns the COMPANION matrix.
 %
 %  Formula:
 %
 %    Let the monic N-th degree polynomial be defined by
 %
-%      P(t) = t**N + X(N)*t**N-1 + X(N-1)*t**N-1 + ... + X(2)*t + X(1)
+%      P(t) = t^N + X(N)*t^(N-1) + X(N-1)*t^(N-2) + ... + X(2)*t + X(1)
 %
 %    Then
 %
@@ -103,7 +103,7 @@ function a = companion ( n, x )
 
       if ( i == 1 )
         a(i,j) = x(n+1-j);
-      elseif ( i == j+1 )
+      elseif ( i == j + 1 )
         a(i,j) = 1.0;
       else
         a(i,j) = 0.0;

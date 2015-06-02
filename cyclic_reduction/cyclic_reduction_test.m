@@ -2,7 +2,7 @@ function cyclic_reduction_test ( )
 
 %*****************************************************************************80
 %
-%% CYCLIC_REDUCTION_TEST tests CYCLIC_REDUCTION.
+%% CYCLIC_REDUCTION_TEST tests the CYCLIC_REDUCTION library.
 %
 %  Licensing:
 %
@@ -31,7 +31,6 @@ function cyclic_reduction_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CYCLIC_REDUCTION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,11 @@ function templates_test ( )
 
 %*****************************************************************************80
 %
-%% TEMPLATES_TEST tests TEMPLATES.
+%% TEMPLATES_TEST tests the TEMPLATES library.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -38,7 +42,6 @@ function templates_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEMPLATES_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function a = dif1cyclic ( n )
 
 %*****************************************************************************80
 %
-%% DIF1CYCLIC returns the cyclic first difference matrix.
+%% DIF1CYCLIC returns the DIF1CYCLIC matrix.
 %
 %  Example:
 %
@@ -48,7 +48,7 @@ function a = dif1cyclic ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 1 : n
 

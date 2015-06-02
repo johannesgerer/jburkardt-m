@@ -1,5 +1,5 @@
->> hermite_polynomial_test
-08-Mar-2012 09:01:50
+hermite_polynomial_test
+19-Oct-2014 10:21:28
 
 HERMITE_POLYNOMIAL_TEST
   MATLAB version.
@@ -8,7 +8,7 @@ HERMITE_POLYNOMIAL_TEST
 HERMITE_POLYNOMIAL_TEST01:
   H_POLYNOMIAL_VALUES stores values of
   the physicist's Hermite polynomials.
-  H_POLYNOMIAL evaluates the polynomial.
+  H_POLYNOMIAL_VALUE evaluates the polynomial.
 
                         Tabulated                 Computed
      N        X           H(N,X)                    H(N,X)                     Error
@@ -35,7 +35,7 @@ HERMITE_POLYNOMIAL_TEST01:
 HERMITE_POLYNOMIAL_TEST02:
   HE_POLYNOMIAL_VALUES stores values of
   the probabilist's Hermite polynomials.
-  HE_POLYNOMIAL evaluates the polynomial.
+  HE_POLYNOMIAL_VALUE evaluates the polynomial.
 
                         Tabulated                 Computed
      N        X          He(N,X)                   He(N,X)                     Error
@@ -62,7 +62,7 @@ HERMITE_POLYNOMIAL_TEST02:
 HERMITE_POLYNOMIAL_TEST03:
   HF_FUNCTION_VALUES stores values of
   the Hermite function Hf(n,x).
-  HF_FUNCTION evaluates the function.
+  HF_FUNCTION_VALUE evaluates the function.
 
                         Tabulated                 Computed
      N        X          Hf(N,X)                   Hf(N,X)                     Error
@@ -240,11 +240,11 @@ HERMITE_POLYNOMIAL_TEST06:
    E       Q_Estimate      Q_Exact
 
    0         1.77245         1.77245
-   1     4.16767e-16               0
+   1     3.88578e-16               0
    2        0.886227        0.886227
-   3     5.68989e-16               0
+   3     5.55112e-16               0
    4         1.32934         1.32934
-   5     1.69309e-15               0
+   5     1.66533e-15               0
    6         3.32335         3.32335
    7     5.77316e-15               0
    8         11.6317         11.6317
@@ -275,9 +275,9 @@ HERMITE_POLYNOMIAL_TEST07:
    E       Q_Estimate      Q_Exact
 
    0         2.50663         2.50663
-   1     7.78891e-16               0
+   1     7.77156e-16               0
    2         2.50663         2.50663
-   3     2.52576e-15               0
+   3     2.44249e-15               0
    4         7.51988         7.51988
    5     1.15463e-14               0
    6         37.5994         37.5994
@@ -677,31 +677,31 @@ HERMITE_POLYNOMIAL_TEST14
   H_POLYNOMIAL_COEFFICIENTS determines the physicist's Hermite 
   polynomial coefficients.
 
-  H(0)
+  H(0) = 
 
   1.000000
 
-  H(1)
+  H(1) = 
 
   2.000000 * x
 
-  H(2)
+  H(2) = 
 
   4.000000 * x^2
   -2.000000
 
-  H(3)
+  H(3) = 
 
   8.000000 * x^3
   -12.000000 * x
 
-  H(4)
+  H(4) = 
 
   16.000000 * x^4
   -48.000000 * x^2
   12.000000
 
-  H(5)
+  H(5) = 
 
   32.000000 * x^5
   -160.000000 * x^3
@@ -711,51 +711,51 @@ HERMITE_POLYNOMIAL_TEST15
   HE_POLYNOMIAL_COEFFICIENTS determines the probabilist's Hermite 
   polynomial coefficients.
 
-  He(0)
+  He(0) = 
 
   1.000000
 
-  He(1)
+  He(1) = 
 
   1.000000 * x
 
-  He(2)
+  He(2) = 
 
   1.000000 * x^2
   -1.000000
 
-  He(3)
+  He(3) = 
 
   1.000000 * x^3
   -3.000000 * x
 
-  He(4)
+  He(4) = 
 
   1.000000 * x^4
   -6.000000 * x^2
   3.000000
 
-  He(5)
+  He(5) = 
 
   1.000000 * x^5
   -10.000000 * x^3
   15.000000 * x
 
-  He(6)
+  He(6) = 
 
   1.000000 * x^6
   -15.000000 * x^4
   45.000000 * x^2
   -15.000000
 
-  He(7)
+  He(7) = 
 
   1.000000 * x^7
   -21.000000 * x^5
   105.000000 * x^3
   -105.000000 * x
 
-  He(8)
+  He(8) = 
 
   1.000000 * x^8
   -28.000000 * x^6
@@ -763,7 +763,7 @@ HERMITE_POLYNOMIAL_TEST15
   -420.000000 * x^2
   105.000000
 
-  He(9)
+  He(9) = 
 
   1.000000 * x^9
   -36.000000 * x^7
@@ -771,7 +771,7 @@ HERMITE_POLYNOMIAL_TEST15
   -1260.000000 * x^3
   945.000000 * x
 
-  He(10)
+  He(10) = 
 
   1.000000 * x^10
   -45.000000 * x^8
@@ -780,13 +780,103 @@ HERMITE_POLYNOMIAL_TEST15
   4725.000000 * x^2
   -945.000000
 
+HERMITE_POLYNOMIAL_TEST16:
+  As a sanity check, make sure that the projection of
+  He(i,x) is 1 for the i-th component and zero for all others.
+
+  Coefficients for He(0,x)
+
+     1:     1.000000
+     2:    -0.000000
+     3:    -0.000000
+     4:     0.000000
+
+  Coefficients for He(1,x)
+
+     1:    -0.000000
+     2:     1.000000
+     3:     0.000000
+     4:    -0.000000
+
+  Coefficients for He(2,x)
+
+     1:    -0.000000
+     2:     0.000000
+     3:     1.000000
+     4:     0.000000
+
+  Coefficients for He(3,x)
+
+     1:     0.000000
+     2:    -0.000000
+     3:     0.000000
+     4:     1.000000
+
+HERMITE_POLYNOMIAL_TEST17:
+  HEN_PROJECTION is given a function F(x), and computes
+  N+1 coefficients C that define Fhat(x), the projection of F(x)
+  onto the first N+1 normalized Hermite polynomials Hen(i,x).
+
+  It should be the case that the following two integrals are equal
+  for J = 0 to N:
+
+  Q1 = integral ( -oo < x < oo ) f(x)    Hen(j,x) exp(-x*x/2) dx
+  Q2 = integral ( -oo < x < oo ) Fhat(x) Hen(j,x) exp(-x*x/2) dx
+
+   J    Q1        Q2
+
+   0   3.44765   3.44765
+   1   12.9302   12.9302
+   2   31.8525   31.8525
+   3   58.4133   58.4133
+   4   81.9528   81.9528
+   5   85.2086   85.2086
+   6   55.6515   55.6515
+
+HERMITE_POLYNOMIAL_TEST18:
+  HEN_PROJECTION_DATA is given M data points (x,fx)
+  and uses least squares to derive projection coefficients
+  onto the first N+1 normalized Hermite polynomials Hen(0:n,x).
+
+  Hen(0:5) projection coefficients for 21 exp(x) data values
+
+     1:     3.503179
+     2:     2.931118
+     3:     0.835705
+     4:     0.774247
+     5:     0.997101
+     6:     0.378926
+
+  Hen(0:5) projection coefficients for 6 exp(x) data values
+
+     1:     2.831387
+     2:     2.539733
+     3:     1.287486
+     4:     1.049074
+     5:     0.951211
+     6:     0.323978
+
+  Hen(0:5) projection coefficients for exp(x) function
+
+     1:     2.610308
+     2:     2.610273
+     3:     1.845463
+     4:     1.063813
+     5:     0.524142
+     6:     0.205702
+
 HERMITE_POLYNOMIAL_PLOT01:
   HF_PLOT creates a plot of one or more Hermite functions.
 
   Hermite function plot stored in file "hf_plot.png".
 
+HERMITE_POLYNOMIAL_PLOT02:
+  HE_PLOT creates a plot of one or more Hermite polynomials.
+
+  Hermite polynomial plot stored in file "he_plot.png".
+
 HERMITE_POLYNOMIAL_TEST
   Normal end of execution.
 
-08-Mar-2012 09:01:52
->> 
+19-Oct-2014 10:21:36
+diary off

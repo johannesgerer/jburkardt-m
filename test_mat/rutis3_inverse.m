@@ -29,6 +29,10 @@ function a = rutis3_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:4,1:4) = [ ...
      103.0,  125.0,   -5.0,  79.0; ...
        5.0,  103.0,  -79.0, 125.0; ...

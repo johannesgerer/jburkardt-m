@@ -14,7 +14,7 @@ function s = ymdf_to_s_julian ( y, m, d, f )
 %
 %  Modified:
 %
-%    19 June 2012
+%    13 March 2013
 %
 %  Author:
 %
@@ -26,41 +26,11 @@ function s = ymdf_to_s_julian ( y, m, d, f )
 %
 %    Output, string S, a representation of the date.
 %
-
-%
-%  Copy the input.
-%
-  y2 = y;
-  m2 = m;
-  d2 = d;
-%
-%  Check the input.
-%
-  [ y2, m2, d2, ierror ] = ymd_check_julian ( y2, m2, d2 );
-
-  if ( ierror ~= 0 )
-    s = '?';
-    return
-  end
-
-  if ( 0 <= y2 )
-    s = 'AD ';
-    s1 = sprintf ( '%d', y2 );
+  if ( y < 0 )
+    s = sprintf ( 'BC %d/%02d/%05.2f', -y, m, d + f );
   else
-    s = 'BC ';
-    s1 = sprintf ( '%d', - y2 );
+    s = sprintf ( 'AD %d/%02d/%05.2f', y, m, d + f );
   end
-
-  s = [ s, s1 ];
-
-  s1 = sprintf ( '/%d', m2 );
-  s = [ s, s1 ];
-
-  s1 = sprintf ( '/%d', d2 );
-  s = [ s, s1 ];
-
-  s1 = sprintf ( '%2.2f', f );
-  s = [ s, s1(2:end) ];
 
   return
 end

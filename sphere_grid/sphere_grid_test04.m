@@ -1,8 +1,8 @@
-function test04 ( )
+function sphere_grid_test04 ( )
 
 %*****************************************************************************80
 %
-%% TEST04 tests SPHERE_LL_POINTS.
+%% SPHERE_GRID_TEST04 tests SPHERE_LL_POINTS.
 %
 %  Licensing:
 %
@@ -23,7 +23,7 @@ function test04 ( )
   r = 10.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST04\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST04\n' );
   fprintf ( 1, '  SPHERE_LL_POINTS produces latitude/longitude\n' );
   fprintf ( 1, '  points on a sphere in 3D.\n' );
 

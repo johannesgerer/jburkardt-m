@@ -1,4 +1,4 @@
-function quad = triangulation_quad ( prefix )
+function [ quad, area_sum ] = triangulation_quad ( prefix )
 
 %*****************************************************************************80
 %
@@ -12,7 +12,7 @@ function quad = triangulation_quad ( prefix )
 %
 %  Usage:
 %
-%    quad = triangulation_quad ( 'prefix' )
+%    [ quad, area_sum ] = triangulation_quad ( 'prefix' )
 %
 %    where
 %
@@ -23,13 +23,15 @@ function quad = triangulation_quad ( prefix )
 %    quad will be a scalar or vector of numbers, containing the estimates
 %    for the integral of each component of the function over the triangulation.
 %
+%    area_sum is the area of the triangulated region.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    14 October 2009
+%    20 December 2012
 %
 %  Author:
 %
@@ -41,6 +43,8 @@ function quad = triangulation_quad ( prefix )
 %
 %    Output, real QUAD(*), the estimate for the integrals of each of the
 %    components of the function over the triangulation.
+%
+%    Output, real AREA_SUM, the total area of the triangulation.
 %
 %  Local parameters:
 %
@@ -208,6 +212,8 @@ function quad = triangulation_quad ( prefix )
     ( value(1:value_dim,element_node(1,1:element_num)) ...
     + value(1:value_dim,element_node(2,1:element_num)) ...
     + value(1:value_dim,element_node(3,1:element_num)) ) * area(1:element_num,1) / 3.0;
+
+  area_sum = sum ( area(1:element_num,1) );
 %
 %  Terminate.
 %

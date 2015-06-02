@@ -2,7 +2,7 @@ function niederreiter2_test ( )
 
 %*****************************************************************************80
 %
-%% NIEDERREITER2_TEST tests the NIEDERREITER2 routines.
+%% NIEDERREITER2_TEST tests the NIEDERREITER2 library.
 %
 %  Licensing:
 %
@@ -33,7 +33,6 @@ function niederreiter2_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NIEDERREITER2_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

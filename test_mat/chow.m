@@ -2,7 +2,7 @@ function a = chow ( alpha, beta, m, n )
 
 %*****************************************************************************80
 %
-%% CHOW returns the Chow matrix.
+%% CHOW returns the CHOW matrix.
 %
 %  Discussion:
 %
@@ -15,7 +15,7 @@ function a = chow ( alpha, beta, m, n )
 %    if ( I = J )
 %      A(I,J) = ALPHA + BETA
 %    else if ( J <= I+1 ) then
-%      A(I,J) = ALPHA**(I+1-J)
+%      A(I,J) = ALPHA^(I+1-J)
 %    else
 %      A(I,J) = 0
 %
@@ -32,10 +32,10 @@ function a = chow ( alpha, beta, m, n )
 %    ALPHA = ALPHA, BETA = BETA, M = 5, N = 5
 %
 %    ALPHA+BETA 1          0          0          0
-%    ALPHA**2   ALPHA+BETA 1          0          0
-%    ALPHA**3   ALPHA**2   ALPHA+BETA 1          0
-%    ALPHA**4   ALPHA**3   ALPHA**2   ALPHA+BETA 1
-%    ALPHA**5   ALPHA**4   ALPHA**3   ALPHA**2   ALPHA+BETA
+%    ALPHA^2    ALPHA+BETA 1          0          0
+%    ALPHA^3    ALPHA^2    ALPHA+BETA 1          0
+%    ALPHA^4    ALPHA^3    ALPHA^2    ALPHA+BETA 1
+%    ALPHA^5    ALPHA^4    ALPHA^3    ALPHA^2    ALPHA+BETA
 %
 %  Rectangular Properties:
 %
@@ -57,11 +57,13 @@ function a = chow ( alpha, beta, m, n )
 %
 %    For 1 <= I < N-(N+1)/2,
 %
-%      LAMBDA(I) = BETA + 4 * ALPHA * cos ( i * pi / ( N+2 ) )**2,
+%      LAMBDA(I) = BETA + 4 * ALPHA * cos ( i * pi / ( N+2 ) )^2,
 %
 %    For N-(N+1)/2+1 <= I <= N
 %
 %      LAMBDA(I) = BETA
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -97,6 +99,8 @@ function a = chow ( alpha, beta, m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

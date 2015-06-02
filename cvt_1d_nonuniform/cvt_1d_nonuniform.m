@@ -47,10 +47,10 @@ function cvt_1d_nonuniform ( )
 %    Input, integer SEED, a seed for the random number generator.
 %
   m = 1;
-  n = 10;
+  n = 35;
   density_function = 5;
   sample_function_init = 0;
-  sample_num_cvt = 10000;
+  sample_num_cvt = 100000;
   sample_num_steps = 100;
   seed = 123456789;
 
@@ -168,15 +168,16 @@ function cvt_1d_nonuniform ( )
   clf;
 
   for k = 1 : n
-    plot ( x(k,1:sample_num_steps+1), y )
+    plot ( x(k,1:sample_num_steps+1), y, 'LineWidth', 3 )
     hold on;
   end
+  grid on
 
   hold off;
 
-  title ( 'Evolution of generator locations during iteration.' );
-  xlabel ( 'Generator positions' );
-  ylabel ( 'Iterations' ); 
+  title ( 'Evolution of generator locations during iteration.', 'FontSize', 16 );
+  xlabel ( 'Generator positions', 'FontSize', 16 );
+  ylabel ( 'Iterations', 'FontSize', 16 ); 
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CVT_1D_NONUNIFORM\n' );

@@ -37,15 +37,9 @@ function int_exactness ( quad_filename, degree_max )
 %
 %  Get the quadrature file root name:
 %
-  if ( 1 <= nargin )
-
-  else
-
+  if ( nargin < 1 )
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'INT_EXACTNESS:\n' );
-
-    quad_filename = input ( '  Enter the "root" name of the quadrature files.' );
-
+    fprintf ( 1, '  Enter the "root" name of the quadrature files, in quotes:  ' );
   end
 %
 %  Create the names of:
@@ -59,15 +53,11 @@ function int_exactness ( quad_filename, degree_max )
 %
 %  The second command line argument is the maximum degree.
 %
-  if ( 2 <= nargin )
-
-  else
-
+  if ( nargin < 2 )
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'INT_EXACTNESS:\n' );
-
-    degree_max = input ( '  Please enter the maximum degree to check.' );
-
+    fprintf ( 1, '  Enter the maximum degree to check:  ' );
+  elseif ( ischar ( degree_max ) )
+    degree_max = str2num ( degree_max );
   end
 %
 %  Summarize the input.
@@ -213,7 +203,9 @@ function int_exactness ( quad_filename, degree_max )
     end
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INT_EXACTNESS:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

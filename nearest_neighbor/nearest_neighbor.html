@@ -1,0 +1,215 @@
+<html>
+
+  <head>
+    <title>
+      NEAREST_NEIGHBOR - Nearest Neighbor from a Set of Points
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NEAREST_NEIGHBOR <br> Nearest Neighbor from a Set of Points
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NEAREST_NEIGHBOR</b>
+      is a MATLAB function which
+      works in a given M-dimensional space, seeking, for each point
+      in a set S, the nearest point in a set R,
+      by Richard Brown.
+    </p>
+
+    <p>
+      In a nearest neighbor calculation, we are given:
+      <p>
+        <li>
+          R, a set of NR points in M dimensions.
+        </li>
+        <li>
+          S, a set of NS points in M dimensions.
+        </li>
+        <li>
+          D(x,y), a norm for measuring distances between points in M dimensions.
+        </li>
+      </p>
+      and we are asked to compute, for each point S(JS),
+      <ul>
+        <li>
+          JR = NEAREST(JS), the index of the point in R for which
+          the distance D(S(JS),R(JR)) is minimized.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Obviously, one method to determine the values in NEAREST is simply to
+      compute every distance and take the index of the minimum.  But even
+      this simple idea can be implemented in many ways in MATLAB, and 
+      implementations will vary in their cost in memory and time.
+    </p>
+
+    <p>
+      Also, note that if the dimension M is small, and if the size of the
+      R set is small relative to that of S, it may be much cheaper to
+      compute the Delaunay triangulation of R (or its higher-dimensional
+      generalization).  Computing the triangulation is somewhat expensive,
+      but makes the search procedure extremely quick.
+    </p>
+
+    <p>
+      Richard Brown's function tries to use MATLAB's Delaunay search algorithm
+      when it seems preferable, and otherwise computes the nearest neighbor
+      by the straightforward approach.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <pre>
+Copyright (c) 2009, Richard Brown
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are 
+met:
+
+    * Redistributions of source code must retain the above copyright 
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright 
+      notice, this list of conditions and the following disclaimer in 
+      the documentation and/or other materials provided with the distribution
+      
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
+    </pre>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NEAREST_NEIGHBOR</b> is available in
+      <a href = "../../m_src/nearest_neighbor/nearest_neighbor.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cvt/cvt.html">
+      CVT</a>,
+      a MATLAB library which
+      computes elements of a Centroidal Voronoi Tessellation (CVT).
+    </p>
+
+    <p>
+      <a href = "../../m_src/nearest_interp_1d/nearest_interp_1d.html">
+      NEAREST_INTERP_1D</a>,
+      a MATLAB library which
+      interpolates a set of data using a piecewise constant interpolant
+      defined by the nearest neighbor criterion.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_nearest/test_nearest.html">
+      TEST_NEAREST</a>,
+      a MATLAB program which
+      tests the time complexity of various procedures for solving the
+      nearest neighbor problem.
+    </p>
+
+    <h3 align = "center">
+      References:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Sunil Arya, David Mount, Nathan Netanyahu, Ruth Silverman,
+          Angela Wu,<br>
+          An Optimal Algorithm for Approximate Nearest Neighbor Searching
+          in Fixed Dimensions,<br>
+          Journal of the ACM,<br>
+          Volume 45, Number 6, November 1998, pages 891-923.
+        </li>
+        <li>
+          Jon Bentley, Bruce Weide, Andrew Yao,<br>
+          Optimal Expected Time Algorithms for Closest Point Problems,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 6, Number 4, December 1980, pages 563-580.
+        </li>
+        <li>
+          Marc deBerg, Marc Krevald, Mark Overmars,
+          Otfried Schwarzkopf,<br>
+          Computational Geometry,<br>
+          Springer, 2000,<br>
+          ISBN: 3-540-65620-0,<br>
+          LC: QA448.D38.C65.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nearest_neighbor.m">nearest_neighbor.m</a>,
+          a function for the nearest neighbor calculation.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nndemo.m">nndemo.m</a>,
+          runs all the tests;
+        </li>
+        <li>
+          <a href = "nndemo_output.txt">nndemo_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "timingtest.m">timingtest.m</a>,
+          a timing test called by nndemo.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 December 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

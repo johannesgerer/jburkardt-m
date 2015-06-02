@@ -82,7 +82,7 @@ function mxy = mountain ( n, x, y )
   b = n - floor ( ( x + y ) / 2 );
   c = n - 1 - floor ( ( x + y ) / 2 );
 
-  mxy = binomial ( a, b ) - binomial ( a, c );
+  mxy = i4_choose ( a, b ) - i4_choose ( a, c );
 
   return
 end

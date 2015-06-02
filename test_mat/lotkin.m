@@ -2,7 +2,7 @@ function a = lotkin ( m, n )
 
 %*****************************************************************************80
 %
-%% LOTKIN returns the Lotkin matrix.
+%% LOTKIN returns the LOTKIN matrix.
 %
 %  Formula:
 %
@@ -36,18 +36,20 @@ function a = lotkin ( m, n )
 %    For N = 6, the eigenvalues are:
 %       2.132376,
 %      -0.2214068,
-%      -0.3184330 D-1,
-%      -0.8983233 D-3,
-%      -0.1706278 D-4,
-%      -0.1394499 D-6.
+%      -0.3184330E-01,
+%      -0.8983233E-03,
+%      -0.1706278E-04,
+%      -0.1394499E-06.
 %
-%    det ( A(N) ) = ( -1 )**(N-1) / DELTA(N)
+%    det ( A(N) ) = ( -1 )^(N-1) / DELTA(N)
 %
 %    where
 %
 %      DELTA(N) = COMB ( 2*N-2, N-2 ) * COMB ( 2*N-2, N-1 )
 %        * ( 2*N-1) * DELTA(N-1),
 %      DELTA(1) = 1.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -87,6 +89,8 @@ function a = lotkin ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

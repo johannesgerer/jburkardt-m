@@ -1,4 +1,4 @@
-function x = poisson_solution ( nrow, ncol, n, rhs_num )
+function x = poisson_solution ( nrow, ncol, rhs_num )
 
 %*****************************************************************************80
 %
@@ -34,7 +34,7 @@ function x = poisson_solution ( nrow, ncol, n, rhs_num )
 %
 %  Modified:
 %
-%    25 September 2008
+%    05 March 2015
 %
 %  Author:
 %
@@ -52,12 +52,12 @@ function x = poisson_solution ( nrow, ncol, n, rhs_num )
 %    Input, integer NROW, NCOL, the number of rows and columns
 %    in the grid.
 %
-%    Input, integer N, the order of the matrix.
-%
 %    Input, integer RHS_NUM, the number of right hand sides.
 %
-%    Output, real X(N,RHS_NUM), the solution.
+%    Output, real X(NROW*NCOL,RHS_NUM), the solution.
 %
+  n = nrow * ncol;
+
   x = zeros ( n, rhs_num );
 
   k = 0;

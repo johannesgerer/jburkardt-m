@@ -2,7 +2,7 @@ function a_cum = i4vec_cum ( n, a )
 
 %*****************************************************************************80
 %
-%% I4VEC_CUM computes the cumulutive sum of the entries of an I4VEC.
+%% I4VEC_CUM computes the cumulative sum of the entries of an I4VEC.
 %
 %  Discussion:
 %

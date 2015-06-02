@@ -8,8 +8,8 @@ function [ r, seed ] = r8_uniform_01 ( seed )
 %
 %    This routine implements the recursion
 %
-%      seed = 16807 * seed mod ( 2**31 - 1 )
-%      r8_uniform_01 = seed / ( 2**31 - 1 )
+%      seed = 16807 * seed mod ( 2^31 - 1 )
+%      r8_uniform_01 = seed / ( 2^31 - 1 )
 %
 %    The integer arithmetic never requires more than 32 bits,
 %    including a sign bit.

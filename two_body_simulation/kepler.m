@@ -21,7 +21,7 @@ function up = kepler ( t, u )
 %
 %  Modified:
 %
-%    04 November
+%    04 November 2012
 %
 %  Parameters:
 %

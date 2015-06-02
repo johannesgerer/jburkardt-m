@@ -2,7 +2,7 @@ function a = dif2_inverse ( n )
 
 %*****************************************************************************80
 %
-%% DIF2_INVERSE returns the inverse of the second difference matrix.
+%% DIF2_INVERSE returns the inverse of the DIF2 matrix.
 %
 %  Formula:
 %
@@ -50,6 +50,8 @@ function a = dif2_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( i <= j )

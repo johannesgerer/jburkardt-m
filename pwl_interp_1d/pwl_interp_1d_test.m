@@ -2,7 +2,7 @@ function pwl_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% PWL_INTERP_1D_TEST tests PWL_INTERP_1D.
+%% PWL_INTERP_1D_TEST tests the PWL_INTERP_1D library.
 %
 %  Licensing:
 %

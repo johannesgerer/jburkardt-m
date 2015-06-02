@@ -2,7 +2,7 @@ function filum_test ( )
 
 %*****************************************************************************80
 %
-%% FILUM_TEST tests FILUM.
+%% FILUM_TEST tests the FILUM library.
 %
 %  Licensing:
 %
@@ -42,7 +42,6 @@ function filum_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FILUM_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

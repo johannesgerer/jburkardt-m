@@ -29,7 +29,7 @@ function [ a, seed ] = sub_random ( n, seed )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, Herbert Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -47,8 +47,13 @@ function [ a, seed ] = sub_random ( n, seed )
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %
+  a = zeros ( n, 1 );
+
+  i4_lo = 0;
+  i4_hi = 1;
+
   for i = 1 : n
-    [ a(i), seed ] = i4_uniform ( 0, 1, seed );
+    [ a(i), seed ] = i4_uniform_ab ( i4_lo, i4_hi, seed );
   end
 
   return

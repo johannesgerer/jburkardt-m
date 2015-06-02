@@ -20,12 +20,14 @@ function lambda = invol_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   k = floor ( n / 2 );
 
-  lambda(1:k) =   +1.0;
-  lambda(k+1:n) = -1.0;
+  lambda(1:k,1) =   +1.0;
+  lambda(k+1:n,1) = -1.0;
 
   return
 end

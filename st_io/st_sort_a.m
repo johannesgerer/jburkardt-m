@@ -1,4 +1,4 @@
-function [ row, col, a ] = st_sort_a ( nrow, ncol, nnzero, row, col, a )
+function [ ist, jst, ast ] = st_sort_a ( m, n, nst, ist, jst, ast )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function [ row, col, a ] = st_sort_a ( nrow, ncol, nnzero, row, col, a )
 %
 %  Modified:
 %
-%    29 November 2008
+%    23 July 2014
 %
 %  Author:
 %
@@ -18,19 +18,15 @@ function [ row, col, a ] = st_sort_a ( nrow, ncol, nnzero, row, col, a )
 %
 %  Parameters:
 %
-%    Input, integer NROW, the number of rows in the matrix.
+%    Input, integer M, the number of rows.
 %
-%    Input, integer NCOL, the number of columns in the matrix.
+%    Input, integer N, the number of columns.
 %
-%    Input, integer NNZERO, the number of nonzeros in the matrix.
+%    Input, integer NST, the number of nonzeros.
 %
-%    Input, integer ROW(NNZERO), COL(NNZERO), the row and column indices.
+%    Input/output, integer IST(NST), JST(NST), the row and column indices.
 %
-%    Input, real  A(NNZERO), the matrix entries.
-%
-%    Output, integer ( kind = 4 ) ROW(NNZERO), COL(NNZERO), the sorted indices.
-%
-%    Output, real A(NNZERO), the sorted entries.
+%    Input/output, real AST(NST), the nonzero matrix values.
 %
 
 %
@@ -45,43 +41,43 @@ function [ row, col, a ] = st_sort_a ( nrow, ncol, nnzero, row, col, a )
 %
   while ( 1 )
 
-    [ indx, i, j ] = sort_heap_external ( nnzero, indx, isgn );
+    [ indx, i, j ] = sort_heap_external ( nst, indx, isgn );
 %
 %  Interchange the I and J objects.
 %
     if ( 0 < indx )
 
-      rij    = row(i);
-      row(i) = row(j);
-      row(j) = rij;
+      rij    = ist(i);
+      ist(i) = ist(j);
+      ist(j) = rij;
 
-      cij    = col(i);
-      col(i) = col(j);
-      col(j) = cij;
+      cij    = jst(i);
+      jst(i) = jst(j);
+      jst(j) = cij;
 
-      aij  = a(i);
-      a(i) = a(j);
-      a(j) = aij;
+      aij    = ast(i);
+      ast(i) = ast(j);
+      ast(j) = aij;
 %
 %  Compare the I and J objects.
 %
     elseif ( indx < 0 )
 
-      if ( col(i) == col(j) )
+      if ( jst(i) == jst(j) )
 
-        if ( row(i) < row(j) )
+        if ( ist(i) < ist(j) )
           isgn = - 1;
-        elseif ( row(i) == row(j) )
+        elseif ( ist(i) == ist(j) )
           isgn = 0;
-        elseif ( row(j) < row(i) )
+        elseif ( ist(j) < ist(i) )
           isgn = + 1;
         end
 
-      elseif ( col(i) < col(j) )
+      elseif ( jst(i) < jst(j) )
 
         isgn = - 1;
 
-      elseif ( col(j) < col(i) )
+      elseif ( jst(j) < jst(i) )
 
         isgn = + 1;
 

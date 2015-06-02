@@ -1,0 +1,382 @@
+<html>
+
+  <head>
+    <title>
+      MATLAB_COMPILER - Creating Standalone Executables from MATLAB Programs
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MATLAB_COMPILER <br> Creating Standalone Executables from MATLAB Programs
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MATLAB_COMPILER</b>
+      is a directory of MATLAB programs which
+      illustrate the use of the MATLAB compiler, which allows you
+      to create a compiled version of a MATLAB application which
+      can then be run outside the MATLAB environment.
+    </p>
+
+    <p>
+      The compiled program can be used on another computer or by another
+      user, who need not have a licensed copy of MATLAB.  As long as
+      the compiled program can be linked with the Matlab Compiler Runtime (MCR)
+      library, it can be executed.  Thus, before compiling a user program,
+      one must first make sure that the MCR is available on the target
+      computer where the executable is to be run.
+    </p>
+ 
+    <p>
+      One unexpected use for the MATLAB compiler is on computer clusters,
+      where a user program will be executed on an arbitrary node.  This
+      node might not have access to the MATLAB license server, and thus,
+      ordinarily, a MATLAB program could not run there.  However, it is
+      a relatively simple matter to make the MCR available to any node,
+      and thus a MATLAB program can be compiled on the front end or
+      interactive area of the computer cluster, using a licensed copy
+      of MATLAB; the compiled executable can then be submitted to a
+      batch queue for execution on a remote node with MCR.
+    </p>
+
+    <p>
+      Before the first time you want to use the compiler, you
+      must run a setup command that allows MATLAB to select the
+      options appropriate for the given version of MATLAB and the
+      system where compilation is being carried out.  To do this,
+      start MATLAB, and issue the command:
+      <pre>
+        mbuild -setup
+      </pre>
+      You may have to respond to one or two questions before the
+      setup is completed.
+    </p>
+
+    <h3 align = "center">
+      Creating an Executable:
+    </h3>
+
+    <p>
+      To create the executable, you start up MATLAB, and then type
+      <pre>
+        deploytool
+      </pre>
+      which opens up a little GUI with two tabs, NEW and OPEN. 
+      Since we're creating something, we want to work on the NEW tab,
+      which is probably already visible.  On the NEW tab, there
+      are three items, NAME, LOCATION, and TYPE.  In the NAME field,
+      you can enter a name to give your application; let's say we name it
+      "magicsquare".  Under TYPE, you probably want to choose
+      "Standalone application", which is probably the default choice anyway.
+      Clicking OK finishes this part of the process.
+    </p>
+
+    <p>
+      You should now see your MATLAB window includes a work area
+      titled "Standalone Application".  There should be a tab called
+      BUILD, with an item called "(Add main file)".  Click on this,
+      to get a window that allows you to select the file that is to
+      act as the main program for your application.  (Let's say our
+      main file is called "magicsquare.m").  If this main
+      program calls other M-files that you have written, and they
+      are in the MATLAB path, they will be included automatically
+      at compile time.  So in the simplest case, once you have identified
+      the main program, we are almost done.
+    </p>
+
+    <p>
+      To cause the compilation to occur, you must click on the
+      build icon, which is NOT visible as a word, but rather as 
+      a tiny icon near the upper right corner of the Standalone
+      Application window.  I thought it looked like a little birthday
+      cake with candles...Click on this, and the compilation will
+      begin.
+    </p>
+
+    <p>
+      Once the compilation is completed, you will discover that a
+      directory has been created, perhaps called "magicsquare".
+      If we want to execute the compiled program, we will need to
+      look at this directory.
+    </p>
+
+    <h3 align = "center">
+      Running an Executable:
+    </h3>
+
+    <p>
+      Compiling your MATLAB application created a directory,
+      whose name was specified by you.
+      Inside this directory are two subdirectories, "src" and "distrib".
+      The "distrib" directory contains the compiled information you
+      can execute on another computer, or that you can send to a friend
+      or colleague who does not have a copy of MATLAB.
+    </p>
+
+    <p>
+      In the distrib directory for "magicsquare", I found three items:
+      <ul>
+        <li>
+          readme.txt, some complicated instructions;
+        </li>
+        <li>
+          magic_example, the (almost) executable program.
+        </li>
+        <li>
+          run_magic_example.sh, a shell script which can
+          run the executable program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The executable file is "almost" executable because it cannot
+      run without some extra information; in particular, it needs
+      to know the directory containing the MATLAB Compiler Runtime library
+      (MCR).  On my system, all the MATLAB information is stored in
+      the directory /usr/local/matlab.  The shell script can be used
+      to run the executable file, feeding it the information about
+      the directory, as well as any necessary commandline arguments.
+      For instance, the magicsquare example can be run by:
+      <pre>
+        ./run_magic_example.sh /usr/local/matlab 5
+      </pre>
+      Here, the "5" is the commandline input to the function that
+      tells it the size of the desired magic square.
+    </p>
+
+    <h3 align = "center">
+      What Was the Point?
+    </h3>
+
+    <p>
+      Now, I could have printed out a magic square hours ago by calling
+      MATLAB's magic function directly.  Or I could have run my
+      magicsquare.m function.  What have I gained by creating this
+      almost executable file?
+    </p>
+
+    <p>
+      Suppose my laptop at home does not have a copy of MATLAB installed.
+      I can take my almost executable file, and the shell script home.
+      I can then run my MATLAB program there ... without MATLAB!  
+      Now actually, before I do that, I have to make sure I've installed
+      the MCR on my home laptop, but that can be freely downloaded 
+      from the Mathworks website, perhaps at
+      <a href = "http://www.mathworks.com/products/compiler/mcr/">
+                 http://www.mathworks.com/products/compiler/mcr/</a>. 
+      When I run my shell script on my laptop, I must again note
+      where the MCR is on this machine, which might be /usr/local/matlab
+      again, or perhaps some other directory.
+    </p>
+
+    <p>
+      But now suppose I have a colleague in another country, who
+      uses a different kind of computer, and doesn't have MATLAB.
+      I can send that colleague, by email, my compiled file,
+      and if she can install the MCR, she can run my program.
+    </p>
+
+    <p>
+      Finally, note that many people have access to a computer cluster.
+      The computer cluster may have a front end where people are encouraged
+      to edit, compile and work interactively, and many back end or 
+      remote nodes, where only computation takes place.  For various
+      reasons, it is possible that MATLAB will be installed on the front
+      end, but not on the remote nodes.  For instance, the remote nodes
+      may not be able to communicate with the MATLAB license server;
+      or MATLAB may not be licensed to run on the remote nodes.
+    </p>
+
+    <p>
+      That means that you can't create a batch job for a remote node
+      to execute a MATLAB function for you, whose "interesting" line
+      might be
+      <pre>
+        /usr/local/matlab < my_prog.m > my_output.txt
+      </pre>
+    </p>
+
+    <p>
+      Again, the MATLAB compiler comes to the rescue.  Assuming that
+      your system administrator will install the MCR on the remote nodes,
+      which does not require a license payment or contact with the
+      license server, then you can run your executable on the remote node
+      with a command something like what we saw earlier:
+      <pre>
+        ./run_magic_example.sh /usr/local/matlab 5
+      </pre>
+      where /usr/local/matlab may need to be changed to wherever
+      the MCR has been installed on the remote node.
+    </p>
+
+    <p>
+      By the way, another possible advantage to using the MATLAB compiler
+      is that your program will no longer incur the interactive overhead
+      involved with the MATLAB interpreter; it is possible, then, that
+      the compiled program will run with an efficiency similar to programs
+      compiled in C or FORTRAN, if the interactive version of the program
+      was slowed down by a lot of overhead expense.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/matlab_commandline/matlab_commandline.html">
+      MATLAB_COMMANDLINE</a>,
+      MATLAB programs which
+      illustrate how MATLAB can be run from the UNIX command line, that is,
+      not with the usual MATLAB command window.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_condor/matlab_condor.html">
+      MATLAB_CONDOR</a>,
+      MATLAB programs which
+      illustrate how MATLAB can be run in batch mode using the condor
+      queueing system.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_distcomp/matlab_distcomp.html">
+      MATLAB_DISTCOMP</a>,
+      a MATLAB program which
+      remotely runs a set of 5 jobs on the Ithaca cluster.
+    </p>
+
+    <p>
+      <a href = "../../m_src/matlab_remote/matlab_remote.html">
+      MATLAB_REMOTE</a>,
+      MATLAB programs which
+      illustrate the use of remote job execution, in which a desktop copy of
+      MATLAB sends programs and data to a remote machine for execution.
+      Included is information needed to properly configure the local machine.
+    </p>
+
+    <p>
+      <a href = "../../examples/moab/moab.html">
+      MOAB</a>,
+      examples which
+      illustrate the use of the MOAB job scheduler for batch execution
+      of jobs on a computer cluster.
+    </p>
+
+    <p>
+      <a href = "../../examples/sge/sge.html">
+      SGE</a>,
+      examples which
+      illustrate the use of the Sun Grid Engine (SGE), 
+      a job queueing system whose input is a modified form of
+      shell scripts in the BASH shell, C shell, and so on.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          The Mathworks,<br>
+          MATLAB Compiler User's Guide, R2013a.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>MAGICSQUARE</b> is a tiny example of a function that can 
+      be compiled.  It expects as input from the user the size N of
+      a magic square, calls MATLAB's magic() function, and returns
+      the magic square as an output argument.  However, when I ran
+      this example, I didn't see the magic square, because the function
+      doesn't print it, and I don't know how to "capture" the function's
+      output.  So this was a very unsatisfactory example.
+      <ul>
+        <li>
+          <a href = "magicsquare.m">magicsquare.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "magicsquare_output.txt">magicsquare_output.txt</a>,
+          output from running the executable program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MAGICSQUARE_PRINT</b> repeats the previous example, but
+      doesn't bother returning a function value (which I don't know
+      how to retrieve or work with).  Instead, I let MATLAB print
+      the matrix by default (by removing a semicolon from the previous
+      function) and then added some explicit printout statements
+      with fprintf(), and luckily, the matrix actually showed up twice
+      as output.
+      <ul>
+        <li>
+          <a href = "magicsquare_print.m">magicsquare_print.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "magicsquare_print_output.txt">magicsquare_print_output.txt</a>,
+          output from running the executable program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>MAGIC3</b> repeats the previous example, but includes a call to
+      a user-written M-file called "timestamp()", which simply prints out
+      the data.  I wanted to know that the compiler can handle a program
+      that is provided in "pieces".
+      <ul>
+        <li>
+          <a href = "magic3.m">magic3.m</a>,
+          the source code.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "magic3_output.txt">magic3_output.txt</a>,
+          output from running the executable program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 22 April 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

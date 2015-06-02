@@ -1,4 +1,4 @@
-function [ a, seed ] = propa_yes_random ( prob, n, seed )
+function a = propa_yes_random ( prob, n, key )
 
 %*****************************************************************************80
 %
@@ -23,19 +23,16 @@ function [ a, seed ] = propa_yes_random ( prob, n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
-%    Output, integer SEED, a seed for the random 
-%    number generator.
-%
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 %
 %  Assign each index randomly to one of two sets.
 %  SET(I) is 0 if I is in set 0, and 1 if it is in set 1.
 %
+  seed = key;
   [ set, seed ] = sub_random ( n, seed );
 
   for i = 1 : n

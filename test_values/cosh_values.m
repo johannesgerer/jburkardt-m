@@ -90,7 +90,6 @@ function [ n_data, x, fx ] = cosh_values ( n_data )
     5.0, ...
    10.0 ];
 
-
   if ( n_data < 0 )
     n_data = 0;
   end

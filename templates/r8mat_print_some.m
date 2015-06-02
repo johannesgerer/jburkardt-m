@@ -1,5 +1,7 @@
 function r8mat_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 
+%*****************************************************************************80
+%
 %% R8MAT_PRINT_SOME prints out a portion of an R8MAT.
 %
 %  Licensing:

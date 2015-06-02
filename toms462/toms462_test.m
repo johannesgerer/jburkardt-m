@@ -2,7 +2,7 @@ function toms462_test ( )
 
 %*****************************************************************************80
 %
-%% TOMS462_TEST tests TOMS462.
+%% TOMS462_TEST tests the TOMS462 library.
 %
 %  Licensing:
 %
@@ -30,7 +30,6 @@ function toms462_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TOMS462_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

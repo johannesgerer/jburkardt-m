@@ -2,7 +2,7 @@ function determ = downshift_determinant ( n )
 
 %*****************************************************************************80
 %
-%% DOWNSHIFT_DETERMINANT returns the determinant of the downshift matrix.
+%% DOWNSHIFT_DETERMINANT returns the determinant of the DOWNSHIFT matrix.
 %
 %  Licensing:
 %

@@ -25,7 +25,7 @@ function cell_test01 ( )
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CELL_TEST01\n' );
-  fprintf ( 1, '  Use a cell array (vector of vectors) to store rows 3:7\n' );
+  fprintf ( 1, '  Use a real cell array (vector of vectors) to store rows 3:7\n' );
   fprintf ( 1, '  of Pascal''s triangle.\n' );
 
   i4vec_print ( m, nr, '  The row sizes:' );

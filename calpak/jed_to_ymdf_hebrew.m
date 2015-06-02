@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_hebrew ( jed )
 %
 %  Modified:
 %
-%    10 July 2012
+%    07 March 2013
 %
 %  Author:
 %
@@ -35,7 +35,7 @@ function [ y, m, d, f ] = jed_to_ymdf_hebrew ( jed )
 
   type = year_to_type_hebrew ( y1 );
 
-  j1 = floor ( jed - jed2 )
+  j1 = floor ( jed - jed2 );
   f1 = ( jed - jed2 ) - j1;
 
   j1 = j1 + 1;

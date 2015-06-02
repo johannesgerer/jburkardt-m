@@ -24,7 +24,7 @@ function determ = borderband_determinant ( n )
 %
   determ = 0.0;
   for i = 1 : n - 1
-    determ = determ - 2.0^( 2 - 2 * i );
+    determ = determ - 2.0 ^ ( 2 - 2 * i );
   end
   determ = determ + 1.0;
 

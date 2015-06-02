@@ -2,7 +2,7 @@ function twod_to_vtu_test ( )
 
 %*****************************************************************************80
 %
-%% TWOD_TO_VTU_TEST tests TWOD_TO_VTU.
+%% TWOD_TO_VTU_TEST tests the TWOD_TO_VTU library.
 %
 %  Discussion:
 %
@@ -48,7 +48,6 @@ function twod_to_vtu_test ( )
   fprintf ( '\n' );
   fprintf ( 1, 'TWOD_TO_VTU_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( '\n' );
   timestamp ( );
 

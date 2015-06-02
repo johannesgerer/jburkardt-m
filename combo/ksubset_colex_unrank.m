@@ -69,12 +69,12 @@ function t = ksubset_colex_unrank ( rank, k, n )
 
   for i = 1 : k
 
-    while ( rank < binomial ( x, k + 1 - i ) )
+    while ( rank < i4_choose ( x, k + 1 - i ) )
       x = x - 1;
     end
 
     t(i) = x + 1;
-    rank = rank - binomial ( x, k + 1 - i );
+    rank = rank - i4_choose ( x, k + 1 - i );
 
   end
 

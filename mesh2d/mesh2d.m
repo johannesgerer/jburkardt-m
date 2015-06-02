@@ -1,14 +1,16 @@
-function [p,t,stats] = mesh2d(node,edge,hdata,options)
+function [ p, t, stats ] = mesh2d ( node, edge, hdata, options )
 
 %*****************************************************************************80
 %
-%  MESH2D: 2D unstructured mesh generation for a polygon.
+%% MESH2D: 2D unstructured mesh generation for a polygon.
 %
-% A 2D unstructured triangular mesh is generated based on a piecewise-
-% linear geometry input. The polygon can contain an arbitrary number of 
-% cavities. An iterative method is implemented to optimise mesh quality. 
+%  Discussion:
 %
-% If you wish to mesh multiple connected faces, use MESHFACES instead!
+%    A 2D unstructured triangular mesh is generated based on a piecewise-
+%    linear geometry input. The polygon can contain an arbitrary number of 
+%    cavities. An iterative method is implemented to optimise mesh quality. 
+%
+%    If you wish to mesh multiple connected faces, use MESHFACES instead!
 %
 % OUTPUTS
 %

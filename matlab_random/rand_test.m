@@ -107,8 +107,6 @@ function rand_test02 ( seed )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The command "rng ( 123456789 )" sets the seed to 123456789.\n' );
 
-  seed = 123456789;
-
   rng ( seed );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Seed has been set to %d\n', seed );

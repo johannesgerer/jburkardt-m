@@ -2,11 +2,7 @@ function calendar_nyt_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for CALENDAR_NYT_TEST.
-%
-%  Discussion:
-%
-%    CALENDAR_NYT_TEST calls a series of tests for CALENDAR_NYT.
+%% CALENDAR_NYT_TEST tests the CALENDAR_NYT library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function calendar_nyt_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CALENDAR_NYT_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -37,7 +32,6 @@ function calendar_nyt_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CALENDAR_NYT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

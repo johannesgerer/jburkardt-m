@@ -1,4 +1,4 @@
-function [ x, fx ] = local_min ( a, b, eps, t, f, x )
+function [ x, fx ] = local_min ( a, b, epsi, t, f, x )
 
 %*****************************************************************************80
 %
@@ -13,7 +13,7 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
 %    B), then convergence is superlinear, and usually of the order of
 %    about 1.324....
 %
-%    The values EPS and T define a tolerance TOL = EPS * abs ( X ) + T.
+%    The values EPSI and T define a tolerance TOL = EPSI * abs ( X ) + T.
 %    F is never evaluated at two points closer than TOL.
 %
 %    If F is a unimodal function and the computed values of F are always
@@ -23,6 +23,9 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
 %
 %    If F is not unimodal, then LOCAL_MIN may approximate a local, but
 %    perhaps non-global, minimum to the same accuracy.
+%
+%    Thanks to Jonathan Eggleston for pointing out a correction to the 
+%    golden section step, 01 July 2013.
 %
 %  Licensing:
 %
@@ -49,8 +52,8 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
 %
 %    Input, real A, B, the endpoints of the interval.
 %
-%    Input, real EPS, a positive relative error tolerance.
-%    EPS should be no smaller than twice the relative machine precision,
+%    Input, real EPSI, a positive relative error tolerance.
+%    EPSI should be no smaller than twice the relative machine precision,
 %    and preferably not much less than the square root of the relative
 %    machine precision.
 %
@@ -59,7 +62,7 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
 %    Input, function value = F ( x ), the name of a user-supplied
 %    function whose local minimum is being sought.
 %
-%    Output, rea X, the estimated value of an abscissa
+%    Output, real X, the estimated value of an abscissa
 %    for which F attains a local minimum value in [A,B].
 %
 %    Output, real FX, the value F(X).
@@ -83,7 +86,7 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
   while ( 1 )
 
     m = 0.5 * ( sa + sb );
-    tol = eps * abs ( x ) + t;
+    tol = epsi * abs ( x ) + t;
     t2 = 2.0 * tol;
 %
 %  Check the stopping criterion.
@@ -144,7 +147,7 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
       if ( x < m )
         e = sb - x;
       else
-        e = a - x;
+        e = sa - x;
       end
 
       d = c * e;
@@ -193,7 +196,7 @@ function [ x, fx ] = local_min ( a, b, eps, t, f, x )
         fv = fw;
         w = u;
         fw = fu;
-      elseif ( fu <= fv | v == x | v== w )
+      elseif ( fu <= fv | v == x | v == w )
         v = u;
         fv = fu;
       end

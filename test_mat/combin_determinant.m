@@ -2,7 +2,7 @@ function determ = combin_determinant ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% COMBIN_DETERMINANT returns the determinant of the combinatorial matrix.
+%% COMBIN_DETERMINANT returns the determinant of the COMBIN matrix.
 %
 %  Licensing:
 %
@@ -18,13 +18,13 @@ function determ = combin_determinant ( alpha, beta, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, BETA, scalars that define A.
+%    Input, real ALPHA, BETA, scalars that define the matrix.
 %
-%    Input, integer N, the order of A.
+%    Input, integer N, the order of the matrix.
 %
 %    Output, real DETERM, the determinant.
 %
-  determ = alpha^( n - 1 ) * ( alpha + n * beta );
+  determ = alpha ^ ( n - 1 ) * ( alpha + n * beta );
 
   return
 end

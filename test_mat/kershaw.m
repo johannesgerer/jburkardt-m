@@ -2,7 +2,7 @@ function a = kershaw ( )
 
 %*****************************************************************************80
 %
-%% KERSHAW returns the Kershaw matrix.
+%% KERSHAW returns the KERSHAW matrix.
 %
 %  Discussion:
 %
@@ -56,6 +56,10 @@ function a = kershaw ( )
 %  Parameters:
 %
 %    Output, real A(4,4), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a = [ ...
      3.0, -2.0,  0.0,  2.0; ...

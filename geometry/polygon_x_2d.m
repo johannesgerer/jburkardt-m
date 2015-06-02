@@ -42,8 +42,6 @@ function result = polygon_x_2d ( n, v )
 %
 %    Output, real RESULT, the value of the integral.
 %
-  dim_num = 2;
-
   result = 0.0;
 
   if ( n < 3 )

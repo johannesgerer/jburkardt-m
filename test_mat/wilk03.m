@@ -6,9 +6,9 @@ function a = wilk03 ( )
 %
 %  Formula:
 %
-%    1.0D-10  0.9  -0.4
+%    1.0E-10  0.9  -0.4
 %    0        0.9  -0.4
-%    0        0     1.0D-10
+%    0        0     1.0E-10
 %
 %  Discussion:
 %
@@ -17,7 +17,7 @@ function a = wilk03 ( )
 %    where A is the 3 by 3 Wilkinson matrix, and
 %      B = ( 0, 0, 1 )'
 %    and the correct solution is
-%      X = ( 0, 4.0D+10 / 9.0, 1.0D+10 )
+%      X = ( 0, 4.0E+10 / 9.0, 1.0E+10 )
 %
 %    Since the matrix is already in upper triangular form, errors can
 %    occur only in the backsubstitution.
@@ -28,9 +28,9 @@ function a = wilk03 ( )
 %
 %    A is upper triangular.
 %
-%    det ( A ) = 0.9D-20
+%    det ( A ) = 0.9E-20
 %
-%    LAMBDA = ( 1.0D-10, 0.9, 1.0D-10 )
+%    LAMBDA = ( 1.0E-10, 0.9, 1.0E-10 )
 %
 %  Licensing:
 %
@@ -54,6 +54,10 @@ function a = wilk03 ( )
 %  Parameters:
 %
 %    Output, real A(3,3), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a(1:3,1:3) = [ 1.0E-10,  0.9, -0.4; ...
                  0.0,      0.9, -0.4; ...

@@ -44,7 +44,7 @@ function g = year_to_golden_number ( y )
 %
 %  Modified:
 %
-%    12 June 2012
+%    23 April 2013
 %
 %  Author:
 %

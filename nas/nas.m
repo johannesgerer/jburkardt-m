@@ -89,7 +89,9 @@ function nas ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, ' %s  %13.4e  %13.4e  %10.4e  %10.2e\n', ...
     pn, er(i), fp(i), tm(i), rt(i) );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NAS:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

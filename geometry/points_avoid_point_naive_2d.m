@@ -40,7 +40,7 @@ function value = points_avoid_point_naive_2d ( n, p_set, p )
 %
   dim_num = 2;
 
-  tol = 100.0 * r8_epsilon ( );
+  tol = 100.0 * eps;
 
   value = 1;
 

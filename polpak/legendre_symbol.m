@@ -7,7 +7,7 @@ function l = legendre_symbol ( q, p )
 %  Definition:
 %
 %    Let P be an odd prime.  Q is a QUADRATIC RESIDUE modulo P
-%    if there is an integer R such that R**2 = Q ( mod P ).
+%    if there is an integer R such that R^2 = Q ( mod P ).
 %    The Legendre symbol ( Q / P ) is defined to be:
 %
 %      + 1 if Q ( mod P ) /= 0 and Q is a quadratic residue modulo P,
@@ -22,10 +22,10 @@ function l = legendre_symbol ( q, p )
 %  Example:
 %
 %    (0/7) =   0
-%    (1/7) = + 1  ( 1**2 = 1 mod 7 )
-%    (2/7) = + 1  ( 3**2 = 2 mod 7 )
+%    (1/7) = + 1  ( 1^2 = 1 mod 7 )
+%    (2/7) = + 1  ( 3^2 = 2 mod 7 )
 %    (3/7) = - 1
-%    (4/7) = + 1  ( 2**2 = 4 mod 7 )
+%    (4/7) = + 1  ( 2^2 = 4 mod 7 )
 %    (5/7) = - 1
 %    (6/7) = - 1
 %
@@ -201,7 +201,9 @@ function l = legendre_symbol ( q, p )
           l = - 1 * l;
         end
 
-        [ pp, qq ] = i4_swap ( pp, qq );
+        rr = pp
+        pp = qq
+        qq = rr
 
         continue
 

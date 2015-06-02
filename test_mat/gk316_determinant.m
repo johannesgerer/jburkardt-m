@@ -1,8 +1,8 @@
-function determ = gk316_determinant ( n )
+function value = gk316_determinant ( n )
 
 %*****************************************************************************80
 %
-%% GK316_DETERMINANT returns the determinant of GK316.
+%% GK316_DETERMINANT returns the determinant of the GK316 matrix.
 %
 %  Licensing:
 %
@@ -20,9 +20,9 @@ function determ = gk316_determinant ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real DETERM, the determinant..
+%    Output, real VALUE, the determinant..
 %
-  determ = - ( n * ( n + 1 ) * ( 2 * n - 5 ) ) / 6.0;
+  value = - ( n * ( n + 1 ) * ( 2 * n - 5 ) ) / 6.0;
 
   return
 end

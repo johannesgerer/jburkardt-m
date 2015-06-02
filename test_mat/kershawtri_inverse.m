@@ -24,6 +24,8 @@ function a = kershawtri_inverse ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   nh = floor ( n / 2 );
 
   r(1:n+1) = 0.0;

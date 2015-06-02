@@ -4,13 +4,19 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
 %
 %% XINBTA computes inverse of the incomplete Beta function.
 %
+%  Discussion:
+%
+%    The accuracy exponent SAE was loosened from -37 to -30, because
+%    the code would not otherwise accept the results of an iteration
+%    with p = 0.3, q = 3.0, alpha = 0.2.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    09 February 2008
+%    25 September 2014
 %
 %  Author:
 %
@@ -46,29 +52,50 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
 %
 %  Local Parameters:
 %
-%    Local, real ( kind = 8 ) SAE, the most negative decimal exponent
-%    which does not cause an underflow.
+%    Local, real SAE, requests an accuracy of about 10^SAE.
 %
-  sae = -37.0;
+  sae = -30.0;
 
-  fpu = 10.0^sae;
+  fpu = 10.0 ^ sae;
 
   ifault = 0;
   value = alpha;
 %
 %  Test for admissibility of parameters.
 %
-  if ( p <= 0.0 || q <= 0.0 )
+  if ( p <= 0.0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'XINBTA - Fatal error!\n' );
+    fprintf ( 1, '  P <= 0.0\n' );
     ifault = 1;
-    return
+    error ( 'XINBTA - Fatal error!' );
+  end
+
+  if ( q <= 0.0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'XINBTA - Fatal error!\n' );
+    fprintf ( 1, '  Q <= 0.0\n' );
+    ifault = 1;
+    error ( 'XINBTA - Fatal error!' );
   end
 
   if ( alpha < 0.0 || 1.0 < alpha )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'XINBTA - Fatal error!\n' );
+    fprintf ( 1, '  ALPHA not between 0 and 1.\n' );
     ifault = 2;
+    error ( 'XINBTA - Fatal error!' );
+  end
+%
+%  If the answer is easy to determine, return immediately.
+%
+  if ( alpha == 0.0 )
+    value = 0.0;
     return
   end
 
-  if ( alpha == 0.0 || alpha == 1.0 )
+  if ( alpha == 1.0 )
+    value = 1.0;
     return
   end
 %
@@ -93,7 +120,7 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
   y = r - ( 2.30753 + 0.27061 * r ) ...
     / ( 1.0 + ( 0.99229 + 0.04481 * r ) * r );
 
-  if ( 1.0 < pp & 1.0 < qq )
+  if ( 1.0 < pp && 1.0 < qq )
 
     r = ( y * y - 3.0 ) / 6.0;
     s = 1.0 / ( pp + pp - 1.0 );
@@ -142,15 +169,21 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
     value = 0.9999;
   end
 
-  iex = max ( - 5.0 / pp / pp - 1.0 / a^0.2 - 13.0, sae );
+  iex = max ( - 5.0 / pp / pp - 1.0 / a ^ 0.2 - 13.0, sae );
 
-  acu = 10.0^iex;
-
+  acu = 10.0 ^ iex;
+%
+%  Iteration loop.
+%
   while ( 1 )
 
     [ y, ifault ] = betain ( value, pp, qq, beta );
 
     if ( ifault ~= 0 )
+      fprintf ( 1, '\n' );
+      fprintf ( 1, 'XINBTA - Fatal error!\n' );
+      fprintf ( 1, '  BETAIN returns IFAULT = %d\n', ifault );
+      error ( 'XINBTA - Fatal error!' );
       ifault = 3;
       return
     end
@@ -175,7 +208,7 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
 
           tx = value - adj;
 
-          if ( 0.0 <= tx & tx <= 1.0 )
+          if ( 0.0 <= tx && tx <= 1.0 )
             break
           end
 
@@ -184,22 +217,19 @@ function [ value, ifault ] = xinbta ( p, q, beta, alpha )
         g = g / 3.0;
 
       end
-
-      if ( prev <= acu )
+%
+%  Check whether current estimate is acceptable.
+%  The change "VALUE = TX" was suggested by Ivan Ukhov.
+%
+      if ( prev <= acu && y * y <= acu )
+        value = tx;
         if ( indx )
           value = 1.0 - value;
         end
         return
       end
 
-      if ( y * y <= acu )
-        if ( indx )
-          value = 1.0 - value;
-        end
-        return
-      end
-
-      if ( tx ~= 0.0 & tx ~= 1.0 )
+      if ( tx ~= 0.0 && tx ~= 1.0 )
         break
       end
 

@@ -2,7 +2,7 @@ function a = circulant_inverse ( n, x )
 
 %*****************************************************************************80
 %
-%% CIRCULANT_INVERSE returns the inverse of a circulant matrix.
+%% CIRCULANT_INVERSE returns the inverse of the CIRCULANT matrix.
 %
 %  Discussion:
 %

@@ -26,6 +26,10 @@ function a = wilk03_inverse ( )
 %
 %    Output, real A(3,3), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a(1:3,1:3) = [  1.0E+10, - 1.0E+10,      0.0; ...
                   0.0,       10.0 / 9.0,   4.0E+10 / 9.0; ...
                   0.0,       0.0,          1.0E+10 ];

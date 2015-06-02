@@ -1,0 +1,435 @@
+<html>
+
+  <head>
+    <title>
+      BERNSTEIN_POLYNOMIAL - The Bernstein Polynomials
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BERNSTEIN_POLYNOMIAL <br> The Bernstein Polynomials
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BERNSTEIN_POLYNOMIAL</b>
+      is a MATLAB library which
+      evaluates the Bernstein polynomials.
+    </p>
+
+    <p>
+      The k-th Bernstein basis polynomial of degree n is defined by
+      <pre>
+        B(n,k)(x) = C(n,k) * (1-x)^(n-k) * x^k
+      </pre>
+      for k = 0 to n and C(n,k) is the combinatorial function "N choose K"
+      defined by
+      <pre>
+        C(n,k) = n! / k! / ( n - k )!
+      </pre>
+    </p>
+
+    <p>
+      For an arbitrary value of n, the set B(n,k) forms a basis
+      for the space of polynomials of degree n or less.  
+    </p>
+
+    <p>
+      Every basis polynomial B(n,k) is nonnegative in [0,1], and may be zero 
+      only at the endpoints.
+    </p>
+
+    <p>
+      Except for the case n = 0, the basis polynomial B(n,k)(x) has a 
+      unique maximum value at
+      <pre>
+        x = k/n.
+      </pre>
+    </p>
+
+    <p>
+      For any point x, (including points outside [0,1]), the basis polynomials
+      for an arbitrary value of n sum to 1:
+      <pre>
+        sum ( 1 <= k <= n ) B(n,k)(x) = 1
+      </pre>
+    </p>
+
+    <p>
+      For 0 < n, the Bernstein basis polynomial can be written as a combination
+      of two lower degree basis polynomials:
+      <pre>
+        B(n,k)(x) = ( 1 - x ) * B(n-1,k)(x) + x * B(n-1,k-1)(x) +
+      </pre>
+      where, if k is 0, the factor B(n-1,k-1)(x) is taken to be 0,
+      and if k is n, the factor B(n-1,k)(x) is taken to be 0.
+    </p>
+
+    <p>
+      A Bernstein basis polynomial can be written as a combination
+      of two higher degree basis polynomials:
+      <pre>
+        B(n,k)(x) = ( (n+1-k) * B(n+1,k)(x) + (k+1) * B(n+1,k+1)(x) ) / ( n + 1 )
+      </pre>
+    </p>
+
+    <p>
+      The derivative of B(n,k)(x) can be written as:
+      <pre>
+        d/dx B(n,k)(x) = n * B(n-1,k-1)(x) - B(n-1,k)(x)
+      </pre>
+    </p>
+
+    <p>
+      A Bernstein polynomial can be written in terms of the standard power basis:
+      <pre>
+        B(n,k)(x) = sum ( k <= i <= n ) (-1)^(i-k) * C(n,k) * C(i,k) * x^i
+      </pre>
+    </p>
+
+    <p>
+      A power basis monomial can be written in terms of the Bernstein basis
+      of degree n where k <= n:
+      <pre>
+        x^k = sum ( k-1 <= i <= n-1 ) C(i,k) * B(n,k)(x) / C(n,k)
+      </pre>
+    </p>
+
+    <p>
+      Over the interval [0,1], the n-th degree Bernstein approximation polynomial to
+      a function f(x) is defined by
+      <pre>
+        BA(n,f)(x) = sum ( 0 <= k <= n ) f(k/n) * B(n,k)(x)
+      </pre>
+      As a function of n, the Bernstein approximation polynomials form a sequence
+      that slowly, but uniformly, converges to f(x) over [0,1].
+    </p>
+
+    <p>
+      By a simple linear process, the Bernstein basis polynomials can be shifted
+      to an arbitrary interval [a,b], retaining their properties.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BERNSTEIN_POLYNOMIAL</b> is available in
+      <a href = "../../c_src/bernstein_polynomial/bernstein_polynomial.html">a C version</a> and
+      <a href = "../../cpp_src/bernstein_polynomial/bernstein_polynomial.html">a C++ version</a> and
+      <a href = "../../f77_src/bernstein_polynomial/bernstein_polynomial.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/bernstein_polynomial/bernstein_polynomial.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/bernstein_polynomial/bernstein_polynomial.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/chebyshev/chebyshev.html">
+      CHEBYSHEV</a>,
+      a MATLAB library which
+      computes the Chebyshev interpolant/approximant to a given function
+      over an interval.
+    </p>
+
+    <p>
+      <a href = "../../m_src/divdif/divdif.html">
+      DIVDIF</a>,
+      a MATLAB library which
+      uses divided differences to interpolate data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite/hermite.html">
+      HERMITE</a>,
+      a MATLAB library which
+      computes the Hermite interpolant, a polynomial that matches function values
+      and derivatives.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_cubic/hermite_cubic.html">
+      HERMITE_CUBIC</a>,
+      a MATLAB library which
+      can compute the value, derivatives or integral of a Hermite cubic polynomial,
+      or manipulate an interpolating function made up of piecewise Hermite cubic
+      polynomials.
+    </p>
+
+    <p>
+      <a href = "../../m_src/lagrange_approx_1d/lagrange_approx_1d.html">
+      LAGRANGE_APPROX_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) of degree m
+      which approximates a set of nd data points (x(i),y(i)).
+    </p>
+
+    <p>
+      <a href = "../../m_src/lobatto_polynomial/lobatto_polynomial.html">
+      LOBATTO_POLYNOMIAL</a>,
+      a MATLAB library which
+      evaluates Lobatto polynomials, similar to Legendre polynomials
+      except that they are zero at both endpoints.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pwl_approx_1d/pwl_approx_1d.html">
+      PWL_APPROX_1D</a>,
+      a MATLAB library which
+      approximates a set of data using a piecewise linear function.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spline/spline.html">
+      SPLINE</a>,
+      a MATLAB library which
+      constructs and evaluates spline interpolants and approximants.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_approx/test_approx.html">
+      TEST_APPROX</a>,
+      a MATLAB library which
+      defines test problems for approximation,
+      provided as a set of (x,y) data.
+    </p>
+
+    <p>
+      <a href = "../../m_src/vandermonde_approx_1d/vandermonde_approx_1d.html">
+      VANDERMONDE_APPROX_1D</a>,
+      a MATLAB library which
+      finds a polynomial approximant to a function of 1D data
+      by setting up and solving an overdetermined linear system for the polynomial coefficients,
+      involving the Vandermonde matrix.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Kenneth Joy,<br>
+          "Bernstein Polynomials",<br>
+          On-Line Geometric Modeling Notes,<br>
+          idav.ucdavis.edu/education/CAGDNotes/Bernstein-Polynomials.pdf
+        </li>
+        <li>
+          David Kahaner, Cleve Moler, Steven Nash,<br>
+          Numerical Methods and Software,<br>
+          Prentice Hall, 1989,<br>
+          ISBN: 0-13-627258-4,<br>
+          LC: TA345.K34.
+        </li>
+        <li>
+          Josef Reinkenhof,<br>
+          Differentiation and integration using Bernstein's polynomials,<br>
+          International Journal of Numerical Methods in Engineering,<br>
+          Volume 11, Number 10, 1977, pages 1627-1630.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bernstein_matrix.m">bernstein_matrix.m</a>, 
+          returns the Bernstein matrix.
+        </li>
+        <li>
+          <a href = "bernstein_matrix_inverse.m">bernstein_matrix_inverse.m</a>, 
+          returns the inverse Bernstein matrix.
+        </li>
+        <li>
+          <a href = "bernstein_poly_01.m">bernstein_poly_01.m</a>, 
+          evaluates the Bernstein polynomials based in [0,1].
+        </li>
+        <li>
+          <a href = "bernstein_poly_01_values.m">bernstein_poly_01_values.m</a>, 
+          returns some values of the Bernstein polynomials.
+        </li>
+        <li>
+          <a href = "bernstein_poly_ab.m">bernstein_poly_ab.m</a>, 
+          evaluates the Bernstein polynomials based in [A,B].
+        </li>
+        <li>
+          <a href = "bernstein_poly_ab_approx.m">bernstein_poly_ab_approx.m</a>, 
+          evaluates the Bernstein polynomial approximant to F(X) on [A,B].
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>, 
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a>, 
+          returns the I-th power of -1 as an R8 value.
+        </li>
+        <li>
+          <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
+          returns a unit pseudorandom R8.
+        </li>
+        <li>
+          <a href = "r8mat_is_identity.m">r8mat_is_identity.m</a>, 
+          determines if a matrix is the identity.
+        </li>
+        <li>
+          <a href = "r8mat_norm_fro.m">r8mat_norm_fro.m</a>, 
+          returns the Frobenius norm of an R8MAT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>APPROX_DISPLAY</b> displays a sequence of Bernstein approximants
+      to sin(x) over [1,3]:
+      <ul>
+        <li>
+          <a href = "approx_display.m">approx_display.m</a>,
+          the program.
+        </li>
+        <li>
+          <a href = "approx00.png">approx00.png</a>
+        </li>
+        <li>
+          <a href = "approx01.png">approx01.png</a>
+        </li>
+        <li>
+          <a href = "approx02.png">approx02.png</a>
+        </li>
+        <li>
+          <a href = "approx03.png">approx03.png</a>
+        </li>
+        <li>
+          <a href = "approx04.png">approx04.png</a>
+        </li>
+        <li>
+          <a href = "approx05.png">approx05.png</a>
+        </li>
+        <li>
+          <a href = "approx06.png">approx06.png</a>
+        </li>
+        <li>
+          <a href = "approx07.png">approx07.png</a>
+        </li>
+        <li>
+          <a href = "approx08.png">approx08.png</a>
+        </li>
+        <li>
+          <a href = "approx09.png">approx09.png</a>
+        </li>
+        <li>
+          <a href = "approx10.png">approx10.png</a>
+        </li>
+        <li>
+          <a href = "approx11.png">approx11.png</a>
+        </li>
+        <li>
+          <a href = "approx12.png">approx12.png</a>
+        </li>
+        <li>
+          <a href = "approx13.png">approx13.png</a>
+        </li>
+        <li>
+          <a href = "approx14.png">approx14.png</a>
+        </li>
+        <li>
+          <a href = "approx15.png">approx15.png</a>
+        </li>
+        <li>
+          <a href = "approx16.png">approx16.png</a>
+        </li>
+        <li>
+          <a href = "approx17.png">approx17.png</a>
+        </li>
+        <li>
+          <a href = "approx18.png">approx18.png</a>
+        </li>
+        <li>
+          <a href = "approx19.png">approx19.png</a>
+        </li>
+        <li>
+          <a href = "approx20.png">approx20.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bernstein_polynomial_test.m">bernstein_polynomial_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test01.m">bernstein_polynomial_test01.m</a>,
+          tests BERNSTEIN_POLY_01 and BERNSTEIN_POLY_01_VALUES.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test02.m">bernstein_polynomial_test02.m</a>,
+          tests BERNSTEIN_POLY_AB.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test03.m">bernstein_polynomial_test03.m</a>,
+          tests the Partition-of-Unity property.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test04.m">bernstein_polynomial_test04.m</a>,
+          tests BERNSTEIN_POLY_AB_APPROX.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test05.m">bernstein_polynomial_test05.m</a>,
+          tests BERNSTEIN_MATRIX and BERNSTEIN_MATRIX_INVERSE.
+        </li>
+        <li>
+          <a href = "bernstein_polynomial_test_output.txt">bernstein_polynomial_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 11 July 2011.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

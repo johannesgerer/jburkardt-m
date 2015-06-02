@@ -2,7 +2,7 @@ function a = identity_inverse ( n )
 
 %*****************************************************************************80
 %
-%% IDENTITY_INVERSE returns the inverse of the identity matrix.
+%% IDENTITY_INVERSE returns the inverse of the IDENTITY matrix.
 %
 %  Licensing:
 %
@@ -18,19 +18,11 @@ function a = identity_inverse ( n )
 %
 %  Parameters:
 %
-%    Input, integer N, N, the order of the matrix.
+%    Input, integer N, the order of the matrix.
 %
 %    Output, real A(N,N), the matrix.
 %
-  for i = 1 : n
-    for j = 1 : n
-      if ( i == j )
-        a(i,j) = 1.0;
-      else
-        a(i,j) = 0.0;
-      end
-    end
-  end
+  a = eye ( n, n );
 
   return
 end

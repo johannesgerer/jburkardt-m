@@ -31,7 +31,6 @@ function sphere_stereograph_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERE_STEREOGRAPH_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

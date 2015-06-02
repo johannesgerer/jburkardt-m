@@ -1,8 +1,8 @@
-function test09 ( )
+function sphere_grid_test09 ( )
 
 %*****************************************************************************80
 %
-%% TEST09 tests SPHERE_UNIT_SAMPLE.
+%% SPHERE_GRID_TEST09 tests SPHERE_UNIT_SAMPLE.
 %
 %  Licensing:
 %
@@ -19,7 +19,7 @@ function test09 ( )
   seed = 123456789;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST09\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST09\n' );
   fprintf ( 1, '  For the unit sphere in 3 dimensions:\n' );
   fprintf ( 1, '  SPHERE_UNIT_SAMPLE does a random sampling.\n' );
 

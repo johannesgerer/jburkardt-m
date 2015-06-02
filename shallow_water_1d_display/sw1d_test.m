@@ -2,7 +2,7 @@ function sw1d_test ( )
 
 %*****************************************************************************80
 %
-%% SW1D_TEST tests SW1D.
+%% SW1D_TEST tests the SHALLOW_WATER_1D_DISPALY library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function sw1d_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SW1D_TEST\n' );
   fprintf ( 1, '  MATLAB version.\n' );
-  fprintf ( 1, '  Test the SHALLOW_WATER_1D_DISPLAY program.\n' );
+  fprintf ( 1, '  Test the SHALLOW_WATER_1D_DISPLAY library.\n' );
 
   sw1d_test01 ( );
 %
@@ -29,7 +29,6 @@ function sw1d_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SW1D_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

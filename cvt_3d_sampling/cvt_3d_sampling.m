@@ -36,15 +36,21 @@ function cvt_3d_sampling ( g_num, it_num, s_num )
   fprintf ( 1, '  in the 3D unit cube.\n' );
 
   if ( nargin < 1 )
-    g_num = input ( '  Enter number of generators: ' );
+    g_num = input ( '  Enter number of generators, G_NUM: ' );
+  elseif ( ischar ( g_num ) )
+    g_num = str2num ( g_num );
   end
 
   if ( nargin < 2 ) 
-    it_num = input ( '  Enter number of iterations: ' );
+    it_num = input ( '  Enter number of iterations, IT_NUM: ' );
+  elseif ( ischar ( it_num ) )
+    it_num = str2num ( it_num );
   end
 
   if ( nargin < 3 ) 
-    s_num = input ( '  Enter number of sample points: ' );
+    s_num = input ( '  Enter number of sample points, S_NUM: ' );
+  elseif ( ischar ( s_num ) )
+    s_num = str2num ( s_num );
   end
 
   fprintf ( 1, '\n' );
@@ -142,7 +148,6 @@ function cvt_3d_sampling ( g_num, it_num, s_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CVT_3D_SAMPLING\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

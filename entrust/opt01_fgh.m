@@ -1,5 +1,7 @@
 function [ f, g, H ] = opt01_fgh ( x, flag )
 
+%*****************************************************************************80
+%
 %% OPT01_FGH evaluates F, G and H for test case #1.
 %
 %  Discussion:

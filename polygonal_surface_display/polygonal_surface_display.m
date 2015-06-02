@@ -103,7 +103,6 @@ function polygonal_surface_display ( node_file_name, face_file_name )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POLYGONAL_SURFACE_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

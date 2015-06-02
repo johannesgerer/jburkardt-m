@@ -51,13 +51,11 @@ function lcvt_dataset ( )
 %
 %  Reference:
 %
-%    Qiang Du, Vance Faber, and Max Gunzburger,
+%    Qiang Du, Vance Faber, Max Gunzburger,
 %    Centroidal Voronoi Tessellations: Applications and Algorithms,
 %    SIAM Review,
-%     Volume 41, 1999, pages 637-676.
+%    Volume 41, 1999, pages 637-676.
 %
-  DEBUG = 1;
-
   timestamp ( );
 
   fprintf ( 1, '\n' );
@@ -436,7 +434,7 @@ function lcvt_dataset ( )
 
   for lat_it = 1 : lat_it_num
 
-    if ( 1 )
+    if ( 0 )
       fprintf ( 1, '\n' );
       fprintf ( 1, '    CVT IT  Change\n' );
       fprintf ( 1, '\n' );
@@ -444,7 +442,7 @@ function lcvt_dataset ( )
     
     for cvt_it = 1 : cvt_it_num
 
-      [ r, seed, cvt_it_diff ] = cvt_iteration ( dim_num, n, r, sample_num, ...
+      [ r, cvt_it_diff, seed ] = cvt_iteration ( dim_num, n, r, sample_num, ...
         sample, seed );
 
       if ( 0 )
@@ -484,7 +482,6 @@ function lcvt_dataset ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LCVT_DATASET:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -538,7 +535,7 @@ function [ energy, seed ] = cluster_energy ( dim_num, n, cell_generator, ...
 %
 %  Modified:
 %
-%    09 August 2005
+%    10 February 2015
 %
 %  Author:
 %
@@ -576,6 +573,10 @@ function [ energy, seed ] = cluster_energy ( dim_num, n, cell_generator, ...
 %
     [ x, seed ] = region_sampler ( dim_num, 1, sample_num_cvt, ...
      sample_function_cvt, reset, seed );
+%
+%  Force X to be a column vector.
+%
+    x = x(:);
 
     reset = 0;
 %
@@ -624,7 +625,7 @@ function [ generator_new, change_l2, seed ] = cvt_iteration ( m, n, ...
 %
 %  Modified:
 %
-%    05 May 2003
+%    10 February 2015
 %
 %  Author:
 %
@@ -665,6 +666,10 @@ function [ generator_new, change_l2, seed ] = cvt_iteration ( m, n, ...
 %
     [ x(1:m), seed ] = region_sampler ( m, 1, sample_num_cvt, ...
        sample_function_cvt, reset, seed );
+%
+%  Force X to be a column vector.
+%
+    x = x(:);
 
     reset = 0;
 %
@@ -743,6 +748,7 @@ function nearest = find_closest ( dn, gn, sn, s, g )
 %    Input, integer SN, the number of sample points.
 %
 %    Input, real S(DN,SN), the points to be checked.
+%    If SN is 1, be sure that S is a column vector, not a row vector!
 %
 %    Input, real G(DN,GN), the cell generators.
 %

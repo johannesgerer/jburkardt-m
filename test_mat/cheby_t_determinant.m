@@ -2,7 +2,7 @@ function determ = cheby_t_determinant ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_T_DETERMINANT returns the determinant of the Chebyshev T matrix.
+%% CHEBY_T_DETERMINANT returns the determinant of the CHEBY_T matrix.
 %
 %  Licensing:
 %
@@ -24,7 +24,7 @@ function determ = cheby_t_determinant ( n )
 %
   power = round ( ( ( n - 1 ) * ( n - 2 ) ) / 2 );
 
-  determ = 2^power;
+  determ = 2 ^ power;
 
   return
 end

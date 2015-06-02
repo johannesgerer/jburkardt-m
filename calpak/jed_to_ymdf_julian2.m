@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_julian2 ( jed )
 %
 %  Modified:
 %
-%    11 July 2012
+%    10 March 2013
 %
 %  Author:
 %
@@ -36,12 +36,12 @@ function [ y, m, d, f ] = jed_to_ymdf_julian2 ( jed )
     return
   end
 
-  j = floor ( jed + 0.5 )
+  j = floor ( jed + 0.5 );
   f = ( jed + 0.5 ) - j;
 
   jd = floor ( ( j + 1524 - 122.1 ) / 365.25 );
   je = floor ( 365.25 * jd );
-  jg = floor ( j + 1524 - je ) / 30.6001 );
+  jg = floor ( ( j + 1524 - je ) / 30.6001 );
 %
 %  Now compute D, M and Y.
 %

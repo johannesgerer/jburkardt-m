@@ -2,7 +2,7 @@ function mm_io_test ( )
 
 %*****************************************************************************80
 %
-%% MM_IO_TEST tests MM_IO.
+%% MM_IO_TEST tests the MM_IO library.
 %
 %  Licensing:
 %
@@ -38,7 +38,6 @@ function mm_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MM_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

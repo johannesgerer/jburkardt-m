@@ -1,0 +1,233 @@
+<html>
+
+  <head>
+    <title>
+      SORT_RC - Sort Using Reverse Communication
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      SORT_RC <br> Sort Using Reverse Communication
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SORT_RC</b>
+      is a MATLAB library which
+      can sort a list of any kind of objects,
+      using reverse communication (RC).
+    </p>
+
+    <p>
+      The program works by repeatedly asking the user to compare two
+      items on the list.  The user is free to carry out the comparison
+      in the calling program, in any desired way.
+    </p>
+
+    <p>
+      A typical usage, to sort an array of 100 items, might look 
+      something like this:
+      <pre>
+        n = 100
+        indx = 0   -- Indicates the beginning of a sort
+ 
+        begin loop
+
+          sort_rc ( n, indx, i, j, isgn )
+
+          if ( indx < 0 )   (Compare items I and J)
+
+            if ( a(i) <= a(j) )
+              isgn = -1
+            else
+              isgn = +1
+ 
+           else if ( 0 < indx )  (Swap items I and J)
+  
+             k    = a(i)
+             a(i) = a(j)
+             a(j) = k
+ 
+           else
+ 
+             exit loop
+
+        end loop
+      </pre>
+    </p>
+
+    <p>
+      The original version of sort_rc() requires the use of several variables
+      declared internally to the function, whose values must be preserved 
+      between calls.  The conventions for such computations vary from language
+      to language; moreover, this kind of approach means that a single copy of
+      the function cannot handle multiple requests for computation that might
+      arise, especially in parallel computations.  For that reason, a revised 
+      function, called sort_safe_rc(), is available, which does not rely on
+      hidden internal variables and may safely be used to manage multiple
+      simultaneous sorts.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SORT_RC</b> is available in
+      <a href = "../../c_src/sort_rc/sort_rc.html">a C version</a> and
+      <a href = "../../cpp_src/sort_rc/sort_rc.html">a C++ version</a> and
+      <a href = "../../f77_src/sort_rc/sort_rc.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sort_rc/sort_rc.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sort_rc/sort_rc.html">a MATLAB version</a> and
+      <a href = "../../py_src/sort_rc/sort_rc.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../f_src/backtrack_binary_rc/backtrack_binary_rc.html">
+      BACKTRACK_BINARY_RC</a>,
+      a FORTRAN90 library which
+      carries out a backtrack search for a set of binary decisions, using
+      reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../f_src/bisection_rc/bisection_rc.html">
+      BISECTION_RC</a>,
+      a FORTRAN90 library which
+      seeks a solution to the equation F(X)=0 using bisection
+      within a user-supplied change of sign interval [A,B].
+      The procedure is written using reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../f_src/cg_rc/cg_rc.html">
+      CG_RC</a>,
+      a FORTRAN90 library which
+      implements the conjugate gradient (CG) method for solving 
+      a positive definite sparse linear system A*x=b, 
+      using reverse communication (RC).
+    </p>
+
+    <p>
+      <a href = "../../f_src/subset/subset.html">
+      SUBSET</a>,
+      a FORTRAN90 library which
+      enumerates, generates, randomizes, ranks and unranks combinatorial objects
+      including combinations, compositions, Gray codes, index sets, partitions, 
+      permutations, polynomials, subsets, and Young tables.  Backtracking 
+      routines are included to solve some combinatorial problems.
+    </p>
+
+    <p>
+      <a href = "../../f_src/zero_rc/zero_rc.html">
+      ZERO_RC</a>,
+      a FORTRAN90 library which
+      seeks solutions of a scalar nonlinear equation f(x) = 0, 
+      or a system of nonlinear equations,
+      using reverse communication (RC).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Albert Nijenhuis, Herbert Wilf,<br>
+          Combinatorial Algorithms for Computers and Calculators,<br>
+          Second Edition,<br>
+          Academic Press, 1978,<br>
+          ISBN: 0-12-519260-6,<br>
+          LC: QA164.N54.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>, 
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "i4vec_uniform_ab.m">i4vec_uniform_ab.m</a>, 
+          returns a scaled pseudorandom I4VEC.
+        </li>
+        <li>
+          <a href = "sort_rc.m">sort_rc.m</a>, 
+          externally sorts a list of items into ascending order.
+        </li>
+        <li>
+          <a href = "sort_safe_rc.m">sort_safe_rc.m</a>, 
+          externally sorts a list of items into ascending order.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sort_rc_test.m">sort_rc_test.m</a>, the calling program;
+        </li>
+        <li>
+          <a href = "sort_rc_i4vec_test.m">sort_rc_i4vec_test.m</a>, 
+          tries out sort_rc() on an integer vector.
+        </li>
+        <li>
+          <a href = "sort_safe_rc_i4vec_test.m">sort_safe_rc_i4vec_test.m</a>, 
+          tries out sort_safe_rc() on an integer vector.
+        </li>
+        <li>
+          <a href = "sort_rc_test_output.txt">sort_rc_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 March 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

@@ -10,7 +10,7 @@ function [ kn, fn, wn ] = r4_nor_setup ( )
 %
 %  Modified:
 %
-%    04 May 2008
+%    14 October 2013
 %
 %  Author:
 %
@@ -26,10 +26,14 @@ function [ kn, fn, wn ] = r4_nor_setup ( )
 %
 %  Parameters:
 %
-%    Output, integer KN(128), data needed by R4_NOR.
+%    Output, uint32 KN(128), data needed by R4_NOR.
 %
 %    Output, real FN(128), WN(128), data needed by R4_NOR.
 %
+  kn = zeros ( 128, 'uint32' );
+  fn = zeros ( 128 );
+  wn = zeros ( 128 );
+
   m1 = 2147483648.0;
   vn = 9.91256303526217E-03;
 
@@ -37,7 +41,7 @@ function [ kn, fn, wn ] = r4_nor_setup ( )
   tn = 3.442619855899;
 
   q = vn / exp ( - 0.5 * dn * dn );
-  kn(1) = floor ( ( dn / q ) * m1 );
+  kn(1) = uint32 ( ( dn / q ) * m1 );
   kn(2) = 0;
 
   wn(1) = q / m1;
@@ -48,7 +52,7 @@ function [ kn, fn, wn ] = r4_nor_setup ( )
 
   for i = 127 : -1 : 2
     dn = sqrt ( - 2.0 * log ( vn / dn + exp ( - 0.5 * dn * dn ) ) );
-    kn(i+1) = floor ( ( dn / tn ) * m1 );
+    kn(i+1) = uint32 ( ( dn / tn ) * m1 );
     tn = dn;
     fn(i) = exp ( - 0.5 * dn * dn );
     wn(i) = dn / m1;

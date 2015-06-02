@@ -20,6 +20,7 @@ function fair_dice_simulation ( n )
 %
 %    Input, integer N, the number of times the dice are thrown.
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FAIR_DICE_SIMULATION:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -27,6 +28,8 @@ function fair_dice_simulation ( n )
 
   if ( nargin < 1 )
     n = input ( 'Enter number of times the dice are thrown: ' );
+  elseif ( ischar ( n ) )
+    n = str2num ( n );
   end
 %
 %  PDF is the probability density function for the probability of the
@@ -98,6 +101,8 @@ function fair_dice_simulation ( n )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FAIR_DICE_SIMULATION:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

@@ -28,7 +28,7 @@ function sparse_test02 ( )
 %
 %  Reference:
 %
-%    George Lindfield and John Penny,
+%    George Lindfield, John Penny,
 %    Numerical Methods Using MATLAB,
 %    Prentice Hall, 1999
 %  

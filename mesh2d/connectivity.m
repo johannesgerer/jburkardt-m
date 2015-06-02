@@ -1,4 +1,4 @@
-function [e,te,e2t,bnd] = connectivity(p,t)
+function [e,te,e2t,bnd] = connectivity ( p, t )
 
 %*****************************************************************************80
 %

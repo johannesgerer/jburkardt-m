@@ -15,7 +15,7 @@ function s = ymd_to_s_common ( y, m, d )
 %
 %  Modified:
 %
-%    28 April 2010
+%    13 March 2013
 %
 %  Author:
 %
@@ -27,21 +27,11 @@ function s = ymd_to_s_common ( y, m, d )
 %
 %    Output, string S, a representation of the date.
 %
-  if ( 0 <= y )
-    s = 'CE ';
-    s1 = sprintf ( '%d', y );
+  if ( y < 0 )
+    s = sprintf ( 'BCE %d/%02d/%02d', -y, m, d );
   else
-    s = 'BCE ';
-    s1 = sprintf ( '%d',  - y );
+    s = sprintf ( ' CE %d/%02d/%02d', y, m, d );
   end
-
-  s = [ s, s1 ];
-
-  s1 = sprintf ( '/%d', m );
-  s = [ s, s1 ];
-
-  s1 = sprintf ( '/%d', d );
-  s = [ s, s1 ];
 
   return
 end

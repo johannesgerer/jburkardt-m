@@ -2,7 +2,7 @@ function [ p, t ] = cvt_ellipse_uniform ( n, sample_num, delaunay_display )
 
 %*****************************************************************************80
 %
-%% CVT_ELLIPSE_UNIFORM demonstrates how a CVT can be computed and displayed in MATLAB.
+%% CVT_ELLIPSE_UNIFORM demonstrates how a CVT can be computed and displayed.
 %
 %  Discussion:
 %
@@ -232,7 +232,7 @@ function p = ellipse_uniform ( n )
 %      x' * A * x <= R*R
 %
 %    with A = ( 9  6 ) and R = 6.
-%            ( 6 20 )
+%             ( 6 20 )
 %
 %    The routine requires the Cholesky factor of A.  For this
 %    problem, the formulas are worked out explicitly.  The approach
@@ -281,7 +281,7 @@ function p = ellipse_uniform ( n )
 %  *) multiply by inverse(U).
 %
 %  For our problem, we have A = ( 9  6 )
-%                               ( 6, 20 )
+%                               ( 6 20 )
 %
 %  and R = 6
 %

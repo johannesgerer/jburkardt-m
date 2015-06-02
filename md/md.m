@@ -12,18 +12,30 @@ function md ( nd, np, step_num, dt )
 %
 %    The particles interact with a central pair potential.
 %
+%    Based on a FORTRAN90 program by Bill Magro.
+%
+%  Usage:
+%
+%    md ( nd, np, step_num, dt )
+%
+%    where
+%
+%    * nd is the spatial dimension (2 or 3);
+%    * np is the number of particles (500, for instance);
+%    * step_num is the number of time steps (500, for instance).
+%    * dt is the time step (0.1 for instance )
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    11 June 2012
+%    27 December 2014
 %
 %  Author:
 %
-%    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt.
+%    John Burkardt
 %
 %  Parameters:
 %
@@ -33,11 +45,11 @@ function md ( nd, np, step_num, dt )
 %
 %    Input, integer NP, the number of particles.  
 %    A value of 1000 or 2000 is small but "reasonable".
-%    The default value is 1000.
+%    The default value is 500.
 %
 %    Input, integer STEP_NUM, the number of time steps.  
 %    A value of 500 is a small but reasonable value.
-%    The default value is 100.
+%    The default value is 500.
 %
 %    Input, real DT, the time step.
 %    A value of 0.1 is large; the system will begin to move quickly but the
@@ -47,25 +59,29 @@ function md ( nd, np, step_num, dt )
 %
   if ( nargin < 1 )
     nd = 3;
+  elseif ( ischar ( nd ) )
+    nd = str2num ( nd );
   end
 
   if ( nargin < 2 )
-    np = 1000;
+    np = 500;
+  elseif ( ischar ( np ) )
+    np = str2num ( np );
   end
 
   if ( nargin < 3 )
-    step_num = 100;
+    step_num = 500;
+  elseif ( ischar ( step_num ) )
+    step_num = str2num ( step_num );
   end
 
   if ( nargin < 4 )
     dt = 0.1;
+  elseif ( ischar ( dt ) )
+    dt = str2num ( dt );
   end
 
   mass = 1.0;
-%
-%  Set SHOW_PLOTS to 1 if you want to see a plot each time.
-%
-  show_plots = 0;
 %
 %  Report to the user.
 %
@@ -78,35 +94,7 @@ function md ( nd, np, step_num, dt )
   fprintf ( 1, '  ND, the spatial dimension, is %d\n', nd );
   fprintf ( 1, '  NP, the number of particles in the simulation is %d.\n', np );
   fprintf ( 1, '  STEP_NUM, the number of time steps, is %d.\n', step_num );
-  fprintf ( 1, '  DT, the time step size, is %f seconds.\n', dt );
-%
-%  Set the dimensions of the box.
-%
-  box(1:nd) = 10.0;
-%
-%  Initialize the random number generator to a prescribed state.
-%  RNG is the new recommended interface to the MATLAB random number generator.
-%
-  seed = 123456789;
-  rng ( seed );
-%
-%  Set initial positions, velocities, and accelerations.
-%
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Initializing positions, velocities, and accelerations.\n' );
-
-  [ pos, vel, acc ] = initialize ( np, nd, box, seed );
-%
-%  Compute the forces and energies.
-%
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Computing initial forces and energies.\n' );
-
-  [ force, potential, kinetic ] = compute ( np, nd, pos, vel, mass );
-%
-%  Save the initial total energy for use in the accuracy check.
-%
-  e0 = potential + kinetic;
+  fprintf ( 1, '  DT, the time step size, is %g seconds.\n', dt );
 %
 %  This is the main time stepping loop:
 %    Compute forces and energies,
@@ -124,55 +112,38 @@ function md ( nd, np, step_num, dt )
 
   step_print_index = 0;
   step_print_num = 10;
-
-  step = 0;
-  fprintf ( 1, '  %8d  %14f  %14f  %14e\n', ...
-    step, potential, kinetic, ( potential + kinetic - e0 ) / e0 );
-  step_print_index = step_print_index + 1;
-  step_print = floor ( ( step_print_index * step_num ) / step_print_num );
+  step_print = 0;
 
   tic;
 
-  for step = 1 : step_num
+  for step = 0 : step_num
+
+    if ( step == 0 )
+      [ pos, vel, acc ] = initialize ( np, nd );
+    else
+      [ pos, vel, acc ] = update ( np, nd, pos, vel, force, acc, mass, dt );
+    end
 
     [ force, potential, kinetic ] = compute ( np, nd, pos, vel, mass );
 
+    if ( step == 0 )
+      e0 = potential + kinetic;
+    end
+
     if ( step == step_print )
-      fprintf ( 1, '  %8d  %14f  %14f  %14e\n', ...
-        step, potential, kinetic, ( potential + kinetic - e0 ) / e0 );
+      rel = ( potential + kinetic - e0 ) / e0;
+      fprintf ( 1, '  %8d  %14f  %14f  %14e\n', step, potential, kinetic, rel );
       step_print_index = step_print_index + 1;
       step_print = floor ( ( step_print_index * step_num ) / step_print_num );
     end
-%
-%  Plot the particles.
-%
-    if ( show_plots )
-
-      if ( nd == 2 || nd == 3 )
-        clf
-        if ( nd == 2 )
-          scatter ( pos(1,:), pos(2,:), 10.0, 'r', 'filled' )
-        elseif ( nd == 3 )
-          scatter3 ( pos(1,:), pos(2,:), pos(3,:), 10.0, 'r', 'filled' )
-        end
-        title ( sprintf ( 'Step %d\n', step ) );
-        pause ( 0.5 )
-
-      end
-
-    end
-%
-%  Update the data for the next time step.
-%
-    [ pos, vel, acc ] = update ( np, nd, pos, vel, force, acc, mass, dt );
 
   end
-
+%
+%  Report timing.
+%
   wtime = toc;
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Main computation:\n' );
-  fprintf ( 1, '    Wall clock time = %f seconds.\n', wtime );
+  fprintf ( 1, '  Wall clock time = %f seconds.\n', wtime );
 %
 %  Terminate.
 %
@@ -195,12 +166,12 @@ function [ f, pot, kin ] = compute ( np, nd, pos, vel, mass )
 %    The potential function V(X) is a harmonic well which smoothly
 %    saturates to a maximum value at PI/2:
 %
-%      v(x) = ( sin ( min ( x, PI2 ) ) )^2
+%      v(x) = ( sin ( min ( x, PI/2 ) ) )^2
 %
 %    The derivative of the potential is:
 %
-%      dv(x) = 2.0 * sin ( min ( x, PI2 ) ) * cos ( min ( x, PI2 ) )
-%            = sin ( 2.0 * min ( x, PI2 ) )
+%      dv(x) = 2.0 * sin ( min ( x, PI/2 ) ) * cos ( min ( x, PI/2 ) )
+%            = sin ( 2.0 * min ( x, PI/2 ) )
 %
 %  Licensing:
 %
@@ -212,8 +183,7 @@ function [ f, pot, kin ] = compute ( np, nd, pos, vel, mass )
 %
 %  Author:
 %
-%    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt and Gene Cliff.
+%    John Burkardt and Gene Cliff.
 %
 %  Parameters:
 %
@@ -221,9 +191,9 @@ function [ f, pot, kin ] = compute ( np, nd, pos, vel, mass )
 %
 %    Input, integer ND, the number of spatial dimensions.
 %
-%    Input, real POS(ND,NP), the position of each particle.
+%    Input, real POS(ND,NP), the positions.
 %
-%    Input, real VEL(ND,NP), the velocity of each particle.
+%    Input, real VEL(ND,NP), the velocities.
 %
 %    Input, real MASS, the mass of each particle.
 %
@@ -277,18 +247,11 @@ function [ f, pot, kin ] = compute ( np, nd, pos, vel, mass )
 %
 %  Compute the total kinetic energy.
 %
-  kin = 0.0;
-  for k = 1 : nd
-    for j = 1 : np
-      kin = kin + vel(k,j)^2;
-    end
-  end
-
-  kin = 0.5 * mass * kin;
+  kin = 0.5 * mass * sum ( sum ( vel(1:nd,1:np).^2 ) );
 
   return
 end
-function [ pos, vel, acc, seed ] = initialize ( np, nd, box, seed )
+function [ pos, vel, acc ] = initialize ( np, nd )
 
 %*****************************************************************************80
 %
@@ -300,12 +263,11 @@ function [ pos, vel, acc, seed ] = initialize ( np, nd, box, seed )
 %
 %  Modified:
 %
-%    15 July 2008
+%    26 December 2014
 %
 %  Author:
 %
-%    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt.
+%    John Burkardt.
 %
 %  Parameters:
 %
@@ -313,36 +275,127 @@ function [ pos, vel, acc, seed ] = initialize ( np, nd, box, seed )
 %
 %    Input, integer ND, the number of spatial dimensions.
 %
-%    Input, real BOX(ND), specifies the maximum position
-%    of particles in each dimension.
+%    Output, real POS(ND,NP), the positions.
 %
-%    Input, integer SEED, a seed for the random number generator.
+%    Output, real VEL(ND,NP), the velocities.
 %
-%    Output, real POS(ND,NP), the position of each particle.
+%    Output, real ACC(ND,NP), the accelerations.
 %
-%    Output, real VEL(ND,NP), the velocity of each particle.
+  seed = 123456789;
 %
-%    Output, real ACC(ND,NP), the acceleration of each particle.
+%  Positions.
 %
-%    Output, integer SEED, a seed for the random number generator.
+  [ pos, seed ] = r8mat_uniform_ab ( nd, np, 0.0, 10.0, seed );
 %
+%  Velocities.
+%
+  vel = zeros ( nd, np );
+%
+%  Accelerations.
+%
+  acc = zeros ( nd, np );
 
+  return
+end
+function [ r, seed ] = r8mat_uniform_ab ( m, n, a, b, seed )
+
+%*****************************************************************************80
 %
-%  Start by setting the positions to random numbers between 0 and 1.
+%% R8MAT_UNIFORM_AB returns a scaled pseudorandom R8MAT.
 %
-  pos(1:nd,1:np) = rand ( nd, np );
+%  Discussion:
 %
-%  Use these random values as scale factors to pick random locations
-%  inside the box.
+%    An R8MAT is an array of R8's.
 %
-  for i = 1 : nd
-    pos(i,1:np) = box(i) * pos(i,1:np);
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license. 
+%
+%  Modified:
+%
+%    21 September 2006
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Reference:
+%
+%    Paul Bratley, Bennett Fox, Linus Schrage,
+%    A Guide to Simulation,
+%    Second Edition,
+%    Springer, 1987,
+%    ISBN: 0387964673,
+%    LC: QA76.9.C65.B73.
+%
+%    Bennett Fox,
+%    Algorithm 647:
+%    Implementation and Relative Efficiency of Quasirandom
+%    Sequence Generators,
+%    ACM Transactions on Mathematical Software,
+%    Volume 12, Number 4, December 1986, pages 362-376.
+%
+%    Pierre L'Ecuyer,
+%    Random Number Generation,
+%    in Handbook of Simulation,
+%    edited by Jerry Banks,
+%    Wiley, 1998,
+%    ISBN: 0471134031,
+%    LC: T57.62.H37.
+%
+%    Peter Lewis, Allen Goodman, James Miller,
+%    A Pseudo-Random Number Generator for the System/360,
+%    IBM Systems Journal,
+%    Volume 8, Number 2, 1969, pages 136-143.
+%
+%  Parameters:
+%
+%    Input, integer M, N, the number of rows and columns in the array.
+%
+%    Input, real A, B, the range of the pseudorandom values.
+%
+%    Input, integer SEED, the integer "seed" used to generate
+%    the output random number.
+%
+%    Output, real R(M,N), an array of random values between 0 and 1.
+%
+%    Output, integer SEED, the updated seed.  This would
+%    normally be used as the input seed on the next call.
+%
+  r = zeros ( m, n );
+
+  i4_huge = 2147483647;
+
+  if ( seed == 0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'R8MAT_UNIFORM_AB - Fatal error!\n' );
+    fprintf ( 1, '  Input SEED = 0!\n' );
+    error ( 'R8MAT_UNIFORM_AB - Fatal error!' );
   end
-%
-%  Velocities and accelerations.
-%
-  vel(1:nd,1:np) = randn ( nd, np );
-  acc(1:nd,1:np) = 0.0;
+
+  for j = 1 : n
+    for i = 1 : m
+
+      seed = floor ( seed );
+
+      seed = mod ( seed, i4_huge );
+
+      if ( seed < 0 ) 
+        seed = seed + i4_huge;
+      end 
+
+      k = floor ( seed / 127773 );
+
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836;
+
+      if ( seed < 0 )
+        seed = seed + i4_huge;
+      end
+
+      r(i,j) = a + ( b - a ) * seed * 4.656612875E-10;
+
+    end
+  end
 
   return
 end
@@ -397,8 +450,7 @@ function [ pos, vel, acc ] = update ( np, nd, pos, vel, f, acc, mass, dt )
 %
 %  Author:
 %
-%    Original FORTRAN90 version by Bill Magro.
-%    MATLAB version by John Burkardt.
+%    John Burkardt
 %
 %  Parameters:
 %
@@ -406,25 +458,23 @@ function [ pos, vel, acc ] = update ( np, nd, pos, vel, f, acc, mass, dt )
 %
 %    Input, integer ND, the number of spatial dimensions.
 %
-%    Input, real POS(ND,NP), the position of each particle.
+%    Input, real POS(ND,NP), the positions.
 %
-%    Input, real VEL(ND,NP), the velocity of each particle.
+%    Input, real VEL(ND,NP), the velocities.
 %
-%    Input, real F(ND,NP), the force on each particle.
+%    Input, real F(ND,NP), the forces.
 %
-%    Input, real ACC(ND,NP), the acceleration of each
-%    particle.
+%    Input, real ACC(ND,NP), the accelerations.
 %
 %    Input, real MASS, the mass of each particle.
 %
 %    Input, real DT, the time step.
 %
-%    Output, real POS(ND,NP), the updated position of each particle.
+%    Output, real POS(ND,NP), the updated positions.
 %
-%    Output, real VEL(ND,NP), the updated velocity of each particle.
+%    Output, real VEL(ND,NP), the updated velocities.
 %
-%    Output, real ACC(ND,NP), the updated acceleration of each
-%    particle.
+%    Output, real ACC(ND,NP), the updated accelerations.
 %
   rmass = 1.0 / mass;
 

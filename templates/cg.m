@@ -1,5 +1,7 @@
 function [ x, error_norm, iter, flag ] = cg ( A, x, b, M, max_it, tol )
 
+%*****************************************************************************80
+%
 %% CG solves a linear system using the conjugate gradient method.
 %
 %  Discussion:
@@ -15,10 +17,10 @@ function [ x, error_norm, iter, flag ] = cg ( A, x, b, M, max_it, tol )
 %  Reference:
 %
 %    Richard Barrett, Michael Berry, Tony Chan, James Demmel,
-%      June Donato, Jack Dongarra, Victor Eijkhout, Roidan Pozo,
-%      Charles Romine, Henk van der Vorst
+%    June Donato, Jack Dongarra, Victor Eijkhout, Roidan Pozo,
+%    Charles Romine, Henk van der Vorst
 %    Templates for the Solution of Linear Systems: Building Blocks for 
-%      Iterative Methods, 
+%    Iterative Methods, 
 %    SIAM Publications, 1993.
 %
 %  Parameters:

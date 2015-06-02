@@ -47,6 +47,8 @@ function r = faure_dataset ( m, n, skip )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -57,6 +59,8 @@ function r = faure_dataset ( m, n, skip )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '\n' );
@@ -73,6 +77,8 @@ function r = faure_dataset ( m, n, skip )
     fprintf ( 1, '  0 is a common choice.\n' );
     fprintf ( 1, '  %d is a recommended choice\n', skip_suggest );
     skip = input ( '  Enter SKIP: ' );
+  else
+    skip = str2num ( skip );
   end
 
   fprintf ( 1, '\n' );

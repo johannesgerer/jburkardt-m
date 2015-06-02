@@ -85,6 +85,20 @@ function haar_test01 ( )
   for i = 1 : n
     fprintf ( 1, '  %2d  %10f  %10f  %10f\n', i, u(i), v(i), w(i) );
   end
+%
+%  N not a power of 2.
+%
+  n = 99;
+  u = rand ( n, 1 );
+
+  v = haar_1d ( n, u );
+
+  w = haar_1d_inverse ( n, v );
+
+  err = norm ( u - w );
+
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  For N = %d, ||u-haar_1d_inverse(haar_1d(u))|| = %g\n', n, err );
 
   return
 end

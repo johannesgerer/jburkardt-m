@@ -2,7 +2,7 @@ function fd1d_wave_test ( )
 
 %*****************************************************************************80
 %
-%% FD1D_WAVE_TEST tests the FD1D finite difference wave computation.
+%% FD1D_WAVE_TEST tests the FD1D_WAVE library.
 %
 %  Licensing:
 %
@@ -21,7 +21,7 @@ function fd1d_wave_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FD1D_WAVE_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the FD1D_WAVE functions.\n' );
+  fprintf ( 1, '  Test the FD1D_WAVE library.\n' );
 
   fd1d_wave_test01 ( );
   fd1d_wave_test02 ( );

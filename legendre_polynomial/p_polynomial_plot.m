@@ -2,7 +2,7 @@ function p_polynomial_plot ( index, filename )
 
 %*****************************************************************************80
 %
-%% HF_PLOT plots Hermite functions.
+%% P_POLYNOMIAL_PLOT plots Legendre polynomials.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function p_polynomial_plot ( index, filename )
 %
 %  Modified:
 %
-%    13 March 2012
+%    03 May 2013
 %
 %  Author:
 %
@@ -31,9 +31,10 @@ function p_polynomial_plot ( index, filename )
 
   clf
   hold on
+  plot ( [-1.0,+1.0], [0.0,0.0], 'b-', 'Linewidth', 1 );
   for i = 1 : index_num
     n = index(i);
-    y = p_polynomial ( m, n, x );
+    y = p_polynomial_value ( m, n, x );
     plot ( x, y(:,n+1), 'LineWidth', 2 );
   end
   grid on

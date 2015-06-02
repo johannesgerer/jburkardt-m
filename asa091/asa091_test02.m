@@ -40,7 +40,7 @@ function asa091_test02 ( )
 
     v = a;
 
-    [ g, ifault ] = alngam ( v / 2.0 );
+    [ g, ifault ] = gamma_ln ( v / 2.0 );
 
     [ x2, ifault ] = ppchi2 ( fx, v, g );
 

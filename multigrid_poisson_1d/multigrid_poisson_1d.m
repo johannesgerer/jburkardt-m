@@ -1,4 +1,4 @@
-function [ u, it_num ] = multigrid_poisson_1d ( n, force, exact )
+function [ u, it_num ] = multigrid_poisson_1d ( n, a, b, ua, ub, force, exact )
 
 %*****************************************************************************80
 %                                                    
@@ -20,7 +20,7 @@ function [ u, it_num ] = multigrid_poisson_1d ( n, force, exact )
 %
 %  Modified:
 %
-%    06 December 2011
+%    26 July 2014
 %
 %  Author:
 %
@@ -39,6 +39,10 @@ function [ u, it_num ] = multigrid_poisson_1d ( n, force, exact )
 %
 %    Input, integer N, the number of intervals.
 %    N must be a power of 2.
+%
+%    Input, real A, B, the left and right endpoints of the region.
+%
+%    Input, real UA, UB, the left and right boundary values.
 %
 %    Input, function value = FORCE ( x ), the name of the function 
 %    which evaluates the right hand side.
@@ -76,16 +80,18 @@ function [ u, it_num ] = multigrid_poisson_1d ( n, force, exact )
   utol = 0.7;
   m = n;
 % 
+%  Set the nodes.
+%
+  x = ( linspace ( a, b, n + 1 ) )';
+%
 %  Set the right hand side.
 %
-  x = ( linspace ( 0.0, 1.0, n + 1 ) )';
-
   r = zeros ( n + 1, 1 );
-  r(1) = 0.0;
+  r(1) = ua;
   r(2:n) = force ( x(2:n) ) / n / n;
-  r(n+1) = 0.0;
+  r(n+1) = ub;
 %
-%  L points to first entry of solution
+%  L points to first entry of solution.
 %  LL points to penultimate entry.
 %
   l = 1;
@@ -146,5 +152,4 @@ function [ u, it_num ] = multigrid_poisson_1d ( n, force, exact )
 
   return
 end
-
 

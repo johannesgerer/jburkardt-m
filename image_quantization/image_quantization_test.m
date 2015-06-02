@@ -2,7 +2,7 @@ function image_quantization_test ( )
 
 %*****************************************************************************80
 %
-%% IMAGE_QUANTIZATION_TEST tests IMAGE_QUANTIZATION.
+%% IMAGE_QUANTIZATION_TEST tests the IMAGE_QUANTIZATION library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function image_quantization_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'IMAGE_QUANTIZATION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

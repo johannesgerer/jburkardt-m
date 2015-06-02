@@ -54,7 +54,7 @@ function pce_burgers ( )
 %
 %  Author:
 %
-%    The original FORTRAN90 version of this program was written by Gianluca Iaccarino.
+%    Original FORTRAN90 version by Gianluca Iaccarino.
 %    This MATLAB version is by John Burkardt.
 %
 %  Local parameters:
@@ -232,7 +232,8 @@ function pce_burgers ( )
   output_unit = fopen ( output_filename, 'wt' );
   fprintf ( output_unit, ' X E[U] Var[U]\n' );
   for i = 1 : n + 1
-    fprintf ( output_unit, '  %18.8g  %18.8g  %18.8g\n', x(i), umean(i), uvariance(i) );
+    fprintf ( output_unit, '  %18.8g  %18.8g  %18.8g\n', ...
+      x(i), umean(i), uvariance(i) );
   end
   fclose ( output_unit );
   fprintf ( 1, '  Moments in "%s".\n', output_filename );

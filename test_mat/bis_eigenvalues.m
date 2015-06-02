@@ -2,7 +2,7 @@ function lambda = bis_eigenvalues ( alpha, beta, n )
 
 %*****************************************************************************80
 %
-%% BIS_EIGENVALUES returns the eigenvalues of the bidiagonal scalar matrix.
+%% BIS_EIGENVALUES returns the eigenvalues of the BIS matrix.
 %
 %  Licensing:
 %
@@ -23,9 +23,9 @@ function lambda = bis_eigenvalues ( alpha, beta, n )
 %
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues of the matrix.
+%    Output, real LAMBDA(N,1), the eigenvalues of the matrix.
 %
-  lambda(1:n) = alpha;
+  lambda(1:n,1) = alpha;
 
   return
 end

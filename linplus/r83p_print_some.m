@@ -93,17 +93,17 @@ function r83p_print_some ( n, a, ilo, jlo, ihi, jhi, title )
         j = j2lo - 1 + j2;
 
         if ( i == n & j == 1 )
-          fprintf ( '%12f  ', a(1,j) );
+          fprintf ( '%12g  ', a(1,j) );
         elseif ( i == 1 & j == n )
-          fprintf ( '%12f  ', a(3,j) );
+          fprintf ( '%12g  ', a(3,j) );
         elseif ( 1 < i-j | 1 < j-i )
           fprintf ( '              ' );
         elseif ( j == i+1 )
-          fprintf ( '%12f  ', a(1,j) );
+          fprintf ( '%12g  ', a(1,j) );
         elseif ( j == i )
-          fprintf ( '%12f  ', a(2,j) );
+          fprintf ( '%12g  ', a(2,j) );
         elseif ( j == i-1 )
-          fprintf ( '%12f  ', a(3,j) );
+          fprintf ( '%12g  ', a(3,j) );
         end
 
       end
@@ -113,8 +113,6 @@ function r83p_print_some ( n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

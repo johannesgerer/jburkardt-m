@@ -2,7 +2,7 @@ function btv_test ( )
 
 %*****************************************************************************80
 %
-%% BTV_TEST tests BURGERS_TIME_VISCOUS.
+%% BTV_TEST tests the BURGERS_TIME_VISCOUS (BTV) library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function btv_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BTV_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the BURGERS_TIME_VISCOUS library.\n' );
+  fprintf ( 1, '  Test the BURGERS_TIME_VISCOUS (BTV) library.\n' );
 
   btv_test01 ( );
   btv_test02 ( );

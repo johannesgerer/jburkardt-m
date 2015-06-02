@@ -18,7 +18,7 @@ function svd_snowfall_test02 ( x )
 %
 %  Parameters:
 %
-%    Input, real X(8,121), the snowfall data.
+%    Input, real X(8,123), the snowfall data.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST02\n' );

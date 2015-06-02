@@ -2,7 +2,7 @@ function a = hilbert ( m, n )
 
 %*****************************************************************************80
 %
-%% HILBERT returns the Hilbert matrix.
+%% HILBERT returns the HILBERT matrix.
 %
 %  Formula:
 %
@@ -48,11 +48,13 @@ function a = hilbert ( m, n )
 %    eigenvalues is roughly EXP(3.5*N).
 %
 %    The determinant of the Hilbert matrix of order 10 is
-%    2.16417... * 10**(-53).
+%    2.16417... * 10^(-53).
 %
 %    If the (1,1) entry of the 5 by 5 Hilbert matrix is changed
 %    from 1 to 24/25, the matrix is exactly singular.  And there
 %    is a similar rule for larger Hilbert matrices.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -106,6 +108,8 @@ function a = hilbert ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = 1.0 / ( i + j - 1 );

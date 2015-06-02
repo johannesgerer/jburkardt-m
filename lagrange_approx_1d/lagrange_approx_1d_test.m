@@ -2,7 +2,7 @@ function lagrange_approx_1d_test ( )
 
 %*****************************************************************************80
 %
-%% LAGRANGE_APPROX_1D_TEST tests LAGRANGE_APPROX_1D.
+%% LAGRANGE_APPROX_1D_TEST tests the LAGRANGE_APPROX_1D library.
 %
 %  Licensing:
 %

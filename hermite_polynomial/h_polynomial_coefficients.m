@@ -2,7 +2,11 @@ function c = h_polynomial_coefficients ( n )
 
 %*****************************************************************************80
 %
-%% H_POLYNOMIAL_COEFFICIENTS: coeffs of physicist's Hermite polynomial H(n,x).
+%% H_POLYNOMIAL_COEFFICIENTS: coefficients of H(i,x).
+%
+%  Discussion:
+%
+%    H(i,x) is the physicist's Hermite polynomial of degree I.
 %
 %  First terms:
 %

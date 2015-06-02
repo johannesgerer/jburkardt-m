@@ -1,0 +1,241 @@
+<html>
+
+  <head>
+    <title>
+      BLAS3 - Basic Linear Algebra Subprograms - Level 3
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      BLAS3 <br> 
+      Basic Linear Algebra Subprograms - Level 3
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>BLAS3</b>
+      is a MATLAB library which
+      implements the Level 3 BLAS, or Basic Linear Algebra Subprograms.
+    </p>
+
+    <p>
+      The BLAS are a small core library of linear algebra utilities,
+      which can be highly optimized for various architectures.  Software
+      that relies on the BLAS is thus highly portable, and will typically
+      run very efficiently.
+    </p>
+
+    <p>
+      The Level 3 BLAS are primarily for use in matrix-matrix operations,
+      such as matrix multiplication.
+      In certain cases, they may also be used to operate on the rows
+      or columns of a two-dimensional array.
+    </p>
+
+    <p>
+      The Level 3 BLAS were originally written in FORTRAN77.  This version
+      of the library only contains a subset of the BLAS3 library (at
+      the moment, mainly just DGEMM).  Arrays are stored according to the
+      FORTRAN convention.  Thus, an M by N mathematical array might be stored 
+      in a double precision FORTRAN array called "A" that is declared as 
+      <pre>
+        double precision a(lda,sda)
+      </pre>
+      where LDA is the "leading" dimension and SDA is the "second" dimension.
+      It is natural for LDA to equal M, but it is only necessary that 
+      M <= LDA.  The matrix is stored as a vector of concatenated column 
+      vectors, and the dimension statement is used to determine that columns 
+      should be LDA units long.  Thus, a typical entry A(I,J) of the 
+      mathematical matrix is actually stored in the location FORTRAN
+      vector location I+(J-1)*LDA.  Of course, in C, this location would be
+      I-1+(J-1)*LDA.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>BLAS3</b> is available in
+      <a href = "../../c_src/blas/blas.html">a C version</a> and
+      <a href = "../../cpp_src/blas/blas.html">a C++ version</a> and
+      <a href = "../../f77_src/blas/blas.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/blas/blas.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/blas/blas.html">a MATLAB version.</a> 
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/blas0/blas0.html">
+      BLAS0</a>,
+      a MATLAB library which
+      contains auxilliary functions for the Basic Linear Algebra Subprograms 
+      (BLAS).
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_c/blas1_c.html">
+      BLAS1_C</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using single precision complex arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_d/blas1_d.html">
+      BLAS1_D</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using double precision real arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_s/blas1_s.html">
+      BLAS1_S</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using single precision real arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas1_z/blas1_z.html">
+      BLAS1_Z</a>,
+      a MATLAB library which
+      contains basic linear algebra routines for vector-vector operations,
+      using double precision complex arithmetic.
+    </p>
+
+    <p>
+      <a href = "../../m_src/blas2/blas2.html">
+      BLAS2</a>,
+      a MATLAB library which
+      contains basic linear algebra subprograms (BLAS) 
+      for matrix-vector operations;
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Thomas Coleman, Charles vanLoan,<br>
+          Handbook for Matrix Computations,<br>
+          SIAM, 1988,<br>
+          ISBN13: 978-0-898712-27-8,<br>
+          LC: QA188.C65.
+        </li>
+        <li>
+          Jack Dongarra, Jim Bunch, Cleve Moler, Pete Stewart,<br>
+          LINPACK User's Guide,<br>
+          SIAM, 1979,<br>
+          ISBN13: 978-0-898711-72-1,<br>
+          LC: QA214.L56.
+        </li>
+        <li>
+          Charles Lawson, Richard Hanson, David Kincaid, Fred Krogh,<br>
+          Algorithm 539:
+          Basic Linear Algebra Subprograms for Fortran Usage,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 5, Number 3, September 1979, pages 308-323.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "dgemm.m">dgemm.m</a>, 
+          computes C = alpha * A * B and related operations.
+        </li>
+        <li>
+          <a href = "dtrmm.m">dtrmm.m</a>, 
+          performs B:=A*B or B:=B*A, A triangular, B rectangular.
+        </li>
+        <li>
+          <a href = "dtrsm.m">dtrsm.m</a>, 
+          solves A*X=alpha*B or X*A=alpha*B, for triangular A, rectangular B.
+        </li>
+        <li>
+          <a href = "sgemm.m">sgemm.m</a>, 
+          computes C = alpha * A * B and related operations.
+        </li>
+        <li>
+          <a href = "strmm.m">strmm.m</a>, 
+          performs B:=A*B or B:=B*A, A triangular, B rectangular.
+        </li>
+        <li>
+          <a href = "strsm.m">strsm.m</a>, 
+          solves A*X=alpha*B or X*A=alpha*B, for triangular A, rectangular B.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "blas3_test.m">blas3_test.m</a>
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "blas3_test01.m">blas3_test01.m</a>,
+          tests DGEMM.
+        </li>
+        <li>
+          <a href = "blas3_test02.m">blas3_test02.m</a>,
+          tests DTRMM.
+        </li>
+        <li>
+          <a href = "blas3_test03.m">blas3_test03.m</a>,
+          tests DTRSM.
+        </li>
+        <li>
+          <a href = "blas3_test_output.txt">blas3_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 April 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

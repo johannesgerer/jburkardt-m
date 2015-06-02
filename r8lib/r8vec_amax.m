@@ -1,4 +1,4 @@
-function amax = r8vec_amax ( n, a )
+function value = r8vec_amax ( n, a )
 
 %*****************************************************************************80
 %
@@ -22,10 +22,10 @@ function amax = r8vec_amax ( n, a )
 %
 %    Input, real A(N), the array.
 %
-%    Output, real AMAX, the value of the entry
+%    Output, real VALUE, the value of the entry
 %    of largest magnitude.
 %
-  amax = max ( abs ( a(1:n) ) );
+  value = max ( abs ( a(1:n) ) );
 
   return
 end

@@ -2,7 +2,7 @@ function cities_test ( )
 
 %*****************************************************************************80
 %
-%% CITIES_TEST tests the CITIES routines.
+%% CITIES_TEST tests the CITIES library.
 %
 %  Licensing:
 %
@@ -17,16 +17,13 @@ function cities_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CITIES_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the CITIES library.\n' );
 
   test01 ( 'wg22' );
-
   test02 ( 'usca312_main.txt' );
-
   test03 ( 'usca312_main.txt' );
 %
 %  Terminate.
@@ -34,7 +31,6 @@ function cities_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CITIES_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

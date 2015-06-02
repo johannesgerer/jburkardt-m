@@ -2,7 +2,7 @@ function divdif_test ( )
 
 %*****************************************************************************80
 %
-%% DIVDIF_TEST tests DIVDIF.
+%% DIVDIF_TEST tests the DIVDIF library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function divdif_test ( )
 %
 %  Modified:
 %
-%    13 June 2007
+%    04 June 2013
 %
 %  Author:
 %
@@ -24,27 +24,29 @@ function divdif_test ( )
 
   divdif_test01 ( );
   divdif_test02 ( );
-  divdif_test04 ( );
+  divdif_test03 ( );
   divdif_test05 ( );
   divdif_test06 ( );
   divdif_test07 ( );
   divdif_test08 ( );
-  divdif_test09 ( );
-  divdif_test10 ( );
-  divdif_test11 ( );
-  divdif_test12 ( );
+
+  divdif_test16 ( );
+  divdif_test17 ( );
+  divdif_test18 ( );
+  divdif_test19 ( );
+
+  divdif_test20 ( );
+  divdif_test21 ( );
+  divdif_test22 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIVDIF_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
-
-
 

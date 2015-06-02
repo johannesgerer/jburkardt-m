@@ -2,7 +2,7 @@ function a = loewner ( w, x, y, z, n )
 
 %*****************************************************************************80
 %
-%% LOEWNER returns the Loewner matrix.
+%% LOEWNER returns the LOEWNER matrix.
 %
 %  Formula:
 %
@@ -42,6 +42,8 @@ function a = loewner ( w, x, y, z, n )
 %
 %    A is generally not symmetric: A' /= A.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -63,6 +65,8 @@ function a = loewner ( w, x, y, z, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

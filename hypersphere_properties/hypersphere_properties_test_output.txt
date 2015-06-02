@@ -1,0 +1,241 @@
+hypersphere_test
+12-Dec-2013 17:19:17
+
+HYPERSPHERE_TEST:
+  MATLAB version
+  Test the HYPERSPHERE library.
+
+HYPERSPHERE_TEST01
+  Test the coordinate conversion routines:
+  CARTESIAN_TO_HYPERSPHERE: X       -> R,Theta
+  HYPERSPHERE_TO_CARTESIAN: R,Theta -> X.
+
+  Pick a random X, and compute X2 by converting X
+  to hypersphere and back.  Consider norm of difference.
+
+  M    || X - X2 ||
+
+  1  0
+  1  0
+  1  0
+  1  0
+  1  6.93889e-18
+
+  2  5.92859e-17
+  2  1.1754e-16
+  2  2.81004e-16
+  2  5.82167e-17
+  2  6.7318e-16
+
+  3  1.11022e-16
+  3  0
+  3  6.20634e-17
+  3  1.24127e-16
+  3  1.92296e-16
+
+  4  1.77722e-16
+  4  3.46945e-18
+  4  1.57009e-16
+  4  2.11864e-16
+  4  3.23683e-16
+
+  5  1.24127e-16
+  5  4.12616e-16
+  5  2.66945e-16
+  5  1.68973e-16
+  5  6.20634e-17
+
+HYPERSPHERE_TEST02
+  HYPERSPHERE_01_SURFACE_UNIFORM samples uniformly from the
+  surface of the unit hypersphere
+
+  Random hypersphere point:
+
+             1
+
+  Random hypersphere point:
+
+            -1
+
+  Random hypersphere point:
+
+             1
+
+  Random hypersphere point:
+
+      0.770686      0.637215
+
+  Random hypersphere point:
+
+     -0.666173     -0.745798
+
+  Random hypersphere point:
+
+     -0.950157      0.311771
+
+  Random hypersphere point:
+
+     0.0262807     -0.894727       0.44584
+
+  Random hypersphere point:
+
+       -0.1243      0.169395      0.977678
+
+  Random hypersphere point:
+
+       0.14063      -0.21901      0.965535
+
+  Random hypersphere point:
+
+      0.527168     -0.323123      -0.46844       0.63107
+
+  Random hypersphere point:
+
+    -0.0632185      0.585015     -0.748625     -0.305485
+
+  Random hypersphere point:
+
+     -0.753564      0.225138     -0.504373     -0.356457
+
+  Random hypersphere point:
+
+     0.0552638     -0.764025      0.225495      0.523923     -0.296426
+
+  Random hypersphere point:
+
+     -0.300054      0.355691     -0.184445     -0.812472     -0.298865
+
+  Random hypersphere point:
+
+      0.113546     -0.224028     -0.233026     -0.926416      0.156113
+
+HYPERSPHERE_TEST03:
+  HYPERSPHERE_01_AREA evaluates the area of the unit
+  hypersphere in M dimensions.
+
+       M      Exact       Computed
+              Area        Area
+
+       1    2.000000    2.000000
+       2    6.283185    6.283185
+       3   12.566371   12.566371
+       4   19.739209   19.739209
+       5   26.318945   26.318945
+       6   31.006277   31.006277
+       7   33.073362   33.073362
+       8   32.469697   32.469697
+       9   29.686580   29.686580
+      10   25.501640   25.501640
+      11   20.725143   20.725143
+      12   16.023153   16.023153
+      13   11.838174   11.838174
+      14    8.389703    8.389703
+      15    5.721649    5.721649
+      16    3.765290    3.765290
+      17    2.396679    2.396679
+      18    1.478626    1.478626
+      19    0.885810    0.885810
+      20    0.516138    0.516138
+
+HYPERSPHERE_TEST04:
+  HYPERSPHERE_01_VOLUME evaluates the area of the unit
+  hypersphere in M dimensions.
+  HYPERSPHERE_01_VOLUME_VALUES returns some test values.
+
+       M      Exact       Computed
+              Volume      Volume
+
+       1    2.000000    2.000000
+       2    3.141593    3.141593
+       3    4.188790    4.188790
+       4    4.934802    4.934802
+       5    5.263789    5.263789
+       6    5.167713    5.167713
+       7    4.724766    4.724766
+       8    4.058712    4.058712
+       9    3.298509    3.298509
+      10    2.550164    2.550164
+      11    1.884104    1.884104
+      12    1.335263    1.335263
+      13    0.910629    0.910629
+      14    0.599265    0.599265
+      15    0.381443    0.381443
+      16    0.235331    0.235331
+      17    0.140981    0.140981
+      18    0.082146    0.082146
+      19    0.046622    0.046622
+      20    0.025807    0.025807
+
+HYPERSPHERE_TEST05
+  For a hypersphere in M dimensions:
+  HYPERSPHERE_AREA computes the area;
+  HYPERSPHERE_VOLUME computes the volume.
+
+  Notice that both quantities eventually decrease!
+
+  We use a radius of R = 1.500000
+
+    M        Area          Volume    Area / Volume 
+
+    1             2             3      0.666667
+    2       9.42478       7.06858       1.33333
+    3       28.2743       14.1372             2
+    4       66.6198       24.9824       2.66667
+    5        133.24       39.9719       3.33333
+    6       235.454       58.8635             4
+    7       376.726       80.7271       4.66667
+    8       554.775        104.02       5.33333
+    9       760.835       126.806             6
+   10       980.369       147.055       6.66667
+   11       1195.12        162.97       7.33333
+   12       1385.96       173.245             8
+   13       1535.96       177.226       8.66667
+   14        1632.8       174.943       9.33333
+   15       1670.32       167.032            10
+   16        1648.8       154.575       10.6667
+   17       1574.24       138.903       11.3333
+   18       1456.83       121.403            12
+   19       1309.13       103.353       12.6667
+   20       1144.19       85.8145       13.3333
+
+HYPERSPHERE_TEST06
+  Test the stereographic mapping:
+  HYPERSPHERE_STEREOGRAPH maps hypersphere points to the plane.
+  HYPERSPHERE_STEREOGRAPH_INVERSE inverts the mapping.
+
+  Pick a random X1 on the hypersphere.
+  Map it to a point X2 on the plane.
+  Map it back to a point X3 on the hypersphere.
+  Consider norm of difference.
+
+  M    || X1 - X3 ||
+
+  2  5.55112e-17
+  2  1.11022e-16
+  2  1.11022e-16
+  2  0
+  2  0
+
+  3  7.97973e-17
+  3  1.24127e-16
+  3  2.77902e-16
+  3  1.57009e-16
+  3  1.67111e-16
+
+  4  1.35974e-16
+  4  1.11022e-16
+  4  2.00148e-16
+  4  1.38778e-16
+  4  2.02064e-16
+
+  5  1.01032e-16
+  5  5.55112e-17
+  5  2.0015e-16
+  5  1.38778e-17
+  5  7.47342e-17
+
+HYPERSPHERE_TEST:
+  Normal end of execution.
+
+12-Dec-2013 17:19:17
+diary off

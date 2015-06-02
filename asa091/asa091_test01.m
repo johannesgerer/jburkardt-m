@@ -25,7 +25,7 @@ function asa091_test01 ( )
   fprintf ( 1, '  Perform a simple sample calculation using\n' );
   fprintf ( 1, '  PPCHI2 to invert the Chi-Squared CDF.\n' );
 
-  [ g, ifault ] = alngam ( v / 2.0 );
+  [ g, ifault ] = gamma_ln ( v / 2.0 );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  P =                  %f\n', p );

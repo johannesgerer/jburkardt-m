@@ -1,0 +1,217 @@
+<html>
+
+  <head>
+    <title>
+      GNUPLOT: Programs that Set Up GNUPLOT Graphics
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      GNUPLOT <br> Programs that Set Up GNUPLOT Graphics
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>GNUPLOT</b> 
+      is a set of MATLAB programs which
+      illustrate how commands and data for the GNUPLOT graphics program
+      can be generated, to illustrate the results of a calculation. 
+    </p>
+
+    <p>
+      Ordinarily, GNUPLOT is used interactively; that is, the user
+      invokes the program, and then describes the plot to be created.
+      The data for the plot is created either by a formula, or by
+      reference to some data file created earlier.  
+    </p>
+
+    <p>
+      It is often extremely important to be able to create graphical
+      images of the results of an executable program.  If the user is
+      familiar with GNUPLOT, then the program can be modified to create
+      a suitable data file, and, once the program has completed,
+      the user can run GNUPLOT and use that data file to create a graph.
+    </p>
+
+    <p>
+      However, if the program is going to create the data file, it can
+      just as easily create a file containing the appropriate commands
+      to GNUPLOT that will create the desired image.  In this way, 
+      the user can avoid having to recall the correct commands in the
+      correct order to create the plot.
+    </p>
+
+    <p>
+      Thus, the program might create two files, called, perhaps
+      <i>data.txt</i> and <i>commands.txt</i>.  The command file would
+      contain GNUPLOT commands, including one that refers to the data file
+      itself.  To create the graphics image, the user would simply type
+      <pre>
+        gnuplot &lt; commands.txt
+      </pre>
+    </p>
+
+    <p>
+      This directory includes some sample programs which carry out 
+      numerical calculations, creating data and command files that
+      are used in exactly this way.
+    </p>
+
+    <p>
+      By the way, every time I run gnuplot, I get the obnoxious warning
+      message
+      <pre>
+Could not find/open font when opening font "arial", using internal non-scalable font
+      </pre>
+      I had to fix this with the following lines added to my .bashrc file:
+      <pre>
+export GDFONTPATH=/usr/share/fonts/liberation
+export GNUPLOT_DEFAULT_GDFONT=LiberationSans-Regular
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>GNUPLOT</b> is available in
+      <a href = "../../examples/gnuplot/gnuplot.html">a non-language specific version</a> and
+      <a href = "../../c_src/gnuplot/gnuplot.html">a C version</a> and
+      <a href = "../../cpp_src/gnuplot/gnuplot.html">a C++ version</a> and
+      <a href = "../../f77_src/gnuplot/gnuplot.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/gnuplot/gnuplot.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/gnuplot/gnuplot.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_plot_gpl/fem2d_plot_gpl.html">
+      FEM2D_PLOT_GPL</a>,
+      a MATLAB program which
+      reads information about nodes, elements and nodal values for a
+      2D finite element method (FEM) and creates a GPL file describing
+      a surface plot of U(X,Y), which can be displayed by GNUPLOT.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gpl_display/gpl_display.html">
+      GPL_DISPLAY</a>,
+      a MATLAB library which
+      tries to read the data in a typical gnuplot GPL file,
+      and display it in a more attractive way than gnuplot is capable of.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philipp Janert,<br>
+          Gnuplot in Action: Understanding Data with Graphs,<br>
+          Manning, 2010,<br>
+          ISBN13: 978-1-933988-39-8,<br>
+          LC: QA276.4.J37.
+        </li>
+        <li>
+          Thomas Williams, Colin Kelley,<br>
+          gnuplot 4.4, An Interactive Plotting Program,<br>
+          The Free Software Foundation, 2010.
+        </li>
+        <li>
+          <a href = "http://www.gnuplot.info/">The GNUPLOT Website</a>.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>DAMPED_SINE</b> evaluates the damped sine correlation function for a range
+      of values of its argument.  A plot of the function is desired.
+      <ul>
+        <li>
+          <a href = "damped_sine.m">damped_sine.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "damped_sine_output.txt">damped_sine_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "damped_sine_data.txt">damped_sine_data.txt</a>,
+          a file containing the data values.
+        </li>
+        <li>
+          <a href = "damped_sine_commands.txt">damped_sine_commands.txt</a>,
+          GNUPLOT commands that can create an image from the data file.
+        </li>
+        <li>
+          <a href = "damped_sine.png">damped_sine.png</a>,
+          an image of the data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>STRING_SIMULATION</b> simulates the behavior of a string that obeys
+      the wave equation.  The shape of the string is to be plotted over successive
+      times.
+      <ul>
+        <li>
+          <a href = "string_simulation.m">string_simulation.m</a>, the source code.
+        </li>
+        <li>
+          <a href = "string_simulation_output.txt">string_simulation_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "string_data.txt">string_data.txt</a>,
+          a file containing the data values.
+        </li>
+        <li>
+          <a href = "string_commands.txt">string_commands.txt</a>,
+          GNUPLOT commands that can create an image from the data file.
+        </li>
+        <li>
+          <a href = "string.png">string.png</a>,
+          an image of the data.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB directory</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 04 January 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

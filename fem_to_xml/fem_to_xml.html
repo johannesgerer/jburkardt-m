@@ -1,0 +1,307 @@
+<html>
+
+  <head>
+    <title>
+      FEM_TO_XML - Convert a Mesh from FEM to DOLFIN XML Format
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_TO_XML <br> Convert a Mesh from FEM to DOLFIN XML Format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_TO_XML</b> 
+      is a MATLAB program which
+      reads FEM files of node coordinates and element connectivity, 
+      which define a mesh of a 1D, 2D, or 3D region
+      and creates a corresponding DOLFIN XML file.
+    </p>
+
+    <p>
+      These mesh files can be used as input to DOLFIN or FENICS.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem_to_xml</b> ( <i>'prefix'</i> )
+      </blockquote>
+      where <i>prefix</i> is the common filename prefix:
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt contains the node coordinates,
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt contains the element definitions.
+        </li>
+        <li>
+          <i>'prefix'</i>.xml will contain the DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM_TO_XML</b> is available in
+      <a href = "../../c_src/fem_to_xml/fem_to_xml.html">a C version</a> and
+      <a href = "../../cpp_src/fem_to_xml/fem_to_xml.html">a C++ version</a> and
+      <a href = "../../f77_src/fem_to_xml/fem_to_xml.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem_to_xml/fem_to_xml.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem_to_xml/fem_to_xml.html">a MATLAB version</a> and
+      <a href = "../../py_src/fem_to_xml/fem_to_xml.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../py_src/dolfin-convert/dolfin-convert.html">
+      DOLFIN-CONVERT</a>,
+      a Python program which
+      can convert mesh file from Gmsh, MEDIT, METIS or SCOTCH format to an
+      XML format suitable for use by DOLFIN or FENICS,
+      by Anders Logg.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_gmsh/fem_to_gmsh.html">
+      FEM_TO_GMSH</a>,
+      a MATLAB program which
+      reads FEM files definining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a Gmsh mesh file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_medit/fem_to_medit.html">
+      FEM_TO_MEDIT</a>,
+      a MATLAB program which
+      reads a pair of FEM files defining node coordinates and elements,
+      and creates a corresponding MEDIT mesh file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_triangle/fem_to_triangle.html">
+      FEM_TO_TRIANGLE</a>,
+      a MATLAB program which
+      reads FEM files defining a 2D mesh of triangles, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding pair of node
+      and element files for use by Jonathan Shewchuk's triangle program.
+    </p>
+
+    <p>
+      <a href = "../../examples/fenics/fenics.html">
+      FENICS</a>, 
+      programs which
+      illustrate the use of a collection of free software 
+      with an extensive list of features for 
+      automated, efficient solution of differential equations. 
+    </p>
+
+    <p>
+      <a href = "../../examples/mitchell_fenics/mitchell_fenics.html">
+      MITCHELL_FENICS</a>,
+      examples which
+      illustrate the implementation of the Mitchell 2D elliptic 
+      partial differential equation (PDE) test problems using FENICS.
+    </p>
+
+    <p>
+      <a href = "../../data/xml/xml.html">
+      XML</a>,
+      a data directory which
+      contains examples of XML files,
+      a standard, general datafile format.
+    </p>
+
+    <p>
+      <a href = "../../py_src/xml_to_fem/xml_to_fem.html">
+      XML_TO_FEM</a>,
+      a Python program which
+      reads an XML file created by FENICS or DOLFIN, describing a mesh
+      in 1D, 2D, or 3D, and creates corresponding FEM files, namely,
+      a file of node coordinates, and a file of element connectivities.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Anders Logg, Kent-Andre Mardal, Garth Wells,<br>
+          Automated Solution of Differential Equations by the Finite Element
+          Method: The FEniCS Book,<br>
+          Lecture Notes in Computational Science and Engineering,<br>
+          Springer, 2011,<br>
+          ISBN13: 978-3642230981,<br>
+          LC:
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem_to_xml.m">fem_to_xml.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>BATTERY</b> is a rectangular region which was subdivided into 7
+      faces which were meshed together by MESHFACES.
+      <ul>
+        <li>
+          <a href = "battery_nodes.txt">battery_nodes.txt</a>,
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "battery_elements.txt">battery_elements.txt</a>,
+          the elements.
+        </li>
+        <li>
+          <a href = "battery.png">battery.png</a>,
+          a PNG image of the triangulation.
+        </li>
+        <li>
+          <a href = "battery.xml">battery.xml</a>,
+          the corresponding DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CHANNEL/b> is a 3D region, [0,3]x[0,1]x[0,1] [-1,+1], 
+      containing 63 nodes and 144 elements.
+      <ul>
+        <li>
+          <a href = "channel_nodes.txt">channel_nodes.txt</a>,
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "channel_elements.txt">channel_elements.txt</a>,
+          the elements.
+        </li>
+        <li>
+          <a href = "channel.xml">channel.xml</a>,
+          the corresponding DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CHEBY9</b> is a 1D interval, [-1,+1], containing 9 nodes and 8 elements.
+      <ul>
+        <li>
+          <a href = "cheby9_nodes.txt">cheby9_nodes.txt</a>,
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "cheby9_elements.txt">cheby9_elements.txt</a>,
+          the elements.
+        </li>
+        <li>
+          <a href = "cheby9.xml">cheby9.xml</a>,
+          the corresponding DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CIRCLE</b> is a 2D circular region which was meshed by MESH2D.
+      <ul>
+        <li>
+          <a href = "circle_nodes.txt">circle_nodes.txt</a>,
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "circle_elements.txt">circle_elements.txt</a>,
+          the elements.
+        </li>
+        <li>
+          <a href = "circle.png">circle.png</a>,
+          a PNG image of the triangulation.
+        </li>
+        <li>
+          <a href = "circle.xml">circle.xml</a>,
+          the corresponding DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>RECTANGLE</b> is a 2D rectangular region which has been divided
+      into 3 rows and 4 columns of squares, each then split into two
+      3-node triangles. 
+      <ul>
+        <li>
+          <a href = "rectangle_nodes.txt">rectangle_nodes.txt</a>,
+          the node coordinates.
+        </li>
+        <li>
+          <a href = "rectangle_elements.txt">rectangle_elements.txt</a>,
+          the elements.
+        </li>
+        <li>
+          <a href = "rectangle.png">rectangle.png</a>,
+          a PNG image of the triangulation, created by TRIANGULATION_PLOT.
+        </li>
+        <li>
+          <a href = "rectangle.xml">rectangle.xml</a>,
+          the corresponding DOLFIN XML mesh file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 October 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

@@ -10,9 +10,9 @@ function clenshaw_curtis_rule ( n, a, b, filename )
 %    and writes it to a file.
 %
 %    The user specifies:
-%    * the N (number of points) in the rule;
-%    * A is the left endpoint;
-%    * B is the right endpoint;
+%    * N, the number of points in the rule;
+%    * A, the left endpoint;
+%    * B, the right endpoint;
 %    * FILENAME, the root name of the output files.
 %
 %  Licensing:
@@ -21,7 +21,7 @@ function clenshaw_curtis_rule ( n, a, b, filename )
 %
 %  Modified:
 %
-%    21 February 2010
+%    06 February 2014
 %
 %  Author:
 %
@@ -33,19 +33,14 @@ function clenshaw_curtis_rule ( n, a, b, filename )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute a Clenshaw Curtis rule for approximating\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    Integral ( A <= x <= B ) f(x) dx\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  of order N.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The user specifies N, A, B, and FILENAME.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  N is the number of points:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  A is the left endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  B is the right endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  FILENAME is used to generate 3 files:\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '    filename_w.txt - the weight file\n' );
@@ -54,33 +49,31 @@ function clenshaw_curtis_rule ( n, a, b, filename )
 %
 %  Get N.
 %
-  if ( 1 <= nargin )
-
-  else
+  if ( nargin < 1 )
     n = input ( '  Enter the rule order N:  ' );
+  elseif ( ischar ( n ) )
+    n = str2num ( n );
   end
 %
 %  Get A.
 %
-  if ( 2 <= nargin )
-
-  else
+  if ( nargin < 2 )
     a = input ( '  Enter the left endpoint A:  ' );
+  elseif ( ischar ( a ) )
+    a = str2num ( a );
   end
 %
 %  Get B.
 %
-  if ( 3 <= nargin )
-
-  else
+  if ( nargin < 3 )
     b = input ( '  Enter the right endpoint B:  ' );
+  elseif ( ischar ( b ) )
+    b = str2num ( b );
   end
 %
 %  Get FILENAME.
 %
-  if ( 4 <= nargin )
-
-  else
+  if ( nargin < 4 )
     fprintf ( 1,  '\n' );
     fprintf ( 1,  '  FILENAME is the ''root name'' of the quadrature files).\n' );
     filename = input ( '  Enter FILENAME as a quoted string:  ' );

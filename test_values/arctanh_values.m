@@ -8,7 +8,7 @@ function [ n_data, x, fx ] = arctanh_values ( n_data )
 %
 %    In Mathematica, the function can be evaluated by:
 %
-%      ArcCosh[x]
+%      ArcTanh[x]
 %
 %  Licensing:
 %

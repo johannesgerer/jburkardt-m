@@ -2,7 +2,7 @@ function a = archimedes ( )
 
 %*****************************************************************************80
 %
-%% ARCHIMEDES returns the 7 by 8 Archimedes matrix.
+%% ARCHIMEDES returns the 7 by 8 ARCHIMEDES matrix.
 %
 %  Formula:
 %
@@ -96,6 +96,10 @@ function a = archimedes ( )
 %  Parameters:
 %
 %    Output, integer A(7,8), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a(1:7,1:8) = [ ...
      6, -5,  0,  -6,   0,  0,  0,   0; ...

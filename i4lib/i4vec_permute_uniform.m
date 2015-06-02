@@ -10,7 +10,7 @@ function [ a, seed ] = i4vec_permute_uniform ( n, a, seed )
 %
 %  Modified:
 %
-%    17 April 2005
+%    23 May 2015
 %
 %  Author:
 %
@@ -28,9 +28,7 @@ function [ a, seed ] = i4vec_permute_uniform ( n, a, seed )
 %
 %    Output, integer SEED, a seed for the random number generator.
 %
-  base = 1;
-
-  [ p, seed ] = perm_uniform ( n, base, seed );
+  [ p, seed ] = perm1_uniform ( n, seed );
 
   a = i4vec_permute ( n, a, p );
 

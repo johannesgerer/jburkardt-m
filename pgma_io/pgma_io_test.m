@@ -2,11 +2,7 @@ function pgma_io_test ( )
 
 %*****************************************************************************80
 %
-%% PGMA_IO_TEST tests the PGMA_IO routines.
-%
-%  Purpose:
-%
-%    PGMA_IO_TEST calls the PGMA_IO sample tests.
+%% PGMA_IO_TEST tests the PGMA_IO library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function pgma_io_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PGMA_IO_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -36,7 +31,6 @@ function pgma_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PGMA_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

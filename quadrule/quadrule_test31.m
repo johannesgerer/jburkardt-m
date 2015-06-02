@@ -2,7 +2,7 @@ function quadrule_test31 ( )
 
 %*****************************************************************************80
 %
-%% TEST31 tests LEGENDRE_SET_X1_01 and SUM_SUB.
+%% QUADRULE_TEST31 tests LEGENDRE_SET_X1_01 and SUM_SUB.
 %
 %  Licensing:
 %
@@ -29,7 +29,7 @@ function quadrule_test31 ( )
   xhi = 1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST31\n' );
+  fprintf ( 1, 'QUADRULE_TEST31\n' );
   fprintf ( 1, '  LEGENDRE_SET_X1_01 sets up Gauss-Legendre quadrature\n' );
   fprintf ( 1, '    for integrating X * F(X) over [0,1];\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );

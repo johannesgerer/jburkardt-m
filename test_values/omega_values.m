@@ -14,7 +14,7 @@ function [ n_data, n, c ] = omega_values ( n_data )
 %
 %     N   OMEGA(N)
 %
-%     1    1
+%     1    0
 %     2    1
 %     3    1
 %     4    1
@@ -39,11 +39,11 @@ function [ n_data, n, c ] = omega_values ( n_data )
 %
 %    If N = 1, then
 %
-%      OMEGA(N) = 1
+%      OMEGA(N) = 0
 %
 %    else if the prime factorization of N is
 %
-%      N = P1**E1 * P2**E2 * ... * PM**EM,
+%      N = P1^E1 * P2^E2 * ... * PM^EM,
 %
 %    then
 %
@@ -55,7 +55,7 @@ function [ n_data, n, c ] = omega_values ( n_data )
 %
 %  Modified:
 %
-%    19 September 2004
+%    17 April 2013
 %
 %  Author:
 %
@@ -86,7 +86,7 @@ function [ n_data, n, c ] = omega_values ( n_data )
   n_max = 23;
 
   c_vec = [ ...
-      1,   1,   1,   1,   1, ...
+      0,   1,   1,   1,   1, ...
       2,   1,   1,   1,   2, ...
       3,   1,   4,   4,   3, ...
       1,   5,   2,   2,   1, ...

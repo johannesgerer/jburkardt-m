@@ -59,7 +59,7 @@ function r83_print_some ( n, a, ilo, jlo, ihi, jhi,title )
     inc = j2hi + 1 - j2lo;
 
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Col: \n' );
+    fprintf ( 1, '  Col: ' );
     for j = j2lo : j2hi
       fprintf ( 1, '%7d       ', j );
     end
@@ -87,11 +87,11 @@ function r83_print_some ( n, a, ilo, jlo, ihi, jhi,title )
         if ( 1 < i - j | 1 < j - i )
           fprintf ( 1, '              ' );
         elseif ( j == i + 1 )
-          fprintf ( 1, '%14f', a(1,j) );
+          fprintf ( 1, '%14g', a(1,j) );
         elseif ( j == i )
-          fprintf ( 1, '%14f', a(2,j) );
+          fprintf ( 1, '%14g', a(2,j) );
         elseif ( j == i - 1 )
-          fprintf ( 1, '%14f', a(3,j) );
+          fprintf ( 1, '%14g', a(3,j) );
         end
 
       end
@@ -101,8 +101,6 @@ function r83_print_some ( n, a, ilo, jlo, ihi, jhi,title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

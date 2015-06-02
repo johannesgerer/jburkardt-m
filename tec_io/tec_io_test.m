@@ -2,7 +2,7 @@ function tec_io_test ( )
 
 %*****************************************************************************80
 %
-%% TEC_IO_TEST tests the TEC_IO routines.
+%% TEC_IO_TEST tests the TEC_IO library.
 %
 %  Licensing:
 %
@@ -16,9 +16,7 @@ function tec_io_test ( )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEC_IO_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -26,11 +24,12 @@ function tec_io_test ( )
 
   tec_io_test01 ( );
   tec_io_test02 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEC_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

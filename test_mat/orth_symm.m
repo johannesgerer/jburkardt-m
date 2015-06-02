@@ -2,7 +2,11 @@ function a = orth_symm ( n )
 
 %*****************************************************************************80
 %
-%% ORTH_SYMM returns an orthogonal symmetric matrix.
+%% ORTH_SYMM returns the ORTH_SYMM matrix.
+%
+%  Discussion:
+%
+%   ORTH_SYMM is an orthogonal symmetric matrix.
 %
 %  Formula:
 %
@@ -70,6 +74,8 @@ function a = orth_symm ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

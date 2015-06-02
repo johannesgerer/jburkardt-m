@@ -2,7 +2,7 @@ function a = anticirculant ( m, n, x )
 
 %*****************************************************************************80
 %
-%% ANTICIRCULANT returns an anticirculant matrix.
+%% ANTICIRCULANT returns the ANTICIRCULANT matrix.
 %
 %  Formula:
 %

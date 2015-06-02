@@ -1,5 +1,7 @@
 function x = entrust(fname, x, options, varargin)
-%------------------------------------------------------------------------
+
+%*****************************************************************************80
+%
 %  entrust.m - a driver for an unconstrained optimization problem using
 %              line search or trust-region globalization strategies and
 %              several types of secant update strategies.  Box constraints

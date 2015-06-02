@@ -60,7 +60,8 @@ function [ r, seed, it_num, it_diff, energy ] = cvt ( dim_num, n, batch, init, .
 %    Input, integer IT_MAX, the maximum number of iterations.
 %
 %    Input, integer IT_FIXED, the maximum number of iterations to take
-%    with a fixed set of sample points.
+%    with a fixed set of sample points.  In the simplest case, set
+%    IT_FIXED to 1, and the sample points will be regenerated each time.
 %
 %    Input, integer SEED, the random number seed.
 %

@@ -2,7 +2,7 @@ function latin_center_test ( )
 
 %*****************************************************************************80
 %
-%% LATIN_CENTER_TEST tests LATIN_CENTER.
+%% LATIN_CENTER_TEST tests the LATIN_CENTER library.
 %
 %  Licensing:
 %
@@ -44,7 +44,6 @@ function latin_center_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATIN_CENTER_PRB:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

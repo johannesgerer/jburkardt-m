@@ -2,7 +2,11 @@ function linpack_bench ( n, lda )
 
 %*****************************************************************************80
 %
-%% LINPACK_BENCH drives LINPACK benchmark program.
+%% LINPACK_BENCH drives the LINPACK benchmark program.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -118,6 +122,10 @@ function y = daxpy ( n, sa, x, incx, y, incy )
 %
 %% DAXPY adds a constant times one vector to another.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    08 June 2005
@@ -193,6 +201,10 @@ function [ a, ipvt, info ] = dgefa ( a, lda, n )
 %*****************************************************************************80
 %
 %% DGEFA factors a real matrix.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -303,14 +315,9 @@ function b = dgesl ( a, lda, n, ipvt, b, job )
 %    called correctly and if DGECO has set 0.0 < RCOND 
 %    or DGEFA has set INFO == 0.
 %
-%  Reference:
+%  Licensing:
 %
-%    Dongarra, Moler, Bunch and Stewart,
-%    LINPACK User's Guide,
-%    SIAM, (Society for Industrial and Applied Mathematics),
-%    3600 University City Science Center,
-%    Philadelphia, PA, 19104-2688.
-%    ISBN 0-89871-172-X
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -319,6 +326,15 @@ function b = dgesl ( a, lda, n, ipvt, b, job )
 %  Author:
 %
 %    MATLAB version by John Burkardt.
+%
+%  Reference:
+%
+%    Dongarra, Moler, Bunch and Stewart,
+%    LINPACK User's Guide,
+%    SIAM, (Society for Industrial and Applied Mathematics),
+%    3600 University City Science Center,
+%    Philadelphia, PA, 19104-2688.
+%    ISBN 0-89871-172-X
 %
 %  Parameters:
 %
@@ -395,6 +411,10 @@ function value = idamax ( n, x, incx )
 %*****************************************************************************80
 %
 %% IDAMAX finds the index of the vector element of maximum absolute value.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -483,6 +503,10 @@ function a = r8_matgen ( lda, n )
 %
 %% R8_MATGEN generates a random matrix.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    08 June 2005
@@ -522,11 +546,15 @@ function [ value, seed ] = r8_random ( seed )
 %  Discussion:
 %
 %    This routine uses a multiplicative congruential method with modulus
-%    2**48 and multiplier 33952834046453.
+%    2^48 and multiplier 33952834046453.
 %
 %    48-bit integers are stored in 4 integer array elements with 12 bits
 %    per element.  Hence the routine is portable across machines with
 %    integers of 32 bits or more.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -539,7 +567,7 @@ function [ value, seed ] = r8_random ( seed )
 %  Reference:
 %
 %    George Fishman,
-%    Multiplicative congruential random number generators with modulus 2**b: 
+%    Multiplicative congruential random number generators with modulus 2^b: 
 %    an exhaustive analysis for b = 32 and a partial analysis for b = 48, 
 %    Mathematics of Computation,
 %    Volume 189, 1990, pages 331-344.
@@ -597,6 +625,10 @@ function timestamp ( )
 %*****************************************************************************80
 %
 %% TIMESTAMP prints the current YMDHMS date as a timestamp.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %

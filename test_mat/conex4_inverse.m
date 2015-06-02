@@ -2,7 +2,7 @@ function a = conex4_inverse ( )
 
 %*****************************************************************************80
 %
-%% CONEX4_INVERSE returns the inverse CONEX4 matrix.
+%% CONEX4_INVERSE returns the inverse of the CONEX4 matrix.
 %
 %  Discussion:
 %
@@ -27,11 +27,15 @@ function a = conex4_inverse ( )
 %
 %    Output, real A(4,4), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [ ...
-   -41.0,  25.0,  10.0, -6.0; ...
-   -17.0,  10.0,   5.0, -3.0; ...
-    10.0,  -6.0,  -3.0,  2.0; ...
-    68.0, -41.0, -17.0, 10.0 ]';
+   -41.0,  -17.0,   10.0,   68.0; ...
+    25.0,   10.0,   -6.0,  -41.0; ...
+    10.0,    5.0,   -3.0,  -17.0; ...
+    -6.0,   -3.0,    2.0,   10.0 ];
 
   return
 end

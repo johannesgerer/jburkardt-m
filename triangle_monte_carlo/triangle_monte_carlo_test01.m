@@ -2,7 +2,7 @@ function triangle_monte_carlo_test01 ( )
 
 %*****************************************************************************80
 %
-%% TRIANGLE_MONTE_CARLO_TEST01 uses TRIANGLE_SAMPLE_01 with an increasing number of points.
+%% TRIANGLE_MONTE_CARLO_TEST01 estimates integrals over the unit triangle in 2D.
 %
 %  Licensing:
 %
@@ -10,46 +10,72 @@ function triangle_monte_carlo_test01 ( )
 %
 %  Modified:
 %
-%    15 August 2009
+%    13 January 2014.
 %
 %  Author:
 %
 %    John Burkardt
 %
-  f_num = 3;
-
-  t(1:2,1:3) = [ ...
-    1.0, 0.0; ...
-    0.0, 1.0; ...
-    0.0, 0.0]';
+  m = 2;
+  e_test = [ ...
+    0, 0; ...
+    1, 0; ...
+    0, 1; ...
+    2, 0; ...
+    1, 1; ...
+    0, 2; ...
+    3, 0 ]';
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TRIANGLE_MONTE_CARLO_TEST01\n' );
-  fprintf ( 1, '  Sample using TRIANGLE_UNIT_SAMPLE_01\n' );
-  fprintf ( 1, '  Integrate TRIANGLE_UNIT_INTEGRAND_03\n' );
-  fprintf ( 1, '  Integration region is the unit triangle.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Use an increasing number of points P_NUM.\n' );
-  fprintf ( 1, '  Note that the sample routine is a "bad" sampler.\n' );
+  fprintf ( 1, 'TEST01\n' );
+  fprintf ( 1, '  Use TRIANGLE01_SAMPLE for a Monte Carlo estimate of an\n' );
+  fprintf ( 1, '  integral over the interior of the unit triangle in 2D.\n' );
 
   seed = 123456789;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '     P_NUM      X^2             X*Y             Y^2\n' );
+  fprintf ( 1, '         N        1               X               Y ' );
+  fprintf ( 1, '             X^2               XY             Y^2             X^3\n' );
   fprintf ( 1, '\n' );
 
-  p_num = 1;
+  n = 1;
 
-  while ( p_num <= 65536 )
+  while ( n <= 65536 )
 
-    [ result, seed ] = triangle_monte_carlo ( t, p_num, f_num, ...
-      @triangle_unit_sample_01, @triangle_integrand_03, seed );
+    fprintf ( 1, '  %8d', n );
 
-    fprintf ( 1, '  %8d  %14f  %14f  %14f\n', p_num, result(1:f_num) );
+    [ x, seed ] = triangle01_sample ( n, seed );
 
-    p_num = 2 * p_num;
+    for j = 1 : 7
+
+      e(1:m) = e_test(1:m,j);
+
+      value = monomial_value ( m, n, e, x );
+
+      result = triangle01_area ( ) * sum ( value(1:n) ) / n;
+      fprintf ( 1, '  %14.6g', result );
+
+    end
+
+    fprintf ( 1, '\n' );
+
+    n = 2 * n;
 
   end
+
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '     Exact' );
+
+  for j = 1 : 7
+
+    e(1:m) = e_test(1:m,j);
+
+    result = triangle01_monomial_integral ( e );
+    fprintf ( 1, '  %14.6g', result );
+
+  end
+
+  fprintf ( 1, '\n' );
 
   return
 end

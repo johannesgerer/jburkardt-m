@@ -2,12 +2,12 @@ function a = givens ( m, n )
 
 %*****************************************************************************80
 %
-%% GIVENS returns the Givens matrix.
+%% GIVENS returns the GIVENS matrix.
 %
 %  Discussion:
 %
 %    Note that this is NOT the "Givens rotation matrix".  This
-%    seems to be more commonly known as the Moler matrix%
+%    seems to be more commonly known as the Moler matrix.
 %
 %  Formula:
 %
@@ -43,9 +43,11 @@ function a = givens ( m, n )
 %
 %    A has eigenvalues
 %
-%      LAMBDA(I) = 0.5 * sec ( ( 2 * I - 1 ) * PI / ( 4 * N ) )**2
+%      LAMBDA(I) = 0.5 * sec ( ( 2 * I - 1 ) * PI / ( 4 * N ) )^2
 %
-%    The condition number P(A) is approximately 16 N**2 / PI**2.
+%    The condition number P(A) is approximately 16 N^2 / PI^2.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -83,6 +85,8 @@ function a = givens ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : m
     for j = 1 : n
       a(i,j) = 2 * min ( i, j ) - 1;

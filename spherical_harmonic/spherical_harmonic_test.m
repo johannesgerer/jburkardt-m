@@ -2,7 +2,7 @@ function spherical_harmonic_test ( )
 
 %*****************************************************************************80
 %
-%% SPHERICAL_HARMONIC_TEST tests SPHERICAL_HARMONIC.
+%% SPHERICAL_HARMONIC_TEST tests the SPHERICAL_HARMONIC library.
 %
 %  Licensing:
 %
@@ -24,11 +24,12 @@ function spherical_harmonic_test ( )
 
   spherical_harmonic_test01 ( );
   spherical_harmonic_test02 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPHERICAL_HARMONIC_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

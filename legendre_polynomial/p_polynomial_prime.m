@@ -2,7 +2,7 @@ function vp = p_polynomial_prime ( m, n, x )
 
 %*****************************************************************************80
 %
-%% P_POLYNOMIAL_PRIME evaluates the derivative of Legendre polynomials P'(n,x).
+%% P_POLYNOMIAL_PRIME evaluates the derivative of Legendre polynomials P(n,x).
 %
 %  Discussion:
 %
@@ -73,11 +73,11 @@ function vp = p_polynomial_prime ( m, n, x )
  
     v(1:m,i+1) = ( ( 2 * i - 1 ) * x(1:m,1) .* v(1:m,i)     ...
                  - (     i - 1 ) *             v(1:m,i-1) ) ...
-                 / (     i     )
+                 / (     i     );
  
     vp(1:m,i+1) = ( ( 2 * i - 1 ) * ( v(1:m,i) + x(1:m,1) .* vp(1:m,i) )   ...
                   - (     i - 1 ) *                          vp(1:m,i-1) ) ...
-                  / (     i     )
+                  / (     i     );
  
   end
  

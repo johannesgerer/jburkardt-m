@@ -19,7 +19,7 @@ function test05 ( sample_num )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST05\n' );
   fprintf ( 1, '  Measure the time it takes SHR3 to generate\n' );
-  fprintf ( 1, '  %d integers.\n', sample_num );
+  fprintf ( 1, '  %d unsigned 32 bit integers.\n', sample_num );
 
   seed = uint32 ( 123456789 );
 

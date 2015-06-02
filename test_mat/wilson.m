@@ -2,7 +2,7 @@ function a = wilson ( )
 
 %*****************************************************************************80
 %
-%% WILSON returns the Wilson matrix.
+%% WILSON returns the WILSON matrix.
 %
 %  Formula:
 %
@@ -59,6 +59,10 @@ function a = wilson ( )
 %  Parameters:
 %
 %    Output, real A(4,4), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a(1:4,1:4) = [ 5.0,  7.0,  6.0,  5.0; ...
                  7.0, 10.0,  8.0,  7.0; ...

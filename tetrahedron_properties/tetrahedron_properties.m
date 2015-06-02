@@ -22,9 +22,7 @@ function tetrahedron_properties ( node_filename )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TETRAHEDRON_PROPERTIES:\n' );
   fprintf ( 1, '  MATLAB version:\n' );
@@ -45,7 +43,7 @@ function tetrahedron_properties ( node_filename )
 %
 %  Read the node data.
 %
-  [ dim_num, node_num ] = dtable_header_read ( node_filename );
+  [ dim_num, node_num ] = r8mat_header_read ( node_filename );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Read the header of "%s".\n', node_filename );
@@ -67,7 +65,7 @@ function tetrahedron_properties ( node_filename )
     error ( 'TETRAHEDRON_PROPERTIES - Fatal error!' );
   end
 
-  node_xyz = dtable_data_read ( node_filename, dim_num, node_num );
+  node_xyz = r8mat_data_read ( node_filename, dim_num, node_num );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Read the data in "%s".\n', node_filename );
@@ -76,270 +74,119 @@ function tetrahedron_properties ( node_filename )
 %
 %  CENTROID
 %
-  centroid(1:3) = tetrahedron_centroid_3d ( node_xyz );
+  centroid(1:3) = tetrahedron_centroid ( node_xyz );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  CENTROID:   %14f  %14f  %14f\n', centroid(1:3) );
+  fprintf ( 1, '  CENTROID:   %f  %f  %f\n', centroid(1:3) );
 %
 %  CIRCUMSPHERE
 %
-  [ circum_radius, circum_center(1:3) ] = tetrahedron_circumsphere_3d ( node_xyz );
+  [ circum_radius, circum_center(1:3) ] = tetrahedron_circumsphere ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  CIRCUM_RADIUS = %f\n', circum_radius );
-  fprintf ( 1, '  CIRCUM_CENTER:  %14f  %14f  %14f\n', circum_center(1:3) );
+  fprintf ( 1, '  CIRCUM_CENTER:  %f  %f  %f\n', circum_center(1:3) );
 %
 %  DIHEDRAL ANGLES
 %
-  dihedral_angles(1:6) = tetrahedron_dihedral_angles_3d ( node_xyz );
+  dihedral_angles(1:6) = tetrahedron_dihedral_angles ( node_xyz );
 
   r8vec_print ( 6, dihedral_angles, '  DIHEDRAL_ANGLES (radians)' );
 
-  dihedral_angles(1:6) = dihedral_angles(1:6) * 180.0D+00 / pi;
+  dihedral_angles(1:6) = dihedral_angles(1:6) * 180.0 / pi;
 
   r8vec_print ( 6, dihedral_angles, '  DIHEDRAL_ANGLES (degrees)' );
 %
+%  EDGES
+%
+  [ ab, ac, ad, bc, bd, cd ] = tetrahedron_edges ( node_xyz );
+
+  fprintf ( 1, '\n' );
+  r8vec_transpose_print ( 3, ab, '  EDGE AB:' );
+  r8vec_transpose_print ( 3, ac, '  EDGE AC:' );
+  r8vec_transpose_print ( 3, ad, '  EDGE AD:' );
+  r8vec_transpose_print ( 3, bc, '  EDGE BC:' );
+  r8vec_transpose_print ( 3, bd, '  EDGE BD:' );
+  r8vec_transpose_print ( 3, cd, '  EDGE CD:' );
+%
 %  EDGE LENGTHS
 %
-  edge_length(1:6) = tetrahedron_edge_length_3d ( node_xyz );
+  edge_length(1:6) = tetrahedron_edge_length ( node_xyz );
 
   r8vec_print ( 6, edge_length, '  EDGE_LENGTHS' );
 %
 %  FACE ANGLES
 %
-  face_angles(1:3,1:4) = tetrahedron_face_angles_3d ( node_xyz );
+  face_angles(1:3,1:4) = tetrahedron_face_angles ( node_xyz );
 
   r8mat_transpose_print ( 3, 4, face_angles, '  FACE_ANGLES (radians)' );
 
-  face_angles(1:3,1:4) = face_angles(1:3,1:4) * 180.0D+00 / pi;
+  face_angles(1:3,1:4) = face_angles(1:3,1:4) * 180.0 / pi;
 
   r8mat_transpose_print ( 3, 4, face_angles, '  FACE_ANGLES (degrees)' );
 %
 %  FACE AREAS
 %
-  face_areas(1:4) = tetrahedron_face_areas_3d ( node_xyz );
+  face_areas(1:4) = tetrahedron_face_areas ( node_xyz );
 
   r8vec_print ( 4, face_areas, '  FACE_AREAS' );
 %
 %  INSPHERE
 %
-  [ in_radius, in_center(1:3) ] = tetrahedron_insphere_3d ( node_xyz );
+  [ in_radius, in_center(1:3) ] = tetrahedron_insphere ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  IN_RADIUS = %f\n', in_radius );
-  fprintf ( 1, '  IN_CENTER:  %14f  %14f  %14f\n', in_center(1:3) );
+  fprintf ( 1, '  IN_CENTER:  %f  %f  %14f\n', in_center(1:3) );
 %
 %  QUALITY1
 %
-  quality1 = tetrahedron_quality1_3d ( node_xyz );
+  quality1 = tetrahedron_quality1 ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  QUALITY1 = %f\n', quality1 );
 %
 %  QUALITY2
 %
-  quality2 = tetrahedron_quality2_3d ( node_xyz );
+  quality2 = tetrahedron_quality2 ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  QUALITY2 = %f\n', quality2 );
 %
 %  QUALITY3
 %
-  quality3 = tetrahedron_quality3_3d ( node_xyz );
+  quality3 = tetrahedron_quality3 ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  QUALITY3 = %f\n', quality3 );
 %
 %  QUALITY4
 %
-  quality4 = tetrahedron_quality4_3d ( node_xyz );
+  quality4 = tetrahedron_quality4 ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  QUALITY4 = %f\n', quality4 );
 %
 %  SOLID ANGLES
 %
-  solid_angles(1:4) = tetrahedron_solid_angles_3d ( node_xyz );
+  solid_angles(1:4) = tetrahedron_solid_angles ( node_xyz );
 
   r8vec_print ( 4, solid_angles, '  SOLID_ANGLES (steradians)' );
 %
 %  VOLUME
 %
-  volume = tetrahedron_volume_3d ( node_xyz );
+  volume = tetrahedron_volume ( node_xyz );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  VOLUME = %f\n', volume );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TETRAHEDRON_PROPERTIES:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
-
-  return
-end
-function value = arc_cosine ( c )
-
-%*******************************************************************************
-%
-%% ARC_COSINE computes the arc cosine function, with argument truncation.
-%
-%  Discussion:
-%
-%    If you call your system ACOS routine with an input argument that is
-%    even slightly outside the range [-1.0, 1.0 ], you may get an unpleasant 
-%    surprise (I did).
-%
-%    This routine simply truncates arguments outside the range.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    28 January 2005
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Input, real C, the argument.
-%
-%    Output, real VALUE, an angle whose cosine is C.
-%
-  c2 = c;
-  c2 = max ( c2, -1.0 );
-  c2 = min ( c2, +1.0 );
-
-  value = acos ( c2 );
-
-  return
-end
-function table = dtable_data_read ( input_filename, m, n )
-
-%*****************************************************************************80
-%
-%% DTABLE_DATA_READ reads data from a DTABLE file.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    27 January 2006
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Input, string INPUT_FILENAME, the name of the input file.
-%
-%    Input, integer M, N, the number of rows and columns of data.
-%
-%    Output, real TABLE(M,N), the point coordinates.
-%
-  table = zeros ( m, n );
-%
-%  Build up the format string for reading M real numbers.
-%
-  string = ' ';
-
-  for i = 0 : m
-    string = strcat ( string, ' %f' );
-  end
-
-  input_unit = fopen ( input_filename );
-
-  if ( input_unit < 0 ) 
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'DTABLE_DATA_READ - Error!\n' );
-    fprintf ( 1, '  Could not open the file.\n' );
-    error ( 'DTABLE_DATA_READ - Error!' );
-  end
-
-  i = 0;
-
-  while ( i < n )
-
-    line = fgets ( input_unit );
-
-    if ( line == -1 )
-      break;
-    end
-
-    if ( line(1) == '#' )
-
-    elseif ( s_len_trim ( line ) == 0 )
-      
-    else
-
-      [ x, count ] = sscanf ( line, string );
-
-      if ( count == m )
-        i = i + 1;
-        table(1:m,i) = x(1:m);
-      end
-
-    end
-
-  end
-
-  fclose ( input_unit );
-
-  return
-end
-function [ m, n ] = dtable_header_read ( input_filename )
-
-%*****************************************************************************80
-%
-%% DTABLE_HEADER_READ reads the header from a DTABLE file.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    22 October 2004
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Input, string INPUT_FILENAME, the name of the input file.
-%
-%    Output, integer M, the spatial dimension.
-%
-%    Output, integer N, the number of points.
-%
-  m = file_column_count ( input_filename );
-
-  if ( m <= 0 )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'DTABLE_HEADER_READ - Fatal error!\n' );
-    fprintf ( 1, '  There was some kind of I/O problem while trying\n' );
-    fprintf ( 1, '  to count the number of data columns in\n' );
-    fprintf ( 1, '  the file %s.\n', input_filename );
-  end
-
-  n = file_row_count ( input_filename );
-
-  if ( n <= 0 )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'DTABLE_HEADER_READ - Fatal error!\n' );
-    fprintf ( 1, '  There was some kind of I/O problem while trying\n' );
-    fprintf ( 1, '  to count the number of data rows in\n' );
-    fprintf ( 1, '  the file %s\n', input_filename );
-  end
 
   return
 end
@@ -514,6 +361,180 @@ function row_num = file_row_count ( input_file_name )
 
   return
 end
+function value = r8_acos ( c )
+
+%*****************************************************************************80
+%
+%% R8_ACOS computes the arc cosine function, with argument truncation.
+%
+%  Discussion:
+%
+%    If you call your system ACOS routine with an input argument that is
+%    even slightly outside the range [-1.0, 1.0 ], you may get an unpleasant 
+%    surprise (I did).
+%
+%    This routine simply truncates arguments outside the range.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    28 January 2005
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, real C, the argument.
+%
+%    Output, real VALUE, an angle whose cosine is C.
+%
+  c2 = c;
+  c2 = max ( c2, -1.0 );
+  c2 = min ( c2, +1.0 );
+
+  value = acos ( c2 );
+
+  return
+end
+function table = r8mat_data_read ( input_filename, m, n )
+
+%*****************************************************************************80
+%
+%% R8MAT_DATA_READ reads data from an R8MAT file.
+%
+%  Discussion:
+%
+%    An R8MAT is an array of R8's.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    08 February 2010
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, string INPUT_FILENAME, the name of the input file.
+%
+%    Input, integer M, N, the number of rows and columns of data.
+%
+%    Output, real TABLE(M,N), the point coordinates.
+%
+
+%
+%  Build up the format string for reading M real numbers.
+%
+  string = ' ';
+
+  for i = 0 : m
+    string = strcat ( string, ' %f' );
+  end
+
+  input_unit = fopen ( input_filename );
+
+  if ( input_unit < 0 ) 
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'R8MAT_DATA_READ - Error!\n' );
+    fprintf ( 1, '  Could not open the file.\n' );
+    error ( 'R8MAT_DATA_READ - Error!' );
+  end
+
+  table = zeros(m,n);
+
+  i = 0;
+
+  while ( i < n )
+
+    line = fgets ( input_unit );
+
+    if ( line == -1 )
+      break;
+    end
+
+    if ( line(1) == '#' )
+
+    elseif ( s_len_trim ( line ) == 0 )
+      
+    else
+
+      [ x, count ] = sscanf ( line, string );
+
+      if ( count == m )
+        i = i + 1;
+        table(1:m,i) = x(1:m);
+      end
+
+    end
+
+  end
+
+  fclose ( input_unit );
+
+  return
+end
+function [ m, n ] = r8mat_header_read ( input_filename )
+
+%*****************************************************************************80
+%
+%% R8MAT_HEADER_READ reads the header from an R8MAT file.
+%
+%  Discussion:
+%
+%    An R8MAT is an array of R8's.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    22 October 2004
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, string INPUT_FILENAME, the name of the input file.
+%
+%    Output, integer M, the spatial dimension.
+%
+%    Output, integer N, the number of points.
+%
+  m = file_column_count ( input_filename );
+
+  if ( m <= 0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'R8MAT_HEADER_READ - Fatal error!\n' );
+    fprintf ( 1, '  There was some kind of I/O problem while trying\n' );
+    fprintf ( 1, '  to count the number of data columns in\n' );
+    fprintf ( 1, '  the file %s.\n', input_filename );
+  end
+
+  n = file_row_count ( input_filename );
+
+  if ( n <= 0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'R8MAT_HEADER_READ - Fatal error!\n' );
+    fprintf ( 1, '  There was some kind of I/O problem while trying\n' );
+    fprintf ( 1, '  to count the number of data rows in\n' );
+    fprintf ( 1, '  the file %s\n', input_filename );
+  end
+
+  return
+end
 function [ a, info ] = r8mat_solve ( n, nrhs, a )
 
 %*****************************************************************************80
@@ -664,10 +685,8 @@ function r8mat_transpose_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
 %
   incx = 5;
 
-  if ( 0 < s_len_trim ( title ) )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, '%s\n', title );
-  end
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '%s\n', title );
 
   for i2lo = max ( ilo, 1 ) : incx : min ( ihi, m )
 
@@ -731,7 +750,7 @@ function angle = r8vec_angle_3d ( u, v )
 
   angle_cos = uv_dot / u_norm / v_norm;
 
-  angle = arc_cosine ( angle_cos );
+  angle = r8_acos ( angle_cos );
 
   return
 end
@@ -847,7 +866,64 @@ function r8vec_print ( n, a, title )
 
   return
 end
+function r8vec_transpose_print ( n, a, title )
 
+%*****************************************************************************80
+%
+%% R8VEC_TRANSPOSE_PRINT prints an R8VEC "transposed".
+%
+%  Discussion:
+%
+%    An R8VEC is a vector of R8's.
+%
+%  Example:
+%
+%    A = (/ 1.0, 2.1, 3.2, 4.3, 5.4, 6.5, 7.6, 8.7, 9.8, 10.9, 11.0 /)
+%    TITLE = 'My vector:  '
+%
+%    My vector:   1.0    2.1    3.2    4.3    5.4
+%                 6.5    7.6    8.7    9.8   10.9
+%                11.0
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    11 May 2014
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer N, the number of components of the vector.
+%
+%    Input, real A(N), the vector to be printed.
+%
+%    Input, string TITLE, a title.
+%
+  title_length = length ( title );
+  for ilo = 1 : 5 : n
+    if ( ilo == 1 )
+      fprintf ( 1, '%s', title );
+    else
+      for i = 1 : title_length
+        fprintf ( 1, ' ' );
+      end
+    end
+    fprintf ( 1, '  ' );
+    ihi = min ( ilo + 5 - 1, n );
+    for i = ilo : ihi
+      fprintf ( 1, '  %12g', a(i) );
+    end
+    fprintf ( 1, '\n' );
+  end
+
+  return
+end
 function len = s_len_trim ( s )
 
 %*****************************************************************************80
@@ -933,11 +1009,11 @@ function word_num = s_word_count ( s )
 
   return
 end
-function centroid = tetrahedron_centroid_3d ( tetra )
+function centroid = tetrahedron_centroid ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_CENTROID_3D computes the centroid of a tetrahedron in 3D.
+%% TETRAHEDRON_CENTROID computes the centroid of a tetrahedron.
 %
 %  Licensing:
 %
@@ -957,21 +1033,19 @@ function centroid = tetrahedron_centroid_3d ( tetra )
 %
 %    Output, real CENTROID(3), the coordinates of the centroid.
 %
-  dim_num = 3;
-
   centroid = zeros ( 3, 1 );
   
-  for i = 1 : dim_num
+  for i = 1 : 3
     centroid(i) = sum ( tetra(i,1:4) ) / 4.0;
   end
 
   return
 end
-function [ r, center ] = tetrahedron_circumsphere_3d ( tetra )
+function [ r, center ] = tetrahedron_circumsphere ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_CIRCUMSPHERE_3D computes the circumsphere of a tetrahedron in 3D.
+%% TETRAHEDRON_CIRCUMSPHERE computes the circumsphere of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1014,46 +1088,49 @@ function [ r, center ] = tetrahedron_circumsphere_3d ( tetra )
 %    circumscribed sphere, and its radius.  If the linear system is
 %    singular, then R = -1, CENTER(1:3) = 0.
 %
-  dim_num = 3;
-  nrhs = 1;
+
 %
 %  Set up the linear system.
 %
-  a(1:dim_num,1:3) = ( tetra(1:dim_num,2:4) )';
+  a(1:3,1:3) = ( tetra(1:3,2:4) )';
 
-  for j = 1 : dim_num
-    a(1:dim_num,j) = a(1:dim_num,j) - tetra(j,1);
+  for j = 1 : 3
+    a(1:3,j) = a(1:3,j) - tetra(j,1);
   end
 
-  for i = 1 : dim_num
+  for i = 1 : 3
     a(i,4) = sum ( a(i,1:3).^2 );
   end
 %
 %  Solve the linear system.
 %
-  [ a, info ] = r8mat_solve ( dim_num, nrhs, a );
+  [ a, info ] = r8mat_solve ( 3, 1, a );
 %
 %  If the system was singular, return a consolation prize.
 %
   if ( info ~= 0 )
     r = -1.0;
-    center(1:dim_num) = 0.0;
+    center(1:3) = 0.0;
     return
   end
 %
 %  Compute R, X, Y, Z.
 %
-  r = 0.5 * sqrt ( sum ( a(1:dim_num,dim_num+1).^2 ) );
+  r = 0.5 * sqrt ( sum ( a(1:3,4).^2 ) );
 
-  center(1:dim_num) = tetra(1:dim_num,1) + 0.5 * a(1:dim_num,dim_num+1);
+  center(1:3) = tetra(1:3,1) + 0.5 * a(1:3,4);
 
   return
 end
-function angle = tetrahedron_dihedral_angles_3d ( tetra )
+function angle = tetrahedron_dihedral_angles ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_DIHEDRAL_ANGLES_3D computes dihedral angles of a tetrahedron.
+%% TETRAHEDRON_DIHEDRAL_ANGLES computes dihedral angles of a tetrahedron.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -1071,11 +1148,7 @@ function angle = tetrahedron_dihedral_angles_3d ( tetra )
 %    Output, real ANGLE(6), the dihedral angles along the
 %    axes AB, AC, AD, BC, BD and CD, respectively.
 %
-  ab(1:3) = tetra(1:3,2) - tetra(1:3,1);
-  ac(1:3) = tetra(1:3,3) - tetra(1:3,1);
-  ad(1:3) = tetra(1:3,4) - tetra(1:3,1);
-  bc(1:3) = tetra(1:3,3) - tetra(1:3,2);
-  bd(1:3) = tetra(1:3,4) - tetra(1:3,2);
+  [ ab, ac, ad, bc, bd, cd ] = tetrahedron_edges ( tetra );
  
   abc_normal = r8vec_cross_3d ( ac, ab );
   abd_normal = r8vec_cross_3d ( ab, ad );
@@ -1093,11 +1166,11 @@ function angle = tetrahedron_dihedral_angles_3d ( tetra )
 
   return
 end
-function edge_length = tetrahedron_edge_length_3d ( tetra )
+function edge_length = tetrahedron_edge_length ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_EDGE_LENGTH_3D returns edge lengths of a tetrahedron in 3D.
+%% TETRAHEDRON_EDGE_LENGTH returns edge lengths of a tetrahedron.
 %
 %  Licensing:
 %
@@ -1117,26 +1190,69 @@ function edge_length = tetrahedron_edge_length_3d ( tetra )
 %
 %    Output, real EDGE_LENGTH(6), the length of the edges.
 %
-  dim_num = 3;
-
   edge_length = zeros ( 6, 1 );
   
   k = 0;
   for j1 = 1 : 3
     for j2 = j1+1 : 4
       k = k + 1;
-      edge_length(k) = r8vec_length ( dim_num, ...
-        tetra(1:dim_num,j2) - tetra(1:dim_num,j1) );
+      edge_length(k) = r8vec_length ( 3, tetra(1:3,j2) - tetra(1:3,j1) );
     end
   end
 
   return
 end
-function angles = tetrahedron_face_angles_3d ( tetra )
+function [ ab, ac, ad, bc, bd, cd ] = tetrahedron_edges ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_FACE_ANGLES_3D returns the 12 face angles of a tetrahedron 3D.
+%% TETRAHEDRON_EDGES computes the edges of a tetrahedron.
+%
+%  Discussion:
+%
+%    The vertices are A, B, C, D.  The edge from A to B is denoted by AB.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    11 May 2014
+%
+%  Author:
+%
+%    Original FORTRAN77 version by Barry Joe.
+%    MATLAB version by John Burkardt.
+%
+%  Reference:
+%
+%    Barry Joe,
+%    GEOMPACK - a software package for the generation of meshes
+%    using geometric algorithms,
+%    Advances in Engineering Software,
+%    Volume 13, pages 325-331, 1991.
+%
+%  Parameters:
+%
+%    Input, real TETRA(3,4), the vertices of the tetrahedron.
+%
+%    Output, real AB(3), AC(3), AD(3), BC(3), BD(3), CD(3), the edges.
+%
+  ab(1:3) = tetra(1:3,2) - tetra(1:3,1);
+  ac(1:3) = tetra(1:3,3) - tetra(1:3,1);
+  ad(1:3) = tetra(1:3,4) - tetra(1:3,1);
+  bc(1:3) = tetra(1:3,3) - tetra(1:3,2);
+  bd(1:3) = tetra(1:3,4) - tetra(1:3,2);
+  cd(1:3) = tetra(1:3,4) - tetra(1:3,3);
+
+  return
+end
+function angles = tetrahedron_face_angles ( tetra )
+
+%*****************************************************************************80
+%
+%% TETRAHEDRON_FACE_ANGLES returns the 12 face angles of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1187,11 +1303,11 @@ function angles = tetrahedron_face_angles_3d ( tetra )
 
   return
 end
-function areas = tetrahedron_face_areas_3d ( tetra )
+function areas = tetrahedron_face_areas ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_FACE_AREAS_3D returns the 4 face areas of a tetrahedron 3D.
+%% TETRAHEDRON_FACE_AREAS returns the 4 face areas of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1242,11 +1358,11 @@ function areas = tetrahedron_face_areas_3d ( tetra )
 
   return
 end
-function [ r, pc ] = tetrahedron_insphere_3d ( tetra )
+function [ r, pc ] = tetrahedron_insphere ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_INSPHERE_3D finds the insphere of a tetrahedron in 3D.
+%% TETRAHEDRON_INSPHERE finds the insphere of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1287,33 +1403,26 @@ function [ r, pc ] = tetrahedron_insphere_3d ( tetra )
 %    Output, real R, PC(3), the radius and the center
 %    of the sphere.
 %
-  dim_num = 3;
-
-  v21(1:dim_num) = tetra(1:dim_num,2) - tetra(1:dim_num,1);
-  v31(1:dim_num) = tetra(1:dim_num,3) - tetra(1:dim_num,1);
-  v41(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,1);
-  v32(1:dim_num) = tetra(1:dim_num,3) - tetra(1:dim_num,2);
-  v42(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,2);
-% v43(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,3);
+  [ v21, v31, v41, v32, v42, v43 ] = tetrahedron_edges ( tetra );
 
   n123 = r8vec_cross_3d ( v21, v31 );
   n124 = r8vec_cross_3d ( v41, v21 );
   n134 = r8vec_cross_3d ( v31, v41 );
   n234 = r8vec_cross_3d ( v42, v32 );
 
-  l123 = r8vec_length ( dim_num, n123 );
-  l124 = r8vec_length ( dim_num, n124 );
-  l134 = r8vec_length ( dim_num, n134 );
-  l234 = r8vec_length ( dim_num, n234 );
+  l123 = r8vec_length ( 3, n123 );
+  l124 = r8vec_length ( 3, n124 );
+  l134 = r8vec_length ( 3, n134 );
+  l234 = r8vec_length ( 3, n234 );
 
-  pc(1:dim_num) = ( l234 * tetra(1:dim_num,1)   ...
-                  + l134 * tetra(1:dim_num,2)   ...
-                  + l124 * tetra(1:dim_num,3)   ...
-                  + l123 * tetra(1:dim_num,4) ) ...
-                / ( l234 + l134 + l124 + l123 );
+  pc(1:3) = ( l234 * tetra(1:3,1)   ...
+            + l134 * tetra(1:3,2)   ...
+            + l124 * tetra(1:3,3)   ...
+            + l123 * tetra(1:3,4) ) ...
+          / ( l234 + l134 + l124 + l123 );
 
-  b(1:dim_num,1:4) = tetra(1:dim_num,1:4);
-  b(4,1:4) = 1.0D+00;
+  b(1:3,1:4) = tetra(1:3,1:4);
+  b(4,1:4) = 1.0;
 
   gamma = abs ( det ( b ) );
 
@@ -1321,11 +1430,11 @@ function [ r, pc ] = tetrahedron_insphere_3d ( tetra )
 
   return
 end
-function quality = tetrahedron_quality1_3d ( tetra )
+function quality = tetrahedron_quality1 ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_QUALITY1_3D: "quality" of a tetrahedron in 3D.
+%% TETRAHEDRON_QUALITY1: "quality" of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1352,19 +1461,19 @@ function quality = tetrahedron_quality1_3d ( tetra )
 %
 %    Output, real QUALITY, the quality of the tetrahedron.
 %
-  r_out = tetrahedron_circumsphere_3d ( tetra );
+  r_out = tetrahedron_circumsphere ( tetra );
 
-  r_in = tetrahedron_insphere_3d ( tetra );
+  r_in = tetrahedron_insphere ( tetra );
 
   quality = 3.0 * r_in / r_out;
 
   return
 end
-function quality2 = tetrahedron_quality2_3d ( tetra )
+function quality2 = tetrahedron_quality2 ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_QUALITY2_3D: "quality" of a tetrahedron in 3D.
+%% TETRAHEDRON_QUALITY2: "quality" of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1405,28 +1514,28 @@ function quality2 = tetrahedron_quality2_3d ( tetra )
 %
 %    Output, real QUALITY2, the quality of the tetrahedron.
 %
-  edge_length(1:6) = tetrahedron_edge_length_3d ( tetra );
+  edge_length(1:6) = tetrahedron_edge_length ( tetra );
 
   l_max = max ( edge_length(1:6) );
 
-  r_in = tetrahedron_insphere_3d ( tetra );
+  r_in = tetrahedron_insphere ( tetra );
 
   quality2 = 2.0 * sqrt ( 6.0 ) * r_in / l_max;
 
   return
 end
-function quality3 = tetrahedron_quality3_3d ( tetra )
+function quality3 = tetrahedron_quality3 ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_QUALITY3_3D computes the mean ratio of a tetrahedron.
+%% TETRAHEDRON_QUALITY3 computes the mean ratio of a tetrahedron.
 %
 %  Discussion:
 %
 %    This routine computes QUALITY3, the eigenvalue or mean ratio of
 %    a tetrahedron.
 %
-%      QUALITY3 = 12 * ( 3 * volume )**(2/3) / (sum of square of edge lengths).
+%      QUALITY3 = 12 * ( 3 * volume )^(2/3) / (sum of square of edge lengths).
 %
 %    This value may be used as a shape quality measure for the tetrahedron.
 %
@@ -1461,25 +1570,20 @@ function quality3 = tetrahedron_quality3_3d ( tetra )
 %
 %    Output, real QUALITY3, the mean ratio of the tetrahedron.
 %
-  dim_num = 3;
+
 %
 %  Compute the vectors representing the sides of the tetrahedron.
 %
-  ab(1:3) = tetra(1:3,2) - tetra(1:3,1);
-  ac(1:3) = tetra(1:3,3) - tetra(1:3,1);
-  ad(1:3) = tetra(1:3,4) - tetra(1:3,1);
-  bc(1:3) = tetra(1:3,3) - tetra(1:3,2);
-  bd(1:3) = tetra(1:3,4) - tetra(1:3,2);
-  cd(1:3) = tetra(1:3,4) - tetra(1:3,3);
+  [ ab, ac, ad, bc, bd, cd ] = tetrahedron_edges ( tetra );
 %
 %  Compute the squares of the lengths of the sides.
 %
-  lab = sum ( ab(1:dim_num).^2 );
-  lac = sum ( ac(1:dim_num).^2 );
-  lad = sum ( ad(1:dim_num).^2 );
-  lbc = sum ( bc(1:dim_num).^2 );
-  lbd = sum ( bd(1:dim_num).^2 );
-  lcd = sum ( cd(1:dim_num).^2 );
+  lab = sum ( ab(1:3).^2 );
+  lac = sum ( ac(1:3).^2 );
+  lad = sum ( ad(1:3).^2 );
+  lbc = sum ( bc(1:3).^2 );
+  lbd = sum ( bd(1:3).^2 );
+  lcd = sum ( cd(1:3).^2 );
 %
 %  Compute the volume.
 %
@@ -1498,11 +1602,11 @@ function quality3 = tetrahedron_quality3_3d ( tetra )
 
   return
 end
-function quality4 = tetrahedron_quality4_3d ( tetra )
+function quality4 = tetrahedron_quality4 ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_QUALITY4_3D computes the minimum solid angle of a tetrahedron.
+%% TETRAHEDRON_QUALITY4 computes the minimum solid angle of a tetrahedron.
 %
 %  Discussion:
 %
@@ -1536,25 +1640,20 @@ function quality4 = tetrahedron_quality4_3d ( tetra )
 %
 %    Output, real QUALITY4, the value of the quality measure.
 %
-  dim_num = 3;
+
 %
 %  Compute the vectors that represent the sides.
 %
-  ab(1:dim_num) = tetra(1:dim_num,2) - tetra(1:dim_num,1);
-  ac(1:dim_num) = tetra(1:dim_num,3) - tetra(1:dim_num,1);
-  ad(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,1);
-  bc(1:dim_num) = tetra(1:dim_num,3) - tetra(1:dim_num,2);
-  bd(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,2);
-  cd(1:dim_num) = tetra(1:dim_num,4) - tetra(1:dim_num,3);
+  [ ab, ac, ad, bc, bd, cd ] = tetrahedron_edges ( tetra );
 %
 %  Compute the lengths of the sides.
 %
-  lab = sqrt ( sum ( ab(1:dim_num).^2 ) );
-  lac = sqrt ( sum ( ac(1:dim_num).^2 ) );
-  lad = sqrt ( sum ( ad(1:dim_num).^2 ) );
-  lbc = sqrt ( sum ( bc(1:dim_num).^2 ) );
-  lbd = sqrt ( sum ( bd(1:dim_num).^2 ) );
-  lcd = sqrt ( sum ( cd(1:dim_num).^2 ) );
+  lab = sqrt ( sum ( ab(1:3).^2 ) );
+  lac = sqrt ( sum ( ac(1:3).^2 ) );
+  lad = sqrt ( sum ( ad(1:3).^2 ) );
+  lbc = sqrt ( sum ( bc(1:3).^2 ) );
+  lbd = sqrt ( sum ( bd(1:3).^2 ) );
+  lcd = sqrt ( sum ( cd(1:3).^2 ) );
 %
 %  Compute the volume
 %
@@ -1625,11 +1724,11 @@ function quality4 = tetrahedron_quality4_3d ( tetra )
 
   return
 end
-function angle = tetrahedron_solid_angles_3d ( tetra )
+function angle = tetrahedron_solid_angles ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_SOLID_ANGLES_3D computes solid angles of a tetrahedron.
+%% TETRAHEDRON_SOLID_ANGLES computes solid angles of a tetrahedron.
 %
 %  Modified:
 %
@@ -1645,7 +1744,7 @@ function angle = tetrahedron_solid_angles_3d ( tetra )
 %
 %    Output, real ANGLE(4), the solid angles.
 %
-  dihedral_angles = tetrahedron_dihedral_angles_3d ( tetra );
+  dihedral_angles = tetrahedron_dihedral_angles ( tetra );
 
   angle(1) = dihedral_angles(1) + dihedral_angles(2) + dihedral_angles(3) - pi;
   angle(2) = dihedral_angles(1) + dihedral_angles(4) + dihedral_angles(5) - pi;
@@ -1654,11 +1753,11 @@ function angle = tetrahedron_solid_angles_3d ( tetra )
 
   return
 end
-function volume = tetrahedron_volume_3d ( tetra )
+function volume = tetrahedron_volume ( tetra )
 
 %*****************************************************************************80
 %
-%% TETRAHEDRON_VOLUME_3D computes the volume of a tetrahedron in 3D.
+%% TETRAHEDRON_VOLUME computes the volume of a tetrahedron.
 %
 %  Licensing:
 %
@@ -1678,9 +1777,8 @@ function volume = tetrahedron_volume_3d ( tetra )
 %
 %    Output, real VOLUME, the volume of the tetrahedron.
 %
-  dim_num = 3;
 
-  a(1:dim_num,1:4) = tetra(1:dim_num,1:4);
+  a(1:3,1:4) = tetra(1:3,1:4);
   a(4,1:4) = 1.0;
 
   volume = abs ( det ( a ) ) / 6.0;
@@ -1740,18 +1838,18 @@ function angle = triangle_angles_3d ( t )
 %
 %  Parameters:
 %
-%    Input, real T(DIM_NUM,3), the triangle vertices.
+%    Input, real T(3,3), the triangle vertices.
 %
 %    Output, real ANGLE(3), the angles opposite
 %    sides P1-P2, P2-P3 and P3-P1, in radians.
 %
-  dim_num = 3;
+
 %
 %  Compute the length of each side.
 %
-  a = sqrt ( sum ( ( t(1:dim_num,1) - t(1:dim_num,2) ).^2 ) );
-  b = sqrt ( sum ( ( t(1:dim_num,2) - t(1:dim_num,3) ).^2 ) );
-  c = sqrt ( sum ( ( t(1:dim_num,3) - t(1:dim_num,1) ).^2 ) );
+  a = sqrt ( sum ( ( t(1:3,1) - t(1:3,2) ).^2 ) );
+  b = sqrt ( sum ( ( t(1:3,2) - t(1:3,3) ).^2 ) );
+  c = sqrt ( sum ( ( t(1:3,3) - t(1:3,1) ).^2 ) );
 %
 %  Take care of a special case.
 %
@@ -1763,19 +1861,19 @@ function angle = triangle_angles_3d ( t )
   if ( c == 0.0 || a == 0.0 )
     angle(1) = pi;
   else
-    angle(1) = arc_cosine ( ( c * c + a * a - b * b ) / ( 2.0 * c * a ) );
+    angle(1) = r8_acos ( ( c * c + a * a - b * b ) / ( 2.0 * c * a ) );
   end
 
   if ( a == 0.0 || b == 0.0 )
     angle(2) = pi;
   else
-    angle(2) = arc_cosine ( ( a * a + b * b - c * c ) / ( 2.0 * a * b ) );
+    angle(2) = r8_acos ( ( a * a + b * b - c * c ) / ( 2.0 * a * b ) );
   end
 
   if ( b == 0.0 || c == 0.0 )
     angle(3) = pi;
   else
-    angle(3) = arc_cosine ( ( b * b + c * c - a * a ) / ( 2.0 * b * c ) );
+    angle(3) = r8_acos ( ( b * b + c * c - a * a ) / ( 2.0 * b * c ) );
   end
 
   return
@@ -1816,7 +1914,7 @@ function area = triangle_area_3d ( t )
 %
 %    Output, real AREA, the area of the triangle.
 %
-  dim_num = 3;
+
 %
 %  Compute the cross product vector.
 %
@@ -1829,7 +1927,7 @@ function area = triangle_area_3d ( t )
   cross(3) = ( t(1,2) - t(1,1) ) * ( t(2,3) - t(2,1) ) ...
            - ( t(2,2) - t(2,1) ) * ( t(1,3) - t(1,1) );
 
-  area = 0.5 * sqrt ( sum ( cross(1:dim_num).^2 ) );
+  area = 0.5 * sqrt ( sum ( cross(1:3).^2 ) );
 
   return
 end

@@ -2,7 +2,7 @@ function l = toep_cholesky_lower ( n, g )
 
 %*****************************************************************************80
 %
-%% TOEP_CHOLESKY_LOWER computes the lower Cholesky factor of a Toeplitz matrix.
+%% TOEP_CHOLESKY_LOWER: lower Cholesky factor of a compressed Toeplitz matrix.
 %
 %  Discussion:
 %

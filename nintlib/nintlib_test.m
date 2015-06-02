@@ -2,11 +2,7 @@ function nintlib_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for NINTLIB_PRB.
-%
-%  Discussion:
-%
-%    NINTLIB_PRB runs the NINTLIB tests.
+%% NINTLIB_TEST tests the NINTLIB library.
 %
 %  Licensing:
 %
@@ -20,17 +16,16 @@ function nintlib_test ( )
 %
 %    John Burkardt
 %
-  test_num = 3;
-
-  dim_num_test = [ 2, 3, 4 ];
-
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NINTLIB_PRB\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the NINTLIB library.\n' );
- 
+
+  test_num = 3;
+
+  dim_num_test = [ 2, 3, 4 ];
+
   a = 0.0;
   b = 1.0;
 
@@ -101,7 +96,6 @@ function nintlib_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NINTLIB_PRB\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

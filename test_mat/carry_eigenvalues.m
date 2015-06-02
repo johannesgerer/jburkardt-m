@@ -1,8 +1,8 @@
-function lambda = carry_eigenvalues ( alpha, n )
+function lambda = carry_eigenvalues ( n, alpha )
 
 %*****************************************************************************80
 %
-%% CARRY_EIGENVALUES returns the eigenvalues of the Carry matrix.
+%% CARRY_EIGENVALUES returns the eigenvalues of the CARRY matrix.
 %
 %  Licensing:
 %
@@ -18,15 +18,16 @@ function lambda = carry_eigenvalues ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, integer ALPHA, the ALPHA value, which represents the
-%    numeric base being used in the addition.
-%
 %    Input, integer N, the order of the matrix.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Input, integer ALPHA, the numeric base being used in the addition.
 %
+%    Output, real LAMBDA(N,1), the eigenvalues.
+%
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
-    lambda(i) = 1.0 / alpha^(i-1);
+    lambda(i,1) = 1.0 / alpha^(i-1);
   end
 
   return

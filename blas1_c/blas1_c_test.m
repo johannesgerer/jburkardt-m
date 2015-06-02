@@ -2,7 +2,7 @@ function blas1_c_test ( )
 
 %*****************************************************************************80
 %
-%% BLAS1_C_TEST tests the BLAS1 single precision complex routines.
+%% BLAS1_C_TEST tests the BLAS1_C library.
 %
 %  Licensing:
 %
@@ -16,10 +16,12 @@ function blas1_c_test ( )
 %
 %    John Burkardt
 %
-  timestamp ( );
+  addpath ( '../blas0' );
 
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_C_PRB:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the BLAS1_C library.\n' );
 
   blas1_c_test01 ( );
@@ -46,9 +48,10 @@ function blas1_c_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_C_PRB:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
+
+  rmpath ( '../blas0' );
 
   return
 end

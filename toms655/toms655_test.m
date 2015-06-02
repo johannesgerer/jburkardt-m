@@ -2,11 +2,7 @@ function toms655_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for TOMS655_PRB.
-%
-%  Discussion:
-%
-%    TOMS655_PRB is a test program for TOMS655.
+%% TOMS655_TEST tests the TOMS655 library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function toms655_test ( )
 %    Original FORTRAN77 version by Sylvan Elhay, Jaroslav Kautsky.
 %    MATLAB version by John Burkardt.
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TOMS655_PRB\n' );
@@ -234,6 +229,7 @@ function test02 ( )
 %
 %  Set A and B.
 %
+    lo = 6;
     a = - 0.5;
     b = 2.0;
 %
@@ -242,7 +238,7 @@ function test02 ( )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Knots and weights of Gauss quadrature formula\n' );
     fprintf ( 1, '  computed by CGQF.\n' );
-    [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b );
+    [ t, wts ] = cgqf ( nt, kind, alpha, beta, lo, a, b );
 %
 %  Now compute the weights for the same knots by CIQF.
 %
@@ -263,10 +259,17 @@ function test02 ( )
 %  in the usual order.
 %
     key = 1;
+%
+%  LU controls printing.
+%  A positive value requests that we compute and print weights, and
+%  conduct a moments check.
+%
+    lu = 6;
 
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Weights of Gauss quadrature formula computed from the\n' );
     fprintf ( 1, '  knots by CIQF.\n' );
+
     wts = ciqf ( nt, t, mlt, nwts, ndx, key, kind, alpha, beta, a, b, lu );
 
   end
@@ -475,7 +478,7 @@ function test06 ( )
 
 %*****************************************************************************80
 %
-%% TEST06 tests CEIQF.
+%% TEST06 tests CLIQF and EIQFS..
 %
 %  Licensing:
 %
@@ -765,7 +768,8 @@ function test11 ( nt, kind, alpha, beta, a, b )
   fprintf ( 1, '  A     = %f\n', a );
   fprintf ( 1, '  B     = %f\n', b );
 
-  [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b );
+  lo = 0;
+  [ t, wts ] = cgqf ( nt, kind, alpha, beta, lo, a, b );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, ' Index     Abscissas                 Weights\n' );

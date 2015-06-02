@@ -10,7 +10,7 @@ function fd1d_heat_explicit_test01 ( )
 %
 %  Modified:
 %
-%    25 January 2012
+%    06 November 2014    
 %
 %  Author:
 %
@@ -77,8 +77,8 @@ function fd1d_heat_explicit_test01 ( )
 %  Plot the data.
 %
   figure ( 1 )
-  [ tmat, xmat ] = meshgrid ( t, x );
-  mesh ( tmat, xmat, hmat );
+  [ tmat, xmat ] = meshgrid ( t, x )
+  mesh ( tmat, xmat, hmat )
   title ( 'H(X,T) for TEST01 computed by FD1D\_HEAT\_EXPLICIT' );
   xlabel ( '<-- Time -->' );
   ylabel ( '<-- X -->' );

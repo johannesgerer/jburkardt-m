@@ -2,7 +2,7 @@ function chebyshev_test ( )
 
 %*****************************************************************************80
 %
-%% CHEBYSHEV_TEST tests CHEBYSHEV.
+%% CHEBYSHEV_TEST tests the CHEBYSHEV library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function chebyshev_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CHEBYSHEV_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

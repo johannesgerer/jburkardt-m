@@ -2,7 +2,7 @@ function [ s, j, k, l ] = i4_mant ( x )
 
 %*****************************************************************************80
 %
-%% I4_MANT computes the "mantissa" of a number.
+%% I4_MANT computes the "mantissa" of an R8.
 %
 %  Discussion:
 %
@@ -14,7 +14,7 @@ function [ s, j, k, l ] = i4_mant ( x )
 %
 %    On return:
 %
-%      X = S * (J/K) * 2**L
+%      X = S * (J/K) * 2^L
 %
 %    where
 %

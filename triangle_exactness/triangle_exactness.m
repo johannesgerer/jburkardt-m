@@ -114,6 +114,7 @@ function triangle_exactness ( quad_filename, degree_max )
   end
 
   w = r8mat_data_read ( quad_w_filename, 1, point_num2 );
+  w = w';
 %
 %  Read the R file.
 %
@@ -505,7 +506,7 @@ function row_num = file_row_count ( input_file_name )
 
   return
 end
-function value = monomial_value ( dim_num, point_num, x, expon )
+function v = monomial_value ( m, n, e, x )
 
 %*****************************************************************************80
 %
@@ -515,19 +516,17 @@ function value = monomial_value ( dim_num, point_num, x, expon )
 %
 %    This routine evaluates a monomial of the form
 %
-%      product ( 1 <= dim <= dim_num ) x(dim)^expon(dim)
+%      product ( 1 <= i <= m ) x(i)^e(i)
 %
-%    where the exponents are nonnegative integers.  Note that
-%    if the combination 0^0 is encountered, it should be treated
-%    as 1.
+%    The combination 0.0^0 is encountered is treated as 1.0.
 %
 %  Licensing:
 %
-%    This code is distributed under the GNU LGPL license.
+%    This code is distributed under the GNU LGPL license. 
 %
 %  Modified:
 %
-%    05 May 2007
+%    17 August 2014
 %
 %  Author:
 %
@@ -535,22 +534,21 @@ function value = monomial_value ( dim_num, point_num, x, expon )
 %
 %  Parameters:
 %
-%    Input, integer DIM_NUM, the spatial dimension.
+%    Input, integer M, the spatial dimension.
 %
-%    Input, integer POINT_NUM, the number of points at which the
-%    monomial is to be evaluated.
+%    Input, integer N, the number of evaluation points.
 %
-%    Input, real X(DIM_NUM,POINT_NUM), the point coordinates.
+%    Input, integer E(M), the exponents.
 %
-%    Input, integer EXPON(DIM_NUM), the exponents.
+%    Input, real X(M,N), the point coordinates.
 %
-%    Output, real VALUE(POINT_NUM), the value of the monomial.
+%    Output, real V(N), the monomial values.
 %
-  value(1:point_num) = 1.0;
+  v = ones ( n, 1 );
 
-  for dim = 1 : dim_num
-    if ( 0 ~= expon(dim) )
-      value(1:point_num) = value(1:point_num) .* x(dim,1:point_num).^expon(dim);
+  for i = 1 : m
+    if ( 0 ~= e(i) )
+      v(1:n,1) = v(1:n,1) .* x(i,1:n)' .^ e(i);
     end
   end
 
@@ -1017,12 +1015,12 @@ function quad_error = triangle01_monomial_quadrature ( dim_num, expon, ...
 %
 %  Evaluate the monomial at the quadrature points.
 %
-  value = monomial_value ( dim_num, point_num, x, expon );
+  value = monomial_value ( dim_num, point_num, expon, x );
 %
 %  Compute the weighted sum and divide by the exact value.
 %
   area = 0.5;
-  quad = area * ( weight * transpose ( value ) ) / scale;
+  quad = area * ( weight' * value ) / scale;
 %
 %  Error:
 %

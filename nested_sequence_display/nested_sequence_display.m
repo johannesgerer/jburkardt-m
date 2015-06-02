@@ -1,4 +1,4 @@
-function nested_sequence_display ( )
+function nested_sequence_display ( list_filename )
 
 %*****************************************************************************80
 %
@@ -50,11 +50,24 @@ function nested_sequence_display ( )
   fprintf ( 1, '  Print a "stack" of sequences, which are nested\n' );
   fprintf ( 1, '  If two successive sequences have a matching value,\n' );
   fprintf ( 1, '  a vertical red line will join them.\n' );
+
+  if ( nargin < 1 )
+    list_filename = input ( 'Enter the name of the file of sequence file names:  ' );
+  end
 %
 %  Keep track of the X range so we can properly scale the plot.
 %
   x_min = + Inf;
   x_max = - Inf;
+
+  list_unit = fopen ( list_filename, 'rt' );
+
+  if ( list_unit < 0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'NESTED_SEQUENCE_DISPLAY - Fatal error!\n' );
+    fprintf ( 1, '  Could not open list file "%s".\n', list_filename );
+    error ( 'NESTED_SEQUENCE_DISPLAY - Fatal error!\n' );
+  end
 %
 %  Get the sequences, one by one.
 %
@@ -62,21 +75,30 @@ function nested_sequence_display ( )
 
   while ( 1 )
 
-    file_name = input ( 'Enter a new sequence filename in quotes, or hit RETURN:  ' );
+    sequence_filename = fgetl ( list_unit );
 
-    if ( isempty ( file_name ) )
+    if ( sequence_filename == -1 )
       break
     end
 
-    temp = load ( file_name );
+    temp = load ( sequence_filename );
     x_min = min ( x_min, min ( temp ) );
     x_max = max ( x_max, max ( temp ) );
-    
+
     sequence_num = sequence_num + 1;
     n = size ( temp, 1 );
+
     sequence_length(sequence_num) = n;
     sequence_list(sequence_num,1:n) = temp(1:n)';
 
+  end
+
+  if ( sequence_num <= 0 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, 'NESTED_SEQUENCE_DISPLAY - Warning!\n' );
+    fprintf ( 1, '  No sequence files were read from the list file.\n' );
+    fprintf ( 1, '  No plot will be created.\n' );
+    return
   end
 %
 %  Start plotting the sequences.  
@@ -128,6 +150,8 @@ function nested_sequence_display ( )
     plot ( sequence_list(sequence,1:n), y(1:n), 'b.', 'MarkerSize', 25 );
 
   end
+
+  fclose ( list_unit );
 %
 %  Adjust the axis to be about 10 percent bigger than the data.
 %
@@ -138,7 +162,7 @@ function nested_sequence_display ( )
 %  The trailing blanks are there for a reason!
 %  Somehow, MATLAB contrives to screw up the last character!
 %
-  xlabel ( 'Point Location  ', ...
+  xlabel ( '<--- X --->  ', ...
     'FontName', 'Helvetica', 'FontWeight', 'bold', ...
     'FontSize', 16  );
 
@@ -146,7 +170,11 @@ function nested_sequence_display ( )
     'FontName', 'Helvetica', 'FontWeight', 'bold', ...
     'FontSize', 16, 'Rotation', 90 );
 
-  title ( 'Nested Clenshaw Curtis Sequence  ', ...
+% label = 'Gauss-Legendre Sequence';
+% label = 'Nested Clenshaw-Curtis Sequence';
+  label = 'Gauss-Patterson Sequence';
+
+  title ( label, ...
     'FontName', 'Helvetica', 'FontWeight', ...
     'bold', 'FontSize', 16 );
 
@@ -156,6 +184,11 @@ function nested_sequence_display ( )
   set ( gca, 'YtickLabel', tick_label );
 
   hold off
+
+  filename = 'nested_sequence.png';
+  print ( '-dpng', filename );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Plot saved in file "%s"\n', filename );
 %
 %  Terminate.
 %
@@ -164,6 +197,41 @@ function nested_sequence_display ( )
   fprintf ( 1, '  Normal end of execution.\n' );
   fprintf ( 1, '\n' );
   timestamp ( );
+
+  return
+end
+function r8vec_print ( n, a, title )
+
+%*****************************************************************************80
+%
+%% R8VEC_PRINT prints a real vector.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    25 January 2004
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer N, the dimension of the vector.
+%
+%    Input, real A(N), the vector to be printed.
+%
+%    Input, string TITLE, a title.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '%s\n', title );
+  fprintf ( 1, '\n' );
+  for i = 1 : n
+    fprintf ( 1, '%6d: %12g\n', i, a(i) );
+  end
 
   return
 end

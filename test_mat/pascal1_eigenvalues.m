@@ -20,9 +20,11 @@ function lambda = pascal1_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real LAMBDA(N), the eigenvalues.
+%    Output, real LAMBDA(N,1), the eigenvalues.
 %
-  lambda(1:n) = 1.0;
+  lambda = zeros ( n, 1 );
+
+  lambda(1:n,1) = 1.0;
 
   return
 end

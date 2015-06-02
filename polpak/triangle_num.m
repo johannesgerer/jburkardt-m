@@ -4,7 +4,7 @@ function value = triangle_num ( n )
 %
 %% TRIANGLE_NUM returns the N-th triangular number.
 %
-%  Definition:
+%  Discussion:
 %
 %    The N-th triangular number T(N) is formed by the sum of the first
 %    N integers:
@@ -12,8 +12,6 @@ function value = triangle_num ( n )
 %      T(N) = sum ( 1 <= I <= N ) I
 %
 %    By convention, T(0) = 0.
-%
-%  Formula:
 %
 %    T(N) = ( N * ( N + 1 ) ) / 2
 %

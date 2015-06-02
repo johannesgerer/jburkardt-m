@@ -2,7 +2,7 @@ function nearest_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% NEAREST_INTERP_1D_TEST tests NEAREST_INTERP_1D.
+%% NEAREST_INTERP_1D_TEST tests the NEAREST_INTERP_1D library.
 %
 %  Licensing:
 %

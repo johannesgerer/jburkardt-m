@@ -2,7 +2,7 @@ function quadrule_test41 ( )
 
 %*****************************************************************************80
 %
-%% TEST41 tests RADAU_SET and SUM_SUB.
+%% QUADRULE_TEST41 tests RADAU_SET and SUM_SUB.
 %
 %  Licensing:
 %
@@ -24,7 +24,7 @@ function quadrule_test41 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST41\n' );
+  fprintf ( 1, 'QUADRULE_TEST41\n' );
   fprintf ( 1, '  RADAU_SET sets up Radau quadrature;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

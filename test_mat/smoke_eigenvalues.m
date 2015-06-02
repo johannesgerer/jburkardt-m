@@ -20,14 +20,16 @@ function lambda = smoke_eigenvalues ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, complex LAMBDA(N), the eigenvalues.
+%    Output, complex LAMBDA(N,1), the eigenvalues.
 %
+  lambda = zeros ( n, 1 );
+
   for i = 1 : n
     angle = 2.0 * pi * i / n;
-    lambda(i) = complex ( cos ( angle ), sin ( angle ) );
+    lambda(i,1) = complex ( cos ( angle ), sin ( angle ) );
   end
 
-  lambda(1:n) = lambda(1:n) * 2^( 1.0 / n );
+  lambda(1:n,1) = lambda(1:n,1) * 2^( 1.0 / n );
 
   return
 end

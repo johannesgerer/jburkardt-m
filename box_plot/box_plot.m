@@ -1,4 +1,4 @@
-function box_plot ( point_file_name )
+function box_plot ( point_filename, header )
 
 %*****************************************************************************80
 %
@@ -29,12 +29,12 @@ function box_plot ( point_file_name )
 %
 %  Parameters:
 %
-%    Input, string POINT_FILE_NAME, the name of the file containing the 
+%    Input, string POINT_FILENAME, the name of the file containing the 
 %    coordinates of the points.
 %
-  fprintf ( 1, '\n' );
+%    Input, string HEADER, an optional title for the plot.
+%
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BOX_PLOT\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -46,23 +46,29 @@ function box_plot ( point_file_name )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'BOX_PLOT:\n' );
-    point_file_name = input ( '  Enter the name of the point file: ' );
+    point_filename = input ( '  Enter the name of the point file: ' );
+  end
+%
+%  Second item is the optional header.
+%
+  if ( nargin < 2 )
+    header = s_escape_tex ( point_filename );
   end
 %
 %  Read the data.
 %
-  [ dim_num, point_num ] = r8mat_header_read ( point_file_name );
+  [ dim_num, point_num ] = r8mat_header_read ( point_filename );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Read the header of "%s".\n', point_file_name );
+  fprintf ( 1, '  Read the header of "%s".\n', point_filename );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Data dimension DIM_NUM   = %d\n', dim_num );
   fprintf ( 1, '  Number of points POINT_NUM  = %d\n', point_num );
 
-  xyrgb = r8mat_data_read ( point_file_name, dim_num, point_num );
+  xyrgb = r8mat_data_read ( point_filename, dim_num, point_num );
   
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Read the data in "%s".\n', point_file_name );
+  fprintf ( 1, '  Read the data in "%s".\n', point_filename );
 %
 %  Extract the XY data and guarantee that the data is integral.
 %
@@ -139,25 +145,43 @@ function box_plot ( point_file_name )
 %  TEMPORARY!
 %  Draw a line to indicate desired accuracy level for sparse grids.
 %
-% line ( [ -0.5, 5.5 ], [ 5.5, -0.5 ], 'LineWidth', 3, 'Color', 'k' )
+  if ( 0 )
+    line ( [-0.5, 7.5 ], [ 7.5, -0.50 ], 'LineWidth', 3, 'Color', 'w' )
+  end
+  if ( 0 )
+    line ( [-0.5, 9.5 ], [ 9.5, -0.50 ], 'LineWidth', 3, 'Color', 'w' )
+  end
+  if ( 0 )
+    line ( [-0.5, 11.5 ], [ 11.5, -0.50 ], 'LineWidth', 3, 'Color', 'w' )
+  end
+  if ( 1 )
+    line ( [-0.5, 13.5 ], [ 13.5, -0.50 ], 'LineWidth', 3, 'Color', 'w' )
+  end
 %
 %  The TITLE function will interpret underscores in the title.
 %  We need to unescape such escape sequences!
 %
-  title_string = s_escape_tex ( point_file_name );
-  title ( title_string )
+  if ( 0 )
+    xlabel ( '<--- I --->', 'Fontsize', 16 )
+    ylabel ( '<--- J --->', 'Fontsize', 16 )
+    title ( header, 'Fontsize', 24 )
+  end
 
   axis ( [ x_axes_min, x_axes_max, y_axes_min, y_axes_max ] );
   axis equal
   axis square
   axis tight
+
+  plot_filename = filename_ext_swap ( point_filename, 'png' );
+  print ( '-dpng', plot_filename );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  A copy of this image was saved as "%s"\n', plot_filename );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BOX_PLOT\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -250,6 +274,71 @@ function column_num = file_column_count ( input_file_name )
   end
 
   column_num = s_word_count ( line );
+
+  return
+end
+function filename_new = filename_ext_swap ( filename, ext )
+
+%*****************************************************************************80
+%
+%% FILENAME_EXT_SWAP replaces the current "extension" of a file name.
+%
+%  Discussion:
+%
+%    The "extension" of a filename is the string of characters
+%    that appears after the LAST period in the name.  A file
+%    with no period, or with a period as the last character
+%    in the name, has a "null" extension.
+%
+%  Example:
+%
+%          Input           Output
+%    ================     =============
+%    FILENAME     EXT     FILENAME_NEW
+%    
+%    bob.for      obj     bob.obj
+%    bob.bob.bob  txt     bob.bob.txt
+%    bob          yak     bob.yak
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    15 August 2005
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, string FILENAME, a file name.
+%    On output, the extension of the file has been changed.
+%
+%    Input, string EXT, the extension to be used on the output
+%    copy of FILE_NAME, replacing the current extension if any.
+%
+%    Output, string FILENAME_NEW, a copy of the input file name,
+%    with the new extension.
+%
+  filename_len = length ( filename );
+
+  ext_len = length ( ext );
+
+  period = filename_len + 1;
+
+  for i = filename_len : -1 : 1
+    if ( filename(i:i) == '.' )
+      period = i;
+      break
+    end
+  end
+
+  filename_new(1:period-1) = filename(1:period-1);
+  filename_new(period) = '.';
+  filename_new(period+1:period+ext_len) = ext(1:ext_len);
 
   return
 end

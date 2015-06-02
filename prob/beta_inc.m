@@ -11,10 +11,10 @@ function value = beta_inc ( a, b, x )
 %
 %    BETA_INC(A,B,X)
 %
-%      =   Integral ( 0 <= T <= X ) T**(A-1) (1-T)**(B-1) dT
-%        / Integral ( 0 <= T <= 1 ) T**(A-1) (1-T)**(B-1) dT
+%      =   Integral ( 0 <= T <= X ) T^(A-1) (1-T)^(B-1) dT
+%        / Integral ( 0 <= T <= 1 ) T^(A-1) (1-T)^(B-1) dT
 %
-%      =   Integral ( 0 <= T <= X ) T**(A-1) (1-T)**(B-1) dT
+%      =   Integral ( 0 <= T <= X ) T^(A-1) (1-T)^(B-1) dT
 %        / BETA(A,B)
 %
 %  Licensing:
@@ -27,6 +27,7 @@ function value = beta_inc ( a, b, x )
 %
 %  Author:
 %
+%    Original FORTRAN77 version by Majumder, Bhattacharjee.
 %    MATLAB version by John Burkardt.
 %
 %  Reference:

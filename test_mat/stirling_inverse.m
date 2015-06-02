@@ -102,6 +102,8 @@ function a = stirling_inverse ( n )
 %
 %    Output, real A(N,N), the  matrix.
 %
+  a = zeros ( n, n );
+
   a(1,1) = 1.0;
   a(1,2:n) = 0.0;
 

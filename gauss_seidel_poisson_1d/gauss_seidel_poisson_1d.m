@@ -25,10 +25,13 @@ function gauss_seidel_poisson_1d ( k )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GAUSS_SEIDEL_POISSON_1D:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Use Gauss-Seidel iteration for the 1D Poisson equation.\n' );
 
   if ( nargin < 1 )
     k = input ( '  Enter K >= 0, the grid index, so that NK = 2^K + 1:  ' );
+  elseif ( ischar ( k ) )
+    k = str2num ( k );
   end
 %
 %  Set boundaries.
@@ -61,7 +64,7 @@ function gauss_seidel_poisson_1d ( k )
 %
 %  Set the -1/2/-1 entries of Ak.
 %
-%  In order that the operator Ak approximation the Poisson operator,
+%  In order that the operator Ak approximate the Poisson operator,
 %  and in order that we can compare linear systems for successive grids,
 %  we should NOT multiply through by hk^2.
 %
@@ -116,7 +119,6 @@ function gauss_seidel_poisson_1d ( k )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GAUSS_SEIDEL_POISSON_1D:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function a = circulant ( m, n, x )
 
 %*****************************************************************************80
 %
-%% CIRCULANT returns a circulant matrix.
+%% CIRCULANT returns the CIRCULANT matrix.
 %
 %  Formula:
 %
@@ -37,7 +37,7 @@ function a = circulant ( m, n, x )
 %
 %    Westlake lists the following "special" circulants:
 %
-%      B2, X = ( T**2, 1, 2, ..., T, T+1, T, T-1, ..., 1 ),
+%      B2, X = ( T^2, 1, 2, ..., T, T+1, T, T-1, ..., 1 ),
 %      with T = ( N - 2 ) / 2;
 %
 %      B3, X = ( N+1, 1, 1, ..., 1 );

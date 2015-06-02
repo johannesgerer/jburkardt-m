@@ -2,7 +2,7 @@ function dijkstra_test ( )
 
 %*****************************************************************************80
 %
-%% DIJKSTRA_TEST runs an example of Dijkstra's minimum distance algorithm.
+%% DIJKSTRA_TEST tests the DIJKSTRA library.
 %
 %  Discussion:
 %
@@ -28,12 +28,15 @@ function dijkstra_test ( )
 %    Original C version by Norm Matloff, CS Dept, UC Davis.
 %    MATLAB version by John Burkardt.
 %
-  nv = 6;
-
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIJKSTRA_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the DIJKSTRA library.\n' );
+
+  nv = 6;
+
+  fprintf ( 1, '\n' );
   fprintf ( 1, '  Use Dijkstra''s algorithm to determine the minimum\n' );
   fprintf ( 1, '  distance from node 1 to each node in a graph,\n' );
   fprintf ( 1, '  given the distances between each pair of nodes.\n' );
@@ -76,7 +79,6 @@ function dijkstra_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'DIJKSTRA_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

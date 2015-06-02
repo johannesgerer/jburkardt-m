@@ -1,8 +1,8 @@
-function test05 ( )
+function sphere_grid_test05 ( )
 
 %*****************************************************************************80
 %
-%% TEST05 tests SPHERE_SPIRALPOINTS.
+%% SPHERE_GRID_TEST05 tests SPHERE_SPIRALPOINTS.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function test05 ( )
   r = 1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST05\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST05\n' );
   fprintf ( 1, '  SPHERE_SPIRALPOINTS produces a spiral of\n' );
   fprintf ( 1, '  points on an implicit sphere in 3D.\n' );
   fprintf ( 1, '\n' );

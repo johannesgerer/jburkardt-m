@@ -10,7 +10,7 @@ function r4lib_test001 ( )
 %
 %  Modified:
 %
-%    19 April 2009
+%    28 September 2014
 %
 %  Author:
 %
@@ -27,7 +27,7 @@ function r4lib_test001 ( )
   fprintf ( 1, '\n' );
 
   for test = 1 : test_num
-    [ r4, seed ] = r4_uniform ( r4_lo, r4_hi, seed );
+    [ r4, seed ] = r4_uniform_ab ( r4_lo, r4_hi, seed );
     r4_absolute = r4_abs ( r4 );
     fprintf ( 1, '  %10.6f  %10.6f\n', r4, r4_absolute );
   end

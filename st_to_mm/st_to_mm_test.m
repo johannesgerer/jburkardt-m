@@ -2,7 +2,7 @@ function st_to_mm_test ( )
 
 %*****************************************************************************80
 %
-%% ST_TO_MM_TEST runs the ST_TO_MM tests.
+%% ST_TO_MM_TEST tests the ST_TO_MM library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function st_to_mm_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ST_TO_MM_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

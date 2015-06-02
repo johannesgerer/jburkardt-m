@@ -30,7 +30,7 @@ function [ n_data, x, fx ] = tran08_values ( n_data )
 %
 %    Allan McLeod,
 %    Algorithm 757, MISCFUN: A software package to compute uncommon
-%      special functions,
+%    special functions,
 %    ACM Transactions on Mathematical Software,
 %    Volume 22, Number 3, September 1996, pages 288-301.
 %

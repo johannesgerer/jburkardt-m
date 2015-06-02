@@ -22,6 +22,8 @@ function a = gk316_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   t = 6.0 / ( n * ( n + 1 ) * ( 2 * n - 5 ) );
 
   for i = 1 : n

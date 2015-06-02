@@ -18,7 +18,8 @@ function obstacle_demo ( )
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'OBSTACLE_DEMO:\n' );
-  fprintf ( 1, '  Demonstrate MESH2D on the channel with obstacle.\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Demonstrate MESH2D on the channel with a square obstacle.\n' );
 
   clf
 
@@ -79,3 +80,6 @@ function obstacle_demo ( )
   [ nt, ~ ] = size ( t );
   fprintf ( 1, '  %d boundary vertices input, %d nodes and %d triangles created\n', nv, np, nt );
   pause
+
+  return
+end

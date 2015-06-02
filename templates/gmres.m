@@ -1,6 +1,8 @@
 function [ x, error_norm, iter, flag ] = gmres ( A, x, b, ...
   M, restart, max_it, tol, n )
 
+%*****************************************************************************80
+%
 %% GMRES solves a linear system Ax=b using the Generalized Minimal residual.
 %
 %  Discussion:

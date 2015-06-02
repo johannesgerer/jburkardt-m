@@ -2,11 +2,7 @@ function grf_io_test ( )
 
 %*****************************************************************************80
 %
-%% GRF_IO_TEST is the main program for the GRF_IO test program.
-%
-%  Discussion:
-%
-%    GRF_IO_TEST tests the GRF_IO routines.
+%% GRF_IO_TEST tests the GRF_IO library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function grf_io_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRF_IO_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +30,6 @@ function grf_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRF_IO_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

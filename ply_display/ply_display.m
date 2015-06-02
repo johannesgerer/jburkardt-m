@@ -510,7 +510,7 @@ function [ node_xyz, triangle_node ] = ply_to_tri_surface ( ply_filename )
 
       end
 %
-%  read file
+%  Read the file.
 %
       if ( ~ListFlag )
 %

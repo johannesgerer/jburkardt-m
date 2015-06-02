@@ -1,4 +1,4 @@
-function determ = gfpp_determinant ( n, alpha )
+function value = gfpp_determinant ( n, alpha )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function determ = gfpp_determinant ( n, alpha )
 %
 %  Modified:
 %
-%    24 October 2007
+%    02 April 2015
 %
 %  Author:
 %
@@ -20,12 +20,11 @@ function determ = gfpp_determinant ( n, alpha )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real ALPHA, the value to assign to all subdiagonal
-%    elements of A. 
+%    Input, real ALPHA, determines subdiagonal elements.
 %
-%    Output, real DETERM, the determinant.
+%    Output, real VALUE, the determinant.
 %
-  determ = ( 1.0 + alpha )^( n - 1 );
+  value = ( 1.0 + abs ( alpha ) ) ^ ( n - 1 );
 
   return
 end

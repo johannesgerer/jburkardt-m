@@ -17,7 +17,9 @@
     <p>
       <b>TEST_MAT</b> 
       is a MATLAB library which 
-      defines various test matrices.
+      defines test matrices for which some of the determinant, eigenvalues, 
+      inverse, null vectors, P*L*U factorization or linear system solution 
+      are already known, including the Vandermonde and Wathen matrix.
     </p>
 
     <p> 
@@ -45,7 +47,8 @@
     </p>
 
     <p>
-      Matrices are available with known inverses, condition numbers, determinants, rank,
+      Matrices are available with known inverses, condition numbers, 
+      determinants, rank,
       eigenvalues, and characteristic polynomials.  Other matrix properties
       include positive definiteness, positivity, zero/one, and
       adjacency matrices.
@@ -53,9 +56,7 @@
 
     <p>
       Many of the matrices come from a MATLAB M file collection developed by 
-      Nicholas Higham, Department of Mathematics, University of Manchester, and 
-      maintained in the "test_matrix" file somewhere at 
-      <a href = "http://www.mathworks.com">the MATLAB web site</a>.
+      Nicholas Higham, Department of Mathematics, University of Manchester.
     </p>
 
     <p>
@@ -76,9 +77,8 @@
     </h3>
  
     <p>
-      The computer code and data files described and made available on this web page 
-      are distributed under
-      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+      The computer code described and made available on this web page 
+      are distributed under the GNU LGPL license.</a>
     </p>
 
     <h3 align = "center">
@@ -91,7 +91,8 @@
       <a href = "../../cpp_src/test_mat/test_mat.html">a C++ version</a> and
       <a href = "../../f77_src/test_mat/test_mat.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/test_mat/test_mat.html">a FORTRAN90 version</a> and
-      <a href = "../../m_src/test_mat/test_mat.html">a MATLAB version.</a>
+      <a href = "../../m_src/test_mat/test_mat.html">a MATLAB version</a> and
+      <a href = "../../py_src/test_mat/test_mat.html">a Python version.</a>
     </p>
 
     <h3 align = "center">
@@ -99,27 +100,38 @@
     </h3>
 
     <p>
-      <a href = "../../f_src/arpack/arpack.html">
+      <a href = "../../m_src/arpack/arpack.html">
       ARPACK</a>,
-      a FORTRAN90 library which 
+      a MATLAB library which 
       uses Arnoldi methods
       to compute some eigenvalues and eigenvectors of matrices, 
       which may be very large.
     </p>
 
     <p>
-      <a href = "../../m_src/condition/condition.html">
-      CONDITION</a>,
+      <a href = "../../m_src/cg/cg.html">
+      CG</a>,
       a MATLAB library which
-      implements methods of computing or estimating the condition number of a matrix.
+      implements a simple version of the conjugate gradient (CG) method
+      for solving a system of linear equations of the form A*x=b, 
+      suitable for situations in which the matrix A is positive definite
+      (only real, positive eigenvalues) and symmetric.
     </p>
 
     <p>
-      <a href = "../../f_src/eispack/eispack.html">
-      EISPACK</a>,
-      a FORTRAN90 library which
-      computes eigenvalues
-      and eigenvectors of matrices.
+      <a href = "../../m_src/condition/condition.html">
+      CONDITION</a>,
+      a MATLAB library which
+      implements methods of computing or estimating the condition number 
+      of a matrix.
+    </p>
+
+    <p>
+      <a href = "../../m_src/jacobi_eigenvalue/jacobi_eigenvalue.html">
+      JACOBI_EIGENVALUE</a>,
+      a MATLAB library which
+      implements the Jacobi iteration for the iterative determination
+      of the eigenvalues and eigenvectors of a real symmetric matrix.
     </p>
 
     <p>
@@ -130,9 +142,9 @@
     </p>
 
     <p>
-      <a href = "../../f_src/linpack/linpack.html">
+      <a href = "../../m_src/linpack/linpack.html">
       LINPACK</a>,
-      a FORTRAN90 library which
+      a MATLAB library which
       factors matrices,
       computes determinants and inverses, solves linear systems,
       for real and complex arithmetic, single and double precision,
@@ -177,693 +189,14 @@
       defines a set of test cases for computing the matrix exponential.
     </p>
 
-    <h3 align = "center">
-      Reference:
-    </h3>
-
     <p>
-      <ol>
-        <li>
-          Milton Abramowitz, Irene Stegun,<br>
-          Handbook of Mathematical Functions,<br>
-          National Bureau of Standards, 1964,<br>
-          ISBN: 0-486-61272-4,<br>
-          LC: QA47.A34.
-        </li>
-        <li>
-          MJ Aegerter,<br>
-          Construction of a Set of Test Matrices,<br>
-          Communications of the ACM,<br>
-          Volume 2, Number 8, August 1959, pages 10-12.
-        </li>
-        <li>
-          Marlow Anderson, Todd Feil,<br>
-          Turning Lights Out With Linear Algebra,<br>
-          Mathematics Magazine,<br>
-          Volume 71, Number 4, October 1998, pages 300-303.
-        </li>
-        <li>
-          Wayne Barrett, Tyler Jarvis,<br>
-          Spectral Properties of a Matrix of Redheffer,<br>
-          Linear Algebra and Its Applications,<br>
-          Volume 162-164, February 1992, pages 673-683.
-        </li>
-        <li>
-          Richard Beam, Robert Warming,<br>
-          The asymptotic spectra of banded Toeplitz and 
-          quasi-Toeplitz matrices,<br>
-          SIAM Journal on Scientific and Statistical Computing,<br>
-          Volume 14, Number 4, July 1993, pages 971-1006
-        </li>
-        <li>
-          Dario Bini, Paola Favati,<br>
-          On a matrix algebra related to the discrete Hartley transform,<br>
-          SIAM Journal on Matrix Analysis and Applications,<br>
-          Volume 14, Number 2, April 1993, pages 500-507.
-        </li>
-        <li>
-          John Boothroyd,<br>
-          Algorithm 274:
-          Generation of Hilbert Derived Test Matrix,<br>
-          Communications of the ACM,<br>
-          Volume 9, Number 1, January 1966, page 11.
-        </li>
-        <li>
-          Robert Brawer, Magnus Pirovino,<br>
-          The linear algebra of the Pascal matrix,<br>
-          Linear Algebra and Its Applications,<br>
-          Volume 174, September 1992, pages 13-23.
-        </li>
-        <li>
-          Jacqueline Burm, Paul Fishback,<br>
-          Period-3 Orbits Via Sylvester's Theorem and Resultants,<br>
-          Mathematics Magazine,<br>
-          Volume 74, Number 1, February 2001, pages 47-51.
-        </li>
-        <li>
-          Gregory Call, Daniel Velleman,<br>
-          Pascal's Matrices,<br>
-          American Mathematical Monthly,<br>
-          Volume 100, Number 4, April 1993, pages 372-376.
-        </li>
-        <li>
-          Francoise Chaitin-Chatelin,<br>
-          Eigenvalues of Matrices,<br>
-          John Wiley, 1993,<br>
-          ISBN: 0471935387,<br>
-          LC: QA188.C44.
-        </li>
-        <li>
-          Ke Chen, Peter Giblin, Alan Irving,<br>
-          Mathematical Explorations with MATLAB,<br>
-          Cambridge University Press, 1999,<br>
-          ISBN: 0-521-63920-4.
-        </li>
-        <li>
-          Man-Duen Choi,<br>
-          Tricks or treats with the Hilbert matrix,<br>
-          American Mathematical Monthly,<br>
-          Volume 90, Number 5, May 1983, pages 301-312.
-        </li>
-        <li>
-          TS Chow,<br>
-          A class of Hessenberg matrices with known eigenvalues and
-          inverses,<br>
-          SIAM Review,<br>
-          Volume 11, Number 3, July 1969, pages 391-395.
-        </li>
-        <li>
-          Paul Clement,<br>
-          A class of triple-diagonal matrices for test purposes,<br>
-          SIAM Review,<br>
-          Volume 1, Number 1, January 1959, pages 50-52.
-        </li>
-        <li>
-          Alan Cline, Russell Rew,<br>
-          A set of counterexamples to three condition number estimators,<br>
-          SIAM Journal on Scientific and Statistical Computing,<br>
-          Volume 4, Number 4, December 1983, pages 602-611.
-        </li>
-        <li>
-         David Collison,<br>
-          Algorithm 117: and Algorithm 118:
-          Magic square (even order) and Magic square (odd order),<br>
-          Communications of the ACM,<br>
-          Volume 5, Number 8, August 1962, pages 435-436.
-        </li>
-        <li>
-           George Cybenko, Charles vanLoan,<br>
-          Computing the minimum eigenvalue of a symmetric positive definite
-          Toeplitz matrix,<br>
-          SIAM Journal on Scientific and Statistical Computing,<br>
-          Volume 7, Number 1, January 1986, pages 123-131.
-        </li>
-        <li>
-          George Dantzig,<br>
-          Linear Programming and Extensions,<br>
-          Princeton University Press, 1998,<br>
-          ISBN: 0691059136,<<br>
-          LC: QA265.D3.
-        </li>
-        <li>
-          Philip Davis,<br>
-          Circulant Matrices,<br>
-          Second Edition,<br>
-          Chelsea, 1994,<br>
-          ISBN: 0828403384,<br>
-          LC: QA188.D37.
-        </li>
-        <li>
-          Fred Dorr,<br>
-          An example of ill-conditioning in the numerical solution of
-          singular perturbation problems,<br>
-          Mathematics of Computation,<br>
-          Volume 25, Number 114, April 1971, pages 271-283.
-        </li>
-        <li>
-          Patricia Eberlein,<br>
-          A Two-Parameter Test Matrix,<br>
-          Mathematics of Computation,<br>
-          Volume 18, Number 86, April 1964, pages 296-298.
-        </li>
-        <li>
-          Alan Edelman, Eric Kostlan,<br>
-          The road from Kac's matrix to Kac's random polynomials.<br>
-          in Proceedings of the Fifth SIAM Conference on 
-          Applied Linear Algebra,<br>
-          edited by John Lewis,<br>
-          SIAM, 1994,<br>
-          ISBN: 0898713366,<br>
-          LC: QA184.S58.
-        </li>
-        <li>
-          Graeme Fairweather,<br>
-          On the eigenvalues and eigenvectors of a class of 
-          Hessenberg matrices,<br>
-          SIAM Review,<br>
-          Volume 13, Number 2, April 1971, pages 220-221.
-        </li>
-        <li>
-          WL Frank,<br>
-          Computing eigenvalues of complex matrices by determinant
-          evaluation, and by methods of Danilewski and Wielandt,<br>
-          Journal of the Society for Industrial and Applied Mathematics,<br>
-          Volume 6, 1958, pages 378-392.
-        </li>
-        <li>
-          Charles Gear,<br>
-          A simple set of test matrices for eigenvalue programs,<br>
-          Mathematics of Computation,<br>
-          Volume 23, Number 105, January 1969, pages 119-125.
-        </li>
-        <li>
-          Gene Golub, Charles VanLoan,<br>
-          Matrix Computations,
-          Third Edition,<br>
-          Johns Hopkins, 1996,<br>
-          ISBN: 0-8018-4513-X,<br>
-          LC: QA188.G65.
-        </li>
-        <li>
-          Gene Golub, James Wilkinson,<br>
-          Ill-conditioned eigensystems and the computation of the Jordan
-          canonical form,<br>
-          SIAM Review,<br>
-          Volume 18, Number 4, October 1976, pages 578-619.
-        </li>
-        <li>
-          MJC Gover,<br>
-          The explicit inverse of factorial Hankel matrices,<br>
-          Department of Mathematics, University of Bradford, 1993.
-        </li>
-        <li>
-          Ronald Graham, Neil Sloane,<br>
-          Anti-Hadamard Matrices,<br>
-          Linear Algebra and Applications,<br>
-          Volume 62, November 1984, pages 113-137.
-        </li>
-        <li>
-          Joseph Grcar,<br>
-          Operator coefficient methods for linear equations,<br>
-          Technical Report SAND89-8691,<br>
-          Sandia National Laboratories,<br>
-          Albuquerque, New Mexico, 1989.
-        </li>
-        <li>
-          Robert Gregory, David Karney,<br>
-          A Collection of Matrices for Testing Computational Algorithms,<br>
-          Wiley, 1969,<br>
-          ISBN: 0882756494,<br>
-          LC: QA263.G68.
-        </li>
-        <li>
-          Ernst Hairer, Syvert Norsett, Gerhard Wanner,<br>
-          Solving Ordinary Differential Equations I: Nonstiff Problems,<br>
-          Springer, 1987,<br>
-          ISBN: 3540566708,<br>
-          LC: QA372.H16.
-        </li>
-        <li>
-          Per Hansen, Tony Chan,<br>
-          FORTRAN Subroutines for General Toeplitz Systems,<br>
-          ACM Transactions on Mathematical Software,<br>
-          Volume 18, Number 3, September 1992, pages 256-273.
-        </li>
-        <li>
-          Harry Harman,<br>
-          Modern Factor Analysis,<br>
-          Third Edition,<br>
-          The University of Chicago Press, 1976,<br>
-          ISBN: 0226316521,<br>
-          LC: QA276.H38.
-        </li>
-        <li>
-          John Herndon,<br>
-          Algorithm 52:
-          A Set of Test Matrices,<br>
-          Communications of the ACM,<br>
-          Volume 4, Number 4, April 1961, page 180.
-        </li>
-        <li>
-          Nicholas Higham,<br>
-          A survey of condition number estimation for triangular matrices,<br>
-          SIAM Review,<br>
-          Volume 29, Number 4, December 1987, pages 575-596.
-        </li>
-        <li>
-          Nicholas Higham,<br>
-          Accuracy and Stability of Numerical Algorithms,<br>
-          SIAM, 1996,<br>
-          ISBN: 0898715210,<br>
-          LC: QA297.H53.
-        </li>
-        <li>
-          Nicholas Higham,<br>
-          Algorithm 694: 
-          A Collection of Test Matrices in MATLAB,<br>
-          ACM Transactions on Mathematical Software,<br>
-          Volume 17, Number 3, September 1991, pages 289-305.
-        </li>
-        <li>
-          Nicholas Higham,<br>
-          Stability analysis of algorithms for solving confluent
-          Vandermonde-like systems,<br>
-          SIAM Journal on Matrix Analysis and Applications,<br>
-          Volume 11, Number 1, January 1990, pages 23-41.
-        </li>
-        <li>
-          Nicholas Higham, Desmond Higham,<br>
-          Large growth factors in Gaussian elimination with pivoting,<br>
-          SIAM Journal on Matrix Analysis and Applications,<br>
-          Volume 10, Number 2, April 1989, pages 155-164.
-        </li>
-        <li>
-          John Holte,<br>
-          Carries, Combinatorics, and an Amazing Matrix,<br>
-          The American Mathematical Monthly,<br>
-          Volume 104, Number 2, February 1997, pages 138-149.
-        </li>
-        <li>
-          Roger Horn, Charles Johnson,<br>
-          Matrix Analysis,<br>
-          Cambridge, 1985,<br>
-          ISBN: 0-521-38632-2,<br>
-          LC: QA188.H66.
-        </li>
-        <li>
-          Alston Householder, John Carpenter,<br>
-          The singular values of involutory and of idempotent matrices,<br>
-          Numerische Mathematik,<br>
-          Volume 5, Number 1, December 1963, pages 234-237.
-        </li>
-        <li>
-          Lawrence Huber, Jacqueline Meulman, Willem Heiser,<br>
-          Two Purposes for Matrix Factorization: A Historical Appraisal,<br>
-          SIAM Review,<br>
-          Volume 41, Number 1, March 1999, pages 68-82.
-        </li>
-        <li>
-          William Kahan,<br> 
-          Numerical Linear Algebra,<br> 
-          Canadian Mathematical Bulletin,<br> 
-          Volume 9, 1966, pages 757-801.
-        </li>
-        <li>
-          Sam Karlin,<br>
-          Total Positivity, Volume 1,<br>
-          Stanford University Press, 1968,<br>
-          ISBN: 0804703140,<br>
-          LC: QA355.K33.
-        </li>
-        <li>
-          Charles Kenney, Alan Laub,<br>
-          Controllability and stability radii for companion form systems,<br>
-          Math. Control Signals Systems,<br>
-          Volume 1, 1988, pages 239-256.
-        </li>
-        <li>
-          David Kershaw,<br>
-          The Incomplete Cholesky-Conjugate Gradient Method for the Iterative
-          Solution of Systems of Linear Equations,<br>
-          Journal of Computational Physics,<br>
-          Volume 26, Number 1, January 1978, pages 43-65.
-        </li>
-        <li>
-          Donald Knuth,<br>
-          The Art of Computer Programming,<br>
-          Volume 1, Fundamental Algorithms,<br>
-          Third Edition<br>
-          Addison-Wesley, 1997,<br>
-          ISBN: 0201896834,<br>
-          LC: QA76.6.K64.
-        </li>
-        <li>
-          Maurice Kraitchik,<br>
-          Mathematical Recreations,<br>
-          Norton, 1942,<br>
-          LC: QA95.K72.
-        </li>
-        <li>
-          Henry Lancaster,<br>
-          The Helmert Matrices,<br>
-          American Mathematical Monthly,<br>
-          Volume 72, Number 1, January 1965, pages 4-12.
-        </li>
-        <li>
-          Peter Lauchli,<br>
-          Jordan-Elimination und Ausgleichung nach kleinsten Quadraten,<br>
-          (Jordan elimination and smoothing by least squares),<br>
-          Numerische Mathematik,<br>
-          Volume 3, Number 1, December 1961, pages 226-240.
-        </li>
-        <li>
-          Jon Lee,<br>
-          Hoffman's Circle Untangled,<br>
-          SIAM Review,<br>
-          Volume 39, Number 1, March 1997, pages 98-105.
-        </li>
-        <li>
-          Wim Lenferink, Marc Spijker,<br>
-          On the use of stability regions in the numerical analysis of 
-          initial value problems,<br>
-          Mathematics of Computation,<br>
-          Volume 57, Number 195, July 1991, pages 221-237.
-        </li>
-        <li>
-          M Lietzke, R Stoughton, Marjorie Lietzke,<br>
-          A Comparison of Seeral Method for Inverting Large Symmetric
-          Positive Definite Matrics,<br>
-          Mathematics of Computation<br>
-          Volume 18, Number 87, pages 449-456.
-        </li>
-        <li>
-          Max Lotkin,<br>
-          A set of test matrices,<br>
-          Mathematics Tables and Other Aids to Computation,<br>
-          Volume 9, 1955, pages 153-161.
-        </li>
-        <li>
-          Roger Martin, G Peters, James Wilkinson,<br>
-          HQR, The QR Algorithm for Real Hessenberg Matrices,<br>
-          Numerische Mathematik,<br>
-          Volume 14, Number 3, February 1970, pages 219-231.
-        </li>
-        <li>
-          Roger Martin, James Wilkinson,<br>
-          Similarity Reduction of a General Matrix to Hessenberg Form:
-          ELMHES,<br>
-          Numerische Mathematik,<br>
-          Volume 12, Number 5, December 1968, pages 349-368.
-        </li>
-        <li>
-          John McCarthy,<br>
-          Pick's Theorem: What's the Big Deal?<br>
-          American Mathematical Monthly,<br>
-          Volume 110, Number 1, January 2003, pages 36-45.
-        </li>
-        <li>
-          Noel Nachtigal, Lothar Reichel, Lloyd Trefethen,<br>
-          A hybrid GMRES algorithm for nonsymmetric linear systems,<br>
-          SIAM Journal on Matrix Analysis and Applications,<br>
-          Volume 13, Number 3, June 1992, pages 796-825.
-        </li>
-        <li>
-          John Nash,<br>
-          Compact Numerical Methods for Computers: Linear Algebra and
-          Function Minimisation,<br>
-          Second Edition,<br>
-          Taylor & Francis, 1990,<br>
-          ISBN: 085274319X,<br>
-          LC: QA184.N37.
-        </li>
-        <li>
-          Morris Newman, John Todd,<br>
-          The evaluation of matrix inversion programs,<br>
-          Journal of the Society for Industrial and Applied Mathematics,<br>
-          Volume 6, Number 4, 1958, pages 466-476.
-        </li>
-        <li>
-          Albert Nijenhuis, Herbert Wilf,<br>
-          Combinatorial Algorithms for Computers and Calculators,<br>
-          Second Edition,<br>
-          Academic Press, 1978,<br>
-          ISBN: 0-12-519260-6,<br>
-          LC: QA164.N54.
-        </li>
-        <li>
-          Alexander Ostrowski,<br>
-          On the spectrum of a one-parametric family of matrices,<br>
-          Journal fuer Reine und Angewandte Mathematik,<br>
-          Volume 193, Numbers 3/4, 1954, pages 143-160.
-        </li>
-        <li>
-          Seymour Parter,<br>
-          On the distribution of the singular values of Toeplitz matrices,<br>
-          Linear Algebra and Applications,<br>
-          Volume 80, August 1986, pages 115-130.
-        </li>
-        <li>
-          ML Pei,<br>
-          A test matrix for inversion procedures,<br>
-          Communications of the ACM,<br>
-          Volume 5, Number 10, October 1962, page 508.
-        </li>
-        <li>
-          Charles Pinter,<br>
-          A Book of Abstract Algebra,<br>
-          Second Edition,<br>
-          McGraw Hill, 2003,<br>
-          ISBN: 0072943505,<br>
-          LC: QA162.P56.
-        </li>
-        <li>
-          William Pratt,<br>
-          Digital Image Processing,<br>
-          Second Edition,<br>
-          Wiley, 1991,<br>
-          ISBN13: 978-0471857662,<br>
-          LC: TA1632.P7.
-        </li>
-        <li>
-          Lothar Reichel, Lloyd Trefethen,<br>
-          Eigenvalues and pseudo-eigenvalues of Toeplitz matrices,<br>
-          Linear Algebra and Its Applications,<br>
-          Volume 162-164, February 1992, pages 153-185.
-        </li>
-        <li>
-          Friedrich Roesler,<br>
-          Riemann's hypothesis as an eigenvalue problem,<br>
-          Linear Algebra and Its Applications,<br>
-          Volume 81, September 1986, pages 153-198.
-        </li>
-        <li>
-          Daniel Rutherford,<br>
-          Some continuant determinants arising in physics and chemistry II,<br>
-          Proceedings of the Royal Society Edinburgh,<br>
-          Volume 63, A, 1952, pages 232-241.
-        </li>
-        <li>
-          Heinz Rutishauser,<br>
-          On test matrices,<br>
-          Programmation en Mathematiques Numeriques,<br>
-          Centre National de la Recherche Scientifique,<br>
-          1966, pages 349-365.
-        </li>
-        <li>
-          Herbert Ryser,<br>
-          Combinatorial Mathematics,<br>
-          Mathematical Association of America, 1963,<br>
-          ISBN: 0883850141,<br>
-          LC: QA165.R95.
-        </li>
-        <li>
-          Brian Smith, James Boyle, Jack Dongarra, Burton Garbow, 
-          Yasuhiko Ikebe, Virginia Klema, Cleve Moler,<br>
-          Matrix Eigensystem Routines, EISPACK Guide,<br>
-          Lecture Notes in Computer Science, Volume 6,<br>
-          Springer, 1976,<br>
-          ISBN13: 978-3540075462,<br>
-          LC: QA193.M37.
-        </li>
-        <li>
-          Dennis Stanton, Dennis White,<br>
-          Constructive Combinatorics,<br>
-          Springer, 1986,<br>
-          ISBN: 0387963472,<br>
-          LC: QA164.S79.
-        </li>
-        <li>
-          Pete Stewart,<br>
-          Efficient Generation of Random Orthogonal Matrices With an Application
-          to Condition Estimators,<br>
-          SIAM Journal on Numerical Analysis,<br>
-          Volume 17, Number 3, June 1980, pages 403-409.
-        </li>
-        <li>
-          Pete Stewart,<br>
-          Introduction to Matrix Computations,<br>
-          Academic Press, 1973.
-        </li>
-        <li>
-          Douglas Sweet,<br>
-          The use of pivoting to improve the numerical performance of
-          Toeplitz solvers,<br>
-          In "Advanced Algorithms and Architectures for Signal Processing",<br>
-          Edited by J M Speiser,<br>
-          Proceedings SPIE 696, 1986, pages 8-18.
-        </li>
-        <li>
-          Gabor Szego,<br>
-          Solution to problem 3705,<br>
-          American Mathematical Monthly,<br>
-          Volume 43, Number 4, 1936, pages 246-259
-        </li>
-        <li>
-          Olga Taussky, John Todd,<br>
-          Another look at a matrix of Mark Kac,<br>
-          Linear Algebra and Its Applications,<br>
-          Volume 150, May 1991, pages 341-360.
-        </li>
-        <li>
-          Olga Taussky, Marvin Marcus,<br>
-          Eigenvalues of finite matrices,<br>
-          in Survey of Numerical Analysis,<br>
-          edited by John Todd,<br>
-          McGraw-Hill, 1962,<br>
-          LC: QA297.T6.
-        </li>
-        <li>
-          John Todd,<br>
-          Basic Numerical Mathematics,<br>
-          Volume 2: Numerical Algebra,<br>
-          Birkhauser, 1980,<br>
-          ISBN: 0817608117,<br>
-          LC: QA297.T58.
-        </li>
-        <li>
-          Lloyd Trefethen,<br>
-          Spectral Methods in MATLAB,<br>
-          SIAM, 2000,<br>
-          ISBN: 0898714656,<br>
-          LC: QA377.T65.
-        </li>
-        <li>
-          Lloyd Trefethen, David Bau,<br>
-          Numerical Linear Algebra,<br>
-          SIAM, 1997,<br>
-          ISBN: 0-89871-361-7,<br>
-          LC: QA184.T74.
-        </li>
-        <li>
-          Lloyd Trefethen,<br>
-          Pseudospectra of matrices,<br>
-          in Numerical Analysis 1991,<br>
-          Proceedings of the 14th Dundee Conference,<br>
-          DF Griffiths and GA Watson, editors,<br>
-          Pitman Research Notes in Mathematics, volume 260,<br>
-          Longman Scientific and Technical, Essex, UK, 1992, pages 234-266.
-        </li>
-        <li>
-          William Trench,<br>
-          Numerical solution of the eigenvalue problem for Hermitian
-          Toeplitz matrices,<br>
-          SIAM Journal on Matrix Analysis and Applications,<br>
-          Volume 10, Number 2, April 1989, pages 135-146.
-        </li>
-        <li>
-          HW Turnbull,<br>
-          The Theory of Determinants, Matrices, and Invariants,<br>
-          Blackie, 1929.
-        </li>
-        <li>
-          Evgeny Tyrtyshnikov,<br>
-          Cauchy-Toeplitz matrices and some applications,<br>
-          Linear Algebra and Applications,<br>
-          Volume 149, 15 April 1991, pages 1-18.
-        </li>
-        <li>
-          James Varah,<br>
-          A generalization of the Frank matrix,<br>
-          SIAM Journal on Scientific and Statistical Computing,<br>
-          Volume 7, 1986, pages 835-839.
-        </li>
-        <li>
-          James Varah,<br>
-          The Prolate Matrix,<br>
-          Linear Algebra and Applications,<br>
-          Volume 187, 1993, pages 269-278.
-        </li>
-        <li>
-          Andrew Wathen,<br>
-          Realistic eigenvalue bounds for the Galerkin mass matrix,<br>
-          IMA Journal of Numerical Analysis,<br>
-          Volume 7, Number 4, October 1987, pages 449-457
-        </li>
-        <li>
-          Eric Weisstein,<br>
-          CRC Concise Encyclopedia of Mathematics,<br>
-          CRC Press, 2002,<br>
-          Second edition,<br>
-          ISBN: 1584883472,<br>
-          LC: QA5.W45
-        </li>
-        <li>
-          Joan Westlake,<br>
-          A Handbook of Numerical Matrix Inversion and Solution of 
-          Linear Equations,<br>
-          John Wiley, 1968,<br>
-          ISBN13: 978-0471936756,<br>
-          LC: QA263.W47.
-        </li>
-        <li>
-          James Wilkinson,<br>
-          Error Analysis of Direct Methods of Matrix Inversion,<br>
-          Journal of the ACM,<br>
-          Volume 8, Number 3, July 1961, pages 281-330.
-        </li>
-        <li>
-          James Wilkinson,<br>
-          Error analysis of floating-point computation,<br>
-          Numerische Mathematik,<br>
-          Volume 2, 1960, pages 319-340.
-        </li>
-        <li>
-          James Wilkinson,<br>
-          Rounding Errors in Algebraic Processes,<br>
-          Prentice Hall, 1963,<br>
-          ISBN: 0-486-67999-3,<br>
-          LC: QA76.5.W53.
-        </li>
-        <li>
-          James Wilkinson,<br>
-          The Algebraic Eigenvalue Problem,<br>
-          Oxford University Press, 1988,<br>
-          ISBN: 0198534183,<br>
-          LC: QA218.W5.
-        </li>
-        <li>
-          James Wilkinson, Christian Reinsch,<br>
-          Handbook for Automatic Computation,<br>
-          Volume II, Linear Algebra, Part 2,<br>
-          Springer, 1971,<br>
-          ISBN: 0387054146,<br>
-          LC: QA251.W67.
-        </li>
-        <li>
-          Gerhard Zielke,<br>
-          Testmatrizen mit maximaler Konditionszahl,<br>
-          (Test matrices with maximal condition number),<br>
-          Computing,<br>
-          Volume 13, Number 1, March 1974, pages 33-54.
-        </li>
-        <li>
-          Daniel Zwillinger, Steven Kokoska,<br>
-          Standard Probability and Statistical Tables,<br>
-          CRC Press, 2000,<br>
-          ISBN: 1-58488-059-7,<br>
-          LC: QA273.3.Z95.
-        </li>
-      </ol>
+      <a href = "../../m_src/wathen/wathen.html">
+      WATHEN</a>,
+      a MATLAB library which
+      compares storage schemes (full, banded, sparse triplet, sparse) and 
+      solution strategies (A\x, Linpack, conjugate gradient) for linear systems
+      involving the Wathen matrix, which can arise when solving a 
+      problem using the finite element method (FEM).
     </p>
     
     <h3 align = "center">
@@ -872,6 +205,54 @@
 
     <p>
       <ul>
+        <li>
+          <a href = "a123.m">a123.m</a>
+          returns the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_determinant.m">a123_determinant.m</a>
+          returns the determinant of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_eigen_right.m">a123_eigen_right.m</a>
+          returns the right eigenvectors of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_eigenvalues.m">a123_eigenvalues.m</a>
+          returns the eigenvalues of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_inverse.m">a123_inverse.m</a>
+          returns the inverse of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_null_left.m">a123_null_left.m</a>
+          returns a left null vector of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_right_left.m">a123_right_left.m</a>
+          returns a right null vector of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_plu.m">a123_plu.m</a>
+          returns the PLU factors of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_qr.m">a123_qr.m</a>
+          returns the QR factors of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_rhs.m">a123_rhs.m</a>
+          returns the right hand side of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_solution.m">a123_solution.m</a>
+          returns the solution of the A123 matrix.
+        </li>
+        <li>
+          <a href = "a123_svd.m">a123_svd.m</a>
+          returns the SVD factors of the A123 matrix.
+        </li>
         <li>
           <a href = "aegerter.m">aegerter.m</a>
           returns the AEGERTER matrix.
@@ -902,7 +283,7 @@
         </li>
         <li>
           <a href = "antihadamard.m">antihadamard.m</a>
-          returns an approximate "Anti-Hadamard" matrix.
+          returns the ANTIHADAMARD matrix.
         </li>
         <li>
           <a href = "antihadamard_determinant.m">antihadamard_determinant.m</a>
@@ -914,11 +295,11 @@
         </li>
         <li>
           <a href = "archimedes.m">archimedes.m</a>
-          returns the 7 by 8 Archimedes matrix.
+          returns the ARCHIMEDES matrix.
         </li>
         <li>
-          <a href = "archimedes_null.m">archimedes_null.m</a>
-          returns a null vector for the Archimedes matrix.
+          <a href = "archimedes_null_right.m">archimedes_null_right.m</a>
+          returns a right null vector for the ARCHIMEDES matrix.
         </li>
         <li>
           <a href = "bab.m">bab.m</a>
@@ -933,6 +314,10 @@
           returns the determinant of the BAB matrix.
         </li>
         <li>
+          <a href = "bab_eigen_right.m">bab_eigen_right.m</a> 
+          returns the right eigenvectors of the BAB matrix.
+        </li>
+        <li>
           <a href = "bab_eigenvalues.m">bab_eigenvalues.m</a>
           returns the eigenvalues of the BAB matrix.
         </li>
@@ -941,20 +326,28 @@
           returns the inverse of the BAB matrix.
         </li>
         <li>
-          <a href = "bernstein_matrix.m">bernstein_matrix.m</a>, 
+          <a href = "bernstein.m">bernstein.m</a>, 
           returns the BERNSTEIN matrix.
         </li>
         <li>
-          <a href = "bernstein_matrix_inverse.m">bernstein_matrix_inverse.m</a>, 
+          <a href = "bernstein_determinant.m">bernstein_determinant.m</a>, 
+          returns the determinant of the BERNSTEIN matrix.
+        </li>
+        <li>
+          <a href = "bernstein_inverse.m">bernstein_inverse.m</a>, 
           returns the inverse of the BERNSTEIN matrix.
         </li>
         <li>
           <a href = "bimarkov_random.m">bimarkov_random.m</a>
-          returns a random biMarkov or doubly stochastic matrix.
+          returns a BIMARKOV_RANDOM matrix.
         </li>
         <li>
           <a href = "bis.m">bis.m</a>
           returns the BIS matrix.
+        </li>
+        <li>
+          <a href = "bis_condition.m">bis_condition.m</a>
+          returns the condition of the BIS matrix.
         </li>
         <li>
           <a href = "bis_determinant.m">bis_determinant.m</a>
@@ -969,6 +362,22 @@
           returns the inverse of the BIS matrix.
         </li>
         <li>
+          <a href = "biw.m">biw.m</a>
+          returns the BIW matrix.
+        </li>
+        <li>
+          <a href = "biw_condition.m">biw_condition.m</a>
+          returns the L1 condition of the BIW matrix.
+        </li>
+        <li>
+          <a href = "biw_determinant.m">biw_determinant.m</a>
+          returns the determinant of the BIW matrix.
+        </li>
+        <li>
+          <a href = "biw_inverse.m">biw_inverse.m</a>
+          returns the inverse of the BIW matrix.
+        </li>
+        <li>
           <a href = "bodewig.m">bodewig.m</a>
           returns the BODEWIG matrix.
         </li>
@@ -979,6 +388,10 @@
         <li>
           <a href = "bodewig_determinant.m">bodewig_determinant.m</a>
           returns the determinant of the BODEWIG matrix.
+        </li>
+        <li>
+          <a href = "bodewig_eigen_right.m">bodewig_eigen_right.m</a>
+          returns the right eigenvectors of the BODEWIG matrix.
         </li>
         <li>
           <a href = "bodewig_eigenvalues.m">bodewig_eigenvalues.m</a>
@@ -997,16 +410,16 @@
           returns the right hand side of the BODEWIG matrix.
         </li>
         <li>
-          <a href = "bodewig_right.m">bodewig_right.m</a>
-          returns the right eigenvectors of the BODEWIG matrix.
-        </li>
-        <li>
           <a href = "bodewig_solution.m">bodewig_solution.m</a>
           returns the solution of the BODEWIG matrix.
         </li>
         <li>
           <a href = "boothroyd.m">boothroyd.m</a>
-          returns the Boothroyd matrix.
+          returns the BOOTHROYD matrix.
+        </li>
+        <li>
+          <a href = "boothroyd_condition.m">boothroyd_condition.m</a>
+          returns the L1 condition of the BOOTHROYD matrix.
         </li>
         <li>
           <a href = "boothroyd_determinant.m">boothroyd_determinant.m</a>
@@ -1018,19 +431,26 @@
         </li>
         <li>
           <a href = "borderband.m">borderband.m</a>
-          returns a border-banded matrix.
+          returns the BORDERBAND matrix.
         </li>
         <li>
           <a href = "borderband_determinant.m">borderband_determinant.m</a>
-          returns the determinant of the border-banded matrix.
+          returns the determinant of the BORDERBAND matrix.
         </li>
         <li>
           <a href = "borderband_inverse.m">borderband_inverse.m</a>
-          returns the inverse of the border-banded matrix.
+          returns the inverse of the BORDERBAND matrix.
         </li>
         <li>
           <a href = "borderband_plu.m">borderband_plu.m</a>
           returns the P*L*U factors of the BORDERBAND matrix.
+        </li>
+        <li>
+          <a href = "bvec_next_grlex.m">bvec_next_grlex.m</a>
+          returns the next binary vector in GRLEX order.
+        </li>
+        <li>
+          <a href = "bvec_next_grlex_test.m">bvec_next_grlex_test.m</a>
         </li>
         <li>
           <a href = "c8_i.m">c8_i.m</a>
@@ -1165,6 +585,14 @@
           returns the determinant of the CARRY matrix.
         </li>
         <li>
+          <a href = "carry_eigen_left.m">carry_eigen_left.m</a>
+          returns the left eigenvectors of the CARRY matrix.
+        </li>
+        <li>
+          <a href = "carry_eigen_right.m">carry_eigen_right.m</a>
+          returns the right eigenvectors of the CARRY matrix.
+        </li>
+        <li>
           <a href = "carry_eigenvalues.m">carry_eigenvalues.m</a>
           returns the eigenvalues of the CARRY matrix.
         </li>
@@ -1173,44 +601,44 @@
           returns the inverse of the CARRY matrix.
         </li>
         <li>
-          <a href = "carry_left.m">carry_left.m</a>
-          returns the left eigenvectors of the CARRY matrix.
-        </li>
-        <li>
-          <a href = "carry_right.m">carry_right.m</a>
-          returns the right eigenvectors of the CARRY matrix.
-        </li>
-        <li>
           <a href = "cauchy.m">cauchy.m</a>
-          returns the Cauchy matrix.
+          returns the CAUCHY matrix.
         </li>
         <li>
           <a href = "cauchy_determinant.m">cauchy_determinant.m</a>
-          returns the determinant of the Cauchy matrix.
+          returns the determinant of the CAUCHY matrix.
         </li>
         <li>
           <a href = "cauchy_inverse.m">cauchy_inverse.m</a>
-          returns the inverse of the Cauchy matrix.
+          returns the inverse of the CAUCHY matrix.
         </li>
         <li>
           <a href = "cheby_diff1.m">cheby_diff1.m</a>
-          returns the Chebyshev Differentiation matrix.
+          returns the CHEBY_DIFF1 matrix.
         </li>
         <li>
-          <a href = "cheby_diff1_null.m">cheby_diff1_null.m</a>
-          returns the Chebyshev Differentiation matrix.
+          <a href = "cheby_diff1_determinant.m">cheby_diff1_determinant.m</a>
+          returns the determinant of the CHEBY_DIFF1 matrix.
+        </li>
+        <li>
+          <a href = "cheby_diff1_null_left.m">cheby_diff1_null_left.m</a>
+          returns a left null vector for the CHEBY_DIFF1 matrix.
+        </li>
+        <li>
+          <a href = "cheby_diff1_null_right.m">cheby_diff1_null_right.m</a>
+          returns a right null vector for the CHEBY_DIFF1 matrix.
         </li>
         <li>
           <a href = "cheby_t.m">cheby_t.m</a>
-          returns the Chebyshev T matrix.
+          returns the CHEBY_T matrix.
         </li>
         <li>
           <a href = "cheby_t_determinant.m">cheby_t_determinant.m</a>
-          returns the determinant of the Chebyshev T matrix.
+          returns the determinant of the CHEBY_T matrix.
         </li>
         <li>
           <a href = "cheby_t_inverse.m">cheby_t_inverse.m</a>
-          returns the inverse of the Chebyshev T matrix.
+          returns the inverse of the CHEBY_T matrix.
         </li>
         <li>
           <a href = "cheby_u.m">cheby_u.m</a>
@@ -1265,20 +693,20 @@
           returns the determinant of the CHOW matrix.
         </li>
         <li>
+          <a href = "chow_eigen_left.m">chow_eigen_left.m</a>
+          returns the left eigenvector matrix for the CHOW matrix.
+        </li>
+        <li>
+          <a href = "chow_eigen_right.m">chow_eigen_right.m</a>
+          returns the right eigenvector matrix for the CHOW matrix.
+        </li>
+        <li>
           <a href = "chow_eigenvalues.m">chow_eigenvalues.m</a>
           returns the eigenvalues of the CHOW matrix.
         </li>
         <li>
           <a href = "chow_inverse.m">chow_inverse.m</a>
           returns the inverse of the CHOW matrix.
-        </li>
-        <li>
-          <a href = "chow_left.m">chow_left.m</a>
-          returns the left eigenvector matrix for the CHOW matrix.
-        </li>
-        <li>
-          <a href = "chow_right.m">chow_right.m</a>
-          returns the right eigenvector matrix for the CHOW matrix.
         </li>
         <li>
           <a href = "circulant.m">circulant.m</a>
@@ -1317,7 +745,7 @@
           returns the CLEMENT1 matrix.
         </li>
         <li>
-          <a href = "clement1_determinant.m">clement1_determinant.m</a>
+          <a href = "clement1_determinant.m">clement1__determinant.m</a>
           returns the determinant of the CLEMENT1 matrix.
         </li>
         <li>
@@ -1333,32 +761,16 @@
           returns the CLEMENT2 matrix.
         </li>
         <li>
-          <a href = "clement2_determinant.m">clement2__determinant.m</a>
+          <a href = "clement2_determinant.m">clement2_determinant.m</a>
           returns the determinant of the CLEMENT2 matrix.
-        </li>
-        <li>
-          <a href = "clement2_eigenvalues.m">clement2_eigenvalues.m</a>
-          returns the eigenvalues of the CLEMENT2 matrix.
         </li>
         <li>
           <a href = "clement2_inverse.m">clement2_inverse.m</a>
           returns the inverse of the CLEMENT2 matrix.
         </li>
         <li>
-          <a href = "clement3.m">clement3.m</a>
-          returns the CLEMENT3 matrix.
-        </li>
-        <li>
-          <a href = "clement3_determinant.m">clement3_determinant.m</a>
-          returns the determinant of the CLEMENT3 matrix.
-        </li>
-        <li>
-          <a href = "clement3_inverse.m">clement3_inverse.m</a>
-          returns the inverse of the CLEMENT3 matrix.
-        </li>
-        <li>
-          <a href = "comb.m">comb.m</a>
-          computes the combinatorial coefficient C(N,K).
+          <a href = "colleague.m">colleague.m</a>
+          returns the COLLEAGUE matrix.
         </li>
         <li>
           <a href = "combin.m">combin.m</a>
@@ -1373,16 +785,16 @@
           returns the determinant of the COMBIN matrix.
         </li>
         <li>
+          <a href = "combin_eigen_right.m">combin_eigen_right.m</a>
+          returns the right eigenvectors of the COMBIN matrix.
+        </li>
+        <li>
           <a href = "combin_eigenvalues.m">combin_eigenvalues.m</a>
           returns the eigenvalues of the COMBIN matrix.
         </li>
         <li>
           <a href = "combin_inverse.m">combin_inverse.m</a>
           returns the inverse of the COMBIN matrix A.
-        </li>
-        <li>
-          <a href = "combin_right.m">combin_right.m</a>
-          returns the right eigenvectors of the COMBIN matrix.
         </li>
         <li>
           <a href = "companion.m">companion.m</a>
@@ -1397,6 +809,11 @@
           returns the inverse of the COMPANION matrix.
         </li>
         <li>
+          <a href = "complete_symmetric_poly.m">complete_symmetric_poly.m</a>
+          evaluates the complete symmetric polynomial for given variable
+          values.
+        </li>
+        <li>
           <a href = "complex3.m">complex3.m</a>
           returns the COMPLEX3 matrix.
         </li>
@@ -1406,7 +823,7 @@
         </li>
         <li>
           <a href = "complex_i.m">complex_i.m</a>
-          returns a 2 by 2 matrix that behaves like the imaginary unit.
+          returns the COMPLEX_I matrix.
         </li>
         <li>
           <a href = "complex_i_determinant.m">complex_i_determinant.m</a>
@@ -1418,7 +835,11 @@
         </li>
         <li>
           <a href = "conex1.m">conex1.m</a>
-          returns a 4 by 4 LINPACK counterexample matrix.
+          returns the CONEX1 matrix.
+        </li>
+        <li>
+          <a href = "conex1_condition.m">conex1_condition.m</a>
+          returns the L1 condition of the CONEX1 matrix.
         </li>
         <li>
           <a href = "conex1_determinant.m">conex1_determinant.m</a>
@@ -1430,7 +851,11 @@
         </li>
         <li>
           <a href = "conex2.m">conex2.m</a>
-          returns a 3 by 3 LINPACK condition number counterexample.
+          returns the CONEX2 matrix.
+        </li>
+        <li>
+          <a href = "conex2_condition.m">conex2_condition.m</a>
+          returns the L1 condition of the CONEX2 matrix.
         </li>
         <li>
           <a href = "conex2_determinant.m">conex2_determinant.m</a>
@@ -1442,7 +867,11 @@
         </li>
         <li>
           <a href = "conex3.m">conex3.m</a>
-          returns a LINPACK condition number counterexample.
+          returns the CONEX3 matrix.
+        </li>
+        <li>
+          <a href = "conex3_condition.m">conex3_conditioni.m</a>
+          returns the condition of the CONEX3 matrix.
         </li>
         <li>
           <a href = "conex3_determinant.m">conex3_determinant.m</a>
@@ -1454,7 +883,15 @@
         </li>
         <li>
           <a href = "conex4.m">conex4.m</a>
-          returns a 4 by 4 condition number example.
+          returns the CONEX4 matrix.
+        </li>
+        <li>
+          <a href = "conex4_condition.m">conex4_conditioni.m</a>
+          returns the condition of the CONEX4 matrix.
+        </li>
+        <li>
+          <a href = "conex4_determinant.m">conex4_determinant.m</a>
+          returns the determinant of the CONEX4 matrix.
         </li>
         <li>
           <a href = "conex4_inverse.m">conex4_inverse.m</a>
@@ -1489,8 +926,12 @@
           returns the determinant of the CREATION matrix.
         </li>
         <li>
-          <a href = "creation_null.m">creation_null.m</a>
-          returns a null vector of the CREATION matrix.
+          <a href = "creation_null_left.m">creation_null_left.m</a>
+          returns a left null vector of the CREATION matrix.
+        </li>
+        <li>
+          <a href = "creation_null_right.m">creation_null_right.m</a>
+          returns a right null vector of the CREATION matrix.
         </li>
         <li>
           <a href = "cycol_random.m">cycol_random.m</a>
@@ -1499,6 +940,10 @@
         <li>
           <a href = "daub2.m">daub2.m</a>
           returns the DAUB2 matrix.
+        </li>
+        <li>
+          <a href = "daub2_condition.m">daub2_condition.m</a>
+          returns the L1 determinant of the DAUB2 matrix.
         </li>
         <li>
           <a href = "daub2_determinant.m">daub2_determinant.m</a>
@@ -1513,6 +958,10 @@
           returns the DAUB4 matrix.
         </li>
         <li>
+          <a href = "daub4_condition.m">daub4_condition.m</a>
+          returns the L1 determinant of the DAUB4 matrix.
+        </li>
+        <li>
           <a href = "daub4_determinant.m">daub4_determinant.m</a>
           returns the determinant of the DAUB4 matrix.
         </li>
@@ -1523,6 +972,10 @@
         <li>
           <a href = "daub6.m">daub6.m</a>
           returns the DAUB6 matrix.
+        </li>
+        <li>
+          <a href = "daub6_condition.m">daub6_condition.m</a>
+          returns the L1 determinant of the DAUB6 matrix.
         </li>
         <li>
           <a href = "daub6_determinant.m">daub6_determinant.m</a>
@@ -1537,6 +990,10 @@
           returns the DAUB8 matrix.
         </li>
         <li>
+          <a href = "daub8_condition.m">daub8_condition.m</a>
+          returns the L1 determinant of the DAUB8 matrix.
+        </li>
+        <li>
           <a href = "daub8_determinant.m">daub8_determinant.m</a>
           returns the determinant of the DAUB8 matrix.
         </li>
@@ -1547,6 +1004,10 @@
         <li>
           <a href = "daub10.m">daub10.m</a>
           returns the DAUB10 matrix.
+        </li>
+        <li>
+          <a href = "daub10_condition.m">daub10_condition.m</a>
+          returns the L1 determinant of the DAUB10 matrix.
         </li>
         <li>
           <a href = "daub10_determinant.m">daub10_determinant.m</a>
@@ -1561,6 +1022,10 @@
           returns the DAUB12 matrix.
         </li>
         <li>
+          <a href = "daub12_condition.m">daub12_condition.m</a>
+          returns the L1 determinant of the DAUB12 matrix.
+        </li>
+        <li>
           <a href = "daub12_determinant.m">daub12_determinant.m</a>
           returns the determinant of the DAUB12 matrix.
         </li>
@@ -1573,8 +1038,20 @@
           returns the DIAGONAL matrix.
         </li>
         <li>
+          <a href = "diagonal_condition.m">diagonal_condition.m</a>
+          returns the condition of the DIAGONAL matrix.
+        </li>
+        <li>
           <a href = "diagonal_determinant.m">diagonal_determinant.m</a>
           returns the determinant of the DIAGONAL matrix.
+        </li>
+        <li>
+          <a href = "diagonal_eigen_left.m">diagonal_eigen_left.m</a>
+          returns left eigenvectors of the DIAGONAL matrix.
+        </li>
+        <li>
+          <a href = "diagonal_eigen_right.m">diagonal_eigen_right.m</a>
+          returns right eigenvectors of the DIAGONAL matrix.
         </li>
         <li>
           <a href = "diagonal_eigenvalues.m">diagonal_eigenvalues.m</a>
@@ -1597,32 +1074,48 @@
           eigenvalues of the DIF1 matrix.
         </li>
         <li>
-          <a href = "dif1_null.m">dif1_null.m</a>
-          returns a null vector of the DIF1 matrix.
+          <a href = "dif1_inverse.m">dif1_inverse.m</a> 
+          inverse of the DIF1 matrix.
+        </li>
+        <li>
+          <a href = "dif1_null_left.m">dif1_null_left.m</a>
+          returns a left null vector of the DIF1 matrix.
+        </li>
+        <li>
+          <a href = "dif1_null_right.m">dif1_null_right.m</a>
+          returns a right null vector of the DIF1 matrix.
         </li>
         <li>
           <a href = "dif1cyclic.m">dif1cyclic.m</a>
-          returns the cyclic first difference matrix.
+          returns the DIF1CYCLIC matrix.
         </li>
         <li>
           <a href = "dif1cyclic_determinant.m">dif1cyclic_determinant.m</a> 
           determinant of the DIF1CYCLIC matrix.
         </li>
         <li>
-          <a href = "dif1cyclic_null.m">dif1cyclic_null.m</a>
-          returns a null vector of the cyclic first difference matrix.
+          <a href = "dif1cyclic_null_left.m">dif1cyclic_null_left.m</a>
+          returns a left null vector of the DIF1CYCLIC matrix.
+        </li>
+        <li>
+          <a href = "dif1cyclic_null_right.m">dif1cyclic_null_right.m</a>
+          returns a right null vector of the DIF1CYCLIC matrix.
         </li>
         <li>
           <a href = "dif2.m">dif2.m</a>
           returns the DIF2 matrix.
         </li>
         <li>
-          <a href = "dif2_cholesky.m">dif2_cholesky.m</a>
-          returns the Cholesky factor of the DIF2 matrix.
+          <a href = "dif2_condition.m">dif2_condition.m</a>
+          returns the L1 condition of the DIF2 matrix.
         </li>
         <li>
           <a href = "dif2_determinant.m">dif2_determinant.m</a>
           returns the determinant of the DIF2 matrix.
+        </li>
+        <li>
+          <a href = "dif2_eigen_right.m">dif2_eigen_right.m</a> 
+          returns the right eigenvectors of the DIF2 matrix.
         </li>
         <li>
           <a href = "dif2_eigenvalues.m">dif2_eigenvalues.m</a>
@@ -1633,6 +1126,10 @@
           returns the inverse of the DIF2 matrix.
         </li>
         <li>
+          <a href = "dif2_llt.m">dif2_llt.m</a>
+          returns the Cholesky factor of the DIF2 matrix.
+        </li>
+        <li>
           <a href = "dif2_plu.m">dif2_plu.m</a>
           returns the PLU factors of the DIF2 matrix.
         </li>
@@ -1641,32 +1138,44 @@
           returns the right hand side of the DIF2 matrix.
         </li>
         <li>
-          <a href = "dif2_right.m">dif2_right.m</a> 
-          returns the right eigenvectors of the DIF2 matrix.
-        </li>
-        <li>
           <a href = "dif2_solution.m">dif2_solution.m</a>
           returns the solution of the DIF2 matrix.
         </li>
         <li>
           <a href = "dif2cyclic.m">dif2cyclic.m</a>
-          returns the cyclic second difference matrix.
+          returns the DIF2CYCLIC matrix.
         </li>
         <li>
           <a href = "dif2cyclic_determinant.m">dif2cyclic_determinant.m</a>
-          determinant of the cyclic second difference matrix.
+          determinant of the DIF2CYCLIC matrix.
         </li>
         <li>
-          <a href = "dif2cyclic_null.m">dif2cyclic_null.m</a>
-          null vector of the cyclic second difference matrix.
+          <a href = "dif2cyclic_null_left.m">dif2cyclic_null_left.m</a>
+          left null vector of the DIF2CYCLIC matrix.
+        </li>
+        <li>
+          <a href = "dif2cyclic_null_right.m">dif2cyclic_null_right.m</a>
+          right null vector of the DIF2CYCLIC matrix.
         </li>
         <li>
           <a href = "dorr.m">dorr.m</a>
           returns the DORR matrix.
         </li>
         <li>
+          <a href = "dorr_determinant.m">dorr_determinant.m</a>
+          returns the determinant of the DORR matrix.
+        </li>
+        <li>
+          <a href = "dorr_inverse.m">dorr_inverse.m</a>
+          returns the inverse of the DORR matrix.
+        </li>
+        <li>
           <a href = "downshift.m">downshift.m</a>
           returns the DOWNSHIFT matrix.
+        </li>
+        <li>
+          <a href = "downshift_condition.m">downshift_condition.m</a>
+          returns the L1 condition of the DOWNSHIFT matrix.
         </li>
         <li>
           <a href = "downshift_determinant.m">downshift_determinant.m</a>
@@ -1702,7 +1211,7 @@
         </li>
         <li>
           <a href = "eberlein_null_left.m">eberlein_null_left.m</a>
-          returns a null vector of the EBERLEIN matrix.
+          returns a left null vector of the EBERLEIN matrix.
         </li>
         <li>
           <a href = "eulerian.m">eulerian.m</a>
@@ -1721,8 +1230,16 @@
           returns the EXCHANGE matrix.
         </li>
         <li>
+          <a href = "exchange_condition.m">exchange_condition.m</a>,
+          returns the condition of the EXCHANGE matrix.
+        </li>
+        <li>
           <a href = "exchange_determinant.m">exchange_determinant.m</a>
           returns the determinant of the EXCHANGE matrix.
+        </li>
+        <li>
+          <a href = "exchange_eigen_right.m">exchangev.m</a>
+          returns the right eigenvectors of the EXCHANGE matrix.
         </li>
         <li>
           <a href = "exchange_eigenvalues.m">exchange_eigenvalues.m</a>
@@ -1733,10 +1250,6 @@
           returns the inverse of the EXCHANGE matrix.
         </li>
         <li>
-          <a href = "exchange_right.m">exchange_right.m</a>
-          returns the right eigenvectors of the EXCHANGE matrix.
-        </li>
-        <li>
           <a href = "fibonacci1.m">fibonacci1.m</a>
           returns the FIBONACCI1 matrix.
         </li>
@@ -1745,12 +1258,20 @@
           returns the determinant of the FIBONACCI1 matrix.
         </li>
         <li>
-          <a href = "fibonacci1_null.m">fibonacci1_null.m</a>
-          returns a null vector of the FIBONACCI1 matrix.
+          <a href = "fibonacci1_null_left.m">fibonacci1_null_left.m</a>
+          returns a left null vector of the FIBONACCI1 matrix.
+        </li>
+        <li>
+          <a href = "fibonacci1_null_right.m">fibonacci1_null_right.m</a>
+          returns a right null vector of the FIBONACCI1 matrix.
         </li>
         <li>
           <a href = "fibonacci2.m">fibonacci2.m</a>
           returns the FIBONACCI2 matrix.
+        </li>
+        <li>
+          <a href = "fibonacci2_condition.m">fibonacci2_condition.m</a>
+          returns the L1 condition of the FIBONACCI2 matrix.
         </li>
         <li>
           <a href = "fibonacci2_determinant.m">fibonacci2_determinant.m</a>
@@ -1857,6 +1378,10 @@
           returns the determinant of the FRANK matrix.
         </li>
         <li>
+          <a href = "frank_eigenvalues.m">frank_eigenvalues.m</a>
+          returns the eigenvalues of the FRANK matrix.
+        </li>
+        <li>
           <a href = "frank_inverse.m">frank_inverse.m</a>
           returns the inverse of the FRANK matrix.
         </li>
@@ -1885,6 +1410,10 @@
           returns the GFPP matrix.
         </li>
         <li>
+          <a href = "gfpp_condition.m">gfpp_condition.m</a>
+          returns the L1 condition of the GFPP matrix.
+        </li>
+        <li>
           <a href = "gfpp_determinant.m">gfpp_determinant.m</a>
           returns the determinant of the GFPP matrix.
         </li>
@@ -1901,6 +1430,10 @@
           returns the GIVENS matrix.
         </li>
         <li>
+          <a href = "givens_condition.m">givens_condition.m</a>
+          returns the L1 condition of the GIVENS matrix.
+        </li>
+        <li>
           <a href = "givens_determinant.m">givens_determinant.m</a>
           returns the determinant of the GIVENS matrix.
         </li>
@@ -1913,12 +1446,16 @@
           returns the inverse of the GIVENS matrix.
         </li>
         <li>
+          <a href = "givens_llt.m">givens_llt.m</a>
+          returns the Cholesky factor of the GIVENS matrix.
+        </li>
+        <li>
           <a href = "givens_plu.m">givens_plu.m</a>
           returns the PLU factors of the GIVENS matrix.
         </li>
         <li>
           <a href = "gk316.m">gk316.m</a>
-          returns a Gregory and Karney test matrix.
+          returns the GK316 matrix, a Gregory and Karney test matrix.
         </li>
         <li>
           <a href = "gk316_determinant.m">gk316_determinant.m</a>
@@ -1934,7 +1471,7 @@
         </li>
         <li>
           <a href = "gk323.m">gk323.m</a>
-          returns a Gregory and Karney test matrix.
+          returns the GK323 matrix.
         </li>
         <li>
           <a href = "gk323_determinant.m">gk323_determinant.m</a>
@@ -1973,6 +1510,22 @@
           returns the HANKEL matrix.
         </li>
         <li>
+          <a href = "hankel_n.m">hankel_n.m</a>
+          returns the HANKEL_N matrix.
+        </li>
+        <li>
+          <a href = "hankel_n_condition.m">hankel_n_condition.m</a>
+          returns the L1 condition of the HANKEL_N matrix.
+        </li>
+        <li>
+          <a href = "hankel_n_determinant.m">hankel_n_determinant.m</a>
+          returns the determinant of the HANKEL_N matrix.
+        </li>
+        <li>
+          <a href = "hankel_n_inverse.m">hankel_n_inverse.m</a>
+          returns the inverse of the HANKEL_N matrix.
+        </li>
+        <li>
           <a href = "hanowa.m">hanowa.m</a>
           returns the HANOWA matrix.
         </li>
@@ -1993,6 +1546,10 @@
           returns the HARMAN matrix.
         </li>
         <li>
+          <a href = "harman_conditiont.m">harman_condition.m</a>
+          returns the L1 condition of the HARMAN matrix.
+        </li>
+        <li>
           <a href = "harman_determinant.m">harman_determinant.m</a>
           returns the determinant of the HARMAN matrix.
         </li>
@@ -2003,6 +1560,10 @@
         <li>
           <a href = "hartley.m">hartley.m</a>
           returns the HARTLEY matrix.
+        </li>
+        <li>
+          <a href = "hartley_condition.m">hartley_condition.m</a> 
+          returns the L1 condition of the HARTLEY matrix.
         </li>
         <li>
           <a href = "hartley_determinant.m">hartley_determinant.m</a> 
@@ -2105,12 +1666,16 @@
           returns the inverse of a HOUSEHOLDER matrix.
         </li>
         <li>
-          <a href = "i4_even.m">i4_even.m</a>
+          <a href = "i4_factor.m">i4_factor.m</a>
+          factors an integer into prime factors.
+        </li>
+        <li>
+          <a href = "i4_is_even.m">i4_is_even.m</a>
           returns TRUE if I is even.
         </li>
         <li>
-          <a href = "i4_factor.m">i4_factor.m</a>
-          factors an integer into prime factors.
+          <a href = "i4_is_odd.m">i4_is_odd.m</a>
+          returns TRUE if I is odd.
         </li>
         <li>
           <a href = "i4_is_prime.m">i4_is_prime.m</a>
@@ -2125,12 +1690,8 @@
           returns the nonnegative remainder of integer division.
         </li>
         <li>
-          <a href = "i4_odd.m">i4_odd.m</a>
-          returns TRUE if I is odd.
-        </li>
-        <li>
-          <a href = "i4_pochhammer.m">i4_pochhammer.m</a>
-          returns the value of ( I * (I+1) * ... * (J-1) * J ).
+          <a href = "i4_rise.m">i4_rise.m</a>
+          computes the integer rising factorial function.
         </li>
         <li>
           <a href = "i4_sign.m">i4_sign.m</a>
@@ -2141,7 +1702,7 @@
           switches two integer values.
         </li>
         <li>
-          <a href = "i4_uniform.m">i4_uniform.m</a>
+          <a href = "i4_uniform_ab.m">i4_uniform_ab.m</a>
           returns a scaled pseudorandom I4.
         </li>
         <li>
@@ -2177,20 +1738,32 @@
           returns the determinant of the IDEM_RANDOM matrix.
         </li>
         <li>
-          <a href = "idem_random_eigenvalues.m">idem_random_eigenvalues.m</a>
-          returns the eigenvalues of the IDEM_RANDOM matrix.
+          <a href = "idem_random_eigen_right.m">idem_random_eigen_right.m</a>
+          returns the right eigenvectors of the IDEM_RANDOM matrix.
         </li>
         <li>
-          <a href = "idem_random_right.m">idem_random_right.m</a>
-          returns the right eigenvectors of the IDEM_RANDOM matrix.
+          <a href = "idem_random_eigenvalues.m">idem_random_eigenvalues.m</a>
+          returns the eigenvalues of the IDEM_RANDOM matrix.
         </li>
         <li>
           <a href = "identity.m">identity.m</a>
           returns the IDENTITY matrix.
         </li>
         <li>
+          <a href = "identity_condition.m">identity_condition.m</a>
+          returns the L1 condition of the IDENTITY matrix.
+        </li>
+        <li>
           <a href = "identity_determinant.m">identity_determinant.m</a>
           returns the determinant of the IDENTITY matrix.
+        </li>
+        <li>
+          <a href = "identity_eigen_left.m">identity_eigen_left.m</a>
+          returns the left eigenvectors of the IDENTITY matrix.
+        </li>
+        <li>
+          <a href = "identity_eigen_right.m">identity_eigen_right.m</a>
+          returns the right eigenvectors of the IDENTITY matrix.
         </li>
         <li>
           <a href = "identity_eigenvalues.m">identity_eigenvalues.m</a>
@@ -2199,14 +1772,6 @@
         <li>
           <a href = "identity_inverse.m">identity_inverse.m</a>
           returns the inverse of the IDENTITY matrix.
-        </li>
-        <li>
-          <a href = "identity_left.m">identity_left.m</a>
-          returns the left eigenvectors of the IDENTITY matrix.
-        </li>
-        <li>
-          <a href = "identity_right.m">identity_right.m</a>
-          returns the right eigenvectors of the IDENTITY matrix.
         </li>
         <li>
           <a href = "ijfact1.m">ijfact1.m</a>
@@ -2218,7 +1783,7 @@
         </li>
         <li>
           <a href = "ijfact2.m">ijfact2.m</a>
-          returns the IFJACT2 factorial matrix.
+          returns the IFJACT2 matrix.
         </li>
         <li>
           <a href = "ijfact2_determinant.m">ijfact2_determinant.m</a>
@@ -2229,8 +1794,16 @@
           returns the ILL3 matrix, an ill conditioned 3 by 3 matrix.
         </li>
         <li>
+          <a href = "ill3_condition.m">ill3_condition.m</a>
+          returns the condition of the ILL3 matrix.
+        </li>
+        <li>
           <a href = "ill3_determinant.m">ill3_determinant.m</a>
           returns the determinant of the ILL3 matrix.
+        </li>
+        <li>
+          <a href = "ill3_eigen_right.m">ill3_eigen_right.m</a>
+          returns the right eigenvectors of the ILL3 matrix.
         </li>
         <li>
           <a href = "ill3_eigenvalues.m">ill3_eigenvalues.m</a>
@@ -2239,10 +1812,6 @@
         <li>
           <a href = "ill3_inverse.m">ill3_inverse.m</a>
           returns the inverse of the ILL3 matrix.
-        </li>
-        <li>
-          <a href = "ill3_right.m">ill3_right.m</a>
-          returns the right eigenvectors of the ILL3 matrix.
         </li>
         <li>
           <a href = "indicator.m">indicator.m</a>
@@ -2282,7 +1851,7 @@
         </li>
         <li>
           <a href = "invol_random.m">invol_random.m</a>
-          returns a random involutional matrix.
+          returns an INVOL_RANDOM matrix.
         </li>
         <li>
           <a href = "jacobi.m">jacobi.m</a>
@@ -2297,6 +1866,10 @@
           returns the eigenvalues of the JACOBI matrix.
         </li>
         <li>
+          <a href = "jacobi_inverse.m">jacobi_inverse.m</a>
+          returns the inverse of the JACOBI matrix.
+        </li>
+        <li>
           <a href = "jacobi_iterate.m">jacobi_iterate.m</a>
           applies the Jacobi eigenvalue iteration to a symmetric matrix.
         </li>
@@ -2309,8 +1882,16 @@
           returns the JORDAN matrix.
         </li>
         <li>
+          <a href = "jordan_condition.m">jordan_condition.m</a>
+          returns the L1 condition of a JORDAN matrix.
+        </li>
+        <li>
           <a href = "jordan_determinant.m">jordan_determinant.m</a>
           returns the determinant of a JORDAN matrix.
+        </li>
+        <li>
+          <a href = "jordan_eigenvalues.m">jordan_eigenvalues.m</a>
+          returns the eigenvalues of a JORDAN matrix.
         </li>
         <li>
           <a href = "jordan_inverse.m">jordan_inverse.m</a>
@@ -2333,8 +1914,16 @@
           returns the KERSHAW matrix.
         </li>
         <li>
+          <a href = "kershaw_condition.m">kershaw_condition.m</a>
+          returns the L1 condition of the KERSHAW matrix.
+        </li>
+        <li>
           <a href = "kershaw_determinant.m">kershaw_determinant.m</a>
           returns the determinant of the KERSHAW matrix.
+        </li>
+        <li>
+          <a href = "kershaw_eigenright.m">kershaw_eigenright.m</a>
+          returns right eigenvalues of the KERSHAW matrix.
         </li>
         <li>
           <a href = "kershaw_eigenvalues.m">kershaw_eigenvalues.m</a>
@@ -2343,6 +1932,10 @@
         <li>
           <a href = "kershaw_inverse.m">kershaw_inverse.m</a>
           returns the inverse of the KERSHAW matrix.
+        </li>
+        <li>
+          <a href = "kershaw_llt.m">kershaw_llt.m</a>
+          returns the Cholesky factor of the KERSHAW matrix.
         </li>
         <li>
           <a href = "kershawtri.m">kershawtri.m</a>
@@ -2390,11 +1983,7 @@
         </li>
         <li>
           <a href = "krylov.m">krylov.m</a>
-          returns a Krylov matrix.
-        </li>
-        <li>
-          <a href = "ksub_next.m">ksub_next.m</a>
-          generates the K subsets of an N set, one at a time.
+          returns a KRYLOV matrix.
         </li>
         <li>
           <a href = "laguerre.m">laguerre.m</a>
@@ -2418,31 +2007,54 @@
         </li>
         <li>
           <a href = "legendre.m">legendre.m</a>
-          returns the Legendre polynomial matrix.
+          returns the LEGENDRE matrix.
+        </li>
+        <li>
+          <a href = "legendre_determinant.m">legendre_determinant.m</a>
+          returns the determinant of the LEGENDRE matrix.
         </li>
         <li>
           <a href = "legendre_inverse.m">legendre_inverse.m</a>
-          returns the inverse of the Legendre polynomial matrix.
+          returns the inverse of the LEGENDRE matrix.
         </li>
         <li>
           <a href = "legendre_symbol.m">legendre_symbol.m</a>
           evaluates the Legendre symbol (Q/P).
         </li>
         <li>
+          <a href = "legendre_van.m">legendre_van.m</a>
+          returns the LEGENDRE_VAN matrix.
+        </li>
+        <li>
           <a href = "legendre_zeros.m">legendre_zeros.m</a>
           computes the zeros of the Legendre polynomial.
+        </li>
+        <li>
+          <a href = "legendre_zeros_test.m">legendre_zeros_test.m</a>
         </li>
         <li>
           <a href = "lehmer.m">lehmer.m</a>
           returns the LEHMER matrix.
         </li>
         <li>
+          <a href = "lehmer_determinant.m">lehmer_determinant.m</a>
+          returns the determinant of the LEHMER matrix.
+        </li>
+        <li>
           <a href = "lehmer_inverse.m">lehmer_inverse.m</a>
           returns the inverse of the LEHMER matrix.
         </li>
         <li>
+          <a href = "lehmer_llt.m">lehmer_llt.m</a>
+          returns the lower triangular Cholesky factor of the LEHMER matrix.
+        </li>
+        <li>
+          <a href = "lehmer_plu.m">lehmer_plu.m</a>
+          returns the PLU factors of the LEHMER matrix.
+        </li>
+        <li>
           <a href = "leslie.m">leslie.m</a>
-          returns the Leslie population dynamics matrix.
+          returns the LESLIE matrix, for population dynamics.
         </li>
         <li>
           <a href = "leslie_determinant.m">leslie_determinant.m</a>
@@ -2457,8 +2069,16 @@
           returns the determinant of the LESP matrix.
         </li>
         <li>
+          <a href = "lesp_inverse.m">lesp_inverse.m</a>
+          returns the inverse of the LESP matrix.
+        </li>
+        <li>
           <a href = "lietzke.m">lietzke.m</a>
           returns the LIETZKE matrix.
+        </li>
+        <li>
+          <a href = "lietzke_condition.m">lietzke_condition.m</a>
+          returns the L1 condition of the LIETZKE matrix.
         </li>
         <li>
           <a href = "lietzke_determinant.m">lietzke_determinant.m</a>
@@ -2470,19 +2090,35 @@
         </li>
         <li>
           <a href = "lights_out.m">lights_out.m</a>
-          returns the "Lights Out" matrix.
+          returns the LIGHTS_OUT matrix.
         </li>
         <li>
           <a href = "line_adj.m">line_adj.m</a>
-          returns the line adjacency matrix.
+          returns the LINE_ADJ matrix.
         </li>
         <li>
           <a href = "line_adj_determinant.m">line_adj_determinant.m</a>
           returns the determinant of the LINE_ADJ matrix.
         </li>
         <li>
-          <a href = "line_adj_null.m">line_adj_null.m</a>
-          returns a null vector of the LINE_ADJ matrix.
+          <a href = "line_adj_eigen_right.m">line_adj_eigen_right.m</a> 
+          returns the right eigenvectors of the LINE_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_adj_eigenvalues.m">line_adj_eigenvalues.m</a> 
+          returns the eigenvalues of the LINE_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_adj_inverse.m">line_adj_inverse.m</a> 
+          returns the inverse of the LINE_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_adj_null_left.m">line_adj_null_left.m</a>
+          returns a right null vector of the LINE_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_adj_null_right.m">line_adj_null_right.m</a>
+          returns a right null vector of the LINE_ADJ matrix.
         </li>
         <li>
           <a href = "line_loop_adj.m">line_loop_adj.m</a>
@@ -2491,6 +2127,14 @@
         <li>
           <a href = "line_loop_adj_determinant.m">line_loop_adj_determinant.m</a>
           returns the detereminant of the LINE_LOOP_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_loop_adj_eigen_right.m">line_loop_adj_eigen_right.m</a> 
+          returns the right eigenvectors of the LINE_LOOP_ADJ matrix.
+        </li>
+        <li>
+          <a href = "line_loop_adj_eigenvalues.m">line_loop_adj_eigenvalues.m</a> 
+          returns the eigenvalues of the LINE_LOOP_ADJ matrix.
         </li>
         <li>
           <a href = "loewner.m">loewner.m</a>
@@ -2517,6 +2161,10 @@
           returns the MAXIJ matrix.
         </li>
         <li>
+          <a href = "maxij_condition.m">maxij_condition.m</a>
+          returns the L1 condition of the MAXIJ matrix.
+        </li>
+        <li>
           <a href = "maxij_determinant.m">maxij_determinant.m</a>
           returns the determinant of the MAXIJ matrix.
         </li>
@@ -2531,6 +2179,13 @@
         <li>
           <a href = "mertens.m">mertens.m</a>
           evaluates the Mertens function.
+        </li>
+        <li>
+          <a href = "mertens_test.m">mertens_test.m</a>
+        </li>
+        <li>
+          <a href = "mertens_values.m">mertens_values.m</a>
+          returns some values of the Mertens function.
         </li>
         <li>
           <a href = "milnes.m">milnes.m</a>
@@ -2549,6 +2204,10 @@
           returns the MINIJ matrix.
         </li>
         <li>
+          <a href = "minij_condition.m">minij_condition.m</a>
+          returns the L1 condition of the MINIJ matrix.
+        </li>
+        <li>
           <a href = "minij_determinant.m">minij_determinant.m</a>
           returns the determinant of the MINIJ matrix.
         </li>
@@ -2561,12 +2220,23 @@
           returns the inverse of the MINIJ matrix.
         </li>
         <li>
+          <a href = "minij_llt.m">minij_llt.m</a>
+          returns the Cholesky factor of the MINIJ matrix.
+        </li>
+        <li>
           <a href = "minij_plu.m">minij_plu.m</a>
           returns the P*L*U factors of the MINIJ matrix.
         </li>
         <li>
           <a href = "moebius.m">moebius.m</a>
           returns the value of MU(N), the Moebius function of N.
+        </li>
+        <li>
+          <a href = "moebius_test.m">moebius_test.m</a>
+        </li>
+        <li>
+          <a href = "moebius_values.m">moebius_values.m</a>
+          returns some values of the Moebius function.
         </li>
         <li>
           <a href = "moler1.m">moler1.m</a>
@@ -2579,6 +2249,10 @@
         <li>
           <a href = "moler1_inverse.m">moler1_inverse.m</a>
           returns the inverse of the MOLER1 matrix.
+        </li>
+        <li>
+          <a href = "moler1_llt.m">moler1_llt.m</a>
+          returns the lower triangular Cholesky factor of the MOLER1 matrix.
         </li>
         <li>
           <a href = "moler1_plu.m">moler1_plu.m</a>
@@ -2597,12 +2271,16 @@
           returns the eigenvalues of the MOLER2 matrix.
         </li>
         <li>
-          <a href = "moler3.m">moler3.m</a>
-          returns the MOLER3 matrix.
+          <a href = "moler2_null_left.m">moler2_null_left.m</a>
+          returns a left null vector of the MOLER2 matrix.
         </li>
         <li>
-          <a href = "moler3_cholesky.m">moler3_cholesky.m</a>
-          returns the Cholesky factor of the MOLER3 matrix.
+          <a href = "moler2_null_right.m">moler2_null_right.m</a>
+          returns a right null vector of the MOLER2 matrix.
+        </li>
+        <li>
+          <a href = "moler3.m">moler3.m</a>
+          returns the MOLER3 matrix.
         </li>
         <li>
           <a href = "moler3_determinant.m">moler3_determinant.m</a>
@@ -2613,8 +2291,32 @@
           returns the inverse of the MOLER3 matrix.
         </li>
         <li>
+          <a href = "moler3_llt.m">moler3_llt.m</a>
+          returns the Cholesky factor of the MOLER3 matrix.
+        </li>
+        <li>
           <a href = "moler3_plu.m">moler3_plu.m</a>
           returns the PLU factors of the MOLER3 matrix.
+        </li>
+        <li>
+          <a href = "moler4.m">moler4.m</a>
+          returns the MOLER4 matrix.
+        </li>
+        <li>
+          <a href = "moler4_condition.m">moler4_condition.m</a>
+          returns the L1 condition of the MOLER4 matrix.
+        </li>
+        <li>
+          <a href = "moler4_determinant.m">moler4_determinant.m</a>
+          returns the determinant of the MOLER4 matrix.
+        </li>
+        <li>
+          <a href = "moler4_eigenvalues.m">moler4_eigenvalues.m</a>
+          returns the eigenvalues of the MOLER4 matrix.
+        </li>
+        <li>
+          <a href = "moler4_inverse.m">moler4_inverse.m</a>
+          returns the inverse of the MOLER4 matrix.
         </li>
         <li>
           <a href = "neumann.m">neumann.m</a>
@@ -2625,8 +2327,8 @@
           returns the determinant of the NEUMANN matrix.
         </li>
         <li>
-          <a href = "neumann_null.m">neumann_null.m</a>
-          returns a null vector of the NEUMANN matrix.
+          <a href = "neumann_null_right.m">neumann_null_right.m</a>
+          returns a right null vector of the NEUMANN matrix.
         </li>
         <li>
           <a href = "one.m">one.m</a>
@@ -2637,16 +2339,20 @@
           returns the determinant of the ONE matrix.
         </li>
         <li>
+          <a href = "one_eigen_right.m">one_eigen_right.m</a>
+          returns the right eigenvectors of the ONE matrix.
+        </li>
+        <li>
           <a href = "one_eigenvalues.m">one_eigenvalues.m</a>
           returns the eigenvalues of the ONE matrix.
         </li>
         <li>
-          <a href = "one_null.m">one_null.m</a>
-          returns a null vector of the ONE matrix.
+          <a href = "one_null_left.m">one_null_left.m</a>
+          returns a left null vector of the ONE matrix.
         </li>
         <li>
-          <a href = "one_right.m">one_right.m</a>
-          returns the right eigenvectors of the ONE matrix.
+          <a href = "one_null_right.m">one_null_right.m</a>
+          returns a right null vector of the ONE matrix.
         </li>
         <li>
           <a href = "ortega.m">ortega.m</a>
@@ -2657,16 +2363,16 @@
           returns the determinant of the ORTEGA matrix.
         </li>
         <li>
+          <a href = "ortega_eigen_right.m">ortega_eigen_right.m</a>
+          returns the right eigenvectors of the ORTEGA matrix.
+        </li>
+        <li>
           <a href = "ortega_eigenvalues.m">ortega_eigenvalues.m</a>
           returns the eigenvalues of the ORTEGA matrix.
         </li>
         <li>
           <a href = "ortega_inverse.m">ortega_inverse.m</a>
           returns the inverse of the ORTEGA matrix.
-        </li>
-        <li>
-          <a href = "ortega_right.m">ortega_right.m</a>
-          returns the right eigenvectors of the ORTEGA matrix.
         </li>
         <li>
           <a href = "orth_random.m">orth_random.m</a>
@@ -2679,6 +2385,10 @@
         <li>
           <a href = "orth_symm.m">orth_symm.m</a>
           returns the ORTH_SYMM matrix.
+        </li>
+        <li>
+          <a href = "orth_symm_condition.m">orth_symm_condition.m</a>
+          returns the L1 condition of the ORTH_SYMM matrix.
         </li>
         <li>
           <a href = "orth_symm_determinant.m">orth_symm_determinant.m</a>
@@ -2697,8 +2407,16 @@
           returns the OTO matrix.
         </li>
         <li>
+          <a href = "oto_condition.m">oto_condition.m</a>
+          returns the L1 condition of the OTO matrix.
+        </li>
+        <li>
           <a href = "oto_determinant.m">oto_determinant.m</a>
           returns the determinant of the OTO matrix.
+        </li>
+        <li>
+          <a href = "oto_eigen_right.m">oto_eigen_right.m</a>
+          returns the right eigenvectors of the OTO matrix.
         </li>
         <li>
           <a href = "oto_eigenvalues.m">oto_eigenvalues.m</a>
@@ -2709,12 +2427,12 @@
           returns the inverse of the OTO matrix.
         </li>
         <li>
-          <a href = "oto_plu.m">oto_plu.m</a>
-          returns the P*L*U factors of the OTO matrix.
+          <a href = "oto_llt.m">oto_llt.m</a>
+          returns the lower triangular Cholesky factor of the OTO matrix.
         </li>
         <li>
-          <a href = "oto_right.m">oto_right.m</a>
-          returns the right eigenvectors of the OTO matrix.
+          <a href = "oto_plu.m">oto_plu.m</a>
+          returns the P*L*U factors of the OTO matrix.
         </li>
         <li>
           <a href = "parlett.m">parlett.m</a>
@@ -2741,6 +2459,10 @@
           returns the PASCAL1 matrix.
         </li>
         <li>
+          <a href = "pascal1_condition.m">pascal1_condition.m</a>
+          returns the L1 condition of the PASCAL1 matrix.
+        </li>
+        <li>
           <a href = "pascal1_determinant.m">pascal1_determinant.m</a>
           returns the determinant of the PASCAL1 matrix.
         </li>
@@ -2757,10 +2479,6 @@
           returns the PASCAL2 matrix.
         </li>
         <li>
-          <a href = "pascal2_cholesky.m">pascal2_cholesky.m</a>
-          returns the Cholesky factor of the PASCAL2 matrix.
-        </li>
-        <li>
           <a href = "pascal2_determinant.m">pascal2_determinant.m</a>
           returns the determinant of the PASCAL2 matrix.
         </li>
@@ -2769,12 +2487,20 @@
           returns the inverse of the PASCAL2 matrix.
         </li>
         <li>
+          <a href = "pascal2_llt.m">pascal2_llt.m</a>
+          returns the Cholesky factor of the PASCAL2 matrix.
+        </li>
+        <li>
           <a href = "pascal2_plu.m">pascal2_plu.m</a>
           returns the P*L*U factors of the PASCAL2 matrix.
         </li>
         <li>
           <a href = "pascal3.m">pascal3.m</a>
           returns the PASCAL3 matrix.
+        </li>
+        <li>
+          <a href = "pascal3_condition.m">pascal3_condition.m</a>
+          returns the L1 condition of the PASCAL3 matrix.
         </li>
         <li>
           <a href = "pascal3_determinant.m">pascal3_determinant.m</a>
@@ -2793,6 +2519,10 @@
           returns the determinant of the PDS_RANDOM matrix.
         </li>
         <li>
+          <a href = "pds_random_eigen_right.m">pds_random_eigen_right.m</a>
+          returns the right eigenvectors of the PDS_RANDOM matrix.
+        </li>
+        <li>
           <a href = "pds_random_eigenvalues.m">pds_random_eigenvalues.m</a>
           returns the eigenvalues of the PDS_RANDOM matrix.
         </li>
@@ -2801,16 +2531,20 @@
           returns the inverse of the PDS_RANDOM matrix.
         </li>
         <li>
-          <a href = "pds_random_right.m">pds_random_inverse.m</a>
-          returns the right eigenvectors of the PDS_RANDOM matrix.
-        </li>
-        <li>
           <a href = "pei.m">pei.m</a>
           returns the PEI matrix.
         </li>
         <li>
+          <a href = "pei_condition.m">pei_condition.m</a>
+          returns the L1 condition of the PEI matrix.
+        </li>
+        <li>
           <a href = "pei_determinant.m">pei_determinant.m</a>
           returns the determinant of the PEI matrix.
+        </li>
+        <li>
+          <a href = "pei_eigen_eigen_right.m">pei_eigen_right.m</a>
+          returns the right eigenvectors of the PEI matrix.
         </li>
         <li>
           <a href = "pei_eigenvalues.m">pei_eigenvalues.m</a>
@@ -2819,10 +2553,6 @@
         <li>
           <a href = "pei_inverse.m">pei_inverse.m</a>
           returns the inverse of the PEI matrix.
-        </li>
-        <li>
-          <a href = "pei_right.m">pei_right.m</a>
-          returns the (right) eigenvectors of the PEI matrix.
         </li>
         <li>
           <a href = "perm_check.m">perm_check.m</a>
@@ -2850,21 +2580,17 @@
           returns the determinant of a permutation matrix.
         </li>
         <li>
-          <a href = "permutation_inverse.m">permutation_inverse.m</a>
-          returns the inverse of a permutation matrix.
-        </li>
-        <li>
           <a href = "permutation_random.m">permutation_random.m</a>
-          returns a random permutation matrix.
+          returns the PERMUTATION_RANDOM matrix.
         </li>
         <li>
           <a href = "permutation_random_determinant.m">
           permutation_random_determinant.m</a>
-          returns the determinant of a random permutation matrix.
+          returns the determinant of the PERMUTATION_RANDOM matrix.
         </li>
         <li>
           <a href = "permutation_random_inverse.m">permutation_random_inverse.m</a>
-          returns the inverse of a random permutation matrix.
+          returns the inverse of the PERMUTATION_RANDOM matrix.
         </li>
         <li>
           <a href = "pick.m">pick.m</a>
@@ -2872,7 +2598,7 @@
         </li>
         <li>
           <a href = "plu.m">plu.m</a>
-          returns the PLU matrix, a matrix with known P, L and U Gauss factors.
+          returns the PLU matrix.
         </li>
         <li>
           <a href = "plu_determinant.m">plu_determinant.m</a>
@@ -2881,6 +2607,10 @@
         <li>
           <a href = "plu_inverse.m">plu_inverse.m</a>
           returns the inverse of the PLU matrix.
+        </li>
+        <li>
+          <a href = "plu_plu.m">plu_plu.m</a>
+          returns the PLU factors of the PLU matrix.
         </li>
         <li>
           <a href = "poisson.m">poisson.m</a>
@@ -2920,23 +2650,19 @@
         </li>
         <li>
           <a href = "quaternion_i.m">quaternion_i.m</a>
-          returns a 4 by 4 matrix that behaves like the quaternion unit I.
+          returns the QUATERNION_I matrix.
         </li>
         <li>
           <a href = "quaternion_j.m">quaternion_j.m</a>
-          returns a 4 by 4 matrix that behaves like the quaternion unit J.
+          returns the QUATERNION_J matrix.
         </li>
         <li>
           <a href = "quaternion_k.m">quaternion_k.m</a>
-          returns a 4 by 4 matrix that behaves like the quaternion unit K.
+          returns the QUATERNION_K matrix.
         </li>
         <li>
           <a href = "r8_choose.m">r8_choose.m</a>, 
           returns Choose(N,K) as an R8;
-        </li>
-        <li>
-          <a href = "r8_epsilon.m">r8_epsilon.m</a>, 
-          returns the machine precision as an R8;
         </li>
         <li>
           <a href = "r8_factorial.m">r8_factorial.m</a>, 
@@ -2959,16 +2685,12 @@
           returns the sign of an R8.
         </li>
         <li>
-          <a href = "r8_swap.m">r8_swap.m</a>, 
-          swaps two R8's.
-        </li>
-        <li>
-          <a href = "r8_uniform.m">r8_uniform.m</a>, 
-          returns a scaled pseudorandom R8;
-        </li>
-        <li>
           <a href = "r8_uniform_01.m">r8_uniform_01.m</a>, 
           returns a unit pseudorandom R8;
+        </li>
+        <li>
+          <a href = "r8_uniform_ab.m">r8_uniform_ab.m</a>, 
+          returns a scaled pseudorandom R8;
         </li>
         <li>
           <a href = "r8col_swap.m">
@@ -3016,24 +2738,20 @@
           computes the determinant of a matrix factored by R8MAT_GEFA.
         </li>
         <li>
-        <li>
           <a href = "r8mat_gefa.m">
           r8mat_gefa.m</a>, 
           factors a general matrix.
         </li>
-        <li>
         <li>
           <a href = "r8mat_geinverse.m">
           r8mat_geinverse.m</a>, 
           computes the inverse of a matrix factored by R8MAT_GEFA.
         </li>
         <li>
-        <li>
           <a href = "r8mat_geplu.m">
           r8mat_geplu.m</a>, 
           produces the PLU factors of a real rectangular matrix.
         </li>
-        <li>
         <li>
           <a href = "r8mat_gesl.m">
           r8mat_gesl.m</a>, 
@@ -3084,9 +2802,22 @@
           is TRUE if an R8MAT is a centrosymmetric matrix.
         </li>
         <li>
+          <a href = "r8mat_is_eigen_left.m">
+          r8mat_is_eigen_left.m</a>, 
+          determines the error in a left eigensystem.
+        </li>
+        <li>
+          <a href = "r8mat_is_eigen_left_test.m">
+          r8mat_is_eigen_left_test.m</a>
+        </li>
+        <li>
           <a href = "r8mat_is_eigen_right.m">
           r8mat_is_eigen_right.m</a>, 
-          determines the accuracy of a given set of eigenvalues and eigenvectors.
+          determines the error in a right eigensystem.
+        </li>
+        <li>
+          <a href = "r8mat_is_eigen_right_test.m">
+          r8mat_is_eigen_right_test.m</a>
         </li>
         <li>
           <a href = "r8mat_is_identity.m">
@@ -3109,6 +2840,34 @@
           determines if one matrix is the right inverse of another.
         </li>
         <li>
+          <a href = "r8mat_is_llt.m">
+          r8mat_is_llt.m</a>, 
+          determines the error in a lower triangular Cholesky factorization, 
+          ||A-LL'||.
+        </li>
+        <li>
+          <a href = "r8mat_is_llt_test.m">
+          r8mat_is_llt_test.m</a>
+        </li>
+        <li>
+          <a href = "r8mat_is_null_left.m">
+          r8mat_is_null_left.m</a>, 
+          determines the error in a left null vector, ||x'*A'||.
+        </li>
+        <li>
+          <a href = "r8mat_is_null_left_test.m">
+          r8mat_is_null_left_test.m</a>
+        </li>
+        <li>
+          <a href = "r8mat_is_null_right.m">
+          r8mat_is_null_right.m</a>, 
+          determines the error in a right null vector, ||A*x||.
+        </li>
+        <li>
+          <a href = "r8mat_is_null_right_test.m">
+          r8mat_is_null_right_test.m</a>
+        </li>
+        <li>
           <a href = "r8mat_is_plu.m">
           r8mat_is_plu.m</a>, 
           determines the error in a P*L*U factorization of a matrix.
@@ -3119,9 +2878,19 @@
           measures the error in solutions of A*X-B.
         </li>
         <li>
+          <a href = "r8mat_is_solution_test.m">
+          r8mat_is_solution_test.m</a>, 
+          measures the error in solutions of A*X-B.
+        </li>
+        <li>
           <a href = "r8mat_is_symmetric.m">
           r8mat_is_symmetric.m</a>, 
           determines if a matrix is symmetric.
+        </li>
+        <li>
+          <a href = "r8mat_is_transition.m">
+          r8mat_is_transition.m</a>, 
+          determines if a matrix is a transition matrix.
         </li>
         <li>
           <a href = "r8mat_is_zero_one.m">r8mat_is_zero_one.m</a>, 
@@ -3134,6 +2903,9 @@
         <li>
           <a href = "r8mat_norm_fro.m">r8mat_norm_fro.m</a>, 
           computes the Frobenius norm of a R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_norm_fro_test.m">r8mat_norm_fro_test.m</a>
         </li>
         <li>
           <a href = "r8mat_norm_l1.m">r8mat_norm_l1.m</a>, 
@@ -3179,12 +2951,12 @@
           returns the trace of a R8MAT;
         </li>
         <li>
-          <a href = "r8mat_uniform.m">r8mat_uniform.m</a>, 
-          returns an R8MAT of scaled pseudorandom numbers;
-        </li>
-        <li>
           <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>, 
           returns a unit pseudorandom R8MAT;
+        </li>
+        <li>
+          <a href = "r8mat_uniform_ab.m">r8mat_uniform_ab.m</a>, 
+          returns an R8MAT of scaled pseudorandom numbers;
         </li>
         <li>
           <a href = "r8poly_order.m">r8poly_order.m</a>,
@@ -3211,6 +2983,10 @@
           sets a R8VEC to the indicator vector;
         </li>
         <li>
+          <a href = "r8vec_linspace.m">r8vec_linspace.m</a>, 
+          returns evenly spaced data as an R8VEC.
+        </li>
+        <li>
           <a href = "r8vec_norm_l2.m">r8vec_norm_l2.m</a>, 
           returns the L2 norm of a R8VEC.
         </li>
@@ -3219,12 +2995,12 @@
           prints a R8VEC;
         </li>
         <li>
-          <a href = "r8vec_uniform.m">r8vec_uniform.m</a>, 
-          returns a vector of scaled pseudorandom values;
-        </li>
-        <li>
           <a href = "r8vec_uniform_01.m">r8vec_uniform_01.m</a>, 
           returns a unit pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>, 
+          returns a vector of scaled pseudorandom values;
         </li>
         <li>
           <a href = "r8vec2_print.m">r8vec2_print.m</a>, 
@@ -3260,7 +3036,8 @@
         </li>
         <li>
           <a href = "ref_random.m">ref_random.m</a>,
-          returns the determinant of the REF_RANDOM matrix, a random row echelon matrix.
+          returns the determinant of the REF_RANDOM matrix, 
+          a random row echelon matrix.
         </li>
         <li>
           <a href = "riemann.m">riemann.m</a>,
@@ -3291,8 +3068,16 @@
           returns the RODMAN matrix.
         </li>
         <li>
+          <a href = "rodman_condition.m">rodman_condition.m</a>,
+          returns the L1 condition of the RODMAN matrix.
+        </li>
+        <li>
           <a href = "rodman_determinant.m">rodman_determinant.m</a>,
           returns the determinant of the RODMAN matrix.
+        </li>
+        <li>
+          <a href = "rodman_eigen_right.m">rodman_eigen_right.m</a>
+          returns the right eigenvectors of the RODMAN matrix.
         </li>
         <li>
           <a href = "rodman_eigenvalues.m">rodman_eigenvalues.m</a>,
@@ -3303,10 +3088,6 @@
           returns the inverse of the RODMAN matrix.
         </li>
         <li>
-          <a href = "rodman_right.m">rodman_right.m</a>
-          returns the right eigenvectors of the RODMAN matrix.
-        </li>
-        <li>
           <a href = "rosser1.m">rosser1.m</a>,
           returns the ROSSER1 matrix.
         </li>
@@ -3315,16 +3096,24 @@
           returns the determinant of the ROSSER1 matrix.
         </li>
         <li>
+          <a href = "rosser1_eigen_left.m">rosser1_eigen_left.m</a>,
+          returns the left eigenvectors of the ROSSER1 matrix.
+        </li>
+        <li>
+          <a href = "rosser1_eigen_right.m">rosser1_eigen_right.m</a>,
+          returns the right eigenvectors of the ROSSER1 matrix.
+        </li>
+        <li>
           <a href = "rosser1_eigenvalues.m">rosser1_eigenvalues.m</a>,
           returns the eigenvalues of the ROSSER1 matrix.
         </li>
         <li>
-          <a href = "rosser1_null.m">rosser1_null.m</a>,
-          returns a null vector of the ROSSER1 matrix.
+          <a href = "rosser1_null_left.m">rosser1_null_left.m</a>,
+          returns a left null vector of the ROSSER1 matrix.
         </li>
         <li>
-          <a href = "rosser1_right.m">rosser1_right.m</a>,
-          returns the right eigenvectors of the ROSSER1 matrix.
+          <a href = "rosser1_null_right.m">rosser1_null_right.m</a>,
+          returns a right null vector of the ROSSER1 matrix.
         </li>
         <li>
           <a href = "routh.m">routh.m</a>,
@@ -3343,8 +3132,16 @@
           returns the RUTIS1 matrix.
         </li>
         <li>
+          <a href = "rutis1_condition.m">rutis1_condition.m</a>,
+          returns the condition of the RUTIS1 matrix.
+        </li>
+        <li>
           <a href = "rutis1_determinant.m">rutis1_determinant.m</a>,
           returns the determinant of the RUTIS1 matrix.
+        </li>
+        <li>
+          <a href = "rutis1_eigen_right.m">rutis1_eigen_right.m</a>,
+          returns the right eigenvectors of the RUTIS1 matrix.
         </li>
         <li>
           <a href = "rutis1_eigenvalues.m">rutis1_eigenvalues.m</a>,
@@ -3355,16 +3152,20 @@
           returns the inverse of the RUTIS1 matrix.
         </li>
         <li>
-          <a href = "rutis1_right.m">rutis1_right.m</a>,
-          returns the right eigenvectors of the RUTIS1 matrix.
-        </li>
-        <li>
           <a href = "rutis2.m">rutis2.m</a>,
           returns the RUTIS2 matrix.
         </li>
         <li>
+          <a href = "rutis2_condition.m">rutis2_condition.m</a>,
+          returns the condition of the RUTIS2 matrix.
+        </li>
+        <li>
           <a href = "rutis2_determinant.m">rutis2_determinant.m</a>,
           returns the determinant of the RUTIS2 matrix.
+        </li>
+        <li>
+          <a href = "rutis2_eigen_right.m">rutis2_eigen_right.m</a>,
+          returns the right eigenvectors of the RUTIS2 matrix.
         </li>
         <li>
           <a href = "rutis2_eigenvalues.m">rutis2_eigenvalues.m</a>,
@@ -3375,16 +3176,24 @@
           returns the inverse of the RUTIS2 matrix.
         </li>
         <li>
-          <a href = "rutis2_right.m">rutis2_right.m</a>,
-          returns the right eigenvectors of the RUTIS2 matrix.
-        </li>
-        <li>
           <a href = "rutis3.m">rutis3.m</a>,
           returns the RUTIS3 matrix.
         </li>
         <li>
+          <a href = "rutis3_condition.m">rutis3_condition.m</a>,
+          returns the condition of the RUTIS3 matrix.
+        </li>
+        <li>
           <a href = "rutis3_determinant.m">rutis3_determinant.m</a>,
           returns the determinant of the RUTIS3 matrix.
+        </li>
+        <li>
+          <a href = "rutis3_eigen_left.m">rutis3_eigen_left.m</a>,
+          returns the left eigenvectors of the RUTIS3 matrix.
+        </li>
+        <li>
+          <a href = "rutis3_eigen_right.m">rutis3_eigen_right.m</a>,
+          returns the right eigenvectors of the RUTIS3 matrix.
         </li>
         <li>
           <a href = "rutis3_eigenvalues.m">rutis3_eigenvalues.m</a>,
@@ -3393,14 +3202,6 @@
         <li>
           <a href = "rutis3_inverse.m">rutis3_inverse.m</a>,
           returns the inverse of the RUTIS3 matrix.
-        </li>
-        <li>
-          <a href = "rutis3_left.m">rutis3_left.m</a>,
-          returns the left eigenvectors of the RUTIS3 matrix.
-        </li>
-        <li>
-          <a href = "rutis3_right.m">rutis3_right.m</a>,
-          returns the right eigenvectors of the RUTIS3 matrix.
         </li>
         <li>
           <a href = "rutis4.m">rutis4.m</a>,
@@ -3427,16 +3228,16 @@
           returns the determinant of the RUTIS5 matrix.
         </li>
         <li>
+          <a href = "rutis5_eigen_right.m">rutis5_eigen_right.m</a>,
+          returns the right eigenvectors of the RUTIS5 matrix.
+        </li>
+        <li>
           <a href = "rutis5_eigenvalues.m">rutis5_eigenvalues.m</a>,
           returns the eigenvalues of the RUTIS5 matrix.
         </li>
         <li>
           <a href = "rutis5_inverse.m">rutis5_inverse.m</a>,
           returns the inverse of the RUTIS5 matrix.
-        </li>
-        <li>
-          <a href = "rutis5_right.m">rutis5_right.m</a>,
-          returns the right eigenvectors of the RUTIS5 matrix.
         </li>
         <li>
           <a href = "s_len_trim.m">s_len_trim.m</a>
@@ -3483,6 +3284,10 @@
           returns the eigenvalues of the SMOKE matrix.
         </li>
         <li>
+          <a href = "snakes.m">snakes.m</a>
+          returns the SNAKES matrix.
+        </li>
+        <li>
           <a href = "sort_heap_external.m">sort_heap_external.m</a>, 
           externally sorts a list of values into ascending order;
         </li>
@@ -3515,10 +3320,6 @@
           returns the STRIPE matrix.
         </li>
         <li>
-          <a href = "sub_by_size_next.m">sub_by_size_next.m</a>
-          returns all subsets of an N set, in order of size.
-        </li>
-        <li>
           <a href = "sub_random.m">sub_random.m</a>
           selects a random subset of an N-set.
         </li>
@@ -3547,28 +3348,112 @@
           returns the SWEET1 matrix.
         </li>
         <li>
+          <a href = "sweet1_condition.m">sweet1_condition.m</a>
+          returns the L1 condition of the SWEET1 matrix.
+        </li>
+        <li>
+          <a href = "sweet1_determinant.m">sweet1_determinant.m</a>
+          returns the determinant of the SWEET1 matrix.
+        </li>
+        <li>
+          <a href = "sweet1_inverse.m">sweet1_inverse.m</a>
+          returns the inverse of the SWEET1 matrix.
+        </li>
+        <li>
           <a href = "sweet2.m">sweet2.m</a>
           returns the SWEET2 matrix.
+        </li>
+        <li>
+          <a href = "sweet2_condition.m">sweet2_condition.m</a>
+          returns the L1 condition of the SWEET2 matrix.
+        </li>
+        <li>
+          <a href = "sweet2_determinant.m">sweet2_determinant.m</a>
+          returns the determinant of the SWEET2 matrix.
+        </li>
+        <li>
+          <a href = "sweet2_inverse.m">sweet2_inverse.m</a>
+          returns the inverse of the SWEET2 matrix.
         </li>
         <li>
           <a href = "sweet3.m">sweet3.m</a>
           returns the SWEET3 matrix.
         </li>
         <li>
+          <a href = "sweet3_condition.m">sweet3_condition.m</a>
+          returns the L1 condition of the SWEET3 matrix.
+        </li>
+        <li>
+          <a href = "sweet3_determinant.m">sweet3_determinant.m</a>
+          returns the determinant of the SWEET3 matrix.
+        </li>
+        <li>
+          <a href = "sweet3_inverse.m">sweet3_inverse.m</a>
+          returns the inverse of the SWEET3 matrix.
+        </li>
+        <li>
           <a href = "sweet4.m">sweet4.m</a>
           returns the SWEET4 matrix.
+        </li>
+        <li>
+          <a href = "sweet4_condition.m">sweet4_condition.m</a>
+          returns the L1 condition of the SWEET4 matrix.
+        </li>
+        <li>
+          <a href = "sweet4_determinant.m">sweet4_determinant.m</a>
+          returns the determinant of the SWEET4 matrix.
+        </li>
+        <li>
+          <a href = "sweet4_inverse.m">sweet4_inverse.m</a>
+          returns the inverse of the SWEET4 matrix.
         </li>
         <li>
           <a href = "sylvester.m">sylvester.m</a>
           returns the SYLVESTER matrix.
         </li>
         <li>
+          <a href = "sylvester_kac.m">sylvester_kac.m</a>
+          returns the SYLVESTER_KAC matrix.
+        </li>
+        <li>
+          <a href = "sylvester_kac_determinant.m">sylvester_kac_determinant.m</a>
+          returns the determinant of the SYLVESTER_KAC matrix.
+        </li>
+        <li>
+          <a href = "sylvester_kac_eigen_right.m">sylvester_kac_eigen_right.m</a>
+          returns the right eigenvectors of the SYLVESTER_KAC matrix.
+        </li>
+        <li>
+          <a href = "sylvester_kac_eigenvalues.m">sylvester_kac_eigenvalues.m</a>
+          returns the eigenvalues of the SYLVESTER_KAC matrix.
+        </li>
+        <li>
+          <a href = "sylvester_kac_inverse.m">sylvester_kac_inverse.m</a>
+          returns the inverse of the SYLVESTER_KAC matrix.
+        </li>
+        <li>
           <a href = "symm_random.m">symm_random.m</a>
-          returns a "random" symmetric matrix with given eigenvalues.
+          returns the SYMM_RANDOM matrix.
         </li>
         <li>
           <a href = "symm_random_determinant.m">symm_random_determinant.m</a>
           returns the determinant of the SYMM_RANDOM matrix.
+        </li>
+        <li>
+          <a href = "symm_random_eigen_left.m">symm_random_eigen_left.m</a>
+          returns the left eigenvectors of the SYMM_RANDOM matrix.
+        </li>
+        <li>
+          <a href = "symm_random_eigen_right.m">symm_random_eigen_right.m</a>
+          returns the right eigenvectors of the SYMM_RANDOM matrix.
+        </li>
+        <li>
+          <a href = "symm_random_eigenvalues.m">symm_random_eigenvalues.m</a>
+          returns the eigenvalues of the SYMM_RANDOM matrix.
+        </li>
+        <li>
+          <a href = "symm_random_inverse.m">symm_random_inverse.m</a>
+          returns the inverse of the SYMM_RANDOM matrix.
         </li>
         <li>
           <a href = "timestamp.m">timestamp.m</a>
@@ -3587,12 +3472,16 @@
           returns the TOEPLITZ_5S matrix.
         </li>
         <li>
+          <a href = "toeplitz_5s_determinant.m">toeplitz_5s_determinant.m</a>
+          returns the determinant of the TOEPLITZ_5S matrix.
+        </li>
+        <li>
           <a href = "toeplitz_5s_eigenvalues.m">toeplitz_5s_eigenvalues.m</a>
           returns the eigenvalues of the TOEPLITZ_5S matrix.
         </li>
         <li>
           <a href = "toeplitz_pds.m">toeplitz_pds.m</a>
-          returns a Toeplitz matrix that is positive definite symmetric.
+          returns the TOEPLITZ_PDS matrix.
         </li>
         <li>
           <a href = "tournament_random.m">tournament_random.m</a>
@@ -3660,7 +3549,7 @@
         </li>
         <li>
           <a href = "triv.m">triv.m</a>
-          returns the tridiagonal matrix A defined by three vectors.
+          returns the TRIV matrix.
         </li>
         <li>
           <a href = "triv_determinant.m">triv_determinant.m</a>
@@ -3672,7 +3561,7 @@
         </li>
         <li>
           <a href = "triw.m">triw.m</a>
-          returns the Wilkinson banded upper triangular matrix.
+          returns the TRIW matrix.
         </li>
         <li>
           <a href = "triw_determinant.m">triw_determinant.m</a>
@@ -3688,11 +3577,23 @@
         </li>
         <li>
           <a href = "unitary_random.m">unitary_random.m</a>
-          returns a random unitary matrix.
+          returns a UNITARY_RANDOM matrix.
+        </li>
+        <li>
+          <a href = "unitary_random_determinant.m">unitary_random_determinant.m</a>
+          returns the determinant of a random unitary matrix.
+        </li>
+        <li>
+          <a href = "unitary_random_inverse.m">unitary_random_inverse.m</a>
+          returns the inverse of a random unitary matrix.
         </li>
         <li>
           <a href = "upshift.m">upshift.m</a>
           returns the UPSHIFT matrix.
+        </li>
+        <li>
+          <a href = "upshift_condition.m">upshift_condition.m</a>
+          returns the L1 condition of the UPSHIFT matrix.
         </li>
         <li>
           <a href = "upshift_determinant.m">upshift_determinant.m</a>
@@ -3719,6 +3620,10 @@
           returns the inverse of the VAND1 matrix.
         </li>
         <li>
+          <a href = "vand1_inverse_ul.m">vand1_inverse_ul.m</a>
+          returns the UL factors of the inverse of the VAND1 matrix.
+        </li>
+        <li>
           <a href = "vand2.m">vand2.m</a>
           returns the VAND2 matrix.
         </li>
@@ -3731,8 +3636,24 @@
           returns the inverse of the VAND2 matrix.
         </li>
         <li>
+          <a href = "vand2_inverse_ul.m">vand2_inverse_ul.m</a>
+          returns the UL factors of the inverse of the VAND2 matrix.
+        </li>
+        <li>
+          <a href = "vand2_lu.m">vand2_lu.m</a>
+          returns the LU factors of the VAND2 matrix.
+        </li>
+        <li>
+          <a href = "vand2_plu.m">vand2_plu.m</a>
+          returns the PLU factors of the VAND2 matrix.
+        </li>
+        <li>
           <a href = "wathen.m">wathen.m</a>
           returns the WATHEN matrix.
+        </li>
+        <li>
+          <a href = "wathen_order.m">wathen_order.m</a>
+          returns the order of the WATHEN matrix.
         </li>
         <li>
           <a href = "wilk03.m">wilk03.m</a>
@@ -3763,6 +3684,10 @@
           returns the WILK04 matrix.
         </li>
         <li>
+          <a href = "wilk04_condition.m">wilk04_condition.m</a>
+          returns the L1 condition of the WILK04 matrix.
+        </li>
+        <li>
           <a href = "wilk04_determinant.m">wilk04_determinant.m</a>
           returns the determinant of the WILK04 matrix.
         </li>
@@ -3783,6 +3708,10 @@
           returns the WILK05 matrix.
         </li>
         <li>
+          <a href = "wilk05_condition.m">wilk05_condition.m</a>
+          returns the L1 condition of the WILK05 matrix.
+        </li>
+        <li>
           <a href = "wilk05_determinant.m">wilk05_determinant.m</a>
           returns the determinant of the WILK05 matrix.
         </li>
@@ -3795,16 +3724,20 @@
           returns the WILK12 matrix.
         </li>
         <li>
+          <a href = "wilk12_condition.m">wilk12_condition.m</a>
+          returns the L1 condition of the WILK12 matrix.
+        </li>
+        <li>
           <a href = "wilk12_determinant.m">wilk12_determinant.m</a>
           returns the determinant of the WILK12 matrix.
         </li>
         <li>
-          <a href = "wilk12_eigenvalues.m">wilk12_eigenvalues.m</a>
-          returns the eigenvalues of the WILK12 matrix.
+          <a href = "wilk12_eigen_right.m">wilk12_eigen_right.m</a>
+          returns the right eigenvectors of the WILK12 matrix.
         </li>
         <li>
-          <a href = "wilk12_right.m">wilk12_right.m</a>
-          returns the right eigenvectors of the WILK12 matrix.
+          <a href = "wilk12_eigenvalues.m">wilk12_eigenvalues.m</a>
+          returns the eigenvalues of the WILK12 matrix.
         </li>
         <li>
           <a href = "wilk20.m">wilk20.m</a>
@@ -3835,6 +3768,10 @@
           returns the determinant of the WILSON matrix.
         </li>
         <li>
+          <a href = "wilson_eigen_right.m">wilson_eigen_right.m</a>
+          returns the right eigenvectors of the WILSON matrix.
+        </li>
+        <li>
           <a href = "wilson_eigenvalues.m">wilson_eigenvalues.m</a>
           returns the eigenvalues of the WILSON matrix.
         </li>
@@ -3843,16 +3780,16 @@
           returns the inverse of the WILSON matrix.
         </li>
         <li>
+          <a href = "wilson_llt.m">wilson_llt.m</a>
+          returns the lower triangular Cholesky factor of the WILSON matrix.
+        </li>
+        <li>
           <a href = "wilson_plu.m">wilson_plu.m</a>
           returns the PLU factors of the WILSON matrix.
         </li>
         <li>
           <a href = "wilson_rhs.m">wilson_rhs.m</a>
           returns the WILSON right hand side.
-        </li>
-        <li>
-          <a href = "wilson_right.m">wilson_right.m</a>
-          returns the right eigenvectors of the WILSON matrix.
         </li>
         <li>
           <a href = "wilson_solution.m">wilson_solution.m</a>
@@ -3867,16 +3804,20 @@
           returns the determinant of the ZERO matrix.
         </li>
         <li>
+          <a href = "zero_eigen_right.m">zero_eigen_right.m</a>
+          returns the right eigenvectors of the ZERO matrix.
+        </li>
+        <li>
           <a href = "zero_eigenvalues.m">zero_eigenvalues.m</a>
           returns the eigenvalues of the ZERO matrix.
         </li>
         <li>
-          <a href = "zero_null.m">zero_null.m</a>
-          returns a null vector of the ZERO matrix.
+          <a href = "zero_null_left.m">zero_null_left.m</a>
+          returns a left null vector of the ZERO matrix.
         </li>
         <li>
-          <a href = "zero_right.m">zero_right.m</a>
-          returns the right eigenvectors of the ZERO matrix.
+          <a href = "zero_null_right.m">zero_null_right.m</a>
+          returns a right null vector of the ZERO matrix.
         </li>
         <li>
           <a href = "zielke.m">zielke.m</a>
@@ -3899,39 +3840,60 @@
           the output file.
         </li>
         <li>
-          <a href = "test_mat_test_cond.m">
-          test_mat_test_cond.m</a>, 
-          tests all the condition number evaluation routines.
+          <a href = "test_condition.m">
+          test_condition.m</a>, 
+          tests the condition number evaluation routines.
         </li>
         <li>
-          <a href = "test_mat_test_determinant.m">
-          test_mat_test_determinant.m</a>, 
-          tests all the determinant evaluation routines.
+          <a href = "test_determinant.m">
+          test_determinant.m</a>, 
+          tests the determinant evaluation routines.
         </li>
         <li>
-          <a href = "test_mat_test_eigen.m">
-          test_mat_test_eigen.m</a>, 
-          tests all the eigensystem routines.
+          <a href = "test_eigen_left.m">
+          test_eigen_left.m</a>, 
+          tests the left eigensystem routines.
         </li>
         <li>
-          <a href = "test_mat_test_inverse.m">
-          test_mat_test_inverse.m</a>, 
-          tests all the inverse evaluation routines.
+          <a href = "test_eigen_right.m">
+          test_eigen_right.m</a>, 
+          tests the right eigensystem routines.
         </li>
         <li>
-          <a href = "test_mat_test_null.m">
-          test_mat_test_null.m</a>, 
-          tests all the null vector routines.
+          <a href = "test_inverse.m">
+          test_inverse.m</a>, 
+          tests the inverse evaluation routines.
         </li>
         <li>
-          <a href = "test_mat_test_plu.m">
-          test_mat_test_plu.m</a>, 
-          tests all the P*L*U factor routines.
+          <a href = "test_llt.m">
+          test_llt.m</a>, 
+          tests the lower triangular Cholesky factor routines.
         </li>
         <li>
-          <a href = "test_mat_test_solution.m">
-          test_mat_test_solution.m</a>, 
-          tests all the linear system solution routines.
+          <a href = "test_null_left.m">
+          test_null_left.m</a>, 
+          tests the left null vector routines.
+        </li>
+        <li>
+          <a href = "test_null_right.m">
+          test_null_right.m</a>, 
+          tests the right null vector routines.
+        </li>
+        <li>
+          <a href = "test_plu.m">
+          test_plu.m</a>, 
+          tests the P*L*U factor routines.
+        </li>
+        <li>
+          <a href = "test_solution.m">
+          test_solution.m</a>, 
+          tests the linear system solution routines.
+        </li>
+        <li>
+          <a href = "test_type.m">
+          test_type.m</a>, 
+          tests functions which determine the linear algebraic type of
+          a matrix.
         </li>
       </ul>
     </p>
@@ -3944,7 +3906,7 @@
     <hr>
 
     <i>
-      Last revised on 08 April 2012.
+      Last revised on 17 April 2015.
     </i>
 
     <!-- John Burkardt -->

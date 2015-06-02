@@ -1,0 +1,484 @@
+<html>
+
+  <head>
+    <title>
+      FE2D_PREDATOR_PREY_FAST: 2D Predator Prey Simulation in Arbitrary Shaped Domains
+    </title>
+  </head>
+
+  <body bgcolor="#eeeeee" link="#cc0000" alink="#ff3300" vlink="#000055">
+
+    <h1 align = "center">
+      FE2D_PREDATOR_PREY_FAST<br>
+      Predator-prey simulations in arbitrary shaped 2D habitats
+    </h1>
+    
+    <hr>
+
+    <p>
+      <b>FE2D_PREDATOR_PREY_FAST</b>
+      is a MATLAB library which
+      implements finite element solvers for predator prey simulations
+      with time and 2D spatial dependence
+      over an arbitrary domain that has been triangulated.  A variety of
+      boundary conditions may be specified.  The solvers integrate the
+      associated partial differential equations over a given time interval,
+      and create plots of the predator and prey population densities at
+      the final time.
+    </p>
+
+    <p>
+      These codes are a finite element generalization of earlier MATLAB
+      algorithms developed using finite difference methods.
+    </p>
+
+    <p>
+      The algorithms presented here are "fast" versions of scripts that were
+      originally written by Marcus Garvie, of the University of Guelph.
+      They have been modified by John Burkardt to run much more quickly.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FE2D_PREDATOR_PREY_FAST</b> is available in
+      <a href = "../../m_src/fe2d_predator_prey_fast/fe2d_predator_prey_fast.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd_predator_prey/fd_predator_prey.html">
+      FD_PREDATOR_PREY</a>,
+      a MATLAB program which
+      solves a pair of predator prey ODE's using a finite difference 
+      approximation.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_predator_prey/fd1d_predator_prey.html">
+      FD1D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      uses finite differences to solve a 1D predator prey problem.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd2d_predator_prey/fd2d_predator_prey.html">
+      FD2D_PREDATOR_PREY</a>,
+      a MATLAB program which
+      implements a finite difference algorithm for a predator-prey system
+      with spatial variation in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_predator_prey/ode_predator_prey.html">
+      ODE_PREDATOR_PREY</a>,
+      a MATLAB program which
+      solves a pair of predator prey differential equations using 
+      MATLAB's ODE23 solver.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Original MATLAB versions by Marcus Garvie;
+      Modifications by John Burkardt.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          <a href = "http://www.uoguelph.ca/~mgarvie/">
+                     http://www.uoguelph.ca/~mgarvie/ </a>,
+          Marcus Garvie's web page.
+        </li>
+        <li>
+          Marcus Garvie, John Burkardt, Jeff Morgan,<br>
+          Simple finite element methods for approximating predator-prey
+          dynamics in two dimensions using Matlab,<br>
+          Submitted to Bulletin of Mathematical Biology.
+        </li>
+        <li>
+          Marcus Garvie,<br>
+          Finite-Difference Schemes for Reaction-Diffusion Equations
+          Modeling Predator-Prey Interactions in MATLAB,<br>
+          Bulletin of Mathematical Biology,<br>
+          Volume 69, Number 3, 2007, pages 931-956.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align="center">
+      Source Codes:
+    </h3>
+
+    <p>
+      FE2D_D: Scheme 2 applied to Kinetics 1 with pure Dirichlet boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2d_d_fast.m">fe2d_d_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_d_fast_test.m">fe2d_d_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_d_fast_u.png">fe2d_d_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_d_fast_v.png">fe2d_d_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2D_N: Scheme 2 applied to Kinetics 1 with pure Neumann boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2d_n_fast_fast.m">fe2d_n_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_n_fast_test.m">fe2d_n_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_n_fast_u.png">fe2d_n_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_n_fast_v.png">fe2d_n_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2D_ND: Scheme 2 applied to Kinetics 1 with a mixture of Neumann 
+      and Dirichlet boundary conditions.  This problem is posed on a region 
+      whose nodes and triangulation are supplied by the user.  The user
+      must also supply lists of the boundary nodes at which Neumann and
+      Dirichlet conditions are to be applied.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2d_nd_fast_fast.m">fe2d_nd_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_nd_fast_test.m">fe2d_nd_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_nd_fast_u.png">fe2d_nd_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_nd_fast_v.png">fe2d_nd_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2D_NR: Scheme 2 applied to Kinetics 1 with a mixture of Neumann 
+      and Robin boundary conditions.  This problem is posed on a region 
+      whose nodes and triangulation are supplied by the user.  The user
+      must also supply lists of the boundary nodes at which Neumann and
+      Robin conditions are to be applied.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2d_nr_fast_fast.m">fe2d_nr_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_nr_fast_test.m">fe2d_nr_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_nr_fast_u.png">fe2d_nr_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_nr_fast_v.png">fe2d_nr_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2D_P: Scheme 2 applied to Kinetics 1 with periodic boundary conditions.
+      This problem is posed on the unit square.
+      <ul>
+        <li>
+          <a href = "fe2d_p_fast_fast.m">fe2d_p_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_p_fast_test.m">fe2d_p_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_p_fast_u.png">fe2d_p_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_p_fast_v.png">fe2d_p_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2D_R: Scheme 2 applied to Kinetics 1 with pure Robin boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2d_r_fast_fast.m">fe2d_r_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_r_fast_test.m">fe2d_r_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2d_r_fast_u.png">fe2d_r_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2d_r_fast_v.png">fe2d_r_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_D: Scheme 1 applied to Kinetics 1 with pure Dirichlet boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_d_fast.m">fe2dx_d_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_d_fast_test.m">fe2dx_d_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_d_fast_u.png">fe2dx_d_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_d_fast_v.png">fe2dx_d_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_N: Scheme 1 applied to Kinetics 1 with pure Neumann boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_n_fast.m">fe2dx_n_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_n_fast_test.m">fe2dx_n_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_n_fast_u.png">fe2dx_n_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_n_fast_v.png">fe2dx_n_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_ND: Scheme 1 applied to Kinetics 1 with a mixture of Neumann 
+      and Dirichlet boundary conditions.  This problem is posed on a region 
+      whose nodes and triangulation are supplied by the user.  The user
+      must also supply lists of the boundary nodes at which Neumann and
+      Dirichlet conditions are to be applied.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_nd_fast_fast.m">fe2dx_nd_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nd_fast_test.m">fe2dx_nd_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nd_fast_u.png">fe2dx_nd_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nd_fast_v.png">fe2dx_nd_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_NR: Scheme 1 applied to Kinetics 1 with a mixture of Neumann 
+      and Robin boundary conditions.  This problem is posed on a region 
+      whose nodes and triangulation are supplied by the user.  The user
+      must also supply lists of the boundary nodes at which Neumann and
+      Robin conditions are to be applied.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_nr_fast_fast.m">fe2dx_nr_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_fast_test.m">fe2dx_nr_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_fast_u.png">fe2dx_nr_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_fast_v.png">fe2dx_nr_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_NR_ALT: Scheme 1 applied to Kinetics 1 with a mixture of Neumann 
+      and Robin boundary conditions.  This problem is posed on a region 
+      whose nodes and triangulation are supplied by the user.  The user
+      must also supply lists of the boundary nodes at which Neumann and
+      Robin conditions are to be applied.  This program is the same as
+      that in FE2DX_NR, except that the Robin condition is applied implicitly.
+      The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_nr_alt_fast_fast.m">fe2dx_nr_alt_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_alt_fast_test.m">fe2dx_nr_alt_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_alt_fast_u.png">fe2dx_nr_alt_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_nr_alt_fast_v.png">fe2dx_nr_alt_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_P: Scheme 1 applied to Kinetics 1 with periodic boundary conditions.
+      This problem is posed on the unit square.
+      <ul>
+        <li>
+          <a href = "fe2dx_p_fast.m">fe2dx_p_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_p_fast_test.m">fe2dx_p_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_p_fast_u.png">fe2dx_p_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_p_fast_v.png">fe2dx_p_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      FE2DX_R: Scheme 1 applied to Kinetics 1 with pure Robin boundary conditions.
+      This problem is posed on a region whose nodes and triangulation are supplied
+      by the user.  The sample problem uses the lake.
+      <ul>
+        <li>
+          <a href = "fe2dx_r_fast.m">fe2dx_r_fast.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_r_fast_test.m">fe2dx_r_fast_test.m</a>
+        </li>
+        <li>
+          <a href = "fe2dx_r_fast_u.png">fe2dx_r_fast_u.png</a>
+        </li>
+        <li>
+          <a href = "fe2dx_r_fast_v.png">fe2dx_r_fast_v.png</a>
+        </li>
+      </ul>
+    </p>
+
+    <h3 align="center">
+      Auxilliary Files and Data
+    </h3>
+
+    <p>
+      A number of the test codes use the lake geometry.  All such codes
+      will require the list of nodes and elements.  Codes which have a mixture
+      of boundary conditions will also require the two files which separate
+      the boundary nodes into those on the outer boundary of the lake, and those
+      which mark the boundary of the island.
+      <ul>
+        <li>
+          <a href = "p_coord.dat">p_coord.dat</a>,
+          the X and Y coordinates of the points used to define the geometry
+          of the lake.
+        </li>
+        <li>
+          <a href = "t_triang.dat">t_triang.dat</a>,
+          the indices of nodes that make up the elements of a
+          triangulation of the lake region.
+        </li>
+        <li>
+          <a href = "bn1_nodes.dat">bn1_nodes.dat</a>,
+          the boundary nodes on the outer boundary of the lake.
+        </li>
+        <li>
+          <a href = "bn2_nodes.dat">bn2_nodes.dat</a>,
+          the boundary nodes on the boundary between the lake and the island.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Auxilliary functions include:
+      <ul>
+        <li>
+          <a href = "boundedges.m">boundedges.m</a>,
+          finds all the boundary edges in a triangular mesh.
+        </li>
+        <li>
+          <a href = "gauss_seidel.m">gauss_seidel.m</a>,
+          uses the Gauss-Seidel iteration to seek a solution of a linear system.
+        </li>
+        <li>
+          <a href = "jacobi.m">jacobi.m</a>,
+          uses the Jacobi iteration to seek a solution of a linear system.
+        </li>
+        <li>
+          <a href = "mesh2d_example.m">mesh2d_example.m</a>,
+          code which describes points that outline the lake region,
+          and calls mesh2d to fill the interior of the region with a
+          grid of nodes, and to compute a triangulation of these nodes.
+        </li>
+        <li>
+          <a href = "subsetconnectivity.m">subsetconnectivity.m</a>
+          finds the boundary edges in a triangular mesh 
+          for a portion of the boundary.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 May 2014.
+    </i>
+
+  </body>
+
+</html>
+

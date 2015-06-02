@@ -2,11 +2,7 @@ function asa299_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for ASA299_PRB.
-%
-%  Discussion:
-%
-%    ASA299_PRB calls the ASA299 test routines.
+%% ASA299_TEST tests the ASA299 library.
 %
 %  Licensing:
 %
@@ -21,18 +17,18 @@ function asa299_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA299_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Tests for the ASA299 library.\n' );
+  fprintf ( 1, '  Test the ASA299 library.\n' );
 
   asa299_test01 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA299_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

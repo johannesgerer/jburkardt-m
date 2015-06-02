@@ -28,7 +28,7 @@ function value = year_is_leap_roman ( y )
 %
 %    Output, logical VALUE, TRUE if the year was a leap year.
 %
-  ierror = y_check_roman ( y );
+  [ y, ierror ] = y_check_roman ( y );
 
   if ( ierror ~= 0 )
     value = 0;

@@ -20,7 +20,10 @@ function b = wilson_rhs ( )
 %
 %    Output, real B(4,1), the right hand side vector.
 %
-  b(1:4,1) = [ 23.0, 32.0, 33.0, 31.0 ];
+  b(1:4,1) = [ 23.0; ...
+               32.0; ...
+               33.0; ...
+               31.0 ];
 
   return
 end

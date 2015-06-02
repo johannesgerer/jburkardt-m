@@ -2,7 +2,11 @@ function a = hoffman ( omega )
 
 %*****************************************************************************80
 %
-%% HOFFMAN computes the 4x11 Hoffman linear programming matrix.
+%% HOFFMAN computes the HOFFMAN matrix.
+%
+%  Discussion:
+%
+%    This example arises from a linear programming problem.
 %
 %  Example:
 %
@@ -64,6 +68,8 @@ function a = hoffman ( omega )
 %
 %    Output, real A(4,11), the matrix.
 %
+  a = zeros ( 4, 11 );
+
   theta = 2.0 * pi / 5.0;
 
   c = cos ( theta );

@@ -2,7 +2,7 @@ function asa245_test ( )
 
 %*****************************************************************************80
 %
-%% ASA245_TEST tests ASA245.
+%% ASA245_TEST tests the ASA245 library.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function asa245_test ( )
 %
 %  Modified:
 %
-%    14 February 2003
+%    25 September 2014
 %
 %  Author:
 %
@@ -20,20 +20,20 @@ function asa245_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA245_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Test the ASA245 routines.\n' );
+  fprintf ( 1, '  Test the ASA245 library.\n' );
 
   asa245_test01 ( );
   asa245_test02 ( );
-
+  asa245_test03 ( );
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ASA245_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
   return
 end
-
 

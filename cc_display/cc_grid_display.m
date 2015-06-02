@@ -16,9 +16,7 @@ function cc_grid_display ( )
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CC_GRID_DISPLAY:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -73,11 +71,12 @@ function cc_grid_display ( )
     title ( s );
     
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CC_GRID_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

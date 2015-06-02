@@ -37,7 +37,7 @@ function sigma_n = sigma ( n )
 %
 %    SIGMA(U*V) = SIGMA(U) * SIGMA(V) if U and V are relatively prime.
 %
-%    SIGMA(P**K) = ( P**(K+1) - 1 ) / ( P - 1 ) if P is prime.
+%    SIGMA(P^K) = ( P^(K+1) - 1 ) / ( P - 1 ) if P is prime.
 %
 %  Licensing:
 %

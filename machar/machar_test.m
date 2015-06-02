@@ -2,7 +2,7 @@ function machar_test ( )
 
 %*****************************************************************************80
 %
-%% MACHAR_TEST tests MACHAR.
+%% MACHAR_TEST tests the MACHAR library.
 %
 %  Licensing:
 %
@@ -30,7 +30,6 @@ function machar_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MACHAR_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

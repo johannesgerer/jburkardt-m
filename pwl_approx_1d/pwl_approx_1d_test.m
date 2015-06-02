@@ -2,7 +2,7 @@ function pwl_approx_1d_test ( )
 
 %*****************************************************************************80
 %
-%% PWL_APPROX_1D_TEST tests PWL_APPROX_1D.
+%% PWL_APPROX_1D_TEST tests the PWL_APPROX_1D library.
 %
 %  Licensing:
 %

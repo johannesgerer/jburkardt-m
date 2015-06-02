@@ -35,7 +35,7 @@ function iweek = ymdf_to_week_common ( y, m, d, f )
 %
 %  Check the input date.
 %
-  ierror = ymdf_check_common ( y2, m2, d2, f2 );
+  [ y2, m2, d2, f2, ierror ] = ymdf_check_common ( y2, m2, d2, f2 );
 
   if ( ierror ~= 0 )
     iweek = 0;

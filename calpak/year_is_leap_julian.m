@@ -21,7 +21,7 @@ function value = year_is_leap_julian ( y )
 %
 %  Modified:
 %
-%    19 June 2012
+%    08 March 2013
 %
 %  Author:
 %
@@ -42,9 +42,9 @@ function value = year_is_leap_julian ( y )
   y2 = y_common_to_astronomical ( y );
 
   if ( i4_modp ( y2, 4 ) == 0 )
-    year_is_leap_julian = 1;
+    value = 1;
   else
-    year_is_leap_julian = 0;
+    value = 0;
   end
 
   return

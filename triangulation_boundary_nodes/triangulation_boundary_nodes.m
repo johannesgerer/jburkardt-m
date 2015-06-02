@@ -32,11 +32,9 @@ function triangulation_boundary_nodes ( prefix )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_BOUNDARY_NODES\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Identify triangulation nodes on the boundary.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '* Read a dataset of NODE_NUM points in 2 dimensions;\n' );
@@ -167,7 +165,6 @@ function triangulation_boundary_nodes ( prefix )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_BOUNDARY_NODES\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

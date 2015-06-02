@@ -2,11 +2,11 @@ function a = conex2 ( alpha )
 
 %*****************************************************************************80
 %
-%% CONEX2 returns a 3 by 3 LINPACK condition number counterexample.
+%% CONEX2 returns the CONEX2 matrix.
 %
 %  Formula:
 %
-%    1   1-1/ALPHA**2 -2
+%    1   1-1/ALPHA^2 -2
 %    0   1/ALPHA      -1/ALPHA
 %    0   0             1
 %

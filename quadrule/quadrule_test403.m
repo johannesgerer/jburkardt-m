@@ -2,7 +2,7 @@ function quadrule_test403 ( )
 
 %*****************************************************************************80
 %
-%% TEST403 tests PATTERSON_SET and SUM_SUB.
+%% QUADRULE_TEST403 tests PATTERSON_SET and SUM_SUB.
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test403 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST403\n' );
+  fprintf ( 1, 'QUADRULE_TEST403\n' );
   fprintf ( 1, '  PATTERSON_SET sets up a Patterson rule;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

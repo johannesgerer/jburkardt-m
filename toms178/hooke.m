@@ -82,6 +82,10 @@ function [ iters, endpt ] = hooke ( nvars, startpt, rho, eps, itermax, f )
 %      F(A,B,C) = sum ( 1 <= i <= 20 )
 %        ( y(i) - A*t(i)*t(i) - B*exp(t(i)) - C*tan(t(i)) )^2.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    12 February 2008

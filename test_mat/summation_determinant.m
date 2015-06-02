@@ -2,7 +2,7 @@ function determ = summation_determinant ( n )
 
 %*****************************************************************************80
 %
-%% SUMMATION_DETERMINANT returns the determinant of the summation matrix.
+%% SUMMATION_DETERMINANT returns the determinant of the SUMMATION matrix.
 %
 %  Licensing:
 %

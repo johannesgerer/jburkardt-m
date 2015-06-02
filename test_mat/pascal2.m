@@ -44,11 +44,11 @@ function a = pascal2 ( n )
 %
 %    Eigenvalues of A occur in reciprocal pairs.
 %
-%    The condition number of A is approximately 16**N / ( N*PI ).
+%    The condition number of A is approximately 16^N / ( N*PI ).
 %
 %    The elements of the inverse of A are integers.
 %
-%    A(I,J) = (I+J-2)% / ( (I-1)% * (J-1)% )
+%    A(I,J) = (I+J-2)! / ( (I-1)! * (J-1)! )
 %
 %    The Cholesky factor of A is a lower triangular matrix R,
 %    such that A = R * R'.  The matrix R is a Pascal
@@ -61,6 +61,8 @@ function a = pascal2 ( n )
 %    their test matrix 3.7, in which every element is multiplied by a
 %    nonzero constant K.  They point out that if K is the reciprocal of
 %    an integer, then the inverse matrix has all integer entries.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -121,6 +123,8 @@ function a = pascal2 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

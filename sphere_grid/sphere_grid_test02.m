@@ -1,8 +1,8 @@
-function test02 ( )
+function sphere_grid_test02 ( )
 
 %*****************************************************************************80
 %
-%% TEST02 tests SPHERE_ICOS1_POINTS.
+%% SPHERE_GRID_TEST02 tests SPHERE_ICOS1_POINTS.
 %
 %  Licensing:
 %
@@ -17,12 +17,12 @@ function test02 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST02\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST02\n' );
   fprintf ( 1, '  SPHERE_ICOS_POINT_NUM "sizes" a grid generated\n' );
   fprintf ( 1, '  on an icosahedron and projected to a sphere.\n' );
   fprintf ( 1, '  SPHERE_ICOS1_POINTS creates the grid points.\n' );
 
-  factor = 4;
+  factor = 7;
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Sizing factor =       %f\n', factor );
@@ -39,6 +39,7 @@ function test02 ( )
 %
 %  Display the nodes on a sphere.
 %
+  figure ( )
   clf
   hold on
   [ x, y, z ] = sphere ( 20 );
@@ -76,7 +77,6 @@ function test02 ( )
     fprintf ( 1, '  Wrote grid nodes to "%s".\n', filename );
 
   end
-
 
   return
 end

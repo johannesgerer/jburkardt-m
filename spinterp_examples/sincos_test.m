@@ -2,7 +2,7 @@ function sincos_test ( )
 
 %*****************************************************************************80
 %
-%% SINCOS_TEST demonstrates spinterp on a function of a 2D argument.
+%% SINCOS_TEST demonstrates SPINTERP on a function of a 2D argument.
 %
 %  Licensing:
 %
@@ -19,7 +19,8 @@ function sincos_test ( )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SINCOS_TEST:\n' );
-  fprintf ( 1, '  Demonstrate the use of spinterp to construct an\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Demonstrate the use of SPINTERP to construct an\n' );
   fprintf ( 1, '  interpolant to the function z(x,y) = sin(x) + cos(y)\n' );
 %
 %  We need to have the spinterp program in the Matlab path.
@@ -110,5 +111,6 @@ function sincos_test ( )
   fprintf ( 1, '  Normal end of execution.\n' );
   fprintf ( 1, '\n' );
   timestamp ( );
+
   return
 end

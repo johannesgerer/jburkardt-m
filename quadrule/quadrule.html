@@ -22,7 +22,7 @@
     </p>
 
     <p>
-      <b>QUADRULE</b> returns the abscissas and weights for a variety of
+      QUADRULE returns the abscissas and weights for a variety of
       one dimensional quadrature rules for approximating the integral
       of a function.  The best rule is generally Gauss-Legendre quadrature,
       but other rules offer special features, including the ability to
@@ -51,8 +51,8 @@
       <a href = "../../cpp_src/quadrule/quadrule.html">a C++ version</a> and
       <a href = "../../f77_src/quadrule/quadrule.html">a FORTRAN77 version</a> and
       <a href = "../../f_src/quadrule/quadrule.html">a FORTRAN90 version</a> and
-      <a href = "../../math_src/quadrule/quadrule.html">a MATHEMATICA version</a> and
-      <a href = "../../m_src/quadrule/quadrule.html">a MATLAB version</a>.
+      <a href = "../../m_src/quadrule/quadrule.html">a MATLAB version</a> and
+      <a href = "../../py_src/quadrule/quadrule.html">a Python version</a>.
     </p>
 
     <h3 align = "center">
@@ -63,21 +63,24 @@
       <a href = "../../m_src/clenshaw_curtis_rule/clenshaw_curtis_rule.html">
       CLENSHAW_CURTIS_RULE</a>,
       a MATLAB library which
-      defintes a multiple dimension Clenshaw Curtis quadrature rule.
+      defines a multiple dimension Clenshaw Curtis quadrature rule.
     </p>
 
     <p>
-      <a href = "../../f_src/intlib/intlib.html">
-      INTLIB</a>,
-      a FORTRAN90 library which
-      carries out numerical estimation of integrals in 1D.
+      <a href = "../../m_src/line_felippa_rule/line_felippa_rule.html">
+      LINE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a line segment in 1D.
     </p>
 
     <p>
-      <a href = "../../f_src/quadpack/quadpack.html">
-      QUADPACK</a>,
-      a FORTRAN90 library which
-      numerically estimates integrals in 1D.
+      <a href = "../../m_src/quadmom/quadmom.html">
+      QUADMOM</a>,
+      a MATLAB library which
+      computes a Gaussian quadrature rule for a weight function rho(x)
+      based on the Golub-Welsch procedure that only requires knowledge
+      of the moments of rho(x).
     </p>
 
     <p>
@@ -160,6 +163,15 @@
       computes the weights for interpolatory quadrature rule;<br>
       this library is commonly called <b>IQPACK</b>;<br>
       this is a MATLAB version of ACM TOMS algorithm 655.
+    </p>
+
+    <p>
+      <a href = "../../m_src/truncated_normal_rule/truncated_normal_rule.html">
+      TRUNCATED_NORMAL_RULE</a>,
+      a MATLAB program which 
+      computes a quadrature rule for a normal probability density function (PDF),
+      also called a Gaussian distribution, that has been
+      truncated to [A,+oo), (-oo,B] or [A,B].
     </p>
 
     <h3 align = "center">
@@ -342,6 +354,9 @@
           sets abscissas and weights for Adams-Bashforth quadrature.
         </li>
         <li>
+          <a href = "bashforth_set_test.m">bashforth_set_test.m</a>
+        </li>
+        <li>
           <a href = "bdf_set.m">bdf_set.m</a>,
           sets weights for backward differentiation ODE weights.
         </li>
@@ -358,7 +373,7 @@
           carries out an explicit backward difference quadrature rule for [0,1].
         </li>
         <li>
-          <a href = "cheb_set.m">cheb_set.m</a>,
+          <a href = "chebyshev_set.m">chebyshev_set.m</a>,
           sets abscissas and weights for Chebyshev quadrature.
         </li>
         <li>
@@ -366,8 +381,15 @@
           computes a Gauss-Chebyshev type 1 quadrature rule.
         </li>
         <li>
+          <a href = "chebyshev1_compute_test.m">chebyshev1_compute_test.m</a>
+        </li>
+        <li>
           <a href = "chebyshev1_integral.m">chebyshev1_integral.m</a>
           evaluates a monomial Chebyshev type 1 integral.
+        </li>
+        <li>
+          <a href = "chebyshev1_set.m">chebyshev1_set.m</a>,
+          sets a Chebyshev Type 1 rule.
         </li>
         <li>
           <a href = "chebyshev2_compute.m">chebyshev2_compute.m</a>
@@ -378,36 +400,73 @@
           evaluates a monomial Chebyshev type 2 integral.
         </li>
         <li>
+          <a href = "chebyshev2_set.m">chebyshev2_set.m</a>,
+          sets a Chebyshev Type 2 rule.
+        </li>
+        <li>
           <a href = "chebyshev3_compute.m">chebyshev3_compute.m</a>,
           computes a Gauss-Chebyshev type 3 quadrature rule.
+        </li>
+        <li>
+          <a href = "chebyshev3_compute_test.m">chebyshev3_compute_test.m</a>
+        </li>
+        <li>
+          <a href = "chebyshev3_integral.m">chebyshev3_integral.m</a>
+          evaluates a monomial Chebyshev type 3 integral.
+        </li>
+        <li>
+          <a href = "chebyshev3_set.m">chebyshev3_set.m</a>,
+          sets a Chebyshev Type 3 rule.
         </li>
         <li>
           <a href = "clenshaw_curtis_compute.m">clenshaw_curtis_compute.m</a>,
           computes a Clenshaw-Curtis quadrature rule.
         </li>
         <li>
+          <a href = "clenshaw_curtis_compute_test.m">
+          clenshaw_curtis_compute_test.m</a>
+        </li>
+        <li>
           <a href = "clenshaw_curtis_set.m">clenshaw_curtis_set.m</a>,
           sets up Clenshaw-Curtis quadrature.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_set_test.m">clenshaw_curtis_set_test.m</a>
         </li>
         <li>
           <a href = "fejer1_compute.m">fejer1_compute.m</a>,
           computes a Fejer type 1 quadrature rule.
         </li>
         <li>
+          <a href = "fejer1_compute_test.m">fejer1_compute_test.m</a>
+        </li>
+        <li>
           <a href = "fejer1_set.m">fejer1_set.m</a>,
           sets a Fejer type 1 quadrature rule.
+        </li>
+        <li>
+          <a href = "fejer1_set_test.m">fejer1_set_test.m</a>
         </li>
         <li>
           <a href = "fejer2_compute.m">fejer2_compute.m</a>,
           computes a Fejer type 2 quadrature rule.
         </li>
         <li>
+          <a href = "fejer2_compute_test.m">fejer2_compute_test.m</a>
+        </li>
+        <li>
           <a href = "fejer2_set.m">fejer2_set.m</a>,
           sets a Fejer type 2 quadrature rule.
         </li>
         <li>
+          <a href = "fejer2_set_test.m">fejer2_set_test.m</a>
+        </li>
+        <li>
           <a href = "gegenbauer_compute.m">gegenbauer_compute.m</a>
           computes a Gauss-Gegenbauer quadrature rule.
+        </li>
+        <li>
+          <a href = "gegenbauer_compute_test.m">gegenbauer_compute_test.m</a>
         </li>
         <li>
           <a href = "gegenbauer_integral.m">gegenbauer_integral.m</a>
@@ -478,8 +537,18 @@
           returns the value of a Hermite integral.
         </li>
         <li>
+          <a href = "hermite_probabilist_set.m">hermite_probabilist_set.m</a>,
+          sets abscissas and weights for Hermite probabilist quadrature.
+        </li>
+        <li>
           <a href = "hermite_set.m">hermite_set.m</a>,
-          sets abscissas and weights for Hermite quadrature.
+          sets abscissas and weights for Hermite quadrature
+          with density exp(-x^2).
+        </li>
+        <li>
+          <a href = "hermite_1_set.m">hermite_1_set.m</a>,
+          sets abscissas and weights for Hermite quadrature
+          with density 1.
         </li>
         <li>
           <a href = "hermite_ss_compute.m">hermite_ss_compute.m</a>,
@@ -531,7 +600,13 @@
         </li>
         <li>
           <a href = "laguerre_set.m">laguerre_set.m</a>,
-          sets abscissas and weights for Laguerre quadrature.
+          sets abscissas and weights for Laguerre quadrature
+          with density exp(-x).
+        </li>
+        <li>
+          <a href = "laguerre_1_set.m">laguerre_1_set.m</a>,
+          sets abscissas and weights for Laguerre quadrature
+          with density 1.
         </li>
         <li>
           <a href = "laguerre_ss_compute.m">laguerre_ss_compute.m</a>,
@@ -603,23 +678,32 @@
         </li>
         <li>
           <a href = "legendre_set_x2.m">legendre_set_x2.m</a>,
-          sets a Gauss-Legendre rule for ( 1 + X )**2 * F(X) on [-1,1].
+          sets a Gauss-Legendre rule for ( 1 + X )^2 * F(X) on [-1,1].
         </li>
         <li>
           <a href = "legendre_set_x2_01.m">legendre_set_x2_01.m</a>,
-          sets a Gauss-Legendre rule for X**2 * F(X) on [0,1].
+          sets a Gauss-Legendre rule for X^2 * F(X) on [0,1].
         </li>
         <li>
           <a href = "lobatto_compute.m">lobatto_compute.m</a>,
           computes abscissas and weights for Lobatto quadrature.
         </li>
         <li>
+          <a href = "lobatto_compute_test.m">lobatto_compute_test.m</a>
+        </li>
+        <li>
           <a href = "lobatto_set.m">lobatto_set.m</a>,
           sets abscissas and weights for Lobatto quadrature.
         </li>
         <li>
+          <a href = "lobatto_set_test.m">lobatto_set_test.m</a>
+        </li>
+        <li>
           <a href = "moulton_set.m">moulton_set.m</a>,
           sets weights for Adams-Moulton quadrature.
+        </li>
+        <li>
+          <a href = "moulton_set_test.m">moulton_set_test.m</a>
         </li>
         <li>
           <a href = "nc_compute.m">nc_compute.m</a>,
@@ -640,6 +724,9 @@
         <li>
           <a href = "ncc_set.m">ncc_set.m</a>,
           sets abscissas and weights for Newton-Cotes Closed quadrature.
+        </li>
+        <li>
+          <a href = "ncc_set_test.m">ncc_set_test.m</a>
         </li>
         <li>
           <a href = "nco_compute.m">nco_compute.m</a>,
@@ -751,10 +838,6 @@
           the output from a rule of all the tests;
         </li>
         <li>
-          <a href = "quadrule_test01.m">quadrule_test01.m</a>,
-          tests BASHFORTH_SET and SUMMER;
-        </li>
-        <li>
           <a href = "quadrule_test02.m">quadrule_test02.m</a>,
           tests BDFC_SET and BDF_SUM;
         </li>
@@ -764,39 +847,19 @@
         </li>
         <li>
           <a href = "quadrule_test04.m">quadrule_test04.m</a>,
-          tests CHEB_SET and SUM_SUB.
-        </li>
-        <li>
-          <a href = "quadrule_test05.m">quadrule_test05.m</a>,
-          tests CHEBYSHEV1_COMPUTE and SUMMER.
+          tests chebyshev_set() and sum_sub().
         </li>
         <li>
           <a href = "quadrule_test06.m">quadrule_test06.m</a>,
-          tests CHEBYSHEV2_COMPUTE and SUMMER.
+          tests CHEBYSHEV2_COMPUTE.
         </li>
         <li>
-          <a href = "quadrule_test07.m">quadrule_test07.m</a>,
-          tests CHEBYSHEV3_COMPUTE and SUMMER.
-        </li>
-        <li>
-          <a href = "quadrule_test0725.m">quadrule_test0725.m</a>,
-          tests CLENSHAW_CURTIS_COMPUTE.
-        </li>
-        <li>
-          <a href = "quadrule_test075.m">quadrule_test075.m</a>,
-          tests CLENSHAW_CURTIS_SET and SUMMER.
-        </li>
-        <li>
-          <a href = "quadrule_test076.m">quadrule_test076.m</a>,
-          compares FEJER1_SET and FEJER1_COMPUTE.
-        </li>
-        <li>
-          <a href = "quadrule_test078.m">quadrule_test078.m</a>,
-          compares FEJER2_SET and FEJER2_COMPUTE.
+          <a href = "quadrule_test065.m">quadrule_test065.m</a>,
+          tests CHEBYSHEV2_COMPUTE.
         </li>
         <li>
           <a href = "quadrule_test08.m">quadrule_test08.m</a>,
-          tests HERMITE_COMPUTE and SUMMER.
+          tests HERMITE_COMPUTE.
         </li>
         <li>
           <a href = "quadrule_test085.m">quadrule_test085.m</a>,
@@ -807,8 +870,12 @@
           tests HERMITE_SET.
         </li>
         <li>
+          <a href = "quadrule_test089.m">quadrule_test089.m</a>,
+          tests HERMITE_PROBABILIST_SET.
+        </li>
+        <li>
           <a href = "quadrule_test09.m">quadrule_test09.m</a>,
-          tests HERMITE_SET and SUMMER.
+          tests HERMITE_SET.
         </li>
         <li>
           <a href = "quadrule_test095.m">quadrule_test095.m</a>,
@@ -935,22 +1002,6 @@
           tests LEGENDRE_SET_X2_01 and SUM_SUB
         </li>
         <li>
-          <a href = "quadrule_test345.m">quadrule_test345.m</a>,
-          tests LOBATTO_COMPUTE and LOBATTO_SET.
-        </li>
-        <li>
-          <a href = "quadrule_test35.m">quadrule_test35.m</a>,
-          tests LOBATTO_SET and SUM_SUB.
-        </li>
-        <li>
-          <a href = "quadrule_test36.m">quadrule_test36.m</a>,
-          tests MOULTON_SET and SUMMER.
-        </li>
-        <li>
-          <a href = "quadrule_test37.m">quadrule_test37.m</a>,
-          tests NCC_SET and SUM_SUB.
-        </li>
-        <li>
           <a href = "quadrule_test38.m">quadrule_test38.m</a>,
           tests NCC_COMPUTE and SUM_SUB.
         </li>
@@ -1017,7 +1068,7 @@
     <hr>
 
     <i>
-      Last revised on 02 May 2011.
+      Last revised on 23 April 2015.
     </i>
 
     <!-- John Burkardt -->

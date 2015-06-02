@@ -2,7 +2,11 @@ function [ t, wts ] = hf_quadrature_rule ( nt )
 
 %*****************************************************************************80
 %
-%% HF_QUADRATURE_RULE: Hermite function quadrature rule.
+%% HF_QUADRATURE_RULE: quadrature for Hf(i,x).
+%
+%  Discussion:
+%
+%    Hf(I,X) represents the Hermite function of "degree" I.  
 %
 %  Licensing:
 %

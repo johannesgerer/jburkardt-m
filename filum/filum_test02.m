@@ -20,14 +20,14 @@ function filum_test02 ( )
   fprintf ( 1, 'TEST02\n' );
   fprintf ( 1, '  FILE_CHAR_COUNT counts the characters in a file.\n' );
 
-  file_name = 'story.txt';
+  filename = 'story.txt';
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Examining file:\n' );
-  fprintf ( 1, '    "%s".', file_name );
+  fprintf ( 1, '    "%s".', filename );
   fprintf ( 1, '\n' );
 
-  char_num = file_char_count ( file_name );
+  char_num = file_char_count ( filename );
   fprintf ( 1, '  Number of characters in file: %d\n', char_num );
 
   return

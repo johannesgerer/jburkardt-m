@@ -36,7 +36,7 @@ function aminz_index = i4vec_aminz_index ( n, a )
 
     if ( a(i) ~= 0 )
 
-      if ( aminz_index == 0 | abs ( a(i) ) < aminz )
+      if ( aminz_index == 0 || abs ( a(i) ) < aminz )
         aminz = abs ( a(i) );
         aminz_index = i;
       end

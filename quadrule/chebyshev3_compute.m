@@ -2,13 +2,13 @@ function [ x, w ] = chebyshev3_compute ( n )
 
 %*****************************************************************************80
 %
-%% CHEBYSHEV3_COMPUTE sets up closed Gauss-Chebyshev (first kind) quadrature.
+%% CHEBYSHEV3_COMPUTE computes a closed Gauss-Chebyshev (first kind) quadrature.
 %
 %  Discussion:
 %
 %    The integral:
 %
-%      Integral ( -1 <= X <= 1 ) F(X) / SQRT ( 1 - X**2 ) dX
+%      Integral ( -1 <= X <= 1 ) F(X) / sqrt ( 1 - X^2 ) dX
 %
 %    The quadrature rule:
 %
@@ -46,33 +46,31 @@ function [ x, w ] = chebyshev3_compute ( n )
 %  Parameters:
 %
 %    Input, int N, the order.
-%    N must be at least 2.
 %
 %    Output, double X(N), the abscissas.
 %
 %    Output, double W(N), the weights.
 %
-  if ( n < 2 )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, 'CHEBYSHEV3_COMPUTE - Fatal error!\n' );
-    fprintf ( 1, '  N must be at least 2.\n' );
-    fprintf ( 1, '  The input value was N = %d\n', n );
-    error ( 'CHEBYSHEV3_COMPUTE_SET - Fatal error!' );
-  end
-
   x = zeros ( n, 1 );
   w = zeros ( n, 1 );
 
-  for i = 1 : n
+  if ( n == 1 )
 
-    angle = ( i - 1 ) * pi / ( n - 1 );
-    x(i) = cos ( angle );
+    x(1) = 0.0;
+    w(1) = pi;
+
+  else
+
+    for i = 1 : n
+      angle = ( i - 1 ) * pi / ( n - 1 );
+      x(i) = cos ( angle );
+    end
+
+    w(1)     = pi / ( 2 * ( n - 1 ) );
+    w(2:n-1) = pi /       ( n - 1 );
+    w(n)     = pi / ( 2 * ( n - 1 ) );
 
   end
-
-  w(1)     = pi / ( 2 * ( n - 1 ) );
-  w(2:n-1) = pi /       ( n - 1 );
-  w(n)     = pi / ( 2 * ( n - 1 ) );
 
   return
 end

@@ -2,7 +2,7 @@ function vandermonde_interp_2d_test ( )
 
 %*****************************************************************************80
 %
-%% VANDERMONDE_INTERP_2D_TEST tests VANDERMONDE_INTERP_2D.
+%% VANDERMONDE_INTERP_2D_TEST tests the VANDERMONDE_INTERP_2D library.
 %
 %  Licensing:
 %

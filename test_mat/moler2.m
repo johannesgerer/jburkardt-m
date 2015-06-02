@@ -2,7 +2,7 @@ function a = moler2 ( )
 
 %*****************************************************************************80
 %
-%% MOLER2 returns Moler's eigenvalue problem.
+%% MOLER2 returns the MOLER2 matrix.
 %
 %  Discussion:
 %
@@ -22,7 +22,7 @@ function a = moler2 ( )
 %    A is defective.
 %
 %    The Jordan normal form of A has just one block, with eigenvalue
-%    zero, because A**k is nonzero for K = 0, 1, 2, 3, 4, but A**5=0.
+%    zero, because A^k is nonzero for K = 0, 1, 2, 3, 4, but A^5=0.
 %
 %    det ( A ) = 0.
 %
@@ -43,6 +43,10 @@ function a = moler2 ( )
 %  Parameters:
 %
 %    Output, real A(5,5), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a = [     -9.0,     11.0,    -21.0,     63.0,   -252.0; ...
             70.0,    -69.0,    141.0,   -421.0,   1684.0; ...

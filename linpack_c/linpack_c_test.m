@@ -2,7 +2,7 @@ function linpack_c_test ( )
 
 %*****************************************************************************80
 %
-%% LINPACK_C_TEST tests the single precision complex LINPACK routines.
+%% LINPACK_C_TEST tests the LINPACK_C library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function linpack_c_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LINPACK_C_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the LINPACK_C library. \n' );
+  fprintf ( 1, '  Test the LINPACK_C library.\n' );
 
   linpack_c_test01 ( );
   linpack_c_test02 ( );
@@ -69,7 +69,6 @@ function linpack_c_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LINPACK_C_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

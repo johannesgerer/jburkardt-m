@@ -98,8 +98,6 @@ function halham_write ( dim_num, n, step, seed, leap, base, r, file_out_name )
     end
     fprintf ( file_out_unit, '\n' );
   end
-  fprintf ( file_out_unit, '#  EPSILON (unit roundoff ) = %e\n', ...
-    r8_epsilon ( ) );
   fprintf ( file_out_unit, '#\n' );
 
   for j = 1 : n

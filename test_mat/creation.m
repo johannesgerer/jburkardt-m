@@ -2,7 +2,7 @@ function a = creation ( m, n )
 
 %*****************************************************************************80
 %
-%% CREATION returns the creation matrix.
+%% CREATION returns the CREATION matrix.
 %
 %  Example:
 %
@@ -35,6 +35,8 @@ function a = creation ( m, n )
 %    A is zero except for the first lower diagonal. A^2 is zero except for
 %    the second lower diagonal.  A^(N-1) is the last nonzero power of A,
 %    with a single nonzero entry in the (N,1) position.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

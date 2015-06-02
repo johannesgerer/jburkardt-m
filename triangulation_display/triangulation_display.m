@@ -1303,7 +1303,11 @@ function triangulation_display_matlab ( title_string, node_num, node_xy, ...
 %  Label the nodes.
 %
   if ( 2 <= node_show )
-    abit = margin;
+    if ( node_num <= 100 )
+      abit = margin;
+    else
+      abit = 0.0;
+    end
     for j = 1 : node_num
       text ( node_xy(1,j) + abit, node_xy(2,j) + abit, num2str(j) );
     end

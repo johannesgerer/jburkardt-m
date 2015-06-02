@@ -2,7 +2,7 @@ function nelder_mead_test ( )
 
 %*****************************************************************************80
 %
-%% NELDER_MEAD_TEST tests NELDER_MEAD.
+%% NELDER_MEAD_TEST tests the NELDER_MEAD library.
 %
 %  Licensing:
 %
@@ -36,7 +36,6 @@ function nelder_mead_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'NELDER_MEAD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

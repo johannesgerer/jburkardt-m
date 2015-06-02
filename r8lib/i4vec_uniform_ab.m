@@ -28,6 +28,8 @@ function [ c, seed ] = i4vec_uniform_ab ( n, a, b, seed )
 %
 %    Output, integer SEED, the updated seed.
 %
+  i4_huge = 2147483647;
+
   c = zeros ( n, 1 );
 
   if ( seed == 0 )
@@ -43,10 +45,10 @@ function [ c, seed ] = i4vec_uniform_ab ( n, a, b, seed )
 
   for i = 1 : n
 
-    seed = mod ( seed, 2147483647 );
+    seed = mod ( seed, i4_huge );
 
     if ( seed < 0 ) 
-      seed = seed + 2147483647;
+      seed = seed + i4_huge;
     end 
 
     k = floor ( seed / 127773 );
@@ -54,7 +56,7 @@ function [ c, seed ] = i4vec_uniform_ab ( n, a, b, seed )
     seed = 16807 * ( seed - k * 127773 ) - k * 2836;
 
     if ( seed < 0 )
-      seed = seed + 2147483647;
+      seed = seed + i4_huge;
     end
 
     r = seed * 4.656612875E-10;

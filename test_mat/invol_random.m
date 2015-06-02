@@ -1,8 +1,12 @@
-function [ a, seed ] = invol_random ( n, rank, seed )
+function a = invol_random ( n, rank, key )
 
 %*****************************************************************************80
 %
-%% INVOL_RANDOM returns a random involutional matrix.
+%% INVOL_RANDOM returns the INVOL_RANDOM matrix.
+%
+%  Discussion:
+%
+%    INVOL_RANDOM is a random involutional matrix.
 %
 %  Properties:
 %
@@ -42,15 +46,11 @@ function [ a, seed ] = invol_random ( n, rank, seed )
 %    a multiple of the identity.  Intermediate values will give
 %    more interesting results.
 %
-%    Input, integer SEED, a seed for the random number
-%    generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
-%    Output, integer SEED, a seed for the random number
-%    generator.
-%
-  [ a, seed ] = idem_random ( n, rank, seed );
+  a = idem_random ( n, rank, key );
 
   for i = 1 : n
     for j = 1 : n

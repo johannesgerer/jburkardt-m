@@ -1,0 +1,666 @@
+>> treepack_test
+28-Jun-2013 11:14:12
+
+TREEPACK_TEST
+  MATLAB version
+  Test the TREEPACK library.
+
+TREEPACK_TEST005
+  CATALAN computes Catalan numbers.
+  CATALAN_VALUES returns some exact values.
+
+  N  exact C(I)  computed C(I)
+
+     0       1       1
+     1       1       1
+     2       2       2
+     3       5       5
+     4      14      14
+     5      42      42
+     6     132     132
+     7     429     429
+     8    1430    1430
+     9    4862    4862
+    10   16796   16796
+
+TREEPACK_TEST006
+  CBT_TRAVERSE traverses a complete binary tree.
+
+  For this demonstration, we simply print our path.
+  The tree depth is 4
+
+           0
+           00
+           000
+  (     0  0000
+  )     1  0001
+           000
+           001
+  (     2  0010
+  )     3  0011
+           001
+           00
+           01
+           010
+  (     4  0100
+  )     5  0101
+           010
+           011
+  (     6  0110
+  )     7  0111
+           011
+           01
+           0
+           1
+           10
+           100
+  (     8  1000
+  )     9  1001
+           100
+           101
+  (    10  1010
+  )    11  1011
+           101
+           10
+           11
+           110
+  (    12  1100
+  )    13  1101
+           110
+           111
+  (    14  1110
+  )    15  1111
+           111
+           11
+           1
+
+TREEPACK_TEST01
+  PRUEFER_TO_TREE_ARC computes a tree from its Pruefer code.
+
+          5
+          |
+    2-3-6-8-1-9
+      |   |
+      7   4
+
+  The Pruefer code:
+
+     1:      1
+     2:      3
+     3:      8
+     4:      8
+     5:      3
+     6:      6
+     7:      8
+
+  The graph:
+
+   1     9     1
+   2     7     3
+   3     5     8
+   4     4     8
+   5     2     3
+   6     3     6
+   7     6     8
+   8     8     1
+
+TREEPACK_TEST02
+  PRUEFER_TO_TREE_2 produces a tree from its Pruefer code
+
+  The Pruefer code:
+
+     1:      1
+     2:      3
+     3:      8
+     4:      8
+     5:      3
+     6:      6
+     7:      8
+
+  The edge list of the tree:
+
+     1:      3
+     2:      1
+     3:      6
+     4:      8
+     5:      8
+     6:      8
+     7:      3
+     8:      9
+
+TREEPACK_TEST025
+  PRUEFER_TO_TREE_2 produces a tree from its Pruefer code
+
+   Code      Tree
+
+   1   1     4   1   1
+   2   1     4   1   2
+   3   1     4   3   1
+   4   1     4   4   1
+   1   2     2   4   1
+   2   2     2   4   2
+   3   2     3   4   2
+   4   2     4   4   2
+   1   3     3   1   4
+   2   3     2   3   4
+   3   3     3   3   4
+   4   3     4   3   4
+   1   4     4   1   4
+   2   4     2   4   4
+   3   4     3   4   4
+   4   4     4   4   4
+
+TREEPACK_TEST03
+  TREE_ARC_TO_PRUEFER: Tree => Pruefer code
+
+          5
+          |
+    2-3-6-8-1-9
+      |   |
+      7   4
+
+  The graph:
+
+   1     2     3
+   2     3     7
+   3     3     6
+   4     6     8
+   5     8     4
+   6     8     5
+   7     8     1
+   8     1     9
+
+  The Pruefer code:
+
+     1:      1
+     2:      3
+     3:      8
+     4:      8
+     5:      3
+     6:      6
+     7:      8
+
+TREEPACK_TEST04
+  TREE_ARC_CENTER computes the center of a tree.
+
+  The edge list of the tree:
+
+   1     2     3
+   2     3     7
+   3     3     6
+   4     6     8
+   5     8     4
+   6     8     5
+   7     8     1
+   8     1     9
+
+  Parity = 2
+  Eccentricity is 2
+  Center nodes: 6 8
+
+TREEPACK_TEST05
+  TREE_ARC_CENTER computes the center of a tree.
+
+  The edge list of the tree:
+
+   1     1     2
+   2     1     3
+
+  Parity = 1
+  Eccentricity is 1
+  Center node: 1
+
+  The edge list of the tree:
+
+   1     2     1
+   2     2     3
+
+  Parity = 1
+  Eccentricity is 1
+  Center node: 2
+
+TREEPACK_TEST06
+  TREE_ARC_CENTER computes the center of a tree.
+
+  The edge list of the tree:
+
+   1     1     4
+   2     1     5
+   3     1     6
+   4     2     8
+   5     2    10
+   6     3     7
+   7     3     9
+   8     3    11
+   9     1     2
+  10     2     3
+
+  Parity = 1
+  Eccentricity is 2
+  Center node: 2
+
+TREEPACK_TEST07
+  TREE_ARC_DIAM computes the diameter of a tree.
+
+  The edge list of the tree:
+
+   1     2     3
+   2     3     7
+   3     3     6
+   4     6     8
+   5     8     4
+   6     8     5
+   7     8     1
+   8     1     9
+
+  This tree has a diameter of 0
+  between nodes 2 and 4
+
+  Nodes and labels:
+
+     1:      0
+     2:      1
+     3:      0
+     4:      1
+     5:      0
+     6:      0
+     7:      0
+     8:      0
+     9:      0
+
+TREEPACK_TEST08
+  TREE_ARC_RANDOM produces a random labeled
+  tree and its Pruefer code.
+
+
+  The random tree:
+
+   1     3     1
+   2     2     4
+   3     4     1
+
+  The Pruefer code:
+
+     1:      1
+     2:      4
+
+  The random tree:
+
+   1     2     4
+   2     4     3
+   3     3     1
+
+  The Pruefer code:
+
+     1:      4
+     2:      3
+
+  The random tree:
+
+   1     4     2
+   2     3     1
+   3     1     2
+
+  The Pruefer code:
+
+     1:      2
+     2:      1
+
+  The random tree:
+
+   1     4     2
+   2     3     1
+   3     1     2
+
+  The Pruefer code:
+
+     1:      2
+     2:      1
+
+  The random tree:
+
+   1     4     1
+   2     2     3
+   3     3     1
+
+  The Pruefer code:
+
+     1:      1
+     2:      3
+
+TREEPACK_TEST09
+  TREE_ENUM enumerates the labeled trees on a given
+  number of nodes.
+
+         0         1
+         1         1
+         2         1
+         3         3
+         4        16
+         5       125
+         6      1296
+         7     16807
+         8    262144
+         9   4782969
+        10  100000000
+
+TREEPACK_TEST10
+  TREE_PARENT_NEXT finds all labeled trees of a given 
+  order, and their Pruefer codes.
+
+  Pruefer code     Tree
+
+   1 1               4 1 1
+   1 2               2 4 1
+   1 3               3 1 4
+   1 4               4 1 4
+   2 1               4 1 2
+   2 2               2 4 2
+   2 3               2 3 4
+   2 4               2 4 4
+   3 1               4 3 1
+   3 2               3 4 2
+   3 3               3 3 4
+   3 4               3 4 4
+   4 1               4 4 1
+   4 2               4 4 2
+   4 3               4 3 4
+   4 4               4 4 4
+
+TREEPACK_TEST11
+  TREE_RB_ENUM enumerates the rooted binary trees on a 
+  given number of nodes.
+
+         0         1
+         1         1
+         2         0
+         3         1
+         4         0
+         5         2
+         6         0
+         7         5
+         8         0
+         9        14
+        10         0
+        11        42
+
+TREEPACK_TEST12
+  TREE_RB_LEX_NEXT produces all rooted binary trees with
+  a given number of nodes, in lexicographic order, using
+  the preorder traversal representation.
+
+  The number of nodes N = 11
+
+   1  10101010100
+   2  10101011000
+   3  10101100100
+   4  10101101000
+   5  10101110000
+   6  10110010100
+   7  10110011000
+   8  10110100100
+   9  10110101000
+  10  10110110000
+  11  10111000100
+  12  10111001000
+  13  10111010000
+  14  10111100000
+  15  11001010100
+  16  11001011000
+  17  11001100100
+  18  11001101000
+  19  11001110000
+  20  11010010100
+  21  11010011000
+  22  11010100100
+  23  11010101000
+  24  11010110000
+  25  11011000100
+  26  11011001000
+  27  11011010000
+  28  11011100000
+  29  11100010100
+  30  11100011000
+  31  11100100100
+  32  11100101000
+  33  11100110000
+  34  11101000100
+  35  11101001000
+  36  11101010000
+  37  11101100000
+  38  11110000100
+  39  11110001000
+  40  11110010000
+  41  11110100000
+  42  11111000000
+
+TREEPACK_TEST13
+  TREE_RB_LEX_NEXT produces all rooted binary trees with
+  a given number of nodes, in lexicographic order,
+  using the preorder traversal representation.
+  TREE_RB_TO_PARENT converts the preorder traversal form
+  to the more comprehensible parent node representation.
+
+  The number of nodes N = 11
+
+   1    0  1  1  3  3  5  5  7  7  9  9
+   2    0  1  1  3  3  5  5  7  8  8  7
+   3    0  1  1  3  3  5  6  6  5  9  9
+   4    0  1  1  3  3  5  6  6  8  8  5
+   5    0  1  1  3  3  5  6  7  7  6  5
+   6    0  1  1  3  4  4  3  7  7  9  9
+   7    0  1  1  3  4  4  3  7  8  8  7
+   8    0  1  1  3  4  4  6  6  3  9  9
+   9    0  1  1  3  4  4  6  6  8  8  3
+  10    0  1  1  3  4  4  6  7  7  6  3
+  11    0  1  1  3  4  5  5  4  3  9  9
+  12    0  1  1  3  4  5  5  4  8  8  3
+  13    0  1  1  3  4  5  5  7  7  4  3
+  14    0  1  1  3  4  5  6  6  5  4  3
+  15    0  1  2  2  1  5  5  7  7  9  9
+  16    0  1  2  2  1  5  5  7  8  8  7
+  17    0  1  2  2  1  5  6  6  5  9  9
+  18    0  1  2  2  1  5  6  6  8  8  5
+  19    0  1  2  2  1  5  6  7  7  6  5
+  20    0  1  2  2  4  4  1  7  7  9  9
+  21    0  1  2  2  4  4  1  7  8  8  7
+  22    0  1  2  2  4  4  6  6  1  9  9
+  23    0  1  2  2  4  4  6  6  8  8  1
+  24    0  1  2  2  4  4  6  7  7  6  1
+  25    0  1  2  2  4  5  5  4  1  9  9
+  26    0  1  2  2  4  5  5  4  8  8  1
+  27    0  1  2  2  4  5  5  7  7  4  1
+  28    0  1  2  2  4  5  6  6  5  4  1
+  29    0  1  2  3  3  2  1  7  7  9  9
+  30    0  1  2  3  3  2  1  7  8  8  7
+  31    0  1  2  3  3  2  6  6  1  9  9
+  32    0  1  2  3  3  2  6  6  8  8  1
+  33    0  1  2  3  3  2  6  7  7  6  1
+  34    0  1  2  3  3  5  5  2  1  9  9
+  35    0  1  2  3  3  5  5  2  8  8  1
+  36    0  1  2  3  3  5  5  7  7  2  1
+  37    0  1  2  3  3  5  6  6  5  2  1
+  38    0  1  2  3  4  4  3  2  1  9  9
+  39    0  1  2  3  4  4  3  2  8  8  1
+  40    0  1  2  3  4  4  3  7  7  2  1
+  41    0  1  2  3  4  4  6  6  3  2  1
+  42    0  1  2  3  4  5  5  4  3  2  1
+
+TREEPACK_TEST14
+  TREE_RB_YULE carries out one step of the Yule model
+  on a rooted binary tree stored in preorder traversal form.
+
+  Each call adds two children to an arbitary leaf.
+
+  Simulation 1
+
+  Nodes  Preorder code
+
+   1  0
+   3  100
+   5  11000
+   7  1110000
+   9  111100000
+  11  11110100000
+
+  Simulation 2
+
+  Nodes  Preorder code
+
+   1  0
+   3  100
+   5  11000
+   7  1110000
+   9  111100000
+  11  11110100000
+
+  Simulation 3
+
+  Nodes  Preorder code
+
+   1  0
+   3  100
+   5  11000
+   7  1110000
+   9  111100000
+  11  11110100000
+
+  Simulation 4
+
+  Nodes  Preorder code
+
+   1  0
+   3  100
+   5  11000
+   7  1110000
+   9  111100000
+  11  11110100000
+
+  Simulation 5
+
+  Nodes  Preorder code
+
+   1  0
+   3  100
+   5  11000
+   7  1110000
+   9  111100000
+  11  11110100000
+
+TREEPACK_TEST15
+  TREE_ROOTED_CODE: code of a rooted tree.
+
+
+  Parent vector for tree:
+
+     1:      0
+     2:      1
+     3:      1
+     4:      2
+     5:      2
+     6:      2
+     7:      3
+     8:      3
+     9:      5
+    10:      5
+    11:      6
+    12:     10
+
+  The tree code:
+
+     1:      1
+     2:      1
+     3:      1
+     4:      0
+     5:      1
+     6:      1
+     7:      0
+     8:      1
+     9:      1
+    10:      0
+    11:      0
+    12:      0
+    13:      1
+    14:      1
+    15:      0
+    16:      0
+    17:      0
+    18:      1
+    19:      1
+    20:      0
+    21:      1
+    22:      0
+    23:      0
+    24:      0
+
+TREEPACK_TEST16
+  TREE_ROOTED_DEPTH: depth of a rooted tree.
+
+  Parent vector for tree:
+
+     1:      0
+     2:      1
+     3:      1
+     4:      2
+     5:      2
+     6:      2
+     7:      3
+     8:      3
+     9:      5
+    10:      5
+    11:      6
+    12:     10
+
+  Individual node depths:
+
+     1:      0
+     2:      1
+     3:      1
+     4:      2
+     5:      2
+     6:      2
+     7:      2
+     8:      2
+     9:      3
+    10:      3
+    11:      3
+    12:      4
+
+  Overall rooted tree depth: 4
+
+TREEPACK_TEST17
+  TREE_ROOTED_ENUM counts unlabeled rooted trees.
+
+  Number of trees with given number of nodes:
+
+     1:      1
+     2:      1
+     3:      2
+     4:      4
+     5:      9
+     6:     20
+     7:     48
+     8:    115
+     9:    286
+    10:    719
+
+TREEPACK_TEST18
+  TREE_ROOTED_RANDOM: random unlabeled rooted trees.
+
+  Selecting random trees, rooted at 1
+  Number of nodes is NNODE = 5
+
+  Each tree is described by the nodes that
+  connect nodes 2 through NNODE.
+
+   1   1   1   1
+   1   2   3   4
+   1   1   3   3
+   1   1   1   4
+   1   2   2   1
+
+TREEPACK_TEST
+  Normal end of execution.
+
+28-Jun-2013 11:14:12
+>> 

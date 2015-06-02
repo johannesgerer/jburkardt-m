@@ -57,7 +57,6 @@ function triangulation_order1_display ( prefix )
   if ( nargin < 1 )
 
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'TRIANGULATION_ORDER6_CONTOUR:\n' );
 
     prefix = input ( ...
       'Please enter the filename prefix:' );

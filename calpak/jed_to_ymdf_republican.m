@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_republican ( jed )
 %
 %  Modified:
 %
-%    14 July 2012
+%    23 April 2013
 %
 %  Author:
 %
@@ -37,14 +37,14 @@ function [ y, m, d, f ] = jed_to_ymdf_republican ( jed )
   j = floor ( jed + 0.5 );
   f = ( jed + 0.5 ) - j;
 
-  g = floor ( ( 4 * j + 578797 ) / 146097 );
-  g = floor ( 3 * g / 4 ) - 51;
+  g =floor ( ( 4 * j + 578797 ) / 146097 );
+  g = floor ( ( 3 * g ) / 4 ) - 51;
   j_prime = j + 111 + g;
 
-  y_prime = floor ( ( 4 * j_prime + 3 ) / 1461 );
+  y_prime =     floor ( ( 4 * j_prime + 3 ) / 1461 );
   t_prime = floor ( mod ( 4 * j_prime + 3, 1461 ) / 4 );
   m_prime = floor ( t_prime / 30 );
-  d_prime = mod ( t_prime, 30 );
+  d_prime =   mod ( t_prime, 30 );
 %
 %  Convert the computational date to a calendar date.
 %

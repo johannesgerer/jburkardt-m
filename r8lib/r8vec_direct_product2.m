@@ -103,7 +103,7 @@ function w = r8vec_direct_product2 ( factor_index, factor_order, ...
 %
 %    Input, integer POINT_NUM, the number of elements in the direct product.
 %
-%    Input/output, real W(POINT_NUM), the elements of the
+%    Input/output, real W(POINT_NUM,1), the elements of the
 %    direct product, updated by the latest factor.
 %
 %  Local Parameters:
@@ -125,7 +125,7 @@ function w = r8vec_direct_product2 ( factor_index, factor_order, ...
     contig = 1;
     skip = 1;
     rep = point_num;
-    w(1:point_num) = 1.0;
+    w(1:point_num,1) = 1.0;
   end
 
   rep = rep / factor_order;
@@ -136,7 +136,7 @@ function w = r8vec_direct_product2 ( factor_index, factor_order, ...
     start = 1 + ( j - 1 ) * contig;
 
     for k = 1 : rep
-      w(start:start+contig-1) = w(start:start+contig-1) * factor_value(j);
+      w(start:start+contig-1,1) = w(start:start+contig-1,1) * factor_value(j);
       start = start + skip;
     end
 

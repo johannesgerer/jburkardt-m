@@ -1,14 +1,13 @@
-function facedemo(n)
+function facedemo ( n )
 
 %*****************************************************************************80
 %
-% FACETEST: Example polygonal geometries for MESHFACES.
+% FACEDEMO: Example polygonal geometries for MESHFACES.
 %
 %  Author:
 %
 %    Darren Engwirda
 %
-
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'The usual call is to FACEDEMO ( N ), with N = 1 or 2.\n' );
@@ -16,8 +15,9 @@ function facedemo(n)
     n = 1;
   end
 
-switch n
-   case 1
+  switch n
+
+    case 1
 
       node = [0.0, 0.0; 1.0,0.0; 1.0,1.0; 0.0,1.0; 1.01,0.0; 1.01,1.0; 3.0,0.0; 3.0,1.0];
       edge = [1,2; 2,3; 3,4; 4,1; 2,5; 5,6; 6,3; 5,7; 7,8; 8,6];
@@ -25,9 +25,9 @@ switch n
       face{2} = [5,6,7,2];
       face{3} = [8,9,10,6];
 
-      meshfaces(node,edge,face);
+      meshfaces ( node, edge, face );
 
-   case 2
+    case 2
 
       % Geometry
       dtheta = pi/36;
@@ -45,8 +45,10 @@ switch n
 
       meshfaces(node,edge,face);
 
-   otherwise
+    otherwise
       error('Invalid demo. N must be between 1-2');
-end
 
-end      % facetest()
+  end
+
+  return
+end

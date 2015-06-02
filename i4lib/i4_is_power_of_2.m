@@ -38,7 +38,7 @@ function value = i4_is_power_of_2 ( n )
       return
     end
 
-    n = n / 2;
+    floor ( n = n / 2 );
 
   end
 

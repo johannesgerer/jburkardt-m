@@ -2,7 +2,7 @@ function simplex_coordinates_test ( )
 
 %*****************************************************************************80
 %
-%% SIMPLEX_COORDINATES_TEST tests SIMPLEX_COORDINATES.
+%% SIMPLEX_COORDINATES_TEST tests the SIMPLEX_COORDINATES library.
 %
 %  Licensing:
 %

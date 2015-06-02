@@ -39,7 +39,6 @@ function fem2d_sample ( fem_prefix, sample_prefix )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM2D_SAMPLE\n' );
   fprintf ( 1, '  MATLAB version.\n' );
@@ -53,14 +52,14 @@ function fem2d_sample ( fem_prefix, sample_prefix )
   if ( nargin < 1 )
 
     fprintf ( 1, '\n' );
-    fem_prefix = input ( 'Enter the FEM file prefix:' );
+    fem_prefix = input ( 'Enter the FEM file prefix:  ' );
 
   end
 
   if ( nargin < 2 )
 
     fprintf ( 1, '\n' );
-    sample_prefix = input ( 'Enter the sample file prefix:' );
+    sample_prefix = input ( 'Enter the sample file prefix:  ' );
 
   end
 %

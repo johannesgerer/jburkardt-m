@@ -1,0 +1,204 @@
+<html>
+
+  <head>
+    <title>
+      SPIRAL_DATA - Velocity Vector Field Satisfying Continuity Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPIRAL_DATA <br> Velocity Vector Field Satisfying Continuity Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPIRAL_DATA</b>
+      is a MATLAB library which
+      samples a velocity vector field that satisfies the
+      continuity equation, and writes the nodes and velocities to a file,
+      suitable for display using GNUPLOT.
+    </p>
+
+    <p>
+      The continuous velocity field <b>(U,V)(X,Y)</b> that is discretely
+      sampled here satisfies the homogeneous continuity equation, that is,
+      it has zero divergence.  In other words:
+      <pre><b>
+        dU/dX + dV/dY = 0.
+      </b></pre>
+      This is by construction, since we have
+      <pre><b>
+        U(X,Y) =  10 * d/dY ( PHI(X) * PHI(Y) )
+        V(X,Y) = -10 * d/dX ( PHI(X) * PHI(Y) )
+      </b></pre>
+      which guarantees zero divergence.
+     </p>
+
+    <p>
+      The underlying function PHI is defined by
+      <pre><b>
+        PHI(Z) = ( 1 - cos ( C * pi * Z ) ) * ( 1 - Z )^2
+      </b></pre>
+      where C is a parameter.
+    </p>
+
+    <p>
+      The velocity data satisifes the (continuous) continuity equation;
+      this in <b>no way</b> implies that it satisfies the momentum equations
+      associated with Stokes or Navier-Stokes flow!  Moreover, a flow solution
+      for those equations would normally also require specifying a value
+      for the scalar pressure field <b>P(X,Y)</b>.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPIRAL_DATA</b> is available in
+      <a href = "../../c_src/spiral_data/spiral_data.html">a C version</a> and
+      <a href = "../../cpp_src/spiral_data/spiral_data.html">a C++ version</a> and
+      <a href = "../../f77_src/spiral_data/spiral_data.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/spiral_data/spiral_data.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/spiral_data/spiral_data.html">a MATLAB version</a> and
+      <a href = "../../py_src/spiral_data/spiral_data.html">a Python version</a>..
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/gnuplot/gnuplot.html">
+      GNUPLOT</a>,
+      MATLAB programs which
+      illustrate the use of the gnuplot graphics program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">
+      NAVIER_STOKES_2D_EXACT</a>,
+      a MATLAB library which
+      evaluates an exact solution to the incompressible time-dependent
+      Navier-Stokes equations over an arbitrary domain in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stokes_2d_exact/stokes_2d_exact.html">
+      STOKES_2D_EXACT</a>,
+      a MATLAB library which
+      evaluates exact solutions to the incompressible steady
+      Stokes equations over the unit square in 2D.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "grid_2d.m">grid_2d.m</a>, 
+          returns a regular 2D grid.
+        </li>
+        <li>
+          <a href = "r8vec_uniform_ab.m">r8vec_uniform_ab.m</a>, 
+          returns a scaled pseudorandom R8VEC.
+        </li>
+        <li>
+          <a href = "resid_spiral.m">resid_spiral.m</a>, 
+          computes the residual for a spiral velocity vector field.
+        </li>
+        <li>
+          <a href = "spiral_gnuplot.m">spiral_gnuplot.m</a>, 
+          writes the velocity vector field to files for GNUPLOT.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "uv_spiral.m">uv_spiral.m</a>, 
+          computes a spiral velocity vector field.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "spiral_test.m">spiral_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "spiral_test01.m">spiral_test01.m</a>,
+          samples the flow and reports the range.
+        </li>
+        <li>
+          <a href = "spiral_test02.m">spiral_test02.m</a>,
+          samples the flow and reports the residual.
+        </li>
+        <li>
+          <a href = "spiral_test03.m">spiral_test03.m</a>,
+          evaluates the flow on a grid and writes GNUPLOT plot files.
+        </li>
+        <li>
+          <a href = "spiral_test04.m">spiral_test04.m</a>,
+          evaluates the flow on a grid and calls Matlab's QUIVER function.
+        </li>
+        <li>
+          <a href = "spiral_data.txt">spiral_data.txt</a>,
+          data for GNUPLOT.
+        </li>
+        <li>
+          <a href = "spiral_commands.txt">spiral_commands.txt</a>,
+          commands for GNUPLOT.
+        </li>
+        <li>
+          <a href = "spiral.png">
+          spiral.png</a>,
+          the resulting plot.
+        </li>
+        <li>
+          <a href = "spiral_quiver.png">
+          spiral_quiver.png</a>,
+          the resulting QUIVER plot.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 17 January 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

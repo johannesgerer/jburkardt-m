@@ -10,7 +10,7 @@ function spline_test15 ( )
 %
 %  Modified:
 %
-%    01 February 2009
+%    06 June 2013
 %
 %  Author
 %
@@ -47,9 +47,9 @@ function spline_test15 ( )
     fprintf ( 1, '%14f  %14f\n', t(i), y(i) );
   end
 %
-%  Try boundary condition types 0, 1 and 2.
+%  Try various boundary conditions.
 %
-  for k = 0 : 3
+  for k = 0 : 4
 
     if ( k == 0 )
 
@@ -102,6 +102,14 @@ function spline_test15 ( )
       fprintf ( 1, '  Boundary condition 2 at both ends:\n' );
       fprintf ( 1, '  YP"(left) =  %f\n', ybcbeg );
       fprintf ( 1, '  YP"(right) = %f\n', ybcend );
+
+    elseif ( k == 4 )
+
+      ibcbeg = 3;
+      ibcend = 3;
+
+      fprintf ( 1, '\n' );
+      fprintf ( 1, '  "Not-a-knot" spline:\n' );
 
     end
 

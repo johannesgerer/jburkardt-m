@@ -2,7 +2,7 @@ function geometry_test016 ( )
 
 %*****************************************************************************80
 %
-%% TEST016 tests CIRCLE_IMP_POINTS_2D, POLYGON_AREA_2D.
+%% GEOMETRY_TEST016 tests CIRCLE_IMP_POINTS_2D, POLYGON_AREA_2D.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function geometry_test016 ( )
   r = 2.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST016\n' );
+  fprintf ( 1, 'GEOMETRY_TEST016\n' );
   fprintf ( 1, '  CIRCLE_IMP_POINTS_2D gets points on a circle;\n' );
   fprintf ( 1, '  POLYGON_AREA_2D finds the area of a polygon.\n' );
 

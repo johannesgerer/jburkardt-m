@@ -21,7 +21,7 @@ function [ n_data, tc, sigma ] = surten_values ( n_data )
 %    Lester Haar, John Gallagher and George Kell,
 %    NBS/NRC Steam Tables:
 %    Thermodynamic and Transport Properties and Computer Programs
-%      for Vapor and Liquid States of Water in SI Units,
+%    for Vapor and Liquid States of Water in SI Units,
 %    Hemisphere Publishing Corporation, Washington, 1984,
 %    TJ270.H3, pages 267.
 %

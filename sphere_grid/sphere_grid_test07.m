@@ -1,8 +1,8 @@
-function test07 ( )
+function sphere_grid_test07 ( )
 
 %*****************************************************************************80
 %
-%% TEST07 tests SPHERE_GRID_Q4.
+%% SPHERE_GRID_TEST07 tests SPHERE_GRID_Q4.
 %
 %  Licensing:
 %
@@ -21,7 +21,7 @@ function test07 ( )
   rectangle_num = lat_num * long_num;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST07\n' );
+  fprintf ( 1, 'SPHERE_GRID_TEST07\n' );
   fprintf ( 1, '  SPHERE_GRID_Q4 computes a grid\n' );
   fprintf ( 1, '  of Q4 rectangular elements on a sphere in 3D.\n' );
   fprintf ( 1, '\n' );

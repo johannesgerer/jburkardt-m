@@ -10,7 +10,7 @@ function start_num = p00_start_num ( prob )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -58,6 +58,8 @@ function start_num = p00_start_num ( prob )
     start_num = p17_start_num ( );
   elseif ( prob == 18 )
     start_num = p18_start_num ( );
+  elseif ( prob == 19 )
+    start_num = p19_start_num ( );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_START_NUM - Fatal error!\n' );

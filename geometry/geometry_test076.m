@@ -2,7 +2,7 @@ function geometry_test076 ( )
 
 %*****************************************************************************80
 %
-%% TEST076 tests POLYGON_AREA_2D.
+%% GEOMETRY_TEST076 tests POLYGON_AREA_2D.
 %
 %  Licensing:
 %
@@ -22,7 +22,7 @@ function geometry_test076 ( )
   n_test = [ 4, 8 ];
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST076\n' );
+  fprintf ( 1, 'GEOMETRY_TEST076\n' );
   fprintf ( 1, '  For a polygon in 2D:\n' );
   fprintf ( 1, '  POLYGON_AREA_2D computes the area.\n' );
 

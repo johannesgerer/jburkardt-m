@@ -2,7 +2,7 @@ function quadrule_test08 ( )
 
 %*****************************************************************************80
 %
-%% TEST08 tests HERMITE_EK_COMPUTE and SUMMER.
+%% QUADRULE_TEST08 tests HERMITE_EK_COMPUTE.
 %
 %  Licensing:
 %
@@ -21,9 +21,8 @@ function quadrule_test08 ( )
   nfunc = func_set ( 'COUNT', 'DUMMY' );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST08\n' );
+  fprintf ( 1, 'QUADRULE_TEST08\n' );
   fprintf ( 1, '  HERMITE_EK_COMPUTE computes a Gauss-Hermite rule;\n' );
-  fprintf ( 1, '  SUMMER carries it out.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The integration interval is ( -oo, +oo ).\n' );
 
@@ -49,9 +48,12 @@ function quadrule_test08 ( )
 
         [ xtab, weight ] = hermite_ek_compute ( norder );
 
-        result(i) = summer ( @func, norder, xtab, weight );
+        result = 0.0;
+        for j = 1 : norder
+          result = result + weight(j) * func ( xtab(j) );
+        end
 
-        fprintf ( 1, '  %12f', result(i) );
+        fprintf ( 1, '  %12f', result );
 
       end
 

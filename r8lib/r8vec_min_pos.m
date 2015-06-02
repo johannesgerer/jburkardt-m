@@ -26,12 +26,9 @@ function value = r8vec_min_pos ( n, a )
 %
 %    Input, real A(N), the array.
 %
-%    Output, real VALUE, the smallest positive entry,
-%    or R8_HUGE if no entry is positive.
+%    Output, real VALUE, the smallest positive entry.
 %
-  r8_huge = 1.0E+30;
-
-  value = r8_huge;
+  value = realmax ( );
 
   for i = 1 : n
     if ( 0.0 < a(i) )

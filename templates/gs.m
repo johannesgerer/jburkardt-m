@@ -1,11 +1,8 @@
 function [ x, error_norm, iter, flag ]  = gs ( A, x, b, max_it, tol )
 
-% [ x, error_norm, iter, flag ]  = gs ( A, x, b, max_it, tol )
+%*****************************************************************************80
 %
-%  Discussion:
-%
-%    This routine solves the linear system Ax=b using the
-%    Gauss-Seidel Method.  
+%% GS solves the linear system Ax=b using the Gauss-Seidel Method.  
 %
 %  Modified:
 %

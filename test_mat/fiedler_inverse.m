@@ -2,7 +2,7 @@ function a = fiedler_inverse ( n, x )
 
 %*****************************************************************************80
 %
-%% FIEDLER_INVERSE returns the inverse of the Fiedler matrix.
+%% FIEDLER_INVERSE returns the inverse of the FIEDLER matrix.
 %
 %  Licensing:
 %
@@ -24,7 +24,7 @@ function a = fiedler_inverse ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   d1 = 0.5 / ( x(n) - x(1) );
   d2 = 0.5 / ( x(1) - x(2) );

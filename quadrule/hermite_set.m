@@ -8,7 +8,11 @@ function [ x, w ] = hermite_set ( n )
 %
 %    The integral:
 %
-%      integral ( -oo < x < +oo ) exp ( - x * x ) * f(x) dx
+%      integral ( -oo < x < +oo ) f(x) * rho(x) dx
+%
+%    The weight:
+%
+%      rho(x) = exp ( - x * x )
 %
 %    The quadrature rule:
 %

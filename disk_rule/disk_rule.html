@@ -1,0 +1,264 @@
+<html>
+
+  <head>
+    <title>
+      DISK_RULE - Quadrature Rules for the Unit Disk
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      DISK_RULE <br> Quadrature Rules for the Unit Disk
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>DISK_RULE</b>
+      is a MATLAB library which
+      computes a quadrature rule 
+      over the interior of the unit disk in 2D.
+    </p>
+
+    <p>
+      The user specifies values NT and NR, where NT is the number of equally
+      spaced angles, and NR controls the number of radial points.  The program
+      returns vectors T(1:NT), R(1:NR) and W(1:NR), which define the rule Q(f).
+    </p>
+
+    <p>
+      To use a rule that is equally powerful in R and T, typically, set
+      NT = 2 * NR.
+    </p>
+
+    <p>
+      Given NT and NR, and the vectors T, R and W, the integral I(f) of 
+      a function f(x,y) is estimated by Q(f) as follows:
+      <pre>
+        q = 0.0
+        for j = 1, nr
+          for i = 1, nt
+            x = r(j) * cos ( t(i) )
+            y = r(j) * sin ( t(i) )
+            q = q + w(j) * f ( x, y )
+          end
+        end
+      </pre>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>DISK_RULE</b> is available in
+      <a href = "../../c_src/disk_rule/disk_rule.html">a C version</a> and
+      <a href = "../../cpp_src/disk_rule/disk_rule.html">a C++ version</a> and
+      <a href = "../../f77_src/disk_rule/disk_rule.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/disk_rule/disk_rule.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/disk_rule/disk_rule.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/circle_rule/circle_rule.html">
+      CIRCLE_RULE</a>,
+      a MATLAB library which
+      computes quadrature rules 
+      over the circumference of the unit circle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/cube_felippa_rule/cube_felippa_rule.html">
+      CUBE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a cube in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_felippa_rule/pyramid_felippa_rule.html">
+      PYRAMID_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns Felippa's quadratures rules for approximating integrals
+      over the interior of a pyramid in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pyramid_rule/pyramid_rule.html">
+      PYRAMID_RULE</a>,
+      a MATLAB program which
+      computes a quadrature rule 
+      over the interior of a pyramid in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sphere_lebedev_rule/sphere_lebedev_rule.html">
+      SPHERE_LEBEDEV_RULE</a>,
+      a MATLAB library which
+      computes Lebedev quadrature rules
+      on the surface of the unit sphere in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/square_felippa_rule/square_felippa_rule.html">
+      SQUARE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a square in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/stroud/stroud.html">
+      STROUD</a>,
+      a MATLAB library which
+      defines quadrature rules for a variety of M-dimensional regions, 
+      including the interior of the square, cube and hypercube, the pyramid,
+      cone and ellipse, the hexagon, the M-dimensional octahedron,
+      the circle, sphere and hypersphere, the triangle, tetrahedron and simplex,
+      and the surface of the circle, sphere and hypersphere.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tetrahedron_felippa_rule/tetrahedron_felippa_rule.html">
+      TETRAHEDRON_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns Felippa's quadratures rules for approximating integrals
+      over the interior of a tetrahedron in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_fekete_rule/triangle_fekete_rule.html">
+      TRIANGLE_FEKETE_RULE</a>,
+      a MATLAB library which
+      defines Fekete rules for quadrature or interpolation 
+      over the interior of a triangle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_felippa_rule/triangle_felippa_rule.html">
+      TRIANGLE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns Felippa's quadratures rules for approximating integrals
+      over the interior of a triangle in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wedge_felippa_rule/wedge_felippa_rule.html">
+      WEDGE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns quadratures rules for approximating integrals
+      over the interior of the unit wedge in 3D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+        <li>
+          Sylvan Elhay, Jaroslav Kautsky,<br>
+          Algorithm 655: IQPACK, FORTRAN Subroutines for the Weights of 
+          Interpolatory Quadrature,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 13, Number 4, December 1987, pages 399-415.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+      <ul>
+        <li>
+          <a href = "disk_rule.m">disk_rule.m</a>,
+          computes a quadrature rule for the unit disk.
+        </li>
+        <li>
+          <a href = "disk01_monomial_integral.m">disk01_monomial_integral.m</a>,
+          returns monomial integrals in the unit disk in 2D.
+        </li>
+        <li>
+          <a href = "imtqlx.m">imtqlx.m</a>,
+          diagonalizes a symmetric tridiagonal matrix.
+        </li>
+        <li>
+          <a href = "legendre_ek_compute.m">legendre_ek_compute.m</a>,
+          Legendre quadrature rule by the Elhay-Kautsky method.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "disk_rule_test.m">disk_rule_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "disk_rule_test01.m">disk_rule_test01.m</a>,
+          tests the disk_rule function.
+        </li>
+        <li>
+          <a href = "disk_rule_test_output.txt">disk_rule_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 March 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

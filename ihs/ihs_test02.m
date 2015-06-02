@@ -10,7 +10,7 @@ function ihs_test02 ( )
 %
 %  Modified:
 %
-%    28 March 2004
+%    27 February 2014
 %
 %  Author:
 %
@@ -36,15 +36,12 @@ function ihs_test02 ( )
 
   for duplication = 1 : 5
 
-    seed = 17;
-
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Random number seed =       %d\n', seed );
     fprintf ( 1, '  Duplication factor =       %d\n', duplication );
 %
 %  Get the points.
 %
-    [ x, seed ] = ihs ( dim_num, point_num, duplication, seed );
+    x = ihs ( dim_num, point_num, duplication );
 %
 %  Compute the covariance.
 %

@@ -37,7 +37,7 @@ function [ y, m, ierror ] = ym_check_gregorian ( y, m )
 %
 %  Check the year.
 %
-  ierror = y_check_gregorian ( y );
+  [ y, ierror ] = y_check_gregorian ( y );
 
   if ( ierror ~= 0 )
     return

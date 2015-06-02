@@ -2,11 +2,7 @@ function test_int_2d_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for TEST_INT_2D_TEST.
-%
-%  Discussion:
-%
-%    TEST_INT_2D_TEST demonstrates the TEST_INT_2D integration test functions.
+%% TEST_INT_2D_TEST tests the TEST_INT_2D library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_int_2d_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_2D_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -36,7 +31,6 @@ function test_int_2d_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_2D_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function shoreline_test ( )
 
 %*****************************************************************************80
 %
-%% SHORELINE_TEST tests SHORELINE.
+%% SHORELINE_TEST tests the SHORELINE library.
 %
 %  Licensing:
 %
@@ -19,6 +19,7 @@ function shoreline_test ( )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SHORELINE_TEST:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the SHORELINE library.\n' );
 
   circle_centered_test ( );

@@ -19,7 +19,7 @@ function sparse_grid_cc_dataset ( dim_num, level_max )
 %
 %  Modified:
 %
-%    11 June 2009
+%    21 April 2013
 %
 %  Author:
 %
@@ -64,7 +64,9 @@ function sparse_grid_cc_dataset ( dim_num, level_max )
 %
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
-    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater)' );
+    dim_num = input ( '  Enter the value of DIM_NUM (1 or greater): ' );
+  elseif ( ischar ( dim_num ) )
+    dim_num = str2num ( dim_num );
   end
 
   fprintf ( 1, '\n' );
@@ -74,7 +76,9 @@ function sparse_grid_cc_dataset ( dim_num, level_max )
 %
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
-    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater)' );
+    level_max = input ( '  Enter the value of LEVEL_MAX (0 or greater): ' );
+  elseif ( ischar ( level_max ) )
+    level_max = str2num ( level_max );
   end
 
   level_min = max ( 0, level_max + 1 - dim_num );
@@ -143,8 +147,8 @@ function sparse_grid_cc_dataset ( dim_num, level_max )
 
   return
 end
-function test_level = abscissa_level_closed_nd ( level_max, dim_num, test_num, ...
-  test_val )
+function test_level = abscissa_level_closed_nd ( level_max, dim_num, ...
+  test_num, test_val )
 
 %*******************************************************************************
 %
@@ -153,7 +157,7 @@ function test_level = abscissa_level_closed_nd ( level_max, dim_num, test_num, .
 %  Discussion:
 %
 %    We assume an underlying product grid.  In each dimension, this product
-%    grid has order 2**LEVEL_MAX + 1.
+%    grid has order 2^LEVEL_MAX + 1.
 %
 %    We will say a sparse grid has total level LEVEL if each point in the
 %    grid has a total level of LEVEL or less.
@@ -217,7 +221,7 @@ function test_level = abscissa_level_closed_nd ( level_max, dim_num, test_num, .
 %    Input, integer TEST_NUM, the number of points to be tested.
 %
 %    Input, integer TEST_VAL(DIM_NUM,TEST_NUM), the indices of the points 
-%    to be tested.  Normally, each index would be between 0 and 2**LEVEL_MAX.
+%    to be tested.  Normally, each index would be between 0 and 2^LEVEL_MAX.
 %
 %    Output, integer TEST_LEVEL(TEST_NUM), the value of LEVEL at which the
 %    point would first be generated, assuming that a standard sequence of
@@ -241,7 +245,7 @@ function test_level = abscissa_level_closed_nd ( level_max, dim_num, test_num, .
 
   return
 end
-function value = cc_abscissa ( order, i )
+function value = cc_abscissa ( n, i )
 
 %*******************************************************************************
 %
@@ -249,8 +253,7 @@ function value = cc_abscissa ( order, i )
 %
 %  Discussion:
 %
-%    Our convention is that the abscissas are numbered from left to
-%    right.
+%    The abscissas are numbered from left to right.
 %
 %  Licensing:
 %
@@ -266,23 +269,23 @@ function value = cc_abscissa ( order, i )
 %
 %  Parameters:
 %
-%    Input, integer ORDER, the order of the rule.
+%    Input, integer N, the order of the rule.
 %
-%    Input, integer I, the index of the desired abscissa.  1 <= I <= ORDER.
+%    Input, integer I, the index of the desired abscissa.  1 <= I <= N.
 %
 %    Output, real VALUE, the value of the I-th abscissa in the 
-%    rule of order ORDER.
+%    rule of order N.
 %
-  if ( order < 1 )
+  if ( n < 1 )
     value = - Inf;
-  elseif ( i < 1 || order < i )
+  elseif ( i < 1 || n < i )
     value = - Inf;
-  elseif ( order == 1 )
+  elseif ( n == 1 )
     value = 0.0;
-  elseif ( 2 * ( order - i ) == order - 1 )
+  elseif ( 2 * ( n - i ) == n - 1 )
     value = 0.0;
   else
-    value = cos ( ( order - i ) * pi / ( order - 1 ) );
+    value = cos ( ( n - i ) * pi / ( n - 1 ) );
   end
 
   return

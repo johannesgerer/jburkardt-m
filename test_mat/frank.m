@@ -2,7 +2,7 @@ function a = frank ( n )
 
 %*****************************************************************************80
 %
-%% FRANK returns the Frank matrix.
+%% FRANK returns the FRANK matrix.
 %
 %  Formula:
 %
@@ -42,8 +42,8 @@ function a = frank ( n )
 %    pairs, LAMBDA and 1/LAMBDA.
 %
 %    For N = 12, the eigenvalues of A range from 32.2 to 0.031, with
-%    the smaller eigenvalues having a condition number of 10**7,
-%    meaning that a change in the matrix of order 10**(-7) can
+%    the smaller eigenvalues having a condition number of 10^7,
+%    meaning that a change in the matrix of order 10^(-7) can
 %    result in a change in the eigenvalue of order 1.  The actual
 %    eigenvalues are:
 %
@@ -117,7 +117,7 @@ function a = frank ( n )
 %    J M Varah,
 %    A generalization of the Frank matrix,
 %    SIAM Journal on Scientific and Statistical Computing,
-%    Volume 7, 1986, pages 835-839.
+%    Volume 7, Number 3, August 1986, pages 835-839.
 %
 %    Joan Westlake,
 %    Test Matrix A37,
@@ -139,6 +139,8 @@ function a = frank ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

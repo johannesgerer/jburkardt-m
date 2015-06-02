@@ -1,0 +1,292 @@
+<html>
+
+  <head>
+    <title>
+      IMAGE_MATCH_GENETIC - Approximate an Image Using a Genetic Algorithm
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      IMAGE_MATCH_GENETIC <br> Approximate an Image Using a Genetic Algorithm
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>IMAGE_MATCH_GENETIC</b>
+      is a MATLAB program which
+      approximates a 256x256 JPG image by blending just 32 rectangles of arbitrary
+      position and color, using ideas from genetic algorithms,
+      based on an example by Nick Berry.
+    </p>
+
+    <p>
+      In Nick Berry's example, he started with a 256x256 RGB image of himself.
+      He considered the problem of reconstructing this image using 32 rectangles,
+      each having an RGB color, and each having an arbitrary location.
+      Thus, an attempt to approximate the original image can be described by
+      32 pieces of information, each of which involves 7 data items, namely
+      3 colors, and 4 coordinate
+      values, that is, the locations of the lower left and upper right corners of
+      the rectangle.
+    </p>
+
+    <p>
+      Because the X and Y ranges of our image are 0 to 255, and our RGB ranges are
+      also 0 to 255, each of our 7 data items can be described by an 8 bit binary
+      integer.  So we can imagine that we can describe an approximate solution
+      using 32 x 7 * 8 bits of information.
+    </p>
+
+    <p>
+      We might refer to an approximate solution as a "candidate", or the solution's "DNA".
+      We might refer to the information describing a single rectangle as a "chromosome",
+      and the 7 data items as "genes".  Then the 8 bits in a gene are the fundamental
+      items of genetic information.
+    </p>
+
+    <p>
+      A genetic algorithm tries to solve the image matching problem by starting with a
+      random population of 10 sets of DNA.  A fitness function is used to identify the
+      best and worst DNA.  In our case, this fitness function might simply be the sum
+      of the differences between the original and approximate RGB images.
+    </p>
+
+    <p>
+      We then modify our population by:
+      <ul>
+        <li>
+          <i>death</i>, the two worst candidates are discarded;
+        </li>
+        <li>
+          <i>mutations</i>, one of the intermediate candidates has a single genetic bit flipped.
+        </li>
+        <li>
+          <i>crossover</i>, the two best candidates are crossed, creating two children whose
+          DNA is a mix of that of the two parents's.
+        </li>
+      </ul>
+      The new population is evaluated for fitness, and the modification process is repeated
+      many times, in the hope that approximations of increasing fitness will be discovered.
+    <p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>IMAGE_MATCH_GENETIC</b> is available in
+      <a href = "../../m_src/image_match_genetic/image_match_genetic.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/image_components/image_components.html">
+      IMAGE_COMPONENTS</a>,
+      a MATLAB library which
+      seeks the connected "nonzero" or "nonblack" components of an image or integer vector,
+      array or 3D block.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_contrast/image_contrast.html">
+      IMAGE_CONTRAST</a>,
+      a MATLAB program which
+      applies image processing techniques to increase the contrast in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_denoise/image_denoise.html">
+      IMAGE_DENOISE</a>,
+      MATLAB programs which
+      apply image processing techniques to remove noise from an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_diffuse/image_diffuse.html">
+      IMAGE_DIFFUSE</a>,
+      a MATLAB library which
+      uses diffusion to smooth out an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_edge/image_edge.html">
+      IMAGE_EDGE</a>,
+      a MATLAB library which
+      demonstrates a simple procedure for edge detection in images.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_quantization/image_quantization.html">
+      IMAGE_QUANTIZATION</a>,
+      a MATLAB library which
+      demonstrates how the KMEANS algorithm can be used to reduce the number
+      of colors or shades of gray in an image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_rgb_to_gray/image_rgb_to_gray.html">
+      IMAGE_RGB_TO_GRAY</a>,
+      MATLAB programs which
+      makes a grayscale version of an RGB image.
+    </p>
+
+    <p>
+      <a href = "../../m_src/image_threshold/image_threshold.html">
+      IMAGE_THRESHOLD</a>,
+      MATLAB programs which
+      make a black and white version of a grayscale image by setting all pixels
+      below or above a threshold value to black or white.
+    </p>
+
+    <p>
+      <a href = "../../cpp_src/simple_ga/simple_ga.html">
+      SIMPLE_GA</a>,
+      a C++ program which
+      a simple example of a genetic algorithm,
+      by Dennis Cormier and Sita Raghavan.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Nick Berry,<br>
+          A "Practical" Use for Genetic Programming,<br>
+          http://www.datagenetics.com/blog.html
+        </li>
+        <li>
+          Zbigniew Michalewicz,<br>
+          Genetic Algorithms + Data Structures = Evolution Programs,<br>
+          Third Edition,<br>
+          Springer, 1996,<br>
+          ISBN: 3-540-60676-9,<br>
+          LC: QA76.618.M53.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "b8_to_i.m">b8_to_i.m</a>,
+          converts a string of 8 binary digits to an integer.
+        </li>
+        <li>
+          <a href = "dna_hybridize.m">dna_hybridize.m</a>,
+          crosses two DNA strands to make two new ones.
+        </li>
+        <li>
+          <a href = "dna_mutate.m">dna_mutate.m</a>,
+          mutates a strand of DNA.
+        </li>
+        <li>
+          <a href = "dna_random.m">dna_random.m</a>,
+          returns a random strand of DNA.
+        </li>
+        <li>
+          <a href = "dna_to_rgb_average.m">dna_to_rgb_average.m</a>,
+          expresses a strand of DNA as an RGB image,
+          using the average of the various RGB values.
+        </li>
+        <li>
+          <a href = "dna_to_rgb_max.m">dna_to_rgb_max.m</a>,
+          expresses a strand of DNA as an RGB image,
+          using the maximum of the various RGB values.
+        </li>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>,
+          writes an array of integers to a file.
+        </li>
+        <li>
+          <a href = "image_match_genetic.m">image_match_genetic.m</a>,
+          the main program, which seeks to match a given image.
+        </li>
+        <li>
+          <a href = "rgb_display.m">rgb_display.m</a>,
+          displays an RGB array as an image.
+        </li>
+        <li>
+          <a href = "rgb_fitness.m">rgb_fitness.m</a>,
+          scores image B as a match for image A.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "source.jpg">source.jpg</a>,
+          the original image.
+        </li>
+        <li>
+          <a href = "best0.png">best0.png</a>,
+          the best approximate image at step 0.
+        </li>
+        <li>
+          <a href = "best100.png">best100.png</a>,
+          the best approximate image at step 100.
+        </li>
+        <li>
+          <a href = "best5000.png">best5000.png</a>,
+          the best approximate image at step 5000.
+        </li>
+        <li>
+          <a href = "best10000.png">best10000.png</a>,
+          the best approximate image at step 10000.
+        </li>
+        <li>
+          <a href = "fitness_history.txt">fitness_history.txt</a>,
+          the reduction in the mismatch measurement with increasing number of steps.
+        </li>
+        <li>
+          <a href = "fitness_history.png">fitness_history.png</a>,
+          an image of the reduction in the mismatch measurement 
+          with increasing number of steps.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 24 January 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>
+

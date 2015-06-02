@@ -2,7 +2,7 @@ function prob_test ( )
 
 %*****************************************************************************80
 %
-%% PROB_PRB calls sample problems for the PROB routines.
+%% PROB_PRB tests the PROB library.
 %
 %  Licensing:
 %
@@ -10,14 +10,13 @@ function prob_test ( )
 %
 %  Modified:
 %
-%    03 January 2012
+%    20 August 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PROB_PRB\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -168,6 +167,12 @@ function prob_test ( )
   prob_test116 ( );
   prob_test117 ( );
   prob_test118 ( );
+  prob_test1184 ( );
+  prob_test1185 ( );
+  prob_test1186 ( );
+  prob_test1187 ( );
+  prob_test1188 ( );
+  prob_test1189 ( );
   prob_test119 ( );
 
   prob_test120 ( );
@@ -228,9 +233,8 @@ function prob_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'PROB_PRB\n' );
+  fprintf ( 1, 'PROB_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -1,0 +1,232 @@
+<html>
+
+  <head>
+    <title>
+      SPARSE_DISPLAY - Sparsity Pattern of a Matrix
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      SPARSE_DISPLAY <br> Sparsity Pattern of a Matrix
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>SPARSE_DISPLAY</b>
+      is a MATLAB library which
+      can read information defining a matrix of numbers and display
+      the sparsity pattern or location of the nonzero elements using
+      gnuplot.  This operation is already available in the built-in 
+      MATLAB "spy" command.
+    </p>
+
+    <p>
+      The user can call "spy_ge" and pass in a matrix, in general (GE) format;
+      the routine will then locate the nonzero entries, and write out a
+      data file and a command file which together can be used to instruct
+      gnuplot to create a sparsity plot.
+    </p>
+
+    <p>
+      If the user already has a file containing a list of pairs of indices
+      (I,J) corresponding to nonzero matrix entries, then the user can call 
+      "spy_file", which will write out a command file only.  Together, the
+      user data file and the command file can be used to instruct
+      gnuplot to create a sparsity plot.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>SPARSE_DISPLAY</b> is available in
+      <a href = "../../c_src/sparse_display/sparse_display.html">a C version</a> and
+      <a href = "../../cpp_src/sparse_display/sparse_display.html">a C++ version</a> and
+      <a href = "../../f77_src/sparse_display/sparse_display.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/sparse_display/sparse_display.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/sparse_display/sparse_display.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cg/cg.html">
+      CG</a>,
+      a MATLAB library which
+      implements a simple version of the conjugate gradient (CG) method
+      for solving a system of linear equations of the form A*x=b, 
+      suitable for situations in which the matrix A is positive definite
+      (only real, positive eigenvalues) and symmetric.
+    </p>
+
+    <p>
+      <a href = "../../m_src/gnuplot/gnuplot.html">
+      GNUPLOT</a>,
+      MATLAB programs which
+      illustrate how a program can write data and command files
+      so that gnuplot can create plots of the program results.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mm_io/mm_io.html">
+      MM_IO</a>,
+      a MATLAB library which
+      reads and writes sparse linear systems stored in the Matrix Market (MM)
+      format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wathen/wathen.html">
+      WATHEN</a>,
+      a MATLAB library which
+      compares storage schemes (full, banded, sparse triplet) and 
+      solution strategies (Linpack full, Linpack banded, 
+      conjugate gradient (CG)) for linear systems involving the Wathen matrix,
+      which can arise when solving a problem using the 
+      finite element method (FEM).
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "spy_file.m">spy_file.m</a>,  
+          plots a sparsity pattern stored in a file.
+        </li>
+        <li>
+          <a href = "spy_ge.m">spy_ge.m</a>,
+          plots a sparsity pattern for a general storage (GE) matrix.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "sparse_display_test.m">sparse_display_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "sparse_display_test_output.txt">sparse_display_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "sparse_display_test01.m">sparse_display_test01.m</a>,
+          tests spy_ge().
+        </li>
+        <li>
+          <a href = "r8mat_uniform_01.m">r8mat_uniform_01.m</a>,
+          returns a pseudorandom uniform R8MAT.
+        </li>
+        <li>
+          <a href = "wathen_ge.m">wathen_ge.m</a>,
+          sets up the Wathen matrix in GE format.
+        </li>
+        <li>
+          <a href = "wathen_order.m">wathen_order.m</a>,
+          returns the size of the Wathen matrix.
+        </li>
+        <li>
+          <a href = "wathen_ge_data.txt">wathen_ge_data.txt</a>,
+          data defining the location of the nonzero entries of the Wathen
+          matrix.
+        </li>
+        <li>
+          <a href = "wathen_ge_commands.txt">wathen_ge_commands.txt</a>,
+          gnuplot commands to display the data.
+        </li>
+        <li>
+          <a href = "wathen_ge.png">wathen_ge.png</a>,
+          an image of the sparsity pattern for the Wathen matrix.
+        </li>
+        <li>
+          <a href = "sparse_display_test02.m">sparse_display_test02.m</a>,
+          tests spy_file().
+        </li>
+        <li>
+          <a href = "before_data.txt">before_data.txt</a>,
+          data defining the location of the nonzero entries of a matrix,
+          as created by DEAL.II.
+        </li>
+        <li>
+          <a href = "before_commands.txt">before_commands.txt</a>,
+          gnuplot commands to display the data.
+        </li>
+        <li>
+          <a href = "before.png">before.png</a>,
+          an image of the sparsity pattern for the before matrix.
+        </li>
+        <li>
+          <a href = "after_data.txt">after_data.txt</a>,
+          data defining the location of the nonzero entries of a matrix,
+          as created by DEAL.II (after reordering of variables).
+        </li>
+        <li>
+          <a href = "after_commands.txt">after_commands.txt</a>,
+          gnuplot commands to display the data.
+        </li>
+        <li>
+          <a href = "after.png">after.png</a>,
+          an image of the sparsity pattern for the after matrix.
+        </li>
+        <li>
+          <a href = "30x20_data.txt">30x20_data.txt</a>,
+          data defining the location of the nonzero entries of the 30x20
+          matrix.
+        </li>
+        <li>
+          <a href = "30x20_commands.txt">30x20_commands.txt</a>,
+          gnuplot commands to display the data.
+        </li>
+        <li>
+          <a href = "30x20.png">30x20.png</a>,
+          an image of the sparsity pattern for the 30x20 matrix.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 08 June 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

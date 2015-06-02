@@ -25,7 +25,7 @@ function fem1d_pmethod ( )
 %
 %    Sample problem #1:
 %
-%      U=1-x**4,        P=1, Q=1, F=1.0+12.0*x**2-x**4
+%      U=1-x^4,        P=1, Q=1, F=1.0+12.0*x^2-x^4
 %
 %    Sample problem #2:
 %
@@ -47,53 +47,48 @@ function fem1d_pmethod ( )
 %    Original FORTRAN77 version by Max Gunzburger, Teresa Hodge.
 %    MATLAB version by John Burkardt.
 %
-%  Parameters:
+%  Local Parameters:
 %
-%    real A(0:NP), the squares of the norms of the
+%    Local, real A(0:NP), the squares of the norms of the
 %    basis functions.
 %
-%    real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Local, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
-%    real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    real F(1:NP+1).
+%    Local, real F(1:NP+1).
 %    F contains the basis function coefficients that form the
 %    representation of the solution U.  That is,
 %      U(X)  =  SUM (I=0 to NP) F(I+1) * BASIS(I)(X)
 %    where "BASIS(I)(X)" means the I-th basis function
 %    evaluated at the point X.
 %
-%    integer NP.
+%    Local, integer NP.
 %    The highest degree polynomial to use.
 %
-%    integer NPRINT.
+%    Local, integer NPRINT.
 %    The number of points at which the computed solution
 %    should be printed out at the end of the computation.
 %
-%    integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    Local, integer PROBLEM, indicates the problem being solved.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
-%    integer QUAD_NUM, the order of the quadrature rule.
+%    Local, integer QUAD_NUM, the order of the quadrature rule.
 %
-%    real QUAD_W(QUAD_NUM), the quadrature weights.
+%    Local, real QUAD_W(QUAD_NUM), the quadrature weights.
 %
-%    real QUAD_X(QUAD_NUM), the quadrature abscissas.
+%    Local, real QUAD_X(QUAD_NUM), the quadrature abscissas.
 %
+  timestamp ( );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'FEM1D_PMETHOD\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+
   np = 2;
   quad_num = 10;
   nprint = 10;
   problem = 2;
 
-  timestamp ( );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'FEM1D_PMETHOD\n' );
-  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Solve the two-point boundary value problem\n' );
   fprintf ( 1, '\n' );
@@ -105,17 +100,16 @@ function fem1d_pmethod ( )
   fprintf ( 1, '  The P method is used, which represents U as\n' );
   fprintf ( 1, '  a weighted sum of orthogonal polynomials.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  Highest degree polynomial to use is %d\n', np );
   fprintf ( 1, '  Number of points to be used for output = %d\n', nprint );
 
   if ( problem == 1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Problem #1:\n' );
-    fprintf ( 1, '  U=1-x**4,\n' );
+    fprintf ( 1, '  U=1-x^4,\n' );
     fprintf ( 1, '  P=1,\n' );
     fprintf ( 1, '  Q=1,\n' );
-    fprintf ( 1, '  F=1 + 12 * x**2 - x**4\n' );
+    fprintf ( 1, '  F=1 + 12 * x^2 - x^4\n' );
   elseif ( problem == 2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  Problem #2:\n' );
@@ -154,9 +148,8 @@ function fem1d_pmethod ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'PMETHOD\n' );
+  fprintf ( 1, 'FEM1D_PMETHOD\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -195,19 +188,14 @@ function [ a, alpha, beta ] = alpbet ( np, problem, quad_num, quad_w, quad_x )
 %    Output, real A(1:NP+1), the squares of the norms of the
 %    basis functions.
 %
-%    Output, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Output, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Output, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, integer NP.
 %    The highest degree polynomial to use.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Input, integer QUAD_NUM, the order of the quadrature rule.
@@ -238,7 +226,7 @@ function [ a, alpha, beta ] = alpbet ( np, problem, quad_num, quad_w, quad_x )
   a(1) = ss;
   alpha(1) = su / ss;
 
-  for i = 2 : np+1
+  for i = 2 : np + 1
 
     ss = 0.0;
     su = 0.0;
@@ -247,34 +235,52 @@ function [ a, alpha, beta ] = alpbet ( np, problem, quad_num, quad_w, quad_x )
     for iq = 1 : quad_num
 
       x = quad_x(iq);
-      q = 1.0;
+%
+%  Three term recurrence for Q and Q'.
+%
       qm1 = 0.0;
-      qx = 0.0;
+      q = 1.0;
       qm1x = 0.0;
+      qx = 0.0;
 
       for k = 1 : i - 1
+
         qm2 = qm1;
         qm1 = q;
+        q = ( x - alpha(k) ) * qm1 - beta(k) * qm2;
+
         qm2x = qm1x;
         qm1x = qx;
-        q = ( x - alpha(k) ) * qm1 - beta(k) * qm2;
         qx = qm1 + ( x - alpha(k) ) * qm1x - beta(k) * qm2x;
+
       end
 
       t = 1.0 - x * x;
-
+%
+%  The basis function PHI = ( 1 - x^2 ) * q.
+%
+%     s = pp * ( phi(i) )' * ( phi(i) )' + qq * phi(i) * phi(i)
+%
       s = pp ( x, problem ) * ( t * qx - 2.0 * x * q )^2 ...
         + qq ( x, problem ) * ( t * q )^2;
-
+%
+%     u = pp * ( x * phi(i) )' * phi(i)' + qq * x * phi(i) * phi(i)
+%
       u = pp ( x, problem ) ...
         * ( x * t * qx + ( 1.0 - 3.0 * x * x ) * q ) ...
         * ( t * qx - 2.0 * x * q ) + x * qq ( x, problem ) * ( t * q )^2;
-
+%
+%     v = pp * ( x * phi(i) )' * phi(i-1) + qq * x * phi(i) * phi(i-1)
+%
       v = pp ( x, problem ) ...
         * ( x * t * qx + ( 1.0 - 3.0 * x * x ) * q ) ...
         * ( t * qm1x - 2.0 * x * qm1 ) ...
         + x * qq ( x, problem ) * t * t * q * qm1;
-
+%
+%  SS(i) = <   phi(i), phi(i)   > = integral ( S )
+%  SU(i) = < x phi(i), phi(i)   > = integral ( U )
+%  SV(i) = < x phi(i), phi(i-1) > = integral ( V )
+%
       ss = ss + s * quad_w(iq);
       su = su + u * quad_w(iq);
       sv = sv + v * quad_w(iq);
@@ -282,7 +288,10 @@ function [ a, alpha, beta ] = alpbet ( np, problem, quad_num, quad_w, quad_x )
     end
 
     a(i) = ss;
-
+%
+%  ALPHA(i) = SU(i) / SS(i)
+%  BETA(i)  = SV(i) / SS(i-1)
+%
     if ( i <= np )
       alpha(i) = su / ss;
       beta(i) = sv / a(i-1);
@@ -314,13 +323,8 @@ function exact ( alpha, beta, f, np, nprint, problem, quad_num, ...
 %
 %  Parameters:
 %
-%    Input, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Input, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Input, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, real F(1:NP+1).
 %    F contains the basis function coefficients that form the
@@ -337,7 +341,7 @@ function exact ( alpha, beta, f, np, nprint, problem, quad_num, ...
 %    should be printed out at the end of the computation.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Input, integer QUAD_NUM, the order of the quadrature rule.
@@ -349,7 +353,7 @@ function exact ( alpha, beta, f, np, nprint, problem, quad_num, ...
   nsub = 10;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'Comparison of computed and exact solutions:\n' );
+  fprintf ( 1, '  Comparison of computed and exact solutions:\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '    X        U computed    U exact     Difference\n' );
   fprintf ( 1, '\n' );
@@ -395,7 +399,7 @@ function exact ( alpha, beta, f, np, nprint, problem, quad_num, ...
   big_l2 = sqrt ( big_l2 );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'Big L2 error = %f\n', big_l2 );
+  fprintf ( 1, '  Big L2 error = %f\n', big_l2 );
 
   return
 end
@@ -423,7 +427,7 @@ function value = ff ( x, problem )
 %    Input, real X, the evaluation point.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Output, real VALUE, the value of F(X).
@@ -434,13 +438,13 @@ function value = ff ( x, problem )
 %
   if ( problem == 1 )
 
-    value = 1.0 + 12.0 * x^2 - x^4;
+    value = 1.0 + 12.0 * x.^2 - x.^4;
 %
 %  Test problem 2
 %
   elseif ( problem == 2 )
 
-    value = 0.25 * pi * pi * cos ( 0.5 * pi * x );
+    value = 0.25 * pi^2 * cos ( 0.5 * pi * x );
 
   end
 
@@ -470,19 +474,14 @@ function ortho ( a, alpha, beta, np, problem, quad_num, quad_w, quad_x )
 %    Input, real A(1:NP+1), the squares of the norms of the
 %    basis functions.
 %
-%    Input, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Input, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Input, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, integer NP.
 %    The highest degree polynomial to use.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Input, integer QUAD_NUM, the order of the quadrature rule.
@@ -523,7 +522,7 @@ function ortho ( a, alpha, beta, np, problem, quad_num, quad_w, quad_x )
 %  Print out the results of the test.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'Basis function orthogonality test:\n' );
+  fprintf ( 1, '  Basis function orthogonality test:\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '   i   j     b(i,j)/a(i)\n' );
   fprintf ( 1, '\n' );
@@ -557,24 +556,42 @@ function [ phii, phiix ] = phi ( alpha, beta, i, np, x )
 %
 %  Parameters:
 %
-%    Input, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Input, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Input, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, integer I, the index of the basis function.
 %
-%    Input, integer NP.
-%    The highest degree polynomial to use.
+%    Input, integer NP, the highest degree polynomial to use.
 %
 %    Input, real X, the evaluation point.
 %
 %    Output, real PHII, PHIIX, the value of the basis
 %    function and its derivative.
 %
+  if ( 0 )
+
+  qm1 = 0.0;
+  q = 1.0;
+  for j = 1 : i
+    qm2 = qm1;
+    qm1 = q;
+    q = ( x - alpha(j) ) * qm1 - beta(j) * qm2;
+  end
+
+  phii = ( 1.0 - x * x ) * q;
+
+  qm1x = 0.0;
+  qx = 0.0;
+  for j = 1 : i
+    qm2x = qm1x;
+    qm1x = qx;
+    qx = qm1 + ( x - alpha(j) ) * qm1x - beta(j) * qm2x;
+  end
+
+  phiix = ( 1.0 - x * x ) * qx - 2.0 * x * q;
+
+  else
+
   qm1 = 0.0;
   q = 1.0;
   qm1x = 0.0;
@@ -593,6 +610,8 @@ function [ phii, phiix ] = phi ( alpha, beta, i, np, x )
   t = 1.0 - x * x;
   phii = t * q;
   phiix = t * qx - 2.0 * x * q;
+
+  end
 
   return
 end
@@ -620,7 +639,7 @@ function value = pp ( x, problem )
 %    Input, real X, the evaluation point.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Output, real VALUE, the value of P(X).
@@ -667,7 +686,7 @@ function value = qq ( x, problem )
 %    Input, real X, the evaluation point.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Output, real VALUE, the value of Q(X).
@@ -749,6 +768,41 @@ function [ quad_w, quad_x ] = quad ( quad_num )
 
   return
 end
+function r8vec_print ( n, a, title )
+
+%*****************************************************************************80
+%
+%% R8VEC_PRINT prints a real vector.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    25 January 2004
+%
+%  Author:
+%
+%    John Burkardt
+%
+%  Parameters:
+%
+%    Input, integer N, the dimension of the vector.
+%
+%    Input, real A(N), the vector to be printed.
+%
+%    Input, string TITLE, a title.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '%s\n', title );
+  fprintf ( 1, '\n' );
+  for i = 1 : n
+    fprintf ( 1, '%6d: %12g\n', i, a(i) );
+  end
+
+  return
+end
 function f = sol ( a, alpha, beta, np, problem, quad_num, quad_w, quad_x )
 
 %*****************************************************************************80
@@ -773,19 +827,14 @@ function f = sol ( a, alpha, beta, np, problem, quad_num, quad_w, quad_x )
 %    Input, real A(1:NP+1), the squares of the norms of the
 %    basis functions.
 %
-%    Input, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Input, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Input, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, integer NP.
 %    The highest degree polynomial to use.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Input, integer QUAD_NUM, the order of the quadrature rule.
@@ -837,13 +886,8 @@ function solution_print ( alpha, beta, f, np, nprint )
 %
 %  Parameters:
 %
-%    Input, real ALPHA(NP).
-%    ALPHA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
-%
-%    Input, real BETA(NP).
-%    BETA(I) contains one of the coefficients of a recurrence
-%    relationship that defines the basis functions.
+%    Input, real ALPHA(NP), BETA(NP), the recurrence coefficients.
+%    for the basis functions.
 %
 %    Input, real F(1:NP+1).
 %    F contains the basis function coefficients that form the
@@ -860,9 +904,9 @@ function solution_print ( alpha, beta, f, np, nprint )
 %    should be printed out at the end of the computation.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'Representation of solution:\n' );
+  fprintf ( 1, '  Representation of solution:\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'Basis function coefficients:\n' );
+  fprintf ( 1, '  Basis function coefficients:\n' );
   fprintf ( 1, '\n' );
   for i = 0 : np
     fprintf ( 1, '  %4d  %12f\n', i, f(i+1) );
@@ -935,7 +979,7 @@ function value = uex ( x, problem )
 %    Input, real X, the evaluation point.
 %
 %    Input, integer PROBLEM, indicates the problem being solved.
-%    1, U=1-x**4, P=1, Q=1, F=1.0+12.0*x**2-x**4.
+%    1, U=1-x^4, P=1, Q=1, F=1.0+12.0*x^2-x^4.
 %    2, U=cos(0.5*pi*x), P=1, Q=0, F=0.25*pi*pi*cos(0.5*pi*x).
 %
 %    Output, real VALUE, the exact value of U(X).
@@ -946,7 +990,7 @@ function value = uex ( x, problem )
 %
   if ( problem == 1 )
 
-    value = 1.0 - x^4;
+    value = 1.0 - x.^4;
 %
 %  Test problem 2
 %
@@ -958,3 +1002,4 @@ function value = uex ( x, problem )
 
   return
 end
+

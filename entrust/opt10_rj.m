@@ -1,5 +1,7 @@
 function [ res, jac ] = opt10_rj ( x, flag ) 
 
+%*****************************************************************************80
+%
 %% OPT10_RJ evaluates RES and JAC for test case #10.
 %
 %  Discussion:

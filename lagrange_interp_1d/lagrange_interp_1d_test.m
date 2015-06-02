@@ -2,7 +2,7 @@ function lagrange_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% LAGRANGE_INTERP_1D_TEST tests LAGRANGE_INTERP_1D.
+%% LAGRANGE_INTERP_1D_TEST tests the LAGRANGE_INTERP_1D library.
 %
 %  Licensing:
 %

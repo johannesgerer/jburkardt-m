@@ -10,7 +10,7 @@ function prob_test013 ( )
 %
 %  Modified:
 %
-%    15 April 2009
+%    28 April 2013
 %
 %  Author:
 %
@@ -19,10 +19,10 @@ function prob_test013 ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST013:\n' );
   fprintf ( 1, '  BETA_INC evaluates the normalized incomplete Beta\n' );
-  fprintf ( 1, '    function BETA_INC(A,B,X).\n' );
+  fprintf ( 1, '  function BETA_INC(A,B,X).\n' );
   fprintf ( 1, '  BETA_INC_VALUES returns some exact values.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  A      B       X       Exact F       BETA_INC(A,B,X)\n' );
+  fprintf ( 1, '      A           B           X               Exact F     BETA_INC(A,B,X)\n' );
   fprintf ( 1, '\n' );
   n_data = 0;
 
@@ -36,7 +36,7 @@ function prob_test013 ( )
 
     fx2 = beta_inc ( a, b, x );
 
-    fprintf ( 1, '  %8f  %8f  %8f  %14f  %14f\n', a, b, x, fx, fx2 );
+    fprintf ( 1, '  %10f  %10f  %10f  %14f  %14f\n', a, b, x, fx, fx2 );
 
   end
 

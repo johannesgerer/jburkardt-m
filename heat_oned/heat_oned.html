@@ -1,0 +1,210 @@
+<html>
+
+  <head>
+    <title>
+      HEAT_ONED - Time Dependent 1D Heat Equation, Finite Element, Implicit Time Stepping
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HEAT_ONED <br> 
+      Finite Element Solution of the<br> 
+      Time Dependent 1D Heat Equation<br>
+      using Implicit Time Stepping
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HEAT_ONED</b> 
+      is a MATLAB program which
+      solves the time-dependent 1D heat equation,
+      using the finite element method in space, and the backward Euler method
+      in time,
+      by Jeff Borggaard.
+    </p>
+
+    <p>
+      The procedure discretizes space using the finite element method, and
+      solves the time dependence with the method of lines, using the 
+      backward Euler method to approximate the time derivative.
+    </p>
+
+    <p>
+      This program solves
+      <pre>
+        dUdT - k * d2UdX2 = F(X,T)
+      </pre>
+      over the interval [A,B] with boundary conditions
+      <pre>
+        U(A,T) = UA(T),
+        U(B,T) = UB(T),
+      </pre>
+      over the time interval [T0,T1] with initial conditions
+      <pre>
+        U(X,T0) = U0(X)
+      </pre>
+    </p>
+
+    <p>
+      The spatial derivatives are approximated using the finite element method,
+      with piecewise linear or quadratic elements.
+    </p>
+
+    <p>
+      The solver applies an
+      implicit backward Euler approximation to the first derivative in time.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HEAT_ONED</b> is available in
+      <a href = "../../m_src/heat_oned/heat_oned.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_implicit/fd1d_heat_implicit.html">
+      FD1D_HEAT_IMPLICIT</a>,
+      a MATLAB library which
+      uses the finite difference method and implicit time stepping
+      to solve the time dependent heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_heat_steady/fd1d_heat_steady.html">
+      FD1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite difference method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem1d_heat_steady/fem1d_heat_steady.html">
+      FEM1D_HEAT_STEADY</a>,
+      a MATLAB program which
+      uses the finite element method to solve the steady (time independent)
+      heat equation in 1D.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Jeff Borggaard
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "compute_matricesb.m">compute_matricesb.m</a>, 
+          computes finite element matrices for the heat equation.
+        </li>
+        <li>
+          <a href = "heat_oned.m">heat_oned.m</a>, 
+          controls the solution of the time-dependent 1D heat equation.
+        </li>
+        <li>
+          <a href = "heat_oned_setup.m">heat_oned_setup.m</a>, 
+          sets up the time-dependent 1D heat equation.
+        </li>
+        <li>
+          <a href = "oned_bilinear.m">oned_bilinear.m</a>
+          integrates kernel(x) * basis function(x) * test function(x).
+        </li>
+        <li>
+          <a href = "oned_f_int.m">oned_f_int.m</a>
+          computes the integral of f(x) times a test function.
+        </li>
+        <li>
+          <a href = "oned_gauss.m">oned_gauss.m</a>
+          sets Gauss integration points on (-1,1).
+        </li>
+        <li>
+          <a href = "oned_mesh.m">oned_mesh.m</a>
+          generates a mesh with a prescribed density.
+          This routine returns elements of the same type as
+          xb, e_connb (linear or quadratic).
+        </li>
+        <li>
+          <a href = "oned_shape.m">oned_shape.m</a>
+          computes test functions and derivatives for a Lagrange
+          C0 element given element coordinates and Gauss points.
+          (assumes all nodes are uniformly distributed in the
+          element.)
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp;
+        </li>
+        <li>
+          <a href = "u_function.m">u_function.m</a>, 
+          evaluates the time dependent boundary conditions.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "heat_oned_test.m">heat_oned_test.m</a>, 
+          runs all the tests.
+        </li>
+        <li>
+          <a href = "heat_oned_test01.m">heat_oned_test01.m</a>, 
+          runs Jeff Borggaard's test case;
+        </li>
+        <li>
+          <a href = "heat_oned_test01.png">heat_oned_test01.png</a>, 
+          an image of the computed solution.
+        </li>
+        <li>
+          <a href = "heat_oned_test_output.txt">heat_oned_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 21 December 2012.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

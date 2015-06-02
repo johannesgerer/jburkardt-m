@@ -47,25 +47,36 @@ function ball_and_stick_display ( )
 %
 %  Nodes on the blue level.
 %
-  plot3 (  0.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
 
-  plot3 ( -1.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  1.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  0.0, -1.0, 0.0, 'o', 'MarkerFaceColor', 'b', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  0.0,  1.0, 0.0, 'o', 'MarkerFaceColor', 'b', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 ( -1.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  1.0,  0.0, 0.0, 'o', 'MarkerFaceColor', 'b', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0, -1.0, 0.0, 'o', 'MarkerFaceColor', 'b', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0,  1.0, 0.0, 'o', 'MarkerFaceColor', 'b', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
 %
 %  Nodes on the green level.
 %
-  plot3 (  0.0,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
 
-  plot3 ( -0.5,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  0.5,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  0.0, -0.5, 0.5, 'o', 'MarkerFaceColor', 'g', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
-  plot3 (  0.0,  0.5, 0.5, 'o', 'MarkerFaceColor', 'g', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 ( -0.5,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.5,  0.0, 0.5, 'o', 'MarkerFaceColor', 'g', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0, -0.5, 0.5, 'o', 'MarkerFaceColor', 'g', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0,  0.5, 0.5, 'o', 'MarkerFaceColor', 'g', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
 %
 %  Nodes on the red level.
 %
-  plot3 (  0.0,  0.0, 1.0, 'o', 'MarkerFaceColor', 'r', 'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
+  plot3 (  0.0,  0.0, 1.0, 'o', 'MarkerFaceColor', 'r', ...
+    'MarkerEdgeColor', 'k', 'MarkerSize', 12 )
 %
 %  Line from blue to red level.
 %

@@ -2,7 +2,7 @@ function a = exchange ( m, n )
 
 %*****************************************************************************80
 %
-%% EXCHANGE returns the exchange matrix.
+%% EXCHANGE returns the EXCHANGE matrix.
 %
 %  Formula:
 %
@@ -58,7 +58,7 @@ function a = exchange ( m, n )
 %
 %    A is orthogonal: A' * A = A * A' = I.
 %
-%    det ( A ) = ( -1 )**(N/2).
+%    det ( A ) = ( -1 )^(N/2).
 %
 %    There are N/2 eigenvalues of -1, and (N+1)/2 eigenvalues of 1.
 %
@@ -90,6 +90,8 @@ function a = exchange ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : m
     for j = 1 : n
       if ( i + j == n + 1 )

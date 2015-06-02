@@ -2,19 +2,19 @@ function a = kms_inverse ( alpha, n )
 
 %*****************************************************************************80
 %
-%% KMS_INVERSE returns the inverse of the Kac-Murdock-Szego matrix.
+%% KMS_INVERSE returns the inverse of the KMS matrix.
 %
 %  Formula:
 %
 %    if ( I = J )
 %      if ( I = 1 )
-%        A(I,J) = -1/(ALPHA**2-1)
+%        A(I,J) = -1/(ALPHA^2-1)
 %      elseif ( I < N )
-%        A(I,J) = -(ALPHA**2+1)/(ALPHA**2-1)
+%        A(I,J) = -(ALPHA^2+1)/(ALPHA^2-1)
 %      elseif ( I = N )
-%        A(I,J) = -1/(ALPHA**2-1)
+%        A(I,J) = -1/(ALPHA^2-1)
 %    elseif ( J = I + 1 or I = J + 1 )
-%      A(I,J) = ALPHA/(ALPHA**2-1)
+%      A(I,J) = ALPHA/(ALPHA^2-1)
 %    else
 %      A(I,J) = 0 otherwise
 %
@@ -66,6 +66,8 @@ function a = kms_inverse ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   bot = alpha * alpha - 1.0;
 
   for i = 1 : n

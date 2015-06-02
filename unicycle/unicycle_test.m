@@ -2,7 +2,7 @@ function unicycle_test ( )
 
 %*****************************************************************************80
 %
-%% UNICYCLE_TEST tests UNICYCLE.
+%% UNICYCLE_TEST tests the UNICYCLE library.
 %
 %  Licensing:
 %
@@ -36,7 +36,6 @@ function unicycle_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'UNICYCLE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

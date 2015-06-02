@@ -6,7 +6,7 @@ function v = krawtchouk ( n, p, x, m )
 %
 %  Discussion:
 %
-%    The polynomial has a parameter P, which must be striclty between
+%    The polynomial has a parameter P, which must be strictly between
 %    0 and 1, and a parameter M which must be a nonnegative integer.
 %
 %    The Krawtchouk polynomial of order N, with parameters P and M,

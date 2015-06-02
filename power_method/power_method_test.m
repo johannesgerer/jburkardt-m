@@ -2,7 +2,7 @@ function power_method_test ( )
 
 %*****************************************************************************80
 %
-%% POWER_METHOD_TEST tests POWER_METHOD.
+%% POWER_METHOD_TEST tests the POWER_METHOD library.
 %
 %  Licensing:
 %
@@ -16,8 +16,6 @@ function power_method_test ( )
 %
 %    John Burkardt
 %
-  clear
-
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POWER_METHOD_TEST\n' );
@@ -33,7 +31,6 @@ function power_method_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POWER_METHOD_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -2,7 +2,7 @@ function a = cheby_u ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_U returns the Chebyshev U matrix.
+%% CHEBY_U returns the CHEBY_U matrix.
 %
 %  Example:
 %
@@ -34,9 +34,11 @@ function a = cheby_u ( n )
 %
 %    The entries of row N sum to N.
 %
-%    det ( A ) = 2**((N*(N-1))/2).
+%    det ( A ) = 2^((N*(N-1))/2).
 %
-%    LAMBDA(I) = 2**(I-1)
+%    LAMBDA(I) = 2^(I-1)
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -56,12 +58,12 @@ function a = cheby_u ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     a = [];
     return
   end
-
-  a(1:n,1:n) = 0.0;
 
   a(1,1) = 1.0;
 

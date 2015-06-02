@@ -105,7 +105,7 @@ function r8cc_print_some ( m, n, nz_num, colptr, rowind, a, ilo, jlo, ihi, ...
           end
         end
 
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -114,8 +114,6 @@ function r8cc_print_some ( m, n, nz_num, colptr, rowind, a, ilo, jlo, ihi, ...
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

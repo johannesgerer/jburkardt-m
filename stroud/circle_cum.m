@@ -8,7 +8,7 @@ function result = circle_cum ( func, xc, yc, radius, norder )
 %
 %    Points (X,Y) such that:
 %
-%      ( X - XC )**2 + ( Y - YC )**2 = RADIUS**2.
+%      ( X - XC )^2 + ( Y - YC )^2 = RADIUS^2.
 %
 %  Discussion:
 %

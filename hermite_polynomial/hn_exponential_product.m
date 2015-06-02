@@ -2,12 +2,11 @@ function table = hn_exponential_product ( p, b )
 
 %*****************************************************************************80
 %
-%% HN_EXPONENTIAL_PRODUCT: normalized physicist's Hermite exponential products.
+%% HN_EXPONENTIAL_PRODUCT: exponential products exp(b*x)*Hn(i,x)*Hn(j,x).
 %
 %  Discussion:
 %
-%    Let Hn(I,X) represent the normalized physicist's Hermite polynomial 
-%    of degree I.  
+%    Hn(i,x) is the normalized physicist's Hermite polynomial of degree I. 
 %
 %    For polynomial chaos applications, it is of interest to know the
 %    value of the integrals of products of exp(B*X) with every possible pair
@@ -54,7 +53,7 @@ function table = hn_exponential_product ( p, b )
   for k = 1 : order
 
     x = x_table(k);
-    h_table = hn_polynomial ( 1, p, x );
+    h_table = hn_polynomial_value ( 1, p, x );
 %
 %  The following formula is an outer product in H_TABLE.
 %

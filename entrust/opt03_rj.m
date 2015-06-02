@@ -1,5 +1,7 @@
 function [ res, jac ] = opt03_rj ( x, flag, p )
 
+%*****************************************************************************80
+%
 %% OPT03_RJ evaluates R and J for test case #3.
 %
 %  Discussion:

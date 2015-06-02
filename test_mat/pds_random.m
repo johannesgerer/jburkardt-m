@@ -1,4 +1,4 @@
-function [ a, seed ] = pds_random ( n, seed )
+function a = pds_random ( n, key )
 
 %*****************************************************************************80
 %
@@ -22,7 +22,7 @@ function [ a, seed ] = pds_random ( n, seed )
 %
 %  Modified:
 %
-%    18 October 2007
+%    17 March 2015
 %
 %  Author:
 %
@@ -32,26 +32,25 @@ function [ a, seed ] = pds_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
-%
-%    Output, integer SEED, a seed for the random 
-%    number generator.
 %
 
 %
 %  Get a random set of eigenvalues.
 %
+  seed = key;
   [ lambda, seed ] = r8vec_uniform_01 ( n, seed );
 %
 %  Get a random orthogonal matrix Q.
 %
-  [ q, seed ] = orth_random ( n, seed );
+  q = orth_random ( n, key );
 %
 %  Set A = Q * Lambda * Q'.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 0.0;

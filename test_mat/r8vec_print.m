@@ -2,7 +2,7 @@ function r8vec_print ( n, a, title )
 
 %*****************************************************************************80
 %
-%% R8VEC_PRINT prints a real vector.
+%% R8VEC_PRINT prints an R8VEC.
 %
 %  Licensing:
 %
@@ -22,17 +22,13 @@ function r8vec_print ( n, a, title )
 %
 %    Input, real A(N), the vector to be printed.
 %
-%    Input, string TITLE, a title to be printed first.
-%    TITLE may be blank.
+%    Input, string TITLE, a title.
 %
-  if ( 0 < s_len_trim ( title ) )
-    fprintf ( 1, '\n' );
-    fprintf ( 1, '%s\n', title );
-  end
-
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '%s\n', title );
   fprintf ( 1, '\n' );
   for i = 1 : n
-    fprintf ( 1, '%6d  %12f\n', i, a(i) );
+    fprintf ( 1, '%6d: %12g\n', i, a(i) );
   end
 
   return

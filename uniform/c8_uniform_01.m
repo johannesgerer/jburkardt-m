@@ -1,4 +1,4 @@
-function  [ z, seed ] = c8_uniform_01 ( seed )
+function [ c, seed ] = c8_uniform_01 ( seed )
 
 %*****************************************************************************80
 %
@@ -89,7 +89,7 @@ function  [ z, seed ] = c8_uniform_01 ( seed )
 
   theta = 2.0 * pi * seed * 4.656612875E-10;
 
-  z = r * ( cos ( theta ) + i * sin ( theta ) );
+  c = r * ( cos ( theta ) + i * sin ( theta ) );
 
   return
 end

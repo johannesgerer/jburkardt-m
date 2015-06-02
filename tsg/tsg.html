@@ -1,0 +1,386 @@
+<html>
+
+  <head>
+    <title>
+      TSG - TASMANIAN Sparse Grid Library
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TSG <br> TASMANIAN Sparse Grid Library
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TSG</b> 
+      MATLAB examples and an interface library which
+      demonstrate the use of the TasmanianSparseGrid (TSG) package,
+      which implements routines for working with sparse grids,
+      to efficiently estimate integrals or compute interpolants of
+      scalar functions of multidimensional arguments.
+    </p>
+
+    <p>
+      TSG can create three kinds of rules:
+      <ul>
+        <li>
+          Global grids, for globally smooth functions;
+        </li>
+        <li>
+          Local polynomial grids, a piecewise polynomial approach 
+          for non-smooth functions
+        </li>
+        <li>
+          Wavelet grids, also for non-smooth functions, but this option
+          can sometimes achieve better accuracy with fewer points.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      TSG is a family of algorithms for constructing multidimensional
+      quadrature and interpolation rules from tensor products of 1-dimensional
+      versions of such rules.
+    </p>
+
+    <p>
+      TSG includes a large variety of 1-dimensional rules, which are generally
+      defined, by default, over the interval [-1,+1].  In that case, the 
+      multidimensional quadrature and interpolation rules will be defined over
+      the hypercube [-1,+1]^d, but a simple linear transformation can be
+      carried out by TSG to redefine the linearly redefine the region. 
+    </p>
+
+    <p>
+      The one-dimensional rules that can be used include:
+      <ul>
+        <li>
+          Chebyshev;
+        </li>
+        <li>
+          Clenshaw Curtis;
+        </li>
+        <li>
+          Fejer Type 2;
+        </li>
+        <li>
+          Gauss Chebyshev Type 1;
+        </li>
+        <li>
+          Gauss Chebyshev Type 2;
+        </li>
+        <li>
+          Gauss Gegenbauer;
+        </li>
+        <li>
+          Gauss Hermite;
+        </li>
+        <li>
+          Gauss Jacobi;
+        </li>
+        <li>
+          Gauss Laguerre;
+        </li>
+        <li>
+          Gauss Legendre;
+        </li>
+        <li>
+          Local polynomial;
+        </li>
+        <li>
+          Local polynomial zero;
+        </li>
+        <li>
+          Local wavelet.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The TasmanianSparseGrid library is available for download from
+      <a href = "http://tasmanian.ornl.gov/">
+                 http://tasmanian.ornl.gov/ </a>.
+    </p>
+
+    <p>
+      The MATLAB programs must actually work with the compiled C++ version of
+      the TasmanianSparseGrid library.  They do this by interfacing with a
+      compiled C++ program called <b>tasg</b>, communicating via the
+      MATLAB <b>system()</b> command, with data passed by writing and reading
+      files from a workfile directory whose location is specified by the user.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_gpl.txt">the GNU GPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TSG</b> is available in
+      <a href = "../../cpp_src/tsg/tsg.html">a C++ version</a> and
+      <a href = "../../f_src/tsg/tsg.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/tsg/tsg.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/sgmga/sgmga.html">
+      SGMGA</a>,
+      a MATLAB library which
+      creates sparse grids based on a mixture of 1D quadrature rules,
+      allowing anisotropic weights for each dimension.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_cc/sparse_grid_cc.html">
+      SPARSE_GRID_CC</a>,
+      a MATLAB library which
+      creates sparse grids based on Clenshaw-Curtis rules.
+    </p>
+
+    <p>
+      <a href = "../../m_src/sparse_grid_hw/sparse_grid_hw.html">
+      SPARSE_GRID_HW</a>,
+      a MATLAB library which
+      creates sparse grids based on Gauss-Legendre, Gauss-Hermite,
+      Gauss-Patterson, or a nested variation of Gauss-Hermite rules,
+      by Florian Heiss and Viktor Winschel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spinterp/spinterp.html">
+      SPINTERP</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      an earlier version of this software is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <p>
+      <a href = "../../m_src/spquad/spquad.html">
+      SPQUAD</a>,
+      a MATLAB library which
+      computes the points and weights of a sparse grid quadrature rule
+      for an M-dimensional integral, 
+      based on the Clenshaw-Curtis quadrature rule,
+      by Greg von Winckel.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms847/toms847.html">
+      TOMS847</a>,
+      a MATLAB library which
+      carries out piecewise multilinear hierarchical sparse grid interpolation;
+      this library is commonly called SPINTERP (version 2.1);
+      this is ACM TOMS Algorithm 847,
+      by Andreas Klimke;
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Miroslav Stoyanov, Oak Ridge National Laboratory, mkstoyanov@gmail.com.
+    </p>
+
+    <h3 align = "center">
+      References:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Miro Stoyanov,<br>
+          User Manual: TASMANIAN Sparse Grids,<br>
+          ORNL Report, <br>
+          Oak Ridge National Laboratory, August 2013.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tsg_test.m">tsg_test.m</a>, the calling program;
+        </li>
+        <li>
+          <a href = "tsg_test01.m">tsg_test01.m</a>, 
+          estimates an integral in 2D using a Clenshaw-Curtis sparse grid.
+        </li>
+        <li>
+          <a href = "tsg_test02.m">tsg_test02.m</a>, 
+          interpolates a function in 2D using a Clenshaw-Curtis sparse grid.
+        </li>
+        <li>
+          <a href = "tsg_test03.m">tsg_test03.m</a>, 
+          uses a Gauss-Legendre sparse grid to integrate a function in 2D.
+        </li>
+        <li>
+          <a href = "tsg_test04.m">tsg_test04.m</a>, 
+          uses an anisotropic Gauss-Gegenbauer sparse grid for integration.
+        </li>
+        <li>
+          <a href = "tsg_test05.m">tsg_test05.m</a>, 
+          interpolates with an adaptive hierarchical locally quadratic basis.
+        </li>
+        <li>
+          <a href = "tsg_test06.m">tsg_test06.m</a>, 
+          generates 2D Clenshaw Curtis grids for various levels,
+          and compares the sizes of "hyperbolic", "level", and "basis"
+          growth options.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>, 
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tsg_test_output.txt">tsg_test_output.txt</a>, 
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "tsgDeleteGrid.m">tsgDeleteGrid.m</a>
+          clears all data from the workfile directory.
+        </li>
+        <li>
+          <a href = "tsgDeleteGridByName.m">tsgDeleteGridByName.m</a>
+          clears data associated with a particular grid from the workfile directory.
+        </li>
+        <li>
+          <a href = "tsgEvaluate.m">tsgEvaluate.m</a>
+          reads a grid from a file, and reads a list of evaluation points from a
+          matrix file.  The interpolant is evaluated at the evaluation points, and
+          the results are written to a matrix file.
+        </li>
+        <li>
+          <a href = "tsgExample.m">tsgExample.m</a>,
+          contains five example calculations.
+        </li>
+        <li>
+          <a href = "tsgGetInterpolationWeights.m">tsgGetInterpolationWeights.m</a>
+          reads a grid from a file that was created previously, and returns
+          the interpolation weights.
+        </li>
+        <li>
+          <a href = "tsgGetNeededPoints.m">tsgGetNeededPoints.m</a>
+          reads a grid from a file and extracts the grid abscissas that are not yet
+          associated with values of the interpolated function.
+        </li>
+        <li>
+          <a href = "tsgGetPaths.m">tsgGetPaths.m</a>
+          stores the location of the tsg() executable and the user's TSG workfile directory.
+        </li>
+        <li>
+          <a href = "tsgGetPoints.m">tsgGetPoints.m</a>
+          reads a grid from a file that was created previously, and returns
+          the abscissas of the associated quadrature rule.
+        </li>
+        <li>
+          <a href = "tsgGetQuadrature.m">tsgGetQuadrature.m</a>
+          reads a grid from a file that was created previously, and computes
+          the associated quadrature rule.
+        </li>
+        <li>
+          <a href = "tsgIntegrate.m">tsgIntegrate.m</a>
+          reads a grid from a file and integrates the interpolant over the domain,
+          returning the value of the integral.
+        </li>
+        <li>
+          <a href = "tsgListGridsByName.m">tsgListGridsByName.m</a>
+          lists the grids for which data is currently stored in the workfile directory.
+        </li>
+        <li>
+          <a href = "tsgLoadValues.m">tsgLoadValues.m</a>
+          updates a grid from a file that was created previously, by reading the
+          values of the interpolated function from a matrix file, and adding them
+          to the grid file.
+        </li>
+        <li>
+          <a href = "tsgMakeFilenames.m">tsgMakeFilenames.m</a>,
+          is given the paths defined by tsgGetPaths() and returns the names
+          of all the files associated with a given grid.
+        </li>
+        <li>
+          <a href = "tsgMakeGrid.m">tsgMakeGrid.m</a>
+          creates information defining a particular grid.
+        </li>
+        <li>
+          <a href = "tsgMakeQuadrature.m">tsgMakeQuadrature.m</a>
+          returns the abscissas and weights of a particular sparse grid rule.
+        </li>
+        <li>
+          <a href = "tsgPlotPoints2D.m">tsgPlotPoints2D.m</a>
+          plots a set of 2D points.
+        </li>
+        <li>
+          <a href = "tsgPrintStats.m">tsgPrintStats.m</a>
+          reads a grid from a file and prints out a short summary of grid
+          statistics.
+        </li>
+        <li>
+          <a href = "tsgReadMatrix.m">tsgReadMatrix.m</a>
+          an internal routine, used to read matrix files.
+        </li>
+        <li>
+          <a href = "tsgRecycleGrid.m">tsgRecycleGrid.m</a>
+          creates a new grid with most of the parameters inherited from
+          a pre-existing grid.
+        </li>
+        <li>
+          <a href = "tsgRefineGrid.m">tsgRefineGrid.m</a>
+          reads a grid from a file and improves the interpolant by adding
+          a new set of abscissas.
+        </li>
+        <li>
+          <a href = "tsgWriteMatrix.m">tsgWriteMatrix.m</a>,
+          an internal routine, used to write matrix files.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 25 February 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

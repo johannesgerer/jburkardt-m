@@ -2,12 +2,12 @@ function a = eberlein ( alpha, n )
 
 %*****************************************************************************80
 %
-%% EBERLEIN returns the Eberlein matrix.
+%% EBERLEIN returns the EBERLEIN matrix.
 %
 %  Formula:
 %
 %    if ( I = J )
-%      A(I,J) = - ( 2 * I - 1 ) * ( N - 1 ) - ( I - 1 ) * ALPHA + 2 * ( I - 1 )**2
+%      A(I,J) = - ( 2 * I - 1 ) * ( N - 1 ) - ( I - 1 ) * ALPHA + 2 * ( I - 1 )^2
 %    else if ( J = I+1 )
 %      A(I,J) = I * ( N + ALPHA - I )
 %    else if ( J = I-1 )
@@ -89,6 +89,8 @@ function a = eberlein ( alpha, n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

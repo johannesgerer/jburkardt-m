@@ -18,13 +18,18 @@ function [ n, w ] = gqn ( l )
 %      X(1) and -X(1), with weight W(1),
 %      X(2) and -X(2), with weight W(2), and so on.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    30 May 2010
 %
 %  Author:
 %
-%    Florian Heiss, Viktor Winschel
+%    Original MATLAB version by Florian Heiss, Viktor Winschel.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %

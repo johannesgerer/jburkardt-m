@@ -2,7 +2,7 @@ function voronoi_mountains_test ( )
 
 %*****************************************************************************80
 %
-%% VORONOI_MOUNTAINS_TEST tests VORONOI_MOUNTAINS.
+%% VORONOI_MOUNTAINS_TEST tests the VORONOI_MOUNTAINS library.
 %
 %  Licensing:
 %
@@ -17,10 +17,10 @@ function voronoi_mountains_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'VORONOI_MOUNTAINS_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the VORONOI_MOUNTAINS library.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Given a set of points P,\n' );
   fprintf ( 1, '  create the Voronoi diagram for P,\n');
@@ -59,7 +59,6 @@ function voronoi_mountains_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'VORONOI_MOUNTAINS_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

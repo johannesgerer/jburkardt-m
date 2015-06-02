@@ -6,19 +6,14 @@ function fem2d_poisson_sparse ( prefix )
 %
 %  Discussion:
 %
-%    This program is a variant of FEM2D_POISSON.  That program is
-%    particularly limited because of its use of banded matrix storage and
-%    solving routines.
+%    This program uses MATLAB's sparse matrix storage, factorization 
+%    and solution facilities to compute an approximate solution to
+%    the Poisson equation via the finite element method.
 %
-%    This program discards the banded approach.  Instead, it uses MATLAB's
-%    sparse matrix storage, factorization and solution facilities,
-%    which allow this program to solve larger problems faster.
-%
-%    Only three routines needed to be changed:
+%    Three functions are changed from those in the FEM2D_POISSON code:
 %    * the main program FEM2D_POISSON is replaced by FEM2D_POISSON_SPARSE.
 %    * the routine ASSEMBLE_POISSON is replaced by ASSEMBLE_POISSON_SPARSE.
-%    * the routine DIRICHLET_APPLY is replaced by
-%      DIRICHLET_APPLY_SPARSE.
+%    * the routine DIRICHLET_APPLY is replaced by DIRICHLET_APPLY_SPARSE.
 %
 %    This program solves the Poisson equation
 %
@@ -68,12 +63,6 @@ function fem2d_poisson_sparse ( prefix )
 %
 %    * prefix_nodes.txt,     the node coordinates.
 %    * prefix_elements.txt,  the nodes that make up each element.
-%
-%    Files created include:
-%
-%    * prefix_nodes.eps, an image of the nodes;
-%    * prefix_elements.eps, an image of the elements;
-%    * prefix_solution.txt", the value of the solution at every node.
 %
 %  Licensing:
 %

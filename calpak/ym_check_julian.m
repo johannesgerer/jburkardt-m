@@ -27,7 +27,7 @@ function [ y, m, ierror ] = ym_check_julian ( y, m )
 %
 %  Check the year.
 %
-  ierror = y_check_julian ( y );
+  [ y, ierror ] = y_check_julian ( y );
 
   if ( ierror ~= 0 )
     return

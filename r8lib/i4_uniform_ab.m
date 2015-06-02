@@ -55,6 +55,8 @@ function [ c, seed ] = i4_uniform_ab ( a, b, seed )
 %
 %    Output, integer SEED, the updated seed.
 %
+  i4_huge = 2147483647;
+
   if ( seed == 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4_UNIFORM_AB - Fatal error!\n' );
@@ -66,10 +68,10 @@ function [ c, seed ] = i4_uniform_ab ( a, b, seed )
   a = round ( a );
   b = round ( b );
 
-  seed = mod ( seed, 2147483647 );
+  seed = mod ( seed, i4_huge );
 
   if ( seed < 0 ) 
-    seed = seed + 2147483647;
+    seed = seed + i4_huge;
   end 
 
   k = floor ( seed / 127773 );
@@ -77,7 +79,7 @@ function [ c, seed ] = i4_uniform_ab ( a, b, seed )
   seed = 16807 * ( seed - k * 127773 ) - k * 2836;
 
   if ( seed < 0 )
-    seed = seed + 2147483647;
+    seed = seed + i4_huge;
   end
 
   r = seed * 4.656612875E-10;

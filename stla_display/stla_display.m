@@ -14,14 +14,13 @@ function stla_display ( input_stla_filename )
 %
 %  Modified:
 %
-%    15 February 2007
+%    05 January 2015
 %
 %  Author:
 %
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STLA_DISPLAY\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -62,9 +61,12 @@ function stla_display ( input_stla_filename )
   end
 %
 %  Display the shape.
+%  The argument pair 
+%    'EdgeColor', 'None'
+%  suppresses the display of the black boundary lines between the patches.
 %
   h3 = trisurf ( face_node', node_xyz(1,:), node_xyz(2,:), node_xyz(3,:), ...
-      'FaceColor', 'Interp' );
+      'FaceColor', 'Interp', 'EdgeColor', 'None' );
   
   axis equal;
 
@@ -77,11 +79,12 @@ function stla_display ( input_stla_filename )
 %
   title_string = s_escape_tex ( input_stla_filename );
   title ( title_string )
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'STLA_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

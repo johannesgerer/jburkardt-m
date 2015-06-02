@@ -49,7 +49,7 @@ function [ nuniq, b1, b2 ] = i4vec2_sorted_unique ( n, a1, a2 )
   
   for itest = 2 : n
 
-    if ( a1(itest) ~= b1(nuniq) | a2(itest) ~= b2(nuniq) )
+    if ( a1(itest) ~= b1(nuniq) || a2(itest) ~= b2(nuniq) )
 
       nuniq = nuniq + 1;
 

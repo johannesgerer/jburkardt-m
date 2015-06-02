@@ -2,7 +2,7 @@ function a = fibonacci3 ( n )
 
 %*****************************************************************************80
 %
-%% FIBONACCI3 returns the Fibonacci3 matrix.
+%% FIBONACCI3 returns the FIBONACCI3 matrix.
 %
 %  Example:
 %
@@ -28,6 +28,8 @@ function a = fibonacci3 ( n )
 %
 %    The determinant of A is the Fibonacci number F(N+1).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -46,7 +48,7 @@ function a = fibonacci3 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   for i = 2 : n
     a(i,i-1) = 1.0;

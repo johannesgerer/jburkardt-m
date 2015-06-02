@@ -27,7 +27,7 @@ function hermite_polynomial_test04 ( )
     my_title = sprintf ( '  Computed zeros for H(%d,z):', degree );
     r8vec_print ( degree, z, my_title );
 
-    hz = h_polynomial ( degree, degree + 1, z );
+    hz = h_polynomial_value ( degree, degree + 1, z );
     my_title = sprintf ( '  Evaluate H(%d,z):', degree );
     r8vec_print ( degree, hz(1:degree,degree+1), my_title );
 

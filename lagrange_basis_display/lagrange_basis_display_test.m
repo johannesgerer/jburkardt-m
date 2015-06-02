@@ -2,7 +2,7 @@ function lagrange_basis_display_test ( )
 
 %*****************************************************************************80
 %
-%% LAGRANGE_BASIS_DISPLAY_TEST tests LAGRANGE_BASIS_DISPLAY.
+%% LAGRANGE_BASIS_DISPLAY_TEST tests the LAGRANGE_BASIS_DISPLAY library.
 %
 %  Licensing:
 %
@@ -53,7 +53,6 @@ function lagrange_basis_display_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LAGRANGE_BASIS_DISPLAY_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

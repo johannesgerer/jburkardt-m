@@ -1,4 +1,4 @@
-function sphere_xyzf_display ( prefix )
+function sphere_xyzf_display ( prefix, sphere_size )
 
 %*****************************************************************************80
 %
@@ -19,7 +19,7 @@ function sphere_xyzf_display ( prefix )
 %
 %  Modified:
 %
-%    31 August 2010
+%    28 January 2013
 %
 %  Author:
 %
@@ -37,6 +37,12 @@ function sphere_xyzf_display ( prefix )
 %  Parameters:
 %
 %    Input, string PREFIX, the prefix of the two input files.
+%
+%    Optional input, real SPHERE_SIZE, adjusts the size of the sphere.
+%    Default is 0.90.
+%    1.0, full size (but this will probably interfere with your data)
+%    0.97, slightly smaller, will be OK if your sphere only has short lines
+%    0.85, might be small enough for a sphere with some long lines.
 %
   fprintf ( 1, '\n' );
   timestamp ( );
@@ -58,6 +64,10 @@ function sphere_xyzf_display ( prefix )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'SPHERE_XYZF_DISPLAY:\n' );
     prefix = input ( '  Enter the common prefix of the XYZ and XYZF files (in ''quotes''!).\n' );
+  end
+
+  if ( nargin < 2 )
+    sphere_size = 0.90;
   end
 %
 %  Read the XYZ data.
@@ -98,15 +108,17 @@ function sphere_xyzf_display ( prefix )
     face_data(1:face_data_num) = face_data(1:face_data_num) + 1;
   end
 %
+%  Begin graphics by creating a figure and clearing it.
+%
+  figure ( 1 )
+  clf
+%
 %  Draw a slightly shrunken unit sphere.
 %  We shrink the sphere to increase the chances that, given a choice
 %  between displaying a point on the sphere and a patch of sphere surface,
 %  we will see the point!  If there are only a few faces on the sphere,
 %  then their edges will actually cut deeply into the sphere, and
 %  hence will disappear.  I haven't thought about how to fix that.
-%
-%  Reducing the "SHRINK" factor might help if the sphere is swallowing
-%  up data.
 %
 %  I have yet to figure out the correct way to meaningfully set the
 %  color array C.  If I omit it entirely, however, even less desirable
@@ -115,12 +127,10 @@ function sphere_xyzf_display ( prefix )
 %  The 'EdgeColor', 'none' arguments suppress the drawing of longitude
 %  and latitude lines, which you might prefer to see.
 %
-  shrink = 0.97;
-
   [ sphere_x, sphere_y, sphere_z ] = sphere ( 20 );
-  sphere_x = shrink * sphere_x;
-  sphere_y = shrink * sphere_y;
-  sphere_z = shrink * sphere_z;
+  sphere_x = sphere_size * sphere_x;
+  sphere_y = sphere_size * sphere_y;
+  sphere_z = sphere_size * sphere_z;
   c = 0.20 * ones ( size ( sphere_z ) );
   surf ( sphere_x, sphere_y, sphere_z, c, 'EdgeColor', 'none' );
   hold on

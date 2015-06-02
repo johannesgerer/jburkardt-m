@@ -56,25 +56,25 @@ function r8vec2_print_some ( n, x1, x2, max_print, title )
   if ( n <= max_print )
 
     for i = 1 : n
-      fprintf ( 1, '%6d: %14f  %14f\n', i, x1(i), x2(i) );
+      fprintf ( 1, '%6d: %14g  %14g\n', i, x1(i), x2(i) );
     end
 
   elseif ( 3 <= max_print )
 
     for i = 1 : max_print-2
-      fprintf ( 1, '%6d: %14f  %14f\n', i, x1(i), x2(i) );
+      fprintf ( 1, '%6d: %14g  %14g\n', i, x1(i), x2(i) );
     end
     fprintf ( 1, '......  ..............  ..............\n' );
     i = n;
-    fprintf ( 1, '%6d: %14f  %14f\n', i, x1(i), x2(i) );
+    fprintf ( 1, '%6d: %14g  %14g\n', i, x1(i), x2(i) );
 
   else
 
     for i = 1 : max_print - 1
-      fprintf ( 1, '%6d: %14f  %14f\n', i, x1(i), x2(i) );
+      fprintf ( 1, '%6d: %14g  %14g\n', i, x1(i), x2(i) );
     end
     i = max_print;
-    fprintf ( 1, '%6d: %14f  %14f  ...more entries...\n', i, x1(i), x2(i) );
+    fprintf ( 1, '%6d: %14g  %14g  ...more entries...\n', i, x1(i), x2(i) );
 
   end
 

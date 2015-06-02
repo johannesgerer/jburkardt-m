@@ -2,7 +2,7 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
 
 %*****************************************************************************80
 %
-%% SPARSE_GRID_OPEN_DATASET is the main program for SPARSE_GRID_OPEN_DATASET.
+%% SPARSE_GRID_OPEN_DATASET is the main program.
 %
 %  Discussion:
 %
@@ -27,7 +27,7 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
 %
 %  Modified:
 %
-%    23 December 2009
+%    21 April 2013
 %
 %  Author:
 %
@@ -79,6 +79,8 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
   if ( nargin < 1)
     fprintf ( 1, '\n' );
     dim_num = input ( '  Enter the value of DIM_NUM: ' );
+  elseif ( ischar ( dim_num ) )
+    dim_num = str2num ( dim_num );
   end
 
   fprintf ( 1, '\n' );
@@ -89,6 +91,8 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     level_max = input ( '  Enter the value of LEVEL_MAX: ' );
+  elseif ( ischar ( level_max ) )
+    level_max = str2num ( level_max );
   end
 
   fprintf ( 1, '\n' );
@@ -105,6 +109,8 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
     fprintf ( 1, '  5 = TS   = Tanh-Sinh \n' );
     fprintf ( 1, '\n' );
     rule = input ( '  Enter the value of RULE: ' );
+  elseif ( ischar ( rule ) )
+    rule = str2num ( rule );
   end
 
   fprintf ( 1, '\n' );
@@ -153,7 +159,8 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
     n = ( ( order_max + 1 ) / 2 ) - 1;
     h = 4.0D+00 / ( order_max + 1 );
 
-    fprintf ( 1, '  M = %d  ORDER_MAX = %d  N = %d  H = %e\n', m, order_max, n, h );
+    fprintf ( 1, '  M = %d  ORDER_MAX = %d  N = %d  H = %e\n', ...
+      m, order_max, n, h );
 
   end
 
@@ -239,7 +246,9 @@ function sparse_grid_open_dataset ( dim_num, level_max, rule )
   grid_region(1:dim_num,2) = +1.0;
 
   r8mat_write ( r_filename, dim_num, 2, grid_region );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_OPEN_DATASET\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

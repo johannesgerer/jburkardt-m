@@ -2,7 +2,7 @@ function latin_edge_test ( )
 
 %*****************************************************************************80
 %
-%% LATIN_EDGE_TEST tests LATIN_EDGE.
+%% LATIN_EDGE_TEST tests the LATIN_EDGE library.
 %
 %  Licensing:
 %
@@ -46,7 +46,6 @@ function latin_edge_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATIN_EDGE_PRB:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

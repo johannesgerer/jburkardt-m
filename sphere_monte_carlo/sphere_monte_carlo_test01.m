@@ -2,7 +2,7 @@ function sphere_monte_carlo_test01 ( )
 
 %*****************************************************************************80
 %
-%% SPHERE_MONTE_CARLO_TEST01 tests SPHERE_SAMPLE_01.
+%% SPHERE_MONTE_CARLO_TEST01 tests SPHERE01_SAMPLE.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function sphere_monte_carlo_test01 ( )
 %
 %  Modified:
 %
-%    26 September 2010
+%    02 January 2014
 %
 %  Author:
 %
@@ -27,6 +27,8 @@ function sphere_monte_carlo_test01 ( )
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST01\n' );
+  fprintf ( 1, '  Use SPHERE01_SAMPLE to estimate integrals over \n' );
+  fprintf ( 1, '  the surface of the unit sphere.\n' );
 
   seed = 123456789;
 
@@ -47,9 +49,9 @@ function sphere_monte_carlo_test01 ( )
 
       e(1:3,1) = e_test(1:3,j);
 
-      value(1:n,1) = monomial_value ( 3, n, x, e );
+      value(1:n,1) = monomial_value ( 3, n, e, x );
 
-      result = 4.0 * pi * sum ( value(1:n) ) / n;
+      result = sphere01_area ( ) * sum ( value(1:n) ) / n;
 
     fprintf ( 1, '  %14f', result );
 

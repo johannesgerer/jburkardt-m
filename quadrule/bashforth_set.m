@@ -165,7 +165,7 @@ function [ x, w ] = bashforth_set ( n )
     w(7) =     295767.0 / d;
     w(8) =    - 36799.0 / d;
 
- elseif ( order == 9 )
+  elseif ( n == 9 )
   
     d = 3628800.0;
 
@@ -179,7 +179,7 @@ function [ x, w ] = bashforth_set ( n )
     w(8) =   -9664106.0 / d;
     w(9) =    1070017.0 / d;
   
-  elseif ( order == 10 )
+  elseif ( n == 10 )
   
     d = 7257600.0;
 
@@ -194,7 +194,7 @@ function [ x, w ] = bashforth_set ( n )
     w( 9) =   20884811.0 / d;
     w(10) =   -2082753.0 / d;
   
-  elseif ( order == 12 )
+  elseif ( n == 12 )
   
     d = 958003200.0;
 
@@ -211,7 +211,7 @@ function [ x, w ] = bashforth_set ( n )
     w(11) =    3158642445.0 / d;
     w(12) =    -262747265.0 / d;
   
-  elseif ( order == 14 )
+  elseif ( n == 14 )
   
     d = 5230697472000.0;
 
@@ -230,7 +230,7 @@ function [ x, w ] = bashforth_set ( n )
     w(13) =    19382853593787.0 / d;
     w(14) =    -1382741929621.0 / d;
   
-  elseif ( order == 16 )
+  elseif ( n == 16 )
   
     d = 62768369664000.0;
 
@@ -251,7 +251,7 @@ function [ x, w ] = bashforth_set ( n )
     w(15) =     257650275915823.0 / d;
     w(16) =     -16088129229375.0 / d;
   
-  elseif ( order == 18 )
+  elseif ( n == 18 )
   
     d = 64023737057280000.0;
 
@@ -274,7 +274,7 @@ function [ x, w ] = bashforth_set ( n )
     w(17) =     287848942064256339.0 / d;
     w(18) =     -15980174332775873.0 / d;
   
-  elseif ( order == 20 )
+  elseif ( n == 20 )
   
     d = 102181884343418880000.0;
 
@@ -302,7 +302,7 @@ function [ x, w ] = bashforth_set ( n )
   else
 
     fprintf ( 1, '\n' );
-    fprintf ( 1,'BASHFORTH_SET - Fatal error!n' );
+    fprintf ( 1, 'BASHFORTH_SET - Fatal error!\n' );
     fprintf ( 1, '  Illegal value of N = %d\n', n );
     fprintf ( 1, '  Legal values are 1 through 10,\n' );
     fprintf ( 1, '  or 12, 14, 16, 18 or 20.\n' );

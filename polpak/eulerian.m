@@ -32,7 +32,7 @@ function e = eulerian ( n )
 %    E(N,1) = E(N,N) = 1.
 %    E(N,K) = 0 if K <= 0 or N < K.
 %    sum ( 1 <= K <= N ) E(N,K) = N!.
-%    X**N = sum ( 0 <= K <= N ) COMB(X+K-1, N ) E(N,K)
+%    X^N = sum ( 0 <= K <= N ) COMB(X+K-1, N ) E(N,K)
 %
 %  Licensing:
 %

@@ -1,21 +1,17 @@
-function a = sweet2 ( perturb )
+function a = sweet2 ( )
 
 %*****************************************************************************80
 %
-%% SWEET2 returns the Sweet2 Toeplitz matrix.
+%% SWEET2 returns the SWEET2 matrix.
 %
 %  Example:
 %
 %     4.0  8.0  1.0  6.0  2.0  3.0
 %     6.0  4.0  8.0  1.0  6.0  2.0
-%      A   6.0  4.0  8.0  1.0  6.0
-%     5.0   A   6.0  4.0  8.0  1.0
-%     3.0  5.0   A   6.0  4.0  8.0
-%     1.0  3.0  5.0   A   6.0  4.0
-%
-%    The entries labled "A" have the value 71/15, but are also to
-%    be uniformly perturbed by a value PERTURB, which should be a
-%    small multiple of the machine precision.
+%    71/15 6.0  4.0  8.0  1.0  6.0
+%     5.0 71/15 6.0  4.0  8.0  1.0
+%     3.0  5.0 71/15 6.0  4.0  8.0
+%     1.0  3.0  5.0 71/15 6.0  4.0
 %
 %  Properties:
 %
@@ -51,24 +47,19 @@ function a = sweet2 ( perturb )
 %
 %  Parameters:
 %
-%    Input, real PERTURB, the perturbation value to be added to the
-%    second subdiagonal entries.
-%
 %    Output, real A(6,6), the matrix.
 %
   n = 6;
 
-  value = [ 1.0, 3.0, 5.0, 71.0 / 15.0, 6.0, 4.0, ...
+  v = [ 1.0, 3.0, 5.0, 71.0 / 15.0, 6.0, 4.0, ...
     8.0, 1.0, 6.0, 2.0, 3.0 ];
+
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n
 
-      a(i,j) = value ( j - i + 6 );
-
-      if ( j - i == -2 )
-        a(i,j) = a(i,j) + perturb;
-      end
+      a(i,j) = v ( j - i + 6 );
 
     end
   end

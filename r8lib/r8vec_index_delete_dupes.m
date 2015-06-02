@@ -67,7 +67,7 @@ function [ n, x, indx ] = r8vec_index_delete_dupes ( n, x, indx )
 %
   n = n3;
   x(1:n) = x3(1:n3);
-  indx = i4vec_indicator ( n );
+  indx = i4vec_indicator1 ( n );
 
   return
 end

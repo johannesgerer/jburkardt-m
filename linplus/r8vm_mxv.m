@@ -20,7 +20,7 @@ function b = r8vm_mxv ( m, n, a, x )
 %
 %  Modified:
 %
-%    29 September 2003
+%    03 November 2013
 %
 %  Author:
 %
@@ -30,19 +30,23 @@ function b = r8vm_mxv ( m, n, a, x )
 %
 %    Input, integer M, N, the number of rows and columns of the matrix.
 %
-%    Input, real A(N), the R8VM matrix.
+%    Input, real A(N,1), the R8VM matrix.
 %
-%    Input, real X(N), the vector to be multiplied by A.
+%    Input, real X(N,1), the vector to be multiplied by A.
 %
-%    Output, real B(M), the product A * x.
+%    Output, real B(M,1), the product A * x.
 %
+  a = a(:);
+  x = x(:);
+  b = zeros(m,1);
+
   for i = 1 : m
-    b(i) = 0.0;
+    b(i,1) = 0.0;
     for j = 1 : n
       if ( i == 1 )
-        b(i) = b(i) + x(j);
+        b(i,1) = b(i,1) + x(j,1);
       else
-        b(i) = b(i) + a(j)^(i-1) * x(j);
+        b(i,1) = b(i,1) + a(j,1)^(i-1) * x(j,1);
       end
     end
   end

@@ -4,15 +4,15 @@ function value = gud ( x )
 %
 %% GUD evaluates the Gudermannian function.
 %
-%  Definition:
+%  Discussion:
 %
 %    The Gudermannian function relates the hyperbolic and trigonometric
 %    functions.  For any argument X, there is a corresponding value
-%    GAMMA so that
+%    G so that
 %
-%      sinh(x) = tan(gamma).
+%      sinh(x) = tan(g).
 %
-%    The value GAMMA is called the Gudermannian of X.
+%    The value G is called the Gudermannian of X.
 %
 %  Licensing:
 %

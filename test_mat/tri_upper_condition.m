@@ -10,7 +10,7 @@ function cond = tri_upper_condition ( alpha, n )
 %
 %  Modified:
 %
-%    10 April 2012
+%    18 January 2015
 %
 %  Author:
 %
@@ -25,7 +25,9 @@ function cond = tri_upper_condition ( alpha, n )
 %    Output, real COND, the L1 condition.
 %
   a_norm = ( n - 1 ) * abs ( alpha ) + 1.0;
-  b_norm = 1.0 + abs ( alpha ) * ( 2.0 ^ ( n - 1 ) - 1.0 );
+  b_norm = 1.0 + abs ( alpha ) ...
+    * ( ( abs ( alpha - 1.0 ) ) ^ ( n - 1 ) - 1.0 ) ...
+    / ( abs ( alpha - 1.0 ) - 1.0 );
   cond = a_norm * b_norm;
 
   return

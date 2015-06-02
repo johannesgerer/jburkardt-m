@@ -59,6 +59,8 @@ function [ l, d ] = kms_ldl ( alpha, n )
 %
 %    Output, real D(N,N), the diagonal factor.
 %
+  l = zeros ( n, n );
+
   l(1,1) = 1.0;
   for i = 2 : n
     l(i,1) = alpha * l(i-1,1);
@@ -69,7 +71,7 @@ function [ l, d ] = kms_ldl ( alpha, n )
     l(j:n,j) = l(1:n+1-j,1);
   end
 
-  d(1:n,1:n) = 0.0;
+  d = zeros ( n, n );
   d(1,1) = 1.0;
   for i = 2 : n
     d(i,i) = 1.0 - alpha * alpha;

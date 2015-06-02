@@ -2,7 +2,7 @@ function a = riemann ( m, n )
 
 %*****************************************************************************80
 %
-%% RIEMANN returns the Riemann matrix.
+%% RIEMANN returns the RIEMANN matrix.
 %
 %  Formula:
 %
@@ -24,7 +24,7 @@ function a = riemann ( m, n )
 %  Discussion:
 %
 %    The Riemann hypothesis is true if and only if the determinant of A
-%    is of order (N% * N**(-.5 + epsilon)) for every positive epsilon.
+%    is of order (N% * N^(-.5 + epsilon)) for every positive epsilon.
 %
 %  Properties:
 %
@@ -41,6 +41,8 @@ function a = riemann ( m, n )
 %      1 <= LAMBDA(I) <= I + 1
 %    except for at most (N+1) - sqrt ( N + 1 ) values, and
 %    all integers in the interval ( (N+1)/3, (N+1)/2 ] are eigenvalues.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -67,6 +69,8 @@ function a = riemann ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
 
     for j = 1 : n

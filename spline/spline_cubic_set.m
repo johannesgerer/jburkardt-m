@@ -24,8 +24,8 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
 %      SPL(T) = A(IVAL)
 %             + B(IVAL) * ( T - T(IVAL) )
-%             + C(IVAL) * ( T - T(IVAL) )**2
-%             + D(IVAL) * ( T - T(IVAL) )**3
+%             + C(IVAL) * ( T - T(IVAL) )^2
+%             + D(IVAL) * ( T - T(IVAL) )^3
 %
 %    If we assume that we know the values Y(*) and YPP(*), which represent
 %    the values and second derivatives of the spline at each knot, then
@@ -41,13 +41,13 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
 %      SPL'(T) =     B(IVAL)
 %              + 2 * C(IVAL) * ( T - T(IVAL) )
-%              + 3 * D(IVAL) * ( T - T(IVAL) )**2,
+%              + 3 * D(IVAL) * ( T - T(IVAL) )^2,
 %
 %    the requirement that the first derivative be continuous at interior
 %    knot I results in a total of N-2 equations, of the form:
 %
 %      B(IVAL-1) + 2 C(IVAL-1) * (T(IVAL)-T(IVAL-1))
-%      + 3 * D(IVAL-1) * (T(IVAL) - T(IVAL-1))**2 = B(IVAL)
+%      + 3 * D(IVAL-1) * (T(IVAL) - T(IVAL-1))^2 = B(IVAL)
 %
 %    or, setting H(IVAL) = T(IVAL+1) - T(IVAL)
 %
@@ -64,8 +64,8 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %      YPP(IVAL-1) * H(IVAL-1) + 2 * YPP(IVAL) * ( H(IVAL-1) + H(IVAL) )
 %      + YPP(IVAL) * H(IVAL)
 %      =
-%      6 * ( Y(IVAL+1) - Y(IVAL) ) / H(IVAL)
-%      - 6 * ( Y(IVAL) - Y(IVAL-1) ) / H(IVAL-1)
+%        6 * ( Y(IVAL+1) - Y(IVAL)   ) / H(IVAL)
+%      - 6 * ( Y(IVAL)   - Y(IVAL-1) ) / H(IVAL-1)
 %
 %    Boundary conditions must be applied at the first and last knots.
 %    The resulting tridiagonal system can be solved for the YPP values.
@@ -76,7 +76,7 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
 %  Modified:
 %
-%    13 February 2004
+%    06 June 2013
 %
 %  Author:
 %
@@ -84,13 +84,15 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
 %  Reference:
 %
-%    Carl de Boor,
+%    Carl deBoor,
 %    A Practical Guide to Splines,
-%    Springer Verlag, 1978.
+%    Springer, 2001,
+%    ISBN: 0387953663.
 %
 %  Parameters:
 %
-%    Input, integer N, the number of data points; N must be at least 2.
+%    Input, integer N, the number of data points; 
+%    N must be at least 2.
 %
 %    Input, real T(N), the points where data is specified.
 %    The values should be distinct, and increasing.
@@ -98,18 +100,18 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %    Input, real Y(N), the data values to be interpolated.
 %
 %    Input, integer IBCBEG, the left boundary condition flag:
-%
-%      0: the spline should be a quadratic over the first interval;
-%      1: the first derivative at the left endpoint should be YBCBEG;
-%      2: the second derivative at the left endpoint should be YBCBEG.
+%    0: the spline should be a quadratic over the first interval;
+%    1: the first derivative at the left endpoint should be YBCBEG;
+%    2: the second derivative at the left endpoint should be YBCBEG;
+%    3: Not-a-knot: the third derivative is continuous at T(2).
 %
 %    Input, real YBCBEG, the left boundary value, if needed.
 %
 %    Input, integer IBCEND, the right boundary condition flag:
-%
-%      0: the spline should be a quadratic over the last interval;
-%      1: the first derivative at the right endpoint should be YBCEND;
-%      2: the second derivative at the right endpoint should be YBCEND.
+%    0: the spline should be a quadratic over the last interval;
+%    1: the first derivative at the right endpoint should be YBCEND;
+%    2: the second derivative at the right endpoint should be YBCEND;
+%    3: Not-a-knot: the third derivative is continuous at T(N-1).
 %
 %    Input, real YBCEND, the right boundary value, if needed.
 %
@@ -127,7 +129,7 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
     error ( 'SPLINE_CUBIC_SET - Fatal error!' );
   end
 
-  for i = 1 : n-1
+  for i = 1 : n - 1
     if ( t(i+1) <= t(i) )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SPLINE_CUBIC_SET - Fatal error!\n' );
@@ -138,20 +140,30 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
     end
   end
 %
+%  Set space for the sparse matrix A.
+%
+  a = sparse ( [], [], [], n, n, 3 * n );
+  b = zeros ( n, 1 );
+%
 %  Set the first equation.
 %
   if ( ibcbeg == 0 )
-    b(1) = 0.0E+00;
-    a(2,1) = 1.0E+00;
-    a(1,2) = -1.0E+00;
+    b(1) = 0.0;
+    a(1,1) = 1.0;
+    a(1,2) = -1.0;
   elseif ( ibcbeg == 1 )
     b(1) = ( y(2) - y(1) ) / ( t(2) - t(1) ) - ybcbeg;
-    a(2,1) = ( t(2) - t(1) ) / 3.0E+00;
-    a(1,2) = ( t(2) - t(1) ) / 6.0E+00;
+    a(1,1) = ( t(2) - t(1) ) / 3.0;
+    a(1,2) = ( t(2) - t(1) ) / 6.0;
   elseif ( ibcbeg == 2 )
     b(1) = ybcbeg;
-    a(2,1) = 1.0E+00;
-    a(1,2) = 0.0E+00;
+    a(1,1) = 1.0;
+    a(1,2) = 0.0;
+  elseif ( ibcbeg == 3 )
+    b(1) = 0.0;
+    a(1,1) = - ( t(3) - t(2) );
+    a(1,2) =   ( t(3)        - t(1) );
+    a(1,3) = - (        t(2) - t(1) );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'SPLINE_CUBIC_SET - Fatal error!\n' );
@@ -162,28 +174,33 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
 %  Set the intermediate equations.
 %
-  for i = 2 : n-1
+  for i = 2 : n - 1
     b(i) = ( y(i+1) - y(i) ) / ( t(i+1) - t(i) ) ...
            - ( y(i) - y(i-1) ) / ( t(i) - t(i-1) );
-    a(3,i-1) = ( t(i) - t(i-1) ) / 6.0E+00;
-    a(2,i) = ( t(i+1) - t(i-1) ) / 3.0E+00;
-    a(1,i+1) = ( t(i+1) - t(i) ) / 6.0E+00;
+    a(i,i-1) = ( t(i) - t(i-1) ) / 6.0;
+    a(i,i) = ( t(i+1) - t(i-1) ) / 3.0;
+    a(i,i+1) = ( t(i+1) - t(i) ) / 6.0;
   end
 %
 %  Set the last equation.
 %
   if ( ibcend == 0 )
-    b(n) = 0.0E+00;
-    a(3,n-1) = -1.0E+00;
-    a(2,n) = 1.0E+00;
+    b(n) = 0.0;
+    a(n,n-1) = -1.0;
+    a(n,n) = 1.0;
   elseif ( ibcend == 1 )
     b(n) = ybcend - ( y(n) - y(n-1) ) / ( t(n) - t(n-1) );
-    a(3,n-1) = ( t(n) - t(n-1) ) / 6.0E+00;
-    a(2,n) = ( t(n) - t(n-1) ) / 3.0E+00;
+    a(n,n-1) = ( t(n) - t(n-1) ) / 6.0;
+    a(n,n) = ( t(n) - t(n-1) ) / 3.0;
   elseif ( ibcend == 2 )
     b(n) = ybcend;
-    a(3,n-1) = 0.0E+00;
-    a(2,n) = 1.0E+00;
+    a(n,n-1) = 0.0;
+    a(n,n) = 1.0;
+  elseif ( ibcend == 3 )
+    b(n) = 0.0;
+    a(n,n-2) = - ( t(n) - t(n-1) );
+    a(n,n-1) =   ( t(n)          - t(n-2) );
+    a(n,n) =   - (        t(n-1) - t(n-2) );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'SPLINE_CUBIC_SET - Fatal error!\n' );
@@ -197,14 +214,14 @@ function ypp = spline_cubic_set ( n, t, y, ibcbeg, ybcbeg, ibcend, ybcend )
 %
   if ( n == 2 & ibcbeg == 0 & ibcend == 0 )
 
-    ypp(1) = 0.0E+00;
-    ypp(2) = 0.0E+00;
+    ypp(1) = 0.0;
+    ypp(2) = 0.0;
 %
-%  Solve the linear system.
+%  Solve the sparse linear system.
 %
   else
 
-    ypp(1:n) = d3_np_fs ( n, a, b );
+    ypp = a \ b;
 
   end
 

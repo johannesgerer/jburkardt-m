@@ -40,7 +40,7 @@ function [ x, w ] = chebyshev1_compute ( n )
 %    Input, integer N, the order.
 %    N must be greater than 0.
 %
-%    Output, real XN), the abscissas.
+%    Output, real X(N), the abscissas.
 %
 %    Output, real W(N), the weights.
 %

@@ -2,11 +2,11 @@ function table = hf_exponential_product ( p, b )
 
 %*****************************************************************************80
 %
-%% HF_EXPONENTIAL_PRODUCT: Hermite function exponential products.
+%% HF_EXPONENTIAL_PRODUCT: exponential products, exp(b*x)*Hf(i,x)*Hf(j,x).
 %
 %  Discussion:
 %
-%    Let Hf(I,X) represent the Hermite function of "degree" I.  
+%    Hf(I,X) represents the Hermite function of "degree" I.  
 %
 %    For polynomial chaos applications, it is of interest to know the
 %    value of the integrals of products of exp(B*X) with every possible pair
@@ -52,7 +52,7 @@ function table = hf_exponential_product ( p, b )
   for k = 1 : order
 
     x = x_table(k);
-    h_table = hf_function ( 1, p, x );
+    h_table = hf_function_value ( 1, p, x );
 %
 %  The following formula is an outer product in H_TABLE.
 %

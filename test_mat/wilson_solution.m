@@ -2,7 +2,7 @@ function x = wilson_solution ( )
 
 %*****************************************************************************80
 %
-%% WILSON_SOLUTION returns the Wilson solution.
+%% WILSON_SOLUTION returns the WILSON solution.
 %
 %  Licensing:
 %
@@ -20,7 +20,10 @@ function x = wilson_solution ( )
 %
 %    Output, real X(4,1), the solution vector.
 %
-  x(1:4,1) = [ 1.0, 1.0, 1.0, 1.0 ];
+  x(1:4,1) = [ 1.0; ...
+               1.0; ...
+               1.0; ...
+               1.0 ];
 
   return
 end

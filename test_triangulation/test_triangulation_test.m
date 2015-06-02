@@ -2,7 +2,7 @@ function test_triangulation_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_TRIANGULATION_TEST tests TEST_TRIANGULATION.
+%% TEST_TRIANGULATION_TEST tests the TEST_TRIANGULATION library.
 %
 %  Licensing:
 %
@@ -35,7 +35,6 @@ function test_triangulation_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_TRIANGULATION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

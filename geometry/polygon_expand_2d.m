@@ -36,7 +36,7 @@ function w = polygon_expand_2d ( n, v, h )
 %
 %    Output, real W(2,N), the "expanded" coordinates.
 %
-  dim_num = 2;
+
 %
 %  Consider each angle, formed by the nodes P(I-1), P(I), P(I+1).
 %
@@ -52,19 +52,18 @@ function w = polygon_expand_2d ( n, v, h )
 %     / .
 %    P2--------->P3
 %
-    p4(1:dim_num,1) = angle_half_2d ( v(1:dim_num,im1), ...
-      v(1:dim_num,i), v(1:dim_num,ip1) );
+    p4(1:2,1) = angle_half_2d ( v(1:2,im1), v(1:2,i), v(1:2,ip1) );
 %
 %  Compute the value of the half angle.
 %
-    angle = angle_rad_2d ( v(1:dim_num,im1), v(1:dim_num,i), p4(1:dim_num,1) );
+    angle = angle_rad_2d ( v(1:2,im1), v(1:2,i), p4(1:2,1) );
 %
 %  The stepsize along the ray must be adjusted so that the sides
 %  move out by H.
 %
     h2 = h / sin ( angle );
 
-    w(1:dim_num,i) = v(1:dim_num,i) - h2 * ( p4(1:dim_num,1) - v(1:dim_num,i) );
+    w(1:2,i) = v(1:2,i) - h2 * ( p4(1:2,1) - v(1:2,i) );
 
   end
 

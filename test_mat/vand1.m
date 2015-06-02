@@ -2,11 +2,11 @@ function a = vand1 ( n, x )
 
 %*****************************************************************************80
 %
-%% VAND1 returns the Vandermonde1 matrix A with 1's on the first row.
+%% VAND1 returns the VAND1 matrix.
 %
 %  Formula:
 %
-%    A(I,J) = X(J)**(I-1)
+%    A(I,J) = X(J)^(I-1)
 %
 %  Example:
 %
@@ -29,6 +29,8 @@ function a = vand1 ( n, x )
 %             * product ( 1 <= I < J ) ( X(J) - X(I) ).
 %
 %    A is generally ill-conditioned.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -63,6 +65,8 @@ function a = vand1 ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

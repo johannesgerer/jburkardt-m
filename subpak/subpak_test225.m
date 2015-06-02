@@ -2,7 +2,7 @@ function test225 ( )
 
 %*****************************************************************************80
 %
-%% TEST225 tests LMAT_PRINT.
+%% TEST225 tests L4MAT_PRINT.
 %
 %  Licensing:
 %
@@ -21,7 +21,7 @@ function test225 ( )
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST225\n' );
-  fprintf ( 1, '  LMAT_PRINT prints a logical matrix.\n' );
+  fprintf ( 1, '  L4MAT_PRINT prints a logical matrix.\n' );
 
   a = zeros ( m, n );
 
@@ -31,7 +31,7 @@ function test225 ( )
     end
   end
 
-  lmat_print ( m, n, a, '  A(I,J) = I is divisible by J' );
+  l4mat_print ( m, n, a, '  A(I,J) = I is divisible by J' );
 
   return
 end

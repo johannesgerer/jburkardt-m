@@ -40,7 +40,7 @@ function area = sphere_cap_area_2d ( r, h )
     area = 2.0 * pi * r;
   else
 
-    theta = 2.0 * arc_sine ( sqrt ( r * r - ( r - h ) * ( r - h ) ) / r );
+    theta = 2.0 * r8_asin ( sqrt ( r * r - ( r - h ) * ( r - h ) ) / r );
 
     area = r * theta;
 

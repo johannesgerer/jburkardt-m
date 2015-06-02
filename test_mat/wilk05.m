@@ -51,6 +51,8 @@ function a = wilk05 ( )
 %
   n = 5;
 
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 1.8144 / ( i + j + 1 );

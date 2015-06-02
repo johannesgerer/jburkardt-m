@@ -2,11 +2,7 @@ function floyd_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for FLOYD_TEST.
-%
-%  Discussion:
-%
-%    FLOYD_TEST calls a set of problems for FLOYD.
+%% FLOYD_TEST tests the FLOYD library.
 %
 %  Licensing:
 %
@@ -14,14 +10,13 @@ function floyd_test ( )
 %
 %  Modified:
 %
-%    17 May 2009
+%    02 March 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FLOYD_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -29,28 +24,14 @@ function floyd_test ( )
 
   floyd_test01 ( );
   floyd_test02 ( );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1,'FLOYD_TEST03\n' );
-  fprintf ( 1, '  Test I4MAT_FLOYD on the MOD(I,J) matrix.\n' );
-  fprintf ( 1, '  The work is roughly N^3.\n' );
-  fprintf ( 1, '\n');
-  fprintf ( 1, '         N   Time (seconds)  Time/N^3\n' );
-  fprintf ( 1, '\n' );
-
-  n = 1;
-  while ( n <= 512 )
-    wtime = floyd_test03 ( n );
-    fprintf ( 1, '  %8d  %12f  %12f\n', n, wtime, 1000000 * wtime / n^3 );
-    n = n * 2;
-  end
+  floyd_test03 ( );
+  floyd_test04 ( );
 %
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FLOYD_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

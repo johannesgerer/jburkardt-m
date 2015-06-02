@@ -52,13 +52,13 @@ function a = wilk20 ( alpha )
 %
 %    and the condition number of eigenvalue I is
 %
-%      COND(LAMBDA(I)) = (20-I)% * (I-1)% / 20**19.
+%      COND(LAMBDA(I)) = (20-I)! * (I-1)! / 20^19.
 %
 %    If ALPHA is nonzero, the characteristic equation is
 %
-%      product ( 1 <= I <= 20 ) ( I - LAMBDA ) = 20**19 * ALPHA.
+%      product ( 1 <= I <= 20 ) ( I - LAMBDA ) = 20^19 * ALPHA.
 %
-%    If ALPHA = 1.0D-10, there are 6 real eigenvalues, and 14 complex
+%    If ALPHA = 1.0E-10, there are 6 real eigenvalues, and 14 complex
 %    eigenvalues with considerable imaginary parts.
 %
 %  Licensing:
@@ -100,6 +100,7 @@ function a = wilk20 ( alpha )
 %    Output, real A(20,20), the matrix.
 %
   n = 20;
+  a = zeros ( n, n );
 
   for i = 1 : n
     for j = 1 : n

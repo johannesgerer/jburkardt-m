@@ -2,7 +2,7 @@ function lambda = bodewig_eigenvalues ( )
 
 %*****************************************************************************80
 %
-%% BODEWIG_EIGENVALUES returns the eigenvalues of the Bodewig matrix.
+%% BODEWIG_EIGENVALUES returns the eigenvalues of the BODEWIG matrix.
 %
 %  Licensing:
 %
@@ -18,9 +18,9 @@ function lambda = bodewig_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(4), the eigenvalues.
+%    Output, real LAMBDA(4,1), the eigenvalues.
 %
-  lambda(1:4) = [ ...
+  lambda(1:4,1) = [ ...
     -8.028578352396531, ...
      7.932904717870018, ...
      5.668864372830019, ...

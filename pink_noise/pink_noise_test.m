@@ -2,7 +2,7 @@ function pink_noise_test ( )
 
 %*****************************************************************************80
 %
-%% PINK_NOISE_TEST tests the PINK_NOISE routines.
+%% PINK_NOISE_TEST tests the PINK_NOISE library.
 %
 %  Licensing:
 %
@@ -18,7 +18,7 @@ function pink_noise_test ( )
 %
   timestamp ( );
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'PINK_NOISE_PRB:\n' );
+  fprintf ( 1, 'PINK_NOISE_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the PINK_NOISE library.\n' );
 
@@ -30,7 +30,7 @@ function pink_noise_test ( )
 %  Terminate.
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'PINK_NOISE_PRB:\n' );
+  fprintf ( 1, 'PINK_NOISE_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
   fprintf ( 1, '\n' );
   timestamp ( );

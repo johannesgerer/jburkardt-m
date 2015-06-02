@@ -96,7 +96,7 @@ function r8bto_print_some ( m, l, a, ilo, jlo, ihi, jhi, title )
           aij = a(i2,j2,l+i1-j1);
         end
 
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -105,8 +105,6 @@ function r8bto_print_some ( m, l, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

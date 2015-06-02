@@ -2,7 +2,7 @@ function ziggurat_test ( )
 
 %*****************************************************************************80
 %
-%% ZIGGURAT_TEST tests ZIGGURAT.
+%% ZIGGURAT_TEST tests the ZIGGURAT library.
 %
 %  Licensing:
 %
@@ -43,7 +43,6 @@ function ziggurat_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ZIGGURAT_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

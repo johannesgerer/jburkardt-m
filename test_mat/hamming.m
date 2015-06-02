@@ -2,7 +2,7 @@ function a = hamming ( m, n )
 
 %*****************************************************************************80
 %
-%% HAMMING computes the Hamming matrix.
+%% HAMMING computes the HAMMING matrix.
 %
 %  Example:
 %
@@ -17,9 +17,9 @@ function a = hamming ( m, n )
 %  Discussion:
 %
 %    For a given order M, the Hamming matrix is a rectangular array
-%    of M rows and (2**M)-1 columns.  The entries of the matrix are
+%    of M rows and (2^M)-1 columns.  The entries of the matrix are
 %    0 and 1.  The columns of A should be interpreted as the binary
-%    representations of the integers between 1 and (2**M)-1.
+%    representations of the integers between 1 and (2^M)-1.
 %
 %    We can also think of the columns as representing nonempty subsets
 %    of an M set.  With this perspective, the columns of the matrix
@@ -48,7 +48,7 @@ function a = hamming ( m, n )
 %
 %  Modified:
 %
-%    17 October 2007
+%    14 March 2014
 %
 %  Author:
 %
@@ -69,24 +69,19 @@ function a = hamming ( m, n )
     fprintf ( 1, '  M = %d\n', m );
     fprintf ( 1, '  N = %d\n', n );
     fprintf ( 1, '  but N = 2^M-1 is required.\n' );
-    error ( 'HADAMARD - Fatal error!' );
+    error ( 'HAMMING - Fatal error!' );
   end
 
-  a(1:m,1:n) = 0.0;
+  a = zeros ( m, n );
+%
+%  Fill in the columns of A, from right to left, by generating all the
+%  nonzero binary vectors of length M in GRLEX order.
+%
+  b = zeros(m,1);
 
-  iarray = [];
-  size = 0;
-  more = 0;
-
-  for j = 1 : n
-
-    [ iarray, size, more ] = sub_by_size_next ( m, iarray, size, more );
-
-    for k = 1 : size
-      i = iarray(k);
-      a(i,j) = 1.0;
-    end
-
+  for j = n : -1 : 1
+    b = bvec_next_grlex ( m, b );
+    a(1:m,j) = b(1:m);
   end
 
   return

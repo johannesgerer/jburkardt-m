@@ -80,7 +80,7 @@ function r8ut_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
         if ( j < i )
           fprintf ( 1, '              ' );
         else
-          fprintf ( 1, '%12f  ', a(i,j) );
+          fprintf ( 1, '%12g  ', a(i,j) );
         end
 
       end
@@ -90,8 +90,6 @@ function r8ut_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

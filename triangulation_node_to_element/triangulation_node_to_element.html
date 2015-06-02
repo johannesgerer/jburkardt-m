@@ -1,0 +1,232 @@
+<html>
+
+  <head>
+    <title>
+      TRIANGULATION_NODE_TO_ELEMENT - Average Node Data to Create Element Data
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      TRIANGULATION_NODE_TO_ELEMENT <br> Average Node Data to Create Element Data
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>TRIANGULATION_NODE_TO_ELEMENT</b> 
+      is a MATLAB program which 
+      reads datafiles describing a set of nodes, their triangulation, and the
+      value of one or more quantities at each node, and outputs a file
+      that averages the quantities for each element.  This operation 
+      in effect creates an "order1" finite element model of the data.
+    </p>
+
+    <p>
+      The program reads three data files:
+      <ul>
+        <li>
+          a node file, containing 
+          X, Y coordinates of points;
+        </li>
+        <li>
+          an element file, 
+          containing a list of sets of three points making up each 
+          triangular element;  (if this file does not exist, the
+          program will generate the element data automatically).
+        </li>
+        <li>
+          a node values file, 
+          containing the values of one or more data items
+          at each node.
+        </li>
+      </ul>
+      and creates
+      <ul>
+        <li>
+          an element values file, 
+          containing the values of the data, averaged over 
+          the nodes in each element.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>triangulation_node_to_element</b> ( '<i>prefix</i>' )
+      </blockquote>
+      where
+      <ul>
+        <li>
+          <i>'prefix'</i>_nodes.txt, lists the node coordinates;
+        </li>
+        <li>
+          <i>'prefix'</i>_elements.txt lists the indices of nodes that form elements
+          (this file is optional, and if not supplied, the information will
+          be generated internally);
+        </li>
+        <li>
+          <i>'prefix'</i>_values.txt contains the value assigned to each node.
+        </li>
+        <li>
+          <i>'prefix'</i>_element_values.txt will contain the values averaged
+          over the nodes in each element.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TRIANGULATION_NODE_TO_ELEMENT</b> is available in
+      <a href = "../../c_src/triangulation_node_to_element/triangulation_node_to_element.html">a C version</a> and
+      <a href = "../../cpp_src/triangulation_node_to_element/triangulation_node_to_element.html">a C++ version</a> and
+      <a href = "../../f77_src/triangulation_node_to_element/triangulation_node_to_element.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/triangulation_node_to_element/triangulation_node_to_element.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/triangulation_node_to_element/triangulation_node_to_element.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/mesh_to_xml/mesh_to_xml.html">
+      MESH_TO_XML</a>,
+      a MATLAB program which
+      reads information defining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding XML file for input
+      to DOLFIN or FENICS.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>, 
+      a MATLAB library which
+      carries out various operations on order 3 ("linear") or order 6 
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_l2q/triangulation_l2q.html">
+      TRIANGULATION_L2Q</a>,
+      a MATLAB program which
+      reads information about a 3-node (linear) triangulation and creates data
+      defining a corresponding 6-node (quadratic) triangulation;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order1_display/triangulation_order1_display.html">
+      TRIANGULATION_ORDER1_DISPLAY</a>,
+      a MATLAB program which
+      plots piecewise constant data associated with a triangulation;
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>, 
+      a MATLAB program which 
+      can display a contour plot
+      of scalar data defined on a triangulation of order 3.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order6_contour/triangulation_order6_contour.html">
+      TRIANGULATION_ORDER6_CONTOUR</a>, 
+      a MATLAB program which 
+      can display a contour plot
+      of scalar data defined on a triangulation of order 6.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_q2l/triangulation_q2l.html">
+      TRIANGULATION_Q2L</a>,
+      a MATLAB program which
+      reads information about a 6-node (quadratic) triangulation 
+      and creates data defining a corresponding 3-node (linear) triangulation;
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "triangulation_node_to_element.m">
+          triangulation_node_to_element.m</a>, 
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>LAKE</b> is a simulated lake with an island region. 
+      <ul>
+        <li>
+          <a href = "lake_nodes.txt">lake_nodes.txt</a>, 
+          a node file;
+        </li>
+        <li>
+          <a href = "lake_elements.txt">lake_elements.txt</a>, 
+          an element file;
+        </li>
+        <li>
+          <a href = "lake_elements.png">lake_elements.pngt</a>, 
+          an image of the lake elements;
+        </li>
+        <li>
+          <a href = "lake_values.txt">lake_values.txt</a>, 
+          a value file;
+        </li>
+        <li>
+          <a href = "lake_element_values.txt">lake_element_values.txt</a>, 
+          the node data, averaged over each element.
+        </li>
+        <li>
+          <a href = "lake_element_values.png">lake_element_values.png</a>, 
+          a 3D plot of the lake element values, as produced by
+          triangulation_order1_display().  (We had to temporarily rename
+          lake_element_values.txt to lake_values.txt to do this.)
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 14 March 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

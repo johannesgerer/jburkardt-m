@@ -20,6 +20,10 @@ function a = harman_inverse ( )
 %
 %    Output, real A(N,N), the matrix.
 %
+
+%
+%  Note that the matrix entries are listed by row.
+%
   a = [ ...
    5.505750442924552,  -2.024827472733320, ...
   -0.525564377998213,  -2.414725599885703, ...

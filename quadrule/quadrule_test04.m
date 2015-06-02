@@ -2,7 +2,8 @@ function quadrule_test04 ( )
 
 %*****************************************************************************80
 %
-%% TEST04 tests CHEB_SET and SUM_SUB.
+%% QUADRULE_TEST04 tests CHEBYSHEV_SET and SUM_SUB.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license. 
@@ -15,7 +16,7 @@ function quadrule_test04 ( )
 %
 %    John Burkardt
 %
-  order_max = 9;
+  n_max = 9;
 
   nfunc = func_set ( 'COUNT', 'DUMMY' );
 
@@ -28,8 +29,8 @@ function quadrule_test04 ( )
   xhi =  1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST04\n' );
-  fprintf ( 1, '  CHEB_SET sets up Chebyshev quadrature;\n' );
+  fprintf ( 1, 'QUADRULE_TEST04\n' );
+  fprintf ( 1, '  CHEBYSHEV_SET sets up Chebyshev quadrature;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The integration interval is [%f, %f]\n', a, b );
@@ -50,20 +51,20 @@ function quadrule_test04 ( )
     fprintf ( 1, '\n' );
     fprintf ( 1, '\n' );
 
-    for norder = 1 : order_max
+    for n = 1 : n_max
 
-      if ( norder ~= 8 )
+      if ( n ~= 8 )
 
-        fprintf ( 1, '  %2d', norder );
+        fprintf ( 1, '  %2d', n );
 
         for i = ilo : ihi
 
           func_set ( 'SET', i );
 
-          [ xtab, weight ] = cheb_set ( norder );
+          [ x, w ] = chebyshev_set ( n );
 
-          result(i) = sum_sub ( @func, a, b, nsub, norder, xlo, xhi, ...
-            xtab, weight );
+          result(i) = sum_sub ( @func, a, b, nsub, n, xlo, xhi, ...
+            x, w );
 
           fprintf ( 1, '  %12f', result(i) );
 

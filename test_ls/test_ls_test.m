@@ -2,7 +2,7 @@ function test_ls_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_LS_TEST tests TEST_LS.
+%% TEST_LS_TEST tests the TEST_LS library.
 %
 %  Licensing:
 %
@@ -33,7 +33,6 @@ function test_ls_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_LS_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

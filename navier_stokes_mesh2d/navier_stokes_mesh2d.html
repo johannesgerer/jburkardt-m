@@ -1,0 +1,294 @@
+<html>
+
+  <head>
+    <title>
+      NAVIER_STOKES_MESH2D - 2D Meshes for Navier Stokes Problems
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      NAVIER_STOKES_MESH2D<br> 2D Meshes for Navier Stokes Problems
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>NAVIER_STOKES_MESH2D</b> 
+      is a set of MATLAB data files defining meshes for several
+      2D test problems involving the Navier Stokes equations
+      for fluid flow, provided by Leo Rebholz.
+    </p>
+
+    <p>
+      We are interested in these meshes as useful tests for a procedure
+      in which we are able to redo the related Navier Stokes calculations
+      using FENICS.  
+    </p>
+
+    <p>
+      As part of that task, we need to take the meshes
+      associated with the MATLAB computation and translate them into 
+      a format acceptable to DOLFIN / FENICS.  Our proposed mechanism
+      for this is either to translate the files to the Gmsh msh format,
+      and then use DOLFIN-CONVERT to convert that to DOLFIN XML,
+      or else to translate the files directly into DOLFIN XML format ourselves.
+    </p>
+
+    <p>
+      The following files each contain a mesh, defined by
+      a node coordinate list, a node index list for each element, and boundary nodes.
+      The first line of the file lists the number of nodes, the number of elements,
+      and the number of boundary segments.  
+    </p>
+
+    <p>
+      Each node coordinate line lists the 3D coordinates of a node.
+    </p>
+
+    <p>
+      Each element line lists 3 node indices forming the element, plus an
+      integer tag that seems to be 0 always.
+    </p>
+
+    <p>
+      Each boundary segment line lists two node indices that form a line segment
+      along the boundary, plus an integer tag that probably is used to specify the
+      boundary condition applied along that line.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>NAVIER_STOKES_MESH2D</b> is available in
+      <a href = "../../m_src/navier_stokes_mesh2d/navier_stokes_mesh2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../py_src/dolfin/dolfin.html">
+      DOLFIN</a>,
+      Python programs which
+      are used with the DOLFIN library to set up and solve
+      a wide variety of problems using the finite element method.
+    </p>
+
+    <p>
+      <a href = "../../py_src/dolfin-convert/dolfin-convert.html">
+      DOLFIN-CONVERT</a>,
+      a Python program which
+      can convert mesh file from Gmsh, MEDIT, METIS or SCOTCH format to an
+      XML format suitable for use by DOLFIN or FENICS,
+      by Anders Logg.
+    </p>
+
+    <p>
+      <a href = "../../data/dolfin_xml/dolfin_xml.html">
+      DOLFIN_XML</a>
+      is a data directory which
+      contains examples of XML files that describe 3D finite element meshes
+      as used by DOLFIN and FENICS.
+    </p>
+
+    <p>
+      <a href = "../../examples/fenics/fenics.html">
+      FENICS</a>, 
+      programs which
+      illustrate the use of a collection of free software 
+      with an extensive list of features for 
+      automated, efficient solution of differential equations. 
+    </p>
+
+    <p>
+      <a href = "../../examples/gmsh/gmsh.html">
+      GMSH</a>,
+      examples which
+      illustrate the use of the Gmsh program,
+      a 3D mesh generator for the finite element method (FEM).
+    </p>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_2d_exact/navier_stokes_2d_exact.html">
+      NAVIER_STOKES_2D_EXACT</a>,
+      evaluates an exact solution to the incompressible time-dependent
+      Navier-Stokes equations over an arbitrary domain in 2D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/navier_stokes_mesh3d/navier_stokes_mesh3d.html">
+      NAVIER_STOKES_MESH3D</a>,
+      MATLAB data files defining meshes for several
+      3D test problems involving the Navier Stokes equations
+      for flow flow, provided by Leo Rebholz.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_to_gmsh/triangulation_to_gmsh.html">
+      TRIANGULATION_TO_GMSH</a>,
+      a MATLAB program which
+      reads a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding Gmsh mesh file.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Leo Rebholz
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Abigail Bowers, Leo Rebholz, Aziz Takhirov, Catalin Trenchea,<br>
+          Improved accuracy in regularization models of incompressible
+          flow via adaptive nonlinear filtering,<br>
+          International Journal for Numerical Methods in Fluids,<br>
+          Volume 70, Number 7, 2012, pages 805-828.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      The following functions operate on the mesh data:
+      <ul>
+        <li>
+          <a href = "i4mat_write.m">i4mat_write.m</a>
+          writes an I4MAT to a file.
+        </li>
+        <li>
+          <a href = "mesh2d_extract.m">mesh2d_extract.m</a>
+          reads a text file containing a mesh and extracts the
+          3 components: node coordinates, element node indices,
+          boundary nodes.
+        </li>
+        <li>
+          <a href = "r8mat_write.m">r8mat_write.m</a>
+          writes an R8MAT to a file.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "nsm_test.m">nsm_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "nsm_test_output.txt">nsm_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "nsm_test01.m">nsm_test01.m</a>
+          reports the sizes of the three mesh components, and
+          the range of the node coordinates.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      CYLINDER_2D is a mesh for 2D flow past a square cylinder, 
+      using 1649 nodes, 3078 elements, and 220 boundary nodes.
+      <ul>
+        <li>
+          <a href = "cylinder_2d.txt">cylinder_2d.txt</a>
+          the original mesh data file.
+        </li>
+        <li>
+          <a href = "cylinder_2d_nodes.txt">cylinder_2d_nodes.txt</a>
+          the node coordinate file for the triangulation.
+        </li>
+        <li>
+          <a href = "cylinder_2d_elements.txt">cylinder_2d_elements.txt</a>
+          the element file for the triangulation.
+        </li>
+        <li>
+          <a href = "cylinder_2d.msh">cylinder_2d.msh</a>
+          a Gmsh version of the mesh.
+        </li>
+        <li>
+          <a href = "cylinder_2d.png">cylinder_2d.png</a>
+          a PNG image of the mesh, created by Gmsh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      STEP_2D is a mesh for 2D flow past a forward and backward step,
+      using 537 nodes, 960 elements, and 112 boundary nodes.
+      <ul>
+        <li>
+          <a href = "step_2d.txt">step_2d.txt</a>
+          the original mesh data file.
+        </li>
+        <li>
+          <a href = "step_2d_nodes.txt">step_2d_nodes.txt</a>
+          the node coordinate file for the triangulation.
+        </li>
+        <li>
+          <a href = "step_2d_elements.txt">step_2d_elements.txt</a>
+          the element file for the triangulation.
+        </li>
+        <li>
+          <a href = "step_2d.msh">step_2d.msh</a>
+          a Gmsh version of the mesh.
+        </li>
+        <li>
+          <a href = "step_2d.png">step_2d.png</a>
+          a PNG image of the mesh, created by Gmsh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 May 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

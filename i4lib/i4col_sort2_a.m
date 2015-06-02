@@ -55,7 +55,9 @@ function a = i4col_sort2_a ( m, n, a )
 %
       if ( 0 < indx )
 
-        [ a(i,col), a(j,col) ] = i4_swap ( a(i,col), a(j,col) );
+        t        = a(i,col);
+        a(i,col) = a(j,col);
+        a(j,col) = t;
 %
 %  Compare the I and J objects.
 %

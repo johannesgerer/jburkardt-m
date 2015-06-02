@@ -4,6 +4,10 @@ function dist_plot ( p, t, fd )
 %
 %% DIST_PLOT displays a plot of the distance function.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
 %    06 February 2006

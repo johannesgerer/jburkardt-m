@@ -1,0 +1,23 @@
+# lorenz_ode_commands.txt
+#
+# Usage:
+#  gnuplot < lorenz_ode_commands.txt
+#
+set term png
+set output "xyz_time.png"
+set xlabel "<--- T --->"
+set ylabel "<--- X(T), Y(T), Z(T) --->"
+set title "X(T), Y(T), Z(T) versus Time"
+set grid
+set style data lines
+plot "lorenz_ode_data.txt" using 1:2 lw 3 linecolor rgb "blue",\
+ "" using 1:3 lw 3 linecolor rgb "red",\
+ "" using 1:4 lw 3 linecolor rgb "green"
+set output "xyz_3d.png"
+set xlabel "<--- X(T) --->"
+set ylabel "<--- Y(T) --->"
+set zlabel "<--- Z(T) --->"
+set title "(X(T),Y(T),Z(T)) trajectory"
+set grid
+set style data lines
+splot "lorenz_ode_data.txt" using 2:3:4 lw 1 linecolor rgb "blue"

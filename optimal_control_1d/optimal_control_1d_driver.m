@@ -44,21 +44,20 @@ function optimal_control_1d_driver ( )
 %
 %  Local parameters:
 %
-%    Local, integer E_CONN(N_ELEMENT,NEL_DOF), the indices of the nodes in the elements.
-%
-%    Local, integer E_CONNB(1,NEL_DOF), the indices of the nodes in the master element.
+%    Local, integer E_CONN(N_ELEMENT,NEL_DOF), the indices of the nodes 
+%    in the elements.
 %
 %    Local, integer ELEMENTS_MESH, the number of elements (subintervals)
 %    into which the region is divided.
 %
-%    Local, string VARIABLE.ELEMENT, indicates the kind of element being used.
-%    'continuous_linear'
-%    'continuous_quadratic'
-%    'continuous_cubic'
+%    Local, real Q_DELTA, a multiplier for the gradient vector GRAD_OLD,
+%    used to control the size of the change in Q.
+%
+%    Local, real Q_NEW(N_NODES,1), the new estimate for the control function.
+%
+%    Local, real Q_OLD(N_NODES,1), the previous estimate for the control function.
 %
 %    Local, real X(N_NODES,1), the nodes of the mesh.
-%
-%    Local, real XB(NEL_DOF,1), the nodes of the master element.
 %
 %    Local, real X_L, X_R, the left and right endpoints of the interval.
 %
@@ -77,10 +76,9 @@ function optimal_control_1d_driver ( )
 %
 %  Set an initial guess for Q.
 %
-  q_new = x + 0.5;   
+  q_new = x + 0.5;
 
   [ J_new, grad_new, u_new ] = optimal_control_1d ( x, e_conn, q_new );
-  fprintf ( '  Cost functional J(q) = %g\n', J_new );  
 %
 %  The function to be matched.
 %
@@ -91,57 +89,58 @@ function optimal_control_1d_driver ( )
   graphics ( 0, x, q_new, q_hat_plot, u_new, u_hat_plot ) 
  
   epsilon = 0.00000001;
+%
+%  DELTA_Q controls the stepsize along the gradient vector.
+%
+  q_delta = 0.001;
+  
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Step         ||Grad||        J               J Delta         Q Delta\n' );
+  fprintf ( 1, '\n' );
+  fprintf ( '  %4d  %14g  %14g\n', 0, norm ( grad_new ), J_new );
+
   J_old = J_new;
   q_old = q_new;
   u_old = u_new;
   grad_old = grad_new;
-%
-%  DELTA_Q controls the stepsize along the gradient vector.
-%
-  delta_q = 0.001;
-  fprintf ('  Initial gradient vector step size deltaq = %g\n', delta_q );
-  
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Step         Delta Q               J         Delta J\n' );
-  fprintf ( 1, '\n' );
 
   for it = 1 : 1000
-  
-    q_new = q_old - delta_q * grad_old;
+
+    q_new = q_old - q_delta * grad_old;
 
     [ J_new, grad_new, u_new ] = optimal_control_1d ( x, e_conn, q_new );
 
     J_delta = abs ( J_new - J_old ) / abs ( J_new );
-
-    fprintf ( '  %4d  %14g  %14g  %14g\n', it, delta_q, J_new, J_delta );
 %
-%  Convergence?
-%
-    if ( J_delta <= epsilon )
-      fprintf ( 1, '\n' );
-      fprintf ( 1, 'OPTIMAL_CONTROL_1D_DRIVER:\n' );
-      fprintf ( '  The gradient iteration has converged at iteration %d\n', it );
-      break;
-    end
-%
-%  J did not decrease?
+%  If J increased, try a smaller stepsize with the same data.
+%  If J decreased, increase the step, plot the solution, and advance the data.
 %
     if ( J_old <= J_new )
-      delta_q = delta_q * 0.5;
-      continue
+
+      q_delta = q_delta * 0.5;
+
+    else
+
+      fprintf ( '  %4d  %14g  %14g  %14g  %14g\n', it, norm ( grad_new), J_new, J_delta, q_delta );
+
+      q_delta = q_delta * 1.5;
+
+      graphics ( it, x, q_new, q_hat_plot, u_new, u_hat_plot )   
+
+      J_old = J_new;
+      q_old = q_new;
+      u_old = u_new;
+      grad_old = grad_new;
+
+      if ( J_delta <= epsilon )
+        fprintf ( 1, '\n' );
+        fprintf ( 1, 'OPTIMAL_CONTROL_1D_DRIVER:\n' );
+        fprintf ( '  The gradient iteration has converged at iteration %d\n', it );
+        break;
+      end
+
     end
-%
-%  J decreased.
-%
-    delta_q = delta_q * 1.5;
-
-    graphics ( it, x, q_new, q_hat_plot, u_new, u_hat_plot )   
-
-    J_old = J_new;
-    q_old = q_new;
-    u_old = u_new;
-    grad_old = grad_new;
-            
+      
   end
 %
 %  Terminate.

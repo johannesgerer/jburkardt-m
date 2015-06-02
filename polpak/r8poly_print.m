@@ -8,7 +8,7 @@ function r8poly_print ( n, a, title )
 %
 %    The power sum form is:
 %
-%      p(x) = a(0) + a(1) * x + ... + a(n-1) * x**(n-1) + a(n) * x**(n)
+%      p(x) = a(0) + a(1) * x + ... + a(n-1) * x^(n-1) + a(n) * x^(n)
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function r8poly_print ( n, a, title )
 %
 %    Input, real A(1:N+1), the polynomial coefficients.
 %    A(1) is the constant term and
-%    A(N+1) is the coefficient of X**N.
+%    A(N+1) is the coefficient of X^N.
 %
 %    Input, character TITLE(*), an optional title.
 %

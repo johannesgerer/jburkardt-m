@@ -24,12 +24,12 @@ function [ n_data_new, n, m, x, fx ] = legendre_associated_values ( n_data )
 %
 %    P00 =    1
 %    P10 =    1 X
-%    P20 = (  3 X**2 -   1)/2
-%    P30 = (  5 X**3 -   3 X)/2
-%    P40 = ( 35 X**4 -  30 X**2 +   3)/8
-%    P50 = ( 63 X**5 -  70 X**3 +  15 X)/8
-%    P60 = (231 X**6 - 315 X**4 + 105 X**2 -  5)/16
-%    P70 = (429 X**7 - 693 X**5 + 315 X**3 - 35 X)/16
+%    P20 = (  3 X^2 -   1)/2
+%    P30 = (  5 X^3 -   3 X)/2
+%    P40 = ( 35 X^4 -  30 X^2 +   3)/8
+%    P50 = ( 63 X^5 -  70 X^3 +  15 X)/8
+%    P60 = (231 X^6 - 315 X^4 + 105 X^2 -  5)/16
+%    P70 = (429 X^7 - 693 X^5 + 315 X^3 - 35 X)/16
 %
 %    M = 1
 %
@@ -52,8 +52,8 @@ function [ n_data_new, n, m, x, fx ] = legendre_associated_values ( n_data )
 %    P03 =   0
 %    P13 =   0
 %    P23 =   0
-%    P33 =  15 * (1-X*X)**1.5
-%    P43 = 105 * (1-X*X)**1.5 * X
+%    P33 =  15 * (1-X*X)^1.5
+%    P43 = 105 * (1-X*X)^1.5 * X
 %
 %    M = 4
 %
@@ -61,14 +61,14 @@ function [ n_data_new, n, m, x, fx ] = legendre_associated_values ( n_data )
 %    P14 =   0
 %    P24 =   0
 %    P34 =   0
-%    P44 = 105 * (1-X*X)**2
+%    P44 = 105 * (1-X*X)^2
 %
 %  Recursion:
 %
 %    if N < M:
 %      P(N,M) = 0
 %    if N = M:
-%      P(N,M) = (2*M-1)%% * (1-X*X)**(M/2) where N!! means the product of
+%      P(N,M) = (2*M-1)!! * (1-X*X)^(M/2) where N!! means the product of
 %      all the odd integers less than or equal to N.
 %    if N = M+1:
 %      P(N,M) = X*(2*M+1)*P(M,M)

@@ -2,7 +2,7 @@ function quadrule_test087 ( )
 
 %*****************************************************************************80
 %
-%% TEST087 tests HERMITE_EK_COMPUTE.
+%% QUADRULE_TEST087 tests HERMITE_EK_COMPUTE.
 %
 %  Discussion:
 %
@@ -24,7 +24,7 @@ function quadrule_test087 ( )
   n = 31;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST087\n' );
+  fprintf ( 1, 'QUADRULE_TEST087\n' );
   fprintf ( 1, '  HERMITE_EK_COMPUTE computes Gauss-Hermite data;\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute the data for N = %d\n', n );

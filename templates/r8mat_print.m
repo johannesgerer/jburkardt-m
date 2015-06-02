@@ -1,5 +1,7 @@
 function r8mat_print ( m, n, a, title )
 
+%*****************************************************************************80
+%
 %% R8MAT_PRINT prints an R8MAT.
 %
 %  Licensing:

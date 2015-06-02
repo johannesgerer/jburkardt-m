@@ -54,7 +54,7 @@ function rank = ksubset_colex_rank ( k, n, t )
   rank = 0;
 
   for i = 1 : k
-    rank = rank + binomial ( t(i) - 1, k + 1 - i );
+    rank = rank + i4_choose ( t(i) - 1, k + 1 - i );
   end
 
   return

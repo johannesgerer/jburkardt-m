@@ -10,12 +10,12 @@ function value = least_val_old ( x, ndeg, b, c, d )
 %
 %  Modified:
 %
-%    15 May 2004
+%    06 June 2013
 %
 %  Author:
 %
 %    MATLAB version by John Burkardt.
-$
+%
 %  Reference:
 %
 %    Gisela Engeln-Muellges and Frank Uhlig,

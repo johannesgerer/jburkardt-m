@@ -2,7 +2,11 @@ function a = quaternion_i ( )
 
 %*****************************************************************************80
 %
-%% QUATERNION_I returns a 4 by 4 matrix that behaves like the quaternion unit I.
+%% QUATERNION_I returns the QUATERNION_I matrix.
+%
+%  Discussion:
+%
+%    QUATERNION_I is a 4 by 4 matrix that behaves like the quaternion unit I.
 %
 %  Formula:
 %
@@ -33,6 +37,10 @@ function a = quaternion_i ( )
 %  Parameters:
 %
 %    Output, real A(4,4), the matrix.
+%
+
+%
+%  Note that the matrix entries are listed by row.
 %
   a = [  0.0,  1.0,  0.0,  0.0; ...
         -1.0,  0.0,  0.0,  0.0; ...

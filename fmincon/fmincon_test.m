@@ -2,7 +2,7 @@ function fmincon_test ( )
 
 %*****************************************************************************80
 %
-%% FMINCON_TEST tests FMINCON.
+%% FMINCON_TEST tests the FMINCON library.
 %
 %  Licensing:
 %
@@ -20,7 +20,7 @@ function fmincon_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FMINCON_TEST\n' );
   fprintf ( 1, '  MATLAB version.\n' );
-  fprintf ( 1, '  Test the FMINCON function.\n' );
+  fprintf ( 1, '  Test the FMINCON library.\n' );
 
   fmincon_test01 ( );
   fmincon_test02 ( );
@@ -34,7 +34,6 @@ function fmincon_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FMINCON_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

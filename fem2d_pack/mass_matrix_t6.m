@@ -32,7 +32,7 @@ function a = mass_matrix_t6 ( node_num, element_num, element_node, x, y )
 %
 %  Modified:
 %
-%    14 February 2003
+%    11 January 2013
 %
 %  Author:
 %
@@ -88,8 +88,8 @@ function a = mass_matrix_t6 ( node_num, element_num, element_node, x, y )
 %
     for quad = 1 : quad_num
 
-      r = rtab(iquad);
-      s = stab(iquad);
+      r = rtab(quad);
+      s = stab(quad);
 
       [ w, dwdr, dwds ] = shape_t6 ( r, s );
 %
@@ -106,7 +106,7 @@ function a = mass_matrix_t6 ( node_num, element_num, element_node, x, y )
 
           jp = element_node(jq,element);
 
-          a(ip,jp) = a(ip,jp) + area * weight(iquad) * w(iq) * w(jq);
+          a(ip,jp) = a(ip,jp) + area * weight(quad) * w(iq) * w(jq);
 
         end
       end

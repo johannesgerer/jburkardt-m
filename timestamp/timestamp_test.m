@@ -2,7 +2,7 @@ function timestamp_test ( )
 
 %*****************************************************************************80
 %
-%% TIMESTAMP_TEST tests the routines in TIMESTAMP.
+%% TIMESTAMP_TEST tests the TIMESTAMP library.
 %
 %  Purpose:
 %
@@ -21,7 +21,6 @@ function timestamp_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMESTAMP_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -37,7 +36,6 @@ function timestamp_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TIMESTAMP_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

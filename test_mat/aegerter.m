@@ -2,7 +2,7 @@ function a = aegerter ( n )
 
 %*****************************************************************************80
 %
-%% AEGERTER returns the Aegerter matrix.
+%% AEGERTER returns the AEGERTER matrix.
 %
 %  Formula:
 %

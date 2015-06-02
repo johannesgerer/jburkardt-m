@@ -2,7 +2,7 @@ function determ = cauchy_determinant ( n, x, y )
 
 %*****************************************************************************80
 %
-%% CAUCHY_DETERMINANT returns the determinant of the Cauchy matrix.
+%% CAUCHY_DETERMINANT returns the determinant of the CAUCHY matrix.
 %
 %  Licensing:
 %
@@ -26,7 +26,7 @@ function determ = cauchy_determinant ( n, x, y )
 %
   top = 1.0;
   for i = 1 : n
-    for j = i+1 : n
+    for j = i + 1 : n
       top = top * ( x(j) - x(i) ) * ( y(j) - y(i) );
     end
   end

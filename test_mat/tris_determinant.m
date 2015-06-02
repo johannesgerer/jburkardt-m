@@ -20,7 +20,7 @@ function determ = tris_determinant ( n, x, y, z )
 %
 %    Input, integer N, the order of A.
 %
-%    Input, real X, Y, Z, the scalars that define A.
+%    Input, real X, Y, Z, parameters.
 %
 %    Output, real DETERM, the determinant.
 %

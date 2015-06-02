@@ -1,0 +1,415 @@
+<html>
+
+  <head>
+    <title>
+      LAPLACIAN - The Discrete Laplacian Operator
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LAPLACIAN <br> The Discrete Laplacian Operator
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LAPLACIAN</b>
+      is a MATLAB library which
+      carries out computations related to the discrete 
+      Laplacian operator, including full or sparse evaluation,
+      evaluation for unequally spaced data sampling points, 
+      application to a set of data samples, solution of associated
+      linear systems, eigenvalues and eigenvectors, and extension
+      to 2D and 3D geometry.
+    </p>
+
+    <p>
+      For a (twice-continuously differentiable) function U(X) of 
+      a one-dimensional variable X, the (continuous)
+      Laplacian operator L(U)(X) is simply the second derivative:
+      <pre>
+        L(U)(X) = d^2 U(X)/dX^2
+      </pre>
+      for a function of two dimensions, we have
+      <pre>
+        L(U)(X,Y) = d^2 U(X,Y)/dX^2 + d^2 U(X,Y)/dY^2
+      </pre>
+      and so on.  The Laplacian is important mathematically because
+      it arises naturally in the mathematical model of many important
+      physical systems, such as the variation of temperature in a 
+      heated object.
+    </p>
+
+    <p>
+      The discrete Laplacian is an approximation to the continuous
+      Laplacian that is appropriate when data is known or sampled
+      only at finitely many points.  It is often the case that these
+      points are evenly spaced in a line or grid.
+    </p>
+
+    <p>
+      The one-dimensional discrete Laplacian
+      Suppose that a function U(X) is known at three points X-H, X and X+H.
+      Then the discrete Laplacian operator, applied
+      to this data, is simply the standard approximation to the second
+      derivative:
+      <pre>
+        L(U)(X) = ( + 2 U(X) 
+                    -   U(X-H)
+                    -   U(X+H) ) / H^2
+      </pre>
+      The 2-dimensional analog, assuming that (X,Y) data is available
+      at the uniform spacing H, is:
+      <pre>
+        L(U)(X,Y) = ( + 4 U(X,Y)
+                      -   U(X-H,Y-H) - U(X-H,Y+H)
+                      -   U(X+H,Y-H) - U(X+H,Y+H) ) / H^2
+      </pre>
+      and similar results apply for higher dimensions.
+    </p>
+
+    <p>
+      If the data is not available at equally spaced points, then
+      the computation becomes somewhat more involved.  However, simply
+      using Taylor series, we have:
+      <pre>
+        U(X+H1) = U(X) + U' * H1 + U'' * H1^2 / 2 + U''' H1^3 / 6 + ...
+        U(X+H2) = U(X) + U' * H2 + U'' * H2^2 / 2 + U''' H2^3 / 6 + ...
+      </pre>
+      from which we can determine that:
+      <pre>
+        H2 * U(X+H1) - H1 * U(X+H2) - ( H2 - H1 ) * U(X) =
+          ( H2 * H1^2 / 2 - H1 * H2^2 / 2 ) * U''
+        + ( H2 * H1^3 / 6 - H1 * H3^3 / 6 ) * U'''
+        + higher order terms
+      </pre>
+      and hence, we have the approximation: 
+      <pre>
+        L(U)(X) = ( H2 * U(X+H1) - H1 * U(X+H2) - ( H2 - H1 ) * U(X) )
+                / ( H2 * H1^2 / 2 - H1 * H2^2 / 2 )
+      </pre>
+      Again, corresponding results can be determined for higher dimensions,
+      in cases where the data is sampled along coordinate lines, but with
+      nonuniform spacing.
+    </p>
+
+    <p>
+      Now, let us consider the 1-dimensional case, where U(X) is 
+      available at N+2 points equally spaced by H, and indexed from
+      0 to N+1.  Let U now be the 
+      vector of values U(X(0)), U(X(2)), ..., U(X(N+1)), and let
+      U(i) indicate the function value U(X(i)).  For all but the first and
+      last indices, it is easy to estimate the second derivative, using
+      the formula:
+      <pre>
+        L(Ui) = U''(i) = ( - U(i-1) + 2 U(i) - U(i+1) ) / h^2 
+      </pre>
+      This is a linear operation.  It takes N+2 values U and produces
+      N values L(Ui), for i = 1 to N.  It has the matrix form:
+      <pre>
+        L(Ui) = L * U
+      </pre>
+      where the N by N+2 matrix L has the form (if N = 4, and H = 1 ):
+      <pre>
+         -1  2 -1  0  0  0
+          0 -1  2 -1  0  0
+          0  0 -1  2 -1  0
+          0  0  0 -1  2 -1
+      </pre>
+      Square matrices are much more convenient for analysis, so let us
+      assume either that U(1) and U(N) are zero, or that we can somehow
+      neglect or defer the analysis of the first and last columns.  In that
+      case, we have our first example of a discrete Laplacian matrix,
+      in this case for N = 4 and H = 1:
+      <pre>
+           2 -1  0  0 
+          -1  2 -1  0 
+           0 -1  2 -1 
+           0  0 -1  2 
+      </pre>
+    </p>
+
+    <p>
+      The purpose of this library is to study issues related to matrices
+      of this form, including:
+      <ul>
+        <li>
+          producing a copy of the matrix in full storage mode;
+        </li>
+        <li>
+          producing a copy of the matrix in sparse storage mode;
+        </li>
+        <li>
+          handling cases where U(0) or U(N+1) are not given, but
+          instead derivative information or periodic boundary conditions
+          are applied;
+        </li>
+        <li>
+          determining the result of applying the discrete Laplacian
+          to data; that is, multiplying the matrix times a vector of data;
+        </li>
+        <li>
+          solving a linear system involving the discrete Laplacian;
+        </li>
+        <li>
+          determining the eigenvalues and eigenvectors;
+        </li>
+        <li>
+          handling cases where the spacing is nonuniform;
+        </li>
+        <li>
+          handling cases in 2D or 3D.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LAPLACIAN</b> is available in
+      <a href = "../../c_src/laplacian/laplacian.html">a C version</a> and
+      <a href = "../../cpp_src/laplacian/laplacian.html">a C++ version</a> and
+      <a href = "../../f77_src/laplacian/laplacian.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/laplacian/laplacian.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/laplacian/laplacian.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/test_mat/test_mat.html">
+      TEST_MAT</a>,
+      a MATLAB library which
+      defines test matrices for which some of the determinant, eigenvalues, 
+      inverse, null vectors, P*L*U factorization or linear system solution 
+      are already known.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "cholesky_upper_error.m">cholesky_upper_error.m</a>,
+          determines the error in an upper Cholesky factor.
+        </li>
+        <li>
+          <a href = "eigen_error.m">eigen_error.m</a>,
+          determines the error in a (right) eigensystem.
+        </li>
+        <li>
+          <a href = "inverse_error.m">inverse_error.m</a>,
+          determines the error in an inverse matrix.
+        </li>
+        <li>
+          <a href = "l1dd.m">l1dd.m</a>,
+          computes the 1D DD Laplacian as a full matrix.
+        </li>
+        <li>
+          <a href = "l1dd_apply.m">l1dd_apply.m</a>,
+          applies the 1D DD Laplacian to a vector.
+        </li>
+        <li>
+          <a href = "l1dd_cholesky.m">l1dd_cholesky.m</a>,
+          computes the Cholesky factor of the 1D DD Laplacian.
+        </li>
+        <li>
+          <a href = "l1dd_eigen.m">l1dd_eigen.m</a>,
+          returns eigeninformation for the 1D DD Laplacian.
+        </li>
+        <li>
+          <a href = "l1dd_inverse.m">l1dd_inverse.m</a>,
+          computes the inverse of the 1D DD Laplacian.
+        </li>
+        <li>
+          <a href = "l1dd_lu.m">l1dd_lu.m</a>,
+          computes the LU factors of the 1D DD Laplacian.
+        </li>
+        <li>
+          <a href = "l1dn.m">l1dn.m</a>,
+          computes the 1D DN Laplacian as a full matrix.
+        </li>
+        <li>
+          <a href = "l1dn_apply.m">l1dn_apply.m</a>,
+          applies the 1D DN Laplacian to a vector.
+        </li>
+        <li>
+          <a href = "l1dn_cholesky.m">l1dn_cholesky.m</a>,
+          computes the Cholesky factor of the 1D DN Laplacian.
+        </li>
+        <li>
+          <a href = "l1dn_eigen.m">l1dn_eigen.m</a>,
+          returns eigeninformation for the 1D DN Laplacian.
+        </li>
+        <li>
+          <a href = "l1dn_inverse.m">l1dn_inverse.m</a>,
+          computes the inverse of the 1D DN Laplacian.
+        </li>
+        <li>
+          <a href = "l1dn_lu.m">l1dn_lu.m</a>,
+          computes the LU factors of the 1D DN Laplacian.
+        </li>
+        <li>
+          <a href = "l1nd.m">l1nd.m</a>,
+          computes the 1D ND Laplacian as a full matrix.
+        </li>
+        <li>
+          <a href = "l1nd_apply.m">l1nd_apply.m</a>,
+          applies the 1D ND Laplacian to a vector.
+        </li>
+        <li>
+          <a href = "l1nd_cholesky.m">l1nd_cholesky.m</a>,
+          computes the Cholesky factor of the 1D ND Laplacian.
+        </li>
+        <li>
+          <a href = "l1nd_eigen.m">l1nd_eigen.m</a>,
+          returns eigeninformation for the 1D ND Laplacian.
+        </li>
+        <li>
+          <a href = "l1nd_inverse.m">l1nd_inverse.m</a>,
+          computes the inverse of the 1D ND Laplacian.
+        </li>
+        <li>
+          <a href = "l1nd_lu.m">l1nd_lu.m</a>,
+          computes the LU factors of the 1D ND Laplacian.
+        </li>
+        <li>
+          <a href = "l1nn.m">l1nn.m</a>,
+          computes the 1D NN Laplacian as a full matrix.
+        </li>
+        <li>
+          <a href = "l1nn_apply.m">l1nn_apply.m</a>,
+          applies the 1D NN Laplacian to a vector.
+        </li>
+        <li>
+          <a href = "l1nn_cholesky.m">l1nn_cholesky.m</a>,
+          computes the Cholesky factor of the 1D NN Laplacian.
+        </li>
+        <li>
+          <a href = "l1nn_eigen.m">l1nn_eigen.m</a>,
+          returns eigeninformation for the 1D NN Laplacian.
+        </li>
+        <li>
+          <a href = "l1nn_lu.m">l1nn_lu.m</a>,
+          computes the LU factors of the 1D NN Laplacian.
+        </li>
+        <li>
+          <a href = "l1pp.m">l1pp.m</a>,
+          computes the 1D PP Laplacian as a full matrix.
+        </li>
+        <li>
+          <a href = "l1pp_apply.m">l1pp_apply.m</a>,
+          applies the 1D PP Laplacian to a vector.
+        </li>
+        <li>
+          <a href = "l1pp_cholesky.m">l1pp_cholesky.m</a>,
+          computes the Cholesky factor of the 1D PP Laplacian.
+        </li>
+        <li>
+          <a href = "l1pp_eigen.m">l1pp_eigen.m</a>,
+          returns eigeninformation for the 1D PP Laplacian.
+        </li>
+        <li>
+          <a href = "l1pp_lu.m">l1pp_lu.m</a>,
+          computes the LU factors of the 1D PP Laplacian.
+        </li>
+        <li>
+          <a href = "lu_error.m">lu_error.m</a>,
+          determines the error in an LU factorization.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>,
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>,
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>,
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "laplacian_test.m">laplacian_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "laplacian_test01.m">laplacian_test01.m</a>,
+          tests L1DD and similar routines.
+        </li>
+        <li>
+          <a href = "laplacian_test02.m">laplacian_test02.m</a>,
+          tests L1DD_APPLY and similar functions.
+        </li>
+        <li>
+          <a href = "laplacian_test03.m">laplacian_test03.m</a>,
+          tests L1DD_EIGEN and similar routines.
+        </li>
+        <li>
+          <a href = "laplacian_test04.m">laplacian_test04.m</a>,
+          tests L1DD_INVERSE and similar routines.
+        </li>
+        <li>
+          <a href = "laplacian_test05.m">laplacian_test05.m</a>,
+          tests L1DD_CHOLESKY and similar routines.
+        </li>
+        <li>
+          <a href = "laplacian_test06.m">laplacian_test06.m</a>,
+          tests L1DD_LU and similar routines.
+        </li>
+        <li>
+          <a href = "laplacian_test_output.txt">laplacian_test_output.txt</a>,
+          the output file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 November 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

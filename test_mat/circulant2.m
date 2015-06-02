@@ -2,7 +2,7 @@ function a = circulant2 ( n )
 
 %*****************************************************************************80
 %
-%% CIRCULANT2 returns the circulant2 matrix.
+%% CIRCULANT2 returns the CIRCULANT2 matrix.
 %
 %  Formula:
 %

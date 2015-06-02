@@ -57,6 +57,8 @@ function a = skew_circulant ( m, n, x )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : m
     for j = 1 : n
 

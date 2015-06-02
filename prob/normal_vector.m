@@ -16,13 +16,7 @@ function [ x, seed ] = normal_vector ( n, x_mean, x_dev, seed )
 %    Before calling this routine, the user may call RANDOM_SEED
 %    in order to set the seed of the random number generator.
 %
-%  Method:
-%
-%    The Box-Muller method is used, which is efficient, but
-%    generates an even number of values each time.  On any call
-%    to this routine, an even number of new values are generated.
-%    Depending on the situation, one value may be left over.
-%    In that case, it is saved for the next call.
+%    The Box-Muller method is used.
 %
 %  Licensing:
 %
@@ -30,7 +24,7 @@ function [ x, seed ] = normal_vector ( n, x_mean, x_dev, seed )
 %
 %  Modified:
 %
-%    17 September 2004
+%    26 August 2013
 %
 %  Author:
 %
@@ -38,11 +32,7 @@ function [ x, seed ] = normal_vector ( n, x_mean, x_dev, seed )
 %
 %  Parameters:
 %
-%    Input, integer N, the number of values desired.  If N is negative,
-%    then the code will flush its internal memory; in particular,
-%    if there is a saved value to be used on the next call, it is
-%    instead discarded.  This is useful if the user has reset the
-%    random number seed, for instance.
+%    Input, integer N, the number of values desired.
 %
 %    Input, real X_MEAN, the desired mean value.
 %

@@ -24,11 +24,11 @@ function angle = tetrahedron_dihedral_angles_3d ( tetra )
 %    Output, real ANGLE(6), the dihedral angles along the
 %    axes AB, AC, AD, BC, BD and CD, respectively.
 %
-  ab(1:3) = tetra(1:3,2) - tetra(1:3,1);
-  ac(1:3) = tetra(1:3,3) - tetra(1:3,1);
-  ad(1:3) = tetra(1:3,4) - tetra(1:3,1);
-  bc(1:3) = tetra(1:3,3) - tetra(1:3,2);
-  bd(1:3) = tetra(1:3,4) - tetra(1:3,2);
+  ab(1:3,1) = tetra(1:3,2) - tetra(1:3,1);
+  ac(1:3,1) = tetra(1:3,3) - tetra(1:3,1);
+  ad(1:3,1) = tetra(1:3,4) - tetra(1:3,1);
+  bc(1:3,1) = tetra(1:3,3) - tetra(1:3,2);
+  bd(1:3,1) = tetra(1:3,4) - tetra(1:3,2);
  
   abc_normal = r8vec_cross_product_3d ( ac, ab );
   abd_normal = r8vec_cross_product_3d ( ab, ad );

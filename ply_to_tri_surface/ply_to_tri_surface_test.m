@@ -2,7 +2,7 @@ function ply_to_tri_surface_test ( )
 
 %*****************************************************************************80
 %
-%% PLY_TO_TRI_SURFACE_TEST tests PLY_TO_TRI_SURFACE.
+%% PLY_TO_TRI_SURFACE_TEST tests the PLY_TO_TRI_SURFACE library.
 %
 %  Licensing:
 %
@@ -35,7 +35,6 @@ function ply_to_tri_surface_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PLY_TO_TRI_SURFACE_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

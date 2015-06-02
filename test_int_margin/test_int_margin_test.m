@@ -2,11 +2,7 @@ function test_int_margin_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_INT_MARGIN_TEST tests TEST_INT_MARGIN.
-%
-%  Discussion:
-%
-%    TEST_INT_MARGIN_TEST calls the TEST_INT_MARGIN tests.
+%% TEST_INT_MARGIN_TEST tests the TEST_INT_MARGIN library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function test_int_margin_test ( )
 %    John Burkardt
 %
   timestamp (  );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_MARGIN_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -36,7 +31,6 @@ function test_int_margin_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INT_MARGIN_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp (  );
 

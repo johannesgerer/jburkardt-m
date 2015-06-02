@@ -2,7 +2,15 @@ function value = h_integral ( n )
 
 %*****************************************************************************80
 %
-%% H_INTEGRAL evaluates a monomial physicist's Hermite integral for H(n,x).
+%% H_INTEGRAL evaluates the integral of H(i,x).
+%
+%  Discussion:
+%
+%    H(i,x) is the physicist's Hermite polynomial of degree I.
+%
+%    The integral computed is:
+%
+%      integral ( -oo < x < +oo ) H(i,x) exp(-x^2) dx
 %
 %  Licensing:
 %

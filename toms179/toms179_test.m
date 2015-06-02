@@ -2,7 +2,11 @@ function toms179_test ( )
 
 %*****************************************************************************80
 %
-%% TOMS179_TEST tests TOMS179.
+%% TOMS179_TEST tests the TOMS179 library.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -26,7 +30,6 @@ function toms179_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TOMS179_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

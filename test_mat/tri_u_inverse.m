@@ -41,6 +41,8 @@ function b = tri_u_inverse ( n, a )
 %
 %    Output, real B(N,N), the inverse matrix.
 %
+  b = zeros ( n, n );
+
   for j = n : -1 : 1
 
     for i = n : -1 : 1

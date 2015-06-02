@@ -2,7 +2,7 @@ function kmeans_test ( )
 
 %*****************************************************************************80
 %
-%% KMEANS_TEST tests various KMEANS programs.
+%% KMEANS_TEST tests the KMEANS library.
 %
 %  Licensing:
 %
@@ -17,11 +17,10 @@ function kmeans_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KMEANS_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test various KMEANS programs.\n' );
+  fprintf ( 1, '  Test the KMEANS library.\n' );
 
   kmeans_test01 ( );
   kmeans_test02 ( );
@@ -46,7 +45,6 @@ function kmeans_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'KMEANS_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

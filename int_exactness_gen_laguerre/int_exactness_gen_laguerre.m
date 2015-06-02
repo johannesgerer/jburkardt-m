@@ -254,7 +254,9 @@ function int_exactness_gen_laguerre ( quad_filename, degree_max, alpha, option )
     fprintf ( 1, '  %24.16f   %2d\n', quad_error, degree );
 
   end
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'INT_EXACTNESS_GEN_LAGUERRE:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

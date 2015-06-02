@@ -52,7 +52,8 @@ function r8mat_write ( output_filename, m, n, table )
 %
   for j = 1 : n
     for i = 1 : m
-      fprintf ( output_unit, '  %24.16f', table(i,j) );
+      fprintf ( output_unit, '  %g', table(i,j) );
+%     fprintf ( output_unit, '  %24.16f', table(i,j) );
     end
     fprintf ( output_unit, '\n' );
   end

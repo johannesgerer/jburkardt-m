@@ -4,7 +4,7 @@ function value = pyramid_num ( n )
 %
 %% PYRAMID_NUM returns the N-th pyramidal number.
 %
-%  Definition:
+%  Discussion:
 %
 %    The N-th pyramidal number P(N) is formed by the sum of the first
 %    N triangular numbers T(J):
@@ -15,11 +15,11 @@ function value = pyramid_num ( n )
 %
 %    By convention, T(0) = 0.
 %
-%  Formula:
+%    P(N) = ( (N+1)^3 - (N+1) ) / 6
 %
-%    P(N) = ( (N+1)**3 - (N+1) ) / 6
+%    Note that this pyramid will have a triangular base.
 %
-%  First Values:
+%    The first values are:
 %
 %      0
 %      1

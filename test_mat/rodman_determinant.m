@@ -1,8 +1,8 @@
-function determ = rodman_determinant ( alpha, n )
+function value = rodman_determinant ( n, alpha )
 
 %*****************************************************************************80
 %
-%% RODMAN_DETERMINANT returns the determinant of the Rodman matrix.
+%% RODMAN_DETERMINANT returns the determinant of the RODMAN matrix.
 %
 %  Licensing:
 %
@@ -18,13 +18,13 @@ function determ = rodman_determinant ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, real ALPHA, the scalar that defines A.
-%
 %    Input, integer N, the order of A.
 %
-%    Output, real DETERM, the determinant.
+%    Input, real ALPHA, the parameter.
 %
-  determ = ( 1.0 - alpha )^( n - 1 ) * ( 1.0 + alpha * ( n - 1 ) );
+%    Output, real VALUE, the determinant.
+%
+  value = ( 1.0 - alpha )^( n - 1 ) * ( 1.0 + alpha * ( n - 1 ) );
 
   return
 end

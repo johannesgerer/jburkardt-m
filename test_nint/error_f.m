@@ -59,9 +59,9 @@ function value = error_f ( x )
 %  Initialize the Chebyshev series.
 %
   if ( size ( nterf ) == 0 )
-    nterf = inits ( erfcs, 13, 0.1 * r8_epsilon ( ) );
-    xbig = sqrt ( - log ( sqrtpi * r8_epsilon ( ) ) );
-    sqeps = sqrt ( 2.0 * r8_epsilon ( ) );
+    nterf = inits ( erfcs, 13, 0.1 * eps );
+    xbig = sqrt ( - log ( sqrtpi * eps ) );
+    sqeps = sqrt ( 2.0 * eps );
   end
 
   y = abs ( x );

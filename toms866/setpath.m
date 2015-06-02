@@ -8,7 +8,7 @@
   if strncmp(version,'6.5',3) | strncmp(version,'7.0',3), 
     spparms('default'),spparms('piv_tol',1), end
 %
-%  Initilize the MATLAB path for ./ifiss/ directories
+%  Initialize the MATLAB path for ./ifiss/ directories
 %
   gohome;
   home=pwd;

@@ -2,7 +2,7 @@ function a = cheby_van3 ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_VAN3 returns the Chebyshev Vandermonde-like matrix.
+%% CHEBY_VAN3 returns the CHEBY_VAN3 matrix
 %
 %  Formula:
 %
@@ -43,6 +43,8 @@ function a = cheby_van3 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

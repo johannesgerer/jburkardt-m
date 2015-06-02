@@ -77,7 +77,7 @@ function r8sm_print_some ( m, n, a, u, v, ilo, jlo, ihi, jhi, title )
         j = j2lo - 1 + j2;
 
         aij = a(i,j) - u(i) * v(j);
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -86,8 +86,6 @@ function r8sm_print_some ( m, n, a, u, v, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

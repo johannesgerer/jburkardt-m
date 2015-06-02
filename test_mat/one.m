@@ -45,6 +45,8 @@ function a = one ( m, n )
 %
 %    A * A = N * A
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -63,7 +65,7 @@ function a = one ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
-  a(1:m,1:n) = 1.0;
+  a = ones ( m, n );
 
   return
 end

@@ -17,18 +17,19 @@ function asa241_test ( )
 %    John Burkardt
 %
   timestamp (  );
-
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'ASA241_PRB:\n' );
-  fprintf ( 1, '  Test the routines in ASA241 (MATLAB version).\n' );
+  fprintf ( 1, 'ASA241_TEST:\n' );
+  fprintf ( 1, '  MATLAB version\n');
+  fprintf ( 1, '  Test the ASA241 library.\n' );
 
   asa241_test01 ( );
   asa241_test02 ( );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'ASA241_PRB:\n' );
+  fprintf ( 1, 'ASA241_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

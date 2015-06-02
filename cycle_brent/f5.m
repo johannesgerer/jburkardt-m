@@ -2,7 +2,7 @@ function value = f5 ( i )
 
 %*****************************************************************************80
 %
-%% F5 is the iteration function for example 4.
+%% F5 is the iteration function for example 5.
 %
 %  Licensing:
 %
@@ -17,6 +17,10 @@ function value = f5 ( i )
 %    John Burkardt
 %
 %  Parameters:
+%
+%    Input, integer I, the argument of the function.
+%
+%    Output, integer VALUE, the value of the function.
 %
   value = mod ( 16383 * i + 1, 65536 );
 

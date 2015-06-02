@@ -1,4 +1,4 @@
-function ierror = y_check_hebrew ( y )
+function [ y, ierror ] = y_check_hebrew ( y )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function ierror = y_check_hebrew ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    06 March 2013
 %
 %  Author:
 %
@@ -18,7 +18,7 @@ function ierror = y_check_hebrew ( y )
 %
 %  Parameters:
 %
-%    Input, integer Y, the year, which must not be 0.
+%    Input/output, integer Y, the year, which must not be 0.
 %
 %    Output, integer IERROR, is 0 if Y is legal, and 1 otherwise.
 %

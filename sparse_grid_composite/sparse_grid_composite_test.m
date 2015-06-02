@@ -2,7 +2,7 @@ function sparse_grid_composite_test ( )
 
 %*****************************************************************************80
 %
-%% SPARSE_GRID_COMPOSITE_TEST tests SPARSE_GRID_COMPOSITE.
+%% SPARSE_GRID_COMPOSITE_TEST tests the SPARSE_GRID_COMPOSITE library.
 %
 %  Licensing:
 %
@@ -93,12 +93,11 @@ function sparse_grid_composite_test ( )
   level_max = 3;
   sparse_grid_composite_test06 ( dim_num, level_max );
 %
-%  All done.
+%  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_COMPOSITE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

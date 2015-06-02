@@ -1,0 +1,262 @@
+<html>
+
+  <head>
+    <title>
+      FREEFEM++_MSH_IO - Read and Write FreeFem++ MSH files
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FREEFEM++_MSH_IO <br> Read and Write FreeFem++ MSH files
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FREEFEM++_MSH_IO</b>,
+      a MATLAB library which
+      can read and write files used by the FreeFem++ finite element program
+      to store mesh information.
+    </p>
+
+    <p>
+      Note that the GMSH program creates mesh files that use the ".msh"
+      extension, but which are an entirely different format.
+    </p>
+
+    <p>
+      The msh file format is obliquely described in section 12.5 of the
+      FreeFem++ documentation.
+    <p>
+
+    <p>
+      At least for the 2D case of a triangular mesh, the format seems 
+      to be as follows:
+      <ol>
+        <li>
+          a single line giving NV, NE, NT, the number of vertices, boundary edges, and triangles
+        </li>
+        <li>
+          NV lines, each containing the (X,Y) coordinates and integer label for a node.
+        </li>
+        <li>
+          NT lines, each containing three vertex indices and integer label for a triangle.
+        </li>
+        <li>
+          NE lines, each containing two vertex indices and integer label for a boundary edge.
+        </li>
+      </ol>
+      The "labels" seem to be "0" for interior objects and 1 for boundary objects.
+      All edges are boundary objects.  (This might not be true.  A geometry
+      might include internal edges, and perhaps these count as interior objects,
+      but definitely, the edge list does not include arbitrary triangle edges,
+      only those on the boundary.)  All triangles are interior objects.
+      Vertices may be boundary or interior objects.
+    <p>
+
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FREEFEM++_MSH_IO</b> is available in
+      <a href = "../../c_src/freefem++_msh_io/freefem++_msh_io.html">a C version</a> and
+      <a href = "../../cpp_src/freefem++_msh_io/freefem++_msh_io.html">a C++ version</a> and
+      <a href = "../../f77_src/freefem++_msh_io/freefem++_msh_io.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/freefem++_msh_io/freefem++_msh_io.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/freefem++_msh_io/freefem++_msh_io.html">a MATLAB version</a> and
+      <a href = "../../py_src/freefem++_msh_io/freefem++_msh_io.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../examples/bamg/bamg.html">
+      BAMG</a>,
+      examples which
+      illustrate the use of BAMG, 
+      a program for generating 2D meshes that can be used to
+      define the geometry for the the finite element package FREEFEM++.
+    </p>
+
+    <p>
+      <a href = "../../examples/freefem++/freefem++.html">
+      FREEFEM++</a>,
+      examples which
+      illustrate the use of the FREEFEM++ package, 
+      a high-level integrated development environment for the numerical 
+      solution of nonlinear multiphysics partial differential equations (PDE's) 
+      in 2D and 3D.
+    </p>
+
+    <p>
+      <a href = "../../data/freefem++_msh/freefem++_msh.html">
+      FREEFEM++_MSH</a>,
+      a data directory which
+      contains examples of the mesh files created by the FreeFem++ program,
+      which use the extension ".msh".
+    </p>
+
+    <p>
+      <a href = "../../examples/mitchell_freefem++/mitchell_freefem++.html">
+      MITCHELL_FREEFEM++</a>,
+      examples which
+      illustrate the implementation of the Mitchell 2D elliptic 
+      partial differential equation (PDE) test problems using FREEFEM++.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Frederic Hecht,<br>
+          New development in FreeFem++,<br>
+          Journal of Numerical Mathematics,<br>
+          Volume 20, Number 3-4, 2012, pages 251-265.
+        </li>
+        <li>
+          Frederic Hecht,<br>
+          BAMG: Bidimensional Anisotropic Mesh Generator,<br>
+          draft version v1.00, December 2006.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ffmsh_2d_data_example.m">ffmsh_2d_data_example.m</a>,
+          sets data for a 2D example.
+        </li>
+        <li>
+          <a href = "ffmsh_2d_data_print.m">ffmsh_2d_data_print.m</a>,
+          prints data.
+        </li>
+        <li>
+          <a href = "fmsh_2d_data_read.m">ffmsh_2d_data_read.m</a>,
+          reads data from an FFMSH file.
+        </li>
+        <li>
+          <a href = "ffmsh_2d_size_example.m">ffmsh_2d_size_example.m</a>,
+          sets sizes for a 2D example.
+        </li>
+        <li>
+          <a href = "ffmsh_2d_size_print.m">ffmsh_2d_size_print.m</a>,
+          prints sizes.
+        </li>
+        <li>
+          <a href = "ffmsh_2d_sizes_read.m">ffmsh_2d_sizes_read.m</a>,
+          reads sizes from an FFMSH file.
+        </li>
+        <li>
+          <a href = "ffmsh_2d_write.m">ffmsh_2d_write.m</a>,
+          writes sizes and data to an FFMSH file.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print.m">i4mat_transpose_print.m</a>,
+          prints an I4MAT, transposed.
+        </li>
+        <li>
+          <a href = "i4mat_transpose_print_some.m">i4mat_transpose_print_some.m</a>,
+          prints some of the transpose of an I4MAT.
+        </li>
+        <li>
+          <a href = "i4vec_print.m">i4vec_print.m</a>,
+          prints an I4VEC.
+        </li>
+        <li>
+          <a href = "mesh_base_one.m">mesh_base_one.m</a>
+          adjusts a mesh to use 1-based indexing.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print.m">r8mat_transpose_print.m</a>,
+          prints an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "r8mat_transpose_print_some.m">r8mat_transpose_print_some.m</a>,
+          prints some of an R8MAT, transposed.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the current YMDHMS date as a time stamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "ffmsh_io_test.m">ffmsh_io_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "ffmsh_io_test01.m">ffmsh_io_test01.m</a>,
+          gets the example data and prints it.
+        </li>
+        <li>
+          <a href = "ffmsh_io_test02.m">ffmsh_io_test02.m</a>,
+          gets the example data and writes it to a file.
+        </li>
+        <li>
+          <a href = "ffmsh_io_test03.m">ffmsh_io_test03.m</a>,
+          reads data from a file.
+        </li>
+        <li>
+          <a href = "ffmsh_io_test_output.txt">ffmsh_io_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "input.msh">input.msh</a>,
+          a FreeFem++ file read by the program.
+        </li>
+        <li>
+          <a href = "output.msh">output.msh</a>,
+          a FreeFem++ file written by the program.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 December 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

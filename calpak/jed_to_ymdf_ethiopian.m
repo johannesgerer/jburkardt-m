@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_ethiopian ( jed )
 %
 %  Modified:
 %
-%    09 July 2012
+%    10 March 2013
 %
 %  Author:
 %
@@ -33,7 +33,7 @@ function [ y, m, d, f ] = jed_to_ymdf_ethiopian ( jed )
 %
 %  Determine the computational date (Y'/M'/D').
 %
-  j = int ( jed + 0.5 );
+  j = floor ( jed + 0.5 );
   f = ( jed + 0.5 ) - j;
 
   j_prime = j + 124;

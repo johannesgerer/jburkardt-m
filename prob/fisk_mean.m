@@ -31,7 +31,7 @@ function mean = fisk_mean ( a, b, c )
     error ( 'FISK_MEAN - Fatal error!' );
   end
 
-  mean = a + pi * ( b / c ) * csc ( pi / c );
+  mean = a + pi * ( b / c ) * r8_csc ( pi / c );
 
   return
 end

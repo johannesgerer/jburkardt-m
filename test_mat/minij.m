@@ -38,9 +38,9 @@ function a = minij ( m, n )
 %      LAMBDA(I) = 0.5 / ( 1 - cos ( ( 2 * I - 1 ) * pi / ( 2 * N + 1 ) ) ),
 %
 %    For N = 12, the characteristic polynomial is
-%      P(X) = X**12 - 78 X**11 + 1001 X**10 - 5005 X**9 + 12870 X**8
-%        - 19448 X**7 + 18564 X**6 - 11628 X**5 + 4845 X**4 - 1330 X**3
-%        + 231 X**2 - 23 X + 1.
+%      P(X) = X^12 - 78 X^11 + 1001 X^10 - 5005 X^9 + 12870 X^8
+%        - 19448 X^7 + 18564 X^6 - 11628 X^5 + 4845 X^4 - 1330 X^3
+%        + 231 X^2 - 23 X + 1.
 %
 %    (N+1)*ONES(N) - A also has a tridiagonal inverse.
 %
@@ -50,6 +50,8 @@ function a = minij ( m, n )
 %
 %    which is equal to the MINIJ matrix, but with the rows and
 %    columns reversed.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %

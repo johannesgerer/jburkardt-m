@@ -2,7 +2,7 @@ function a = hermite ( n )
 
 %*****************************************************************************80
 %
-%% HERMITE returns the Hermite polynomial matrix.
+%% HERMITE returns the HERMITE matrix.
 %
 %  Example:
 %
@@ -26,9 +26,9 @@ function a = hermite ( n )
 %
 %    A is lower triangular.
 %
-%    det ( A ) = 2**((N*(N-1))/2)
+%    det ( A ) = 2^((N*(N-1))/2)
 %
-%    LAMBDA(I) = 2**(I-1).
+%    LAMBDA(I) = 2^(I-1).
 %
 %    A is integral: int ( A ) = A.
 %
@@ -37,6 +37,8 @@ function a = hermite ( n )
 %    Successive diagonals are zero, positive, zero, negative.
 %
 %    A is generally not normal: A' * A ~= A * A'.
+%
+%    The family of matrices is nested as a function of N.
 %
 %  Licensing:
 %
@@ -56,11 +58,11 @@ function a = hermite ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     return
   end
-
-  a(1:n,1:n) = 0.0;
 
   a(1,1) = 1.0;
 

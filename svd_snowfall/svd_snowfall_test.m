@@ -10,7 +10,7 @@ function svd_snowfall_test ( )
 %
 %  Modified:
 %
-%    10 April 2012
+%    07 May 2013
 %
 %  Author:
 %
@@ -19,6 +19,7 @@ function svd_snowfall_test ( )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the SVD_SNOWFALL library.\n' );
 %
 %  Retrieve the data.

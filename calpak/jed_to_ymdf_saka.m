@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_saka ( jed )
 %
 %  Modified:
 %
-%    15 July 2012
+%    16 March 2013
 %
 %  Author:
 %
@@ -38,7 +38,7 @@ function [ y, m, d, f ] = jed_to_ymdf_saka ( jed )
   f = ( jed + 0.5 ) - j;
 
   g = floor ( ( 4 * j + 274073 ) / 146097 );
-  g = floor ( ( 3 * g ) / 4 ) ) - 36;
+  g = floor ( ( 3 * g ) / 4 ) - 36;
 
   j_prime = j + 1348 + g;
 

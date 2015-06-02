@@ -28,15 +28,17 @@ function lambda = ortega_eigenvalues ( n, u, v, d )
 %    Input, integer N, the order of the matrix.
 %    2 <= N.
 %
-%    Input, real U(N), V(N), vectors which define the matrix.
+%    Input, real U(N,1), V(N,1), vectors which define the matrix.
 %    U'V must not equal -1.0.  If, in fact, U'V = 0, and U, V and D are
 %    integers, then the matrix, inverse, eigenvalues, and eigenvectors 
 %    will be integers.
 %
-%    Input, real D(N), the desired eigenvalues.
+%    Input, real D(N,1), the desired eigenvalues.
 %
-%    Output, real LAMBDA(N), the determinant.
+%    Output, real LAMBDA(N,1), the determinant.
 %
+  lambda = zeros ( n, 1 );
+
   lambda(1:n,1) = d(:);
 
   return

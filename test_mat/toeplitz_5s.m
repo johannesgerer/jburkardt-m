@@ -87,6 +87,8 @@ function [ n, a ] = toeplitz_5s ( row_num, col_num, alpha, beta, gamma )
 %
   n = row_num * col_num;
 
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

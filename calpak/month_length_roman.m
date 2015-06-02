@@ -10,7 +10,7 @@ function days = month_length_roman ( y, m )
 %
 %  Modified:
 %
-%    22 July 2012
+%    08 March 2013
 %
 %  Author:
 %
@@ -36,14 +36,14 @@ function days = month_length_roman ( y, m )
 %
   [ y2, m2, ierror ] = ym_check_roman ( y2, m2 );
 
-  if ( ierror `= 0 )
+  if ( ierror ~= 0 )
     days = 0;
     return
   end
 
-  month_length_roman = mdays(m2)
+  days = mdays(m2);
 
-  if ( m2 == 2 .&& year_is_leap_roman ( y2 ) )
+  if ( m2 == 2 && year_is_leap_roman ( y2 ) )
     days = days + 1;
   end
 

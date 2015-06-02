@@ -30,7 +30,7 @@ function value = p25_exact ( dim_num )
   c = 0.0;
   c = p25_r8 ( 'G', 'C', c );
 
-  roundoff = r8_epsilon ( );
+  roundoff = eps;
 
   value = 1.0;
 

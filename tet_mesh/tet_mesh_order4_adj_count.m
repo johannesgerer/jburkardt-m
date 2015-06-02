@@ -90,7 +90,7 @@ function [ adj_num, adj_row ] = tet_mesh_order4_adj_count ( node_num, ...
   for k = 1 : pair_num
 
     if ( 1 < k )
-      if ( pair(1,k-1) == pair(1,k) & pair(2,k-1) == pair(2,k) )
+      if ( pair(1,k-1) == pair(1,k) && pair(2,k-1) == pair(2,k) )
         continue
       end
     end

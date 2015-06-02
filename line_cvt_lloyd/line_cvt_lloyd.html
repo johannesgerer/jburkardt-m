@@ -1,0 +1,256 @@
+<html>
+
+  <head>
+    <title>
+      LINE_CVT_LLOYD - Lloyd's CVT Method for a Line Segment
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      LINE_CVT_LLOYD <br> Lloyd's CVT Method for a Line Segment
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>LINE_CVT_LLOYD</b> 
+      is a MATLAB library which 
+      carries out Lloyd's iteration for computing a 
+      Centroidal Voronoi Tesselation (CVT) of points 
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
+      A constraint has been added to the computation, which forces the first
+      and last points to be fixed to the endpoints of the line segment. 
+      This is not actually a requirement for Lloyd's method. 
+    </p>
+
+    <p>
+      At least for the uniform density case, the exact solution of this problem
+      is known in advance, and is simply a set of equally spaced points.
+      For instance, for N = 4, the solution over the interval [0,1] would be
+      0, 1/3, 2/3, 1, if the endpoint constraint is imposed.  If the endpoint
+      constraint is NOT imposed, then the exact solution is: 1/8, 3/8, 5/8, 7/8.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>LINE_CVT_LLOYD</b> is available in
+      <a href = "../../c_src/cvt_1d_lloyd/cvt_1d_lloyd.html">a C version</a> and
+      <a href = "../../cpp_src/cvt_1d_lloyd/cvt_1d_lloyd.html">a C++ version</a> and
+      <a href = "../../f77_src/cvt_1d_lloyd/cvt_1d_lloyd.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/cvt_1d_lloyd/cvt_1d_lloyd.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/cvt_1d_lloyd/cvt_1d_lloyd.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/line_felippa_rule/line_felippa_rule.html">
+      LINE_FELIPPA_RULE</a>,
+      a MATLAB library which
+      returns the points and weights of a Felippa quadrature rule
+      over the interior of a line segment in 1D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/line_grid/line_grid.html">
+      LINE_GRID</a>,
+      a MATLAB library which
+      computes a grid of points
+      over the interior of a line segment in 1D.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Qiang Du, Vance Faber, Max Gunzburger,<br>
+          Centroidal Voronoi Tessellations: Applications and Algorithms,<br>
+          SIAM Review, Volume 41, 1999, pages 637-676.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "line_ccvt_lloyd.m">line_ccvt_lloyd.m</a>,
+          iterates Lloyd's CVT method for points on a line segment,
+          with the first and last points constrained to equal the end values.
+        </li>
+        <li>
+          <a href = "line_ccvt_lloyd_step.m">line_ccvt_lloyd_step.m</a>,
+          takes one step of Lloyd's CVT method for points on a line segment,
+          with the first and last points constrained to equal the end values.
+        </li>
+        <li>
+          <a href = "line_cvt_energy.m">line_cvt_energy.m</a>,
+          evaluates an energy function which is reduced by each step of 
+          Lloyd's iteration.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd.m">line_cvt_lloyd.m</a>,
+          iterates Lloyd's CVT method for points on a line segment.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_step.m">line_cvt_lloyd_step.m</a>,
+          takes one step of Lloyd's CVT method for points on a line segment.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "line_cvt_lloyd_test.m">line_cvt_lloyd_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_test_output.txt">line_cvt_lloyd_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_test01.m">line_cvt_lloyd_test01.m</a>,
+          tests the unconstrained iteration with random unsorted starting points.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_test02.m">line_cvt_lloyd_test02.m</a>,
+          tests the constrained iteration with random unsorted starting points.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_test03.m">line_cvt_lloyd_test03.m</a>,
+          tests the unconstrained iteration with random sorted starting points.
+        </li>
+        <li>
+          <a href = "line_cvt_lloyd_test04.m">line_cvt_lloyd_test04.m</a>,
+          tests the constrained iteration with random sorted starting points.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST01</b> applies the unconstrained iteration, with random unsorted
+      starting values.
+      <ul>
+        <li>
+          <a href = "test01_energy.png">test01_energy.png</a> 
+          a PNG image of the "energy" of the partition.
+        </li>
+        <li>
+          <a href = "test01_evolution.png">test01_evolution.png</a> 
+          a PNG image of the evolution of the generators.
+        </li>
+        <li>
+          <a href = "test01_motion.png">test01_motion.png</a> 
+          a PNG image of the "motion" of the generators.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST02</b> applies the constrained iteration, with random unsorted
+      starting values.
+      <ul>
+        <li>
+          <a href = "test02_energy.png">test02_energy.png</a> 
+          a PNG image of the "energy" of the partition.
+        </li>
+        <li>
+          <a href = "test02_evolution.png">test02_evolution.png</a> 
+          a PNG image of the evolution of the generators.
+        </li>
+        <li>
+          <a href = "test02_motion.png">test02_motion.png</a> 
+          a PNG image of the "motion" of the generators.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST03</b> applies the unconstrained iteration, with random sorted
+      starting values.
+      <ul>
+        <li>
+          <a href = "test03_energy.png">test03_energy.png</a> 
+          a PNG image of the "energy" of the partition.
+        </li>
+        <li>
+          <a href = "test03_evolution.png">test03_evolution.png</a> 
+          a PNG image of the evolution of the generators.
+        </li>
+        <li>
+          <a href = "test03_motion.png">test03_motion.png</a> 
+          a PNG image of the "motion" of the generators.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>TEST04</b> applies the constrained iteration, with random sorted
+      starting values.
+      <ul>
+        <li>
+          <a href = "test04_energy.png">test04_energy.png</a> 
+          a PNG image of the "energy" of the partition.
+        </li>
+        <li>
+          <a href = "test04_evolution.png">test04_evolution.png</a> 
+          a PNG image of the evolution of the generators.
+        </li>
+        <li>
+          <a href = "test04_motion.png">test04_motion.png</a> 
+          a PNG image of the "motion" of the generators.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 July 2014
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

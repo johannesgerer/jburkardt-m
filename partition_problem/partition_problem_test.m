@@ -2,7 +2,7 @@ function partition_problem_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for PARTITION_PROBLEM_PRB.
+%% PARTITION_PROBLEM_TEST tests the PARTITION_PROBLEM library.
 %
 %  Licensing:
 %
@@ -16,13 +16,13 @@ function partition_problem_test ( )
 %
 %    John Burkardt
 %
-  test_num = 5;
-
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PARTITION_PROBLEM_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the PARTITION_PROBLEM library.\n' );
+
+  test_num = 5;
 %
 %  Find individual solutions.
 %

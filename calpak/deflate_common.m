@@ -10,7 +10,7 @@ function [ y, m, d ] = deflate_common ( y, m, d )
 %
 %  Modified:
 %
-%    15 June 2012
+%    24 February 2013
 %
 %  Author:
 %
@@ -23,7 +23,7 @@ function [ y, m, d ] = deflate_common ( y, m, d )
   if ( y == 1582 )
     if ( m == 10 )
       if ( 15 <= d )
-        d = d - 10
+        d = d - 10;
       end
     end
   end

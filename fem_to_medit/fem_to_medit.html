@@ -1,0 +1,266 @@
+<html>
+
+  <head>
+    <title>
+      FEM_TO_MEDIT - Convert finite element mesh data from FEM to MEDIT format
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM_TO_MEDIT <br> Convert finite element mesh data from FEM to MEDIT format
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM_TO_MEDIT</b>
+      is a MATLAB program which
+      reads a pair of FEM files defining the node coordinates and elements
+      of a finite element mesh, and rewrites the data as a MEDIT file.
+    </p>
+
+    <p>
+      The program can convert 2D meshes of triangles, or 3D meshes of
+      tetrahedrons.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+        <b>fem_to_medit</b> prefix
+      </blockquote>
+      where <i>prefix</i> is the file name prefix, so that:
+      <ul>
+        <li>
+          <i>prefix</i><b>_nodes.txt</b> is a file containing node coordinates;
+        </li>
+        <li>
+          <i>prefix</i><b>_elements.txt</b> is a file listing the nodes
+          forming each element;
+        </li>
+        <li>
+          <i>prefix</i><b>_boundary_node_mask.txt</b> is a file listing a "0" for
+          each interior node and a "1" for each boundary node;  (This file can
+          be created by the <b>triangulation_boundary_nodes</b> or
+          <b>tet_mesh_boundary</b> programs.)
+        </li>
+        <li>
+          <i>prefix</i><b>.mesh</b> is the name of the MEDIT file to be created.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM_TO_MEDIT</b> is available in
+      <a href = "../../c_src/fem_to_medit/fem_to_medit.html">a C version</a> and
+      <a href = "../../cpp_src/fem_to_medit/fem_to_medit.html">a C++ version</a> and
+      <a href = "../../f77src/fem_to_medit/fem_to_medit.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem_to_medit/fem_to_medit.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem_to_medit/fem_to_medit.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem_to_gmsh/fem_to_gmsh.html">
+      FEM_TO_GMSH</a>,
+      a MATLAB program which
+      reads FEM files definining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a Gmsh mesh file.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_triangle/fem_to_triangle.html">
+      FEM_TO_TRIANGLE</a>,
+      a MATLAB program which
+      reads FEM files defining a 2D mesh of triangles, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding pair of node
+      and element files for use by Jonathan Shewchuk's triangle program.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem_to_xml/fem_to_xml.html">
+      FEM_TO_XML</a>,
+      a MATLAB program which
+      reads FEM files defining a 1D, 2D or 3D mesh, namely
+      a file of node coordinates and a file of elements defined by
+      node indices, and creates a corresponding XML file for input
+      to DOLFIN or FENICS.
+    </p>
+
+    <p>
+      <a href = "../../data/fem2d/fem2d.html">
+      FEM2D</a>,
+      a data directory which
+      contains examples of 2D FEM files,
+      text files that describe a 2D finite element geometry
+      and associated nodal values;
+    </p>
+
+    <p>
+      <a href = "../../data/fem3d/fem3d.html">
+      FEM3D</a>,
+      a data directory which
+      contains examples of 3D FEM files,
+      three text files that describe a 3D finite element geometry
+      and associated nodal values.
+    </p>
+
+    <p>
+      <a href = "../../data/medit/medit.html">
+      MEDIT</a>,
+      a data directory which
+      contains examples of files which can be used by the MEDIT program
+      to define a 2D or 3D mesh for use by the finite element method (FEM), 
+      using triangles, quadrilaterals, tetrahedrons or hexahedrons.
+    </p>
+
+    <p>
+      <a href = "../../examples/medit/medit.html">
+      MEDIT</a>,
+      examples which
+      illustrate the use of medit, an interactive graphics program developed 
+      to visualize numerical simulation results on unstructured meshes in
+      two and three dimensions.  Scalar, vector and tensor fields can be 
+      easily associated and displayed with meshes.
+      The program is by Pascal Frey.
+    </p>
+
+    <p>
+      <a href = "../../m_src/medit_to_fem/medit_to_fem.html">
+      MEDIT_TO_FEM</a>,
+      a MATLAB program which
+      reads a mesh file created by the MEDIT program
+      and writes a corresponding pair of node and element files that correspond
+      to the FEM format.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangle_to_medit/triangle_to_medit.html">
+      TRIANGLE_TO_MEDIT</a>,
+      a MATLAB program which reads the NODE and ELE files created by triangle() to
+      describe a triangular mesh, and writes a corresponding MESH file
+      for input to medit().
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Pascal Frey,<br>
+          MEDIT: An interactive mesh visualization software,<br>
+          Technical Report RT-0253,<br>
+          Institut National de Recherche en Informatique et en Automatique,<br>
+          03 December 2001.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem_to_medit.m">fem_to_medit.m</a>, the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <b>ELL</b> is a 2D L-shaped region, with a grid of 65 nodes
+      and 96 elements of order 3 triangles.
+      <ul>
+        <li>
+          <a href = "../../data/fem2d/ell_nodes.txt">ell_nodes.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/fem2d/ell_elements.txt">ell_elements.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/fem2d/ell_elements.png">ell_elements.png</a>,
+          an image of the triangulation.
+        </li>
+        <li>
+          <a href = "../../data/fem2d/ell_boundary_node_mask.txt">ell_boundary_node_mask.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/mesh/ell.mesh">ell.mesh</a>, the MEDIT file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>P01</b> is 3D FEM data for a rectangular channel of dimensions
+      3x1x1 physical units, using 584 nodes and 2568 tetrahedral elements.
+      <ul>
+        <li>
+          <a href = "../../data/fem3d/p01_nodes.txt">p01_nodes.txt</a>,
+          defines the FEM nodes.
+        </li>
+        <li>
+          <a href = "../../data/fem3d/p01_elements.txt">p01_elements.txt</a>,
+          defines the FEM elements.
+        </li>
+        <li>
+          <a href = "../../data/fem3d/p01.png">p01.png</a>,
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "../../data/fem3d/p01_boundary_node_mask.txt">p01_boundary_node_mask.txt</a>
+        </li>
+        <li>
+          <a href = "../../data/mesh/p01.mesh">p01.mesh</a>, the MEDIT file.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 10 October 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

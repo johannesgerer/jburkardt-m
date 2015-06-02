@@ -27,15 +27,15 @@
 #
 #    Similar remarks apply to the "error" and "output" arguments.
 #
-#    "notification = Never" means we don't want to receive a message that the
+#    "notification = NEVER" means we don't want to receive a message that the
 #    job has executed.
 #
-#    "WhenToTransferOutput=ON_EXIT" means that CONDOR should retrieve output from
+#    "when_to_transfer_output=ON_EXIT" means CONDOR should retrieve output from
 #    the job when it is finished executing, and not before.
 #
 #    "transfer_input_files = simple_script.m, simple_function.m" indicates that 
-#    CONDOR should copy these files from our submit directory to the target machine 
-#    before executing the program.  
+#    CONDOR should copy these files from our submit directory to the target
+#    machine before executing the program.  
 #
 #    "arguments = -nodesktop -nosplash < simple_script.m > simple_output.txt" 
 #    allows us to specify the input arguments
@@ -43,17 +43,21 @@
 #    "-nodesktop" suppresses the default display of MATLAB's desktop interface;
 #    "-nosplash" suppresses the default display of the MATLAB logo;
 #    "< simple_script.m" indicates that MATLAB should read this file as input.
-#    "> simple_output.txt" indicates that output to the screen should be redirected
-#    to this file.
+#    "> simple_output.txt" indicates that output to the screen should be 
+#    redirected to this file.
 #
 #    The "queue" command causes CONDOR to assemble the information and submit
-#    it to the queue.  It is possible to send multiple instances of a single job,
-#    (while varying the input and output filenames) by using a command like
+#    it to the queue.  It is possible to send multiple instances of a single 
+#    job, (while varying the input and output filenames) by using a command like
 #    "queue 5", but that is for later discussion.
+#
+#  Licensing:
+#
+#    This code is distributed under the GNU LGPL license.
 #
 #  Modified:
 #
-#    31 March 2011
+#    06 August 2013
 #
 #  Author:
 #
@@ -65,40 +69,45 @@
 #
 universe = vanilla
 #
-#  The program to be run is MATLAB, and here's where we expect it to be.
+#  The program to be run is the script "simple_run.sh"
 #
-executable = /usr/local/bin/matlab
+executable = simple_run.sh
 #
-#  CONDOR does not have to copy the executable from our machine.
+#  There are no commandline arguments.
 #
-transfer_executable = FALSE
+arguments = 
 #
-#  The machine must have MATLAB.
+#  CONDOR has to copy the "executable" from our machine.
 #
-requirements = (HasMATLAB==TRUE)
+transfer_executable = TRUE
 #
-#  Name the LOG, ERROR and OUTPUT files.
+#  We do need to transfer the script file.
 #
-log = simple.log
-error = simple.error
-output = simple.out
+should_transfer_files = yes
 #
-#  We don't want CONDOR to try to email us on completion of the job.
-#
-notification = Never
-#
-#  Return data when the job is done.
-#
-WhenToTransferOutput = ON_EXIT
-#
-#  Files that must be copied from our machine.
+#  Files that must be transferred from the condor login node 
+#  to the remote machine:
 #
 transfer_input_files = simple_script.m, simple_function.m
 #
-#  The commandline arguments to MATLAB.
+#  Transfer data back when the job is done.
 #
-arguments = -nodesktop -nosplash < simple_script.m > simple_output.txt
+when_to_transfer_output = ON_EXIT
+#
+#  The machine must have MATLAB.
+#
+requirements = ( OpSys == "LINUX" && Arch == "X86_64" && Matlab == "true" )
+#
+#  Name the LOG, ERROR and OUTPUT files.
+#
+log = simple_log.txt
+error = simple_error.txt
+output = simple_output.txt
+#
+#  We don't want CONDOR to try to email us on completion of the job.
+#
+notification = NEVER
 #
 #  This command causes CONDOR to submit our job.
 #
-queue
+queue 1

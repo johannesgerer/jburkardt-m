@@ -30,14 +30,14 @@ function a = i4row_swap ( m, n, a, irow1, irow2 )
 %
 %  Check.
 %
-  if ( irow1 < 1 | m < irow1 )
+  if ( irow1 < 1 || m < irow1 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4ROW_SWAP - Fatal error!\n' );
     fprintf ( 1, '  IROW1 is out of range.\n' );
     error ( 'I4ROW_SWAP - Fatal error!' );
   end
 
-  if ( irow2 < 1 | m < irow2 )
+  if ( irow2 < 1 || m < irow2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4ROW_SWAP - Fatal error!\n' );
     fprintf ( 1, '  IROW2 is out of range.\n' );

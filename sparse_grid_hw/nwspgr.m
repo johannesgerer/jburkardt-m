@@ -4,13 +4,18 @@ function [ nodes, weights ] = nwspgr ( type, dim, k, sym )
 %
 %% NWSPGR generates nodes and weights for sparse grid integration.
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
-%    17 June 2012
+%    24 June 2013
 %
 %  Author:
 %
-%    Florian Heiss, Viktor Winschel
+%    Original MATLAB version by Florian Heiss, Viktor Winschel.
+%    This MATLAB version by John Burkardt.
 %
 %  Reference:
 %
@@ -54,7 +59,7 @@ function [ nodes, weights ] = nwspgr ( type, dim, k, sym )
 %    Local, integer R1D(1,K), the length of the rules of levels 1 through K.
 %
   if ( nargin < 3 )
-    error ( 'not enough input arguments' )
+    error ( 'NWSPGR: not enough input arguments!' )
   end
 %
 %  Interpret the inputs.  Use STRCMPI so that case is ignored.
@@ -191,9 +196,16 @@ function [ nodes, weights ] = nwspgr ( type, dim, k, sym )
 
       keep = zeros(nr,1);
       numnew = 0;
-
+%
+%  If nodes are computed numerically, then the central node, with value "m"
+%  may be computed with slightly different values for each size of the rule.
+%  Instead of checking whether a node equals "m", we may ask whether it
+%  is very close to "m".
+%
       for r = 1 : nr 
-        if ( nodes(r,j) ~= m )
+
+        if ( sqrt ( eps ) < abs ( nodes(r,j) - m ) )
+%       if ( nodes(r,j) ~= m )
           numnew = numnew + 1;
           keep(numnew) = r;
         end
@@ -201,7 +213,7 @@ function [ nodes, weights ] = nwspgr ( type, dim, k, sym )
 
       if ( 0 < numnew )
         nodes = [nodes ; nodes(keep(1:numnew),:)];
-        nodes(nr+1:nr+numnew,j) = 2*m - nodes(nr+1:nr+numnew,j);
+        nodes(nr+1:nr+numnew,j) = 2.0 * m - nodes(nr+1:nr+numnew,j);
         weights = [weights ; weights(keep(1:numnew))]; 
         nr = nr + numnew;
       end

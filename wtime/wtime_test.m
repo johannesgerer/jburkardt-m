@@ -2,7 +2,7 @@ function wtime_test ( )
 
 %*****************************************************************************80
 %
-%% WTIME_TEST uses WTIME to get elapsed wall clock time.
+%% WTIME_TEST tests the WTIME library.
 %
 %  Licensing:
 %
@@ -17,7 +17,6 @@ function wtime_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WTIME_TEST\n' );
   fprintf ( 1, '  MATLAB version.\n' );
@@ -46,7 +45,6 @@ function wtime_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'WTIME_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

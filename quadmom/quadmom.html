@@ -1,0 +1,305 @@
+<html>
+
+  <head>
+    <title>
+      QUADMOM - Quadrature Rules from Weight Moments
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      QUADMOM <br> Quadrature Rules from Weight Moments
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>QUADMOM</b>
+      is a MATLAB library which
+      computes a Gaussian quadrature rule for a weight function rho(x)
+      based on the Golub-Welsch procedure that only requires knowledge
+      of the moments of rho(x).
+    </p>
+
+    <p>
+      The standard Golub-Welsch procedure expects to work with the
+      coefficients alpha() and beta() of the three term recursion 
+      for the orthogonal polynomials associated with the weight function rho(x).
+    </p>
+
+    <p>
+      However, in the same paper, Golub and Welsch discuss a related procedure
+      which, to compute a Gaussian quadrature rule of order N, requires the
+      values of the first M=2*N+1 moments associated with rho(x):
+      <pre>
+        mu(k) = integral x^k rho(x) dx,  0 <= k <= 2*n
+      </pre>
+      This library demonstrates this moment-based procedure.
+    </p>
+
+    <p>
+      Executing the sample program requires access to the TOMS655 library 
+      as well.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>QUADMOM</b> is available in
+      <a href = "../../c_src/quadmom/quadmom.html">a C version</a> and
+      <a href = "../../cpp_src/quadmom/quadmom.html">a C++ version</a> and
+      <a href = "../../f77_src/quadmom/quadmom.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/quadmom/quadmom.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/quadmom/quadmom.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/quadrature_golub_welsch/quadrature_golub_welsch.html">
+      QUADRATURE_GOLUB_WELSCH</a>,
+      a MATLAB library which
+      computes the points and weights of a Gaussian quadrature rule using the 
+      Golub-Welsch procedure, assuming that the points have been specified.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrature_least_squares/quadrature_least_squares.html">
+      QUADRATURE_LEAST_SQUARES</a>,
+      a MATLAB library which
+      computes weights for "sub-interpolatory" quadrature rules,
+      that is, it estimates integrals by integrating a polynomial that
+      approximates the function data in a least squares sense.
+    </p>
+
+    <p>
+      <a href = "../../m_src/quadrule/quadrule.html">
+      QUADRULE</a>,
+      a MATLAB library which
+      contains information about quadrature rules, both as tabulated values,
+      and as computational procedures.
+    </p>
+
+    <p>
+      <a href = "../../m_src/toms655/toms655.html">
+      TOMS655</a>,
+      a MATLAB library which
+      computes the weights for interpolatory quadrature rules;
+      this library is commonly called IQPACK,
+      by Sylvan Elhay and Jaroslav Kautsky.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Sylvan Elhay, Jaroslav Kautsky,<br>
+          Algorithm 655:
+          IQPACK, 
+          FORTRAN Subroutines for the Weights of Interpolatory Quadrature,<br>
+          ACM Transactions on Mathematical Software,<br>
+          Volume 13, Number 4, December 1987, pages 399-415.
+        </li>
+        <li>
+          Gene Golub, John Welsch,<br>
+          Calculation of Gaussian Quadrature Rules,<br>
+          Mathematics of Computation,<br>
+          Volume 23, Number 106, April 1969, pages 221-230.
+        </li>
+        <li>
+          Jaroslav Kautsky, Sylvan Elhay,<br>
+          Calculation of the Weights of Interpolatory Quadratures,<br>
+          Numerische Mathematik,<br>
+          Volume 40, Number 3, October 1982, pages 407-422.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "moment_method.m">moment_method.m</a>
+          computes a quadrature rule by the method of moments.
+        </li>
+        <li>
+          <a href = "moments_laguerre.m">moments_laguerre.m</a>
+          first M moments of the Laguerre weight over [0,+oo);
+        </li>
+        <li>
+          <a href = "moments_legendre.m">moments_legendre.m</a>
+          first M moments of the Legendre weight over [a,b];
+        </li>
+        <li>
+          <a href = "moments_normal.m">moments_normal.m</a>
+          first M moments of a general Gaussian weight with mean mu
+          and standard deviation sigma, over (-oo,+oo);
+        </li>
+        <li>
+          <a href = "moments_normal_01.m">moments_normal_01.m</a>
+          first M moments of the standard Gaussian weight over (-oo,+oo);
+        </li>
+        <li>
+          <a href = "moments_truncated_normal_ab.m">
+          moments_truncated_normal_ab.m</a>
+          first M moments of a general Gaussian weight with mean mu
+          and standard deviation sigma, truncated to [a,b];
+        </li>
+        <li>
+          <a href = "moments_truncated_normal_a.m">
+          moments_truncated_normal_a.m</a>
+          first M moments of a general Gaussian weight with mean mu
+          and standard deviation sigma, truncated to [a,+oo);
+        </li>
+        <li>
+          <a href = "moments_truncated_normal_b.m">
+          moments_truncated_normal_b.m</a>
+          first M moments of a general Gaussian weight with mean mu
+          and standard deviation sigma, truncated to (-oo,b];
+        </li>
+        <li>
+          <a href = "normal_01_cdf.m">normal_01_cdf.m</a> 
+          evaluates the Normal 01 CDF.
+        </li>
+        <li>
+          <a href = "normal_01_pdf.m">normal_01_pdf.m</a> 
+          evaluates the Normal 01 PDF.
+        </li>
+        <li>
+          <a href = "r8_choose.m">r8_choose.m</a>
+          computes the binomial coefficient C(N,K).
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>
+          computes the factorial function.
+        </li>
+        <li>
+          <a href = "r8_factorial2.m">r8_factorial2.m</a>
+          computes the double factorial function.
+        </li>
+        <li>
+          <a href = "r8_mop.m">r8_mop.m</a> 
+          returns the value of (-1)*K.
+        </li>
+        <li>
+          <a href = "r8mat_print.m">r8mat_print.m</a>
+          prints an R8MAT.
+        </li>
+        <li>
+          <a href = "r8mat_print_some.m">r8mat_print_some.m</a>
+          prints some of an R8MAT.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "r8vec2_print.m">r8vec2_print.m</a>
+          prints a pair of R8VEC's.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the current YMDHMS date as a time stamp.
+        </li>
+        <li>
+          <a href = "truncated_normal_ab_moment.m">truncated_normal_ab_moment.m</a> 
+          returns moments of the Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_a_moment.m">truncated_normal_a_moment.m</a> 
+          returns moments of the lower Truncated Normal PDF.
+        </li>
+        <li>
+          <a href = "truncated_normal_b_moment.m">truncated_normal_b_moment.m</a> 
+          returns moments of the upper Truncated Normal PDF.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "quadmom_test.m">quadmom_test.m</a>, 
+          a sample calling program;
+        </li>
+        <li>
+          <a href = "quadmom_test_output.txt">quadmom_test_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "quadmom_test01.m">quadmom_test01.m</a>, 
+          demonstrates the procedure for the Legendre weight rho(x)=1
+          over the interval [-1,+1].
+        </li>
+        <li>
+          <a href = "quadmom_test02.m">quadmom_test02.m</a>, 
+          demonstrates the procedure for the standard Gaussian weight.
+        </li>
+        <li>
+          <a href = "quadmom_test03.m">quadmom_test03.m</a>, 
+          demonstrates the procedure for a general Gaussian weight.
+        </li>
+        <li>
+          <a href = "quadmom_test04.m">quadmom_test04.m</a>, 
+          demonstrates the procedure for the Laguerre weight.
+        </li>
+        <li>
+          <a href = "quadmom_test05.m">quadmom_test05.m</a>, 
+          demonstrates the procedure for a truncated normal weight.
+        </li>
+        <li>
+          <a href = "quadmom_test06.m">quadmom_test06.m</a>, 
+          demonstrates the procedure for a lower truncated normal weight.
+        </li>
+        <li>
+          <a href = "quadmom_test07.m">quadmom_test07.m</a>, 
+          demonstrates the procedure for an upper truncated normal weight.
+        </li>
+        <li>
+          <a href = "quadmom_test08.m">quadmom_test08.m</a>, 
+          integrates sine(x) against a lower truncated normal weight.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 October 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

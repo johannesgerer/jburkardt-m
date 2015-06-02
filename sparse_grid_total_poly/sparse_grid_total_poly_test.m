@@ -17,7 +17,6 @@ function sparse_grid_total_poly_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_TOTAL_POLY_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );

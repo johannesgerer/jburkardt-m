@@ -17,7 +17,7 @@ function value = year_is_leap_republican ( y )
 %
 %  Modified:
 %
-%    23 September 2012
+%    07 March 2013
 %
 %  Author:
 %
@@ -25,14 +25,12 @@ function value = year_is_leap_republican ( y )
 %
 %  Parameters:
 %
-%    Input, integer ( kind = 4 ) Y, the year to be checked.
+%    Input, integer Y, the year to be checked.
 %
 %    Output, logical VALUE, TRUE if the year was a leap year,
 %    FALSE otherwise.
 %
-  y2 = y;
-
-  ierror = y_check_republican ( y2 );
+  [ y2, ierror ] = y_check_republican ( y );
 
   if ( ierror ~= 0 )
     value = 0;
@@ -49,10 +47,10 @@ function value = year_is_leap_republican ( y )
         value = 1;
         if ( mod ( y2 + 1, 4000 ) == 0 )
           value = 0;
-        end if
-      end if
-    end if
-  end if
+        end
+      end
+    end
+  end
 
   return
 end

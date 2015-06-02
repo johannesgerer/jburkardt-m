@@ -2,7 +2,7 @@ function triangulation_refine_local_test ( )
 
 %*****************************************************************************80
 %
-%% TRIANGULATION_REFINE_LOCAL_TEST tests TRIANGULATION_REFINE_LOCAL.
+%% TRIANGULATION_REFINE_LOCAL_TEST tests the TRIANGULATION_REFINE_LOCAL library.
 %
 %  Licensing:
 %
@@ -16,9 +16,11 @@ function triangulation_refine_local_test ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_REFINE_LOCAL_TEST\n' );
-  fprintf ( 1, '  TRIANGULATION_REFINE_LOCAL locally refines a triangulation.\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Test the TRIANGULATION_REFINE_LOCAL library.\n' );
 
   prefix = 'ell3';
 
@@ -59,10 +61,15 @@ function triangulation_refine_local_test ( )
   r8mat_write ( node_refined_filename, 2, node_num2, node_xy2 );
   i4mat_write ( element_refined_filename, 3, element_num2, element_node2 );
   i4mat_write ( element_neighbor_refined_filename, 3, element_num2, element_neighbor2 );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_REFINE_LOCAL_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
+
 
   return
 end

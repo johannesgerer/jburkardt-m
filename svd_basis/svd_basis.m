@@ -68,10 +68,9 @@ function svd_basis ( )
 %    Quarterly of Applied Mathematics,
 %    Volume XLV, Number 3, 1987, pages 561-590.
 %
-  clean = 1;
+  clean = 0;
 
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_BASIS\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -98,7 +97,7 @@ function svd_basis ( )
 %
 %  What is the basis size?
 %
-  basis_num = input ( '  How many basis vectors (L) are to be extracted?' );
+  basis_num = input ( '  How many basis vectors (L) are to be extracted? ' );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  L = %d\n', basis_num );
@@ -122,7 +121,7 @@ function svd_basis ( )
     fprintf ( 1, '  If there are no more sequences to enter,\n' );
     fprintf ( 1, '  just hit RETURN.\n' );
 
-    file_name = input ( '  Enter a new base file name, or RETURN.' );
+    file_name = input ( '  Enter RETURN, or a new base file name: ' );
 
     if ( s_len_trim ( file_name ) <= 0 )
       fprintf ( 1, '\n' );
@@ -285,7 +284,7 @@ function svd_basis ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Do you want to compute and use the average? (''Y''/''N'')\n' );
 
-  average_char = input ( '  Enter ''Y'' or ''N'':' );
+  average_char = input ( '  Enter ''Y'' or ''N'': ' );
 
   if ( average_char == 'Y' || average_char == 'y' )
     average_normalization = 1;
@@ -332,7 +331,7 @@ function svd_basis ( )
     fprintf ( 1, '  Because the CLEAN option is on,\n' );
     fprintf ( 1, '  we will set very tiny vector entries to 0.\n' );
 
-    tol = r8_epsilon ( );
+    tol = eps;
 
     for j = 1 : basis_num
       for i = 1 : dim_num
@@ -356,7 +355,7 @@ function svd_basis ( )
   fprintf ( 1, '  Do you want comments in the header of the file?\n' );
   fprintf ( 1, '  (These begin with the "#" character.) (''Y''/''N'')\n' );
 
-  comment_char = input ( '  Enter ''Y'' or ''N'':' );
+  comment_char = input ( '  Enter ''Y'' or ''N'': ' );
 
   if ( comment_char == 'Y' || comment_char == 'y' )
     comment = 1;
@@ -373,7 +372,8 @@ function svd_basis ( )
 
     average_value = 0.0;
     
-    r8mat_write ( basis_file, comp_num, node_num, point_average(1:dim_num,1) );
+    table = reshape ( point_average(1:dim_num,1), comp_num, node_num );
+    r8mat_write ( basis_file, comp_num, node_num, table );
 
   end
 
@@ -390,7 +390,8 @@ function svd_basis ( )
       fprintf ( 1, '  Writing last file  "%s"\n', basis_file );
     end
 
-    r8mat_write ( basis_file, comp_num, node_num, point(1:dim_num,j) );
+    table = reshape ( point(1:dim_num,j), comp_num, node_num );
+    r8mat_write ( basis_file, comp_num, node_num, table );
 
   end
 %
@@ -399,7 +400,6 @@ function svd_basis ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_BASIS\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -706,40 +706,6 @@ function row_num = file_row_count ( input_file_name )
   end
 
   fclose ( input_unit );
-
-  return
-end
-function value = r8_epsilon ( )
-
-%*****************************************************************************80
-%
-%% R8_EPSILON returns the R8 roundoff unit.
-%
-%  Discussion:
-%
-%    The roundoff unit is a number R which is a power of 2 with the 
-%    property that, to the precision of the computer's arithmetic,
-%      1 < 1 + R
-%    but 
-%      1 = ( 1 + R / 2 )
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    22 August 2004
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Output, real VALUE, the roundoff unit.
-%
-  value = eps;
 
   return
 end

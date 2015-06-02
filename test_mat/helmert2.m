@@ -2,7 +2,7 @@ function a = helmert2 ( n, x )
 
 %*****************************************************************************80
 %
-%% HELMERT2 returns a Helmert matrix based on a given vector.
+%% HELMERT2 returns the HELMERT matrix.
 %
 %  Formula:
 %
@@ -51,7 +51,7 @@ function a = helmert2 ( n, x )
 %
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 
   x_norm_l2 = r8vec_norm_l2 ( n, x );
 

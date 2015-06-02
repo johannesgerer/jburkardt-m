@@ -10,7 +10,7 @@ function [ a, seed ] = r8vec_permute_uniform ( n, a, seed )
 %
 %  Modified:
 %
-%    14 May 2005
+%    24 May 2015
 %
 %  Author:
 %
@@ -28,9 +28,7 @@ function [ a, seed ] = r8vec_permute_uniform ( n, a, seed )
 %
 %    Output, integer SEED, a seed for the random number generator.
 %
-  base = 1;
-
-  [ p, seed ] = perm_uniform ( n, base, seed );
+  [ p, seed ] = perm1_uniform ( n, seed );
 
   a = r8vec_permute ( n, a, p );
 

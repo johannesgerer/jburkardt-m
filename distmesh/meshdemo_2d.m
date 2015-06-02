@@ -22,8 +22,9 @@ function meshdemo_2d ( )
 %
 %  Local parameters:
 %
-%    Local, integer ITERATION_MAX, the maximum number of iterations that DISTMESH
-%    should take.  (The program might take fewer iterations if it detects convergence.)
+%    Local, integer ITERATION_MAX, the maximum number of iterations that 
+%    DISTMESH should take.  (The program might take fewer iterations if it 
+%    detects convergence.)
 %
 %    Local, real H, the desired initial spacing.  If a uniform mesh density is used,
 %    this is the approximate spacing throughout the region.
@@ -230,12 +231,46 @@ function meshdemo_2d ( )
   p18_demo ( iteration_max, h )
   input ( 'Press RETURN' )
 %
+%  Problem 19, Dumbbell problem.
+%
+  iteration_max = 200;
+  h = 0.025;
+  p19_demo ( iteration_max, h )
+  input ( 'Press RETURN' )
+%
+%  Problem 20, ICAM Wright House problem.
+%
+  iteration_max = 2;
+  h = 2.0;
+  p20_demo ( iteration_max, h )
+  input ( 'Press RETURN' )
+%
+%  Problem 21, Zhu Wang's quarter round problem.
+%
+  iteration_max = 200;
+  h = 0.100;
+  p21_demo ( iteration_max, h )
+  input ( 'Press RETURN' )
+%
+%  Problem 22, Hans-Werner van Wyk's Big C.
+%
+  iteration_max = 200;
+  h = 0.100;
+  p22_demo ( iteration_max, h )
+  input ( 'Press RETURN' )
+%
+%  Problem 23, Mike Schneier's nonuniform square.
+%
+  iteration_max = 200;
+  h = 0.025;
+  p23_demo ( iteration_max, h )
+  input ( 'Press RETURN' )
+%
 %  Terminate.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MESHDEMO_2D\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

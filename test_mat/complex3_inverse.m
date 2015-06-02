@@ -33,6 +33,8 @@ function a = complex3_inverse ( )
 %
 %    Output, complex A(3,3), the matrix.
 %
+  a = zeros ( 3, 3 );
+
   a(1,1) = complex ( 10.0,  1.0 );
   a(2,1) = complex (  9.0, -3.0 );
   a(3,1) = complex ( -2.0,  2.0 );

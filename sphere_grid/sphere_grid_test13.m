@@ -74,6 +74,7 @@ function sphere_grid_test13 ( )
 %  As usual, trying to get Matlab's graphics routines to cooperate is
 %  a nightmare.
 %
+  figure ( )
   clf
   hold on
   point_size = 50;
@@ -97,6 +98,7 @@ function sphere_grid_test13 ( )
   z = 0.95 * z;
 
   c = z ./ z;
+
   surf ( x, y, z, c, 'EdgeColor', 'None' );
 
   axis equal
@@ -104,6 +106,7 @@ function sphere_grid_test13 ( )
   xlabel ( '--X axis--' )
   ylabel ( '--Y axis--' )
   zlabel ( '--Z axis--' )
+  title ( 'Sphere cubed grid' );
   view ( 3 )
   hold off
 

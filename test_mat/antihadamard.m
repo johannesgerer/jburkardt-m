@@ -2,7 +2,7 @@ function a = antihadamard ( n )
 
 %*****************************************************************************80
 %
-%% ANTIHADAMARD returns an approximate "Anti-Hadamard" matrix.
+%% ANTIHADAMARD returns the ANTIHADAMARD matrix.
 %
 %  Discussion:
 %

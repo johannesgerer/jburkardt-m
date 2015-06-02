@@ -64,7 +64,7 @@ function rank = ksubset_revdoor_rank ( k, n, t )
   s = 1;
 
   for i = k : -1 : 1
-    rank = rank + s * binomial ( t(i), i );
+    rank = rank + s * i4_choose ( t(i), i );
     s = - s;
   end
 

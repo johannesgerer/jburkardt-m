@@ -1,8 +1,8 @@
-function x = eberlein_null_left ( n )
+function x = eberlein_null_left ( m, n )
 
 %*****************************************************************************80
 %
-%% EBERLEIN_NULL_LEFT returns a left null vector of the Eberlein matrix.
+%% EBERLEIN_NULL_LEFT returns a left null vector of the EBERLEIN matrix.
 %
 %  Licensing:
 %
@@ -18,11 +18,11 @@ function x = eberlein_null_left ( n )
 %
 %  Parameters:
 %
-%    Input, integer N, the order of A.
+%    Input, integer M, N, the order of A.
 %
-%    Output, real X(N), the null vector.
+%    Output, real X(M,1), the null vector.
 %
-  x(1:n) = 1.0;
+  x = ones(m,1);
 
   return
 end

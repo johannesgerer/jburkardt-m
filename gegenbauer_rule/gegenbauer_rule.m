@@ -34,23 +34,16 @@ function gegenbauer_rule ( order, alpha, a, b, filename )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute a Gauss-Gegenbauer rule for approximating\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    Integral ( A <= x <= B ) ((x-A)(B-X))^ALPHA f(x) dx\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  of order ORDER.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  The user specifies ORDER, ALPHA, A, B, and FILENAME.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  ORDER is the number of points:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  ALPHA is the exponent:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  A is the left endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  B is the right endpoint;\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  FILENAME is used to generate 3 files:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    filename_w.txt - the weight file\n' );
   fprintf ( 1, '    filename_x.txt - the abscissa file.\n' );
   fprintf ( 1, '    filename_r.txt - the region file.\n' );
@@ -61,45 +54,43 @@ function gegenbauer_rule ( order, alpha, a, b, filename )
 %
 %  Get ORDER.
 %
-  if ( 1 <= nargin )
-
-  else
+  if ( nargin < 1 )
     order = input ( '  Enter the rule order ORDER:  ' );
-  end
+  elseif ( ischar ( order ) )
+    order = str2num ( order );
+  else
 %
 %  Get ALPHA.
 %
-  if ( 2 <= nargin )
-
-  else
+  if ( nargin < 2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  ALPHA is the exponent of ((x-A)(B-X)) in the integral:\n' );
     fprintf ( 1, '  Note that -1.0 < ALPHA is required.\n' );
     fprintf ( 1, '\n' );
     alpha = input ( '  Enter the value of ALPHA:  ' );
+  elseif ( ischar ( alpha ) )
+    alpha = str2num ( alpha );
   end
 %
 %  Get A.
 %
-  if ( 3 <= nargin )
-
-  else
+  if ( nargin < 3 )
     a = input ( '  Enter the left endpoint A:  ' );
+  elseif ( ischar ( a ) )
+    a = str2num ( a );
   end
 %
 %  Get B.
 %
-  if ( 4 <= nargin )
-
-  else
+  if ( nargin < 4 )
     b = input ( '  Enter the right endpoint B:  ' );
+  elseif ( ischar ( b ) )
+    b = str2num ( b );
   end
 %
 %  Get FILENAME.
 %
-  if ( 5 <= nargin )
-
-  else
+  if ( nargin < 5 )
     fprintf ( 1,  '\n' );
     fprintf ( 1,  '  FILENAME is the ''root name'' of the quadrature files).\n' );
     filename = input ( '  Enter FILENAME as a quoted string:  ' );

@@ -10,7 +10,7 @@ function [ y, m, d, f ] = jed_to_ymdf_armenian ( jed )
 %
 %  Modified:
 %
-%    05 July 2012
+%    23 April 2013
 %
 %  Author:
 %
@@ -35,14 +35,14 @@ function [ y, m, d, f ] = jed_to_ymdf_armenian ( jed )
 %  Determine the computational date (Y'/M'/D').
 %
   j = floor ( jed + 0.5 );
-  f = ( jed + 0.5D+00 ) - j;
+  f = ( jed + 0.5 ) - j;
 
-  j_prime = j + 317;
+  j_prime = j + 317
 
   y_prime = floor ( j_prime / 365 );
-  t_prime = mod ( j_prime, 365 );
+  t_prime =   mod ( j_prime, 365 );
   m_prime = floor ( t_prime / 30 );
-  d_prime = mod ( t_prime, 30 );
+  d_prime =   mod ( t_prime, 30 );
 %
 %  Convert the computational date to a calendar date.
 %

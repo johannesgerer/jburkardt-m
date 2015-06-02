@@ -2,7 +2,7 @@ function compass_search_test ( )
 
 %*****************************************************************************80
 %
-%% COMPASS_SEARCH_TEST tests COMPASS_SEARCH.
+%% COMPASS_SEARCH_TEST tests the COMPASS_SEARCH library.
 %
 %  Licensing:
 %
@@ -39,7 +39,6 @@ function compass_search_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'COMPASS_SEARCH_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

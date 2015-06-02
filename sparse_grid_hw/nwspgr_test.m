@@ -2,7 +2,7 @@ function nwspgr_test ( )
 
 %*****************************************************************************80
 %
-%% NWSPGR_TEST tests NWSPGR.
+%% NWSPGR_TEST tests the NWSPGR function.
 %
 %  Licensing:
 %
@@ -10,7 +10,7 @@ function nwspgr_test ( )
 %
 %  Modified:
 %
-%    08 April 2012
+%    26 February 2014
 %
 %  Author:
 %
@@ -42,10 +42,11 @@ function nwspgr_test ( )
   [ m, n ] = size ( x );
   quad_rule_print ( m, n, x, w, '  Gauss Hermite, (-oo,+oo), Dim 2, Level 3' );
 
-  [ x, w ] = nwspgr ( 'ccu', 2, 3, 1 );
+  [ x, w ] = nwspgr ( 'cce', 2, 3, 1 );
   x = x';
   [ m, n ] = size ( x );
-  quad_rule_print ( m, n, x, w, '  Clenshaw Curtis, [-1,+1], Dim 2, Level 3' );
+  quad_rule_print ( m, n, x, w, ...
+    '  Clenshaw Curtis Exponential, [-1,+1], Dim 2, Level 3' );
 
   return
 end

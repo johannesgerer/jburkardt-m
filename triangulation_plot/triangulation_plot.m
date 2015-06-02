@@ -167,7 +167,6 @@ function triangulation_plot ( prefix, node_show, triangle_show )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TRIANGULATION_PLOT\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -917,34 +916,6 @@ function timestamp ( )
 
   return
 end
-function s = timestring ( )
-
-%*****************************************************************************80
-%
-%% TIMESTRING returns a string containing the current YMDHMS date.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    07 August 2003
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Output, string S, a string containing the current YMDHMS date.
-%
-  t = now;
-  c = datevec ( t );
-  s = datestr ( c, 0 );
-
-  return
-end
 function triangulation_order3_plot ( file_name, node_num, node_xy, ...
   triangle_num, triangle_node, node_show, triangle_show )
 
@@ -1000,8 +971,6 @@ function triangulation_order3_plot ( file_name, node_num, node_xy, ...
   y_ps_max_clip = 684;
   y_ps_min = 126;
   y_ps_min_clip = 108;
-
-  date_time = timestring ( );
 %
 %  We need to do some figuring here, so that we can determine
 %  the range of the data, and hence the height and width
@@ -1061,7 +1030,6 @@ function triangulation_order3_plot ( file_name, node_num, node_xy, ...
   fprintf ( file_unit, '%%!PS-Adobe-3.0 EPSF-3.0\n' );
   fprintf ( file_unit, '%%%%Creator: triangulation_order3_plot.m\n' );
   fprintf ( file_unit, '%%%%Title: %s\n', file_name );
-  fprintf ( file_unit, '%%%%CreationDate: %s\n', date_time );
   fprintf ( file_unit, '%%%%Pages: 1\n' );
   fprintf ( file_unit, '%%%%BoundingBox:  %d  %d  %d  %d\n', ...
     x_ps_min, y_ps_min, x_ps_max, y_ps_max );
@@ -1352,8 +1320,6 @@ function triangulation_order4_plot ( file_name, node_num, node_xy, ...
   y_ps_max_clip = 684;
   y_ps_min = 126;
   y_ps_min_clip = 108;
-
-  date_time = timestring ( );
 %
 %  We need to do some figuring here, so that we can determine
 %  the range of the data, and hence the height and width
@@ -1413,7 +1379,6 @@ function triangulation_order4_plot ( file_name, node_num, node_xy, ...
   fprintf ( file_unit, '%%!PS-Adobe-3.0 EPSF-3.0\n' );
   fprintf ( file_unit, '%%%%Creator: triangulation_order4_plot.m\n' );
   fprintf ( file_unit, '%%%%Title: %s\n', file_name );
-  fprintf ( file_unit, '%%%%CreationDate: %s\n', date_time );
   fprintf ( file_unit, '%%%%Pages: 1\n' );
   fprintf ( file_unit, '%%%%BoundingBox:  %d  %d  %d  %d\n', ...
     x_ps_min, y_ps_min, x_ps_max, y_ps_max );
@@ -1720,8 +1685,6 @@ function triangulation_order6_plot ( file_name, node_num, node_xy, ...
   y_ps_max_clip = 684;
   y_ps_min = 126;
   y_ps_min_clip = 108;
-
-  date_time = timestring ( );
 %
 %  We need to do some figuring here, so that we can determine
 %  the range of the data, and hence the height and width
@@ -1781,7 +1744,6 @@ function triangulation_order6_plot ( file_name, node_num, node_xy, ...
   fprintf ( file_unit, '%%!PS-Adobe-3.0 EPSF-3.0\n' );
   fprintf ( file_unit, '%%%%Creator: triangulation_order6_plot.m\n' );
   fprintf ( file_unit, '%%%%Title: %s\n', file_name );
-  fprintf ( file_unit, '%%%%CreationDate: %s\n', date_time );
   fprintf ( file_unit, '%%%%Pages: 1\n' );
   fprintf ( file_unit, '%%%%BoundingBox:  %d  %d  %d  %d\n', ...
     x_ps_min, y_ps_min, x_ps_max, y_ps_max );

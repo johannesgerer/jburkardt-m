@@ -18,9 +18,9 @@ function lambda = moler2_eigenvalues ( )
 %
 %  Parameters:
 %
-%    Output, real LAMBDA(5), the eigenvalues.
+%    Output, real LAMBDA(5,1), the eigenvalues.
 %
-  lambda(1:5) = 0.0;
+  lambda(1:5,1) = 0.0;
 
   return
 end

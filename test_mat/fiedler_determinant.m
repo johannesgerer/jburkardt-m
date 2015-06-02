@@ -2,7 +2,7 @@ function determ = fiedler_determinant ( n, x )
 
 %*****************************************************************************80
 %
-%% FIEDLER_DETERMINANT returns the determinant of the Fiedler matrix.
+%% FIEDLER_DETERMINANT returns the determinant of the FIEDLER matrix.
 %
 %  Licensing:
 %
@@ -24,7 +24,7 @@ function determ = fiedler_determinant ( n, x )
 %
 %    Output, real DETERM, the determinant.
 %
-  determ = 2.0^( n - 2 );
+  determ = 2.0 ^ ( n - 2 );
 
   if ( mod ( n, 2 ) == 1 )
     determ = - determ;

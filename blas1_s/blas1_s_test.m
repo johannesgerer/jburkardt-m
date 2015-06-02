@@ -2,7 +2,7 @@ function blas1_s_test ( )
 
 %*****************************************************************************80
 %
-%% BLAS1_S_TEST tests the BLAS1 routines.
+%% BLAS1_S_TEST tests the BLAS1_S library.
 %
 %  Licensing:
 %
@@ -16,8 +16,9 @@ function blas1_s_test ( )
 %
 %    John Burkardt
 %
-  timestamp ( );
+  addpath ( '../blas0' );
 
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_S_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -42,9 +43,10 @@ function blas1_s_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'BLAS1_S_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
+
+  rmpath ( '../blas0' );
 
   return
 end

@@ -2,7 +2,7 @@ function msm_to_hb_test ( )
 
 %*****************************************************************************80
 %
-%% MSM_TO_HB_TEST runs the MSM_TO_HB tests.
+%% MSM_TO_HB_TEST tests the MSM_TO_HB library.
 %
 %  Licensing:
 %
@@ -29,7 +29,6 @@ function msm_to_hb_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'MSM_TO_HB_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

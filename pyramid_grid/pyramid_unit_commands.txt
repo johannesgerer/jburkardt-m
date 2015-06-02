@@ -1,0 +1,19 @@
+# pyramid_unit_commands.txt
+#
+# Usage:
+#  gnuplot < pyramid_unit_commands.txt
+#
+set term png
+set output "pyramid_unit.png"
+set xlabel "<--- X --->"
+set ylabel "<--- Y --->"
+set zlabel "<--- Z --->"
+set title "pyramid_unit"
+set grid
+set key off
+set view equal xyz
+set view 80, 40
+set style data lines
+set timestamp
+splot "pyramid_unit_vertices.txt" with lines lw 3, \
+      "pyramid_unit_nodes.txt" with points pt 7 lt 0

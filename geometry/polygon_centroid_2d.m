@@ -60,10 +60,8 @@ function centroid = polygon_centroid_2d ( n, v )
 %
 %    Output, real CENTROID(2,1), the coordinates of the centroid.
 %
-  dim_num = 2;
-
   area = 0.0;
-  centroid(1:dim_num,1) = 0.0;
+  centroid(1:2,1) = 0.0;
 
   for i = 1 : n
 
@@ -77,17 +75,16 @@ function centroid = polygon_centroid_2d ( n, v )
 
     area = area + temp;
 
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) ...
-      + ( v(1:dim_num,ip1) + v(1:dim_num,i) )' * temp;
+    centroid(1:2,1) = centroid(1:2,1) + ( v(1:2,ip1) + v(1:2,i) )' * temp;
 
   end
 
   area = area / 2.0;
 
   if ( area == 0.0 )
-    centroid(1:dim_num,1) = v(1:dim_num,1);
+    centroid(1:2,1) = v(1:2,1);
   else
-    centroid(1:dim_num,1) = centroid(1:dim_num,1) / ( 6.0 * area );
+    centroid(1:2,1) = centroid(1:2,1) / ( 6.0 * area );
   end
 
   return

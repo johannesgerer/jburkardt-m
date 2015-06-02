@@ -14,46 +14,41 @@ function st_io_test03 ( )
 %       0   0   0  44   0
 %      51   0  53   0  55
 %
-%    The index vectors are 1 based, and so have to be converted to
-%    0-base before being written.
-%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    29 November 2008
+%    23 July 2014
 %
 %  Author:
 %
 %    John Burkardt
 %
-  nrow = 5;
-  ncol = 5;
-  nnzero = 11;
-  a = [ 51.0, 12.0, 11.0, 33.0, 15.0, 53.0, 55.0, 22.0, 35.0, 44.0, 21.0 ]';
-  col = [ 1, 2, 1, 3, 5, 3, 5, 2, 5, 4, 1 ];
-  row = [ 5, 1, 1, 3, 1, 5, 5, 2, 3, 4, 2 ];
+  m = 5;
+  n = 5;
+  nst = 11;
+  ast = [ 51.0, 12.0, 11.0, 33.0, 15.0, 53.0, 55.0, 22.0, 35.0, 44.0, 21.0 ]';
+  ist = [ 5, 1, 1, 3, 1, 5, 5, 2, 3, 4, 2 ];
+  jst = [ 1, 2, 1, 3, 5, 3, 5, 2, 5, 4, 1 ];
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'ST_IO_TEST03\n' );
   fprintf ( 1, '  ST_SORT_A sorts an ST matrix by columns.\n' );
 
-  base1 = 1;
-  base0 = 0;
-  row = st_rebase ( base1, base0, nnzero, row );
-  col = st_rebase ( base1, base0, nnzero, col );
+  i_min = min ( ist );
+  i_max = max ( ist );
+  j_min = min ( jst );
+  j_max = max ( jst );
 
-  st_header_print ( nrow, ncol, nnzero )
+  st_header_print ( i_min, i_max, j_min, j_max, m, n, nst );
 
-  st_data_print ( nrow, ncol, nnzero, row, col, a, ...
-    '  Matrix data before sorting:' );
+  st_print ( m, n, nst, ist, jst, ast, '  Matrix data before sorting:' );
 
-  [ row, col, a ] = st_sort_a ( nrow, ncol, nnzero, row, col, a );
+  [ ist, jst, ast ] = st_sort_a ( m, n, nst, ist, jst, ast );
 
-  st_data_print ( nrow, ncol, nnzero, row, col, a, ...
-    '  Matrix data after sorting:' );
+  st_print ( m, n, nst, ist, jst, ast, '  Matrix data after sorting:' );
 
   return
 end

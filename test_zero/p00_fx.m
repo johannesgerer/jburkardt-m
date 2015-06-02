@@ -10,7 +10,7 @@ function fx = p00_fx ( prob, x )
 %
 %  Modified:
 %
-%    04 October 2011
+%    15 January 2013
 %
 %  Author:
 %
@@ -60,6 +60,8 @@ function fx = p00_fx ( prob, x )
     fx = p17_fx ( x );
   elseif ( prob == 18 )
     fx = p18_fx ( x );
+  elseif ( prob == 19 )
+    fx = p19_fx ( x );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, 'P00_FX - Fatal error!\n' );

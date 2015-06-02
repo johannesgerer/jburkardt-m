@@ -1,4 +1,4 @@
-function amin = r8vec_amin ( n, a )
+function value = r8vec_amin ( n, a )
 
 %*****************************************************************************80
 %
@@ -22,10 +22,10 @@ function amin = r8vec_amin ( n, a )
 %
 %    Input, real A(N), the array.
 %
-%    Output, real AMIN, the value of the entry
+%    Output, real VALUE, the value of the entry
 %    of smallest magnitude.
 %
-  amin = min ( abs ( a(1:n) ) );
+  value = min ( abs ( a(1:n) ) );
 
   return
 end

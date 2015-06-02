@@ -2,11 +2,7 @@ function pbma_io_test ( )
 
 %*****************************************************************************80
 %
-%% PBMA_IO_TEST tests the routines in PBMA_IO.
-%
-%  Purpose:
-%
-%    PBMA_IO_TEST calls the PBMA_IO sample tests.
+%% PBMA_IO_TEST tests the PBMA_IO library.
 %
 %  Licensing:
 %
@@ -21,7 +17,6 @@ function pbma_io_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PBMA_IO_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -35,7 +30,6 @@ function pbma_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PBMA_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

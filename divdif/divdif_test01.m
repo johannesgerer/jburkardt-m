@@ -10,7 +10,7 @@ function divdif_test01 ( )
 %
 %  Modified:
 %
-%    31 October 2011
+%    01 June 2013
 %
 %  Author:
 %
@@ -76,7 +76,8 @@ function divdif_test01 ( )
 %
 %  Compute a table for the derivative.
 %
-  [ ntab2, xtab2, diftab2 ] = dif_deriv_table ( ntab, xtab, diftab );
+  ntab2 = ntab - 1;
+  [ xtab2, diftab2 ] = dif_deriv_table ( ntab, xtab, diftab );
 
   dif_print ( ntab2, xtab2, diftab2, '  The derivative:' );
 

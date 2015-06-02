@@ -2,7 +2,11 @@ function a = fourier_cosine ( n )
 
 %*****************************************************************************80
 %
-%% FOURIER_COSINE returns the discrete Fourier Cosine Transform matrix.
+%% FOURIER_COSINE returns the FOURIER_COSINE matrix.
+%
+%  Discussion:
+%
+%    FOURIER_COSINE is the discrete Fourier Cosine Transform matrix.
 %
 %  Example:
 %
@@ -36,6 +40,8 @@ function a = fourier_cosine ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   a(1,1:n) = 1.0 / sqrt ( n );
 
   for i = 2 : n

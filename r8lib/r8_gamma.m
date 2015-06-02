@@ -141,9 +141,10 @@ function value = r8_gamma ( x )
       res = 1.0 / y;
     else
       res = xinf;
-      value = res;
-      return
     end
+
+    value = res;
+    return
 
   elseif ( y < 12.0 )
 

@@ -31,7 +31,7 @@ function a = i4vec_permute ( n, a, p )
 %
 %  Modified:
 %
-%    21 April 2009
+%    24 May 2015
 %
 %  Author:
 %
@@ -51,16 +51,12 @@ function a = i4vec_permute ( n, a, p )
 %
 %    Output, integer A(N), the permuted array.
 %
-  base = 1;
+  ierror = perm1_check ( n, p );
 
-  missing = perm_check ( n, p, base );
-
-  if ( missing ~= 0 )
+  if ( ierror ~= 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4VEC_PERMUTE - Fatal error!\n' );
-    fprintf ( 1, '  The input array does not represent\n' );
-    fprintf ( 1, '  a proper permutation.  In particular, the\n' );
-    fprintf ( 1, '  array is missing the value %d\n', missing );
+    fprintf ( 1, '  PERM1_CHECK finds the permutation illegal.\n' );
     error ( 'I4VEC_PERMUTE - Fatal error!' );
   end
 %

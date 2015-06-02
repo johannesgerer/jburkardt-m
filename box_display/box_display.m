@@ -27,7 +27,8 @@ function box_display ( m, n, blue, red, title_string )
 %    returning a logical value.  If red(x,y) is true, the box will be colored red, 
 %    unless it was already blue. Thus, the red boxes indicate "new" information.
 %
-%    Input, string TITLE, a title for the plot.
+%    Input, string TITLE_STRING, a title for the plot.
+%    If TITLE_STRING = '', no title is displayed.
 %
   x_data_min = 0;
   x_data_max = m;
@@ -77,15 +78,19 @@ function box_display ( m, n, blue, red, title_string )
     
   end
 %
-%  TEMPORARY!
+%  OPTIONAL!
 %  Draw a line to indicate desired accuracy level for sparse grids.
 %
-% line ( [ -0.5, 5.5 ], [ 5.5, -0.5 ], 'LineWidth', 3, 'Color', 'k' )
+  if ( 0 )
+    line ( [ -0.5, 5.5 ], [ 5.5, -0.5 ], 'LineWidth', 3, 'Color', 'k' )
+  end
 %
 %  The TITLE function will interpret underscores in the title.
 %  We need to unescape such escape sequences!
 %
-  title ( title_string )
+  if ( 0 < length ( title_string ) )
+    title ( title_string )
+  end
 
   axis ( [ x_axes_min, x_axes_max, y_axes_min, y_axes_max ] );
   axis equal

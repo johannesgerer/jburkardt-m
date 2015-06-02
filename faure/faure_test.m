@@ -2,7 +2,7 @@ function faure_test ( )
 
 %*****************************************************************************80
 %
-%% FAURE_TEST runs the Faure tests.
+%% FAURE_TEST tests the FAURE library.
 %
 %  Licensing:
 %
@@ -33,7 +33,6 @@ function faure_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FAURE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

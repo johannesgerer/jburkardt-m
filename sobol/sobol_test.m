@@ -2,7 +2,7 @@ function sobol_test ( )
 
 %*****************************************************************************80
 %
-%% SOBOL_TEST runs the Sobol tests.
+%% SOBOL_TEST tests the SOBOL library.
 %
 %  Licensing:
 %
@@ -33,7 +33,6 @@ function sobol_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SOBOL_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

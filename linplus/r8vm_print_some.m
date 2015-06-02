@@ -78,12 +78,12 @@ function r8vm_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
         j = j2lo - 1 + j2;
 
         if ( i == 1 )
-          aij = 1.0E+00;
+          aij = 1.0;
         else
           aij = a(j)^(i-1);
         end
 
-        fprintf ( 1, '%12f  ', aij );
+        fprintf ( 1, '%12g  ', aij );
 
       end
 
@@ -92,8 +92,6 @@ function r8vm_print_some ( m, n, a, ilo, jlo, ihi, jhi, title )
     end
 
   end
-
-  fprintf ( 1, '\n' );
 
   return
 end

@@ -1,0 +1,416 @@
+<html>
+
+  <head>
+    <title>
+      PDEPE - Automatic Solution of 1D Initial Boundary Value Problems (IBVP's)
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      PDEPE <br> Automatic Solution of 1D Initial Boundary Value Problems (IBVP's)
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>PDEPE</b>
+      is a directory of MATLAB programs which
+      illustrate how to use the MATLAB command <b>pdepe()</b>, which can solve
+      initial boundary value problems (IBVP's) in one spatial dimension.
+    </p>
+
+    <h3 align = "center">
+      Example of a 1D Initial Boundary Value Problem:
+    </h3>
+
+    <p>
+      The classic example of such a problem is the time-dependent heat
+      equation posed on a line segment [a,b]:
+      <pre>
+        ODE: d/dt u(x,t) - d/dx a(x,t) d/dx u(x,t) = f(x,t)
+        IC:  u(x,0) = u0(x)
+        BC:  u(a,t) = g(t)
+             u(b,t) = h(t)
+      </pre>
+      Here, 
+      <ul>
+        <li>
+          u(x,t) is the temperature measured at a point x at time t;
+        </li>
+        <li>
+          a(x,t) is the thermal conductivity, which might be a constant,
+          or a function only of space, or of both space and time;
+        </li>
+        <li>
+          f(x,t) is a source term that might be 0, constant, or a varying function.
+        </li>
+        <li>
+          u0(x) is the initial condition, that is, the value of the temperature
+          at all points in the interval, at an initial time, usually taken to be t=0.
+        </li>
+        <li>
+          g(t) and h(t) are functions which declare the values of the solution
+          at the left and right endpoints, which are often fixed values.
+          The boundary conditions listed here are of Dirichlet type, because
+          they specify the value of the solution itself.  It is also possible
+          to set one or both boundary conditions to be of Neumann type, in which
+          case we provide a formula for the spatial derivative du/dx for all
+          time at the boundary point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      A solution to this 1D boundary value problem is a formula for u(x,t),
+      or, more realistically, a table of values for u(x,t) at selected times
+      and points.  For the heat equation, there are many procedures for coming
+      up with a table of good approximations to the solution.  The advantage of
+      using MATLAB's pdepe() is that it can provide this solution automatically,
+      that is, your only work is to provide the information that defines the problem.
+      You hand this information to pdepe(), and it hands you back the solution.
+    </p>
+
+    <h3 align = "center">
+      1D Initial Boundary Value Problems that PDEPE Can Solve:
+    </h3>
+
+    <p>
+      The simplest version of the pdepe() command has the form:
+      <pre>
+        sol = pdepe ( m, pdefun, icfun, bcfun, xmesh, tspan )
+      </pre>
+      The input parameters have the following meanings:
+      <ul>
+        <li>
+          <b>m</b> chooses Cartesian (0), cylindrical(1), or spherical geometry(2);
+        </li>
+        <li>
+          <b>pdefun()</b> is an M-file that defines the partial differential equation;
+        </li>
+        <li>
+          <b>icfun()</b> is an M-file that defines the initial conditions;
+        </li>
+        <li>
+          <b>bcfun()</b> is an M-file that defines the boundary conditions;
+        </li>
+        <li>
+          <b>xmesh</b> is a vector of spatial coordinates where the solution
+          is desired.
+        </li>
+        <li>
+          <b>tspan</b> is a vector of times at which the solution is desired.
+        </li>
+      </ul>
+      and the output is:
+      <ul>
+        <li>
+          <b>u(:,:,:)</b>, the solution.  u(i,j,k) is the value at the
+          i-th time, the j-th spatial coordinate, of the k-th coordinate
+          of the solution. 
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The pdepe() function thinks of the equation to be solved as
+      <pre>
+        c() * du/dt = 1/x^m d/dx ( x^m f() ) + s()
+      </pre>
+      The variable u may be a scalar or a vector.  If u is a vector,
+      then so are the quantities c(), f(), and s().  
+    </p>
+
+    <p>
+      In the typical case, c() is 1, and m is 0.  Moreover, c(), f()
+      and s() are functions of x, t, u, and du/dx.  That means that
+      a simple version of the heat equation such as:
+      <pre>
+        ut - d/dx ( sin(x) * du/dx ) = x^2
+      </pre>
+      can be put into the pdepe() format by prescribing:
+      <pre>
+        c = 1.0;
+        f = sin(x) * dudx;
+        s = x^2;
+      </pre>
+    </p>
+
+    <p>
+      The pdefun() function must have the form:
+      <pre>
+        [ c, f, s ] = pdefun ( x, t, u, dudx )
+      </pre>
+      Here, the input is
+      <ul>
+        <li>
+          <b>x</b>, a point in the domain;
+        </li>
+        <li>
+          <b>t</b>, the current time;
+        </li>
+        <li>
+          <b>u()</b>, the current solution (scalar or vector);
+        </li>
+        <li>
+          <b>dudx()</b>, the current solution spatial derivative (scalar or vector);
+        </li>
+      </ul>
+      The output to be computed by pdefun() is a set of three items, which
+      are scalar if u() is a scalar, or column vectors if u() is a vector:
+      <ul>
+        <li>
+          <b>c(:)</b>, the coefficients of du/dt;
+        </li>
+        <li>
+          <b>f(:)</b>, the term to which d/dx is to be applied.
+        </li>
+        <li>
+          <b>s(:)</b>, the source term.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The icfun() function must have the form:
+      <pre>
+        u = icfun ( x )
+      </pre>
+      Here, the input is
+      <ul>
+        <li>
+          <b>x</b>, a point in the domain;
+        </li>
+      </ul>
+      and the output is
+      <ul>
+        <li>
+          <b>u</b>, the value of the solution at position x and time t0.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The pdepe() function models the boundary conditions as:
+      <pre>
+        pl ( x, t, u ) + ql ( x, t, u ) * f ( x, t, u, dudx ) = 0  at x = xl;
+        pr ( x, t, u ) + qr ( x, t, u ) * f ( x, t, u, dudx ) = 0  at x = xr.
+      </pre>
+      The pl/pr functions take care of Dirichlet boundary conditions,
+      while the ql/qr functions take care of flux or Neumann conditions.
+      For example, to impose the condition:
+      <pre>
+        u(xl) = 7
+        2 * u(xr) + sin ( xr ) * dudx ( xr ) = sqrt ( t )
+      </pre>
+      assuming that f(x,t,u,dudx) is defined to be dudx, we simply set:
+      <pre>
+        pl = ur - 7.0;
+        ql = 0.0;
+        pr = 2.0 * ur - sqrt ( t );
+        qr = sin ( xr );
+      </pre>
+    </p>
+
+    <p>
+      The bcfun() function must have the form:
+      <pre>
+        [ pl, ql, pr, qr ] = bcfun ( xl, ul, xr, ur, t )
+      </pre>
+      Here, the input is
+      <ul>
+        <li>
+          <b>xl</b>, the location of the left endpoint;
+        </li>
+        <li>
+          <b>ul</b>, the solution at the left endpoint;
+        </li>
+        <li>
+          <b>xr</b>, the location of the right endpoint;
+        </li>
+        <li>
+          <b>ur</b>, the solution at the right endpoint;
+        </li>
+        <li>
+          <b>t</b>, the current time;
+        </li>
+      </ul>
+      and the output is
+      <ul>
+        <li>
+          <b>pl</b>, the value of p at the left endpoint.
+        </li>
+        <li>
+          <b>ql</b>, the value of q at the left endpoint.
+        </li>
+        <li>
+          <b>pr</b>, the value of p at the right endpoint.
+        </li>
+        <li>
+          <b>qr</b>, the value of q at the right endpoint.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>PDEPE</b> is available in
+      <a href = "../../m_src/pdepe/pdepe.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/bvp4c/bvp4c.html">
+      BVP4C</a>,
+      MATLAB programs which
+      illustrate how to use the MATLAB command <b>bvp4c()</b>, which can solve
+      boundary value problems (BVP's) in one spatial dimension.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "http://www.mathworks.com/help/matlab/pdepe.html">
+                     http://www.mathworks.com/help/matlab/pdepe.html </a>,
+          the MathWorks help page for PDEPE.
+        </li>
+        <li>
+          P Howard,<br>
+          Differential Equations in Matlab 7.0,<br>
+          Spring 2005.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      Example 1 is a version of the heat equation.
+      <ul>
+        <li>
+          <a href = "example1.m">example1.m</a>,
+          defines the problem, calls pdepe() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example1.png">example1.png</a>,
+          a surface plot of the solution U(X,T).
+        </li>
+        <li>
+          <a href = "example1_ic.png">example1_ic.png</a>,
+          a line plot of the initial condition U(X,T0).
+        </li>
+        <li>
+          <a href = "example1_profile.png">example1_profile.png</a>,
+          a line plot of the solution at a fixed point, U(midpoint,T).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Example 2 is a version of the convection-diffusion equation,
+      with a variable coefficient.
+      <ul>
+        <li>
+          <a href = "example2.m">example2.m</a>,
+          defines the problem, calls pdepe() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example2.png">example2.png</a>,
+          a surface plot of the solution U(X,T).
+        </li>
+        <li>
+          <a href = "example2_ic.png">example2_ic.png</a>,
+          a line plot of the initial condition U(X,T0).
+        </li>
+        <li>
+          <a href = "example2_profile.png">example2_profile.png</a>,
+          a line plot of the solution at a fixed point, U(5.0,T).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Example 3 is a nonlinear predator prey system for the two variables [u,v].
+      <ul>
+        <li>
+          <a href = "example3.m">example3.m</a>,
+          defines the problem, calls pdepe() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example3.png">example3.png</a>,
+          a surface plot of the solutions U(X,T), V(X,T).
+        </li>
+        <li>
+          <a href = "example3_ic.png">example3_ic.png</a>,
+          a line plot of the initial condition U(X,T0), V(X,T0).
+        </li>
+        <li>
+          <a href = "example3_profile.png">example3_profile.png</a>,
+          a line plot of the solution at a fixed point, U(0.5,T), V(0.5,T).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      Example 4 is a system of convection-diffusion equations with variable coefficient.
+      <ul>
+        <li>
+          <a href = "example4.m">example4.m</a>,
+          defines the problem, calls pdepe() to solve it, and plots the results.
+        </li>
+        <li>
+          <a href = "example4.png">example4.png</a>,
+          a surface plot of the solutions U(X,T), V(X,T).
+        </li>
+        <li>
+          <a href = "example4_ic.png">example4_ic.png</a>,
+          a line plot of the initial conditions U(X,T0), V(X,T0).
+        </li>
+        <li>
+          <a href = "example4_profile.png">example4_profile.png</a>,
+          a line plot of the solutions at a fixed point, U(0.0,T), V(0.0,T).
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 06 September 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

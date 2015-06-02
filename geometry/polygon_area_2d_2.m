@@ -43,13 +43,11 @@ function area = polygon_area_2d_2 ( n, v )
 %
 %    Output, real AREA, the area of the polygon.
 %
-  dim_num = 2;
-
   area = 0.0;
 
   for i = 1 : n - 2
 
-    t(1:dim_num,1:3) = [ v(1:dim_num,i)'; v(1:dim_num,i+1)'; v(1:dim_num,n)' ]';
+    t(1:2,1:3) = [ v(1:2,i)'; v(1:2,i+1)'; v(1:2,n)' ]';
 
     area_triangle = triangle_area_2d ( t );
 

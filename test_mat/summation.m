@@ -2,7 +2,7 @@ function a = summation ( m, n )
 
 %*****************************************************************************80
 %
-%% SUMMATION returns the summation matrix.
+%% SUMMATION returns the SUMMATION matrix.
 %
 %  Example:
 %
@@ -36,6 +36,8 @@ function a = summation ( m, n )
 %
 %    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -54,6 +56,8 @@ function a = summation ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
+  a = zeros ( m, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( j <= i )

@@ -1,6 +1,12 @@
 function err ( )
 
+%*****************************************************************************80
+%
 %% ERR computes the L2 and H1 errors using a 2 point Gauss quadrature rule.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -10,7 +16,7 @@ function err ( )
 %
 %  Set up the quadrature information.
 %
-  [ xq, wq ] = gauss3pt; 
+  [ xq, wq ] = gauss3pt ( ); 
 
   el2 = 0.0;
   eh1 = 0.0;

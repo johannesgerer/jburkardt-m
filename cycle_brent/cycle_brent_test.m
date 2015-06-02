@@ -17,7 +17,6 @@ function cycle_brent_test ( )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CYCLE_BRENT_PRB\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -34,7 +33,6 @@ function cycle_brent_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'CYCLE_BRENT_PRB\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

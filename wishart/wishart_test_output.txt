@@ -1,0 +1,391 @@
+>> wishart_test
+10-Oct-2013 20:24:55
+
+WISHART_TEST
+  MATLAB version
+  Test the WISHART library.
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST01:
+  We can compute sample unit Wishart matrices by:
+    W = wishart_unit_sample ( n, df );
+
+  wishart_unit_sample ( 5, 8 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     4.69684      -2.05975       -3.8348     -0.622254       2.51726  
+      2 :    -2.05975       5.83929       3.25985      -1.16652      -1.17852  
+      3 :     -3.8348       3.25985       9.88119       3.41009       -3.7232  
+      4 :   -0.622254      -1.16652       3.41009        5.1506      -2.12361  
+      5 :     2.51726      -1.17852       -3.7232      -2.12361       17.3902  
+
+  wishart_unit_sample ( 5, 8 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     5.02082       1.47158       3.73925     -0.296867     -0.229552  
+      2 :     1.47158       5.77222      0.307906      -0.82342      -4.33607  
+      3 :     3.73925      0.307906       7.10709      -1.64255       1.50232  
+      4 :   -0.296867      -0.82342      -1.64255       1.93799       1.24162  
+      5 :   -0.229552      -4.33607       1.50232       1.24162       5.85456  
+
+  wishart_unit_sample ( 5, 5 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     2.82306     -0.837351       1.23309         1.781      0.113968  
+      2 :   -0.837351       4.10155     -0.300706      -1.74382      -2.38223  
+      3 :     1.23309     -0.300706       7.49638       -3.4239     -0.786605  
+      4 :       1.781      -1.74382       -3.4239       4.30805       1.15726  
+      5 :    0.113968      -2.38223     -0.786605       1.15726       1.73857  
+
+  wishart_unit_sample ( 3, 5 ):
+
+  Col:       1             2             3       
+  Row
+      1 :    0.519611      0.869653      -1.45908  
+      2 :    0.869653       3.46367        -3.366  
+      3 :    -1.45908        -3.366       5.18437  
+
+  Eigenvectors of previous matrix:
+
+  Col:       1             2             3       
+  Row
+      1 :   -0.215348     -0.252157      0.943421  
+      2 :     -0.5941      0.800565     0.0783637  
+      3 :     0.77503      0.543611      0.322206  
+
+  Eigenvalues of previous matrix:
+
+  Col:       1             2             3       
+  Row
+      1 :        8.17             0             0  
+      2 :           0      0.904129             0  
+      3 :           0             0     0.0935277  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST02:
+  We can compute sample unit Bartlett matrices by:
+    T = bartlett_unit_sample ( n, df );
+
+  bartlett_unit_sample ( 5, 8 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     2.90881     -0.676747     -0.286411      0.818918      0.458485  
+      2 :           0       3.40081     -0.803448     -0.243616      -1.58406  
+      3 :           0             0       1.77089      0.710322     -0.647881  
+      4 :           0             0             0       1.34835    -0.0335794  
+      5 :           0             0             0             0        2.5675  
+
+  bartlett_unit_sample ( 5, 8 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.74721     0.0063306      -1.28075      0.656744       1.66877  
+      2 :           0       2.41551     -0.132487     -0.102446     -0.195798  
+      3 :           0             0       2.59582       1.11518      -0.95105  
+      4 :           0             0             0        1.1235      0.999534  
+      5 :           0             0             0             0       2.37342  
+
+  bartlett_unit_sample ( 5, 5 ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.15404     -0.805939      0.935824      -1.04817     -0.498365  
+      2 :           0       2.40734      0.733896       1.05999     0.0678305  
+      3 :           0             0       2.71348      0.326544     0.0331346  
+      4 :           0             0             0       1.72099     -0.619251  
+      5 :           0             0             0             0      0.324548  
+
+  bartlett_unit_sample ( 3, 5 ):
+
+  Col:       1             2             3       
+  Row
+      1 :      1.7864       0.75115     -0.331923  
+      2 :           0       1.23271       -1.5853  
+      3 :           0             0      0.587184  
+
+  Eigenvectors of W = T' * T:
+
+  Col:       1             2             3       
+  Row
+      1 :   -0.500597     -0.832574      0.237113  
+      2 :   -0.595966      0.132788     -0.791954  
+      3 :    0.627875     -0.537761      -0.56266  
+
+  Eigenvalues of W = T' * T:
+
+  Col:       1             2             3       
+  Row
+      1 :     5.53242             0             0  
+      2 :           0       2.59422             0  
+      3 :           0             0      0.116493  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST03:
+  Verify that, if using the same set of random numbers,
+    W = T' * T,
+  where
+    W = wishart_unit_sample ( n, df );
+    T = bartlett_unit_sample ( n, df );
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+  DEBUG: W:
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     4.69684      -2.05975       -3.8348     -0.622254       2.51726  
+      2 :    -2.05975       5.83929       3.25985      -1.16652      -1.17852  
+      3 :     -3.8348       3.25985       9.88119       3.41009       -3.7232  
+      4 :   -0.622254      -1.16652       3.41009        5.1506      -2.12361  
+      5 :     2.51726      -1.17852       -3.7232      -2.12361       17.3902  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+  Frobenius norm of error is 18.6359
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST04:
+  We can compute sample Wishart matrices by:
+    W = wishart_sample ( n, df, sigma );
+
+  wishart_sample ( 5, 8, Identity ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     4.69684      -2.05975       -3.8348     -0.622254       2.51726  
+      2 :    -2.05975       5.83929       3.25985      -1.16652      -1.17852  
+      3 :     -3.8348       3.25985       9.88119       3.41009       -3.7232  
+      4 :   -0.622254      -1.16652       3.41009        5.1506      -2.12361  
+      5 :     2.51726      -1.17852       -3.7232      -2.12361       17.3902  
+
+  wishart_sample ( 5, 8, Identity ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     5.02082       1.47158       3.73925     -0.296867     -0.229552  
+      2 :     1.47158       5.77222      0.307906      -0.82342      -4.33607  
+      3 :     3.73925      0.307906       7.10709      -1.64255       1.50232  
+      4 :   -0.296867      -0.82342      -1.64255       1.93799       1.24162  
+      5 :   -0.229552      -4.33607       1.50232       1.24162       5.85456  
+
+  wishart_sample ( 5, 8, diag(1,2,3,4,5) ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     5.41003      -1.63932       2.95662       4.93098      0.352785  
+      2 :    -1.63932       14.8657     -0.678348      -6.18888      -10.2475  
+      3 :     2.95662     -0.678348       11.9972      0.677447      -4.68264  
+      4 :     4.93098      -6.18888      0.677447       17.4974       6.53359  
+      5 :    0.352785      -10.2475      -4.68264       6.53359       16.6955  
+
+  Set covariance SIGMA:
+
+  Col:       1             2             3       
+  Row
+      1 :          25             5            15  
+      2 :           5            17            11  
+      3 :          15            11            49  
+
+  wishart_sample ( 3, 3, sigma ):
+
+  Col:       1             2             3       
+  Row
+      1 :     64.1067       51.4597      -39.4565  
+      2 :     51.4597       48.8164      -38.6383  
+      3 :    -39.4565      -38.6383       34.7382  
+
+  Eigenvectors of previous matrix:
+
+  Col:       1             2             3       
+  Row
+      1 :   -0.659767     -0.702857     -0.265894  
+      2 :   -0.585267       0.25867      0.768474  
+      3 :    0.471348     -0.662633      0.582021  
+
+  Eigenvalues of previous matrix:
+
+  Col:       1             2             3       
+  Row
+      1 :     137.944             0             0  
+      2 :           0       7.96973             0  
+      3 :           0             0       1.74757  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST05:
+  We can compute sample Bartlett matrices by:
+    T = bartlett_sample ( n, df, sigma );
+
+  bartlett_sample ( 5, 8, Identity ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     2.90881     -0.676747     -0.286411      0.818918      0.458485  
+      2 :           0       3.40081     -0.803448     -0.243616      -1.58406  
+      3 :           0             0       1.77089      0.710322     -0.647881  
+      4 :           0             0             0       1.34835    -0.0335794  
+      5 :           0             0             0             0        2.5675  
+
+  bartlett_sample ( 5, 8, Identity ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.74721     0.0063306      -1.28075      0.656744       1.66877  
+      2 :           0       2.41551     -0.132487     -0.102446     -0.195798  
+      3 :           0             0       2.59582       1.11518      -0.95105  
+      4 :           0             0             0        1.1235      0.999534  
+      5 :           0             0             0             0       2.37342  
+
+  bartlett_sample ( 5, 8, diag(1,2,3,4,5) ):
+
+  Col:       1             2             3             4             5       
+  Row
+      1 :     1.79979      -1.13977       1.62089      -2.09634      -1.11438  
+      2 :           0       4.41911       1.27114       2.11999      0.151674  
+      3 :           0             0       6.12337      0.653088     0.0740913  
+      4 :           0             0             0       5.44197      -1.38469  
+      5 :           0             0             0             0       5.69758  
+
+  Set covariance SIGMA:
+
+  Col:       1             2             3       
+  Row
+      1 :          25             5            15  
+      2 :           5            17            11  
+      3 :          15            11            49  
+
+  bartlett_sample ( 3, 3, sigma ):
+
+  Col:       1             2             3       
+  Row
+      1 :     6.00306       4.20521        3.1126  
+      2 :           0       2.00262      -8.51047  
+      3 :           0             0       2.77214  
+
+  Eigenvectors of W = T' * T:
+
+  Col:       1             2             3       
+  Row
+      1 :    0.319933      0.712871     -0.624066  
+      2 :   0.0584669      0.642576      0.763988  
+      3 :    0.945635     -0.280912      0.163902  
+
+  Eigenvalues of W = T' * T:
+
+  Col:       1             2             3       
+  Row
+      1 :     95.8784             0             0  
+      2 :           0       51.4286             0  
+      3 :           0             0       0.22524  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST06:
+  Verify that, if using the same set of random numbers,
+    W = T' * T,
+  where
+    W = wishart_sample ( n, df, sigma );
+    T = bartlett_sample ( n, df, sigma );
+
+  Covariance SIGMA:
+
+  Col:       1             2             3       
+  Row
+      1 :          25             5            15  
+      2 :           5            17            11  
+      3 :          15            11            49  
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+  Frobenius norm of error is 177.765
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST07:
+  For given values of N, DF, SIGMA, the random
+  matrices from the Wishart distribution:
+    W = wishart_sample ( n, df, sigma );
+  should have mean DF * SIGMA.
+  Fix N = 3
+  Fix DF = 5
+
+  Fix covariance SIGMA:
+
+  Col:       1             2             3       
+  Row
+      1 :          25             5            15  
+      2 :           5            17            11  
+      3 :          15            11            49  
+
+  W_Average / DF: 
+
+  Col:       1             2             3       
+  Row
+      1 :     24.7161       4.61329       14.5405  
+      2 :     4.61329       16.9612       10.6731  
+      3 :     14.5405       10.6731       47.8921  
+
+  Frobenius norm of SIGMA-W_average/DF = 1.49815
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST08:
+  Verify that, if using the same set of random numbers,
+    inverse(W) = M,
+  where
+    W = wishart_unit_sample ( n, df );
+    M = wishart_unit_sample_inverse ( n, df );
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+  Frobenius norm of error M*W-I is 9.07904e-16
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+WISHART_TEST09:
+  Verify that, if using the same set of random numbers,
+    inverse(W) = M,
+  where
+    W = wishart_sample ( n, df, sigma );
+    M = wishart_sample_inverse ( n, df, sigma );
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+INITIALIZE - Note:
+  The RNGLIB package has been initialized.
+
+  Frobenius norm of error M*W-I is 1.49009e-15
+
+WISHART_TEST
+  Normal end of execution.
+
+10-Oct-2013 20:25:01
+>> 

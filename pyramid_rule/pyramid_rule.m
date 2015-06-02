@@ -57,13 +57,11 @@ function pyramid_rule ( legendre_order, jacobi_order, filename )
 %
 %  Get the Legendre order.
 %
-  if ( 1 <= nargin )
-  
-  else
-  
+  if ( nargin < 1 )
     fprintf ( 1, '\n' );
     legendre_order = input ( '  Enter the Legendre rule order:' );
-    
+  elseif ( ischar ( legendre_order ) )
+    legendre_order = str2num ( legendre_order );
   end
 
   fprintf ( 1, '\n' );
@@ -72,13 +70,11 @@ function pyramid_rule ( legendre_order, jacobi_order, filename )
 %
 %  Get the Jacobi order.
 %
-  if ( 2 <= nargin )
-      
-  else
-  
+  if ( nargin < 2 )
     fprintf ( 1, '\n' );
     jacobi_order = input ( '  Enter the Jacobi rule order:' );
-    
+  elseif ( ischar ( jacobi_order ) )
+    jacobi_order = str2num ( jacobi_order );       
   end
 
   fprintf ( 1, '\n' );
@@ -87,13 +83,9 @@ function pyramid_rule ( legendre_order, jacobi_order, filename )
 %
 %  Get the output option or quadrature file root name:
 %
-  if ( 3 <= nargin )
-
-  else
-
+  if ( nargin < 3 )
     fprintf ( 1, '\n' );
     filename = input ( '  Enter the "root name" of the quadrature files).' );
-
   end
 
   pyramid_handle ( legendre_order, jacobi_order, filename );
@@ -103,7 +95,6 @@ function pyramid_rule ( legendre_order, jacobi_order, filename )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'PYRAMID_RULE:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

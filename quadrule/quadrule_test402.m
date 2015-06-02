@@ -2,7 +2,7 @@ function quadrule_test402 ( )
 
 %*****************************************************************************80
 %
-%% TEST402 tests NCOH_COMPUTE and SUM_SUB.
+%% QUADRULE_TEST402 tests NCOH_COMPUTE and SUM_SUB.
 %
 %  Licensing:
 %
@@ -28,7 +28,7 @@ function quadrule_test402 ( )
   xhi = +1.0;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST402\n' );
+  fprintf ( 1, 'QUADRULE_TEST402\n' );
   fprintf ( 1, '  NCOH_COMPUTE sets up an open half Newton-Cotes rule;\n' );
   fprintf ( 1, '  SUM_SUB carries it out.\n' );
   fprintf ( 1, '\n' );

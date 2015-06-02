@@ -2,7 +2,11 @@ function [ t, wts ] = h_quadrature_rule ( nt )
 
 %*****************************************************************************80
 %
-%% H_QUADRATURE_RULE: quadrature rule for physicist's Hermite polynomial H(n,x).
+%% H_QUADRATURE_RULE: quadrature for H(i,x).
+%
+%  Discussion:
+%
+%    H(i,x) is the physicist's Hermite polynomial of degree I.
 %
 %  Licensing:
 %

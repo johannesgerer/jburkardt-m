@@ -10,7 +10,7 @@ function haar_test02 ( )
 %
 %  Modified:
 %
-%    15 March 2011
+%    05 March 2014
 %
 %  Author:
 %
@@ -37,6 +37,18 @@ function haar_test02 ( )
   w = haar_2d_inverse ( v );
 
   r8mat_print ( m, n, w, '  Recovered array W:' );
+%
+%  M, N not powers of 2.
+%
+  m = 37;
+  n = 53;
+  seed = 123456789;
+  [ u, seed ] = r8mat_uniform_01 ( m, n, seed );
+  v = haar_2d ( u );
+  w = haar_2d_inverse ( v );
+  err = norm ( u - w );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  M = %d, N = %d, ||haar_2d_inverse(haar_2d(u))-u|| = %g\n', m, n, err );
 
   return
 end

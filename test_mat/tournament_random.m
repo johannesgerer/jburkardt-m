@@ -1,4 +1,4 @@
-function [ a, seed ] = tournament_random ( n, seed )
+function a = tournament_random ( n, key )
 
 %*****************************************************************************80
 %
@@ -48,11 +48,11 @@ function [ a, seed ] = tournament_random ( n, seed )
 %
 %    Input, integer N, the order of A.
 %
-%    Input/output, integer SEED, a seed for the random 
-%    number generator.
+%    Input, integer KEY, a positive value that selects the data.
 %
 %    Output, real A(N,N), the matrix.
 %
+  seed = key;
   [ a, seed ] = r8mat_uniform_01 ( n, n, seed );
 
   for i = 1 : n

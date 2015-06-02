@@ -2,7 +2,7 @@ function test_interp_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_INTERP_TEST tests TEST_INTERP.
+%% TEST_INTERP_TEST tests the TEST_INTERP library.
 %
 %  Licensing:
 %
@@ -38,7 +38,6 @@ function test_interp_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_INTERP_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

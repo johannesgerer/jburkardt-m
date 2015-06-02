@@ -2,7 +2,7 @@ function sparse_grid_open_test ( )
 
 %*****************************************************************************80
 %
-%% MAIN is the main program for SPARSE_GRID_OPEN_TEST.
+%% SPARSE_GRID_OPEN_TEST tests the SPARSE_GRID_OPEN library.
 %
 %  Licensing:
 %
@@ -25,7 +25,6 @@ function sparse_grid_open_test ( )
 %    Volume 46, Number 5, 2008, pages 2309-2345.
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_OPEN_TEST:\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -149,7 +148,6 @@ function sparse_grid_open_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SPARSE_GRID_OPEN_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

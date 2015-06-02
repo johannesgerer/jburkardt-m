@@ -43,7 +43,7 @@ function value = diaedg ( x0, y0, x1, y1, x2, y2, x3, y3 )
 %    -1, if diagonal edge 13 is chosen;
 %     0, if the four vertices are cocircular.
 %
-  tol = 100.0 * r8_epsilon ( );
+  tol = 100.0 * eps;
 
   dx10 = x1 - x0;
   dy10 = y1 - y0;

@@ -10,7 +10,7 @@ function s = y_to_s ( y )
 %
 %  Modified:
 %
-%    20 October 2012
+%    16 April 2013
 %
 %  Author:
 %
@@ -22,7 +22,7 @@ function s = y_to_s ( y )
 %
 %    Output, string S, a representation of the year.
 %
-  s = sprintf ( "%d", y );
+  s = sprintf ( '%d', y );
 
   return
 end

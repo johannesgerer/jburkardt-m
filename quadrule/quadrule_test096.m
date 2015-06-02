@@ -1,8 +1,8 @@
-function test096 ( )
+function quadrule_test096 ( )
 
 %*****************************************************************************80
 %
-%% TEST096 tests HERMITE_GK**_SET.
+%% QUADRULE_TEST096 tests HERMITE_GK**_SET.
 %
 %  Licensing:
 %
@@ -17,7 +17,7 @@ function test096 ( )
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST096\n' );
+  fprintf ( 1, 'QUADRULE_TEST096\n' );
   fprintf ( 1, '  HERMITE_GK**_SET sets up a nested rule\n' );
   fprintf ( 1, '  for the Hermite integration problem.\n' );
   fprintf ( 1, '\n' );

@@ -22,7 +22,7 @@ function sparse_test04 ( )
 %
 %  Modified:
 %
-%    14 September 2006
+%    13 April 2014
 %
 %  Author:
 %
@@ -30,7 +30,7 @@ function sparse_test04 ( )
 %
 %  Reference:
 %
-%    George Lindfield and John Penny,
+%    George Lindfield, John Penny,
 %    Numerical Methods Using MATLAB,
 %    Prentice Hall, 1999
 %  
@@ -58,17 +58,37 @@ function sparse_test04 ( )
     i = round ( 10.0 * rand ( ) + 0.5 );
     j = round ( 10.0 * rand ( ) + 0.5 );
     a(i,j) = a(i,j) + 1;
-    fprintf ( 1, '  %4d  %4d  %f\n', i, j, a(i,j) );
+%
+%  FPRINTF won't print a sparse matrix reference,
+%  so you have to convert it to FULL first.
+%  
+    fprintf ( 1, '  %4d  %4d  %g\n', i, j, full ( a(i,j) ) );
     
   end    
   
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Number of nonzero entries is %d\n', nnz ( a ) );
+%
+%  FPRINT won't print the SUM SUM of A,
+%  so you have to convert it to FULL first.
+%
+  fprintf ( 1, '  Sum of entries is %f\n', full ( sum ( sum ( a ) ) ) );
+%
+%  Typing "a" will list the sparse triplet form of the matrix.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Matrix printed in sparse triplet form:\n' );
+  fprintf ( 1, '\n' );
 
-  b = full ( a );
-  fprintf ( 1, '  Sum of entries is %f\n', sum ( sum ( b ) ) );
+  a
+%
+%  To see the usual layout, you must convert it to FULL.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, '  Matrix printed in usual full matrix form:\n' );
+  fprintf ( 1, '\n' );
 
-  b
+  full ( a )
   
   return
 end

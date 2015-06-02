@@ -1,0 +1,356 @@
+<html>
+
+  <head>
+    <title>
+      MESHFACES - Automatic 2D Mesh Generation for Several Faces
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      MESHFACES <br> Automatic 2D Mesh Generation for Several Faces
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>MESH2D</b>
+      is a MATLAB program which generates
+      unstructured meshes in 2D for a regeion which has been subdivided
+      into several faces,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      The program is based on MESH2D, and can be regarded as an extension of
+      the program to handle the additional constraint that the internal
+      boundaries shared by pairs of faces are required to be covered by
+      edges of the mesh triangles.
+    </p>
+
+    <h3 align = "center">
+      Usage:
+    </h3>
+
+    <p>
+      <blockquote>
+          [ <i>p, t, fnum, stats</i> ] = <b>meshfaces</b> ( <i>node, edge, hdata, options</i> );
+      </blockquote>
+      where:
+      <ul>
+        <li>s
+          <i>node</i>, an N by 2 list of (X,Y) coordinates of
+          node, used to dilineate the faces.
+        </li>
+        <li>
+          <i>edge</i>, an E by 2 list of pairs of indices that constitute 
+          edges of the faces.
+        </li>
+        <li>
+          <i>faces</i>, a cell array of F entries.  F{i} is a vector containing
+          a list of the edges, in counterclockwise order, that form the boundary
+          of the i-th face.
+        </li>
+        <li>
+          <i>hdata</i>, optional input, a structure containing element size 
+          information.
+        </li>
+        <li>
+          <i>options</i>, optional input that allows the user to modify the 
+          default behavior of the solver.
+        </li>
+        <li>
+          <i>p</i>, a NP by 2 list of the points used to define the mesh.
+        </li>
+        <li>
+          <i>t</i>, an NT by 3 list of point indices, forming counterclockwise
+          triangles.
+        </li>
+        <li>
+          <i>fnum</i>, an NT vector which indicates the face to which each 
+          triangle belongs.
+        </li>
+        <li>
+          <i>stats</i>, the computational time, average and minimum triangle 
+          quality, number of points and number of triangles.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <pre>
+Copyright (c) 2009, Darren Engwirda
+All rights reserved.
+
+Redistribution and use in source and binary forms, with or without 
+modification, are permitted provided that the following conditions are 
+met:
+
+    * Redistributions of source code must retain the above copyright 
+      notice, this list of conditions and the following disclaimer.
+    * Redistributions in binary form must reproduce the above copyright 
+      notice, this list of conditions and the following disclaimer in 
+      the documentation and/or other materials provided with the distribution
+      
+THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE 
+ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
+LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF 
+SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS 
+INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN 
+CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGE.
+    </pre>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MESHFACES</b> is available in
+      <a href = "../../m_src/meshfaces/meshfaces.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/distmesh/distmesh.html">
+      DISTMESH</a>,
+      a MATLAB library which
+      carries out triangular or tetrahedral mesh generation,
+      by Per-Olof Persson and Gilbert Strang.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d/mesh2d.html">
+      MESH2D</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region,
+      by Darren Engwirda.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d_hand/mesh2d_hand.html">
+      MESH2D_HAND</a>,
+      a MATLAB program which
+      reads in a set of 59 points which outline a human hand,
+      and calls MESH2D, which is able to create a fine triangular
+      mesh of the region outlined by the points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d_write/mesh2d_write.html">
+      MESH2D_WRITE</a>,
+      a MATLAB program which
+      demonstrates how node and element data from MESH2D can be written to files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_triangulation/test_triangulation.html">
+      TEST_TRIANGULATION</a>,
+      a MATLAB library which
+      defines some test regions for triangulation.
+    </p>
+
+    <p>
+      <a href = "../../c_src/triangle/triangle.html">
+      TRIANGLE</a>,
+      a C program which
+      computes a triangulation of a geometric region,
+      by Jonathan Shewchuk.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation/triangulation.html">
+      TRIANGULATION</a>,
+      a MATLAB library which
+      performs various operations on order 3 ("linear") or order 6 ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tsearch/tsearch.html">
+      TSEARCH</a>,
+      a MATLAB library which
+      compares several replacements for MATLAB's obsolete tsearch() function,
+      which searched a Delaunay triangulation to find the triangle
+      that encloses a given point.
+    </p>
+
+    <h3 align = "center">
+      Author:
+    </h3>
+
+    <p>
+      Darren Engwirda
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "checkgeometry.m">checkgeometry.m</a>
+          checks a geometry input for MESH2D.
+        </li>
+        <li>
+          <a href = "circumcircle.m">circumcircle.m</a>
+          computes the center and radius of the circumcircle of a triangle.
+        </li>
+        <li>
+          <a href = "dist2poly.m">dist2poly.m</a>
+          finds the distance between a point and a polygon.
+        </li>
+        <li>
+          <a href = "findedge.m">findedge.m</a>
+          locates the edges that contain a sequence of points.
+        </li>
+        <li>
+          <a href = "fixmesh.m">fixmesh.m</a>
+          checks a triangular mesh for consistency.
+        </li>
+        <li>
+          <a href = "inpoly.m">inpoly.m</a>
+          determines whether a point is inside a polygon.
+        </li>
+        <li>
+          <a href = "meshfaces.m">meshfaces.m</a>
+          generates a triangular mesh for a polygonal region 
+          which has been subdivided.
+        </li>
+        <li>
+          <a href = "meshpoly.m">meshpoly.m</a>
+          used to mesh a region.
+        </li>
+        <li>
+          <a href = "mydelaunayn.m">mydelaunayn.m</a>
+          computes the Delaunay triangulation of a set of points.
+        </li>
+        <li>
+          <a href = "quadtree.m">quadtree.m</a>
+          decomposes a polygonal region using a quadtree.
+        </li>
+        <li>
+          <a href = "quality.m">quality.m</a>
+          determines the "quality" of a triangle.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "tinterp.m">tinterp.m</a>
+          carries out linear interpolation at points within a triangle, given
+          function values at the vertices.
+        </li>
+        <li>
+          <a href = "triarea.m">triarea.m</a>
+          computes the area of one or more triangles, assuming their
+          vertices are given in counterclockwise order.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "meshfaces_test.m">meshfaces_test.m</a>
+          calls the tests.
+        </li>
+        <li>
+          <a href = "meshfaces_test_output.txt">meshfaces_test_output.txt</a>
+          the output file.
+        </li>
+        <li>
+          <a href = "meshfaces_test01.m">meshfaces_test01.m</a>
+          calls meshfaces() for a square that has been subdivided into
+          three regions.
+        </li>
+        <li>
+          <a href = "test01.png">test01.png</a>
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "meshfaces_test02.m">meshfaces_test02.m</a>
+          calls meshfaces() for two rectangles separated by a very thin
+          rectangle.
+        </li>
+        <li>
+          <a href = "test02.png">test02.png</a>
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "meshfaces_test03.m">meshfaces_test03.m</a>
+          calls meshfaces() for a circle inside a square.
+        </li>
+        <li>
+          <a href = "test03.png">test03.png</a>
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "meshfaces_test04.m">meshfaces_test04.m</a>
+          calls meshfaces() for a battery design with 7 regions.
+        </li>
+        <li>
+          <a href = "test04.png">test04.png</a>
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "test04_nodes.txt">test04_nodes.txt</a>
+          the nodes of the mesh.
+        </li>
+        <li>
+          <a href = "test04_elements.txt">test04_elements.txt</a>
+          the elements of the mesh.
+        </li>
+        <li>
+          <a href = "meshfaces_test05.m">meshfaces_test05.m</a>
+          calls meshfaces() for a square inside a square.
+        </li>
+        <li>
+          <a href = "test05.png">test05.png</a>
+          an image of the mesh.
+        </li>
+        <li>
+          <a href = "test05_nodes.txt">test05_nodes.txt</a>
+          the nodes of the mesh.
+        </li>
+        <li>
+          <a href = "test05_elements.txt">test05_elements.txt</a>
+          the elements of the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 23 August 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

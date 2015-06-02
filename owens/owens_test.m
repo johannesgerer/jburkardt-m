@@ -2,7 +2,7 @@ function owens_test ( )
 
 %*****************************************************************************80
 %
-%% OWENS_TEST tests OWENS.
+%% OWENS_TEST tests the OWENS library.
 %
 %  Licensing:
 %
@@ -32,7 +32,6 @@ function owens_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'OWENS_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

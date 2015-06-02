@@ -24,6 +24,8 @@ function a = bab_inverse ( n, alpha, beta )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( beta == 0.0 )
 
     if ( alpha == 0.0 )
@@ -32,8 +34,6 @@ function a = bab_inverse ( n, alpha, beta )
       fprintf ( 1, '  ALPHA = BETA = 0.\n' );
       error ( 'BAB_INVERSE - Fatal error!' );
     end
-
-    a(1:n,1:n) = 0.0;
 
     for i = 1 : n
       a(i,i) = 1.0 / alpha;

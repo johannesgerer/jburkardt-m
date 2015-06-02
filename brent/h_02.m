@@ -22,7 +22,7 @@ function value = h_02 ( x )
 %
 %    Output, real VALUE, the value of the function at X.
 %
-  value = x * x;
+  value = x .* x;
 
   return
 end

@@ -2,7 +2,7 @@ function twod_to_vtk_test ( )
 
 %*****************************************************************************80
 %
-%% TWOD_TO_VTK_TEST tests TWOD_TO_VTK.
+%% TWOD_TO_VTK_TEST tests the TWOD_TO_VTK library.
 %
 %  Discussion:
 %
@@ -48,7 +48,6 @@ function twod_to_vtk_test ( )
   fprintf ( '\n' );
   fprintf ( 1, 'TWOD_TO_VTK_TEST:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( '\n' );
   timestamp ( );
 

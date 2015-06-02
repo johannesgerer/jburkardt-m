@@ -2,7 +2,7 @@ function determ = kahan_determinant ( alpha, n )
 
 %*****************************************************************************80
 %
-%% KAHAN_DETERMINANT returns the determinant of the Kahan matrix.
+%% KAHAN_DETERMINANT returns the determinant of the KAHAN matrix.
 %
 %  Licensing:
 %

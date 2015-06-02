@@ -1,0 +1,209 @@
+<html>
+
+  <head>
+    <title>
+      COLLOCATION - Simple Examples of Collocation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      COLLOCATION <br> Simple Examples of Collocation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>COLLOCATION</b>
+      is a MATLAB library which
+      exemplifies the collocation method, a general technique which 
+      begins with an equation satisfied by a function f(x) defined over a 
+      continuous domain, and uses collocation to produce a function g(x)
+      from some specified collocation function space, which solves the equation 
+      exactly, but only at a discrete set of points.
+    </p>
+
+    <p>
+      While some functional equations can be solved exactly, a computational
+      technique must generally be designed to deal with a discrete set of
+      data.  The hope is that, if the correct family of collocation spaces
+      is chosen, and enough points are used, and are wisely placed, that
+      the collocation function g(x) will converge to the unknown function f(x),
+      and will do so rapidly.
+    </p>
+
+    <p>
+      The most common example of collocation is <i>interpolation</i>, which
+      comes in two versions:
+      <ol>
+        <li>
+          at a prescribed set of N points X(I), values Y(I) are given;
+          construct a g(x) such that g(x(i))=y(i).  The only choice the
+          user has, then, is the method for transforming N pairs of data
+          into a function defined for all X.  
+        </li>
+        <li>
+          at any point X, a value Y(X) may be requested.  Determine the
+          number of points N, and suitable locations for the points X,
+          and then construct a g(x) such that g(x(i))=y(i).  Since N
+          and X are selectable by the user, the idea is to make these choices
+          efficiently (not too many) and effectively (so that g(x) is a
+          good approximation to f(x), even at points where the value
+          Y(X) was not requested in advance.)
+        </li>
+      </ol>
+    </p>
+
+    <p>
+      A more involved case involves two point boundary value problems.
+      Here, a function y(x) is supposed to exist over an interval [a,b],
+      with known values at the endpoints, satisfying a second order differential
+      equation in between, which might have the form:
+      <pre>
+        y(a) = ya
+        y''(x) = f(x) for a < x < b
+        y(b) = yb
+      </pre>
+      A collocation approach would select N points between A and B,
+      represent the collocation function G(X) in some way that involves
+      N unknown coefficients, and then write out the collocation equations
+      as a linear system that can be solved for the coefficients.
+    </p>
+
+    <p>
+      For instance, if we take the interval to be [0,4], F(X) to be EXP(X),
+      and use N = 5 points, equally spaced, and assume G(X) has the form 
+      C0+C1*X+C2*X^2+C3*X^3+C4*X^4, our collocation equations become:
+      <pre>
+        C0 + C1 * 0 +     C2 * 0^2 +     C3 * 0^3 +      C4 * 0^4 = YA
+                      2 * C2       + 6 * C3 * 1^1 + 12 * C4 * 1^2 = EXP(1)
+                      2 * C2       + 6 * C3 * 2^1 + 12 * C4 * 2^2 = EXP(2)
+                      2 * C2       + 6 * C3 * 3^1 + 12 * C4 * 3^2 = EXP(3)
+        C0 + C1 * 4 +     C2 * 4^2 +     C3 * 4^3 +      C4 * 4^4 = Yb
+      </pre>
+      which can be rewritten as:
+      <pre>
+        | 1   0   0   0   0 |   C0      YA
+        | 0   0   2   6  12 |   C1      EXP(1)
+        | 0   0   2  12  48 | * C2  =   EXP(2)
+        | 0   0   2  18 108 |   C3      EXP(3)
+        | 1   4  16  64 256 |   C4      YB
+      </pre>
+      and this linear system can be solved for C, so that we know
+      the form of our collocation function G(X).
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>COLLOCATION</b> is available in
+      <a href = "../../m_src/collocation/collocation.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/lagrange_interp_1d/lagrange_interp_1d.html">
+      LAGRANGE_INTERP_1D</a>,
+      a MATLAB library which
+      defines and evaluates the Lagrange polynomial p(x) 
+      which interpolates a set of data, so that p(x(i)) = y(i).
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          K Wright,<br>
+          Chebyshev collocation methods for ordinary differential equations,<br>
+          The Computer Journal,<br>
+          Volume 6, Number 4, 1964, pages 358-365.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "r8poly_values_horner.m">r8poly_values_horner.m</a>,
+          evaluates a polynomial, using Horner's method.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a> 
+          prints out the current YMDHMS date as a timestamp.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "collocation_test.m">collocation_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "collocation_test_output.txt">collocation_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "collocation_test01.m">collocation_test01.m</a>,
+          construct a collocation solution to f(x)=sin(x), using
+          equally spaced points and a polynomial.
+        </li>
+        <li>
+          <a href = "collocation_test02.m">collocation_test02.m</a>,
+          construct a collocation solution to a two point boundary value problem
+          using equally spaced points and a polynomial.
+        </li>
+        <li>
+          <a href = "collocation_test03.m">collocation_test03.m</a>,
+          construct a collocation solution to a two point boundary value problem
+          using equally spaced points and a sum of sine functions.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 29 March 2015.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

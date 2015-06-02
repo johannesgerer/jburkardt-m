@@ -32,7 +32,7 @@ function dist = polygon_point_dist_2d ( n, v, p )
 %
 %    Output, real DIST, the distance from the point to the polygon.
 %
-  dim_num = 2;
+
 %
 %  Find the distance to each of the line segments.
 %
@@ -45,7 +45,7 @@ function dist = polygon_point_dist_2d ( n, v, p )
       jp1 = jp1 - n;
     end
 
-    dist2 = segment_point_dist_2d ( v(1:dim_num,j), v(1:dim_num,jp1), p );
+    dist2 = segment_point_dist_2d ( v(1:2,j), v(1:2,jp1), p );
 
     if ( dist2 < dist )
       dist = dist2;

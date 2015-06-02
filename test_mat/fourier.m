@@ -2,7 +2,7 @@ function a = fourier ( n )
 
 %*****************************************************************************80
 %
-%% FOURIER returns the Fourier matrix.
+%% FOURIER returns the FOURIER matrix.
 %
 %  Discussion:
 %
@@ -77,6 +77,8 @@ function a = fourier ( n )
 %
 %    Output, complex A(N,N), the Fourier matrix.
 %
+  a = zeros ( n, n );
+
   complex_i = complex ( 0.0, 1.0 );
   
   for i = 1 : n

@@ -1,4 +1,4 @@
-function [ a, seed ] = propa_no_random ( prob, k, n, seed )
+function a = propa_no_random ( prob, k, n, key )
 
 %*****************************************************************************80
 %
@@ -27,13 +27,16 @@ function [ a, seed ] = propa_no_random ( prob, k, n, seed )
 %
 %    Input, integer N, the order of A.
 %
+%    Input, integer KEY, a positive value that selects the data.
+%
 %    Output, real A(N,N), the matrix.
 %
-  a(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
 %
 %  Assign each index randomly to one of two sets.
 %  SET(I) is 0 if I is in set 0, and 1 if it is in set 1.
 %
+  seed = key;
   [ set, seed ] = sub_random ( n, seed );
 
   for i = 1 : n
@@ -65,8 +68,8 @@ function [ a, seed ] = propa_no_random ( prob, k, n, seed )
       break
     end
 
-    [ i, seed ] = i4_uniform ( 1, n, seed );
-    [ j, seed ] = i4_uniform ( 1, n, seed );
+    [ i, seed ] = i4_uniform_ab ( 1, n, seed );
+    [ j, seed ] = i4_uniform_ab ( 1, n, seed );
 
     if ( i == j )
       continue

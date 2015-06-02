@@ -53,6 +53,8 @@ function a = pascal3 ( n, alpha )
 %
 %    A[1/2] is the "square root" of A[1], and so on.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -80,6 +82,8 @@ function a = pascal3 ( n, alpha )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

@@ -2,14 +2,14 @@
 
   <head>
     <title>
-      FEM2D_POISSON_SPARSE - FEM applied to Poisson, Sparse Storage
+      FEM2D_POISSON_SPARSE - Finite Element Method applied to 2D Poisson Equation, Sparse Matrix Storage
     </title>
   </head>
 
   <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
 
     <h1 align = "center">
-      FEM2D_POISSON_SPARSE <br> FEM applied to Poisson, Sparse Storage
+      FEM2D_POISSON_SPARSE <br> Finite Element Method applied to 2D Poisson Equation <br> Sparse Matrix Storage
     </h1>
 
     <hr>
@@ -18,7 +18,7 @@
       <b>FEM2D_POISSON_SPARSE</b>
       is a MATLAB program which
       applies the finite element method to solve
-      a form of Poisson's equation over an arbitrary triangulated region.
+      a form of Poisson's equation over an arbitrary triangulated two-dimensional region.
     </p>
 
     <p>
@@ -117,27 +117,22 @@
       the user has to supply routines:
       <ul>
         <li>
-          <b>function value = rhs ( x, y )</b> evaluates F(x,y);
+          <b>function value = rhs ( x, y )</b> evaluates F(x,y),
+          and is called at quadrature points in each element.
         </li>
         <li>
-          <b>function value = h_coef ( x, y )</b> evaluates H(x,y);
+          <b>function value = h_coef ( x, y )</b> evaluates H(x,y),
+          and is called at quadrature points in each element.
         </li>
         <li>
-          <b>function value = k_coef ( x, y )</b> evaluates K(x,y);
+          <b>function value = k_coef ( x, y )</b> evaluates K(x,y),
+          and is called at quadrature points in each element.
         </li>
         <li>
           <b>function value = dirichlet_condition ( x, y )</b> evaluates G(X,Y),
-          and is only called at nodes on the boundary.
+          and is called at nodes on the boundary.
         </li>
       </ul>
-    </p>
-
-    <p>
-      The program writes out a file containing an Encapsulated
-      PostScript image of the nodes and elements, with numbers.
-      If there are a lot of nodes, the plot may be too cluttered
-      to read.  For lower values, however, it is
-      a valuable map of what is going on in the geometry.
     </p>
 
     <p>
@@ -172,21 +167,57 @@
     </h3>
 
     <p>
-      <a href = "../../m_src/fem2d_poisson_ell/fem2d_poisson_ell.html">
-      FEM2D_POISSON_ELL</a>,
-      a MATLAB library which
-      defines the geometry of an L-shaped region, as well as boundary
-      conditions for a given Poisson problem, and is called by fem2d_poisson
-      or fem2d_poisson_sparse as part of a solution procedure.
+      <a href = "../../m_src/fem2d_poisson/fem2d_poisson.html">
+      FEM2D_POISSON</a>,
+      a MATLAB program  which
+      solves Poisson's equation on a triangulated region,
+      using the finite element method and a banded solver.  
+      In order to run, it requires
+      user-supplied routines that define problem data.
     </p>
 
     <p>
-      <a href = "../../m_src/fem2d_poisson_lake/fem2d_poisson_lake.html">
-      FEM2D_POISSON_LAKE</a>,
+      <a href = "../../m_src/fem2d_poisson_sparse_baffle/fem2d_poisson_sparse_baffle.html">
+      FEM2D_POISSON_SPARSE_BAFFLE</a>,
+      a MATLAB library which
+      defines the geometry of a rectangle channel containing 13 hexagonal baffles, 
+      as well as boundary conditions for a given Poisson problem, and is called by
+      fem2d_poisson_sparse as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse_ell/fem2d_poisson_sparse_ell.html">
+      FEM2D_POISSON_SPARSE_ELL</a>,
+      a MATLAB library which
+      defines the geometry of an L-shaped region, as well as boundary
+      conditions for a given Poisson problem, and is called by
+      fem2d_poisson_sparse as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_poisson_sparse_lake/fem2d_poisson_sparse_lake.html">
+      FEM2D_POISSON_SPARSE_LAKE</a>,
       a MATLAB library which
       defines the geometry of a lake-shaped region, as well as boundary
-      conditions for a given Poisson problem, and is called by fem2d_poisson
-      or fem2d_poisson_sparse as part of a solution procedure.
+      conditions for a given Poisson problem, and is called by
+      fem2d_poisson_sparse as part of a solution procedure.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mgmres/mgmres.html">
+      MGMRES</a>,
+      a MATLAB library which
+      applies the restarted Generalized Minimum Residual (GMRES) algorithm 
+      to solve a sparse linear system, by Lili Ju.
+    </p>
+
+    <p>
+      <a href = "../../m_src/triangulation_order3_contour/triangulation_order3_contour.html">
+      TRIANGULATION_ORDER3_CONTOUR</a>,
+      a MATLAB program which
+      makes a contour plot of scattered data, 
+      or of data defined on an order 3 triangulation.  In particular, it can display
+      contour plots of scalar data output by fem2d_poisson or fem2d_poisson_sparse.
     </p>
 
     <h3 align = "center">
@@ -310,7 +341,7 @@
     <hr>
 
     <i>
-      Last revised on 20 September 2012.
+      Last revised on 13 December 2012.
     </i>
 
     <!-- John Burkardt -->

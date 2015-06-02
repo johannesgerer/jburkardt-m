@@ -2,7 +2,7 @@ function filum_test13 ( )
 
 %*****************************************************************************80
 %
-%% FILUM_TEST13 tests FILE_NAME_EXT_SWAP.
+%% FILUM_TEST13 tests FILENAME_EXT_SWAP.
 %
 %  Licensing:
 %
@@ -18,11 +18,11 @@ function filum_test13 ( )
 %
   test_num = 5;
 
-  file_name_test(1,1:11) = 'bob.for    ';
-  file_name_test(2,1:11) = 'bob.bob.bob';
-  file_name_test(3,1:11) = 'bob.       ';
-  file_name_test(4,1:11) = 'bob        ';
-  file_name_test(5,1:11) = '.oops      ';
+  filename_test(1,1:11) = 'bob.for    ';
+  filename_test(2,1:11) = 'bob.bob.bob';
+  filename_test(3,1:11) = 'bob.       ';
+  filename_test(4,1:11) = 'bob        ';
+  filename_test(5,1:11) = '.oops      ';
 
   ext_test(1,1:3) = 'obj';
   ext_test(2,1:3) = 'txt';
@@ -32,19 +32,19 @@ function filum_test13 ( )
 
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST13\n' );
-  fprintf ( 1, '  FILE_NAME_EXT_SWAP changes a file extension.\n' );
+  fprintf ( 1, '  FILENAME_EXT_SWAP changes a file extension.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Input               Output\n' );
-  fprintf ( 1, '  FILE_NAME    EXT    FILE_NAME\n' );
+  fprintf ( 1, '  FILENAME    EXT    FILENAME\n' );
   fprintf ( 1, '\n' );
 
   for test = 1 : test_num
 
-    file_name = file_name_test(test,:);
+    filename = filename_test(test,:);
     ext = ext_test(test,:);
-    file_name_new = file_name_ext_swap ( file_name, ext );
+    filename_new = filename_ext_swap ( filename, ext );
 
-    fprintf ( 1, '  %s  %s    %s\n',  file_name, ext, file_name_new );
+    fprintf ( 1, '  %s  %s    %s\n',  filename, ext, filename_new );
 
   end
 

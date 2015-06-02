@@ -31,7 +31,7 @@ function [ i, j ] = i4mat_max_index ( m, n, a )
 
   for jj = 1 : n
     for ii = 1 : m
-      if ( ii == 1 & jj == 1 )
+      if ( ii == 1 && jj == 1 )
         i = ii;
         j = jj;
       elseif ( a(i,j) < a(ii,jj) )

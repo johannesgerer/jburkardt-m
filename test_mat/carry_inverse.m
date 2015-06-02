@@ -1,4 +1,4 @@
-function a = carry_inverse ( alpha, n )
+function a = carry_inverse ( n, alpha )
 
 %*****************************************************************************80
 %
@@ -10,7 +10,7 @@ function a = carry_inverse ( alpha, n )
 %
 %  Modified:
 %
-%    26 October 2007
+%    09 March 2015
 %
 %  Author:
 %
@@ -18,19 +18,19 @@ function a = carry_inverse ( alpha, n )
 %
 %  Parameters:
 %
-%    Input, integer ALPHA, the numeric base being used in the addition.
-%
 %    Input, integer N, the order of the matrix.
+%
+%    Input, integer ALPHA, the numeric base being used in the addition.
 %
 %    Output, real A(N,N), the matrix.
 %
-  v = carry_left ( n );
+  v = carry_eigen_left ( n, alpha );
 
-  d = carry_eigenvalues ( alpha, n );
+  d = carry_eigenvalues ( n, alpha );
   d(1:n) = 1.0 ./ d(1:n);
   d_inv = diagonal ( n, n, d );
 
-  u = carry_right ( n );
+  u = carry_eigen_right ( n, alpha );
 
   a = u * d_inv * v / r8_factorial ( n );
 

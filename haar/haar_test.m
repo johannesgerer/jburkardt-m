@@ -10,13 +10,12 @@ function haar_test ( )
 %
 %  Modified:
 %
-%    15 March 2011
+%    22 May 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
-  fprintf ( 1, '\n' );
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HAAR_TEST:\n' );
@@ -25,6 +24,7 @@ function haar_test ( )
 
   haar_test01 ( );
   haar_test02 ( );
+  haar_test03 ( );
 %
 %  Terminate.
 %

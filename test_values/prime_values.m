@@ -10,13 +10,16 @@ function [ n_data, n, p ] = prime_values ( n_data )
 %
 %      Prime[n]
 %
+%    Thanks to Morten Welinder for pointing out that the index of 145253029
+%    is 8192000, 12 April 2013.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
-%    19 September 2004
+%    12 April 2013
 %
 %  Author:
 %
@@ -66,7 +69,7 @@ function [ n_data, n, p ] = prime_values ( n_data )
     1024000, ...
     2048000, ... 
     4096000, ...
-    8129000 ];
+    8192000 ];
 
   p_vec = [ ...
             2, ...

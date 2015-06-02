@@ -42,7 +42,7 @@ function phin = phi ( n )
 %
 %    PHI(U*V) = PHI(U) * PHI(V) if U and V are relatively prime.
 %
-%    PHI(P**K) = P**(K-1) * ( P - 1 ) if P is prime.
+%    PHI(P^K) = P^(K-1) * ( P - 1 ) if P is prime.
 %
 %    PHI(N) = N * Product ( P divides N ) ( 1 - 1 / P )
 %

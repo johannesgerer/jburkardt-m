@@ -2,7 +2,7 @@ function test_zero_test ( )
 
 %*****************************************************************************80
 %
-%% TEST_ZERO_TEST tests TEST_ZERO.
+%% TEST_ZERO_TEST tests the TEST_ZERO library.
 %
 %  Licensing:
 %
@@ -192,7 +192,6 @@ function test_zero_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'TEST_ZERO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

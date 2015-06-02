@@ -2,9 +2,11 @@ function a = triv ( n, x, y, z )
 
 %*****************************************************************************80
 %
-%% TRIV returns the tridiagonal matrix A defined by three vectors.
+%% TRIV returns the TRIV matrix.
 %
 %  Discussion:
+%
+%    The TRIV matrix is a tridiagonal matrix defined by three vectors.
 %
 %    The three vectors define the subdiagonal, main diagonal, and
 %    superdiagonal.
@@ -38,6 +40,8 @@ function a = triv ( n, x, y, z )
 %
 %    A is generally not symmetric: A' /= A.
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -59,6 +63,8 @@ function a = triv ( n, x, y, z )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 

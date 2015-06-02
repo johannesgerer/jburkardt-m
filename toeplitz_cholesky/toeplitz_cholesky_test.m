@@ -2,7 +2,7 @@ function toeplitz_cholesky_test ( )
 
 %*****************************************************************************80
 %
-%% TOEPLITZ_CHOLESKY_TEST tests TOEPLITZ_CHOLESKY.
+%% TOEPLITZ_CHOLESKY_TEST tests the TOEPLITZ_CHOLESKY library.
 %
 %  Licensing:
 %

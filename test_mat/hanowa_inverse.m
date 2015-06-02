@@ -2,7 +2,7 @@ function a = hanowa_inverse ( alpha, n )
 
 %*****************************************************************************80
 %
-%% HANOWA_INVERSE returns the inverse of the Hanowa matrix.
+%% HANOWA_INVERSE returns the inverse of the HANOWA matrix.
 %
 %  Licensing:
 %
@@ -26,6 +26,7 @@ function a = hanowa_inverse ( alpha, n )
 %    Output, real A(N,N), the matrix.
 %
   a = zeros ( n, n );
+
   n2 = floor ( n / 2 );
 
   for i = 1 : n2

@@ -2,7 +2,7 @@ function determ = eulerian_determinant ( n )
 
 %*****************************************************************************80
 %
-%% EULERIAN_DETERMINANT returns the determinant of the Eulerian matrix.
+%% EULERIAN_DETERMINANT returns the determinant of the EULERIAN matrix.
 %
 %  Licensing:
 %

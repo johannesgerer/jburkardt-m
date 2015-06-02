@@ -166,7 +166,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %
 %  Modified:
 %
-%    24 June 2012
+%    28 February 2013
 %
 %  Author:
 %
@@ -220,7 +220,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %  We start out by computing the number of elapsed days, which is
 %  our initial estimate of the issue number.
 %
-  issue = jed - jed_epoch;
+  issue = floor ( jed - jed_epoch );
 %
 %  If the user has given a JED before the epoch, return now.
 %
@@ -272,7 +272,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %  Deal with use of single issue number 873 for both
 %  Wednesday, 5 July 1854 and Thursday, 6 July 1854.
 %
-  jed_08_06_1854 = ymdf_to_jed_common ( 1854, 7, 6, f );
+  jed_07_06_1854 = ymdf_to_jed_common ( 1854, 7, 6, f );
 
   if ( jed_07_06_1854 <= jed )
     issue = issue - 1;
@@ -435,7 +435,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %  CORRECTION #20
 %  Deal with nonissue on Thursday, 2 January 1862:
 %
-  jed_02_01_1862 = ymdf_to_jed_common ( 1862, 1, 2, f )
+  jed_02_01_1862 = ymdf_to_jed_common ( 1862, 1, 2, f );
 
   if ( jed_02_01_1862 <= jed )
     issue = issue - 1;
@@ -471,7 +471,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %  CORRECTION #23
 %  Deal with double issue increment on Wednesday, 30 September 1863:
 %
-  jed_30_09_1863 = ymdf_to_jed_common ( 1863, 9, 30, f )
+  jed_30_09_1863 = ymdf_to_jed_common ( 1863, 9, 30, f );
 
   if ( jed_30_09_1863 <= jed )
     issue = issue + 1;
@@ -537,8 +537,8 @@ function [ volume, issue ] = jed_to_nyt ( jed )
 %
 %  During this period, there were no Sunday issues.
 %
-  jed_22_1905 = ymdf_to_jed_common ( 1905, 4, 22, f );
-  days = min ( jed, jed_22_04_1905 ) - jed_epoch;
+  jed_22_04_1905 = ymdf_to_jed_common ( 1905, 4, 22, f );
+  days = floor ( min ( jed, jed_22_04_1905 ) - jed_epoch );
   sundays = floor ( ( days + 3 ) / 7 );
   issue = issue - sundays;
 %
@@ -558,7 +558,7 @@ function [ volume, issue ] = jed_to_nyt ( jed )
   jed_05_11_1978 = ymdf_to_jed_common ( 1978, 11, 5, f );
 
   if ( jed_10_08_1978 <= jed )
-    issue = issue - min ( jed_05_11_1978, jed ) - jed_10_08_1978 - 1;
+    issue = issue - floor ( min ( jed_05_11_1978, jed ) - jed_10_08_1978 ) - 1;
   end
 %
 %  CORRECTION #33

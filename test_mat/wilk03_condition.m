@@ -10,7 +10,7 @@ function cond = wilk03_condition ( )
 %
 %  Modified:
 %
-%    10 April 2012
+%    18 January 2015
 %
 %  Author:
 %
@@ -27,7 +27,7 @@ function cond = wilk03_condition ( )
 %
 %    Output, real COND, the L1 condition.
 %
-  cond = 1.8 * ( 13.0 * 10.0E+10 / 9.0 );
+  cond = 1.8 * ( 13.0 * 1.0E+10 / 9.0 );
 
   return
 end

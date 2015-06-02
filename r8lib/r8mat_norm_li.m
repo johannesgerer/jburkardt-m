@@ -41,7 +41,8 @@ function value = r8mat_norm_li ( m, n, a )
   value = 0.0;
 
   for i = 1 : m
-    value = max ( value, sum ( abs ( a(i,1:n) ) ) );
+    row_sum = sum ( abs ( a(i,1:n) ) );
+    value = max ( value, row_sum );
   end
 
   return

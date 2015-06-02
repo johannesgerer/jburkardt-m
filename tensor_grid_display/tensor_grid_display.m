@@ -44,6 +44,43 @@ function tensor_grid_display ( m, n_1d, rule )
 %
 %    Local, real X(M,N), the points in the tensor product grid.
 %
+  timestamp ( );
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'TENSOR_GRID_DISPLAY:\n' );
+  fprintf ( 1, '  MATLAB version\n' );
+  fprintf ( 1, '  Make a 1D/2D/3D plot of a tensor grid.\n' );
+%
+%  Make sure we have the arguments.
+%
+  if ( nargin < 1 )
+    m = input ( 'Enter the spatial dimension M, 1, 2 or 3:  ' );
+  elseif ( ischar ( m ) )
+    m = str2num ( m );
+  end
+
+  if ( nargin < 2 )
+    n_1d = input ( 'Enter the number of points in the 1D grid, N1D:  ' );
+  elseif ( ischar ( n_1d ) )
+    n_1d = str2num ( n_1d );
+  end
+
+  if ( nargin < 3 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  Quadrature rule options include:\n' );
+    fprintf ( 1, '  ''CC'', Clenshaw-Curtis,\n' );
+    fprintf ( 1, '  ''F1'', Fejer Type 1,\n' );
+    fprintf ( 1, '  ''F2'', Fejer Type 2,\n' );
+    fprintf ( 1, '  ''GL'', Gauss-Legendre,\n' );
+    fprintf ( 1, '  ''GP'', Gauss-Patterson, (orders 1, 3, 7, 15, 31, 63, 127, 255 or 511 only)\n' );
+    fprintf ( 1, '  ''HR'', Hermite,\n' );
+    fprintf ( 1, '  ''JC'', Jacobi,\n' );
+    fprintf ( 1, '  ''LG'', Laguerre,\n' );
+    fprintf ( 1, '  ''NCC'', Newton-Cotes Closed,\n' );
+    fprintf ( 1, '  ''NCO'', Newton-Cotes Open,\n' );
+    fprintf ( 1, '  ''NCOH'', Newton-Cotes Open Half.\n' );
+    rule = input ( 'Enter the 1D quadrature rule, in quotes:  ' );
+  end
+
   if ( 1 < m && length ( n_1d ) == 1 )
     n_1d = n_1d * ones ( m, 1 );
   end
@@ -155,6 +192,14 @@ function tensor_grid_display ( m, n_1d, rule )
   end
 
   hold off
+%
+%  Terminate.
+%
+  fprintf ( 1, '\n' );
+  fprintf ( 1, 'TENSOR_GRID_DISPLAY:\n' );
+  fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end
@@ -3828,4 +3873,28 @@ function grid_x = tensor_product ( dim_num, order, rule )
 
   return
 end
+function timestamp ( )
 
+%*****************************************************************************80
+%
+%% TIMESTAMP prints the current YMDHMS date as a timestamp.
+%
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
+%  Modified:
+%
+%    14 February 2003
+%
+%  Author:
+%
+%    John Burkardt
+%
+  t = now;
+  c = datevec ( t );
+  s = datestr ( c, 0 );
+  fprintf ( 1, '%s\n', s );
+
+  return
+end

@@ -1,0 +1,339 @@
+<html>
+
+  <head>
+    <title>
+      EXACTNESS - Exactness of Quadrature Rules
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      EXACTNESS <br> Exactness of Quadrature Rules
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>EXACTNESS</b>
+      is a MATLAB library which
+      investigates the exactness of quadrature rules that estimate the
+      integral of a function with a density, such as 1, exp(-x) or
+      exp(-x^2), over an interval such as [-1,+1], [0,+oo) or (-oo,+oo).
+    </p>
+
+    <p>
+      A 1D quadrature rule estimates I(f), the integral of a function f(x)
+      over an interval [a,b] with density rho(x):
+      <pre>
+        I(f) = integral ( a < x < b ) f(x) rho(x) dx
+      </pre>
+      by a n-point quadrature rule of weights w and points x:
+      <pre>
+        Q(f) = sum ( 1 <= i <= n ) w(i) f(x(i))
+      </pre>
+    </p>
+
+    <p>
+      Most quadrature rules come in a family of various sizes.  A quadrature
+      rule of size n is said to have exactness p if it is true that the
+      quadrature estimate is exactly equal to the exact integral for every
+      monomial (and hence, polynomial) whose degree is p or less.
+    </p>
+
+    <p>
+      This program allows the user to specify a quadrature rule, a size n,
+      and a degree p_max.  It then computes and compares the exact integral
+      and quadrature estimate for monomials of degree 0 through p_max, so
+      that the user can analyze the results.
+    </p>
+
+    <p>
+      Common quadrature rules include:
+      <ul>
+        <li>
+          Gauss-Hermite quadrature, with density exp(-x^2), over (-oo,+oo);
+          exactness = 2 * n - 1;
+        </li>
+        <li>
+          Gauss-Laguerre quadrature, with density exp(-1), over [0,+oo);
+          exactness = 2 * n - 1;
+        </li>
+        <li>
+          Gauss-Legendre quadrature, with density 1, over [-1,+1];
+          exactness = 2 * n - 1;
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files made available on this
+      web page are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>EXACTNESS</b> is available in
+      <a href = "../../c_src/exactness/exactness.html">a C version</a> and
+      <a href = "../../cpp_src/exactness/exactness.html">a C++ version</a> and
+      <a href = "../../f77_src/exactness/exactness.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/exactness/exactness.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/exactness/exactness.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/cube_exactness/cube_exactness.html">
+      CUBE_EXACTNESS</a>,
+      a MATLAB library which
+      investigates the polynomial exactness of quadrature rules
+      over the interior of a cube in 3D.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hermite_exactness/hermite_exactness.html">
+      HERMITE_EXACTNESS</a>,
+      a MATLAB program which
+      tests the monomial exactness of Gauss-Hermite quadrature rules
+      for estimating the integral of a function with density exp(-x^2)
+      over the interval (-oo,+oo).
+    </p>
+
+    <p>
+      <a href = "../../m_src/laguerre_exactness/laguerre_exactness.html">
+      LAGUERRE_EXACTNESS</a>,
+      a MATLAB program which
+      tests the monomial exactness of Gauss-Laguerre quadrature rules
+      for estimating the integral of a function with density exp(-x)
+      over the interval [0,+oo).
+    </p>
+
+    <p>
+      <a href = "../../m_src/legendre_exactness/legendre_exactness.html">
+      LEGENDRE_EXACTNESS</a>,
+      a MATLAB program which
+      tests the monomial exactness of Gauss-Legendre quadrature rules 
+      for estimating the integral of a function with density 1
+      over the interval [-1,+1].
+    </p>
+
+    <p>
+      <a href = "../../m_src/square_exactness/square_exactness.html">
+      SQUARE_EXACTNESS</a>,
+      a MATLAB library which
+      investigates the exactness of 2D quadrature rules that estimate the
+      integral of a function f(x,y) over a 2D domain.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Philip Davis, Philip Rabinowitz,<br>
+          Methods of Numerical Integration,<br>
+          Second Edition,<br>
+          Dover, 2007,<br>
+          ISBN: 0486453391,<br>
+          LC: QA299.3.D28.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "chebyshev1_exactness.m">chebyshev1_exactness.m</a>, 
+          monomial exactness for the Chebyshev1 integral.
+        </li>
+        <li>
+          <a href = "chebyshev1_integral.m">chebyshev1_integral.m</a>, 
+          evaluates a monomial Chebyshev1 integral.
+        </li>
+        <li>
+          <a href = "chebyshev2_exactness.m">chebyshev2_exactness.m</a>, 
+          monomial exactness for the Chebyshev2 integral.
+        </li>
+        <li>
+          <a href = "chebyshev2_integral.m">chebyshev2_integral.m</a>, 
+          evaluates a monomial Chebyshev2 integral.
+        </li>
+        <li>
+          <a href = "hermite_exactness.m">hermite_exactness.m</a>, 
+          monomial exactness for the Hermite integral.
+        </li>
+        <li>
+          <a href = "hermite_integral.m">hermite_integral.m</a>, 
+          evaluates a monomial Hermite integral.
+        </li>
+        <li>
+          <a href = "laguerre_exactness.m">laguerre_exactness.m</a>, 
+          monomial exactness for the Laguerre integral.
+        </li>
+        <li>
+          <a href = "laguerre_integral.m">laguerre_integral.m</a>, 
+          evaluates a monomial Laguerre integral.
+        </li>
+        <li>
+          <a href = "legendre_exactness.m">legendre_exactness.m</a>, 
+          monomial exactness for the Legendre integral.
+        </li>
+        <li>
+          <a href = "legendre_integral.m">legendre_integral.m</a>, 
+          evaluates a monomial Legendre integral.
+        </li>
+        <li>
+          <a href = "r8_factorial.m">r8_factorial.m</a>,
+          evaluates the factorial function.
+        </li>
+        <li>
+          <a href = "r8_factorial2.m">r8_factorial2.m</a>,
+          evaluates the double factorial function.
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>,
+          prints the YMDHMS date as a timestamp
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "exactness_test.m">exactness_test.m</a>,
+          a sample calling program.
+        </li>
+        <li>
+          <a href = "exactness_test_output.txt">exactness_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "exactness_test01.m">exactness_test01.m</a>,
+          Gauss-Legendre rule for the Legendre integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test015.m">exactness_test015.m</a>,
+          Fejer Type 1 rule for the Legendre integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test02.m">exactness_test02.m</a>,
+          Fejer Type 2 rule for the Legendre integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test03.m">exactness_test03.m</a>,
+          Clenshaw-Curtis rule for the Legendre integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test04.m">exactness_test04.m</a>,
+          Gauss-Laguerre rule for the Laguerre integral, density exp(-x).
+        </li>
+        <li>
+          <a href = "exactness_test05.m">exactness_test05.m</a>,
+          Gauss-Laguerre rule for the Laguerre integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test06.m">exactness_test06.m</a>,
+          Gauss-Hermite rule for the Hermite integral, density exp(-x^2).
+        </li>
+        <li>
+          <a href = "exactness_test07.m">exactness_test07.m</a>,
+          Gauss-Hermite rule for the Hermite integral, density 1.
+        </li>
+        <li>
+          <a href = "exactness_test08.m">exactness_test08.m</a>,
+          Gauss-Chebyshev1 quadrature rule for the Chebyshev1 integral.
+        </li>
+        <li>
+          <a href = "exactness_test085.m">exactness_test085.m</a>,
+          Gauss-Chebyshev3 quadrature rule for the Chebyshev1 integral.
+        </li>
+        <li>
+          <a href = "exactness_test09.m">exactness_test09.m</a>,
+          Gauss-Chebyshev2 quadrature rule for the Chebyshev2 integral.
+        </li>
+        <li>
+          <a href = "chebyshev1_set.m">chebyshev1_set.m</a>,
+          sets a Chebyshev Type 1 rule.
+        </li>
+        <li>
+          <a href = "chebyshev2_set.m">chebyshev2_set.m</a>,
+          sets a Chebyshev Type 2 rule.
+        </li>
+        <li>
+          <a href = "chebyshev3_set.m">chebyshev3_set.m</a>,
+          sets a Chebyshev Type 3 rule.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_set.m">clenshaw_curtis_set.m</a>,
+          sets a Clenshaw-Curtis rule.
+        </li>
+        <li>
+          <a href = "fejer1_set.m">fejer1_set.m</a>,
+          sets a Fejer type 1 rule.
+        </li>
+        <li>
+          <a href = "fejer2_set.m">fejer2_set.m</a>,
+          sets a Fejer type 2 rule.
+        </li>
+        <li>
+          <a href = "hermite_set.m">hermite_set.m</a>,
+          sets a Gauss-Hermite rule for density exp(-x^2).
+        </li>
+        <li>
+          <a href = "hermite_1_set.m">hermite_1_set.m</a>,
+          sets a Gauss-Hermite rule for density 1.
+        </li>
+        <li>
+          <a href = "laguerre_set.m">laguerre_set.m</a>,
+          sets a Gauss-Laguerre rule for density exp(-x).
+        </li>
+        <li>
+          <a href = "laguerre_1_set.m">laguerre_1_set.m</a>,
+          sets a Gauss-Laguerre rule for density 1.
+        </li>
+        <li>
+          <a href = "legendre_set.m">legendre_set.m</a>,
+          sets a Gauss-Legendre rule for density 1.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 28 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

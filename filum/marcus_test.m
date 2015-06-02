@@ -27,9 +27,9 @@ function marcus_test ( )
   fprintf ( 1, '  The routines we use are:\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  FILENAME_INC: increments a file name;\n' );
-  fprintf ( 1, '  FILE_NAME_DEC: decrements a file name;\n' );
+  fprintf ( 1, '  FILENAME_DEC: decrements a file name;\n' );
 
-  file_name = 'fred000.mat';
+  filename = 'fred000.mat';
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Generate and save the data:\n' );
@@ -43,11 +43,11 @@ function marcus_test ( )
     y = x * x;
     z = rand(2,1);
 
-    file_name = filename_inc ( file_name );    
+    filename = filename_inc ( filename );    
 
-    fprintf ( 1, '  %s  %2d  %10f  %10f  %10f  %10f\n', file_name, i, x, y, z(1), z(2) );
+    fprintf ( 1, '  %s  %2d  %10f  %10f  %10f  %10f\n', filename, i, x, y, z(1), z(2) );
     
-    save ( file_name, 'x', 'y', 'z' );
+    save ( filename, 'x', 'y', 'z' );
 
   end
 
@@ -59,11 +59,11 @@ function marcus_test ( )
  
   for i = 10 : -1 : 1
 
-    load ( file_name );
+    load ( filename );
 
-    fprintf ( 1, '  %s  %2d  %10f  %10f  %10f  %10f\n', file_name, i, x, y, z(1), z(2) );
+    fprintf ( 1, '  %s  %2d  %10f  %10f  %10f  %10f\n', filename, i, x, y, z(1), z(2) );
 
-    file_name = file_name_dec ( file_name );
+    filename = filename_dec ( filename );
 
   end
 

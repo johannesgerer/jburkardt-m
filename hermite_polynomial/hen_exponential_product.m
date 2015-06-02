@@ -2,12 +2,11 @@ function table = hen_exponential_product ( p, b )
 
 %*****************************************************************************80
 %
-%% HEN_EXPONENTIAL_PRODUCT: normalized probabilist's Hermite exponential products.
+%% HEN_EXPONENTIAL_PRODUCT: exponential product exp(b*x)*Hen(i,x)*Hen(j,x).
 %
 %  Discussion:
 %
-%    Let Hen(I,X) represent the normalized probabilist's Hermite polynomial 
-%    of degree I.  
+%    Hen(i,x) is the normalized probabilist's Hermite polynomial of degree I.
 %
 %    For polynomial chaos applications, it is of interest to know the
 %    value of the integrals of products of exp(B*X) with every possible pair
@@ -53,7 +52,7 @@ function table = hen_exponential_product ( p, b )
   for k = 1 : order
 
     x = x_table(k);
-    h_table = hen_polynomial ( 1, p, x );
+    h_table = hen_polynomial_value ( 1, p, x );
 %
 %  The following formula is an outer product in H_TABLE.
 %

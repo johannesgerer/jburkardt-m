@@ -2,7 +2,7 @@ function sandia_sparse_test ( )
 
 %*****************************************************************************80
 %
-%% SANDIA_SPARSE_TEST tests the SANDIA_SPARSE routines.
+%% SANDIA_SPARSE_TEST tests the SANDIA_SPARSE library.
 %
 %  Licensing:
 %
@@ -364,7 +364,6 @@ function sandia_sparse_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SANDIA_SPARSE_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

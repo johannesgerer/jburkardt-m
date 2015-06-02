@@ -10,7 +10,7 @@ function [ r, seed ] = r8vec_uniform_01 ( n, seed )
 %
 %  Modified:
 %
-%    21 September 2006
+%    07 May 2013
 %
 %  Author:
 %
@@ -40,16 +40,20 @@ function [ r, seed ] = r8vec_uniform_01 ( n, seed )
 %
 %    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, real R(N), the vector of pseudorandom values.
+%    Output, real R(N,1), the vector of pseudorandom values.
 %
 %    Output, integer SEED, an updated seed for the random number generator.
 %
+  i4_huge = 2147483647;
+
   if ( seed == 0 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'R8VEC_UNIFORM_01 - Fatal error!\n' );
     fprintf ( 1, '  Input SEED = 0!\n' );
     error ( 'R8VEC_UNIFORM_01 - Fatal error!' );
   end
+
+  r = zeros ( n, 1 );
 
   for i = 1 : n
 
@@ -58,10 +62,10 @@ function [ r, seed ] = r8vec_uniform_01 ( n, seed )
     seed = 16807 * ( seed - k * 127773 ) - k * 2836;
 
     if ( seed < 0 )
-      seed = seed + 2147483647;
+      seed = seed + i4_huge;
     end
 
-    r(i) = seed * 4.656612875E-10;
+    r(i,1) = seed * 4.656612875E-10;
 
   end
 

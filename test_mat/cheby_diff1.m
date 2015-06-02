@@ -2,7 +2,7 @@ function a = cheby_diff1 ( n )
 
 %*****************************************************************************80
 %
-%% CHEBY_DIFF1 returns the Chebyshev Differentiation matrix.
+%% CHEBY_DIFF1 returns the CHEBY_DIFF1 matrix.
 %
 %  Example:
 %
@@ -45,6 +45,8 @@ function a = cheby_diff1 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   if ( n <= 0 )
     a = [];
     return

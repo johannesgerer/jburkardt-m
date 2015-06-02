@@ -25,6 +25,10 @@ function value = f1 ( i )
 %
 %  Parameters:
 %
+%    Input, integer I, the argument of the function.
+%
+%    Output, integer VALUE, the value of the function.
+%
   f_table = [ 6, 6, 0, 1, 4, 3, 3, 4, 0 ];
 
   value = f_table ( i + 1 );

@@ -1,4 +1,4 @@
-function a = diffusivity_2d_bnt ( n, omega, lc, x, y )
+function dc = diffusivity_2d_ntw ( cl, dc0, m, omega, n, x, y )
 
 %*****************************************************************************80
 %
@@ -8,19 +8,19 @@ function a = diffusivity_2d_bnt ( n, omega, lc, x, y )
 %
 %    The 2D diffusion equation has the form
 %
-%      - Del ( A(X,Y) Del U(X,Y) ) = F(X,Y)
+%      - Del ( DC(X,Y) Del U(X,Y) ) = F(X,Y)
 %
-%    where A(X,Y) is a function called the diffusivity.
+%    where DC(X,Y) is a function called the diffusivity.
 %
 %    In the stochastic version of the problem, the diffusivity function
 %    includes the influence of stochastic parameters:
 %
-%      - Del ( A(X,Y;OMEGA) Del U(X,Y;OMEGA) ) = F(X,Y).
+%      - Del ( DC(X,Y;OMEGA) Del U(X,Y;OMEGA) ) = F(X,Y).
 %
 %    In this function, the domain is the rectangle [0,D]x[0,D] where D = 1.
 %
 %    Note that in this problem the diffusivity has a one-dimensional
-%    spatial dependence on X, not on Y.
+%    spatial dependence on X, but not on Y!
 %
 %    The random variables OMEGA are independent, have zero mean and unit
 %    variance, and are uniformly distributed in [-sqrt(3),+sqrt(3)].
@@ -31,7 +31,7 @@ function a = diffusivity_2d_bnt ( n, omega, lc, x, y )
 %
 %  Modified:
 %
-%    06 January 2010
+%    25 July 2013
 %
 %  Author:
 %
@@ -53,28 +53,33 @@ function a = diffusivity_2d_bnt ( n, omega, lc, x, y )
 %
 %  Parameters:
 %
-%    Input, integer N, the number of terms in the expansion.
+%    Input, real CL, the desired physical correlation length for the
+%    coefficient.
 %
-%    Input, real OMEGA(N), the stochastic parameters.
+%    Input, real DC0, the constant term in the expansion of the 
+%    diffusion coefficient.  Take DC0 = 0.5.
 %
-%    Input, real LC, the desired phyiscal correlation length for the
-%    coefficient a.
+%    Input, integer M, the number of terms in the expansion.
 %
-%    Input, real X(:), Y(:), the points where the diffusion coefficient is to 
+%    Input, real OMEGA(M), the stochastic parameters.
+%
+%    Input, integer N, the number of evaluation points.
+%
+%    Input, real X(N), Y(N), the points where the diffusion coefficient is to 
 %    be evaluated.
 %
-%    Output, real A(:), the value of the diffusion coefficient at (X,Y).
+%    Output, real DC(N), the value of the diffusion coefficient at (X,Y).
 %
   d = 1.0;
-  lp = max ( d, 2.0 * lc );
-  l = lc / lp;
+  lp = max ( d, 2.0 * cl );
+  l = cl / lp;
 
-  a_arg = 1.0 + omega(1) * sqrt ( sqrt ( pi ) * l / 2.0 );
+  dc_arg = 1.0 + omega(1) * sqrt ( sqrt ( pi ) * l / 2.0 );
 
-  for i = 2 : n
+  for i = 2 : m
 
-    arg_zeta = - ( floor ( i / 2 ) * pi * l )^2 / 8.0;
-    zeta = sqrt ( sqrt ( pi ) * l ) * exp ( arg_zeta );
+    zeta_arg = - ( floor ( i / 2 ) * pi * l )^2 / 8.0;
+    zeta = sqrt ( sqrt ( pi ) * l ) * exp ( zeta_arg );
 
     if ( mod ( i, 2 ) == 0 )
       phi = sin ( floor ( i / 2 ) * pi * x / lp );
@@ -82,11 +87,11 @@ function a = diffusivity_2d_bnt ( n, omega, lc, x, y )
       phi = cos ( floor ( i / 2 ) * pi * x / lp );
     end
 
-    a_arg = a_arg + zeta * phi * omega(i);
+    dc_arg = dc_arg + zeta * phi * omega(i);
 
   end
 
-  a = 0.5D+00 + exp ( a_arg );
+  dc = dc0 + exp ( dc_arg );
 
   return
 end

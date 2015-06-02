@@ -2,7 +2,7 @@ function gridlines_test ( )
 
 %*****************************************************************************80
 %
-%% GRIDLINES_TEST tests the GRIDLINES routines.
+%% GRIDLINES_TEST tests the GRIDLINES library.
 %
 %  Licensing:
 %
@@ -16,6 +16,7 @@ function gridlines_test ( )
 %
 %    John Burkardt
 %
+  timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRIDLINES_TEST\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -30,6 +31,8 @@ function gridlines_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'GRIDLINES_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
+  fprintf ( 1, '\n' );
+  timestamp ( );
 
   return
 end

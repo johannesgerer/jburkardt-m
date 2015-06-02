@@ -2,7 +2,7 @@ function hermite_cubic_test ( )
 
 %*****************************************************************************80
 %
-%% HERMITE_CUBIC_TEST tests HERMITE_CUBIC.
+%% HERMITE_CUBIC_TEST tests the HERMITE_CUBIC library.
 %
 %  Licensing:
 %
@@ -44,7 +44,6 @@ function hermite_cubic_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HERMITE_CUBIC_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

@@ -22,6 +22,7 @@ function [ p, l, u ] = oto_plu ( n )
 %
 %    Output, real P(N,N), L(N,N), U(N,N), the PLU factors.
 %
+  p = zeros ( n, n );
  for j = 1 : n
    for i = 1 : n
       if ( i == j )
@@ -32,6 +33,7 @@ function [ p, l, u ] = oto_plu ( n )
     end
   end
 
+ l = zeros ( n, n );
  for j = 1 : n
    for i = 1 : n
       if ( i == j )
@@ -44,8 +46,9 @@ function [ p, l, u ] = oto_plu ( n )
     end
   end
 
- for j = 1 : n
-   for i = 1 : n
+  u = zeros ( n, n );
+  for j = 1 : n
+    for i = 1 : n
       if ( i == j )
         u(i,j) = ( i + 1 ) / i;
       elseif ( i == j - 1 )

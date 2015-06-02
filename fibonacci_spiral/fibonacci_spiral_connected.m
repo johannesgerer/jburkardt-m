@@ -19,8 +19,11 @@ function fibonacci_spiral_connected ( n )
 %  Parameters:
 %
 %    Input, integer N, the number of points to plot.
+%    Default is 101.
 %
-
+  if ( nargin < 1 )
+    n = 101;
+  end
 %
 %  PHI is the golden ratio, the limit of the ratio of
 %  successive Fibonacci numbers:  

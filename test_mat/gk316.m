@@ -2,7 +2,7 @@ function a = gk316 ( n )
 
 %*****************************************************************************80
 %
-%% GK316 returns a Gregory and Karney test matrix.
+%% GK316 returns the GK316 matrix.
 %
 %  Formula:
 %
@@ -75,6 +75,8 @@ function a = gk316 ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( i == n )

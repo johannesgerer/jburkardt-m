@@ -1,0 +1,18 @@
+# wedge_commands.txt
+#
+# Usage:
+#  gnuplot < wedge_commands.txt
+#
+set term png
+set output "wedge.png"
+set xlabel "<--- X --->"
+set ylabel "<--- Y --->"
+set zlabel "<--- Z --->"
+set title "wedge"
+set grid
+set key off
+set view 80, 85
+set style data lines
+set timestamp
+splot "wedge_vertices.txt" with lines lw 3, \
+      "wedge_nodes.txt" with points pt 7 lt 0

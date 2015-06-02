@@ -1,0 +1,346 @@
+<html>
+
+  <head>
+    <title>
+      HYPERSPHERE_SURFACE - Estimate Hypersurface Location
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      HYPERSPHERE_SURFACE <br> Estimate Hypersurface Location
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>HYPERSPHERE_SURFACE</b>
+      is a MATLAB library which
+      investigates a procedure for estimating the location of points on a
+      hypersurface implicitly defined by a characteristic function or by
+      a signed function.
+    </p>
+
+    <p>
+      In M dimensions, a characteristic function F for a region of points S
+      has the property that F(X) is 1 for points inside S, and 0
+      otherwise.  A characteristic function is thus discontinous.  
+      The set of discontinuity points for F is the boundary of S.
+    </p>
+
+    <p>
+      In M dimensions, suppose that the function F, presumably continuous,
+      takes on both positive and negative values.  Then we may be interested
+      in the set of points X such that F(X) = 0, which we regard as the
+      boundary between the sets where F is negative or positive.  Assuming 
+      that F is continuous, or better yet, differentiable, then this boundary 
+      may be substantially easier to locate than in the characteristic function 
+      case.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>HYPERSPHERE_SURFACE</b> is available in
+      <a href = "../../m_src/hypersphere_surface/hypersphere_surface.html">a MATLAB version.</a>
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/edge/edge.html">
+      EDGE</a>,
+      a MATLAB library which
+      defines some test functions in 1D, 2D and 3D for the detection of edges.
+    </p>
+
+    <p>
+      <a href = "../../m_src/hypersphere_properties/hypersphere_properties.html">
+      HYPERSPHERE_PROPERTIES</a>,
+      a MATLAB library which
+      carries out various operations for an M-dimensional hypersphere, including 
+      converting between Cartesian and spherical coordinates, 
+      stereographic projection, sampling the surface of the sphere, and
+      computing the surface area and volume.
+    </p>
+
+    <p>
+      <a href = "../../m_src/levels/levels.html">
+      LEVELS</a>,
+      a MATLAB library which
+      makes a contour plot, choosing the contour levels using random sampling.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shoreline/shoreline.html">
+      SHORELINE</a>,
+      a MATLAB program which
+      tries to identify and triangulate the 2D domain over which some 
+      function f(x,y) is nonnegative.
+    </p>
+
+    <p>
+      <a href = "../../m_src/shoreline2/shoreline2.html">
+      SHORELINE2</a>,
+      a MATLAB program which
+      tries to identify and triangulate the 2D domain over which some 
+      function f(x,y) is roughly zero.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "bisect_characteristic.m">bisect_characteristic.m</a>,
+          uses bisection to outline the transition surface for a given 
+          characteristic function.
+        </li>
+        <li>
+          <a href = "cartesian_to_hypersphere.m">cartesian_to_hypersphere.m</a>,
+          converts from a cartesian to a hypersphere coordinate system.
+        </li>
+        <li>
+          <a href = "circle_characteristic.m">circle_characteristic.m</a>,
+          a characteristic function for a circle.
+        </li>
+        <li>
+          <a href = "cube_characteristic.m">cube_characteristic.m</a>,
+          a characteristic function for a cube (any dimension).
+        </li>
+        <li>
+          <a href = "exterior_point_characteristic.m">exterior_point_characteristic.m</a>,
+          searches for a point that is outside a surface defined
+          by a characteristic, and for which a base point inside the surface is
+          given, as well as the desired hypersphere angles of the exterior point.
+        </li>
+        <li>
+          <a href = "hypersphere_to_cartesian.m">hypersphere_to_cartesian.m</a>,
+          converts from a hypersphere to a cartesian coordinate system.
+        </li>
+        <li>
+          <a href = "interior_point_characteristic.m">interior_point_characteristic.m</a>
+          searches a hyperrectangle for a point that is inside a surface defined
+          by a characteristic.
+        </li>
+        <li>
+          <a href = "r8vec_print.m">r8vec_print.m</a>
+          prints an R8VEC.
+        </li>
+        <li>
+          <a href = "sphere_characteristic.m">sphere_characteristic.m</a>,
+          a characteristic function for a sphere (any dimension).
+        </li>
+        <li>
+          <a href = "timestamp.m">timestamp.m</a>
+          prints the YMDHMS date as a timestamp.
+        </li>
+        <li>
+          <a href = "triangle_characteristic.m">triangle_characteristic.m</a>,
+          a characteristic function for a triangle.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "hypersphere_surface_test.m">hypersphere_surface_test.m</a>,
+          calls all the tests.
+        </li>
+        <li>
+          <a href = "hypersphere_surface_test_output.txt">
+                     hypersphere_surface_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "exterior_point_characteristic_test.m">
+                     exterior_point_characteristic_test.m</a>,
+          tests exterior_point_characteristic().
+        </li>
+        <li>
+          <a href = "interior_point_characteristic_test.m">
+                     interior_point_characteristic_test.m</a>,
+          tests interior_point_characteristic().
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The <b>circle</b> example works with the characteristic function of 
+      a circle.
+      <ul>
+        <li>
+          <a href = "circle_plots.m">circle_plots.m</a>,
+          creates plots of the surface and R(Theta) function for a circle,
+          using a centered and an offcentered base point.
+        </li>
+        <li>
+          <a href = "circle_centered_plot.png">circle_centered_plot.png</a>,
+          a plot of the radial distance R as a function of angle THETA for a circle 
+          defined by a characteristic function, using a centered base point.
+        </li>
+        <li>
+          <a href = "circle_centered_surface.png">circle_centered_surface.png</a>,
+          a plot of the transition surface for a circle defined by a characteristic
+          function, using a centered base point.
+        </li>
+        <li>
+          <a href = "circle_offcentered_plot.png">circle_offcentered_plot.png</a>,
+          a plot of the radial distance R as a function of angle THETA for a circle 
+          defined by a characteristic function, using an offcentered base point.
+        </li>
+        <li>
+          <a href = "circle_offcentered_surface.png">circle_offcentered_surface.png</a>,
+          a plot of the transition surface for a circle defined by a characteristic
+          function, using an offcentered base point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The <b>cube</b> example works with the characteristic function of 
+      a cube.
+      <ul>
+        <li>
+          <a href = "cube_plots.m">cube_plots.m</a>,
+          creates plots of the surface and R(Theta1,Theta2) function for a cube,
+          using a centered and an offcentered base point.
+        </li>
+        <li>
+          <a href = "cube_centered_plot.png">cube_centered_plot.png</a>,
+          a plot of the radial distance R as a function of the angles for a cube 
+          defined by a characteristic function, using a centered base point.
+        </li>
+        <li>
+          <a href = "cube_centered_surface.png">cube_centered_surface.png</a>,
+          a plot of the transition surface for a cube defined by a characteristic
+          function, using a centered base point.
+        </li>
+        <li>
+          <a href = "cube_offcentered_plot.png">cube_offcentered_plot.png</a>,
+          a plot of the radial distance R as a function of the angles for a cube 
+          defined by a characteristic function, using an offcentered base point.
+        </li>
+        <li>
+          <a href = "cube_offcentered_surface.png">cube_offcentered_surface.png</a>,
+          a plot of the transition surface for a cube defined by a characteristic
+          function, using an offcentered base point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The <b>sphere</b> example works with the characteristic function of 
+      a sphere.
+      <ul>
+        <li>
+          <a href = "sphere_plots.m">sphere_plots.m</a>,
+          creates plots of the surface and R(Theta1,Theta2) function for a sphere,
+          using a centered and an offcentered base point.
+        </li>
+        <li>
+          <a href = "sphere_centered_plot.png">sphere_centered_plot.png</a>,
+          a plot of the radial distance R as a function of the angles
+          for a sphere defined by a characteristic function, 
+          using a centered base point.
+        </li>
+        <li>
+          <a href = "sphere_centered_surface.png">sphere_centered_surface.png</a>,
+          a plot of the transition surface for a sphere defined by a characteristic
+          function, using a centered base point.
+        </li>
+        <li>
+          <a href = "sphere_offcentered_plot.png">sphere_offcentered_plot.png</a>,
+          a plot of the radial distance R as a function of the angles for
+          a sphere defined by a characteristic function, 
+          using an offcentered base point.
+        </li>
+        <li>
+          <a href = "sphere_offcentered_surface.png">sphere_offcentered_surface.png</a>,
+          a plot of the transition surface for a sphere defined by a characteristic
+          function, using an offcentered base point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      The <b>triangle</b> example works with the characteristic function of 
+      a triangle.
+      <ul>
+        <li>
+          <a href = "triangle_plots.m">triangle_plots.m</a>,
+          displays plots of the surface and R(Theta) function for a triangle,
+          using a centered and an offcentered base point.
+        </li>
+        <li>
+          <a href = "triangle_centered_plot.png">triangle_centered_plot.png</a>,
+          a plot of the radial distance R as a function of angle THETA for a triangle 
+          defined by a characteristic function, using a centered base point.
+        </li>
+        <li>
+          <a href = "triangle_centered_surface.png">triangle_centered_surface.png</a>,
+          a plot of the transition surface for a triangle defined by a characteristic
+          function, using a centered base point.
+        </li>
+        <li>
+          <a href = "triangle_offcentered_plot.png">triangle_offcentered_plot.png</a>,
+          a plot of the radial distance R as a function of angle THETA for a triangle 
+          defined by a characteristic function, using an offcentered base point.
+        </li>
+        <li>
+          <a href = "triangle_offcentered_surface.png">triangle_offcentered_surface.png</a>,
+          a plot of the transition surface for a triangle defined by a characteristic
+          function, using an offcentered base point.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 05 May 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+  <!-- Initial HTML skeleton created by HTMLINDEX. -->
+
+</html>

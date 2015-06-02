@@ -10,7 +10,7 @@ function svd_snowfall_test05 ( x )
 %
 %  Modified:
 %
-%    10 April 2012
+%    05 May 2013
 %
 %  Author:
 %
@@ -18,13 +18,13 @@ function svd_snowfall_test05 ( x )
 %
 %  Parameters:
 %
-%    Input, real X(8,121), the snowfall data.
+%    Input, real X(8,123), the snowfall data.
 %
   fprintf ( 1, '\n' );
   fprintf ( 1, 'SVD_SNOWFALL_TEST05\n' );
   fprintf ( 1, '  Look at the first 6 modes in the V matrix.\n' );
   fprintf ( 1, '  Each of these represents a pattern shared by all the months,\n' );
-  fprintf ( 1, '  and extending across the 121 sampling years.\n' );
+  fprintf ( 1, '  and extending across the 123 sampling years.\n' );
 %
 %  Compute the SVD.
 %
@@ -32,18 +32,18 @@ function svd_snowfall_test05 ( x )
 %
 %  Normalize the patterns so that each column has maximum entry 1.
 %
-  vs = r8col_normalize_li ( 121, 121, v );
+  vs = r8col_normalize_li ( 123, 123, v );
 %
 %  Reverse the row ordering.
 %
-  i = 121:-1:1;
-  j = 1:121;
+  i = 123:-1:1;
+  j = 1:123;
   vs(i,:) = vs(j,:);
 %
 %  Plot the modes.
 %  "lsline" plots the least squares line approximating the data.
 %
-  year = 1890:2010;
+  year = 1890:2012;
 
   figure ( 5 )
 
@@ -53,7 +53,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #1' )
 
@@ -63,7 +63,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #2' )
 
@@ -73,7 +73,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #3' )
 
@@ -83,7 +83,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #4' )
 
@@ -93,7 +93,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #5' )
 
@@ -103,7 +103,7 @@ function svd_snowfall_test05 ( x )
   set ( h, 'Linewidth', 3 )
   set ( h, 'Color', [0,0,0] )
   grid on
-  axis ( [1890, 2010, -1, +1 ] )
+  axis ( [1890, 2012, -1, +1 ] )
   xlabel ( '<--Year-->' )
   title ( 'V Mode #6' )
 

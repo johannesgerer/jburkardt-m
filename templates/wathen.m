@@ -1,6 +1,10 @@
 function A = wathen ( nx, ny, k )
 
-%WATHEN  A = WATHEN(NX,NY) is a random N-by-N finite element matrix
+%*****************************************************************************80
+%
+%% WATHEN returns the Wathen matrix.
+%
+%  WATHEN  A = WATHEN(NX,NY) is a random N-by-N finite element matrix
 %        where N = 3*NX*NY + 2*NX + 2*NY + 1.
 %
 %  Discussion:

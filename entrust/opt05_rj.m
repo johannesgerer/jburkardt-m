@@ -1,5 +1,7 @@
 function [ res, jac ] = opt05_rj ( x, flag, a ) 
 
+%*****************************************************************************80
+%
 %% OPT05_RJ evaluates RES and JAC for test case #5.
 %
 %  Discussion:

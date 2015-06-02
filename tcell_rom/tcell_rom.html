@@ -21,31 +21,25 @@
       model computations based on a finite element approximation of
       the fluid velocity in the time-dependent Navier Stokes equations
       in a region called the "T-Cell", 
-      by Hyung-Chun Lee.
+      by Professor Hyung-Chun Lee.
     </p>
 
     <p>
       The reduced model was created by saving 500 "snapshots" of the computed
       flow field during a time evolution with varying boundary conditions,
-      using <a href = "../../f77_src/tcell/tcell.html">
-      the TCELL program</a>.
+      using the TCELL program.
     </p>
 
     <p>
       Then a small basis set (typically of order 8) was extracted from these
-      snapshots, using 
-      <a href = "../../f_src/cvt_basis/cvt_basis.html">
-      the CVT_BASIS program</a> or
-      <a href = "../../f_src/pod_basis/pod_basis.html">
-      the POD_BASIS program</a>.
+      snapshots, using the CVT_BASIS program or
+      the POD_BASIS program.
     </p>
 
     <p>
       Some additional information, including the mass matrix and the
       initial value of the reduced order coefficients, was then computed
-      using <a href =
-      "../../f77_src/tcell_mass/tcell_mass.html">
-      the TCELL_MASS program</a>.
+      using the TCELL_MASS program.
     </p>
 
     <p>
@@ -107,8 +101,57 @@
     </p>
 
     <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>TCELL_ROM</b> is available in
+      <a href = "../../m_src/tcell_rom/tcell_rom.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
       Related Data and Programs:
     </h3>
+
+    <p>
+      <a href = "../../f_src/cvt_basis_flow/cvt_basis_flow.html">
+      CVT_BASIS_FLOW</a>,
+      a FORTRAN90 program which
+      extracts dominant solution modes from a set of flow solutions
+      using CVT methods.
+    </p>
+
+    <p>
+      <a href = "../../f_src/pod_basis_flow/pod_basis_flow.html">
+      POD_BASIS_FLOW</a>,
+      a FORTRAN90 program which
+      extracts dominant solution modes from a set of flow solutions
+      using POD methods.
+    </p>
+
+    <p>
+      <a href = "../../f77_src/tcell/tcell.html">
+      TCELL</a>,
+      a FORTRAN77 program which
+      solves the time-dependent Navier Stokes fluid flow equations 
+      in a 2D T-shaped region.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tcell_flow_movie/tcell_flow_movie.html">
+      TCELL_FLOW_MOVIE</a>,
+      a MATLAB library which
+      creates an animation of the velocity solutions for the T cell;
+    </p>
+
+    <p>
+      <a href = "../../f77_src/tcell_mass/tcell_mass.html">
+      TCELL_MASS</a>,
+      a FORTRAN77 program which
+      computes the mass matrix for the T-Cell problem, 
+      which is needed in order to for TCELL_ROM to run the
+      reduced order model (ROM) of the problem.
+    </p>
 
     <p>
       <a href = "../../m_src/velocity_arrows_grid/velocity_arrows_grid.html">

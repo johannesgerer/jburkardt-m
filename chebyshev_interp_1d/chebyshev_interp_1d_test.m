@@ -2,7 +2,7 @@ function chebyshev_interp_1d_test ( )
 
 %*****************************************************************************80
 %
-%% CHEBYSHEV_INTERP_1D_TEST tests CHEBYSHEV_INTERP_1D.
+%% CHEBYSHEV_INTERP_1D_TEST tests the CHEBYSHEV_INTERP_1D library.
 %
 %  Licensing:
 %

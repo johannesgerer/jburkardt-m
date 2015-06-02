@@ -17,13 +17,13 @@
     <p>
       <b>MESH2D</b>
       is a MATLAB program which generates
-      and unstructured meshes in 2D, 
+      unstructured meshes in 2D, 
       by Darren Engwirda.
     </p>
 
     <p>
-      The code is relatively simple, flexible and powerful.  The user is able to define
-      a variety of geometric shapes, and desired mesh densities.
+      The code is relatively simple, flexible and powerful.  The user is able 
+      to define a variety of geometric shapes, and desired mesh densities.
     </p>
 
     <p>
@@ -37,10 +37,56 @@
     </p>
 
     <p>
-      Interested users should probably refer to the copy of <b>MESH2D</b>
+      Interested users should refer to the copy of <b>MESH2D</b>
       that is made available through the MATLAB Central File Exchange.
       This copy is essentially my personal working copy, to which I may
       have added comments, small coding changes, and extra tests and examples.
+    </p>
+
+    <p>
+      The MESH2D routines include a call to a function called wbar().
+      The call to this function fails on my system, and since it
+      seems to have no importance whatsoever, I commented it out.
+      (I believe it is intended to generate a "wait bar", similar 
+      to the hourglass or beachball or wristwatch icons.
+    </p>
+
+    <p>
+      The MESH2D function "mytsearch()" was originally written to call
+      MATLAB's "tsearch()" function.  The tsearch() function has since been
+      removed from MATLAB.   Therefore, the call to tsearch() also
+      causes MESH2D to fail!
+    </p>
+
+    <p>
+      One alternative is a file called
+      tsearch_mex.c, which searches a triangulation to determine which triangle
+      contains each point.  It does not require that the triangulation be
+      Delaunay.  To use this function with MATLAB, you need to apply MATLAB's
+      MEX compiler...if you have never used the MEX compiler before, you may
+      have some difficulty, since you need to determine that you have the MEX
+      compiler, that you have a C or C++ compiler on your system, that MEX
+      knows where these compilers are, and that you know how to invoke MEX
+      to compile the function.  That should be something like
+      <pre>
+        mex tsearch_mex.c
+      </pre>
+      (The second time you do something like this is, of course, a hundred 
+      times easier and only half as mysterious!)
+    </p>
+
+    <p>
+      A second alternative is to replace the call to tsearch() by a 
+      call to MATLAB's replacement function DelaunayTri; however, a simple
+      substitution of one call for the other does not quite work.  There is,
+      apparently, some feature of tsearch() that is not available in 
+      DelaunayTri().  In particular, it may be that tsearch() did not require
+      the triangulation to be Delaunay...
+    </p>
+
+    <p>
+      A third alternative is to replace the call to tsearch(x,y,t,px,py) by a 
+      call to tsearchn([x y], t, [px py] ), which seems to work.
     </p>
 
     <h3 align = "center">
@@ -63,8 +109,8 @@
         <li>
           <i>edge</i>, optional input, a V by 2 list of pairs of indices in the
           <i>vertices</i> array that constitute the edges of the polygonal boundary.
-          If <i>vertices</i> is actually already in order, then <i>edge</i>, if specified,
-          would contain the values [1,2; 2,3; 3,4; ... ; V,1].
+          If <i>vertices</i> is actually already in order, then <i>edge</i>, if
+          specified, would contain the values [1,2; 2,3; 3,4; ... ; V,1].
         </li>
         <li>
           <i>hdata</i>, optional input, a structure containing element size information
@@ -174,6 +220,15 @@ POSSIBILITY OF SUCH DAMAGE.
     </pre>
 
     <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>MESH2D</b> is available in
+      <a href = "../../m_src/mesh2d/mesh2d.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
       Related Data and Programs:
     </h3>
 
@@ -186,10 +241,36 @@ POSSIBILITY OF SUCH DAMAGE.
     </p>
 
     <p>
+      <a href = "../../m_src/mesh2d_hand/mesh2d_hand.html">
+      MESH2D_HAND</a>,
+      a MATLAB program which
+      reads in a set of 59 points which outline a human hand,
+      and calls MESH2D, which is able to create a fine triangular
+      mesh of the region outlined by the points.
+    </p>
+
+    <p>
+      <a href = "../../m_src/mesh2d_to_medit/mesh2d_to_medit.html">
+      MESH2D_TO_MEDIT</a>,
+      a MATLAB program which
+      accepts the nodes and triangles of a mesh created by MESH2D
+      and creates a corresponding file that is in MEDIT format.
+    </p>
+
+    <p>
       <a href = "../../m_src/mesh2d_write/mesh2d_write.html">
       MESH2D_WRITE</a>,
       a MATLAB program which
       demonstrates how node and element data from MESH2D can be written to files.
+    </p>
+
+    <p>
+      <a href = "../../m_src/meshfaces/meshfaces.html">
+      MESHFACES</a>,
+      a MATLAB library which
+      can automatically create a triangular mesh for a given polygonal region
+      that has been subdivided into multiple faces,
+      by Darren Engwirda.
     </p>
 
     <p>
@@ -211,7 +292,17 @@ POSSIBILITY OF SUCH DAMAGE.
       <a href = "../../m_src/triangulation/triangulation.html">
       TRIANGULATION</a>,
       a MATLAB library which
-      performs various operations on order 3 ("linear") or order 6 ("quadratic") triangulations.
+      performs various operations on order 3 ("linear") or order 6
+      ("quadratic") triangulations.
+    </p>
+
+    <p>
+      <a href = "../../m_src/tsearch/tsearch.html">
+      TSEARCH</a>,
+      a MATLAB library which
+      compares several replacements for MATLAB's obsolete tsearch() function,
+      which searched a Delaunay triangulation to find the triangle
+      that encloses a given point.
     </p>
 
     <h3 align = "center">
@@ -222,13 +313,16 @@ POSSIBILITY OF SUCH DAMAGE.
       Darren Engwirda
     </p>
 
-
     <h3 align = "center">
       Source Code:
     </h3>
 
     <p>
       <ul>
+        <li>
+          <a href = "centroid_mesh.m">centroid_mesh.m</a>
+          returns the centroids of the triangles that make up a mesh.
+        </li>
         <li>
           <a href = "checkgeometry.m">checkgeometry.m</a>
           checks a geometry input for MESH2D.
@@ -262,6 +356,11 @@ POSSIBILITY OF SUCH DAMAGE.
           <a href = "mesh2d.m">mesh2d.m</a>
           generates a triangular mesh for a polygon, which
           can include cavities.
+        </li>
+        <li>
+          <a href = "mesh2d_to_xml.m">mesh2d_to_xml.m</a>
+          writes the MESH2D node and element mesh data to an XML file
+          for use by FENICS. 
         </li>
         <li>
           <a href = "meshfaces.m">meshfaces.m</a>
@@ -307,9 +406,15 @@ POSSIBILITY OF SUCH DAMAGE.
           vertices are given in counterclockwise order.
         </li>
         <li>
-          <a href = "tsearch_mex.c">tsearch_mex.c</a>
-          a C file, which must be compiled within MATLAB (once) using the command
-          "mex tsearch_mex", which carries out a search of the triangulation.
+          <a href = "tsearch_mex.c">tsearch_mex.c</a>,
+          which carries out a search of the triangulation; Matlab's "tsearch()" function
+          already does this, but is a) officially obsolete, resulting in lots of warnings;
+          b) requires that the triangulation be Delaunay.
+          In "mytsearch()", replace the call to "tsearch()" by a call to "tsearch_mex()".
+          To use this file, it must be compiled within MATLAB (once) using a command like
+          <pre>
+            mex tsearch_mex.c
+          </pre> 
         </li>
       </ul>
     </p>
@@ -331,6 +436,139 @@ POSSIBILITY OF SUCH DAMAGE.
         <li>
           <a href = "meshdemo.m">meshdemo.m</a>
           demonstrates the use of MESH2D.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>AIRFOIL_EXTERIOR_DEMO</b> draws a mesh around the outside of an airfoil.  
+      The mesh uses 621 nodes and 1015 elements.
+      <ul>
+        <li>
+          <a href = "airfoil_exterior_demo.m">airfoil_exterior_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "airfoil.txt">airfoil.txt</a>
+          the coordinates of 102 points that trace out the shape of
+          the airfoil, in clockwise direction.
+        </li>
+        <li>
+          <a href = "airfoil_exterior_elements.png">airfoil_exterior_elements.png</a>
+          an image of the elements.
+        </li>
+        <li>
+          <a href = "airfoil_exterior_nodes.png">airfoil_exterior_nodes.png</a>
+          an image of the nodes.
+        </li>
+        <li>
+          <a href = "airfoil_exterior_vertices.png">airfoil_exterior_vertices.png</a>
+          an image of the vertices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>AIRFOIL_INTERIOR_DEMO</b> draws a mesh inside an airfoil.  
+      The mesh uses 246 nodes and 369 elements.
+      <ul>
+        <li>
+          <a href = "airfoil_interior_demo.m">airfoil_interior_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "airfoil.txt">airfoil.txt</a>
+          the coordinates of 102 points that trace out the shape of
+          the airfoil, in clockwise direction.
+        </li>
+        <li>
+          <a href = "airfoil_interior_elements.png">airfoil_interior_elements.png</a>
+          an image of the elements.
+        </li>
+        <li>
+          <a href = "airfoil_interior_vertices.png">airfoil_interior_vertices.png</a>
+          an image of the vertices.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BAFFLE_DEMO</b> considers a rectangular region containing 13 hexagonal 
+      baffles or obstacles.  The mesh uses 512 nodes and 874 elements.
+      <ul>
+        <li>
+          <a href = "baffle_demo.m">baffle_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "baffle_elements.png">baffle_elements.png</a>
+          the elements created when we set a maximum element size of 0.5.
+        </li>
+        <li>
+          <a href = "baffle_nodes.png">baffle_nodes.png</a>
+          the nodes created when we set a maximum element size of 0.5.
+        </li>
+        <li>
+          <a href = "baffle_vertices.png">baffle_vertices.png</a>
+          the vertices that define the region and the obstacles.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CIRCLE_DEMO</b> considers a circular region
+      with the interior and exterior boundaries each defined by 16 vertices.
+      <ul>
+        <li>
+          <a href = "circle_demo.m">circle_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "circle_elements.txt">circle_elements.txt</a>
+          the elements.
+        </li>
+        <li>
+          <a href = "circle_elements.png">circle_elements.png</a>
+          an image of the elements.
+        </li>
+        <li>
+          <a href = "circle_nodes.txt">circle_nodes.txt</a>
+          the nodes.
+        </li>
+        <li>
+          <a href = "circle_nodes.png">circle_nodes.png</a>
+          an image of the nodes.
+        </li>
+        <li>
+          <a href = "circle_vertices.png">circle_vertices.png</a>
+          the vertices that define the region.
+        </li>
+        <li>
+          <a href = "circle.xml">circle.xml</a>
+          an XML file defining the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>CIRCLES_DEMO</b> considers a circular region with an off-center hole,
+      with the interior and exterior boundaries each defined by 16 vertices.
+      <ul>
+        <li>
+          <a href = "circles_demo.m">circles_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "circles_elements.png">circles_elements.png</a>
+          the elements created when we set a maximum element size of 0.25.
+        </li>
+        <li>
+          <a href = "circles_nodes.png">circles_nodes.png</a>
+          the nodes created when we set a maximum element size of 0.25.
+        </li>
+        <li>
+          <a href = "circles_vertices.png">circles_vertices.png</a>
+          the vertices that define the region and the obstacles.
         </li>
       </ul>
     </p>
@@ -405,6 +643,87 @@ POSSIBILITY OF SUCH DAMAGE.
     </p>
 
     <p>
+      <b>RECTANGLE_MINUS_CIRCLE_DEMO</b> considers a region of a rectangle
+      minus circular region with the interior and exterior boundaries 
+      each defined by 16 vertices.
+      <ul>
+        <li>
+          <a href = "rectangle_minus_circle_demo.m">rectangle_minus_circle_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle_elements.txt">rectangle_minus_circle_elements.txt</a>
+          the elements.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle_elements.png">rectangle_minus_circle_elements.png</a>
+          an image of the elements.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle_nodes.txt">rectangle_minus_circle_nodes.txt</a>
+          the nodes.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle_nodes.png">rectangle_minus_circle_nodes.png</a>
+          an image of the nodes.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle_vertices.png">rectangle_minus_circle_vertices.png</a>
+          the vertices that define the region.
+        </li>
+        <li>
+          <a href = "rectangle_minus_circle.xml">rectangle_minus_circle.xml</a>
+          an XML file defining the mesh.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>REFINE_DEMO</b> demonstrates how the refinement feature of MESH2D 
+      can be controlled with a mask, which specifies that only certain
+      triangles should be refined, rather than all of them.  The masked
+      triangles are split into 4 subtriangles.  Triangles immediately neighboring
+      such triangles will be split in half.  Remaining triangles will be untouched.
+      <ul>
+        <li>
+          <a href = "refine_demo.m">refine_demo.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "refine_demo1.png">refine_demo1.png</a>
+          the initial mesh;
+        </li>
+        <li>
+          <a href = "refine_demo2.png">refine_demo2.png</a>
+          the mesh after refining all the triangles whose centroid has a Y
+          coordinate greater than 1/2.
+        </li>
+        <li>
+          <a href = "refine_demo3.png">refine_demo3.png</a>
+          the mesh after a second refinement, on all the triangles whose 
+          centroid has an X coordinate less than 1/2.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>SQUARE_BORDER</b> demonstrates how a constrained mesh can be created
+      using MESHFACES.  In this case, we have a square in a square.  We want
+      to mesh the two resulting regions in such a way that they share the
+      nodes along the common edges.
+      <ul>
+        <li>
+          <a href = "square_border.m">square_border.m</a>
+          the source code.
+        </li>
+        <li>
+          <a href = "square_border.png">square_border.png</a>
+          the mesh;
+        </li>
+      </ul>
+    </p>
+
+    <p>
       You can go up one level to <a href = "../m_src.html">
       the MATLAB source codes</a>.
     </p>
@@ -412,7 +731,7 @@ POSSIBILITY OF SUCH DAMAGE.
     <hr>
 
     <i>
-      Last revised on 25 April 2012.
+      Last revised on 11 November 2014.
     </i>
 
     <!-- John Burkardt -->

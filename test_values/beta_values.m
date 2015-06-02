@@ -17,7 +17,7 @@ function [ n_data, x, y, fxy ] = beta_values ( n_data )
 %  Properties:
 %
 %    Beta(X,Y) = Beta(Y,X).
-%    Beta(X,Y) = Integral ( 0 <= T <= 1 ) T**(X-1) (1-T)**(Y-1) dT.
+%    Beta(X,Y) = Integral ( 0 <= T <= 1 ) T^(X-1) (1-T)^(Y-1) dT.
 %    Beta(X,Y) = Gamma(X) * Gamma(Y) / Gamma(X+Y)
 %
 %  Licensing:

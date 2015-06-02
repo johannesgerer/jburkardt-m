@@ -1,8 +1,8 @@
-function a = sweet4 ( perturb )
+function a = sweet4 ( )
 
 %*****************************************************************************80
 %
-%% SWEET4 returns the Sweet4 Toeplitz matrix.
+%% SWEET4 returns the SWEET4 matrix.
 %
 %  Example:
 %
@@ -52,28 +52,23 @@ function a = sweet4 ( perturb )
 %
 %  Parameters:
 %
-%    Input, real PERTURB, the perturbation value to be added to the
-%    second subdiagonal entries.
-%
 %    Output, real A(13,13), the matrix.
 %
   n = 13;
 
-  value = [ ...
+  v = [ ...
   -0.5,  1.0,  -6.0,     1.0,    2.0, ...
   -1.0, -7.0,  28.361, -19.656, 12.755, ...
   -3.0,  1.0,   5.0,    -1.0,    6.0, ...
    2.0,  5.697, 5.850,   3.0,   -5.0, ...
   -2.0, -7.0,   1.0,    10.0,  -15.0 ];
 
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
 
-      a(i,j) = value ( j - i + 13 );
-
-      if ( j - i == -2 )
-        a(i,j) = a(i,j) + perturb;
-      end
+      a(i,j) = v ( j - i + 13 );
 
     end
   end

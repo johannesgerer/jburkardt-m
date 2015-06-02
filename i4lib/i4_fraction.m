@@ -34,7 +34,7 @@ function value = i4_fraction ( i, j )
 %
 %  Modified:
 %
-%    11 October 2010
+%    08 May 2013
 %
 %  Author:
 %
@@ -44,9 +44,9 @@ function value = i4_fraction ( i, j )
 %
 %    Input, integer I, J, the arguments.
 %
-%    Output, integer I4_FRACTION, the value of the ratio.
+%    Output, integer VALUE, the value of the ratio.
 %
-  i4_fraction = round ( i / j );
+  value = round ( i / j );
 
   return
 end

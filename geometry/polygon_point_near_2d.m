@@ -27,24 +27,24 @@ function [ pn, dist ] = polygon_point_near_2d ( n, v, p )
 %
 %    Output, real DIST, the distance from the point to the polygon.
 %
-  dim_num = 2;
+
 %
 %  Find the distance to each of the line segments that make up the edges
 %  of the polygon.
 %
   dist = Inf;
-  pn(1:dim_num,1) = 0.0;
+  pn(1:2,1) = 0.0;
 
   for j = 1 : n
 
     jp1 = i4_wrap ( j+1, 1, n );
 
-    [ pn2, dist2, tval ] = segment_point_near_2d ( v(1:dim_num,j), ...
-      v(1:dim_num,jp1), p );
+    [ pn2, dist2, tval ] = segment_point_near_2d ( v(1:2,j), ...
+      v(1:2,jp1), p );
 
     if ( dist2 < dist )
       dist = dist2;
-      pn(1:dim_num,1) = pn2(1:dim_num,1);
+      pn(1:2,1) = pn2(1:2,1);
     end
 
   end

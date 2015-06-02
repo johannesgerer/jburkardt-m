@@ -2,7 +2,7 @@ function a = summation_inverse ( n )
 
 %*****************************************************************************80
 %
-%% SUMMATION_INVERSE returns the inverse of the summation matrix.
+%% SUMMATION_INVERSE returns the inverse of the SUMMATION matrix.
 %
 %  Example:
 %
@@ -54,6 +54,8 @@ function a = summation_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       if ( i == j )

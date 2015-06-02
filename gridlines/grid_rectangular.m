@@ -16,7 +16,7 @@ function grid_rectangular ( xmin, xmax, xnum, ymin, ymax, ynum )
 %    plot ( x(1,:), x(2,:), 'b*' )
 %    grid_rectangular ( 0.0, 1.0, 11, 0.0, 1.0, 11 )
 %
-%    will plot 100 rando numbers, and draw a grid of 11 x 11 lines,
+%    will plot 100 random numbers, and draw a grid of 11 x 11 lines,
 %    creating 100 boxes.
 %
 %  Gratuitous Aside:

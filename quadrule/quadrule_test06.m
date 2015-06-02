@@ -1,8 +1,8 @@
-function quadrule_test07 ( )
+function quadrule_test06 ( )
 
 %*****************************************************************************80
 %
-%% TEST07 tests CHEBYSHEV2_COMPUTE and SUMMER.
+%% QUADRULE_TEST06 tests CHEBYSHEV2_COMPUTE.
 %
 %  Licensing:
 %
@@ -25,9 +25,8 @@ function quadrule_test07 ( )
   nsub = 1;
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST07\n' );
+  fprintf ( 1, 'QUADRULE_TEST06\n' );
   fprintf ( 1, '  CHEBYSHEV2_COMPUTE sets up Gauss-Chebyshev type 2 quadrature;\n' );
-  fprintf ( 1, '  SUMMER carries it out.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Integration interval is [%f, %f]\n', a, b );
   fprintf ( 1, '  Number of subintervals is %d\n', nsub );
@@ -58,9 +57,12 @@ function quadrule_test07 ( )
 
         [ xtab, weight ] = chebyshev2_compute ( order );
 
-        result(i) = summer ( @func, order, xtab, weight );
+        result = 0.0;
+        for j = 1 : order
+          result = result + weight(j) * func ( xtab(j) );
+        end
 
-        fprintf ( 1, '  %12f', result(i) );
+        fprintf ( 1, '  %12f', result );
 
       end
 

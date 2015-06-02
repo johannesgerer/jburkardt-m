@@ -1,7 +1,6 @@
 function v = r8mat_diag_get_vector ( n, a )
 %*****************************************************************************80
 %
-
 %% R8MAT_DIAG_GET_VECTOR gets the value of the diagonal of an R8MAT.
 %
 %  Licensing:

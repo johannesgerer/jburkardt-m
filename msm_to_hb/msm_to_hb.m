@@ -14,23 +14,29 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
 %
 %      msm_to_hb ( output_filename, A )
 %
+%  Licensing:
+%
+%    This code is distributed under the GNU LGPL license.
+%
 %  Modified:
 %
-%    28 April 2004
+%    20 January 2014
 %
 %  Author:
 %
-%    Xiaoye Li, UC Berkeley. 
+%    Xiaoye Li
+%    Modified by John Burkardt
 %
 %  Parameters:
 %
-%    Input, string OUTPUT_FILENAME, the name of the file to which the information
-%    should be written.
+%    Input, string OUTPUT_FILENAME, the name of the file to which the 
+%    information should be written.
 %
-%    Input, sparse matrix A, the NROW by NCOL matrix, stored in MATLAB sparse 
+%    Input, sparse matrix A(NROW,NCOL), the matrix, stored in MATLAB sparse 
 %    matrix format, which is to be written to the file.
 %
-%    Input, real RHS(NRHS,NROW), the right-hand side array, accessed only if ( 2 < JOB).
+%    Input, real RHS(NRHS,NROW), the right-hand side array, accessed only 
+%    if ( 2 < JOB ).
 %
 %    Input, string TITLE, a title of up to 72 characters.
 %    TITLE defaults to 'Title'.
@@ -45,7 +51,8 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
 %    * IFMT < 100 chooses the format Dxx.yy, in which yy is precisely IFMT 
 %      and xx is IFMT+7.
 %    * 100 < IFMT chooses the format Fxx.yy, in which the length of the mantissa 
-%      yy is the integer mod(ifmt,100) and the length of the integer part is IFMT/100.
+%      yy is the integer mod(ifmt,100) and the length of the integer part is
+%      IFMT/100.
 %    For example:
 %    * IFMT =   4 means  E11.4   [-]x.xxxxE+ee    
 %    * IFMT = 104 means  F7.4    [-]x.xxxx
@@ -58,11 +65,6 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
 %    * K+2, write structure, matrix and K successive right-hand sides.
 %    JOB defaults to 2.
 %
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'MSM_TO_HB:\n' );
-  fprintf ( 1, '  Write a MATLAB Sparse Matrix \n' );
-  fprintf ( 1, '  to a Harwell Boeing Sparse matrix file.\n' );
-
   [ nrow, ncol ] = size ( A );
   nnzeros = nnz ( A );
   n = ncol;
@@ -120,8 +122,8 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
   ptr_len = len;
   ptr_nperline = nperline;
   ptrcrd = floor ( ncol / nperline ) + 1;
-  s1 = int2str ( len );
-  s2 = int2str ( nperline );
+  s1 = int2str ( nperline );
+  s2 = int2str ( len );
   ptrfmt = [ '(' s1 'I' s2 ')' ];
 %
 %  Determine the FORTRAN format for the row index array.
@@ -140,11 +142,14 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
   rhscrd = 0;
   c_valfmt = [];
 
+  MARGIN = 1;
+
   if ( 1 < job )
+
     if ( 100 <= ifmt )
       ihead = floor ( ifmt / 100 );
       ifmt = ifmt - 100 * ihead;
-      len = ihead + ifmt + 2;
+      len = ihead + ifmt + 2 + MARGIN;
       nperline = floor ( 80 / len );
       c_len = len;
       for i = 1 : nperline
@@ -152,7 +157,7 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
       end
       valfmt = [ int2str ( nperline ) 'F' int2str ( len ) '.' int2str ( ifmt ) ];
     else
-      len = ifmt + 7;
+      len = ifmt + 7 + MARGIN;
       nperline = floor ( 80 / len );
       c_len = len;
       s1 = int2str ( c_len );
@@ -165,9 +170,11 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
       s3 = int2str ( ifmt );
       valfmt = [ s1 'E' s2 '.' s3 ];
     end
+
     valcrd = floor ( ( nnzeros - 1 ) / nperline ) + 1;
     valfmt = [ '(' valfmt ')' ];
     c_valfmt = [ c_valfmt '\n' ];
+
   end
 
   nrhs = job - 2;
@@ -197,13 +204,14 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
 %
 %  Line 2
 %
-  fprintf ( fid, '%14d%14d%14d%14d%14d\n', totcrd, ptrcrd, indcrd, valcrd, rhscrd );
+  fprintf ( fid, '%14d%14d%14d%14d%14d\n', ...
+    totcrd, ptrcrd, indcrd, valcrd, rhscrd );
 %
 %  Line 3
 %
   t = type; 
   m = size ( t, 2 );
-  for i = m+1 : 14 
+  for i = m + 1 : 14 
     t = [ t ' ' ]; 
   end
   fprintf ( fid, '%14s', t );
@@ -213,7 +221,7 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
 %
   t = ptrfmt; 
   m = size ( t, 2 );
-  for i = m+1 : 16
+  for i = m + 1 : 16
     t = [ t ' ' ];
   end
   fprintf ( fid, '%16s', t );
@@ -230,6 +238,13 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
   end
   fprintf ( fid, '%20s', t );
   fprintf ( fid, '%20s\n', t );
+%
+%  Line 5, if NRHS > 0.
+%
+  if ( 0 < nrhs )
+    nhrsix = nrow;
+    fprintf ( fid, 'F**           %14d%14d\n', nrhs, nhrsix );
+  end
 %
 %  Column pointers
 %
@@ -259,28 +274,23 @@ function msm_to_hb ( output_filename, A, rhs, title, key, type, ifmt, job )
     fprintf ( fid, '\n' );
   end
 %
-%  Numerical values of nonzero elements of the matrix.
+%  Numerical values of nonzero elements of the matrix,
+%  and right hand side if supplied.
 %
   if ( 2 <= job )
     if ( job == 2 )
-    	fprintf ( fid, c_valfmt, a(1:nnzeros) );
+      fprintf ( fid, c_valfmt, a(1:nnzeros) );
     else
-    	fprintf ( fid, c_valfmt, a(1:nnzeros) );
-	if ( nperline < nnzeros & ...
+      fprintf ( fid, c_valfmt, a(1:nnzeros) );
+      if ( nperline < nnzeros & ...
         nnzeros/nperline ~= floor ( nnzeros / nperline ) )
-	    fprintf ( fid, '\n' );
-	end
-	fprintf ( fid, c_valfmt, rhs(1:nrhs*nrow) );
+        fprintf ( fid, '\n' );
+      end
+      fprintf ( fid, c_valfmt, rhs(1:nrhs*nrow) );
     end
   end
 
   fclose ( fid );
-%
-%  Say goodbye.
-%
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'MSM_TO_HB:\n' );
-  fprintf ( 1, '  Normal end of execution.\n' );
 
   return
 end

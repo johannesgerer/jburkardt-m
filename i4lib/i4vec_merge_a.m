@@ -46,7 +46,7 @@ function [ nc, c ] = i4vec_merge_a ( na, a, nb, b )
 
   order = i4vec_order_type ( na2, a );
 
-  if ( order < 0 | 2 < order )
+  if ( order < 0 || 2 < order )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4VEC_MERGE_A - Fatal error!\n' );
     fprintf ( 1, '  The input array A is not ascending sorted!\n' );
@@ -55,7 +55,7 @@ function [ nc, c ] = i4vec_merge_a ( na, a, nb, b )
 
   order = i4vec_order_type ( nb2, b );
 
-  if ( order < 0 | 2 < order )
+  if ( order < 0 || 2 < order )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'I4VEC_MERGE_A - Fatal error!\n' );
     fprintf ( 1, '  The input array B is not ascending sorted!\n' );

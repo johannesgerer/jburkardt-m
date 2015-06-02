@@ -1,8 +1,8 @@
-function triangle_grid_test01 ( )
+function triangle_grid_test02 ( )
 
 %*****************************************************************************80
 %
-%% TRIANGLE_GRID_TEST01 tests TRIANGLE_GRID.
+%% TRIANGLE_GRID_TEST02 tests TRIANGLE_GRID.
 %
 %  Licensing:
 %
@@ -10,14 +10,14 @@ function triangle_grid_test01 ( )
 %
 %  Modified:
 %
-%    01 September 2010
+%    09 April 2015
 %
 %  Author:
 %
 %    John Burkardt
 %
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01:\n' );
+  fprintf ( 1, 'TEST02:\n' );
   fprintf ( 1, '  TRIANGLE_GRID can define a triangular grid\n' );
   fprintf ( 1, '  with N+1 points on a side, based on any triangle.\n' );
 
@@ -36,14 +36,10 @@ function triangle_grid_test01 ( )
   for j = 1 : 3
     fprintf ( 1, '  %4d  %12f  %12f\n', j, t(1:2,j) );
   end
+
   tg = triangle_grid ( n, t );
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '     J      X      Y\n' );
-  fprintf ( 1, '\n' );
-  for j = 1 : ng
-    fprintf ( 1, '  %4d  %12f  %12f\n', j, tg(1:2,j) );
-  end
+  r82vec_print_part ( ng, tg, 25, 'Part of the grid' )
 
   filename = 'triangle_grid_test02.xy';
 

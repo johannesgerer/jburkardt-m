@@ -2,7 +2,7 @@ function matrix_exponential_test ( )
 
 %*****************************************************************************80
 %
-%% MATRIX_EXPONENTIAL_TEST tests some matrix exponential algorithms.
+%% MATRIX_EXPONENTIAL_TEST tests the MATRIX_EXPONENTIAL library.
 %
 %  Licensing:
 %
@@ -10,12 +10,13 @@ function matrix_exponential_test ( )
 %
 %  Modified:
 %
-%    17 October 2012
+%    05 March 2013
 %
 %  Author:
 %
 %    John Burkardt
 %
+  addpath ( '../c8lib' )
   addpath ( '../r8lib' )
   addpath ( '../test_matrix_exponential' )
 
@@ -28,6 +29,7 @@ function matrix_exponential_test ( )
   fprintf ( 1, '  The test needs the TEST_MATRIX_EXPONENTIAL library.\n' );
 
   matrix_exponential_test01 ( );
+  matrix_exponential_test02 ( );
 %
 %  Terminate.
 %
@@ -37,6 +39,7 @@ function matrix_exponential_test ( )
   fprintf ( 1, '\n' );
   timestamp ( );
 
+  rmpath ( '../c8lib' )
   rmpath ( '../r8lib' )
   rmpath ( '../test_matrix_exponential' )
 

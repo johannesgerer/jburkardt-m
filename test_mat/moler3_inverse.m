@@ -22,7 +22,9 @@ function a = moler3_inverse ( n )
 %
 %    Output, real A(N,N), the matrix.
 %
-  l(1:n,1:n) = 0.0;
+  a = zeros ( n, n );
+
+  l = zeros ( n, n );
 
   for j = 1 : n
     l(j,j) = 1.0;

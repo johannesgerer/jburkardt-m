@@ -2,7 +2,7 @@ function fem_io_test ( )
 
 %*****************************************************************************80
 %
-%% FEM_IO_TEST runs the FEM_IO tests.
+%% FEM_IO_TEST tests the FEM_IO library.
 %
 %  Licensing:
 %
@@ -19,6 +19,7 @@ function fem_io_test ( )
   timestamp ( );
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM_IO_TEST\n' );
+  fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '  Test the FEM_IO library.\n' );
 
   fem_io_test01 ( );
@@ -29,7 +30,6 @@ function fem_io_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'FEM_IO_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

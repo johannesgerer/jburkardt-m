@@ -55,7 +55,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
     al = 0.0;
     be = 0.0;
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );
@@ -70,7 +70,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
     al = -0.5;
     be = -0.5;
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );
@@ -85,7 +85,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
     al = alpha;
     be = alpha;
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );
@@ -100,7 +100,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
     al = alpha;
     be = beta;
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );
@@ -139,7 +139,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
     al = alpha;
     be = 0.0;
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );
@@ -163,7 +163,7 @@ function w = scmm ( m, kind, alpha, beta, a, b )
 
   elseif ( kind == 9 )
 
-    if ( ( b - a ) <= temp)
+    if ( ( b - a ) <= temp )
       fprintf ( 1, '\n' );
       fprintf ( 1, 'SCMM - Fatal error!\n' );
       fprintf ( 1, '  B - A too small!\n' );

@@ -26,7 +26,7 @@ function quadrule_test11 ( )
   fprintf ( 1, '  SUMMER_GK carries it out.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Integration interval is [-1, 1].\n' );
-  fprintf ( 1, '  Integrand is X**2 / SQRT ( 1.1 - X**2 ).\n' );
+  fprintf ( 1, '  Integrand is X^2 / SQRT ( 1.1 - X^2 ).\n' );
   fprintf ( 1, '\n' );
 
   [ xtabg, weightg ] = legendre_set ( norderg );

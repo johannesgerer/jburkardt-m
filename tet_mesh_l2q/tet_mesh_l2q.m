@@ -31,7 +31,7 @@ function tet_mesh_l2q ( prefix )
 %
 %    Input, string PREFIX, the common filename prefix.
 %
-  tetra_order2 = 10;
+  element_order2 = 10;
   
   fprintf ( 1, '\n' );
   timestamp ( );
@@ -43,12 +43,12 @@ function tet_mesh_l2q ( prefix )
   fprintf ( 1, '  write out a "quadratic" tet mesh.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Read a dataset of NODE_NUM1 points in 3 dimensions.\n' );
-  fprintf ( 1, '  Read an associated tet mesh of TETRA_NUM\n' );
-  fprintf ( 1, '  tetrahedrons, using 4 nodes per tetrahedron.\n' );
+  fprintf ( 1, '  Read an associated tet mesh of ELEMENT_NUM\n' );
+  fprintf ( 1, '  tetrahedral elements, using 4 nodes per element.\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Create new nodes which are midpoints of sides,\n' );
   fprintf ( 1, '  generate new node and tet mesh data for\n' );
-  fprintf ( 1, '  quadratic 10-node tetrahedrons, and write them out.\n' );
+  fprintf ( 1, '  quadratic 10-node elements, and write them out.\n' );
 %
 %  Argument 1 is the common file prefix.
 %
@@ -89,9 +89,9 @@ function tet_mesh_l2q ( prefix )
 %
 %  Read the element data.
 %
-  [ tetra_order1, tetra_num ] = i4mat_header_read ( input_element_filename );
+  [ element_order1, element_num ] = i4mat_header_read ( input_element_filename );
 
-  if ( tetra_order1 ~= 4 )
+  if ( element_order1 ~= 4 )
     fprintf ( 1, '\n' );
     fprintf ( 1, 'TET_MESH_L2Q - Fatal error!\n' );
     fprintf ( 1, '  Data is not for a 4-node tet mesh.\n' );
@@ -101,52 +101,52 @@ function tet_mesh_l2q ( prefix )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Read the header of "%s".\n', input_element_filename );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  Tetrahedron order = %d\n', tetra_order1 );
-  fprintf ( 1, '  Number of tetras  = %d\n', tetra_num );
+  fprintf ( 1, '  Element order = %d\n', element_order1 );
+  fprintf ( 1, '  Number of elements  = %d\n', element_num );
 
-  tetra_node1 = i4mat_data_read ( input_element_filename, tetra_order1, ...
-    tetra_num );
+  element_node1 = i4mat_data_read ( input_element_filename, element_order1, ...
+    element_num );
 
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Read the data in "%s".\n', input_element_filename );
 
-  i4mat_transpose_print_some ( tetra_order1, tetra_num, ...
-    tetra_node1, 1, 1, tetra_order1, 5, '  First 5 tetrahedrons:' );
+  i4mat_transpose_print_some ( element_order1, element_num, ...
+    element_node1, 1, 1, element_order1, 5, '  First 5 elements:' );
 %
 %  Detect and correct 0-based indexing.
 %
-  tetra_node1 = mesh_base_one ( node_num1, tetra_order1, tetra_num, ...
-    tetra_node1 );
+  element_node1 = mesh_base_one ( node_num1, element_order1, element_num, ...
+    element_node1 );
 %
 %  Compute the quadratic mesh.
 %
   [ edge_data, node_num2 ] = tet_mesh_order4_to_order10_size ( ...
-    tetra_num, tetra_node1, node_num1 );
+    element_num, element_node1, node_num1 );
 
   fprintf ( 1, '  Number of quadratic nodes = %d\n', node_num2 );
 
-  [ tetra_node2, node_xyz2 ] = tet_mesh_order4_to_order10_compute ( ...
-    tetra_num, tetra_node1, node_num1, node_xyz1, edge_data,  node_num2 );
+  [ element_node2, node_xyz2 ] = tet_mesh_order4_to_order10_compute ( ...
+    element_num, element_node1, node_num1, node_xyz1, edge_data,  node_num2 );
 %
 %  Print a small amount of the quadratic data.
 %
   r8mat_transpose_print_some ( dim_num, node_num2, node_xyz2, ...
     1, 1, dim_num, 5, '  First 5 quadratic nodes:' );
 
-  i4mat_transpose_print_some ( tetra_order2, tetra_num, tetra_node2, ...
-    1, 1, tetra_order2, 5, '  First 5 quadratic tetrahedrons' );
+  i4mat_transpose_print_some ( element_order2, element_num, element_node2, ...
+    1, 1, element_order2, 5, '  First 5 quadratic elements' );
 %
-%  Write out the node and tetra data for the quadratic mesh
+%  Write out the node and element data for the quadratic mesh
 %
   r8mat_write ( output_node_filename, dim_num, node_num2, node_xyz2 );
 
   fprintf ( 1, '  Wrote the quadratic nodes to "%s".\n', ...
     output_node_filename );
 
-  i4mat_write ( output_element_filename, tetra_order2, tetra_num, ...
-    tetra_node2 );
+  i4mat_write ( output_element_filename, element_order2, element_num, ...
+    element_node2 );
 
-  fprintf ( 1, '  Wrote the quadratic tetrahedrons to "%s".\n', ...
+  fprintf ( 1, '  Wrote the quadratic elements to "%s".\n', ...
     output_element_filename );
 %
 %  Terminate.

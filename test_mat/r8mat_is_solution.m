@@ -6,7 +6,7 @@ function error_frobenius = r8mat_is_solution ( m, n, k, a, x, b, error )
 %
 %  Discussion:
 %
-%    An R8MAT is a matrix of real ( kind = 8 ) values.
+%    An R8MAT is a matrix of real values.
 %
 %    The system matrix A is an M x N matrix.
 %    It is not required that A be invertible.

@@ -47,7 +47,7 @@ function histogram_display ( input_file_name )
   fprintf ( 1, '  (average) X value, the other columns are histograms.\n' );
   fprintf ( 1, '  Display a stacked histogram of all the data.\n' );
 
-  if ( s_len_trim ( input_file_name ) <= 0 )
+  if ( nargin < 1 )
     fprintf ( 1, '\n' );
     input_file_name = input ( 'Enter the name of the input file.' );
   end
@@ -74,7 +74,9 @@ function histogram_display ( input_file_name )
   title ( input_file_name );
 
   bar3 ( z(:,1), z(:,2:m), 'stacked' );
-
+%
+%  Terminate.
+%
   fprintf ( 1, '\n' );
   fprintf ( 1, 'HISTOGRAM_DISPLAY:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );

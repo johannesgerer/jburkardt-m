@@ -1,4 +1,4 @@
-function hermite_rule ( order, a, b, filename )
+function hermite_rule ( n, a, b, scale, filename )
 
 %*****************************************************************************80
 %
@@ -9,11 +9,26 @@ function hermite_rule ( order, a, b, filename )
 %    This program computes a Gauss-Hermite quadrature rule 
 %    and writes it to a file.
 %
+%    The integral to be approximated has the form
+%
+%      C * integral ( -oo < x < +oo ) f(x) rho(x) dx
+%
+%    where the weight rho(x) is:
+%
+%      rho(x) = exp ( - b * ( x - a )^2 ) * sqrt ( b / pi ) dx
+%
+%    and A and B are parameters.
+%
 %    The user specifies:
-%    * the ORDER (number of points) in the rule;
+%    * N, the number of points in the rule;
 %    * A, the center point;
 %    * B, the scale factor in the exponential;
+%    * SCALE, is 1 if the weights are to be normalized;
 %    * FILENAME, the root name of the output files.
+%
+%    If SCALE = 0, then the factor C in front of the integrand is 1.
+%    If SCALE is nonzero, then the factor C is sqrt ( B ) / sqrt ( PI ).
+%    which means that the function f(x)=1 will integrate to 1.
 %
 %  Licensing:
 %
@@ -21,7 +36,7 @@ function hermite_rule ( order, a, b, filename )
 %
 %  Modified:
 %
-%    24 February 2010
+%    06 February 2014
 %
 %  Author:
 %
@@ -33,21 +48,18 @@ function hermite_rule ( order, a, b, filename )
   fprintf ( 1, '  MATLAB version\n' );
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Compute a Gauss-Hermite rule for approximating\n' );
+  fprintf ( 1, '    integral ( -oo < x < +oo ) f(x) rho(x) dx\n' );
+  fprintf ( 1, '  where the weight rho(x) is:\n' );
+  fprintf ( 1, '    exp ( - b * ( x - a )^2 ) * sqrt ( b / pi ) dx\n' );
+  fprintf ( 1, '  using N points.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '    Integral ( -oo < x < +oo ) f(x) exp ( - b * ( x - a )^2 dx\n' );
+  fprintf ( 1, '  The user specifies N, A, B, SCALE, FILENAME.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  of order ORDER.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  The user specifies ORDER, A, B, and FILENAME.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  ORDER is the number of points;\n' );
-  fprintf ( 1, '\n' );
+  fprintf ( 1, '  N is the number of points;\n' );
   fprintf ( 1, '  A is the center point (typically 0).\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '  B is the exponential scale factor (typically 1).\n' );
-  fprintf ( 1, '\n' );
+  fprintf ( 1, '  SCALE is 1 if the weights are to be normalized.\n');
   fprintf ( 1, '  FILENAME is used to generate 3 files:\n' );
-  fprintf ( 1, '\n' );
   fprintf ( 1, '    filename_w.txt - the weight file\n' );
   fprintf ( 1, '    filename_x.txt - the abscissa file.\n' );
   fprintf ( 1, '    filename_r.txt - the region file.\n' );
@@ -57,41 +69,52 @@ function hermite_rule ( order, a, b, filename )
   alpha = 0.0;
   beta = 0.0;
 %
-%  Get ORDER.
+%  Get N.
 %
-  if ( 1 <= nargin )
-
-  else
-    order = input ( '  Enter the rule order ORDER.' );
+  if ( nargin < 1 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  N is the number of points in the rule, such as 5.\n' );
+    n = input ( '  Enter N: ' );
+  elseif ( ischar ( n ) )
+    n = str2num ( n );
   end
 %
 %  Get A.
 %
-  if ( 2 <= nargin )
-
-  else
+  if ( nargin < 2 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  A is the center point, typically 0.\n' );
     fprintf ( 1, '\n' );
-    a = input ( '  Enter the value of A.' );
+    a = input ( '  Enter A: ' );
+  elseif ( ischar ( a ) )
+    a = str2num ( a );
   end
 %
 %  Get B.
 %
-  if ( 3 <= nargin )
-
-  else
+  if ( nargin < 3 )
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  B is the exponential scale factor, typically 1.\n' );
+    fprintf ( 1, '  B is the scale factor, typically 0.5 or 1.0.\n' );
     fprintf ( 1, '\n' );
-    b = input ( '  Enter the value of B.' );
+    b = input ( '  Enter B: ' );
+  elseif ( ischar ( b ) )
+    b = str2num ( b );
+  end
+%
+%  Get SCALE.
+%
+  if ( nargin < 4 )
+    fprintf ( 1, '\n' );
+    fprintf ( 1, '  SCALE is 1 to normalize the weights, 0 otherwise.\n' );
+    fprintf ( 1, '\n' );
+    b = input ( '  Enter SCALE (0/1): ' );
+  elseif ( ischar ( scale ) )
+    scale = str2num ( scale );
   end
 %
 %  Get FILENAME.
 %
-  if ( 4 <= nargin )
-
-  else
+  if ( nargin < 5 )
     fprintf ( 1, '\n' );
     fprintf ( 1, '  FILENAME is the ''root name'' of the quadrature files).\n' );
     filename = input ( '  Enter FILENAME as a quoted string:' );
@@ -102,22 +125,33 @@ function hermite_rule ( order, a, b, filename )
   fprintf ( 1, '\n' );
   fprintf ( 1, '  Input summary:\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  ORDER  = %d\n', order );
+  fprintf ( 1, '  N = %d\n', n );
   fprintf ( 1, '  A = %f\n', a );
   fprintf ( 1, '  B = %f\n', b );
+  fprintf ( 1, '  SCALE = %d\n', scale );
   fprintf ( 1, '  FILENAME = "%s".\n', filename );
 %
 %  Construct the rule.
 %
   kind = 6;
-  [ x, w ] = cgqf ( order, kind, alpha, beta, a, b );
+  [ x, w ] = cgqf ( n, kind, alpha, beta, a, b );
 %
-%  Write the rule.
+%  Normalize the rule.
+%  This way, the weights add up to 1.
+%
+  if ( scale == 1.0 )
+    w(1:n) = w(1:n) * sqrt ( b ) / sqrt ( pi );
+  end
+%
+%  Set the R values to suggest an infinite interval.
 %
   r = zeros ( 2, 1 );
   r(1) = - r8_huge ( );
   r(2) =   r8_huge ( );
-  rule_write ( order, filename, x, w, r );
+%
+%  Write the rule.
+%
+  rule_write ( n, filename, x, w, r );
 %
 %  Terminate.
 %

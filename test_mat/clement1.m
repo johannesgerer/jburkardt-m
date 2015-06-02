@@ -2,14 +2,14 @@ function a = clement1 ( n )
 
 %*****************************************************************************80
 %
-%% CLEMENT1 returns the Clement1 matrix.
+%% CLEMENT1 returns the CLEMENT1 matrix.
 %
 %  Formula:
 %
 %    if ( J = I+1 )
-%      A(I,J) = I
-%    else if ( J = I-1 )
-%      A(I,J) = N-I
+%      A(I,J) = sqrt(I*(N-I))
+%    else if ( I = J+1 )
+%      A(I,J) = sqrt(J*(N-J))
 %    else
 %      A(I,J) = 0
 %
@@ -17,23 +17,27 @@ function a = clement1 ( n )
 %
 %    N = 5
 %
-%    . 1 . . .
-%    4 . 2 . .
-%    . 3 . 3 .
-%    . . 2 . 4
-%    . . . 1 .
+%       .    sqrt(4)    .       .       .
+%    sqrt(4)    .    sqrt(6)    .       .
+%       .    sqrt(6)    .    sqrt(6)    .
+%       .       .    sqrt(6)    .    sqrt(4)
+%       .       .       .    sqrt(4)    .
 %
 %  Properties:
 %
-%    A is banded, with bandwidth 3.
-%
-%    A is generally not symmetric: A' /= A.
-%
-%    A is integral: int ( A ) = A.
-%
 %    A is tridiagonal.
 %
+%    A is banded, with bandwidth 3.
+%
 %    Because A is tridiagonal, it has property A (bipartite).
+%
+%    A is symmetric: A' = A.
+%
+%    Because A is symmetric, it is normal.
+%
+%    Because A is normal, it is diagonalizable.
+%
+%    A is persymmetric: A(I,J) = A(N+1-J,N+1-I).
 %
 %    The diagonal of A is zero.
 %
@@ -47,11 +51,11 @@ function a = clement1 ( n )
 %
 %    If N is even,
 %
-%      det ( A ) = (-1)**(N/2) * ( N - 1 ) * ( N + 1 )**(N/2)
+%      det ( A ) = (-1)^(N/2) * (N-1) * (N+1)^(N/2)
 %
 %    and if N is odd,
 %
-%      det ( A ) = 0.
+%      det ( A ) = 0
 %
 %  Licensing:
 %
@@ -80,13 +84,15 @@ function a = clement1 ( n )
 %
   for i = 1 : n
     for j = 1 : n
-      if ( j == i+1 )
-        a(i,j) = i;
-      elseif ( j == i-1 )
-        a(i,j) = n - j;
+
+      if ( j == i + 1 )
+        a(i,j) = sqrt ( i * ( n - i ) );
+      elseif ( i == j + 1 )
+        a(i,j) = sqrt ( j * ( n - j ) );
       else
         a(i,j) = 0.0;
       end
+
     end
   end
 

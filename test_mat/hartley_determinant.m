@@ -1,8 +1,8 @@
-function determ = hartley_determinant ( n )
+function value = hartley_determinant ( n )
 
 %*****************************************************************************80
 %
-%% HARTLEY_DETERMINANT returns the determinant of the Hartley matrix.
+%% HARTLEY_DETERMINANT returns the determinant of the HARTLEY matrix.
 %
 %  Licensing:
 %
@@ -20,12 +20,12 @@ function determ = hartley_determinant ( n )
 %
 %    Input, integer N, the order of A.
 %
-%    Output, real DETERM, the determinant.
+%    Output, real VALUE, the determinant.
 %
   if ( mod ( n, 4 ) == 1 )
-    determ =   sqrt ( n^n );
+    value =   sqrt ( n ^ n );
   else
-    determ = - sqrt ( n^n );
+    value = - sqrt ( n ^ n );
   end
 
   return

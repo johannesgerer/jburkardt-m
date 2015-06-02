@@ -1,0 +1,225 @@
+<html>
+
+  <head>
+    <title>
+      FLAME_ODE - An Ordinary Differential Equation for Combustion
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FLAME_ODE <br> An Ordinary Differential Equation for Combustion
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FLAME_ODE</b> 
+      is a MATLAB library which 
+      considers an ordinary differential equation (ODE) which models
+      the growth of a ball of flame in a combustion process.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+ 
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FLAME_ODE</b> is available in
+      <a href = "../../m_src/flame_ode/flame_ode.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/dfield8/dfield8.html">
+      DFIELD8</a>,
+      a MATLAB program which
+      interactively displays the direction field of a differential equation,
+      by John Polking.
+    </p>
+
+    <p>
+      <a href = "../../m_src/ode_predator_prey/ode_predator_prey.html">
+      ODE_PREDATOR_PREY</a>, 
+      a MATLAB program which
+      solves a time-dependent predator-prey system using MATLAB's ODE23 solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/pplane8/pplane8.html">
+      PPLANE8</a>,
+      a MATLAB program which
+      interactively displays the phase plane of a differential equation,
+      by John Polking.
+    </p>
+
+    <p>
+      <a href = "../../m_src/rkf45/rkf45.html">
+      RKF45</a>, 
+      a MATLAB library which
+      implements the Runge-Kutta-Fehlberg ODE solver.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spring_ode/spring_ode.html">
+      SPRING_ODE</a>,
+      a MATLAB program which
+      shows how line printer graphics can be used to make a crude illustration
+      of a solution of the ordinary differential equation (ODE) that describes
+      the motion of a weight attached to a spring.
+    </p>
+
+    <p>
+      <a href = "../../m_src/spring_ode2/spring_ode2.html">
+      SPRING_ODE2</a>,
+      a MATLAB program which
+      shows how gnuplot graphics can be used to illustrate
+      a solution of the ordinary differential equation (ODE) that describes
+      the motion of a weight attached to a spring.
+    </p>
+
+    <p>
+      <a href = "../../m_src/test_ode/test_ode.html">
+      TEST_ODE</a>,
+      a MATLAB library which
+      defines ordinary differential equations (ODE) test problems.
+    </p>
+
+    <h3 align = "center">
+      References:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Shirley Abelman, Kailash Patidar,<br>
+          Comparison of some recent numerical methods for initial-value problems
+          for stiff ordinary differential equations,<br>
+          Computers and Mathematics with Applications,<br>
+          Volume 55, Number 4, 2008, pages 733-744.
+        </li>
+        </li>
+          Cleve Moler,<br>
+          Cleve's Corner: Stiff Differential Equations,<br>
+          MATLAB News and Notes,<br>
+          May 2003, pages 12-13.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <b>FLAME_FUN</b> is a function which defines the right hand side of the ODE,
+      in a format required by MATLAB's ode45() function.
+      <ul>
+        <li>
+          <a href = "flame_fun.m">flame_fun.m</a>, 
+          code defining the right hand side of the ODE.
+        </li>
+        <li>
+          <a href = "event_function.m">event_function.m</a>, 
+          code which can tell ODE45 to watch out for the time at which
+          the solution achieves the value 0.99.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>BASE_RUN</b> solves the problem with DELTA=0.01, and plots the solution.
+      <ul>
+        <li>
+          <a href = "base_run.m">base_run.m</a>, 
+          the source code.
+        </li>
+        <li>
+          <a href = "base_run_output.txt">base_run_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "base_run.png">base_run.png</a>, 
+          a plot of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>UNIFORM_RUN</b> solves the problem multiple times, using a value of DELTA that
+      is the product of the base value 0.01 times a factor whose logarithm base 2 varies
+      uniformly between -1 and 1.  The quantity of interest Q is the time at which the
+      solution reaches the value 0.99.  The program plots the solution curves, as well as
+      the observed values of Q as a function of DELTA.
+      <ul>
+        <li>
+          <a href = "uniform_run.m">uniform_run.m</a>, 
+          the source code.
+        </li>
+        <li>
+          <a href = "uniform_run_output.txt">uniform_run_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "uniform_run.png">uniform_run.png</a>, 
+          a plot of the solutions.
+        </li>
+        <li>
+          <a href = "uniform_qoi.png">uniform_qoi.png</a>, 
+          a plot of the quantity of interest as a function of delta.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      <b>QOI_QUAD</b> assumes that the actual value of DELTA can be written as
+      DELTA = 2^U*DELTA_BASE, where DELTA_BASE is 0.01 and U is a number that
+      is uniformly distributed in [-1,+1].  We now seek to estimate the expected
+      value of the quantity of interest using a Clenshaw-Curtis quadrature rule
+      to select values of U, compute the quantity of interest, and weight them.
+      <ul>
+        <li>
+          <a href = "qoi_quad.m">qoi_quad.m</a>, 
+          the source code.
+        </li>
+        <li>
+          <a href = "qoi_quad_output.txt">qoi_quad_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "clenshaw_curtis_compute.m">clenshaw_curtis_compute.m</a>, 
+          a function which computes points and weights of a Clenshaw Curtis quadrature rule.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 18 February 2013.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -4,10 +4,23 @@ function value = r8_factorial2 ( n )
 %
 %% R8_FACTORIAL2 computes the double factorial function.
 %
-%  Formula:
+%  Discussion:
 %
 %    FACTORIAL2( N ) = Product ( N * (N-2) * (N-4) * ... * 2 )  (N even)
 %                    = Product ( N * (N-2) * (N-4) * ... * 1 )  (N odd)
+%
+%    N  Value
+%    -  -----
+%    1      1
+%    2      2
+%    3      3
+%    4      8
+%    5     15
+%    6     48
+%    7    105
+%    8    384
+%    9    945
+%   10   3840
 %
 %  Licensing:
 %

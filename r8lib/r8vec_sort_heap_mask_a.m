@@ -27,7 +27,7 @@ function indx = r8vec_sort_heap_mask_a ( n, a, mask_num, mask )
 %
 %  Modified:
 %
-%    02 November 2005
+%    27 September 2014
 %
 %  Author:
 %
@@ -62,7 +62,7 @@ function indx = r8vec_sort_heap_mask_a ( n, a, mask_num, mask )
     return
   end
 
-  indx = i4vec_indicator ( mask_num );
+  indx = i4vec_indicator1 ( mask_num );
 
   l = floor ( mask_num / 2 ) + 1;
   ir = mask_num;

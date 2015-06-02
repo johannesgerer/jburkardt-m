@@ -68,7 +68,8 @@ function qfsum = cegqf ( nt, kind, alpha, beta, a, b, f )
 %
 %  Compute the quadrature rule.
 %
-  [ t, wts ] = cgqf ( nt, kind, alpha, beta, a, b );
+  lo = 0;
+  [ t, wts ] = cgqf ( nt, kind, alpha, beta, lo, a, b );
 %
 %  Evaluate the quadrature sum.
 %

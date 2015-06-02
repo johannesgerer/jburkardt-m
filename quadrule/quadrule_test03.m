@@ -2,7 +2,7 @@ function quadrule_test03 ( )
 
 %*****************************************************************************80
 %
-%% TEST03 tests BDFP_SET and BDF_SUM.
+%% QUADRULE_TEST03 tests BDFP_SET and BDF_SUM.
 %
 %  Licensing:
 %
@@ -21,7 +21,7 @@ function quadrule_test03 ( )
   nfunc = func_set ( 'COUNT', 'DUMMY' );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST03\n' );
+  fprintf ( 1, 'QUADRULE_TEST03\n' );
   fprintf ( 1, '  BDFP_SET sets Backward Difference Predictor quadrature;\n' );
   fprintf ( 1, '  BDF_SUM carries it out.\n' );
   fprintf ( 1, '\n' );

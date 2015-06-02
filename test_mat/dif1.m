@@ -2,7 +2,7 @@ function a = dif1 ( m, n )
 
 %*****************************************************************************80
 %
-%% DIF1 returns the first difference matrix.
+%% DIF1 returns the DIF1 matrix.
 %
 %  Discussion:
 %
@@ -49,6 +49,8 @@ function a = dif1 ( m, n )
 %
 %    If N is odd, a null vector is ( 1, 0, 1, 0, ..., 1, 0, 1 )..
 %
+%    The family of matrices is nested as a function of N.
+%
 %  Licensing:
 %
 %    This code is distributed under the GNU LGPL license.
@@ -67,7 +69,7 @@ function a = dif1 ( m, n )
 %
 %    Output, real A(M,N), the matrix.
 %
-  a(1:m,1:n) = 0.0;
+  a = zeros ( m, n );
 
   for i = 1 : m
 

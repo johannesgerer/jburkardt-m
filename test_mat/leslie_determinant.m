@@ -29,7 +29,7 @@ function determ = leslie_determinant ( b, di, da )
 %    The mortality rates must be between 0.0 and 1.0.  Reasonable
 %    values might be B = 0.025, DI = 0.010, and DA = 0.100
 %
-%    Output, real A(4,4), the matrix.
+%    Output, real DETERM, the determinant.
 %
   determ = 9.0 * ( 1.0 - da ) / 10.0 * ...
   ( ...

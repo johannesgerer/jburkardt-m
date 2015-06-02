@@ -2,7 +2,7 @@ function poisson_simulation_test ( )
 
 %*****************************************************************************80
 %
-%% POISSON_SIMULATION_TEST tests POISSON_SIMULATION.
+%% POISSON_SIMULATION_TEST tests the POISSON_SIMULATION library.
 %
 %  Licensing:
 %
@@ -30,7 +30,6 @@ function poisson_simulation_test ( )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'POISSON_SIMULATION_TEST\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 

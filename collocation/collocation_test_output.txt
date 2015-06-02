@@ -1,0 +1,46 @@
+collocation_test()
+29-Mar-2015 14:06:55
+
+COLLOCATION_TEST
+  MATLAB version.
+  Test the COLLOCATION library.
+
+COLLOCATION_TEST01:
+  Collocate the equation F(X)=SIN(X)
+  Let N be the number of collocation points.
+  Choose N points X in [0,2Pi].
+  Let G(X) be a polynomial of degree N-1.
+    G(X(1:N)) = SIN(X(1:N))
+  is N equations for the N unknown coefficients in G.
+
+  Created plot file "test01.png".
+
+COLLOCATION_TEST02:
+  Collocate a two point boundary value problem.
+  Let N be the number of collocation points.
+  Choose N points X in [0,2].
+  Let G(X) be a polynomial of degree N-1.
+    G(X(1)=0.0) = 1.0
+    G"(X(2:N-1)) = G(X(2:N-1))
+    G(X(N)=2.0) = exp(2.0)
+  is N equations for the N unknown coefficients in G.
+
+  Created plot file "test02.png".
+
+COLLOCATION_TEST03:
+  Collocate a two point boundary value problem.
+  Let N be the number of collocation points.
+  Choose N points X in [0,2].
+  Let G(X) be C1+C2*X+C(3:N)*SIN((1:N-2)*PI*X/(N-2)).
+    G(X(1)=0.0) = 1.0
+    G"(X(2:N-1)) = G(X(2:N-1))
+    G(X(N)=2.0) = exp(2.0)
+  is N equations for the N unknown coefficients in G.
+
+  Created plot file "test03.png".
+
+COLLOCATION_TEST
+  Normal end of execution.
+
+29-Mar-2015 14:06:56
+diary off

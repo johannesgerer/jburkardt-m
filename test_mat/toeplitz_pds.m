@@ -2,7 +2,11 @@ function a = toeplitz_pds ( m, n, x, y )
 
 %*****************************************************************************80
 %
-%% TOEPLITZ_PDS returns a Toeplitz matrix that is positive definite symmetric.
+%% TOEPLITZ_PDS returns the TOEPLITZ_PDS matrix.
+%
+%  Discussion:
+%
+%    TOEPLITZ is a Toeplitz matrix that is positive definite symmetric.
 %
 %  Formula:
 %
@@ -67,6 +71,8 @@ function a = toeplitz_pds ( m, n, x, y )
 %
 %    Output, real A(N,N), the matrix.
 %
+  a = zeros ( n, n );
+
   for i = 1 : n
     for j = 1 : n
       a(i,j) = 0.0;

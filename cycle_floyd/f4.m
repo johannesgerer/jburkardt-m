@@ -18,6 +18,10 @@ function value = f4 ( i )
 %
 %  Parameters:
 %
+%    Input, integer I, the argument of the function.
+%
+%    Output, integer VALUE, the value of the function.
+%
   value = mod ( 31421 * i + 6927, 65536 );
 
   return

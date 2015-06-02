@@ -2,7 +2,7 @@ function quadrule_test09 ( )
 
 %*****************************************************************************80
 %
-%% TEST09 tests HERMITE_SET and SUMMER.
+%% QUADRULE_TEST09 tests HERMITE_SET.
 %
 %  Licensing:
 %
@@ -21,11 +21,11 @@ function quadrule_test09 ( )
   nfunc = func_set ( 'COUNT', 'DUMMY' );
 
   fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST09\n' );
+  fprintf ( 1, 'QUADRULE_TEST09\n' );
   fprintf ( 1, '  HERMITE_SET sets up Gauss-Hermite quadrature;\n' );
-  fprintf ( 1, '  SUMMER carries it out.\n' );
   fprintf ( 1, '\n' );
-  fprintf ( 1, '  The integration interval is ( -Infinity, +Infinity ).\n' );
+  fprintf ( 1, '  The integration interval is ( -oo, +oo ).\n' );
+  fprintf ( 1, '  The weight function is exp ( - x * x ).\n' );
   fprintf ( 1, '\n' );
 
   for ilo = 1 : 5 : nfunc
@@ -50,9 +50,12 @@ function quadrule_test09 ( )
 
         [ xtab, weight ] = hermite_set ( norder );
 
-        result(i) = summer ( @func, norder, xtab, weight );
+        result = 0.0;
+        for j = 1 : norder
+          result = result + weight(j) * func ( xtab(j) );
+        end
 
-        fprintf ( 1, '  %12f', result(i) );
+        fprintf ( 1, '  %12f', result );
 
       end
 

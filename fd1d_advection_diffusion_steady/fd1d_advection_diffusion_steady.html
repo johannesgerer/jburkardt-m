@@ -1,0 +1,181 @@
+<html>
+
+  <head>
+    <title>
+      FD1D_ADVECTION_DIFFUSION_STEADY - Finite Difference Method, Steady 1D Advection Diffusion Equation
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FD1D_ADVECTION_DIFFUSION_STEADY <br> 
+      Finite Difference Method<br> 
+      Steady 1D Advection Diffusion Equation
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FD1D_ADVECTION_DIFFUSION_STEADY</b> 
+      is a MATLAB program which
+      applies the finite difference method to solve the
+      steady advection diffusion equation v*ux-k*uxx=0 in 
+      one spatial dimension, with constant velocity v and diffusivity k.
+    </p>
+
+    <p>
+      We solve the steady constant-velocity advection diffusion equation in 1D,
+      <pre>
+        v du/dx - k d^2u/dx^2
+      </pre>
+      over the interval:
+      <pre>
+        0.0 <= x <= 1.0
+      </pre>
+      with boundary conditions
+      <pre>
+        u(0) = 0, u(1) = 1.
+      </pre>
+    </p>
+
+    <p>
+      We do this by discretizing the interval [0,1] into NX nodes.
+      We write the boundary conditions at the first and last nodes.
+      At the i-th interior node, we replace derivatives by differences:
+      <ul>
+        <li>
+          du/dx = (u(x+dx)-u(x-dx))/2/dx
+        </li>
+        <li>
+          d^2u/dx^2 = (u(x+dx)-2u(x)+u(x-dx))/dx/dx
+        </li>
+      </ul>
+      This becomes a set of NX linear equations in the NX unknown values of U.
+    </p>
+
+    <p>
+      The exact solution to this differential equation is known:
+      <pre>
+        u = ( 1 - exp ( r * x ) ) / ( 1 - exp ( r ) )
+      </pre>
+      where r = v * l / k;
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page 
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FD1D_ADVECTION_DIFFUSION_STEADY</b> is available in
+      <a href = "../../c_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">a C version</a> and
+      <a href = "../../cpp_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">a C++ version</a> and
+      <a href = "../../f77_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fd1d_advection_diffusion_steady/fd1d_advection_diffusion_steady.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_ftcs/fd1d_advection_ftcs.html">
+      FD1D_ADVECTION_FTCS</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the forward time, centered space (FTCS)
+      difference method.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_lax/fd1d_advection_lax.html">
+      FD1D_ADVECTION_LAX</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the Lax method to treat the time derivative.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fd1d_advection_lax_wendroff/fd1d_advection_lax_wendroff.html">
+      FD1D_ADVECTION_LAX_WENDROFF</a>,
+      a MATLAB program which
+      applies the finite difference method to solve the time-dependent
+      advection equation ut = - c * ux in one spatial dimension, with
+      a constant velocity, using the Lax-Wendroff method to treat the time derivative.
+    </p>
+
+    <h3 align = "center">
+      Reference:
+    </h3>
+
+    <p>
+      <ol>
+        <li>
+          Charles Hall, Thomas Porsching,<br>
+          Numerical Analysis of Partial Differential Equations,<br>
+          Prentice-Hall, 1990,<br>
+          ISBN: 013626557X,<br>
+          LC: QA374.H29.
+        </li>
+      </ol>
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_advection_diffusion_steady.m">fd1d_advection_diffusion_steady.m</a>,
+          the source code.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fd1d_advection_diffusion_steady_output.txt">fd1d_advection_diffusion_steadys_output.txt</a>, 
+          the output file.
+        </li>
+        <li>
+          <a href = "fd1d_advection_diffusion_steady.png">fd1d_advection_diffusion_steady.png</a>, 
+          an image of the solution.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 02 May 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

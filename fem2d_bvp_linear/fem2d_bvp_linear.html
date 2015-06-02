@@ -1,0 +1,175 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_BVP_LINEAR - Finite Element Method, 2D, Boundary Value Problem, Piecewise Linear Elements
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_BVP_LINEAR <br> Finite Element Method, 2D, Boundary Value Problem, Piecewise Linear Elements
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_BVP_LINEAR</b>
+      is a MATLAB program which
+      applies the finite element method, with piecewise linear elements,
+      to a 2D boundary value problem over a rectangle.
+    </p>
+
+    <p>
+      The boundary value problem (BVP) that is to be solved has the form:
+      <pre>
+        - d/dx ( a(x,y) * du/dx ) - d/dy ( a(x,y) * du/dy ) + c(x,y) * u(x,y) = f(x,y)
+      </pre>
+      This equation holds in the interior of some rectangle R.
+      The functions a(x,y), c(x,y), and f(x,y) are given.
+    </p>
+
+    <p>
+      Zero boundary conditions are imposed on the boundary of R.
+    </p>
+
+    <p>
+      To compute a finite element approximation, the X and Y extents of R
+      are gridded with NX and NY equally spaced values, respectively.
+      This defines NX*NY nodes, and divides R into (NX-1)*(NY-1) rectangular
+      elements.  At the K-th node, (X(I),Y(J)), a piecewise linear basis
+      function PHI(K)(X,Y) is defined.  The solution will be represented as
+      a linear combination of these basis functions.  An integral form 
+      of the BVP is written, in which the differential equation is 
+      multiplied by each basis function, and integration by parts is
+      used to simplify the integrand.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_BVP_LINEAR</b> is available in
+      <a href = "../../c_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a C version</a> and
+      <a href = "../../cpp_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a C++ version</a> and
+      <a href = "../../f77_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a MATLAB version</a> and
+      <a href = "../../py_src/fem2d_bvp_linear/fem2d_bvp_linear.html">a Python version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem1d_bvp_linear/fem1d_bvp_linear.html">
+      FEM1D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise linear
+      elements, to a two point boundary value problem (BVP) in one 
+      spatial dimension, and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_bvp_quadratic/fem2d_bvp_quadratic.html">
+      FEM2D_BVP_QUADRATIC</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise quadratic elements,
+      to a 2D boundary value problem (BVP) in a rectangle,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_bvp_serene/fem2d_bvp_serene.html">
+      FEM2D_BVP_SERENE</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with serendipity elements,
+      to a 2D boundary value problem (BVP) in a rectangle,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_bvp_linear.m">fem2d_bvp_linear.m</a>,
+          sets up and solves the finite element problem.
+        </li>
+        <li>
+          <a href = "fem2d_h1s_error_linear.m">fem2d_h1s_error_linear.m</a>,
+          estimates the seminorm of the error, given the 
+          piecewise linear solution of
+          the finite element problem, and a function that evaluates
+          the derivative of the exact solution.
+        </li>
+        <li>
+          <a href = "fem2d_l1_error.m">fem2d_l1_error.m</a>,
+          estimates the little l1 norm of the error, given the solution of
+          the finite element problem, and a function that evaluates
+          the exact solution.
+        </li>
+        <li>
+          <a href = "fem2d_l2_error_linear.m">fem2d_l2_error_linear.m</a>,
+          estimates the L2 norm of the error, given the 
+          piecewise linear solution of
+          the finite element problem, and a function that evaluates
+          the exact solution.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_bvp_linear_test.m">fem2d_bvp_linear_test.m</a>,
+          a program which calls fem_bvp_linear with some test cases.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_linear_test_output.txt">fem2d_bvp_linear_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_linear_test01.m">fem2d_bvp_linear_test01.m</a>
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 20 June 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

@@ -31,7 +31,6 @@ function r = latin_random_dataset ( m, n, seed )
 %    John Burkardt
 %
   timestamp ( );
-
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATIN_RANDOM_DATASET\n' );
   fprintf ( 1, '  MATLAB version\n' );
@@ -43,6 +42,8 @@ function r = latin_random_dataset ( m, n, seed )
   if ( nargin < 1 )
     fprintf ( 1, '\n' );
     m = input ( '  Enter the spatial dimension M: ' );
+  else
+    m = str2num ( m );
   end
 
   fprintf ( 1, '\n' );
@@ -53,6 +54,8 @@ function r = latin_random_dataset ( m, n, seed )
   if ( nargin < 2 )
     fprintf ( 1, '\n' );
     n = input ( '  Enter the number of points N: ' );
+  else
+    n = str2num ( n );
   end
 
   fprintf ( 1, '  Number of points N = %d\n', n );
@@ -62,6 +65,8 @@ function r = latin_random_dataset ( m, n, seed )
   if ( nargin < 3 )
     fprintf ( 1, '\n' );
     seed = input ( '  Enter the seed: ' );
+  else
+    seed = str2num ( seed );
   end
 
   fprintf ( 1, '  The seed = %d\n', seed );
@@ -86,7 +91,6 @@ function r = latin_random_dataset ( m, n, seed )
   fprintf ( 1, '\n' );
   fprintf ( 1, 'LATIN_RANDOM_DATASET:\n' );
   fprintf ( 1, '  Normal end of execution.\n' );
-
   fprintf ( 1, '\n' );
   timestamp ( );
 
@@ -136,11 +140,11 @@ function seed = get_seed ( )
 
   return
 end
-function [ c, seed ] = i4_uniform ( a, b, seed )
+function [ c, seed ] = i4_uniform_ab ( a, b, seed )
 
 %*****************************************************************************80
 %
-%% I4_UNIFORM returns a scaled pseudorandom I4.
+%% I4_UNIFORM_AB returns a scaled pseudorandom I4.
 %
 %  Discussion:
 %
@@ -202,9 +206,9 @@ function [ c, seed ] = i4_uniform ( a, b, seed )
 
   if ( seed == 0 )
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'I4_UNIFORM - Fatal error!\n' );
+    fprintf ( 1, 'I4_UNIFORM_AB - Fatal error!\n' );
     fprintf ( 1, '  Input SEED = 0!\n' );
-    error ( 'I4_UNIFORM - Fatal error!' );
+    error ( 'I4_UNIFORM_AB - Fatal error!' );
   end
 
   seed = floor ( seed );
@@ -263,7 +267,7 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
 %  Modified:
 %
-%    08 April 2003
+%    12 November 2014
 %
 %  Author:
 %
@@ -275,19 +279,13 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
 %    Input, integer POINT_NUM, the number of points.
 %
-%    Input, integer SEED, a seed for UNIFORM, the random number generator.
+%    Input, integer SEED, a seed for the random number generator.
 %
-%    Output, real X(dim_num,point_num), the points.
+%    Output, real X(DIM_NUM,POINT_NUM), the points.
 %
 %    Output, integer SEED, the updated random number seed.
 %
-  base = 1;
-
-  for i = 1: dim_num
-    for j = 1: point_num
-      [ x(i,j), seed ] = r8_uniform_01 ( seed );
-    end
-  end
+  [ x, seed ] = r8mat_uniform_01 ( dim_num, point_num, seed );
 %
 %  For spatial dimension I,
 %    pick a random permutation of 1 to POINT_NUM,
@@ -296,7 +294,7 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 %
   for i = 1: dim_num
 
-    [ perm, seed ] = perm_uniform ( point_num, base, seed );
+    [ perm, seed ] = perm_uniform ( point_num, seed );
 
     for j = 1: point_num
       x(i,j) = ( ( perm(j) - 1 ) + x(i,j) ) / ( point_num );
@@ -306,110 +304,7 @@ function [ x, seed ] = latin_random ( dim_num, point_num, seed )
 
   return
 end
-function latin_random_test ( )
-
-%*****************************************************************************80
-%
-%% LATIN_RANDOM_TEST tests LATIN_RANDOM.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    03 April 2007
-%
-%  Author:
-%
-%    John Burkardt
-%
-  timestamp ( );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
-  fprintf ( 1, '  MATLAB version\n' );
-  fprintf ( 1, '  Test the Latin Random Square routines.\n' );
-
-  seed = 0;
-  seed = get_seed ( seed );
-
-  seed_save = seed;
-  seed = latin_random_test01 ( seed );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
-  fprintf ( 1, '  Repeat test with different seed than run 1.\n' );
-
-  seed = latin_random_test01 ( seed );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_TEST:\n' );
-  fprintf ( 1, '  Repeat test with same seed as run 1.\n' );
-
-  seed = seed_save;
-  seed = latin_random_test01 ( seed );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'LATIN_RANDOM_PRB:\n' );
-  fprintf ( 1, '  Normal end of execution.\n' );
-
-  fprintf ( 1, '\n' );
-  timestamp ( );
-
-  return
-end
-function seed = latin_random_test01 ( seed )
-
-%*****************************************************************************80
-%
-%% LATIN_RANDOM_TEST01 tests LATIN.
-%
-%  Licensing:
-%
-%    This code is distributed under the GNU LGPL license.
-%
-%  Modified:
-%
-%    03 April 2007
-%
-%  Author:
-%
-%    John Burkardt
-%
-%  Parameters:
-%
-%    Input, integer SEED, an initial seed for the random number generator.
-%
-%    Output, integer SEED, the updated random number seed.
-%
-  dim_num = 2;
-  point_num = 10;
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, 'TEST01\n' );
-  fprintf ( 1, '  LATIN_RANDOM chooses a Latin cell arrangement,\n' );
-  fprintf ( 1, '  and returns a random point from each cells.\n' );
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  Spatial dimension = %d\n', dim_num );
-  fprintf ( 1, '  Number of points =  %d\n', point_num );
-  fprintf ( 1, '  Using seed = %d\n', seed );
-
-  [ x, seed ] = latin_random ( dim_num, point_num, seed );
-
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  The Latin Random Square points:\n' );
-  fprintf ( 1, '\n' );
-
-  for j = 1: point_num
-    for i = 1: dim_num
-      fprintf ( 1, '%10f  ', x(i,j) );
-    end
-    fprintf ( 1, '\n' );
-  end
-
-  return
-end
-function [ p, seed ] = perm_uniform ( n, base, seed )
+function [ p, seed ] = perm_uniform ( n, seed )
 
 %*****************************************************************************80
 %
@@ -421,7 +316,7 @@ function [ p, seed ] = perm_uniform ( n, base, seed )
 %
 %  Modified:
 %
-%    18 November 2008
+%    12 November 2014
 %
 %  Author:
 %
@@ -429,7 +324,7 @@ function [ p, seed ] = perm_uniform ( n, base, seed )
 %
 %  Reference:
 %
-%    A Nijenhuis and H Wilf,
+%    A Nijenhuis, Herbert Wilf,
 %    Combinatorial Algorithms,
 %    Academic Press, 1978, second edition,
 %    ISBN 0-12-519260-6.
@@ -438,9 +333,6 @@ function [ p, seed ] = perm_uniform ( n, base, seed )
 %
 %    Input, integer N, the number of objects to be permuted.
 %
-%    Input, integer BASE, is 0 for a 0-based permutation and 1 for 
-%    a 1-based permutation.
-!
 %    Input, integer SEED, a seed for the random number generator.
 %
 %    Output, integer P(N), a permutation of ( 1, 2, ..., N ), in standard
@@ -448,11 +340,11 @@ function [ p, seed ] = perm_uniform ( n, base, seed )
 %
 %    Output, integer SEED, the updated random number seed.
 %
-  p = ( 1 : n ) + base - 1;
+  p = ( 1 : n );
 
-  for i = 1: n
+  for i = 1: n - 1
 
-    [ j, seed ] = i4_uniform ( i, n, seed );
+    [ j, seed ] = i4_uniform_ab ( i, n, seed );
 
     temp = p(i);
     p(i) = p(j);
@@ -462,34 +354,15 @@ function [ p, seed ] = perm_uniform ( n, base, seed )
 
   return
 end
-function [ r, seed ] = r8_uniform_01 ( seed )
+function [ r, seed ] = r8mat_uniform_01 ( m, n, seed )
 
 %*****************************************************************************80
 %
-%% R8_UNIFORM_01 returns a unit pseudorandom R8.
-%
-%  Discussion:
-%
-%    This routine implements the recursion
-%
-%      seed = 16807 * seed mod ( 2**31 - 1 )
-%      r8_uniform_01 = seed / ( 2**31 - 1 )
-%
-%    The integer arithmetic never requires more than 32 bits,
-%    including a sign bit.
-%
-%    If the initial seed is 12345, then the first three computations are
-%
-%      Input     Output      R8_UNIFORM_01
-%      SEED      SEED
-%
-%         12345   207482415  0.096616
-%     207482415  1790989824  0.833995
-%    1790989824  2035175616  0.947702
+%% R8MAT_UNIFORM_01 returns a unit pseudorandom R8MAT.
 %
 %  Licensing:
 %
-%    This code is distributed under the GNU LGPL license. 
+%    This code is distributed under the GNU LGPL license.
 %
 %  Modified:
 %
@@ -503,67 +376,65 @@ function [ r, seed ] = r8_uniform_01 ( seed )
 %
 %    Paul Bratley, Bennett Fox, Linus Schrage,
 %    A Guide to Simulation,
-%    Second Edition,
-%    Springer, 1987,
-%    ISBN: 0387964673,
-%    LC: QA76.9.C65.B73.
+%    Springer Verlag, pages 201-202, 1983.
 %
 %    Bennett Fox,
 %    Algorithm 647:
 %    Implementation and Relative Efficiency of Quasirandom
 %    Sequence Generators,
 %    ACM Transactions on Mathematical Software,
-%    Volume 12, Number 4, December 1986, pages 362-376.
-%
-%    Pierre L'Ecuyer,
-%    Random Number Generation,
-%    in Handbook of Simulation,
-%    edited by Jerry Banks,
-%    Wiley, 1998,
-%    ISBN: 0471134031,
-%    LC: T57.62.H37.
+%    Volume 12, Number 4, pages 362-376, 1986.
 %
 %    Peter Lewis, Allen Goodman, James Miller,
 %    A Pseudo-Random Number Generator for the System/360,
 %    IBM Systems Journal,
-%    Volume 8, Number 2, 1969, pages 136-143.
+%    Volume 8, pages 136-143, 1969.
 %
 %  Parameters:
 %
-%    Input, integer SEED, the integer "seed" used to generate
-%    the output random number.  SEED should not be 0.
+%    Input, integer M, N, the number of rows and columns in the array.
 %
-%    Output, real R, a random value between 0 and 1.
+%    Input, integer SEED, the integer "seed" used to generate
+%    the output random number.
+%
+%    Output, real R(M,N), an array of random values between 0 and 1.
 %
 %    Output, integer SEED, the updated seed.  This would
 %    normally be used as the input seed on the next call.
 %
   i4_huge = 2147483647;
+  r = zeros ( m, n );
 
   if ( seed == 0 )
     fprintf ( 1, '\n' );
-    fprintf ( 1, 'R8_UNIFORM_01 - Fatal error!\n' );
+    fprintf ( 1, 'R8MAT_UNIFORM_01 - Fatal error!\n' );
     fprintf ( 1, '  Input SEED = 0!\n' );
-    error ( 'R8_UNIFORM_01 - Fatal error!' );
+    error ( 'R8MAT_UNIFORM_01 - Fatal error!' );
   end
 
-  seed = floor ( seed );
+  for j = 1 : n
+    for i = 1 : m
 
-  seed = mod ( seed, i4_huge );
+      seed = floor ( seed );
 
-  if ( seed < 0 ) 
-    seed = seed + i4_huge;
-  end 
+      seed = mod ( seed, i4_huge );
 
-  k = floor ( seed / 127773 );
+      if ( seed < 0 ) 
+        seed = seed + i4_huge;
+      end 
 
-  seed = 16807 * ( seed - k * 127773 ) - k * 2836;
+      k = floor ( seed / 127773 );
 
-  if ( seed < 0 )
-    seed = seed + i4_huge;
+      seed = 16807 * ( seed - k * 127773 ) - k * 2836;
+
+      if ( seed < 0 )
+        seed = seed + i4_huge;
+      end
+
+      r(i,j) = seed * 4.656612875E-10;
+
+    end
   end
-
-  r = seed * 4.656612875E-10;
 
   return
 end
@@ -621,7 +492,8 @@ function r8mat_write ( output_filename, m, n, table )
 %
   for j = 1 : n
     for i = 1 : m
-      fprintf ( output_unit, '  %24.16f', table(i,j) );
+%     fprintf ( output_unit, '  %24.16f', table(i,j) );
+      fprintf ( output_unit, '  %g', table(i,j) );
     end
     fprintf ( output_unit, '\n' );
   end

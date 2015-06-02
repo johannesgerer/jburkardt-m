@@ -36,16 +36,7 @@ function seed = latin_random_test01 ( seed )
 
   [ x, seed ] = latin_random ( dim_num, point_num, seed );
 
-  fprintf ( 1, '\n' );
-  fprintf ( 1, '  The Latin Random Square points:\n' );
-  fprintf ( 1, '\n' );
-
-  for j = 1: point_num
-    for i = 1: dim_num
-      fprintf ( 1, '%10f  ', x(i,j) );
-    end
-    fprintf ( 1, '\n' );
-  end
+  r8mat_transpose_print ( dim_num, point_num, x, '  The Latin Random points:' );
 
   return
 end

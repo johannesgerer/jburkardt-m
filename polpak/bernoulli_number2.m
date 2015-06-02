@@ -154,3 +154,7 @@ function b = bernoulli_number2 ( n )
     b(i+1) = t * sum2;
  
   end
+
+  return
+end
+

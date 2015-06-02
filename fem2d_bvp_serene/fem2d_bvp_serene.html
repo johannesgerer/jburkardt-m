@@ -1,0 +1,221 @@
+<html>
+
+  <head>
+    <title>
+      FEM2D_BVP_SERENE - Finite Element Method, 2D, Boundary Value Problem, Serendipity Elements
+    </title>
+  </head>
+
+  <body bgcolor="#EEEEEE" link="#CC0000" alink="#FF3300" vlink="#000055">
+
+    <h1 align = "center">
+      FEM2D_BVP_SERENE <br> Finite Element Method, 2D, Boundary Value Problem, Serendipity Elements
+    </h1>
+
+    <hr>
+
+    <p>
+      <b>FEM2D_BVP_SERENE</b>
+      is a MATLAB program which
+      applies the finite element method, with serendipity elements,
+      to a 2D boundary value problem over a rectangle.
+    </p>
+
+    <p>
+      The boundary value problem (BVP) that is to be solved has the form:
+      <pre>
+        - d/dx ( a(x,y) * du/dx ) - d/dy ( a(x,y) * du/dy ) + c(x,y) * u(x,y) = f(x,y)
+      </pre>
+      This equation holds in the interior of some rectangle R.
+      The functions a(x,y), c(x,y), and f(x,y) are given.
+    </p>
+
+    <p>
+      Zero boundary conditions are imposed on the boundary of R.
+    </p>
+
+    <p>
+      The MATLAB "gallery()" command can produce a copy of the Wathen matrix,
+      which arises as a weighted sum of elementary mass matrices associated
+      with a grid of serendipity elements.
+    </p>
+
+    <h3 align = "center">
+      Licensing:
+    </h3>
+
+    <p>
+      The computer code and data files described and made available on this web page
+      are distributed under
+      <a href = "../../txt/gnu_lgpl.txt">the GNU LGPL license.</a>
+    </p>
+
+    <h3 align = "center">
+      Languages:
+    </h3>
+
+    <p>
+      <b>FEM2D_BVP_SERENE</b> is available in
+      <a href = "../../c_src/fem2d_bvp_serene/fem2d_bvp_serene.html">a C version</a> and
+      <a href = "../../cpp_src/fem2d_bvp_serene/fem2d_bvp_serene.html">a C++ version</a> and
+      <a href = "../../f77_src/fem2d_bvp_serene/fem2d_bvp_serene.html">a FORTRAN77 version</a> and
+      <a href = "../../f_src/fem2d_bvp_serene/fem2d_bvp_serene.html">a FORTRAN90 version</a> and
+      <a href = "../../m_src/fem2d_bvp_serene/fem2d_bvp_serene.html">a MATLAB version</a>.
+    </p>
+
+    <h3 align = "center">
+      Related Data and Programs:
+    </h3>
+
+    <p>
+      <a href = "../../m_src/fem2d_bvp_linear/fem2d_bvp_linear.html">
+      FEM2D_BVP_LINEAR</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise linear
+      elements, to a 2D boundary value problem (BVP) over a rectangle,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/fem2d_bvp_quadratic/fem2d_bvp_quadratic.html">
+      FEM2D_BVP_QUADRATIC</a>,
+      a MATLAB program which
+      applies the finite element method (FEM), with piecewise quadratic
+      elements, to a 2D boundary value problem (BVP) over a rectangle,
+      and compares the computed and exact solutions 
+      with the L2 and seminorm errors.
+    </p>
+
+    <p>
+      <a href = "../../m_src/wathen/wathen.html">
+      WATHEN</a>,
+      a MATLAB library which
+      compares storage schemes (full, banded, sparse triplet, sparse) and 
+      solution strategies (A\x, Linpack, conjugate gradient (CG)) 
+      for linear systems involving the Wathen matrix, 
+      which can arise when solving a problem using the 
+      finite element method (FEM).
+    </p>
+
+    <h3 align = "center">
+      Source Code:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "basis_serene.m">basis_serene.m</a>,
+          evaluates the basis functions for the serendipity element.
+        </li>
+        <li>
+          <a href = "basisd_serene.m">basisd_serene.m</a>,
+          evaluates the X and Y derivatives of the basis functions 
+          for the serendipity element.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene.m">fem2d_bvp_serene.m</a>,
+          sets up and solves the finite element problem.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_extend.m">fem2d_bvp_serene_extend.m</a>,
+          extends a solution from the serendipity grid to a regular grid.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_node_num.m">fem2d_bvp_serene_node_num.m</a>,
+          returns the number of nodes in a grid made of serendipity elements.
+        </li>
+        <li>
+          <a href = "fem2d_h1s_error_serene.m">fem2d_h1s_error_serene.m</a>,
+          evaluates the H1S seminorm error for a serendipity finite element solution.
+        </li>
+        <li>
+          <a href = "fem2d_l1_error_serene.m">fem2d_l1_error_serene.m</a>,
+          evaluates the l1 error for a serendipity finite element solution.
+        </li>
+        <li>
+          <a href = "fem2d_l2_error_serene.m">fem2d_l2_error_serene.m</a>,
+          evaluates the L2 error for a serendipity finite element solution.
+        </li>
+        <li>
+          <a href = "not1.m">not1.m</a>,
+          evaluates a one-term factor for serendipity basis functions.
+        </li>
+        <li>
+          <a href = "not1d.m">not1d.m</a>,
+          differentiates a one-term factor for serendipity basis functions.
+        </li>
+        <li>
+          <a href = "not2.m">not2.m</a>,
+          evaluates a two-term factor for serendipity basis functions.
+        </li>
+        <li>
+          <a href = "not2dx.m">not2dx.m</a>,
+          differentiates a two-term factor for serendipity basis functions with respect to X.
+        </li>
+        <li>
+          <a href = "not2dy.m">not2dy.m</a>,
+          differentiates a two-term factor for serendipity basis functions with respect to Y.
+        </li>
+      </ul>
+    </p>
+
+    <h3 align = "center">
+      Examples and Tests:
+    </h3>
+
+    <p>
+      <ul>
+        <li>
+          <a href = "fem2d_bvp_serene_test.m">fem2d_bvp_serene_test.m</a>,
+          a program which calls fem_bvp_serene with some test cases.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test_output.txt">fem2d_bvp_serene_test_output.txt</a>,
+          the output file.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test01.m">fem2d_bvp_serene_test01.m</a>,
+          a simple test in which the exact solution is a quadratic function.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test02.m">fem2d_bvp_serene_test02.m</a>,
+          makes some checks on the serendipity basis functions.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test03.m">fem2d_bvp_serene_test03.m</a>,
+          sets up a contrived problem so that the system matrix is formed using
+          the Wathen matrix.  It prints out one copy of the (scaled) element
+          mass matrix, and compares it to a (scaled and permuted) copy of
+          the Wathen matrix returned by Matlab's gallery('wathen',1,1) command.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test04.m">fem2d_bvp_serene_test04.m</a>,
+          repeats the calculation in fem2d_bvp_serene_test01(), but now uses
+          the fem2d_bvp_serene_extend() function to extend the solution from
+          the irregular serendipity grid to a matrix grid, which can then be
+          plotted with the surf() command.
+        </li>
+        <li>
+          <a href = "fem2d_bvp_serene_test04.png">fem2d_bvp_serene_test04.png</a>,
+          an image of the solution after extension.
+        </li>
+      </ul>
+    </p>
+
+    <p>
+      You can go up one level to <a href = "../m_src.html">
+      the MATLAB source codes</a>.
+    </p>
+
+    <hr>
+
+    <i>
+      Last revised on 30 June 2014.
+    </i>
+
+    <!-- John Burkardt -->
+
+  </body>
+
+</html>

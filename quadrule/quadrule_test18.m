@@ -10,7 +10,7 @@ function quadrule_test18 ( n )
 %
 %  Modified:
 %
-%    19 April 2011
+%    15 February 2013
 %
 %  Author:
 %
@@ -48,10 +48,10 @@ function quadrule_test18 ( n )
 
   if ( 0 < ixdifmax )
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Maximum abscissa difference is %e\n', xdifmax );
-    fprintf ( 1, '  for index I = %d\n', ixdifmax );
-    fprintf ( 1, '  Computed:  %e\n', x1(ixdifmax) );
-    fprintf ( 1, '  Stored:    %e\n', x2(ixdifmax) );
+    fprintf ( 1, '  Maximum abscissa difference for index I = %d\n', ixdifmax );
+    fprintf ( 1, '  Computed:   %e\n', x1(ixdifmax) );
+    fprintf ( 1, '  Stored:     %e\n', x2(ixdifmax) );
+    fprintf ( 1, '  Difference: %e\n', abs ( x1(ixdifmax) - x2(ixdifmax) ) );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '  The computed and stored abscissas are identical.\n' );
@@ -59,10 +59,10 @@ function quadrule_test18 ( n )
 
   if ( 0 < iwdifmax )
     fprintf ( 1, '\n' );
-    fprintf ( 1, '  Maximum w difference is %e\n', wdifmax );
-    fprintf ( 1, '  for index I = %d\n', iwdifmax );
-    fprintf ( 1, '  Computed:  %e\n', w1(iwdifmax) );
-    fprintf ( 1, '  Stored:    %e\n', w2(iwdifmax) );
+    fprintf ( 1, '  Maximum w difference for index I = %d\n', iwdifmax );
+    fprintf ( 1, '  Computed:   %e\n', w1(iwdifmax) );
+    fprintf ( 1, '  Stored:     %e\n', w2(iwdifmax) );
+    fprintf ( 1, '  Difference: %e\n', abs ( w1(iwdifmax) - w2(iwdifmax) ) );
   else
     fprintf ( 1, '\n' );
     fprintf ( 1, '  The computed and stored weights are identical.\n' );
