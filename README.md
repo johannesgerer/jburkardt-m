@@ -55,7 +55,7 @@ MATLAB Source Codes
 50. [bisection\_rc](bisection_rc/bisection_rc.html), a library which seeks a solution to the equation F(X)=0 using bisection within a user-supplied change of sign interval \[A,B\]. The procedure is written using reverse communication.
 51. [black\_scholes](black_scholes/black_scholes.html), a library which implements some simple approaches to the Black-Scholes option valuation theory, by Desmond Higham.
 52. [blas](blas/blas.html), a library which contains the Basic Linear Algebra Subprograms (BLAS) for level 1, 2 and 3, for single and double precision, and for real and complex arithmetic.
-53. [blas0](blas0/blas0.html), a library which contains auxilliary functions for the Basic Linear Algebra Subprograms (BLAS).
+53. [blas0](blas0/blas0.html), a library which contains auxiliary functions for the Basic Linear Algebra Subprograms (BLAS).
 54. [blas1](blas1/blas1.html), a library which contains the Basic Linear Algebra Subprograms (BLAS) for level 1 (vector-vector operations), for single and double precision, and for real and complex arithmetic.
 55. [blas1\_c](blas1_c/blas1_c.html), a library which implements the Level 1 Basic Linear Algebra Subprograms (BLAS), using single precision complex arithmetic;
 56. [blas1\_d](blas1_d/blas1_d.html), a library which implements the Level 1 Basic Linear Algebra Subprograms (BLAS), using double precision real arithmetic;
