@@ -25,16 +25,21 @@ function xg = sphere_fibonacci_grid_points ( ng )
 %
 %  Parameters:
 %
-%    Input, integer NG, the number of points.
+%    Input, odd integer NG, the number of points.
 %
 %    Output, real XG(N,3), the grid points.
 %
-  phi = ( 1.0 + sqrt ( 5.0 ) ) / 2.0;
 
-  i = ( - ( ng - 1 ) : 2 : ( ng - 1 ) )';
+  validateattributes(ng, {'numeric'}, {'odd', 'nonnegative'});
+
+  phi = ( 1.0 + sqrt ( 5.0 ) ) / 2.0;
+  
+  N = round(ng/2)-1; % resolution, analogous to N in the paper
+  i = ( -N : 1 : N )';
+  
   theta = 2 * pi * i / phi;
-  sphi = i / ng;
-  cphi = sqrt ( ( ng + i ) .* ( ng - i ) ) / ng;
+  sphi = 2 * i / ( 2 * N + 1 );
+  cphi = sqrt ( ( N + i ) .* ( N - i ) ) / N;
 
   xg = zeros ( ng, 3 );
 
